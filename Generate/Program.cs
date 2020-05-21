@@ -10,7 +10,7 @@ namespace Generate
         static void Main(string[] args)
         {
             // Dump macOS frameworks.
-            if (!args.Contains("skip-mac"))
+            if (args.Contains("macos"))
             {
                 void DumpMac(string folderName)
                 {
@@ -30,18 +30,9 @@ namespace Generate
             }
 
             // Dump iOS frameworks.
-            if (!args.Contains("skip-ios"))
+            if (args.Contains("ios"))
             {
-                void DumpIOS(string folderName)
-                {
-                    string FrameworksPath = $"/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/{folderName}";
-                    foreach (string file in Directory.EnumerateDirectories(FrameworksPath).OrderBy(s => s))
-                    {
-                        Dump($"../iOS/{folderName}", file);
-                    }
-                }
-                DumpIOS("Frameworks");
-                DumpIOS("PrivateFrameworks");
+                // wget -r http://192.168.0.10:10000/tree/ with some changes
             }
         }
 
