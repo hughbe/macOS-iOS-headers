@@ -15,14 +15,16 @@
     CNFuture *_future;
 }
 
+- (void).cxx_destruct;
 @property(readonly) CNFuture *future; // @synthesize future=_future;
 - (CDUnknownBlockType)errorOnlyCompletionHandlerAdapter;
 - (CDUnknownBlockType)boolErrorCompletionHandlerAdapter;
+- (CDUnknownBlockType)completionHandlerAdapterWithDefaultValue:(id)arg1;
 - (CDUnknownBlockType)completionHandlerAdapter;
 - (BOOL)finishWithResult:(id)arg1 error:(id)arg2;
 - (BOOL)finishWithError:(id)arg1;
 - (BOOL)finishWithResult:(id)arg1;
-- (void)dealloc;
+- (id)initWithSchedulerProvider:(id)arg1;
 - (id)init;
 
 // Remaining properties

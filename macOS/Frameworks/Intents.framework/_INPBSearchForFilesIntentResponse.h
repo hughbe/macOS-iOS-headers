@@ -7,42 +7,49 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBSearchForFilesIntentResponse.h"
 
-@class NSMutableArray, PBUnknownFields, _INPBInteger, _INPBString;
+@class NSArray, NSString, _INPBInteger, _INPBString;
 
-@interface _INPBSearchForFilesIntentResponse : PBCodable <NSCopying>
+@interface _INPBSearchForFilesIntentResponse : PBCodable <_INPBSearchForFilesIntentResponse, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    NSMutableArray *_entities;
+    CDStruct_f2ecb737 _has;
+    BOOL _success;
+    BOOL __encodeLegacyGloryData;
+    NSArray *_entities;
     _INPBInteger *_numResults;
     _INPBString *_query;
-    BOOL _success;
-    CDStruct_f2ecb737 _has;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)entitiesType;
-+ (id)options;
+- (void).cxx_destruct;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(nonatomic) BOOL success; // @synthesize success=_success;
 @property(retain, nonatomic) _INPBString *query; // @synthesize query=_query;
 @property(retain, nonatomic) _INPBInteger *numResults; // @synthesize numResults=_numResults;
-@property(retain, nonatomic) NSMutableArray *entities; // @synthesize entities=_entities;
-@property(nonatomic) BOOL success; // @synthesize success=_success;
-- (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(copy, nonatomic) NSArray *entities; // @synthesize entities=_entities;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
+@property(nonatomic) BOOL hasSuccess;
 @property(readonly, nonatomic) BOOL hasQuery;
 @property(readonly, nonatomic) BOOL hasNumResults;
 - (id)entitiesAtIndex:(unsigned long long)arg1;
-- (unsigned long long)entitiesCount;
+@property(readonly, nonatomic) unsigned long long entitiesCount;
 - (void)addEntities:(id)arg1;
 - (void)clearEntities;
-@property(nonatomic) BOOL hasSuccess;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

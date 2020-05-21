@@ -11,7 +11,10 @@
     const char *processName;
     unsigned long long tid;
     int pid;
+    unsigned long long machAbsTime;
 }
+
+- (void)dealloc;
 
 @end
 

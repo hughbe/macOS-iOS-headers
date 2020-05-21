@@ -7,7 +7,11 @@
 #import "NSDate.h"
 
 @interface NSDate (WBSNSDateExtras)
++ (void)safari_dateFromNTPServerWithTimeout:(double)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (id)safari_dateOfMidnightNumberOfDaysAgo:(long long)arg1;
+- (id)safari_stringsFromDateForLocaleIdentifiers:(id)arg1;
+- (id)_safari_stringWithDashSeparatorWithDateFormatter:(id)arg1;
+@property(readonly, nonatomic) double safari_timeIntervalUntilNow;
 - (BOOL)safari_isNowOrInRecentPast;
 - (BOOL)safari_isInclusivelyBetweenDate:(id)arg1 andDate:(id)arg2;
 - (id)safari_startOfDay;

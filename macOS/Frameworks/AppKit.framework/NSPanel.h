@@ -12,7 +12,7 @@
 
 + (unsigned long long)_validateStyleMask:(unsigned long long)arg1;
 - (BOOL)_implicitlyAllowsFullScreenPrimary;
-- (id)_replaceAccessoryView:(id)arg1 with:(id)arg2 topView:(id)arg3 bottomView:(id)arg4 previousKeyView:(id)arg5;
+- (void)_replaceAccessoryView:(id)arg1 with:(id)arg2 topView:(id)arg3 bottomView:(id)arg4 previousKeyView:(id)arg5;
 - (id)_doSetAccessoryView:(id)arg1 topView:(id)arg2 bottomView:(id)arg3 oldView:(id *)arg4;
 - (id)_doSetAccessoryView:(id)arg1 topView:(id)arg2 bottomView:(id)arg3 previousKeyView:(id)arg4 oldView:(id *)arg5;
 - (id)_setTempHidden:(BOOL)arg1;
@@ -27,7 +27,6 @@
 - (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4;
 - (id)_initContent:(const struct CGRect *)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4 counterpart:(id)arg5;
 - (id)_initContent:(const struct CGRect *)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4 contentView:(id)arg5;
-- (void)_resizeKeepingPanelOnScreen:(struct CGRect)arg1 expand:(BOOL)arg2 animate:(BOOL)arg3;
 - (id)accessibilitySubroleAttribute;
 - (id)presentationWindowForError:(id)arg1 originatedInWindow:(id)arg2;
 

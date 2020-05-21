@@ -13,9 +13,8 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
-- (struct __CFDictionary *)createUnderDesktopCUIOptionsDictionary;
+- (struct __CFDictionary *)_createUnderDesktopCUIOptionsDictionary;
 - (BOOL)isOpaque;
-- (unsigned int)_CAViewFlags;
 
 @end
 

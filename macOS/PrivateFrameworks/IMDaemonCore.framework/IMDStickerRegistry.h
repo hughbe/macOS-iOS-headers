@@ -17,10 +17,7 @@
 @property(retain) NSMutableDictionary *stickerPackGUIDToPackMap; // @synthesize stickerPackGUIDToPackMap=_stickerPackGUIDToPackMap;
 - (void)retrieveStickerWithProperties:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (BOOL)_isRecipeBasedSticker:(id)arg1;
-- (id)_filePathInStickerPacksForStickerGUID:(struct NSString *)arg1 stickerPackGUID:(struct NSString *)arg2 stickerHash:(id)arg3;
 - (id)_cachedPathForStickerWithProperties:(id)arg1;
-- (id)allDownloadedStickers;
-- (id)allDownloadedStickerPacks;
 - (void)dealloc;
 - (id)init;
 

@@ -17,6 +17,7 @@
     NSObject<OS_xpc_object> *_ports;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSObject<OS_xpc_object> *message; // @synthesize message=_message;
 - (id)_unarchiveArguments:(id)arg1;
 - (id)_archiveArguments:(id)arg1;
@@ -27,7 +28,6 @@
 - (void)setConnection:(id)arg1 forKey:(id)arg2;
 - (id)argumentForKey:(id)arg1;
 - (void)setArgument:(id)arg1 forKey:(id)arg2;
-- (void)dealloc;
 - (id)initWithMessage:(id)arg1;
 
 @end

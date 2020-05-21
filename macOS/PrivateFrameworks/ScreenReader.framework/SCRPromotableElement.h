@@ -16,11 +16,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (BOOL)allowFocusThroughSingleChild;
-- (void)addItemDescriptionForCommand:(id)arg1 toRequest:(id)arg2;
-- (BOOL)interactRightCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactLeftCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactDownCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactUpCommandShiftWithEvent:(id)arg1 request:(id)arg2;
+- (void)addItemDescriptionForCommand:(id)arg1 toRequest:(id)arg2 event:(id)arg3;
 - (BOOL)moveToLastElementWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)moveToFirstElementWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpShiftWithEvent:(id)arg1 request:(id)arg2;

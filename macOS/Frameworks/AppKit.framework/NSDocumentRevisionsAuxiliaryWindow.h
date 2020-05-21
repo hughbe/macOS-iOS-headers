@@ -9,11 +9,14 @@
 __attribute__((visibility("hidden")))
 @interface NSDocumentRevisionsAuxiliaryWindow : NSWindow
 {
+    id _customAccessibilityParent;
 }
 
+- (void).cxx_destruct;
+@property __weak id customAccessibilityParent; // @synthesize customAccessibilityParent=_customAccessibilityParent;
+- (id)accessibilityParentAttribute;
 - (id)accessibilityChildrenAttribute;
 - (BOOL)_shouldAutoFlattenLayerTree;
-- (void)displayIfNeeded;
 - (BOOL)accessibilityIsIgnored;
 
 @end

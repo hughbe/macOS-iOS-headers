@@ -12,7 +12,6 @@
 
 + (id)humanReadableDescriptionForTrigger:(id)arg1 sound:(id)arg2 isAllDay:(BOOL)arg3;
 + (id)alarmWithTrigger:(id)arg1;
-- (void)dealloc;
 - (id)humanReadableDescriptionIsAllDay:(BOOL)arg1;
 - (id)humanReadableDescription;
 - (id)setURL:(id)arg1;

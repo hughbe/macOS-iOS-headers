@@ -17,7 +17,10 @@
     struct CGSize _minSize;
     struct CGSize _maxSize;
     void *_observationInfo;
-    CDStruct_65de7ec3 _flags;
+    struct {
+        unsigned int hidden:1;
+        unsigned int reserved:31;
+    } _flags;
     double _margins[4];
 }
 
@@ -27,6 +30,7 @@
 + (BOOL)automaticallyNotifiesObserversOfMaxSize;
 + (BOOL)automaticallyNotifiesObserversOfMinSize;
 + (void)initialize;
+- (void).cxx_destruct;
 - (void)setHidden:(BOOL)arg1;
 - (BOOL)isHidden;
 - (void)setGroupView:(id)arg1;

@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     float _floatValue;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (float)floatValue;
 - (id)value;

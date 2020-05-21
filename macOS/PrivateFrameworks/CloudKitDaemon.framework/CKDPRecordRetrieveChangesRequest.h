@@ -19,19 +19,25 @@ __attribute__((visibility("hidden")))
     CKDPRequestedFields *_requestedFields;
     NSData *_syncContinuationToken;
     CKDPRecordZoneIdentifier *_zoneIdentifier;
+    BOOL _ignoreCallingDeviceChanges;
+    BOOL _newestFirst;
     struct {
         unsigned int maxChanges:1;
         unsigned int requestedChangeTypes:1;
+        unsigned int ignoreCallingDeviceChanges:1;
+        unsigned int newestFirst:1;
     } _has;
 }
 
 + (id)options;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL ignoreCallingDeviceChanges; // @synthesize ignoreCallingDeviceChanges=_ignoreCallingDeviceChanges;
+@property(nonatomic) BOOL newestFirst; // @synthesize newestFirst=_newestFirst;
 @property(retain, nonatomic) CKDPAssetsToDownload *assetsToDownload; // @synthesize assetsToDownload=_assetsToDownload;
 @property(nonatomic) unsigned int maxChanges; // @synthesize maxChanges=_maxChanges;
 @property(retain, nonatomic) CKDPRequestedFields *requestedFields; // @synthesize requestedFields=_requestedFields;
 @property(retain, nonatomic) CKDPRecordZoneIdentifier *zoneIdentifier; // @synthesize zoneIdentifier=_zoneIdentifier;
 @property(retain, nonatomic) NSData *syncContinuationToken; // @synthesize syncContinuationToken=_syncContinuationToken;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -43,6 +49,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasIgnoreCallingDeviceChanges;
+@property(nonatomic) BOOL hasNewestFirst;
 @property(readonly, nonatomic) BOOL hasAssetsToDownload;
 - (int)StringAsRequestedChangeTypes:(id)arg1;
 - (id)requestedChangeTypesAsString:(int)arg1;

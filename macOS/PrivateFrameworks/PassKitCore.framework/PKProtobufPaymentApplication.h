@@ -13,6 +13,7 @@
 @interface PKProtobufPaymentApplication : PBCodable <NSCopying>
 {
     long long _inAppPINRequiredAmount;
+    long long _inAppPriority;
     NSString *_applicationIdentifier;
     NSString *_displayName;
     NSString *_dpanIdentifier;
@@ -30,6 +31,7 @@
     BOOL _supportsInAppPayment;
     struct {
         unsigned int inAppPINRequiredAmount:1;
+        unsigned int inAppPriority:1;
         unsigned int paymentNetworkIdentifier:1;
         unsigned int paymentType:1;
         unsigned int state:1;
@@ -40,6 +42,8 @@
     } _has;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) long long inAppPriority; // @synthesize inAppPriority=_inAppPriority;
 @property(nonatomic) BOOL auxiliary; // @synthesize auxiliary=_auxiliary;
 @property(retain, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(nonatomic) unsigned int paymentType; // @synthesize paymentType=_paymentType;
@@ -56,7 +60,6 @@
 @property(retain, nonatomic) NSString *sanitizedDpan; // @synthesize sanitizedDpan=_sanitizedDpan;
 @property(retain, nonatomic) NSString *dpanSuffix; // @synthesize dpanSuffix=_dpanSuffix;
 @property(retain, nonatomic) NSString *dpanIdentifier; // @synthesize dpanIdentifier=_dpanIdentifier;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -66,6 +69,7 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasInAppPriority;
 @property(nonatomic) BOOL hasAuxiliary;
 @property(readonly, nonatomic) BOOL hasDisplayName;
 @property(nonatomic) BOOL hasPaymentType;

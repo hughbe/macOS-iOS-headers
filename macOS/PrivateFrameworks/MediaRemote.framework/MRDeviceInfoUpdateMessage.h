@@ -11,7 +11,6 @@
 }
 
 - (unsigned long long)type;
-- (BOOL)requiresAuthentication;
 
 @end
 

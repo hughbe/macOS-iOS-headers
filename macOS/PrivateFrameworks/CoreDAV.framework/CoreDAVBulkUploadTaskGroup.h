@@ -27,6 +27,7 @@
     NSMutableDictionary *_hrefToStatus;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSDictionary *hrefToStatus; // @synthesize hrefToStatus=_hrefToStatus;
 @property(readonly, nonatomic) NSDictionary *uuidToStatus; // @synthesize uuidToStatus=_uuidToStatus;
 @property(readonly, nonatomic) NSDictionary *hrefToErrorItems; // @synthesize hrefToErrorItems=_hrefToErrorItems;
@@ -44,7 +45,6 @@
 - (void)_sendNextBatch;
 - (Class)multiPutTaskClass;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)initWithFolderURL:(id)arg1 checkCTag:(id)arg2 uuidsToAddActions:(id)arg3 hrefsToModDeleteActions:(id)arg4 context:(id)arg5 accountInfoProvider:(id)arg6 taskManager:(id)arg7;
 
 // Remaining properties

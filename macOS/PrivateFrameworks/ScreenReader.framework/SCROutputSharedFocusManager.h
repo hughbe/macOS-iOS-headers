@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSMutableDictionary, NSString, SCRCWeakReferenceContainer, SCRGCDQueue;
+@class AXFDispatchQueue, NSDictionary, NSMutableDictionary, NSString, SCRCWeakReferenceContainer;
 
 __attribute__((visibility("hidden")))
 @interface SCROutputSharedFocusManager : NSObject
@@ -14,27 +14,27 @@ __attribute__((visibility("hidden")))
     BOOL __notificationsAreQueuedForOutput;
     NSDictionary *_sharedFocusUIElementJumpingInfo;
     NSMutableDictionary *__notificationsForOutput;
-    SCRGCDQueue *__sharedFocusManagerDispatchQueue;
+    AXFDispatchQueue *__sharedFocusManagerDispatchQueue;
     NSString *__previousSelectionChangeOutput;
     SCRCWeakReferenceContainer *__application;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) SCRCWeakReferenceContainer *_application; // @synthesize _application=__application;
 @property(copy, nonatomic, setter=_setPreviousSelectionChangeOutput:) NSString *_previousSelectionChangeOutput; // @synthesize _previousSelectionChangeOutput=__previousSelectionChangeOutput;
 @property(nonatomic, setter=_setNotificationsAreQueuedForOutput:) BOOL _notificationsAreQueuedForOutput; // @synthesize _notificationsAreQueuedForOutput=__notificationsAreQueuedForOutput;
-@property(retain, nonatomic) SCRGCDQueue *_sharedFocusManagerDispatchQueue; // @synthesize _sharedFocusManagerDispatchQueue=__sharedFocusManagerDispatchQueue;
+@property(retain, nonatomic) AXFDispatchQueue *_sharedFocusManagerDispatchQueue; // @synthesize _sharedFocusManagerDispatchQueue=__sharedFocusManagerDispatchQueue;
 @property(retain, nonatomic) NSMutableDictionary *_notificationsForOutput; // @synthesize _notificationsForOutput=__notificationsForOutput;
 @property(retain, nonatomic) NSDictionary *sharedFocusUIElementJumpingInfo; // @synthesize sharedFocusUIElementJumpingInfo=_sharedFocusUIElementJumpingInfo;
-- (id)_descriptionForNotificationType:(unsigned long long)arg1;
+- (id)_descriptionForNotificationType:(long long)arg1;
 - (id)sharedFocusQueueDescription;
-- (id)_removeDuplicateOutputToRequest:(id)arg1 forNotificationKey:(unsigned long long)arg2;
-- (id)_addAdditionalOutputToRequest:(id)arg1 forNotificationKey:(unsigned long long)arg2;
+- (id)_removeDuplicateOutputToRequest:(id)arg1 forNotificationKey:(long long)arg2;
+- (id)_addAdditionalOutputToRequest:(id)arg1 forNotificationKey:(long long)arg2;
 - (void)_flushSharedFocusQueue;
 - (void)_scheduleOutputForSharedFocusQueue;
 - (void)_outputSharedFocusNotificationQueue;
-- (BOOL)addOutputRequestToSharedFocusQueue:(id)arg1 withNotificationKey:(unsigned long long)arg2;
+- (BOOL)addOutputRequestToSharedFocusQueue:(id)arg1 withNotificationKey:(long long)arg2;
 - (id)application;
-- (void)dealloc;
 - (id)initWithApplication:(id)arg1;
 
 @end

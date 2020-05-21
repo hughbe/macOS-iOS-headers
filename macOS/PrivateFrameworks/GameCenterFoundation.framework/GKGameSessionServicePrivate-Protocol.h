@@ -9,6 +9,7 @@
 @class NSArray, NSString;
 
 @protocol GKGameSessionServicePrivate <GKGameSessionService>
+- (oneway void)saveConnectionStateForLostPlayerWithCloudID:(NSString *)arg1 sessionIdentifier:(NSString *)arg2 handler:(void (^)(NSError *))arg3;
 - (oneway void)sendInvitePushForSessionWithID:(NSString *)arg1 userMessage:(NSString *)arg2 recipientIDs:(NSArray *)arg3 handler:(void (^)(NSError *))arg4;
 - (oneway void)getFriendPlayersWithCompletionHandler:(void (^)(NSArray *, NSError *))arg1;
 - (oneway void)getZonesWithCompletionHandler:(void (^)(NSArray *, NSError *))arg1;

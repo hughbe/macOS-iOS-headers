@@ -8,14 +8,14 @@
 
 #import "NSFilePresenter.h"
 
-@class NSOperationQueue, NSString, NSURL;
+@class NSOperationQueue, NSSet, NSString, NSURL;
 
 @interface MFSyncedFile : NSObject <NSFilePresenter>
 {
     NSURL *_cloudURL;
     id _cloudURLLock;
     id _cloudFileLock;
-    NSURL *_url;
+    NSURL *_URL;
     long long _syncState;
 }
 
@@ -27,9 +27,9 @@
 + (id)syncedFileForRelativePath:(id)arg1;
 + (void)initialize;
 + (id)log;
-@property long long syncState; // @synthesize syncState=_syncState;
-@property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_url;
 - (void).cxx_destruct;
+@property long long syncState; // @synthesize syncState=_syncState;
+@property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 - (void)_handleIdentityChange:(id)arg1;
 - (void)_resolveConflicts;
 - (id)_ubiquitousFileForVersion:(long long)arg1;
@@ -71,6 +71,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSSet *observedPresentedItemUbiquityAttributes;
 @property(readonly, copy) NSURL *primaryPresentedItemURL;
 @property(readonly) Class superclass;
 

@@ -8,24 +8,25 @@
 
 #import "NSCopying.h"
 
-@class NSData, NSMutableArray, NSString;
+@class CKDPCodeFunctionInvokeRequestAttestationRequest, CKDPCodeFunctionInvokeRequestProtectedCloudComputeMetadata, NSData, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CKDPCodeFunctionInvokeRequest : PBRequest <NSCopying>
 {
+    CKDPCodeFunctionInvokeRequestAttestationRequest *_attestationRequest;
     NSString *_functionName;
-    NSMutableArray *_recordParameters;
+    CKDPCodeFunctionInvokeRequestProtectedCloudComputeMetadata *_protectedCloudComputeMetadata;
     NSData *_serializedParameters;
     NSString *_serviceName;
 }
 
-+ (Class)recordParametersType;
 + (id)options;
-@property(retain, nonatomic) NSMutableArray *recordParameters; // @synthesize recordParameters=_recordParameters;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CKDPCodeFunctionInvokeRequestAttestationRequest *attestationRequest; // @synthesize attestationRequest=_attestationRequest;
+@property(retain, nonatomic) CKDPCodeFunctionInvokeRequestProtectedCloudComputeMetadata *protectedCloudComputeMetadata; // @synthesize protectedCloudComputeMetadata=_protectedCloudComputeMetadata;
 @property(retain, nonatomic) NSData *serializedParameters; // @synthesize serializedParameters=_serializedParameters;
 @property(retain, nonatomic) NSString *functionName; // @synthesize functionName=_functionName;
 @property(retain, nonatomic) NSString *serviceName; // @synthesize serviceName=_serviceName;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -37,10 +38,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-- (id)recordParametersAtIndex:(unsigned long long)arg1;
-- (unsigned long long)recordParametersCount;
-- (void)addRecordParameters:(id)arg1;
-- (void)clearRecordParameters;
+@property(readonly, nonatomic) BOOL hasAttestationRequest;
+@property(readonly, nonatomic) BOOL hasProtectedCloudComputeMetadata;
 @property(readonly, nonatomic) BOOL hasSerializedParameters;
 @property(readonly, nonatomic) BOOL hasFunctionName;
 @property(readonly, nonatomic) BOOL hasServiceName;

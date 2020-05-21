@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     struct CGRect mRect;
 }
 
+- (void).cxx_destruct;
 - (struct CGRect)slideRect;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (id)styleMatrix;

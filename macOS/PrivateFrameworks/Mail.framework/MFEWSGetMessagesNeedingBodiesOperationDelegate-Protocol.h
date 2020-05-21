@@ -6,9 +6,9 @@
 
 #import "NSObject.h"
 
-@class MFEWSGetMessagesNeedingBodiesOperation, NSArray, NSString;
+@class MFEWSGetMessagesNeedingBodiesOperation, MFMailbox, NSArray;
 
 @protocol MFEWSGetMessagesNeedingBodiesOperationDelegate <NSObject>
-- (void)getMessagesNeedingBodiesOperation:(MFEWSGetMessagesNeedingBodiesOperation *)arg1 didGetMessagesNeedingBodies:(NSArray *)arg2 forMailboxURL:(NSString *)arg3;
+- (void)getMessagesNeedingBodiesOperation:(MFEWSGetMessagesNeedingBodiesOperation *)arg1 didGetMessagesNeedingBodies:(NSArray *)arg2 forMailbox:(MFMailbox *)arg3;
 @end
 

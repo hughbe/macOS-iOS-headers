@@ -12,8 +12,10 @@
 {
     NSMutableString *_plainString;
     BOOL _extractLinks;
+    NSMutableString *_mutablePlainString;
 }
 
+@property(readonly, nonatomic) NSMutableString *mutablePlainString; // @synthesize mutablePlainString=_mutablePlainString;
 - (void)parser:(id)arg1 foundAttributes:(id)arg2 inRange:(struct _NSRange)arg3 characters:(id)arg4;
 @property(readonly, nonatomic) NSString *plainString;
 - (id)resultsForLogging;

@@ -15,7 +15,7 @@ namespace Generate
                 void DumpMac(string folderName)
                 {
                     string FrameworksPath = $"/System/Library/{folderName}";
-                    foreach (string file in Directory.EnumerateDirectories(FrameworksPath))
+                    foreach (string file in Directory.EnumerateDirectories(FrameworksPath).OrderBy(s => s))
                     {
                         Dump($"../macOS/{folderName}", file);
                     }
@@ -30,8 +30,8 @@ namespace Generate
             {
                 void DumpIOS(string folderName)
                 {
-                    string FrameworksPath = $"/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/{folderName}";
-                    foreach (string file in Directory.EnumerateDirectories(FrameworksPath))
+                    string FrameworksPath = $"/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/{folderName}";
+                    foreach (string file in Directory.EnumerateDirectories(FrameworksPath).OrderBy(s => s))
                     {
                         Dump($"../iOS/{folderName}", file);
                     }

@@ -16,6 +16,7 @@
 
 + (id)searchStartedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)searchStarted;
+- (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

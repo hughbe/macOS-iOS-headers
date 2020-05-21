@@ -8,10 +8,11 @@
 
 #import "MKMapViewDelegate.h"
 
-@class CLLocation, EKUIMapView, EKUIWeatherBox, NSDateComponents, NSDictionary, NSImageView, NSString, NSTextField;
+@class CLLocation, EKUIMapContainerView, EKUIMapView, EKUIWeatherBox, NSDateComponents, NSDictionary, NSImageView, NSString, NSTextField;
 
 @interface EKUIMapGadget : EKUISingleViewGadget <MKMapViewDelegate>
 {
+    EKUIMapContainerView *_containerView;
     EKUIMapView *_mapView;
     EKUIWeatherBox *_weatherview;
     NSImageView *_weatherIconView;
@@ -23,6 +24,7 @@
 }
 
 + (id)interestedChangeKeys;
+- (void).cxx_destruct;
 @property(retain) NSDictionary *layoutMetrics; // @synthesize layoutMetrics=_layoutMetrics;
 @property(retain) NSDateComponents *lastFetchedWeatherDateComponents; // @synthesize lastFetchedWeatherDateComponents=_lastFetchedWeatherDateComponents;
 @property(retain) CLLocation *lastFetchedWeatherLocation; // @synthesize lastFetchedWeatherLocation=_lastFetchedWeatherLocation;
@@ -31,8 +33,9 @@
 @property(retain) NSImageView *weatherIconView; // @synthesize weatherIconView=_weatherIconView;
 @property(retain) EKUIWeatherBox *weatherview; // @synthesize weatherview=_weatherview;
 @property(retain) EKUIMapView *mapView; // @synthesize mapView=_mapView;
-- (void).cxx_destruct;
+@property(retain) EKUIMapContainerView *containerView; // @synthesize containerView=_containerView;
 - (id)dateComponentsForWeather;
+- (id)localizedStringWithUnitSymbolsUsingTemperatureString:(id)arg1;
 - (id)weatherStringForWeatherData:(id)arg1;
 - (BOOL)lastFetchedWeatherIsValidForCurrentOccurrence;
 - (BOOL)currentOccurrenceHasStartDateComponents:(id)arg1 location:(id)arg2;

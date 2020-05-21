@@ -7,15 +7,18 @@
 #import <AppKit/NSControl.h>
 
 #import "NSAccessibilitySlider.h"
+#import "NSSliderAccessoryContainer.h"
 #import "NSSliderCellControlView.h"
+#import "NSSliderTickMarksDelegate.h"
 
-@class NSDictionary, NSString;
+@class NSColor, NSDictionary, NSSliderAccessory, NSString;
 
-@interface NSSlider : NSControl <NSSliderCellControlView, NSAccessibilitySlider>
+@interface NSSlider : NSControl <NSSliderAccessoryContainer, NSSliderCellControlView, NSSliderTickMarksDelegate, NSAccessibilitySlider>
 {
     NSDictionary *_tickMarkLayoutPoints;
 }
 
++ (id)defaultAnimationForKey:(id)arg1;
 + (void)initialize;
 + (id)verticalSliderWithMinValue:(double)arg1 maxValue:(double)arg2 initialValue:(double)arg3 target:(id)arg4 action:(SEL)arg5;
 + (id)horizontalSliderWithMinValue:(double)arg1 maxValue:(double)arg2 initialValue:(double)arg3 target:(id)arg4 action:(SEL)arg5;
@@ -26,10 +29,29 @@
 + (id)sliderWithValue:(double)arg1 minValue:(double)arg2 maxValue:(double)arg3 target:(id)arg4 action:(SEL)arg5;
 + (id)sliderWithTarget:(id)arg1 action:(SEL)arg2;
 + (id)_sliderWithMinValue:(double)arg1 maxValue:(double)arg2 initialValue:(double)arg3 target:(id)arg4 action:(SEL)arg5;
++ (id)keyPathsForValuesAffecting_hasStepBehaviorContext;
 - (BOOL)accessibilityPerformDecrement;
 - (BOOL)accessibilityPerformIncrement;
 - (id)accessibilityValue;
 - (id)accessibilityLabel;
+- (id)_preferredAppearance;
+- (void)_layoutComponentSubviewsIfNecessary;
+- (void)_clearComponentSubviewsAndRemoveFromSuperview:(BOOL)arg1;
+- (void)_clearComponentSubviews;
+- (void)_createComponentSubviews;
+- (void)_updateComponentSubviewRenderingState;
+- (id)_circularKnobView;
+- (void)_setCircularKnobView:(id)arg1;
+- (id)_dialView;
+- (void)_setDialView:(id)arg1;
+- (id)_knobView;
+- (void)_setKnobView:(id)arg1;
+- (id)_tickMarksView;
+- (void)_setTickMarksView:(id)arg1;
+- (id)_trackView;
+- (void)_setTrackView:(id)arg1;
+- (unsigned long long)_subviewRenderingMode;
+- (void)_setSubviewRenderingMode:(unsigned long long)arg1;
 - (void)_updateTickMarkConstraintPositionsIfNeeded;
 - (id)declaredLayoutConstraints;
 - (void)setUserInterfaceLayoutDirection:(long long)arg1;
@@ -49,12 +71,15 @@
 - (void)setTickMarkPosition:(unsigned long long)arg1;
 - (long long)numberOfTickMarks;
 - (void)setNumberOfTickMarks:(long long)arg1;
+- (BOOL)_autoCancelIfTouchTooLong:(id *)arg1;
+@property(copy) NSColor *trackFillColor;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)pageDown:(id)arg1;
 - (void)pageUp:(id)arg1;
 - (void)moveUp:(id)arg1;
 - (void)moveLeft:(id)arg1;
 - (void)moveDown:(id)arg1;
+- (BOOL)_wantsKeyDownForEvent:(id)arg1;
 - (void)moveRight:(id)arg1;
 - (void)_moveInDirection:(unsigned long long)arg1;
 - (void)setEnabled:(BOOL)arg1;
@@ -77,21 +102,30 @@
 - (id)maxValueImage;
 - (void)setMinValueImage:(id)arg1;
 - (id)minValueImage;
+- (void)setMaximumValueAccessory:(id)arg1;
+@property(readonly) NSSliderAccessory *maximumValueAccessory;
+- (void)setMinimumValueAccessory:(id)arg1;
+@property(readonly) NSSliderAccessory *minimumValueAccessory;
 @property double maxValue;
 @property double minValue;
 @property unsigned long long sliderType;
+- (CDStruct_6b6ad735)_baselineOffsetsAtSize:(struct CGSize)arg1;
 - (double)baselineOffsetFromBottom;
 - (struct NSEdgeInsets)alignmentRectInsets;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedHeight;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedWidth;
 - (struct CGSize)intrinsicContentSize;
 - (void)sizeToFit;
+- (void)drawRect:(struct CGRect)arg1;
+- (id)designatedFocusRingView;
 - (BOOL)isFlipped;
 - (void)dealloc;
 - (void)setCell:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)sliderCellDidInvalidateComponentRects:(id)arg1;
+- (void)updateCell:(id)arg1;
 - (void)sliderCellDidChangeSliderType:(id)arg1;
 - (void)sliderCellDidChangeControlSize:(id)arg1;
 - (void)sliderCellDidChangeTickMarkPosition:(id)arg1;
@@ -99,6 +133,13 @@
 - (void)sliderCellDidChangeVertical:(id)arg1;
 - (void)_removeAnchorsInRange:(struct _NSRange)arg1;
 - (id)layoutPointForTickMarkAtIndex:(long long)arg1;
+- (void)_incrementValue:(BOOL)arg1;
+@property(readonly) BOOL _hasStepBehaviorContext;
+- (void)sendAction;
+@property double incrementValue;
+@property double value;
+@property double maximumValue;
+@property double minimumValue;
 - (id)ns_widgetType;
 
 // Remaining properties

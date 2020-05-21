@@ -6,14 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>;
+@class CLSilo, NSObject<OS_dispatch_queue>;
 
 @interface CLGeocoderInternal : NSObject
 {
     CDUnknownBlockType _geocodeCompletionHandler;
     id <GEOMapServiceTicket> _ticket;
     NSObject<OS_dispatch_queue> *_queue;
+    CLSilo *_responseSilo;
 }
+
+@property(retain) CLSilo *responseSilo; // @synthesize responseSilo=_responseSilo;
+- (void)dealloc;
+- (id)init;
 
 @end
 

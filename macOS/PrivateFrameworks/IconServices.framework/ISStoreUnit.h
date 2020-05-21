@@ -8,7 +8,6 @@
 
 @class NSData, NSUUID;
 
-__attribute__((visibility("hidden")))
 @interface ISStoreUnit : NSObject
 {
     NSData *_data;
@@ -18,11 +17,11 @@ __attribute__((visibility("hidden")))
 + (id)storeUnitWithStoreURL:(unsigned long long)arg1 dataProvider:(CDUnknownBlockType)arg2;
 + (id)storeUnitWithData:(id)arg1;
 + (id)storeUnitWithStoreURL:(id)arg1 UUID:(id)arg2;
+- (void).cxx_destruct;
 @property(readonly) NSData *data; // @synthesize data=_data;
 @property(readonly) NSUUID *UUID; // @synthesize UUID=_UUID;
 - (void)remapWithStoreURL:(id)arg1;
 - (BOOL)isValid;
-- (void)dealloc;
 - (id)initWithData:(id)arg1 UUID:(id)arg2;
 
 @end

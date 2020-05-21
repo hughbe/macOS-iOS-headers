@@ -14,27 +14,27 @@
     EKUICalendarGadget *_calendarGadget;
     EKUIHeaderImageView *_headerImageView;
     EKUISubtitleGadget *_subtitleGadget;
-    NSArray *_calendarGadgetInsetConstraints;
-    NSLayoutConstraint *_titleCalendarTopInset;
+    NSArray *_titleCalendarHorizontalConstraints;
+    NSArray *_titleWithoutCalendarHorizontalConstraints;
     NSLayoutConstraint *_calendarGadgetCollapsedWidthConstraint;
     NSLayoutConstraint *_calendarGadgetMaxWidthConstraint;
     NSLayoutConstraint *_calendarGadgetPreferredWidthConstraint;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSLayoutConstraint *calendarGadgetPreferredWidthConstraint; // @synthesize calendarGadgetPreferredWidthConstraint=_calendarGadgetPreferredWidthConstraint;
 @property(retain) NSLayoutConstraint *calendarGadgetMaxWidthConstraint; // @synthesize calendarGadgetMaxWidthConstraint=_calendarGadgetMaxWidthConstraint;
 @property(retain) NSLayoutConstraint *calendarGadgetCollapsedWidthConstraint; // @synthesize calendarGadgetCollapsedWidthConstraint=_calendarGadgetCollapsedWidthConstraint;
-@property(retain) NSLayoutConstraint *titleCalendarTopInset; // @synthesize titleCalendarTopInset=_titleCalendarTopInset;
-@property(retain) NSArray *calendarGadgetInsetConstraints; // @synthesize calendarGadgetInsetConstraints=_calendarGadgetInsetConstraints;
+@property(retain) NSArray *titleWithoutCalendarHorizontalConstraints; // @synthesize titleWithoutCalendarHorizontalConstraints=_titleWithoutCalendarHorizontalConstraints;
+@property(retain) NSArray *titleCalendarHorizontalConstraints; // @synthesize titleCalendarHorizontalConstraints=_titleCalendarHorizontalConstraints;
 @property(retain) EKUISubtitleGadget *subtitleGadget; // @synthesize subtitleGadget=_subtitleGadget;
 @property(retain) EKUIHeaderImageView *headerImageView; // @synthesize headerImageView=_headerImageView;
 @property(retain) EKUICalendarGadget *calendarGadget; // @synthesize calendarGadget=_calendarGadget;
 @property(retain) EKUITitleGadget *titleGadget; // @synthesize titleGadget=_titleGadget;
-- (void).cxx_destruct;
 - (BOOL)performDragOperation:(id)arg1;
 - (id)claimedPboardTypes;
 - (BOOL)shouldBeFullWidth;
-- (void)selectTitle;
+- (void)selectTitleWithTrailingCursor:(BOOL)arg1;
 - (BOOL)updateWithDiff:(id)arg1;
 - (id)subgadgets;
 - (void)updateConstraints;

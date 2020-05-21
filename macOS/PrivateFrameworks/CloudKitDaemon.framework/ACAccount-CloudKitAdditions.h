@@ -6,7 +6,13 @@
 
 #import "ACAccount.h"
 
+@class NSDictionary, NSString;
+
 @interface ACAccount (CloudKitAdditions)
+@property(readonly) NSString *ck_personaIdentifier;
+@property(readonly) NSDictionary *ck_dataclassProperties;
+@property(readonly) NSDictionary *ck_accountProperties;
+@property(readonly) NSString *ck_identifier;
 @property(readonly, nonatomic) ACAccount *ck_cloudKitAccount;
 @end
 

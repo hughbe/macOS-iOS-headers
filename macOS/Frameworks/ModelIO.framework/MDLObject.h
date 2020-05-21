@@ -8,25 +8,36 @@
 
 #import "MDLNamed.h"
 
-@class NSMapTable, NSString;
+@class NSArray, NSMapTable, NSString;
 
 @interface MDLObject : NSObject <MDLNamed>
 {
     MDLObject *_parent;
     NSMapTable *_components;
+    MDLObject *_instance;
+    BOOL _hidden;
     NSString *name;
     id <MDLObjectContainerComponent> _children;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) id <MDLObjectContainerComponent> children; // @synthesize children=_children;
 @property(copy, nonatomic) NSString *name; // @synthesize name;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL hidden; // @synthesize hidden=_hidden;
+@property(retain, nonatomic) MDLObject *instance; // @synthesize instance=_instance;
 - (struct)boundingBoxAtTime:(double)arg1;
+- (id)recursiveDescription;
+- (id)description;
 - (void)addChild:(id)arg1;
 @property(retain, nonatomic) id <MDLTransformComponent> transform;
+- (id)objectAtPath:(id)arg1;
+- (void)enumerateChildObjectsOfClass:(Class)arg1 root:(id)arg2 usingBlock:(CDUnknownBlockType)arg3 stopPointer:(char *)arg4;
 @property(readonly, nonatomic) NSString *path;
 @property(nonatomic) __weak MDLObject *parent;
+@property(readonly, copy, nonatomic) NSArray *components;
+- (id)objectForKeyedSubscript:(id)arg1;
 - (id)componentConformingToProtocol:(id)arg1;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 - (void)setComponent:(id)arg1 forProtocol:(id)arg2;
 - (id)init;
 

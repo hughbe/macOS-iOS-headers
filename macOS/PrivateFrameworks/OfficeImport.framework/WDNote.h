@@ -16,8 +16,8 @@ __attribute__((visibility("hidden")))
     BOOL mAutomaticNumbering;
 }
 
+- (void).cxx_destruct;
 - (id)description;
-- (void)dealloc;
 - (id)initWithParagraph:(id)arg1 footnote:(BOOL)arg2;
 - (int)runType;
 - (void)setAutomaticNumbering:(BOOL)arg1;

@@ -17,10 +17,10 @@
     unsigned long long _frontmostPassIndex;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic, getter=isLocal) BOOL local; // @synthesize local=_local;
 @property(nonatomic) unsigned long long frontmostPassIndex; // @synthesize frontmostPassIndex=_frontmostPassIndex;
-@property(nonatomic) id <PKGroupDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+@property(nonatomic) __weak id <PKGroupDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)_removeUniqueID:(id)arg1 notify:(BOOL)arg2;
 - (void)_moveUniqueID:(id)arg1 toIndex:(unsigned long long)arg2 notify:(BOOL)arg3;
 - (void)_insertPass:(id)arg1 atIndex:(unsigned long long)arg2 notify:(BOOL)arg3;
@@ -35,6 +35,7 @@
 - (void)updateWithCatalogGroup:(id)arg1 passes:(id)arg2 notify:(BOOL)arg3;
 - (id)initWithCatalogGroup:(id)arg1 passes:(id)arg2;
 - (unsigned long long)indexForPassUniqueID:(id)arg1;
+- (id)passes;
 - (id)passAtIndex:(unsigned long long)arg1;
 - (unsigned long long)passCount;
 @property(readonly, nonatomic) NSNumber *groupID;

@@ -8,33 +8,34 @@
 
 #import "TUAudioDeviceControllerActions.h"
 
-@class AVAudioClient, AVAudioDevice, NSArray, NSObject<OS_dispatch_queue>, NSString;
+@class AVAudioClient, AVAudioDevice, NSArray, NSHashTable, NSObject<OS_dispatch_queue>, NSString;
 
 @interface TUAudioDeviceController : NSObject <TUAudioDeviceControllerActions>
 {
     AVAudioClient *_audioClient;
-    id <TUAudioDeviceControllerDelegate> _delegate;
-    NSObject<OS_dispatch_queue> *_delegateQueue;
+    NSObject<OS_dispatch_queue> *_serialQueue;
+    NSHashTable *_delegates;
     id <TUAudioDeviceControllerActions> _actionsDelegate;
 }
 
-@property(nonatomic) __weak id <TUAudioDeviceControllerActions> actionsDelegate; // @synthesize actionsDelegate=_actionsDelegate;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
-@property(nonatomic) __weak id <TUAudioDeviceControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) AVAudioClient *audioClient; // @synthesize audioClient=_audioClient;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <TUAudioDeviceControllerActions> actionsDelegate; // @synthesize actionsDelegate=_actionsDelegate;
+@property(retain, nonatomic) NSHashTable *delegates; // @synthesize delegates=_delegates;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *serialQueue; // @synthesize serialQueue=_serialQueue;
+@property(retain, nonatomic) AVAudioClient *audioClient; // @synthesize audioClient=_audioClient;
 @property(readonly, nonatomic) NSArray *outputDevices;
 @property(readonly, nonatomic) NSArray *inputDevices;
 @property(readonly, nonatomic) NSArray *devices;
-- (void)setCurrentOutputDeviceToDeviceWithUID:(id)arg1;
+- (oneway void)setCurrentAudioOutputDeviceToDeviceWithUID:(id)arg1;
 @property(retain, nonatomic) AVAudioDevice *currentOutputDevice;
-- (void)setCurrentInputDeviceToDeviceWithUID:(id)arg1;
+- (oneway void)setCurrentAudioInputDeviceToDeviceWithUID:(id)arg1;
 @property(retain, nonatomic) AVAudioDevice *currentInputDevice;
-- (void)setDelegate:(id)arg1 queue:(id)arg2;
+- (void)removeDelegate:(id)arg1;
+- (void)addDelegate:(id)arg1;
 - (void)choosePreferredDeviceIfNecessary;
 @property(readonly, copy) NSString *debugDescription;
 - (id)init;
-- (id)initWithActionsDelegate:(id)arg1;
+- (id)initWithActionsDelegate:(id)arg1 serialQueue:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *description;

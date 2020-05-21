@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     NSDictionary *_storageDictionary;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDictionary *storageDictionary; // @synthesize storageDictionary=_storageDictionary;
 @property(nonatomic) struct __AXUIElement *webAreaAXElement; // @synthesize webAreaAXElement=_webAreaAXElement;
 @property(nonatomic) struct __AXUIElement *axElement; // @synthesize axElement=_axElement;

@@ -15,9 +15,9 @@
 }
 
 + (id)requestWithMapItem:(id)arg1 info:(id)arg2;
-@property(copy, nonatomic) CDUnknownBlockType imageHandler; // @synthesize imageHandler=_imageHandler;
-@property(retain) GEOPhotoInfo *info; // @synthesize info=_info;
 - (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType imageHandler; // @synthesize imageHandler=_imageHandler;
+@property(retain, nonatomic) GEOPhotoInfo *info; // @synthesize info=_info;
 - (void)handleError:(id)arg1;
 - (void)handleData:(id)arg1;
 - (id)url;

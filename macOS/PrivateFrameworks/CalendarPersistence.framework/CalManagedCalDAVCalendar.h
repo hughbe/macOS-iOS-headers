@@ -27,6 +27,8 @@
 - (BOOL)allowsScheduling;
 - (BOOL)defaultOrganizerIsMeForNewItems;
 - (id)defaultOrganizerEncodedLikenessDataForNewItems;
+- (id)defaultOrganizerPhoneNumberForNewItems;
+- (id)_ownerEmailAddresses;
 - (id)defaultOrganizerEmailForNewItems;
 - (id)defaultOrganizerAddressForNewItems;
 - (id)defaultOrganizerNameForNewItems;
@@ -45,6 +47,7 @@
 - (BOOL)validateForInsert:(id *)arg1;
 - (BOOL)validateForWrite:(id *)arg1;
 - (void)applyReasonableDefaultsForNewCalendarInGroup:(id)arg1;
+- (id)_ownerAddressesAsDicts;
 - (id)properties;
 - (BOOL)isOwnerAddress:(id)arg1;
 - (BOOL)isOwnerMe;
@@ -64,6 +67,7 @@
 - (id)type;
 - (id)relativePath;
 - (void)willRefresh:(BOOL)arg1;
+- (BOOL)isMigrateable;
 @property BOOL isAffectingAvailability; // @dynamic isAffectingAvailability;
 @property BOOL isColorEditable;
 @property BOOL isRenameable;

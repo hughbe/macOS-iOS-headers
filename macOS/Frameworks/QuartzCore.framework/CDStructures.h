@@ -30,16 +30,11 @@ struct Atomic {
     CDStruct_fcaf9308 _field1;
 };
 
-struct Behavior {
-    CDUnknownFunctionPointerType *_field1;
-    struct Atomic _field2;
-    unsigned int _field3;
-    struct Ref<CA::Render::String> _field4;
-    unsigned int _field5;
-    unsigned int _field6;
-    unsigned int :8;
-    unsigned int :8;
-    struct Ref<const CA::Render::Behavior> _field7;
+struct Bounds {
+    int _field1;
+    int _field2;
+    int _field3;
+    int _field4;
 };
 
 struct CAColorMatrix {
@@ -63,6 +58,25 @@ struct CAColorMatrix {
     float m43;
     float m44;
     float m45;
+};
+
+struct CADisplayModeCriteriaPriv {
+    struct CGSize _field1;
+    double _field2;
+    int _field3;
+};
+
+struct CADisplayModePriv {
+    struct Mode _field1;
+    id _field2;
+    unsigned long long _field3;
+    unsigned long long _field4;
+    unsigned int _field5;
+};
+
+struct CADisplayPreferencesPriv {
+    char _field1;
+    int _field2;
 };
 
 struct CAMediaTimingFunctionPrivate {
@@ -124,6 +138,8 @@ struct CARendererPriv {
     unsigned int _field13[2];
     unsigned int _field14;
     unsigned int :8;
+    unsigned int :1;
+    unsigned int :1;
     unsigned long long _field15;
     char _field16[0];
 };
@@ -147,13 +163,23 @@ struct CATransform3D {
     double m44;
 };
 
+struct CAWindowServerDisplayImpl {
+    struct Mutex _field1;
+    struct Server *_field2;
+};
+
+struct CAWindowServerImpl {
+    struct __CFArray *_field1;
+    unsigned int _field2;
+};
+
 struct CGAffineTransform {
-    double _field1;
-    double _field2;
-    double _field3;
-    double _field4;
-    double _field5;
-    double _field6;
+    double a;
+    double b;
+    double c;
+    double d;
+    double tx;
+    double ty;
 };
 
 struct CGColorSpace;
@@ -194,6 +220,13 @@ struct Command;
 
 struct Commit;
 
+struct Condition {
+    struct _opaque_pthread_cond_t {
+        long long _field1;
+        char _field2[40];
+    } _field1;
+};
+
 struct Context {
     unsigned int _field1;
     struct Context *_field2;
@@ -212,14 +245,22 @@ struct Context {
     unsigned int _field15;
     unsigned int _field16;
     unsigned int _field17;
-    int _field18;
+    unsigned long long _field18;
     unsigned int _field19;
-    struct ObjectCache *_field20;
-    int _field21;
-    id _field22;
-    unsigned int _field23;
-    struct Commit *_field24;
-    struct Generic _field25;
+    int _field20;
+    struct CGRect _field21;
+    unsigned int _field22;
+    struct ObjectCache *_field23;
+    int _field24;
+    id _field25;
+    id _field26;
+    unsigned int _field27;
+    float _field28;
+    struct Commit *_field29;
+    struct Generic _field30;
+    struct __CFString *_field31;
+    unsigned int :1;
+    unsigned int :1;
     unsigned int :1;
     unsigned int :1;
     unsigned int :1;
@@ -227,17 +268,29 @@ struct Context {
     unsigned int :1;
 };
 
+struct ContextItem;
+
 struct Data {
     struct Vec4<float> _field1;
     unsigned char _field2;
     unsigned char _field3;
     unsigned char _field4;
     unsigned char _field5;
-    unsigned int :3;
-    unsigned int :3;
     unsigned int :4;
     unsigned int :4;
     unsigned int :4;
+    unsigned int :4;
+    unsigned int :4;
+    unsigned int :5;
+    unsigned int :2;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
     unsigned int :1;
     unsigned int :1;
     unsigned int :1;
@@ -267,6 +320,91 @@ struct Data {
 };
 
 struct Deleted;
+
+struct Display {
+    CDUnknownFunctionPointerType *_field1;
+    struct Mutex _field2;
+    struct SpinLock _field3;
+    id _field4;
+    struct __CFString *_field5;
+    struct __CFString *_field6;
+    unsigned int _field7;
+    unsigned int _field8;
+    unsigned int _field9;
+    struct __CFString *_field10;
+    struct __CFString *_field11;
+    struct __CFString *_field12;
+    struct ModeSet _field13;
+    struct Mode _field14;
+    struct Mode _field15;
+    struct Bounds _field16;
+    struct Bounds _field17;
+    struct Vec2<float> _field18;
+    double _field19;
+    int _field20;
+    unsigned int _field21;
+    int _field22;
+    double _field23;
+    double _field24;
+    unsigned int _field25;
+    struct DisplayShmemInfo _field26;
+    unsigned int _field27;
+    unsigned int _field28;
+    unsigned int _field29;
+    int _field30;
+    unsigned int _field31;
+    long long _field32;
+    double _field33;
+    unsigned int _field34;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+};
+
+struct DisplayLink;
+
+struct DisplayLinkItem {
+    struct Display *_field1;
+    void *_field2;
+    SEL _field3;
+    void *_field4;
+    long long _field5;
+    int _field6;
+    int _field7;
+    struct Mutex _field8;
+    struct Condition _field9;
+    struct _opaque_pthread_t *_field10;
+    id _field11;
+    struct Ref<CA::Display::DisplayLink> _field12;
+    struct List<const __CFString *> *_field13;
+    unsigned long long _field14;
+    unsigned long long _field15;
+    unsigned long long _field16;
+    unsigned long long _field17;
+    unsigned long long _field18;
+    struct Atomic _field19;
+    unsigned int :1;
+    unsigned int :1;
+};
+
+struct DisplayShmemInfo {
+    CDUnknownFunctionPointerType *_field1;
+    struct SpinLock _field2;
+    struct Ref<CA::Render::Shmem> _field3;
+    struct DisplayTimings *_field4;
+};
+
+struct DisplayTimings;
 
 struct Ext;
 
@@ -303,12 +441,11 @@ struct Layer {
     struct Atomic _field2;
     struct Data _field3;
     struct Ref<CA::Render::Object> _field4;
-    struct Ref<CA::Render::Object> _field5;
-    struct Ref<CA::Render::TypedArray<CA::Render::Layer>> _field6;
-    struct Layer *_field7;
-    struct Ref<CA::Render::Layer::Ext> _field8;
-    struct Ref<CA::Render::TypedArray<CA::Render::Animation>> _field9;
-    struct Ref<CA::Render::Handle> _field10;
+    struct Ref<CA::Render::TypedArray<CA::Render::Layer>> _field5;
+    struct Layer *_field6;
+    struct Ref<CA::Render::Layer::Ext> _field7;
+    struct Ref<CA::Render::TypedArray<CA::Render::Animation>> _field8;
+    struct Ref<CA::Render::Handle> _field9;
 };
 
 struct LayoutList;
@@ -317,9 +454,34 @@ struct Level;
 
 struct List<CA::Layer *>;
 
+struct List<_CAMetalDrawablePrivate *>;
+
+struct List<const __CFString *>;
+
 struct List<const void *>;
 
 struct List<void (^)()>;
+
+struct Mode {
+    union {
+        struct {
+            unsigned int :16;
+            unsigned int :16;
+            unsigned int :1;
+            unsigned int :23;
+            unsigned int :1;
+            unsigned int :4;
+            unsigned int :2;
+            unsigned int :1;
+        } _field1;
+        unsigned long long _field2;
+    } _field1;
+};
+
+struct ModeSet {
+    struct vector<CA::WindowServer::Display::Mode, std::__1::allocator<CA::WindowServer::Display::Mode>> _field1;
+    struct set<std::__1::tuple<unsigned short, unsigned short>, std::__1::less<std::__1::tuple<unsigned short, unsigned short>>, std::__1::allocator<std::__1::tuple<unsigned short, unsigned short>>> _field2;
+};
 
 struct Mutex {
     struct _opaque_pthread_mutex_t {
@@ -337,6 +499,8 @@ struct ObjectCache;
 
 struct OpenGLBufferPool;
 
+struct PendingOperation;
+
 struct Proxy {
     CDUnknownFunctionPointerType *_field1;
     struct Atomic _field2;
@@ -348,6 +512,10 @@ struct Rect {
     double _field2;
     double _field3;
     double _field4;
+};
+
+struct Ref<CA::Display::DisplayLink> {
+    struct DisplayLink *_field1;
 };
 
 struct Ref<CA::Render::Handle> {
@@ -362,8 +530,8 @@ struct Ref<CA::Render::Object> {
     struct Object *_field1;
 };
 
-struct Ref<CA::Render::String> {
-    struct String *_field1;
+struct Ref<CA::Render::Shmem> {
+    struct Shmem *_field1;
 };
 
 struct Ref<CA::Render::Timing> {
@@ -382,19 +550,60 @@ struct Ref<CA::Render::Vector> {
     struct Vector *_field1;
 };
 
-struct Ref<const CA::Render::Behavior> {
-    struct Behavior *_field1;
-};
-
 struct Renderer;
 
+struct Server {
+    CDUnknownFunctionPointerType *_field1;
+    struct SpinLock _field2;
+    struct Mutex _field3;
+    id _field4;
+    struct Display *_field5;
+    struct __CFString *_field6;
+    struct ContextItem *_field7;
+    unsigned long long _field8;
+    unsigned long long _field9;
+    struct ContextItem *_field10;
+    unsigned long long _field11;
+    struct SpinLock _field12;
+    struct PendingOperation *_field13;
+    struct Context *_field14;
+    struct Shape *_field15;
+    unsigned int _field16;
+    struct Context *_field17;
+    struct Renderer *_field18;
+    struct Bounds _field19;
+    double _field20;
+    double _field21;
+    unsigned int _field22;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+};
+
+struct Shape;
+
 struct Shared;
+
+struct Shmem {
+    CDUnknownFunctionPointerType *_field1;
+    struct Atomic _field2;
+    unsigned long long _field3;
+    void *_field4;
+    unsigned int _field5;
+    struct Atomic _field6;
+    CDUnknownFunctionPointerType _field7;
+    void *_field8;
+};
 
 struct SpinLock {
     CDStruct_fcaf9308 _field1;
 };
-
-struct String;
 
 struct Timing;
 
@@ -447,6 +656,11 @@ struct Vec2<double> {
     double _field2;
 };
 
+struct Vec2<float> {
+    float _field1;
+    float _field2;
+};
+
 struct Vec4<float> {
     float _field1;
     float _field2;
@@ -458,10 +672,32 @@ struct Vector;
 
 struct Weak<const void *> {
     id _field1;
+    _Bool _field2;
 };
 
 struct Weak<id> {
     id _field1;
+};
+
+struct _CAEDRMetadataPrivate {
+    struct {
+        unsigned short _field1;
+        unsigned short _field2;
+        unsigned short _field3;
+        unsigned short _field4;
+        unsigned short _field5;
+        unsigned short _field6;
+        unsigned short _field7;
+        unsigned short _field8;
+        unsigned int _field9;
+        unsigned int _field10;
+    } _field1;
+    struct {
+        unsigned short _field1;
+        unsigned short _field2;
+    } _field2;
+    _Bool _field3;
+    float _field4;
 };
 
 struct _CAImageQueue;
@@ -506,6 +742,7 @@ struct _CAMLWriterPriv {
     unsigned int :1;
     unsigned int :1;
     unsigned int :1;
+    unsigned int :1;
 };
 
 struct _CAMetalDrawablePrivate {
@@ -515,37 +752,64 @@ struct _CAMetalDrawablePrivate {
     unsigned int _field4;
     unsigned long long _field5;
     unsigned long long _field6;
-    id _field7;
-    struct _CAMetalLayerPrivate *_field8;
-    struct __IOSurface *_field9;
+    struct _CAMetalLayerPrivate *_field7;
+    struct __IOSurface *_field8;
+    id _field9;
     id _field10;
-    id _field11;
-    struct CGColorSpace *_field12;
+    struct CGColorSpace *_field11;
+    id _field12;
+    unsigned int :1;
+    unsigned int :1;
     unsigned int :1;
     unsigned int :1;
     unsigned int :1;
 };
 
 struct _CAMetalLayerPrivate {
-    struct x_list_struct *_field1;
+    struct Atomic _field1;
     struct Atomic _field2;
-    struct Atomic _field3;
-    struct SpinLock _field4;
-    struct _CAImageQueue *_field5;
-    id _field6;
-    struct x_list_struct *_field7;
-    unsigned int _field8;
-    struct _CAMetalDrawablePrivate *_field9;
+    struct SpinLock _field3;
+    struct _CAImageQueue *_field4;
+    id _field5;
+    double _field6;
+    double _field7;
+    struct List<_CAMetalDrawablePrivate *> *_field8;
+    unsigned int _field9;
     id _field10;
-    unsigned long long _field11;
-    struct CGSize _field12;
-    unsigned int _field13;
-    unsigned int _field14;
-    unsigned long long _field15;
-    unsigned long long _field16;
-    id _field17;
-    struct Atomic _field18;
-    struct CGColorSpace *_field19;
+    id _field11;
+    unsigned long long _field12;
+    unsigned long long _field13;
+    struct CGSize _field14;
+    unsigned int _field15;
+    unsigned int _field16;
+    unsigned int _field17;
+    unsigned int _field18;
+    struct Atomic _field19;
+    id _field20;
+    struct Atomic _field21;
+    struct Atomic _field22;
+    id _field23;
+    id _field24;
+    id _field25;
+    struct SpinLock _field26;
+    id _field27;
+    unsigned long long _field28;
+    struct SpinLock _field29;
+    id _field30;
+    unsigned long long _field31;
+    struct CGColorSpace *_field32;
+    id _field33;
+    unsigned int _field34;
+    unsigned char _field35;
+    unsigned long long _field36;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
     unsigned int :1;
     unsigned int :1;
     unsigned int :1;
@@ -1561,6 +1825,7 @@ struct _CGLContextObject {
         CDUnknownFunctionPointerType _field972;
         CDUnknownFunctionPointerType _field973;
         CDUnknownFunctionPointerType _field974;
+        CDUnknownFunctionPointerType _field975;
     } _field2;
     struct _CGLPrivateObject *_field3;
     void *_field4;
@@ -1581,7 +1846,29 @@ struct __CFRunLoop;
 
 struct __CFString;
 
-struct x_list_struct;
+struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
+    struct __tree_node_base<void *> *_field1;
+};
+
+struct set<std::__1::tuple<unsigned short, unsigned short>, std::__1::less<std::__1::tuple<unsigned short, unsigned short>>, std::__1::allocator<std::__1::tuple<unsigned short, unsigned short>>> {
+    struct __tree<std::__1::tuple<unsigned short, unsigned short>, std::__1::less<std::__1::tuple<unsigned short, unsigned short>>, std::__1::allocator<std::__1::tuple<unsigned short, unsigned short>>> {
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::tuple<unsigned short, unsigned short>, void *>>> {
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::less<std::__1::tuple<unsigned short, unsigned short>>> {
+            unsigned long long _field1;
+        } _field3;
+    } _field1;
+};
+
+struct vector<CA::WindowServer::Display::Mode, std::__1::allocator<CA::WindowServer::Display::Mode>> {
+    struct Mode *_field1;
+    struct Mode *_field2;
+    struct __compressed_pair<CA::WindowServer::Display::Mode *, std::__1::allocator<CA::WindowServer::Display::Mode>> {
+        struct Mode *_field1;
+    } _field3;
+};
 
 #pragma mark Typedef'd Structures
 
@@ -1591,6 +1878,11 @@ typedef struct {
     unsigned long long *_field3;
     unsigned long long _field4[5];
 } CDStruct_70511ce9;
+
+typedef struct {
+    float _field1;
+    float _field2;
+} CDStruct_b2fbf00d;
 
 typedef struct {
     int _field1;

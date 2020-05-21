@@ -15,9 +15,13 @@
     long long _priority;
     id <VKAnimationRunner> _runner;
     long long _state;
+    float _frequency;
     BOOL _runsForever;
 }
 
+@property(nonatomic) float frequency; // @synthesize frequency=_frequency;
+@property(readonly, nonatomic) long long state; // @synthesize state=_state;
+@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 @property(nonatomic) BOOL runsForever; // @synthesize runsForever=_runsForever;
 @property(readonly, nonatomic) long long priority; // @synthesize priority=_priority;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
@@ -34,6 +38,7 @@
 - (id)initWithPriority:(long long)arg1 name:(id)arg2;
 - (id)initWithName:(id)arg1;
 @property(readonly, nonatomic) BOOL timed;
+@property(readonly, nonatomic) BOOL hasFrequency;
 @property(nonatomic) double duration;
 @property(readonly, nonatomic) BOOL running;
 

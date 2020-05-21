@@ -6,9 +6,9 @@
 
 #import "NSObject.h"
 
-@class SCRTextDelayedWordEchoHelper, SCRTextMarkerRange;
+@class NSString, SCRTextDelayedWordEchoHelper, SCRTextMarkerRange;
 
 @protocol SCRTextDelayedWordEchoHelperDelegate <NSObject>
-- (void)wordEchoHelper:(SCRTextDelayedWordEchoHelper *)arg1 echoTextMarkerRangeForWord:(SCRTextMarkerRange *)arg2;
+- (BOOL)wordEchoHelper:(SCRTextDelayedWordEchoHelper *)arg1 echoTextMarkerRangeForWord:(SCRTextMarkerRange *)arg2 additionalContent:(NSString *)arg3;
 @end
 

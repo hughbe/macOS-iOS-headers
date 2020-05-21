@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, SUCatalog;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, NSURL, SUCatalog;
 
 @interface SUCatalogDataManager : NSObject
 {
     NSString *_catalogEntityTag;
+    NSURL *_currentlySetCatalogURL;
     NSMutableDictionary *_lastClientRetrievalPostDateByKey;
     BOOL _isDefaultAppleProductionCatalogURL;
     BOOL _isAppleSeedCatalogURL;
-    SUCatalog *_catalog;
+    BOOL _isCatalogEVProtected;
     NSString *_cachePathRoot;
+    SUCatalog *_catalog;
     NSObject<OS_dispatch_semaphore> *_inFlightSemaphore;
     NSObject<OS_dispatch_queue> *_updateQueue;
     NSObject<OS_dispatch_queue> *_loadQueue;
@@ -23,6 +25,7 @@
 }
 
 + (id)sharedCatalogDataManager;
+@property(retain, nonatomic) SUCatalog *catalog; // @synthesize catalog=_catalog;
 - (void)dumpDebugInfo;
 - (void)resetState;
 - (void)dumpStateFromCoder:(id)arg1;
@@ -33,11 +36,14 @@
 - (id)_cachePathForURL:(id)arg1 inProduct:(id)arg2;
 - (id)_cachePathForProduct:(id)arg1;
 - (void)invalidateResourcesForProduct:(id)arg1;
+- (void)retrieveIntegrityInformationForProduct:(id)arg1 withHandler:(CDUnknownBlockType)arg2;
 - (void)retrievePKMDataForProduct:(id)arg1 withHandler:(CDUnknownBlockType)arg2;
 - (void)undoRetrieveDistributionDataForProduct:(id)arg1;
 - (void)retrieveDistributionDataForProduct:(id)arg1 preferredLocalizations:(id)arg2 withHandler:(CDUnknownBlockType)arg3;
 - (void)_retrieveURL:(id)arg1 forProduct:(id)arg2 withHandler:(CDUnknownBlockType)arg3;
 - (void)enumerateProductsWithHandler:(CDUnknownBlockType)arg1;
+- (id)currentlySetCatalogURL;
+- (BOOL)isCurrentCatalogEVProtected;
 - (BOOL)isCurrentCatalogAppleSeed;
 - (BOOL)isCurrentCatalogDefaultAppleProduction;
 - (void)retrieveCatalogWithHandler:(CDUnknownBlockType)arg1;

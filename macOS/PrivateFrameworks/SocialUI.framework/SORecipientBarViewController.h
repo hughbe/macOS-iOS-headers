@@ -8,13 +8,13 @@
 
 #import "CNContactPickerDelegate.h"
 #import "NSMenuDelegate.h"
-#import "SOBuddyOutlineViewControllerDelegate.h"
 
-@class CNContactPicker, IMHeaderView, NSButton, NSLayoutConstraint, NSString, NSTextField, SOBuddyOutlineViewController, SOChatDetailsPopoverController, SOProgressBarViewController, SORecipientBarView, SOTokenFieldController;
+@class CNContactPicker, IMHeaderView, NSButton, NSImageView, NSLayoutConstraint, NSString, NSTextField, SOChatDetailsPopoverController, SOProgressBarViewController, SORecipientBarView, SOTokenFieldController;
 
-@interface SORecipientBarViewController : SOChatViewController <NSMenuDelegate, CNContactPickerDelegate, SOBuddyOutlineViewControllerDelegate>
+@interface SORecipientBarViewController : SOChatViewController <NSMenuDelegate, CNContactPickerDelegate>
 {
     NSButton *_layoutTestDetailsButton;
+    double _initialButtonWidth;
     BOOL _reloadContactPicker;
     SOProgressBarViewController *_progressBarViewController;
     NSTextField *_toLabel;
@@ -23,6 +23,7 @@
     NSButton *_addRecipientButton;
     NSButton *_detailsButton;
     SOChatDetailsPopoverController *_detailsPopoverController;
+    NSImageView *_businessHeaderImageView;
     NSLayoutConstraint *_maximumRecipientScrollViewHeightConstraint;
     NSLayoutConstraint *_maximumRecipientScrollViewContentsHeightConstraint;
     NSLayoutConstraint *_recipientTokenFieldWidth;
@@ -33,12 +34,10 @@
     NSLayoutConstraint *_recipientActionsViewBottomMarginConstraint;
     NSLayoutConstraint *_recipientActionsViewTrailingMarginConstraint;
     CNContactPicker *_contactPicker;
-    SOBuddyOutlineViewController *_buddyViewController;
 }
 
-+ (id)_detailsButtonTitleAttributes;
+- (void).cxx_destruct;
 @property BOOL reloadContactPicker; // @synthesize reloadContactPicker=_reloadContactPicker;
-@property(retain) SOBuddyOutlineViewController *buddyViewController; // @synthesize buddyViewController=_buddyViewController;
 @property(retain) CNContactPicker *contactPicker; // @synthesize contactPicker=_contactPicker;
 @property(retain) NSLayoutConstraint *recipientActionsViewTrailingMarginConstraint; // @synthesize recipientActionsViewTrailingMarginConstraint=_recipientActionsViewTrailingMarginConstraint;
 @property(retain) NSLayoutConstraint *recipientActionsViewBottomMarginConstraint; // @synthesize recipientActionsViewBottomMarginConstraint=_recipientActionsViewBottomMarginConstraint;
@@ -49,6 +48,7 @@
 @property(retain) NSLayoutConstraint *recipientTokenFieldWidth; // @synthesize recipientTokenFieldWidth=_recipientTokenFieldWidth;
 @property(retain) NSLayoutConstraint *maximumRecipientScrollViewContentsHeightConstraint; // @synthesize maximumRecipientScrollViewContentsHeightConstraint=_maximumRecipientScrollViewContentsHeightConstraint;
 @property(retain) NSLayoutConstraint *maximumRecipientScrollViewHeightConstraint; // @synthesize maximumRecipientScrollViewHeightConstraint=_maximumRecipientScrollViewHeightConstraint;
+@property(retain) NSImageView *businessHeaderImageView; // @synthesize businessHeaderImageView=_businessHeaderImageView;
 @property(retain) SOChatDetailsPopoverController *detailsPopoverController; // @synthesize detailsPopoverController=_detailsPopoverController;
 @property(retain) NSButton *detailsButton; // @synthesize detailsButton=_detailsButton;
 @property(retain) NSButton *addRecipientButton; // @synthesize addRecipientButton=_addRecipientButton;
@@ -56,13 +56,16 @@
 @property(retain) SOTokenFieldController *recipientTokenFieldController; // @synthesize recipientTokenFieldController=_recipientTokenFieldController;
 @property(retain) NSTextField *toLabel; // @synthesize toLabel=_toLabel;
 @property(retain) SOProgressBarViewController *progressBarViewController; // @synthesize progressBarViewController=_progressBarViewController;
-- (void).cxx_destruct;
 - (void)dealloc;
-- (void)viewDidLayout;
+- (id)_redrawImage:(id)arg1 toSize:(struct CGSize)arg2;
+- (void)_updateBanner;
+- (void)_updateColors;
+- (void)_setupRecipientActionsView;
+- (void)viewDidAppear;
+- (void)windowDidResize:(id)arg1;
+- (void)_updateRecipientBarView;
 - (void)viewDidLoad;
-- (void)contactPicker:(id)arg1 didSearchForString:(id)arg2;
-- (void)contactPicker:(id)arg1 didChooseCompatibilityContact:(id)arg2 key:(id)arg3 value:(id)arg4;
-- (void)outlineViewController:(id)arg1 selectedHandle:(id)arg2;
+- (void)contactPicker:(id)arg1 didSelectContactProperty:(id)arg2;
 - (void)showContacts:(id)arg1;
 - (void)accountLoginStatusChanged:(id)arg1;
 - (void)_tokenFieldDidChange:(id)arg1;
@@ -74,6 +77,7 @@
 - (void)addRecipientActionView:(id)arg1 verticalOffset:(double)arg2;
 - (void)chatDisplayControllerDidChange:(id)arg1;
 - (void)chatDisplayControllerWillChange:(id)arg1;
+- (id)_detailsButtonTitleAttributes;
 - (void)showDetails:(id)arg1;
 - (void)recipientsSelected:(id)arg1;
 @property(nonatomic) BOOL allowsTokenFieldScrolling; // @dynamic allowsTokenFieldScrolling;

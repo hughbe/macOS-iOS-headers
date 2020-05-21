@@ -13,6 +13,8 @@
 + (void)setClass:(Class)arg1 asClassForDescriptorType:(unsigned short)arg2;
 + (Class)classForDescriptorType:(unsigned short)arg1;
 + (void)initialize;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)debugLogStringWithIndentation:(id)arg1;
 - (id)xmlKey;
 - (id)xmlRepresentation;

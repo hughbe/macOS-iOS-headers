@@ -12,11 +12,10 @@
 
 + (id)localizedColorNameForColorName:(id)arg1;
 + (id)textColorForName:(id)arg1;
++ (id)grayColor;
 + (id)facebookCalendarColor;
 + (id)birthdayCalendarColor;
-+ (id)displayColorForSymbolicName:(id)arg1;
 + (id)colorForName:(id)arg1;
-+ (id)bestNameForColor:(id)arg1;
 + (id)nameOfColor:(id)arg1;
 + (void)_rebuildColors;
 + (void)initialize;
@@ -25,7 +24,6 @@
 + (id)colorNamesOrderedForAssignment;
 + (int)countOfColor:(id)arg1 inArray:(id)arg2;
 + (id)symbolicColorForNewCalendarWithExistingSymbolicNames:(id)arg1;
-+ (id)legacyPreLionColorToColorName;
 
 @end
 

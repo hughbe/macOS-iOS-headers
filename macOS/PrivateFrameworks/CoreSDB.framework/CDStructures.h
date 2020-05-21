@@ -12,6 +12,12 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct CSDBLookAsideBufferConfig {
+    int lookAsideSlotSize;
+    int lookAsideSlotCount;
+    unsigned int configured:1;
+};
+
 struct CSDBRecordStore {
     struct __CFString *_field1;
     struct CSDBSqliteDatabase *_field2;
@@ -68,5 +74,6 @@ typedef struct {
     CDStruct_183601bc *_field17;
     int _field18;
     CDUnknownFunctionPointerType _field19;
-} CDStruct_2cac97d9;
+    int _field20;
+} CDStruct_47876580;
 

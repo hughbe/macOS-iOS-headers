@@ -18,10 +18,13 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSDictionary *fallBackNamePropertyByNameKey; // @synthesize fallBackNamePropertyByNameKey=_fallBackNamePropertyByNameKey;
 @property(copy, nonatomic) NSSet *mandatoryNameProperties; // @synthesize mandatoryNameProperties=_mandatoryNameProperties;
 @property(nonatomic) BOOL ignoresOrganization; // @synthesize ignoresOrganization=_ignoresOrganization;
 @property(nonatomic) BOOL ignoresNickname; // @synthesize ignoresNickname=_ignoresNickname;
+- (id)_cn_ignorableKeys;
+- (id)_cn_optionalKeys;
 - (id)_cn_requiredKeys;
 - (void)_cn_executeGetterForRepresentedKeys:(CDUnknownBlockType)arg1;
 - (void)setupNameKeys;
@@ -30,7 +33,6 @@ __attribute__((visibility("hidden")))
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

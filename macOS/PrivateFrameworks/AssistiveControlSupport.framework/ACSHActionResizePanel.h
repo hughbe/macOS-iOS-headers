@@ -8,17 +8,7 @@
 
 @interface ACSHActionResizePanel : ACSHActionAdjust
 {
-    int _resizeOption;
-    long long _zoomScaleIndex;
 }
-
-@property(nonatomic) int resizeOption; // @synthesize resizeOption=_resizeOption;
-@property(nonatomic) long long zoomScaleIndex; // @synthesize zoomScaleIndex=_zoomScaleIndex;
-- (id)paramDescription;
-- (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
-- (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
 
 @end
 

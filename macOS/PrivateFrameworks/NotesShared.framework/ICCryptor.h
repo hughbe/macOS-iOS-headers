@@ -10,21 +10,28 @@
 {
 }
 
++ (void)rewrapAndDivergeKeyForObject:(id)arg1 usingPassphrase:(id)arg2;
++ (void)removeAccountFromBiometricID:(id)arg1 andRemoveNotes:(BOOL)arg2;
++ (void)removeNoteFromBiometricID:(id)arg1;
++ (void)removeAllFromBiometricID;
++ (void)removeItemFromBiometricID:(id)arg1;
 + (void)removePassphraseForNotesInAccount:(id)arg1;
 + (void)removePassphraseForAccount:(id)arg1;
 + (void)cachedKeyClearingTimerDidFire;
++ (void)startOrExtendCachedKeyClearingTimerForModes:(id)arg1;
 + (void)startOrExtendCachedKeyClearingTimer;
 + (double)timeIntervalBeforeClearingCachedKeys;
 + (void)rewrapKeyForObject:(id)arg1 newMasterKey:(id)arg2 salt:(id)arg3 iterationCount:(unsigned int)arg4 hint:(id)arg5;
 + (void)transferSharedPassphraseFromAccount:(id)arg1 toAccount:(id)arg2;
-+ (void)rewrapNote:(id)arg1 newMasterKey:(id)arg2 salt:(id)arg3 interationCount:(unsigned int)arg4 hint:(id)arg5;
-+ (BOOL)updateAllNotesWithOldPassphrase:(id)arg1 toSharedPassphrase:(id)arg2 fromAccount:(id)arg3 progress:(id)arg4;
++ (void)rewrapNote:(id)arg1 newMasterKey:(id)arg2 salt:(id)arg3 iterationCount:(unsigned int)arg4 hint:(id)arg5;
++ (BOOL)updateAllNotesWithOldPassphrase:(id)arg1 toAccountPassphrase:(id)arg2 fromAccount:(id)arg3 progress:(id)arg4;
 + (BOOL)setPassphrase:(id)arg1 hint:(id)arg2 forAccount:(id)arg3;
-+ (BOOL)setPassphrase:(id)arg1 forAllAccountsAndNotesWithHint:(id)arg2 oldPassphrase:(id)arg3;
-+ (BOOL)setPassphrase:(id)arg1 forAllAccountsAndNotesWithHint:(id)arg2;
++ (BOOL)setPassphrase:(id)arg1 hint:(id)arg2 oldPassphrase:(id)arg3 forAccount:(id)arg4;
 + (BOOL)hasAnyCachedMasterKeys;
++ (void)refaultAllPasswordProtectedObjects;
 + (void)clearAllCachedMasterKeys;
 + (id)cachedMasterKeyForObject:(id)arg1;
++ (id)allCachedKeys;
 + (id)cachedMasterKeyForIdentifier:(id)arg1;
 + (void)setCachedMasterKey:(id)arg1 forObject:(id)arg2;
 + (void)setCachedMasterKey:(id)arg1 forIdentifier:(id)arg2;
@@ -37,7 +44,13 @@
 + (BOOL)isPassphrase:(id)arg1 correctForNote:(id)arg2;
 + (BOOL)isPassphrase:(id)arg1 correctForAccount:(id)arg2;
 + (BOOL)isPassphrase:(id)arg1 correctForObject:(id)arg2;
++ (void)fixDivergedAttachmentsForNote:(id)arg1 usingPassphrase:(id)arg2;
++ (BOOL)unauthenticatedAttachmentsUsingSamePassphraseExistForNote:(id)arg1 passphrase:(id)arg2;
++ (void)fixNoteWithDivergedKeyFromAccountPassphrase:(id)arg1 usingPassphrase:(id)arg2;
++ (void)fixUpAnyNotesToMatchAccountUsingPassphrase:(id)arg1;
++ (void)fixUpAnyNotesToMatchAccountUsingPassphraseIfNecessary:(id)arg1;
 + (BOOL)authenticateWithPassphrase:(id)arg1 forNote:(id)arg2;
++ (BOOL)authenticateWithPassphrase:(id)arg1 forObject:(id)arg2;
 + (BOOL)authenticateWithPassphrase:(id)arg1 forAccount:(id)arg2;
 + (BOOL)isAuthenticatedForNote:(id)arg1;
 + (BOOL)isAuthenticatedForAccount:(id)arg1;

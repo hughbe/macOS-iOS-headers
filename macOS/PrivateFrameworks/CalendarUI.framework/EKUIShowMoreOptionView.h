@@ -6,23 +6,33 @@
 
 #import <CalendarUI/CalUIControlView.h>
 
-@class EKUIResizingTextField;
+#import "NSAccessibilityButton.h"
 
-@interface EKUIShowMoreOptionView : CalUIControlView
+@class EKUIResizingTextField, NSString;
+
+@interface EKUIShowMoreOptionView : CalUIControlView <NSAccessibilityButton>
 {
     BOOL _isWaitingForResults;
     id <EKUIShowMoreOptionViewDelegate> _delegate;
     EKUIResizingTextField *_showMoreTextField;
 }
 
+- (void).cxx_destruct;
 @property(retain) EKUIResizingTextField *showMoreTextField; // @synthesize showMoreTextField=_showMoreTextField;
 @property(nonatomic) BOOL isWaitingForResults; // @synthesize isWaitingForResults=_isWaitingForResults;
 @property __weak id <EKUIShowMoreOptionViewDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityLabel;
 - (void)keyDown:(id)arg1;
 - (void)mouseUp:(id)arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (id)initWithViewController:(id)arg1 delegate:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

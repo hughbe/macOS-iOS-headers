@@ -11,6 +11,7 @@
 @interface AMImageRegistry : NSObject
 {
     NSCache *_imageCache;
+    NSCache *_applicationURLCache;
 }
 
 + (id)resizeImage;
@@ -19,16 +20,23 @@
 + (id)successImage;
 + (id)progressImage;
 + (id)sharedImageRegistry;
-- (id)imageFromAutomatorApplicationNamed:(id)arg1 size:(int)arg2;
-- (id)imageFromFrameworkNamed:(id)arg1 type:(id)arg2 size:(int)arg3;
-- (id)imageFromSystemNamed:(id)arg1 size:(int)arg2;
-- (id)iconForFileType:(id)arg1 size:(int)arg2;
-- (id)iconForApplicationWithIdentifier:(id)arg1 size:(int)arg2;
-- (id)iconForApplicationName:(id)arg1 size:(int)arg2;
-- (id)_bundleIdentifierForApplicationNamed:(id)arg1;
-- (id)imageForURL:(id)arg1 size:(int)arg2;
-- (id)_imageForKey:(id)arg1 size:(int)arg2 generatorBlock:(CDUnknownBlockType)arg3;
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(retain) NSCache *applicationURLCache; // @synthesize applicationURLCache=_applicationURLCache;
+@property(retain) NSCache *imageCache; // @synthesize imageCache=_imageCache;
+- (id)imageFromAutomatorApplicationNamed:(id)arg1 size:(long long)arg2;
+- (id)imageFromFrameworkNamed:(id)arg1 type:(id)arg2 size:(long long)arg3;
+- (id)imageFromSystemNamed:(id)arg1 size:(long long)arg2;
+- (id)imageFromCocoaNamed:(id)arg1 size:(long long)arg2 proportionalSizing:(BOOL)arg3;
+- (id)iconForFileType:(id)arg1 size:(long long)arg2;
+- (id)iconForApplicationWithIdentifier:(id)arg1 size:(long long)arg2;
+- (id)_launchServicesURLForApplicationName:(id)arg1;
+- (id)_cachedLaunchServicesURLForApplicationName:(id)arg1;
+- (id)iconForApplicationName:(id)arg1 size:(long long)arg2;
+- (id)_staticBundleIdentifierForApplicationNamed:(id)arg1;
+- (id)imageForURL:(id)arg1 size:(long long)arg2;
+- (id)_imageForKey:(id)arg1 size:(long long)arg2 generatorBlock:(CDUnknownBlockType)arg3;
+- (id)_imageForKeyWithoutAdjustingSize:(id)arg1 size:(long long)arg2 generatorBlock:(CDUnknownBlockType)arg3;
+- (struct CGSize)sizeForImageSizeEnum:(long long)arg1;
 - (id)init;
 
 @end

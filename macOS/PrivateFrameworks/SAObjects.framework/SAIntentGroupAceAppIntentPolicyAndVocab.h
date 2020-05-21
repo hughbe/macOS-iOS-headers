@@ -14,8 +14,6 @@
 
 + (id)aceAppIntentPolicyAndVocabWithDictionary:(id)arg1 context:(id)arg2;
 + (id)aceAppIntentPolicyAndVocab;
-@property(retain, nonatomic) SAIntentGroupProtobufMessage *aceAppIntentVocabulary;
-@property(retain, nonatomic) SAIntentGroupProtobufMessage *aceAppIntentPolicy;
 @property(retain, nonatomic) SAIntentGroupProtobufMessage *aceAppBundleInfo;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -6,59 +6,48 @@
 
 #import <MapKit/MKPlaceSectionViewController.h>
 
+#import "MKModuleViewControllerProtocol.h"
 #import "MKOfflineModeViewController.h"
-#import "MKPlaceAttributionProvider.h"
 #import "NSGestureRecognizerDelegate.h"
 #import "_MKInfoCardChildViewControllerAnalyticsDelegate.h"
 
-@class MKInfoCardFooterViewController, MKMapItem, MKPlaceSectionRowView, NSAttributedString, NSMutableArray, NSString, _MKPlaceViewController;
+@class MKMapItem, MKPlaceSectionRowView, NSMutableArray, NSString;
 
-@interface MKPlaceInfoViewController : MKPlaceSectionViewController <MKOfflineModeViewController, NSGestureRecognizerDelegate, MKPlaceAttributionProvider, _MKInfoCardChildViewControllerAnalyticsDelegate>
+__attribute__((visibility("hidden")))
+@interface MKPlaceInfoViewController : MKPlaceSectionViewController <MKOfflineModeViewController, NSGestureRecognizerDelegate, _MKInfoCardChildViewControllerAnalyticsDelegate, MKModuleViewControllerProtocol>
 {
     NSMutableArray *_rows;
-    NSMutableArray *_unusedRows;
     MKPlaceSectionRowView *_selectedRow;
-    BOOL _shouldHideContactInfo;
     BOOL _offlineMode;
-    id <_MKPlaceItem> _placeItem;
+    BOOL _bottomHairlineHidden;
     MKMapItem *_mapItem;
-    _MKPlaceViewController *_owner;
-    id <MKPlaceInfoViewControllerDelegate> _infoDelegate;
-    MKInfoCardFooterViewController *_footerViewController;
+    id <MKPlaceActionManagerProtocol> _actionDelegate;
+    id <_MKPlaceItem> _placeItem;
 }
 
-@property(nonatomic) BOOL offlineMode; // @synthesize offlineMode=_offlineMode;
-@property(nonatomic) BOOL shouldHideContactInfo; // @synthesize shouldHideContactInfo=_shouldHideContactInfo;
-@property(retain, nonatomic) MKInfoCardFooterViewController *footerViewController; // @synthesize footerViewController=_footerViewController;
-@property(nonatomic) __weak id <MKPlaceInfoViewControllerDelegate> infoDelegate; // @synthesize infoDelegate=_infoDelegate;
-@property(nonatomic) __weak _MKPlaceViewController *owner; // @synthesize owner=_owner;
-@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
-@property(retain, nonatomic) id <_MKPlaceItem> placeItem; // @synthesize placeItem=_placeItem;
 - (void).cxx_destruct;
+@property(retain, nonatomic) id <_MKPlaceItem> placeItem; // @synthesize placeItem=_placeItem;
+@property(nonatomic) __weak id <MKPlaceActionManagerProtocol> actionDelegate; // @synthesize actionDelegate=_actionDelegate;
+@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
+@property(nonatomic) BOOL bottomHairlineHidden; // @synthesize bottomHairlineHidden=_bottomHairlineHidden;
+@property(nonatomic) BOOL offlineMode; // @synthesize offlineMode=_offlineMode;
+- (id)infoCardChildUnactionableUIElements;
 - (id)infoCardChildPossibleActions;
-- (void)_launchMaps;
 - (void)_launchMapsDirectionsWithSource:(id)arg1 destination:(id)arg2 directionsMode:(id)arg3;
 - (void)_shareAddress:(id)arg1 fromView:(id)arg2;
-- (void)_directionsToAddress:(unsigned long long)arg1;
-- (void)_canMakeCalls:(CDUnknownBlockType)arg1;
 - (void)_configureRow:(id)arg1 ofType:(unsigned long long)arg2 withValue:(id)arg3;
 - (id)_createViewForInfoRow:(unsigned long long)arg1;
 - (id)_addRowForType:(unsigned long long)arg1 withValue:(id)arg2 toViews:(id)arg3;
-- (id)_addRowForType:(unsigned long long)arg1 toViews:(id)arg2;
-- (void)_addContactRow:(id)arg1 ofType:(unsigned long long)arg2 toViews:(id)arg3 forceTitles:(BOOL)arg4;
+- (void)_addContactRow:(id)arg1 ofType:(unsigned long long)arg2 toViews:(id)arg3 defaultTitle:(id)arg4;
 - (void)_updateViewsAnimated:(BOOL)arg1;
-- (id)_firstUnusedRowOfType:(unsigned long long)arg1;
-- (id)_firstRowOfType:(unsigned long long)arg1;
 - (void)sectionView:(id)arg1 didSelectRow:(id)arg2 atIndex:(unsigned long long)arg3;
-- (void)attributionLinkWasClicked:(id)arg1;
-- (id)getAttributionDisplayString;
+- (unsigned long long)actionTypeFromRowType:(unsigned long long)arg1;
 - (BOOL)shouldShowDetails;
 - (id)contact;
 @property(readonly, nonatomic) BOOL hasContent;
-- (id)_stackView;
 - (void)viewDidLoad;
-@property(readonly, nonatomic) NSAttributedString *infoAttributionString;
 - (id)initWithPlaceItem:(id)arg1;
+- (BOOL)_canShowWhileLocked;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

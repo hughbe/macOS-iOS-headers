@@ -53,6 +53,7 @@
 + (id)getSadAndGrayIconForModel:(id)arg1 ofSize:(long long)arg2;
 + (id)iconForFile:(id)arg1 ofSize:(double)arg2;
 + (id)URLWithType:(id)arg1 name:(id)arg2;
+- (void).cxx_destruct;
 @property double activeConnectionBenchmark; // @synthesize activeConnectionBenchmark=_activeConnectionBenchmark;
 @property(retain) NSString *networkUUID; // @synthesize networkUUID=_networkUUID;
 @property(retain) NSDictionary *descriptionData; // @synthesize descriptionData=_descriptionData;
@@ -84,12 +85,12 @@
 @property(retain) NSURL *url; // @synthesize url=_url;
 @property(retain) NSString *secretPassword; // @synthesize secretPassword;
 @property BOOL connected; // @synthesize connected;
-- (void).cxx_destruct;
 @property(readonly) NSOrderedSet *fasterInterfaceRecommendations;
 @property(readonly) NSOrderedSet *connectionFamilies;
 @property(readonly) unsigned long long commonCapabilities;
 - (BOOL)shouldAcceptPeerCertificates:(id)arg1;
 - (id)localCertificates;
+- (void)session:(id)arg1 shouldSuspendFurtherActions:(BOOL)arg2;
 - (void)session:(id)arg1 benchmarkedSoftAP:(double)arg2 infrastructureSample:(double)arg3;
 - (void)session:(id)arg1 peerNamed:(id)arg2 updatedTxtRecord:(id)arg3;
 - (void)sessionInterrupted:(id)arg1 connection:(id)arg2 active:(BOOL)arg3 didReplaceActiveConnection:(BOOL)arg4;
@@ -117,7 +118,6 @@
 - (Class)networkProxyClass;
 - (BOOL)connectSession;
 - (BOOL)isMounted;
-- (void)waitForAllActionDeparture;
 - (void)unmount;
 - (void)mountWithCredentials:(id)arg1;
 - (void)mount;
@@ -146,7 +146,8 @@
 - (id)systemName;
 @property(readonly) unsigned long long protocolVersion;
 - (BOOL)isCaseSensitive;
-- (BOOL)isFDEEnabled;
+- (BOOL)isDefaultEffaceable;
+- (BOOL)isEncrypted;
 - (id)createFileManager;
 - (id)description;
 - (id)accessibilityDescription;

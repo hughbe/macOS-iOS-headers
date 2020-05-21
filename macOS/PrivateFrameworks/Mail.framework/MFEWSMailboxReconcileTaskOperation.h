@@ -11,17 +11,16 @@
 @interface MFEWSMailboxReconcileTaskOperation : MFEWSNetworkTaskOperation
 {
     id <MFEWSMailboxReconcileTaskOperationDelegate> _delegate;
-    NSString *_folderIDString;
     NSString *_currentSyncState;
+    NSString *_folderIDString;
 }
 
 + (long long)_maxChangesReturned;
 + (id)_newRequestWithFolderID:(id)arg1 syncState:(id)arg2;
-+ (id)log;
-@property(copy, nonatomic) NSString *currentSyncState; // @synthesize currentSyncState=_currentSyncState;
-@property(readonly, copy, nonatomic) NSString *folderIDString; // @synthesize folderIDString=_folderIDString;
-@property(nonatomic) __weak id <MFEWSMailboxReconcileTaskOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSString *folderIDString; // @synthesize folderIDString=_folderIDString;
+@property(copy, nonatomic) NSString *currentSyncState; // @synthesize currentSyncState=_currentSyncState;
+@property(nonatomic) __weak id <MFEWSMailboxReconcileTaskOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (Class)_supportedClassForItem:(id)arg1;
 - (void)main;
 - (id)init;

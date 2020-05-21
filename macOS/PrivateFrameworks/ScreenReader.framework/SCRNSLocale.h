@@ -16,9 +16,11 @@ __attribute__((visibility("hidden")))
 
 + (id)autoupdatingCurrentLocale;
 + (id)currentLocale;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSLocale *_locale; // @synthesize _locale=__locale;
-- (void)dealloc;
 - (id)initWithAutoUpdate:(BOOL)arg1;
+- (id)preferredLanguage;
+- (id)preferredLanguages;
 @property(nonatomic) unsigned long long characterDirection; // @dynamic characterDirection;
 
 @end

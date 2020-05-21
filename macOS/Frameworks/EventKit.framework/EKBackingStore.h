@@ -25,6 +25,8 @@
 }
 
 + (id)createNonPartialFrozenObjectForPartialObject:(id)arg1 withFrozenClass:(Class)arg2;
++ (id)ekBackingStoreHandle;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableSet *identifiersToCommit; // @synthesize identifiersToCommit=_identifiersToCommit;
 @property(retain, nonatomic) NSString *backingStoreIdentifier; // @synthesize backingStoreIdentifier=_backingStoreIdentifier;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *noboCacheQueue; // @synthesize noboCacheQueue=_noboCacheQueue;
@@ -37,7 +39,6 @@
 @property(nonatomic) __weak EKEventStore *mainStore; // @synthesize mainStore=_mainStore;
 @property(readonly, nonatomic) EKBackingObjectsTracker *backingObjectsTracker; // @synthesize backingObjectsTracker=_backingObjectsTracker;
 @property(readonly, nonatomic) EKChangeTracker *changeTracker; // @synthesize changeTracker=_changeTracker;
-- (void).cxx_destruct;
 - (void)replaceChangeTracker:(id)arg1;
 - (id)changeTrackerCopy;
 - (void)readdDetachedEvents:(id)arg1 andExceptions:(id)arg2 toSeries:(id)arg3;
@@ -52,8 +53,8 @@
 - (BOOL)revertItems:(id)arg1;
 - (id)createNonPartialFrozenObjectForPartialObject:(id)arg1 withFrozenClass:(Class)arg2;
 - (id)createNonPartialObjectForPartialObject:(id)arg1 withMeltedClass:(Class)arg2;
-- (void)_reminderAlertFired:(id)arg1;
 - (void)_notifyErrorStateChanged;
+- (void)_notifyChangedSources:(id)arg1 changedCalendars:(id)arg2 changedItems:(id)arg3 changedNotifications:(id)arg4 changedSuggestedEvents:(BOOL)arg5;
 - (void)_notifyChangedSources:(id)arg1 changedCalendars:(id)arg2 changedItems:(id)arg3 changedNotifications:(id)arg4;
 - (void)_notifyChangedItem:(id)arg1;
 - (void)_postRevertedCalendarsNotification:(id)arg1;
@@ -65,7 +66,6 @@
 - (BOOL)_commitAcknowledgedNotifications;
 - (BOOL)_commitCreatedNotifications;
 - (BOOL)_commitNotifications;
-- (void)_reminderBecameOverdue:(id)arg1;
 - (BOOL)_commitExceptions;
 - (BOOL)_commitDeletedItems;
 - (BOOL)_commitUpdatedItems;
@@ -94,10 +94,10 @@
 - (BOOL)batchSaveNotifications:(id)arg1 error:(id *)arg2;
 - (BOOL)_batchRespondToSharedCalendarInvitation:(id)arg1 withStatus:(unsigned long long)arg2 error:(id *)arg3;
 - (BOOL)batchRespondToSharedCalendarInvitation:(id)arg1 withStatus:(unsigned long long)arg2 error:(id *)arg3;
-- (BOOL)_respondToEvents:(id)arg1 withStatus:(long long)arg2 placingInCalendar:(id)arg3 error:(id *)arg4;
-- (BOOL)_batchRespondToEvents:(id)arg1 invitations:(id)arg2 withStatus:(long long)arg3 placingInCalendar:(id)arg4 error:(id *)arg5;
+- (BOOL)_respondToEvents:(id)arg1 withStatus:(long long)arg2 notifyOrganizer:(BOOL)arg3 placingInCalendar:(id)arg4 error:(id *)arg5;
+- (BOOL)_batchRespondToEvents:(id)arg1 invitations:(id)arg2 withStatus:(long long)arg3 notifyOrganizer:(BOOL)arg4 placingInCalendar:(id)arg5 error:(id *)arg6;
 - (BOOL)_createConflictsForEvent:(id)arg1 onDates:(id)arg2 error:(id *)arg3;
-- (BOOL)batchRespondToInvitations:(id)arg1 withStatus:(long long)arg2 exceptForDates:(id)arg3 placingInCalendar:(id)arg4 error:(id *)arg5;
+- (BOOL)batchRespondToInvitations:(id)arg1 withStatus:(long long)arg2 exceptForDates:(id)arg3 notifyOrganizer:(BOOL)arg4 placingInCalendar:(id)arg5 error:(id *)arg6;
 - (BOOL)_respondToProposedStartDate:(id)arg1 forEvent:(id)arg2 error:(id *)arg3;
 - (BOOL)batchAcceptAlternateTimeProposal:(id)arg1 error:(id *)arg2;
 - (BOOL)_batchAcknowledgeNotifications:(id)arg1 error:(id *)arg2;
@@ -148,6 +148,10 @@
 - (id)errorForSource:(id)arg1;
 - (void)_accessErrorsIfNecessary;
 - (void)refreshSources;
+- (id)_createBirthdayCalendarSource;
+- (id)birthdayCalendarSource;
+- (id)_createSubscribedCalendarSource;
+- (id)subscribedCalendarSource;
 - (id)_updatedBackingSourceWithIdentifier:(id)arg1 commit:(BOOL)arg2;
 - (id)_baseSourceWithIdentifier:(id)arg1;
 - (id)_sourceWithIdentifier:(id)arg1;
@@ -160,12 +164,16 @@
 - (long long)notificationCountForCalendar:(id)arg1 includePast:(BOOL)arg2;
 - (long long)notificationCountForCalendar:(id)arg1;
 - (id)errorForCalendar:(id)arg1;
+- (void)insertNaturalLanguageSuggestedEventCalendar;
 - (void)insertSuggestedEventCalendar;
 - (id)committedCalendarForCalendar:(id)arg1;
 - (id)diffFromCommittedCalendarForCalendar:(id)arg1;
+@property(readonly, nonatomic) EKCalendar *naturalLanguageSuggestedEventCalendar;
 @property(readonly, nonatomic) EKCalendar *suggestedEventCalendar;
 @property(nonatomic) EKCalendar *defaultCalendarForNewReminders;
 @property(nonatomic) EKCalendar *defaultCalendarForNewEvents;
+- (id)defaultCalendarForEntityType:(unsigned long long)arg1;
+- (id)acquireDefaultCalendarForEntityType:(unsigned long long)arg1;
 - (id)_backingCalendarWithUpdatedSourceForCalendar:(id)arg1;
 - (id)_updatedBackingCalendarWithIdentifier:(id)arg1 commit:(BOOL)arg2;
 - (id)_baseCalendarWithIdentifier:(id)arg1;
@@ -173,6 +181,8 @@
 - (id)calendarWithIdentifier:(id)arg1;
 - (id)_allCalendarIdentifiers;
 - (id)_allCalendars;
+- (id)allFrozenOrNewCalendarsMatchingBlock:(CDUnknownBlockType)arg1;
+- (id)allFrozenOrNewCalendars;
 - (id)allReminderCalendars;
 - (id)allEventCalendars;
 - (id)allCalendars;
@@ -199,7 +209,8 @@
 - (id)expandAndCachePredicate:(id)arg1;
 - (id)lastOccurrenceInSeries:(id)arg1 exclusionOptions:(long long)arg2;
 - (id)lastOccurrenceInSeries:(id)arg1;
-- (id)_expandOccurrencesForSeries:(id)arg1 inRange:(id)arg2;
+- (id)_expandOccurrencesForSeries:(id)arg1 inRange:(id)arg2 exclusionOptions:(long long)arg3;
+- (id)occurrencesForMultipleSeries:(id)arg1 inRange:(id)arg2 exclusionOptions:(long long)arg3;
 - (id)occurrencesForMultipleSeries:(id)arg1 inRange:(id)arg2;
 - (id)occurrencesForSeries:(id)arg1 inRange:(id)arg2 exclusionOptions:(long long)arg3;
 - (id)occurrencesForSeries:(id)arg1 inRange:(id)arg2;
@@ -209,6 +220,8 @@
 - (id)diffFromCommittedItemForItem:(id)arg1;
 - (id)seriesForRecurrenceSetID:(id)arg1;
 - (BOOL)eventsMarkedScheduleAgentClientExistOnCalendar:(id)arg1;
+- (BOOL)shouldWhitelistOrganizerPhoneNumberFromJunkChecks:(id)arg1;
+- (BOOL)shouldWhitelistOrganizerEmailFromJunkChecks:(id)arg1;
 - (BOOL)futureScheduledEventsExistOnCalendar:(id)arg1;
 - (BOOL)eventsExistOnCalendar:(id)arg1;
 - (id)commitedEventForEvent:(id)arg1 ignoringPotentialSlice:(BOOL)arg2;
@@ -228,6 +241,7 @@
 - (id)_apiExpectedEventForEvent:(id)arg1;
 - (id)itemsWithExternalIdentifier:(id)arg1 ofType:(unsigned long long)arg2;
 - (id)itemsWithIdentifiers:(id)arg1 apiExpected:(BOOL)arg2;
+- (id)itemWithIdentifier:(id)arg1 apiExpected:(BOOL)arg2;
 - (id)itemWithIdentifier:(id)arg1;
 - (id)_remindersWithIsCompleted:(BOOL)arg1 maxResults:(unsigned long long)arg2 withCalendarIdentifiers:(id)arg3;
 - (id)_remindersWithContactIdentifier:(id)arg1;
@@ -252,6 +266,7 @@
 - (id)copyForBackgroundUpdate;
 - (void)_logIfNoAccessRequested;
 - (BOOL)_interestedInAndAuthorizedForEntityType:(unsigned long long)arg1;
+- (void)pruneCacheForDisjointRange:(id)arg1 occurrencesToKeep:(id)arg2;
 - (void)pruneCacheForDisjointRange:(id)arg1;
 - (void)pruneCacheForRange:(id)arg1;
 - (void)_emptyCache;

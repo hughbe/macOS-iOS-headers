@@ -17,13 +17,14 @@
 {
     BOOL _enteringLocation;
     BOOL _enteringPerson;
+    BOOL _shouldSuppressMiniCal;
+    RemindMeView *_datePickerView;
+    IIDatePickerWithMiniCal *_datePicker;
+    RemindMeView *_locationView;
+    CalUISuggestionsField *_locationField;
     NSStackView *_stackView;
     RemindMeCheckbox *_onADay;
-    IIDatePickerWithMiniCal *_datePicker;
-    RemindMeView *_datePickerView;
     RemindMeCheckbox *_atALocation;
-    CalUISuggestionsField *_locationField;
-    RemindMeView *_locationView;
     RemindMeCheckbox *_personCheckbox;
     RemindMeView *_personView;
     CalUIAutoCompleteField *_personField;
@@ -36,6 +37,7 @@
 }
 
 + (id)interestedChangeKeys;
+- (void).cxx_destruct;
 @property(retain) EKUIRadialMapController *mapController; // @synthesize mapController=_mapController;
 @property(retain) NSButton *departButton; // @synthesize departButton=_departButton;
 @property(retain) NSButton *arriveButton; // @synthesize arriveButton=_arriveButton;
@@ -45,31 +47,31 @@
 @property(retain) CalUIAutoCompleteField *personField; // @synthesize personField=_personField;
 @property(retain) RemindMeView *personView; // @synthesize personView=_personView;
 @property(retain) RemindMeCheckbox *personCheckbox; // @synthesize personCheckbox=_personCheckbox;
-@property(retain) RemindMeView *locationView; // @synthesize locationView=_locationView;
-@property(retain) CalUISuggestionsField *locationField; // @synthesize locationField=_locationField;
 @property(retain) RemindMeCheckbox *atALocation; // @synthesize atALocation=_atALocation;
-@property(retain) RemindMeView *datePickerView; // @synthesize datePickerView=_datePickerView;
-@property(retain) IIDatePickerWithMiniCal *datePicker; // @synthesize datePicker=_datePicker;
+@property BOOL shouldSuppressMiniCal; // @synthesize shouldSuppressMiniCal=_shouldSuppressMiniCal;
 @property(retain) RemindMeCheckbox *onADay; // @synthesize onADay=_onADay;
 @property BOOL enteringPerson; // @synthesize enteringPerson=_enteringPerson;
 @property BOOL enteringLocation; // @synthesize enteringLocation=_enteringLocation;
 @property(retain) NSStackView *stackView; // @synthesize stackView=_stackView;
-- (void).cxx_destruct;
+@property(retain) CalUISuggestionsField *locationField; // @synthesize locationField=_locationField;
+@property(retain) RemindMeView *locationView; // @synthesize locationView=_locationView;
+@property(retain) IIDatePickerWithMiniCal *datePicker; // @synthesize datePicker=_datePicker;
+@property(retain) RemindMeView *datePickerView; // @synthesize datePickerView=_datePickerView;
 - (void)personSelected:(id)arg1;
 - (double)suggestionsWindowWidth;
 - (struct CGPoint)suggestionsWindowOffset;
 - (void)suggestionSelected:(id)arg1;
+- (id)subtitleForSuggestion:(id)arg1;
 - (id)titleForSuggestion:(id)arg1;
 - (id)viewForSuggestion:(id)arg1;
-- (void)queryStringUpdatedToString:(id)arg1 suggestionsFoundHandler:(CDUnknownBlockType)arg2;
+- (void)queryForString:(id)arg1 suggestionsFoundHandler:(CDUnknownBlockType)arg2;
+- (void)controlTextDidChange:(id)arg1;
 - (id)startDate;
 - (double)additionalVerticalOffsetForPickerPopover;
 - (void)datePickerDidResignFirstResponder:(id)arg1;
 - (void)datePickerWithMiniCalChanged:(id)arg1;
 - (BOOL)datePickerShouldDisplayTimeSuggestions:(id)arg1;
 - (BOOL)datePickerShouldDisplayMiniCal:(id)arg1;
-- (void)addRemindMeLocation;
-- (void)addRemindMeDate;
 - (BOOL)shouldDisplay;
 - (id)control;
 - (id)carLabelString;
@@ -85,7 +87,9 @@
 - (void)proximityToggled:(id)arg1;
 - (void)personChecked:(id)arg1;
 - (void)atALocationChecked:(id)arg1;
+- (void)setLocationAlarmEnabled:(BOOL)arg1;
 - (void)onDayChecked:(id)arg1;
+- (void)setDateAlarmEnabled:(BOOL)arg1;
 - (void)updateStackView;
 - (double)pixelsBetweenLabelAndControl;
 - (id)viewForBaselineAlignment;
@@ -94,6 +98,7 @@
 - (id)alertableObject;
 - (void)setObject:(id)arg1;
 - (id)proximityRadioButtonWithTitle:(id)arg1;
+- (id)datePickerFontWithMonoSpacedNumerals;
 - (id)initWithViewController:(id)arg1;
 
 // Remaining properties

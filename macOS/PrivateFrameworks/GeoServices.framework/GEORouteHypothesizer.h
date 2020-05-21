@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class GEOPlannedDestination, GEORouteHypothesis, NSError, NSObject<OS_dispatch_queue>, NSString, NSUUID;
+@class GEOPlannedDestination, GEORouteHypothesis, NSError, NSObject<OS_dispatch_source>, NSUUID, geo_isolater;
 
 @interface GEORouteHypothesizer : NSObject
 {
@@ -16,12 +16,16 @@
     GEORouteHypothesis *_currentHypothesis;
     NSError *_currentError;
     CDUnknownBlockType _updateHandler;
-    NSString *_activityIdentifier;
     NSUUID *_uuid;
-    NSObject<OS_dispatch_queue> *_serialQueue;
+    geo_isolater *_isolater;
+    BOOL _wakeForDelay;
+    NSObject<OS_dispatch_source> *_delayDispatchTimer;
 }
 
++ (void)didDismissUINotification:(unsigned long long)arg1 forPlannedDestination:(id)arg2 dismissalType:(unsigned long long)arg3;
++ (BOOL)transitTTLSupportedInCurrentCountry;
 + (id)hypothesizerForPlannedDestination:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL unableToFindRouteForOriginalTransportType; // @synthesize unableToFindRouteForOriginalTransportType=_unableToFindRouteForOriginalTransportType;
 @property(readonly, nonatomic) NSError *currentError; // @synthesize currentError=_currentError;
 @property(readonly, nonatomic) GEOPlannedDestination *plannedDestination; // @synthesize plannedDestination=_plannedDestination;
@@ -34,8 +38,13 @@
 - (void)stopHypothesizing;
 - (void)requestRefresh;
 - (void)startHypothesizingWithUpdateHandler:(CDUnknownBlockType)arg1;
-- (void)delayStarting;
+- (void)_delayStartingWithXpc;
+- (void)cancelDelayDispatchTimer;
+- (void)_delayStartingWithoutXpc;
+- (void)_performDelayedStart;
 - (BOOL)_wontHypothesizeAgain;
+- (void)setDoNotWakeForDelay;
+- (BOOL)wakeForDelay;
 @property(readonly, nonatomic) double willEndHypothesizingInterval;
 @property(readonly, nonatomic) double willBeginHypothesizingInterval;
 - (id)initWithPlannedDestination:(id)arg1;

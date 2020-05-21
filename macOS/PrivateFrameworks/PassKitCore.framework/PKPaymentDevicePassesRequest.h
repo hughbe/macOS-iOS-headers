@@ -13,9 +13,9 @@
     NSString *_updatedSince;
 }
 
-@property(copy, nonatomic) NSString *updatedSince; // @synthesize updatedSince=_updatedSince;
 - (void).cxx_destruct;
-- (id)_urlRequestWithServiceURL:(id)arg1 deviceIdentifier:(id)arg2 account:(id)arg3;
+@property(copy, nonatomic) NSString *updatedSince; // @synthesize updatedSince=_updatedSince;
+- (id)_urlRequestWithServiceURL:(id)arg1 deviceIdentifier:(id)arg2 appleAccountInformation:(id)arg3;
 
 @end
 

@@ -15,11 +15,11 @@
     NSString *_expandedNameSpace;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *expandedNameSpace; // @synthesize expandedNameSpace=_expandedNameSpace;
 @property(retain, nonatomic) NSString *expandedName; // @synthesize expandedName=_expandedName;
 @property(retain, nonatomic) NSSet *propertiesToFind; // @synthesize propertiesToFind=_propertiesToFind;
 - (id)initWithPropertiesToFind:(id)arg1 expandedName:(id)arg2 expandedNameSpace:(id)arg3;
-- (void)dealloc;
 
 @end
 

@@ -10,6 +10,7 @@
 
 @class NSString, NSUUID;
 
+__attribute__((visibility("hidden")))
 @interface _NSRemotePasteboardDataProvider : NSObject <UAPasteboardItemProviding>
 {
     long long _generation;

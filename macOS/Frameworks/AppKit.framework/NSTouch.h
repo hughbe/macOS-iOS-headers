@@ -23,6 +23,8 @@
     long long _reserved4;
     id _device;
     struct CGSize _deviceSize;
+    long long _contextId;
+    double _timestamp;
 }
 
 @property(readonly) struct CGSize deviceSize; // @synthesize deviceSize=_deviceSize;
@@ -37,13 +39,16 @@
 @property(readonly) struct CGPoint previousNormalizedPosition;
 @property(readonly) struct CGPoint normalizedPosition;
 @property(readonly, getter=isResting) BOOL resting;
-- (id)_initWithIdentity:(id)arg1 index:(long long)arg2 phase:(unsigned long long)arg3 position:(struct CGPoint)arg4 previousPosition:(struct CGPoint)arg5 positionType:(long long)arg6 isResting:(BOOL)arg7 view:(id)arg8 device:(id)arg9 deviceSize:(struct CGSize)arg10 force:(double)arg11;
+@property(readonly) double timestamp;
+- (long long)type;
+- (id)_initWithIdentity:(id)arg1 index:(long long)arg2 phase:(unsigned long long)arg3 contextId:(long long)arg4 position:(struct CGPoint)arg5 previousPosition:(struct CGPoint)arg6 touchType:(long long)arg7 timestamp:(double)arg8 isResting:(BOOL)arg9 view:(id)arg10 device:(id)arg11 deviceSize:(struct CGSize)arg12 force:(double)arg13;
 - (void)dealloc;
+- (long long)_contextId;
 - (id)_view;
 - (long long)_index;
 - (id)_touchByCancellingTouch;
-- (id)_initWithPreviousTouch:(id)arg1 newPhase:(unsigned long long)arg2 position:(struct CGPoint)arg3 isResting:(BOOL)arg4 force:(double)arg5;
-- (id)_initWithIndex:(long long)arg1 phase:(unsigned long long)arg2 position:(struct CGPoint)arg3 previousPosition:(struct CGPoint)arg4 positionType:(long long)arg5 isResting:(BOOL)arg6 view:(id)arg7 device:(id)arg8 deviceSize:(struct CGSize)arg9 force:(double)arg10;
+- (id)_initWithPreviousTouch:(id)arg1 newPhase:(unsigned long long)arg2 position:(struct CGPoint)arg3 timestamp:(double)arg4 isResting:(BOOL)arg5 force:(double)arg6;
+- (id)_initWithIndex:(long long)arg1 phase:(unsigned long long)arg2 contextId:(long long)arg3 position:(struct CGPoint)arg4 previousPosition:(struct CGPoint)arg5 touchType:(long long)arg6 timestamp:(double)arg7 isResting:(BOOL)arg8 view:(id)arg9 device:(id)arg10 deviceSize:(struct CGSize)arg11 force:(double)arg12;
 
 @end
 

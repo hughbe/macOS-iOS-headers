@@ -12,21 +12,24 @@
 {
     _AMPredicateEditor *_predicateEditor;
     NSPopUpButton *_itemTypePopUpButton;
-    NSPredicate *_predicate;
     NSArray *_perItemTypeInfo;
 }
 
-@property(readonly, copy) NSArray *perItemTypeInfo; // @synthesize perItemTypeInfo=_perItemTypeInfo;
+- (void).cxx_destruct;
+@property __weak NSPopUpButton *_itemTypePopUpButton; // @synthesize _itemTypePopUpButton;
+@property __weak _AMPredicateEditor *_predicateEditor; // @synthesize _predicateEditor;
+@property(retain) NSArray *_perItemTypeInfo; // @synthesize _perItemTypeInfo;
 - (void)predicateEditorChanged:(id)arg1;
 - (void)itemTypePopUpButtonSelectionChanged:(id)arg1;
 - (void)setUpUIForItemType:(id)arg1 withPredicate:(id)arg2;
 - (void)parametersUpdated;
 - (void)updateParameters;
-@property(copy) NSPredicate *predicate;
-@property(copy) NSString *itemType;
+@property(retain, nonatomic) NSPredicate *predicate;
+- (BOOL)validatePredicate:(id)arg1;
+@property(copy, nonatomic) NSString *itemType;
 - (void)opened;
+@property(readonly, nonatomic) NSArray *perItemTypeInfo;
 - (void)awakeFromNib;
-- (void)dealloc;
 
 @end
 

@@ -53,7 +53,9 @@
 - (id)trailerImageViewAtIndex:(unsigned long long)arg1;
 @property(readonly) unsigned long long maximumNumberOfTrailers;
 - (void)setPlayButtonImage:(id)arg1 atIndex:(unsigned long long)arg2;
+- (id)trailerVibrantImageViewAtIndex:(unsigned long long)arg1;
 - (id)trailerOverlayImageViewAtIndex:(unsigned long long)arg1;
+- (BOOL)isAccessibilityElement;
 - (void)awakeFromNib;
 
 @end

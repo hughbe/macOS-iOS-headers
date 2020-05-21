@@ -6,8 +6,9 @@
 
 #import <MapKit/MKTransitSectionController.h>
 
-@class NSArray, NSDictionary, NSMapTable, NSString;
+@class MKTransitDepartureServiceGapFormatter, NSArray, NSDictionary, NSMapTable, NSString;
 
+__attribute__((visibility("hidden")))
 @interface MKTransitDeparturesSectionController : MKTransitSectionController
 {
     NSString *_direction;
@@ -17,16 +18,19 @@
     BOOL _needsFindRowForServiceGap;
     BOOL _needsFindDeparturesAreVehicleSpecific;
     BOOL _departuresAreVehicleSpecific;
+    MKTransitDepartureServiceGapFormatter *_serviceGapFormatter;
 }
 
 - (void).cxx_destruct;
+@property(retain, nonatomic) MKTransitDepartureServiceGapFormatter *serviceGapFormatter; // @synthesize serviceGapFormatter=_serviceGapFormatter;
 - (id)serviceGapDescriptionForRow:(long long)arg1;
 - (void)_serviceGapDate:(out id *)arg1 string:(out id *)arg2 forSequence:(id)arg3 withDepartureIndex:(unsigned long long)arg4;
-- (id)_descriptionForDepartureDate:(id)arg1 canIncludeDate:(BOOL)arg2;
 - (id)_nextLastDepartureDateForSequence:(id)arg1 afterDate:(id)arg2;
 - (BOOL)_isDateLastDeparture:(id)arg1 withNextDepartureDate:(id)arg2 forSequence:(id)arg3;
+- (void)setDepartureCutoffDate:(id)arg1;
 - (void)_buildRows;
 - (void)_setNeedsBuildRows;
+- (id)_pagingFilter;
 @property(readonly, nonatomic) BOOL showOperatingHours;
 - (id)sequenceForRow:(long long)arg1 outIsNewLine:(out char *)arg2 outNextLineIsSame:(out char *)arg3;
 - (id)sequences;

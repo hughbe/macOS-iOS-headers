@@ -17,6 +17,7 @@
 
 + (id)changeWithItem:(id)arg1;
 + (id)changeWithOccurrenceID:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) ICSDate *recurrenceID; // @synthesize recurrenceID=_recurrenceID;
 @property BOOL isMaster; // @synthesize isMaster=_isMaster;
 @property(readonly) BOOL allDayChanged;
@@ -41,7 +42,6 @@
 - (void)addChanged:(id)arg1 named:(id)arg2 ofProperty:(id)arg3;
 - (void)addChangedProperty:(id)arg1;
 - (id)allChanges;
-- (void)dealloc;
 - (id)initWithOccurrenceID:(id)arg1;
 - (id)init;
 

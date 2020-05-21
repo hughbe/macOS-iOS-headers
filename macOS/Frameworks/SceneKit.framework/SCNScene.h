@@ -8,13 +8,12 @@
 
 #import "NSSecureCoding.h"
 
-@class NSMutableDictionary, SCNAuthoringEnvironment, SCNMaterialProperty, SCNNode, SCNPhysicsWorld, SCNSceneSource;
+@class NSMutableDictionary, NSURL, SCNAuthoringEnvironment, SCNMaterialProperty, SCNNode, SCNPhysicsWorld, SCNSceneSource;
 
 @interface SCNScene : NSObject <NSSecureCoding>
 {
     struct __C3DScene *_scene;
     SCNSceneSource *_sceneSource;
-    double _lastEvalTime;
     SCNPhysicsWorld *_physicsWorld;
     SCNNode *_rootNode;
     SCNNode *_layerRootNode[4];
@@ -25,13 +24,20 @@
     double _fogEndDistance;
     double _fogDensityExponent;
     id _fogColor;
+    BOOL _wantsScreenSpaceReflection;
+    long long _screenSpaceReflectionSampleCount;
+    double _screenSpaceReflectionMaxRayDistance;
+    double _screenSpaceReflectionStride;
     BOOL _paused;
+    NSURL *_sourceURL;
     BOOL _pausedForEditing;
+    BOOL _allowsDefaultLightingEnvironmentFallback;
     SCNAuthoringEnvironment *_authoringEnvironment;
 }
 
 + (BOOL)supportsSecureCoding;
 + (SEL)jsConstructor;
++ (id)_indexPathForNode:(id)arg1;
 + (id)supportedFileUTIsForExport;
 + (id)supportedFileUTIsForImport;
 + (BOOL)canImportFileExtension:(id)arg1;
@@ -46,14 +52,18 @@
 + (id)sceneNamed:(id)arg1 inDirectory:(id)arg2 options:(id)arg3;
 + (id)sceneNamed:(id)arg1;
 + (id)scene;
++ (id)sceneWithMDLAsset:(id)arg1 options:(id)arg2;
 + (id)sceneWithMDLAsset:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)_prettifyForPreview;
 - (void)_didEncodeSCNScene:(id)arg1;
 - (void)_didDecodeSCNScene:(id)arg1;
 - (void)_customDecodingOfSCNScene:(id)arg1;
 - (void)_customEncodingOfSCNScene:(id)arg1;
 - (id)initForJavascript:(id)arg1;
+- (id)_subnodeFromIndexPath:(id)arg1;
+- (id)_nodeWithIndexPath:(id)arg1;
 - (BOOL)isPausedForEditing;
 - (void)setPausedForEditing:(BOOL)arg1;
 - (BOOL)isPausedOrPausedByInheritance;
@@ -64,16 +74,26 @@
 - (void)addParticleSystem:(id)arg1 withTransform:(struct CATransform3D)arg2;
 - (void)addSceneAnimation:(id)arg1 forKey:(id)arg2 target:(id)arg3;
 - (const void *)__CFObject;
+- (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)valueForUndefinedKey:(id)arg1;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 property:(id)arg2;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
+- (id)copyAnimationChannelForKeyPath:(id)arg1 property:(id)arg2;
+- (id)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (void)unlock;
 - (void)lock;
+- (void)_dumpToDisk;
 - (BOOL)writeToURL:(id)arg1 options:(id)arg2 delegate:(id)arg3 progressHandler:(CDUnknownBlockType)arg4;
+@property(nonatomic) double screenSpaceReflectionStride;
+@property(nonatomic) double screenSpaceReflectionMaximumDistance;
+- (void)setScreenSpaceReflectionDepthThreshold:(double)arg1;
+- (double)screenSpaceReflectionDepthThreshold;
+@property(nonatomic) long long screenSpaceReflectionSampleCount;
+@property(nonatomic) BOOL wantsScreenSpaceReflection;
 @property(nonatomic) double fogStartDistance;
 @property(nonatomic) double fogDensityExponent;
 @property(nonatomic) double fogEndDistance;
 @property(retain, nonatomic) id fogColor;
+- (void)set_allowsDefaultLightingEnvironmentFallback:(BOOL)arg1;
+- (BOOL)_allowsDefaultLightingEnvironmentFallback;
 @property(readonly, nonatomic) SCNMaterialProperty *lightingEnvironment;
 @property(readonly, nonatomic) SCNMaterialProperty *background;
 - (id)attributeForKey:(id)arg1;
@@ -86,6 +106,7 @@
 - (double)endTime;
 - (void)setStartTime:(double)arg1;
 - (double)startTime;
+- (void)_resetSceneTimeRange;
 - (id)_physicsWorldCreateIfNeeded:(BOOL)arg1;
 @property(readonly, nonatomic) SCNPhysicsWorld *physicsWorld;
 - (void)_scaleSceneBy:(double)arg1;
@@ -100,19 +121,20 @@
 - (struct __C3DScene *)sceneRef;
 - (id)_scenes;
 - (id)scene;
-- (void)setLastEvalTime:(double)arg1;
-- (double)lastEvalTime;
+- (void)_setSourceURL:(id)arg1;
 - (void)dealloc;
 - (void)setUpAxis:(struct SCNVector3)arg1;
 - (struct SCNVector3)upAxis;
+- (void)_clearSceneRef;
 - (void)_syncObjCModel;
 - (id)initWithSceneRef:(struct __C3DScene *)arg1;
 - (id)init;
 - (id)debugQuickLookObjectWithPointOfView:(id)arg1;
 - (id)debugQuickLookObject;
+- (BOOL)writeToURLWithUSDKit:(id)arg1;
 - (id)exportAsCOLLADAOperationWithDestinationURL:(id)arg1 attributes:(id)arg2 delegate:(id)arg3 didEndSelector:(SEL)arg4 userInfo:(void *)arg5;
-- (id)exportAsWebGLOperationWithDestinationURL:(id)arg1 size:(struct CGSize)arg2 attributes:(id)arg3 delegate:(id)arg4 didEndSelector:(SEL)arg5 userInfo:(void *)arg6;
 - (id)exportAsMovieOperationWithDestinationURL:(id)arg1 size:(struct CGSize)arg2 attributes:(id)arg3 delegate:(id)arg4 didEndSelector:(SEL)arg5 userInfo:(void *)arg6;
+- (id)_exportAsMovieOperationWithDestinationURL:(id)arg1 size:(struct CGSize)arg2 attributes:(id)arg3 delegate:(id)arg4 didEndSelector:(SEL)arg5 userInfo:(void *)arg6;
 - (BOOL)writeToURL:(id)arg1 options:(id)arg2;
 
 @end

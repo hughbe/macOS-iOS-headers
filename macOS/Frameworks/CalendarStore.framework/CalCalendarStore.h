@@ -13,6 +13,10 @@
     void *_reserved;
 }
 
++ (id)_calendarDoesNotSupportTasksErrorWithCalendarName:(id)arg1;
++ (id)_calendarDoesNotSupportEventsErrorWithCalendarName:(id)arg1;
++ (id)_calendarNotEditableErrorWithCalendarName:(id)arg1 isEvent:(BOOL)arg2;
++ (id)_calendarNotFoundWithCalendarName:(id)arg1 isEvent:(BOOL)arg2;
 + (id)taskPredicateWithUncompletedTasksDueBefore:(id)arg1 calendars:(id)arg2;
 + (id)taskPredicateWithUncompletedTasks:(id)arg1;
 + (id)taskPredicateWithTasksCompletedSince:(id)arg1 calendars:(id)arg2;
@@ -20,24 +24,16 @@
 + (id)eventPredicateWithStartDate:(id)arg1 endDate:(id)arg2 UID:(id)arg3 calendars:(id)arg4;
 + (id)eventPredicateWithStartDate:(id)arg1 endDate:(id)arg2 calendars:(id)arg3;
 + (id)_dateFromPotentialNSCalendarDate:(id)arg1;
++ (int)_calStoreSpanWithCalSpan:(int)arg1;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)defaultCalendarStore;
 + (BOOL)requestAccessForServiceName:(struct __CFString *)arg1;
 + (BOOL)authorizationStatusForServiceName:(struct __CFString *)arg1;
-+ (void)initialize;
-+ (id)calendarPredicateWithGroups:(id)arg1;
-+ (id)defaultLocalCalendarAttachmentsBackupPath;
-+ (id)localCalendarsGroupTitle;
-+ (id)_calendarAllDayFlagCannotApplyWhenExceptionsToRecurrenceError;
-+ (id)_calendarAllDayFlagMustApplyToAllOccurrencesError;
-+ (id)_calendarDoesNotSupportTasksErrorWithCalendarName:(id)arg1;
-+ (id)_calendarDoesNotSupportEventsErrorWithCalendarName:(id)arg1;
-+ (id)_calendarNotEditableErrorWithCalendarName:(id)arg1 isEvent:(BOOL)arg2;
-+ (id)_calendarNotFoundWithCalendarName:(id)arg1 isEvent:(BOOL)arg2;
-+ (BOOL)calendarIsDefaultLocal:(id)arg1;
-+ (void)setCurrentTimeZone:(id)arg1;
-+ (id)currentTimeZone;
-+ (id)activeCalendar;
+- (void)calPersistanceNotification:(id)arg1 userInfo:(id)arg2;
+- (id)notificationForDistributedNotification:(id)arg1 userInfo:(id)arg2;
+- (void)agentUpdatedCache:(id)arg1;
+- (void)calMeCardChanged;
+- (void)calDavSharedUIDChanged:(id)arg1;
 - (BOOL)removeCalendar:(id)arg1 error:(id *)arg2;
 - (BOOL)saveCalendar:(id)arg1 error:(id *)arg2;
 - (BOOL)removeTask:(id)arg1 error:(id *)arg2;
@@ -55,31 +51,6 @@
 - (unsigned long long)retainCount;
 - (id)retain;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)agentUpdatedCache:(id)arg1;
-- (void)calMeCardChanged;
-- (void)calPersistanceNotification:(id)arg1 userInfo:(id)arg2;
-- (id)notificationForDistributedNotification:(id)arg1 userInfo:(id)arg2;
-- (void)calDavSharedUIDChanged:(id)arg1;
-- (BOOL)anyLocalCalendarHasAttachments;
-- (BOOL)migrateLocalCalendarsToGroup:(id)arg1 error:(id *)arg2;
-- (BOOL)anyLocalRemindersExist;
-- (BOOL)anyLocalCalendarsExist;
-- (BOOL)removeGroupForReminders:(id)arg1 error:(id *)arg2;
-- (BOOL)removeGroupForCalendar:(id)arg1 error:(id *)arg2;
-- (BOOL)isPluginIdSupported:(id)arg1 forApp:(id)arg2;
-- (BOOL)removeGroup:(id)arg1 error:(id *)arg2;
-- (BOOL)saveGroup:(id)arg1 error:(id *)arg2;
-- (id)_createURLString:(id)arg1 removePath:(BOOL)arg2 fromGroup:(id)arg3;
-- (id)calendarsWithPredicate:(id)arg1;
-- (id)groupWithExchangeURL:(id)arg1 externalURL:(id)arg2 userName:(id)arg3 emailAddress:(id)arg4;
-- (id)groupWithPrincipalURL:(id)arg1 userName:(id)arg2;
-- (id)groupWithUID:(id)arg1;
-- (id)groups;
-- (id)eventWithItemID:(id)arg1;
-- (id)firstWritableCalendarThatSupportsTasks;
-- (void)openTask:(id)arg1 options:(int)arg2;
-- (void)openEvent:(id)arg1 options:(int)arg2;
-- (void)_openCalendarItem:(id)arg1 options:(int)arg2;
 
 @end
 

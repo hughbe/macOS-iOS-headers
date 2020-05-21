@@ -16,7 +16,7 @@
 __attribute__((visibility("hidden")))
 @interface SKThreadSafeMutableDictionary : NSObject <NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration>
 {
-    int _storageLock;
+    struct _opaque_pthread_mutex_t _storageLock;
     NSMutableDictionary *_storage;
 }
 

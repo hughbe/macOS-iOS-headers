@@ -10,6 +10,11 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct activity_bitmap {
+    unsigned long long start;
+    unsigned long long bitmap[2];
+};
+
 struct in6_addr {
     union {
         unsigned char __u6_addr8[16];
@@ -27,6 +32,12 @@ struct nstat_counts {
     unsigned long long nstat_rxbytes;
     unsigned long long nstat_txpackets;
     unsigned long long nstat_txbytes;
+    unsigned long long nstat_cell_rxbytes;
+    unsigned long long nstat_cell_txbytes;
+    unsigned long long nstat_wifi_rxbytes;
+    unsigned long long nstat_wifi_txbytes;
+    unsigned long long nstat_wired_rxbytes;
+    unsigned long long nstat_wired_txbytes;
     unsigned int nstat_rxduplicatebytes;
     unsigned int nstat_rxoutoforderbytes;
     unsigned int nstat_txretransmit;
@@ -35,12 +46,6 @@ struct nstat_counts {
     unsigned int nstat_min_rtt;
     unsigned int nstat_avg_rtt;
     unsigned int nstat_var_rtt;
-    unsigned long long nstat_cell_rxbytes;
-    unsigned long long nstat_cell_txbytes;
-    unsigned long long nstat_wifi_rxbytes;
-    unsigned long long nstat_wifi_txbytes;
-    unsigned long long nstat_wired_rxbytes;
-    unsigned long long nstat_wired_txbytes;
 };
 
 struct nstat_ifnet_desc_cellular_status {
@@ -61,6 +66,7 @@ struct nstat_ifnet_desc_cellular_status {
     unsigned int config_inactivity_time;
     unsigned int config_backoff_time;
     unsigned short mss_recommended;
+    unsigned char reserved[2];
 };
 
 struct nstat_ifnet_desc_link_status {
@@ -95,18 +101,20 @@ struct nstat_ifnet_desc_wifi_status {
 };
 
 struct nstat_ifnet_descriptor {
-    char name[17];
-    unsigned int ifindex;
     unsigned long long threshold;
+    unsigned int ifindex;
+    struct nstat_ifnet_desc_link_status link_status;
     unsigned int type;
     char description[128];
-    struct nstat_ifnet_desc_link_status link_status;
+    char name[17];
+    unsigned char reserved[3];
 };
 
 struct nstat_msg_add_src {
     struct nstat_msg_hdr _field1;
     unsigned int _field2;
-    unsigned char _field3[0];
+    unsigned char _field3[4];
+    unsigned char _field4[0];
 };
 
 struct nstat_msg_hdr {
@@ -125,6 +133,7 @@ struct nstat_route_descriptor {
     CDUnion_630890c4 gateway;
     unsigned int ifindex;
     unsigned int flags;
+    unsigned char reserved[4];
 };
 
 struct nstat_sysinfo_counts {
@@ -134,8 +143,11 @@ struct nstat_sysinfo_counts {
 };
 
 struct nstat_tcp_descriptor {
-    CDUnion_873ddf02 local;
-    CDUnion_873ddf02 remote;
+    unsigned long long upid;
+    unsigned long long eupid;
+    unsigned long long start_timestamp;
+    unsigned long long timestamp;
+    struct activity_bitmap activity_bitmap;
     unsigned int ifindex;
     unsigned int state;
     unsigned int sndbufsize;
@@ -147,35 +159,43 @@ struct nstat_tcp_descriptor {
     unsigned int txcwindow;
     unsigned int traffic_class;
     unsigned int traffic_mgt_flags;
-    char cc_algo[16];
-    unsigned long long upid;
     unsigned int pid;
-    char pname[64];
-    unsigned long long eupid;
     unsigned int epid;
+    CDUnion_873ddf02 local;
+    CDUnion_873ddf02 remote;
+    char cc_algo[16];
+    char pname[64];
     unsigned char uuid[16];
     unsigned char euuid[16];
     unsigned char vuuid[16];
-    struct tcp_conn_status connstatus;
+    union {
+        struct tcp_conn_status connstatus;
+        unsigned char __pad_connstatus[4];
+    } ;
     unsigned short ifnet_properties;
+    unsigned char reserved[6];
 };
 
 struct nstat_udp_descriptor {
+    unsigned long long upid;
+    unsigned long long eupid;
+    unsigned long long start_timestamp;
+    unsigned long long timestamp;
+    struct activity_bitmap activity_bitmap;
     CDUnion_873ddf02 local;
     CDUnion_873ddf02 remote;
     unsigned int ifindex;
     unsigned int rcvbufsize;
     unsigned int rcvbufused;
     unsigned int traffic_class;
-    unsigned long long upid;
     unsigned int pid;
     char pname[64];
-    unsigned long long eupid;
     unsigned int epid;
     unsigned char uuid[16];
     unsigned char euuid[16];
     unsigned char vuuid[16];
     unsigned short ifnet_properties;
+    unsigned char reserved[6];
 };
 
 struct sockaddr {

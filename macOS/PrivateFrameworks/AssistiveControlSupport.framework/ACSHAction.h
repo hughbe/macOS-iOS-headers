@@ -10,35 +10,45 @@
 
 @interface ACSHAction : ACSHPlistObject
 {
-    int _actionType;
+    unsigned long long _actionType;
     NSObject<ACSHOutputEventPerformer> *_eventPerformer;
     BOOL _shouldAutoRepeat;
+    BOOL _isStickyKey;
+    BOOL _stickyKeyRepeatActivated;
     int _actionStage;
     double _recordedOffset;
     unsigned long long _repeatCount;
     double _repeatFrequencyInSeconds;
 }
 
-+ (id)descriptionForActionType:(int)arg1;
-+ (id)titleForActionType:(int)arg1;
-+ (Class)classForActionType:(int)arg1;
++ (id)descriptionForActionType:(unsigned long long)arg1;
++ (id)titleForActionType:(unsigned long long)arg1;
++ (id)titleForPlaceholderActionType:(unsigned long long)arg1;
++ (Class)classForActionType:(unsigned long long)arg1;
 + (Class)classForDict:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) int actionStage; // @synthesize actionStage=_actionStage;
 @property(nonatomic) double repeatFrequencyInSeconds; // @synthesize repeatFrequencyInSeconds=_repeatFrequencyInSeconds;
+@property(nonatomic) BOOL stickyKeyRepeatActivated; // @synthesize stickyKeyRepeatActivated=_stickyKeyRepeatActivated;
+@property(nonatomic) BOOL isStickyKey; // @synthesize isStickyKey=_isStickyKey;
 @property(nonatomic) BOOL shouldAutoRepeat; // @synthesize shouldAutoRepeat=_shouldAutoRepeat;
 @property(nonatomic) unsigned long long repeatCount; // @synthesize repeatCount=_repeatCount;
 @property(nonatomic) double recordedOffset; // @synthesize recordedOffset=_recordedOffset;
 @property(retain, nonatomic) NSObject<ACSHOutputEventPerformer> *eventPerformer; // @synthesize eventPerformer=_eventPerformer;
-@property(nonatomic) int actionType; // @synthesize actionType=_actionType;
-- (void)dealloc;
-- (void)repeatEnded;
-- (void)perform;
+@property(nonatomic) unsigned long long actionType; // @synthesize actionType=_actionType;
+- (void)repeatEndedWithEventSourceData:(id)arg1;
+- (void)performDeactivateWithEventSourceData:(id)arg1;
+- (void)performWithEventSourceData:(id)arg1;
+- (void)performDoubleActionWithEventSourceData:(id)arg1;
+@property(readonly, nonatomic) BOOL shouldPerformDoubleActionIfPossible;
 - (BOOL)shouldPerform;
+@property(readonly, nonatomic) BOOL hasAssociatedSoundForDoubleAction;
+@property(readonly, nonatomic) BOOL hasAssociatedSound;
 - (id)descriptionForDepth:(unsigned long long)arg1;
 - (id)paramDescription;
 - (id)dictionaryForSaving;
 - (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
+- (void)_configureWithPlistDictionary:(id)arg1;
 - (id)init;
 
 @end

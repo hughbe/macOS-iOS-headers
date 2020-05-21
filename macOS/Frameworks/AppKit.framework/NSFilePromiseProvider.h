@@ -8,23 +8,31 @@
 
 #import "NSFileProvider.h"
 #import "NSPasteboardWriting.h"
+#import "_NSPasteboardPromiseProviderAgency.h"
 
-@class NSArray, NSOperationQueue, NSString, NSURL;
+@class NSArray, NSOperationQueue, NSString, NSURL, _NSFilePromiseProviderPrivate;
 
-@interface NSFilePromiseProvider : NSObject <NSFileProvider, NSPasteboardWriting>
+@interface NSFilePromiseProvider : NSObject <NSFileProvider, _NSPasteboardPromiseProviderAgency, NSPasteboardWriting>
 {
     NSString *_fileType;
     NSArray *_reservedA;
+    id _reservedB;
     id <NSFilePromiseProviderDelegate> _delegate;
     id _userInfo;
     NSURL *_destinationURL;
+    long long _dragggingSequenceNumber;
     struct {
         unsigned int valid;
-        unsigned int reserved:31;
+        unsigned int providedItem:1;
+        unsigned int reserved:30;
     } _flags;
     id _private;
 }
 
++ (id)_provideItemNotifyQueue;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) _NSFilePromiseProviderPrivate *private; // @synthesize private=_private;
+@property long long dragggingSequenceNumber; // @synthesize dragggingSequenceNumber=_dragggingSequenceNumber;
 @property(copy) NSArray *alternateFileTypes; // @synthesize alternateFileTypes=_reservedA;
 @property __weak id <NSFilePromiseProviderDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) id userInfo; // @synthesize userInfo=_userInfo;
@@ -34,21 +42,28 @@
 @property(readonly, copy) NSURL *_providedItemsURL;
 - (void)_setDestinationURL:(id)arg1;
 - (id)_destinationURL;
-- (void)_cooridinatedlyWritePromiseToURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_coordinatelyWritePromiseToURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)draggingCancelled:(id)arg1;
 - (void)draggingEnded:(id)arg1;
 - (void)pasteboardFinishedWithDataProvider:(id)arg1;
 - (void)pasteboard:(id)arg1 item:(id)arg2 provideDataForType:(id)arg3;
-- (id)_fileNameForDestinationLocation:(id)arg1 type:(id)arg2;
+- (id)_dataProviderForType:(id)arg1;
+- (id)_fileNameForType:(id)arg1;
 - (id)pasteboardPropertyListForType:(id)arg1;
 - (unsigned long long)writingOptionsForType:(id)arg1 pasteboard:(id)arg2;
 - (id)writableTypesForPasteboard:(id)arg1;
+- (void)_cancel;
+- (BOOL)setDataProvider:(id)arg1 forTypes:(id)arg2;
+- (BOOL)setPropertyList:(id)arg1 forType:(id)arg2;
+- (BOOL)setString:(id)arg1 forType:(id)arg2;
+- (BOOL)setData:(id)arg1 forType:(id)arg2;
 @property(copy) NSString *fileType;
 - (void)dealloc;
 - (id)init;
 - (id)initWithFileType:(id)arg1 delegate:(id)arg2;
+@property(readonly, copy) NSString *_fileReactorID;
 
 // Remaining properties
-@property(readonly, copy) NSString *_fileReactorID;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;

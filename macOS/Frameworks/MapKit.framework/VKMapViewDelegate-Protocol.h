@@ -6,16 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSError, NSString, VKLabelMarker, VKMapView, VKOverlayPainter;
+@class NSError, NSString, VKLabelMarker, VKMapView, VKVenueBuildingFeatureMarker, VKVenueFeatureMarker;
 
 @protocol VKMapViewDelegate <NSObject>
 
 @optional
-- (void)mapLayerNavigationCameraHasStoppedPanning:(VKMapView *)arg1;
-- (void)mapLayerNavigationCameraHasStartedPanning:(VKMapView *)arg1;
+- (void)mapLayer:(VKMapView *)arg1 venueCreated:(VKVenueFeatureMarker *)arg2 venueCreatedBuilding:(VKVenueBuildingFeatureMarker *)arg3;
+- (void)mapLayer:(VKMapView *)arg1 venueWithFocusDidChange:(VKVenueFeatureMarker *)arg2 building:(VKVenueBuildingFeatureMarker *)arg3;
 - (void)mapLayer:(VKMapView *)arg1 didUpdateVerticalYawTo:(double)arg2;
-- (void)mapLayer:(VKMapView *)arg1 willTransitionFrom:(long long)arg2 to:(long long)arg3 duration:(double)arg4;
+- (void)mapLayer:(VKMapView *)arg1 willTransitionTo:(long long)arg2;
 - (void)mapLayerLabelsDidLayout:(VKMapView *)arg1;
+- (void)mapLayer:(VKMapView *)arg1 labelMarkerDidChangeState:(VKLabelMarker *)arg2;
 - (void)mapLayer:(VKMapView *)arg1 selectedLabelMarkerDidChangeState:(VKLabelMarker *)arg2;
 - (void)mapLayer:(VKMapView *)arg1 selectedLabelMarkerWillDisappear:(VKLabelMarker *)arg2;
 - (void)mapLayer:(VKMapView *)arg1 didFinishChangingMapDisplayStyle:(CDStruct_51745937)arg2;
@@ -24,22 +25,19 @@
 - (void)mapLayer:(VKMapView *)arg1 flyoverTourLabelDidChange:(NSString *)arg2;
 - (void)mapLayer:(VKMapView *)arg1 didStopFlyoverTourCompleted:(BOOL)arg2;
 - (void)mapLayerWillStartFlyoverTour:(VKMapView *)arg1;
+- (void)mapLayer:(VKMapView *)arg1 arTrackingStateDidChange:(unsigned long long)arg2 reason:(unsigned long long)arg3;
+- (void)mapLayerARSessionInterruptionEnded:(VKMapView *)arg1;
+- (void)mapLayer:(VKMapView *)arg1 arSessionWasInterrupted:(unsigned long long)arg2;
+- (void)mapLayer:(VKMapView *)arg1 didEncounterARError:(NSError *)arg2;
+- (void)mapLayerDidExitAR:(VKMapView *)arg1;
+- (void)mapLayerWillExitAR:(VKMapView *)arg1;
+- (void)mapLayerDidEnterAR:(VKMapView *)arg1;
+- (void)mapLayerWillEnterAR:(VKMapView *)arg1;
 - (void)mapLayer:(VKMapView *)arg1 canShowFlyoverDidChange:(BOOL)arg2;
 - (void)mapLayer:(VKMapView *)arg1 showingFlyoverDidChange:(BOOL)arg2;
-- (void)mapLayer:(VKMapView *)arg1 canZoomOutDidChange:(BOOL)arg2;
-- (void)mapLayer:(VKMapView *)arg1 canZoomInDidChange:(BOOL)arg2;
-- (void)mapLayer:(VKMapView *)arg1 canEnter3DModeDidChange:(BOOL)arg2;
-- (void)mapLayer:(VKMapView *)arg1 didBecomePitched:(BOOL)arg2;
-- (VKOverlayPainter *)mapLayer:(VKMapView *)arg1 painterForOverlay:(id <VKOverlay>)arg2;
-- (id <VKTrackableAnnotationPresentation>)mapLayer:(VKMapView *)arg1 presentationForAnnotation:(id <VKTrackableAnnotation>)arg2;
-- (void)mapLayerDidBecomeFullyDrawn:(VKMapView *)arg1 hasFailedTiles:(BOOL)arg2;
-- (void)mapLayerDidBecomePartiallyDrawn:(VKMapView *)arg1;
+- (void)mapLayerDidChangeSceneState:(VKMapView *)arg1 withState:(unsigned long long)arg2;
 - (void)mapLayerDidReloadStylesheet:(VKMapView *)arg1;
-- (void)mapLayerDidFinishInitialTrackingAnimation:(VKMapView *)arg1;
-- (void)mapLayer:(VKMapView *)arg1 didChangeRegionAnimated:(BOOL)arg2;
-- (void)mapLayer:(VKMapView *)arg1 willChangeRegionAnimated:(BOOL)arg2;
 - (void)mapLayerDidDraw:(VKMapView *)arg1;
-- (void)mapLayerDidChangeVisibleRegion:(VKMapView *)arg1;
 - (void)mapLayerDidFailLoadingTiles:(VKMapView *)arg1 withError:(NSError *)arg2;
 - (void)mapLayerDidFinishLoadingTiles:(VKMapView *)arg1;
 - (void)mapLayerDidStartLoadingTiles:(VKMapView *)arg1;

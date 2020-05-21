@@ -11,23 +11,29 @@
 __attribute__((visibility("hidden")))
 @interface NSTouchDeviceTouchMap : NSObject
 {
+    long long _flushCount;
     NSMutableSet *_touches;
     NSMutableSet *_cancelledTouches;
+    NSMutableDictionary *_cachedBeginTouches;
     NSMutableSet *_activeGestureRecognizers;
     NSMutableSet *_claimedTouchIdentities;
     NSMutableSet *_commandeeredTouchIdentities;
     NSMutableDictionary *_touchesToGestureRecognizersMap;
 }
 
+@property long long flushCount; // @synthesize flushCount=_flushCount;
 @property(retain) NSMutableSet *activeGestureRecognizers; // @synthesize activeGestureRecognizers=_activeGestureRecognizers;
 @property(retain) NSMutableSet *commandeeredTouchIdentities; // @synthesize commandeeredTouchIdentities=_commandeeredTouchIdentities;
 @property(retain) NSMutableSet *claimedTouchIdentities; // @synthesize claimedTouchIdentities=_claimedTouchIdentities;
+@property(retain) NSMutableDictionary *cachedBeginTouches; // @synthesize cachedBeginTouches=_cachedBeginTouches;
 @property(retain) NSMutableSet *cancelledTouches; // @synthesize cancelledTouches=_cancelledTouches;
 @property(retain) NSMutableSet *touches; // @synthesize touches=_touches;
 - (id)touchIdentitiesAssociatedWithGestureRecognizer:(id)arg1;
 - (void)updateActiveGestureRecognizers;
 - (void)removeGestureRecognizerFromAllKeys:(id)arg1;
 - (id)gestureRecognizersForKey:(id)arg1;
+- (void)allowFlushing;
+- (void)preventFlushing;
 - (void)dealloc;
 - (id)init;
 

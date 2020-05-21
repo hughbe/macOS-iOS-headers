@@ -12,8 +12,16 @@
 
 + (unsigned char)componentsPerPixel:(unsigned long long)arg1;
 + (struct TXRImageMemoryLayout)packedMemoryLayoutForFormat:(unsigned long long)arg1 dimensions: /* Error: Ran out of types for this method. */;
++ (BOOL)isGammaEncoded:(unsigned long long)arg1;
 + (BOOL)hasAlpha:(unsigned long long)arg1;
 + (BOOL)isCompressed:(unsigned long long)arg1;
++ (BOOL)isASTC:(unsigned long long)arg1;
++ (BOOL)isETC2:(unsigned long long)arg1;
++ (BOOL)isPVRTC:(unsigned long long)arg1;
++ (BOOL)isBC6to7:(unsigned long long)arg1;
++ (BOOL)isBC1to5:(unsigned long long)arg1;
++ (BOOL)isSRGB:(unsigned long long)arg1;
++ (BOOL)isFloat:(unsigned long long)arg1;
 + (BOOL)isInteger:(unsigned long long)arg1;
 + (unsigned char)pixelBytes:(unsigned long long)arg1;
 

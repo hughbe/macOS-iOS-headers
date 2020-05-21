@@ -9,15 +9,10 @@
 __attribute__((visibility("hidden")))
 @interface FI_TInlineProgressController : NSObject
 {
-    struct unordered_map<TFENode, TNodeProgressStatus, std::__1::hash<TFENode>, std::__1::equal_to<TFENode>, std::__1::allocator<std::__1::pair<const TFENode, TNodeProgressStatus>>> _nodesProgress;
-    struct TMutex _progressLock;
 }
 
 + (id)instance;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (id)copyProgressImageForNode:(const struct TFENode *)arg1;
-- (void)_updateNodeProgressState:(const struct TFENode *)arg1;
 - (struct TNodeProgressStatus)progressStatusForNode:(const struct TFENode *)arg1;
 
 @end

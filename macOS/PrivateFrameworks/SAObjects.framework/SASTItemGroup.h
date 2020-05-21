@@ -15,6 +15,7 @@
 + (id)itemGroupWithDictionary:(id)arg1 context:(id)arg2;
 + (id)itemGroup;
 @property(copy, nonatomic) NSArray *templateItems;
+@property(copy, nonatomic) NSArray *fallbackCommands;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

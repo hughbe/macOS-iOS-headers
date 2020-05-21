@@ -6,29 +6,36 @@
 
 #import "NSObject.h"
 
-@class GEODirectionsFeedback, GEODirectionsFeedbackLogMessage, NSMutableSet;
+@class GEODirectionsFeedback, GEODirectionsFeedbackLogMessage, NSMutableArray;
 
 @interface GEODirectionsFeedbackCollector : NSObject
 {
     GEODirectionsFeedback *_currentDirectionsFeedback;
     GEODirectionsFeedbackLogMessage *_currentFeedbackLogMessage;
-    NSMutableSet *_routeIDs;
-    double _currentDirectionsNavigationStartTime;
-    double _currentDirectionsNavigationEndTime;
+    double _currentDirectionsModeStartTime;
+    NSMutableArray *_navigationModes;
+    double _originalExpectedTime;
+    BOOL _hasEnteredPreArrivalMode;
 }
 
-@property(retain, nonatomic) NSMutableSet *routeIDs; // @synthesize routeIDs=_routeIDs;
+- (void).cxx_destruct;
 @property(retain, nonatomic) GEODirectionsFeedback *currentDirectionsFeedback; // @synthesize currentDirectionsFeedback=_currentDirectionsFeedback;
 @property(retain, nonatomic) GEODirectionsFeedbackLogMessage *currentFeedbackLogMessage; // @synthesize currentFeedbackLogMessage=_currentFeedbackLogMessage;
 - (id)description;
-- (void)endFeedbackSession;
+- (void)endFeedbackSessionWithTracePath:(id)arg1;
+- (void)changeNavigationType:(int)arg1;
+- (void)setModalities:(id)arg1;
 - (void)setAudioFeedback:(struct GEONavigationAudioFeedback *)arg1;
+- (void)addAlightNotificationFeedback:(id)arg1;
+- (void)setHasEnteredPreArrivalMode:(BOOL)arg1;
 - (void)setFinalLocation:(id)arg1 asArrival:(BOOL)arg2;
 - (void)addTrafficRerouteFeedback:(id)arg1;
 - (void)addRouteID:(id)arg1 routeIndex:(unsigned int)arg2 stepID:(unsigned int)arg3 completeStep:(BOOL)arg4;
+- (void)addStepFeedback:(id)arg1;
+- (void)addGuidanceEventFeedback:(id)arg1;
+- (void)setOriginalExpectedTime:(double)arg1;
 - (void)setupFeedbackSessionWithResponseID:(id)arg1;
-- (void)startFeedbackSessionForResponseID:(id)arg1;
-- (void)startFeedbackSession;
+- (void)startFeedbackSessionForResponseID:(id)arg1 withNavigationType:(int)arg2;
 - (void)_updateFeedbackSessionWithResponseID:(id)arg1;
 - (void)reset;
 - (void)dealloc;

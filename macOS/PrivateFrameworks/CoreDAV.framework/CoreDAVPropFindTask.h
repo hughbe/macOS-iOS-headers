@@ -16,7 +16,7 @@
 - (id)initWithPropertiesToFind:(id)arg1 atURL:(id)arg2 withDepth:(int)arg3;
 
 // Remaining properties
-@property(nonatomic) id <CoreDAVTaskDelegate> delegate; // @dynamic delegate;
+@property(nonatomic) __weak id <CoreDAVTaskDelegate> delegate; // @dynamic delegate;
 
 @end
 

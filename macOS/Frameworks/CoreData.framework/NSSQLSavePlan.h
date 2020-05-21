@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSManagedObjectContext, NSMutableArray, NSMutableSet, NSSQLSaveChangesRequestContext, NSSaveChangesRequest;
+@class NSManagedObjectContext, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSQLSaveChangesRequestContext, NSSaveChangesRequest;
 
 __attribute__((visibility("hidden")))
 @interface NSSQLSavePlan : NSObject
@@ -21,7 +21,10 @@ __attribute__((visibility("hidden")))
     struct __CFDictionary *_updatedFOKRowsInCurrentSave;
     struct __CFDictionary *_deletedFOKRowsInCurrentSave;
     NSMutableArray *_externalDataReferencesToSave;
-    NSMutableSet *_externalDataReferencesToDelete;
+    NSMutableArray *_externalDataReferencesToDelete;
+    NSMutableArray *_fileBackedFuturesToCopy;
+    NSMutableArray *_fileBackedFuturesToDelete;
+    NSMutableDictionary *_toManyRelationshipChanges;
     int _transactionInMemorySequence;
     struct _sqlSaveFlags {
         unsigned int notifyFOKChanges:1;
@@ -30,11 +33,13 @@ __attribute__((visibility("hidden")))
     } _flags;
 }
 
-@property(readonly) id <_NSCoreDataCollectionWithoutKeys> externalDataReferencesToDelete; // @synthesize externalDataReferencesToDelete=_externalDataReferencesToDelete;
-@property(readonly) id <_NSCoreDataCollectionWithoutKeys> externalDataReferencesToSave; // @synthesize externalDataReferencesToSave=_externalDataReferencesToSave;
-- (void)_pruneObjectsAffectedByTriggersOnAttribute:(id)arg1 withObject:(id)arg2;
+@property(readonly, nonatomic) id <_NSCoreDataCollectionWithoutKeys> fileBackedFuturesToDelete; // @synthesize fileBackedFuturesToDelete=_fileBackedFuturesToDelete;
+@property(readonly, nonatomic) id <_NSCoreDataCollectionWithoutKeys> fileBackedFuturesToCopy; // @synthesize fileBackedFuturesToCopy=_fileBackedFuturesToCopy;
+@property(readonly, nonatomic) id <_NSCoreDataCollectionWithoutKeys> externalDataReferencesToDelete; // @synthesize externalDataReferencesToDelete=_externalDataReferencesToDelete;
+@property(readonly, nonatomic) id <_NSCoreDataCollectionWithoutKeys> externalDataReferencesToSave; // @synthesize externalDataReferencesToSave=_externalDataReferencesToSave;
 - (id)foreignOrderKeysBeingDeleted;
 - (id)foreignOrderKeysBeingUpdated;
+- (id)toManyRelationshipChanges;
 - (id)newCorrelationTableUpdates;
 - (id)newAncillaryRowsUpdatedForRowCache;
 - (id)newPrimaryRowsUpdatedForRowCache;
@@ -43,8 +48,8 @@ __attribute__((visibility("hidden")))
 - (id)newObjectsForUniquenessConflictDetectionGivenReportedFailures:(id)arg1;
 - (id)newObjectsForExhaustiveLockConflictDetection;
 - (id)newObjectsForFastLockConflictDetection;
-@property(readonly) NSManagedObjectContext *savingContext;
-@property(readonly) NSSaveChangesRequest *saveRequest;
+@property(readonly, nonatomic) NSManagedObjectContext *savingContext;
+@property(readonly, nonatomic) NSSaveChangesRequest *saveRequest;
 - (BOOL)hasChangesForWriting;
 @property(nonatomic) int transactionInMemorySequence;
 - (void)dealloc;
@@ -53,9 +58,13 @@ __attribute__((visibility("hidden")))
 - (void)_computeUpdatedRowSplit;
 - (void)_createRowsForSave;
 - (void)_prepareForDeletionOfExternalDataReferencesForObject:(id)arg1;
+- (void)_prepareForDeletionOfFileBackedFuturesForObject:(id)arg1;
+- (void)_prepareForDeletionOfDatabaseExternalPropertiesForObject:(id)arg1;
 - (void)_createCorrelationTrackerUpdatesForDeletedObject:(id)arg1;
 - (id)_findOrCreateChangeSnapshotForGlobalID:(id)arg1;
 - (void)_populateRow:(id)arg1 fromObject:(id)arg2 timestamp:(double)arg3 inserted:(BOOL)arg4;
+- (void)_addFileBackedFutureToDelete:(id)arg1;
+- (void)_addFileBackedFutureToCopy:(id)arg1;
 - (void)_addExternalReferenceDataToSave:(id)arg1;
 - (void)_addExternalReferenceDataToDelete:(id)arg1;
 - (void)_recordToManyChangesForObject:(id)arg1 inRow:(id)arg2 usingTimestamp:(double)arg3 inserted:(BOOL)arg4;

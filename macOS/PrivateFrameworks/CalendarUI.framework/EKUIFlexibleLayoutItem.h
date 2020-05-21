@@ -22,6 +22,7 @@
 }
 
 + (id)interestedChangeKeys;
+- (void).cxx_destruct;
 @property __weak NSView *lastKeyView; // @synthesize lastKeyView=_lastKeyView;
 @property __weak NSView *firstKeyView; // @synthesize firstKeyView=_firstKeyView;
 @property(setter=setExpanded:) BOOL isExpanded; // @synthesize isExpanded=_isExpanded;
@@ -31,7 +32,6 @@
 @property __weak id <EKUILayoutItem> parentItem; // @synthesize parentItem=_parentItem;
 @property(retain) NSView *view; // @synthesize view=_view;
 @property(copy) CDUnknownBlockType shouldDisplayBlock; // @synthesize shouldDisplayBlock=_shouldDisplayBlock;
-- (void).cxx_destruct;
 - (BOOL)wantsAnimationSuppression;
 - (BOOL)needsExpansion;
 - (BOOL)isEditable;

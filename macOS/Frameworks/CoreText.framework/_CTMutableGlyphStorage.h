@@ -15,8 +15,10 @@ __attribute__((visibility("hidden")))
 {
     CTGlyphStorageInterface *_interface;
     _Bool _implementsOrigins;
+    _Bool _implementsCustomAdvancesForGlyphs;
 }
 
+@property(readonly, nonatomic) _Bool implementsCustomAdvancesForGlyphs; // @synthesize implementsCustomAdvancesForGlyphs=_implementsCustomAdvancesForGlyphs;
 @property(readonly, nonatomic) _Bool implementsOrigins; // @synthesize implementsOrigins=_implementsOrigins;
 - (void)disposeGlyphStack;
 - (void)popGlyphAtIndex:(long long)arg1;
@@ -35,6 +37,7 @@ __attribute__((visibility("hidden")))
 - (struct CGPoint)originAtIndex:(long long)arg1;
 - (void)setAttachmentCount:(long long)arg1 atIndex:(long long)arg2;
 - (long long)attachmentCountAtIndex:(long long)arg1;
+- (void)getCustomAdvances:(struct CGSize *)arg1 forGlyphs:(const unsigned short *)arg2 count:(long long)arg3;
 - (struct CGSize)customAdvanceForIndex:(long long)arg1;
 - (void *)refCon;
 - (id)copyWithRange:(CDStruct_912cb5d2)arg1;

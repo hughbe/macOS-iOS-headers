@@ -4,11 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABCommand.h>
+#import "ABCommand.h"
 
 @class ABSearchElement, ABSmartGroup, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABEditSmartGroupCommand : ABCommand
 {
     ABSmartGroup *_group;
@@ -21,7 +20,6 @@ __attribute__((visibility("hidden")))
 - (void)redoIt;
 - (void)undoIt;
 - (void)_swap;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithSmartGroup:(id)arg1 name:(id)arg2 searchElement:(id)arg3 hilights:(BOOL)arg4 addressBook:(id)arg5;
 

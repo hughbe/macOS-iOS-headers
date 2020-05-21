@@ -31,7 +31,7 @@ __attribute__((visibility("hidden")))
 @property(readonly) unsigned char type; // @synthesize type=_type;
 - (void)dealloc;
 - (id)description;
-- (void)sendData:(const void *)arg1 size:(unsigned int)arg2 error:(id *)arg3;
+- (BOOL)sendData:(const void *)arg1 size:(unsigned int)arg2 error:(id *)arg3;
 - (void)receiveDataOnSocket:(unsigned short)arg1;
 - (void)readyToRead;
 - (int)stop;

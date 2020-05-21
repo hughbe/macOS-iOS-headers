@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSString;
+@class NSArray, NSDictionary, NSMutableArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CPKDataProvider : NSObject
@@ -17,7 +17,6 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_recents;
     NSArray *_searchResults;
     long long _searchCategoryIndex;
-    NSMutableDictionary *_replacementDictionary;
     NSDictionary *_state;
 }
 
@@ -31,9 +30,10 @@ __attribute__((visibility("hidden")))
 - (BOOL)_isSystemCategory:(long long)arg1;
 - (void)_displayCountOfRecents:(long long *)arg1 favorites:(long long *)arg2;
 - (id)_rawCharacterAtIndex:(long long)arg1 inCategory:(long long)arg2;
-- (void)secondaryDataSourcePreparationAsync:(BOOL)arg1;
+- (void)secondaryDataSourcePreparationUsingBlock:(CDUnknownBlockType)arg1;
+- (BOOL)needsSecondaryDataSourcePreparation;
 - (BOOL)isEmojiCategory:(long long)arg1;
-- (BOOL)hasVariationSelectedAtIndex:(long long)arg1 inCategory:(long long)arg2;
+- (BOOL)hasVariationSelectedEntity:(id)arg1;
 - (id)replaceToPreferableVariationEntity:(id)arg1;
 - (id)allCharactersDictionary;
 - (long long)initialSelectedCategoryIndex;

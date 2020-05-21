@@ -6,11 +6,13 @@
 
 #import "NSObject.h"
 
-@class TUCallProvider;
+@class NSString, TUDialRequest;
 
 @protocol TUCallProviderManagerXPCServer <NSObject>
-- (oneway void)registerClient:(id <TUCallProviderManagerXPCClient>)arg1;
-- (oneway void)setEnabled:(BOOL)arg1 forProvider:(TUCallProvider *)arg2 reply:(void (^)(void))arg3;
-- (oneway void)providersByIdentifier:(void (^)(NSDictionary *))arg1;
+- (void)unregisterClient:(id <TUCallProviderManagerXPCClient>)arg1;
+- (void)registerClient:(id <TUCallProviderManagerXPCClient>)arg1;
+- (oneway void)launchAppForDialRequest:(TUDialRequest *)arg1 reply:(void (^)(NSError *))arg2;
+- (oneway void)donateUserIntentForProviderWithIdentifier:(NSString *)arg1;
+- (oneway void)providersByIdentifier:(void (^)(NSDictionary *, NSDictionary *, NSDictionary *))arg1;
 @end
 

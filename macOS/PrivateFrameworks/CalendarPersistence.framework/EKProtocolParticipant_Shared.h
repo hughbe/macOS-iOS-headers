@@ -10,7 +10,7 @@
 {
 }
 
-+ (BOOL)doesParticipantURL:(id)arg1 andEmail:(id)arg2 matchParticipantURL:(id)arg3 andEmail:(id)arg4;
++ (BOOL)doesParticipantURL:(id)arg1 email:(id)arg2 andPhoneNumber:(id)arg3 matchParticipantURL:(id)arg4 email:(id)arg5 andPhoneNumber:(id)arg6;
 
 @end
 

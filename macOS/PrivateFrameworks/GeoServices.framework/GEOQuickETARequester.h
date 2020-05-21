@@ -16,13 +16,17 @@
     NSString *_loggingFacility;
 }
 
-@property(copy, nonatomic) NSString *loggingFacility; // @synthesize loggingFacility=_loggingFacility;
++ (BOOL)requestETAFromOrigin:(id)arg1 toDestinations:(id)arg2 transportType:(int)arg3 timepoint:(struct GEOTimepoint)arg4 includeDistance:(BOOL)arg5 commonOptions:(id)arg6 automobileOptions:(id)arg7 walkingOptions:(id)arg8 transitOptions:(id)arg9 auditToken:(id)arg10 handler:(CDUnknownBlockType)arg11 callbackQueue:(id)arg12;
++ (BOOL)requestTrafficAndETAFromWaypoint:(id)arg1 toWaypoints:(id)arg2 transportType:(int)arg3 automobileOptions:(id)arg4 handler:(CDUnknownBlockType)arg5;
+- (void).cxx_destruct;
 - (void)cancel;
+- (void)calculateETAFromAPI:(BOOL)arg1 includeSummary:(BOOL)arg2 WithResponseHandler:(CDUnknownBlockType)arg3;
 - (void)calculateETAFromAPI:(BOOL)arg1 WithResponseHandler:(CDUnknownBlockType)arg2;
 - (void)calculateETAWithResponseHandler:(CDUnknownBlockType)arg1;
+- (void)_calculateRoutingETAWithSummary:(BOOL)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)_calculateRoutingETAWithHandler:(CDUnknownBlockType)arg1;
+- (void)_calculateSimpleETAFromAPI:(BOOL)arg1 includeSummary:(BOOL)arg2 WithHandler:(CDUnknownBlockType)arg3;
 - (void)_calculateSimpleETAFromAPI:(BOOL)arg1 WithHandler:(CDUnknownBlockType)arg2;
-- (void)dealloc;
 - (id)initWithRequest:(id)arg1;
 
 @end

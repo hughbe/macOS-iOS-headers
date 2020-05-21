@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSConditionLock, NSDate, NSDocument, NSError, NSFileVersion, NSMetadataQuery, NSMutableArray, NSNumber, NSObject<OS_dispatch_queue>, NSOperationQueue, NSPersonNameComponents, NSPointerArray, NSSavePanel, NSString, NSTimer, NSURL, _NSDocumentActivity, _NSDocumentFileAccess;
+@class NSArray, NSConditionLock, NSDate, NSDocument, NSError, NSFileVersion, NSMutableArray, NSNumber, NSObject<OS_dispatch_queue>, NSOperationQueue, NSPersonNameComponents, NSPointerArray, NSSavePanel, NSString, NSTimer, NSURL, _NSDocumentActivity, _NSDocumentFileAccess;
 
 __attribute__((visibility("hidden")))
 @interface NSDocumentMoreIVars : NSObject
@@ -26,6 +26,7 @@ __attribute__((visibility("hidden")))
     _NSDocumentFileAccess *fileAccessBeingPerformed;
     NSMutableArray *pendingFileAccess;
     NSOperationQueue *filePresenterQueue;
+    NSString *providerPurposeIdentifier;
     CDStruct_df2dc5d0 differenceDueToRecentChanges;
     CDStruct_df2dc5d0 differenceSincePreservingPreviousVersion;
     CDStruct_df2dc5d0 differenceSinceSaving;
@@ -50,6 +51,7 @@ __attribute__((visibility("hidden")))
     NSSavePanel *savePanel;
     NSTimer *autosavingTimer;
     BOOL isAutosavingBecauseOfTimer;
+    BOOL deferredTimerScheduling;
     BOOL autosavingIsImplicitlyCancellable;
     NSURL *autosavedContentsFileURL;
     BOOL autosavingPeriodicallyIsDisabled;
@@ -78,7 +80,7 @@ __attribute__((visibility("hidden")))
     NSFileVersion *oldVersion;
     NSDocument *originalDocument;
     BOOL savingWhileClosing;
-    unsigned int autoID;
+    int autoID;
     BOOL ignoreUndoAndRedoNotifications;
     BOOL isHandlingConflicts;
     BOOL conflictHandlingSheetIsUp;
@@ -91,7 +93,7 @@ __attribute__((visibility("hidden")))
     NSURL *newFileURL;
     BOOL didChange;
     BOOL didBecomeDisconnected;
-    BOOL wasDeletedFromTrash;
+    BOOL accommodatedDeletion;
     NSURL *backupFileURL;
     NSError *temporaryVersionStorageRequirementError;
     BOOL shouldSkipTemporaryVersionStorageAlert;
@@ -107,7 +109,6 @@ __attribute__((visibility("hidden")))
     BOOL isAutosaveAsDisabled;
     BOOL readInitialContents;
     NSArray *nonModalErrors;
-    NSMetadataQuery *ubiquitousQuery;
     long long versionsButtonTransactionCount;
     BOOL showAutosaveButton;
     NSArray *tagNames;

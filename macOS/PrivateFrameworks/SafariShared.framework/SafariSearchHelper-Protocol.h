@@ -8,7 +8,7 @@
 
 @protocol SafariSearchHelper
 - (void)cancelExistingSuggestionsRequestOfFetcherWithSuggestionsURLTemplate:(WBSOpenSearchURLTemplate *)arg1;
-- (void)updateSuggestionsRequestWithSearchTerms:(NSString *)arg1 suggestionsURLTemplate:(WBSOpenSearchURLTemplate *)arg2 userAgentString:(NSString *)arg3 completionHandler:(void (^)(NSArray *, NSError *))arg4;
+- (void)updateSuggestionsRequestWithSearchTerms:(NSString *)arg1 suggestionsURLTemplate:(WBSOpenSearchURLTemplate *)arg2 userAgentString:(NSString *)arg3 completionHandler:(void (^)(WBSSearchSuggestionsFetcherResponse *, NSError *))arg4;
 - (void)fetchOpenSearchDescriptionWithURL:(NSURL *)arg1 completionHandler:(void (^)(NSDictionary *, NSError *))arg2;
 @end
 

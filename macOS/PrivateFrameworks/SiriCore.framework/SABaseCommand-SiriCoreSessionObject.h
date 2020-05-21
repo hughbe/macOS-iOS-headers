@@ -11,10 +11,13 @@
 @class NSString;
 
 @interface SABaseCommand (SiriCoreSessionObject) <SiriCoreSessionObject>
-- (void)siriCore_dispatchSendCompletionsWithResult:(long long)arg1 error:(id)arg2;
-- (void)siriCore_addSendCompletion:(CDUnknownBlockType)arg1;
-- (BOOL)siriCore_supportsSendCompletions;
+- (BOOL)siriCore_supportedByLocalSession;
+- (void)siriCore_setSessionRequestId:(id)arg1;
+- (id)siriCore_requestId;
 - (void)siriCore_logDiagnostics;
+- (BOOL)siriCore_isProvisional;
+- (BOOL)siriCore_isRestartable;
+- (BOOL)siriCore_isRetryable;
 - (BOOL)siriCore_bufferingAllowedDuringActiveSession;
 - (id)siriCore_serializedAceDataError:(id *)arg1;
 

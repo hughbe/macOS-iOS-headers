@@ -6,12 +6,9 @@
 
 #import "NSObject.h"
 
-@class FLFollowUpItem, FLHSA2LoginNotification;
+@class FLHSA2LoginNotification;
 
 @protocol FLFollowUpControllerDelegate <NSObject>
 - (void)didActivateHSA2LoginNotification:(FLHSA2LoginNotification *)arg1;
-- (void)didClearFollowUpItem:(FLFollowUpItem *)arg1;
-- (void)didDismissFollowUpItem:(FLFollowUpItem *)arg1;
-- (void)didActivateFollowUpItem:(FLFollowUpItem *)arg1;
 @end
 

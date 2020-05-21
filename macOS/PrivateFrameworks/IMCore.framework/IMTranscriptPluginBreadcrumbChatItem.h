@@ -18,20 +18,21 @@
     unsigned long long _optionFlags;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long optionFlags; // @synthesize optionFlags=_optionFlags;
 @property(readonly, nonatomic) NSString *statusText; // @synthesize statusText=_statusText;
 @property(readonly, nonatomic) NSString *rawStatusText; // @synthesize rawStatusText=_rawStatusText;
 @property(retain, nonatomic) IMBalloonPluginDataSource *dataSource; // @synthesize dataSource=_dataSource;
-- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL isFromMe;
 @property(readonly, retain, nonatomic) NSString *type;
-- (void)configureStatusTextWithParticipants:(id)arg1 account:(id)arg2;
+- (void)configureStatusTextWithAccount:(id)arg1;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
 - (id)_initWithItem:(id)arg1 datasource:(id)arg2 statusText:(id)arg3 optionFlags:(unsigned long long)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

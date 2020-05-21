@@ -6,15 +6,22 @@
 
 #import "NSObject.h"
 
+#import "NSCoreDataKeyedArchivingDelegate.h"
+
 @class NSManagedObjectContext, NSXPCStoreConnectionInfo;
 
-@interface NSXPCStoreServerConnectionContext : NSObject
+@interface NSXPCStoreServerConnectionContext : NSObject <NSCoreDataKeyedArchivingDelegate>
 {
     NSManagedObjectContext *_context;
     NSXPCStoreConnectionInfo *_info;
     id _manager;
 }
 
+- (BOOL)_allowCoreDataFutures;
+- (id)manyToManyPrefetchRequestsForRelationshipNamed:(id)arg1 onEntity:(id)arg2;
+- (id)manyToOnePrefetchRequestForRelationshipNamed:(id)arg1 onEntity:(id)arg2;
+- (id)inverseIsToOnePrefetchRequestForRelationshipNamed:(id)arg1 onEntity:(id)arg2;
+- (id)cache;
 - (void)setNotificationManager:(id)arg1;
 - (id)notificationManager;
 - (void)setUserInfo:(id)arg1;

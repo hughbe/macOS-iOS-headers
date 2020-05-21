@@ -6,11 +6,17 @@
 
 #import "NSObject.h"
 
-@class IPPerson, NSArray, NSDate, NSMutableArray, NSString;
+@class IPPerson, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSString;
 
 @interface IPMessage : NSObject
 {
     NSMutableArray *_messageUnits;
+    NSMutableDictionary *_keywordsDictionary;
+    NSString *_lowercaseSubject;
+    BOOL _isReply;
+    BOOL _isSent;
+    BOOL _isGroupConversation;
+    BOOL _isSenderSignificant;
     NSString *_identifier;
     NSString *_threadIdentifier;
     NSString *_subject;
@@ -19,10 +25,16 @@
     NSDate *_dateSent;
     NSString *_type;
     NSString *_htmlContent;
+    unsigned long long _messageUnitsTextLength;
 }
 
+- (void).cxx_destruct;
+@property(readonly) unsigned long long messageUnitsTextLength; // @synthesize messageUnitsTextLength=_messageUnitsTextLength;
 @property(retain) NSString *htmlContent; // @synthesize htmlContent=_htmlContent;
-@property(retain, nonatomic) NSArray *messageUnits; // @synthesize messageUnits=_messageUnits;
+@property BOOL isSenderSignificant; // @synthesize isSenderSignificant=_isSenderSignificant;
+@property BOOL isGroupConversation; // @synthesize isGroupConversation=_isGroupConversation;
+@property BOOL isSent; // @synthesize isSent=_isSent;
+@property BOOL isReply; // @synthesize isReply=_isReply;
 @property(retain) NSString *type; // @synthesize type=_type;
 @property(retain) NSDate *dateSent; // @synthesize dateSent=_dateSent;
 @property(retain) NSArray *recipients; // @synthesize recipients=_recipients;
@@ -30,11 +42,15 @@
 @property(retain) NSString *subject; // @synthesize subject=_subject;
 @property(retain) NSString *threadIdentifier; // @synthesize threadIdentifier=_threadIdentifier;
 @property(retain) NSString *identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
+- (id)detectedKeywordsDictionary;
+- (void)addDetectedKeyword:(id)arg1 classificationTypeIdentifier:(id)arg2;
+@property(readonly) NSString *lowercaseSubject;
+@property(retain, nonatomic) NSArray *messageUnits;
 - (void)addMessageUnit:(id)arg1;
 - (id)initWithHTMLContent:(id)arg1 emailHeadersDictionary:(id)arg2 dateSent:(id)arg3;
 - (id)firstHeaderValueForKey:(id)arg1 inHeaders:(id)arg2;
 - (id)initWithIdentifier:(id)arg1 subject:(id)arg2 sender:(id)arg3 recipients:(id)arg4 dateSent:(id)arg5;
+- (id)initWithDateSent:(id)arg1 subject:(id)arg2;
 - (id)initWithDateSent:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 subject:(id)arg2 sender:(id)arg3 recipients:(id)arg4 dateSent:(id)arg5 type:(id)arg6;
 - (id)init;

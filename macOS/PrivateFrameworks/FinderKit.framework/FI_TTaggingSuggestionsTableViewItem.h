@@ -6,7 +6,7 @@
 
 #import <FinderKit/FI_TTableViewItem.h>
 
-@class NSColor, NSImage, NSString;
+@class FI_TLabelView, NSImage, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FI_TTaggingSuggestionsTableViewItem : FI_TTableViewItem
@@ -20,13 +20,18 @@ __attribute__((visibility("hidden")))
     _Bool _needsCustomSelect;
     _Bool _isMoveTag;
     NSString *_tagName;
+    struct TKeyValueBinder _labelColorBinder;
+    FI_TLabelView *labelColorView;
 }
 
 + (id)itemForMoveTag:(const struct TString *)arg1;
-+ (id)itemForCreateNewTag:(const struct TString *)arg1;
++ (id)itemForCreateNewTag:(const struct TString *)arg1 labelColorView:(id)arg2;
 + (id)showAllItem;
 + (id)itemForTag:(id)arg1 needsCustomSelect:(_Bool)arg2;
-@property(retain, nonatomic) NSString *tagName; // @synthesize tagName=_tagName;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(nonatomic) __weak FI_TLabelView *labelColorView; // @synthesize labelColorView;
+@property(copy, nonatomic) NSString *tagName; // @synthesize tagName=_tagName;
 @property(readonly, nonatomic) _Bool needsCustomSelect; // @synthesize needsCustomSelect=_needsCustomSelect;
 @property(readonly, nonatomic) _Bool isMoveTag; // @synthesize isMoveTag=_isMoveTag;
 @property(readonly, nonatomic) _Bool isCreateTag; // @synthesize isCreateTag=_isCreateTag;
@@ -36,14 +41,13 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) _Bool userVisible; // @synthesize userVisible=_userVisible;
 @property(readonly, nonatomic) long long labelColor; // @synthesize labelColor=_labelColor;
 @property(readonly, nonatomic) _Bool isTag; // @dynamic isTag;
-@property(retain, nonatomic) NSColor *textColor; // @dynamic textColor;
 - (void)setColorNumber:(id)arg1;
 - (id)colorNumber;
 @property(retain, nonatomic) NSString *name; // @dynamic name;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithTag:(id)arg1 needsCustomSelect:(_Bool)arg2;
-- (id)init;
+- (void)setLabelColor:(long long)arg1;
 
 // Remaining properties
 @property(retain, nonatomic) NSImage *image; // @dynamic image;

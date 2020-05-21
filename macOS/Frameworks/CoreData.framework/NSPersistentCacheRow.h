@@ -29,6 +29,7 @@ __attribute__((visibility("hidden")))
 - (id)ancillaryOrderKeysForProperty:(id)arg1;
 - (void)setRelatedObjectIDs:(id)arg1 forProperty:(id)arg2 options:(unsigned int)arg3 andTimestamp:(double)arg4;
 - (double)timestampForProperty:(id)arg1;
+- (unsigned long long)toManyOffsetForProperty:(id)arg1;
 - (id)relatedObjectIDsForProperty:(id)arg1;
 - (void)updateMissingRelationshipCachesFromOriginal:(id)arg1;
 - (void)releaseRelationshipCaches;

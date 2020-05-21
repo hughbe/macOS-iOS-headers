@@ -6,7 +6,6 @@
 
 #import <AddressBook/ABAbstractGroupListAction.h>
 
-__attribute__((visibility("hidden")))
 @interface ABGroupListCreateGroupUIAction : ABAbstractGroupListAction
 {
 }
@@ -14,6 +13,7 @@ __attribute__((visibility("hidden")))
 - (id)entryForCreatingGroups;
 - (void)performWithSender:(id)arg1;
 - (BOOL)validateWithMenuItem:(id)arg1;
+- (BOOL)requiresAuthorizationBeforeExecution;
 
 @end
 

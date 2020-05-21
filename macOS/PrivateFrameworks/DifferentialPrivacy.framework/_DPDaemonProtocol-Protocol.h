@@ -7,8 +7,11 @@
 @class NSArray, NSString;
 
 @protocol _DPDaemonProtocol
+- (void)retireReports:(NSArray *)arg1 withReply:(void (^)(BOOL, NSError *))arg2;
+- (void)reportsNotYetSubmittedWithReply:(void (^)(BOOL, NSArray *, NSError *))arg1;
 - (void)recordWords:(NSArray *)arg1 forKey:(NSString *)arg2 withReply:(void (^)(BOOL, NSError *))arg3;
 - (void)recordStrings:(NSArray *)arg1 forKey:(NSString *)arg2 withReply:(void (^)(BOOL, NSError *))arg3;
+- (void)recordBitValues:(NSArray *)arg1 forKey:(NSString *)arg2 withReply:(void (^)(BOOL, NSError *))arg3;
 - (void)recordNumbers:(NSArray *)arg1 forKey:(NSString *)arg2 withReply:(void (^)(BOOL, NSError *))arg3;
 @end
 

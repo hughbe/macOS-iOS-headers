@@ -14,5 +14,6 @@
 - (void)paymentAuthorizationItemsView:(PKPaymentAuthorizationItemsView *)arg1 didSelectItemAtIndex:(unsigned long long)arg2;
 - (void)paymentAuthorizationItemsView:(PKPaymentAuthorizationItemsView *)arg1 willUnhighlightItemAtIndex:(unsigned long long)arg2;
 - (void)paymentAuthorizationItemsView:(PKPaymentAuthorizationItemsView *)arg1 willHighlightItemAtIndex:(unsigned long long)arg2;
+- (BOOL)paymentAuthorizationItemsView:(PKPaymentAuthorizationItemsView *)arg1 shouldHighlightItemAtIndex:(unsigned long long)arg2;
 @end
 

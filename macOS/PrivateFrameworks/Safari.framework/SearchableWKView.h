@@ -4,63 +4,69 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "WKView.h"
+#import "WKWebView.h"
 
-@class PagePreviewAnimationController, WKWebsiteDataStore;
+#import "_WKFullscreenDelegate.h"
+
+@class BrowserViewController, NSColor, NSString, WKWebsiteDataStore, WebViewController, _WKRemoteObjectRegistry;
 
 __attribute__((visibility("hidden")))
-@interface SearchableWKView : WKView
+@interface SearchableWKView : WKWebView <_WKFullscreenDelegate>
 {
-    struct RefPtr<Safari::SearchableWebContentViewController> _contentViewController;
     BOOL _isInFullscreenMode;
-    BOOL _isLockingFirstResponderForImmediateAction;
-    BOOL _forPagePreviews;
-    BOOL _pagePreviewNeedsReloadOnTabTransition;
+    id <SearchableWKViewFullScreenDelegate> _fullScreenDelegate;
+    id <SearchableWKViewPlaybackControlsPresenter> _playbackControlsPresenter;
+    id <SearchableWKViewCancelDelegate> _cancelDelegate;
     unsigned long long _browsingMode;
     WKWebsiteDataStore *_websiteDataStore;
-    SearchableWKView *_previewParentView;
-    PagePreviewAnimationController *_pagePreviewAnimationController;
+    WebViewController *_webViewController;
 }
 
-@property(retain, nonatomic) PagePreviewAnimationController *pagePreviewAnimationController; // @synthesize pagePreviewAnimationController=_pagePreviewAnimationController;
-@property(nonatomic) BOOL pagePreviewNeedsReloadOnTabTransition; // @synthesize pagePreviewNeedsReloadOnTabTransition=_pagePreviewNeedsReloadOnTabTransition;
-@property(nonatomic) __weak SearchableWKView *previewParentView; // @synthesize previewParentView=_previewParentView;
-@property(readonly, nonatomic, getter=isForPagePreviews) BOOL forPagePreviews; // @synthesize forPagePreviews=_forPagePreviews;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) __weak WebViewController *webViewController; // @synthesize webViewController=_webViewController;
 @property(readonly, nonatomic) WKWebsiteDataStore *websiteDataStore; // @synthesize websiteDataStore=_websiteDataStore;
 @property(readonly, nonatomic) unsigned long long browsingMode; // @synthesize browsingMode=_browsingMode;
-- (id).cxx_construct;
-- (void).cxx_destruct;
-- (void)_dismissContentRelativeChildWindows;
-- (void)_completeImmediateActionAnimation;
-- (void)_cancelImmediateActionAnimation;
-- (void)_prepareForImmediateActionAnimation;
+@property(nonatomic) __weak id <SearchableWKViewCancelDelegate> cancelDelegate; // @synthesize cancelDelegate=_cancelDelegate;
+@property(nonatomic) __weak id <SearchableWKViewPlaybackControlsPresenter> playbackControlsPresenter; // @synthesize playbackControlsPresenter=_playbackControlsPresenter;
+@property(nonatomic) __weak id <SearchableWKViewFullScreenDelegate> fullScreenDelegate; // @synthesize fullScreenDelegate=_fullScreenDelegate;
+- (BOOL)performDragOperation:(id)arg1;
+- (void)_removeMediaPlaybackControlsView;
+- (void)_addMediaPlaybackControlsView:(id)arg1;
 - (id)_browserWindow;
-- (id)_targetWKViewForPresentingBrowserContentViewController;
-- (void)_setPreviewOverrideImage:(id)arg1;
-- (void)_setPreviewLoading:(BOOL)arg1;
-- (void)_setPreviewTitle:(id)arg1;
-- (void)_addToReadingListFromPreviewView:(id)arg1 URL:(id)arg2;
-- (void)_handleClickInPreviewView:(id)arg1 URL:(id)arg2;
-- (void)_finishPreviewingURL:(id)arg1 withPagePreviewViewController:(id)arg2;
-- (id)_titleForPreviewOfURL:(id)arg1;
-- (id)_viewForPreviewingURL:(id)arg1 initialFrameSize:(struct CGSize)arg2;
-- (id)_immediateActionAnimationControllerForHitTestResult:(struct OpaqueWKHitTestResult *)arg1 withType:(unsigned int)arg2 userData:(void *)arg3;
-- (void)_addURLToReadingListWithAnimationFromPresentingBrowserContentViewController:(id)arg1;
-- (void)didLoadMainDocumentForPreviewWKView:(id)arg1;
-- (void)didFirstVisuallyNonEmptyLayoutForPreviewWKView:(id)arg1;
-- (struct BrowserContentViewController *)presentingBrowserContentViewController;
+- (void)_gestureEventWasNotHandledByWebCore:(id)arg1;
+- (id)_immediateActionAnimationControllerForHitTestResult:(id)arg1 withType:(long long)arg2 userData:(id)arg3;
+- (void)_dismissContentRelativeChildWindows;
+@property(readonly, nonatomic) BrowserViewController *presentingBrowserViewController;
 - (void)cancelOperation:(id)arg1;
 - (void)keyDown:(id)arg1;
-- (BOOL)acceptsFirstResponder;
 - (void)viewDidMoveToSuperview;
-- (BOOL)isClosed;
-- (void)close;
+- (void)_webViewDidExitFullscreen:(id)arg1;
+- (void)_webViewDidEnterFullscreen:(id)arg1;
+- (void)_webViewWillEnterFullscreen:(id)arg1;
+@property(nonatomic) BOOL drawsTransparentBackground;
+@property(copy, nonatomic) NSColor *underlayColor;
+- (id)createFullScreenWindow;
+- (id)fullScreenPlaceholderView;
+- (void)endDeferringViewInWindowChangesSync;
+- (void)endDeferringViewInWindowChanges;
+- (void)beginDeferringViewInWindowChanges;
+- (void)disableFrameSizeUpdates;
+- (void)enableFrameSizeUpdates;
+- (void)saveBackForwardSnapshotForItem:(struct OpaqueWKBackForwardListItem *)arg1;
+@property(readonly) struct OpaqueWKPage *pageRef;
+@property(readonly, nonatomic) _WKRemoteObjectRegistry *remoteObjectRegistry;
 @property(readonly, nonatomic) struct CGRect visibleBounds;
 - (void)pageDidClose;
-- (struct SearchableWebContentViewController *)contentViewController;
-- (PassRefPtr_6e6851a6)createContentViewController;
-- (id)initWithFrame:(struct CGRect)arg1 context:(const struct Context *)arg2 pageGroup:(const struct PageGroup *)arg3 relatedToPage:(const struct Page *)arg4 browsingMode:(unsigned long long)arg5 websiteDataStore:(id)arg6;
-- (id)initWithFrame:(struct CGRect)arg1 context:(const struct Context *)arg2 pageGroup:(const struct PageGroup *)arg3 relatedToPage:(const struct Page *)arg4 browsingMode:(unsigned long long)arg5;
+@property(readonly, nonatomic) BOOL isClosed;
+- (id)initWithWebViewController:(id)arg1 configuration:(id)arg2;
+- (id)initWithFrame:(struct CGRect)arg1 configuration:(id)arg2;
+- (id)initWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

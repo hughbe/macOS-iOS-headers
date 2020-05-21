@@ -11,7 +11,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABPersonListSharingHelper : NSObject <NSSharingServiceDelegate, NSSharingServicePickerDelegate>
 {
 }
@@ -19,7 +18,7 @@ __attribute__((visibility("hidden")))
 - (id)sharingService:(id)arg1 sourceWindowForShareItems:(id)arg2 sharingContentScope:(long long *)arg3;
 - (void)sharingService:(id)arg1 willShareItems:(id)arg2;
 - (id)sharingServicePicker:(id)arg1 delegateForSharingService:(id)arg2;
-- (id)shareMenuItemWithContacts:(id)arg1 addressBook:(id)arg2;
+- (id)shareMenuItemWithContacts:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

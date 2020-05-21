@@ -8,39 +8,44 @@
 
 #import "MKPlaceCardActionSectionViewDelegate.h"
 #import "_MKInfoCardChildViewControllerAnalyticsDelegate.h"
+#import "_MKStackViewDelegate.h"
 
-@class MKMapItem, NSArray, NSString;
+@class MKPlaceActionManager, NSArray, NSString;
 
-@interface MKPlaceCardActionsViewController : MKPlaceSectionViewController <MKPlaceCardActionSectionViewDelegate, _MKInfoCardChildViewControllerAnalyticsDelegate>
+__attribute__((visibility("hidden")))
+@interface MKPlaceCardActionsViewController : MKPlaceSectionViewController <MKPlaceCardActionSectionViewDelegate, _MKStackViewDelegate, _MKInfoCardChildViewControllerAnalyticsDelegate>
 {
     BOOL _haveTwoColumns;
     BOOL _useSmallFonts;
     BOOL _showTopSeparator;
     BOOL _allowRowSelection;
-    BOOL _rightAlignSecondItemInTwoColumns;
-    id <MKPlaceCardActionControllerDelegate> _delegate;
+    BOOL _useMarginLayout;
+    BOOL _showTopButtonSeparator;
     NSArray *_actionItemArray;
     NSArray *_viewArray;
-    MKMapItem *_mapItem;
+    MKPlaceActionManager *_actionManager;
 }
 
-@property(nonatomic) BOOL rightAlignSecondItemInTwoColumns; // @synthesize rightAlignSecondItemInTwoColumns=_rightAlignSecondItemInTwoColumns;
+- (void).cxx_destruct;
+@property(nonatomic) __weak MKPlaceActionManager *actionManager; // @synthesize actionManager=_actionManager;
+@property(nonatomic) BOOL showTopButtonSeparator; // @synthesize showTopButtonSeparator=_showTopButtonSeparator;
+@property(nonatomic) BOOL useMarginLayout; // @synthesize useMarginLayout=_useMarginLayout;
 @property(nonatomic) BOOL allowRowSelection; // @synthesize allowRowSelection=_allowRowSelection;
-@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
 @property(retain, nonatomic) NSArray *viewArray; // @synthesize viewArray=_viewArray;
 @property(copy, nonatomic) NSArray *actionItemArray; // @synthesize actionItemArray=_actionItemArray;
-@property(nonatomic) __weak id <MKPlaceCardActionControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) BOOL showTopSeparator; // @synthesize showTopSeparator=_showTopSeparator;
 @property(nonatomic) BOOL useSmallFonts; // @synthesize useSmallFonts=_useSmallFonts;
 @property(nonatomic) BOOL haveTwoColumns; // @synthesize haveTwoColumns=_haveTwoColumns;
-- (void).cxx_destruct;
+- (id)infoCardChildUnactionableUIElements;
 - (id)infoCardChildPossibleActions;
-- (void)openURL:(id)arg1;
 - (void)placeCardActionSectionView:(id)arg1 buttonWithActionItemPressed:(id)arg2;
 - (void)sectionView:(id)arg1 didSelectRow:(id)arg2 atIndex:(unsigned long long)arg3;
+- (double)stackView:(id)arg1 distanceBetweenUpperView:(id)arg2 andLowerView:(id)arg3;
 - (void)_setUpSectionViews;
+- (id)_makePlaceActionButton;
+- (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;
-- (id)initWithMapItem:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

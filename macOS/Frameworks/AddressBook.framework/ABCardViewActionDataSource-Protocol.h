@@ -6,9 +6,6 @@
 
 #import "NSObject.h"
 
-@class ABAddressBook;
-
 @protocol ABCardViewActionDataSource <NSObject>
-- (ABAddressBook *)legacyAddressBook;
 @end
 

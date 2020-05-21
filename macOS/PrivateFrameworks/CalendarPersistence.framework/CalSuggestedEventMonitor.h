@@ -10,17 +10,29 @@
 {
 }
 
++ (id)_originBundleIdentifiersPermittedForAllNotifications;
++ (BOOL)shouldDisplayMessagesForSuggestionWithOriginBundleIdentifier:(id)arg1;
++ (id)originBundleIdentifierForEvent:(id)arg1;
++ (BOOL)shouldDisplayAddedMessagesForEvent:(id)arg1;
++ (id)_unpackLocalStructuredDataForEvent:(id)arg1;
++ (BOOL)shouldSuppressMessagesForEvent:(id)arg1;
++ (id)_naturalLanguageSuggestedEventCalendarInContext:(id)arg1;
 + (id)_suggestedEventCalendarInContext:(id)arg1;
++ (id)appNameForBundleID:(id)arg1;
 + (BOOL)showEventsFoundInMail;
++ (BOOL)hasNaturalLanguageSuggestedEventCalendarInContext:(id)arg1;
 + (BOOL)hasSuggestedEventCalendarInContext:(id)arg1;
 + (id)sharedMonitor;
 - (id)senderForEventWithSuggestionID:(id)arg1;
 - (void)managedObjectContextWillSave:(id)arg1;
+- (void)traceSuggestedEventUpdate:(id)arg1;
+- (void)_updateMessageDetails:(id)arg1 forAddedSuggestionEvent:(id)arg2;
+- (void)addMessageForSuggestedEvent:(id)arg1 context:(id)arg2;
 - (void)updateMessageForSuggestedEvent:(id)arg1;
-- (void)_messageTraceIgnoredSuggestedEvents;
-- (id)suggestedEventCalendarInContext:(id)arg1;
-- (void)scheduleIgnoredSuggestedEventMessageTrace;
+- (void)messageTraceIgnoredSuggestedEvents;
+- (void)removeNaturalLanguageSuggestedEventCalendar;
 - (void)removeSuggestedEventCalendar;
+- (void)createNaturalLanguageSuggestedEventCalendar;
 - (void)createSuggestedEventCalendar;
 - (BOOL)isInterestedInContext:(id)arg1;
 

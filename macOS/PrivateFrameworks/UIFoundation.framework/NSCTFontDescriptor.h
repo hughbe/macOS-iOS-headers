@@ -4,14 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <UIFoundation/NSFontDescriptor.h>
+#import <UIFoundation/UIFontDescriptor.h>
 
-@interface NSCTFontDescriptor : NSFontDescriptor
+@interface NSCTFontDescriptor : UIFontDescriptor
 {
 }
 
 + (id)fontDescriptorWithName:(id)arg1 matrix:(id)arg2;
 + (id)fontDescriptorWithName:(id)arg1 size:(double)arg2;
++ (id)fontDescriptorWithFontAttributes:(id)arg1 options:(unsigned long long)arg2;
 + (id)fontDescriptorWithFontAttributes:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)matchingFontDescriptorWithMandatoryKeys:(id)arg1;

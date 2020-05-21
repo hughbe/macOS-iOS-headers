@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "BRCJobsMatching.h"
 #import "BRCZone.h"
 
-@class BRCAccountSession, BRCClientZone, BRCPQLConnection, BRCServerChangeState, BRCSyncContext, BRCZoneRowID, CKRecordZoneID, NSMutableDictionary, NSString;
+@class BRCAccountSession, BRCClientZone, BRCPQLConnection, BRCPendingChangesStream, BRCServerChangeState, BRCSyncContext, BRCZoneRowID, BRMangledID, CKRecordZoneID, NSMutableDictionary, NSString;
 
-@interface BRCServerZone : NSObject <BRCZone>
+@interface BRCServerZone : NSObject <BRCJobsMatching, BRCZone>
 {
     BRCServerChangeState *_changeState;
     BRCAccountSession *_session;
@@ -22,28 +23,34 @@
     BRCSyncContext *_syncContext;
     BRCSyncContext *_metadataSyncContext;
     BOOL _needsSave;
+    BRCPendingChangesStream *_pendingChanges;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BRCPendingChangesStream *pendingChanges; // @synthesize pendingChanges=_pendingChanges;
 @property(readonly, nonatomic) unsigned int state; // @synthesize state=_state;
 @property(nonatomic) BOOL needsSave; // @synthesize needsSave=_needsSave;
 @property(readonly, nonatomic) BRCPQLConnection *db; // @synthesize db=_db;
 @property(retain, nonatomic) BRCAccountSession *session; // @synthesize session=_session;
-@property(retain, nonatomic) BRCClientZone *clientZone; // @synthesize clientZone=_clientZone;
+@property(readonly, nonatomic) BRCClientZone *clientZone; // @synthesize clientZone=_clientZone;
 @property(readonly) BRCServerChangeState *changeState; // @synthesize changeState=_changeState;
 @property(readonly, nonatomic) NSString *zoneName; // @synthesize zoneName=_zoneName;
 @property(retain, nonatomic) BRCZoneRowID *dbRowID; // @synthesize dbRowID=_dbRowID;
-- (void).cxx_destruct;
 - (BOOL)validateItemsLoggingToFile:(struct __sFILE *)arg1 db:(id)arg2;
 - (BOOL)validateStructureLoggingToFile:(struct __sFILE *)arg1 db:(id)arg2;
-- (BOOL)dumpTablesToContext:(id)arg1 error:(id *)arg2;
+- (BOOL)dumpTablesToContext:(id)arg1 includeAllItems:(BOOL)arg2 error:(id *)arg3;
 - (BOOL)dumpStatusToContext:(id)arg1 error:(id *)arg2;
-- (struct PQLResultSet *)itemsEnumeratorWithDB:(id)arg1;
+- (id)directDirectoryChildItemIDsOfParentEnumerator:(id)arg1;
+- (id)itemsEnumeratorWithDB:(id)arg1;
 - (id)itemByItemID:(id)arg1;
+- (id)itemByItemID:(id)arg1 db:(id)arg2;
 - (void)removeForegroundClient:(id)arg1;
 - (void)addForegroundClient:(id)arg1;
 @property(readonly) BOOL isCloudDocsZone;
 - (void)clearStateBits:(unsigned int)arg1;
 - (BOOL)setStateBits:(unsigned int)arg1;
+- (void)destroyPendingChangesDBOnQueue:(BOOL)arg1;
+- (void)saveQueryRecords:(id)arg1;
 - (void)forceMoveToCloudDocs;
 - (BOOL)serverZoneIsCreated;
 - (BOOL)shouldRecreateServerZoneAfterError:(id)arg1;
@@ -53,41 +60,48 @@
 - (BOOL)resetServerTruthAndDestroyZone:(BOOL)arg1;
 - (void)collectTombstoneRanks:(id)arg1;
 - (void)_collectTombstoneForRank:(unsigned long long)arg1;
-- (unsigned long long)didSyncDownRequestID:(unsigned long long)arg1 serverChangeToken:(id)arg2 editedRecords:(id)arg3 deletedRecordIDs:(id)arg4 movedZoneNames:(id)arg5 syncStatus:(long long)arg6;
+- (unsigned long long)didSyncDownRequestID:(unsigned long long)arg1 serverChangeToken:(id)arg2 editedRecords:(id)arg3 deletedRecordIDs:(id)arg4 deletedShareRecordIDs:(id)arg5 movedZoneNames:(id)arg6 allocRankZones:(id *)arg7 syncStatus:(long long)arg8 savedDirectly:(char *)arg9;
+- (unsigned long long)_saveInconsistentStateWithRequestID:(unsigned long long)arg1 serverChangeToken:(id)arg2 editedRecords:(id)arg3 deletedRecordIDs:(id)arg4 deletedShareRecordIDs:(id)arg5 syncStatus:(long long)arg6;
 - (void)handleBrokenStructure;
-- (BOOL)allocateRanks;
+- (BOOL)allocateRanksWhenCaughtUp:(BOOL)arg1;
+- (BOOL)_recoverFromCorruptShareOptionsWithItemType:(BOOL)arg1 itemID:(id)arg2 parentID:(id)arg3 sharingOptions:(unsigned long long)arg4;
 - (id)_structurePrefixForType:(BOOL)arg1;
-- (struct PQLResultSet *)_enumeratePendingFetchDeletedRecordIDs;
-- (struct PQLResultSet *)pendingFetchRecordsEnumerator;
-- (unsigned long long)pendingFetchDeletedRecordsCount;
-- (unsigned long long)pendingFetchRecordsCount;
-- (BOOL)_saveEditedShareRecords:(id)arg1 syncStatus:(long long)arg2;
-- (BOOL)_saveEditedContentRecords:(id)arg1 syncStatus:(long long)arg2;
-- (BOOL)_saveEditedStructureRecords:(id)arg1 deletedRecordIDs:(id)arg2 syncStatus:(long long)arg3;
-- (BOOL)_markItemIDDead:(id)arg1 recordID:(id)arg2;
+- (BOOL)_saveEditedShareRecords:(id)arg1 deletedShareRecordIDs:(id)arg2 zonesNeedingAllocRanks:(id)arg3;
+- (BOOL)_saveEditedContentRecords:(id)arg1 zonesNeedingAllocRanks:(id)arg2;
+- (void)_reportCantSaveProblem:(id)arg1 record:(id)arg2;
+- (BOOL)_saveDeletedRecordIDs:(id)arg1;
+- (BOOL)_saveEditedStructureRecords:(id)arg1 zonesNeedingAllocRanks:(id)arg2;
+- (BOOL)_savePendingChangesSharesIgnoringRecordIDs:(id)arg1 zonesNeedingAllocRanks:(id)arg2;
+- (BOOL)_savePendingChangesDeletedRecordIDsIgnoringRecordIDs:(id)arg1;
+- (BOOL)_savePendingChangesEditedContentRecordsIgnoringRecordIDs:(id)arg1 zonesNeedingAllocRanks:(id)arg2;
+- (BOOL)_savePendingChangesEditedStructureRecordsIgnoringRecordIDs:(id)arg1 zonesNeedingAllocRanks:(id)arg2;
+- (BOOL)_markItemDeadForRecordID:(id)arg1;
 - (BOOL)_markShareIDDead:(id)arg1;
-- (BOOL)_saveEditedRecord:(id)arg1 syncStatus:(long long)arg2;
-- (BOOL)_saveEditedShareRecord:(id)arg1;
-- (void)_learnIdentityForShare:(id)arg1;
-- (BOOL)_saveEditedAliasRecord:(id)arg1;
-- (BOOL)_saveEditedFinderBookmarkRecord:(id)arg1;
-- (BOOL)_saveEditedSymlinkRecord:(id)arg1;
-- (BOOL)_saveEditedDocumentContentRecord:(id)arg1;
-- (BOOL)_saveEditedDirOrDocStructureRecord:(id)arg1;
+- (BOOL)_saveEditedRecord:(id)arg1 zonesNeedingAllocRanks:(id)arg2 error:(id *)arg3;
+- (BOOL)_saveEditedShareRecord:(id)arg1 error:(id *)arg2;
+- (BOOL)_saveEditedAliasRecord:(id)arg1 zonesNeedingAllocRanks:(id)arg2 error:(id *)arg3;
+- (BOOL)_saveEditedFinderBookmarkRecord:(id)arg1 error:(id *)arg2;
+- (BOOL)_saveEditedSymlinkRecord:(id)arg1 error:(id *)arg2;
+- (BOOL)_saveEditedDocumentContentRecord:(id)arg1 error:(id *)arg2;
+- (BOOL)_saveEditedDirOrDocStructureRecord:(id)arg1 error:(id *)arg2;
 - (BOOL)_saveItemID:(id)arg1 version:(id)arg2 record:(id)arg3 iWorkSharingOptions:(unsigned long long)arg4;
-- (BOOL)_saveItemID:(id)arg1 stat:(id)arg2 record:(id)arg3;
-- (BOOL)_saveItemID:(id)arg1 stat:(id)arg2 record:(id)arg3 origName:(id)arg4 base:(id)arg5 no:(id)arg6 ext:(id)arg7;
+- (BOOL)_saveItemID:(id)arg1 stat:(id)arg2 serverMetrics:(id)arg3 record:(id)arg4 error:(id *)arg5;
+- (BOOL)_saveItemID:(id)arg1 stat:(id)arg2 serverMetrics:(id)arg3 record:(id)arg4 origName:(id)arg5 base:(id)arg6 no:(id)arg7 ext:(id)arg8;
 - (id)xattrForSignature:(id)arg1;
 - (BOOL)storeXattr:(id)arg1;
 - (BOOL)hasXattrWithSignature:(id)arg1;
-- (id)initWithZoneName:(id)arg1 dbRowID:(id)arg2 plist:(id)arg3 session:(id)arg4;
+- (void)deactivateFromClientZone;
+- (void)activateWithClientZone:(id)arg1 offline:(BOOL)arg2;
+- (id)initWithMangledID:(id)arg1 dbRowID:(id)arg2 plist:(id)arg3 session:(id)arg4;
 @property(readonly, nonatomic) NSMutableDictionary *plist;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)descriptionWithContext:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) BRMangledID *mangledID;
 @property(readonly, nonatomic) CKRecordZoneID *zoneID;
 @property(readonly, nonatomic) NSString *ownerName;
+@property(readonly, nonatomic) BRCSyncContext *metadataSyncContextIfExists;
 @property(readonly, nonatomic) BRCSyncContext *metadataSyncContext;
 - (id)syncContext;
 - (id)asSharedZone;
@@ -95,6 +109,12 @@
 @property(readonly, nonatomic) BOOL isPrivateZone;
 @property(readonly, nonatomic) BOOL isSharedZone;
 - (void)scheduleMoveToCloudDocs;
+- (id)matchingJobsWhereSQLClause;
+- (id)jobsDescription;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

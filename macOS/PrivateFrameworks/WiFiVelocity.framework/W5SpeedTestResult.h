@@ -30,6 +30,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)conformsToProtocol:(id)arg1;
+- (void)dealloc;
 
 @end
 

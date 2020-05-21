@@ -13,20 +13,19 @@
 __attribute__((visibility("hidden")))
 @interface FI_TInlineProgressBaseHostLayer : FI_TLayer <CAAnimationDelegate>
 {
-    struct TNSRef<FI_TInlineProgressBarLayer *, void> _progressLayer;
+    struct TNSRef<FI_TInlineProgressBarLayer, void> _progressLayer;
     unsigned long long _animationCount;
     _Bool _cleanupWhenFinished;
     NSObject<CAAnimationDelegate> *_animationDelegate;
 }
 
-@property(nonatomic) id <CAAnimationDelegate> animationDelegate; // @synthesize animationDelegate=_animationDelegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) __weak NSObject<CAAnimationDelegate> *animationDelegate; // @synthesize animationDelegate=_animationDelegate;
 - (void)setUserInterfaceLayoutDirection:(long long)arg1;
 - (long long)userInterfaceLayoutDirection;
 - (void)animationDidStop:(id)arg1 finished:(BOOL)arg2;
 - (void)animationDidStart:(id)arg1;
-- (void)keepAnimationAlive;
 - (void)completeAnimation;
 - (void)setSelected:(BOOL)arg1;
 - (void)setProgressFrame:(struct CGRect)arg1;

@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     NSDocumentController *_controller;
 }
 
+- (void)menuDidClose:(id)arg1;
 - (BOOL)updateMenu:(id)arg1 withEvent:(id)arg2 withFlags:(unsigned long long)arg3;
 - (id)initWithController:(id)arg1;
 

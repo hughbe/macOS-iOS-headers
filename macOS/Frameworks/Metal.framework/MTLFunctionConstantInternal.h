@@ -22,6 +22,7 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)type;
 - (id)name;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (void)dealloc;
 - (id)initWithName:(id)arg1 type:(unsigned long long)arg2 index:(unsigned long long)arg3 required:(BOOL)arg4;
 

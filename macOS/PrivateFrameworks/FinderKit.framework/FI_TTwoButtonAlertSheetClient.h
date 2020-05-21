@@ -13,15 +13,15 @@
 __attribute__((visibility("hidden")))
 @interface FI_TTwoButtonAlertSheetClient : NSObject <TStdAlertSheetClientProtocol>
 {
-    function_2d7db078 _callback;
+    function_998afc14 _callback;
 }
 
-+ (id)clientWithCallback:(function_2d7db078)arg1;
++ (id)clientWithCallback:(function_998afc14)arg1;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)stdAlertSheetCancelButtonPressed;
 - (void)stdAlertSheetOKButtonPressed;
-- (id)initWithCallback:(function_2d7db078)arg1;
+- (id)initWithCallback:(function_998afc14)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,7 +8,6 @@
 
 @class NSObject<OS_dispatch_semaphore>;
 
-__attribute__((visibility("hidden")))
 @interface RDSemaphore : NSObject
 {
     NSObject<OS_dispatch_semaphore> *semaphore;

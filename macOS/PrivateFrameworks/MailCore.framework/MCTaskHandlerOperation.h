@@ -6,19 +6,21 @@
 
 #import "NSOperation.h"
 
-@class MCTaskHandler, NSError;
+@class MCTaskHandler, NSError, NSString;
 
 @interface MCTaskHandlerOperation : NSOperation
 {
     BOOL _succeeded;
     MCTaskHandler *_handler;
     NSError *_error;
+    NSString *_logPrefix;
 }
 
+- (void).cxx_destruct;
+@property(copy) NSString *logPrefix; // @synthesize logPrefix=_logPrefix;
 @property(retain) NSError *error; // @synthesize error=_error;
 @property BOOL succeeded; // @synthesize succeeded=_succeeded;
 @property(retain) MCTaskHandler *handler; // @synthesize handler=_handler;
-- (void).cxx_destruct;
 
 @end
 

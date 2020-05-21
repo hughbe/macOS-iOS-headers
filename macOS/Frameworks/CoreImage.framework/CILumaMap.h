@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
 - (const char *)lumaTable;
 - (void)setDefaults;
 - (id)_kernel;
+- (void)dealloc;
 
 @end
 

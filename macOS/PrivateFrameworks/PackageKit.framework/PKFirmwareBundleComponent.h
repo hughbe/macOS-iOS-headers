@@ -14,9 +14,11 @@
     NSArray *_variants;
     NSArray *_models;
     PKBundleComponent *_bundle;
+    NSString *_bridgeVersion;
 }
 
 + (long long)typeForString:(id)arg1;
+@property(retain) NSString *bridgeVersion; // @synthesize bridgeVersion=_bridgeVersion;
 @property(retain) PKBundleComponent *bundle; // @synthesize bundle=_bundle;
 @property(retain) NSArray *models; // @synthesize models=_models;
 @property(retain) NSArray *variants; // @synthesize variants=_variants;

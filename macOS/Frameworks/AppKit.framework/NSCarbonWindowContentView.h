@@ -6,13 +6,13 @@
 
 #import <AppKit/NSView.h>
 
+__attribute__((visibility("hidden")))
 @interface NSCarbonWindowContentView : NSView
 {
 }
 
 - (void)setNeedsDisplayInRect:(struct CGRect)arg1;
 - (BOOL)isOpaque;
-- (void)drawRect:(struct CGRect)arg1;
 
 @end
 

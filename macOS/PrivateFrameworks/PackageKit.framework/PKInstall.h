@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSError, NSObject<OS_dispatch_queue>, PKInstallAnalyzer, PKInstallOperationController, PKInstallRequest, PKInstallSandbox;
+@class NSArray, NSError, NSObject<OS_dispatch_queue>, NSSet, PKInstallAnalyzer, PKInstallOperationController, PKInstallRequest, PKInstallSandbox;
 
 @interface PKInstall : NSObject
 {
@@ -16,13 +16,22 @@
     PKInstallAnalyzer *_installAnalyzer;
     PKInstallOperationController *_installController;
     NSObject<OS_dispatch_queue> *_installControllerUpdateQueue;
-    BOOL _isDone;
+    BOOL _done;
     BOOL _isCancelled;
     NSError *_error;
     int _installState;
     NSArray *_clientSideRegistrationPaths;
+    NSSet *_previousPackageIdentifiersSharingGroupsWithCurrentRequest;
+    BOOL _shouldSetResponsibility;
 }
 
++ (BOOL)_DebuggingQoSEnabled;
+@property BOOL shouldSetResponsibility; // @synthesize shouldSetResponsibility=_shouldSetResponsibility;
+@property(retain) NSError *error; // @synthesize error=_error;
+@property(getter=isDone) BOOL done; // @synthesize done=_done;
+- (void)_clearResponsibilityForClientAuditToken:(CDStruct_4c969caf)arg1;
+- (void)_setResponsibilityForClientAuditToken:(CDStruct_4c969caf)arg1;
+- (id)_previousPackageIdentifiersSharingGroupsWithCurrentRequest;
 - (void)_handleCanCancelDidChange:(id)arg1;
 - (void)_releaseResources;
 - (void)_setInstallController:(id)arg1;
@@ -30,12 +39,10 @@
 - (void)_installMain:(id)arg1;
 - (id)registrationPaths;
 - (id)request;
-- (id)error;
 - (id)_currentPackageSpecifier;
 - (int)installState;
 - (double)progressValue;
 - (double)estimatedTimeRemaining;
-- (BOOL)isDone;
 - (BOOL)canCancel;
 - (BOOL)cancel;
 - (void)start;

@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSString;
 
-@interface STGenericIntentLocation : NSObject <NSCoding>
+@interface STGenericIntentLocation : NSObject <NSSecureCoding>
 {
     BOOL _isLatLong;
     NSString *_name;
@@ -18,11 +18,12 @@
     double _longitude;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isLatLong; // @synthesize isLatLong=_isLatLong;
 @property(nonatomic) double longitude; // @synthesize longitude=_longitude;
 @property(nonatomic) double latitude; // @synthesize latitude=_latitude;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithName:(id)arg1 latitude:(double)arg2 longitude:(double)arg3;

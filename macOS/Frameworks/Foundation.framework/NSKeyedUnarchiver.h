@@ -32,6 +32,9 @@
 + (id)unarchiveObjectWithData:(id)arg1 error:(id *)arg2;
 + (id)unarchiveObjectWithData:(id)arg1;
 + (id)unarchiveObjectWithFile:(id)arg1;
++ (id)_strictlyUnarchivedObjectOfClasses:(id)arg1 fromData:(id)arg2 error:(id *)arg3;
++ (id)unarchivedObjectOfClasses:(id)arg1 fromData:(id)arg2 error:(id *)arg3;
++ (id)unarchivedObjectOfClass:(Class)arg1 fromData:(id)arg2 error:(id *)arg3;
 + (void)initialize;
 - (unsigned int)systemVersion;
 - (long long)versionForClassName:(id)arg1;
@@ -42,6 +45,7 @@
 - (id)decodeDataObject;
 - (id)decodePropertyList;
 - (id)decodeObject;
+- (BOOL)_containsNextUnkeyedObject;
 - (unsigned int)_currentUniqueIdentifier;
 - (id)_decodePropertyListForKey:(id)arg1;
 - (const char *)decodeBytesForKey:(id)arg1 returnedLength:(unsigned long long *)arg2;
@@ -55,12 +59,14 @@
 @property long long decodingFailurePolicy;
 - (void)__setError:(id)arg1;
 - (id)error;
+- (void)_enableStrictSecureDecodingMode;
 @property BOOL requiresSecureCoding;
 - (id)allowedClasses;
 - (id)decodeObjectOfClasses:(id)arg1 forKey:(id)arg2;
 - (id)decodeObjectOfClass:(Class)arg1 forKey:(id)arg2;
 - (id)decodeObjectForKey:(id)arg1;
 - (BOOL)_validatePropertyListClass:(Class)arg1 forKey:(id)arg2;
+- (BOOL)_validateAllowedClassesContainsClass:(Class)arg1 forKey:(id)arg2;
 - (BOOL)containsValueForKey:(id)arg1;
 - (void)_replaceObject:(id)arg1 withObject:(id)arg2;
 - (void)replaceObject:(id)arg1 withObject:(id)arg2;
@@ -78,6 +84,8 @@
 - (void)dealloc;
 - (id)initWithStream:(id)arg1;
 - (id)initForReadingWithData:(id)arg1;
+- (id)initForReadingFromData:(id)arg1 error:(id *)arg2;
+- (id)_initForReadingFromData:(id)arg1 error:(id *)arg2 throwLegacyExceptions:(BOOL)arg3;
 - (id)_initWithStream:(struct __CFReadStream *)arg1 data:(id)arg2 topDict:(struct __CFDictionary *)arg3;
 - (id)init;
 - (id)_blobForCurrentObject;

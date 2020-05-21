@@ -8,6 +8,7 @@
 
 @class NSArray;
 
+__attribute__((visibility("hidden")))
 @interface MKTransitInactiveLinesSectionController : MKTransitSectionController
 {
     NSArray *_inactiveLines;
@@ -16,6 +17,7 @@
 - (void).cxx_destruct;
 - (void)_buildRows;
 - (void)_setNeedsBuildRows;
+- (id)_pagingFilter;
 @property(readonly, nonatomic) NSArray *inactiveLines; // @synthesize inactiveLines=_inactiveLines;
 - (id)init;
 

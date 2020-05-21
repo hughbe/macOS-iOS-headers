@@ -23,12 +23,15 @@
 - (void)mouseUpAfterMissionControl;
 - (void)enteredMissionControlWithTab;
 - (id)detachedWindow;
-- (void)_updateCGWindowSizesForTiling;
+- (void)_refreshTilingConstraints:(BOOL)arg1;
 - (void)_setWindowTag;
 - (BOOL)detachAndMoveWindowToSpaceIfNecessary;
 - (BOOL)shouldDisableTabBarDropTargets;
 - (void)beginServerSideWindowDragUsingOffset:(struct CGSize)arg1;
-- (void)_enterFullScreenModeIfAppropriate;
+- (void)_resolveAutomaticEnterFullScreenFlags;
+- (BOOL)_wantsFullScreenTileDropTargets;
+- (BOOL)canEnterFullScreenMode;
+- (BOOL)_allowedInOtherAppsFullScreenSpaceWithCollectionBehavior:(unsigned long long)arg1;
 - (id)initWithContentRect:(struct CGRect)arg1 tornFromWindow:(id)arg2;
 - (void)dealloc;
 

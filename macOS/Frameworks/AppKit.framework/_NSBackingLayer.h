@@ -20,7 +20,6 @@ __attribute__((visibility("hidden")))
 - (struct CGRect)NS_activeVisibleRect;
 - (struct CGRect)NS_renderedRectInRect:(struct CGRect)arg1 scrollVelocity:(struct CGPoint)arg2;
 - (BOOL)NS_prefetchContentsInRect:(struct CGRect)arg1 scrollVelocity:(struct CGPoint)arg2;
-- (void)NS_prefetchTilesWithScrollVelocity:(struct CGPoint)arg1 hasMorePrefetch:(char *)arg2;
 - (void)NS_setContentsScaleSize:(struct CGSize)arg1;
 - (void)setContentsScale:(double)arg1;
 - (void)NS_showPrefetchedContentsIfNecessaryInRect:(struct CGRect)arg1;

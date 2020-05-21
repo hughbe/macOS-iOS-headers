@@ -12,12 +12,14 @@ __attribute__((visibility("hidden")))
 @interface ParsecSportsTeamView : NSView
 {
     NSImageView *_logoImageView;
+    NSTextField *_nameLabel;
     NSTextField *_recordLabel;
 }
 
-@property(readonly, nonatomic) NSTextField *recordLabel; // @synthesize recordLabel=_recordLabel;
-@property(readonly, nonatomic) NSImageView *logoImageView; // @synthesize logoImageView=_logoImageView;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSTextField *recordLabel; // @synthesize recordLabel=_recordLabel;
+@property(readonly, nonatomic) NSTextField *nameLabel; // @synthesize nameLabel=_nameLabel;
+@property(readonly, nonatomic) NSImageView *logoImageView; // @synthesize logoImageView=_logoImageView;
 - (void)_setUpConstraints;
 - (void)_configureViews;
 - (struct CGSize)intrinsicContentSize;

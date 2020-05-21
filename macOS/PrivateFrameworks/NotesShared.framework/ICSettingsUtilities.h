@@ -10,6 +10,8 @@
 {
 }
 
++ (void)setBool:(BOOL)arg1 forKey:(id)arg2;
++ (BOOL)boolForKey:(id)arg1;
 + (void)synchronizeSettingsWithUserDefaultsForKeys:(id)arg1;
 + (void)setObject:(id)arg1 forKey:(id)arg2;
 + (id)objectForKey:(id)arg1;

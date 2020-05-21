@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)createMessageFromData:(id)arg1;
++ (id)newMessageFromData:(id)arg1;
 
 @end
 

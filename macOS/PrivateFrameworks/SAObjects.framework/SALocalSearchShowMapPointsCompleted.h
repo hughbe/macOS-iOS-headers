@@ -16,6 +16,7 @@
 
 + (id)showMapPointsCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)showMapPointsCompleted;
+- (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

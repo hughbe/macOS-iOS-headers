@@ -16,14 +16,18 @@
     TIKeyboardConfiguration *_keyboardConfig;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) TIKeyboardConfiguration *keyboardConfig; // @synthesize keyboardConfig=_keyboardConfig;
 @property(retain, nonatomic) TIKeyboardState *keyboardState; // @synthesize keyboardState=_keyboardState;
 @property(nonatomic) int granularity; // @synthesize granularity=_granularity;
 @property(nonatomic) BOOL forwardAdjustment; // @synthesize forwardAdjustment=_forwardAdjustment;
+- (void)replaceDocumentState:(id)arg1;
 - (id)shortDescription;
+- (void)removeContextFromKeyboardState;
+- (id)currentKeyboardState;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 - (void)applyToStatistic:(id)arg1;
 
 @end

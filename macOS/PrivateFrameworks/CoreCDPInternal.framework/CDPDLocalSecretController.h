@@ -11,32 +11,39 @@
 
 @class CDPContext, CDPDCircleController, CDPDSecureBackupController;
 
-@interface CDPDLocalSecretController : NSObject <CDPDSecureBackupDelegate, CDPDCircleDelegate>
+@interface CDPDLocalSecretController : NSObject <CDPDCircleDelegate, CDPDSecureBackupDelegate>
 {
     CDPContext *_context;
     CDPDCircleController *_circleController;
     CDPDSecureBackupController *_secureBackupController;
     id <CDPStateUIProviderInternal> _uiProvider;
+    id <CDPLocalSecretFollowUpProvider> _followUpProvider;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) id <CDPLocalSecretFollowUpProvider> followUpProvider; // @synthesize followUpProvider=_followUpProvider;
 @property(retain, nonatomic) id <CDPStateUIProviderInternal> uiProvider; // @synthesize uiProvider=_uiProvider;
 @property(retain, nonatomic) CDPDSecureBackupController *secureBackupController; // @synthesize secureBackupController=_secureBackupController;
 @property(retain, nonatomic) CDPDCircleController *circleController; // @synthesize circleController=_circleController;
 @property(retain, nonatomic) CDPContext *context; // @synthesize context=_context;
-- (void).cxx_destruct;
+- (id)secureChannelContextForController:(id)arg1;
 - (id)contextForController:(id)arg1;
 - (void)circleController:(id)arg1 secureBackupRecordsArePresentWithCompletion:(CDUnknownBlockType)arg2;
-- (void)promotForLocalSecretWithCompletion:(CDUnknownBlockType)arg1;
+- (void)promptForLocalSecretWithCompletion:(CDUnknownBlockType)arg1;
 - (void)promptForAdoptionOfMultipleICSCWithCompletion:(CDUnknownBlockType)arg1;
-- (BOOL)synchronizeCircleViewsForSecureBackupController:(id)arg1;
+- (BOOL)synchronizeCircleViewsForSecureBackupContext:(id)arg1;
 - (id)circlePeerIDForSecureBackupController:(id)arg1;
-- (void)_postFollowUpItemForOfflineLocalSecretChange;
-- (void)_deleteFollowUpItemForOfflineLocalSecretChange;
-- (void)_finishOfflineLocalSecretChange:(CDUnknownBlockType)arg1;
+- (void)_collectLocalSecretWithCompletion:(CDUnknownBlockType)arg1;
 - (id)_cdpStateMachine;
-- (void)finishOfflineLocalSecretChangeWithCompletion:(CDUnknownBlockType)arg1;
+- (void)_createContextForSecret:(BOOL)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)_setContextWithAuthResults:(id)arg1;
+- (void)_repairWithStateMachine:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_handleCompletionStatus:(BOOL)arg1 preRecord:(BOOL)arg2;
 - (void)_localSecretChangedTo:(id)arg1 secretType:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_attemptToEscrowPreRecord:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)finishOfflineLocalSecretChangeWithCompletion:(CDUnknownBlockType)arg1;
 - (void)localSecretChangedTo:(id)arg1 secretType:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)attemptToEscrowPreRecord:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)dealloc;
 - (id)initWithContext:(id)arg1;
 

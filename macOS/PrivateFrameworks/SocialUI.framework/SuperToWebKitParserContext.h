@@ -17,20 +17,15 @@
     BOOL _isAudioMessage;
     BOOL _willFillBubble;
     BOOL _didTrimEmotePrefix;
-    BOOL _displayBigEmoji;
-    BOOL _checkForBigEmoji;
     IMMessageChatItem *_chatItem;
     IMMessage *_message;
     TranscriptDOMController *_controller;
     DOMHTMLElement *_messageElement;
     DOMHTMLElement *_containerElement;
-    unsigned long long _totalEmojiCount;
 }
 
-@property BOOL checkForBigEmoji; // @synthesize checkForBigEmoji=_checkForBigEmoji;
-@property unsigned long long totalEmojiCount; // @synthesize totalEmojiCount=_totalEmojiCount;
+- (void).cxx_destruct;
 @property(retain, nonatomic) DOMHTMLElement *containerElement; // @synthesize containerElement=_containerElement;
-@property BOOL displayBigEmoji; // @synthesize displayBigEmoji=_displayBigEmoji;
 @property BOOL didTrimEmotePrefix; // @synthesize didTrimEmotePrefix=_didTrimEmotePrefix;
 @property BOOL willFillBubble; // @synthesize willFillBubble=_willFillBubble;
 @property BOOL isAudioMessage; // @synthesize isAudioMessage=_isAudioMessage;
@@ -42,7 +37,6 @@
 @property(nonatomic) TranscriptDOMController *controller; // @synthesize controller=_controller;
 @property(nonatomic) IMMessage *message; // @synthesize message=_message;
 @property(nonatomic) IMMessageChatItem *chatItem; // @synthesize chatItem=_chatItem;
-- (void).cxx_destruct;
 - (id)parser:(id)arg1 preprocessedAttributesForAttributes:(id)arg2 range:(struct _NSRange)arg3;
 - (BOOL)shouldPreprocess;
 - (void)parserDidEnd:(id)arg1;

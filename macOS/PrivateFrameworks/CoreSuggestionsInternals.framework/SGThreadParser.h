@@ -18,7 +18,6 @@
 + (id)emailFrom:(id)arg1;
 + (id)emailFrom:(id)arg1 entity:(id)arg2;
 + (id)stripChevrons:(id)arg1;
-+ (void)initialize;
 
 @end
 

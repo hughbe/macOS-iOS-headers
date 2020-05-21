@@ -6,19 +6,39 @@
 
 #import "NSUserDefaultsController.h"
 
-@class NSDictionary, NSString;
+@class NSDate, NSDictionary, NSString;
 
 @interface SRFUserDefaultsController : NSUserDefaultsController
 {
+    BOOL _preferBluetoothMicrophones;
 }
 
 + (id)sharedUserDefaultsController;
++ (BOOL)_canAccessUserDefaults;
+@property BOOL preferBluetoothMicrophones; // @synthesize preferBluetoothMicrophones=_preferBluetoothMicrophones;
+- (BOOL)forceVoiceTriggerDeviceTypeDistribution:(long long *)arg1;
+- (BOOL)forceSATEnrolled;
+- (BOOL)forceVoiceTriggerAvailable;
+@property(retain) NSDate *dyingWishForInvocationDate;
+@property(getter=isGrammarCheckingEnabled) BOOL grammarCheckingEnabled;
+@property(nonatomic, getter=isContinuousSpellCheckingEnabled) BOOL continuousSpellCheckingEnabled;
+- (BOOL)autoDismissHidesCloseButton;
+@property(readonly, nonatomic) double autoDismissTextToSpeechTimeout;
+@property(nonatomic) double autoDismissDelay;
+@property(nonatomic, getter=isVoiceTriggerUserEnabled) BOOL voiceTriggerUserEnabled;
+@property(nonatomic, getter=isLockscreenEnabled) BOOL lockscreenEnabled;
+@property(nonatomic, getter=isTypeToSiriEnabled) BOOL typeToSiriEnabled;
 @property NSDictionary *mostRecentCustomizedKeyboardShorcutDictionary; // @dynamic mostRecentCustomizedKeyboardShorcutDictionary;
 @property NSDictionary *keyboardShortcutDictionary; // @dynamic keyboardShortcutDictionary;
-@property NSString *preferredMicrophoneIdentifier; // @dynamic preferredMicrophoneIdentifier;
-- (id)bestMicrophoneIdentifier;
+- (void)notifyInvocationSuppressionNoLongerHonored;
+- (void)notifyVoiceTriggerSuppressionNoLongerHonored;
+- (void)notifyUserDidSwitchOnVoiceTrigger;
+@property(readonly) NSString *preferredBluetoothMicrophoneIdentifier;
+@property(readonly) BOOL isEffectiveMicrophoneInternal;
+@property(readonly) NSString *effectiveMicrophoneIdentifier;
 @property(getter=isStatusMenuVisible) BOOL statusMenuVisible;
 - (void)_notifyStatusMenuVisibleDidChange;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)awakeAfterUsingCoder:(id)arg1;
 
 @end

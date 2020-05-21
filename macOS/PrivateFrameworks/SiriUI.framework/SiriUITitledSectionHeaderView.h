@@ -19,15 +19,16 @@
 + (id)elementKind;
 + (id)reuseIdentifier;
 + (double)defaultHeight;
-@property __weak NSTextField *headerTextField; // @synthesize headerTextField=_headerTextField;
 - (void).cxx_destruct;
+@property __weak NSTextField *headerTextField; // @synthesize headerTextField=_headerTextField;
 - (void)prepareForReuse;
 - (void)setStringValue:(id)arg1;
 - (void)setFrame:(struct CGRect)arg1;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (struct CGSize)intrinsicContentSize;
 - (BOOL)allowsVibrancy;
-- (void)updateConstraints;
+- (id)declaredLayoutConstraints;
+- (id)initWithFrame:(struct CGRect)arg1 alignment:(long long)arg2;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

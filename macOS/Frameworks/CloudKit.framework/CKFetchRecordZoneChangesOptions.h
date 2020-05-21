@@ -6,24 +6,33 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class CKServerChangeToken, NSArray;
 
-@interface CKFetchRecordZoneChangesOptions : NSObject <NSSecureCoding>
+@interface CKFetchRecordZoneChangesOptions : NSObject <NSSecureCoding, NSCopying>
 {
+    BOOL _fetchNewestChangesFirst;
+    BOOL _fetchChangesMadeByThisDevice;
     CKServerChangeToken *_previousServerChangeToken;
     unsigned long long _resultsLimit;
     NSArray *_desiredKeys;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL fetchChangesMadeByThisDevice; // @synthesize fetchChangesMadeByThisDevice=_fetchChangesMadeByThisDevice;
+@property(nonatomic) BOOL fetchNewestChangesFirst; // @synthesize fetchNewestChangesFirst=_fetchNewestChangesFirst;
 @property(copy, nonatomic) NSArray *desiredKeys; // @synthesize desiredKeys=_desiredKeys;
 @property(nonatomic) unsigned long long resultsLimit; // @synthesize resultsLimit=_resultsLimit;
 @property(copy, nonatomic) CKServerChangeToken *previousServerChangeToken; // @synthesize previousServerChangeToken=_previousServerChangeToken;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)zoneConfiguration;
+- (id)initWithZoneConfiguration:(id)arg1;
+- (id)init;
 
 @end
 

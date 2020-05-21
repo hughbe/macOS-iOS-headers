@@ -6,18 +6,34 @@
 
 #import <CalendarPersistence/CalManagedNode.h>
 
+#import "CalendarModelProtocol.h"
 #import "DefaultAlarmProviderProtocol.h"
-#import "EKProtocolCalendar.h"
 
 @class CalManagedDefaultAlarmSet, CalManagedGroup, CalManagedSubscriptionInfo, NSDictionary, NSManagedObjectID, NSSet, NSString, NSURL;
 
-@interface CalManagedCalendar : CalManagedNode <EKProtocolCalendar, DefaultAlarmProviderProtocol>
+@interface CalManagedCalendar : CalManagedNode <CalendarModelProtocol, DefaultAlarmProviderProtocol>
 {
 }
 
 + (void)enableChangeRequestNotifications;
 + (id)pathExtension;
 + (id)entityName;
+- (void)setSubscriptionNotes:(id)arg1;
+- (id)subscriptionNotes;
+- (void)setSubscriptionTitle:(id)arg1;
+- (id)subscriptionTitle;
+- (void)setSubscriptionID:(id)arg1;
+- (id)subscriptionID;
+- (id)refreshDate;
+- (void)setSubscriptionURL:(id)arg1;
+@property(readonly, nonatomic) NSURL *subscriptionURL;
+- (void)setRefreshInterval:(double)arg1;
+- (double)refreshInterval;
+- (void)setRemoveAttachments:(BOOL)arg1;
+- (BOOL)removeAttachments;
+- (void)setRemoveAlarms:(BOOL)arg1;
+- (BOOL)removeAlarms;
+- (void)setIsAffectingAvailability:(BOOL)arg1;
 @property(readonly) BOOL isAffectingAvailability;
 - (id)enclosingSource;
 @property(readonly, nonatomic) NSString *serverPath;
@@ -28,6 +44,7 @@
 @property(readonly, nonatomic) NSSet *defaultAlarmsForAllDayEvents;
 - (void)setIgnoreAlarms:(BOOL)arg1;
 @property(readonly, nonatomic) BOOL ignoreAlarms;
+@property(readonly, nonatomic) NSString *defaultOrganizerPhoneNumberForNewItems;
 @property(readonly, nonatomic) BOOL defaultOrganizerIsMeForNewItems;
 @property(readonly, nonatomic) NSString *defaultOrganizerEncodedLikenessDataForNewItems;
 @property(readonly, nonatomic) NSString *defaultOrganizerEmailForNewItems;
@@ -35,18 +52,18 @@
 @property(readonly, nonatomic) NSString *defaultOrganizerNameForNewItems;
 @property(readonly, nonatomic) BOOL isShareable;
 - (void)setPublishURL:(id)arg1;
-@property(readonly, nonatomic) NSURL *subscriptionURL;
 @property(readonly, copy, nonatomic) NSURL *publishURL;
 @property(readonly, nonatomic) NSURL *prePublishURL;
 @property(readonly, nonatomic) NSSet *sharedOwnerAddresses;
 @property(readonly, nonatomic) NSString *sharedOwnerAddress;
 @property(readonly, nonatomic) NSString *sharedOwnerName;
 @property(readonly, nonatomic) NSString *sharingStatusString;
-@property(readonly, copy, nonatomic) id <EKProtocolCalendarSource> containerSource;
+@property(readonly, copy, nonatomic) id <CalendarSourceModelProtocol> containerSource;
 - (id)bestDefaultSymbolicColorWithExistingNodes:(id)arg1;
 - (id)bestDefaultSymbolicColor;
 - (BOOL)shouldShowInPrimaryAccountsShowDelegates:(BOOL)arg1;
 - (BOOL)shouldShowInPrimaryAccounts;
+@property(readonly, nonatomic) BOOL isNaturalLanguageSuggestedEventCalendar;
 @property(readonly, nonatomic) BOOL isSuggestedEventCalendar;
 @property(readonly, nonatomic) BOOL isSubscribedHolidayCalendar;
 @property(readonly, nonatomic) BOOL isFacebookBirthdayCalendar;
@@ -56,6 +73,7 @@
 - (int)displayOrder;
 @property(readonly, nonatomic) NSString *calendarIdentifier;
 - (long long)compare:(id)arg1;
+- (void)adoptCalendarDetailsFromCalendar:(id)arg1;
 - (void)applyReasonableDefaultsForNewCalendarInGroup:(id)arg1;
 - (id)defaultAlarmsWithIsAllDayEvent:(BOOL)arg1 fromServer:(BOOL)arg2;
 - (id)defaultAlarmsWithIsAllDayEvent:(BOOL)arg1;
@@ -69,7 +87,7 @@
 - (BOOL)isColorEditable;
 - (BOOL)isRenameable;
 - (id)properties;
-@property(readonly) BOOL isBirthday;
+@property(readonly, nonatomic) BOOL isBirthday;
 - (BOOL)isMigrateable;
 - (BOOL)isLocal;
 - (id)subscriptionOrPublishURL;
@@ -86,6 +104,7 @@
 - (BOOL)containsEvents;
 - (id)_itemPredicate;
 - (void)prefetchRelationshipsForDelete;
+@property long long maxAttendees;
 @property long long notificationCount;
 @property BOOL isTaskContainer;
 @property BOOL isEventContainer;
@@ -97,15 +116,18 @@
 - (id)iCalendarDocumentWithID:(id)arg1 name:(id)arg2 description:(id)arg3 color:(id)arg4 options:(unsigned long long)arg5;
 - (void)setNeedsPublish:(BOOL)arg1;
 - (id)calendarSource;
-- (void)asyncImportFiles:(id)arg1 importOptionsForInsert:(unsigned long long)arg2 importOptionsForUpdate:(unsigned long long)arg3 processEvents:(BOOL)arg4 processReminders:(BOOL)arg5 callbackQueue:(id)arg6 progressBlock:(CDUnknownBlockType)arg7 abortForIssueBlock:(CDUnknownBlockType)arg8 finishBlock:(CDUnknownBlockType)arg9;
+- (void)importFiles:(id)arg1 intoContext:(id)arg2 importOptionsForInsert:(unsigned long long)arg3 importOptionsForUpdate:(unsigned long long)arg4 processEvents:(BOOL)arg5 processReminders:(BOOL)arg6 callbackQueue:(id)arg7 progressBlock:(CDUnknownBlockType)arg8 abortForIssueBlock:(CDUnknownBlockType)arg9 finishBlock:(CDUnknownBlockType)arg10 synchronously:(BOOL)arg11;
+- (void)syncImportFiles:(id)arg1 intoContext:(id)arg2 importOptionsForInsert:(unsigned long long)arg3 importOptionsForUpdate:(unsigned long long)arg4 processEvents:(BOOL)arg5 processReminders:(BOOL)arg6 progressBlock:(CDUnknownBlockType)arg7 abortForIssueBlock:(CDUnknownBlockType)arg8 finishBlock:(CDUnknownBlockType)arg9;
+- (void)asyncImportFiles:(id)arg1 intoContext:(id)arg2 importOptionsForInsert:(unsigned long long)arg3 importOptionsForUpdate:(unsigned long long)arg4 processEvents:(BOOL)arg5 processReminders:(BOOL)arg6 callbackQueue:(id)arg7 progressBlock:(CDUnknownBlockType)arg8 abortForIssueBlock:(CDUnknownBlockType)arg9 finishBlock:(CDUnknownBlockType)arg10;
 - (void)asyncImportICSDocument:(id)arg1 importOptionsForInsert:(unsigned long long)arg2 importOptionsForUpdate:(unsigned long long)arg3 processEvents:(BOOL)arg4 processReminders:(BOOL)arg5 callbackQueue:(id)arg6 progressBlock:(CDUnknownBlockType)arg7 abortForIssueBlock:(CDUnknownBlockType)arg8 finishBlock:(CDUnknownBlockType)arg9;
 - (void)blockingImportICSDocument:(id)arg1 importOptionsForInsert:(unsigned long long)arg2 importOptionsForUpdate:(unsigned long long)arg3 processEvents:(BOOL)arg4 processReminders:(BOOL)arg5 progressBlock:(CDUnknownBlockType)arg6 abortForIssueBlock:(CDUnknownBlockType)arg7 finishBlock:(CDUnknownBlockType)arg8;
 - (BOOL)importICSDocument:(id)arg1 importOptionsForInsert:(unsigned long long)arg2 importOptionsForUpdate:(unsigned long long)arg3 processEvents:(BOOL)arg4 processReminders:(BOOL)arg5 callbackQueue:(id)arg6 progressBlock:(CDUnknownBlockType)arg7 abortForIssueBlock:(CDUnknownBlockType)arg8 finishBlock:(CDUnknownBlockType)arg9 shouldSaveOnSuccess:(BOOL)arg10 synchronousFinishBlock:(BOOL)arg11;
 - (BOOL)importICSDocument:(id)arg1 importOptionsForInsert:(unsigned long long)arg2 importOptionsForUpdate:(unsigned long long)arg3 processEvents:(BOOL)arg4 processReminders:(BOOL)arg5 callbackQueue:(id)arg6 progressBlock:(CDUnknownBlockType)arg7 abortForIssueBlock:(CDUnknownBlockType)arg8 finishBlock:(CDUnknownBlockType)arg9;
-- (BOOL)_importCleanedDocument:(id)arg1 importOptionsForInsert:(unsigned long long)arg2 importOptionsForUpdate:(unsigned long long)arg3 sharedUIDsToImport:(id)arg4 objectIDsImported:(id)arg5 progressBlock:(CDUnknownBlockType)arg6 abortForIssueBlock:(CDUnknownBlockType)arg7;
+- (BOOL)_importCleanedDocument:(id)arg1 importOptionsForInsert:(unsigned long long)arg2 importOptionsForUpdate:(unsigned long long)arg3 sharedUIDsToImport:(id)arg4 resultObjectIDs:(id *)arg5 progressBlock:(CDUnknownBlockType)arg6 abortForIssueBlock:(CDUnknownBlockType)arg7;
 - (id)handleDuplicatedUIDSFromThisCalendar:(id)arg1 context:(id)arg2;
 - (void)moveEventsAndMastersWithDuplicatedUIDSFromOtherCalendars:(id)arg1 sharedUIDS:(id)arg2;
 - (id)calendarsToCheckForDuplicatedUIDS;
+- (void)_cleanAttachments:(id)arg1 depth:(int)arg2;
 - (void)_cleanComponent:(id)arg1;
 - (BOOL)_containsDangerousAlarms:(id)arg1;
 - (BOOL)_componentIsDangerousAlarm:(id)arg1;

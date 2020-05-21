@@ -19,8 +19,10 @@
     BOOL _isMachineLicensed;
     BOOL _isLegacyApp;
     BOOL _metadataChangeIsExpected;
+    BOOL _metadataChangeHasAlreadyOccurred;
     NSString *_accountOpaqueDSID;
     NSString *_accountIdentifier;
+    NSString *_appName;
     NSString *_bundleIdentifier;
     NSString *_bundleVersion;
     NSString *_bundlePath;
@@ -42,8 +44,10 @@
 + (id)createSoftwareProductForAppAtPath:(id)arg1;
 + (id)productPathToUpgradeForBundleIdentifier:(id)arg1 versionNumberString:(id)arg2;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) NSNumber *expectedStoreVersion; // @synthesize expectedStoreVersion=_expectedStoreVersion;
 @property(copy) NSString *expectedBundleVersion; // @synthesize expectedBundleVersion=_expectedBundleVersion;
+@property BOOL metadataChangeHasAlreadyOccurred; // @synthesize metadataChangeHasAlreadyOccurred=_metadataChangeHasAlreadyOccurred;
 @property BOOL metadataChangeIsExpected; // @synthesize metadataChangeIsExpected=_metadataChangeIsExpected;
 @property long long source; // @synthesize source=_source;
 @property BOOL isLegacyApp; // @synthesize isLegacyApp=_isLegacyApp;
@@ -64,13 +68,12 @@
 @property(retain) NSString *bundlePath; // @synthesize bundlePath=_bundlePath;
 @property(retain) NSString *bundleVersion; // @synthesize bundleVersion=_bundleVersion;
 @property(retain) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
+@property(retain) NSString *appName; // @synthesize appName=_appName;
 @property(retain) NSString *accountIdentifier; // @synthesize accountIdentifier=_accountIdentifier;
 @property(retain) NSString *accountOpaqueDSID; // @synthesize accountOpaqueDSID=_accountOpaqueDSID;
-- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-@property(readonly) NSString *appName;
 - (id)description;
 @property(readonly) NSString *sourceString;
 

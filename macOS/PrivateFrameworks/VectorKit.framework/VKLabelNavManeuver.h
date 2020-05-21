@@ -20,13 +20,17 @@ __attribute__((visibility("hidden")))
     int _type;
     int _drivingSide;
     BOOL _isVisible;
+    BOOL _isPicked;
 }
 
+- (id).cxx_construct;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
+@property(nonatomic) BOOL isPicked; // @synthesize isPicked=_isPicked;
 @property(readonly, nonatomic) BOOL isVisible; // @synthesize isVisible=_isVisible;
 @property(readonly, nonatomic) struct PolylineCoordinate routeOffset; // @synthesize routeOffset=_routeOffset;
 @property(readonly, nonatomic) VKLabelNavRoadLabel *maneuverSign; // @synthesize maneuverSign=_maneuverSign;
-- (id).cxx_construct;
+@property(readonly, nonatomic) BOOL isTrafficCameraFeature;
+@property(readonly, nonatomic) BOOL isEtaFeature;
 @property(readonly, nonatomic) BOOL isGuidanceStepStart;
 @property(readonly, nonatomic) NSString *shieldDisplayGroup;
 @property(readonly, nonatomic) BOOL isInGuidance;
@@ -36,6 +40,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) long long intraRoadPriority;
 @property(readonly, nonatomic) BOOL isOnRoute;
 - (void)prepareStyleVarsWithContext:(struct NavContext *)arg1;
+- (void)layoutWithNavContext:(struct NavContext *)arg1;
 - (void)createLabelWithNavContext:(struct NavContext *)arg1 artworkCache:(struct VKLabelNavArtworkCache *)arg2;
 - (id)description;
 - (void)dealloc;

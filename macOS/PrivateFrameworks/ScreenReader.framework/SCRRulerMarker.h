@@ -15,16 +15,11 @@ __attribute__((visibility("hidden")))
     struct {
         unsigned int isHorizontal:1;
         unsigned int isOrientationKnown:1;
-        unsigned int reserved:30;
     } _srrFlags;
 }
 
-- (BOOL)brailleLineAllowsChildren;
-- (void)setBrailleLineNeedsRebuild;
-- (id)brailleLineElementForUIElement:(id)arg1;
-- (void)updateBrailleLineWithFocusedElement:(id)arg1;
-- (void)buildBrailleLineWithFocusedElement:(id)arg1;
-- (void)sendBrailleLineWithElement:(id)arg1 focusThrough:(BOOL)arg2 forceRebuild:(BOOL)arg3;
+- (void).cxx_destruct;
+- (long long)brailleLineType;
 - (id)unitDescription;
 - (void)addItemNameToRequest:(id)arg1;
 - (id)typeDescription;
@@ -43,7 +38,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)interactLeftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpWithEvent:(id)arg1 request:(id)arg2;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 - (BOOL)performDefaultActionWithRequest:(id)arg1 allowClick:(BOOL)arg2;
 - (BOOL)isControlElement;
 - (BOOL)isInteractive;
@@ -54,8 +49,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)increment:(float)arg1;
 - (id)_rulerUIElement;
 - (BOOL)_isHorizontal;
-- (float)max;
-- (void)dealloc;
+- (float)minValue;
+- (float)maxValue;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end

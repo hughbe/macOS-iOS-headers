@@ -11,7 +11,7 @@
 __attribute__((visibility("hidden")))
 @interface FI_IPropertyValueApplicatorController : FI_IPropertyValueController
 {
-    struct TNSRef<FI_IPropertyValueApplicator *, void> _valueApplicator;
+    struct TNSRef<FI_IPropertyValueApplicator, void> _valueApplicator;
     struct TFENodeVector _nodes;
 }
 
@@ -22,6 +22,8 @@ __attribute__((visibility("hidden")))
 - (const struct TFENodeVector *)nodes;
 - (void)nodesWillChange;
 - (int)applyValueToNodes:(id)arg1;
+- (void)setCanModifyNodesGetter:(const function_ce22cfb2 *)arg1;
+- (void)setValueToNodesApplicator:(const function_9c771ac6 *)arg1;
 - (void)updateWithNodes:(const struct TFENodeVector *)arg1;
 @property(retain) FI_IPropertyValueApplicator *valueApplicator; // @dynamic valueApplicator;
 

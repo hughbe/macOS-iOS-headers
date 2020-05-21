@@ -10,13 +10,11 @@
 
 @interface NSOpenGLLayer : CAOpenGLLayer
 {
-    NSOpenGLPixelFormat *_openGLPixelFormat;
-    NSOpenGLContext *_openGLContext;
-    void *_reserved[5];
 }
 
-@property(retain) NSOpenGLContext *openGLContext; // @synthesize openGLContext=_openGLContext;
-@property(retain) NSOpenGLPixelFormat *openGLPixelFormat; // @synthesize openGLPixelFormat=_openGLPixelFormat;
++ (id)defaultValueForKey:(id)arg1;
+- (void)didChangeValueForKey:(id)arg1;
+- (void)willChangeValueForKey:(id)arg1;
 - (void)_NS_invalidateSuggestedContentsScale;
 - (void)display;
 - (void)drawInCGLContext:(struct _CGLContextObject *)arg1 pixelFormat:(struct _CGLPixelFormatObject *)arg2 forLayerTime:(double)arg3 displayTime:(const CDStruct_e50ab651 *)arg4;
@@ -30,10 +28,12 @@
 - (id)openGLContextForPixelFormat:(id)arg1;
 - (void)drawInContext:(struct CGContext *)arg1;
 - (id)openGLPixelFormatForDisplayMask:(unsigned int)arg1;
-@property NSView *view;
-- (void)dealloc;
-- (id)init;
+@property __weak NSView *view;
 - (void)_appkitViewBackingLayerUniqueMethod;
+
+// Remaining properties
+@property(retain) NSOpenGLContext *openGLContext; // @dynamic openGLContext;
+@property(retain) NSOpenGLPixelFormat *openGLPixelFormat; // @dynamic openGLPixelFormat;
 
 @end
 

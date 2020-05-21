@@ -6,15 +6,12 @@
 
 #import "NSObject.h"
 
-@class AMGroup, NSArray, NSCountedSet, NSData, NSMutableArray;
+@class AMGroup, NSArray, NSCountedSet;
 
 @interface AMLibrary : NSObject
 {
     NSArray *_actionsLibrary;
     NSArray *_variablesLibrary;
-    NSData *_defaultDescription;
-    NSData *_defaultVariablesDescription;
-    NSMutableArray *_mostRelevantActions;
     AMGroup *_applicationsGroup;
     AMGroup *_categoriesGroup;
     unsigned long long _organizationStyle;
@@ -23,13 +20,15 @@
 
 + (id)sharedLibrary;
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
-- (id)actionsForApplication:(id)arg1;
+- (void).cxx_destruct;
+@property(retain) NSCountedSet *observedGroups; // @synthesize observedGroups=_observedGroups;
+@property(nonatomic) unsigned long long organizationStyle; // @synthesize organizationStyle=_organizationStyle;
+@property(retain, nonatomic) NSArray *variablesLibrary; // @synthesize variablesLibrary=_variablesLibrary;
+@property(retain, nonatomic) NSArray *actionsLibrary; // @synthesize actionsLibrary=_actionsLibrary;
 - (void)organizeActions:(id)arg1 byKey:(id)arg2 inGroup:(id)arg3;
 - (void)organizeAction:(id)arg1 byKey:(id)arg2 inGroup:(id)arg3;
-- (void)setCategoriesGroup:(id)arg1;
-- (id)categoriesGroup;
-- (void)setApplicationsGroup:(id)arg1;
-- (id)applicationsGroup;
+@property(retain, nonatomic) AMGroup *categoriesGroup;
+@property(retain, nonatomic) AMGroup *applicationsGroup;
 - (id)actions;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)applicationWillTerminate:(id)arg1;
@@ -40,15 +39,7 @@
 - (id)createActionGroups;
 - (id)createVariablesLibrary;
 - (id)createActionsLibrary;
-- (void)setOrganizationStyle:(unsigned long long)arg1;
-- (unsigned long long)organizationStyle;
-- (void)setVariablesLibrary:(id)arg1;
-- (void)setActionsLibrary:(id)arg1;
-- (id)mostRelevantActions;
-- (id)variablesLibrary;
-- (id)actionsLibrary;
 - (void)removeAction:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

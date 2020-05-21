@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class CLLocation, CLPlacemarkInternal, CLRegion, NSArray, NSDictionary, NSString, NSTimeZone;
+@class CLLocation, CLPlacemarkInternal, CLRegion, CNPostalAddress, NSArray, NSDictionary, NSString, NSTimeZone;
 
 @interface CLPlacemark : NSObject <NSCopying, NSSecureCoding>
 {
@@ -46,6 +46,7 @@
 - (id)initWithPlacemark:(id)arg1;
 - (id)initWithLocation:(id)arg1 addressDictionary:(id)arg2 region:(id)arg3 areasOfInterest:(id)arg4;
 - (id)_initWithGeoMapItem:(id)arg1;
+@property(readonly, nonatomic) CNPostalAddress *postalAddress;
 
 @end
 

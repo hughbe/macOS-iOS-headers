@@ -6,6 +6,8 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
+@class NSString;
+
 @interface SANPVideoSetAutoSubtitles : SABaseClientBoundCommand
 {
 }
@@ -13,6 +15,7 @@
 + (id)setAutoSubtitlesWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setAutoSubtitles;
 - (BOOL)requiresResponse;
+@property(copy, nonatomic) NSString *languageOptionChangeUserSetting;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

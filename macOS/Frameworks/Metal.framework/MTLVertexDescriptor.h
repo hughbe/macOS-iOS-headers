@@ -17,6 +17,7 @@
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)alloc;
 + (id)vertexDescriptor;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (void)reset;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

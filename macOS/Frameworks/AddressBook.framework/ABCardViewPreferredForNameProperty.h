@@ -6,13 +6,12 @@
 
 #import <AddressBook/ABCardViewLinkedPeopleProperty.h>
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewPreferredForNameProperty : ABCardViewLinkedPeopleProperty
 {
 }
 
 + (id)localizedLabel;
-- (id)multiValueFromLinkedPeople:(id)arg1 personMapper:(id)arg2 addressBook:(id)arg3;
+- (id)multiValueFromLinkedContacts:(id)arg1 personMapper:(id)arg2;
 
 @end
 

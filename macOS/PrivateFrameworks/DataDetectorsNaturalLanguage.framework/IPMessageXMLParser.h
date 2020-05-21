@@ -11,6 +11,7 @@
 }
 
 + (id)dateFormatter;
++ (id)descriptionForEventStatus:(unsigned long long)arg1;
 + (id)xmlElementForEvent:(id)arg1;
 + (id)xmlDocumentForMessages:(id)arg1 outputOptions:(unsigned long long)arg2;
 + (id)messagesByParsingXMLURL:(id)arg1;

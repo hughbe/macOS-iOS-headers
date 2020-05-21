@@ -6,18 +6,15 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString;
+@class NSArray, NSString, SCROutputAction;
 
 @protocol SCROutputSpeechSynthesizerProtocol <NSObject>
+@property(copy, nonatomic) NSString *category;
+@property(retain, nonatomic) SCROutputAction *action;
+@property(retain, nonatomic) id owner;
 - (void)stopSpeaking;
 - (BOOL)isPaused;
 - (BOOL)isSpeaking;
-- (NSString *)category;
-- (void)setCategory:(NSString *)arg1;
-- (id)action;
-- (void)setAction:(id)arg1;
-- (id)owner;
-- (void)setOwner:(id)arg1;
 - (void)unlockSynthesizer;
 - (void)lockSynthesizer;
 - (NSArray *)supportedLiteralCharacterRanges;

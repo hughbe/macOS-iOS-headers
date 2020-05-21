@@ -4,9 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <ICADevices/BaseObjectImp.h>
+#import <ICADevices/ICDBaseObjectImp.h>
 
-@interface _MovieObject : BaseObjectImp
+__attribute__((visibility("hidden")))
+@interface _MovieObject : ICDBaseObjectImp
 {
 }
 

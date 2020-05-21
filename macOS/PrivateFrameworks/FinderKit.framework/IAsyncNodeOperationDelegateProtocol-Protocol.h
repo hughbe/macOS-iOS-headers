@@ -5,16 +5,18 @@
 //
 
 #import "NSObject.h"
+#import "TMarkTornDown.h"
 
 @class FI_IAsyncNodeOperation;
 
-@protocol IAsyncNodeOperationDelegateProtocol <NSObject>
+@protocol IAsyncNodeOperationDelegateProtocol <NSObject, TMarkTornDown>
+- (void)aboutToTearDown;
 
 @optional
-- (int)asyncNodeOperation:(FI_IAsyncNodeOperation *)arg1 completedNotification:(const struct OperationMonitor *)arg2;
+- (int)asyncNodeOperation:(FI_IAsyncNodeOperation *)arg1 completedNotification:(const struct TOperationMonitor *)arg2;
 - (int)asyncNodeOperation:(FI_IAsyncNodeOperation *)arg1 subOperationCompleted:(unsigned int)arg2 targetNode:(const struct TFENode *)arg3;
 - (int)asyncNodeOperation:(FI_IAsyncNodeOperation *)arg1 subOperationStarted:(unsigned int)arg2;
-- (int)asyncNodeOperation:(FI_IAsyncNodeOperation *)arg1 errorNotification:(const struct OperationMonitor *)arg2 error:(const struct OperationErrorRecord *)arg3 reply:(struct NodeEventReply *)arg4;
-- (int)asyncNodeOperation:(FI_IAsyncNodeOperation *)arg1 statusNotification:(const struct OperationMonitor *)arg2;
+- (int)asyncNodeOperation:(FI_IAsyncNodeOperation *)arg1 errorNotification:(const struct TOperationMonitor *)arg2 error:(const struct OperationErrorRecord *)arg3 reply:(struct NodeEventReply *)arg4;
+- (int)asyncNodeOperation:(FI_IAsyncNodeOperation *)arg1 statusNotification:(const struct TOperationMonitor *)arg2;
 @end
 

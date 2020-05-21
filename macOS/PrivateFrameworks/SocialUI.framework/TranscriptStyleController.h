@@ -8,13 +8,11 @@
 
 #import "DOMNodeFilter.h"
 
-@class BuddyCSSProvider, DOMCSSMediaRule, DOMDocument, DOMHTMLBodyElement, DOMHTMLHeadElement, NSColor, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSURL, WebView;
+@class BuddyCSSProvider, DOMCSSMediaRule, DOMCSSStyleSheet, DOMDocument, DOMHTMLBodyElement, DOMHTMLHeadElement, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, WebView;
 
 @interface TranscriptStyleController : NSObject <DOMNodeFilter>
 {
     DOMCSSMediaRule *_2xRules;
-    NSColor *_backgroundColor;
-    NSURL *_backgroundImage;
     NSMutableSet *_dirtyCSSRules;
     NSMutableDictionary *_cssCache;
     NSMutableArray *_cssCacheOrder;
@@ -35,13 +33,13 @@
 
 + (id)scriptFileURLs;
 + (id)cssFilePath;
-@property(retain, nonatomic) DOMHTMLBodyElement *body; // @synthesize body=_body;
+- (void).cxx_destruct;
+@property(readonly, retain, nonatomic) DOMHTMLBodyElement *body; // @synthesize body=_body;
 @property(retain, nonatomic) DOMHTMLHeadElement *head; // @synthesize head=_head;
 @property(retain, nonatomic) DOMDocument *DOM; // @synthesize DOM=_DOM;
 @property(nonatomic) WebView *webView; // @synthesize webView=_webView;
 @property(nonatomic) BuddyCSSProvider *buddyCSSProvider; // @synthesize buddyCSSProvider=_buddyCSSProvider;
 @property BOOL requiresCSSRebuild; // @synthesize requiresCSSRebuild=_requiresCSSRebuild;
-- (void).cxx_destruct;
 - (double)minHeightPerMessage;
 - (id)chatItemGUIDs;
 - (short)acceptNode:(id)arg1;
@@ -53,9 +51,6 @@
 - (void)bodyFinishLayout;
 - (struct CGRect)screenBoundsForElementID:(id)arg1;
 - (struct CGRect)screenBoundsForElement:(id)arg1;
-- (id)backgroundImageURL;
-- (void)setBackgroundImage:(id)arg1;
-- (void)setBackgroundColor:(id)arg1;
 - (void)undimTranscriptWithAnimation:(BOOL)arg1;
 - (void)dimTranscriptWithAnimation:(BOOL)arg1;
 - (BOOL)endBatchViewChange;
@@ -79,6 +74,7 @@
 - (BOOL)_rebuildCSSContent;
 - (void)_rebuildCSSRuleMap;
 - (id)_styleElement;
+@property(retain, nonatomic) DOMCSSStyleSheet *DOMCSSStyleSheet; // @dynamic DOMCSSStyleSheet;
 - (void)beginChanges;
 - (void)dealloc;
 - (id)window;

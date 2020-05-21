@@ -14,7 +14,7 @@
 #import "SiriUIPresentationDelegate.h"
 #import "SiriUISiriLanguageDelegate.h"
 
-@class AFConversationStore, AFManagedStorageConnection, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, NSTimer, SVSAceCommandRecords, SiriUIRequestOptions, SiriUISiriLanguage;
+@class AFConversationStore, AFManagedStorageConnection, AFUISiriViewController, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, NSTimer, SAUISayIt, SVSAceCommandRecords, SiriUIRequestOptions, SiriUISiriLanguage;
 
 __attribute__((visibility("hidden")))
 @interface SVSSiriViewController : NSViewController <SiriUIDomainObjectStore, SVSAceCommandRecordsDelegate, SiriUISiriLanguageDelegate, AFConversationDelegate, SiriUIPresentationDataSource, SiriUIPresentationDelegate, SVSSiriViewControllerServing>
@@ -25,13 +25,15 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_synthesisPreparationDictionary;
     NSMutableDictionary *_synthesisAnimationDictionary;
     NSObject<OS_dispatch_source> *_connectionErrorDismissalTimer;
+    SAUISayIt *_repeatableAudioSayit;
     BOOL _supportsSpeechSynthesis;
+    BOOL __speechIdleTimerEnabled;
     BOOL __idleTimerEnabled;
     BOOL _acousticIdAllowed;
     BOOL _waitingForStartRequest;
     BOOL _requestActive;
     id <AFUISiriSession> _session;
-    id <SVSSiriViewControllerHosting> _host;
+    AFUISiriViewController *_host;
     AFConversationStore *_conversationStore;
     NSMutableArray *_conversations;
     id <SiriUIPresentation> _presentation;
@@ -43,6 +45,7 @@ __attribute__((visibility("hidden")))
     NSString *_currentAVRecordRoute;
     unsigned long long _requestStartedCount;
     long long _siriState;
+    NSTimer *__speechIdleTimer;
     NSTimer *__idleTimer;
     unsigned long long _wasSiriIdleAndQuiet;
     AFManagedStorageConnection *_domainObjectStorageConnection;
@@ -50,7 +53,7 @@ __attribute__((visibility("hidden")))
     NSString *_utteranceToSpeakAfterClearScreenCommand;
 }
 
-+ (BOOL)_isSecureForRemoteViewService;
+- (void).cxx_destruct;
 @property(retain, getter=_utteranceToSpeakAfterClearScreenCommand, setter=_setUtteranceToSpeakAfterClearScreenCommand:) NSString *utteranceToSpeakAfterClearScreenCommand; // @synthesize utteranceToSpeakAfterClearScreenCommand=_utteranceToSpeakAfterClearScreenCommand;
 @property(retain, getter=_repeatablePhrases, setter=_setRepeatablePhrases:) NSMutableArray *repeatablePhrases; // @synthesize repeatablePhrases=_repeatablePhrases;
 @property(getter=_isRequestActive, setter=_setRequestActive:) BOOL requestActive; // @synthesize requestActive=_requestActive;
@@ -60,6 +63,8 @@ __attribute__((visibility("hidden")))
 @property(getter=_isAcousticIdAllowed, setter=_setAcousticIdAllowed:) BOOL acousticIdAllowed; // @synthesize acousticIdAllowed=_acousticIdAllowed;
 @property(getter=_isIdleTimerEnabled, setter=_setIdleTimerEnabled:) BOOL _idleTimerEnabled; // @synthesize _idleTimerEnabled=__idleTimerEnabled;
 @property(retain, setter=_setIdleTimer:) NSTimer *_idleTimer; // @synthesize _idleTimer=__idleTimer;
+@property(getter=_isSpeechIdleTimerEnabled, setter=_setSpeechIdleTimerEnabled:) BOOL _speechIdleTimerEnabled; // @synthesize _speechIdleTimerEnabled=__speechIdleTimerEnabled;
+@property(retain, setter=_setSpeechIdleTimer:) NSTimer *_speechIdleTimer; // @synthesize _speechIdleTimer=__speechIdleTimer;
 @property(getter=_siriState, setter=_setSiriState:) long long siriState; // @synthesize siriState=_siriState;
 @property(nonatomic, getter=_supportsSpeechSynthesis) BOOL supportsSpeechSynthesis; // @synthesize supportsSpeechSynthesis=_supportsSpeechSynthesis;
 @property(getter=_requestStartedCount, setter=_setRequestStartedCount:) unsigned long long requestStartedCount; // @synthesize requestStartedCount=_requestStartedCount;
@@ -72,13 +77,12 @@ __attribute__((visibility("hidden")))
 @property(readonly, getter=_presentation) id <SiriUIPresentation> presentation; // @synthesize presentation=_presentation;
 @property(readonly, getter=_conversations) NSMutableArray *conversations; // @synthesize conversations=_conversations;
 @property(readonly, nonatomic, getter=_conversationStore) AFConversationStore *conversationStore; // @synthesize conversationStore=_conversationStore;
-@property __weak id <SVSSiriViewControllerHosting> host; // @synthesize host=_host;
+@property __weak AFUISiriViewController *host; // @synthesize host=_host;
 @property(readonly, nonatomic, getter=_session) id <AFUISiriSession> session; // @synthesize session=_session;
-- (void).cxx_destruct;
 - (id)_punchoutMetricsAceCommandIdForItemWithIdentifier:(id)arg1;
 - (void)_listenAfterSpeakingWithResult:(long long)arg1 recordedRequestCount:(unsigned long long)arg2;
 - (void)_audioSessionRouteDidChange:(id)arg1;
-- (void)_addErrorUtterance:(id)arg1;
+- (void)_addErrorUtterance:(id)arg1 dialogIdentifier:(id)arg2;
 - (void)_displayNotReadyError;
 - (void)_clearConnectionErrorDismissalTimer;
 - (void)_handleRequestError:(id)arg1;
@@ -87,12 +91,15 @@ __attribute__((visibility("hidden")))
 - (void)_rescheduleIdleTimerIfNeeded;
 - (void)_scheduleIdleTimer;
 - (void)_clearIdleTimer;
+- (void)_speechIdleTimerFired:(id)arg1;
+- (void)_scheduleSpeechIdleTimer;
+- (void)_clearSpeechIdleTimer;
 - (void)_performAppPunchOutCommand:(id)arg1 conversationItemIdentifier:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_performAppPunchOutCommand:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_cancelCurrentTTS:(id)arg1;
+- (void)_performSayItCommand:(id)arg1;
 - (void)_performGenericAceCommand:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)_dialogPhaseForItemAtIndexPath:(id)arg1;
-- (void)_updateLanguageCode;
 - (id)_presentationViewController;
 - (void)_setPresentation:(id)arg1;
 - (id)view;
@@ -107,10 +114,6 @@ __attribute__((visibility("hidden")))
 - (void)siriLanguageSpokenLanguageCodeDidChange:(id)arg1;
 - (void)siriPresentationClearContext:(id)arg1;
 - (void)siriPresentation:(id)arg1 didChangePeekMode:(unsigned long long)arg2;
-- (void)siriPresentationMicButtonLongPressEnded:(id)arg1;
-- (void)siriPresentationMicButtonLongPressBegan:(id)arg1;
-- (void)siriPresentationMicButtonWasTapped:(id)arg1;
-- (void)handlePasscodeUnlockForSiriPresentation:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)siriPresentation:(id)arg1 stashSnippetControllerCard:(id)arg2;
 - (void)siriPresentation:(id)arg1 didShowSnippetWithIdentifier:(id)arg2 metricsContext:(id)arg3 forInterval:(double)arg4;
 - (void)siriPresentation:(id)arg1 didScrollForInterval:(double)arg2;
@@ -121,15 +124,12 @@ __attribute__((visibility("hidden")))
 - (void)siriPresentationPresentAcousticIDSpinner:(id)arg1;
 - (void)getScreenshotImageForSiriPresentation:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)siriPresentation:(id)arg1 showBugTemplateWithInformation:(id)arg2;
-- (void)siriPresentationDidDismissBugReporter:(id)arg1;
-- (void)siriPresentationDidPresentBugReporter:(id)arg1;
 - (void)siriPresentation:(id)arg1 setBugReportingAvailable:(BOOL)arg2;
 - (void)siriPresentationContentHeightDidChange:(id)arg1;
 - (void)siriPresentationPulseHelpButton:(id)arg1;
 - (void)siriPresentation:(id)arg1 setHelpButtonEmphasized:(BOOL)arg2;
 - (void)siriPresentation:(id)arg1 willDismissViewController:(id)arg2;
 - (void)siriPresentation:(id)arg1 willPresentViewController:(id)arg2;
-- (void)siriPresentation:(id)arg1 setStatusViewUserInteractionEnabled:(BOOL)arg2;
 - (void)siriPresentation:(id)arg1 setStatusViewDisabled:(BOOL)arg2;
 - (void)siriPresentation:(id)arg1 setStatusViewHidden:(BOOL)arg2;
 - (void)notifyOnNextUserInteractionForSiriPresentation:(id)arg1;
@@ -158,6 +158,7 @@ __attribute__((visibility("hidden")))
 - (void)cancelRequestForSiriPresentation:(id)arg1;
 - (void)stopRecordingSpeechForSiriPresentation:(id)arg1;
 - (void)siriPresentation:(id)arg1 startRequestWithOptions:(id)arg2;
+- (double)windowWidthForForSiriPresentation:(id)arg1;
 - (double)contentWidthForForSiriPresentation:(id)arg1;
 - (BOOL)siriPresentation:(id)arg1 itemAtIndexPathIsVirgin:(id)arg2;
 - (void)siriPresentation:(id)arg1 setDomainObject:(id)arg2 forIdentifier:(id)arg3;
@@ -191,9 +192,9 @@ __attribute__((visibility("hidden")))
 - (void)siriSessionSpeechRecordingDidCancel;
 - (void)siriSessionSpeechRecordingDidEnd;
 - (void)siriSessionSpeechRecordingDidChangeAVRecordRoute:(id)arg1;
+- (void)siriSessionDidReceiveShowNextCardCommand:(id)arg1 completion:(id)arg2;
 - (void)siriSessionDidReceiveGuideUpdateCommand:(id)arg1;
 - (void)siriSessionDidReceiveHideSiriOverlayCommand:(id)arg1;
-- (void)siriSessionDidReceiveSetSuggestedUtterancesCommand:(id)arg1;
 - (void)siriSessionDidReceiveListenForPronunciationCommand:(id)arg1;
 - (void)siriSessionDidReceiveCloseAssistantCommand:(id)arg1;
 - (void)siriSessionDidReceiveAppPunchOutCommand:(id)arg1;
@@ -210,6 +211,7 @@ __attribute__((visibility("hidden")))
 - (void)siriSessionDidReceiveSpeechPartialResultCommand:(id)arg1;
 - (void)siriSessionDidReceiveSpeechRecognizedCommand:(id)arg1;
 - (void)siriSessionRequestsDismissal;
+- (void)siriSessionOpenApplicationWithBundleID:(id)arg1 URL:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)siriSessionOpenURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)siriSessionSupportsSpeechSynthesis:(BOOL)arg1;
 - (void)siriSessionDidReceiveOpenLinkCommand:(id)arg1;
@@ -217,6 +219,7 @@ __attribute__((visibility("hidden")))
 - (void)siriSessionDidChangeNetworkAvailability;
 - (void)siriSessionGetRequestContextWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)siriSessionDidTransitionFromState:(long long)arg1 toState:(long long)arg2 event:(long long)arg3;
+- (int)_mapState:(long long)arg1;
 - (void)siriSessionDidFinishRequestWithError:(id)arg1;
 - (void)siriSessionAudioRecordingDidChangePowerLevel:(float)arg1;
 - (void)siriSessionWillCancelRequest;
@@ -226,10 +229,11 @@ __attribute__((visibility("hidden")))
 - (void)aceCommandRecords:(id)arg1 didChangeResultForCommand:(id)arg2;
 - (void)setDomainObject:(id)arg1 forIdentifier:(id)arg2;
 - (id)domainObjectForIdentifier:(id)arg1;
-- (void)speechSynthesisDidStopSpeakingQueueIsEmpty:(BOOL)arg1;
-- (void)speechSynthesisDidStartSpeaking;
+- (void)speechSynthesisDidStopSpeakingWithIdentifier:(id)arg1 queueIsEmpty:(BOOL)arg2;
+- (void)speechSynthesisDidStartSpeakingWithIdentifier:(id)arg1;
 - (void)speechSynthesisExecuteAnimationForIdentifier:(id)arg1;
 - (void)speechSynthesisGetPreparedTextForIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (id)_speechIdentifierForConversationItem:(id)arg1;
 - (void)setSpeechSynthesis:(id)arg1;
 - (BOOL)_isSpeechSynthesisSpeaking;
 - (void)_cancelSpeechSynthesis;
@@ -238,7 +242,8 @@ __attribute__((visibility("hidden")))
 - (void)_synthesizePhoneticText:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_synthesizeSpeechWithText:(id)arg1 isPhonetic:(BOOL)arg2 provisionally:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_didCompleteActionForAceCommand:(id)arg1;
-- (void)_speakText:(id)arg1 provisionally:(BOOL)arg2 eligibleAfterDuration:(double)arg3 speakableUtteranceParser:(id)arg4 preparation:(CDUnknownBlockType)arg5 completion:(CDUnknownBlockType)arg6 animationBlock:(CDUnknownBlockType)arg7;
+- (void)_speakText:(id)arg1 audioData:(id)arg2 ignoreMuteSwitch:(BOOL)arg3 identifier:(id)arg4 provisionally:(BOOL)arg5 eligibleAfterDuration:(double)arg6 speakableUtteranceParser:(id)arg7 preparation:(CDUnknownBlockType)arg8 completion:(CDUnknownBlockType)arg9 animationBlock:(CDUnknownBlockType)arg10;
+- (void)_speakText:(id)arg1 identifier:(id)arg2 provisionally:(BOOL)arg3 eligibleAfterDuration:(double)arg4 speakableUtteranceParser:(id)arg5 preparation:(CDUnknownBlockType)arg6 completion:(CDUnknownBlockType)arg7 animationBlock:(CDUnknownBlockType)arg8;
 - (id)_aceCommandWithIdentifier:(id)arg1;
 - (void)_didStartActionForItemAtIndexPath:(id)arg1 inConversation:(id)arg2;
 - (void)_didStartActionForAceCommand:(id)arg1;
@@ -246,17 +251,16 @@ __attribute__((visibility("hidden")))
 - (void)_openURL:(id)arg1 appBundleID:(id)arg2 allowSiriDismissal:(BOOL)arg3;
 - (void)_openSensitiveURL:(id)arg1 delaySessionEndForTTS:(BOOL)arg2 conversationItemIdentifier:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_openSensitiveURL:(id)arg1 delaySessionEndForTTS:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)_requestDismissalFromHost:(BOOL)arg1;
+- (void)_requestDismissalFromHost:(BOOL)arg1 dismissalOptions:(id)arg2;
 - (void)didReceiveDismissalAction:(BOOL)arg1 delayForTTS:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)didChangeWindowHeight;
+- (void)didChangeWindowHeight:(BOOL)arg1;
 - (double)contentHeight;
 - (void)didPresentCreateBugTemplateWithConfirm:(BOOL)arg1 values:(id)arg2;
 - (void)didReceiveShortTapAction;
-- (void)didReceiveBugButtonLongPress;
 - (void)didReceiveReportBugAction;
 - (void)didReceiveHelpAction;
 - (void)setSession:(id)arg1;
-- (void)_requestPresentationDismissal:(BOOL)arg1;
+- (void)_requestPresentationDismissalWithDelayForTTS:(BOOL)arg1 dismissalOptions:(id)arg2;
 - (void)userInteractionDidOccur;
 - (void)siriWillShowPasscodeUnlock;
 - (void)siriWillShowPasscodeUnlockAndCancelRequest:(BOOL)arg1;
@@ -275,7 +279,8 @@ __attribute__((visibility("hidden")))
 - (void)_resetContext;
 - (id)_conversationWithIdentifier:(id)arg1;
 - (id)_activeConversation;
-- (id)_hostWithErrorHander:(CDUnknownBlockType)arg1;
+- (void)viewWillDisappear;
+- (void)viewWillAppear;
 - (void)_cancelLastRootProvisionalSnippetFromLastRequestInConversation:(id)arg1;
 - (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

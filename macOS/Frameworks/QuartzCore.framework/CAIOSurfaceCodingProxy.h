@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
     struct __IOSurface *_surface;
 }
 
++ (BOOL)supportsSecureCoding;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

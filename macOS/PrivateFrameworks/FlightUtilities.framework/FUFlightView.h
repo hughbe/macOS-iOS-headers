@@ -6,43 +6,40 @@
 
 #import "NSView.h"
 
-@class FUFlight, FULabel, FUPlaneTrackerAnnotationView, MKGeodesicPolyline, MKMapView, NSButton, NSLayoutConstraint, NSMutableArray;
+#import "FUFlightInfoViewProtocol.h"
+#import "NSPageControllerDelegate.h"
 
-@interface FUFlightView : NSView
+@class FUDotIndicator, FUFLightTrack, FUFlightPageController, FULabel, FUPlaneTrackerAnnotationView, MKMapView, NSArray, NSButton, NSLayoutConstraint, NSMutableArray, NSString;
+
+@interface FUFlightView : NSView <NSPageControllerDelegate, FUFlightInfoViewProtocol>
 {
     FUPlaneTrackerAnnotationView *_planeTracker;
-    NSMutableArray *_arcs;
-    MKGeodesicPolyline *_currentArc;
+    NSMutableArray *_tracks;
+    FUFLightTrack *_currentTrack;
+    NSMutableArray *_controllers;
+    FUFlightPageController *_pageViewController;
+    NSLayoutConstraint *_pageControllerHeightConstraint;
+    NSArray *_allLegs;
+    unsigned long long _displayStyle;
+    BOOL _ignoreMapUpdate;
     BOOL _highlightCurrentFlightLeg;
     BOOL _showInfoPanel;
     long long _style;
     long long _currentFocus;
     MKMapView *_mapView;
-    NSButton *_flightButton;
     NSView *_mapContainer;
     NSView *_infoView;
     FULabel *_loadingMapLabel;
     NSLayoutConstraint *_bottomInfoConstraint;
-    FUFlight *_flight;
-    FULabel *_labelAirlineName;
-    FULabel *_labelFlightCode;
-    FULabel *_labelStatusTitle;
-    FULabel *_labelStatus;
-    FULabel *_labelDepartureCity;
-    FULabel *_labelDepartureCode;
-    FULabel *_labelDepartureTerminal;
-    FULabel *_labelDepartureGate;
-    FULabel *_labelArrivalCity;
-    FULabel *_labelArrivalCode;
-    FULabel *_labelArrivalTerminal;
-    FULabel *_labelArrivalGate;
-    FULabel *_labelDepartureTitle;
-    FULabel *_labelDepartureDate;
-    FULabel *_labelDepartureDelay;
-    FULabel *_labelArrivalTitle;
-    FULabel *_labelArrivalDate;
-    FULabel *_labelArrivalDelay;
-    NSButton *_toggleTimeButton;
+    NSView *_flightPaginationContainer;
+    NSLayoutConstraint *_bottomPaginationContainerConstraint;
+    FUDotIndicator *_flightSelector;
+    NSButton *_previousFlightButton;
+    NSButton *_nextFlightButton;
+    NSArray *_flights;
+    long long _selectedFlight;
+    long long _selectedLeg;
+    id <FUFlightViewDelegate> _delegate;
     NSLayoutConstraint *_topMapMargin;
     NSLayoutConstraint *_bottomMapMargin;
     NSLayoutConstraint *_leftMapMargin;
@@ -52,44 +49,46 @@
     struct NSEdgeInsets _mapInsets;
 }
 
+- (void).cxx_destruct;
 @property __weak NSLayoutConstraint *mapHeight; // @synthesize mapHeight=_mapHeight;
 @property __weak NSLayoutConstraint *mapWidth; // @synthesize mapWidth=_mapWidth;
 @property __weak NSLayoutConstraint *rightMapMargin; // @synthesize rightMapMargin=_rightMapMargin;
 @property __weak NSLayoutConstraint *leftMapMargin; // @synthesize leftMapMargin=_leftMapMargin;
 @property __weak NSLayoutConstraint *bottomMapMargin; // @synthesize bottomMapMargin=_bottomMapMargin;
 @property __weak NSLayoutConstraint *topMapMargin; // @synthesize topMapMargin=_topMapMargin;
-@property __weak NSButton *toggleTimeButton; // @synthesize toggleTimeButton=_toggleTimeButton;
-@property __weak FULabel *labelArrivalDelay; // @synthesize labelArrivalDelay=_labelArrivalDelay;
-@property __weak FULabel *labelArrivalDate; // @synthesize labelArrivalDate=_labelArrivalDate;
-@property __weak FULabel *labelArrivalTitle; // @synthesize labelArrivalTitle=_labelArrivalTitle;
-@property __weak FULabel *labelDepartureDelay; // @synthesize labelDepartureDelay=_labelDepartureDelay;
-@property __weak FULabel *labelDepartureDate; // @synthesize labelDepartureDate=_labelDepartureDate;
-@property __weak FULabel *labelDepartureTitle; // @synthesize labelDepartureTitle=_labelDepartureTitle;
-@property __weak FULabel *labelArrivalGate; // @synthesize labelArrivalGate=_labelArrivalGate;
-@property __weak FULabel *labelArrivalTerminal; // @synthesize labelArrivalTerminal=_labelArrivalTerminal;
-@property __weak FULabel *labelArrivalCode; // @synthesize labelArrivalCode=_labelArrivalCode;
-@property __weak FULabel *labelArrivalCity; // @synthesize labelArrivalCity=_labelArrivalCity;
-@property __weak FULabel *labelDepartureGate; // @synthesize labelDepartureGate=_labelDepartureGate;
-@property __weak FULabel *labelDepartureTerminal; // @synthesize labelDepartureTerminal=_labelDepartureTerminal;
-@property __weak FULabel *labelDepartureCode; // @synthesize labelDepartureCode=_labelDepartureCode;
-@property __weak FULabel *labelDepartureCity; // @synthesize labelDepartureCity=_labelDepartureCity;
-@property __weak FULabel *labelStatus; // @synthesize labelStatus=_labelStatus;
-@property __weak FULabel *labelStatusTitle; // @synthesize labelStatusTitle=_labelStatusTitle;
-@property __weak FULabel *labelFlightCode; // @synthesize labelFlightCode=_labelFlightCode;
-@property __weak FULabel *labelAirlineName; // @synthesize labelAirlineName=_labelAirlineName;
+@property __weak id <FUFlightViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) BOOL showInfoPanel; // @synthesize showInfoPanel=_showInfoPanel;
 @property(nonatomic) BOOL highlightCurrentFlightLeg; // @synthesize highlightCurrentFlightLeg=_highlightCurrentFlightLeg;
-@property(retain, nonatomic) FUFlight *flight; // @synthesize flight=_flight;
-@property(retain) NSLayoutConstraint *bottomInfoConstraint; // @synthesize bottomInfoConstraint=_bottomInfoConstraint;
-@property __weak FULabel *loadingMapLabel; // @synthesize loadingMapLabel=_loadingMapLabel;
-@property __weak NSView *infoView; // @synthesize infoView=_infoView;
-@property __weak NSView *mapContainer; // @synthesize mapContainer=_mapContainer;
-@property __weak NSButton *flightButton; // @synthesize flightButton=_flightButton;
-@property __weak MKMapView *mapView; // @synthesize mapView=_mapView;
-@property long long currentFocus; // @synthesize currentFocus=_currentFocus;
+@property(nonatomic) long long selectedLeg; // @synthesize selectedLeg=_selectedLeg;
+@property(nonatomic) long long selectedFlight; // @synthesize selectedFlight=_selectedFlight;
+@property(retain, nonatomic) NSArray *flights; // @synthesize flights=_flights;
+@property(retain, nonatomic) NSButton *nextFlightButton; // @synthesize nextFlightButton=_nextFlightButton;
+@property(retain, nonatomic) NSButton *previousFlightButton; // @synthesize previousFlightButton=_previousFlightButton;
+@property(retain, nonatomic) FUDotIndicator *flightSelector; // @synthesize flightSelector=_flightSelector;
+@property(retain, nonatomic) NSLayoutConstraint *bottomPaginationContainerConstraint; // @synthesize bottomPaginationContainerConstraint=_bottomPaginationContainerConstraint;
+@property(retain, nonatomic) NSView *flightPaginationContainer; // @synthesize flightPaginationContainer=_flightPaginationContainer;
+@property(retain, nonatomic) NSLayoutConstraint *bottomInfoConstraint; // @synthesize bottomInfoConstraint=_bottomInfoConstraint;
+@property(retain, nonatomic) FULabel *loadingMapLabel; // @synthesize loadingMapLabel=_loadingMapLabel;
+@property(retain, nonatomic) NSView *infoView; // @synthesize infoView=_infoView;
+@property(retain, nonatomic) NSView *mapContainer; // @synthesize mapContainer=_mapContainer;
+@property(nonatomic) __weak MKMapView *mapView; // @synthesize mapView=_mapView;
+@property(nonatomic) long long currentFocus; // @synthesize currentFocus=_currentFocus;
+@property(nonatomic) BOOL ignoreMapUpdate; // @synthesize ignoreMapUpdate=_ignoreMapUpdate;
 @property(nonatomic) struct NSEdgeInsets mapInsets; // @synthesize mapInsets=_mapInsets;
+@property(nonatomic) unsigned long long displayStyle; // @synthesize displayStyle=_displayStyle;
 @property(nonatomic) long long style; // @synthesize style=_style;
-- (void).cxx_destruct;
+- (void)setBackgroundStyle:(long long)arg1;
+- (id)infoViewControllerCreate;
+- (void)saveRawResponse:(id)arg1;
+- (void)flightInfoView:(id)arg1 didUpdateFocus:(long long)arg2;
+- (BOOL)hasFollowupContent:(id)arg1;
+- (void)flightSelectionChange:(id)arg1;
+- (void)pageControllerDidEndLiveTransition:(id)arg1;
+- (void)pageControllerWillStartLiveTransition:(id)arg1;
+- (void)pageController:(id)arg1 didTransitionToObject:(id)arg2;
+- (void)pageController:(id)arg1 prepareViewController:(id)arg2 withObject:(id)arg3;
+- (id)pageController:(id)arg1 viewControllerForIdentifier:(id)arg2;
+- (id)pageController:(id)arg1 identifierForObject:(id)arg2;
 - (void)mapViewDidFinishRenderingMap:(id)arg1 fullyRendered:(BOOL)arg2;
 - (id)mapView:(id)arg1 viewForAnnotation:(id)arg2;
 - (id)mapView:(id)arg1 rendererForOverlay:(id)arg2;
@@ -99,11 +98,28 @@
 - (id)departureCamera;
 - (id)arrivalCamera;
 - (void)cleanupView;
-- (void)addArc:(id)arg1;
-- (void)layout;
-- (void)flightButtonTapped:(id)arg1;
-- (void)setupLabelStyles;
+- (void)addTrack:(id)arg1;
+- (void)updateMargins;
+- (void)updateBackForwardButtons:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)setAbsoluteIndex:(unsigned long long)arg1 animated:(BOOL)arg2;
+- (void)updateMapArcs;
+- (BOOL)setFlights:(id)arg1 selectedFlight:(long long)arg2 selectedLeg:(long long)arg3;
+- (id)allLegs;
+- (unsigned long long)absoluteLegIndex;
+- (id)flightForLeg:(id)arg1;
+- (id)currentLeg;
+- (id)currentFlight;
+- (void)setupStyles;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)dealloc;
+- (void)updateMapAppearance;
 - (void)awakeFromNib;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

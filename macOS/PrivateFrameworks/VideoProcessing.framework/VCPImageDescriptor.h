@@ -6,17 +6,24 @@
 
 #import "NSObject.h"
 
-@interface VCPImageDescriptor : NSObject
+#import "VCPDistanceDescriptorProtocol.h"
+
+@class VNImageprint;
+
+@interface VCPImageDescriptor : NSObject <VCPDistanceDescriptorProtocol>
 {
+    VNImageprint *_imagePrint;
 }
 
-+ (id)descriptorWithData:(id)arg1 isRaw:(BOOL)arg2;
++ (id)descriptorWithData:(id)arg1;
 + (id)descriptorWithImage:(struct __CVBuffer *)arg1;
 + (int)preferredPixelFormat;
-+ (BOOL)useDistanceIdentity;
-+ (BOOL)useVP;
-- (int)computeDistanceWith:(id)arg1 distance:(float *)arg2;
++ (BOOL)usePHAssetData;
+- (void).cxx_destruct;
+- (int)computeDistance:(float *)arg1 toDescriptor:(id)arg2;
 - (id)serialize;
+- (id)initWithData:(id)arg1;
+- (id)initWithImage:(struct __CVBuffer *)arg1;
 
 @end
 

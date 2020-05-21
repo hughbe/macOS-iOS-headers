@@ -8,14 +8,14 @@
 
 #import "BRCModule.h"
 
-@class BRCAccountSession, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, br_pacer;
+@class BRCAccountSession, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, br_pacer;
 
 __attribute__((visibility("hidden")))
 @interface BRCInflightProgressTracker : NSObject <BRCModule>
 {
     BRCAccountSession *_session;
-    struct NSMutableDictionary *_downloadProgressesByParentFileID;
-    struct NSMutableDictionary *_uploadProgressesByParentFileID;
+    NSMutableDictionary *_downloadProgressesByParentFileID;
+    NSMutableDictionary *_uploadProgressesByParentFileID;
     NSMutableSet *_parentFileIDsBeingHeldUntilNextFlush;
     NSMutableSet *_parentFileIDsWithChildrenUpdates;
     NSObject<OS_dispatch_queue> *_queue;
@@ -31,7 +31,7 @@ __attribute__((visibility("hidden")))
 - (void)_trackProgress:(id)arg1 forParentFoldersInGroup:(BOOL)arg2;
 - (id)progressUpdateForFileObjectID:(id)arg1;
 - (unsigned long long)_transferedSizeForDirectoryWithFileID:(id)arg1 getTotalSize:(unsigned long long *)arg2 getParentFileIDs:(id *)arg3 inGroup:(BOOL)arg4;
-- (struct NSMutableDictionary *)_progressesByParentFileIDsInGroup:(BOOL)arg1;
+- (id)_progressesByParentFileIDsInGroup:(BOOL)arg1;
 - (id)_progressUpdateForFileID:(id)arg1;
 - (void)_sendNotificationsForChildrenUpdates;
 - (void)close;

@@ -8,14 +8,14 @@
 
 @class SHKSharingService;
 
+__attribute__((visibility("hidden")))
 @interface NSSharingServiceReserved : NSObject
 {
     id <NSSharingServiceDelegate> delegate;
     SHKSharingService *service;
 }
 
-- (id)assignDelegate;
-- (void)setAssignDelegate:(id)arg1;
+- (void).cxx_destruct;
 - (void)dealloc;
 
 @end

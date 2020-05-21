@@ -28,6 +28,7 @@
     double _borderWidth;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL allowOffscreen; // @synthesize allowOffscreen=_allowOffscreen;
 @property(nonatomic) int preferredTabPosition; // @synthesize preferredTabPosition=_preferredTabPosition;
 @property(nonatomic) double borderWidth; // @synthesize borderWidth=_borderWidth;
@@ -51,6 +52,7 @@
 - (void)setIsAvailable:(BOOL)arg1 forTabIdentifier:(unsigned long long)arg2;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)_drawCursor;
+- (BOOL)wantsUpdateLayer;
 - (void)setCursorFrameInCarbonCoords:(struct CGRect)arg1;
 - (struct CGRect)_viewFrameForCursorTabPosition:(int)arg1;
 - (void)recalculateFrame;

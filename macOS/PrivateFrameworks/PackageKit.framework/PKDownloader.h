@@ -6,24 +6,31 @@
 
 #import "NSObject.h"
 
-@class NSTimer, PKDownloaderQueue, PKDownloaderSpeedTracker;
+@class NSString, NSTimer, PKDownloaderQueue, PKDownloaderSpeedTracker;
 
 @interface PKDownloader : NSObject
 {
-    id _delegate;
     PKDownloaderQueue *_queue;
     BOOL _isQueueRunning;
     BOOL _stopNotificationPending;
     PKDownloaderSpeedTracker *_downloadTracker;
     PKDownloaderSpeedTracker *_checksumTracker;
     NSTimer *_progressTimer;
+    NSString *_lastKnownPeerAddress;
+    BOOL _downloadInBackground;
+    CDUnknownBlockType _loggingBlock;
+    id _delegate;
 }
 
-+ (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
-+ (id)keyPathsForValuesAffectingEstimatedTimeRemaining;
 + (void)setUserAgent:(id)arg1;
 + (id)userAgent;
-- (BOOL)_wantHTTPLogging;
+- (void).cxx_destruct;
+@property __weak id delegate; // @synthesize delegate=_delegate;
+@property(copy, nonatomic) CDUnknownBlockType loggingBlock; // @synthesize loggingBlock=_loggingBlock;
+@property BOOL downloadInBackground; // @synthesize downloadInBackground=_downloadInBackground;
+- (void)__runBlock:(CDUnknownBlockType)arg1;
+- (void)_runBlockOnThread:(id)arg1 withBlock:(CDUnknownBlockType)arg2 waitUntilDone:(BOOL)arg3;
+- (id)_peerAddressForURLResponse:(id)arg1;
 - (void)_element:(id)arg1 didFailWithError:(id)arg2;
 - (void)_elementDidFinish:(id)arg1;
 - (void)_updateDownloadSpeed;
@@ -31,10 +38,10 @@
 - (void)_updateIndicators:(id)arg1;
 - (void)_notifyDelegateIfQueueStopped:(id)arg1;
 - (BOOL)_cancelDownloadCapturingResumeData:(id)arg1;
-- (void)_postProcessDownloadWithArgs:(id)arg1;
+- (void)_postProcessDownloadWithElement:(id)arg1 isValid:(BOOL)arg2;
 - (BOOL)_validatePackageAtPath:(id)arg1;
-- (void)_startNativeValidationForDownload:(id)arg1;
-- (void)_startChecksumValidationForDownload:(id)arg1;
+- (void)_startNativeValidationForDownload:(id)arg1 returningOnThread:(id)arg2;
+- (void)_startChecksumValidationForDownload:(id)arg1 returningOnThread:(id)arg2;
 - (void)_finishFileCopyWithResult:(id)arg1;
 - (void)_startFileCopyForQueueElement:(id)arg1;
 - (void)_startDownloadForQueueElement:(id)arg1;
@@ -54,20 +61,20 @@
 - (void)startQueue;
 - (BOOL)queueContainsPackageReference:(id)arg1;
 - (void)queuePackageReference:(id)arg1 destination:(id)arg2;
-- (void)setMaxConcurrentDownloadCount:(long long)arg1;
-- (long long)maxConcurrentDownloadCount;
+@property long long maxConcurrentDownloadCount;
 - (id)description;
 - (void)dealloc;
 - (id)initWithDelegate:(id)arg1;
 - (void)download:(id)arg1 didFailWithError:(id)arg2;
 - (void)downloadDidFinish:(id)arg1;
+- (void)download:(id)arg1 receiveLogWithLevel:(unsigned long long)arg2 withLogMesage:(id)arg3;
 - (void)download:(id)arg1 didCheckDataOfLength:(unsigned long long)arg2;
 - (void)download:(id)arg1 didReceiveDataOfLength:(unsigned long long)arg2;
 - (void)download:(id)arg1 didReceiveResponse:(id)arg2;
-- (void)download:(id)arg1 willResumeFromByte:(long long)arg2;
+- (void)download:(id)arg1 receivedResumeBytesOfLength:(long long)arg2;
 - (id)download:(id)arg1 willSendRequest:(id)arg2 redirectResponse:(id)arg3;
-- (void)download:(id)arg1 didCancelAuthenticationChallenge:(id)arg2;
-- (void)download:(id)arg1 didReceiveAuthenticationChallenge:(id)arg2;
+- (void)download:(id)arg1 didReceiveChallenge:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
+- (void)download:(id)arg1 willSendRequestForAuthenticationChallenge:(id)arg2;
 
 @end
 

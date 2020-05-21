@@ -10,20 +10,38 @@
 {
     unsigned long long _time;
     id _value;
+    unsigned long long _tolerance;
+    unsigned long long _logTime;
 }
 
++ (struct _NSRange)overflowSafeRangeWithTime:(unsigned long long)arg1 tolerance:(unsigned long long)arg2;
++ (BOOL)rangeWouldOverflowWithTime:(unsigned long long)arg1 tolerance:(unsigned long long)arg2;
++ (struct _NSRange)underflowSafeRangeWithTime:(unsigned long long)arg1 tolerance:(unsigned long long)arg2;
++ (BOOL)rangeWouldUnderflowWithTime:(unsigned long long)arg1 tolerance:(unsigned long long)arg2;
++ (struct _NSRange)rangeWithTime:(unsigned long long)arg1 tolerance:(unsigned long long)arg2;
++ (struct _NSRange)rangeWithExactTime:(unsigned long long)arg1;
++ (id)failureWithError:(id)arg1 timeInterval:(double)arg2 tolerance:(double)arg3;
++ (id)failureWithError:(id)arg1 time:(unsigned long long)arg2 tolerance:(unsigned long long)arg3;
 + (id)failureWithError:(id)arg1 time:(unsigned long long)arg2;
++ (id)completionResultWithTimeInterval:(double)arg1 tolerance:(double)arg2;
++ (id)completionResultWithTime:(unsigned long long)arg1 tolerance:(unsigned long long)arg2;
 + (id)completionResultWithTime:(unsigned long long)arg1;
++ (id)resultWithTimeInterval:(double)arg1 tolerance:(double)arg2 value:(id)arg3;
++ (id)resultWithTime:(unsigned long long)arg1 tolerance:(unsigned long long)arg2 value:(id)arg3;
 + (id)resultWithTime:(unsigned long long)arg1 value:(id)arg2;
+- (void).cxx_destruct;
+@property(readonly) unsigned long long logTime; // @synthesize logTime=_logTime;
+@property(readonly) unsigned long long tolerance; // @synthesize tolerance=_tolerance;
 @property(readonly) id value; // @synthesize value=_value;
 @property(readonly) unsigned long long time; // @synthesize time=_time;
-- (void).cxx_destruct;
-@property(readonly) BOOL isResultEvent;
+- (struct _NSRange)timeRange;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
+@property(readonly) BOOL isResultEvent;
 - (id)description;
-@property(readonly) int logTime;
+- (id)formattedTimeString;
 @property(readonly) id logValue;
-- (id)initWithValue:(id)arg1 time:(unsigned long long)arg2;
+- (id)initWithValue:(id)arg1 time:(unsigned long long)arg2 tolerance:(unsigned long long)arg3;
 
 @end
 

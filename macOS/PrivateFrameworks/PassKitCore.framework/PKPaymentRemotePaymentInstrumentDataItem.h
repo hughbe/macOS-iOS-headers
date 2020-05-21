@@ -14,11 +14,15 @@
 
 + (long long)dataType;
 - (BOOL)isValidWithError:(id *)arg1;
+- (unsigned long long)peerPaymentAccountState;
+- (id)peerPaymentAccountBalance;
+- (BOOL)hasAssociatedPeerPaymentAccount;
 @property(readonly, nonatomic) BOOL requiresBillingAddress;
 @property(readonly, nonatomic) CNContact *billingAddress;
 @property(readonly, nonatomic) PKPaymentApplication *paymentApplication;
 @property(readonly, nonatomic) PKRemotePaymentInstrument *remotePaymentInstrument;
 @property(readonly, nonatomic) PKRemoteDevice *remoteDevice;
+- (id)errors;
 
 @end
 

@@ -8,18 +8,20 @@
 
 #import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSData, NSDictionary, NSEntityDescription, NSMutableDictionary, NSString;
 
-@interface NSPropertyDescription : NSObject <NSCoding, NSCopying>
+@interface NSPropertyDescription : NSObject <NSSecureCoding, NSCoding, NSCopying>
 {
     NSString *_versionHashModifier;
-    id _underlyingProperty;
     NSData *_versionHash;
     NSEntityDescription *_entity;
     NSString *_name;
     NSArray *_validationPredicates;
     NSArray *_validationWarnings;
+    struct _NSExtraPropertyIVars *_extraIvars;
+    NSMutableDictionary *_userInfo;
     struct __propertyDescriptionFlags {
         unsigned int _isReadOnly:1;
         unsigned int _isTransient:1;
@@ -30,13 +32,18 @@
         unsigned int _isStoredInExternalRecord:1;
         unsigned int _extraIvarsAreInDataBlob:1;
         unsigned int _isOrdered:1;
-        unsigned int _reservedPropertyDescription:23;
+        unsigned int _hasMaxValueInExtraIvars:1;
+        unsigned int _hasMinValueInExtraIvars:1;
+        unsigned int _storeBinaryDataExternally:1;
+        unsigned int _preserveValueOnDelete:1;
+        unsigned int _isTriggerBacked:1;
+        unsigned int _isFileBackedFuture:1;
+        unsigned int _reservedPropertyDescription:1;
     } _propertyDescriptionFlags;
-    void *_extraIvars;
-    NSMutableDictionary *_userInfo;
-    long long _entitysReferenceIDForProperty;
+    short _entitysReferenceIDForProperty;
 }
 
++ (BOOL)supportsSecureCoding;
 + (void)initialize;
 @property(copy) NSString *renamingIdentifier;
 @property(getter=isStoredInExternalRecord) BOOL storedInExternalRecord;
@@ -56,6 +63,7 @@
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)_underlyingProperty;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
@@ -77,6 +85,7 @@
 - (BOOL)_isEditable;
 - (long long)_entitysReferenceID;
 - (void)_setEntitysReferenceID:(long long)arg1;
+- (void)_setEntityAndMaintainIndices:(id)arg1;
 - (void)_setEntity:(id)arg1;
 - (id)_initWithName:(id)arg1;
 - (BOOL)_isToManyRelationship;
@@ -87,7 +96,14 @@
 - (void)_replaceValidationPredicates:(id)arg1 andWarnings:(id)arg2;
 - (struct _NSExtraPropertyIVars *)_extraIVars;
 - (void)_initializeExtraIVars;
+- (BOOL)_isSchemaEqual:(id)arg1;
 - (BOOL)_epsilonEquals:(id)arg1 rhs:(id)arg2 withFlags:(int)arg3;
+- (BOOL)_isFileBackedFuture;
+- (BOOL)_isTriggerBacked;
+- (BOOL)_preserveValueOnDelete;
+- (BOOL)_storeBinaryDataExternally;
+- (BOOL)_hasMinValueInExtraIvars;
+- (BOOL)_hasMaxValueInExtraIvars;
 - (void)setStoredInTruth:(BOOL)arg1;
 - (BOOL)isStoredInTruth;
 - (void)setStoredInTruthFile:(BOOL)arg1;

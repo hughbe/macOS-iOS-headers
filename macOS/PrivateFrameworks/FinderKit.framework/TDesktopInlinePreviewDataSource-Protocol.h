@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "TValidatorClientProtocol.h"
+#import "NSObject.h"
 
 @class NSDictionary, NSView;
 
-@protocol TDesktopInlinePreviewDataSource <TValidatorClientProtocol>
+@protocol TDesktopInlinePreviewDataSource <NSObject>
 - (void)inlinePreviewIsVisible:(_Bool)arg1 forItem:(id <QLPreviewItem>)arg2;
 - (void)inlinePreviewWillLoadForItem:(id <QLPreviewItem>)arg1;
 - (struct CGRect)inlinePreviewContentFrameForItem:(id <QLPreviewItem>)arg1 inHostingView:(NSView *)arg2;

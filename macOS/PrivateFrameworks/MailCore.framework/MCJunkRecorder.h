@@ -11,21 +11,21 @@
 @interface MCJunkRecorder : NSObject
 {
     NSMutableArray *_imageInfos;
-    BOOL _isSigned;
     BOOL _isShort;
+    BOOL _isSigned;
     unsigned long long _imageCount;
     unsigned long long _characterCount;
     double _imageToTextRatio;
     double _lsmScore;
 }
 
+- (void).cxx_destruct;
 @property double lsmScore; // @synthesize lsmScore=_lsmScore;
-@property BOOL isShort; // @synthesize isShort=_isShort;
-@property BOOL isSigned; // @synthesize isSigned=_isSigned;
 @property double imageToTextRatio; // @synthesize imageToTextRatio=_imageToTextRatio;
 @property unsigned long long characterCount; // @synthesize characterCount=_characterCount;
 @property unsigned long long imageCount; // @synthesize imageCount=_imageCount;
-- (void).cxx_destruct;
+@property BOOL isSigned; // @synthesize isSigned=_isSigned;
+@property BOOL isShort; // @synthesize isShort=_isShort;
 - (void)appendImageJunkInfo:(id)arg1;
 @property(readonly, copy) NSArray *imageInfos;
 - (id)description;

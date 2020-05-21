@@ -12,23 +12,23 @@
 
 @interface MFEWSCreateMessageRequestOperation : MFEWSCreateItemRequestOperation <NSCoding>
 {
+    NSString *_existingItemIdString;
     MCMessage *_message;
     NSData *_data;
     long long _flags;
     NSString *_sender;
-    NSString *_existingItemIdString;
     NSDictionary *_recipientsByHeaderKey;
     MFEWSGetItemsResponseOperation *_getItemsResponse;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) MFEWSGetItemsResponseOperation *getItemsResponse; // @synthesize getItemsResponse=_getItemsResponse;
 @property(readonly, copy, nonatomic) NSDictionary *recipientsByHeaderKey; // @synthesize recipientsByHeaderKey=_recipientsByHeaderKey;
-@property(copy, nonatomic) NSString *existingItemIdString; // @synthesize existingItemIdString=_existingItemIdString;
 @property(readonly, copy, nonatomic) NSString *sender; // @synthesize sender=_sender;
 @property(readonly, nonatomic) long long flags; // @synthesize flags=_flags;
 @property(readonly, nonatomic) NSData *data; // @synthesize data=_data;
 @property(readonly, nonatomic) MCMessage *message; // @synthesize message=_message;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *existingItemIdString; // @synthesize existingItemIdString=_existingItemIdString;
 - (id)prepareRequest;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

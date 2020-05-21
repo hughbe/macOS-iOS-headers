@@ -21,23 +21,29 @@
     unsigned long long _materialFace;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long materialFace; // @synthesize materialFace=_materialFace;
 @property(retain, nonatomic) MDLMaterial *baseMaterial; // @synthesize baseMaterial=_baseMaterial;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long count;
 - (id)objectForKeyedSubscript:(id)arg1;
 - (id)objectAtIndexedSubscript:(unsigned long long)arg1;
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
-@property(readonly, nonatomic) struct BidirectionalScatteringDistributionFunction *bsdf;
+- (struct BidirectionalScatteringDistributionFunction *)bsdf;
 - (void)removeAllProperties;
 - (void)removeProperty:(id)arg1;
 - (void)setProperty:(id)arg1;
+- (id)propertiesWithSemantic:(unsigned long long)arg1;
 - (id)propertyWithSemantic:(unsigned long long)arg1;
 - (id)propertyNamed:(id)arg1;
+- (void)conformToMatProperties;
 - (id)initWithName:(id)arg1 physicallyPlausibleBSDF:(struct PhysicallyPlausibleDistribution *)arg2;
 - (id)initWithName:(id)arg1 scatteringFunction:(id)arg2;
 - (id)init;
+- (void)loadTexturesUsingResolver:(id)arg1;
+- (void)loadTexturesUsingResolver:(id)arg1 cache:(id)arg2;
+- (void)loadTexturesUsingArchiveAssetResolver:(id)arg1 cache:(id)arg2;
+- (void)resolveTexturesWithResolver:(id)arg1;
 - (void)setScatteringFunction:(id)arg1;
 @property(readonly, retain, nonatomic) MDLScatteringFunction *scatteringFunction;
 

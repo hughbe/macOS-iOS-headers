@@ -14,6 +14,7 @@
 }
 
 + (id)statisticCompositeWithStatistics:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSArray *statistics; // @synthesize statistics=_statistics;
 - (id)aggregateReport;
 - (id)structuredReport;
@@ -35,7 +36,6 @@
 - (void)visitRecordSync:(id)arg1;
 - (void)visitTypologyRecord:(id)arg1;
 - (void)visitTypologyLog:(id)arg1;
-- (void)dealloc;
 - (id)initWithArray:(id)arg1;
 
 @end

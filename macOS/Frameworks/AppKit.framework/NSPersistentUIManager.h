@@ -6,45 +6,32 @@
 
 #import "NSObject.h"
 
-@class NSMapTable, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSPersistentUICrashHandler, NSPersistentUIPreservedStateDirectory, NSPersistentUIRestorer, NSPersistentUISecureURLHerder, NSPersistentUIWindowSnapshotter, NSString, NSURL;
+#import "NSPersistentUIFlushHandler.h"
 
-@interface NSPersistentUIManager : NSObject
+@class NSMapTable, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSPersistentUICrashHandler, NSPersistentUIEncodingQueue, NSPersistentUIFileManager, NSPersistentUIFlushScheduler, NSPersistentUIRestorer, NSPersistentUIWindowSnapshotter, NSString;
+
+__attribute__((visibility("hidden")))
+@interface NSPersistentUIManager : NSObject <NSPersistentUIFlushHandler>
 {
-    int spinlock;
-    CDUnknownBlockType flushTimer;
-    double scheduledFlushDeadline;
-    double scheduledFlushDate;
-    unsigned int disableRestorableStateWritingCounter;
+    NSPersistentUIEncodingQueue *_encodingQueue;
     NSObject<OS_dispatch_queue> *workQueue;
     NSMutableArray *sortedWindowInfos;
     NSMapTable *objectToPendingKeyPaths;
     NSMutableArray *pendingRecords;
     NSMutableDictionary *additionalBuckets;
-    NSURL *persistentStateDirectoryURL;
-    NSString *bundleID;
-    NSPersistentUIRestorer *stateRestorer;
-    NSPersistentUICrashHandler *crashHandler;
-    NSPersistentUISecureURLHerder *urlHerder;
-    NSPersistentUIWindowSnapshotter *windowSnapshotter;
-    NSObject<OS_dispatch_queue> *IOQueue;
-    int stateFileFD;
-    int publicPlistFD;
-    unsigned long long currentFileSize;
-    unsigned long long fileSizeAfterLastRewrite;
-    unsigned int publicPlistChecksum;
-    BOOL stateDirectoryHasBeenRefreshed;
-    BOOL stateFileHasBeenCreated;
-    BOOL elideAllFileWrites;
-    BOOL isClosedToChanges;
-    NSPersistentUIPreservedStateDirectory *rawStateDirectoryAtLaunch;
-    BOOL rawHadValidStateDirectoryAtLaunch;
+    struct os_unfair_lock_s _lock;
+    NSPersistentUIRestorer *_stateRestorer;
+    NSPersistentUICrashHandler *_crashHandler;
+    BOOL _isClosedToChanges;
+    NSPersistentUIFileManager *_fileManager;
+    NSPersistentUIFlushScheduler *_flushScheduler;
+    NSPersistentUIWindowSnapshotter *_windowSnapshotter;
     BOOL treatEverythingAsDirty;
-    BOOL suppressedCGWindowOrderingSuccessfully;
-    int suppressedCGWindowOrderingStatus;
-    unsigned int contiguousInactiveFlushCount;
 }
 
 + (id)unarchiver:(id)arg1 didDecodeObject:(id)arg2;
++ (void)nibDecoder:(id)arg1 didDecodeObject:(id)arg2;
++ (void)_didDecodeObject:(id)arg1 uid:(unsigned int)arg2;
 + (id)_debugUnrestoredWindows;
 + (id)sharedManager;
 + (id)copyDebugDumpStateDirectory:(id)arg1;
@@ -55,19 +42,8 @@
 + (BOOL)_suppressCGWindowOrdering;
 + (void)_NSPersistentUIDestroyTalagentWindows:(unsigned int)arg1:(id)arg2;
 + (id)_NSPersistentUIAcquireTalagentWindowsOnConnections:(unsigned int)arg1:(id)arg2;
-@property BOOL rawHadValidStateDirectoryAtLaunch; // @synthesize rawHadValidStateDirectoryAtLaunch;
-@property(retain) NSPersistentUIPreservedStateDirectory *rawStateDirectoryAtLaunch; // @synthesize rawStateDirectoryAtLaunch;
 - (BOOL)shouldRestoreStateOnLaunch;
-- (void)writePublicPlistWithOpenWindowIDs:(id)arg1 optionallyWaitingUntilDone:(BOOL)arg2;
-- (void)writePublicPlistData:(id)arg1;
-- (void)writeRecords:(id)arg1 withWindowInfos:(id)arg2 flushingStaleData:(BOOL)arg3;
-- (void)rewriteFile:(int)arg1 withWindowInfos:(id)arg2 withImpendingRecords:(id)arg3;
-- (unsigned long long)writeRecords:(id)arg1 toFile:(int)arg2;
-- (BOOL)_trySystemCallDescribedBy:(const char *)arg1 executor:(CDUnknownBlockType)arg2;
-- (void)elideAllFileWrites;
-- (int)openPersistentStateFile;
-- (BOOL)refreshStateDirectoryIfNecessary;
-- (void)tryCreatingPersistentStateDirectoryForURL:(id)arg1;
+- (void)writePublicPlistWithOpenWindowIDs:(id)arg1;
 - (BOOL)promptToIgnorePersistentState;
 - (BOOL)hasFinishedRestoringWindows;
 - (void)ignoreAnyPreexistingPersistentState;
@@ -82,26 +58,31 @@
 - (void)addPendingKeyPath:(id)arg1 forObject:(id)arg2;
 - (void)changeWindow:(unsigned int)arg1 toStatus:(int)arg2 withConditionalGeneration:(unsigned int)arg3;
 - (void)setPublicProperties:(id)arg1 forWindowID:(unsigned int)arg2;
+- (void)_setPublicProperties:(id)arg1 forWindowID:(unsigned int)arg2;
 - (id)windowInfoForWindowID:(unsigned int)arg1 createIfNecessary:(BOOL)arg2;
-- (void)applicationDidDeactivate:(id)arg1;
 - (void)refreshEncryptionKey:(BOOL)arg1;
 - (void)clearCrashCountFileIfNecessary;
 - (long long)crashBlameCounter;
 - (unsigned int)modifyCrashBlameCounterBy:(int)arg1;
 - (void)enableRestorableStateWriting;
 - (void)disableRestorableStateWriting;
+- (void)invalidateStateDirectoryAtLaunch;
 - (id)stateDirectoryAtLaunch;
 - (BOOL)hasPersistentStateToRestore;
-- (void)addObjectForKeyedState:(id)arg1 type:(int)arg2 underKey:(id)arg3 forIdentifier:(id)arg4 inWindow:(unsigned int)arg5 inBackground:(BOOL)arg6;
+- (void)addObjectInBackgroundForKeyedState:(id)arg1 underKey:(id)arg2 forIdentifier:(id)arg3 inWindow:(unsigned int)arg4;
 - (void)acquireDirtyState;
+- (void)flushPersistentStateAndClose;
 - (void)flushPersistentStateAndClose:(BOOL)arg1 waitingUntilDone:(BOOL)arg2;
+- (void)_finishPendingChangesImmediatelyWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)fullyDirtyAndReopenPersistentState;
 - (void)discardAllPersistentStateAndClose;
-- (void)cancelFlushTimer;
-- (void)flushAllChangesOptionallyWaitingUntilDone:(BOOL)arg1 updatingSnapshots:(BOOL)arg2;
-- (id)persistentStateFileURL;
+- (void)_cancelFlushTimer;
+- (id)_flushScheduler;
+- (void)flushForScheduler:(id)arg1;
+- (void)flushAllChanges;
 - (id)persistentStateDirectoryURL;
-- (id)init;
+- (id)initWithBundleID:(id)arg1;
+- (void)dealloc;
 - (id)copyPersistentCarbonWindowDictionariesAtTimeOfAppLaunch;
 - (void)deletePersistentWindow:(unsigned int)arg1;
 - (void)setObject:(id)arg1 forKey:(id)arg2 forPersistentWindowID:(unsigned int)arg3;
@@ -109,6 +90,12 @@
 - (void)destroyExternallyCreatedWindows:(id)arg1;
 - (id)copyAcquiredExternallyCreatedWindows;
 - (void)beginAcquiringExternallyCreatedWindows;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

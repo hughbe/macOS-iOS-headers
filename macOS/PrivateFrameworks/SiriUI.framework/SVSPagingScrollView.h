@@ -13,6 +13,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
+- (BOOL)isAccessibilityElement;
 - (BOOL)isFlipped;
 - (void)scrollToSubview:(id)arg1 animated:(BOOL)arg2;
 - (void)layout;

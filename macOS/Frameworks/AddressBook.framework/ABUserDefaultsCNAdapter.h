@@ -8,15 +8,15 @@
 
 #import "CNFoundationUserDefaults.h"
 
-@class ABUserDefaults, NSString;
+@class ABUserDefaults, NSDictionary, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABUserDefaultsCNAdapter : NSObject <CNFoundationUserDefaults>
 {
     ABUserDefaults *_userDefaults;
 }
 
 + (id)adapterWithUserDefaults:(id)arg1;
+@property(nonatomic) NSDictionary *filteredAccountsAndContainers;
 - (id)countryCode;
 - (unsigned long long)sortOrder;
 @property(nonatomic, getter=isShortNameFormatEnabled) BOOL shortNameFormatEnabled;

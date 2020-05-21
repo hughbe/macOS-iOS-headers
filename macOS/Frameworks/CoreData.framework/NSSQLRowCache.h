@@ -18,7 +18,7 @@ __attribute__((visibility("hidden")))
 + (void)initialize;
 - (id)sqlCore;
 - (void)dealloc;
-- (id)initWithSQLCore:(id)arg1;
+- (id)initWithPersistentStore:(id)arg1;
 
 @end
 

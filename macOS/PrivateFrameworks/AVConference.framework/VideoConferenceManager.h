@@ -8,7 +8,7 @@
 
 #import "VideoConferenceDelegate.h"
 
-@class ICEResultWaitQueue, NSMutableArray, NSObject<OS_dispatch_queue>, VCNetworkAgent, VCVTPWrapper, VideoConference;
+@class ICEResultWaitQueue, NSMutableArray, NSObject<OS_dispatch_queue>, VideoConference;
 
 __attribute__((visibility("hidden")))
 @interface VideoConferenceManager : NSObject <VideoConferenceDelegate>
@@ -23,9 +23,9 @@ __attribute__((visibility("hidden")))
     ICEResultWaitQueue *resultQueue;
     struct tagHANDLE *hSIP;
     int sipRefCount;
-    VCVTPWrapper *_vtpWrapper;
+    id _vtpWrapper;
     BOOL isVTPInitialized;
-    VCNetworkAgent *_networkAgent;
+    id _networkAgent;
 }
 
 + (void)addNSError:(id)arg1 toConferenceXPCArgumentDictionary:(id)arg2;
@@ -43,23 +43,13 @@ __attribute__((visibility("hidden")))
 @property VideoConference *conferenceWithMic;
 - (void)removeVideoConference:(id)arg1;
 - (void)addVideoConference:(id)arg1;
-- (void)stopSIP;
+- (void)stopSIPWithTransportType:(unsigned int)arg1;
 - (void)cleanupVTP;
-- (id)defaultNetworkAgent;
-- (void)unassertNetworkAgent;
-- (void)assertNetworkAgent;
-@property(readonly) VCVTPWrapper *vtpWrapper;
-- (void)stopVTP;
-- (void)startVTP;
 - (BOOL)isSIPHandleValid:(struct tagHANDLE *)arg1;
-- (void)startSIPWithPacketMultiplexMode:(int)arg1;
+- (void)startSIPWithPacketMultiplexMode:(int)arg1 transportType:(unsigned int)arg2;
 - (void)createSIPWithPacketMultiplexMode:(int)arg1;
+- (void)setupVTPCallback;
 - (struct tagHANDLE *)SIPHandle;
-- (void)videoConference:(id)arg1 didStopCaptioningWithReason:(unsigned char)arg2;
-- (void)videoConference:(id)arg1 didStartCaptioningWithReason:(unsigned char)arg2;
-- (void)videoConference:(id)arg1 didDisableCaptions:(BOOL)arg2 error:(id)arg3;
-- (void)videoConference:(id)arg1 didEnableCaptions:(BOOL)arg2 error:(id)arg3;
-- (void)videoConference:(id)arg1 didUpdateCaptions:(id)arg2;
 - (void)videoConference:(id)arg1 remoteCallingModeChanged:(unsigned int)arg2 forCallID:(unsigned int)arg3;
 - (void)videoConference:(id)arg1 closeConnectionForCallID:(unsigned int)arg2;
 - (void)videoConference:(id)arg1 localAudioEnabled:(BOOL)arg2 forCallID:(unsigned int)arg3 error:(id)arg4;
@@ -85,6 +75,7 @@ __attribute__((visibility("hidden")))
 - (void)videoConference:(id)arg1 remoteMediaStalled:(BOOL)arg2 callID:(unsigned int)arg3;
 - (void)videoConference:(id)arg1 receivedNoRemotePacketsForTime:(double)arg2 callID:(unsigned int)arg3;
 - (void)videoConference:(id)arg1 withCallID:(unsigned int)arg2 didPauseVideo:(BOOL)arg3 error:(id)arg4;
+- (void)videoConference:(id)arg1 withCallID:(unsigned int)arg2 isSendingAudio:(BOOL)arg3 error:(id)arg4;
 - (void)videoConference:(id)arg1 withCallID:(unsigned int)arg2 didPauseAudio:(BOOL)arg3 error:(id)arg4;
 - (void)videoConference:(id)arg1 didStopWithCallID:(unsigned int)arg2 error:(id)arg3 callMetadata:(id)arg4;
 - (void)videoConference:(id)arg1 didStartSession:(BOOL)arg2 withCallID:(unsigned int)arg3 withUserInfo:(id)arg4 error:(id)arg5;

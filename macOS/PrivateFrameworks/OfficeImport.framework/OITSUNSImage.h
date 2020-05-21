@@ -19,7 +19,6 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (id)NSImage;
 - (struct CGImage *)p_CGImageForGraphicsContext:(id)arg1 size:(struct CGSize)arg2;
-- (id)imagePartsWithLeftCapWidth:(double)arg1 rightCapWidth:(double)arg2 topCapHeight:(double)arg3 bottomCapHeight:(double)arg4;
 - (id)stretchedImageOfSize:(struct CGSize)arg1 leftCapWidth:(double)arg2 rightCapWidth:(double)arg3 topCapHeight:(double)arg4 bottomCapHeight:(double)arg5;
 - (struct CGImage *)CGImageForSize:(struct CGSize)arg1;
 - (struct CGImage *)CGImageForContentsScale:(double)arg1;

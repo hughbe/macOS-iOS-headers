@@ -13,7 +13,6 @@
     AVAssetReaderVideoCompositionOutputInternal *_videoCompositionOutputInternal;
 }
 
-+ (id)_videoCompositionProcessorPropertiesByAddingColorProperties:(id)arg1 toVideoCompositionProcessorProperties:(id)arg2;
 + (id)assetReaderVideoCompositionOutputWithVideoTracks:(id)arg1 videoSettings:(id)arg2;
 - (BOOL)_enableTrackExtractionReturningError:(id *)arg1;
 - (id)_videoCompositionProcessorColorProperties;
@@ -30,7 +29,6 @@
 @property(readonly, nonatomic) NSArray *videoTracks;
 - (id)description;
 - (BOOL)alwaysCopiesSampleData;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithVideoTracks:(id)arg1 videoSettings:(id)arg2;
 - (id)init;

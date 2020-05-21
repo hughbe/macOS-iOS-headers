@@ -8,13 +8,15 @@
 
 @class AVMediaDataRequester, AVScheduledAudioParameters, AVWeakReference, NSError, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVSampleBufferAudioRendererInternal : NSObject
 {
     NSString *audioOutputDeviceUniqueID;
     NSString *audioTimePitchAlgorithm;
-    BOOL hasEnqueuedSamples;
-    BOOL isRequestingMediaData;
-    AVMediaDataRequester *mediaDataRequester;
+    struct {
+        struct OpaqueFigSimpleMutex *mutex;
+        AVMediaDataRequester *requester;
+    } mediaDataRequester;
     float rate;
     float volume;
     BOOL muted;

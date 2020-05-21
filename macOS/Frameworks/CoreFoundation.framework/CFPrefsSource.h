@@ -6,22 +6,23 @@
 
 #import "NSObject.h"
 
-@class _CFXPreferences;
+@class _CFXPreferences, __CFPrefsWeakObservers;
 
 __attribute__((visibility("hidden")))
 @interface CFPrefsSource : NSObject
 {
     _CFXPreferences *_containingPreferences;
     struct __CFDictionary *_dict;
-    struct __CFArray *_observers;
-    unsigned int _generationCount:63;
-    unsigned int _isSearchList:1;
-    CDUnion_9adbcd3f *shmemEntry;
-    struct _opaque_pthread_mutex_t *_lock;
-    CDUnion_9adbcd3f lastKnownShmemState;
+    __CFPrefsWeakObservers *_observers;
+    // Error parsing type: Aq, name: _generationCount
+    // Error parsing type: A^AI, name: shmemEntry
+    // Error parsing type: AI, name: lastKnownShmemState
+    struct os_unfair_lock_s _lock;
+    BOOL _isSearchList;
 }
 
 - (void)dealloc;
+- (struct __CFString *)copyOSLogDescription;
 - (id)description;
 - (struct __CFString *)container;
 - (BOOL)isByHost;
@@ -30,6 +31,8 @@ __attribute__((visibility("hidden")))
 - (void)setAccessRestricted:(BOOL)arg1;
 - (void)setDaemonCacheEnabled:(BOOL)arg1;
 - (void)alreadylocked_clearCache;
+- (BOOL)isDirectModeEnabled;
+- (void)transitionIntoDirectModeIfNeededWithRetryBlock:(CDUnknownBlockType)arg1;
 - (BOOL)isVolatile;
 - (BOOL)managed;
 - (void)unlock;
@@ -39,28 +42,31 @@ __attribute__((visibility("hidden")))
 - (void)handleReply:(id)arg1 toRequestNewDataMessage:(id)arg2 onConnection:(id)arg3 retryCount:(int)arg4 error:(char *)arg5;
 - (id)createRequestNewContentMessageForDaemon:(int)arg1;
 - (void)fullCloudSynchronizeWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)mergeIntoDictionary:(struct __CFDictionary *)arg1;
+- (void)mergeIntoDictionary:(struct __CFDictionary *)arg1 sourceDictionary:(struct __CFDictionary *)arg2 cloudKeyEvaluator:(CDUnknownBlockType)arg3;
 - (struct __CFDictionary *)copyDictionary;
 - (struct __CFDictionary *)alreadylocked_copyDictionary;
 - (struct __CFArray *)copyKeyList;
 - (struct __CFArray *)alreadylocked_copyKeyList;
+- (BOOL)enabled;
+- (void)setEnabled:(BOOL)arg1;
+- (void)setStoreName:(struct __CFString *)arg1;
 - (void)setConfigurationPath:(struct __CFString *)arg1;
 - (BOOL)synchronize;
 - (BOOL)alreadylocked_requestNewData;
 - (void *)copyValueForKey:(struct __CFString *)arg1;
 - (void *)alreadylocked_copyValueForKey:(struct __CFString *)arg1;
-- (void)removeAllValues;
-- (void)replaceAllValuesWithValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3;
+- (void)removeAllValues_from:(id)arg1;
+- (void)replaceAllValuesWithValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3 from:(id)arg4;
 - (void)_notifyObserversOfChangeFromValuesForKeys:(id)arg1 toValuesForKeys:(id)arg2;
-- (void)didChangeValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3;
-- (void)willChangeValuesForKeys:(const struct __CFString **)arg1 count:(long long)arg2;
-- (void)setValue:(void *)arg1 forKey:(struct __CFString *)arg2;
-- (void)setValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3;
-- (void)setValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3 removeValuesForKeys:(const struct __CFString **)arg4 count:(long long)arg5;
-- (void)alreadylocked_setValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3;
-- (void)alreadylocked_updateObservingRemoteChanges;
-- (void)removePreferencesObserver:(id)arg1;
-- (void)addPreferencesObserver:(id)arg1;
+- (void)setValue:(void *)arg1 forKey:(struct __CFString *)arg2 from:(id)arg3;
+- (void)setValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3 copyValues:(BOOL)arg4 from:(id)arg5;
+- (void)setValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3 copyValues:(BOOL)arg4 removeValuesForKeys:(const struct __CFString **)arg5 count:(long long)arg6 from:(id)arg7;
+- (void)alreadylocked_setPrecopiedValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3 from:(id)arg4;
+- (id)alreadylocked_createObserverUpdateMessageWithOperation:(int)arg1 forRole:(int *)arg2;
+- (int)alreadylocked_updateObservingRemoteChanges;
+- (int)alreadylocked_removePreferencesObserver:(id)arg1;
+- (void)forEachObserver:(CDUnknownBlockType)arg1;
+- (int)alreadylocked_addPreferencesObserver:(id)arg1;
 - (id)initWithContainingPreferences:(id)arg1;
 
 @end

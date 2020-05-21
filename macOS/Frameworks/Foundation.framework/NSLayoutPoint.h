@@ -34,7 +34,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithXAxisAnchor:(id)arg1 yAxisAnchor:(id)arg2;
 - (struct CGPoint)valueInItem:(id)arg1;
-- (id)relationshipEqualToLayoutPoint:(id)arg1;
+- (id)ruleEqualToLayoutPoint:(id)arg1;
 
 @end
 

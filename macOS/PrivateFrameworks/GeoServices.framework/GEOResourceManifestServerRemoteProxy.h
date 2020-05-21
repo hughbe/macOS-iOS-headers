@@ -8,28 +8,28 @@
 
 #import "GEOResourceManifestServerProxy.h"
 
-@class GEOActiveTileGroup, GEOResourceManifestConfiguration, NSHashTable, NSLock, NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>, NSString;
+@class GEOActiveTileGroup, GEOResourceManifestConfiguration, NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>, NSString;
 
-__attribute__((visibility("hidden")))
 @interface GEOResourceManifestServerRemoteProxy : NSObject <GEOResourceManifestServerProxy>
 {
     id <GEOResourceManifestServerProxyDelegate> _delegate;
+    NSObject<OS_dispatch_queue> *_connectionQueue;
     NSObject<OS_xpc_object> *_conn;
-    NSLock *_connLock;
-    NSHashTable *_cancellingConnections;
-    NSLock *_cancellingConnectionsLock;
-    unsigned long long _retryCount;
+    BOOL _sentConfigurationMessage;
+    BOOL _hasOpenConnection;
     BOOL _isUpdatingManifest;
     BOOL _isLoadingResources;
     NSObject<OS_dispatch_queue> *_serverQueue;
     GEOResourceManifestConfiguration *_configuration;
-    NSLock *_authTokenLock;
+    struct os_unfair_lock_s _authTokenLock;
     NSString *_authToken;
     int _activeTileGroupChangedNotificationToken;
 }
 
-@property(nonatomic) id <GEOResourceManifestServerProxyDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <GEOResourceManifestServerProxyDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)_handleMessage:(id)arg1 xpcMessage:(id)arg2;
+- (unsigned long long)maximumZoomLevelForStyle:(int)arg1 scale:(int)arg2;
 - (void)deactivateResourceScenario:(int)arg1;
 - (void)activateResourceScenario:(int)arg1;
 - (void)deactivateResourceScale:(int)arg1;
@@ -37,13 +37,16 @@ __attribute__((visibility("hidden")))
 - (void)performOpportunisticResourceLoading;
 - (void)setManifestToken:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)getResourceManifestWithHandler:(CDUnknownBlockType)arg1;
-- (void)forceUpdate:(CDUnknownBlockType)arg1;
+- (id)updateProgress;
+- (void)cancelCurrentManifestUpdate;
+- (void)forceUpdate:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updateIfNecessary:(CDUnknownBlockType)arg1;
 - (oneway void)resetActiveTileGroup;
+- (void)setActiveTileGroupIdentifier:(id)arg1 updateType:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (oneway void)setActiveTileGroupIdentifier:(id)arg1;
 - (void)closeConnection;
 - (void)openConnection;
-- (void)_setupConnection;
+- (id)_xpcConnection;
 - (id)configuration;
 - (id)authToken;
 - (void)dealloc;

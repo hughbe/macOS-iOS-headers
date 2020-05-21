@@ -10,7 +10,14 @@
 {
 }
 
++ (id)buildSettingsFromPayloads:(id)arg1;
++ (id)settingsKeys;
++ (id)managementChangedNotificationName;
++ (id)settingsDomain;
++ (id)localizedNameForExtensionID:(id)arg1;
++ (id)publicExtensionPoints;
 + (BOOL)allowUseOfPlugIn:(id)arg1 byPid:(int)arg2 flags:(unsigned long long)arg3;
++ (id)getEffectiveSettings;
 
 @end
 

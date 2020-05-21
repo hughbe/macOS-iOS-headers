@@ -14,7 +14,6 @@
 
 @interface AKWebKitController : NSObject <WebFrameLoadDelegate, WebResourceLoadDelegate, WebUIDelegate>
 {
-    id <AKWebKitControllerDelegate> _delegate;
     WebPreferences *_webPreferences;
     WebView *_webView;
     struct {
@@ -25,16 +24,17 @@
         unsigned int delegateDidSucceed:1;
         unsigned int delegateDidFailLoading:1;
         unsigned int delegateDidFinishLoading:1;
-        unsigned int delegateSendFinalResponse:1;
-        unsigned int delegateIsFinalResponse:1;
+        unsigned int delegateDidReceiveResponse:1;
         unsigned int delegateSignRequest:1;
         unsigned int padding:1;
     } _delegateFlags;
+    id <AKWebKitControllerDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) WebView *webView; // @synthesize webView=_webView;
 @property(retain, nonatomic) WebPreferences *webPreferences; // @synthesize webPreferences=_webPreferences;
-@property(nonatomic) id <AKWebKitControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <AKWebKitControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)webView:(id)arg1 resource:(id)arg2 didReceiveResponse:(id)arg3 fromDataSource:(id)arg4;
 - (id)webView:(id)arg1 resource:(id)arg2 willSendRequest:(id)arg3 redirectResponse:(id)arg4 fromDataSource:(id)arg5;
 - (id)webView:(id)arg1 contextMenuItemsForElement:(id)arg2 defaultMenuItems:(id)arg3;

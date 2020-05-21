@@ -17,10 +17,11 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property int freeBusyType; // @synthesize freeBusyType=_freeBusyType;
 @property(retain) CALTimeRange *freeBusyTimeRange; // @synthesize freeBusyTimeRange=_freeBusyTimeRange;
+- (id)description;
 - (id)freeBusyDateRange;
-- (void)dealloc;
 - (id)initWithTimeRange:(id)arg1;
 - (id)initWithDateRange:(id)arg1;
 - (id)initWithCoder:(id)arg1;

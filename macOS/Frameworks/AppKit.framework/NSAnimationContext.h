@@ -13,6 +13,7 @@
 }
 
 + (void)runAnimationGroup:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
++ (void)runAnimationGroup:(CDUnknownBlockType)arg1;
 + (void)endGrouping;
 + (void)beginGrouping;
 + (void)flush;
@@ -21,11 +22,9 @@
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (void)initialize;
 + (void)_runWithPreCommitCompletionHandlerAnimationGroup:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
-+ (void)resumeCompletionHandlers:(id)arg1;
-+ (id)suspendCompletionHandlers;
++ (id)completionHandlerSuspension;
 + (BOOL)_hasActiveGrouping;
 + (void)addCommitHandler:(CDUnknownBlockType)arg1;
-+ (void)animationDidStart:(id)arg1;
 - (void)endPerformanceMeasurementForIdentifier:(id)arg1;
 - (void)beginPerformanceMeasurementForIdentifier:(id)arg1;
 @property(copy) CDUnknownBlockType completionHandler;

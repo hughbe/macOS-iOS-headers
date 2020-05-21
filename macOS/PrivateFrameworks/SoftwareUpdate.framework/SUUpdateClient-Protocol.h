@@ -6,13 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSString, NSURLAuthenticationChallenge, SUUpdateStatus;
+@class NSArray, NSString, NSURLAuthenticationChallenge, SUUpdateStatus;
 
 @protocol SUUpdateClient <NSObject>
 - (void)installStateDidChange:(SUUpdateStatus *)arg1 forUpdateWithProductKey:(NSString *)arg2;
 - (void)availableUpdatesDidChange;
 
 @optional
+- (void)installedBundlesToRegisterWithLaunchServices:(NSArray *)arg1 completion:(void (^)(BOOL))arg2;
+- (void)updatesQueuedForLaterDidChange;
+- (void)hiddenUpdatesDidChange;
+- (void)catalogURLDidChange;
 - (void)authChallengeWasReceived:(NSURLAuthenticationChallenge *)arg1 handled:(char *)arg2;
 @end
 

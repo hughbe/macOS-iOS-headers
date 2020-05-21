@@ -17,11 +17,11 @@
     BOOL _didCancel;
 }
 
-@property(nonatomic) BOOL didCancel; // @synthesize didCancel=_didCancel;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL didCancel; // @synthesize didCancel=_didCancel;
 - (void)finishedSendingMessages;
 @property(readonly) BOOL shouldCancel;
-- (void)newMessagesAvailable:(id)arg1 secondaryMessages:(id)arg2 options:(id)arg3;
+- (void)newMessagesAvailable:(id)arg1 secondaryMessages:(id)arg2 fromUpdate:(BOOL)arg3;
 @property(readonly, copy, nonatomic) NSArray *messages;
 - (id)init;
 

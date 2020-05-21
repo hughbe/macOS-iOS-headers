@@ -16,15 +16,14 @@
     NSUUID *_uniqueIdentifier;
     NSString *_primaryApplicationDisplayID;
     NSString *_secondaryApplicationDisplayID;
-    BOOL _shouldPrepareAppPlaybackQueue;
     int _status;
     int _creatorProcessID;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) int creatorProcessID; // @synthesize creatorProcessID=_creatorProcessID;
 @property(readonly, nonatomic) int status; // @synthesize status=_status;
-@property(readonly, nonatomic) BOOL shouldPrepareAppPlaybackQueue; // @synthesize shouldPrepareAppPlaybackQueue=_shouldPrepareAppPlaybackQueue;
 @property(readonly, nonatomic) NSString *secondaryApplicationDisplayID; // @synthesize secondaryApplicationDisplayID=_secondaryApplicationDisplayID;
 @property(readonly, nonatomic) NSString *primaryApplicationDisplayID; // @synthesize primaryApplicationDisplayID=_primaryApplicationDisplayID;
 @property(readonly, nonatomic) NSUUID *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
@@ -35,7 +34,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 - (id)initWithPrimaryAppDisplayID:(id)arg1 secondaryAppDisplayID:(id)arg2;
 
 @end

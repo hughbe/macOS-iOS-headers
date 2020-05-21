@@ -6,11 +6,9 @@
 
 #import "NSObject.h"
 
-#import "CUTPowerMonitorDelegate.h"
-
 @class NSDictionary, NSHashTable, NSMutableSet, NSNumber, NSRecursiveLock, NSRunLoop, NSString, NSThread;
 
-@interface CUTWiFiManager : NSObject <CUTPowerMonitorDelegate>
+@interface CUTWiFiManager : NSObject
 {
     BOOL _shouldAutoAssociateAsForeground;
     BOOL _isHostingHotSpot;
@@ -33,6 +31,7 @@
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSRunLoop *wifiRunLoop; // @synthesize wifiRunLoop=_wifiRunLoop;
 @property(nonatomic) struct __CFRunLoopSource *runLoopSource; // @synthesize runLoopSource=_runLoopSource;
 @property(retain, nonatomic) NSThread *wifiThread; // @synthesize wifiThread=_wifiThread;
@@ -58,21 +57,20 @@
 - (void)_adjustWiFiAutoAssociationLocked;
 @property(readonly, nonatomic) BOOL isWiFiCaptive;
 - (BOOL)_isPrimaryCellular;
-@property(readonly, retain, nonatomic) NSString *currentSSID;
+@property(readonly, nonatomic) NSString *currentSSID;
 - (void)currentWiFiNetworkPowerUsageWithCompletion:(CDUnknownBlockType)arg1;
 - (double)_wifiMeasurementErrorForInterval:(double)arg1;
 @property(readonly, nonatomic) BOOL isWiFiEnabled; // @synthesize isWiFiEnabled=_isWifiEnabled;
 - (void)_updateIsWiFiEnabled;
 - (void)_updateIsWiFiAssociatedAsync:(BOOL)arg1;
 @property(readonly, nonatomic) BOOL isWiFiAssociated;
-@property(readonly, retain, nonatomic) NSNumber *wiFiScaledRate;
-@property(readonly, retain, nonatomic) NSNumber *wiFiScaledRSSI;
-@property(readonly, retain, nonatomic) NSNumber *wiFiSignalStrength;
+@property(readonly, nonatomic) NSNumber *wiFiScaledRate;
+@property(readonly, nonatomic) NSNumber *wiFiScaledRSSI;
+@property(readonly, nonatomic) NSNumber *wiFiSignalStrength;
 @property(readonly, nonatomic) BOOL willTryToSearchForWiFiNetwork;
 @property(readonly, nonatomic) BOOL willTryToAutoAssociateWiFiNetwork;
 @property(readonly, nonatomic) BOOL isHostingWiFiHotSpot; // @synthesize isHostingWiFiHotSpot=_isHostingHotSpot;
 - (void)_createDynamicStore;
-- (void)_createWiFiManager;
 - (void)_adjustWoWState;
 - (BOOL)hasWoWClient:(id)arg1;
 - (void)removeWoWClient:(id)arg1;
@@ -81,12 +79,6 @@
 - (void)addDelegate:(id)arg1;
 - (void)dealloc;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

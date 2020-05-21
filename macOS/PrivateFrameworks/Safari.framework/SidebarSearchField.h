@@ -14,11 +14,11 @@ __attribute__((visibility("hidden")))
 }
 
 + (void)initialize;
+- (void).cxx_destruct;
 @property(nonatomic) __weak id accessibilityOverrideParent; // @synthesize accessibilityOverrideParent=_accessibilityOverrideParent;
 @property(nonatomic) __weak id <SidebarSearchFieldDelegate> sidebarSearchFieldDelegate; // @synthesize sidebarSearchFieldDelegate=_sidebarSearchFieldDelegate;
-- (void).cxx_destruct;
 - (void)_sidebarSearchFieldInit;
-- (id)accessibilityAttributeValue:(id)arg1;
+- (id)accessibilityParent;
 - (BOOL)becomeFirstResponder;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

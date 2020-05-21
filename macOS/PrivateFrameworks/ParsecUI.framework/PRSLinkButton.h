@@ -14,6 +14,7 @@
 }
 
 @property NSURL *linkURL; // @synthesize linkURL=_linkURL;
+- (BOOL)isAccessibilityElement;
 - (void)mouseDown:(id)arg1;
 
 @end

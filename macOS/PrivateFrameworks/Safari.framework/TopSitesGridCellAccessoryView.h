@@ -15,18 +15,19 @@ __attribute__((visibility("hidden")))
 {
     NSButton *_removeButton;
     NSButton *_pinButton;
+    BOOL _showsAsPinned;
     id <TopSitesGridCellAccessoryViewDelegate> _delegate;
     GridCellView *_cellView;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL showsAsPinned; // @synthesize showsAsPinned=_showsAsPinned;
 @property(nonatomic) __weak GridCellView *cellView; // @synthesize cellView=_cellView;
 @property(nonatomic) __weak id <TopSitesGridCellAccessoryViewDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)_removeButtonPressed:(id)arg1;
 - (void)_pinButtonPressed:(id)arg1;
 - (void)_updatePinButtonToolTip;
 - (id)_createButtonWithImage:(id)arg1 pressedImage:(id)arg2;
-@property(nonatomic) BOOL showsAsPinned;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

@@ -8,19 +8,21 @@
 
 #import "NSCopying.h"
 
-@class WDDocument;
+@class WDDocument, WDTablePropertiesValues;
 
 __attribute__((visibility("hidden")))
 @interface WDTableProperties : NSObject <NSCopying>
 {
-    WDDocument *mDocument;
     unsigned int mOriginal:1;
     unsigned int mTracked:1;
     unsigned int mResolved:1;
-    CDStruct_36bc1ea2 mOriginalProperties;
-    CDStruct_36bc1ea2 mTrackedProperties;
+    WDTablePropertiesValues *mOriginalProperties;
+    WDTablePropertiesValues *mTrackedProperties;
+    WDDocument *mDocument;
 }
 
+- (void).cxx_destruct;
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isTableFloating;
@@ -138,8 +140,6 @@ __attribute__((visibility("hidden")))
 - (id)baseStyle;
 - (void)setResolveMode:(int)arg1;
 - (int)resolveMode;
-- (id)document;
-- (void)dealloc;
 - (id)initWithDocument:(id)arg1;
 - (id)init;
 - (void)moveOrignalToTracked;

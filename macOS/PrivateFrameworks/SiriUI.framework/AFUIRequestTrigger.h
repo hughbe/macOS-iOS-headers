@@ -8,7 +8,6 @@
 
 @class NSMapTable, SiriUIRequestOptions;
 
-__attribute__((visibility("hidden")))
 @interface AFUIRequestTrigger : NSObject
 {
     SiriUIRequestOptions *_options;
@@ -16,9 +15,9 @@ __attribute__((visibility("hidden")))
     NSMapTable *_observers;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) long long state; // @synthesize state=_state;
 @property(readonly, nonatomic) SiriUIRequestOptions *options; // @synthesize options=_options;
-- (void).cxx_destruct;
 - (void)removeTriggerTarget:(id)arg1;
 - (void)addTriggerTarget:(id)arg1 action:(SEL)arg2;
 - (void)_updateState:(long long)arg1;

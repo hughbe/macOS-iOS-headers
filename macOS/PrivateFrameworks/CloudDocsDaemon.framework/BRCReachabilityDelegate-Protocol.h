@@ -8,5 +8,8 @@
 
 @protocol BRCReachabilityDelegate <NSObject>
 - (void)networkReachabilityChanged:(BOOL)arg1;
+
+@optional
+- (void)networkReachabilityFlagsChanged:(unsigned int)arg1;
 @end
 

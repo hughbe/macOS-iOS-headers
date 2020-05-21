@@ -6,31 +6,32 @@
 
 #import "NSView.h"
 
-@class NSArray, NSImage;
+@class NSArray, NSImage, NSString;
 
 @interface FIAirDropView : NSView
 {
     id _controller;
     id _reserved;
-    struct TNSRef<FIAirDropViewGutsController *, void> _gutsController;
+    struct TNSRef<FIAirDropViewGutsController, void> _gutsController;
     struct TKeyValueObserver _isTransferInProgressObserver;
     _Bool _isTransferInProgress;
 }
 
-@property(readonly, nonatomic) _Bool isTransferInProgress; // @synthesize isTransferInProgress=_isTransferInProgress;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) _Bool isTransferInProgress; // @synthesize isTransferInProgress=_isTransferInProgress;
 - (struct CGRect)fileImageFrame;
 - (id)recipientNames;
 - (void)cancel;
 - (void)send;
 - (void)setIsTransferInProgress:(_Bool)arg1;
+@property(copy) NSString *clientBundleID; // @dynamic clientBundleID;
 @property(copy) NSImage *smallThumbnail; // @dynamic smallThumbnail;
 @property(copy) NSImage *mediumThumbnail;
 @property(copy) NSImage *largeThumbnail; // @dynamic largeThumbnail;
 @property(copy) NSArray *urlsToSend; // @dynamic urlsToSend;
-@property id <FIAirDropViewDelegate> delegate; // @dynamic delegate;
-- (BOOL)isOpaque;
+@property __weak id <FIAirDropViewDelegate> delegate; // @dynamic delegate;
+- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)_commonAirDropViewInit;

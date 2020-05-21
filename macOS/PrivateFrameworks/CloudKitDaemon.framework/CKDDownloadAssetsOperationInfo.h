@@ -6,12 +6,23 @@
 
 #import "CKDatabaseOperationInfo.h"
 
+@class NSArray;
+
 __attribute__((visibility("hidden")))
 @interface CKDDownloadAssetsOperationInfo : CKDatabaseOperationInfo
 {
     BOOL _shouldFetchAssetContentInMemory;
+    NSArray *_assetsToDownload;
+    NSArray *_packageIndexSets;
+    NSArray *_assetsToDownloadInMemory;
+    NSArray *_assetURLInfosToFillOut;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *assetURLInfosToFillOut; // @synthesize assetURLInfosToFillOut=_assetURLInfosToFillOut;
+@property(retain, nonatomic) NSArray *assetsToDownloadInMemory; // @synthesize assetsToDownloadInMemory=_assetsToDownloadInMemory;
+@property(retain, nonatomic) NSArray *packageIndexSets; // @synthesize packageIndexSets=_packageIndexSets;
+@property(retain, nonatomic) NSArray *assetsToDownload; // @synthesize assetsToDownload=_assetsToDownload;
 @property(nonatomic) BOOL shouldFetchAssetContentInMemory; // @synthesize shouldFetchAssetContentInMemory=_shouldFetchAssetContentInMemory;
 
 @end

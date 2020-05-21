@@ -13,10 +13,13 @@ __attribute__((visibility("hidden")))
     BOOL _caReady;
 }
 
++ (BOOL)supportsSecureCoding;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (BOOL)cumulative;
 - (BOOL)isCumulative;
 - (void)setCumulative:(BOOL)arg1;
+- (BOOL)additive;
 - (BOOL)isAdditive;
 - (void)setAdditive:(BOOL)arg1;
 - (id)timingFunction;
@@ -45,6 +48,8 @@ __attribute__((visibility("hidden")))
 - (void)setRepeatDuration:(double)arg1;
 - (float)repeatCount;
 - (void)setRepeatCount:(float)arg1;
+- (id)keyPath;
+- (void)setKeyPath:(id)arg1;
 - (double)duration;
 - (void)setDuration:(double)arg1;
 - (void)setC3dAnimation:(struct __C3DKeyframedAnimation *)arg1;

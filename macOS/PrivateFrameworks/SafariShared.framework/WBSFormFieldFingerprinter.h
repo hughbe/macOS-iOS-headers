@@ -6,20 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSDictionary;
-
 @interface WBSFormFieldFingerprinter : NSObject
 {
-    NSDictionary *_formMetadata;
 }
 
-@property(readonly, copy, nonatomic) NSDictionary *formMetadata; // @synthesize formMetadata=_formMetadata;
-- (void).cxx_destruct;
-- (id)_hashForString:(id)arg1;
-- (id)_fingerprintComponentsForControlMetadata:(id)arg1;
-- (id)fingerprintForControlMetadata:(id)arg1;
-- (id)initWithFormMetadata:(id)arg1;
-- (id)init;
++ (id)_hashForString:(id)arg1;
++ (id)_fingerprintComponentsForControlMetadata:(id)arg1;
++ (id)fingerprintForControlMetadata:(id)arg1;
 
 @end
 

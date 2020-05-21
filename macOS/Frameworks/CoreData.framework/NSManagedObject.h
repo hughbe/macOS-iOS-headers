@@ -6,20 +6,26 @@
 
 #import "NSObject.h"
 
-@class NSEntityDescription, NSManagedObjectContext, NSManagedObjectID;
+#import "NSFetchRequestResult.h"
 
-@interface NSManagedObject : NSObject
+@class NSEntityDescription, NSManagedObjectContext, NSManagedObjectID, NSString;
+
+@interface NSManagedObject : NSObject <NSFetchRequestResult>
 {
     int _cd_rc;
-    unsigned long long _cd_stateFlags;
+    unsigned int _cd_lockingInfo;
+    unsigned int _cd_stateFlags;
+    unsigned int _cd_extraFlags;
     id _cd_rawData;
-    id _cd_entity;
     NSManagedObjectContext *_cd_managedObjectContext;
     NSManagedObjectID *_cd_objectID;
-    unsigned long long _cd_extraFlags;
-    id _cd_observationInfo;
-    id *_cd_snapshots;
-    unsigned long long _cd_lockingInfo;
+    struct {
+        void *_field1;
+        id _field2;
+        id _field3;
+        id _field4;
+        id _field5;
+    } *_cd_extras;
     id _cd_queueReference;
 }
 
@@ -53,7 +59,7 @@
 + (id)entityName;
 + (id)_PFPlaceHolderSingleton;
 + (Class)classForEntity:(id)arg1;
-+ (CDStruct_977f6bcf *)_PFMOClassFactoryData;
++ (CDStruct_1e30fb15 *)_PFMOClassFactoryData;
 - (id)initWithContext:(id)arg1;
 - (id)objectIDsForRelationshipNamed:(id)arg1;
 @property(readonly, nonatomic) BOOL hasPersistentChangedValues;
@@ -66,6 +72,7 @@
 - (id)changedValues;
 - (id)committedValuesForKeys:(id)arg1;
 - (id)dictionaryWithValuesForKeys:(id)arg1;
+- (id)dictionaryWithPropertyValues;
 - (void)setValuesForKeysWithDictionary:(id)arg1;
 - (void)setPrimitiveValue:(id)arg1 forKey:(id)arg2;
 - (id)primitiveValueForKey:(id)arg1;
@@ -106,10 +113,9 @@
 @property(readonly, nonatomic) NSManagedObjectContext *managedObjectContext;
 - (id)init;
 - (id)initWithEntity:(id)arg1 insertIntoManagedObjectContext:(id)arg2;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)_descriptionValues;
 - (void)dealloc;
-- (void)finalize;
 - (int)_batch_release__;
 - (BOOL)_isDeallocating;
 - (BOOL)_tryRetain;
@@ -117,11 +123,13 @@
 - (oneway void)release;
 - (id)retain;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (void)didRefresh:(BOOL)arg1;
 - (void)willRefresh:(BOOL)arg1;
 - (void)didFireFault;
 - (void)willFireFault;
+- (void)setBindableObjectPublisher:(id)arg1;
+- (id)bindableObjectPublisher;
 - (void)_updateFromUndoSnapshot:(id)arg1;
 - (void)_updateFromRefreshSnapshot:(id)arg1 includingTransients:(BOOL)arg2;
 - (id)_newSetFromSet:(id)arg1 byApplyingDiffs:(id)arg2;
@@ -136,7 +144,7 @@
 - (id)_generateErrorWithCode:(int)arg1 andMessage:(id)arg2 forKey:(id)arg3 andValue:(id)arg4 additionalDetail:(id)arg5;
 - (id)_substituteEntityAndProperty:(id)arg1 inString:(id)arg2;
 - (id)_generateErrorDetailForKey:(id)arg1 withValue:(id)arg2;
-- (void)_chainNewError:(id)arg1 toOriginalErrorDoublePointer:(id *)arg2;
+- (BOOL)_chainNewError:(id)arg1 toOriginalErrorDoublePointer:(id *)arg2;
 - (void)_prepropagateDeleteForMerge;
 - (void)_propagateDelete;
 - (void)_propagateDelete:(unsigned int)arg1;
@@ -213,6 +221,10 @@
 - (CDUnknownFunctionPointerType)methodForSelector:(SEL)arg1;
 - (BOOL)respondsToSelector:(SEL)arg1;
 - (BOOL)_defaultValidation:(id *)arg1 error:(id *)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

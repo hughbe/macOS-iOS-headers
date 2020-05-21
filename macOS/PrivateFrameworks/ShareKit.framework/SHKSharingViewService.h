@@ -7,22 +7,27 @@
 #import "NSServiceViewController.h"
 
 #import "SHKClientWindowSyncDelegate.h"
-#import "SHKSharingViewService.h"
+#import "SHKSharingViewServiceProtocol.h"
 
 @class NSImageView, NSMutableArray, NSSharingUIExtensionContext, NSString, NSUUID, NSView, NSWindow, SHKAutoLayoutConstraintPair, SHKBlockQueue;
 
-@interface SHKSharingViewService : NSServiceViewController <SHKClientWindowSyncDelegate, SHKSharingViewService>
+@interface SHKSharingViewService : NSServiceViewController <SHKClientWindowSyncDelegate, SHKSharingViewServiceProtocol>
 {
     BOOL _draggable;
     BOOL _animatesLikeMarkup;
     BOOL _animateMarkupWithoutImageCopy;
+    BOOL _disableDragging;
     BOOL _serviceUsesAutoLayout;
+    BOOL _shouldDimSourceWindow;
     unsigned long long _serviceMask;
     NSView *_containerView;
     NSView *_backgroundView;
     NSWindow *_window;
     NSUUID *_uuid;
     NSSharingUIExtensionContext *_extensionContext;
+    NSString *_sourceWindowFrameString;
+    NSString *_sourceWindowScreenVisibleFrameString;
+    NSString *_sourceWindowContentRectString;
     NSImageView *_itemImageView;
     NSView *_itemBorderView;
     NSMutableArray *_queuedSharingAnimations;
@@ -35,6 +40,7 @@
     struct CGPoint _originOffset;
 }
 
+- (void).cxx_destruct;
 @property(retain) SHKAutoLayoutConstraintPair *fixedDimensionsBackgroundConstraints; // @synthesize fixedDimensionsBackgroundConstraints=_fixedDimensionsBackgroundConstraints;
 @property(retain) SHKAutoLayoutConstraintPair *fixedDimensionsContainerConstraints; // @synthesize fixedDimensionsContainerConstraints=_fixedDimensionsContainerConstraints;
 @property(retain) SHKAutoLayoutConstraintPair *sameCenterConstraints; // @synthesize sameCenterConstraints=_sameCenterConstraints;
@@ -44,7 +50,12 @@
 @property(retain) NSMutableArray *queuedSharingAnimations; // @synthesize queuedSharingAnimations=_queuedSharingAnimations;
 @property(retain) NSView *itemBorderView; // @synthesize itemBorderView=_itemBorderView;
 @property(retain) NSImageView *itemImageView; // @synthesize itemImageView=_itemImageView;
+@property(retain) NSString *sourceWindowContentRectString; // @synthesize sourceWindowContentRectString=_sourceWindowContentRectString;
+@property(retain) NSString *sourceWindowScreenVisibleFrameString; // @synthesize sourceWindowScreenVisibleFrameString=_sourceWindowScreenVisibleFrameString;
+@property(retain) NSString *sourceWindowFrameString; // @synthesize sourceWindowFrameString=_sourceWindowFrameString;
+@property BOOL shouldDimSourceWindow; // @synthesize shouldDimSourceWindow=_shouldDimSourceWindow;
 @property BOOL serviceUsesAutoLayout; // @synthesize serviceUsesAutoLayout=_serviceUsesAutoLayout;
+@property BOOL disableDragging; // @synthesize disableDragging=_disableDragging;
 @property BOOL animateMarkupWithoutImageCopy; // @synthesize animateMarkupWithoutImageCopy=_animateMarkupWithoutImageCopy;
 @property BOOL animatesLikeMarkup; // @synthesize animatesLikeMarkup=_animatesLikeMarkup;
 @property struct CGPoint originOffset; // @synthesize originOffset=_originOffset;
@@ -54,15 +65,12 @@
 @property(retain) NSView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(retain) NSView *containerView; // @synthesize containerView=_containerView;
 @property unsigned long long serviceMask; // @synthesize serviceMask=_serviceMask;
-- (void).cxx_destruct;
 - (void)invalidate;
-- (BOOL)disableDragging;
 - (BOOL)clientHasSourceWindow;
-- (BOOL)isInNotificationCenter;
 - (void)proceedWithSharingTransitionOutWithSuccess:(BOOL)arg1 duration:(double)arg2;
 - (void)animateClosingWithSuccess:(BOOL)arg1 finishedBlock:(CDUnknownBlockType)arg2;
 - (id)animatingItemsAndSetHasAtLeastOneFinalImage:(char *)arg1;
-- (struct CGRect)finalImageFrameForSharingItemProvider:(id)arg1 imageContentFrame:(struct CGRect)arg2 bloggingController:(id)arg3 transitionFrame:(struct CGRect)arg4;
+- (struct CGRect)finalImageFrameForSharingItemProvider:(id)arg1 imageContentFrame:(struct CGRect)arg2 transitionFrame:(struct CGRect)arg3;
 - (struct CGRect)initialWindowFrameForSourceFrameForWindow:(struct CGRect)arg1 forWindowFrame:(struct CGRect)arg2;
 - (struct CGRect)sourceFrameForViewControllerView:(id)arg1;
 - (void)proceedWithSharingTransitionIn;
@@ -94,9 +102,7 @@
 - (void)setupEditorServiceWithView:(id)arg1;
 - (id)_effectiveSourceItemView;
 - (void)setupWithSourceWindowFrame:(struct CGRect)arg1;
-- (void)setupWithOptionsDictionary:(id)arg1;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (unsigned long long)awakeFromRemoteView;
+- (void)setViewOptions:(id)arg1;
 - (BOOL)remoteViewSizeChanged:(struct CGSize)arg1 transaction:(id)arg2;
 - (struct CGRect)serviceViewScreenFrame;
 - (void)requestResizeToNeededRemoteViewFrameThenDo:(CDUnknownBlockType)arg1;
@@ -104,7 +110,6 @@
 - (void)performQueuedAnimationActionsWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)_setServiceWindowFrame:(struct CGRect)arg1 withClientWindowSync:(BOOL)arg2 animation:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_setServiceWindowFrame:(struct CGRect)arg1 animation:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;
-- (id)remoteViewControllerInterface;
 - (void)positionServiceViewInRemoteViewFrame:(struct CGRect)arg1;
 - (struct CGRect)neededRemoteViewFrame;
 - (id)singleItemSourceImage;
@@ -115,6 +120,7 @@
 - (void)loadView;
 - (id)exportedObject;
 - (id)exportedInterface;
+- (id)remoteViewControllerInterface;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -10,10 +10,6 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct NSMutableDictionary {
-    Class _field1;
-};
-
 struct _CSArchitecture {
     int cpu_type;
     int cpu_subtype;
@@ -62,6 +58,11 @@ struct dyld_uuid_info_64 {
     unsigned char _field2[16];
 };
 
+struct instrs_cycles_snapshot {
+    unsigned long long _field1;
+    unsigned long long _field2;
+};
+
 struct mach_timebase_info {
     unsigned int numer;
     unsigned int denom;
@@ -102,8 +103,38 @@ struct os_activity_create_s {
     struct timeval _field6;
     struct timezone _field7;
     unsigned int _field8;
-    char *_field9;
+    unsigned int _field9;
+    char *_field10;
+    unsigned long long _field11;
+    unsigned long long _field12;
+};
+
+struct os_activity_loss_s {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    char *_field4;
+    char *_field5;
+    struct timeval _field6;
+    struct timezone _field7;
+    unsigned int _field8;
+    unsigned int _field9;
     unsigned long long _field10;
+    unsigned long long _field11;
+    unsigned int _field12;
+};
+
+struct os_activity_statedump_s {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    char *_field4;
+    char *_field5;
+    struct timeval _field6;
+    struct timezone _field7;
+    unsigned int _field8;
+    unsigned int _field9;
+    char *_field10;
     unsigned long long _field11;
 };
 
@@ -116,7 +147,8 @@ struct os_activity_stream_activity_s {
     struct timeval _field6;
     struct timezone _field7;
     unsigned int _field8;
-    char *_field9;
+    unsigned int _field9;
+    char *_field10;
 };
 
 struct os_activity_stream_common_s {
@@ -128,6 +160,20 @@ struct os_activity_stream_common_s {
     struct timeval _field6;
     struct timezone _field7;
     unsigned int _field8;
+    unsigned int _field9;
+};
+
+struct os_activity_stream_common_with_name_s {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    char *_field4;
+    char *_field5;
+    struct timeval _field6;
+    struct timezone _field7;
+    unsigned int _field8;
+    unsigned int _field9;
+    char *_field10;
 };
 
 struct os_activity_stream_entry_s {
@@ -140,16 +186,36 @@ struct os_activity_stream_entry_s {
     unsigned long long _field7;
     union {
         struct os_activity_stream_common_s _field1;
-        struct os_activity_create_s _field2;
-        struct os_activity_transition_s _field3;
-        struct os_log_message_s _field4;
-        struct os_trace_message_s _field5;
-        struct os_activity_useraction_s _field6;
-        struct os_signpost_s _field7;
-        struct os_activity_breadcrumb_s _field8;
-        struct os_activity_stream_activity_s _field9;
-        struct os_trace_message_s _field10;
+        struct os_activity_stream_common_with_name_s _field2;
+        struct os_activity_create_s _field3;
+        struct os_activity_transition_s _field4;
+        struct os_log_message_s _field5;
+        struct os_trace_message_s _field6;
+        struct os_activity_useraction_s _field7;
+        struct os_activity_statedump_s _field8;
+        struct os_activity_timesync_s _field9;
+        struct os_activity_loss_s _field10;
+        struct os_activity_breadcrumb_s _field11;
+        struct os_activity_stream_activity_s _field12;
+        struct os_trace_message_s _field13;
     } _field8;
+};
+
+struct os_activity_timesync_s {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    char *_field4;
+    char *_field5;
+    struct timeval _field6;
+    struct timezone _field7;
+    unsigned int _field8;
+    unsigned int _field9;
+    unsigned char _field10[16];
+    unsigned long long _field11;
+    unsigned long long _field12;
+    unsigned long long _field13;
+    unsigned char _field14;
 };
 
 struct os_activity_transition_s {
@@ -161,7 +227,8 @@ struct os_activity_transition_s {
     struct timeval _field6;
     struct timezone _field7;
     unsigned int _field8;
-    unsigned long long _field9;
+    unsigned int _field9;
+    unsigned long long _field10;
 };
 
 struct os_activity_useraction_s {
@@ -173,8 +240,9 @@ struct os_activity_useraction_s {
     struct timeval _field6;
     struct timezone _field7;
     unsigned int _field8;
-    char *_field9;
-    _Bool _field10;
+    unsigned int _field9;
+    char *_field10;
+    _Bool _field11;
 };
 
 struct os_log_message_s {
@@ -186,37 +254,22 @@ struct os_log_message_s {
     struct timeval _field6;
     struct timezone _field7;
     unsigned int _field8;
-    char *_field9;
+    unsigned int _field9;
     char *_field10;
-    unsigned long long _field11;
-    char *_field12;
-    unsigned long long _field13;
-    char *_field14;
+    char *_field11;
+    unsigned long long _field12;
+    char *_field13;
+    unsigned long long _field14;
     char *_field15;
-    unsigned int _field16;
-    unsigned char _field17;
-    _Bool _field18;
-};
-
-struct os_signpost_s {
-    unsigned long long _field1;
-    unsigned long long _field2;
-    unsigned long long _field3;
-    char *_field4;
-    char *_field5;
-    struct timeval _field6;
-    struct timezone _field7;
-    unsigned int _field8;
-    char *_field9;
-    char *_field10;
-    unsigned long long _field11;
-    char *_field12;
-    unsigned long long _field13;
-    char *_field14;
-    char *_field15;
-    unsigned long long _field16;
+    char *_field16;
     unsigned int _field17;
-    unsigned long long _field18[32];
+    unsigned char _field18;
+    _Bool _field19;
+    unsigned long long _field20;
+    char *_field21;
+    unsigned char _field22;
+    unsigned char _field23;
+    char *_field24;
 };
 
 struct os_trace_message_s {
@@ -228,10 +281,11 @@ struct os_trace_message_s {
     struct timeval _field6;
     struct timezone _field7;
     unsigned int _field8;
-    char *_field9;
-    void *_field10;
-    unsigned long long _field11;
-    id _field12;
+    unsigned int _field9;
+    char *_field10;
+    void *_field11;
+    unsigned long long _field12;
+    id _field13;
 };
 
 struct pa_stack_frame {
@@ -247,6 +301,13 @@ struct stack_snapshot_frame32 {
 struct stack_snapshot_frame64 {
     unsigned long long _field1;
     unsigned long long _field2;
+};
+
+struct stackshot_thread_waitinfo {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned char _field4;
 };
 
 struct task_delta_snapshot_v2 {
@@ -337,6 +398,23 @@ struct thread_delta_snapshot_v2 {
     unsigned char _field12;
 };
 
+struct thread_delta_snapshot_v3 {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned long long _field4;
+    unsigned int _field5;
+    unsigned int _field6;
+    short _field7;
+    short _field8;
+    unsigned char _field9;
+    unsigned char _field10;
+    unsigned char _field11;
+    unsigned char _field12;
+    unsigned long long _field13;
+    unsigned long long _field14;
+};
+
 struct thread_snapshot {
     unsigned int _field1;
     unsigned int _field2;
@@ -397,6 +475,31 @@ struct thread_snapshot_v2 {
     unsigned char _field19;
 };
 
+struct thread_snapshot_v4 {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned long long _field4;
+    unsigned long long _field5;
+    unsigned long long _field6;
+    unsigned long long _field7;
+    unsigned long long _field8;
+    unsigned long long _field9;
+    unsigned long long _field10;
+    unsigned long long _field11;
+    unsigned int _field12;
+    unsigned int _field13;
+    short _field14;
+    short _field15;
+    unsigned char _field16;
+    unsigned char _field17;
+    unsigned char _field18;
+    unsigned char _field19;
+    unsigned long long _field20;
+    unsigned long long _field21;
+    unsigned long long _field22;
+};
+
 struct timeval {
     long long _field1;
     int _field2;
@@ -407,7 +510,29 @@ struct timezone {
     int _field2;
 };
 
+struct trace_point {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned long long _field4;
+    unsigned long long _field5;
+    unsigned long long _field6;
+    unsigned int _field7;
+    unsigned int _field8;
+    struct timeval _field9;
+    char *_field10;
+    char *_field11;
+    int _field12;
+};
+
 #pragma mark Typedef'd Structures
+
+typedef struct {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned long long _field4;
+} CDStruct_33dcf794;
 
 typedef struct {
     unsigned long long _field1;
@@ -426,6 +551,14 @@ typedef struct {
     unsigned long long _field5;
     long long _field6;
 } CDStruct_a7511cde;
+
+typedef struct {
+    unsigned long long _field1;
+    double _field2;
+    unsigned long long _field3;
+    unsigned int _field4;
+    unsigned int _field5;
+} CDStruct_55f67497;
 
 typedef struct {
     unsigned long long _field1;
@@ -490,7 +623,8 @@ typedef struct {
     long long _field8;
     long long _field9;
     unsigned long long _field10;
-} CDStruct_269c620c;
+    char _field11;
+} CDStruct_cad9ac55;
 
 typedef struct {
     unsigned long long _field1;
@@ -511,5 +645,6 @@ typedef struct {
     unsigned long long _field16;
     struct _CSArchitecture _field17;
     double _field18;
-} CDStruct_888ff4b4;
+    char _field19;
+} CDStruct_837e78c1;
 

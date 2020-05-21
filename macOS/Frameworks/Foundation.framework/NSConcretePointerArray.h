@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     BOOL needsCompaction;
 }
 
++ (BOOL)supportsSecureCoding;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)removePointer:(void *)arg1;
 - (unsigned long long)indexOfPointer:(void *)arg1;
@@ -37,7 +38,6 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)hash;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
-- (Class)classForCoder;
 - (id)initWithPointerFunctions:(id)arg1;
 - (id)initWithOptions:(unsigned long long)arg1;
 - (id)init;

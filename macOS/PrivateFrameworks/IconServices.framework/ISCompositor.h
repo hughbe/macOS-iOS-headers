@@ -6,31 +6,50 @@
 
 #import "NSObject.h"
 
-@class NSData, NSMutableArray;
+@class NSMutableArray;
 
-__attribute__((visibility("hidden")))
 @interface ISCompositor : NSObject
 {
-    struct CGSize _size;
-    unsigned int _scale;
-    NSMutableArray *_layers;
-    NSData *_bitmapData;
-    struct CGSize _bitmapSize;
-    CDStruct_dfa92515 _bitmapSizeRange;
+    unsigned long long _renderingMode;
+    NSMutableArray *_elements;
 }
 
-@property(readonly) unsigned int scale; // @synthesize scale=_scale;
-@property(readonly) struct CGSize size; // @synthesize size=_size;
-@property(readonly) NSMutableArray *layers; // @synthesize layers=_layers;
-@property(readonly) unsigned int bitmapScale;
-@property(readonly) CDStruct_dfa92515 bitmapSizeRange; // @synthesize bitmapSizeRange=_bitmapSizeRange;
-@property(readonly) struct CGSize bitmapSize; // @synthesize bitmapSize=_bitmapSize;
-@property(readonly, copy) NSData *bitmapData;
-- (BOOL)composite;
-- (BOOL)addFilter:(unsigned int)arg1;
-- (BOOL)addResource:(id)arg1;
-- (void)dealloc;
-- (id)initWithSize:(struct CGSize)arg1 scale:(unsigned int)arg2;
++ (id)iosGlyphBadgeDocumentRecipe;
++ (id)iosAppBadgeDocumentRecipe;
++ (id)iosmacDocumentRecipe;
++ (id)macosDocumentRecipe;
++ (id)messagesAppIconRecipeWithBorder:(BOOL)arg1;
++ (id)watchAppIconRecipe;
++ (id)iosAppIconRecipe;
++ (id)macosIconRecipe;
++ (id)iosmacAppIconRecipe;
+- (void).cxx_destruct;
+@property(retain) NSMutableArray *elements; // @synthesize elements=_elements;
+@property unsigned long long renderingMode; // @synthesize renderingMode=_renderingMode;
+- (void)reset;
+- (id)imageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (void)addElement:(id)arg1;
+- (void)addElementWithRecipe:(id)arg1 resources:(id)arg2;
+- (id)init;
+- (void)configureDecorationsWithResourceProvider:(id)arg1 backgroundStyle:(unsigned long long)arg2 template:(BOOL)arg3 selected:(BOOL)arg4;
+- (void)configureBaseWithResourceProvider:(id)arg1 backgroundStyle:(unsigned long long)arg2 template:(BOOL)arg3 selected:(BOOL)arg4;
+- (id)resourceWithResource:(id)arg1 backgroundStyle:(unsigned long long)arg2 template:(BOOL)arg3 selected:(BOOL)arg4;
+- (id)_resourceWithLSIconResource:(id)arg1;
+- (id)variantResourceLocatorForType:(id)arg1 extension:(id)arg2;
+- (void)configureWithDecorations:(id)arg1 backgroundStyle:(unsigned long long)arg2;
+- (id)_decorationRecipeKeyFromType:(id)arg1;
+- (void)clearResources;
+- (void)addResourcesFromDictionary:(id)arg1;
+- (void)setResource:(id)arg1 named:(id)arg2;
+@property(retain) id <ISCompositorRecipe> recipe;
+- (id)initWithRecipe:(id)arg1;
+- (void)drawLayer:(id)arg1 resourceProvider:(id)arg2 inContext:(id)arg3;
+- (id)maskImageForLayer:(id)arg1 size:(struct CGSize)arg2 scale:(double)arg3 resourceProvider:(id)arg4;
+- (id)scaledImageFromContent:(id)arg1 size:(struct CGSize)arg2 scale:(double)arg3;
+- (void)drawElement:(id)arg1 inContext:(id)arg2;
+@property(readonly) BOOL canUseCoreImage; // @dynamic canUseCoreImage;
+- (id)filterForLayer:(id)arg1 scale:(double)arg2 resourceProvider:(id)arg3;
+- (void)drawInContext:(id)arg1;
 
 @end
 

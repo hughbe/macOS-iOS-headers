@@ -22,6 +22,7 @@
     id _image;
 }
 
++ (id)_overrideHelpCursor;
 + (id)_helpCursor;
 + (id)_windowResizeNorthWestSouthEastCursor;
 + (id)_windowResizeNorthEastSouthWestCursor;
@@ -96,9 +97,9 @@
 - (id)forceSet;
 - (void)set;
 - (void)_reallySet;
-- (id)_premultipliedARGBBitmaps;
-@property(readonly, getter=isSetOnMouseEntered) BOOL setOnMouseEntered;
-@property(readonly, getter=isSetOnMouseExited) BOOL setOnMouseExited;
+- (id)_cgImageRefs;
+- (BOOL)isSetOnMouseEntered;
+- (BOOL)isSetOnMouseExited;
 - (void)setOnMouseEntered:(BOOL)arg1;
 - (void)setOnMouseExited:(BOOL)arg1;
 @property(readonly) struct CGPoint hotSpot;

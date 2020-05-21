@@ -16,5 +16,6 @@
 @property(copy) NSString *appId;
 @property(copy) NSString *entityName;
 @property(copy) NSString *entityType;
+- (id)init;
 @end
 

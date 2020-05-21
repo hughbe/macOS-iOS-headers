@@ -13,7 +13,7 @@
 @property(readonly, nonatomic, getter=isBlockingIncident) BOOL blockingIncident;
 @property(readonly, nonatomic) NSDate *lastUpdated;
 @property(readonly, nonatomic) NSDate *creationDate;
-@property(readonly, nonatomic) long long iconType;
+@property(readonly, nonatomic) int iconType;
 @property(readonly, nonatomic) NSDate *endDate;
 @property(readonly, nonatomic) NSDate *startDate;
 @property(readonly, nonatomic) NSString *messageForNonRoutable;
@@ -22,5 +22,6 @@
 @property(readonly, nonatomic) NSString *fullDescription;
 @property(readonly, nonatomic) NSString *summary;
 @property(readonly, nonatomic) NSString *title;
+@property(readonly, nonatomic) unsigned long long muid;
 @end
 

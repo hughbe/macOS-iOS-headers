@@ -8,6 +8,7 @@
 
 @class NSString, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface OADHyperlink : NSObject
 {
     NSURL *mTargetLocation;
@@ -21,6 +22,7 @@
     BOOL mDoAddToHistory;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL doAddToHistory; // @synthesize doAddToHistory=mDoAddToHistory;
 @property(nonatomic) BOOL isVisited; // @synthesize isVisited=mIsVisited;
 @property(nonatomic) BOOL doEndSound; // @synthesize doEndSound=mDoEndSound;
@@ -39,7 +41,6 @@
 - (int)targetMode;
 - (void)setTargetLocation:(id)arg1;
 - (id)targetLocation;
-- (void)dealloc;
 - (id)init;
 
 @end

@@ -6,22 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSNumber, NSObject<OS_dispatch_queue>;
-
 __attribute__((visibility("hidden")))
 @interface BRCContainerCellularSettings : NSObject
 {
-    NSObject<OS_dispatch_queue> *_queue;
-    NSNumber *_isCellularEnabledForDocumentsAndData;
 }
 
 + (id)containerCellularSettings;
-- (void).cxx_destruct;
-- (BOOL)isCellularEnabledForContainerID:(id)arg1;
-- (BOOL)_isCellularEnabledForBundleID:(id)arg1;
-- (BOOL)_isCellularEnabledForDocumentsAndData;
-- (id)init;
-- (void)_accountDidChange;
+- (BOOL)isCellularEnabled;
 
 @end
 

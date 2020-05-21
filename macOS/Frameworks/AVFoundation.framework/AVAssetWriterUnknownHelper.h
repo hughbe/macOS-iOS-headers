@@ -6,6 +6,7 @@
 
 #import <AVFoundation/AVAssetWriterHelper.h>
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterUnknownHelper : AVAssetWriterHelper
 {
     short _alternateGroupID;
@@ -19,6 +20,8 @@
 - (void)addInput:(id)arg1;
 - (BOOL)canAddInput:(id)arg1;
 - (BOOL)_canAddInput:(id)arg1 exceptionReason:(id *)arg2;
+- (void)setSinglePassMediaDataSize:(long long)arg1;
+- (void)setSinglePassFileSize:(long long)arg1;
 - (void)setPreferredRate:(float)arg1;
 - (void)setPreferredVolume:(float)arg1;
 - (void)setPreferredTransform:(struct CGAffineTransform)arg1;
@@ -28,7 +31,9 @@
 - (void)setShouldOptimizeForNetworkUse:(BOOL)arg1;
 - (void)setOverallDurationHint:(CDStruct_1b6d18a9)arg1;
 - (void)setMovieFragmentInterval:(CDStruct_1b6d18a9)arg1;
+- (void)setDelegate:(id)arg1;
 - (long long)status;
+- (id)initWithDataWritingDelegate:(id)arg1 fileType:(id)arg2;
 - (id)initWithURL:(id)arg1 fileType:(id)arg2;
 - (id)initWithConfigurationState:(id)arg1;
 

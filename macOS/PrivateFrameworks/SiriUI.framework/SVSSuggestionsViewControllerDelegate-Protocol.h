@@ -10,7 +10,6 @@
 
 @protocol SVSSuggestionsViewControllerDelegate <NSObject>
 - (double)statusViewHeightForSuggestionsViewController:(SVSSuggestionsViewController *)arg1;
-- (void)suggestionsViewDidShowSuggestions:(SVSSuggestionsViewController *)arg1;
 
 @optional
 - (void)minimumHeightDidChangeForSuggestionsViewController:(SVSSuggestionsViewController *)arg1;

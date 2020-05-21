@@ -6,21 +6,31 @@
 
 #import "NSObject.h"
 
+@class MKMapView, NSObject<OS_dispatch_queue>;
+
 @interface MKOverlayRenderer : NSObject
 {
     id <MKOverlay> _overlay;
     CDStruct_02837cd9 _boundingMapRect;
     id _renderer;
+    NSObject<OS_dispatch_queue> *_isolationQueue;
+    MKMapView *_mapView;
     double _contentScaleFactor;
     double _alpha;
 }
 
-@property(readonly, nonatomic) id <MKOverlay> overlay; // @synthesize overlay=_overlay;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) id <MKOverlay> overlay; // @synthesize overlay=_overlay;
+- (void)_updateRenderColors;
+- (id)vectorDataForOverlay:(id)arg1;
+- (BOOL)overlayCanProvideVectorData:(id)arg1;
 - (void)drawMapRect:(CDStruct_02837cd9)arg1 zoomScale:(double)arg2 inContext:(struct CGContext *)arg3;
 - (BOOL)canDrawMapRect:(CDStruct_02837cd9)arg1 zoomScale:(double)arg2;
 - (void)overlay:(id)arg1 drawKey:(const CDStruct_7523a67d *)arg2 inContext:(struct CGContext *)arg3;
 - (BOOL)overlay:(id)arg1 canDrawKey:(const CDStruct_7523a67d *)arg2;
+- (BOOL)overlay:(id)arg1 canPossiblyDrawKey:(const CDStruct_7523a67d *)arg2;
+- (void)_forEachMapRectForKey:(const CDStruct_7523a67d *)arg1 withContext:(struct CGContext *)arg2 performBlock:(CDUnknownBlockType)arg3;
+- (BOOL)_mayExtendOutsideBounds;
 - (void)set_renderer:(id)arg1;
 - (id)_renderer;
 - (CDStruct_02837cd9)_boundingMapRect;
@@ -32,6 +42,8 @@
 - (struct CGRect)rectForMapRect:(CDStruct_02837cd9)arg1;
 - (CDStruct_c3b9c2ee)mapPointForPoint:(struct CGPoint)arg1;
 - (struct CGPoint)pointForMapPoint:(CDStruct_c3b9c2ee)arg1;
+- (void)_setMapView:(id)arg1;
+- (id)_mapView;
 - (id)_mk_overlayLayer;
 - (CDStruct_c3b9c2ee)_originMapPoint;
 @property(readonly) double contentScaleFactor;

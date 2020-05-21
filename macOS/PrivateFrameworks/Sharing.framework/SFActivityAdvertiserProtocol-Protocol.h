@@ -4,11 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import "SDXPCDaemonProtocol.h"
 
-@class NSData, NSDictionary;
+@class NSData, NSDictionary, NSString;
 
-@protocol SFActivityAdvertiserProtocol <NSObject>
+@protocol SFActivityAdvertiserProtocol <SDXPCDaemonProtocol>
 - (void)advertiseAdvertisementPayload:(NSData *)arg1 options:(NSDictionary *)arg2 withErrorHandler:(void (^)(NSError *))arg3;
+- (void)pairedSFPeerDevicesWithOptions:(NSDictionary *)arg1 completionHandler:(void (^)(NSSet *, NSError *))arg2;
+- (void)peerForUUID:(NSString *)arg1 completionHandler:(void (^)(SFPeerDevice *, NSError *))arg2;
+- (void)loginIDWithOptions:(NSDictionary *)arg1 completionHandler:(void (^)(NSString *, NSError *))arg2;
 @end
 

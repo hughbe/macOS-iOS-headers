@@ -15,16 +15,16 @@
     int _crType;
 }
 
+- (void).cxx_destruct;
 - (id)extraUserInfoForRebuiltError;
 - (void)configureOperationDependencies;
 - (void)enqueue;
 - (void)removeOperationFromPersistence;
 - (id)associatedChangeRequestInContext:(id)arg1;
-- (id)changeRequest;
+- (id)createConsumerCalManagedObjectContext;
 - (int)crType;
 - (id)changeRequestID;
 - (long long)sequenceNumber;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 andSession:(id)arg2;
 
 @end

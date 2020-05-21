@@ -10,11 +10,13 @@
 {
     unsigned long long _flags;
     unsigned long long _position;
+    unsigned long long _faceID;
     CDStruct_1b6d18a9 _start;
     CDStruct_1b6d18a9 _last;
     struct CGRect _bounds;
 }
 
+@property unsigned long long faceID; // @synthesize faceID=_faceID;
 @property unsigned long long position; // @synthesize position=_position;
 @property struct CGRect bounds; // @synthesize bounds=_bounds;
 @property unsigned long long flags; // @synthesize flags=_flags;

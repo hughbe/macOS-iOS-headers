@@ -7,29 +7,36 @@
 #import <AVKit/AVControlsViewController.h>
 
 #import "NSMenuDelegate.h"
+#import "NSTouchBarProvider.h"
 
-@class AVCaptureController, AVCaptureView, NSMenu, NSString;
+@class AVCaptureController, AVCaptureView, NSMenu, NSString, NSTouchBar;
 
 __attribute__((visibility("hidden")))
-@interface AVCaptureControlsViewController : AVControlsViewController <NSMenuDelegate>
+@interface AVCaptureControlsViewController : AVControlsViewController <NSMenuDelegate, NSTouchBarProvider>
 {
+    id _menuDidCompleteNotificationToken;
+    BOOL _isDiscoveringWirelessCaptureDevices;
     AVCaptureController *_captureController;
     AVCaptureView *_captureView;
     NSMenu *_sourceAndQualitySelectionMenu;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMenu *sourceAndQualitySelectionMenu; // @synthesize sourceAndQualitySelectionMenu=_sourceAndQualitySelectionMenu;
 @property(nonatomic) __weak AVCaptureView *captureView; // @synthesize captureView=_captureView;
 @property(nonatomic) __weak AVCaptureController *captureController; // @synthesize captureController=_captureController;
-- (void).cxx_destruct;
 - (void)hideControlsForAuxiliaryControl;
 - (void)showControlsForAuxiliaryControl;
+@property(readonly) NSTouchBar *touchBar;
 - (void)takeSelectedCaptureQualityItemFromRepresentedObjectOf:(id)arg1;
 - (void)takeSelectedCaptureDeviceInputSourceItemFromRepresentedObjectOf:(id)arg1;
+- (void)menuWillOpen:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
 - (void)addItemWithTitle:(id)arg1 qualityItems:(id)arg2 selectedQualityItem:(id)arg3 toMenu:(id)arg4;
-- (void)addItemWithTitle:(id)arg1 andSubitemsForInputSourceItems:(id)arg2 toMenu:(id)arg3;
+- (void)addItemWithTitle:(id)arg1 andSubitemsForInputSourceItems:(id)arg2 selectedItem:(id)arg3 toMenu:(id)arg4;
 - (void)captureDeviceSelectionButtonPressed:(id)arg1;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)dealloc;
 - (id)init;
 
 // Remaining properties

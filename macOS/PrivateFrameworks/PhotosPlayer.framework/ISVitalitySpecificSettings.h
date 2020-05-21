@@ -10,34 +10,29 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface ISVitalitySpecificSettings : ISSettings <ISVitalitySettings>
 {
     long long _behavior;
     double _preDuration;
     double _postDuration;
-    double _maximumRate;
-    double _maximumDeceleration;
-    double _relativeStart;
-    double _relativeEnd;
-    long long _maximumNumberOfFrames;
+    double _startSeekTolerance;
     double _playbackRate;
     double _endTimeOffset;
     double _minimumVisibilityFactor;
     double _maximumDelayBeforePlayback;
-    double _minimumDurationForColorMismatch;
+    double _maxVitalityDelay;
+    double _minimumPhotoTransitionDuration;
 }
 
 + (id)sharedInstance;
-@property(nonatomic) double minimumDurationForColorMismatch; // @synthesize minimumDurationForColorMismatch=_minimumDurationForColorMismatch;
+@property(nonatomic) double minimumPhotoTransitionDuration; // @synthesize minimumPhotoTransitionDuration=_minimumPhotoTransitionDuration;
+@property(nonatomic) double maxVitalityDelay; // @synthesize maxVitalityDelay=_maxVitalityDelay;
 @property(nonatomic) double maximumDelayBeforePlayback; // @synthesize maximumDelayBeforePlayback=_maximumDelayBeforePlayback;
 @property(nonatomic) double minimumVisibilityFactor; // @synthesize minimumVisibilityFactor=_minimumVisibilityFactor;
 @property(nonatomic) double endTimeOffset; // @synthesize endTimeOffset=_endTimeOffset;
 @property(nonatomic) double playbackRate; // @synthesize playbackRate=_playbackRate;
-@property(nonatomic) long long maximumNumberOfFrames; // @synthesize maximumNumberOfFrames=_maximumNumberOfFrames;
-@property(nonatomic) double relativeEnd; // @synthesize relativeEnd=_relativeEnd;
-@property(nonatomic) double relativeStart; // @synthesize relativeStart=_relativeStart;
-@property(nonatomic) double maximumDeceleration; // @synthesize maximumDeceleration=_maximumDeceleration;
-@property(nonatomic) double maximumRate; // @synthesize maximumRate=_maximumRate;
+@property(nonatomic) double startSeekTolerance; // @synthesize startSeekTolerance=_startSeekTolerance;
 @property(nonatomic) double postDuration; // @synthesize postDuration=_postDuration;
 @property(nonatomic) double preDuration; // @synthesize preDuration=_preDuration;
 @property(nonatomic) long long behavior; // @synthesize behavior=_behavior;

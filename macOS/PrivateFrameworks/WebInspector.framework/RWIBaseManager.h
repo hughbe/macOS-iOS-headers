@@ -6,23 +6,23 @@
 
 #import "NSObject.h"
 
-#import "DaemonToClientMessageReceiver.h"
 #import "RWIServiceConnectionDelegate.h"
+#import "_RWIRelayToClientMessageReceiver.h"
 
-@class NSMutableDictionary, NSSet, NSString, RWIMachine;
+@class NSMutableDictionary, NSSet, NSString, RWIApplication, RWIMachine;
 
 __attribute__((visibility("hidden")))
-@interface RWIBaseManager : NSObject <RWIServiceConnectionDelegate, DaemonToClientMessageReceiver>
+@interface RWIBaseManager : NSObject <RWIServiceConnectionDelegate, _RWIRelayToClientMessageReceiver>
 {
-    id <RWIBaseManagerDelegate> _delegate;
     NSMutableDictionary *_targets;
     NSMutableDictionary *_floatingDebuggables;
+    id <RWIBaseManagerDelegate> _delegate;
     NSString *_uuid;
 }
 
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
 @property(nonatomic) __weak id <RWIBaseManagerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)_rpc_reportAutomaticInspectionCandidate:(id)arg1;
 - (void)_rpc_requestDriverStateChange:(id)arg1;
 - (void)_rpc_reportSetup:(id)arg1;
@@ -53,7 +53,7 @@ __attribute__((visibility("hidden")))
 - (void)_addDebuggable:(id)arg1;
 - (void)_removeApplication:(id)arg1;
 - (void)_addApplication:(id)arg1;
-- (void)_addApplication:(id)arg1 immediatelyFetchListing:(BOOL)arg2;
+- (void)launchApplicationWithBundleIdentifier:(id)arg1 forTarget:(id)arg2;
 - (void)requestDriver:(id)arg1 shouldBeActive:(BOOL)arg2;
 - (void)updateDriver:(id)arg1 toState:(BOOL)arg2;
 - (void)unmanageDriver:(id)arg1;
@@ -61,17 +61,17 @@ __attribute__((visibility("hidden")))
 - (id)managedTargetWithKey:(id)arg1;
 - (void)unmanageTargetWithKey:(id)arg1;
 - (id)manageTarget:(id)arg1 withKey:(id)arg2;
-- (id)managedDeviceWithRef:(struct _AMDevice *)arg1;
-- (void)unmanageDevice:(struct _AMDevice *)arg1;
-- (id)manageDevice:(struct _AMDevice *)arg1;
+- (id)managedDevice:(id)arg1;
+- (id)unmanageDevice:(id)arg1;
+- (id)manageDevice:(id)arg1;
 - (void)sendAutomaticInspectionEnabled:(BOOL)arg1 forTarget:(id)arg2;
+- (void)targetLostServiceConnection:(id)arg1;
 - (void)targetEstablishedServiceConnection:(id)arg1;
 - (void)openServiceConnectionForTarget:(id)arg1;
-- (void)targetDidChangeReadyState:(id)arg1;
 - (void)targetHasBasicInformation:(id)arg1;
+@property(readonly, nonatomic) RWIApplication *currentApplication;
 @property(readonly, nonatomic) RWIMachine *currentMachine; // @dynamic currentMachine;
 @property(readonly, nonatomic) NSSet *targets; // @dynamic targets;
-- (id)_keyForDeviceRef:(struct _AMDevice *)arg1;
 - (id)init;
 
 // Remaining properties

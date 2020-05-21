@@ -23,13 +23,11 @@
     NSMutableDictionary *_playerStates;
 }
 
-+ (void)acceptShareURL:(id)arg1 handler:(CDUnknownBlockType)arg2;
 + (BOOL)supportsSecureCoding;
 + (void)removeSessionWithIdentifier:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (void)loadSessionWithIdentifier:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (void)loadSessionsInContainer:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (void)createSessionInContainer:(id)arg1 withTitle:(id)arg2 maxConnectedPlayers:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
-+ (void)postPlayer:(id)arg1 requestedSessionWithPlayers:(id)arg2;
 + (void)postSession:(id)arg1 didReceiveMessage:(id)arg2 withData:(id)arg3 fromPlayer:(id)arg4;
 + (void)postSession:(id)arg1 didReceiveData:(id)arg2 fromPlayer:(id)arg3;
 + (void)postSession:(id)arg1 player:(id)arg2 didSaveData:(id)arg3;
@@ -41,6 +39,7 @@
 + (id)gk_sessionEventListeners;
 + (void)getSessionsForZone:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (void)getZonesWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *playerStates; // @synthesize playerStates=_playerStates;
 @property(retain, nonatomic) NSString *serverChangeTag; // @synthesize serverChangeTag=_serverChangeTag;
 @property(nonatomic) long long maxNumberOfConnectedPlayers; // @synthesize maxNumberOfConnectedPlayers=_maxNumberOfConnectedPlayers;
@@ -50,7 +49,6 @@
 @property(retain, nonatomic) GKCloudPlayer *owner; // @synthesize owner=_owner;
 @property(retain, nonatomic) NSString *title; // @synthesize title=_title;
 @property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
 @property(readonly, nonatomic) NSArray *badgedPlayers;
 - (void)clearBadgeForPlayers:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)sendMessageWithLocalizedFormatKey:(id)arg1 arguments:(id)arg2 data:(id)arg3 toPlayers:(id)arg4 badgePlayers:(BOOL)arg5 completionHandler:(CDUnknownBlockType)arg6;

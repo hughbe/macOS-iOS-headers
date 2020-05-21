@@ -8,19 +8,20 @@
 
 #import "NSAccessibility.h"
 #import "NSAccessibilityElement.h"
+#import "NSAppearanceCustomization.h"
 #import "_NSTransientUIElement.h"
 
-@class NSArray, NSString, NSURL, NSView, NSViewController, NSWindow;
+@class NSAppearance, NSArray, NSString, NSURL, NSView, NSViewController, NSWindow;
 
-@interface NSPopover : NSResponder <_NSTransientUIElement, NSAccessibilityElement, NSAccessibility>
+@interface NSPopover : NSResponder <_NSTransientUIElement, NSAppearanceCustomization, NSAccessibilityElement, NSAccessibility>
 {
     id _bindingAdaptor;
-    id <NSPopoverDelegate> _delegate;
+    id _delegate;
     id _visualRepresentation;
     NSView *_positioningView;
     NSViewController *_contentViewController;
     NSWindow *_positioningWindow;
-    long long _appearance;
+    NSAppearance *_appearance;
     long long _behavior;
     id _popoverPrivateData;
     unsigned long long _preferredEdge;
@@ -36,14 +37,16 @@
         unsigned int toolbarHidesAnchor:1;
         unsigned int closing:1;
         unsigned int registeredForGeometryInWindowDidChange:1;
+        unsigned int registeredForEffectiveAppearanceDidChange:1;
         unsigned int keepTopStable:1;
         unsigned int implicitlyDetached:1;
         unsigned int hidesDetachedWindowOnDeactivate:1;
         unsigned int requiresCorrectContentAppearance:1;
-        unsigned int reserved:20;
+        unsigned int reserved:19;
     } _flags;
 }
 
+@property(retain) NSWindow *positioningWindow; // @synthesize positioningWindow=_positioningWindow;
 @property(retain) NSView *positioningView; // @synthesize positioningView=_positioningView;
 @property __weak id accessibilityParent; // @dynamic accessibilityParent;
 @property struct CGRect accessibilityFrame; // @dynamic accessibilityFrame;
@@ -59,7 +62,6 @@
 - (void)_finalizeImplicitWindowDetach;
 @property(readonly, getter=isDetached) BOOL detached;
 - (void)detach;
-- (void)drawBackgroundInRect:(struct CGRect)arg1 ofView:(id)arg2 anchorEdge:(unsigned long long)arg3 anchorPoint:(struct CGPoint)arg4;
 - (struct NSEdgeInsets)contentInset;
 - (struct CGSize)anchorSize;
 - (void)popoverDidClose:(id)arg1;
@@ -74,13 +76,13 @@
 - (void)cancel:(id)arg1;
 - (void)performClose:(id)arg1;
 - (void)close;
+- (void)_resetClosingBlock;
 - (void)_executeClosingBlock;
 - (void)_queueClosingBlock:(CDUnknownBlockType)arg1;
 - (void)_finishClosingAndShouldNotify:(BOOL)arg1;
 - (long long)_closeReason;
 - (void)_setCloseReason:(long long)arg1;
 - (long long)_popoverWindowLevel;
-- (long long)_popoverWindowSubLevel;
 - (void)_updatePopoverWindowLevels;
 - (void)_popoverDidEnterFullscreen:(id)arg1;
 - (void)_popoverDidExitFullscreen:(id)arg1;
@@ -88,10 +90,12 @@
 - (void)_completeShow;
 - (void)_prepareToShowRelativeToRect:(struct CGRect)arg1 inView:(id)arg2 preferredEdge:(unsigned long long)arg3;
 - (void)showRelativeToRect:(struct CGRect)arg1 ofView:(id)arg2 preferredEdge:(unsigned long long)arg3;
-- (void)showFrom:(id)arg1;
+@property(readonly, copy) NSString *description;
 - (BOOL)_validatePopoverWindowFirstResponder;
 - (BOOL)_validatePopoverFirstResponder:(id)arg1;
 - (void)_repositionRelativeToRect:(struct CGRect)arg1 ofView:(id)arg2 preferredEdge:(unsigned long long)arg3;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)_setListenToEffectiveAppearanceDidChange:(BOOL)arg1;
 - (void)positioningViewGeometryInWindowDidChange:(id)arg1;
 - (void)_setListenToViewGeometryInWindowDidChange:(BOOL)arg1;
 - (unsigned long long)_externalRectEdgeToInternalAnchorEdge:(unsigned long long)arg1 ofView:(id)arg2;
@@ -123,16 +127,17 @@
 - (id)_popoverFrame;
 - (void)_setPopoverWindow:(id)arg1;
 - (id)_popoverWindow;
-- (BOOL)_shouldUseAquaAppearanceForContentView:(id)arg1;
+- (BOOL)_shouldUseNonVibrantAppearanceForContentView:(id)arg1;
 - (BOOL)_requiresCorrectContentAppearance;
 - (void)_setRequiresCorrectContentAppearance:(BOOL)arg1;
 - (void)_setLegacyAppearance:(long long)arg1;
 - (long long)_legacyAppearance;
 - (void)setCustomAppearance:(id)arg1;
 - (id)customAppearance;
-- (id)effectiveAppearance;
-@property long long appearance;
-@property id <NSPopoverDelegate> delegate;
+@property(readonly) NSAppearance *effectiveAppearance;
+@property(retain) NSAppearance *appearance;
+@property __weak id <NSPopoverDelegate> delegate;
+- (id)_delegate;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -152,6 +157,7 @@
 - (void)_beginPredeepAnimationRelativeToRect:(struct CGRect)arg1 ofView:(id)arg2 preferredEdge:(unsigned long long)arg3;
 - (void)_beginPredeepAnimationAgainstPoint:(struct CGPoint)arg1 inView:(id)arg2;
 - (SEL)_reactiveAction;
+- (struct CGRect)_currentFrameOnScreenWithContentSize:(struct CGSize)arg1 outAnchorEdge:(unsigned long long *)arg2;
 - (void)_closeForToolbarPresentingOnWindow:(id)arg1;
 - (void)_closeForSheetPresentingOnWindow:(id)arg1;
 - (void)_closeForKeyDownEvent:(id)arg1;
@@ -177,6 +183,7 @@
 @property(retain) id accessibilityApplicationFocusedUIElement; // @dynamic accessibilityApplicationFocusedUIElement;
 @property(retain) id accessibilityCancelButton; // @dynamic accessibilityCancelButton;
 @property(copy) NSArray *accessibilityChildren; // @dynamic accessibilityChildren;
+@property(copy) NSArray *accessibilityChildrenInNavigationOrder; // @dynamic accessibilityChildrenInNavigationOrder;
 @property(retain) id accessibilityClearButton; // @dynamic accessibilityClearButton;
 @property(retain) id accessibilityCloseButton; // @dynamic accessibilityCloseButton;
 @property long long accessibilityColumnCount; // @dynamic accessibilityColumnCount;
@@ -186,6 +193,8 @@
 @property(copy) NSArray *accessibilityColumns; // @dynamic accessibilityColumns;
 @property(copy) NSArray *accessibilityContents; // @dynamic accessibilityContents;
 @property(retain) id accessibilityCriticalValue; // @dynamic accessibilityCriticalValue;
+@property(copy) NSArray *accessibilityCustomActions; // @dynamic accessibilityCustomActions;
+@property(copy) NSArray *accessibilityCustomRotors; // @dynamic accessibilityCustomRotors;
 @property(retain) id accessibilityDecrementButton; // @dynamic accessibilityDecrementButton;
 @property(retain) id accessibilityDefaultButton; // @dynamic accessibilityDefaultButton;
 @property(getter=isAccessibilityDisclosed) BOOL accessibilityDisclosed; // @dynamic accessibilityDisclosed;
@@ -289,7 +298,6 @@
 @property(copy) NSArray *accessibilityWindows; // @dynamic accessibilityWindows;
 @property(retain) id accessibilityZoomButton; // @dynamic accessibilityZoomButton;
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

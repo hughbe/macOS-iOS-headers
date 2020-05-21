@@ -8,17 +8,14 @@
 
 #import "NSMachPortDelegate.h"
 
-@class NSMachPort, NSString, NSTimer;
+@class NSString, NSTimer;
 
+__attribute__((visibility("hidden")))
 @interface _NSScrollerStyleRecommender : NSObject <NSMachPortDelegate>
 {
     long long lastRecommendedScrollerStyle;
     NSTimer *scrollerStyleRecommendationUpdateTimer;
-    struct IONotificationPort *iokitNotificationPort;
-    unsigned int iokitNotificationMachPort;
-    NSMachPort *iokitMachPort;
-    unsigned int servicePublishNotification;
-    unsigned int serviceTerminationNotification;
+    BOOL isListeningForDevicesChangedNotification;
 }
 
 + (id)sharedScrollerStyleRecommender;
@@ -27,8 +24,7 @@
 - (id)init;
 - (void)pointingDeviceGestureScrollSettingChanged:(id)arg1;
 - (void)showScrollBarsSettingChanged:(id)arg1;
-- (void)notePointingDeviceDisconnected;
-- (void)notePointingDeviceConnected;
+- (void)noteSessionDevicesChanged;
 - (void)scheduleScrollerStyleRecommendationUpdate:(double)arg1;
 - (void)cancelScrollerStyleRecommendationUpdate;
 - (void)scrollerStyleRecommendationUpdateTimerFired:(id)arg1;
@@ -38,7 +34,6 @@
 - (void)startListeningForUserPreferenceNotifications;
 - (void)stopListeningForPointingDeviceConnectAndDisconnect;
 - (BOOL)startListeningForPointingDeviceConnectAndDisconnect;
-- (void)handleMachMessage:(void *)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

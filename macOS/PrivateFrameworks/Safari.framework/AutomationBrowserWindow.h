@@ -9,9 +9,12 @@
 __attribute__((visibility("hidden")))
 @interface AutomationBrowserWindow : BrowserWindow
 {
+    BOOL _sendingWhitelistedEvent;
     BOOL _sendingSynthesizedEvent;
 }
 
+@property(readonly, nonatomic) BOOL sendingWhitelistedEvent; // @synthesize sendingWhitelistedEvent=_sendingWhitelistedEvent;
+@property(readonly, nonatomic) BOOL sendingSynthesizedEvent; // @synthesize sendingSynthesizedEvent=_sendingSynthesizedEvent;
 - (void)postEvent:(id)arg1 atStart:(BOOL)arg2;
 - (void)sendEvent:(id)arg1;
 

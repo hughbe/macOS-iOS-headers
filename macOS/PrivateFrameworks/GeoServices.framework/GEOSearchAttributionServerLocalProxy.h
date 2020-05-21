@@ -6,30 +6,31 @@
 
 #import "NSObject.h"
 
+#import "GEOResourceManifestTileGroupObserver.h"
 #import "GEOSearchAttributionServerProxy.h"
 
-@class GEOSearchAttributionManifest, NSLock, NSMapTable, NSMutableArray, NSString;
+@class GEOSearchAttributionManifest, NSMapTable, NSMutableArray, NSString, geo_isolater;
 
 __attribute__((visibility("hidden")))
-@interface GEOSearchAttributionServerLocalProxy : NSObject <GEOSearchAttributionServerProxy>
+@interface GEOSearchAttributionServerLocalProxy : NSObject <GEOResourceManifestTileGroupObserver, GEOSearchAttributionServerProxy>
 {
     NSMapTable *_listeners;
-    NSLock *_listenersLock;
+    struct os_unfair_lock_s _listenersLock;
     BOOL _updatingManifest;
     NSMutableArray *_updateManifestCompletionHandlers;
     NSMutableArray *_updateManifestErrorHandlers;
     GEOSearchAttributionManifest *_attributionManifest;
-    NSLock *_attributionManifestLock;
+    struct os_unfair_lock_s _attributionManifestLock;
+    geo_isolater *_isolater;
 }
 
-- (void)loadAttributionInfoForIdentifier:(id)arg1 version:(unsigned int)arg2 completionHandler:(CDUnknownBlockType)arg3 errorHandler:(CDUnknownBlockType)arg4;
-- (void)_loadAttributionInfoForListener:(id)arg1 hasUpdatedManifest:(BOOL)arg2;
-- (void)_updateManifestWithCompletionHandler:(CDUnknownBlockType)arg1 errorHandler:(CDUnknownBlockType)arg2;
-- (void)_pruneOldAttributionLogos;
+- (void).cxx_destruct;
+- (void)resourceManifestManagerDidChangeActiveTileGroup:(id)arg1;
+- (void)loadAttributionInfoForIdentifiers:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_loadAttributionInfoForListener:(id)arg1;
 - (void)_sendError:(id)arg1 toListener:(id)arg2;
-- (void)_sendInfo:(id)arg1 updatedManifest:(BOOL)arg2 toListener:(id)arg3;
+- (void)_sendInfo:(id)arg1 toListener:(id)arg2;
 - (id)_attributionManifest;
-- (void)dealloc;
 - (id)init;
 
 // Remaining properties

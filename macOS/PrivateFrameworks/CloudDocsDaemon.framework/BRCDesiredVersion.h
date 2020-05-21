@@ -6,12 +6,12 @@
 
 #import <CloudDocsDaemon/BRCVersion.h>
 
-#import "PQLBindable.h"
+#import "PQLValuable.h"
 
 @class NSError, NSString;
 
 __attribute__((visibility("hidden")))
-@interface BRCDesiredVersion : BRCVersion <PQLBindable>
+@interface BRCDesiredVersion : BRCVersion <PQLValuable>
 {
     union {
         unsigned int value;
@@ -20,16 +20,18 @@ __attribute__((visibility("hidden")))
             unsigned int startDownload:1;
             unsigned int wantsThumbnail:1;
             unsigned int userInitiated:1;
+            unsigned int wantsContentForThumbnail:1;
         } ;
     } _flags;
     NSError *_downloadError;
     NSString *_serverName;
 }
 
++ (id)newFromSqliteValue:(struct sqlite3_value *)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *serverName; // @synthesize serverName=_serverName;
 @property(retain, nonatomic) NSError *downloadError; // @synthesize downloadError=_downloadError;
-- (void).cxx_destruct;
 - (BOOL)isStillValidForEtag:(id)arg1;
 - (void)sqliteBind:(struct sqlite3_stmt *)arg1 index:(int)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -38,7 +40,9 @@ __attribute__((visibility("hidden")))
 - (id)descriptionWithContext:(id)arg1;
 - (id)initWithServerVersion:(id)arg1 serverName:(id)arg2;
 - (id)initWithDesiredVersion:(id)arg1;
+- (void)markLiveAsFault;
 @property(nonatomic) unsigned int options;
+@property(readonly, nonatomic) BOOL wantsContentForThumbnail;
 @property(readonly, nonatomic) BOOL userInitiated;
 @property(readonly, nonatomic) BOOL wantsThumbnail;
 @property(readonly, nonatomic) BOOL wantsContent;

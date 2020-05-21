@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     NSMutableSet *_childrenUIElementsCheckedForScrollbars;
 }
 
+- (void).cxx_destruct;
 - (BOOL)isScrollArea;
 - (BOOL)handleScrollByPageWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)handleSpeakScrollPageWithEvent:(id)arg1 request:(id)arg2;
@@ -27,30 +28,31 @@ __attribute__((visibility("hidden")))
 - (BOOL)isContainerElement;
 - (void)addContentToRequest:(id)arg1 visibleOnly:(BOOL)arg2;
 - (void)incrementReadContentsElementIndex:(BOOL)arg1;
-- (BOOL)performBrailleRouterActionWithIndex:(unsigned long long)arg1 outputRequest:(id)arg2;
-- (void)prepareBrailleItemDescriptionForRequest:(id)arg1 hasBrailleFocus:(BOOL)arg2;
 - (void)addItemDescriptionForBrailleToRequest:(id)arg1;
 - (id)description;
+- (id)_defaultLocalizedStringForCommandKey:(id)arg1;
+- (BOOL)childrenShouldAddIndexToDescription;
 - (BOOL)addKeyboardSelectionSummaryToRequest:(id)arg1;
 - (BOOL)addSelectionDescriptionToRequest:(id)arg1;
 - (void)addElementSummaryToRequest:(id)arg1;
-- (void)addItemDescriptionForCommand:(id)arg1 toRequest:(id)arg2;
+- (void)addItemDescriptionForCommand:(id)arg1 toRequest:(id)arg2 event:(id)arg3;
 - (void)addItemDescriptionToRequest:(id)arg1;
-- (id)statusDescriptionWithOptionsMask:(int)arg1;
+- (id)statusDescription;
 - (void)highlightWithScrolling:(BOOL)arg1;
 - (BOOL)isSectionView;
 - (void)handleInteractionOutput:(id)arg1 forCommand:(id)arg2 withStatus:(BOOL)arg3;
 - (BOOL)_scrollEndWithRequest:(id)arg1;
 - (BOOL)_scrollHomeWithRequest:(id)arg1;
-- (BOOL)_scrollRightWithRequest:(id)arg1 distance:(int)arg2;
-- (BOOL)_scrollLeftWithRequest:(id)arg1 distance:(int)arg2;
-- (BOOL)_scrollDownWithRequest:(id)arg1 distance:(int)arg2;
-- (BOOL)_scrollUpWithRequest:(id)arg1 distance:(int)arg2;
+- (BOOL)_scrollRightWithRequest:(id)arg1 distance:(long long)arg2;
+- (BOOL)_scrollLeftWithRequest:(id)arg1 distance:(long long)arg2;
+- (BOOL)_scrollDownWithRequest:(id)arg1 distance:(long long)arg2;
+- (BOOL)_scrollUpWithRequest:(id)arg1 distance:(long long)arg2;
 - (BOOL)_handleScrollWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)_enableScrollModeWithRequest:(id)arg1;
 - (BOOL)handleTaggedOperationWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)handleUntaggedOperationWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)handleEvent:(id)arg1 request:(id)arg2;
+- (BOOL)chainEvent:(id)arg1 request:(id)arg2;
 - (BOOL)isInteractive;
 - (BOOL)needToRebuildChildren;
 - (BOOL)allowBuildChildren;
@@ -61,6 +63,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)showRect:(struct CGRect)arg1;
 - (void)setChildren:(id)arg1;
 - (id)contentChildren;
+- (BOOL)scrollToShowDescendant:(id)arg1;
 - (BOOL)isChildScrollable:(id)arg1;
 - (BOOL)shouldPromoteUIElement:(id)arg1;
 - (BOOL)shouldRemoveSpecialChild:(id)arg1;
@@ -77,7 +80,6 @@ __attribute__((visibility("hidden")))
 - (void)_updateCachedScrollBars;
 - (void)_handleWindowResized:(id)arg1;
 - (void)setIsEventHandler:(BOOL)arg1 isKeyboardHandler:(BOOL)arg2;
-- (void)deallocChildren;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end

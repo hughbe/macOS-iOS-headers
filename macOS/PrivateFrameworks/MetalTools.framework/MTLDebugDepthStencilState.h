@@ -14,8 +14,9 @@
 }
 
 @property(readonly, nonatomic) MTLDepthStencilDescriptor *descriptor; // @synthesize descriptor=_descriptor;
-- (void).cxx_destruct;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
+- (void)dealloc;
 - (id)initWithBaseDepthStencilState:(id)arg1 device:(id)arg2 descriptor:(id)arg3;
 
 @end

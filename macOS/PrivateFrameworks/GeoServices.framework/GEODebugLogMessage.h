@@ -8,14 +8,11 @@
 
 #import "NSCopying.h"
 
-@class NSString;
-
 @interface GEODebugLogMessage : PBCodable <NSCopying>
 {
-    NSString *_callStack;
 }
 
-@property(retain, nonatomic) NSString *callStack; // @synthesize callStack=_callStack;
++ (BOOL)isValid:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -23,10 +20,9 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-@property(readonly, nonatomic) BOOL hasCallStack;
-- (void)dealloc;
 
 @end
 

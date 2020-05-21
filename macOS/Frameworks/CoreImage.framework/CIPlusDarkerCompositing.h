@@ -11,8 +11,8 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (id)_kernel_source;
 + (id)customAttributes;
++ (id)_kernel;
 - (id)outputImage;
 
 @end

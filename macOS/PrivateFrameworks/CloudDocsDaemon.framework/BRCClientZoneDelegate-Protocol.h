@@ -9,8 +9,6 @@
 @class BRCClientZone;
 
 @protocol BRCClientZoneDelegate <NSObject>
-- (void)clientZoneDidBecomeBackground:(BRCClientZone *)arg1;
-- (void)clientZoneDidBecomeForeground:(BRCClientZone *)arg1;
 - (void)didInitialSyncDownForClientZone:(BRCClientZone *)arg1;
 - (void)willInitialSyncDownForClientZone:(BRCClientZone *)arg1;
 - (void)didChangeSyncStatusForZoneHealthForContainer:(BRCClientZone *)arg1;

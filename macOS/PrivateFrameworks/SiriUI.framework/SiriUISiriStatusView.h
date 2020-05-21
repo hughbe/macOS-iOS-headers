@@ -7,52 +7,66 @@
 #import "NSView.h"
 
 #import "NSGestureRecognizerDelegate.h"
-#import "SiriUIFlamesViewDelegate.h"
 #import "SiriUITalkGestureTargetDelegate.h"
 
-@class NSImageView, NSString, SiriUIFlamesView, SiriUITalkGestureTarget;
+@class AVPlayerLayer, AVPlayerLooper, AVQueuePlayer, NSPressGestureRecognizer, NSString, SRFLockStateNotifier, SiriUITalkGestureTarget, SiriUITextInputField;
 
-__attribute__((visibility("hidden")))
-@interface SiriUISiriStatusView : NSView <NSGestureRecognizerDelegate, SiriUIFlamesViewDelegate, SiriUITalkGestureTargetDelegate>
+@interface SiriUISiriStatusView : NSView <NSGestureRecognizerDelegate, SiriUITalkGestureTargetDelegate>
 {
     SiriUITalkGestureTarget *_gestureTarget;
-    int _deferredFlamesViewState;
+    NSPressGestureRecognizer *_pressRecognizer;
     double _lastStateChangeTime;
-    double _micViewTargetAlpha;
-    SiriUIFlamesView *_flamesView;
-    NSImageView *_micGlyphImageView;
-    long long _mode;
+    double _orbViewTargetAlpha;
+    AVPlayerLayer *_orbLayer;
+    AVPlayerLooper *_orbPlayerLooper;
+    AVQueuePlayer *_orbQueuePlayer;
+    SRFLockStateNotifier *_lockStateNotifier;
+    BOOL _reduceMotionEnabled;
+    SiriUITextInputField *_textInputField;
+    NSView *_orbView;
     double _disabledMicOpacity;
     id <SiriUISiriStatusViewDelegate> _delegate;
     id <SiriUISiriStatusViewAnimationDelegate> _animationDelegate;
+    long long _mode;
 }
 
 + (BOOL)requiresConstraintBasedLayout;
 + (double)statusViewHeightForWidthSizeClass:(BOOL)arg1;
+- (void).cxx_destruct;
+@property(nonatomic, getter=isReduceMotionEnabled) BOOL reduceMotionEnabled; // @synthesize reduceMotionEnabled=_reduceMotionEnabled;
+@property(nonatomic) long long mode; // @synthesize mode=_mode;
 @property(nonatomic) __weak id <SiriUISiriStatusViewAnimationDelegate> animationDelegate; // @synthesize animationDelegate=_animationDelegate;
 @property(nonatomic) __weak id <SiriUISiriStatusViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) double disabledMicOpacity; // @synthesize disabledMicOpacity=_disabledMicOpacity;
-@property(nonatomic) long long mode; // @synthesize mode=_mode;
-@property(retain) NSImageView *micGlyphImageView; // @synthesize micGlyphImageView=_micGlyphImageView;
-@property(nonatomic) __weak SiriUIFlamesView *flamesView; // @synthesize flamesView=_flamesView;
-- (void).cxx_destruct;
-- (float)audioLevelForFlamesView:(id)arg1;
+@property(retain) NSView *orbView; // @synthesize orbView=_orbView;
+@property(retain) SiriUITextInputField *textInputField; // @synthesize textInputField=_textInputField;
+- (void)setInputVoiceOverJumpTarget:(id)arg1;
+@property(readonly, nonatomic) id voiceOverJumpTarget;
 - (void)_siriStatusViewHoldDidEnd;
 - (void)_siriStatusViewHoldDidBegin;
-- (void)_siriStatusViewWasClicked;
-- (void)_setFlamesViewState:(int)arg1;
-- (void)_micButtonHeld:(id)arg1;
-- (void)_micButtonClicked:(id)arg1;
+- (void)_siriStatusViewWasClickedFromOrbButton;
+- (void)_orbButtonHeld:(id)arg1;
+- (void)_orbButtonClicked:(id)arg1;
 - (BOOL)gestureRecognizerShouldBegin:(id)arg1;
-- (struct CGRect)_micGlyphTappableRect;
+- (void)textInputFieldAction:(id)arg1;
+- (void)setMode:(long long)arg1 withAnimationCompletion:(CDUnknownBlockType)arg2;
+- (struct CGRect)_orbGlyphTappableRect;
 - (struct CGRect)_flamesFrame;
-- (void)_animateMicGlyphHidden:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_animateMicGlyphHidden:(BOOL)arg1;
-- (void)forceMicVisible:(BOOL)arg1;
+- (void)_animateInputHidden:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_animateInputHidden:(BOOL)arg1;
+- (void)_animateOrbGlyphHidden:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
+- (BOOL)_isOrbGlyphHidden;
+- (void)forceOrbVisible:(BOOL)arg1;
 - (void)resizeWithOldSuperviewSize:(struct CGSize)arg1;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
+- (void)updateTextInputForLockedScreen:(BOOL)arg1;
+- (void)didUnlockDevice:(id)arg1;
+- (void)didLockDevice:(id)arg1;
 - (void)dealloc;
+- (void)initInputMode;
 - (void)awakeFromNib;
+- (void)initOrbVideoLayerIfNecesary;
+- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

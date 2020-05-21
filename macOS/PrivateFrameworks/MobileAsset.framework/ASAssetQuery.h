@@ -14,11 +14,13 @@
     NSPredicate *_predicate;
     double _networkTimeout;
     NSString *_assetType;
+    NSString *_sessionIdentifier;
     NSArray *_results;
 }
 
 + (id)queryPredicateForProperties:(id)arg1;
 @property(retain, nonatomic) NSArray *results; // @synthesize results=_results;
+@property(copy, nonatomic) NSString *sessionIdentifier; // @synthesize sessionIdentifier=_sessionIdentifier;
 @property(copy, nonatomic) NSString *assetType; // @synthesize assetType=_assetType;
 @property(nonatomic) double networkTimeout; // @synthesize networkTimeout=_networkTimeout;
 @property(nonatomic) BOOL queriesLocalAssetInformationOnly; // @synthesize queriesLocalAssetInformationOnly=_queriesLocalAssetInformationOnly;
@@ -26,7 +28,9 @@
 - (void)stopQuery;
 - (void)startQuery:(CDUnknownBlockType)arg1;
 - (id)runQueryAndReturnError:(id *)arg1;
+- (id)runQueryForInfoReturnError:(id *)arg1;
 - (void)dealloc;
+- (id)initWithAssetType:(id)arg1 sessionIdentifier:(id)arg2;
 - (id)initWithAssetType:(id)arg1;
 
 @end

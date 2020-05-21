@@ -16,6 +16,7 @@
 
 + (id)setNLContextWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setNLContext;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *parseOverrideQuery;
 - (id)encodedClassName;
 - (id)groupIdentifier;

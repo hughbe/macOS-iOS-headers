@@ -35,12 +35,14 @@
 @property(readonly) NSDictionary *deviceCache;
 - (void)updateDeviceAccessTime:(id)arg1;
 @property(readonly) NSDictionary *deviceAccessTimes;
+@property(readonly) NSArray *MagicCloudPairedDevices;
 @property(readonly) NSArray *usbBluetoothDevices;
 @property(readonly) NSArray *disallowRoleSwitchDevices;
 @property(readonly) NSArray *LEPairedDevices;
 @property(readonly) NSArray *BRPairedDevices;
 @property(readonly) NSArray *pairedDevices;
 @property(readonly) NSArray *serialDevices;
+@property(readonly) NSArray *fastConnectReadyDevices;
 @property(readonly) NSArray *idsPairedDevicesForUser;
 @property(readonly) NSArray *idsPairedDevices;
 @property(readonly) NSArray *panDevices;
@@ -65,7 +67,7 @@
 - (void)postPreferencesChangedNotification;
 - (void)setPreference:(id)arg1 forKey:(id)arg2;
 - (id)systemPreferenceForKey:(id)arg1;
-- (void)updatePreferencesInBlued;
+- (void)updatePreferencesInBluetoothd;
 @property(readonly) BOOL isServer;
 - (void)dealloc;
 - (oneway void)release;

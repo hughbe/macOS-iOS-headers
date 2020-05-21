@@ -8,46 +8,57 @@
 
 #import "NSSecureCoding.h"
 
-@class NPTunnelTuscanyEndpoint, NPTuscanyOnRamp, NSArray, NSObject<OS_dispatch_source>, NSString, NWTCPConnection;
+@class NPLocation, NPWaldo, NSDate, NSDictionary, NSString, NWEndpoint;
 
 @interface NPTuscanyEdge : NSObject <NSSecureCoding>
 {
-    BOOL _dayPassPending;
-    NSString *_name;
+    BOOL _probePending;
+    BOOL _reResolve;
     NSString *_label;
-    NSArray *_onRamps;
-    long long _currentOnRampIndex;
-    NWTCPConnection *_probeConnection;
-    CDUnknownBlockType _probeCompletionHandler;
-    NSObject<OS_dispatch_source> *_probeTimer;
-    NPTunnelTuscanyEndpoint *_probeEndpoint;
     unsigned long long _index;
+    NPLocation *_location;
+    double _distance;
+    NSDictionary *_onRampLists;
+    NSDictionary *_currentOnRampIndexList;
+    NWEndpoint *_probeEndpoint;
+    NWEndpoint *_onRampEndpoint;
+    NSDate *_lastUsed;
+    NPWaldo *_parentWaldo;
+    NWEndpoint *_savedEndpoint;
 }
 
 + (BOOL)supportsSecureCoding;
-@property BOOL dayPassPending; // @synthesize dayPassPending=_dayPassPending;
-@property(readonly) unsigned long long index; // @synthesize index=_index;
-@property(readonly) NPTunnelTuscanyEndpoint *probeEndpoint; // @synthesize probeEndpoint=_probeEndpoint;
-@property(retain) NSObject<OS_dispatch_source> *probeTimer; // @synthesize probeTimer=_probeTimer;
-@property(copy) CDUnknownBlockType probeCompletionHandler; // @synthesize probeCompletionHandler=_probeCompletionHandler;
-@property(retain) NWTCPConnection *probeConnection; // @synthesize probeConnection=_probeConnection;
-@property long long currentOnRampIndex; // @synthesize currentOnRampIndex=_currentOnRampIndex;
-@property(readonly) NSArray *onRamps; // @synthesize onRamps=_onRamps;
-@property(readonly) NSString *label; // @synthesize label=_label;
-@property(readonly) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-- (void)replaceOnRampAtIndex:(unsigned long long)arg1 withOnRamp:(id)arg2;
+@property BOOL reResolve; // @synthesize reResolve=_reResolve;
+@property(retain) NWEndpoint *savedEndpoint; // @synthesize savedEndpoint=_savedEndpoint;
+@property __weak NPWaldo *parentWaldo; // @synthesize parentWaldo=_parentWaldo;
+@property(retain) NSDate *lastUsed; // @synthesize lastUsed=_lastUsed;
+@property(readonly) NWEndpoint *onRampEndpoint; // @synthesize onRampEndpoint=_onRampEndpoint;
+@property(readonly) NWEndpoint *probeEndpoint; // @synthesize probeEndpoint=_probeEndpoint;
+@property(retain) NSDictionary *currentOnRampIndexList; // @synthesize currentOnRampIndexList=_currentOnRampIndexList;
+@property(retain) NSDictionary *onRampLists; // @synthesize onRampLists=_onRampLists;
+@property BOOL probePending; // @synthesize probePending=_probePending;
+@property double distance; // @synthesize distance=_distance;
+@property(readonly) NPLocation *location; // @synthesize location=_location;
+@property unsigned long long index; // @synthesize index=_index;
+@property(readonly) NSString *label; // @synthesize label=_label;
+- (void)linkWithOnRampsRetainMissingAddressFamilies:(BOOL)arg1;
+- (id)getPortFromEndpoint:(id)arg1 defaultPort:(id)arg2;
+- (void)resolveWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)unsynthesizeAddresses:(id)arg1;
+- (void)iterateOnRampsForAddressFamily:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
+- (long long)compareByDistance:(id)arg1;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)cancelLatencyMeasurement;
-- (void)measureLatencyWithCompletionHandler:(CDUnknownBlockType)arg1;
-@property(readonly) NPTuscanyOnRamp *nextOnRamp;
-@property(readonly) long long nextOnRampIndex;
-@property(readonly) NPTuscanyOnRamp *currentOnRamp;
+- (long long)currentIndex:(id)arg1;
+- (void)setCurrentIndex:(long long)arg1 addressFamily:(id)arg2;
+- (id)nextOnRampForLatency:(id)arg1 outIndex:(long long *)arg2;
+- (id)getOnRamp:(long long)arg1 addressFamily:(id)arg2;
+- (id)getCurrentOnRamp:(id)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithLabel:(id)arg1 name:(id)arg2 index:(unsigned long long)arg3 onRamps:(id)arg4 probeEndpoint:(id)arg5;
+- (id)initWithLabel:(id)arg1 index:(unsigned long long)arg2 onRampEndpoint:(id)arg3 probeEndpoint:(id)arg4 location:(id)arg5;
 
 @end
 

@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface GEOPlaceDataProvider : NSObject
 {
     BOOL _isLoading;
@@ -13,6 +14,7 @@
     CDUnknownBlockType _errorHandler;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType errorHandler; // @synthesize errorHandler=_errorHandler;
 @property(copy, nonatomic) CDUnknownBlockType finishedHandler; // @synthesize finishedHandler=_finishedHandler;
 @property(nonatomic) BOOL isLoading; // @synthesize isLoading=_isLoading;

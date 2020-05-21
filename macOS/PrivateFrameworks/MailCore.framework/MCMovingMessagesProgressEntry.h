@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <MailCore/MCTransferringMessagesProgressEntry.h>
+#import <MailCore/MCDeterminateUnitProgressEntry.h>
 
-@interface MCMovingMessagesProgressEntry : MCTransferringMessagesProgressEntry
+@interface MCMovingMessagesProgressEntry : MCDeterminateUnitProgressEntry
 {
 }
 

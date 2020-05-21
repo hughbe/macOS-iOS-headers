@@ -6,15 +6,26 @@
 
 #import <Intents/INIntentResolutionResult.h>
 
-@interface INDateComponentsRangeResolutionResult : INIntentResolutionResult
+#import "INDateComponentsRangeResolutionResultExport.h"
+
+@class NSString;
+
+@interface INDateComponentsRangeResolutionResult : INIntentResolutionResult <INDateComponentsRangeResolutionResultExport>
 {
 }
 
-+ (id)unsupportedWithReason:(long long)arg1 alternativeDateComponentsRanges:(id)arg2;
-+ (id)needsMoreDetailsForDateComponentsRange:(id)arg1;
 + (id)confirmationRequiredWithDateComponentsRangeToConfirm:(id)arg1;
 + (id)disambiguationWithDateComponentsRangesToDisambiguate:(id)arg1;
 + (id)successWithResolvedDateComponentsRange:(id)arg1;
++ (id)unsupportedWithReason:(unsigned long long)arg1 alternativeDateComponentsRanges:(id)arg2;
+- (id)_vocabularyValueForObject:(id)arg1 slotDescription:(id)arg2;
+- (id)_intentSlotValueForObject:(id)arg1 slotDescription:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

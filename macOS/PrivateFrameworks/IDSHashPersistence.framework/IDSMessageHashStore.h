@@ -6,40 +6,35 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
+@class NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
 
 @interface IDSMessageHashStore : NSObject
 {
+    unsigned long long _initialProcessTime;
+    unsigned long long _initialServerTime;
     NSObject<OS_dispatch_queue> *_ivarQueue;
     NSObject<OS_dispatch_source> *_databaseCloseTimer;
     double _databaseLastUpdateTime;
-    unsigned long long __initialProcessTime;
-    unsigned long long __initialServerTime;
+    NSMutableArray *_recentlySeenHashes;
 }
 
 + (id)sharedInstance;
-@property(nonatomic) unsigned long long _initialServerTime; // @synthesize _initialServerTime=__initialServerTime;
-@property(nonatomic) unsigned long long _initialProcessTime; // @synthesize _initialProcessTime=__initialProcessTime;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *recentlySeenHashes; // @synthesize recentlySeenHashes=_recentlySeenHashes;
+@property(nonatomic) double databaseLastUpdateTime; // @synthesize databaseLastUpdateTime=_databaseLastUpdateTime;
+@property(retain, nonatomic) NSObject<OS_dispatch_source> *databaseCloseTimer; // @synthesize databaseCloseTimer=_databaseCloseTimer;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *ivarQueue; // @synthesize ivarQueue=_ivarQueue;
+@property(nonatomic) unsigned long long initialServerTime; // @synthesize initialServerTime=_initialServerTime;
+@property(nonatomic) unsigned long long initialProcessTime; // @synthesize initialProcessTime=_initialProcessTime;
 - (void)_runCleanup;
 - (void)_startCleanupTimer;
-- (void)systemDidLeaveMemoryPressure;
-- (void)systemDidEnterMemoryPressure;
-- (void)performBlock:(CDUnknownBlockType)arg1 waitUntilDone:(BOOL)arg2;
-- (void)performBlock:(CDUnknownBlockType)arg1 afterDelay:(double)arg2;
-- (void)performBlock:(CDUnknownBlockType)arg1;
 - (void)closeDatabase;
 - (void)_setDatabaseCloseTimerOnIvarQueue;
-- (void)_clearDatabaseCloseTimerOnIvarQueue;
-- (void)__closeDatabaseOnIvarQueue;
-- (unsigned int)dataProtectionClass;
 - (void)_performInitialHousekeeping;
-- (void)_storeInitialServerTime;
 - (unsigned long long)_currentLocalTime;
 - (void)updateCreationDateForHash:(id)arg1;
 - (void)addMessageHash:(id)arg1;
 - (BOOL)containsMessageHash:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

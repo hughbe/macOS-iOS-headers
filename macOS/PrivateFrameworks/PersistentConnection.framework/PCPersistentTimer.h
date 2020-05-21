@@ -7,11 +7,10 @@
 #import "NSObject.h"
 
 #import "CUTPowerMonitorDelegate.h"
-#import "PCLoggingDelegate.h"
 
-@class NSObject<OS_dispatch_queue>, NSString, PCSimpleTimer;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_os_log>, NSString, PCSimpleTimer;
 
-@interface PCPersistentTimer : NSObject <PCLoggingDelegate, CUTPowerMonitorDelegate>
+@interface PCPersistentTimer : NSObject <CUTPowerMonitorDelegate>
 {
     double _fireTime;
     double _startTime;
@@ -19,12 +18,15 @@
     double _minimumEarlyFireProportion;
     BOOL _triggerOnGMTChange;
     BOOL _disableSystemWaking;
+    BOOL _userVisible;
     NSString *_serviceIdentifier;
     id _target;
     SEL _selector;
     id _userInfo;
     PCSimpleTimer *_simpleTimer;
     NSObject<OS_dispatch_queue> *_queue;
+    NSObject<OS_os_log> *_logObject;
+    double _earlyFireConstantInterval;
 }
 
 + (void)_updateTime:(double)arg1 forGuidancePriority:(unsigned long long)arg2;
@@ -32,8 +34,9 @@
 + (double)currentMachTimeInterval;
 + (id)lastSystemWakeDate;
 + (id)_backgroundUpdateQueue;
-@property(readonly, nonatomic) NSString *loggingIdentifier; // @synthesize loggingIdentifier=_serviceIdentifier;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL disableSystemWaking; // @synthesize disableSystemWaking=_disableSystemWaking;
+@property(nonatomic) double earlyFireConstantInterval; // @synthesize earlyFireConstantInterval=_earlyFireConstantInterval;
 @property(nonatomic) double minimumEarlyFireProportion; // @synthesize minimumEarlyFireProportion=_minimumEarlyFireProportion;
 @property(readonly, copy) NSString *debugDescription;
 - (double)_nextForcedAlignmentAbsoluteTime;
@@ -47,11 +50,13 @@
 - (id)userInfo;
 - (BOOL)firingIsImminent;
 - (BOOL)isValid;
+@property(readonly, nonatomic) double startTime;
 @property(readonly, nonatomic) double fireTime;
 - (void)invalidate;
 - (void)scheduleInQueue:(id)arg1;
 - (void)scheduleInRunLoop:(id)arg1 inMode:(id)arg2;
 - (void)scheduleInRunLoop:(id)arg1;
+@property(nonatomic, getter=isUserVisible) BOOL userVisible;
 - (void)dealloc;
 - (id)_initWithAbsoluteTime:(double)arg1 serviceIdentifier:(id)arg2 guidancePriority:(unsigned long long)arg3 target:(id)arg4 selector:(SEL)arg5 userInfo:(id)arg6 triggerOnGMTChange:(BOOL)arg7;
 - (id)initWithTimeInterval:(double)arg1 serviceIdentifier:(id)arg2 guidancePriority:(unsigned long long)arg3 target:(id)arg4 selector:(SEL)arg5 userInfo:(id)arg6;

@@ -11,7 +11,9 @@
 @interface SMSystem_Client_SKDiskBased : SMSystem_Client
 {
     BOOL _isPasswordLocked;
+    BOOL _isDefaultEffaceable;
     BOOL _isEncrypted;
+    BOOL _isFilevault;
     NSString *_protocol;
 }
 
@@ -22,10 +24,12 @@
 + (id)keyPathsForValuesAffectingUiRank;
 + (id)guiInterestedKeys;
 + (id)guiMonitorKeys;
-@property(retain) NSString *protocol; // @synthesize protocol=_protocol;
-@property BOOL isEncrypted; // @synthesize isEncrypted=_isEncrypted;
-@property BOOL isPasswordLocked; // @synthesize isPasswordLocked=_isPasswordLocked;
 - (void).cxx_destruct;
+@property(retain) NSString *protocol; // @synthesize protocol=_protocol;
+@property BOOL isFilevault; // @synthesize isFilevault=_isFilevault;
+@property BOOL isEncrypted; // @synthesize isEncrypted=_isEncrypted;
+@property BOOL isDefaultEffaceable; // @synthesize isDefaultEffaceable=_isDefaultEffaceable;
+@property BOOL isPasswordLocked; // @synthesize isPasswordLocked=_isPasswordLocked;
 - (BOOL)validateFDEPassword:(id)arg1;
 - (void)pressedActionButton:(id)arg1;
 - (BOOL)availableAction;

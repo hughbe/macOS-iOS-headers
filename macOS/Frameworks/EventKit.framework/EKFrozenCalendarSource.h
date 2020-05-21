@@ -6,11 +6,11 @@
 
 #import <EventKit/EKFrozenObject.h>
 
-#import "EKProtocolCalendarSource.h"
+#import "CalendarSourceModelProtocol.h"
 
-@class NSDictionary, NSManagedObjectID, NSSet, NSString, NSURL;
+@class EKFrozenReminderSource, NSDictionary, NSManagedObjectID, NSSet, NSString, NSURL;
 
-@interface EKFrozenCalendarSource : EKFrozenObject <EKProtocolCalendarSource>
+@interface EKFrozenCalendarSource : EKFrozenObject <CalendarSourceModelProtocol>
 {
     BOOL isDelegate;
     BOOL isWritable;
@@ -21,11 +21,14 @@
     BOOL supportsEmailValidation;
     BOOL supportsEventCalendarCreation;
     BOOL supportsFreebusy;
+    BOOL supportsJunkReporting;
     BOOL supportsLikenessPropagation;
     BOOL supportsManagedAttachments;
+    BOOL supportsPhoneNumbers;
     BOOL supportsPrivateEvents;
     BOOL supportsSharingScheduling;
     BOOL supportsTaskCalendarCreation;
+    BOOL requiresOpeningAttachmentAsLink;
     BOOL supportsUnbind;
     int displayOrder;
     NSString *externalSourceIdentifier;
@@ -36,19 +39,25 @@
     NSString *typeString;
     NSString *dropBoxPathString;
     NSURL *serverURL;
+    EKFrozenReminderSource *_reminderSource;
 }
 
 + (Class)meltedClass;
+- (void).cxx_destruct;
+@property(retain) EKFrozenReminderSource *reminderSource; // @synthesize reminderSource=_reminderSource;
 @property(readonly, nonatomic) BOOL supportsUnbind; // @synthesize supportsUnbind;
 @property(readonly, nonatomic) NSURL *serverURL; // @synthesize serverURL;
 @property(readonly, nonatomic) NSString *dropBoxPathString; // @synthesize dropBoxPathString;
 @property(readonly, retain, nonatomic) NSString *typeString; // @synthesize typeString;
 @property(readonly, nonatomic) NSString *title; // @synthesize title;
+@property(readonly, nonatomic) BOOL requiresOpeningAttachmentAsLink; // @synthesize requiresOpeningAttachmentAsLink;
 @property(readonly, nonatomic) BOOL supportsTaskCalendarCreation; // @synthesize supportsTaskCalendarCreation;
 @property(readonly, nonatomic) BOOL supportsSharingScheduling; // @synthesize supportsSharingScheduling;
 @property(readonly, nonatomic) BOOL supportsPrivateEvents; // @synthesize supportsPrivateEvents;
+@property(readonly, nonatomic) BOOL supportsPhoneNumbers; // @synthesize supportsPhoneNumbers;
 @property(readonly, nonatomic) BOOL supportsManagedAttachments; // @synthesize supportsManagedAttachments;
 @property(readonly, nonatomic) BOOL supportsLikenessPropagation; // @synthesize supportsLikenessPropagation;
+@property(readonly, nonatomic) BOOL supportsJunkReporting; // @synthesize supportsJunkReporting;
 @property(readonly, nonatomic) BOOL supportsFreebusy; // @synthesize supportsFreebusy;
 @property(readonly, nonatomic) BOOL supportsEventCalendarCreation; // @synthesize supportsEventCalendarCreation;
 @property(readonly, nonatomic) BOOL supportsEmailValidation; // @synthesize supportsEmailValidation;
@@ -63,7 +72,6 @@
 @property(readonly, nonatomic) BOOL isDelegate; // @synthesize isDelegate;
 @property(readonly, nonatomic) int displayOrder; // @synthesize displayOrder;
 @property(readonly, copy, nonatomic) NSString *externalSourceIdentifier; // @synthesize externalSourceIdentifier;
-- (void).cxx_destruct;
 - (id)initWithObject:(id)arg1 createPartialObject:(BOOL)arg2 preFrozenRelationshipObjects:(id)arg3;
 
 // Remaining properties

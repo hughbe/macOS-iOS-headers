@@ -6,9 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSArray;
 
 @protocol GEOSearchAttributionServerProxy <NSObject>
-- (void)loadAttributionInfoForIdentifier:(NSString *)arg1 version:(unsigned int)arg2 completionHandler:(void (^)(GEOSearchAttributionInfo *, BOOL))arg3 errorHandler:(void (^)(NSError *))arg4;
+- (void)loadAttributionInfoForIdentifiers:(NSArray *)arg1 completionHandler:(void (^)(NSDictionary *, NSDictionary *))arg2;
 @end
 

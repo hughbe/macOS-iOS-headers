@@ -7,21 +7,24 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSFetchRequestResult.h"
 
-@class NSEntityDescription, NSPersistentStore;
+@class NSEntityDescription, NSPersistentStore, NSString;
 
-@interface NSManagedObjectID : NSObject <NSCopying>
+@interface NSManagedObjectID : NSObject <NSFetchRequestResult, NSCopying>
 {
 }
 
 + (BOOL)accessInstanceVariablesDirectly;
 + (long long)version;
 + (void)initialize;
++ (id)unarchivedScalarObjectIDsFromData:(id)arg1 withCoordinator:(id)arg2;
++ (id)_newArchiveForScalarObjectIDs:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)URIRepresentation;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly, getter=isTemporaryID) BOOL temporaryID;
 @property(readonly) __weak NSPersistentStore *persistentStore;
 @property(readonly) NSEntityDescription *entity;
@@ -30,9 +33,19 @@
 - (id)_retainedURIString;
 - (BOOL)_isPersistentStoreAlive;
 - (id)_storeInfo1;
+- (id)entityName;
 - (id)_storeIdentifier;
 - (long long)_referenceData64;
 - (id)_referenceData;
+- (BOOL)_preferReferenceData64;
+- (long long)compare:(id)arg1;
+- (long long)_compareArbitraryValue:(id)arg1 toValue:(id)arg2;
+- (int)_temporaryIDCounter;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

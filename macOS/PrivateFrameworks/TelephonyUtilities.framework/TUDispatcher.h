@@ -8,6 +8,7 @@
 
 @class NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface TUDispatcher : NSObject
 {
     NSObject<OS_dispatch_queue> *_dispatchQueue;
@@ -15,8 +16,8 @@
 
 + (id)dispatcherWithQueue:(id)arg1;
 + (id)dispatcherWithIdentifier:(id)arg1;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
 - (CDUnknownBlockType)qosUserInteractiveDispatchBlockForBlock:(CDUnknownBlockType)arg1;
 - (id)initWithQueue:(id)arg1;
 - (id)initWithIdentifier:(id)arg1;

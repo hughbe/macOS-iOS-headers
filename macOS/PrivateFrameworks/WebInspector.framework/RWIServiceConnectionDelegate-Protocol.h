@@ -9,6 +9,9 @@
 @class RWIServiceConnection;
 
 @protocol RWIServiceConnectionDelegate <NSObject>
+
+@optional
+- (void)serviceConnectionEstablished:(RWIServiceConnection *)arg1;
 - (void)serviceConnectionDidClose:(RWIServiceConnection *)arg1;
 @end
 

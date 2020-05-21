@@ -28,6 +28,7 @@ __attribute__((visibility("hidden")))
 - (void)unlock;
 - (void)lock;
 - (void)connectionDidChangeWithLocalInterfaceType:(id)arg1 remoteInterfaceType:(id)arg2 streamToken:(long long)arg3;
+- (void)remoteVideoDidSuspend:(BOOL)arg1 streamToken:(long long)arg2;
 - (void)remoteVideoDidDegrade:(BOOL)arg1 streamToken:(long long)arg2;
 - (void)remoteMediaDidStall:(BOOL)arg1 streamToken:(long long)arg2;
 - (void)remoteVideoDidPause:(BOOL)arg1 streamToken:(long long)arg2;
@@ -37,8 +38,8 @@ __attribute__((visibility("hidden")))
 - (void)releaseQueueForStreamToken:(long long)arg1;
 - (BOOL)doesQueueExistForStreamToken:(id)arg1;
 - (id)getQueueForStreamToken:(unsigned int)arg1 videoMode:(int)arg2;
-- (id)createQueueForStreamToken:(long long)arg1 videoMode:(int)arg2 imageQueueProtected:(BOOL)arg3;
-- (id)createQueueForStreamToken:(long long)arg1 videoMode:(int)arg2;
+- (id)newQueueForStreamToken:(long long)arg1 videoMode:(int)arg2 imageQueueProtected:(BOOL)arg3;
+- (id)newQueueForStreamToken:(long long)arg1 videoMode:(int)arg2;
 - (void)dealloc;
 - (id)init;
 

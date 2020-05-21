@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class NSString;
+@class BRMangledID;
 
 __attribute__((visibility("hidden")))
 @interface BRCSyncOperationThrottle : NSObject <NSSecureCoding>
@@ -17,15 +17,15 @@ __attribute__((visibility("hidden")))
     int _lastErrorKind;
     double _delay;
     double _nextTry;
-    NSString *_containerID;
+    BRMangledID *_mangledID;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) int lastErrorKind; // @synthesize lastErrorKind=_lastErrorKind;
-@property(retain, nonatomic) NSString *containerID; // @synthesize containerID=_containerID;
+@property(retain, nonatomic) BRMangledID *mangledID; // @synthesize mangledID=_mangledID;
 @property(readonly, nonatomic) double nextTry; // @synthesize nextTry=_nextTry;
 @property(readonly, nonatomic) double delay; // @synthesize delay=_delay;
-- (void).cxx_destruct;
 - (void)clear;
 - (void)updateForError:(id)arg1;
 - (BOOL)updateForClearingOutOfQuota;
@@ -34,7 +34,7 @@ __attribute__((visibility("hidden")))
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithContainerID:(id)arg1 isSyncDown:(BOOL)arg2;
+- (id)initWithMangledID:(id)arg1 isSyncDown:(BOOL)arg2;
 
 @end
 

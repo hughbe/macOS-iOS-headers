@@ -4,13 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class PHAdjustmentData, PUEditingInitialPayload;
+@class NSXPCListenerEndpoint, PHAdjustmentData;
 
 @protocol PUEditingExtensionVendor
-- (void)queryShouldShowCancelConfirmationWithResponseHandler:(void (^)(BOOL))arg1;
+- (void)querySDKVersionWithResponseHandler:(void (^)(unsigned int))arg1;
 - (void)cancelContentEditingWithResponseHandler:(void (^)(void))arg1;
 - (void)finishContentEditing;
-- (void)startContentEditingWithPayload:(PUEditingInitialPayload *)arg1 completionHandler:(void (^)(NSError *))arg2;
+- (void)beginContentEditingWithCompletionHandler:(void (^)(NSError *))arg1;
+- (void)setupUndoProxyWithXPCListenerEndpoint:(NSXPCListenerEndpoint *)arg1 attemptUndoManagerAutoSetup:(BOOL)arg2;
+- (void)queryShouldShowCancelConfirmationWithResponseHandler:(void (^)(BOOL))arg1;
 - (void)queryHandlingCapabilityForAdjustmentData:(PHAdjustmentData *)arg1 withResponseHandler:(void (^)(BOOL))arg2;
 @end
 

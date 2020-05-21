@@ -6,7 +6,7 @@
 
 #import <SAObjects/SADomainCommand.h>
 
-@class NSString;
+@class NSArray, NSString, SACFAbstractClientCommand;
 
 @interface SACFSignal : SADomainCommand
 {
@@ -14,8 +14,12 @@
 
 + (id)signalWithDictionary:(id)arg1 context:(id)arg2;
 + (id)signal;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
+@property(retain, nonatomic) SACFAbstractClientCommand *signalPayload;
+@property(copy, nonatomic) NSArray *scriptIdentifiers;
 @property(copy, nonatomic) NSString *flowScriptHint;
+@property(copy, nonatomic) NSString *domain;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

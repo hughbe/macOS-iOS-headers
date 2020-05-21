@@ -10,8 +10,7 @@
 {
 }
 
-+ (id)attendeeForString:(id)arg1 inAddressBook:(id)arg2;
-+ (id)personForString:(id)arg1 inAddressBook:(id)arg2;
++ (id)attendeeForString:(id)arg1;
 
 @end
 

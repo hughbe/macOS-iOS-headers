@@ -6,15 +6,16 @@
 
 #import <ParsecUI/PRSCardSectionSliceViewController.h>
 
-@class NSArray, PRSCardSection;
+@class NSArray, PRSTableRowCardSection;
 
 @interface PRSTableRowSliceViewController : PRSCardSectionSliceViewController
 {
     BOOL _isCompactRow;
     BOOL _isReducedHeight;
+    BOOL _hasHeaderContent;
     NSArray *_itemWidths;
     NSArray *_itemViews;
-    PRSCardSection *_section;
+    PRSTableRowCardSection *_section;
     long long _verticalAlignment;
 }
 
@@ -25,24 +26,29 @@
 + (double)fontSize;
 + (id)imageViewForView:(id)arg1;
 + (id)labelForView:(id)arg1;
-+ (unsigned long long)imageAlignmentForTextAlignment:(unsigned long long)arg1;
++ (unsigned long long)imageAlignmentForTextAlignment:(long long)arg1;
+- (void).cxx_destruct;
+@property BOOL hasHeaderContent; // @synthesize hasHeaderContent=_hasHeaderContent;
 @property long long verticalAlignment; // @synthesize verticalAlignment=_verticalAlignment;
 @property BOOL isReducedHeight; // @synthesize isReducedHeight=_isReducedHeight;
 @property BOOL isCompactRow; // @synthesize isCompactRow=_isCompactRow;
-@property(retain) PRSCardSection *section; // @synthesize section=_section;
+@property(retain) PRSTableRowCardSection *section; // @synthesize section=_section;
 @property(retain) NSArray *itemViews; // @synthesize itemViews=_itemViews;
 @property(retain) NSArray *itemWidths; // @synthesize itemWidths=_itemWidths;
-- (void).cxx_destruct;
+- (id)accessibilityLabel;
 - (double)height;
 - (BOOL)labelsAreVibrant;
 - (double)labelTopBaselineSpacing;
 - (double)labelBottomBaselineSpacing;
 - (id)font;
-- (void)setAlignment:(unsigned long long)arg1 forView:(id)arg2;
+- (void)setAlignment:(long long)arg1 forView:(id)arg2;
 - (BOOL)shouldAllowOtherViewsToOverlap:(id)arg1;
 - (id)addImageViewWithImage:(id)arg1;
 - (id)addLabelWithAttributedText:(id)arg1;
+- (long long)getHeightForText:(id)arg1 maxSize:(long long)arg2 font:(id)arg3;
+- (id)rowSliceView;
 - (void)setupWithLayoutInfo:(id)arg1;
+- (id)accessibilityTableID;
 - (id)initWithCardSection:(id)arg1 isCompactRow:(BOOL)arg2 isReducedHeight:(BOOL)arg3 verticalAlignment:(long long)arg4;
 - (id)initWithCardSection:(id)arg1 isCompactRow:(BOOL)arg2 isReducedHeight:(BOOL)arg3;
 - (id)initWithCardSection:(id)arg1;

@@ -16,6 +16,19 @@
 - (int)BluetoothHCIBroadcomResetBasicRateACLConnectionStats;
 - (int)BluetoothHCIBroadcomGetBasicRateACLConnectionStats;
 - (void)processRawEventData:(const void *)arg1 dataSize:(unsigned long long)arg2;
+- (int)BroadcomHCILEAddDeviceToWhiteListWithOptions:(unsigned char)arg1 peerAddress:(struct BluetoothDeviceAddress *)arg2 connectionIntervalMin:(unsigned short)arg3 connectionIntervalMax:(unsigned short)arg4 connectionLatency:(unsigned short)arg5 supervisionTimeout:(unsigned short)arg6 minimumCELength:(unsigned short)arg7 maximumCELength:(unsigned short)arg8 connectionIndAddressType:(unsigned char)arg9 connectionIndAddress:(struct BluetoothDeviceAddress *)arg10 outLEextOpcode:(char *)arg11 outAvailableSpace:(char *)arg12 outIndex:(char *)arg13;
+- (int)BroadcomHCILESetScanEnableEnhanced:(unsigned char)arg1 scanType:(unsigned char)arg2 filterDuplicates:(unsigned char)arg3 bypassFilterDuplicateControl:(unsigned char)arg4 targetCore:(unsigned char)arg5 scanPeriod:(unsigned short)arg6 scanDuration:(unsigned short)arg7;
+- (int)BluetoothHCIBroadcomLoadPwrRegulatoryFile:(char *)arg1 inPtbDataLength:(unsigned char)arg2;
+- (int)BroadcomHCILERemoveAdvancedMatchingRuleWithAddressEnhanced:(BOOL)arg1 address:(struct BluetoothDeviceAddress *)arg2 blob:(CDStruct_cbd83a78)arg3 mask:(CDStruct_cbd83a78)arg4 RSSIThreshold:(BOOL)arg5 packetType:(unsigned char)arg6 allowDuplicates:(unsigned char)arg7 matchingCapacity:(char *)arg8 matchingRemaining:(char *)arg9;
+- (int)BroadcomHCILEAddAdvancedMatchingRuleWithAddressEnhanced:(BOOL)arg1 address:(struct BluetoothDeviceAddress *)arg2 blob:(CDStruct_cbd83a78)arg3 mask:(CDStruct_cbd83a78)arg4 RSSIThreshold:(BOOL)arg5 packetType:(unsigned char)arg6 allowDuplicates:(unsigned char)arg7 matchingCapacity:(char *)arg8 matchingRemaining:(char *)arg9;
+- (int)BluetoothHCIBroadcomMasterSkipSniffMode:(unsigned short)arg1 inEnable:(unsigned char)arg2 inNumInstants:(unsigned char)arg3 inInactivityTimer:(unsigned short)arg4 inStopSkipTimer:(unsigned short)arg5;
+- (int)BluetoothHCISetLighthouseDebugQuery:(unsigned char)arg1;
+- (int)BluetoothHCISetLighthouseSetParameters:(unsigned short)arg1 inLEScanWindow:(unsigned short)arg2 inLEAdvertisementInterval:(unsigned short)arg3 inAdvType:(unsigned char)arg4 inAdvAddressFilterControl:(unsigned char)arg5 inRSSIThreshold:(BOOL)arg6 inTimeout:(unsigned char)arg7;
+- (int)BluetoothHCISetLighthouseControl:(unsigned char)arg1;
+- (int)BluetoothHCILighthouseDebugQuery:(unsigned char)arg1;
+- (int)BluetoothHCILighthouseSetParameters:(unsigned short)arg1 leScanWindowSize:(unsigned short)arg2 leAdvertisementInterval:(unsigned short)arg3 leAdvertisementType:(unsigned char)arg4 leAdvertisementFilterControl:(unsigned char)arg5 rssiThreshold:(BOOL)arg6 timeout:(unsigned char)arg7;
+- (int)BluetoothHCILighthouseControl:(unsigned char)arg1;
+- (int)BluetoothHCISetMinAFHChannels:(unsigned char)arg1;
 - (int)BluetoothHCILEScanCache:(unsigned char)arg1;
 - (int)BluetoothHCILESetDataLength:(unsigned short)arg1 maxTxOctets:(unsigned short)arg2 maxTxTime:(unsigned short)arg3 connectionHandle:(unsigned short *)arg4;
 - (int)BluetoothHCILEWriteSuggestedDefaultDataLength:(unsigned short)arg1 suggestedMaxTxTime:(unsigned short)arg2;
@@ -25,6 +38,7 @@
 - (int)BluetoothHCIChangeConnectionPriority:(unsigned short)arg1 option:(unsigned char)arg2;
 - (int)BluetoothHCISetSpecialSniffTransitionEnable:(unsigned short)arg1 enable:(unsigned char)arg2;
 - (int)BluetoothHCICommandWriteClass15PowerTable:(unsigned char)arg1 radioTXPowerMode:(unsigned char)arg2 powerTableLength:(unsigned char)arg3 testModePowerTableLength:(unsigned char)arg4 powerTable:(char *)arg5 testPowerTable:(char *)arg6;
+- (int)BluetoothHCILEUpdateExtendedAdvertisingInstance:(unsigned char)arg1 addressType:(unsigned char)arg2 address:(struct BluetoothDeviceAddress *)arg3;
 - (int)BluetoothHCILESetExtendedAdvertiseEnable:(unsigned char)arg1 advertiseEnable:(unsigned char)arg2 timeout:(unsigned int)arg3 timeoutEvent:(unsigned char)arg4;
 - (int)BluetoothHCILESetExtendedScanResponseData:(unsigned char)arg1 scanResponseDataLength:(unsigned char)arg2 scanResponseData:(char *)arg3;
 - (int)BluetoothHCILESetExtendedAdvertisingData:(unsigned char)arg1 advertisingDataLength:(unsigned char)arg2 advertsingData:(char *)arg3;
@@ -51,6 +65,9 @@
 - (int)BluetoothHCILEBroadcomRemoveIRKFromList:(unsigned char)arg1 address:(struct BluetoothDeviceAddress *)arg2 outLEextOpcode:(char *)arg3 outIRKListAvailableSpace:(char *)arg4;
 - (int)BluetoothHCILEBroadcomAddIRKToList:(char *)arg1 addressType:(unsigned char)arg2 address:(struct BluetoothDeviceAddress *)arg3 outLEextOpcode:(char *)arg4 outIRKListAvailableSpace:(char *)arg5;
 - (int)BluetoothHCILEBroadcomEnableCustomerSpecificFeatures:(unsigned int)arg1 outLEextOpcode:(char *)arg2;
+- (int)BluetoothHCIBroadcomEnhancedLinkQualityStats:(unsigned short)arg1 inBtStatEnable:(_Bool)arg2 inCoexStatEnable:(_Bool)arg3 inDiversityStatEnable:(_Bool)arg4 inLoggingIntervalInSeconds:(BOOL)arg5;
+- (int)BluetoothHCIBroadcomHighPowerLinksEnhancedTaurus2:(unsigned short)arg1 inMode:(unsigned char)arg2 inEnable:(unsigned char)arg3 inPower:(unsigned char)arg4 inRSSIThreshold:(BOOL)arg5;
+- (int)BluetoothHCIBroadcomHPBTClassic:(unsigned short)arg1 inEnable:(unsigned char)arg2 inPowerHigh:(unsigned char)arg3 inPowerLow:(unsigned char)arg4 inRSSIThreshold:(BOOL)arg5;
 - (int)BluetoothHCIBroadcomHPBTControl:(char *)arg1;
 - (int)BluetoothHCIBroadcomWriteSCOPCMIntParam:(unsigned char)arg1 inPCMInterfaceRate:(unsigned char)arg2 inFrameType:(unsigned char)arg3 inSyncMode:(unsigned char)arg4 inClockMode:(unsigned char)arg5;
 - (int)BluetoothHCIBroadcomEnableWBS:(unsigned char)arg1 inUUIDWBS:(unsigned short)arg2;
@@ -61,6 +78,8 @@
 - (int)BluetoothHCIBroadcomFactoryCalRxRSSITest:(unsigned char)arg1 inChannel:(unsigned char)arg2 inPower:(unsigned char)arg3 inGainRange:(unsigned char)arg4 inMode:(unsigned char)arg5 outCalStatus:(char *)arg6 outTCARSSIIL0P1db:(char *)arg7;
 - (int)BluetoothHCIBroadcomFactoryCalReadTable:(unsigned char)arg1 outChoice:(char *)arg2 outTable:(char *)arg3;
 - (int)BluetoothHCIBroadcomFactoryCalUpdateTxTable:(char *)arg1;
+- (int)BluetoothHCIBroadcomSetCountryCode:(unsigned char)arg1 codeToSet_ble:(unsigned char)arg2 outCountryCode:(char *)arg3;
+- (int)BluetoothHCIBroadcomGetCountryCode:(char *)arg1;
 - (int)BluetoothHCIBroadcomFactoryCalReadTemp:(char *)arg1;
 - (int)BluetoothHCIBroadcomFactoryCalTrimTxPower:(unsigned char)arg1 outPadVal:(char *)arg2;
 - (int)BluetoothHCIBroadcomFactoryCalSetTxPower:(unsigned char)arg1 inChannel:(unsigned char)arg2 inTransmitPower:(unsigned char)arg3 inPadVal:(unsigned char)arg4 outPadVal:(char *)arg5;
@@ -76,7 +95,7 @@
 - (int)readHIDEmulationDevices;
 - (int)addHIDEmulationDevice:(struct BluetoothDeviceAddress)arg1 classOfDevice:(unsigned int)arg2 linkKey:(struct BluetoothKey)arg3;
 - (int)triStateEnabled:(BOOL)arg1;
-- (int)startTransmitTest:(struct BluetoothDeviceAddress *)arg1 hoppingMode:(unsigned char)arg2 frequency:(unsigned char)arg3 modulationType:(unsigned char)arg4 logicalChannel:(unsigned char)arg5 packetType:(unsigned char)arg6 packetLength:(unsigned short)arg7 transmitPower:(unsigned char)arg8 transmitPowerdBm:(unsigned char)arg9 transmitPowerTableIndex:(unsigned char)arg10 transmitConnectionInterval:(unsigned char)arg11;
+- (int)startTransmitTest:(struct BluetoothDeviceAddress *)arg1 hoppingMode:(unsigned char)arg2 frequency:(unsigned char)arg3 modulationType:(unsigned char)arg4 logicalChannel:(unsigned char)arg5 packetType:(unsigned char)arg6 packetLength:(unsigned short)arg7 transmitPower:(unsigned char)arg8 transmitPowerdBm:(unsigned char)arg9 transmitPowerTableIndex:(unsigned char)arg10 transmitConnectionInterval:(unsigned char)arg11 packetsInGroup:(unsigned char)arg12;
 - (int)startReceiveTest:(struct BluetoothDeviceAddress *)arg1 reportPeriod:(unsigned short)arg2 frequency:(unsigned char)arg3 modulationType:(unsigned char)arg4 logicalChannel:(unsigned char)arg5 packetType:(unsigned char)arg6 packetLength:(unsigned short)arg7;
 - (int)superPeekPoke:(unsigned char)arg1 address:(unsigned int)arg2 outValue:(unsigned int *)arg3;
 - (int)setTransmitPowerForDevice:(id)arg1 toLevel:(unsigned char)arg2;

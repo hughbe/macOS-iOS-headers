@@ -8,6 +8,7 @@
 
 @class AVVideoComposition, AVVideoCompositionRenderContext, AVWeakReference, NSDictionary, NSError, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVCustomVideoCompositorSession : NSObject
 {
     struct OpaqueFigVideoCompositor *_figCustomCompositor;
@@ -30,22 +31,26 @@
 + (BOOL)_colorPropertiesAreSetInVideoComposition:(id)arg1;
 + (id)sessionWithVideoComposition:(id)arg1 recyclingSession:(id)arg2;
 @property(readonly, nonatomic) BOOL supportsWideColorSourceFrames;
-- (void)requestDidCancel:(id)arg1;
-- (void)request:(id)arg1 didFinishWithError:(id)arg2;
-- (void)request:(id)arg1 didFinishWithComposedPixelBuffer:(struct __CVBuffer *)arg2;
+- (void)compositionFrameDidCancel:(struct OpaqueFigVideoCompositorFrame *)arg1;
+- (void)compositionFrame:(struct OpaqueFigVideoCompositorFrame *)arg1 didFinishWithError:(id)arg2;
+- (void)compositionFrame:(struct OpaqueFigVideoCompositorFrame *)arg1 didFinishWithComposedPixelBuffer:(struct __CVBuffer *)arg2;
 - (id)getAndClearClientError;
 - (struct OpaqueFigVideoCompositor *)_copyFigVideoCompositor;
 - (void)setVideoComposition:(id)arg1;
 - (void)dealloc;
-- (void)finalize;
 - (void)_willDeallocOrFinalize;
 - (void)detachVideoComposition;
+- (BOOL)commitCustomVideoCompositorPropertiesAndReturnError:(id *)arg1;
+- (BOOL)_validateRequiredPixelBufferAttributesForRenderContext:(id)arg1 andReturnException:(id *)arg2;
+- (BOOL)_validateSourcePixelBufferAttributes:(id)arg1 andReturnException:(id *)arg2;
 - (id)customVideoCompositor;
 - (id)initWithVideoComposition:(id)arg1;
 - (void)_cleanupFigCallbacks;
 - (int)_setupFigCallbacks;
 - (void)_customCompositorFigPropertyDidChange;
 - (int)_customCompositorShouldCancelPendingFrames;
+- (int)_customCompositorShouldPrerollForRenderingFromTime:(CDStruct_1b6d18a9)arg1 toTime:(CDStruct_1b6d18a9)arg2 andThenFromTime:(CDStruct_1b6d18a9)arg3 toTime:(CDStruct_1b6d18a9)arg4 requestID:(long long)arg5;
+- (int)_customCompositorShouldAnticipateRenderingFromTime:(CDStruct_1b6d18a9)arg1 toTime:(CDStruct_1b6d18a9)arg2 andThenFromTime:(CDStruct_1b6d18a9)arg3 toTime:(CDStruct_1b6d18a9)arg4;
 - (int)_compositionFrame:(struct OpaqueFigVideoCompositorFrame *)arg1 atTime:(CDStruct_1b6d18a9)arg2 requiresRenderUsingSources:(id)arg3 withInstruction:(void *)arg4;
 
 @end

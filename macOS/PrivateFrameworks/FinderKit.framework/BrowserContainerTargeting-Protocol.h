@@ -9,6 +9,7 @@
 @protocol BrowserContainerTargeting
 - (void)containerForgetSpringState:(FI_TBrowserContainerController *)arg1;
 - (void)container:(FI_TBrowserContainerController *)arg1 adjustProposedTargetPath:(struct TFENodeVector *)arg2;
+- (void)containerHistoryDidChange:(FI_TBrowserContainerController *)arg1;
 - (void)containerTargetDidChange:(FI_TBrowserContainerController *)arg1;
 - (void)containerTargetWillChange:(FI_TBrowserContainerController *)arg1;
 - (void)containerViewStyleChanged:(FI_TBrowserContainerController *)arg1;

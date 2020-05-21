@@ -4,11 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <MapKit/_MXExtensionVendorContext.h>
+#import "NSExtensionContext.h"
 
-@interface _MXExtensionContext : _MXExtensionVendorContext
+#import "_MXExtensionContextType.h"
+
+@class NSString;
+
+__attribute__((visibility("hidden")))
+@interface _MXExtensionContext : NSExtensionContext <_MXExtensionContextType>
 {
 }
+
++ (id)_extensionAuxiliaryVendorProtocol;
++ (id)_extensionAuxiliaryHostProtocol;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,13 +8,31 @@
 
 @interface ICAnalyticsReporterBase : NSObject
 {
+    id <ICAnalyticsReporterAccessibilityDelegate> _accessibilityDelegate;
 }
 
++ (void)endDistributionKeyAggregation;
++ (void)beginDistributionKeyAggregation;
++ (BOOL)shouldAggregateDistributionKey;
++ (id)distributionKeyValueCache;
 + (long long)roundIntegerValue:(long long)arg1;
 + (double)roundDoubleValue:(double)arg1;
++ (id)instrumentationDomainForKey:(id)arg1;
++ (id)instrumentationKeyForKey:(id)arg1;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <ICAnalyticsReporterAccessibilityDelegate> accessibilityDelegate; // @synthesize accessibilityDelegate=_accessibilityDelegate;
+- (id)whitelistedSubkeysForAccessibilityForKey:(id)arg1;
+- (id)whitelistedKeysForAccessibility;
+- (void)setAXVariantValueIfNecessary:(long long)arg1 forKey:(id)arg2;
+- (void)addAXVariantValueIfNecessary:(long long)arg1 forKey:(id)arg2 withSignature:(id)arg3;
+- (BOOL)shouldLogKeyForAccessibility:(id)arg1 withSignature:(id)arg2;
+- (id)keyForCurrentlyActiveAssistiveTechnology;
 - (const char *)utf8StringForRoundedIntegerNumber:(id)arg1;
+- (id)instrumentationAXDomainForKey:(id)arg1;
 - (id)instrumentationDomainForKey:(id)arg1;
+- (id)instrumentationAXKeyForKey:(id)arg1;
 - (id)instrumentationKeyForKey:(id)arg1;
+- (void)pushValue:(double)arg1 toDistributionKey:(id)arg2 withSignature:(id)arg3;
 - (void)pushValue:(double)arg1 toDistributionKey:(id)arg2;
 - (void)setValue:(long long)arg1 forScalarKey:(id)arg2;
 - (void)addValue:(long long)arg1 forKey:(id)arg2 withSignature:(id)arg3;

@@ -10,17 +10,21 @@
 
 @interface CNAvatarViewModel : NSObject
 {
+    BOOL _monogramOnly;
     NSArray *_contacts;
     NSArray *_likenesses;
     long long _behavior;
+    unsigned long long _style;
     unsigned long long _placeholderContactCount;
 }
 
-@property(nonatomic) unsigned long long placeholderContactCount; // @synthesize placeholderContactCount=_placeholderContactCount;
-@property long long behavior; // @synthesize behavior=_behavior;
-@property(retain) NSArray *likenesses; // @synthesize likenesses=_likenesses;
-@property(retain) NSArray *contacts; // @synthesize contacts=_contacts;
 - (void).cxx_destruct;
+@property(nonatomic) unsigned long long placeholderContactCount; // @synthesize placeholderContactCount=_placeholderContactCount;
+@property(nonatomic) BOOL monogramOnly; // @synthesize monogramOnly=_monogramOnly;
+@property(nonatomic) unsigned long long style; // @synthesize style=_style;
+@property(nonatomic) long long behavior; // @synthesize behavior=_behavior;
+@property(retain, nonatomic) NSArray *likenesses; // @synthesize likenesses=_likenesses;
+@property(retain, nonatomic) NSArray *contacts; // @synthesize contacts=_contacts;
 - (id)editOverlayFont;
 - (id)editOverlayTextColor;
 - (id)editOverlayString;

@@ -11,47 +11,43 @@
 #import "CNContactCardWidget.h"
 #import "CNRecentLikenessesViewDelegate.h"
 
-@class AKCardViewDataSource, CNAvatarViewController, CNContact, CNContactLikenessesFetchStrategyDefaultFactory, CNContactStore, CNLikenessEditorPresentationController, CNRecentLikenessesDataSourceDelayedEditDecorator, CNRecentLikenessesViewController, CNUIMeContactMonitor, CNUIPRLikenessResolver, NSString, PRPersonaStore;
+@class AKCardViewDataSource, CNAvatarViewController, CNContact, CNContactPersistenceHelper, CNLikeness, CNLikenessEditorPresentationController, CNRecentLikenessesViewController, CNUIMeContactMonitor, NSString;
 
 @interface CNContactLikenessPickerViewController : NSViewController <CNRecentLikenessesViewDelegate, CNAvatarEditorDelegate, CNAvatarViewDelegate, CNContactCardWidget>
 {
     BOOL _isMe;
     CNContact *_contact;
     AKCardViewDataSource *_dataSource;
+    CNContactPersistenceHelper *_persistenceHelper;
     CNRecentLikenessesViewController *_recentsViewController;
     CNLikenessEditorPresentationController *_editorPresentationController;
     CNAvatarViewController *_avatarViewController;
-    CNContactLikenessesFetchStrategyDefaultFactory *_defaultLikenessFetchtrategyFactory;
-    CNUIPRLikenessResolver *_likenessResolver;
-    PRPersonaStore *_personaStore;
-    CNContactStore *_contactStore;
-    CNUIMeContactMonitor *_meMonitor;
-    CNRecentLikenessesDataSourceDelayedEditDecorator *_recentLikenessesDataSource;
     id <CNCancelable> _currentLikenessToken;
+    CNLikeness *_likenessBeingEdited;
+    CNUIMeContactMonitor *_meContactMonitor;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) CNUIMeContactMonitor *meContactMonitor; // @synthesize meContactMonitor=_meContactMonitor;
+@property(retain, nonatomic) CNLikeness *likenessBeingEdited; // @synthesize likenessBeingEdited=_likenessBeingEdited;
 @property(retain, nonatomic) id <CNCancelable> currentLikenessToken; // @synthesize currentLikenessToken=_currentLikenessToken;
-@property(retain, nonatomic) CNRecentLikenessesDataSourceDelayedEditDecorator *recentLikenessesDataSource; // @synthesize recentLikenessesDataSource=_recentLikenessesDataSource;
-@property(retain, nonatomic) CNUIMeContactMonitor *meMonitor; // @synthesize meMonitor=_meMonitor;
-@property(retain, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
-@property(retain, nonatomic) PRPersonaStore *personaStore; // @synthesize personaStore=_personaStore;
-@property(retain, nonatomic) CNUIPRLikenessResolver *likenessResolver; // @synthesize likenessResolver=_likenessResolver;
-@property(retain, nonatomic) CNContactLikenessesFetchStrategyDefaultFactory *defaultLikenessFetchtrategyFactory; // @synthesize defaultLikenessFetchtrategyFactory=_defaultLikenessFetchtrategyFactory;
 @property __weak CNAvatarViewController *avatarViewController; // @synthesize avatarViewController=_avatarViewController;
 @property(retain) CNLikenessEditorPresentationController *editorPresentationController; // @synthesize editorPresentationController=_editorPresentationController;
 @property(retain) CNRecentLikenessesViewController *recentsViewController; // @synthesize recentsViewController=_recentsViewController;
 @property(nonatomic) BOOL isMe; // @synthesize isMe=_isMe;
+@property(retain, nonatomic) CNContactPersistenceHelper *persistenceHelper; // @synthesize persistenceHelper=_persistenceHelper;
 @property(retain, nonatomic) AKCardViewDataSource *dataSource; // @synthesize dataSource=_dataSource;
 @property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
-- (void).cxx_destruct;
-- (void)commitEditing;
+- (BOOL)shouldBeIncludedInKeyViewLoop;
 - (double)desiredHeight;
+- (void)processLikenessEditingResult:(id)arg1;
 - (void)editorDidFinish:(id)arg1 withLikenessResult:(id)arg2 cancelled:(BOOL)arg3;
 - (void)editorDidFinish:(id)arg1 withRemovedLikeness:(id)arg2;
-- (void)beginEditingLikeness:(id)arg1 isMe:(BOOL)arg2;
+- (void)prepareEditorPresentationController;
+- (void)recentLikenessesViewController:(id)arg1 beginEditingLikeness:(id)arg2;
+- (void)addNewLikenessRecentLikenessesViewController:(id)arg1;
 - (void)reloadDataWithAvatarView:(id)arg1;
 - (void)loadView;
-- (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 // Remaining properties

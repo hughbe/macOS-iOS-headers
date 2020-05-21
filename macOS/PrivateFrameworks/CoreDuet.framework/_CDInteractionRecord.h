@@ -15,12 +15,15 @@
 
 // Remaining properties
 @property(retain, nonatomic) NSString *account; // @dynamic account;
+@property(retain, nonatomic) NSSet *attachments; // @dynamic attachments;
 @property(retain, nonatomic) NSString *bundleId; // @dynamic bundleId;
 @property(retain, nonatomic) NSString *contentURL; // @dynamic contentURL;
 @property(nonatomic) double creationDate; // @dynamic creationDate;
+@property(retain, nonatomic) NSString *derivedIntentIdentifier; // @dynamic derivedIntentIdentifier;
 @property(nonatomic) long long direction; // @dynamic direction;
 @property(retain, nonatomic) NSString *domainIdentifier; // @dynamic domainIdentifier;
 @property(nonatomic) double endDate; // @dynamic endDate;
+@property(retain, nonatomic) NSString *groupName; // @dynamic groupName;
 @property(nonatomic) BOOL isResponse; // @dynamic isResponse;
 @property(retain, nonatomic) NSSet *keywords; // @dynamic keywords;
 @property(retain, nonatomic) NSString *locationUUID; // @dynamic locationUUID;
@@ -29,6 +32,7 @@
 @property(retain, nonatomic) NSSet *recipients; // @dynamic recipients;
 @property(retain, nonatomic) _CDContactRecord *sender; // @dynamic sender;
 @property(nonatomic) double startDate; // @dynamic startDate;
+@property(retain, nonatomic) NSString *targetBundleId; // @dynamic targetBundleId;
 @property(retain, nonatomic) NSString *uuid; // @dynamic uuid;
 @end
 

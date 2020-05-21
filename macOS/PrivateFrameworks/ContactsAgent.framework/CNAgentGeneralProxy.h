@@ -6,11 +6,14 @@
 
 #import "NSObject.h"
 
-@interface CNAgentGeneralProxy : NSObject
+#import "CalAgentLinkContactsGeneral.h"
+
+@interface CNAgentGeneralProxy : NSObject <CalAgentLinkContactsGeneral>
 {
 }
 
 + (void)initialize;
+- (void)broadcastNotificationToOtherClients:(id)arg1 userInfo:(id)arg2;
 - (void)updateClientSideCacheWithReply:(CDUnknownBlockType)arg1;
 - (void)registerWithAgent;
 - (void)broadcastToOtherClients:(id)arg1 withObject:(id)arg2 withObject:(id)arg3;

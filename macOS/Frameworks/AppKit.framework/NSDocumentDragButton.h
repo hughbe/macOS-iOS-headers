@@ -6,9 +6,12 @@
 
 #import <AppKit/NSButton.h>
 
-@class NSEvent, NSURL;
+#import "NSDraggingSource.h"
 
-@interface NSDocumentDragButton : NSButton
+@class NSString, NSURL;
+
+__attribute__((visibility("hidden")))
+@interface NSDocumentDragButton : NSButton <NSDraggingSource>
 {
     struct __ddbFlags {
         unsigned int waitForDrag:1;
@@ -17,11 +20,15 @@
         unsigned int RESERVED:29;
     } _ddbFlags;
     NSURL *representedURL;
-    NSEvent *mouseDownEvent;
 }
 
 - (void)dealloc;
 - (void)mouseDragged:(id)arg1;
+- (id)_draggingItemFromPasteboardItem:(id)arg1;
+- (struct CGPoint)_filenameWindowDragPoint;
+- (id)_textViewForDragging;
+- (void)_autosaveDocumentIfNeeded;
+- (unsigned long long)draggingSession:(id)arg1 sourceOperationMaskForDraggingContext:(long long)arg2;
 - (id)originalWindow;
 - (void)mouseDown:(id)arg1;
 - (void)mouseUp:(id)arg1;
@@ -31,6 +38,12 @@
 - (id)representedFilename;
 - (void)setRepresentedFilename:(id)arg1;
 - (BOOL)shouldDelayWindowOrderingForEvent:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

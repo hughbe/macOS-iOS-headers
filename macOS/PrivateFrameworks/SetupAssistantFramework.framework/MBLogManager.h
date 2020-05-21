@@ -8,14 +8,17 @@
 
 @class NSObject<OS_os_log>;
 
+__attribute__((visibility("hidden")))
 @interface MBLogManager : NSObject
 {
+    BOOL _legacyLoggingEnabled;
     NSObject<OS_os_log> *_connObj;
 }
 
 + (id)sharedManager;
-@property(retain) NSObject<OS_os_log> *connObj; // @synthesize connObj=_connObj;
 - (void).cxx_destruct;
+@property BOOL legacyLoggingEnabled; // @synthesize legacyLoggingEnabled=_legacyLoggingEnabled;
+@property(retain) NSObject<OS_os_log> *connObj; // @synthesize connObj=_connObj;
 - (void)logType:(int)arg1 inFunction:(const char *)arg2 atLine:(int)arg3 withFormat:(id)arg4;
 - (void)logType:(int)arg1 inFunction:(const char *)arg2 atLine:(int)arg3 withString:(id)arg4;
 - (id)init;

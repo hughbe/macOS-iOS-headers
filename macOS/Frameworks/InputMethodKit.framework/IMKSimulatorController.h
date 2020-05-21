@@ -10,31 +10,31 @@
 
 @interface IMKSimulatorController : NSObject
 {
-    id <IMKTextInput><NSObject> _currentClient;
-    IMKInputController *_currentInputController;
     IMKSimulatorWindow *_currentWindow;
-    id <IMKSimulatorDelegate><NSObject> _simulatorDelegate;
     NSString *_inputMode;
     BOOL _inPressAndHoldEvent;
     BOOL _isPressAndHold;
 }
 
 + (id)sharedController;
-@property(nonatomic) BOOL isPressAndHold; // @synthesize isPressAndHold=_isPressAndHold;
-@property(retain, nonatomic) id <IMKSimulatorDelegate><NSObject> simulatorDelegate; // @synthesize simulatorDelegate=_simulatorDelegate;
 @property(nonatomic) BOOL inPressAndHoldEvent; // @synthesize inPressAndHoldEvent=_inPressAndHoldEvent;
+@property(nonatomic) BOOL isPressAndHold; // @synthesize isPressAndHold=_isPressAndHold;
 @property(copy, nonatomic) NSString *inputMode; // @synthesize inputMode=_inputMode;
 @property(retain, nonatomic) IMKSimulatorWindow *currentWindow; // @synthesize currentWindow=_currentWindow;
-@property(retain, nonatomic) IMKInputController *currentInputController; // @synthesize currentInputController=_currentInputController;
-@property(retain, nonatomic) id <IMKTextInput><NSObject> currentClient; // @synthesize currentClient=_currentClient;
+@property(readonly, nonatomic) id <IMKSimulatorDelegate><NSObject> simulatorDelegate;
+@property(readonly, nonatomic) id <IMKTextInput><NSObject> currentClient;
+@property(readonly, nonatomic) IMKInputController *currentInputController;
+@property(nonatomic) BOOL spotlightOn;
 @property(nonatomic) long long orientation;
 @property(nonatomic) long long direction;
+- (void)windowFocusSwitched:(id)arg1;
 - (void)inputModeChanged;
 - (void)didHandleEvent:(id)arg1;
-- (void)showWindow;
+- (void)showNewWindow;
 - (Class)inputControllerClass;
 - (Class)clientClass;
 - (void)dealloc;
+- (id)init;
 
 @end
 

@@ -17,14 +17,15 @@
     CNContact *_contact;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
 @property(retain, nonatomic) id <CNContactLikenessMutator> contactStoreMutator; // @synthesize contactStoreMutator=_contactStoreMutator;
 @property(retain, nonatomic) PRPersonaStore *personaStore; // @synthesize personaStore=_personaStore;
-- (void).cxx_destruct;
 - (id)setLikenessAsCurrent:(id)arg1;
 - (id)deleteLikeness:(id)arg1;
-- (id)saveLikeness:(id)arg1;
-- (id)initWithPersonaStore:(id)arg1 contactStoreMutator:(id)arg2 contact:(id)arg3;
+- (id)updateLikeness:(id)arg1;
+- (id)addNewLikeness:(id)arg1;
+- (id)initWithPersonaStore:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

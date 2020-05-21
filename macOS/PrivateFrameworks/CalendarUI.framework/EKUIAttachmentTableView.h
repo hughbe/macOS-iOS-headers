@@ -13,13 +13,12 @@
     EKUIAttachmentGadget *_controller;
 }
 
-@property __weak EKUIAttachmentGadget *controller; // @synthesize controller=_controller;
 - (void).cxx_destruct;
+@property __weak EKUIAttachmentGadget *controller; // @synthesize controller=_controller;
 - (void)endPreviewPanelControl:(id)arg1;
 - (void)beginPreviewPanelControl:(id)arg1;
 - (BOOL)acceptsPreviewPanelControl:(id)arg1;
 - (BOOL)canBecomeKeyView;
-- (void)keyDown:(id)arg1;
 - (id)initWithController:(id)arg1;
 
 @end

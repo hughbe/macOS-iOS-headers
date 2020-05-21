@@ -10,22 +10,17 @@
 
 @interface CKAcceptSharesOperation : CKOperation
 {
-    BOOL _isUsingLegacyAPI;
-    NSArray *_shareMetadatas;
     CDUnknownBlockType _perShareCompletionBlock;
     CDUnknownBlockType _acceptSharesCompletionBlock;
+    NSArray *_shareMetadatas;
     NSMutableDictionary *_errorsByShareURL;
     NSMutableDictionary *_shareMetadatasByShareURL;
 }
 
-+ (id)_fakeShareMetadatasFromURLs:(id)arg1;
-@property(nonatomic) BOOL isUsingLegacyAPI; // @synthesize isUsingLegacyAPI=_isUsingLegacyAPI;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *shareMetadatasByShareURL; // @synthesize shareMetadatasByShareURL=_shareMetadatasByShareURL;
 @property(retain, nonatomic) NSMutableDictionary *errorsByShareURL; // @synthesize errorsByShareURL=_errorsByShareURL;
-@property(copy, nonatomic) CDUnknownBlockType acceptSharesCompletionBlock; // @synthesize acceptSharesCompletionBlock=_acceptSharesCompletionBlock;
-@property(copy, nonatomic) CDUnknownBlockType perShareCompletionBlock; // @synthesize perShareCompletionBlock=_perShareCompletionBlock;
 @property(copy, nonatomic) NSArray *shareMetadatas; // @synthesize shareMetadatas=_shareMetadatas;
-- (void).cxx_destruct;
 - (id)activityCreate;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
@@ -34,10 +29,8 @@
 - (BOOL)hasCKOperationCallbacksSet;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
-- (void)setDatabase:(id)arg1;
-- (id)shareURLs;
-- (void)setShareURLs:(id)arg1;
-- (id)initWithShareURLs:(id)arg1;
+@property(copy, nonatomic) CDUnknownBlockType acceptSharesCompletionBlock; // @synthesize acceptSharesCompletionBlock=_acceptSharesCompletionBlock;
+@property(copy, nonatomic) CDUnknownBlockType perShareCompletionBlock; // @synthesize perShareCompletionBlock=_perShareCompletionBlock;
 - (id)initWithShareMetadatas:(id)arg1;
 - (id)init;
 

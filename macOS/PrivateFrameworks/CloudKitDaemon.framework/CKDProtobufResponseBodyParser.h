@@ -4,48 +4,30 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <CloudKitDaemon/CKDResponseBodyParser.h>
 
-#import "CKDResponseBodyParser.h"
+@class NSMutableData;
 
-@class NSData, NSError, NSMutableData, NSObject<OS_dispatch_queue>, NSString;
-
-@interface CKDProtobufResponseBodyParser : NSObject <CKDResponseBodyParser>
+@interface CKDProtobufResponseBodyParser : CKDResponseBodyParser
 {
+    BOOL _parsingStandaloneMessage;
     BOOL _isParsing;
     Class _messageClass;
-    CDUnknownBlockType _objectParsedBlock;
-    CDUnknownBlockType _logParsedObjectBlock;
-    NSError *_parserError;
-    NSObject<OS_dispatch_queue> *_parseQueue;
-    NSData *_parserData;
     NSMutableData *_tailParserData;
     unsigned long long _curObjectLength;
-    struct CC_SHA256state_st _mescalSignature;
 }
 
-@property(nonatomic) struct CC_SHA256state_st mescalSignature; // @synthesize mescalSignature=_mescalSignature;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isParsing; // @synthesize isParsing=_isParsing;
 @property(nonatomic) unsigned long long curObjectLength; // @synthesize curObjectLength=_curObjectLength;
 @property(retain, nonatomic) NSMutableData *tailParserData; // @synthesize tailParserData=_tailParserData;
-@property(retain, nonatomic) NSData *parserData; // @synthesize parserData=_parserData;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *parseQueue; // @synthesize parseQueue=_parseQueue;
-@property(retain, nonatomic) NSError *parserError; // @synthesize parserError=_parserError;
-@property(copy, nonatomic) CDUnknownBlockType logParsedObjectBlock; // @synthesize logParsedObjectBlock=_logParsedObjectBlock;
-@property(copy, nonatomic) CDUnknownBlockType objectParsedBlock; // @synthesize objectParsedBlock=_objectParsedBlock;
+@property(nonatomic) BOOL parsingStandaloneMessage; // @synthesize parsingStandaloneMessage=_parsingStandaloneMessage;
 @property(nonatomic) Class messageClass; // @synthesize messageClass=_messageClass;
-- (void).cxx_destruct;
 - (void)finishWithCompletion:(CDUnknownBlockType)arg1;
 - (void)processData:(id)arg1;
 - (BOOL)_parseObjects:(BOOL)arg1;
 - (BOOL)_parseObjectFromData:(id)arg1 rawData:(id)arg2;
-- (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithQoS:(long long)arg1;
 
 @end
 

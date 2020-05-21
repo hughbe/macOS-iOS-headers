@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     NSOpenGLContext *_sourceContext;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSOpenGLContext *sourceContext; // @synthesize sourceContext=_sourceContext;
 - (void)setFilterChannel:(id)arg1;
 - (void)renderer:(id)arg1 didRenderScene:(id)arg2 atTime:(double)arg3;

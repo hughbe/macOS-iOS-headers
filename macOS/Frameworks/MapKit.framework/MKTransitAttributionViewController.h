@@ -7,11 +7,11 @@
 #import <MapKit/_MKClickableTableViewController.h>
 
 #import "GEOResourceManifestTileGroupObserver.h"
-#import "_MKInfoCardChildViewControllerAnalyticsDelegate.h"
+#import "MKModuleViewControllerProtocol.h"
 
 @class MKMapItem, NSString;
 
-@interface MKTransitAttributionViewController : _MKClickableTableViewController <GEOResourceManifestTileGroupObserver, _MKInfoCardChildViewControllerAnalyticsDelegate>
+@interface MKTransitAttributionViewController : _MKClickableTableViewController <GEOResourceManifestTileGroupObserver, MKModuleViewControllerProtocol>
 {
     BOOL _isAttributionURLAvailable;
     MKMapItem *_mapItem;
@@ -19,10 +19,10 @@
     id <MKTransitAttributionViewControllerDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <MKTransitAttributionViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) id <GEOTransitLineItem> lineItem; // @synthesize lineItem=_lineItem;
 @property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
-- (void).cxx_destruct;
 - (void)_presentTransitAttributionDetails;
 - (void)tableView:(id)arg1 mouseUpOnRow:(long long)arg2;
 - (BOOL)tableView:(id)arg1 shouldClickRow:(long long)arg2;
@@ -41,6 +41,7 @@
 - (void)_commonInit;
 - (id)initWithTransitLineItem:(id)arg1;
 - (id)initWithMapItem:(id)arg1;
+- (BOOL)_canShowWhileLocked;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

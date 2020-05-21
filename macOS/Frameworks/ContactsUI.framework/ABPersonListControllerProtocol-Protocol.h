@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class ABAccount, ABAddressBook, ABGroup, NSArray, NSDictionary, NSString;
+@class ABAccount, ABAddressBook, ABGroup, ABPersonEntry, NSArray, NSDictionary, NSString;
 
 @protocol ABPersonListControllerProtocol <NSObject>
 @property(readonly) BOOL shouldIncludeGroups;
@@ -19,6 +19,7 @@
 - (void)reflectChangesInUIForNotificationUserInfo:(NSDictionary *)arg1;
 - (void)selectNext:(id)arg1;
 - (void)selectPrevious:(id)arg1;
+- (void)expandPersonEntriesCacheWithEntry:(ABPersonEntry *)arg1;
 - (void)clearExtraUniqueIdsInSearchResults;
 - (void)updateSuggestedContacts;
 - (void)fetchContacts;

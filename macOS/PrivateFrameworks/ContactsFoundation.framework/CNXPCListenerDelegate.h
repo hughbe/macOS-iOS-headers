@@ -10,14 +10,13 @@
 
 @class NSString, Protocol;
 
-__attribute__((visibility("hidden")))
 @interface CNXPCListenerDelegate : NSObject <NSXPCListenerDelegate>
 {
     id _exportedObject;
     Protocol *_exportedInterfaceProtocol;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (id)initWithWithExportedObject:(id)arg1 exportedInterfaceProtocol:(id)arg2;
 

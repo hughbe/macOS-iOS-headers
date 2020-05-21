@@ -27,6 +27,7 @@
     NSButton *_addToPassbookButton;
     double _slideUpYDelta;
     BOOL _attachToHostWindow;
+    BOOL _didAddPass;
     PKPassViewerViewController *_passViewController;
     PKPass *_pass;
     NSButton *_closeButton;
@@ -35,6 +36,8 @@
     struct CGRect _positionRelativeToRect;
 }
 
+- (void).cxx_destruct;
+@property BOOL didAddPass; // @synthesize didAddPass=_didAddPass;
 @property BOOL attachToHostWindow; // @synthesize attachToHostWindow=_attachToHostWindow;
 @property long long closeAnimationStyle; // @synthesize closeAnimationStyle=_closeAnimationStyle;
 @property long long openAnimationStyle; // @synthesize openAnimationStyle=_openAnimationStyle;
@@ -44,7 +47,7 @@
 @property(readonly) PKPassViewerViewController *passViewController; // @synthesize passViewController=_passViewController;
 @property(getter=isActive) BOOL active; // @synthesize active=_active;
 @property(retain) NSWindow *clientWindow; // @synthesize clientWindow=_clientWindow;
-- (void).cxx_destruct;
+- (void)passViewer:(id)arg1 didChangePass:(id)arg2;
 - (void)passViewer:(id)arg1 didAddToPassbook:(id)arg2;
 - (void)passViewer:(id)arg1 closeClicked:(id)arg2;
 - (void)endWithAnimationStyle:(long long)arg1;
@@ -65,6 +68,7 @@
 - (void)_synchronizeBackgroundWindowFrame;
 - (struct CGRect)clientWindowFrame;
 - (BOOL)clientWindowAvailable;
+- (void)layoutForPass:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)windowDidLoad;
 - (struct CGRect)_centeredRectWithSize:(struct CGSize)arg1 inRect:(struct CGRect)arg2;

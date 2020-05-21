@@ -18,7 +18,7 @@
 }
 
 @property long long segmentedControlLocation; // @synthesize segmentedControlLocation=_segmentedControlLocation;
-@property __weak NSTabViewController *tabViewController; // @synthesize tabViewController=_tabViewController;
+@property NSTabViewController *tabViewController; // @synthesize tabViewController=_tabViewController;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)_stopObservingTabViewItem:(id)arg1;
 - (void)_startObservingTabViewItem:(id)arg1;

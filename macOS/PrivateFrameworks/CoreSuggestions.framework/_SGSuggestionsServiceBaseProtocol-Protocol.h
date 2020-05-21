@@ -4,9 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@protocol _SGSuggestionsServiceBaseProtocol
+#import "_SGSuggestionsServiceMetricsProtocol.h"
+
+@protocol _SGSuggestionsServiceBaseProtocol <_SGSuggestionsServiceMetricsProtocol>
 + (BOOL)isHarvestingSupported;
 - (void)keepDirty:(BOOL)arg1;
 - (BOOL)isEnabledWithError:(id *)arg1;
+- (void)setQueuesRequestsIfBusy:(BOOL)arg1;
+- (BOOL)queuesRequestsIfBusy;
+- (void)setSyncTimeout:(double)arg1;
+- (double)syncTimeout;
 @end
 

@@ -24,6 +24,7 @@
     NSObject<OS_dispatch_queue> *_memberQueue;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *memberQueue; // @synthesize memberQueue=_memberQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 @property(readonly, nonatomic) NSString *headerVersion; // @synthesize headerVersion=_headerVersion;
@@ -34,7 +35,6 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_group> *pendingConnectionsGroup; // @synthesize pendingConnectionsGroup=_pendingConnectionsGroup;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *pendingConnectionsQueue; // @synthesize pendingConnectionsQueue=_pendingConnectionsQueue;
 @property(retain, nonatomic) MSASPConnectionGate *gate; // @synthesize gate=_gate;
-- (void).cxx_destruct;
 - (void)getAlbumURLForAlbumWithGUID:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)getServerSideConfigCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)setAlbumSyncedState:(id)arg1 forAlbum:(id)arg2 albumStateCtag:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
@@ -42,6 +42,8 @@
 - (void)getAlbumSyncedStateForAlbum:(id)arg1 assetCollectionStateBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)getCommentChanges:(id)arg1 inAlbumWithGUID:(id)arg2 albumURLString:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)acceptInvitationWithToken:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)markAsSpamInvitationForToken:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)markAsSpamInvitationForAlbum:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)unsubscribeFromAlbum:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)subscribeToAlbum:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)getTokensForAssets:(id)arg1 inAlbum:(id)arg2 albumURLString:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
@@ -72,6 +74,7 @@
 - (id)_albumStateURL;
 - (id)_setCommentPositionURL;
 - (id)_getCommentsURLWithBaseURL:(id)arg1;
+- (id)_reportSpamURL;
 - (id)_unsubscribeURL;
 - (id)_subscribeURL;
 - (id)_getTokensURLWithBaseURL:(id)arg1;
@@ -95,10 +98,11 @@
 - (id)_createAlbumURL;
 - (id)errorFromStandardProcessingOnResponse:(id)arg1 responseObject:(id)arg2 checkServerSideConfigVersion:(BOOL)arg3 error:(id)arg4 body:(id)arg5;
 - (id)HTTPErrorWithStatusCode:(long long)arg1;
+- (void)_prepareHeadersForRequest:(id)arg1;
+- (void)_sendOneURLRequest:(id)arg1 checkServerSideConfigVersion:(BOOL)arg2 retryCount:(unsigned long long)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)sendURLRequest:(id)arg1 method:(id)arg2 bodyObj:(id)arg3 checkServerSideConfigVersion:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)sendURLRequest:(id)arg1 bodyObj:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (CDUnknownBlockType)stopHandlerBlock;
-- (void)dealloc;
 - (void)stopCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)shutDownCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)stoppingError;

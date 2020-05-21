@@ -13,7 +13,6 @@
 @interface CalDAVServerVersion : NSObject <NSCopying>
 {
     BOOL _supportsTimeRangeFilter;
-    BOOL _supportsTodoTimeRangeFilter;
     BOOL _supportsTimeRangeFilterWithoutEndDate;
     BOOL _supportsTimeRangeFilterOnInbox;
     BOOL _supportsAutoSchedule;
@@ -35,6 +34,8 @@
     BOOL _supportsCalendarNoTimezone;
     BOOL _supportsCalendarRecurrenceSplit;
     BOOL _alwaysSupportsFreebusyOnOutbox;
+    BOOL _supportsCalendarAudit;
+    BOOL _supportsTelephone;
     double _version;
     NSString *_supportedCalendarComponentSets;
     NSSet *_complianceClasses;
@@ -44,9 +45,12 @@
 + (id)versionWithPropertyValue:(id)arg1;
 + (id)versionWithHTTPHeaders:(id)arg1;
 + (id)_prototypeMatchingServerHeaders:(id)arg1;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *serverHeader; // @synthesize serverHeader=_serverHeader;
-@property(nonatomic) BOOL alwaysSupportsFreebusyOnOutbox; // @synthesize alwaysSupportsFreebusyOnOutbox=_alwaysSupportsFreebusyOnOutbox;
 @property(retain, nonatomic) NSSet *complianceClasses; // @synthesize complianceClasses=_complianceClasses;
+@property(nonatomic) BOOL supportsTelephone; // @synthesize supportsTelephone=_supportsTelephone;
+@property(nonatomic) BOOL supportsCalendarAudit; // @synthesize supportsCalendarAudit=_supportsCalendarAudit;
+@property(nonatomic) BOOL alwaysSupportsFreebusyOnOutbox; // @synthesize alwaysSupportsFreebusyOnOutbox=_alwaysSupportsFreebusyOnOutbox;
 @property(nonatomic) BOOL supportsCalendarRecurrenceSplit; // @synthesize supportsCalendarRecurrenceSplit=_supportsCalendarRecurrenceSplit;
 @property(nonatomic) BOOL supportsCalendarNoTimezone; // @synthesize supportsCalendarNoTimezone=_supportsCalendarNoTimezone;
 @property(copy, nonatomic) NSString *supportedCalendarComponentSets; // @synthesize supportedCalendarComponentSets=_supportedCalendarComponentSets;
@@ -68,10 +72,10 @@
 @property(nonatomic) BOOL supportsAutoSchedule; // @synthesize supportsAutoSchedule=_supportsAutoSchedule;
 @property(nonatomic) BOOL supportsTimeRangeFilterOnInbox; // @synthesize supportsTimeRangeFilterOnInbox=_supportsTimeRangeFilterOnInbox;
 @property(nonatomic) BOOL supportsTimeRangeFilterWithoutEndDate; // @synthesize supportsTimeRangeFilterWithoutEndDate=_supportsTimeRangeFilterWithoutEndDate;
-@property(nonatomic) BOOL supportsTodoTimeRangeFilter; // @synthesize supportsTodoTimeRangeFilter=_supportsTodoTimeRangeFilter;
 @property(nonatomic) BOOL supportsTimeRangeFilter; // @synthesize supportsTimeRangeFilter=_supportsTimeRangeFilter;
 @property(nonatomic) double version; // @synthesize version=_version;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL shouldUseDeleteAndAddInsteadOfMoveBetweenCalendars;
+@property(readonly, nonatomic) BOOL requiresOpeningAttachmentAsLink;
 - (id)propertyValue;
 @property(readonly, nonatomic) NSString *type;
 - (id)description;

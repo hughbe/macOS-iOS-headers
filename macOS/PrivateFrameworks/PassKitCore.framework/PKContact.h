@@ -14,18 +14,19 @@
 {
     NSPersonNameComponents *_name;
     CNPostalAddress *_postalAddress;
-    NSString *_emailAddress;
     CNPhoneNumber *_phoneNumber;
+    NSString *_emailAddress;
     NSString *_supplementarySubLocality;
 }
 
 + (BOOL)supportsSecureCoding;
++ (long long)version;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *supplementarySubLocality; // @synthesize supplementarySubLocality=_supplementarySubLocality;
-@property(retain, nonatomic) CNPhoneNumber *phoneNumber; // @synthesize phoneNumber=_phoneNumber;
 @property(retain, nonatomic) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
+@property(retain, nonatomic) CNPhoneNumber *phoneNumber; // @synthesize phoneNumber=_phoneNumber;
 @property(retain, nonatomic) CNPostalAddress *postalAddress; // @synthesize postalAddress=_postalAddress;
 @property(retain, nonatomic) NSPersonNameComponents *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionary:(id)arg1 error:(id *)arg2;
 - (id)cnMutableContact;

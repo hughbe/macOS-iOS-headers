@@ -13,11 +13,14 @@
     SiriUIPluginManager *_pluginManager;
 }
 
++ (id)debugBundlePath;
 + (id)sharedInstance;
++ (void)_debugSetPluginDirectory:(id)arg1;
 - (void).cxx_destruct;
 - (id)speakableProviderForObject:(id)arg1;
 - (id)listItemToPickInAutodisambiguationForListItems:(id)arg1;
 - (id)disambiguationItemForListItem:(id)arg1 disambiguationKey:(id)arg2;
+- (id)filteredDisambiguationListItems:(id)arg1;
 - (id)transcriptItemForObject:(id)arg1;
 - (BOOL)_compareObject:(id)arg1 toObject:(id)arg2 usingBlock:(CDUnknownBlockType)arg3;
 - (BOOL)_listItem:(id)arg1 isPreferredOverListItem:(id)arg2;

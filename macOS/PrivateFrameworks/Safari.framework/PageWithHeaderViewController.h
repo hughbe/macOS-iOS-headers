@@ -7,14 +7,12 @@
 #import "NSViewController.h"
 
 #import "PageWithHeaderViewDelegate.h"
-#import "ReaderInstallationTarget.h"
 
-@class BrowserWKView, ContinuousReadingBannerLayer, FlippedView, NSAttributedString, NSImage, NSMutableArray, NSString, NSTimer, ReaderContainerView, SearchableWKView;
+@class BrowserViewController, ContinuousReadingBannerLayer, FlippedView, NSAttributedString, NSImage, NSMutableArray, NSString, NSTimer, ReaderViewController, WebViewController;
 
 __attribute__((visibility("hidden")))
-@interface PageWithHeaderViewController : NSViewController <PageWithHeaderViewDelegate, ReaderInstallationTarget>
+@interface PageWithHeaderViewController : NSViewController <PageWithHeaderViewDelegate>
 {
-    BOOL _isSocial;
     NSMutableArray *_historyOperations;
     ContinuousReadingBannerLayer *_headerBannerLayer;
     FlippedView *_headerBannerView;
@@ -24,51 +22,31 @@ __attribute__((visibility("hidden")))
     BOOL _didStopLoadingPage;
     BOOL _canUseCredentialStorage;
     BOOL _hasDefaultSiteIcon;
-    BOOL _isRepostedByAuthenticatedUser;
-    BOOL _forTwitterItem;
     BOOL _hasFooterBanner;
     BOOL _footerBannerHasDefaultSiteIcon;
-    BOOL _footerBannerIsRepostedByAuthenticatedUser;
-    BOOL _footerBannerIsSocial;
-    BOOL _footerBannerForTwitterItem;
     BOOL _suppressBannerUpdatesOnPropertyChanges;
-    BrowserWKView *_browserWKView;
+    BrowserViewController *_browserViewController;
     struct Image _snapshotForRubberBandingArea;
     NSImage *_icon;
     NSImage *_secondaryIcon;
     NSString *_urlString;
     NSAttributedString *_itemTitle;
     NSString *_itemDescription;
-    NSString *_screenName;
-    NSString *_reposterDisplayName;
-    NSString *_reposterScreenName;
     NSImage *_footerBannerIcon;
     NSImage *_footerBannerSecondaryIcon;
     NSAttributedString *_footerBannerItemTitle;
     NSString *_footerBannerItemDescription;
-    NSString *_footerBannerScreenName;
-    NSString *_footerBannerReposterDisplayName;
-    NSString *_footerBannerReposterScreenName;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL suppressBannerUpdatesOnPropertyChanges; // @synthesize suppressBannerUpdatesOnPropertyChanges=_suppressBannerUpdatesOnPropertyChanges;
-@property(readonly, nonatomic, getter=isFooterBannerForTwitterItem) BOOL footerBannerForTwitterItem; // @synthesize footerBannerForTwitterItem=_footerBannerForTwitterItem;
-@property(readonly, nonatomic) BOOL footerBannerIsSocial; // @synthesize footerBannerIsSocial=_footerBannerIsSocial;
-@property(readonly, nonatomic) BOOL footerBannerIsRepostedByAuthenticatedUser; // @synthesize footerBannerIsRepostedByAuthenticatedUser=_footerBannerIsRepostedByAuthenticatedUser;
-@property(readonly, nonatomic) NSString *footerBannerReposterScreenName; // @synthesize footerBannerReposterScreenName=_footerBannerReposterScreenName;
-@property(readonly, nonatomic) NSString *footerBannerReposterDisplayName; // @synthesize footerBannerReposterDisplayName=_footerBannerReposterDisplayName;
-@property(readonly, nonatomic) NSString *footerBannerScreenName; // @synthesize footerBannerScreenName=_footerBannerScreenName;
 @property(readonly, nonatomic) NSString *footerBannerItemDescription; // @synthesize footerBannerItemDescription=_footerBannerItemDescription;
 @property(readonly, nonatomic) NSAttributedString *footerBannerItemTitle; // @synthesize footerBannerItemTitle=_footerBannerItemTitle;
 @property(readonly, nonatomic) BOOL footerBannerHasDefaultSiteIcon; // @synthesize footerBannerHasDefaultSiteIcon=_footerBannerHasDefaultSiteIcon;
 @property(readonly, nonatomic) NSImage *footerBannerSecondaryIcon; // @synthesize footerBannerSecondaryIcon=_footerBannerSecondaryIcon;
 @property(readonly, nonatomic) NSImage *footerBannerIcon; // @synthesize footerBannerIcon=_footerBannerIcon;
 @property(nonatomic) BOOL hasFooterBanner; // @synthesize hasFooterBanner=_hasFooterBanner;
-@property(readonly, nonatomic, getter=isForTwitterItem) BOOL forTwitterItem; // @synthesize forTwitterItem=_forTwitterItem;
-@property(readonly, nonatomic) BOOL isRepostedByAuthenticatedUser; // @synthesize isRepostedByAuthenticatedUser=_isRepostedByAuthenticatedUser;
-@property(readonly, nonatomic) NSString *reposterScreenName; // @synthesize reposterScreenName=_reposterScreenName;
-@property(readonly, nonatomic) NSString *reposterDisplayName; // @synthesize reposterDisplayName=_reposterDisplayName;
-@property(readonly, nonatomic) NSString *screenName; // @synthesize screenName=_screenName;
 @property(readonly, nonatomic) NSString *itemDescription; // @synthesize itemDescription=_itemDescription;
 @property(readonly, nonatomic) NSAttributedString *itemTitle; // @synthesize itemTitle=_itemTitle;
 @property(readonly, nonatomic) NSString *urlString; // @synthesize urlString=_urlString;
@@ -79,12 +57,9 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL didStopLoadingPage; // @synthesize didStopLoadingPage=_didStopLoadingPage;
 @property(nonatomic) struct Image snapshotForRubberBandingArea; // @synthesize snapshotForRubberBandingArea=_snapshotForRubberBandingArea;
 @property(nonatomic) BOOL canTakeSnapshotForRubberBandingArea; // @synthesize canTakeSnapshotForRubberBandingArea=_canTakeSnapshotForRubberBandingArea;
-@property(readonly, nonatomic) BrowserWKView *browserWKView; // @synthesize browserWKView=_browserWKView;
-- (id).cxx_construct;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) BrowserViewController *browserViewController; // @synthesize browserViewController=_browserViewController;
 - (void)_removeFooterBanner;
 - (void)_updateFooterBannerPropertiesForPage:(const struct Page *)arg1;
-- (void)_updateFooterBannerRetweetButtonVisibleForPage:(const struct Page *)arg1;
 - (void)_updateFooterBannerSecondaryIconForPage:(const struct Page *)arg1;
 - (void)_updateFooterBannerIconDrawsDropShadowAndMaskForPage:(const struct Page *)arg1;
 - (void)_updateFooterBannerIconForPage:(const struct Page *)arg1;
@@ -94,7 +69,6 @@ __attribute__((visibility("hidden")))
 - (void)_updateFooterBannerItemTitleForPage:(const struct Page *)arg1;
 - (void)_updateFooterBannerTypeForPage:(const struct Page *)arg1;
 - (void)_updateHeaderBannerPropertiesForPage:(const struct Page *)arg1;
-- (void)_updateHeaderBannerRetweetButtonVisibleForPage:(const struct Page *)arg1;
 - (void)_updateHeaderBannerSecondaryIconForPage:(const struct Page *)arg1;
 - (void)_updateHeaderBannerIconDrawsDropShadowAndMaskForPage:(const struct Page *)arg1;
 - (void)_updateHeaderBannerIconForPage:(const struct Page *)arg1;
@@ -116,31 +90,20 @@ __attribute__((visibility("hidden")))
 - (struct Page)_browserPage;
 - (void)deactivateReaderIfActive;
 - (void)activateReaderIfAvailable;
-@property(readonly, nonatomic) ReaderContainerView *readerContainerView;
-- (void)uninstallReaderView:(id)arg1 closedByUser:(BOOL)arg2;
+- (id)readerContainerView;
+- (void)uninstallReaderView:(id)arg1;
 - (void)installReaderView:(id)arg1;
 - (void)pageWithHeaderViewFrameSizeDidChange:(id)arg1;
-- (void)setFooterBannerReposterScreenName:(id)arg1;
-- (void)setFooterBannerReposterDisplayName:(id)arg1;
-- (void)setFooterBannerIsRepostedByAuthenticatedUser:(BOOL)arg1;
-- (void)setFooterBannerScreenName:(id)arg1;
 - (void)setFooterBannerItemDescription:(id)arg1;
 - (void)setFooterBannerItemTitle:(id)arg1;
 - (void)setFooterBannerHasDefaultSiteIcon:(BOOL)arg1;
 - (void)setFooterBannerSecondaryIcon:(id)arg1;
 - (void)setFooterBannerIcon:(id)arg1;
-- (void)setFooterBannerIsSocial:(BOOL)arg1;
-- (void)setReposterScreenName:(id)arg1;
-- (void)setReposterDisplayName:(id)arg1;
-- (void)setIsRepostedByAuthenticatedUser:(BOOL)arg1;
-- (void)setScreenName:(id)arg1;
 - (void)setItemDescription:(id)arg1;
 - (void)setItemTitle:(id)arg1;
 - (void)setHasDefaultSiteIcon:(BOOL)arg1;
 - (void)setSecondaryIcon:(id)arg1;
 - (void)setIcon:(id)arg1;
-- (void)setSocial:(BOOL)arg1;
-@property(readonly, nonatomic, getter=isSocial) BOOL social;
 @property(readonly, nonatomic) BOOL hasHeaderBanner;
 - (void)createSnapshotForRubberBandingAreaSoon;
 - (BOOL)goBackFromAboutBlankIfNecessary;
@@ -148,7 +111,8 @@ __attribute__((visibility("hidden")))
 - (void)commitHistoryOperations;
 - (void)addHistoryOperation:(id)arg1;
 - (void)setViewControllerForFooterBanner:(id)arg1;
-@property(readonly, nonatomic) SearchableWKView *activeWKView;
+@property(readonly, nonatomic) WebViewController *activeWebViewController;
+@property(readonly, nonatomic) ReaderViewController *readerViewController;
 - (void)removeTemporaryHeaderBannerView;
 - (void)removeTemporaryHeaderBannerViewSoon;
 - (void)didEnterBackground;

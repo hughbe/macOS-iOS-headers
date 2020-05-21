@@ -14,23 +14,19 @@
 {
     NSMutableDictionary *_states;
     NSMutableDictionary *_stateDetails;
-    struct __CFNetDiagnostic *_netDiagnostics;
     NSMapTable *_clients;
     NSMutableSet *_allRegisteredAccounts;
     unsigned long long _allRegisteredTypes;
     NSMutableArray *_accountRefreshQueue;
-    BOOL _isRefreshingInternet;
     NSTimer *_refreshTimer;
 }
 
 + (id)sharedStatus;
-@property BOOL isRefreshingInternet; // @synthesize isRefreshingInternet=_isRefreshingInternet;
-@property(readonly, nonatomic) NSTimer *refreshTimer; // @synthesize refreshTimer=_refreshTimer;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSTimer *refreshTimer; // @synthesize refreshTimer=_refreshTimer;
 - (void)_accountStatusUpdatedWithInfo:(id)arg1;
 - (void)_refreshAccountStatus:(id)arg1;
-- (void)_refreshInternetStatus;
-- (void)_refreshAccounts:(id)arg1 andInternet:(BOOL)arg2 clearingStatus:(BOOL)arg3;
+- (void)_refreshAccounts:(id)arg1 clearingStatus:(BOOL)arg2;
 - (void)refreshStatusForClient:(id)arg1 forceRefresh:(BOOL)arg2;
 - (void)refreshAndClearStatus:(BOOL)arg1;
 - (void)_accountInfoChanged:(id)arg1;
@@ -41,9 +37,6 @@
 - (void)_setStatus:(long long)arg1 forAccount:(id)arg2;
 - (long long)knownAccountStatus:(id)arg1;
 - (long long)accountStatus:(id)arg1;
-- (void)diagnoseInternetConnection;
-- (void)_setInternetStatus:(long long)arg1;
-@property(readonly) long long internetStatus;
 - (id)_accountsForTypes:(unsigned long long)arg1;
 - (id)_allRegisteredAccounts;
 - (id)_registeredAccountsForClient:(id)arg1 onlyWithUnknownStatus:(BOOL)arg2;
@@ -61,7 +54,6 @@
 @property(readonly, copy) NSString *description;
 @property(readonly, copy, nonatomic) NSString *displayName;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) BOOL isSmartMailbox;
 @property(readonly) Class superclass;
 
 @end

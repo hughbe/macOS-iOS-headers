@@ -11,6 +11,7 @@
 __attribute__((visibility("hidden")))
 @interface MCSessionStream : NSObject
 {
+    NSObject<OS_dispatch_source> *_source;
     BOOL _sourceSuspended;
     BOOL _progressUnbounded;
     unsigned int _streamID;
@@ -18,7 +19,6 @@ __attribute__((visibility("hidden")))
     int _fd;
     MCPeerID *_peerID;
     NSString *_name;
-    NSObject<OS_dispatch_source> *_source;
     NSMutableData *_incomingBuffer;
     NSURL *_url;
     NSProgress *_progress;

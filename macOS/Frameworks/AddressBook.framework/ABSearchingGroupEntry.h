@@ -17,6 +17,7 @@
     ABAddressBook *_addressBookForCreatingGroups;
 }
 
+- (void).cxx_destruct;
 - (id)iconWithStyleProvider:(id)arg1;
 - (id)searchOperationsForString:(id)arg1 delegate:(id)arg2;
 @property(readonly) NSString *displayName;
@@ -28,7 +29,6 @@
 - (BOOL)canSelect;
 - (id)actionScope;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 identifier:(id)arg2 operationsFactory:(id)arg3 addressBookForCreatingGroups:(id)arg4;
 
 // Remaining properties

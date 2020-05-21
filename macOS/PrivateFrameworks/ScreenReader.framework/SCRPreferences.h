@@ -21,12 +21,7 @@ __attribute__((visibility("hidden")))
 + (void)setFloat:(float)arg1 forKey:(id)arg2;
 + (void)setInteger:(long long)arg1 forKey:(id)arg2;
 + (void)setString:(id)arg1 forKey:(id)arg2;
-+ (float)brailleDisplayFontSize;
-+ (float)brailleDisplayTransparency;
-+ (unsigned long long)groupingBehavior;
-+ (unsigned long long)typingEcho;
-+ (void)setVOModifier:(unsigned long long)arg1;
-+ (unsigned long long)voModifier;
++ (long long)groupingBehavior;
 
 @end
 

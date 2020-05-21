@@ -8,6 +8,7 @@
 
 @class AVAssetProxyInternal;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetProxy : AVAsset
 {
     AVAssetProxyInternal *_assetProxy;
@@ -23,7 +24,6 @@
 - (struct OpaqueFigFormatReader *)_formatReader;
 - (struct OpaqueFigAsset *)_figAsset;
 - (BOOL)isProxy;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithPropertyList:(id)arg1;
 

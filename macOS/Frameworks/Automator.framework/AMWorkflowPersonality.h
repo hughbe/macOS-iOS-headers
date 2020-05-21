@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class AMPersonalityChooserItem, NSDictionary, NSImage, NSString;
+@class AMPluginHeaderViewController, AMTemplateChooserItem, AMWorkflowMetaData, NSArray, NSDictionary, NSImage, NSString;
 
 @interface AMWorkflowPersonality : NSObject
 {
     NSDictionary *_settingsDictionary;
-    AMPersonalityChooserItem *_personalityChooserItem;
+    AMTemplateChooserItem *_templateChooserItem;
 }
 
 + (id)workflowPersonalityForTypeIdentifier:(id)arg1;
@@ -20,37 +20,40 @@
 + (void)_instantiateWorkflowPersonalitiesIfNeeded;
 + (id)applicationWorkflowPersonality;
 + (id)generalWorkflowPersonality;
-- (id)personalityChooserItem;
-- (id)pluginHeaderViewController;
-@property(readonly, retain) NSString *headerViewString;
-- (id)defaultWorkflowMetaData;
-@property(readonly, retain) Class workflowMetaDataClass;
-- (BOOL)canSaveDocument:(id)arg1 error:(id *)arg2;
+- (void).cxx_destruct;
+- (BOOL)installationCompleteForWorkflowReturningShowCompleted:(id)arg1 atURL:(id)arg2;
+@property(readonly, nonatomic) BOOL allowsRevealInAutomatorOnInstallation;
+@property(readonly, nonatomic) NSArray *templateChooserItems;
+@property(readonly, nonatomic) AMPluginHeaderViewController *pluginHeaderViewController;
+@property(readonly, nonatomic) NSString *headerViewString;
+@property(readonly, nonatomic) AMWorkflowMetaData *defaultWorkflowMetaData;
+@property(readonly, nonatomic) Class workflowMetaDataClass;
+- (BOOL)canSaveWorkflow:(id)arg1 atURL:(id)arg2 forInstallation:(BOOL)arg3 error:(id *)arg4;
 - (id)infoPlistForWorkflowMetaData:(id)arg1 error:(id *)arg2;
-- (BOOL)finishSavingDocument:(id)arg1 forOperation:(unsigned long long)arg2 atURL:(id)arg3 error:(id *)arg4;
-@property(readonly) BOOL hasHeaderView;
-@property(readonly) struct CGSize templateImageInset;
-@property(readonly) double templateImageDimension;
-@property(readonly, copy) NSString *templateDescription;
+- (BOOL)finishSavingWorkflow:(id)arg1 forOperation:(unsigned long long)arg2 atURL:(id)arg3 error:(id *)arg4;
+- (BOOL)updateFileWrapper:(id)arg1 forWorkflowMetaData:(id)arg2 documentType:(id)arg3 error:(id *)arg4;
+@property(readonly, nonatomic) BOOL hasHeaderView;
+- (id)templateDescription;
 - (BOOL)shouldShowInTemplates;
-@property(readonly, copy) NSString *installationAccessoryViewNibName;
+@property(readonly, copy, nonatomic) NSString *installationAccessoryViewNibName;
 - (id)infoStringForCompleteInstallationWithMetaData:(id)arg1;
-@property(readonly) NSImage *imageRepresentation;
-@property(readonly, copy) NSString *unlocalizedWorkflowType;
-@property(readonly, copy) NSString *infoStringForInstallation;
-@property(readonly, copy) NSString *headerInputType;
-@property(readonly, copy) NSString *libraryDirectoryPathComponent;
+- (id)infoStringForInitialInstallationWithMetaData:(id)arg1;
+@property(readonly, nonatomic) BOOL showInTitlebar;
+@property(readonly, nonatomic) NSImage *imageRepresentation;
+@property(readonly, copy, nonatomic) NSString *unlocalizedWorkflowType;
+@property(readonly, copy, nonatomic) NSString *headerInputType;
+@property(readonly, nonatomic) BOOL allowsRenaming;
+@property(readonly, copy, nonatomic) NSString *libraryDirectoryPathComponent;
 - (id)parentDirectoryURLCreatingIfNecessary:(BOOL)arg1 error:(id *)arg2;
-@property(readonly, copy) NSString *extension;
-@property(readonly, copy) NSString *displayLabel;
-@property(readonly, copy) NSString *disableWarningDefaultsKey;
-@property(readonly, copy) NSString *documentType;
-@property(readonly, copy) NSString *workflowTypeIdentifier;
-@property(readonly) BOOL isPluginType;
-- (void)dealloc;
-- (id)settingsDictionary;
+@property(readonly, copy, nonatomic) NSString *extension;
+@property(readonly, copy, nonatomic) NSString *displayLabel;
+@property(readonly, copy, nonatomic) NSString *disableWarningDefaultsKey;
+@property(readonly, copy, nonatomic) NSString *documentType;
+@property(readonly, copy, nonatomic) NSString *workflowTypeIdentifier;
+@property(readonly, nonatomic) BOOL isPluginType;
+@property(readonly, nonatomic) NSDictionary *settingsDictionary;
 - (id)init;
-- (id)personalitySettingsDictionary;
+@property(readonly, nonatomic) NSDictionary *personalitySettingsDictionary;
 - (id)_createDefaultPersonalitySettingsDictionary;
 
 @end

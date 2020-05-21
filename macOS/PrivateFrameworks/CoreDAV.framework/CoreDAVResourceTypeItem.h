@@ -19,6 +19,7 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVItemWithNoChildren *unauthenticated; // @synthesize unauthenticated=_unauthenticated;
 @property(retain, nonatomic) CoreDAVItemWithNoChildren *collection; // @synthesize collection=_collection;
 @property(retain, nonatomic) CoreDAVItemWithNoChildren *principal; // @synthesize principal=_principal;
@@ -29,7 +30,6 @@
 @property(readonly, nonatomic) NSSet *stringSet;
 - (void)write:(id)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)init;
 
 @end

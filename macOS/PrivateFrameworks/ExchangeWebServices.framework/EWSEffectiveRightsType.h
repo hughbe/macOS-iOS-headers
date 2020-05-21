@@ -18,9 +18,11 @@
     BOOL _Delete;
     BOOL _Modify;
     BOOL _Read;
+    BOOL _ViewPrivateItems;
 }
 
 + (id)definition;
+@property(nonatomic) BOOL ViewPrivateItems; // @synthesize ViewPrivateItems=_ViewPrivateItems;
 @property(nonatomic) BOOL Read; // @synthesize Read=_Read;
 @property(nonatomic) BOOL Modify; // @synthesize Modify=_Modify;
 @property(nonatomic) BOOL Delete; // @synthesize Delete=_Delete;

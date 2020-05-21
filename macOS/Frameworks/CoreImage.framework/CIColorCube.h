@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     CIImage *inputImage;
     NSNumber *inputCubeDimension;
     NSData *inputCubeData;
+    CIImage *_cubeImage;
 }
 
 + (id)customAttributes;
@@ -25,6 +26,7 @@ __attribute__((visibility("hidden")))
 - (id)cubeImage;
 - (id)_kernelOpaque;
 - (id)_kernel;
+- (void)dealloc;
 
 @end
 

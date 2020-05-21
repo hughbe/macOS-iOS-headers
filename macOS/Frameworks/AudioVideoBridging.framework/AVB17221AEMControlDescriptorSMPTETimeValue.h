@@ -26,6 +26,8 @@
 @property unsigned char seconds; // @synthesize seconds;
 @property unsigned char minutes; // @synthesize minutes;
 @property unsigned short hours; // @synthesize hours;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (BOOL)validControlValueType:(unsigned short)arg1;
 - (id)objectsForSetCommandValuesData:(id)arg1;
 - (id)debugLogStringWithIndentation:(id)arg1;

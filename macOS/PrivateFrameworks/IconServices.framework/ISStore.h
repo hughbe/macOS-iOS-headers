@@ -8,24 +8,25 @@
 
 @class NSMutableDictionary, NSString, NSURL, NSXPCConnection;
 
-__attribute__((visibility("hidden")))
 @interface ISStore : NSObject
 {
     NSString *_domain;
     NSXPCConnection *_connection;
     NSURL *_storeURL;
     NSMutableDictionary *_registry;
-    int _registryLock;
+    struct os_unfair_lock_s _registryLock;
 }
 
+- (void).cxx_destruct;
+@property struct os_unfair_lock_s registryLock; // @synthesize registryLock=_registryLock;
+@property(readonly) NSMutableDictionary *registry; // @synthesize registry=_registry;
+@property(readonly) NSURL *storeURL; // @synthesize storeURL=_storeURL;
 @property(readonly) NSXPCConnection *connection; // @synthesize connection=_connection;
 @property(readonly) NSString *domain; // @synthesize domain=_domain;
-@property(readonly) NSURL *storeURL; // @dynamic storeURL;
 - (void)removeUnitForUUID:(id)arg1;
 - (id)addUnitWithLength:(unsigned long long)arg1 dataProvider:(CDUnknownBlockType)arg2;
 - (id)addUnitWithData:(id)arg1;
 - (id)unitForUUID:(id)arg1;
-- (void)dealloc;
 - (id)initWithDomain:(id)arg1;
 - (id)init;
 

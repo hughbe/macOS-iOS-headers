@@ -21,7 +21,6 @@
 - (BOOL)br_isEnabledForUbiquity;
 - (BOOL)br_isAccountCloudDocsMigratedServerSide;
 - (BOOL)br_isEnabledForCloudDocs;
-- (BOOL)br_isEnabledForDocumentsSync;
 - (BOOL)br_isEnabledForDesktopSync;
 - (BOOL)br_isEnabledForiCloudDesktop;
 - (void)br_setEnabledForiCloudDesktop:(BOOL)arg1;

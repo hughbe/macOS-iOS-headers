@@ -8,6 +8,7 @@
 
 @class AVCaptureConnection, AVCaptureSession, CALayer, NSDictionary, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureVideoPreviewLayerInternal : NSObject
 {
     AVCaptureSession *session;
@@ -21,6 +22,9 @@
     struct __CFDictionary *videoPreviewSynchronizerUnits;
     struct __CFDictionary *videoPreviewOutputUnits;
     NSDictionary *pixelBufferAttributes;
+    struct CGAffineTransform metadataTransform;
+    double rollAdjustment;
+    struct os_unfair_lock_s internalLock;
 }
 
 @end

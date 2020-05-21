@@ -59,13 +59,13 @@
 }
 
 + (void)initialize;
+- (void).cxx_destruct;
 @property BOOL forceSyncOfAllMessages; // @synthesize forceSyncOfAllMessages=_forceSyncOfAllMessages;
 @property BOOL connectionSupportsUIDPLUS; // @synthesize connectionSupportsUIDPLUS=_connectionSupportsUIDPLUS;
 @property unsigned int uidNext; // @synthesize uidNext=_uidNext;
 @property unsigned long long computedHighestModificationSequence; // @synthesize computedHighestModificationSequence=_computedHighestModificationSequence;
 @property unsigned long long numberOfMessagesOnServer; // @synthesize numberOfMessagesOnServer=_numMessagesOnServer;
 @property BOOL messageListIsSynchronized; // @synthesize messageListIsSynchronized=_synchronizedOldMessages;
-- (void).cxx_destruct;
 - (id)suffixArrayOfArray:(id)arg1 ofLength:(unsigned long long)arg2 fullLength:(unsigned long long *)arg3;
 @property(readonly, copy, nonatomic) NSString *stateStringForDiagnostics;
 - (BOOL)_handleFailedFetchResponseForOperation:(id)arg1;
@@ -92,11 +92,11 @@
 - (void)_notifyBackgroundFetchCompletedWithLogMessage:(id)arg1;
 - (BOOL)_setGateway:(id)arg1;
 - (id)_checkOutGateway;
-- (void)_mergeItems:(id)arg1 intoAuxiliaryList:(long long)arg2;
-- (void)_setAuxiliaryList:(id)arg1 forType:(long long)arg2;
-- (id)_getAuxiliaryListForType:(long long)arg1;
+- (void)_mergeItems:(id)arg1 intoAuxiliaryList:(unsigned long long)arg2;
+- (void)_setAuxiliaryList:(id)arg1 forType:(unsigned long long)arg2;
+- (id)_getAuxiliaryListForType:(unsigned long long)arg1;
 - (void)_removeUidFromAuxiliaryLists:(id)arg1;
-- (void)_addItem:(id)arg1 toAuxiliaryList:(long long)arg2;
+- (void)_addItem:(id)arg1 toAuxiliaryList:(unsigned long long)arg2;
 - (void)_discardSyncProgressSoFar;
 - (BOOL)_syncChangedMessagesOnly;
 - (void)_setAttachmentNamesForMessage:(id)arg1;

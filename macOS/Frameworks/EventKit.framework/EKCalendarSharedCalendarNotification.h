@@ -10,6 +10,12 @@
 {
 }
 
+- (BOOL)couldBeJunk;
+@property(readonly, nonatomic) unsigned long long cachedJunkStatus;
+- (void)setIsJunk:(BOOL)arg1 shouldSave:(BOOL)arg2;
+- (BOOL)supportsJunkReporting;
+- (id)sendersPhoneNumber;
+- (id)sendersEmail;
 - (unsigned long long)supportedActions;
 - (id)invitation;
 - (id)calendarTitle;

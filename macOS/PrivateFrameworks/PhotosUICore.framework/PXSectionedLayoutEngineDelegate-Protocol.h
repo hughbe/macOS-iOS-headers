@@ -11,6 +11,6 @@
 @protocol PXSectionedLayoutEngineDelegate <PXLayoutEngineDelegate>
 
 @optional
-- (PXLayoutGenerator *)layoutEngine:(PXSectionedLayoutEngine *)arg1 layoutGeneratorForSection:(unsigned long long)arg2;
+- (void)layoutEngine:(PXSectionedLayoutEngine *)arg1 willGenerateLayoutWithGenerator:(PXLayoutGenerator *)arg2 forSection:(unsigned long long)arg3;
 @end
 

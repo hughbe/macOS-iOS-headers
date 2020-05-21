@@ -10,18 +10,21 @@ __attribute__((visibility("hidden")))
 @interface NSThemeAutosaveButtonCell : NSButtonCell
 {
     BOOL _mouseInside;
+    float _defaultLineHeight;
 }
 
-- (unsigned long long)_interiorContentAppearanceInView:(id)arg1;
-- (unsigned long long)_themeImageState;
+- (long long)_interiorContentStateInView:(id)arg1;
+- (long long)_interiorContentPresentationStateInView:(id)arg1;
+- (id)_appearanceContentStyleInView:(id)arg1;
 - (BOOL)_hasRolloverContentArt;
 - (long long)interiorBackgroundStyle;
 - (id)_textAttributes;
-- (struct CGRect)_imageRectWithRect:(struct CGRect *)arg1;
+- (struct CGRect)_imageRectWithRect:(struct CGRect *)arg1 allowImageScaling:(BOOL)arg2;
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1;
-- (struct CGSize)_minCellSize;
+- (struct CGSize)_minCellSizeWithCompressionOptions:(id)arg1;
 - (void)performClick:(id)arg1;
 - (void)drawImage:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
+- (void)setFont:(id)arg1;
 - (BOOL)_subclassOverridesDrawImage;
 - (void)_updateMouseInside:(BOOL)arg1;
 - (void)accessibilityPerformAction:(id)arg1;

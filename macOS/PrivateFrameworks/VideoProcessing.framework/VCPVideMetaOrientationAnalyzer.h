@@ -14,7 +14,7 @@
 }
 
 - (void).cxx_destruct;
-- (id)results;
+- (id)publicResults;
 - (int)processMetadataGroup:(id)arg1 flags:(unsigned long long *)arg2;
 - (id)convertQuickTimeVideoOrientationToUIOrientation:(long long)arg1;
 - (id)init;

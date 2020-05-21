@@ -8,13 +8,19 @@
 
 #import "CNMeContactComparisonStrategy.h"
 
-@class NSString;
+@class NSSet, NSString;
 
 @interface CNUIMeContactComparisonStrategyUnified : NSObject <CNMeContactComparisonStrategy>
 {
+    NSSet *_meContactIdentifiersFound;
 }
 
-- (BOOL)isContact:(id)arg1 equivalentToMeContact:(id)arg2;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSSet *meContactIdentifiersFound; // @synthesize meContactIdentifiersFound=_meContactIdentifiersFound;
+- (id)identifierAndLinkIdentifierAndLinkedContactIdentifiersFromContact:(id)arg1;
+- (BOOL)isMeContact:(id)arg1;
+- (id)meContactIdentifiers;
+- (void)meContactChangedInStore:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -10,19 +10,17 @@
 
 @class NSArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewTransformingMultiValueConverter : NSObject <ABCardViewMultiValueConverter>
 {
     id <ABCardViewMultiValueConverter> _basicConverter;
     NSArray *_multiValueTransformers;
 }
 
-+ (id)transformingConverter;
-@property(copy) NSArray *multiValueTransformers; // @synthesize multiValueTransformers=_multiValueTransformers;
-@property(retain) id <ABCardViewMultiValueConverter> basicConverter; // @synthesize basicConverter=_basicConverter;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *multiValueTransformers; // @synthesize multiValueTransformers=_multiValueTransformers;
+@property(retain, nonatomic) id <ABCardViewMultiValueConverter> basicConverter; // @synthesize basicConverter=_basicConverter;
 - (id)multiValueFromValue:(id)arg1;
 - (id)valueFromMultiValue:(id)arg1;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

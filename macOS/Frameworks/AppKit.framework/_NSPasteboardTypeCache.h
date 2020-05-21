@@ -6,8 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSMapTable, NSMutableArray, NSMutableSet;
+@class NSMapTable, NSMutableArray, NSMutableSet, NSSet;
 
+__attribute__((visibility("hidden")))
 @interface _NSPasteboardTypeCache : NSObject
 {
     NSMutableArray *_cachedTypeNames;
@@ -16,11 +17,11 @@
     NSMapTable *_cachedRequestOnlyTypeNames;
 }
 
-@property(retain, nonatomic) NSMutableArray *_cachedTypeNames; // @synthesize _cachedTypeNames;
-- (id)_requestOnlyTypesForIndex:(long long)arg1;
-- (void)_addRequestOnlyType:(id)arg1 forIndex:(long long)arg2;
+@property(readonly, nonatomic) NSMutableArray *cachedTypeNames;
+- (id)requestOnlyTypesForIndex:(long long)arg1;
+- (void)addRequestOnlyType:(id)arg1 forIndex:(long long)arg2;
 - (id)_conformingTypeIdentifiers;
-@property(readonly, retain, nonatomic) NSMutableSet *_cachedTypeNameUnion; // @dynamic _cachedTypeNameUnion;
+@property(readonly, nonatomic) NSSet *cachedTypeNameUnion;
 - (void)dealloc;
 - (id)init;
 

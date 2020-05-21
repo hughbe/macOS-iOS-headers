@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class NSDictionary, SCNProgram;
+@class NSArray, NSDictionary, NSMutableArray, SCNProgram;
 
 __attribute__((visibility("hidden")))
 @interface SCNShadableHelper : NSObject <NSSecureCoding>
@@ -16,6 +16,8 @@ __attribute__((visibility("hidden")))
     id _owner;
     SCNProgram *_program;
     NSDictionary *_shaderModifiers;
+    NSArray *_c3dShaderModifierCache;
+    NSMutableArray *_argumentsNames;
     NSDictionary *_symbolToBinder;
     NSDictionary *_symbolToUnbinder;
 }
@@ -37,8 +39,10 @@ __attribute__((visibility("hidden")))
 - (void)_programDidChange:(id)arg1;
 - (void)handleUnbindingOfSymbol:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)handleBindingOfSymbol:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (void)copyModifiersFrom:(id)arg1;
 @property(copy, nonatomic) NSDictionary *shaderModifiers;
-- (void)_shaderModifiersDidChange;
+- (id)shaderModifierCache;
+- (void)_parseAndSetShaderModifier:(id)arg1;
 - (void)_unbindValueForSymbol:(id)arg1 atLocation:(unsigned int)arg2 programID:(unsigned int)arg3 node:(id)arg4 renderer:(id)arg5;
 - (BOOL)_bindValueForSymbol:(id)arg1 atLocation:(unsigned int)arg2 programID:(unsigned int)arg3 node:(id)arg4 renderer:(id)arg5;
 - (BOOL)isOpaque;
@@ -47,8 +51,10 @@ __attribute__((visibility("hidden")))
 - (void)_startObservingProgram;
 @property(readonly, nonatomic) id owner;
 - (void)dealloc;
+@property(readonly, nonatomic) NSArray *shaderModifiersArgumentsNames;
 - (void)ownerWillDie;
 - (id)initWithOwner:(id)arg1;
+- (void)_commonInit;
 
 @end
 

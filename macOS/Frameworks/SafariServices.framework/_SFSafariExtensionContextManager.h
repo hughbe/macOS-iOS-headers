@@ -6,17 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSExtensionContext;
+@class NSExtensionContext, NSMapTable;
 
 __attribute__((visibility("hidden")))
 @interface _SFSafariExtensionContextManager : NSObject
 {
-    NSExtensionContext *_mostRecentContext;
+    NSMapTable *_contexts;
 }
 
 + (id)sharedManager;
-@property(nonatomic) __weak NSExtensionContext *mostRecentContext; // @synthesize mostRecentContext=_mostRecentContext;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSExtensionContext *mostRecentContext;
+- (void)addContext:(id)arg1;
+- (id)init;
 
 @end
 

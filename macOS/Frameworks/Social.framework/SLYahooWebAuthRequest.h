@@ -6,16 +6,32 @@
 
 #import "NSObject.h"
 
-@interface SLYahooWebAuthRequest : NSObject
+#import "SLWebAuthRequest.h"
+#import "SLWebAuthRequest_Internal.h"
+
+@class NSString;
+
+@interface SLYahooWebAuthRequest : NSObject <SLWebAuthRequest_Internal, SLWebAuthRequest>
 {
 }
 
++ (id)_parametersForClientID:(id)arg1 redirectURI:(id)arg2 scope:(id)arg3 username:(id)arg4;
++ (id)urlForClientID:(id)arg1 redirectURI:(id)arg2 scope:(id)arg3 username:(id)arg4 authRequestURL:(id)arg5 codeChallenge:(id)arg6;
 + (id)authCodeFromURLRequest:(id)arg1;
 + (BOOL)urlPageWillContainAuthorizationCode:(id)arg1;
-+ (id)urlRequestForClientID:(id)arg1 redirectURI:(id)arg2 username:(id)arg3;
++ (id)urlRequestForClientID:(id)arg1 redirectURI:(id)arg2 scope:(id)arg3 username:(id)arg4 authRequestURL:(id)arg5;
 + (id)requestForURL:(id)arg1;
-+ (id)urlForClientID:(id)arg1 redirectURI:(id)arg2 username:(id)arg3;
-+ (void)clearCookiesFromStorage:(id)arg1;
++ (id)urlForClientID:(id)arg1 redirectURI:(id)arg2 scope:(id)arg3 username:(id)arg4 authRequestURL:(id)arg5;
++ (void)clearCookiesFromStorage:(id)arg1 authRequestURL:(id)arg2;
++ (BOOL)supportsSecureCoding;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

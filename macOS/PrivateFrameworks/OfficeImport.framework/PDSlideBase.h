@@ -24,6 +24,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (int)inheritedPlaceholderType:(int)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) unsigned int slideId; // @synthesize slideId=mSlideId;
 - (id)description;
 - (void)removeUnnecessaryOverrides;
@@ -68,10 +69,9 @@ __attribute__((visibility("hidden")))
 - (id)drawables;
 - (void)setName:(id)arg1;
 - (id)name;
-- (void)dealloc;
 - (id)init;
-- (void)setPpt9AnimationDataForCacheItem:(id)arg1 order:(int)arg2 state:(id)arg3;
 - (void)addSlideNumberPlaceholder:(id)arg1;
+- (void)setPpt9AnimationDataForCacheItem:(id)arg1 order:(int)arg2 state:(id)arg3;
 
 @end
 

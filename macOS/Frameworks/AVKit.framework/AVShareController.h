@@ -6,14 +6,20 @@
 
 #import "NSObject.h"
 
+@class AVExportProgressWindowController;
+
 @interface AVShareController : NSObject
 {
     id <AVSharingServicesDelegate> _delegate;
+    AVExportProgressWindowController *__exportProgressWindowController;
 }
 
-@property __weak id <AVSharingServicesDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (id)shareItemURL;
+@property(retain, setter=_setExportProgressWindowController:) AVExportProgressWindowController *_exportProgressWindowController; // @synthesize _exportProgressWindowController=__exportProgressWindowController;
+@property __weak id <AVSharingServicesDelegate> delegate; // @synthesize delegate=_delegate;
+- (id)fileURLForShareItem:(id)arg1 createIfNeeded:(BOOL)arg2;
+- (id)fileURLForExportingShareItem:(id)arg1;
+- (id)fileURLForRenderedShareItem:(id)arg1;
 - (void)showSharingServicePickerForPlayerView:(id)arg1 relativeToRect:(struct CGRect)arg2 ofView:(id)arg3 preferredEdge:(unsigned long long)arg4;
 - (void)populateSharingServicesForPlayerView:(id)arg1 menu:(id)arg2;
 

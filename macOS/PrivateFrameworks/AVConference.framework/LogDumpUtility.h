@@ -11,12 +11,11 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (void)removeFilesInDirectory:(id)arg1 olderThan:(id)arg2;
 + (void)removeOldFilesInDefaultLogDumpPath;
-+ (id)createLogFilename:(int)arg1 logNameType:(int)arg2 prefix:(id)arg3 suffix:(id)arg4 marcoLog:(int)arg5;
-+ (id)openLogDump:(int)arg1 logNameType:(int)arg2 prefix:(id)arg3 suffix:(id)arg4 marcoLog:(int)arg5 fullFilename:(id *)arg6;
-+ (void)AddFileToMarco:(id)arg1 logCategory:(int)arg2;
-+ (BOOL)createDirectoy:(id)arg1;
++ (void)removeFilesInDirectory:(id)arg1 olderThan:(id)arg2;
++ (id)filesSortedByTimestamp:(id)arg1;
++ (id)logFilename:(int)arg1 dumpID:(id)arg2 logNameType:(int)arg3 prefix:(id)arg4 suffix:(id)arg5;
++ (BOOL)createDirectory:(id)arg1;
 + (id)getDefaultLogDumpPath;
 + (id)getCachesDirectoryPath;
 

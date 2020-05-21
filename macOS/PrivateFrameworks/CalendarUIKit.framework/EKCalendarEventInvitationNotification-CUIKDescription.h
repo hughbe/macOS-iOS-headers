@@ -16,6 +16,7 @@
 - (id)_organizerString:(unsigned long long)arg1;
 - (id)allDescriptionStringsWithOptions:(unsigned long long)arg1;
 - (id)importantDescriptionStringWithOptions:(unsigned long long)arg1;
+- (id)senderStringWithOptions:(unsigned long long)arg1;
 - (id)_allDescriptionStringsRankedByImportance:(BOOL)arg1 options:(unsigned long long)arg2;
 - (BOOL)supportsDisplay;
 @end

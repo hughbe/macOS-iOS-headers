@@ -21,6 +21,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) NSDictionary *userInfo; // @synthesize userInfo=_userInfo;
 @property BOOL ignoreMute; // @synthesize ignoreMute=_ignoreMute;
 @property(copy) NSString *vibration; // @synthesize vibration=_vibration;
@@ -33,7 +34,6 @@
 @property(readonly, copy) NSString *description;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithSound:(id)arg1 vibration:(id)arg2 ignoreMute:(BOOL)arg3 userInfo:(id)arg4;
 - (id)initWithSound:(id)arg1 vibration:(id)arg2 ignoreMute:(BOOL)arg3;
 

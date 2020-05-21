@@ -7,7 +7,8 @@
 #import "EKProtocolCalendarNotification.h"
 
 @protocol EKProtocolMutableCalendarNotification <EKProtocolCalendarNotification>
-@property(retain, nonatomic) id <EKProtocolEventOccurrence> occurrence;
+@property(retain, nonatomic) id <EventOccurrenceModelProtocol> occurrence;
+@property(nonatomic) unsigned long long junkStatus;
 @property BOOL dismissed;
 @end
 

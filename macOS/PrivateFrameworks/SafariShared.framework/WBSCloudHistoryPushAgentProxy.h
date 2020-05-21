@@ -18,6 +18,8 @@
 - (void).cxx_destruct;
 - (void)clearAcknowledgedPushNotifications;
 - (void)acknowledgePendingPushNotifications;
+- (void)queryMemoryFootprint:(CDUnknownBlockType)arg1;
+- (id)queryMemoryFootprintWithError:(id *)arg1;
 - (void)getPushNotifications:(CDUnknownBlockType)arg1;
 - (void)dealloc;
 - (id)init;

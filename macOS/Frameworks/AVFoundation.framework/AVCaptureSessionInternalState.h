@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureSessionInternalState : NSObject
 {
     struct OpaqueCMIOGraph *_graph;
@@ -18,9 +19,6 @@
     int _candidateMasterSynchronizerNode;
 }
 
-- (struct __CFDictionary *)supportUnitsForInputPorts;
-- (struct OpaqueCMIOGraph *)graph;
-- (void)finalize;
 - (void)dealloc;
 - (void)invalidate;
 - (id)init;

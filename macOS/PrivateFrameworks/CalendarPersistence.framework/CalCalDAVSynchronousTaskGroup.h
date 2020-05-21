@@ -15,11 +15,11 @@
     CoreDAVTaskGroup *_taskGroup;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVTaskGroup *taskGroup; // @synthesize taskGroup=_taskGroup;
 @property(nonatomic) BOOL completed; // @synthesize completed=_completed;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 - (void)executeTaskGroup:(id)arg1;
-- (void)dealloc;
 
 @end
 

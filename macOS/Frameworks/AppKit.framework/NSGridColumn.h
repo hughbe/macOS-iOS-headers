@@ -14,9 +14,7 @@
 {
     NSGridView *_owningGridView;
     NSLayoutXAxisAnchor *_leading;
-    id _reserved;
-    id _reserved2;
-    id _reserved3;
+    long long _hasContentInGeneration;
     long long _xPlacement;
     double _width;
     double _trailingPadding;
@@ -45,6 +43,8 @@
 @property double width;
 @property(getter=isHidden) BOOL hidden;
 @property long long xPlacement;
+- (void)set_hasContentInGeneration:(long long)arg1;
+- (long long)_hasContentInGeneration;
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;

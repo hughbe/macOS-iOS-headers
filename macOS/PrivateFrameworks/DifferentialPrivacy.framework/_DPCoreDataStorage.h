@@ -28,6 +28,7 @@
 + (unsigned long long)deleteObjectsInContext:(id)arg1 entityName:(id)arg2 predicate:(id)arg3 sortDescriptors:(id)arg4 fetchOffset:(unsigned long long)arg5 fetchLimit:(unsigned long long)arg6;
 + (id)persistentStoreOptionsFor:(id)arg1 readOnly:(BOOL)arg2;
 + (id)storageWithDirectory:(id)arg1 databaseName:(id)arg2 modelURL:(id)arg3 readOnly:(BOOL)arg4;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) _DPDataProtectionStateMonitor *dataProtectionMonitor; // @synthesize dataProtectionMonitor=_dataProtectionMonitor;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queuePSC; // @synthesize queuePSC=_queuePSC;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queueMOC; // @synthesize queueMOC=_queueMOC;
@@ -39,13 +40,13 @@
 @property(readonly, nonatomic) NSURL *modelURL; // @synthesize modelURL=_modelURL;
 @property(readonly, copy, nonatomic) NSString *databaseName; // @synthesize databaseName=_databaseName;
 @property(readonly, copy, nonatomic) NSString *databaseDirectory; // @synthesize databaseDirectory=_databaseDirectory;
-- (void).cxx_destruct;
 - (BOOL)deleteStorageFor:(id)arg1 obliterate:(BOOL)arg2;
 - (BOOL)deleteDatabaseForPSC:(id)arg1 protectionClass:(id)arg2 obliterate:(BOOL)arg3;
 - (unsigned long long)countObjectsForEntities:(id)arg1 predicate:(id)arg2;
 - (unsigned long long)deleteObjectsOlderThanDate:(id)arg1 entities:(id)arg2 limit:(unsigned long long)arg3;
 - (unsigned long long)deleteOldObjectsToLimitTotalNumber:(unsigned long long)arg1 entities:(id)arg2 limit:(unsigned long long)arg3;
 - (unsigned long long)deleteSubmittedRecords:(unsigned long long)arg1 entities:(id)arg2 limit:(unsigned long long)arg3;
+- (unsigned long long)deleteVersionMismatchRecords:(unsigned long long)arg1 entities:(id)arg2 limit:(unsigned long long)arg3;
 - (id)mocForProtectionClass:(id)arg1;
 - (void)handleDatabaseErrors:(id)arg1 forPSC:(id)arg2 protectionClass:(id)arg3;
 - (id)persistentStoreCoordinatorFor:(id)arg1;

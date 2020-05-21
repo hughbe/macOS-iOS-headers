@@ -9,14 +9,13 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class DDScannerResult, IMBalloonPluginDataSource, NSArray, NSAttributedString, NSData, NSDictionary, NSString, NSURL;
+@class DDScannerResult, IMBalloonPluginDataSource, NSArray, NSAttributedString, NSData, NSDate, NSDictionary, NSString, NSURL;
 
 @interface IMPluginPayload : NSObject <NSSecureCoding, NSCopying>
 {
     BOOL _update;
     BOOL _sticker;
     BOOL _shouldExpire;
-    BOOL _pluginPayloadSent;
     BOOL _isPlayed;
     BOOL _isFromMe;
     NSAttributedString *_text;
@@ -26,8 +25,11 @@
     NSString *_statusText;
     NSDictionary *_userInfo;
     NSString *_messageGUID;
+    NSDate *_time;
+    NSString *_associatedMessageGUID;
     NSString *_pluginBundleID;
     NSArray *_consumedSessionPayloads;
+    NSString *_pluginSessionGUID;
     DDScannerResult *_dataDetectedResult;
     NSArray *_attachments;
     IMBalloonPluginDataSource *_datasource;
@@ -35,15 +37,18 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *sender; // @synthesize sender=_sender;
 @property(nonatomic) BOOL isFromMe; // @synthesize isFromMe=_isFromMe;
 @property(nonatomic) __weak IMBalloonPluginDataSource *datasource; // @synthesize datasource=_datasource;
 @property(retain, nonatomic) NSArray *attachments; // @synthesize attachments=_attachments;
 @property(retain, nonatomic) DDScannerResult *dataDetectedResult; // @synthesize dataDetectedResult=_dataDetectedResult;
+@property(retain, nonatomic) NSString *pluginSessionGUID; // @synthesize pluginSessionGUID=_pluginSessionGUID;
 @property(nonatomic) BOOL isPlayed; // @synthesize isPlayed=_isPlayed;
 @property(retain, nonatomic) NSArray *consumedSessionPayloads; // @synthesize consumedSessionPayloads=_consumedSessionPayloads;
-@property(readonly, nonatomic) BOOL pluginPayloadSent; // @synthesize pluginPayloadSent=_pluginPayloadSent;
 @property(retain, nonatomic) NSString *pluginBundleID; // @synthesize pluginBundleID=_pluginBundleID;
+@property(retain, nonatomic) NSString *associatedMessageGUID; // @synthesize associatedMessageGUID=_associatedMessageGUID;
+@property(retain, nonatomic) NSDate *time; // @synthesize time=_time;
 @property(retain, nonatomic) NSString *messageGUID; // @synthesize messageGUID=_messageGUID;
 @property(retain, nonatomic) NSDictionary *userInfo; // @synthesize userInfo=_userInfo;
 @property(nonatomic) BOOL shouldExpire; // @synthesize shouldExpire=_shouldExpire;
@@ -54,13 +59,15 @@
 @property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
 @property(retain, nonatomic) NSData *data; // @synthesize data=_data;
 @property(retain, nonatomic) NSAttributedString *text; // @synthesize text=_text;
-- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)initWithCoder:(id)arg1 additionalAllowedClasses:(id)arg2;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqualToPluginPayload:(id)arg1;
+@property(readonly, nonatomic) BOOL shouldHideAttachments;
+- (void)addAttachmentsFromFilePaths:(id)arg1;
 - (void)addAttachmentsFromFileTransferGUIDs:(id)arg1;
 - (id)initWithMessageItem:(id)arg1;
 - (id)initWithMessage:(id)arg1;

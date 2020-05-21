@@ -6,7 +6,10 @@
 
 #import "NSObject.h"
 
+@class NSArray;
+
 @protocol BTLEConnectionTable <NSObject>
+- (void)setBadPluginList:(NSArray *)arg1;
 - (void)setUIEnabled:(BOOL)arg1;
 - (void)updatePeripheralTable;
 @end

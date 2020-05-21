@@ -15,8 +15,16 @@
 
 + (id)labelMarkerItemWithLabelMarker:(id)arg1;
 - (void).cxx_destruct;
+- (id)_place;
+- (int)_venueFeatureType;
+- (BOOL)_hasVenueFeatureType;
+- (id)_venueInfo;
+- (id)_styleAttributes;
+- (BOOL)_isTransitDisplayFeature;
+- (id)_identifier;
 - (unsigned long long)_muid;
 - (BOOL)_hasMUID;
+- (id)_labelMarker;
 - (BOOL)_hasResolvablePartialInformation;
 - (CDStruct_c3b9c2ee)coordinate;
 - (int)referenceFrame;

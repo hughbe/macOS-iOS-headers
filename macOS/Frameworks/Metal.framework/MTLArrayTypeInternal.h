@@ -6,19 +6,34 @@
 
 #import <Metal/MTLArrayType.h>
 
+@class MTLType;
+
 __attribute__((visibility("hidden")))
 @interface MTLArrayTypeInternal : MTLArrayType
 {
+    unsigned long long _dataType;
     unsigned int _arrayLength:32;
     unsigned int _stride:32;
     id _details;
     unsigned long long _elementType;
+    MTLType *_elementTypeInfo;
+    BOOL _isIndirectArgumentBuffer;
+    unsigned long long _argumentIndexStride;
 }
 
+@property BOOL isIndirectArgumentBuffer; // @synthesize isIndirectArgumentBuffer=_isIndirectArgumentBuffer;
+@property(nonatomic) unsigned long long argumentIndexStride; // @synthesize argumentIndexStride=_argumentIndexStride;
 - (unsigned long long)elementType;
-- (id)describe;
+- (unsigned long long)dataType;
+- (id)formattedDescription:(unsigned long long)arg1;
+- (id)elementTypeDescription;
+- (id)elementIndirectArgumentType;
+@property(nonatomic) unsigned long long indirectArgumentIndexStride;
+- (id)elementPointerType;
+- (id)elementTextureReferenceType;
 - (id)elementStructType;
 - (id)elementArrayType;
+- (void)setStride:(unsigned long long)arg1;
 - (unsigned long long)stride;
 - (unsigned long long)arrayLength;
 - (void)dealloc;

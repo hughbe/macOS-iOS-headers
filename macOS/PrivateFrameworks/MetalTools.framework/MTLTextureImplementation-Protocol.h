@@ -6,6 +6,9 @@
 
 #import "MTLTextureSPI.h"
 
+@class NSString;
+
 @protocol MTLTextureImplementation <MTLTextureSPI>
+- (NSString *)formattedDescription:(unsigned long long)arg1;
 @end
 

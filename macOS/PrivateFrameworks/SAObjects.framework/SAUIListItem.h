@@ -19,6 +19,8 @@
 @property(copy, nonatomic) NSString *selectionText;
 @property(copy, nonatomic) NSString *selectionResponse;
 @property(retain, nonatomic) id <SAAceSerializable> object;
+@property(copy, nonatomic) NSString *labelValue;
+@property(copy, nonatomic) NSString *label;
 @property(copy, nonatomic) NSString *imageType;
 @property(copy, nonatomic) NSArray *commands;
 - (id)encodedClassName;

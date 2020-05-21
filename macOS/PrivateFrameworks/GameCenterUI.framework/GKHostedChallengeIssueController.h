@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <GameCenterUI/UXViewController.h>
+#import "UXViewController.h"
 
 #import "GKDialogControllerSizing.h"
 #import "GKViewController.h"
 
-@class GKChallenge, GKRemoteViewController, NSArray, NSString;
+@class GKChallenge, NSArray, NSString;
 
 @interface GKHostedChallengeIssueController : UXViewController <GKDialogControllerSizing, GKViewController>
 {
@@ -28,7 +28,7 @@
 @property(retain, nonatomic) GKChallenge *challenge; // @synthesize challenge=_challenge;
 @property(copy, nonatomic) NSString *defaultMessage; // @synthesize defaultMessage=_defaultMessage;
 @property(retain, nonatomic) NSArray *players; // @synthesize players=_players;
-@property(retain, nonatomic) GKRemoteViewController *remoteViewController; // @synthesize remoteViewController=_remoteViewController;
+@property(retain, nonatomic) id <GKRemoteViewController> remoteViewController; // @synthesize remoteViewController=_remoteViewController;
 - (struct CGSize)_gkSizeForDialogController;
 - (void)viewDidDisappear;
 - (void)setNavigationController:(id)arg1;

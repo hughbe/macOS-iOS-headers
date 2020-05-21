@@ -6,15 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSData, NSString, NSURL;
+@class NSData, NSString;
 
 @protocol MUIWKWebViewUIProxyObject <NSObject>
+- (void)setDocumentElementDirection:(long long)arg1;
 - (void)dataDetectorsExternalUIRequested:(NSData *)arg1;
 - (void)logInjectedWebBundleMessage:(NSString *)arg1;
 - (void)logWebConsoleMessage:(NSString *)arg1;
-- (void)setMessageHasBlockedRemoteContent;
+- (void)setMessageHasBlockedMessageContent;
 - (void)completeWebDocumentPasteboardType;
-- (void)webProcessDidLayoutContent:(NSURL *)arg1;
-- (void)webProcessDidPaintContent:(NSURL *)arg1;
 @end
 

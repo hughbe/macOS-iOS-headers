@@ -18,6 +18,7 @@
 @property(nonatomic) double creationDate; // @dynamic creationDate;
 @property(retain, nonatomic) NSString *key; // @dynamic key;
 @property(nonatomic) double privateNumber; // @dynamic privateNumber;
+@property(nonatomic) long long reportVersion; // @dynamic reportVersion;
 @property(nonatomic) BOOL submitted; // @dynamic submitted;
 @end
 

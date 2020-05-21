@@ -22,6 +22,7 @@
 + (void)_postParticipantScreenAttributesChangeNotification:(id)arg1 cameraChanged:(BOOL)arg2 orientationChanged:(BOOL)arg3 aspectChanged:(BOOL)arg4 cameraWillSwitch:(BOOL)arg5 camera:(unsigned int)arg6 orentation:(unsigned int)arg7 aspect:(struct CGSize)arg8;
 + (void)_postParticipantMediaChangeNotification:(id)arg1 cameraChanged:(BOOL)arg2 orientationChanged:(BOOL)arg3 aspectChanged:(BOOL)arg4 contentRectChanged:(BOOL)arg5 cameraWillSwitch:(BOOL)arg6 camera:(unsigned int)arg7 orentation:(unsigned int)arg8 aspect:(struct CGSize)arg9 contentRect:(struct CGRect)arg10;
 + (BOOL)_useMultipleAVConference;
+- (void).cxx_destruct;
 - (void)updateAVChat:(id)arg1 withCallMetadata:(id)arg2 isFinalUpdate:(BOOL)arg3;
 - (BOOL)_submitEndCallMetric:(id)arg1 forCallID:(long long)arg2;
 - (BOOL)_submitLoggingInformation:(id)arg1 forChat:(id)arg2;
@@ -35,17 +36,12 @@
 - (void)handleRelayUpdate:(id)arg1 fromParticipant:(id)arg2 callInfo:(id)arg3;
 - (void)handleRelayInitate:(id)arg1 fromParticipant:(id)arg2 callInfo:(id)arg3;
 - (BOOL)supportsRelay;
-- (void)setRemoteVideoLayersFromChat:(id)arg1 toChat:(id)arg2;
 - (void)setLocalVideoBackLayer:(void *)arg1;
 - (void *)localVideoBackLayer;
 - (void)setRemoteVideoPresentationState:(unsigned int)arg1 forChat:(id)arg2;
 - (void)setRemoteVideoPresentationSize:(struct CGSize)arg1 forChat:(id)arg2;
-- (void)setRemoteVideoBackLayer:(void *)arg1 forChat:(id)arg2;
-- (void *)remoteVideoBackLayerForChat:(id)arg1;
 - (void)setLocalVideoLayer:(void *)arg1;
 - (void *)localVideoLayer;
-- (void)setRemoteVideoLayer:(void *)arg1 forChat:(id)arg2;
-- (void *)remoteVideoLayerForChat:(id)arg1;
 - (BOOL)supportsLayers;
 - (void)serverDiedForConference:(id)arg1;
 - (void)conference:(id)arg1 didChangeLocalVariablesForCallID:(long long)arg2;
@@ -73,6 +69,7 @@
 - (id)natTypeForAVChat:(id)arg1;
 - (id)getNatIPFromICEData:(id)arg1;
 - (void)_notifyAboutPotentialCallForChat:(id)arg1;
+- (void)cancelConferenceForAVChat:(id)arg1;
 - (int)avChat:(id)arg1 endConferenceForUserID:(id)arg2;
 - (void)_avChatDealloc:(id)arg1;
 - (void)endAVConferenceWithChat:(id)arg1 callID:(long long)arg2;

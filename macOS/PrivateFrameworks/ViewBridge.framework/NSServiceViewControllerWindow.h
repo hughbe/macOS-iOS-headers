@@ -9,7 +9,11 @@
 __attribute__((visibility("hidden")))
 @interface NSServiceViewControllerWindow : NSWindow
 {
+    unsigned int _adjustWindowContextInProgress;
 }
+
+- (BOOL)_isFunctionRowWindow;
+- (BOOL)allowsFontSmoothing;
 
 @end
 

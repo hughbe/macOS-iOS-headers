@@ -11,6 +11,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
+- (BOOL)shouldPromoteUIElement:(id)arg1;
 - (id)prepareArrayToFocusInto;
 - (id)_messagesTable;
 

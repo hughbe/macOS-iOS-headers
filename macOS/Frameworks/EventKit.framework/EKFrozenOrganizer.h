@@ -12,8 +12,10 @@
 }
 
 + (Class)meltedClass;
++ (id)organizerWithName:(id)arg1 url:(id)arg2 emailAddress:(id)arg3 phoneNumber:(id)arg4 encodedLikenessData:(id)arg5 isCurrentUserForScheduling:(BOOL)arg6;
 - (BOOL)isCurrentUserForSharing;
 - (id)initWithObject:(id)arg1 createPartialObject:(BOOL)arg2 preFrozenRelationshipObjects:(id)arg3;
+- (id)initWithName:(id)arg1 url:(id)arg2 emailAddress:(id)arg3 phoneNumber:(id)arg4 encodedLikenessData:(id)arg5 isCurrentUserForScheduling:(BOOL)arg6;
 
 @end
 

@@ -28,6 +28,9 @@
 + (id)streamFormatWithXMLRepresentation:(id)arg1;
 + (id)streamFormatWithFormat:(unsigned long long)arg1;
 @property unsigned long long streamFormat; // @synthesize streamFormat;
+- (id)streamFormatCompatibleWithTalkerFormat:(id)arg1;
+- (BOOL)isPotentiallyCompatibleAsListenerForFormat:(id)arg1;
+- (BOOL)isCompatibleAsListenerForFormat:(id)arg1;
 - (BOOL)isPotentiallyCompatibleWithFormat:(id)arg1;
 - (BOOL)isCompatibleWithFormat:(id)arg1;
 - (unsigned short)numberOfAudioChannels;

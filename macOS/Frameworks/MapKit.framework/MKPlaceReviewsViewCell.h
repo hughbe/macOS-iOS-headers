@@ -6,35 +6,37 @@
 
 #import <MapKit/MKPlaceSectionRowView.h>
 
-@class MKImageView, NSDate, NSImage, NSLayoutConstraint, NSString, _MKUILabel;
+@class MKImageView, MKPlaceReviewAvatarGenerator, MKVibrancyAwareLabelView, NSDate, NSLayoutConstraint, NSString, _MKUILabel;
 
+__attribute__((visibility("hidden")))
 @interface MKPlaceReviewsViewCell : MKPlaceSectionRowView
 {
     MKImageView *_pictureView;
-    _MKUILabel *_detailLabel;
+    MKVibrancyAwareLabelView *_detailLabel;
     _MKUILabel *_reviewLabel;
-    NSDate *_date;
     NSLayoutConstraint *_reviewLabelTopConstraint;
-    NSLayoutConstraint *_reviewLabelToBottomConstraint;
     NSLayoutConstraint *_reviewLabelToAuthorLabelConstraint;
     NSLayoutConstraint *_authorLabelBaselineConstraint;
+    BOOL _isLastReview;
+    MKPlaceReviewAvatarGenerator *_avatarGenerator;
     unsigned long long _rating;
     NSString *_author;
+    NSDate *_date;
 }
 
-+ (id)reuseIdentifier;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDate *date; // @synthesize date=_date;
 @property(copy, nonatomic) NSString *author; // @synthesize author=_author;
 @property(nonatomic) unsigned long long rating; // @synthesize rating=_rating;
-- (void).cxx_destruct;
-- (void)updateDetailLabelText;
+@property(retain, nonatomic) MKPlaceReviewAvatarGenerator *avatarGenerator; // @synthesize avatarGenerator=_avatarGenerator;
+@property(nonatomic) BOOL isLastReview; // @synthesize isLastReview=_isLastReview;
+- (unsigned long long)maxCharacters;
 - (id)detailLabelText;
-- (void)setAuthor:(id)arg1 date:(id)arg2 rating:(unsigned long long)arg3;
-@property(nonatomic) __weak NSString *reviewText; // @dynamic reviewText;
-@property(nonatomic) __weak NSImage *picture; // @dynamic picture;
-- (void)updateConstraints;
-- (void)infoCardThemeChanged:(id)arg1;
-- (id)standardDateAuthorLabel;
+- (void)setReviewText:(id)arg1;
+- (void)setPicture:(id)arg1;
+- (void)setReview:(id)arg1;
+- (void)_updatePictureTheme:(id)arg1;
+- (void)infoCardThemeChanged;
 - (void)_updateBaselineConstraints;
 - (void)_contentSizeDidChange;
 - (id)initWithFrame:(struct CGRect)arg1;

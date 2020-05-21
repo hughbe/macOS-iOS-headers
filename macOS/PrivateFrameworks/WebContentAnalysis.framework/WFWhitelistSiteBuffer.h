@@ -17,15 +17,15 @@
 
 @property(retain) NSMutableArray *siteBuffer; // @synthesize siteBuffer=_siteBuffer;
 @property(retain) NSMutableSet *siteSet; // @synthesize siteSet=_siteSet;
-@property unsigned long long maxSize;
+- (void)trimToSize:(unsigned long long)arg1;
 - (id)description;
 - (unsigned long long)count;
+@property unsigned long long maxSize;
 - (BOOL)containsMetasitePrefixOfURLString:(id)arg1;
 - (BOOL)containsURLString:(id)arg1;
 - (void)addURLString:(id)arg1;
 - (void)dealloc;
 - (id)init;
-- (void)trimToSize:(unsigned long long)arg1;
 
 @end
 

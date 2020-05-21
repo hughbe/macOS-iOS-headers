@@ -8,6 +8,7 @@
 
 @class ICCommandCenter, NSMutableArray, NSMutableDictionary;
 
+__attribute__((visibility("hidden")))
 @interface ICMasterDeviceBrowser : NSObject
 {
     ICCommandCenter *_commandCenter;
@@ -26,6 +27,8 @@
 - (void)informBrowserDelegateUsingSelector:(SEL)arg1 withObject:(id)arg2;
 - (id)deviceWithDelegate:(id)arg1;
 - (id)devicesMatchingDeviceTypeMask:(unsigned long long)arg1;
+- (id)deviceWithDeviceID:(id)arg1;
+- (id)deviceWithDeviceRef:(id)arg1;
 - (void)processDevices:(id)arg1;
 - (void)updateDevices:(id)arg1 type:(unsigned long long)arg2;
 - (void)removeDevice:(id)arg1;
@@ -35,8 +38,8 @@
 - (void)registerForImageCaptureEventNotifications:(id)arg1 reason:(id)arg2;
 - (void)handleNetworkDeviceRemoved:(id)arg1;
 - (void)handleImageCaptureEventNotification:(id)arg1;
-- (void)icddConnectionResumed:(id)arg1;
-- (void)icddConnectionSuspended:(id)arg1;
+- (void)icddConnectionResume:(id)arg1;
+- (void)icddConnectionSuspend:(id)arg1;
 - (void)handleCommandCompletion:(id)arg1;
 @property(readonly) NSMutableDictionary *devices; // @synthesize devices=_devices;
 - (void)stop:(id)arg1;
@@ -48,7 +51,6 @@
 - (void)startBrowsingForSharedDevices;
 - (void)removeBrowser:(id)arg1;
 - (void)addBrowser:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

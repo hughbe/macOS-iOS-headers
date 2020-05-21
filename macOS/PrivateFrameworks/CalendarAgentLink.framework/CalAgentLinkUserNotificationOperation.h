@@ -15,12 +15,12 @@
     BOOL _updatedPreferenceValue;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL updatedPreferenceValue; // @synthesize updatedPreferenceValue=_updatedPreferenceValue;
 @property(retain, nonatomic) NSArray *objectIDs; // @synthesize objectIDs=_objectIDs;
 @property(retain, nonatomic) NSString *action; // @synthesize action=_action;
 - (id)inputPayload;
 - (id)description;
-- (void)dealloc;
 - (id)initWithAction:(id)arg1;
 - (id)init;
 

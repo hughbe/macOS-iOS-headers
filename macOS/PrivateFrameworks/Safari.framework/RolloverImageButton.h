@@ -11,13 +11,16 @@
 __attribute__((visibility("hidden")))
 @interface RolloverImageButton : RolloverTrackingButton
 {
+    BOOL _allowsVibrancy;
     NSImage *_rolloverImage;
     NSImage *_focusRingMask;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSImage *focusRingMask; // @synthesize focusRingMask=_focusRingMask;
 @property(retain, nonatomic) NSImage *rolloverImage; // @synthesize rolloverImage=_rolloverImage;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL allowsVibrancy; // @synthesize allowsVibrancy=_allowsVibrancy;
+- (void)_windowChangedKeyState;
 - (void)drawFocusRingMask;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)shouldUseRolloverAppearance;

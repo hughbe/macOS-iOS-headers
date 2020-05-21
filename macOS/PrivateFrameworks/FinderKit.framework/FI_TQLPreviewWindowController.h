@@ -11,35 +11,36 @@
 #import "QLPreviewPanelDelegate.h"
 #import "TCoalescingNodeObserverProtocol.h"
 
-@class NSString;
+@class NSObject<TQLPreviewWindowControllerProtocol>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FI_TQLPreviewWindowController : NSObject <QLPreviewPanelDataSource, QLPreviewPanelDelegate, FIAliasResolution, TCoalescingNodeObserverProtocol>
 {
     struct TFENodeVector _nodes;
-    id <TQLPreviewWindowControllerProtocol> _activeViewController;
+    struct TNSWeakPtr<NSObject<TQLPreviewWindowControllerProtocol>, void> _weakActiveViewController;
     unsigned int _avcRespondsToFlags;
-    struct TNSRef<QLPreviewPanel *, void> _previewPanel;
-    struct TCoalescingNodeObserverCocoaBridge *_nodeObserver;
-    struct TQLPreviewQTEjectHelper *_ejectHelper;
+    struct TNSRef<QLPreviewPanel, void> _previewPanel;
+    struct shared_ptr<TCoalescingNodeObserverCocoaBridge> _nodeObserver;
+    struct shared_ptr<TQLPreviewWindowQTEjectHelper> _ejectHelper;
     _Bool _canZoom;
     _Bool _positionNearPreviewItem;
     struct TFENode _overrideNode;
-    _Bool _isTeardownScheduled;
+    struct TNotificationCenterObserver _dateTimeFormattersChangedObserver;
+    struct TNotificationCenterObserver _previewPanelWillClosedObserver;
+    TNSWeakPtr_a131d41e _tearDownToken;
 }
 
-+ (void)previewPanelWillClose:(id)arg1;
 + (id)quickLookMenuItemTitleForNodes:(const struct TFENodeVector *)arg1 actualCount:(unsigned long long)arg2 fullScreen:(_Bool)arg3;
 + (_Bool)quickLookShouldOpenFullscreenWithEvent:(id)arg1;
 + (_Bool)isActiveViewController:(id)arg1;
 + (_Bool)panelIsShowing;
 + (_Bool)panelExists;
 + (id)controller;
-@property(nonatomic) struct TFENode overrideNode; // @synthesize overrideNode=_overrideNode;
-@property(nonatomic) _Bool positionNearPreviewItem; // @synthesize positionNearPreviewItem=_positionNearPreviewItem;
-@property(nonatomic) id <TQLPreviewWindowControllerProtocol> activeViewController; // @synthesize activeViewController=_activeViewController;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) struct TFENode overrideNode; // @synthesize overrideNode=_overrideNode;
+@property(nonatomic) _Bool positionNearPreviewItem; // @synthesize positionNearPreviewItem=_positionNearPreviewItem;
+- (void)previewPanelWillClose:(id)arg1;
 - (BOOL)previewPanel:(id)arg1 handleEvent:(id)arg2;
 - (id)previewPanel:(id)arg1 sharedPreviewViewForPreviewItem:(id)arg2;
 - (BOOL)previewPanel:(id)arg1 shouldShowOpenButtonForItem:(id)arg2;
@@ -56,11 +57,13 @@ __attribute__((visibility("hidden")))
 - (void)updatePreviewPanel;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesGoingAway:(const struct TFENodeVector *)arg2;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesDeleted:(const struct TFENodeVector *)arg2 fromObservedNode:(const struct TFENode *)arg3;
-- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const struct TFENodeUpdateList *)arg2 inObservedNode:(const struct TFENode *)arg3;
+- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const vector_614ab7ad *)arg2 inObservedNode:(const struct TFENode *)arg3;
 - (void)removeNodes:(const struct TFENodeVector *)arg1;
+- (void)previewAtIndex:(long long)arg1;
 - (void)setNodes:(const struct TFENodeVector *)arg1;
 - (const struct TFENodeVector *)nodes;
 - (void)setCanZoom:(_Bool)arg1;
+@property(nonatomic) __weak NSObject<TQLPreviewWindowControllerProtocol> *activeViewController; // @dynamic activeViewController;
 - (void)hide;
 - (void)endPreviewPanelControl:(id)arg1;
 - (void)beginPreviewPanelControl:(id)arg1;

@@ -9,8 +9,7 @@
 __attribute__((visibility("hidden")))
 @interface __NSCFData : NSMutableData
 {
-    unsigned char _cfinfo[4];
-    unsigned int _rc;
+    unsigned long long _cfinfoa;
     long long _length;
     long long _capacity;
     struct __CFAllocator *_bytesDeallocator;
@@ -18,6 +17,8 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
+- (Class)classForCoder;
+- (BOOL)_providesConcreteBacking;
 - (void)setLength:(unsigned long long)arg1;
 - (void *)mutableBytes;
 - (const void *)bytes;

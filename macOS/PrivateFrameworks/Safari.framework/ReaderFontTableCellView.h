@@ -6,16 +6,26 @@
 
 #import "NSTableCellView.h"
 
-@class NSImageView;
+@class NSButton, NSImageView, NSProgressIndicator;
 
 __attribute__((visibility("hidden")))
 @interface ReaderFontTableCellView : NSTableCellView
 {
+    long long _fontAvailabilityState;
+    NSButton *_downloadButton;
+    NSProgressIndicator *_progressIndicator;
     NSImageView *_checkboxImage;
+    id <ReaderFontTableCellViewDelegate> _delegate;
 }
 
-@property(nonatomic) __weak NSImageView *checkboxImage; // @synthesize checkboxImage=_checkboxImage;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <ReaderFontTableCellViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) long long fontAvailabilityState; // @synthesize fontAvailabilityState=_fontAvailabilityState;
+@property(nonatomic) __weak NSImageView *checkboxImage; // @synthesize checkboxImage=_checkboxImage;
+- (void)_startDownloadIfAppropriate;
+- (void)_installProgressIndicator;
+- (void)_installDownloadButton;
+- (void)setProgressIndicatorProgress:(double)arg1;
 
 @end
 

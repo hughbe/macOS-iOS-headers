@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Metal/_MTLObjectWithLabel.h>
 
 #import "MTLFunctionSPI.h"
 
-@class NSArray, NSDictionary, NSObject<OS_dispatch_data>, NSString;
+@class MTLType, NSArray, NSData, NSDictionary, NSObject<OS_dispatch_data>, NSString;
 
-@interface _MTLFunction : NSObject <MTLFunctionSPI>
+@interface _MTLFunction : _MTLObjectWithLabel <MTLFunctionSPI>
 {
     id <MTLDevice> _device;
     unsigned long long _functionType;
@@ -20,37 +20,58 @@
     NSArray *_vertexAttributes;
     NSArray *_functionConstants;
     NSDictionary *_functionConstantDictionary;
-    NSObject<OS_dispatch_data> *_constantData;
-    NSString *_label;
+    MTLType *_returnType;
+    NSArray *_arguments;
+    NSString *_unpackedFilePath;
 }
 
-@property(copy) NSString *label; // @synthesize label=_label;
+@property(copy) NSString *unpackedFilePath; // @synthesize unpackedFilePath=_unpackedFilePath;
 @property(readonly) id vendorPrivate; // @synthesize vendorPrivate=_vendorPrivate;
 @property(readonly) struct MTLLibraryData *libraryData; // @synthesize libraryData=_libraryData;
 @property(readonly) NSString *name; // @synthesize name=_name;
 @property(readonly) unsigned long long functionType; // @synthesize functionType=_functionType;
 @property(readonly) id <MTLDevice> device; // @synthesize device=_device;
+- (id)bitcodeData;
+- (id)newArgumentEncoderWithBufferIndex:(unsigned long long)arg1 reflection:(id *)arg2 functionReflection:(id)arg3;
+- (id)newArgumentEncoderWithBufferIndex:(unsigned long long)arg1 reflection:(id *)arg2 binaryLibraries:(id)arg3;
+- (id)newArgumentEncoderWithBufferIndex:(unsigned long long)arg1 reflection:(id *)arg2 pipelineLibrary:(id)arg3;
+- (id)newArgumentEncoderWithBufferIndex:(unsigned long long)arg1 pipelineLibrary:(id)arg2;
+- (id)newArgumentEncoderWithBufferIndex:(unsigned long long)arg1 reflection:(id *)arg2;
+- (id)newArgumentEncoderWithBufferIndex:(unsigned long long)arg1;
+- (void)reflectionWithOptions:(unsigned long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (id)reflectionWithOptions:(unsigned long long)arg1 pipelineLibrary:(id)arg2;
+- (id)reflectionWithOptions:(unsigned long long)arg1 binaryLibraries:(id)arg2;
+- (id)reflectionWithOptions:(unsigned long long)arg1;
 @property(readonly, copy) NSString *description;
-@property(readonly) NSObject<OS_dispatch_data> *constantData; // @dynamic constantData;
-- (unsigned long long)functionConstantIndexByName:(id)arg1 type:(unsigned long long *)arg2;
+- (id)formattedDescription:(unsigned long long)arg1;
+@property(readonly) NSDictionary *functionConstantsDictionary;
 - (void)dealloc;
-- (void)newSpecializedFunctionWithConstants:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (id)newSpecializedFunctionWithConstants:(id)arg1 error:(id *)arg2;
+- (id)newFunctionWithPluginData:(id)arg1 bitcodeType:(unsigned char)arg2;
+- (unsigned int)requiredLLVMVersion;
+- (unsigned long long)bitCodeFileSize;
+- (const CDStruct_41a22ec7 *)bitCodeHash;
 - (void)setVendorPrivate:(id)arg1;
+- (unsigned int)functionRef;
 - (id)initWithName:(id)arg1 type:(unsigned long long)arg2 libraryData:(struct MTLLibraryData *)arg3 device:(id)arg4;
 
 // Remaining properties
+@property NSArray *arguments; // @dynamic arguments;
 @property(readonly) unsigned long long bitCodeOffset; // @dynamic bitCodeOffset;
-@property(readonly) unsigned char bitcodeType; // @dynamic bitcodeType;
+@property(nonatomic) unsigned char bitcodeType; // @dynamic bitcodeType;
 @property(readonly, copy) NSString *debugDescription;
 @property(copy) NSString *filePath; // @dynamic filePath;
 @property NSArray *functionConstants; // @dynamic functionConstants;
+@property(readonly) NSObject<OS_dispatch_data> *functionInputs; // @dynamic functionInputs;
 @property(readonly) unsigned long long hash;
+@property(copy) NSString *label; // @dynamic label;
 @property long long lineNumber; // @dynamic lineNumber;
 @property(readonly) BOOL needsFunctionConstantValues; // @dynamic needsFunctionConstantValues;
 @property(readonly) long long patchControlPointCount; // @dynamic patchControlPointCount;
 @property(readonly) unsigned long long patchType; // @dynamic patchType;
+@property NSData *pluginData; // @dynamic pluginData;
 @property(readonly) unsigned long long renderTargetArrayIndexType; // @dynamic renderTargetArrayIndexType;
+@property MTLType *returnType; // @dynamic returnType;
+@property(readonly) NSArray *stageInputAttributes; // @dynamic stageInputAttributes;
 @property(readonly) Class superclass;
 @property NSArray *vertexAttributes; // @dynamic vertexAttributes;
 

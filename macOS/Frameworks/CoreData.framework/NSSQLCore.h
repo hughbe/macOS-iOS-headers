@@ -7,39 +7,55 @@
 #import <CoreData/NSPersistentStore.h>
 
 #import "NSFilePresenter.h"
+#import "NSSQLModelProvider.h"
 
-@class NSMutableArray, NSMutableDictionary, NSOperationQueue, NSSQLCoreDispatchManager, NSSQLGenerationalRowCache, NSSQLModel, NSSQLiteAdapter, NSSQLiteConnection, NSString, NSURL;
+@class NSData, NSDictionary, NSGenerationalRowCache, NSMutableDictionary, NSOperationQueue, NSSQLCoreDispatchManager, NSSQLModel, NSSQLiteAdapter, NSSQLiteConnection, NSSet, NSString, NSURL, _PFMutex;
 
 __attribute__((visibility("hidden")))
-@interface NSSQLCore : NSPersistentStore <NSFilePresenter>
+@interface NSSQLCore : NSPersistentStore <NSFilePresenter, NSSQLModelProvider>
 {
     NSSQLModel *_model;
     NSSQLiteAdapter *_adapter;
     NSSQLiteConnection *_schemaValidationConnection;
     NSSQLCoreDispatchManager *_dispatchManager;
-    NSSQLGenerationalRowCache *_generationalRowCache;
-    id *_prefetchRequestsByEntity;
+    NSGenerationalRowCache *_generationalRowCache;
     id _observer;
     int _sqlCoreStateLock;
     NSMutableDictionary *_storeMetadata;
     NSString *_externalDataReferencesDirectory;
     NSString *_externalDataLinksDirectory;
+    NSString *_fileBackedFuturesPath;
     int _transactionInMemorySequence;
     BOOL _metadataIsClean;
     struct _sqlCoreFlags {
         unsigned int useSyntaxColoredLogging:1;
-        unsigned int checkedExternalReferences:1;
+        unsigned int hasExternalDataReferences:1;
         unsigned int fileProtectionType:3;
         unsigned int notifyFOKChanges:1;
         unsigned int initializationComplete:1;
         unsigned int connectionsAreLocal:1;
         unsigned int isXPCDelegate:1;
-        unsigned int _RESERVED:23;
+        unsigned int queryGenerationInitializationFailed:1;
+        unsigned int persistentHistoryTracking:1;
+        unsigned int hasAncillaryModels:1;
+        unsigned int postRemoteNotify:1;
+        unsigned int hasFileBackedFutures:1;
+        unsigned int isInMemory:1;
+        unsigned int _debugRequestsHandling:1;
+        unsigned int _RESERVED:16;
     } _sqlCoreFlags;
     NSSQLiteConnection *_queryGenerationTrackingConnection;
-    NSMutableArray *_activeGenerations;
+    _PFMutex *_writerSerializationMutex;
+    NSDictionary *_ancillaryModels;
+    NSDictionary *_ancillarySQLModels;
+    NSDictionary *_historyTrackingOptions;
+    NSData *_dbKey;
+    BOOL _remoteStoresDidChange;
+    int _remoteNotificationToken;
 }
 
++ (BOOL)dropPersistentHistoryforPersistentStoreWithURL:(id)arg1 options:(id)arg2 error:(id *)arg3;
++ (BOOL)_rekeyPersistentStoreAtURL:(id)arg1 options:(id)arg2 withKey:(id)arg3 error:(id *)arg4;
 + (BOOL)_replacePersistentStoreAtURL:(id)arg1 destinationOptions:(id)arg2 withPersistentStoreFromURL:(id)arg3 sourceOptions:(id)arg4 error:(id *)arg5;
 + (BOOL)_destroyPersistentStoreAtURL:(id)arg1 options:(id)arg2 error:(id *)arg3;
 + (id)cachedModelForPersistentStoreWithURL:(id)arg1 options:(id)arg2 error:(id *)arg3;
@@ -48,24 +64,45 @@ __attribute__((visibility("hidden")))
 + (BOOL)setMetadata:(id)arg1 forPersistentStoreWithURL:(id)arg2 error:(id *)arg3;
 + (id)metadataForPersistentStoreWithURL:(id)arg1 error:(id *)arg2;
 + (id)_figureOutWhereExternalReferencesEndedUpRelativeTo:(id)arg1;
-+ (BOOL)sanityCheckFileAtURL:(id)arg1 error:(id *)arg2;
++ (BOOL)sanityCheckFileAtURL:(id)arg1 options:(id)arg2 error:(id *)arg3;
++ (id)_databaseKeyFromValue:(id)arg1;
++ (id)databaseKeyFromOptionsDictionary:(id)arg1;
 + (Class)migrationManagerClass;
++ (Class)rowCacheClass;
 + (void)initialize;
++ (id)newStringFrom:(id)arg1 usingUnicodeTransforms:(unsigned long long)arg2;
++ (long long)bufferedAllocationsOverride;
 + (BOOL)useConcurrentFetching;
 + (BOOL)coloredLoggingDefault;
 + (int)debugDefault;
 + (void)setColoredLoggingDefault:(BOOL)arg1;
 + (void)setDebugDefault:(int)arg1;
-- (struct __CFArray *)_deleteAllRowsNoRelationshipIntegrityForEntityWithAllSubentities:(id)arg1;
+- (id)entitiesToExclude;
+- (id)entitiesToInclude;
+- (id)notifyPostName;
+- (BOOL)hasHistoryTracking;
+@property(readonly, nonatomic) BOOL isInMemory;
+- (void)_dropHistoryTables;
+- (id)dbKey;
+- (void)_setHasAncillaryModels:(BOOL)arg1;
+- (BOOL)hasAncillaryModels;
+- (id)ancillarySQLModels;
+@property(readonly, nonatomic) NSDictionary *ancillaryModels; // @synthesize ancillaryModels=_ancillaryModels;
+- (id)currentChangeToken;
+- (BOOL)_rebuildDerivedAttributeTriggerSchemaUsingConnection:(id)arg1 recomputeValues:(BOOL)arg2 error:(id *)arg3;
+- (BOOL)_rebuildRTreeTriggerSchemaUsingConnection:(id)arg1 recomputeValues:(BOOL)arg2 error:(id *)arg3;
+- (BOOL)_rebuildTriggerSchemaUsingConnection:(id)arg1 recomputeValues:(BOOL)arg2 error:(id *)arg3;
+- (BOOL)_refreshTriggerValues:(id *)arg1;
 - (id)_allOrderKeysForDestination:(id)arg1 inRelationship:(id)arg2 error:(id *)arg3;
 - (id)_newOrderedRelationshipInformationForRelationship:(id)arg1 forObjectWithID:(id)arg2 withContext:(id)arg3 error:(id *)arg4;
-- (void)clearCachedInformationForRequestWithIdentifier:(id)arg1;
+- (id)processCloudKitMirroringRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
 - (void)accommodatePresentedItemDeletionWithCompletionHandler:(CDUnknownBlockType)arg1;
 @property(readonly, retain) NSOperationQueue *presentedItemOperationQueue;
 @property(readonly, copy) NSURL *presentedItemURL;
 - (id)_storeInfoForEntityDescription:(id)arg1;
 - (id)_newObjectIDForEntity:(id)arg1 referenceData64:(unsigned long long)arg2;
 - (id)_newReservedKeysForEntities:(id)arg1 counts:(id)arg2;
+- (id)fetchTableNames;
 - (void)recomputePrimaryKeyMaxForEntities:(id)arg1;
 - (id)_ubiquityDictionaryForAttribute:(id)arg1 onObject:(id)arg2;
 - (void)configureUbiquityMetadataTable;
@@ -83,7 +120,6 @@ __attribute__((visibility("hidden")))
 - (void)updateUbiquityKnowledgeForPeerWithID:(id)arg1 andTransactionNumber:(id)arg2;
 - (void)updateUbiquityKnowledgeVector:(id)arg1;
 - (id)fetchUbiquityKnowledgeVector;
-- (id)fetchTableNames;
 - (void)removeUbiquityMetadata;
 - (id)newFetchUUIDSForSubentitiesRootedAt:(id)arg1;
 - (void)_purgeRowCache;
@@ -104,23 +140,24 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL isInitialized;
 - (id)type;
 - (int)fileProtectionLevel;
+- (id)_debugConnection;
 - (id)connectionForMigration;
 - (id)schemaValidationConnection;
-- (void)dispatchRequest:(id)arg1 withRetries:(long long)arg2;
-- (id)dispatchManager;
-- (void)freeQueryGenerationWithIdentifier:(id)arg1;
-- (id)currentQueryGeneration;
-- (id)_initializeQueryGenerationTrackingConnection;
-- (BOOL)_registerNewQueryGenerationIdentifier:(id)arg1;
-- (BOOL)_aContextSomewhereCaresAboutGenerations;
-- (BOOL)supportsGenerationalQuerying;
 - (BOOL)supportsConcurrentRequestHandling;
 - (BOOL)supportsComplexFeatures;
 - (BOOL)isUbiquitized;
-- (id)manyToManyPrefetchRequestsForRelationshipNamed:(id)arg1 onEntity:(id)arg2;
-- (id)manyToOnePrefetchRequestForRelationshipNamed:(id)arg1 onEntity:(id)arg2;
-- (id)inverseIsToOnePrefetchRequestForRelationshipNamed:(id)arg1 onEntity:(id)arg2;
-- (id)_retainedRegisterPrefetchRequest:(id)arg1 forKey:(id)arg2 entityID:(unsigned int)arg3;
+- (void)dispatchRequest:(id)arg1 withRetries:(long long)arg2;
+- (id)dispatchManager;
+@property(readonly) BOOL remoteStoresDidChange;
+- (void)recordRemoteQueryGenerationDidChange;
+- (id)reopenQueryGenerationWithIdentifier:(id)arg1 error:(id *)arg2;
+- (void)freeQueryGenerationWithIdentifier:(id)arg1;
+- (id)currentQueryGeneration;
+- (int)_registerNewQueryGenerationSnapshot:(id)arg1;
+- (BOOL)_isQueryGenerationSupportActive;
+- (BOOL)supportsGenerationalQuerying;
+- (void)_initializeQueryGenerationConnectionForProtectionClasses;
+- (BOOL)_initializeQueryGenerationTrackingConnection;
 - (void)_updateAutoVacuumMetadataWithValues:(id)arg1;
 - (void)setMetadata:(id)arg1;
 - (void)_setMetadata:(id)arg1;
@@ -135,28 +172,39 @@ __attribute__((visibility("hidden")))
 - (id)safeguardLocationForFileWithUUID:(id)arg1;
 - (id)externalLocationForFileWithUUID:(id)arg1;
 - (id)externalDataReferencesDirectory;
-- (void)_disconnectAllConnections;
+- (id)fileBackedFuturesDirectory;
+- (id)_supportDirectoryPath;
 - (void)setConnectionsAreLocal:(BOOL)arg1;
+- (void)_rebuildIndiciesSynchronously:(BOOL)arg1;
+- (void)_disconnectAllConnections;
 - (id)executeRequest:(id)arg1 withContext:(id)arg2 error:(id *)arg3;
 - (BOOL)_prepareForExecuteRequest:(id)arg1 withContext:(id)arg2 error:(id *)arg3;
 - (id)obtainPermanentIDsForObjects:(id)arg1 error:(id *)arg2;
+- (id)_obtainPermanentIDsForObjects:(id)arg1 withNotification:(id *)arg2 error:(id *)arg3;
 - (id)processFetchRequest:(id)arg1 inContext:(id)arg2;
 - (id)processBatchUpdate:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
 - (id)processBatchDelete:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)processBatchInsert:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)processChangeRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
 - (id)processRefreshObjects:(id)arg1 inContext:(id)arg2;
 - (id)processSaveChanges:(id)arg1 forContext:(id)arg2;
 - (id)metadataToWrite;
 - (id)processCountRequest:(id)arg1 inContext:(id)arg2;
-- (id)_newRowDataForXPCFetch:(id)arg1 error:(id *)arg2;
+- (id)_newRowDataForXPCFetch:(id)arg1 variables:(id)arg2 context:(id)arg3 error:(id *)arg4;
 - (id)newObjectIDSetsForToManyPrefetchingRequest:(id)arg1 andSourceObjectIDs:(id)arg2 orderColumnName:(id)arg3;
 - (id)newValueForRelationship:(id)arg1 forObjectWithID:(id)arg2 withContext:(id)arg3 error:(id *)arg4;
 - (id)_newValuesForRelationship:(id)arg1 forObjectWithID:(id)arg2 withContext:(id)arg3 error:(id *)arg4;
 - (id)newValuesForObjectWithID:(id)arg1 withContext:(id)arg2 error:(id *)arg3;
+- (void)removeRowCacheForGenerationWithIdentifier:(id)arg1;
 - (id)rowCacheForContext:(id)arg1;
+- (id)failableRowCacheForGeneration:(id)arg1;
 - (id)rowCacheForGeneration:(id)arg1;
+- (void)writeSerializationUnlock;
+- (void)writeSerializationLock;
 - (void)dealloc;
+- (void)_postChangeNotificationWithTransactionID:(id)arg1;
+- (void)_setupObserver;
 - (BOOL)loadMetadata:(id *)arg1;
-- (id)_loadAndSetMetadataReadOnly;
 - (id)_loadAndSetMetadata;
 - (void)_ensureDatabaseMatchesModel;
 - (BOOL)_fixPrimaryKeyTablesUsingConnection:(id)arg1;
@@ -164,7 +212,9 @@ __attribute__((visibility("hidden")))
 - (void)_fixPrimaryKeyTableFromEntitiesUsingConnection:(id)arg1;
 - (BOOL)_updateToVersion640PrimaryKeyTableUsingStatements:(id)arg1 connection:(id)arg2;
 - (void)_cacheModelIfNecessaryUsingConnection:(id)arg1;
+- (void)_checkAndRepairHistoryTrackingUsingConnection:(id)arg1;
 - (void)_doUnboundedGrowthCheckAndConstraintUsingConnection:(id)arg1;
+- (BOOL)_checkAndRepairTriggersUsingConnection:(id)arg1;
 - (BOOL)_checkAndRepairSchemaUsingConnection:(id)arg1;
 - (void)_doBasicTableNameCheckUsingConnection:(id)arg1;
 - (void)_checkAndRepairCorrelationTables:(BOOL)arg1 storeVersionNumber:(id)arg2 usingConnection:(id)arg3;
@@ -173,13 +223,16 @@ __attribute__((visibility("hidden")))
 - (void)_repairDatabaseCorrelationTables:(id)arg1 brokenHashModel:(id)arg2 storeVersionNumber:(id)arg3 recurse:(BOOL)arg4 usingConnection:(id)arg5;
 - (BOOL)load:(id *)arg1;
 - (id)initWithPersistentStoreCoordinator:(id)arg1 configurationName:(id)arg2 URL:(id)arg3 options:(id)arg4;
-- (struct _NSScalarObjectID *)newForeignKeyID:(long long)arg1 entity:(id)arg2;
+- (BOOL)_isCloudKitOptioned;
+- (id)newForeignKeyID:(long long)arg1 entity:(id)arg2;
 - (id)_newObjectIDForEntityDescription:(id)arg1 pk:(long long)arg2;
-- (struct _NSScalarObjectID *)newObjectIDForEntity:(id)arg1 pk:(long long)arg2;
+- (id)newObjectIDForEntity:(id)arg1 pk:(long long)arg2;
+- (Class)objectIDFactoryForPersistentHistoryEntity:(id)arg1;
 - (Class)objectIDFactoryForSQLEntity:(id)arg1;
 - (Class)objectIDFactoryForEntity:(id)arg1;
 - (Class)_objectIDClass;
 - (id)entityForEntityDescription:(id)arg1;
+- (id)entityForObjectID:(id)arg1;
 - (id)entityForObject:(id)arg1;
 - (id)entityForFetchRequest:(id)arg1;
 
@@ -187,6 +240,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSSet *observedPresentedItemUbiquityAttributes;
 @property(readonly, copy) NSURL *primaryPresentedItemURL;
 @property(readonly) Class superclass;
 

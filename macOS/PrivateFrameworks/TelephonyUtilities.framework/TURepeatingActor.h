@@ -6,31 +6,31 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>;
+@class NSObject<OS_dispatch_queue>, TURepeatingAction;
 
 @interface TURepeatingActor : NSObject
 {
-    BOOL _running;
+    BOOL _stopped;
     BOOL _currentlyPerformingAction;
     NSObject<OS_dispatch_queue> *_queue;
-    unsigned long long _iterationsRemaining;
-    double _pauseDuration;
-    CDUnknownBlockType _action;
-    CDUnknownBlockType _completionBlock;
+    TURepeatingAction *_currentRepeatingAction;
+    TURepeatingAction *_pendingRepeatingAction;
+    CDUnknownBlockType _attemptNextIterationBlock;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
-@property(copy, nonatomic) CDUnknownBlockType action; // @synthesize action=_action;
-@property(nonatomic) double pauseDuration; // @synthesize pauseDuration=_pauseDuration;
-@property(nonatomic) unsigned long long iterationsRemaining; // @synthesize iterationsRemaining=_iterationsRemaining;
-@property(nonatomic, getter=isCurrentlyPerformingAction) BOOL currentlyPerformingAction; // @synthesize currentlyPerformingAction=_currentlyPerformingAction;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
-@property(nonatomic, getter=isRunning) BOOL running; // @synthesize running=_running;
 - (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType attemptNextIterationBlock; // @synthesize attemptNextIterationBlock=_attemptNextIterationBlock;
+@property(retain, nonatomic) TURepeatingAction *pendingRepeatingAction; // @synthesize pendingRepeatingAction=_pendingRepeatingAction;
+@property(retain, nonatomic) TURepeatingAction *currentRepeatingAction; // @synthesize currentRepeatingAction=_currentRepeatingAction;
+@property(nonatomic, getter=isCurrentlyPerformingAction) BOOL currentlyPerformingAction; // @synthesize currentlyPerformingAction=_currentlyPerformingAction;
+@property(nonatomic, getter=isStopped) BOOL stopped; // @synthesize stopped=_stopped;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void)_completeWithDidFinish:(BOOL)arg1;
 - (void)_stopWithDidFinish:(BOOL)arg1;
 - (BOOL)_hasIterationsRemaining;
 - (void)_attemptNextIteration;
+- (void)_beginRepeatingAction:(id)arg1;
+@property(readonly, nonatomic, getter=isRunning) BOOL running;
 - (void)stop;
 - (void)beginRepeatingAction:(CDUnknownBlockType)arg1 iterations:(unsigned long long)arg2 pauseDurationBetweenIterations:(double)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)beginRepeatingAction:(CDUnknownBlockType)arg1 iterations:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;

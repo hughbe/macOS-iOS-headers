@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class CDPDSecureBackupController, NSString;
+@class CDPDSecureBackupContext, CDPDSecureBackupController, NSString;
 
 @protocol CDPDSecureBackupDelegate
-- (void)promotForLocalSecretWithCompletion:(void (^)(NSString *, unsigned long long, NSError *))arg1;
+- (void)promptForLocalSecretWithCompletion:(void (^)(CDPLocalSecret *, NSError *))arg1;
 - (void)promptForAdoptionOfMultipleICSCWithCompletion:(void (^)(BOOL, NSError *))arg1;
-- (BOOL)synchronizeCircleViewsForSecureBackupController:(CDPDSecureBackupController *)arg1;
+- (BOOL)synchronizeCircleViewsForSecureBackupContext:(CDPDSecureBackupContext *)arg1;
 - (NSString *)circlePeerIDForSecureBackupController:(CDPDSecureBackupController *)arg1;
 @end
 

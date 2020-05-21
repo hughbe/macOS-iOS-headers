@@ -6,9 +6,8 @@
 
 #import "NSViewController.h"
 
-@class ABClickableTextView, NSButton, NSDateFormatter, NSScrollView, NSStackView, NSTextField, NSView, SGLabeledObject;
+@class ABClickableTextView, ABSuggestedValueViewControllerSnippetHelper, CNLabeledValue, NSButton, NSDateFormatter, NSScrollView, NSStackView, NSTextField, NSView;
 
-__attribute__((visibility("hidden")))
 @interface ABSuggestedValueViewController : NSViewController
 {
     BOOL _showsActionButtons;
@@ -21,33 +20,36 @@ __attribute__((visibility("hidden")))
     NSTextField *_sourceItemView;
     ABClickableTextView *_relatedTextView;
     NSScrollView *_relatedTextViewScrollView;
+    ABSuggestedValueViewControllerSnippetHelper *_snippetHelper;
     NSButton *_confirmButton;
     NSButton *_rejectButton;
     id <ABSuggestedValueViewControllerDelegate> _delegate;
-    SGLabeledObject *_suggestedValue;
+    CNLabeledValue *_labeledValue;
     NSDateFormatter *_dateFormatter;
     id <CNCancelable> _mouseDownObserver;
 }
 
+- (void).cxx_destruct;
 @property(retain) id <CNCancelable> mouseDownObserver; // @synthesize mouseDownObserver=_mouseDownObserver;
 @property(retain) NSDateFormatter *dateFormatter; // @synthesize dateFormatter=_dateFormatter;
-@property(retain) SGLabeledObject *suggestedValue; // @synthesize suggestedValue=_suggestedValue;
+@property(retain) CNLabeledValue *labeledValue; // @synthesize labeledValue=_labeledValue;
 @property id <ABSuggestedValueViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property NSButton *rejectButton; // @synthesize rejectButton=_rejectButton;
-@property NSButton *confirmButton; // @synthesize confirmButton=_confirmButton;
+@property(retain, nonatomic) NSButton *rejectButton; // @synthesize rejectButton=_rejectButton;
+@property(retain, nonatomic) NSButton *confirmButton; // @synthesize confirmButton=_confirmButton;
 @property(nonatomic) BOOL showsActionButtons; // @synthesize showsActionButtons=_showsActionButtons;
-@property NSScrollView *relatedTextViewScrollView; // @synthesize relatedTextViewScrollView=_relatedTextViewScrollView;
-@property ABClickableTextView *relatedTextView; // @synthesize relatedTextView=_relatedTextView;
-@property NSTextField *sourceItemView; // @synthesize sourceItemView=_sourceItemView;
-@property NSTextField *dateField; // @synthesize dateField=_dateField;
-@property NSView *senderContainer; // @synthesize senderContainer=_senderContainer;
-@property NSTextField *senderField; // @synthesize senderField=_senderField;
-@property NSView *subjectContainer; // @synthesize subjectContainer=_subjectContainer;
-@property NSTextField *subjectField; // @synthesize subjectField=_subjectField;
-@property NSStackView *verticalHeaderStackView; // @synthesize verticalHeaderStackView=_verticalHeaderStackView;
+@property(retain, nonatomic) ABSuggestedValueViewControllerSnippetHelper *snippetHelper; // @synthesize snippetHelper=_snippetHelper;
+@property(retain, nonatomic) NSScrollView *relatedTextViewScrollView; // @synthesize relatedTextViewScrollView=_relatedTextViewScrollView;
+@property(retain, nonatomic) ABClickableTextView *relatedTextView; // @synthesize relatedTextView=_relatedTextView;
+@property(retain, nonatomic) NSTextField *sourceItemView; // @synthesize sourceItemView=_sourceItemView;
+@property(retain, nonatomic) NSTextField *dateField; // @synthesize dateField=_dateField;
+@property(retain, nonatomic) NSView *senderContainer; // @synthesize senderContainer=_senderContainer;
+@property(retain, nonatomic) NSTextField *senderField; // @synthesize senderField=_senderField;
+@property(retain, nonatomic) NSView *subjectContainer; // @synthesize subjectContainer=_subjectContainer;
+@property(retain, nonatomic) NSTextField *subjectField; // @synthesize subjectField=_subjectField;
+@property(retain, nonatomic) NSStackView *verticalHeaderStackView; // @synthesize verticalHeaderStackView=_verticalHeaderStackView;
 - (void)rejectSuggestedValue:(id)arg1;
 - (void)confirmSuggestedValue:(id)arg1;
-- (void)setSnippet:(id)arg1 highlightRange:(struct _NSRange)arg2;
+- (void)setSnippet:(id)arg1 selectedRange:(struct _NSRange)arg2;
 - (void)setUpMouseDownObserverWithURL:(id)arg1;
 - (void)setOriginURL:(id)arg1;
 - (void)removeEmptyFields;
@@ -58,7 +60,9 @@ __attribute__((visibility("hidden")))
 - (void)setSenderName:(id)arg1;
 - (void)invalidateMouseDownObserver;
 - (void)dealloc;
-- (void)viewDidLoad;
+- (void)viewWillAppear;
+- (void)viewDidLayout;
+- (void)awakeFromNib;
 - (id)init;
 
 @end

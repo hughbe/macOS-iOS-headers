@@ -11,6 +11,7 @@
 }
 
 + (id)fieldNameForSummarizationDomain:(id)arg1;
++ (id)versionStringForAXGeneralStatisticsField:(id)arg1;
 + (id)versionStringForGeneralStatisticsField:(id)arg1;
 
 @end

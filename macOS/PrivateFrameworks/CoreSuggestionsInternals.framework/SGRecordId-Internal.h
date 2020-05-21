@@ -7,7 +7,6 @@
 #import "SGRecordId.h"
 
 @interface SGRecordId (Internal)
-+ (id)recordIdForForeignStringValue:(id)arg1 origin:(id)arg2 foreignUniqueContactString:(id)arg3;
 + (id)recordIdForEventWithRowId:(long long)arg1;
 + (id)recordIdForContactDetailWithRowId:(long long)arg1;
 + (id)recordIdForContactWithRowId:(long long)arg1;

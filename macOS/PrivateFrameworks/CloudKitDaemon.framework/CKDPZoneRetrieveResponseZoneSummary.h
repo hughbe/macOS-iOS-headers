@@ -8,31 +8,43 @@
 
 #import "NSCopying.h"
 
-@class CKDPZone, NSData;
+@class CKDPDate, CKDPZone, CKDPZoneCapabilities, NSData, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CKDPZoneRetrieveResponseZoneSummary : PBCodable <NSCopying>
 {
     long long _assetQuotaUsage;
     long long _metadataQuotaUsage;
+    CKDPZoneCapabilities *_capabilities;
     NSData *_clientChangeToken;
     NSData *_currentServerContinuationToken;
     int _deviceCount;
     CKDPZone *_targetZone;
+    NSString *_zonePcsModificationDevice;
+    CKDPDate *_zonePcsModificationTime;
+    BOOL _zoneKeyRollAllowed;
+    BOOL _zoneishPcsNeedsRolled;
     struct {
         unsigned int assetQuotaUsage:1;
         unsigned int metadataQuotaUsage:1;
         unsigned int deviceCount:1;
+        unsigned int zoneKeyRollAllowed:1;
+        unsigned int zoneishPcsNeedsRolled:1;
     } _has;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *zonePcsModificationDevice; // @synthesize zonePcsModificationDevice=_zonePcsModificationDevice;
+@property(retain, nonatomic) CKDPDate *zonePcsModificationTime; // @synthesize zonePcsModificationTime=_zonePcsModificationTime;
+@property(nonatomic) BOOL zoneKeyRollAllowed; // @synthesize zoneKeyRollAllowed=_zoneKeyRollAllowed;
+@property(nonatomic) BOOL zoneishPcsNeedsRolled; // @synthesize zoneishPcsNeedsRolled=_zoneishPcsNeedsRolled;
+@property(retain, nonatomic) CKDPZoneCapabilities *capabilities; // @synthesize capabilities=_capabilities;
 @property(nonatomic) long long metadataQuotaUsage; // @synthesize metadataQuotaUsage=_metadataQuotaUsage;
 @property(nonatomic) long long assetQuotaUsage; // @synthesize assetQuotaUsage=_assetQuotaUsage;
 @property(nonatomic) int deviceCount; // @synthesize deviceCount=_deviceCount;
 @property(retain, nonatomic) NSData *clientChangeToken; // @synthesize clientChangeToken=_clientChangeToken;
 @property(retain, nonatomic) NSData *currentServerContinuationToken; // @synthesize currentServerContinuationToken=_currentServerContinuationToken;
 @property(retain, nonatomic) CKDPZone *targetZone; // @synthesize targetZone=_targetZone;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -42,6 +54,11 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasZonePcsModificationDevice;
+@property(readonly, nonatomic) BOOL hasZonePcsModificationTime;
+@property(nonatomic) BOOL hasZoneKeyRollAllowed;
+@property(nonatomic) BOOL hasZoneishPcsNeedsRolled;
+@property(readonly, nonatomic) BOOL hasCapabilities;
 @property(nonatomic) BOOL hasMetadataQuotaUsage;
 @property(nonatomic) BOOL hasAssetQuotaUsage;
 @property(nonatomic) BOOL hasDeviceCount;

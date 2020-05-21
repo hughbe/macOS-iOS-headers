@@ -8,6 +8,7 @@
 
 @class NSArray, NSLayoutConstraint, NSLayoutGuide, NSString, NSView<_MKCalloutAccessoryView>, _MKSmallCalloutPassthroughButton, _MKUILabel;
 
+__attribute__((visibility("hidden")))
 @interface MKSmallCalloutView : NSView
 {
     _MKUILabel *_titleLabel;
@@ -16,12 +17,12 @@
     NSView<_MKCalloutAccessoryView> *_rightView;
     NSView<_MKCalloutAccessoryView> *_externalLeftView;
     NSView<_MKCalloutAccessoryView> *_externalRightView;
+    NSView<_MKCalloutAccessoryView> *_externalDetailView;
     NSView<_MKCalloutAccessoryView> *_detailView;
     struct CGSize _preferredContentSize;
     BOOL _shouldPositionTitleForMapsTransitionMovingSideways;
     _MKSmallCalloutPassthroughButton *_maskedContainerView;
     NSView *_unmaskedContainerView;
-    CDStruct_51745937 _mapDisplayStyle;
     BOOL _needsPreferredContentSizeUpdate;
     NSLayoutConstraint *_minWidthConstraint;
     NSLayoutConstraint *_maxWidthConstraint;
@@ -39,7 +40,6 @@
     NSLayoutConstraint *_leftViewCenterContentMarginConstraint;
     NSLayoutGuide *_leftViewTopSpacer;
     NSLayoutGuide *_leftViewLeftSpacer;
-    NSLayoutConstraint *_rightViewMinCalloutWidthConstraint;
     NSLayoutConstraint *_rightViewHorizontalPositionConstraint;
     NSLayoutConstraint *_rightViewTopSpacerBottomConstraint;
     NSLayoutConstraint *_rightViewCenterContentMarginConstraint;
@@ -48,13 +48,20 @@
     NSLayoutConstraint *_detailViewMinTopConstraint;
     NSLayoutConstraint *_detailViewBottomConstraint;
     NSLayoutConstraint *_detailViewTrailingConstraint;
-    long long _arrowDirection;
+    struct NSEdgeInsets _layoutMargins;
+    NSLayoutGuide *_layoutMarginsGuide;
+    NSLayoutConstraint *_layoutMarginsLeftConstraint;
+    NSLayoutConstraint *_layoutMarginsRightConstraint;
+    NSLayoutConstraint *_layoutMarginsTopConstraint;
+    NSLayoutConstraint *_layoutMarginsBottomConstraint;
+    BOOL _parallaxEnabled;
+    NSView *_titlesContainerView;
 }
 
-@property(nonatomic) long long arrowDirection; // @synthesize arrowDirection=_arrowDirection;
-@property(nonatomic) CDStruct_51745937 mapDisplayStyle; // @synthesize mapDisplayStyle=_mapDisplayStyle;
 - (void).cxx_destruct;
-- (void)_updateAccessoryViewStyles;
+@property(nonatomic) BOOL parallaxEnabled; // @synthesize parallaxEnabled=_parallaxEnabled;
+@property(readonly, nonatomic) NSView *titlesContainerView; // @synthesize titlesContainerView=_titlesContainerView;
+@property(nonatomic) struct NSEdgeInsets layoutMargins; // @synthesize layoutMargins=_layoutMargins;
 - (BOOL)canDisplayCompleteTitleWhenExpanded;
 - (void)setDetailView:(id)arg1 animated:(BOOL)arg2;
 @property(retain, nonatomic) NSView *detailView;
@@ -75,6 +82,7 @@
 @property(nonatomic) double maximumWidth;
 @property(nonatomic) double minimumWidth;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (id)layoutMarginsGuide;
 
 @end
 

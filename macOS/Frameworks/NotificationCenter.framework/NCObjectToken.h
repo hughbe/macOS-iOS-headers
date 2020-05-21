@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface NCObjectToken : NSObject
 {
     CDUnknownBlockType _block;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType block; // @synthesize block=_block;
 - (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType block; // @synthesize block=_block;
 - (void)dealloc;
 - (id)initWithBlock:(CDUnknownBlockType)arg1;
 

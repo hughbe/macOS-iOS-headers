@@ -7,28 +7,36 @@
 #import "NSObject.h"
 
 #import "NSSecureCoding.h"
+#import "_DKProtobufConverting.h"
 
 @class NSString, _CDEventStreamProperties, _DKObjectType;
 
-@interface _DKEventStream : NSObject <NSSecureCoding>
+@interface _DKEventStream : NSObject <_DKProtobufConverting, NSSecureCoding>
 {
+    _CDEventStreamProperties *_eventProperties;
     NSString *_name;
     _DKObjectType *_eventValueType;
-    _CDEventStreamProperties *_eventProperties;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)eventStreamWithName:(id)arg1 valueType:(id)arg2;
 + (id)eventStreamWithName:(id)arg1;
-@property(readonly) _CDEventStreamProperties *eventProperties; // @synthesize eventProperties=_eventProperties;
++ (id)fromPBCodable:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly) _DKObjectType *eventValueType; // @synthesize eventValueType=_eventValueType;
 @property(readonly) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
-- (id)description;
+- (BOOL)isEqual:(id)arg1;
+@property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithName:(id)arg1 valueType:(id)arg2;
-- (void)setupEventProperties:(id)arg1;
+- (id)initWithName:(id)arg1 valueType:(id)arg2 cache:(id)arg3;
+@property(readonly) _CDEventStreamProperties *eventProperties; // @synthesize eventProperties=_eventProperties;
+- (id)toPBCodable;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

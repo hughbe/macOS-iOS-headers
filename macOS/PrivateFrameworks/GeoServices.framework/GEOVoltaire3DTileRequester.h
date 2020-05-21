@@ -10,9 +10,6 @@
 {
 }
 
-+ (Class)simpleRequesterClass;
-+ (id)queryStringFromKey:(const struct _GEOTileKey *)arg1 manifestConfiguration:(id)arg2;
-+ (struct _GEOTileKey)patchTileKey:(struct _GEOTileKey *)arg1;
 + (unsigned char)tileProviderIdentifier;
 - (unsigned int)tileSetForKey:(const struct _GEOTileKey *)arg1;
 

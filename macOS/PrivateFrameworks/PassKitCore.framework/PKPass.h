@@ -9,13 +9,17 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSDate, NSDictionary, NSNumber, NSSet, NSString, NSURL, PKBarcode, PKImage, PKNFCPayload, PKPassDisplayProfile, PKPassPersonalization, PKPaymentPass;
+@class NSArray, NSData, NSDate, NSDictionary, NSNumber, NSSet, NSString, NSURL, PKBarcode, PKImage, PKLiveRenderedShaderSet, PKNFCPayload, PKPassDisplayProfile, PKPassLiveRenderedImageSet, PKPassPersonalization, PKPaymentPass, PKSecureElementPass;
 
 @interface PKPass : PKObject <NSCopying, NSSecureCoding>
 {
+    PKLiveRenderedShaderSet *_liveRenderedShaderSet;
     BOOL _remotePass;
+    BOOL _isCloudKitArchived;
     BOOL _voided;
     BOOL _hasStoredValue;
+    BOOL _liveRenderedBackground;
+    BOOL _supportsCategoryVisualization;
     BOOL _revoked;
     unsigned long long _passType;
     NSString *_serialNumber;
@@ -38,7 +42,6 @@
     NSURL *_sharingURL;
     NSString *_sharingText;
     NSSet *_associatedPassTypeIdentifiers;
-    NSString *_iAdReportingIdentifier;
     PKNFCPayload *_nfcPayload;
     PKImage *_partialFrontFaceImagePlaceholder;
     NSDate *_ingestedDate;
@@ -46,16 +49,19 @@
 }
 
 + (BOOL)supportsSecureCoding;
++ (id)cloudStorePassRecordNamePrefix;
 + (unsigned long long)defaultSettings;
 + (BOOL)isValidObjectWithFileURL:(id)arg1 warnings:(id *)arg2 orError:(id *)arg3;
 + (Class)classForPassType:(unsigned long long)arg1;
+- (void).cxx_destruct;
 @property(nonatomic, getter=isRevoked) BOOL revoked; // @synthesize revoked=_revoked;
 @property(retain, nonatomic) NSDate *modifiedDate; // @synthesize modifiedDate=_modifiedDate;
 @property(retain, nonatomic) NSDate *ingestedDate; // @synthesize ingestedDate=_ingestedDate;
+@property(nonatomic) BOOL supportsCategoryVisualization; // @synthesize supportsCategoryVisualization=_supportsCategoryVisualization;
+@property(nonatomic) BOOL liveRenderedBackground; // @synthesize liveRenderedBackground=_liveRenderedBackground;
 @property(readonly, nonatomic) PKImage *partialFrontFaceImagePlaceholder; // @synthesize partialFrontFaceImagePlaceholder=_partialFrontFaceImagePlaceholder;
 @property(nonatomic) BOOL hasStoredValue; // @synthesize hasStoredValue=_hasStoredValue;
 @property(copy, nonatomic, setter=setNFCPayload:) PKNFCPayload *nfcPayload; // @synthesize nfcPayload=_nfcPayload;
-@property(copy, nonatomic, setter=setiAdReportingIdentifier:) NSString *iAdReportingIdentifier; // @synthesize iAdReportingIdentifier=_iAdReportingIdentifier;
 @property(copy, nonatomic) NSSet *associatedPassTypeIdentifiers; // @synthesize associatedPassTypeIdentifiers=_associatedPassTypeIdentifiers;
 @property(copy, nonatomic) NSString *sharingText; // @synthesize sharingText=_sharingText;
 @property(copy, nonatomic) NSURL *sharingURL; // @synthesize sharingURL=_sharingURL;
@@ -68,6 +74,7 @@
 @property(nonatomic, getter=isVoided) BOOL voided; // @synthesize voided=_voided;
 @property(copy, nonatomic) NSDate *expirationDate; // @synthesize expirationDate=_expirationDate;
 @property(copy, nonatomic) NSString *teamID; // @synthesize teamID=_teamID;
+@property(nonatomic) BOOL isCloudKitArchived; // @synthesize isCloudKitArchived=_isCloudKitArchived;
 @property(copy, nonatomic) NSURL *passURL; // @synthesize passURL=_passURL;
 @property(copy, nonatomic) NSNumber *sequenceCounter; // @synthesize sequenceCounter=_sequenceCounter;
 @property(copy, nonatomic) NSString *passLibraryMachServiceName; // @synthesize passLibraryMachServiceName=_passLibraryMachServiceName;
@@ -79,9 +86,16 @@
 @property(copy, nonatomic) NSString *passTypeIdentifier; // @synthesize passTypeIdentifier=_passTypeIdentifier;
 @property(copy, nonatomic) NSString *serialNumber; // @synthesize serialNumber=_serialNumber;
 @property(nonatomic) unsigned long long passType; // @synthesize passType=_passType;
-- (void).cxx_destruct;
 - (id)_changeMessageForFieldKey:(id)arg1;
 - (id)_localizationKeyForMultipleDiff;
+- (id)dictionariesForSemanticKey:(id)arg1;
+- (id)stringsForSemanticKey:(id)arg1;
+- (id)personNameComponentsForSemanticKey:(id)arg1;
+- (id)currencyAmountForSemanticKey:(id)arg1;
+- (id)locationForSemanticKey:(id)arg1;
+- (id)numberForSemanticKey:(id)arg1;
+- (id)dateForSemanticKey:(id)arg1;
+- (id)stringForSemanticKey:(id)arg1;
 - (BOOL)availableForAutomaticPresentationUsingBeaconContext;
 - (BOOL)availableForAutomaticPresentationUsingVASContext;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -89,22 +103,33 @@
 - (id)initWithCoder:(id)arg1;
 - (BOOL)isEqualToPassIncludingMetadata:(id)arg1;
 @property(readonly, nonatomic) struct CGRect logoRect;
+@property(readonly, nonatomic) PKLiveRenderedShaderSet *liveRenderedShaderSet;
+@property(readonly, nonatomic) PKPassLiveRenderedImageSet *liveRenderedImageSet;
+@property(readonly, nonatomic) BOOL isValid;
+@property(readonly, nonatomic) NSString *businessChatIdentifier;
 - (id)thumbnailImage;
 - (id)stripImage;
 - (id)backgroundImage;
 - (id)logoImage;
 @property(readonly, nonatomic) PKImage *personalizationLogoImage;
-@property(readonly, nonatomic) PKImage *backFaceImage;
+@property(readonly, nonatomic) PKImage *cardHolderPicture;
 @property(readonly, nonatomic) struct CGRect stripRect;
 @property(readonly, nonatomic) struct CGRect thumbnailRect;
 @property(readonly, nonatomic) PKImage *partialFrontFaceImage;
+@property(readonly, nonatomic) PKImage *frontFaceShadowImage;
 @property(readonly, nonatomic) PKImage *frontFaceImage;
+@property(readonly, nonatomic) NSData *iconImageICNSData;
 @property(readonly, nonatomic) PKImage *notificationIconImage;
+@property(readonly, nonatomic) PKImage *rawIcon;
 @property(readonly, nonatomic) PKImage *iconImage;
+- (id)allSemantics;
+- (id)semantics;
 @property(readonly, nonatomic) BOOL isPersonalizable;
 @property(readonly, nonatomic) PKPassPersonalization *personalization;
 @property(readonly, nonatomic) NSURL *appLaunchURL;
 @property(readonly, nonatomic) NSArray *storeIdentifiers;
+- (id)balanceFields;
+- (id)primaryFields;
 @property(readonly, nonatomic) NSArray *backFieldBuckets;
 @property(readonly, nonatomic) NSArray *frontFieldBuckets;
 @property(readonly, nonatomic) long long transitType;
@@ -112,10 +137,11 @@
 @property(readonly, nonatomic) NSString *logoText;
 @property(readonly, nonatomic) PKImage *footerImage;
 @property(readonly, nonatomic) PKBarcode *barcode;
+@property(readonly) NSString *notificationCenterTitle;
 - (id)diff:(id)arg1;
 - (id)localizedDescriptionForDiff:(id)arg1;
+- (id)fieldForKey:(id)arg1;
 - (id)localizedValueForFieldKey:(id)arg1;
-@property(readonly, nonatomic, getter=isNFCPayloadEncrypted) BOOL nfcPayloadEncrypted;
 - (BOOL)supportsSharing;
 - (BOOL)isExpired;
 - (BOOL)isUpdatable;
@@ -123,14 +149,25 @@
 - (BOOL)hasValidNFCPayload;
 - (BOOL)hasLocationRelevancyInfo;
 - (BOOL)hasTimeOrLocationRelevancyInfo;
+@property(readonly, nonatomic) PKSecureElementPass *secureElementPass;
 @property(readonly, nonatomic) PKPaymentPass *paymentPass;
 @property(readonly, nonatomic) NSString *pluralLocalizedName;
 @property(readonly, nonatomic) NSString *lowercaseLocalizedName;
 @property(readonly, copy, nonatomic) NSString *localizedName;
 @property(readonly, nonatomic) long long style;
+- (unsigned long long)itemType;
+- (id)recordTypesAndNamesIncludingServerData:(BOOL)arg1;
+- (void)encodeWithCloudStoreCoder:(id)arg1;
+- (id)initWithCloudStoreCoder:(id)arg1;
 - (void)downloadRemoteAssetsWithCompletion:(CDUnknownBlockType)arg1;
 - (id)initWithDictionary:(id)arg1 bundle:(id)arg2;
 - (id)initWithData:(id)arg1 error:(id *)arg2;
+@property(readonly, nonatomic) long long eventType;
+@property(readonly, nonatomic) BOOL silenceRequested;
+@property(readonly, nonatomic) NSString *flightCode;
+@property(readonly, nonatomic) NSString *airlineCode;
+@property(readonly, nonatomic) unsigned long long flightNumber;
+@property(readonly, nonatomic) BOOL hasFlightDetails;
 
 // Remaining properties
 @property(copy, nonatomic) NSString *authenticationToken; // @dynamic authenticationToken;

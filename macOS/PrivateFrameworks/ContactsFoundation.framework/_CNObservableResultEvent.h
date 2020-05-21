@@ -6,7 +6,6 @@
 
 #import <ContactsFoundation/CNObservableEvent.h>
 
-__attribute__((visibility("hidden")))
 @interface _CNObservableResultEvent : CNObservableEvent
 {
     id _result;
@@ -20,6 +19,7 @@ __attribute__((visibility("hidden")))
 - (id)value;
 - (BOOL)hasValue;
 - (unsigned long long)eventType;
+- (id)description;
 - (id)initWithResult:(id)arg1;
 
 @end

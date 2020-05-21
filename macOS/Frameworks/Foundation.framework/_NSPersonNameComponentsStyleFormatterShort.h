@@ -19,7 +19,6 @@ __attribute__((visibility("hidden")))
 
 - (void)dealloc;
 - (BOOL)isEnabled;
-- (BOOL)shouldFallBack;
 - (id)fallbackStyleFormatter;
 - (id)orderedKeysOfInterest;
 - (id)keysOfInterest;

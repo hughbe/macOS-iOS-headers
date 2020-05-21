@@ -20,6 +20,7 @@
     } _has;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) double gain; // @synthesize gain=_gain;
 @property(retain, nonatomic) _MRAudioTimeProtobuf *time; // @synthesize time=_time;
 @property(retain, nonatomic) _MRAudioBufferProtobuf *buffer; // @synthesize buffer=_buffer;
@@ -35,7 +36,6 @@
 @property(nonatomic) BOOL hasGain;
 @property(readonly, nonatomic) BOOL hasTime;
 @property(readonly, nonatomic) BOOL hasBuffer;
-- (void)dealloc;
 
 @end
 

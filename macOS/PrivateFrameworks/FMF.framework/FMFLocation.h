@@ -10,7 +10,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class CLLocation, FMAccuracyOverlay, FMFHandle, NSColor, NSDate, NSImage, NSString;
+@class CLLocation, FMAccuracyOverlay, FMFHandle, FMFPlacemark, NSColor, NSDate, NSImage, NSString;
 
 @interface FMFLocation : NSObject <NSCopying, NSSecureCoding, FMAnnotation>
 {
@@ -25,6 +25,7 @@
     NSImage *_largeAnnotationIcon;
     double _distanceFromUser;
     NSColor *_tintColor;
+    FMFPlacemark *_placemark;
     FMFHandle *_handle;
     NSString *_longAddress;
     NSDate *_timestamp;
@@ -39,6 +40,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain) NSString *age; // @synthesize age=_age;
 @property(retain) NSString *distanceDescription; // @synthesize distanceDescription=_distanceDescription;
 @property double distance; // @synthesize distance=_distance;
@@ -49,6 +51,7 @@
 @property(copy) NSDate *timestamp; // @synthesize timestamp=_timestamp;
 @property(copy) NSString *longAddress; // @synthesize longAddress=_longAddress;
 @property(retain) FMFHandle *handle; // @synthesize handle=_handle;
+@property(retain) FMFPlacemark *placemark; // @synthesize placemark=_placemark;
 @property(nonatomic) BOOL isBorderEnabled; // @synthesize isBorderEnabled=_isBorderEnabled;
 @property(retain, nonatomic) NSColor *tintColor; // @synthesize tintColor=_tintColor;
 @property(nonatomic) double distanceFromUser; // @synthesize distanceFromUser=_distanceFromUser;
@@ -58,7 +61,6 @@
 @property(retain, nonatomic) NSImage *smallAnnotationIcon; // @synthesize smallAnnotationIcon=_smallAnnotationIcon;
 @property(nonatomic) double horizontalAccuracy; // @synthesize horizontalAccuracy=_horizontalAccuracy;
 @property(retain, nonatomic) FMAccuracyOverlay *overlay; // @synthesize overlay=_overlay;
-- (void).cxx_destruct;
 - (BOOL)isValid;
 - (void)updateHandle:(id)arg1;
 @property(retain) CLLocation *location; // @synthesize location=_location;

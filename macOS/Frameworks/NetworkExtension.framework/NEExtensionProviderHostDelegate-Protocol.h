@@ -9,6 +9,7 @@
 @class NEExtensionProviderHostContext, NSError;
 
 @protocol NEExtensionProviderHostDelegate <NSObject>
+- (void)extensionDidStop:(NEExtensionProviderHostContext *)arg1;
 - (void)extension:(NEExtensionProviderHostContext *)arg1 didStartWithError:(NSError *)arg2;
 - (void)extension:(NEExtensionProviderHostContext *)arg1 didFailWithError:(NSError *)arg2;
 @end

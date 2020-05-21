@@ -9,9 +9,12 @@
 @class NSString;
 
 @protocol IDDiagnosticsProtocol <NSObject>
-- (void)clearDiagnosticMessages;
-- (void)clearSingleDiagnosticMessage:(long long)arg1;
-- (void)recordDiagnosticMessage:(long long)arg1 withData:(NSString *)arg2;
+- (void)clearDiagnosticMessages:(void (^)(BOOL))arg1;
+- (void)clearSingleDiagnosticMessage:(long long)arg1 completionHandler:(void (^)(BOOL))arg2;
+- (void)recordDiagnosticMessage:(long long)arg1 withData:(NSString *)arg2 completionHandler:(void (^)(BOOL))arg3;
+- (void)finishMessageTransport;
+- (void)startMessageTransport;
+- (void)finishInstall;
 - (void)startNewInstall;
 @end
 

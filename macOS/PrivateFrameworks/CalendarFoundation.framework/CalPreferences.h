@@ -20,6 +20,8 @@
 - (void)_synchronizePreferences;
 - (void)setValueForPreference:(id)arg1 value:(id)arg2 notificationName:(id)arg3;
 - (id)getValueForPreference:(id)arg1 expectedClass:(Class)arg2;
+- (void)setIntegerPreference:(id)arg1 value:(long long)arg2 notificationName:(id)arg3;
+- (long long)getIntegerPreference:(id)arg1 defaultValue:(long long)arg2;
 - (void)setBooleanPreference:(id)arg1 value:(BOOL)arg2 notificationName:(id)arg3;
 - (BOOL)getBooleanPreference:(id)arg1 defaultValue:(BOOL)arg2;
 - (void)unregisterReflectionForPreferenceWithNotificationName:(id)arg1;

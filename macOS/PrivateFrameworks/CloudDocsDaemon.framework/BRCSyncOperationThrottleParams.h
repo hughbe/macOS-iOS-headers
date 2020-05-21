@@ -25,6 +25,9 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) double ratioOnSuccess; // @synthesize ratioOnSuccess;
 @property(nonatomic) double maxWait; // @synthesize maxWait;
 @property(nonatomic) double minWait; // @synthesize minWait;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
+- (id)paramsToDictionary;
 - (id)initWithParams:(id)arg1 defaults:(id)arg2;
 - (BOOL)check;
 - (void)setupWithParams:(id)arg1 defaults:(id)arg2;

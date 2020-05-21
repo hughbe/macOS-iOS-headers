@@ -8,32 +8,52 @@
 
 #import "NSCopying.h"
 
-@class GEOPlaceResult;
+@class GEOPlaceResult, PBDataReader;
 
+__attribute__((visibility("hidden")))
 @interface GEOCluster : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     CDStruct_95bda58d _indexs;
     GEOPlaceResult *_container;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_indexs:1;
+        unsigned int read_container:1;
+        unsigned int wrote_indexs:1;
+        unsigned int wrote_container:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOPlaceResult *container; // @synthesize container=_container;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)copyTo:(id)arg1;
+- (void)clearSensitiveFields;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (void)setIndexs:(int *)arg1 count:(unsigned long long)arg2;
 - (int)indexAtIndex:(unsigned long long)arg1;
+- (void)_addNoFlagsIndex:(int)arg1;
 - (void)addIndex:(int)arg1;
 - (void)clearIndexs;
 @property(readonly, nonatomic) int *indexs;
 @property(readonly, nonatomic) unsigned long long indexsCount;
+- (void)_readIndexs;
+@property(retain, nonatomic) GEOPlaceResult *container;
 @property(readonly, nonatomic) BOOL hasContainer;
+- (void)_readContainer;
 - (void)dealloc;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

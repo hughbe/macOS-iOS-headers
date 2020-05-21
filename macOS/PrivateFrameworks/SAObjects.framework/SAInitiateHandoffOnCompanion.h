@@ -6,6 +6,8 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
+@class NSString, SARemoteDevice;
+
 @interface SAInitiateHandoffOnCompanion : SABaseClientBoundCommand
 {
 }
@@ -13,6 +15,11 @@
 + (id)initiateHandoffOnCompanionWithDictionary:(id)arg1 context:(id)arg2;
 + (id)initiateHandoffOnCompanion;
 - (BOOL)requiresResponse;
+@property(retain, nonatomic) SARemoteDevice *targetDevice;
+@property(copy, nonatomic) NSString *notificationTextDialogIdentifier;
+@property(copy, nonatomic) NSString *notificationText;
+@property(copy, nonatomic) NSString *lockScreenTextDialogIdentifier;
+@property(copy, nonatomic) NSString *lockScreenText;
 @property(retain, nonatomic) id <SAHandoffPayload> handoffPayload;
 - (id)encodedClassName;
 - (id)groupIdentifier;

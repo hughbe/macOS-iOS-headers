@@ -11,6 +11,7 @@
     id _reserved_SFAuthorizationView;
 }
 
++ (BOOL)containsPasswordOnlyItem:(CDStruct_166d2db6 *)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setFlags:(unsigned int)arg1;
 - (BOOL)isEnabled;

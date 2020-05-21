@@ -8,18 +8,30 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray;
+@class NSMutableArray, NSString, _MRNowPlayingPlayerPathProtobuf, _MRPlaybackQueueContextProtobuf;
 
 @interface _MRPlaybackQueueProtobuf : PBCodable <NSCopying>
 {
     NSMutableArray *_contentItems;
+    _MRPlaybackQueueContextProtobuf *_context;
     int _location;
+    NSString *_queueIdentifier;
+    NSString *_requestID;
+    _MRNowPlayingPlayerPathProtobuf *_resolvedPlayerPath;
+    BOOL _sendingPlaybackQueueTransaction;
     struct {
         unsigned int location:1;
+        unsigned int sendingPlaybackQueueTransaction:1;
     } _has;
 }
 
 + (Class)contentItemType;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *queueIdentifier; // @synthesize queueIdentifier=_queueIdentifier;
+@property(nonatomic) BOOL sendingPlaybackQueueTransaction; // @synthesize sendingPlaybackQueueTransaction=_sendingPlaybackQueueTransaction;
+@property(retain, nonatomic) _MRNowPlayingPlayerPathProtobuf *resolvedPlayerPath; // @synthesize resolvedPlayerPath=_resolvedPlayerPath;
+@property(retain, nonatomic) NSString *requestID; // @synthesize requestID=_requestID;
+@property(retain, nonatomic) _MRPlaybackQueueContextProtobuf *context; // @synthesize context=_context;
 @property(retain, nonatomic) NSMutableArray *contentItems; // @synthesize contentItems=_contentItems;
 @property(nonatomic) int location; // @synthesize location=_location;
 - (void)mergeFrom:(id)arg1;
@@ -31,12 +43,16 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasQueueIdentifier;
+@property(nonatomic) BOOL hasSendingPlaybackQueueTransaction;
+@property(readonly, nonatomic) BOOL hasResolvedPlayerPath;
+@property(readonly, nonatomic) BOOL hasRequestID;
+@property(readonly, nonatomic) BOOL hasContext;
 - (id)contentItemAtIndex:(unsigned long long)arg1;
 - (unsigned long long)contentItemsCount;
 - (void)addContentItem:(id)arg1;
 - (void)clearContentItems;
 @property(nonatomic) BOOL hasLocation;
-- (void)dealloc;
 
 @end
 

@@ -18,6 +18,7 @@
     BOOL _canSelectOnlyParent;
     BOOL _accountForLocalNodeSize;
     BOOL _allowMixedStateWhenAllChildrenSelected;
+    BOOL _selectWhenParentHasMixedState;
     BOOL _selectionDisabled;
     BOOL _enabled;
     BOOL _needsAttention;
@@ -39,6 +40,7 @@
 + (id)keyPathsForValuesAffectingChildNodesCopy;
 + (id)keyPathsForValuesAffectingSizeTextColor;
 + (id)keyPathsForValuesAffectingPreliminarySizeIsAvailable;
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_queue> *propertyQueue; // @synthesize propertyQueue=_propertyQueue;
 @property(retain) id representedObject; // @synthesize representedObject=_representedObject;
 @property(retain) SMCustomizeTreeNode_Client *parent; // @synthesize parent=_parent;
@@ -48,6 +50,7 @@
 @property BOOL needsAttention; // @synthesize needsAttention=_needsAttention;
 @property BOOL enabled; // @synthesize enabled=_enabled;
 @property BOOL selectionDisabled; // @synthesize selectionDisabled=_selectionDisabled;
+@property BOOL selectWhenParentHasMixedState; // @synthesize selectWhenParentHasMixedState=_selectWhenParentHasMixedState;
 @property BOOL allowMixedStateWhenAllChildrenSelected; // @synthesize allowMixedStateWhenAllChildrenSelected=_allowMixedStateWhenAllChildrenSelected;
 @property BOOL accountForLocalNodeSize; // @synthesize accountForLocalNodeSize=_accountForLocalNodeSize;
 @property BOOL canSelectOnlyParent; // @synthesize canSelectOnlyParent=_canSelectOnlyParent;
@@ -63,7 +66,6 @@
 @property(retain) NSMutableArray *childNodes; // @synthesize childNodes=_childNodes;
 @property BOOL selectedItemsStillSizing; // @synthesize selectedItemsStillSizing=_selectedItemsStillSizing;
 @property BOOL sizeIsAvailable; // @synthesize sizeIsAvailable=_sizeIsAvailable;
-- (void).cxx_destruct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)sortChildernUsingComparator:(CDUnknownBlockType)arg1;
 - (id)childWithRepresentedObject:(id)arg1;

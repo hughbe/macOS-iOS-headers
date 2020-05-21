@@ -7,23 +7,22 @@
 #import "ACAccountType.h"
 
 @interface ACAccountType (AccountsUI)
-+ (id)chineseSocialAccountTypes;
 + (id)chineseAccountTypes;
 + (id)internetAccountTypes;
 + (id)secondaryAccountTypes;
-+ (id)socialAccountTypes;
 + (id)primaryAccountTypes;
 + (id)accountTypeForHostname:(id)arg1;
++ (id)otherAccountsSetupAccountTypes;
 - (id)localizedName;
 - (id)userNameFieldPlaceholder;
 - (id)defaultDomain;
 - (id)userNameFieldLabel;
 - (BOOL)isSecondary;
 - (BOOL)isPrimary;
-- (BOOL)isSocial;
 - (id)logoXL;
 - (id)logo;
 - (id)squareIcon;
 - (id)_imageWithSuffix:(id)arg1;
+- (id)titleForOtherAccountsSetup;
 @end
 

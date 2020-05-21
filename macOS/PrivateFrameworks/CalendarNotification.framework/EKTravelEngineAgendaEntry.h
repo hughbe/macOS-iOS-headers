@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CLLocation, CalGeocoder, EKTravelEngineHypothesis, EKTravelEngineOriginalEvent, EKTravelEngineThrottle, GEORouteHypothesizer, NSData, NSObject<OS_dispatch_queue>, NSString;
+@class CLLocation, CalGeocoder, EKTravelEngineHypothesis, EKTravelEngineOriginalEvent, EKTravelEngineThrottle, NSData, NSObject<OS_dispatch_queue>, NSString;
 
 @interface EKTravelEngineAgendaEntry : NSObject
 {
@@ -20,7 +20,8 @@
     EKTravelEngineOriginalEvent *_originalEventInternal;
     EKTravelEngineThrottle *_throttle;
     CalGeocoder *_geocoder;
-    GEORouteHypothesizer *_hypothesizer;
+    id <CALNRouteHypothesizerProvider> _hypothesizerProvider;
+    id <CALNRouteHypothesizer> _hypothesizer;
     EKTravelEngineHypothesis *_latestHypothesis;
     CLLocation *_geoLocation;
     NSData *_mapKitHandle;
@@ -29,13 +30,13 @@
     NSString *_agendaEntryIdentifier;
 }
 
-+ (double)_maximumAllowableTravelTime;
 + (void)_accountForHypothesizerNeverHavingSentHypothesis;
 + (void)_accountForHypothesizerSendingHypothesis;
 + (void)_accountForGeocodingFailureWithError:(id)arg1;
 + (void)_accountForLocationEnhancementSuccess;
 + (void)_accountForNoLocationEnhancementNeeded;
 + (double)fuzzyMaximumInitialUpdateIntervalBeforeStartDate;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *agendaEntryIdentifier; // @synthesize agendaEntryIdentifier=_agendaEntryIdentifier;
 @property(nonatomic) double maximumTravelDurationEncountered; // @synthesize maximumTravelDurationEncountered=_maximumTravelDurationEncountered;
 @property(nonatomic) long long travelTimeThresholdExceededState; // @synthesize travelTimeThresholdExceededState=_travelTimeThresholdExceededState;
@@ -44,7 +45,8 @@
 @property(retain, nonatomic) NSData *mapKitHandle; // @synthesize mapKitHandle=_mapKitHandle;
 @property(retain, nonatomic) CLLocation *geoLocation; // @synthesize geoLocation=_geoLocation;
 @property(retain, nonatomic) EKTravelEngineHypothesis *latestHypothesis; // @synthesize latestHypothesis=_latestHypothesis;
-@property(retain, nonatomic) GEORouteHypothesizer *hypothesizer; // @synthesize hypothesizer=_hypothesizer;
+@property(retain, nonatomic) id <CALNRouteHypothesizer> hypothesizer; // @synthesize hypothesizer=_hypothesizer;
+@property(readonly, nonatomic) id <CALNRouteHypothesizerProvider> hypothesizerProvider; // @synthesize hypothesizerProvider=_hypothesizerProvider;
 @property(retain, nonatomic) CalGeocoder *geocoder; // @synthesize geocoder=_geocoder;
 @property(retain, nonatomic) EKTravelEngineThrottle *throttle; // @synthesize throttle=_throttle;
 @property(retain, nonatomic) EKTravelEngineOriginalEvent *originalEventInternal; // @synthesize originalEventInternal=_originalEventInternal;
@@ -53,7 +55,6 @@
 @property(nonatomic) BOOL dismissed; // @synthesize dismissed=_dismissed;
 @property(copy, nonatomic) CDUnknownBlockType entrySignificantlyChangedBlock; // @synthesize entrySignificantlyChangedBlock=_entrySignificantlyChangedBlock;
 @property(copy, nonatomic) CDUnknownBlockType updateBlock; // @synthesize updateBlock=_updateBlock;
-- (void).cxx_destruct;
 - (void)_updateWithHypothesis:(id)arg1;
 - (void)_createHypothesizerForDestination:(id)arg1;
 - (id)_createSyntheticHypothesis;
@@ -63,25 +64,33 @@
 - (void)_clearEverything;
 - (void)_sendFeedbackToHypothesizerForPostingNotification:(unsigned long long)arg1;
 - (void)handleBTAJob:(id)arg1 named:(const char *)arg2;
-- (id)btaJobName;
+- (id)emissionHypothesisRefreshBTAJobName;
+- (id)requestHypothesisRefreshBTAJobName;
 - (void)_performAnalyticsPostProcessing;
 - (void)_updateTravelTimeExceededThresholdStateUsingExceededValue:(BOOL)arg1;
 - (void)_accountForTravelDurationThresholdExceededState;
 - (void)_accountForMaximumTravelDuration;
-- (void)_trackTTLEventCandidate;
+- (void)_trackTTLCandidateEvent:(id)arg1;
 - (void)_accountForGeocodedEventEncounter;
 - (void)sendFeedbackForPostingLeaveNowNotification;
 - (void)sendFeedbackForPostingLeaveByNotification;
 @property(readonly, nonatomic) EKTravelEngineOriginalEvent *originalEvent;
 - (void)reset;
-- (void)_uninstallRequestRefreshTimer;
-- (void)_createRequestRefreshTimerWithDate:(id)arg1;
-- (void)cancelRefreshRequest;
-- (void)requestRefreshAtDate:(id)arg1;
-- (void)_requestRefreshTimerFired:(id)arg1;
+- (void)_uninstallEmissionHypothesisRefreshTimer;
+- (void)_createEmissionHypothesisRefreshTimerWithDate:(id)arg1;
+- (void)_uninstallRequestHypothesisRefreshTimer;
+- (void)_createHypothesisRequestRefreshTimerWithDate:(id)arg1;
+- (void)removeBTAJobWithName:(id)arg1;
+- (void)createBTAJobWithName:(id)arg1 atDate:(id)arg2;
+- (void)cancelEmissionHypothesisRefresh;
+- (void)cancelHypothesisRefreshRequest;
+- (void)requestHypothesisRefreshAtDate:(id)arg1;
+- (void)_emissionHypothesisRefreshTimerFired;
+- (void)_requestHypothesisRefreshTimerFired:(id)arg1;
+- (void)_hypothesisRefreshTimerFired;
 - (void)updateWithOriginalEvent:(id)arg1;
 - (void)dealloc;
-- (id)init;
+- (id)initWithRouteHypothesizerProvider:(id)arg1;
 
 @end
 

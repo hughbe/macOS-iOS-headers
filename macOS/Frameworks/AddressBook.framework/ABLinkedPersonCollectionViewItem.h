@@ -6,7 +6,6 @@
 
 #import <AddressBook/ABCollectionViewItem.h>
 
-__attribute__((visibility("hidden")))
 @interface ABLinkedPersonCollectionViewItem : ABCollectionViewItem
 {
 }
@@ -18,6 +17,8 @@ __attribute__((visibility("hidden")))
 - (id)actionMenuItemsFromFactory;
 - (BOOL)shouldShowActionMenu;
 - (id)makeCardActionMenuItems;
+- (void)_updateViewLabelForPopulatedLabel;
+- (void)_updateViewLabelForEmptyLabel;
 - (void)_updateViewLabel;
 
 @end

@@ -24,6 +24,10 @@
     unsigned long long _currentModifierFlags;
     AKPageController *_dragPageController;
     AKAlignmentGuideController *_dragAlignmentGuideController;
+    double _draggedAnnotationsMaxLeftEdge;
+    double _draggedAnnotationsMinRightEdge;
+    double _draggedAnnotationsMaxBottomEdge;
+    double _draggedAnnotationsMinTopEdge;
     NSEvent *_lastEventWithValidLocationForAutoscroll;
     NSEvent *_lastLeftMouseDownEvent;
     AKAnnotation *_annotationToBeginEditingOnDragEnd;
@@ -37,6 +41,7 @@
 }
 
 + (id)newMainEventHandlerForCurrentPlatformWithController:(id)arg1;
+- (void).cxx_destruct;
 @property struct CGPoint panGestureStartPointInWindow; // @synthesize panGestureStartPointInWindow=_panGestureStartPointInWindow;
 @property struct CGPoint firstDragPoint; // @synthesize firstDragPoint=_firstDragPoint;
 @property __weak AKController *controller; // @synthesize controller=_controller;
@@ -44,6 +49,10 @@
 @property BOOL wasSelectedByLongPressRecognizer; // @synthesize wasSelectedByLongPressRecognizer=_wasSelectedByLongPressRecognizer;
 @property(retain) NSEvent *lastLeftMouseDownEvent; // @synthesize lastLeftMouseDownEvent=_lastLeftMouseDownEvent;
 @property(retain) NSEvent *lastEventWithValidLocationForAutoscroll; // @synthesize lastEventWithValidLocationForAutoscroll=_lastEventWithValidLocationForAutoscroll;
+@property double draggedAnnotationsMinTopEdge; // @synthesize draggedAnnotationsMinTopEdge=_draggedAnnotationsMinTopEdge;
+@property double draggedAnnotationsMaxBottomEdge; // @synthesize draggedAnnotationsMaxBottomEdge=_draggedAnnotationsMaxBottomEdge;
+@property double draggedAnnotationsMinRightEdge; // @synthesize draggedAnnotationsMinRightEdge=_draggedAnnotationsMinRightEdge;
+@property double draggedAnnotationsMaxLeftEdge; // @synthesize draggedAnnotationsMaxLeftEdge=_draggedAnnotationsMaxLeftEdge;
 @property struct CGPoint lastDragActualLocationInWindow; // @synthesize lastDragActualLocationInWindow=_lastDragActualLocationInWindow;
 @property struct CGPoint lastDragActualLocation; // @synthesize lastDragActualLocation=_lastDragActualLocation;
 @property struct CGPoint lastDragPoint; // @synthesize lastDragPoint=_lastDragPoint;
@@ -59,7 +68,6 @@
 @property BOOL mainEventHandlerIsInRotationLoop; // @synthesize mainEventHandlerIsInRotationLoop=_mainEventHandlerIsInRotationLoop;
 @property BOOL mainEventHandlerIsInDoodleTrackingLoop; // @synthesize mainEventHandlerIsInDoodleTrackingLoop=_mainEventHandlerIsInDoodleTrackingLoop;
 @property BOOL mainEventHandlerIsInTrackingLoop; // @synthesize mainEventHandlerIsInTrackingLoop=_mainEventHandlerIsInTrackingLoop;
-- (void).cxx_destruct;
 - (BOOL)_detectFormElementInCurrentPageControllerUnderPointInWindow:(struct CGPoint)arg1;
 - (BOOL)_detectFormElementInCurrentPageControllerUnderPointInWindow:(struct CGPoint)arg1 withStartingPoint:(struct CGPoint)arg2;
 - (void)_beginEditingIfTextAnnotation:(id)arg1 withEvent:(id)arg2 orRecognizer:(id)arg3;
@@ -67,9 +75,11 @@
 - (void)_updateSelectionWithAnnotation:(id)arg1 onPageController:(id)arg2;
 - (BOOL)_didNotHandleEventSoDeselect;
 - (void)_setCurrentPageBasedOnPageController:(id)arg1;
+- (struct CGPoint)_modelPointFromPointInWindow:(struct CGPoint)arg1 usingPageController:(id)arg2;
 - (void)applyToAllSelectedAnnotationsRotateEvent:(id)arg1 orRecognizer:(id)arg2;
 - (void)finishTranslationOfAllSelectedAnnotations;
 - (void)applyTranslationToAllSelectedAnnotations:(struct CGPoint)arg1;
+- (BOOL)hitTestAnnotationsIncludingPOI:(BOOL)arg1 ignoreIfDeselected:(BOOL)arg2 atPointInWindow:(struct CGPoint)arg3 outAnnotation:(id *)arg4;
 - (BOOL)hitTestPointsOfInterestsAtPoint:(struct CGPoint)arg1 onPageController:(id)arg2 inAnnotations:(id)arg3 event:(id)arg4 recognizer:(id)arg5 cursorUpdateOnly:(BOOL)arg6;
 - (id)topmostAnnotationForBorderAndInteriorHitTestAtPoint:(struct CGPoint)arg1 inAnnotations:(id)arg2 onPageController:(id)arg3 wasOnBorder:(char *)arg4 wasOnText:(char *)arg5;
 - (id)annotationsPassingBoundingBoxHitTestsWithPoint:(struct CGPoint)arg1 onPageController:(id)arg2;
@@ -77,7 +87,6 @@
 - (BOOL)enterRotateEventTrackingLoopWithEvent:(id)arg1 orRecognizer:(id)arg2;
 - (BOOL)continueDragEventTrackingLoopWithEvent:(id)arg1 orRecognizer:(id)arg2;
 - (BOOL)enterDragEventTrackingLoopWithEvent:(id)arg1 orRecognizer:(id)arg2;
-- (void)updateCropHandleVisibilityForEvent:(id)arg1;
 - (void)updateCursorForEvent:(id)arg1;
 - (BOOL)handleRotateEvent:(id)arg1 orRecognizer:(id)arg2;
 - (BOOL)handleKeyboardEvent:(id)arg1;

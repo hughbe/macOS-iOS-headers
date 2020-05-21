@@ -9,11 +9,12 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 
-@class NSArray, NSDictionary, NSURL, PKArchive, PKPackageInfo;
+@class NSArray, NSDictionary, NSString, NSURL, PKArchive, PKPackageInfo;
 
 @interface PKPackage : NSObject <NSCoding, NSCopying>
 {
     NSURL *_url;
+    NSDictionary *_options;
     PKArchive *_archive;
     PKPackageInfo *_packageInfo;
     NSDictionary *_componentMap;
@@ -21,15 +22,17 @@
     BOOL _populatedSubpaths;
 }
 
++ (id)packageWithURL:(id)arg1 options:(id)arg2;
 + (id)packageWithURL:(id)arg1;
++ (id)packageWithPath:(id)arg1 options:(id)arg2;
 + (id)packageWithPath:(id)arg1;
 + (id)_allPackageClasses;
 + (BOOL)canInitWithURL:(id)arg1;
 - (void)enumerateBundleComponentsUsingBlock:(CDUnknownBlockType)arg1;
 - (void)_populateComponentSubpaths;
-- (id)fileURL;
-- (id)archive;
-- (id)firmwareComponentsOfType:(long long)arg1;
+@property(readonly) NSURL *fileURL;
+@property(readonly) PKArchive *archive;
+- (BOOL)extractFilesForBundleComponent:(id)arg1 toPath:(id)arg2 error:(id *)arg3;
 - (id)firmwareComponents;
 - (id)subpathsForComponent:(id)arg1;
 - (id)componentForIdentifier:(id)arg1;
@@ -38,11 +41,11 @@
 - (id)directoryEnumerator;
 - (id)payloadExtractorWithDestination:(id)arg1 externalRoot:(id)arg2 error:(id *)arg3;
 - (id)scriptsExtractorWithDestination:(id)arg1 error:(id *)arg2;
-- (id)scriptsSubpath;
+@property(readonly) NSString *scriptsSubpath;
 - (id)_scriptsDirectory;
-- (id)packageInfo;
-- (id)packageVersion;
-- (id)packageIdentifier;
+@property(readonly) PKPackageInfo *packageInfo;
+@property(readonly) NSString *packageVersion;
+@property(readonly) NSString *packageIdentifier;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
@@ -50,8 +53,12 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)_staticObsoleteFilesOrRecursiveDirectories;
+- (id)_staticObsoleteDirectories;
+- (id)_staticObsoleteFiles;
 - (id)BOMData;
-- (id)initWithURL:(id)arg1;
+- (id)initWithURL:(id)arg1 options:(id)arg2;
+- (id)firmwareComponentsOfType:(long long)arg1;
 
 @end
 

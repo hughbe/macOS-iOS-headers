@@ -25,6 +25,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(retain, nonatomic) SAUITemplateEdgeInsets *fullScreenPaddingDelta; // @dynamic fullScreenPaddingDelta;
+@property(nonatomic) BOOL hasPriorityLayout; // @dynamic hasPriorityLayout;
 @property(readonly) unsigned long long hash;
 @property(retain, nonatomic) SAUITemplateEdgeInsets *padding; // @dynamic padding;
 @property(copy, nonatomic) NSArray *presentationOptions; // @dynamic presentationOptions;

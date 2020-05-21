@@ -15,13 +15,11 @@
     NSColor *_validRangeBarColor;
 }
 
+- (void).cxx_destruct;
+@property double maxValidValue; // @synthesize maxValidValue=_maxValidValue;
+@property double minValidValue; // @synthesize minValidValue=_minValidValue;
 - (BOOL)startTrackingAt:(struct CGPoint)arg1 inView:(id)arg2;
 - (struct CGRect)_validSubrangeRect;
-- (void)setMaxValidValue:(double)arg1;
-- (double)maxValidValue;
-- (void)setMinValidValue:(double)arg1;
-- (double)minValidValue;
-- (void)dealloc;
 - (id)init;
 
 @end

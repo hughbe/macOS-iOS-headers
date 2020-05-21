@@ -14,8 +14,11 @@
     int _socketDescriptor;
     CDUnknownBlockType _eventHandler;
     CDUnknownBlockType _readHandler;
+    CDUnknownBlockType _readHandlerWithOptions;
     BOOL _connected;
     struct os_unfair_lock_s _writeLock;
+    struct os_unfair_lock_s _readLock;
+    BOOL _isInvalidated;
     NSObject<OS_nw_connection> *_connection;
     BOOL _hasMetadata;
     BOOL _sentFirstReadLinkInfo;
@@ -25,17 +28,25 @@
     BOOL _startAutomatically;
     int _osChannelFD;
     NSObject<OS_nw_path_evaluator> *_pathEvaluator;
-    struct __channel *_osChannel;
-    struct __channel_ring_desc *_osChannelTXRing;
-    struct __channel_ring_desc *_osChannelRXRing;
+    struct channel *_osChannel;
+    struct channel_ring_desc *_osChannelTXRing;
+    struct channel_ring_desc *_osChannelRXRing;
     unsigned char _nexus_instance[16];
     IDSDataChannelLinkContext *_cellularLink;
     NSMutableDictionary *_linkContexts;
     BOOL _defaultLinkID;
     NSData *_preConnectionData;
     NSMutableArray *_sendingMetadata;
+    BOOL _needsMediaEncryptionInfo;
+    unsigned long long _outgoingBytes;
+    unsigned long long _incomingBytes;
+    double _lastOutgoingStatReport;
+    double _lastIncomingStatReport;
+    NSMutableDictionary *_MKIArrivalTime;
+    NSMutableDictionary *_firstPacketArrivalTimeForMKI;
 }
 
+- (void).cxx_destruct;
 - (id)init;
 
 @end

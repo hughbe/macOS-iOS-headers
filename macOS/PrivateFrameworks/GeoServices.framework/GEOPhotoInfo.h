@@ -8,18 +8,20 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBUnknownFields;
 
 @interface GEOPhotoInfo : PBCodable <NSCopying>
 {
-    int _size;
+    PBUnknownFields *_unknownFields;
     NSString *_url;
-    struct {
-        unsigned int size:1;
-    } _has;
+    int _size;
+    CDStruct_3f61e687 _flags;
 }
 
-@property(retain, nonatomic) NSString *url; // @synthesize url=_url;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -27,14 +29,15 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *url;
 @property(readonly, nonatomic) BOOL hasUrl;
 - (int)StringAsSize:(id)arg1;
 - (id)sizeAsString:(int)arg1;
 @property(nonatomic) BOOL hasSize;
-@property(nonatomic) int size; // @synthesize size=_size;
-- (void)dealloc;
+@property(nonatomic) int size;
 - (id)initWithPlaceDataPhotoContent:(id)arg1;
 
 @end

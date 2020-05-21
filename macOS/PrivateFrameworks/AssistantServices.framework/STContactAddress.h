@@ -13,6 +13,7 @@
     long long _type;
     NSString *_stringValue;
     NSURL *_contactIdentifier;
+    NSString *_contactInternalGUID;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -21,11 +22,12 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)_aceContextObjectValue;
 - (id)description;
+- (id)contactInternalGUID;
 - (id)contactIdentifier;
 - (id)stringValue;
 - (long long)type;
 - (id)initWithStringValue:(id)arg1;
-- (id)initWithType:(long long)arg1 stringValue:(id)arg2 contactIdentifier:(id)arg3;
+- (id)initWithType:(long long)arg1 stringValue:(id)arg2 contactIdentifier:(id)arg3 contactInternalGUID:(id)arg4;
 - (id)initWithType:(long long)arg1 stringValue:(id)arg2;
 
 @end

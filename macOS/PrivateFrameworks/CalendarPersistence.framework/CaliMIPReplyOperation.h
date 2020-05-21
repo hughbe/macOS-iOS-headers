@@ -20,6 +20,8 @@
 + (BOOL)managedAttendeeWillCauseiMIPScheduling:(id)arg1;
 + (id)operationsWithManagedAttendees:(id)arg1 replyStatus:(id)arg2;
 + (id)operationsWithManagedAttendees:(id)arg1;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain) NSString *organizerEmail; // @synthesize organizerEmail=_organizerEmail;
 @property(retain) NSString *replyStatus; // @synthesize replyStatus=_replyStatus;
 - (int)_participationStatusInContext:(id)arg1;
@@ -28,7 +30,6 @@
 - (id)emailBodyInContext:(id)arg1;
 - (id)attachmentName;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithManagedAttendees:(id)arg1;
 

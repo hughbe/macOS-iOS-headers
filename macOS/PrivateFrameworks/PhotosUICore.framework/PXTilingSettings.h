@@ -14,6 +14,7 @@
 + (id)sharedInstance;
 @property(nonatomic) BOOL flipLayoutsHorizontally; // @synthesize flipLayoutsHorizontally=_flipLayoutsHorizontally;
 - (void)setDefaultValues;
+- (id)parentSettings;
 
 @end
 

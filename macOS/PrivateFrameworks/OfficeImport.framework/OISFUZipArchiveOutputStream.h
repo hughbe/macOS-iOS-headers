@@ -27,6 +27,7 @@ __attribute__((visibility("hidden")))
     unsigned long long mFreeBytes;
 }
 
++ (BOOL)createZipWithItemsAtPath:(id)arg1 zippedPath:(id)arg2 rootPathComponentName:(id)arg3;
 + (unsigned long long)approximateBytesForEntryHeaderWithName:(id)arg1;
 - (unsigned int)crc32ForEntry:(id)arg1;
 - (void)reset;

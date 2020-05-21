@@ -6,10 +6,7 @@
 
 #import "NSData.h"
 
-@class NSString;
-
 @interface NSData (FMCoreAdditions)
-@property(readonly, copy) NSString *hexString;
-@property(readonly, copy) NSString *fm_hexString;
++ (id)fm_randomBytes:(unsigned long long)arg1;
 @end
 

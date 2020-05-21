@@ -11,22 +11,32 @@
 @interface ICScannerDevice : ICDevice
 {
     id _scannerProperties;
+    NSString *_buttonPressed;
 }
 
+@property(copy, nonatomic) NSString *buttonPressed; // @synthesize buttonPressed=_buttonPressed;
 - (void)legacySupportMemoryTransferWithURL:(id)arg1;
 - (void)virtualScanStateMachine:(int)arg1 functionalUnit:(unsigned int)arg2 andError:(unsigned int)arg3;
 - (void)saveAsVirtualScanner;
-- (void)handleImageCaptureEventNotification:(id)arg1;
+- (void)handleScanEnded:(id)arg1;
+- (void)handleOverviewScanEnded:(id)arg1;
+- (void)handleTransfer:(id)arg1;
+- (void)handlePageDone:(id)arg1;
+- (void)handleObjectAdded:(id)arg1;
+- (void)handleImageCaptureEventNotification:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)unregisterForImageCaptureEventNotifications:(id)arg1;
 - (void)registerForImageCaptureEventNotifications:(id)arg1;
 - (void)requestChangeVendorFeature:(id)arg1;
 - (void)cancelScan;
+- (void)requestScanWithOptions:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)requestScan;
+- (void)requestOverviewScanWithOptions:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)requestOverviewScan;
 - (void)requestSelectFunctionalUnit:(unsigned long long)arg1;
-- (void)requestEject;
-- (void)requestEjectOrDisconnect;
+- (void)requestCloseSessionWithOptions:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)requestCloseSession;
+- (void)requestOpenSessionWithOptions:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)requestOpenSessionWithCredentials:(id)arg1 password:(id)arg2;
 - (void)requestOpenSession;
 - (void)handleScanParameters:(id)arg1;
 - (void)handleScannerDictionary:(id)arg1;
@@ -36,6 +46,7 @@
 - (void)setNumOpenSessionRetries:(unsigned int)arg1;
 @property unsigned int maxMemoryBandSize;
 @property BOOL scanParamsRetained;
+@property(copy) NSString *defaultUsername;
 @property(copy) NSString *documentUTI;
 @property(copy) NSString *documentName;
 @property(retain) NSURL *downloadsDirectory;
@@ -46,12 +57,12 @@
 @property(readonly) ICScannerFunctionalUnit *selectedFunctionalUnit;
 @property(readonly) NSArray *availableFunctionalUnitTypes;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 - (id)description;
 - (BOOL)updateProperties:(id)arg1;
 - (void)initializeScannerProperties:(id)arg1;
+- (void)cleanupDeviceWithErrorCode:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)initWithDictionary:(id)arg1;
 
 @end

@@ -12,12 +12,14 @@
 {
 }
 
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 + (id)microamperes;
 + (id)milliamperes;
 + (id)amperes;
 + (id)kiloamperes;
 + (id)megaamperes;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

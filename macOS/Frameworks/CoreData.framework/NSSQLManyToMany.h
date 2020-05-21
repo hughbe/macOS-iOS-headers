@@ -23,8 +23,8 @@ __attribute__((visibility("hidden")))
 - (void)_setCorrelationTableName:(id)arg1;
 - (void)_setOrderColumnName:(id)arg1;
 - (void)_setColumnName:(id)arg1;
-- (unsigned int)orderColumnSQLType;
-- (unsigned int)columnSQLType;
+- (unsigned char)orderColumnSQLType;
+- (unsigned char)columnSQLType;
 - (id)orderColumnName;
 - (id)columnName;
 - (BOOL)isReflexive;

@@ -8,6 +8,7 @@
 
 @interface LUIViewController : LUIController
 {
+    BOOL _hidden;
 }
 
 + (id)identifier;

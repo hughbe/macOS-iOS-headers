@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Safari/BarBackground.h>
+#import <Safari/KeyLoopSplicingContainerView.h>
 
 #import "ButtonInTabSyncGroupDelegate.h"
 #import "DetachedTabDraggingImageToWindowTransitionControllerDelegate.h"
@@ -14,17 +14,15 @@
 #import "TabButtonDelegate.h"
 #import "TabDraggingDestination.h"
 
-@class CABackdropLayer, CALayer, NSArray, NSMapTable, NSMutableArray, NSScrollView, NSString, NSTrackingArea, NSView, TabBarEmptyRegionPlaceholderButton, TabButton;
+@class BackgroundColorView, CABackdropLayer, NSArray, NSMapTable, NSMutableArray, NSScrollView, NSString, NSTitlebarSeparatorView, NSTrackingArea, NSView, TabBarEmptyRegionPlaceholderButton, TabButton;
 
 __attribute__((visibility("hidden")))
-@interface TabBarView : BarBackground <ButtonInTabSyncGroupDelegate, DetachedTabDraggingImageToWindowTransitionControllerDelegate, MorphingDragImageControllerDragSource, NSAnimationDelegate, NSDraggingDestination, TabButtonDelegate, TabDraggingDestination>
+@interface TabBarView : KeyLoopSplicingContainerView <ButtonInTabSyncGroupDelegate, DetachedTabDraggingImageToWindowTransitionControllerDelegate, MorphingDragImageControllerDragSource, NSAnimationDelegate, NSDraggingDestination, TabButtonDelegate, TabDraggingDestination>
 {
-    long long _numberOfGroupUpdates;
     NSTrackingArea *_trackingArea;
     TabButton *_tabButtonUnderMouse;
     NSScrollView *_scrollView;
     NSView *_scrollViewDocumentView;
-    NSView *_selectedTabContainerView;
     NSView *_tabContainer;
     NSMutableArray *_tabBarViewItems;
     NSMutableArray *_tabButtons;
@@ -54,9 +52,9 @@ __attribute__((visibility("hidden")))
     double _selectedButtonSlowingFactor;
     double _slowingDistance;
     NSView *_backgroundView;
-    NSView *_maskingContainerView;
     CABackdropLayer *_backdropLayer;
-    CALayer *_topBorderLayer;
+    BackgroundColorView *_backgroundColorView;
+    NSTitlebarSeparatorView *_topBorderSeparatorView;
     NSView *_pinnedTabsContainer;
     unsigned long long _numberOfPinnedTabs;
     unsigned long long _numberOfPinnedTabsForLayout;
@@ -66,6 +64,7 @@ __attribute__((visibility("hidden")))
     unsigned long long _lastHoveredIndexWhileWaitingForReorderingToKickIn;
     TabBarEmptyRegionPlaceholderButton *_placeholderTabForEmptyUnpinnedRegion;
     BOOL _shouldReduceTransparency;
+    BOOL _didScheduledAnimatedLayout;
     BOOL _didLayOutAfterMovingToWindow;
     BOOL _forcesActiveWindowState;
     id <TabBarViewDelegate> _delegate;
@@ -73,20 +72,23 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)accessibilityLabelForNumberOfTabs:(unsigned long long)arg1 andNumberOfPinnedTabs:(unsigned long long)arg2;
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <ButtonInTabSyncGroup> buttonThatSyncsWithPlaceholderTabInEmptyUnpinnedRegion; // @synthesize buttonThatSyncsWithPlaceholderTabInEmptyUnpinnedRegion=_buttonThatSyncsWithPlaceholderTabInEmptyUnpinnedRegion;
 @property(readonly, nonatomic) NSArray *tabButtons; // @synthesize tabButtons=_tabButtons;
 @property(copy, nonatomic) NSArray *tabBarViewItems; // @synthesize tabBarViewItems=_tabBarViewItems;
 @property(nonatomic) BOOL forcesActiveWindowState; // @synthesize forcesActiveWindowState=_forcesActiveWindowState;
 @property(nonatomic) __weak id <TabBarViewDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)button:(id)arg1 didSetHighlightStateToPressed:(BOOL)arg2 hovered:(BOOL)arg3;
 - (void)_toggleTransparencyIfNecessary;
 - (void)_accessibilityDisplayOptionsDidChange:(id)arg1;
 - (id)accessibilityLabel;
 - (id)accessibilityHitTest:(struct CGPoint)arg1;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (BOOL)accessibilityIsAttributeSettable:(id)arg1;
-- (id)accessibilityAttributeNames;
+- (id)accessibilityChildren;
+- (id)accessibilityContents;
+- (void)setAccessibilityContents:(id)arg1;
+- (id)accessibilityValue;
+- (id)accessibilityIdentifier;
+- (void)setAccessibilityValue:(id)arg1;
 - (unsigned long long)_dragOperationForDraggingInfo:(id)arg1;
 - (BOOL)performDragOperation:(id)arg1;
 - (unsigned long long)draggingUpdated:(id)arg1;
@@ -112,6 +114,7 @@ __attribute__((visibility("hidden")))
 - (struct CGPoint)_mouseLocationInDragImageForTabButton:(id)arg1;
 - (BOOL)_shouldDetachTabForMouseEvent:(id)arg1;
 - (BOOL)_canDetachTab;
+- (unsigned long long)_numberOfUnpinnedTabs;
 - (void)_cancelReorderingRestrictionsAfterPinning;
 - (void)_startReorderingRestrictionsAfterPinning;
 - (void)_autoscrollButtonsForStackingRegion:(unsigned long long)arg1;
@@ -178,6 +181,7 @@ __attribute__((visibility("hidden")))
 - (void)_updateButtonWidthAndRemainingWidthInTabBarToDivideAmongButtons;
 - (void)_recalculateLayout;
 - (double)_layoutBoundsWidth;
+- (struct CGRect)_layoutBounds;
 - (double)_pinningRegionWidth;
 - (double)_pinnedTabsWidth;
 - (double)currentButtonWidth;
@@ -187,17 +191,15 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)_numberOfTabsForLayout;
 - (void)_restackButtonViews;
 - (unsigned long long)_frontmostButtonIndex;
-- (void)_removeTabButton:(id)arg1;
 - (void)_updatePinnedTabs;
 - (struct CGRect)_placeholderTabForEmptyUnpinnedRegionButtonFrame;
 - (void)_installPlaceholderTabForEmptyUnpinnedRegion;
 - (void)_uninstallPlaceholderTabForEmptyUnpinnedRegion;
 - (BOOL)_shouldCreatePlaceholderTabForEmptyUnpinnedRegion;
 - (void)_insertTabButtonWithTabViewItem:(id)arg1 atIndex:(unsigned long long)arg2;
-- (BOOL)_insertMissingButtonsFromTabView;
 - (void)_layOutButtonsAnimated:(BOOL)arg1;
+- (void)_animateButtonLayout:(id)arg1;
 - (double)_titleCenterOffsetForButton:(id)arg1;
-- (void)_moveButtonToExpectedContainerView:(id)arg1;
 - (void)_layOutDraggedButtonAnimated:(BOOL)arg1;
 - (void)_recalculateLayoutAndUpdateContainerViewFrames;
 - (void)_toggleBackdropLayerVisibilityIfNecessary;
@@ -208,12 +210,14 @@ __attribute__((visibility("hidden")))
 - (void)_updateButtonsAndLayOutAnimated:(BOOL)arg1 isSelectingButton:(BOOL)arg2;
 - (void)_updateButtonsAndLayOutAnimated:(BOOL)arg1;
 - (void)_setUpViewAnimationForLayout:(BOOL)arg1;
+- (void)_scheduleButtonLayOutAnimated:(BOOL)arg1;
 - (BOOL)_shouldLayOutButtonsNow;
 - (void)_clipViewBoundsChanged:(id)arg1;
+- (struct CGRect)_contentBounds;
+- (void)_windowChangedKeyState;
 - (BOOL)isOpaque;
 - (BOOL)allowsVibrancy;
-- (void)endGroupUpdatesAnimated:(BOOL)arg1;
-- (void)beginGroupUpdates;
+- (id)cloneForOffscreenRendering;
 - (void)dealloc;
 - (void)_commonTabBarViewInit;
 - (id)initWithCoder:(id)arg1;

@@ -6,18 +6,60 @@
 
 #import "NSObject.h"
 
-@class ACDDatabase, NSArray;
+@class ACDDatabaseConnection, NSArray;
 
+__attribute__((visibility("hidden")))
 @interface ACDDatabaseInitializer : NSObject
 {
-    ACDDatabase *_database;
+    ACDDatabaseConnection *_databaseConnection;
     NSArray *_dataclasses;
     NSArray *_accountTypes;
     NSArray *_accounts;
     NSArray *_accessKeys;
 }
 
++ (id)new;
 - (void).cxx_destruct;
+- (void)_ensureAllInternalAccountTypesExist;
+- (void)_addModernYahooIMAccountType;
+- (void)_addModernQQAccountType;
+- (void)_addModernJabberAccountType;
+- (void)_addModernAOLAccountType;
+- (void)_addModernYahooAccountType;
+- (void)_addModernSubscribedCalendarAccountType;
+- (void)_addModernSMTPAccountType;
+- (void)_addModernLDAPAccountType;
+- (void)_addModernIMAPNotesAccountType;
+- (void)_addModernHotmailAccountType;
+- (void)_addModernGmailAccountType;
+- (void)_addModernExchangeAccountType;
+- (void)_addModernCloudKitAccountType;
+- (void)_addModernCardDAVAccountType;
+- (void)_addModernCalDAVAccountType;
+- (void)_addModernBookmarkDAVAccountType;
+- (void)_addModernAppleIDAuthenticationAccountType;
+- (void)_addModernAppleAccountType;
+- (void)_addModern163AccountType;
+- (void)_addModern126AccountType;
+- (void)_addRemoteManagementAccountType;
+- (void)_removeRedundantDataclasses;
+- (void)_aolSupportsAuthentication;
+- (void)_switchAolAccountsToOAuth;
+- (void)_removeBTMMType;
+- (void)_changeSocialAccountTypeObsoleteAttributes;
+- (void)_changeFacebookAndLinkedInAccountsToLegacyAccountTypes;
+- (void)_addLinkedInLegacyAccountType;
+- (void)_addiTunesStoreSandboxAccountType;
+- (void)_removeMessagesFromAOLSupportedDataclasses;
+- (void)_addObsoleteAttributeToAccountTypes;
+- (void)_changeFacebookAccountToLegacyAccountType;
+- (void)_addFacebookAndDAVLegacyAccountTypes;
+- (void)_removeAIMAccounts;
+- (void)_removeMessagesFromGoogleSupportedDataclasses;
+- (void)_setCloudKitAllowsMultipleAccounts;
+- (void)_setYahooAccountsProvisionedDataclassesToSupportedOnes;
+- (void)_removeMessengerFromYahooSupportedDataclasses;
+- (void)_addNotesDataclassToAASupportedDataclasses;
 - (void)_setSupportedDataclassesForAOLAccountType;
 - (void)_supportiCloudKeychainSyncDataclass;
 - (void)_ensurePresenceOfNewsDataclass;
@@ -36,6 +78,14 @@
 - (void)_switchHotmailToOAuthAuthentication;
 - (void)_switchGoogleToOAuthAuthentication;
 - (void)_addAndConfigureAllOSXAccountTypes;
+- (void)_addOSXServerAccountType;
+- (void)_addAIMAccountType;
+- (void)_addYahooIMAccountType;
+- (void)_addJabberAccountType;
+- (void)_addQQAccountType;
+- (void)_addAOLAccountType;
+- (void)_add163AccountType;
+- (void)_add126AccountType;
 - (void)_setCloudKitCredentialType;
 - (void)_addCloudKitDataclasses;
 - (void)_removeLiverpoolTypes;
@@ -49,6 +99,7 @@
 - (void)_migrateOSXLegacyAccountsCredentials;
 - (void)_addHolidayCalendarAccountType;
 - (void)_makeTencentWeiboSingleton;
+- (void)_updateMacOSServerAccountDescription;
 - (void)_updateOSXServerAccountDescription;
 - (void)_updateIdentityServicesAccountDescription;
 - (void)_updateIdentityServicesAccountTypeToSupportAuthenticationAndMultipleAccounts;
@@ -127,14 +178,14 @@
 - (id)_accessKeyWithName:(id)arg1;
 - (id)_accountTypeWithIdentifier:(id)arg1;
 - (id)_dataclassWithName:(id)arg1;
-- (void)updateDefaultContent;
-- (void)insertAllDefaultContent;
 - (id)_accessKeys;
 - (id)_dataclasses;
 - (id)_accountTypes;
 - (id)_accounts;
 - (id)_resultsForEntityNamed:(id)arg1;
-- (id)initWithDatabase:(id)arg1;
+- (BOOL)updateDefaultContentIfNecessary:(id *)arg1;
+- (id)initWithDatabaseConnection:(id)arg1;
+- (id)init;
 
 @end
 

@@ -14,10 +14,10 @@ __attribute__((visibility("hidden")))
     NSView *_clippingView;
     int _fadeoutEdge;
     struct CGImage *_fadeoutMaskImage;
-    BOOL _clickedByDragging;
+    struct CGPoint _clickedMouseLoc;
 }
 
-@property BOOL clickedByDragging; // @synthesize clickedByDragging=_clickedByDragging;
+@property struct CGPoint clickedMouseLoc; // @synthesize clickedMouseLoc=_clickedMouseLoc;
 @property int fadeoutEdge; // @synthesize fadeoutEdge=_fadeoutEdge;
 @property NSView *clippingView; // @synthesize clippingView=_clippingView;
 - (BOOL)allowsVibrancy;
@@ -26,6 +26,7 @@ __attribute__((visibility("hidden")))
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)mouseDownCanMoveWindow;
 - (id)AXDescriptionForCell:(id)arg1;
+- (BOOL)clickShouldBeIgnored;
 - (void)dealloc;
 
 @end

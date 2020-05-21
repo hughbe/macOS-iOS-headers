@@ -20,6 +20,7 @@
 + (id)newNoneAlarm;
 + (id)alarmWithvCalLine:(id)arg1 withParseState:(id)arg2 property:(const CDStruct_b1ca1ddd *)arg3;
 + (id)entityFromManagedObject:(id)arg1;
+- (void).cxx_destruct;
 - (BOOL)shouldPretendAlarmTextRelativeToTravel;
 - (id)durationRelativeToTravel;
 - (id)shortHumanReadableDescriptionIncludingTravelTimeAndAlert;

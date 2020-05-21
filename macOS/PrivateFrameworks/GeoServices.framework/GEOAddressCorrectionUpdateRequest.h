@@ -8,24 +8,34 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray, NSString;
+@class NSMutableArray, NSString, PBDataReader;
 
 @interface GEOAddressCorrectionUpdateRequest : PBRequest <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_addressID;
     NSMutableArray *_addressResults;
-    int _correctionStatus;
     NSMutableArray *_significantLocations;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    int _correctionStatus;
     struct {
-        unsigned int correctionStatus:1;
-    } _has;
+        unsigned int has_correctionStatus:1;
+        unsigned int read_addressID:1;
+        unsigned int read_addressResults:1;
+        unsigned int read_significantLocations:1;
+        unsigned int wrote_addressID:1;
+        unsigned int wrote_addressResults:1;
+        unsigned int wrote_significantLocations:1;
+        unsigned int wrote_correctionStatus:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)addressResultType;
 + (Class)significantLocationType;
-@property(retain, nonatomic) NSMutableArray *addressResults; // @synthesize addressResults=_addressResults;
-@property(retain, nonatomic) NSString *addressID; // @synthesize addressID=_addressID;
-@property(retain, nonatomic) NSMutableArray *significantLocations; // @synthesize significantLocations=_significantLocations;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -33,24 +43,35 @@
 - (void)copyTo:(id)arg1;
 - (Class)responseClass;
 - (unsigned int)requestTypeCode;
+- (void)clearSensitiveFields;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)addressResultAtIndex:(unsigned long long)arg1;
 - (unsigned long long)addressResultsCount;
+- (void)_addNoFlagsAddressResult:(id)arg1;
 - (void)addAddressResult:(id)arg1;
 - (void)clearAddressResults;
+@property(retain, nonatomic) NSMutableArray *addressResults;
+- (void)_readAddressResults;
+@property(retain, nonatomic) NSString *addressID;
 @property(readonly, nonatomic) BOOL hasAddressID;
+- (void)_readAddressID;
 - (id)significantLocationAtIndex:(unsigned long long)arg1;
 - (unsigned long long)significantLocationsCount;
+- (void)_addNoFlagsSignificantLocation:(id)arg1;
 - (void)addSignificantLocation:(id)arg1;
 - (void)clearSignificantLocations;
+@property(retain, nonatomic) NSMutableArray *significantLocations;
+- (void)_readSignificantLocations;
 - (int)StringAsCorrectionStatus:(id)arg1;
 - (id)correctionStatusAsString:(int)arg1;
 @property(nonatomic) BOOL hasCorrectionStatus;
-@property(nonatomic) int correctionStatus; // @synthesize correctionStatus=_correctionStatus;
-- (void)dealloc;
+@property(nonatomic) int correctionStatus;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

@@ -17,23 +17,22 @@
     id _selectedMailboxLock;
     NSString *_currentMailboxName;
     BOOL _isSelected;
-    BOOL _needToCompactOnClose;
     IMAPTask *_lastTaskSource;
-    IMAPMailboxSyncState *_syncState;
     IMAPTaskManager *_taskManager;
+    IMAPMailboxSyncState *_syncState;
 }
 
-@property BOOL needToCompactOnClose; // @synthesize needToCompactOnClose=_needToCompactOnClose;
-@property(readonly, nonatomic) IMAPTaskManager *taskManager; // @synthesize taskManager=_taskManager;
-@property(retain, nonatomic) IMAPMailboxSyncState *syncState; // @synthesize syncState=_syncState;
-@property(nonatomic) __weak IMAPTask *lastTaskSource; // @synthesize lastTaskSource=_lastTaskSource;
-@property(nonatomic) BOOL isSelected; // @synthesize isSelected=_isSelected;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL isSelected; // @synthesize isSelected=_isSelected;
+@property(retain, nonatomic) IMAPMailboxSyncState *syncState; // @synthesize syncState=_syncState;
+@property(readonly, nonatomic) IMAPTaskManager *taskManager; // @synthesize taskManager=_taskManager;
+@property(nonatomic) __weak IMAPTask *lastTaskSource; // @synthesize lastTaskSource=_lastTaskSource;
 - (void)connection:(id)arg1 receivedUnhandledUntaggedResponse:(id)arg2 forMailbox:(id)arg3 forCommand:(id)arg4;
 - (void)connection:(id)arg1 receivedFetchResponse:(id)arg2 forMailbox:(id)arg3;
 - (void)connection:(id)arg1 receivedExists:(unsigned long long)arg2 forMailbox:(id)arg3;
 - (BOOL)connection:(id)arg1 shouldProcessUnsolicitedResponse:(id)arg2;
 @property(nonatomic) BOOL trackSyncState;
+- (id)serializationQueue;
 - (void)selectedMailboxChangedToMailbox:(id)arg1 fromMailbox:(id)arg2;
 - (BOOL)isSelectedOnMailbox:(id)arg1;
 @property(readonly, copy) NSString *currentMailboxName;
@@ -43,6 +42,7 @@
 - (void)_closeConnectionAndCompact:(BOOL)arg1 allowNetworking:(BOOL)arg2;
 - (id)serverInterfaceForMailbox:(id)arg1 error:(id *)arg2;
 - (id)newCleanUpOperation;
+- (long long)qualityOfService;
 - (void)setOperation:(id)arg1;
 - (id)operation;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;

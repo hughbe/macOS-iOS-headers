@@ -8,13 +8,13 @@
 
 @class ABAccount, NSArray;
 
-__attribute__((visibility("hidden")))
 @interface ABHeaderGroupEntry : ABGroupEntry
 {
     ABAccount *_account;
     NSArray *_children;
 }
 
+- (void).cxx_destruct;
 @property(readonly, copy) NSArray *children; // @synthesize children=_children;
 - (id)account;
 - (BOOL)canShowStatusForAccountWithIdentifier:(id)arg1;
@@ -22,9 +22,8 @@ __attribute__((visibility("hidden")))
 - (id)accessibilityDescription;
 - (BOOL)isGroupItem;
 - (double)rowHeight;
-- (unsigned long long)textAlignment;
+- (long long)textAlignment;
 - (id)tableViewIdentifier;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 account:(id)arg2 children:(id)arg3;
 - (id)initWithName:(id)arg1;
 

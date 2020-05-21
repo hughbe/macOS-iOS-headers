@@ -33,7 +33,7 @@ __attribute__((visibility("hidden")))
 - (int)sendData:(id)arg1 localCallID:(unsigned int)arg2 remoteCallID:(unsigned int)arg3 encrypted:(BOOL)arg4 OFTType:(int)arg5;
 - (int)sendUDPPacketReliableEncrypted:(id)arg1 localIPPort:(struct tagIPPORT *)arg2 destinationIPPort:(struct tagIPPORT *)arg3 oftType:(int)arg4;
 - (BOOL)ipPortStillExists:(struct tagIPPORT *)arg1 requiresWifi:(BOOL)arg2;
-- (int)startConnectionCheckForCallID:(unsigned int)arg1 remoteConnectionDataBlob:(id)arg2 relayDictionary:(id)arg3 iceTimeout:(double)arg4 securityIdentity:(struct OpaqueSecIdentityRef *)arg5 skeState:(struct SKEStateOpaque *)arg6 usedRelay:(int *)arg7;
+- (int)startConnectionCheckForCallID:(unsigned int)arg1 remoteConnectionDataBlob:(id)arg2 relayDictionary:(id)arg3 iceTimeout:(double)arg4 securityIdentity:(struct __SecIdentity *)arg5 skeState:(struct SKEStateOpaque *)arg6 usedRelay:(int *)arg7;
 - (int)detailedErrorCodeForConnectionWithCallID:(unsigned int)arg1;
 - (int)setupDTLSSecurity:(unsigned int)arg1 connectionResult:(struct tagCONNRESULT *)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (int)getConnectionDataForCallID:(unsigned int)arg1 version:(unsigned char)arg2 useCompressedData:(BOOL)arg3 pConnectionData:(void **)arg4 connectDataSizeInBytes:(int *)arg5 relayDictionary:(struct __CFDictionary *)arg6 interfaceUpdate:(BOOL)arg7 nonCellularCandidateTimeout:(double)arg8;
@@ -50,6 +50,7 @@ __attribute__((visibility("hidden")))
 - (void)iceConnectedForCallID:(unsigned int)arg1 result:(struct tagCONNRESULT *)arg2 didReceivePacket:(int)arg3 useRelay:(int)arg4 secretKey:(struct __CFData *)arg5 skeResult:(int)arg6;
 - (int)updateInterfaceList:(unsigned int)arg1 shouldFilterCellInterface:(BOOL)arg2 isUpdateNeeded:(int *)arg3;
 - (void)registerICEBlockForCallID:(unsigned int)arg1 connectedBlock:(CDUnknownBlockType)arg2 newCandidatesBlock:(CDUnknownBlockType)arg3 newNominationBlock:(CDUnknownBlockType)arg4 removeIPPortBlock:(CDUnknownBlockType)arg5;
+- (void)setReportingAgent:(struct opaqueRTCReporting *)arg1;
 - (void)dealloc;
 - (id)init;
 

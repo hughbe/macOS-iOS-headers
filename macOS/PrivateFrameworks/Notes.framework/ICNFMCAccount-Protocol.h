@@ -17,6 +17,9 @@
 @property BOOL shouldUseAuthentication;
 @property(readonly, nonatomic) BOOL requiresAuthentication;
 @property(readonly, copy) NSString *oauthToken;
+@property(readonly, copy) NSString *clientInfo;
+@property(readonly, copy) NSString *oneTimePassword;
+@property(readonly, copy) NSString *machineID;
 @property(readonly, copy) NSString *appleAuthenticationToken;
 @property(readonly, copy) NSString *applePersonID;
 @property(copy) NSString *sessionPassword;
@@ -43,8 +46,8 @@
 - (BOOL)shouldRetryConnectionWithoutCertificateCheckingAfterError:(ICNFMCError *)arg1 host:(NSString *)arg2 didPromptUser:(char *)arg3;
 - (BOOL)autodiscoverSettings:(id *)arg1;
 - (void)updateFromSuccessfulConnectionPortNumber:(long long)arg1 securityLayerType:(long long)arg2;
-- (void)setTLSIdentity:(struct OpaqueSecIdentityRef *)arg1;
-- (struct OpaqueSecIdentityRef *)copyTLSIdentity;
+- (void)setTLSIdentity:(struct __SecIdentity *)arg1;
+- (struct __SecIdentity *)copyTLSIdentity;
 
 @optional
 @property(copy) NSString *externalHostname;

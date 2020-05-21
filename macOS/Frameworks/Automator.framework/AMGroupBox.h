@@ -14,14 +14,12 @@
     NSColor *_borderColor;
 }
 
+- (void).cxx_destruct;
+@property(copy) NSColor *borderColor; // @synthesize borderColor=_borderColor;
+@property BOOL showBorder; // @synthesize showBorder=_showBorder;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)inTesting;
 - (BOOL)hasTesting;
-- (void)setBorderColor:(id)arg1;
-- (id)borderColor;
-- (void)setShowBorder:(BOOL)arg1;
-- (BOOL)showBorder;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)_commonInit;

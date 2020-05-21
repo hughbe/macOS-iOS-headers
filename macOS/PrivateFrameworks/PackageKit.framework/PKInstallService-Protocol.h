@@ -9,7 +9,6 @@
 @class NSString, PKInstallRequest;
 
 @protocol PKInstallService <NSObject>
-- (void)purgeOrphanedSandboxesOnVolume:(NSString *)arg1 reply:(void (^)(long long))arg2;
 - (void)purgeableSpaceForOrphanedSandboxesOnVolume:(NSString *)arg1 reply:(void (^)(long long))arg2;
 - (void)startPurgeOfSandboxesOnVolume:(NSString *)arg1 purgeAmountNeeded:(unsigned long long)arg2 systemSandboxes:(BOOL)arg3 reply:(void (^)(unsigned long long))arg4;
 - (void)estimateOfPurgeableSpaceForSandboxesOnVolume:(NSString *)arg1 systemSandboxes:(BOOL)arg2 reply:(void (^)(NSNumber *))arg3;

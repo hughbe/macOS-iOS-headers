@@ -14,6 +14,7 @@
 
 + (id)basicPodcastAppSearchWithDictionary:(id)arg1 context:(id)arg2;
 + (id)basicPodcastAppSearch;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *query;
 @property(nonatomic) long long maxResults;

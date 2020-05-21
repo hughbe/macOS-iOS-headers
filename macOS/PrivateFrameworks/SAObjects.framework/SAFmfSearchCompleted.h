@@ -16,6 +16,7 @@
 
 + (id)searchCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)searchCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSURL *searchContext;
 @property(copy, nonatomic) NSArray *fmfLocations;
 @property(copy, nonatomic) NSNumber *atRequestedLocation;

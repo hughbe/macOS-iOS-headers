@@ -12,20 +12,27 @@
 {
     NSMutableArray *_clients;
     NSObject<OS_dispatch_queue> *_notificationsQueue;
+    int _lockState;
     unsigned long long _clockIdentifier;
+    NSObject<OS_dispatch_queue> *_propertyUpdateQueue;
 }
 
++ (id)clockNameForClockIdentifier:(unsigned long long)arg1;
++ (id)diagnosticInfoForClockIdentifier:(unsigned long long)arg1;
 + (unsigned long long)_mach_absolute_time;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *propertyUpdateQueue; // @synthesize propertyUpdateQueue=_propertyUpdateQueue;
+@property(nonatomic) int lockState; // @synthesize lockState=_lockState;
 @property(nonatomic) unsigned long long clockIdentifier; // @synthesize clockIdentifier=_clockIdentifier;
 - (void)dealloc;
 @property(readonly, copy, nonatomic) NSString *clockName; // @dynamic clockName;
 @property(readonly, nonatomic) double hostRateRatio; // @dynamic hostRateRatio;
-@property(readonly, nonatomic) int lockState; // @dynamic lockState;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *notificationQueue; // @dynamic notificationQueue;
 @property(readonly, retain, nonatomic) NSMutableArray *clients; // @dynamic clients;
 - (void)removeClient:(id)arg1;
 - (void)addClient:(id)arg1;
 - (BOOL)getRateRatioNumerator:(unsigned long long *)arg1 denominator:(unsigned long long *)arg2 machAnchor:(unsigned long long *)arg3 andDomainAnchor:(unsigned long long *)arg4 withError:(id *)arg5;
+- (unsigned long long)convertFromDomainIntervalToMachAbsoluteInterval:(unsigned long long)arg1;
+- (unsigned long long)convertFromMachAbsoluteIntervalToDomainInterval:(unsigned long long)arg1;
 - (BOOL)convertFromDomainTime:(unsigned long long *)arg1 toMachAbsoluteTime:(unsigned long long *)arg2 withCount:(unsigned int)arg3;
 - (BOOL)convertFromMachAbsoluteTime:(unsigned long long *)arg1 toDomainTime:(unsigned long long *)arg2 withCount:(unsigned int)arg3;
 - (unsigned long long)convertFromDomainToMachAbsoluteTime:(unsigned long long)arg1 withFlags:(unsigned int *)arg2;

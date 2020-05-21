@@ -6,20 +6,32 @@
 
 #import <CloudKit/CKDatabaseOperationInfo.h>
 
-@class NSData, NSString;
+#import "NSSecureCoding.h"
 
-@interface CKCodeFunctionInvokeOperationInfo : CKDatabaseOperationInfo
+@class NSArray, NSData, NSString, NSURL;
+
+@interface CKCodeFunctionInvokeOperationInfo : CKDatabaseOperationInfo <NSSecureCoding>
 {
+    BOOL _local;
+    BOOL _shouldFetchAssetContentInMemory;
     NSString *_serviceName;
     NSString *_functionName;
-    NSData *_serializedParameters;
+    NSArray *_requestLocalSerializations;
+    NSArray *_requestLocalEnvelopes;
+    NSData *_permittedRemoteMeasurement;
+    NSURL *_explicitBaseURL;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy, nonatomic) NSData *serializedParameters; // @synthesize serializedParameters=_serializedParameters;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL shouldFetchAssetContentInMemory; // @synthesize shouldFetchAssetContentInMemory=_shouldFetchAssetContentInMemory;
+@property(nonatomic) BOOL local; // @synthesize local=_local;
+@property(copy, nonatomic) NSURL *explicitBaseURL; // @synthesize explicitBaseURL=_explicitBaseURL;
+@property(copy, nonatomic) NSData *permittedRemoteMeasurement; // @synthesize permittedRemoteMeasurement=_permittedRemoteMeasurement;
+@property(copy, nonatomic) NSArray *requestLocalEnvelopes; // @synthesize requestLocalEnvelopes=_requestLocalEnvelopes;
+@property(copy, nonatomic) NSArray *requestLocalSerializations; // @synthesize requestLocalSerializations=_requestLocalSerializations;
 @property(copy, nonatomic) NSString *functionName; // @synthesize functionName=_functionName;
 @property(copy, nonatomic) NSString *serviceName; // @synthesize serviceName=_serviceName;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 

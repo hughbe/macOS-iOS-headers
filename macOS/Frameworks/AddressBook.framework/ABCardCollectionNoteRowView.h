@@ -11,13 +11,13 @@
 
 @class NSArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardCollectionNoteRowView : ABCardCollectionRowView <ABNoteTextViewDelegate, NSTextViewDelegate>
 {
     NSArray *_noteConstraints;
 }
 
 + (CDUnknownBlockType)rangeComparator;
+- (void).cxx_destruct;
 - (void)textDidEndEditing:(id)arg1;
 - (void)textDidChange:(id)arg1;
 - (void)textViewDidResignFirstResponder:(id)arg1;
@@ -26,6 +26,9 @@ __attribute__((visibility("hidden")))
 - (id)unionedRangeValues:(id)arg1;
 - (id)rangesMatchingSearchTerms:(id)arg1;
 - (id)valueTextView;
+- (double)textViewWidth;
+- (double)textViewHeight;
+- (struct CGSize)intrinsicContentSize;
 - (void)setValueEditable:(BOOL)arg1;
 - (void)setValueSelectable:(BOOL)arg1;
 - (BOOL)hasValue;
@@ -35,10 +38,8 @@ __attribute__((visibility("hidden")))
 - (void)setSelectedRanges:(id)arg1;
 - (void)setSelectedRange:(struct _NSRange)arg1;
 - (void)mouseDown:(id)arg1;
-- (id)pinTrailingEdgeConstraints;
-- (id)topAlignmentConstraints;
-- (void)updateConstraints;
-- (void)ownFrameDidChange:(id)arg1;
+- (void)generateConstraints;
+- (void)viewWillMoveToWindow:(id)arg1;
 - (id)noteTextView;
 - (void)applyValueTextColor:(id)arg1;
 - (void)updateValueFontWithFont:(id)arg1;

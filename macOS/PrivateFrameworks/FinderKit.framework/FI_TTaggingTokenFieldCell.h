@@ -9,7 +9,7 @@
 __attribute__((visibility("hidden")))
 @interface FI_TTaggingTokenFieldCell : NSTokenFieldCell
 {
-    struct TNSRef<NSObject *, void> _objectValue;
+    struct TNSRef<NSObject, void> _objectValue;
 }
 
 - (id).cxx_construct;
@@ -22,6 +22,7 @@ __attribute__((visibility("hidden")))
 - (void)setPlaceholderString:(id)arg1;
 - (double)cellHeightForRows:(double)arg1;
 - (struct CGSize)cellSizeForBounds:(struct CGRect)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end
 

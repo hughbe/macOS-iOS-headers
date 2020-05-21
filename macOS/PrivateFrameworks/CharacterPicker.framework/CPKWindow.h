@@ -6,37 +6,16 @@
 
 #import "NSPanel.h"
 
-@class NSButton, NSImage, NSView, NSViewController;
-
 @interface CPKWindow : NSPanel
 {
-    NSView *_myContentView;
-    BOOL _showingAlternateView;
-    BOOL _prohibitingZoom;
-    BOOL _processVisible;
-    NSViewController *_alternateViewController;
-    NSImage *_alternateBitmapImage;
-    unsigned long long _alternateWindowStyle;
-    struct CGRect _alternateWindowFrame;
-    NSButton *_transformButton;
     id _privateData;
 }
 
-@property(retain) NSImage *alternateBitmapImage; // @synthesize alternateBitmapImage=_alternateBitmapImage;
-@property(readonly) NSButton *transformButton; // @synthesize transformButton=_transformButton;
-@property struct CGRect alternateWindowFrame; // @synthesize alternateWindowFrame=_alternateWindowFrame;
-@property unsigned long long alternateWindowStyle; // @synthesize alternateWindowStyle=_alternateWindowStyle;
-@property(nonatomic) BOOL processVisible; // @synthesize processVisible=_processVisible;
-@property BOOL prohibitingZoom; // @synthesize prohibitingZoom=_prohibitingZoom;
-@property BOOL showingAlternateView; // @synthesize showingAlternateView=_showingAlternateView;
-@property(retain, nonatomic) NSViewController *alternateViewController; // @synthesize alternateViewController=_alternateViewController;
-@property(readonly) NSView *myContentView; // @synthesize myContentView=_myContentView;
-- (id)_cornerMask;
 - (id)_privateStorage;
 - (BOOL)canBecomeMainWindow;
 - (BOOL)canBecomeKeyWindow;
-- (void)performZoom:(id)arg1;
 - (BOOL)hasKeyAppearance;
+- (void)_prepareDeallocatingParentPopover:(id)arg1;
 - (void)_characterViewerDidOpen:(id)arg1;
 - (void)_characterViewerWillOpen:(id)arg1;
 - (void)cancelOperation:(id)arg1;
@@ -49,9 +28,9 @@
 - (void)_callWillCloseDelegate;
 - (void)_detachedWindowClosed:(id)arg1;
 - (void)setLastKeyWindow:(id)arg1 bringBack:(BOOL)arg2;
-- (void)_switchWindowStyleToResizable:(BOOL)arg1;
 - (void)animationDidEnd:(id)arg1;
-- (void)transformWindow;
+- (void)_delayedStartAnimation:(id)arg1;
+- (void)transform;
 - (void)prepareTransformFromPopover:(BOOL)arg1;
 - (void)dealloc;
 - (id)initWithParentPopover:(id)arg1;

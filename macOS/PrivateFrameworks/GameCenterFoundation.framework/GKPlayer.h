@@ -9,7 +9,7 @@
 #import "NSCoding.h"
 #import "NSSecureCoding.h"
 
-@class GKGame, GKPlayerInternal, NSArray, NSAttributedString, NSDate, NSString;
+@class GKGame, GKPlayerInternal, NSArray, NSAttributedString, NSDate, NSNumber, NSString;
 
 @interface GKPlayer : GKBasePlayer <NSCoding, NSSecureCoding>
 {
@@ -22,6 +22,7 @@
 + (id)instanceMethodSignatureForSelector:(SEL)arg1;
 + (void)loadCompletePlayersForPlayers:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (void)_loadPlayersForIdentifiers:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
++ (void)loadPlayersForIdentifiersPrivate:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 + (void)loadPlayersForIdentifiers:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 + (void)loadPlayersForLegacyIdentifiers:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 + (id)cacheKeyForPlayerID:(id)arg1;
@@ -52,8 +53,6 @@
 - (void)loadRecentMatchesForGame:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void)loadCommonFriends:(BOOL)arg1 asPlayersWithCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)loadFriendsAsPlayersWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)declineFriendRequestWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)acceptFriendRequestWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)postChangeNotification;
 - (void)_postChangeNotification;
 @property(readonly, nonatomic) BOOL isFamiliarFriend;
@@ -64,6 +63,19 @@
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
+- (void)setFriendPlayedNearby:(id)arg1;
+- (void)setFriendPlayedWith:(id)arg1;
+- (void)setFriendBiDirectional:(id)arg1;
+- (void)setFriendLevel:(id)arg1;
+@property(readonly, nonatomic) long long avatarType; // @dynamic avatarType;
+@property(copy) NSString *alias; // @dynamic alias;
+@property(readonly, nonatomic) NSNumber *friendPlayedNearby; // @dynamic friendPlayedNearby;
+@property(readonly, nonatomic) NSNumber *friendPlayedWith; // @dynamic friendPlayedWith;
+@property(readonly, nonatomic) NSNumber *friendBiDirectional; // @dynamic friendBiDirectional;
+@property(readonly, nonatomic) NSNumber *friendLevel; // @dynamic friendLevel;
+- (BOOL)scopedIDsArePersistent;
+@property(readonly, retain) NSString *teamPlayerID; // @dynamic teamPlayerID;
+@property(readonly, retain) NSString *gamePlayerID; // @dynamic gamePlayerID;
 @property(retain) NSString *playerID; // @dynamic playerID;
 @property(readonly, nonatomic) CDStruct_c6d350ec stats;
 @property(readonly, nonatomic) GKGame *lastPlayedGame;
@@ -72,12 +84,10 @@
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithInternalRepresentation:(id)arg1;
-@property(readonly, nonatomic) BOOL isFriendRecommendation; // @dynamic isFriendRecommendation;
 - (id)minimalPlayer;
 @property(readonly) NSString *referenceKey;
 
 // Remaining properties
-@property(copy) NSString *alias; // @dynamic alias;
 @property(readonly, nonatomic) NSString *firstName; // @dynamic firstName;
 @property(readonly) NSString *guestIdentifier; // @dynamic guestIdentifier;
 @property(readonly, nonatomic) BOOL isAnonymousPlayer; // @dynamic isAnonymousPlayer;
@@ -88,6 +98,7 @@
 @property(readonly, nonatomic) NSString *lastName; // @dynamic lastName;
 @property(readonly, nonatomic) NSDate *lastPlayedDate; // @dynamic lastPlayedDate;
 @property(readonly, nonatomic, getter=isLoaded) BOOL loaded; // @dynamic loaded;
+@property(retain, nonatomic) NSArray *monogramComponents; // @dynamic monogramComponents;
 @property(nonatomic) unsigned long long numberOfFriends; // @dynamic numberOfFriends;
 @property(retain, nonatomic) NSString *reason; // @dynamic reason;
 @property(retain, nonatomic) NSString *reason2; // @dynamic reason2;

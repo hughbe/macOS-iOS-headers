@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)logEvent:(char *)arg1 length:(unsigned short)arg2 timeStamp:(unsigned long long)arg3;
++ (void)logEvent:(char *)arg1 length:(unsigned short)arg2 timeStamp:(unsigned long long)arg3 intoBuffer:(char *)arg4;
 + (void)splitOffset:(unsigned short)arg1 intoHeaderByte:(char *)arg2 timeStampByte:(char *)arg3;
 + (unsigned long long)timeStampWithEpoch:(unsigned long long)arg1 offset:(unsigned short)arg2;
 + (unsigned short)reconstructWithHighByte:(unsigned char)arg1 lowByte:(unsigned char)arg2 overflow:(BOOL)arg3;

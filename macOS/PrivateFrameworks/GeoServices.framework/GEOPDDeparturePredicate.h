@@ -8,18 +8,24 @@
 
 #import "NSCopying.h"
 
+@class PBUnknownFields;
+
+__attribute__((visibility("hidden")))
 @interface GEOPDDeparturePredicate : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     struct GEOPDTimeRange _timeRange;
     unsigned int _numAdditionalDepartures;
     struct {
-        unsigned int timeRange:1;
-        unsigned int numAdditionalDepartures:1;
-    } _has;
+        unsigned int has_timeRange:1;
+        unsigned int has_numAdditionalDepartures:1;
+    } _flags;
 }
 
-@property(nonatomic) unsigned int numAdditionalDepartures; // @synthesize numAdditionalDepartures=_numAdditionalDepartures;
-@property(nonatomic) struct GEOPDTimeRange timeRange; // @synthesize timeRange=_timeRange;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -27,10 +33,13 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(nonatomic) BOOL hasNumAdditionalDepartures;
+@property(nonatomic) unsigned int numAdditionalDepartures;
 @property(nonatomic) BOOL hasTimeRange;
+@property(nonatomic) struct GEOPDTimeRange timeRange;
 - (id)initWithTraitsTransitModeFilter:(id)arg1;
 
 @end

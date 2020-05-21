@@ -13,7 +13,7 @@ __attribute__((visibility("hidden")))
 
 + (id)groupFromABCDGroup:(id)arg1;
 + (CDUnknownBlockType)groupFromABCDGroupTransform;
-+ (void)updateContact:(id)arg1 fromABCDContact:(id)arg2 withPropertyKeys:(id)arg3;
++ (void)updateContact:(id)arg1 fromABCDContact:(id)arg2 withPropertyKeyDescriptor:(id)arg3;
 + (id)makeMutableContactWithIdentifierString:(id)arg1 availableKeys:(id)arg2;
 + (id)contactFromABCDContact:(id)arg1 keysToConvert:(id)arg2;
 + (CDUnknownBlockType)contactFromABCDContactWithKeysToFetch:(id)arg1;

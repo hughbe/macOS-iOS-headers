@@ -13,15 +13,15 @@
     id <WPZoneTrackerDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL wantExit; // @synthesize wantExit=_wantExit;
 @property(nonatomic) BOOL wantEntry; // @synthesize wantEntry=_wantEntry;
 @property(nonatomic) __weak id <WPZoneTrackerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)stateDidChange:(long long)arg1;
 - (void)fetchedCurrentlyTrackedZones:(id)arg1;
 - (void)failedToRegisterZones:(id)arg1 withError:(id)arg2;
 - (void)exitedZone:(id)arg1;
-- (void)enteredZone:(id)arg1;
+- (void)enteredZone:(id)arg1 manufacturerData:(id)arg2;
 - (void)getCurrentTrackedZones;
 - (void)unregisterAllZoneChanges;
 - (void)unregisterForZoneChanges:(id)arg1;

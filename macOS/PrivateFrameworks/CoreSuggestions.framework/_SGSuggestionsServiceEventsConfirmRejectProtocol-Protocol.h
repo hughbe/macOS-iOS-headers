@@ -4,16 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class SGRealtimeEvent, SGRecordId;
+@class NSDate, NSString, SGRealtimeEvent, SGRecordId;
 
 @protocol _SGSuggestionsServiceEventsConfirmRejectProtocol
-- (void)rejectEventByRecordId:(SGRecordId *)arg1 withCompletion:(void (^)(NSError *))arg2;
+- (void)waitForEventWithIdentifier:(NSString *)arg1 toAppearInEventStoreWithCompletion:(void (^)(BOOL, NSError *))arg2;
+- (void)waitForEventWithIdentifier:(NSString *)arg1 toAppearInEventStoreWithLastModificationDate:(NSDate *)arg2 completion:(void (^)(BOOL, NSError *))arg3;
 - (BOOL)rejectEventByRecordId:(SGRecordId *)arg1 error:(id *)arg2;
-- (void)confirmEventByRecordId:(SGRecordId *)arg1 withCompletion:(void (^)(NSError *))arg2;
+- (void)rejectEventByRecordId:(SGRecordId *)arg1 withCompletion:(void (^)(NSError *))arg2;
 - (BOOL)confirmEventByRecordId:(SGRecordId *)arg1 error:(id *)arg2;
+- (void)confirmEventByRecordId:(SGRecordId *)arg1 withCompletion:(void (^)(NSError *))arg2;
 - (void)rejectEvent:(SGRealtimeEvent *)arg1 withCompletion:(void (^)(NSError *))arg2;
-- (BOOL)rejectEvent:(SGRealtimeEvent *)arg1 error:(id *)arg2;
 - (void)confirmEvent:(SGRealtimeEvent *)arg1 withCompletion:(void (^)(NSError *))arg2;
-- (BOOL)confirmEvent:(SGRealtimeEvent *)arg1 error:(id *)arg2;
 @end
 

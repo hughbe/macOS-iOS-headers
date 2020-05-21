@@ -10,18 +10,17 @@
 #import "WebResourceLoadDelegate.h"
 #import "WebUIDelegate.h"
 
-@class AKAppleIDAuthenticationContext, AKAppleIDAuthenticationController, AKAppleIDServerResourceLoadDelegate, AKAppleIDSession, MMKeychainCDP, NSString, NSURLRequest, WebPreferences, WebView;
+@class AKAppleIDAuthenticationContext, AKAppleIDAuthenticationController, AKAppleIDServerResourceLoadDelegate, AKAppleIDSession, CDPStateUIController, NSString, NSURLRequest, WebPreferences, WebView;
 
 @interface MMWebKitController : NSObject <WebUIDelegate, WebFrameLoadDelegate, WebResourceLoadDelegate>
 {
-    id <MMWebKitControllerDelegate> _delegate;
     WebPreferences *_webPreferences;
     WebView *_webView;
     NSURLRequest *_loadingRequest;
     AKAppleIDSession *_appleIDSession;
     AKAppleIDAuthenticationController *_appleIDController;
     AKAppleIDAuthenticationContext *_authContext;
-    MMKeychainCDP *cdpStateUIController;
+    CDPStateUIController *cdpStateUIController;
     AKAppleIDServerResourceLoadDelegate *_loadDelegate;
     NSString *_appleID;
     NSString *_altDSID;
@@ -39,8 +38,10 @@
         unsigned int delegateWindow:1;
         unsigned int padding:1;
     } _delegateFlags;
+    id <MMWebKitControllerDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSURLRequest *loadingRequest; // @synthesize loadingRequest=_loadingRequest;
 @property(nonatomic) unsigned long long gsType; // @synthesize gsType=_gsType;
 @property(retain, nonatomic) NSString *altDSID; // @synthesize altDSID=_altDSID;
@@ -58,6 +59,8 @@
 - (void)webView:(id)arg1 didFailProvisionalLoadWithError:(id)arg2 forFrame:(id)arg3;
 - (void)webView:(id)arg1 didFinishLoadForFrame:(id)arg2;
 - (void)webView:(id)arg1 didCommitLoadForFrame:(id)arg2;
+- (BOOL)webView:(id)arg1 resource:(id)arg2 canAuthenticateAgainstProtectionSpace:(id)arg3 forDataSource:(id)arg4;
+- (void)webView:(id)arg1 resource:(id)arg2 didReceiveAuthenticationChallenge:(id)arg3 fromDataSource:(id)arg4;
 - (void)webView:(id)arg1 didStartProvisionalLoadForFrame:(id)arg2;
 - (void)webView:(id)arg1 didCreateJavaScriptContext:(id)arg2 forFrame:(id)arg3;
 - (void)setupResourceLoadDelegate;
@@ -65,9 +68,8 @@
 - (id)webViewURL;
 - (void)reload;
 - (void)loadURLRequest:(id)arg1;
-- (id)initInView:(id)arg1;
 - (void)loadHTMLString:(id)arg1 withParentURL:(id)arg2;
-- (void)loadHTMLString:(id)arg1;
+- (id)initInView:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABActionSocialProfile : NSObject <ABActionDelegate>
 {
 }
@@ -18,6 +17,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldEnableActionForPerson:(id)arg1 identifier:(id)arg2;
 @property(readonly) NSString *actionProperty;
 - (id)titleForPerson:(id)arg1 identifier:(id)arg2;
+- (id)unlocalizedTitle;
 - (void)performActionForPerson:(id)arg1 identifier:(id)arg2;
 - (id)_localizationStringKeyForProfile:(id)arg1;
 - (id)_standardURLForProfile:(id)arg1;

@@ -15,16 +15,24 @@
 + (Class)frozenClass;
 + (id)_allowableChangeKeys;
 + (id)attendeeWithParticipant:(id)arg1;
++ (id)attendeeWithName:(id)arg1 emailAddress:(id)arg2 phoneNumber:(id)arg3 url:(id)arg4;
 + (id)attendeeWithName:(id)arg1 emailAddress:(id)arg2 address:(id)arg3;
++ (id)attendeeWithName:(id)arg1 phoneNumber:(id)arg2;
++ (id)attendeeWithName:(id)arg1 emailAddress:(id)arg2;
++ (id)attendeeWithName:(id)arg1 url:(id)arg2;
++ (id)attendeeWithEmailAddress:(id)arg1 name:(id)arg2;
 - (BOOL)_hasOnlyAllowableChanges;
 - (BOOL)_hasAllowableChanges;
 @property(readonly, nonatomic) NSDate *lastModifiedParticipationStatus;
 - (id)displayString;
+- (id)lastName;
+- (id)firstName;
+- (void)markAsForward;
 
 // Remaining properties
-@property(nonatomic) long long participantRole;
-@property(nonatomic) long long participantStatus;
-@property(nonatomic) long long participantType;
+@property(nonatomic) long long participantRole; // @dynamic participantRole;
+@property(nonatomic) long long participantStatus; // @dynamic participantStatus;
+@property(nonatomic) long long participantType; // @dynamic participantType;
 
 @end
 

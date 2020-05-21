@@ -16,7 +16,7 @@
 }
 
 + (id)sharedTurnBasedEventHandler;
-@property(nonatomic) NSObject<OS_dispatch_queue> *lookForEventQueue; // @synthesize lookForEventQueue=_lookForEventQueue;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *lookForEventQueue; // @synthesize lookForEventQueue=_lookForEventQueue;
 @property(nonatomic) BOOL didBecomeActive; // @synthesize didBecomeActive=_didBecomeActive;
 - (void)lookForEvent;
 - (void)callTurnEventForMatch:(id)arg1 userTapped:(BOOL)arg2;

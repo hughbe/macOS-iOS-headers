@@ -22,6 +22,7 @@
 - (void)accessibilityAddChildElement:(id)arg1;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityAttributeNames;
+- (BOOL)_accessibilityUseConvenienceAPI;
 - (id)init;
 - (BOOL)accessibilityPerformShowMenu;
 - (BOOL)accessibilityPerformShowDefaultUI;
@@ -34,6 +35,8 @@
 - (BOOL)accessibilityPerformDecrement;
 - (BOOL)accessibilityPerformConfirm;
 - (BOOL)accessibilityPerformCancel;
+- (void)setAccessibilityOverridesAlwaysTakePrecedence:(BOOL)arg1;
+- (BOOL)accessibilityOverridesAlwaysTakePrecedence;
 - (void)setAccessibilityContentSiblingBelow:(id)arg1;
 - (id)accessibilityContentSiblingBelow;
 - (void)setAccessibilityContentSiblingAbove:(id)arg1;
@@ -134,6 +137,8 @@
 @property(retain) id accessibilityHeader; // @dynamic accessibilityHeader;
 @property(copy) NSArray *accessibilityHandles; // @dynamic accessibilityHandles;
 @property(retain) id accessibilityGrowArea; // @dynamic accessibilityGrowArea;
+- (void)setAccessibilityFunctionRowTopLevelElements:(id)arg1;
+- (id)accessibilityFunctionRowTopLevelElements;
 @property(retain) id accessibilityFullScreenButton; // @dynamic accessibilityFullScreenButton;
 @property(getter=isAccessibilityFrontmost) BOOL accessibilityFrontmost; // @dynamic accessibilityFrontmost;
 @property(retain) id accessibilityFocusedWindow; // @dynamic accessibilityFocusedWindow;
@@ -155,8 +160,10 @@
 - (id)_accessibilityLabel;
 @property(retain) id accessibilityDefaultButton; // @dynamic accessibilityDefaultButton;
 @property(retain) id accessibilityDecrementButton; // @dynamic accessibilityDecrementButton;
+@property(copy) NSArray *accessibilityCustomRotors; // @dynamic accessibilityCustomRotors;
 - (void)setAccessibilityCustomChoosers:(id)arg1;
 - (id)accessibilityCustomChoosers;
+@property(copy) NSArray *accessibilityCustomActions; // @dynamic accessibilityCustomActions;
 @property(retain) id accessibilityCriticalValue; // @dynamic accessibilityCriticalValue;
 @property(copy) NSArray *accessibilityContents; // @dynamic accessibilityContents;
 @property(getter=isAccessibilityProtectedContent) BOOL accessibilityProtectedContent; // @dynamic accessibilityProtectedContent;
@@ -167,8 +174,7 @@
 @property long long accessibilityColumnCount; // @dynamic accessibilityColumnCount;
 @property(retain) id accessibilityCloseButton; // @dynamic accessibilityCloseButton;
 @property(retain) id accessibilityClearButton; // @dynamic accessibilityClearButton;
-- (void)setAccessibilityChildrenInNavigationOrder:(id)arg1;
-- (id)accessibilityChildrenInNavigationOrder;
+@property(copy) NSArray *accessibilityChildrenInNavigationOrder; // @dynamic accessibilityChildrenInNavigationOrder;
 @property(copy) NSArray *accessibilityChildren; // @dynamic accessibilityChildren;
 @property(retain) id accessibilityCancelButton; // @dynamic accessibilityCancelButton;
 - (void)setAccessibilityAuditIssues:(id)arg1;

@@ -17,12 +17,12 @@
 + (id)nthWeekDayWithDayOfTheWeek:(unsigned long long)arg1 weekNumber:(long long)arg2;
 @property(readonly) long long weekNumber; // @synthesize weekNumber=_weekNumber;
 @property(readonly) unsigned long long dayOfTheWeek; // @synthesize dayOfTheWeek=_dayOfTheWeek;
+- (id)initWithDayOfTheWeek:(unsigned long long)arg1 weekNumber:(long long)arg2;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
-- (id)initWithDayOfTheWeek:(unsigned long long)arg1 weekNumber:(long long)arg2;
 
 @end
 

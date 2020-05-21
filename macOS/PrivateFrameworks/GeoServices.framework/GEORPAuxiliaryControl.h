@@ -8,16 +8,26 @@
 
 #import "NSCopying.h"
 
-@class GEORPCarPlayAuxiliaryControl, GEORPWatchAuxiliaryControl;
+@class GEORPCarPlayAuxiliaryControl, GEORPWatchAuxiliaryControl, PBDataReader;
 
 @interface GEORPAuxiliaryControl : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     GEORPCarPlayAuxiliaryControl *_car;
     GEORPWatchAuxiliaryControl *_watch;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_car:1;
+        unsigned int read_watch:1;
+        unsigned int wrote_car:1;
+        unsigned int wrote_watch:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEORPCarPlayAuxiliaryControl *car; // @synthesize car=_car;
-@property(retain, nonatomic) GEORPWatchAuxiliaryControl *watch; // @synthesize watch=_watch;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +35,17 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEORPCarPlayAuxiliaryControl *car;
 @property(readonly, nonatomic) BOOL hasCar;
+- (void)_readCar;
+@property(retain, nonatomic) GEORPWatchAuxiliaryControl *watch;
 @property(readonly, nonatomic) BOOL hasWatch;
-- (void)dealloc;
+- (void)_readWatch;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

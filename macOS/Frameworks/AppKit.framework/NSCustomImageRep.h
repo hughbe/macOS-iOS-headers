@@ -8,9 +8,9 @@
 
 @interface NSCustomImageRep : NSImageRep
 {
+    unsigned int _reserved;
     SEL _drawMethod;
     id _drawObject;
-    unsigned int _reserved;
 }
 
 + (void)initialize;
@@ -19,7 +19,7 @@
 - (id)initWithCoder:(id)arg1;
 - (BOOL)draw;
 - (BOOL)_wantsToBeCached;
-@property(readonly) id delegate;
+@property(readonly) __weak id delegate;
 @property(readonly) SEL drawSelector;
 @property(readonly, copy) CDUnknownBlockType drawingHandler;
 - (void)dealloc;

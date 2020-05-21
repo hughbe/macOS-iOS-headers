@@ -6,7 +6,7 @@
 
 #import <AppKit/NSView.h>
 
-@class CALayer, NSArray, NSButton, NSDocumentRevisionsController, NSMapTable, NSMutableArray, NSTextField, NSWindow;
+@class NSArray, NSButton, NSDocumentRevisionsAuxiliaryWindow, NSDocumentRevisionsController, NSMapTable, NSMutableArray, NSTextField;
 
 __attribute__((visibility("hidden")))
 @interface NSDocumentRevisionsView : NSView
@@ -26,9 +26,7 @@ __attribute__((visibility("hidden")))
     double _windowScaleFactor;
     BOOL _topLayerHidden;
     NSView *_stackView;
-    CALayer *_screenShotLayer;
     NSMapTable *_transitionAnimations;
-    BOOL _transitoryLayersVisible;
     BOOL _isStartTransition;
     NSArray *_layerStackAnimations;
     NSArray *_backdropLayerStackAnimations;
@@ -41,12 +39,13 @@ __attribute__((visibility("hidden")))
     NSButton *_previousButton;
     NSButton *_nextButton;
     id _flagsChangedObserver;
-    NSWindow *_timelineWindow;
+    NSDocumentRevisionsAuxiliaryWindow *_timelineWindow;
     BOOL _timelineHidden;
     CDUnknownBlockType _goToAnimationContinuer;
 }
 
 + (Class)_remoteViewClass;
+@property(readonly) NSDocumentRevisionsAuxiliaryWindow *timelineWindow; // @synthesize timelineWindow=_timelineWindow;
 @property(retain) NSView *stackView; // @synthesize stackView=_stackView;
 @property(readonly) struct CGRect focusedRevisionFrame; // @synthesize focusedRevisionFrame=_focusedRevisionFrame;
 @property(readonly) struct CGRect focusedOriginalFrame; // @synthesize focusedOriginalFrame=_focusedOriginalFrame;
@@ -74,11 +73,8 @@ __attribute__((visibility("hidden")))
 - (void)prepareForFinishAnimationWithOutcome:(long long)arg1;
 - (void)prepareForStartAnimation;
 - (void)_prepareRevisionLayers;
-- (void)setFullScreenShot:(id)arg1;
-- (void)_setupFullScreenShot;
+- (void)_setupDesktopPictureFade;
 - (void)_commitTransitoryAnimations;
-- (void)hideTransitoryLayers;
-- (void)showTransitoryLayers;
 - (void)_whenRevisionUpdatesAreAllowedDo:(CDUnknownBlockType)arg1;
 - (void)_animationDidEnd;
 - (void)_animationWillStart;
@@ -122,7 +118,6 @@ __attribute__((visibility("hidden")))
 @property unsigned long long currentStackItemIndex;
 - (void)dealloc;
 - (id)initWithController:(id)arg1;
-- (unsigned int)_CAViewFlags;
 
 @end
 

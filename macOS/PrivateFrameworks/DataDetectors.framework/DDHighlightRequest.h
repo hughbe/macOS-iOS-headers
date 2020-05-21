@@ -17,11 +17,11 @@ __attribute__((visibility("hidden")))
     BOOL _webViewDisplayed;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSArray *highlightObjects; // @synthesize highlightObjects=_highlightObjects;
 @property(retain) id webView; // @synthesize webView=_webView;
 @property(copy) NSString *webViewIdentifier; // @synthesize webViewIdentifier=_webViewIdentifier;
 @property BOOL webViewDisplayed;
-- (void)dealloc;
 
 @end
 

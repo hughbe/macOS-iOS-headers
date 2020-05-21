@@ -16,11 +16,11 @@
 + (id)_htmlMarkerForContentType:(long long)arg1;
 + (void)initialize;
 + (id)log;
-@property(readonly, nonatomic) MFRedundantContentMarkup *redundantContentMarkup; // @synthesize redundantContentMarkup=_redundantContentMarkup;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) MFRedundantContentMarkup *redundantContentMarkup; // @synthesize redundantContentMarkup=_redundantContentMarkup;
 - (id)_attachmentContextsByURLforAttachmentsByURL:(id)arg1;
 - (id)init;
-- (id)initWithMessage:(id)arg1 parsedMessage:(id)arg2 ancestorMessage:(id)arg3 ancestorParsedMessage:(id)arg4;
+- (id)initWithMessage:(id)arg1 messageBody:(id)arg2 ancestorMessage:(id)arg3 ancestorMessageBody:(id)arg4;
 
 @end
 

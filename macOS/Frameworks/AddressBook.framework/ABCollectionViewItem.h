@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
+#import "ABActionManagerDelegate.h"
 #import "NSMenuDelegate.h"
 
 @class ABActionManager, ABActionMenuItemFactory, ABCardCollectionView, ABCardViewStyleProvider, NSArray, NSFormatter, NSString, NSValueTransformer, NSView<ABCardCollectionRowView>;
 
-__attribute__((visibility("hidden")))
-@interface ABCollectionViewItem : NSObject <NSMenuDelegate>
+@interface ABCollectionViewItem : NSObject <ABActionManagerDelegate, NSMenuDelegate>
 {
     NSString *_identifier;
     NSString *_property;
@@ -40,15 +40,19 @@ __attribute__((visibility("hidden")))
     NSFormatter *_formatter;
     ABCardViewStyleProvider *_styleProvider;
     id <ABCardCollectionViewDelegate> _delegate;
+    id <CNSchedulerProvider> _schedulerProvider;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) id <CNSchedulerProvider> schedulerProvider; // @synthesize schedulerProvider=_schedulerProvider;
+@property(retain, nonatomic) NSFormatter *formatter; // @synthesize formatter=_formatter;
 @property BOOL hasValueChanges; // @synthesize hasValueChanges=_hasValueChanges;
 @property(retain, nonatomic) ABCardViewStyleProvider *styleProvider; // @synthesize styleProvider=_styleProvider;
 @property BOOL shouldShowActionMenu; // @synthesize shouldShowActionMenu=_shouldShowActionMenu;
 @property BOOL formatsValueWhileEditing; // @synthesize formatsValueWhileEditing=_formatsValueWhileEditing;
 @property BOOL transformsValueAfterEditing; // @synthesize transformsValueAfterEditing=_transformsValueAfterEditing;
 @property(readonly) ABActionManager *cardActionManager; // @synthesize cardActionManager=_cardActionManager;
-@property(nonatomic) id <ABCardCollectionViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <ABCardCollectionViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) long long valueWritingDirection; // @synthesize valueWritingDirection=_valueWritingDirection;
 @property(retain, nonatomic) id <ABCollectionAction> reviewSuggestionAction; // @synthesize reviewSuggestionAction=_reviewSuggestionAction;
 @property(retain, nonatomic) NSArray *glyphActions; // @synthesize glyphActions=_glyphActions;
@@ -61,13 +65,11 @@ __attribute__((visibility("hidden")))
 @property(copy) NSString *cacheKey; // @synthesize cacheKey=_cacheKey;
 @property(retain) NSArray *relatedValueKeyPaths; // @synthesize relatedValueKeyPaths=_relatedValueKeyPaths;
 @property(retain) NSString *valueKeyPath; // @synthesize valueKeyPath=_valueKeyPath;
-@property ABCardCollectionView *collectionView; // @synthesize collectionView=_collectionView;
+@property(retain) ABCardCollectionView *collectionView; // @synthesize collectionView=_collectionView;
 @property(retain, nonatomic) NSView<ABCardCollectionRowView> *view; // @synthesize view=_view;
 @property(retain, nonatomic) NSView<ABCardCollectionRowView> *editView; // @synthesize editView=_editView;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy) NSString *property; // @synthesize property=_property;
-- (void)forceFullLayout;
-- (void)queueFullLayout;
 - (void)restoreMenuItemsAfterDisplay:(id)arg1;
 - (void)menuDidClose:(id)arg1;
 - (void)prepareMenuItemsForDisplay:(id)arg1;
@@ -79,10 +81,13 @@ __attribute__((visibility("hidden")))
 - (BOOL)validateMenuItem:(id)arg1;
 - (id)attributedTitleForLabel:(id)arg1;
 - (id)itemForLabel:(id)arg1;
+- (BOOL)shouldEnableEditPopupButton;
 - (id)_labelMenuItems;
 - (id)_localizedLabel;
 - (id)_label;
+- (BOOL)allowsLabelSelection;
 - (BOOL)allowsLabelCustomization;
+- (BOOL)allowsUserSettableLabel;
 - (id)labels;
 - (void)setLabel:(id)arg1;
 - (void)labelChanged:(id)arg1;
@@ -91,9 +96,11 @@ __attribute__((visibility("hidden")))
 - (double)yOffsetOfView:(id)arg1;
 - (double)yOffsetOfEditView;
 - (double)yOffsetOfValueView;
+- (void)datumViewWantsActionGlyphs:(id)arg1;
 - (void)datumViewWantsEditMode:(id)arg1;
 - (void)datumViewDidResignFirstResponder:(id)arg1;
 - (void)datumViewDidBecomeFirstResponder:(id)arg1;
+- (void)datumViewWillChangeFocus:(id)arg1;
 - (void)datumViewDidMouseDown:(id)arg1;
 - (void)datumView:(id)arg1 privacyDidChange:(BOOL)arg2;
 - (BOOL)addNewItem:(id)arg1;
@@ -107,13 +114,18 @@ __attribute__((visibility("hidden")))
 - (void)_updateViewSelectability;
 - (void)_updateViewPlaceholder;
 - (void)_updateViewPrivacyControls;
-- (id)suggestionSource;
+@property(readonly) NSString *suggestionSource;
+- (BOOL)shouldUpdateEditViewTextFieldFormatter;
+- (void)_updateEditViewFormatterIfNecessary;
+- (void)_updateViewFormatterIfNecessary;
+- (void)_updateFormatter;
 - (void)_updateViewValue;
 - (BOOL)_shouldShowSuggestedButton;
 - (BOOL)_shouldShowRemoveItemButton;
 - (BOOL)_shouldShowAddItemButton;
 - (void)_updateViewControls;
 - (void)_updateViewLabelHighlighting;
+- (void)_populateEditViewPopupMenu:(id)arg1;
 - (void)_updateViewLabel;
 - (void)_updateViewLabelMenu;
 - (void)_updateViewStyleProvider;
@@ -131,6 +143,7 @@ __attribute__((visibility("hidden")))
 - (void)didRemoveFromCollection:(id)arg1;
 - (void)didInsertIntoCollectionView:(id)arg1;
 - (BOOL)commitEditing;
+- (BOOL)isActionBasedOnSuggestedValueActionManager:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)nonEditViewFocusView;
 - (id)editViewFocusView;
@@ -143,7 +156,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)isLast;
 - (BOOL)isFirst;
 - (BOOL)hasContent;
-@property(retain, nonatomic) NSFormatter *formatter;
 @property(readonly) unsigned long long orderingIndex;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;

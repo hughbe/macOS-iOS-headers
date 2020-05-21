@@ -11,8 +11,13 @@
     struct AugmentableInspectorController *_controller;
 }
 
+- (void)powerEfficientPlaybackStateChangedWithNodeId:(int)arg1 timestamp:(double)arg2 isPowerEfficient:(BOOL)arg3;
+- (void)didFireEventWithNodeId:(int)arg1 eventName:(id)arg2 timestamp:(double)arg3 data:(id *)arg4;
+- (void)willRemoveEventListenerWithNodeId:(int)arg1;
+- (void)didAddEventListenerWithNodeId:(int)arg1;
 - (void)pseudoElementRemovedWithParentId:(int)arg1 pseudoElementId:(int)arg2;
 - (void)pseudoElementAddedWithParentId:(int)arg1 pseudoElement:(id)arg2;
+- (void)customElementStateChangedWithNodeId:(int)arg1 customElementState:(long long)arg2;
 - (void)shadowRootPoppedWithHostId:(int)arg1 rootId:(int)arg2;
 - (void)shadowRootPushedWithHostId:(int)arg1 root:(id)arg2;
 - (void)childNodeRemovedWithParentNodeId:(int)arg1 nodeId:(int)arg2;
@@ -23,6 +28,7 @@
 - (void)attributeRemovedWithNodeId:(int)arg1 name:(id)arg2;
 - (void)attributeModifiedWithNodeId:(int)arg1 name:(id)arg2 value:(id)arg3;
 - (void)setChildNodesWithParentId:(int)arg1 nodes:(id)arg2;
+- (void)inspectWithNodeId:(int)arg1;
 - (void)documentUpdated;
 - (id)initWithController:(struct AugmentableInspectorController *)arg1;
 

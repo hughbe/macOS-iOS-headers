@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
 
 @property(retain) NSSegmentItemView *segmentItemView; // @synthesize segmentItemView=_segmentItemView;
 @property long long index; // @synthesize index=_index;
+- (void)dealloc;
 
 @end
 

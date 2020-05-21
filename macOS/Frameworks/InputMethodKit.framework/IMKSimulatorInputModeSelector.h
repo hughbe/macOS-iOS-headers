@@ -6,20 +6,18 @@
 
 #import "NSObject.h"
 
-@class IMKSimulatorInputModeSelectorFloatingPanel, NSArray, NSString;
+@class IMKSimulatorInputModeSelectorFloatingPanel, NSArray;
 
 @interface IMKSimulatorInputModeSelector : NSObject
 {
     IMKSimulatorInputModeSelectorFloatingPanel *_floatingPanel;
     NSArray *_inputModeURLs;
-    NSString *_selectedInputModeURL;
 }
 
 + (id)sharedInputModeSelector;
-@property(retain, nonatomic) NSString *selectedInputModeURL; // @synthesize selectedInputModeURL=_selectedInputModeURL;
 @property(retain, nonatomic) NSArray *inputModeURLs; // @synthesize inputModeURLs=_inputModeURLs;
-@property(retain, nonatomic) IMKSimulatorInputModeSelectorFloatingPanel *floatingPanel; // @synthesize floatingPanel=_floatingPanel;
-- (void)showPanel;
+- (void)selectInputModeUsingLabel:(id)arg1;
+@property(readonly, copy, nonatomic) NSArray *inputModeLabels;
 - (void)dealloc;
 - (id)init;
 

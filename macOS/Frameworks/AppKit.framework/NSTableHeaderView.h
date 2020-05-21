@@ -6,10 +6,13 @@
 
 #import <AppKit/NSView.h>
 
-@class NSImage, NSTableView;
+#import "NSViewToolTipOwner.h"
 
-@interface NSTableHeaderView : NSView
+@class NSImage, NSString, NSTableView;
+
+@interface NSTableHeaderView : NSView <NSViewToolTipOwner>
 {
+    unsigned int _drawsBackground:1;
     NSTableView *_tableView;
     long long _resizedColumn;
     long long _draggedColumn;
@@ -24,11 +27,12 @@
     unsigned int _wantsTranslucency:1;
     unsigned int _addedBlurToClipView:1;
     unsigned int _usedNewHeight:1;
-    unsigned int _reserved:24;
+    unsigned int _reserved:23;
     BOOL _skipDrawingSeparator;
     id _viewDataX;
 }
 
+- (void).cxx_destruct;
 - (void)_updateColumnViewWidthsAnimated:(BOOL)arg1;
 - (void)_endDraggingColumn:(long long)arg1 animated:(BOOL)arg2;
 - (void)_didMoveFromColumn:(long long)arg1 toColumn:(long long)arg2 animated:(BOOL)arg3;
@@ -38,7 +42,7 @@
 @property(readonly) double draggedDistance;
 @property(readonly) long long draggedColumn;
 @property(readonly) long long resizedColumn;
-@property NSTableView *tableView;
+@property __weak NSTableView *tableView;
 - (void)_finishedMakingConnections;
 - (void)_windowChangedKeyState;
 - (long long)_resizeableColumnAtPoint:(struct CGPoint)arg1;
@@ -56,27 +60,30 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)viewWillMoveToSuperview:(id)arg1;
 - (void)viewDidMoveToSuperview;
+- (unsigned long long)_vibrantBlendingStyleForSubtree;
 - (void)_removeBackgroundView;
 - (void)_setBackgroundView:(id)arg1;
 - (id)_backgroundView;
 - (void)_updateClipViewBackgroundColors;
 - (void)setLayer:(id)arg1;
 - (void)_updateBackgroundViewFrame;
-- (void)_addBlurViewIfNecessary;
+- (void)_addOrRemoveBlurViewAsNecessary;
 - (id)_makeBlurBackgroundViewWithFrame:(struct CGRect)arg1;
+- (BOOL)_viewOverridesDrawing;
 - (BOOL)_hasTranslucency;
-- (BOOL)_canAddBlurView;
 - (void)_setWantsTranslucency:(BOOL)arg1;
 - (BOOL)_wantsTranslucency;
+- (BOOL)drawsBackground;
+- (void)setDrawsBackground:(BOOL)arg1;
 - (id)_preferredAppearance;
 - (void)_viewBasedRawRect:(struct CGRect)arg1;
 - (void)_switchToNonViewBasedIfNeeded;
 - (void)_switchToViewBasedIfNeeded;
 - (BOOL)_supportsViewsForAnimations;
 - (id)view:(id)arg1 stringForToolTip:(long long)arg2 point:(struct CGPoint)arg3 userData:(void *)arg4;
-- (void)_addToolTipRects;
+- (void)_resetToolTipRects;
+- (void)_invalidateToolTipRects;
 - (void)_invalidateOrComputeNewCursorRectsIfNecessary;
-- (void)_setToolTipRectsDirty:(BOOL)arg1;
 - (void)_windowKeyChanged:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -108,20 +115,10 @@
 - (void)_doModifySelectionWithEvent:(id)arg1 onColumn:(long long)arg2;
 - (void)_drawColumnHeaderWithIndexes:(id)arg1;
 - (BOOL)_drawingEndSeparator;
-- (id)_rectsForMultiClippedContentDrawing;
-- (BOOL)_hasRowHeaderColumn;
-- (struct CGRect)_rowHeaderScrollableContentVisibleRect;
-- (struct CGRect)_rowHeaderFixedContentRect;
-- (void)_drawRect:(struct CGRect)arg1 liveResizeFill:(struct CGRect)arg2:(struct CGRect)arg3:(struct CGRect)arg4:(struct CGRect)arg5 cacheCoveredArea:(struct CGRect)arg6;
-- (void)_drawRect:(struct CGRect)arg1 liveResizeCacheCoveredArea:(struct CGRect)arg2;
 - (BOOL)_layoutIsSameAsCachedLayoutWithFrame:(struct CGRect)arg1;
-- (void)_invalidateLiveResizeCachedImage;
-- (BOOL)_shouldAttemptIdleTimeDisposeOfLiveResizeCacheWithFrame:(struct CGRect)arg1;
-- (BOOL)_wantsLiveResizeToUseCachedImage;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (void)setFrameOrigin:(struct CGPoint)arg1;
 - (void)_invalidateRightMostLineIfNeeded;
-- (BOOL)preservesContentDuringLiveResize;
 - (void)_drawOverflowHeaderInRect:(struct CGRect)arg1;
 - (struct CGRect)_overflowRectForBounds:(struct CGRect)arg1;
 - (void)_drawHeaderOfColumn:(long long)arg1;
@@ -130,7 +127,7 @@
 - (id)_preparedHeaderCellAtColumn:(long long)arg1;
 - (void)drawBackgroundOverhangInRect:(struct CGRect)arg1;
 - (void)_drawHeaderFillerInRect:(struct CGRect)arg1 matchLastState:(BOOL)arg2;
-- (id)_vibrancyFilter;
+- (int)_vibrancyBlendMode;
 - (BOOL)allowsVibrancy;
 - (id)_preparedHeaderFillerCell;
 - (void)_tableView:(id)arg1 didRemoveTableColumnAtIndex:(long long)arg2;
@@ -157,6 +154,12 @@
 - (id)accessibilityRoleAttribute;
 - (unsigned long long)accessibilityColumnForChild:(id)arg1;
 - (id)accessibilityChildForColumn:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

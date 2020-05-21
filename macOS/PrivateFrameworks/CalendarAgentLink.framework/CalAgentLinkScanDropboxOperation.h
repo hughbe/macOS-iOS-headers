@@ -13,10 +13,10 @@
     NSString *_objectID;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *objectID; // @synthesize objectID=_objectID;
 - (id)inputPayload;
 - (id)description;
-- (void)dealloc;
 
 @end
 

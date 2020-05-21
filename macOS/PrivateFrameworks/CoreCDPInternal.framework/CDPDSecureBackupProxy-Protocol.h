@@ -6,16 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSDictionary;
+@class CDPContext, NSDictionary, NSString;
 
 @protocol CDPDSecureBackupProxy <NSObject>
-- (void)setBackOffDateWithInfo:(NSDictionary *)arg1 completionBlock:(void (^)(NSError *))arg2;
-- (void)backOffDateWithInfo:(NSDictionary *)arg1 completionBlock:(void (^)(NSDictionary *, NSError *))arg2;
-- (void)disableWithInfo:(NSDictionary *)arg1 completionBlock:(void (^)(NSError *))arg2;
-- (void)recoverWithInfo:(NSDictionary *)arg1 completionBlockWithResults:(void (^)(NSDictionary *, NSError *))arg2;
+@property(retain, nonatomic) CDPContext *cdpContext;
+- (void)uncacheAllSecrets;
+- (void)cacheRecoveryKey:(NSString *)arg1 completionBlock:(void (^)(NSError *))arg2;
 - (void)enableWithInfo:(NSDictionary *)arg1 completionBlock:(void (^)(NSError *))arg2;
-- (void)uncachePassphraseWithInfo:(NSDictionary *)arg1 completionBlock:(void (^)(NSError *))arg2;
+- (void)disableWithInfo:(NSDictionary *)arg1 completionBlock:(void (^)(NSError *))arg2;
+- (NSDictionary *)recoverWithInfo:(NSDictionary *)arg1 error:(id *)arg2;
+- (BOOL)enableWithInfo:(NSDictionary *)arg1 error:(id *)arg2;
+- (BOOL)disableWithInfo:(NSDictionary *)arg1 error:(id *)arg2;
 - (NSDictionary *)accountInfoWithInfo:(NSDictionary *)arg1 error:(id *)arg2;
-- (void)getAccountInfoWithInfo:(NSDictionary *)arg1 completionBlockWithResults:(void (^)(NSDictionary *, NSError *))arg2;
+- (id)init;
+- (id)initWithContext:(CDPContext *)arg1;
 @end
 

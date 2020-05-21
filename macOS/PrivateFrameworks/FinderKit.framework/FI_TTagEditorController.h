@@ -14,19 +14,19 @@ __attribute__((visibility("hidden")))
 @interface FI_TTagEditorController : FI_TViewController <TCoalescingNodeObserverProtocol>
 {
     struct TFENodeVector _nodes;
-    struct TCoalescingNodeObserverCocoaBridge *_nodeObserver;
-    struct TNSRef<NSArray *, void> _originalTagAttributes;
+    struct shared_ptr<TCoalescingNodeObserverCocoaBridge> _nodeObserver;
+    struct TNSRef<NSArray, void> _originalTagAttributes;
     _Bool _canceled;
     struct TNotificationCenterObserver _tagRegistryChangedObserver;
     struct TNotificationCenterObserver _didEndEditingObserver;
     struct TNotificationCenterObserver _forceTokenFieldToCommitObserver;
 }
 
-@property(getter=isCanceled) _Bool canceled; // @synthesize canceled=_canceled;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(getter=isCanceled) _Bool canceled; // @synthesize canceled=_canceled;
 - (void)applyTagsToNodes;
-- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const struct TFENodeUpdateList *)arg2 inObservedNode:(const struct TFENode *)arg3;
+- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const vector_614ab7ad *)arg2 inObservedNode:(const struct TFENode *)arg3;
 @property(copy, nonatomic) NSArray *tags; // @dynamic tags;
 - (void)setNodes:(const struct TFENodeVector *)arg1;
 - (struct TFENodeVector)nodes;

@@ -15,9 +15,10 @@
     NSDictionary *_outputSettingsDictionary;
 }
 
++ (BOOL)supportsEmptyOutputSettingsDictionary;
 + (id)defaultOutputSettingsForMediaType:(id)arg1;
-+ (id)_outputSettingsWithOutputSettingsDictionary:(id)arg1 exceptionReason:(id *)arg2;
-+ (id)outputSettingsWithOutputSettingsDictionary:(id)arg1;
++ (id)_outputSettingsWithOutputSettingsDictionary:(id)arg1 mediaType:(id)arg2 exceptionReason:(id *)arg3;
++ (id)outputSettingsWithOutputSettingsDictionary:(id)arg1 mediaType:(id)arg2;
 + (unsigned long long)_validateOutputSettingsDictionary:(id)arg1 compatibilityDescription:(id *)arg2;
 + (unsigned long long)validateOutputSettingsDictionary:(id)arg1;
 + (id)eligibleOutputSettingsDictionaryKeys;

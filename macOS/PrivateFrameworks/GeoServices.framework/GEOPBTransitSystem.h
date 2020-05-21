@@ -9,31 +9,43 @@
 #import "GEOTransitNamedItem.h"
 #import "NSCopying.h"
 
-@class GEOPBTransitArtwork, GEOStyleAttributes, NSString;
+@class GEOPBTransitArtwork, GEOStyleAttributes, NSString, PBDataReader, PBUnknownFields;
 
 @interface GEOPBTransitSystem : PBCodable <GEOTransitNamedItem, NSCopying>
 {
-    unsigned long long _muid;
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     GEOPBTransitArtwork *_artwork;
-    unsigned int _brandIndex;
+    unsigned long long _muid;
     NSString *_nameDisplayString;
     GEOStyleAttributes *_styleAttributes;
-    unsigned int _systemIndex;
     NSString *_website;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    unsigned int _systemIndex;
     struct {
-        unsigned int muid:1;
-        unsigned int brandIndex:1;
-        unsigned int systemIndex:1;
-    } _has;
+        unsigned int has_muid:1;
+        unsigned int has_systemIndex:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_artwork:1;
+        unsigned int read_nameDisplayString:1;
+        unsigned int read_styleAttributes:1;
+        unsigned int read_website:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_artwork:1;
+        unsigned int wrote_muid:1;
+        unsigned int wrote_nameDisplayString:1;
+        unsigned int wrote_styleAttributes:1;
+        unsigned int wrote_website:1;
+        unsigned int wrote_systemIndex:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *nameDisplayString; // @synthesize nameDisplayString=_nameDisplayString;
-@property(retain, nonatomic) GEOPBTransitArtwork *artwork; // @synthesize artwork=_artwork;
-@property(nonatomic) unsigned int brandIndex; // @synthesize brandIndex=_brandIndex;
-@property(retain, nonatomic) GEOStyleAttributes *styleAttributes; // @synthesize styleAttributes=_styleAttributes;
-@property(retain, nonatomic) NSString *website; // @synthesize website=_website;
-@property(nonatomic) unsigned long long muid; // @synthesize muid=_muid;
-@property(nonatomic) unsigned int systemIndex; // @synthesize systemIndex=_systemIndex;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
@@ -41,16 +53,28 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 @property(readonly, copy) NSString *description;
+@property(retain, nonatomic) NSString *nameDisplayString;
 @property(readonly, nonatomic) BOOL hasNameDisplayString;
+- (void)_readNameDisplayString;
+@property(retain, nonatomic) GEOPBTransitArtwork *artwork;
 @property(readonly, nonatomic) BOOL hasArtwork;
-@property(nonatomic) BOOL hasBrandIndex;
+- (void)_readArtwork;
+@property(retain, nonatomic) GEOStyleAttributes *styleAttributes;
 @property(readonly, nonatomic) BOOL hasStyleAttributes;
+- (void)_readStyleAttributes;
+@property(retain, nonatomic) NSString *website;
 @property(readonly, nonatomic) BOOL hasWebsite;
+- (void)_readWebsite;
 @property(nonatomic) BOOL hasMuid;
+@property(nonatomic) unsigned long long muid;
 @property(nonatomic) BOOL hasSystemIndex;
-- (void)dealloc;
+@property(nonatomic) unsigned int systemIndex;
+- (id)initWithData:(id)arg1;
+- (id)init;
+- (id)identifier;
 - (id)geoTransitSystem;
 - (id)bestName;
 

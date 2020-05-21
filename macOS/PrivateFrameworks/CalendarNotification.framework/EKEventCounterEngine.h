@@ -13,6 +13,7 @@
 - (id)_eventsFrom:(id)arg1 to:(id)arg2;
 - (void)_scheduleTimerForNextEventCounter;
 - (void)_performAction;
+- (id)initWithEventStore:(id)arg1 actionQueue:(id)arg2 timerQueue:(id)arg3 notificationDelegate:(id)arg4;
 
 @end
 

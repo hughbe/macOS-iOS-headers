@@ -16,6 +16,7 @@
 
 + (id)setAlertContextWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setAlertContext;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *context;
 - (id)encodedClassName;
 - (id)groupIdentifier;

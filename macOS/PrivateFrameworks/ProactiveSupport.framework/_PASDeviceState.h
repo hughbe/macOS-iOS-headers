@@ -6,30 +6,21 @@
 
 #import "NSObject.h"
 
-#import "_PASDeviceStateProtocol.h"
-
-@class NSString;
-
-@interface _PASDeviceState : NSObject <_PASDeviceStateProtocol>
+@interface _PASDeviceState : NSObject
 {
 }
 
 + (id)currentOsBuild;
-+ (BOOL)isConstrainedDevice;
-+ (void)runBlockWhenDeviceIsClassCUnlocked:(CDUnknownBlockType)arg1;
 + (void)blockUntilFirstUnlock;
 + (BOOL)isDeviceFormattedForProtection;
 + (void)unregisterForLockStateChangeNotifications:(id)arg1;
 + (id)registerForLockStateChangeNotifications:(CDUnknownBlockType)arg1;
 + (int)lockState;
 + (BOOL)isUnlocked;
++ (void)runBlockWhenDeviceIsClassCUnlocked:(CDUnknownBlockType)arg1;
 + (BOOL)isClassCLocked;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
++ (void)setDefaultSystemCallbacks;
++ (void)setSystemCallbacks:(const struct _PASDeviceStateSystemCallbacks *)arg1;
 
 @end
 

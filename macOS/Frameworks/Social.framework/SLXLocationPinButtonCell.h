@@ -6,6 +6,7 @@
 
 #import "NSButtonCell.h"
 
+__attribute__((visibility("hidden")))
 @interface SLXLocationPinButtonCell : NSButtonCell
 {
     BOOL _needsToDisplaySpaceForRTL;

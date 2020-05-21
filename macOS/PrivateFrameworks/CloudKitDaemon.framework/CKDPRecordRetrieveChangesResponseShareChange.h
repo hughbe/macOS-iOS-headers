@@ -16,12 +16,14 @@ __attribute__((visibility("hidden")))
     int _changeType;
     CKDPShare *_share;
     CKDPShareIdentifier *_shareIdentifier;
-    CDStruct_f5f6ac14 _has;
+    struct {
+        unsigned int changeType:1;
+    } _has;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) CKDPShare *share; // @synthesize share=_share;
 @property(retain, nonatomic) CKDPShareIdentifier *shareIdentifier; // @synthesize shareIdentifier=_shareIdentifier;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;

@@ -6,10 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSDate, NSMutableArray, NSString, NSUUID;
+#import "BrowserPersistentState.h"
+#import "WBSClosedWindow.h"
+
+@class NSArray, NSDate, NSMutableArray, NSString, NSUUID;
 
 __attribute__((visibility("hidden")))
-@interface BrowserWindowPersistentState : NSObject
+@interface BrowserWindowPersistentState : NSObject <BrowserPersistentState, WBSClosedWindow>
 {
     NSMutableArray *_tabStates;
     unsigned long long _selectedUnpinnedTabIndex;
@@ -17,7 +20,6 @@ __attribute__((visibility("hidden")))
     struct CGRect _windowContentRect;
     NSString *_customUnifiedFieldText;
     BOOL _favoritesBarHidden;
-    BOOL _fullScreenFavoritesBarHidden;
     BOOL _isMinimized;
     BOOL _prefersSidebarVisible;
     BOOL _isPopupWindow;
@@ -27,12 +29,17 @@ __attribute__((visibility("hidden")))
     NSUUID *_windowUUID;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic, getter=isTabBarHidden) BOOL tabBarHidden; // @synthesize tabBarHidden=_tabBarHidden;
+@property(nonatomic) BOOL isMinimized; // @synthesize isMinimized=_isMinimized;
 @property(readonly, nonatomic) NSUUID *windowUUID; // @synthesize windowUUID=_windowUUID;
 @property(readonly, nonatomic) NSDate *dateClosed; // @synthesize dateClosed=_dateClosed;
 @property(readonly, nonatomic, getter=isPrivateWindow) BOOL privateWindow; // @synthesize privateWindow=_privateWindow;
-- (void).cxx_destruct;
-- (id)dictionaryRepresentation;
+@property(readonly, nonatomic) id <WBSClosedTab> selectedClosedTab;
+@property(readonly, copy, nonatomic) NSArray *closedTabs;
+@property(readonly, nonatomic) long long closedItemType;
+@property(readonly, copy, nonatomic) NSArray *tabUUIDs;
+- (id)dictionaryRepresentationIncludingSessionState:(BOOL)arg1 forCleanExit:(BOOL)arg2;
 - (void)restoreWindowContents:(id)arg1;
 - (void)restoreBrowserWindow;
 - (id)_tabStatesToRestore;
@@ -41,16 +48,22 @@ __attribute__((visibility("hidden")))
 - (void)enumerateTabStatesUsingBlock:(CDUnknownBlockType)arg1;
 - (void)removeTabStateWithUUID:(id)arg1;
 - (void)removeStateWithURLs:(id)arg1;
-- (unsigned long long)numberOfTabs;
-- (unsigned long long)numberOfNonDisposableTabs;
+- (BOOL)containsAnyURLs;
+@property(readonly, nonatomic) unsigned long long numberOfTabs;
+@property(readonly, nonatomic) unsigned long long numberOfNonDisposableTabs;
 - (BOOL)containsTabStateWithUUID:(id)arg1;
 - (id)selectedTab;
-- (BOOL)containsAnyURLs;
-- (id)initWithDictionaryRepresentation:(id)arg1;
-- (id)_initWithV2DictionaryRepresentation:(id)arg1;
-- (id)_initWithV1DictionaryRepresentation:(id)arg1;
+- (id)initWithDictionaryRepresentation:(id)arg1 encryptionProvider:(id)arg2;
+- (id)_initWithV2DictionaryRepresentation:(id)arg1 encryptionProvider:(id)arg2;
+- (id)_initWithV1DictionaryRepresentation:(id)arg1 encryptionProvider:(id)arg2;
 - (void)_initWithDictionaryRepresentationCommon:(id)arg1;
-- (id)initWithBrowserWindowController:(id)arg1;
+- (id)initWithBrowserWindowController:(id)arg1 encryptionProvider:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

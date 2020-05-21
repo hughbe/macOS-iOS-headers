@@ -16,13 +16,13 @@
 + (id)sharedManagerForConfiguration:(id)arg1;
 + (id)sharedManagerForTileGroupIdentifier:(unsigned int)arg1;
 + (id)sharedManager;
+- (void).cxx_destruct;
 - (id)allResourceNames;
 - (id)dataForResourceWithName:(id)arg1 fallbackBundle:(id)arg2 fallbackNameHandler:(CDUnknownBlockType)arg3;
 - (BOOL)isDevResourceWithName:(id)arg1 fallbackBundle:(id)arg2 fallbackNameHandler:(CDUnknownBlockType)arg3;
 - (id)pathForResourceWithName:(id)arg1 fallbackBundle:(id)arg2 fallbackNameHandler:(CDUnknownBlockType)arg3;
 - (id)dataForResourceWithName:(id)arg1 fallbackBundle:(id)arg2;
 - (id)pathForResourceWithName:(id)arg1 fallbackBundle:(id)arg2;
-- (void)dealloc;
 - (id)initWithConfiguration:(id)arg1;
 
 @end

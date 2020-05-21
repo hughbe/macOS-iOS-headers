@@ -8,7 +8,7 @@
 
 #import "NSPopoverDelegate.h"
 
-@class NSObject<OS_os_activity>, NSPopover, NSString, NSView, SOChatDetailsViewController, SOChatDisplayController;
+@class NSPopover, NSString, NSView, SOChatDetailsViewController, SOChatDisplayController;
 
 @interface SOChatDetailsPopoverController : NSObject <NSPopoverDelegate>
 {
@@ -18,19 +18,16 @@
     SOChatDisplayController *_chatDisplayController;
     SOChatDetailsViewController *_detailsViewController;
     NSView *_positioningView;
-    NSObject<OS_os_activity> *_showDetailsActivityID;
 }
 
 + (id)sharedChatDetailsPopoverController;
-@property(retain) NSObject<OS_os_activity> *showDetailsActivityID; // @synthesize showDetailsActivityID=_showDetailsActivityID;
+- (void).cxx_destruct;
 @property __weak NSView *positioningView; // @synthesize positioningView=_positioningView;
 @property(retain) SOChatDetailsViewController *detailsViewController; // @synthesize detailsViewController=_detailsViewController;
 @property(retain, nonatomic) SOChatDisplayController *chatDisplayController; // @synthesize chatDisplayController=_chatDisplayController;
 @property BOOL clearsOnClose; // @synthesize clearsOnClose=_clearsOnClose;
 @property(getter=isDetachable) BOOL detachable; // @synthesize detachable=_detachable;
 @property(retain) NSPopover *popover; // @synthesize popover=_popover;
-- (void).cxx_destruct;
-- (void)dealloc;
 - (BOOL)popoverShouldDetach:(id)arg1;
 - (void)popoverDidClose:(id)arg1;
 - (void)popoverWillClose:(id)arg1;

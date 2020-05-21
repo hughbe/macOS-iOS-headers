@@ -16,14 +16,17 @@
 }
 
 - (void).cxx_destruct;
+- (void)resetKnowledgeStoreWithName:(id)arg1;
+- (void)setData:(id)arg1 forKey:(id)arg2 inKnowledgeStoreWithName:(id)arg3;
+- (id)dataForKey:(id)arg1 inKnowledgeStoreWithName:(id)arg2;
 - (void)setDomainObject:(id)arg1 forKey:(id)arg2;
 - (id)domainObjectForKey:(id)arg1;
+- (id)_synchronousManagedStoreServiceWithErrorHandler:(CDUnknownBlockType)arg1;
 - (id)_managedStoreServiceWithErrorHandler:(CDUnknownBlockType)arg1;
 - (id)_managedStoreService;
 - (id)_connection;
 - (void)_clearConnection;
 - (void)dealloc;
-- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

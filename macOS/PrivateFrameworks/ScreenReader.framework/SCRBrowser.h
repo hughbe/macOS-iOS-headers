@@ -6,7 +6,7 @@
 
 #import <ScreenReader/SCRElement.h>
 
-@class SCRBrailleLineManager, SCRList, SCRUIElement;
+@class SCRList, SCRUIElement;
 
 __attribute__((visibility("hidden")))
 @interface SCRBrowser : SCRElement
@@ -17,14 +17,14 @@ __attribute__((visibility("hidden")))
     SCRUIElement *_readContentsColumnUIElement;
     unsigned long long _readContentsColumnIndex;
     SCRList *_keyboardFocusedList;
-    SCRBrailleLineManager *_brailleLineManager;
     struct {
         unsigned int isRepeatEvent:1;
         unsigned int isKeyboardEvent:1;
-        unsigned int reserved:30;
     } _srbFlags;
 }
 
+- (void).cxx_destruct;
+- (BOOL)handleScrollByPageWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)trackElementWithGestureEvent:(id)arg1 request:(id)arg2;
 - (void)prepareGestureTrackingChildren;
 - (id)childAfterElement:(id)arg1;
@@ -43,10 +43,6 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)readContentsElementCount;
 - (void)_setReadContentsColumnUIElement:(id)arg1;
 - (void)_setReadContentsElement:(id)arg1;
-- (id)brailleLineElementForUIElement:(id)arg1;
-- (void)buildBrailleLineWithFocusedElement:(id)arg1;
-- (void)updateBrailleLineWithFocusedElement:(id)arg1;
-- (id)brailleLineManager;
 - (BOOL)childrenShouldAddIndexToDescription;
 - (void)addElementEnclosureSummaryToRequest:(id)arg1;
 - (void)addOverviewWithInfo:(struct SCRBrowserInfo)arg1 toRequest:(id)arg2;
@@ -55,7 +51,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)addTitleToRequest:(id)arg1;
 - (BOOL)addKeyboardSelectionSummaryToRequest:(id)arg1;
 - (BOOL)addSelectionDescriptionToRequest:(id)arg1;
-- (void)addItemDescriptionForCommand:(id)arg1 toRequest:(id)arg2;
+- (void)addItemDescriptionForCommand:(id)arg1 toRequest:(id)arg2 event:(id)arg3;
 - (void)addItemDescriptionToRequest:(id)arg1;
 - (BOOL)syncKBFocusToVOCursorWithOutputRequest:(id)arg1 playSound:(BOOL)arg2 withSelection:(BOOL)arg3;
 - (BOOL)canHandleSelectedChildrenChange;
@@ -66,14 +62,10 @@ __attribute__((visibility("hidden")))
 - (void)_setCurrentColumnScrollAreaToKeyboardFocusedListUIElement:(id)arg1;
 - (BOOL)shouldPromoteForMovingUIElement:(id)arg1;
 - (id)focusOntoUIElement:(id)arg1 withScrolling:(BOOL)arg2 withSelection:(BOOL)arg3;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (BOOL)shouldAllowAutoFocusInto;
 - (id)uiElementWithContextualMenu;
 - (BOOL)_handleNavigationEvent:(id)arg1 request:(id)arg2 commandKey:(id)arg3 selector:(SEL)arg4 canScroll:(BOOL)arg5 canWrap:(BOOL)arg6;
-- (BOOL)jumpRightEdgeWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
-- (BOOL)jumpLeftEdgeWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
-- (BOOL)jumpBottomEdgeWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
-- (BOOL)jumpTopEdgeWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
 - (BOOL)isSectionView;
 - (BOOL)_moveToColumn:(long long)arg1;
 - (id)_moveLastWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
@@ -82,10 +74,6 @@ __attribute__((visibility("hidden")))
 - (id)_moveLeftWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
 - (id)_moveDownWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
 - (id)_moveUpWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
-- (BOOL)interactRightCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactLeftCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactDownCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactUpCommandShiftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)moveToLastElementWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)moveToFirstElementWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownShiftWithEvent:(id)arg1 request:(id)arg2;
@@ -97,7 +85,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)isInteractive;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 - (BOOL)showRect:(struct CGRect)arg1;
 - (void)setPercentage:(double)arg1 forUIScrollBar:(id)arg2;
 - (void)_setFocusedItemWithUIElement:(id)arg1 browserInfo:(struct SCRBrowserInfo)arg2 withScrolling:(BOOL)arg3 withSelection:(BOOL)arg4;
@@ -132,8 +120,6 @@ __attribute__((visibility("hidden")))
 - (void)setIsKeyboardSyncInProgress:(BOOL)arg1;
 - (void)handleSelectionChange:(id)arg1;
 - (id)uiElementToObserveSelectionChange;
-- (void)dealloc;
-- (void)deallocChildren;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end

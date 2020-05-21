@@ -12,15 +12,15 @@
     unsigned long long _quotaAvailable;
 }
 
-@property(nonatomic) unsigned long long quotaAvailable; // @synthesize quotaAvailable=_quotaAvailable;
-@property(copy, nonatomic) CDUnknownBlockType fetchUserQuotaCompletionBlock; // @synthesize fetchUserQuotaCompletionBlock=_fetchUserQuotaCompletionBlock;
 - (void).cxx_destruct;
+@property(nonatomic) unsigned long long quotaAvailable; // @synthesize quotaAvailable=_quotaAvailable;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleCompletionCallback:(id)arg1;
 - (void)performCKOperation;
 - (BOOL)hasCKOperationCallbacksSet;
 - (Class)operationInfoClass;
 - (id)activityCreate;
+@property(copy, nonatomic) CDUnknownBlockType fetchUserQuotaCompletionBlock; // @synthesize fetchUserQuotaCompletionBlock=_fetchUserQuotaCompletionBlock;
 - (id)init;
 
 @end

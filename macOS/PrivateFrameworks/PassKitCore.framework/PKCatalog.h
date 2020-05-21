@@ -6,23 +6,32 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
+#import "PKCloudStoreCoding.h"
 
 @class NSDate, NSMutableArray;
 
-@interface PKCatalog : NSObject <NSSecureCoding>
+@interface PKCatalog : NSObject <NSCopying, NSSecureCoding, PKCloudStoreCoding>
 {
     NSMutableArray *_groups;
     NSDate *_timestamp;
 }
 
++ (id)catalogWithLocalCatalog:(id)arg1 ubiquitousCatalog:(id)arg2;
++ (id)cloudStoreCatalogRecordTypeRecordNamePrefix;
 + (BOOL)supportsSecureCoding;
 + (id)catalogWithContentsOfURL:(id)arg1 nonUbiquitousCatalogURL:(id)arg2;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDate *timestamp; // @synthesize timestamp=_timestamp;
 @property(retain, nonatomic) NSMutableArray *groups; // @synthesize groups=_groups;
-- (void).cxx_destruct;
+- (unsigned long long)itemType;
+- (id)recordTypesAndNamesIncludingServerData:(BOOL)arg1;
+- (void)encodeWithCloudStoreCoder:(id)arg1;
+- (id)initWithCloudStoreCoder:(id)arg1;
 - (void)shuffle:(int)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)description;
 - (id)allGroupIDs;

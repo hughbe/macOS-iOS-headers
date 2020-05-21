@@ -16,13 +16,15 @@
     NSXPCConnection *_connection;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSXPCConnection *connection; // @synthesize connection=_connection;
 @property(readonly) NSURL *libraryPathURL; // @synthesize libraryPathURL=_libraryPathURL;
 @property(readonly) NSObject<OS_dispatch_queue> *replyQueue; // @synthesize replyQueue=_replyQueue;
 @property(readonly) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
-- (void).cxx_destruct;
 - (id)localizedErrorForIngestError:(id)arg1;
-- (void)_initializeXPCConnection;
+- (id)importAssetsFromIngestRequests:(id)arg1 source:(id *)arg2;
+- (id)importAssetFromIngestRequest:(id)arg1 forSource:(id)arg2;
+- (void)ingestWithRequests:(id)arg1 libraryURL:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)ingestWithRequests:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)ingestWithRequest:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)startService:(CDUnknownBlockType)arg1;

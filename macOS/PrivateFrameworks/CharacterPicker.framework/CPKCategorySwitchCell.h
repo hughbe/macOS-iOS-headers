@@ -9,10 +9,12 @@
 __attribute__((visibility("hidden")))
 @interface CPKCategorySwitchCell : CPKBaseMatrixCell
 {
+    double _customImageOffset;
 }
 
+@property double customImageOffset; // @synthesize customImageOffset=_customImageOffset;
+- (void)drawImage:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
 - (long long)interiorBackgroundStyle;
-- (void)drawBezelWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 
 @end
 

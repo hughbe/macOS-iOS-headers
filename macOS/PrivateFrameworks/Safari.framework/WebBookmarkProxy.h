@@ -6,14 +6,13 @@
 
 #import <Safari/WebBookmark.h>
 
-__attribute__((visibility("hidden")))
 @interface WebBookmarkProxy : WebBookmark
 {
 }
 
 - (id)_mutableDictionaryRepresentation;
-- (void)setHasDefaultSiteOrFolderIcon:(BOOL)arg1;
 - (id)icon;
+- (id)iconURLString;
 - (long long)bookmarkType;
 - (id)initFromDictionaryRepresentation:(id)arg1 topLevelOnly:(BOOL)arg2 withGroup:(id)arg3;
 

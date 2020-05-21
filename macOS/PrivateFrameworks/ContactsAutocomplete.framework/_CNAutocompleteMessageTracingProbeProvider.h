@@ -14,6 +14,7 @@
 {
 }
 
+- (id)suggestionsProbe;
 - (id)performanceProbe;
 - (id)usageMonitorProbe;
 

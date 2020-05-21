@@ -15,15 +15,15 @@
     struct TopoID _timestamp;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) struct TopoID timestamp; // @synthesize timestamp=_timestamp;
 @property(readonly, nonatomic) BOOL hidden; // @synthesize hidden=_hidden;
 @property(readonly, nonatomic) ICDrawingCommandData *data; // @synthesize data=_data;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (BOOL)isEqualDrawingVisibleCommand:(id)arg1;
+- (BOOL)isEqualDrawingCommand:(id)arg1;
 - (id)initWithCommand:(id)arg1 hidden:(BOOL)arg2 timestamp:(struct TopoID)arg3;
 - (unsigned int)saveToArchive:(struct Command *)arg1 sortedUUIDs:(id)arg2 withPathData:(BOOL)arg3;
 - (id)initWithArchive:(const struct Command *)arg1 version:(unsigned int)arg2 sortedUUIDs:(id)arg3;

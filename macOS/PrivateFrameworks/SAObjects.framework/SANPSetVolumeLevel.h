@@ -6,7 +6,7 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
-@class NSNumber, NSString;
+@class NSArray, NSNumber, NSString;
 
 @interface SANPSetVolumeLevel : SABaseClientBoundCommand
 {
@@ -16,6 +16,7 @@
 + (id)setVolumeLevel;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSNumber *volumeValue;
+@property(copy, nonatomic) NSArray *hashedRouteUIDs;
 @property(copy, nonatomic) NSString *actionType;
 @property(nonatomic) BOOL acknowledgedExceedingVolumeLimit;
 - (id)encodedClassName;

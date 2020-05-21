@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSFileVersion, NSOperationQueue, NSURL;
+@class NSFileVersion, NSOperationQueue, NSSet, NSURL;
 
 @protocol NSFilePresenter <NSObject>
 @property(readonly, retain) NSOperationQueue *presentedItemOperationQueue;
 @property(readonly, copy) NSURL *presentedItemURL;
 
 @optional
+@property(readonly) NSSet *observedPresentedItemUbiquityAttributes;
 @property(readonly, copy) NSURL *primaryPresentedItemURL;
 - (void)presentedSubitemAtURL:(NSURL *)arg1 didResolveConflictVersion:(NSFileVersion *)arg2;
 - (void)presentedSubitemAtURL:(NSURL *)arg1 didLoseVersion:(NSFileVersion *)arg2;
@@ -24,6 +25,7 @@
 - (void)presentedItemDidResolveConflictVersion:(NSFileVersion *)arg1;
 - (void)presentedItemDidLoseVersion:(NSFileVersion *)arg1;
 - (void)presentedItemDidGainVersion:(NSFileVersion *)arg1;
+- (void)presentedItemDidChangeUbiquityAttributes:(NSSet *)arg1;
 - (void)presentedItemDidChange;
 - (void)presentedItemDidMoveToURL:(NSURL *)arg1;
 - (void)accommodatePresentedItemDeletionWithCompletionHandler:(void (^)(NSError *))arg1;

@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class BRCAccountSession, BRCAppLibrary, BRCBookmark, BRCClientZone, BRCGenerationID, BRCItemID, BRCServerZone, BRFileObjectID, NSData, NSDirectoryEnumerator, NSSet, NSString, NSURL;
+@class BRCAccountSession, BRCAppLibrary, BRCBookmark, BRCGenerationID, BRFileObjectID, NSData, NSSet, NSString, NSURL;
 
 @interface BRCRelativePath : NSObject <NSSecureCoding>
 {
@@ -21,15 +21,13 @@
     BRCGenerationID *_generationID;
     int _deviceID;
     BRCAppLibrary *_appLibrary;
-    BRCClientZone *_clientZone;
-    BRCItemID *_sharedItemID;
-    NSString *_sharedOwnerName;
     unsigned char _finderInfo[32];
     unsigned long long _fileID;
     unsigned short _mode;
     unsigned int _nlink;
     struct timespec _birthtime;
     struct timespec _mtime;
+    struct timespec _atime;
     long long _size;
     unsigned long long _parentFileID;
     unsigned int _documentID;
@@ -48,56 +46,35 @@
     unsigned int _isBRAlias:1;
     unsigned int _qtnResolved:1;
     unsigned int _xattrsResolved:1;
+    unsigned int _sharedBookmarkResolved:1;
     int _fd;
     // Error parsing type: Ai, name: _openRefCount
-    struct _opaque_pthread_rwlock_t {
-        long long __sig;
-        char __opaque[192];
-    } _mutex;
-    struct {
-        int _field1;
-        long long _field2;
-        long long _field3;
-        char *_field4;
-        int _field5;
-        long long _field6;
-        long long _field7;
-        int _field8;
-        struct _opaque_pthread_mutex_t _field9;
-        struct _telldir *_field10;
-    } *_dir;
-    NSDirectoryEnumerator *_descendantsEnumerator;
+    struct brc_mutex _mutex;
     BRCAccountSession *_session;
     NSData *_quarantineInfo;
     NSData *_xattrs;
+    NSString *_sharedItemBookmark;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (int)locateByFileID:(unsigned long long)arg1 clientZone:(id)arg2 roots:(id)arg3;
-@property(retain, nonatomic) NSString *sharedOwnerName; // @synthesize sharedOwnerName=_sharedOwnerName;
-@property(retain, nonatomic) BRCItemID *sharedItemID; // @synthesize sharedItemID=_sharedItemID;
++ (int)locateByFileID:(unsigned long long)arg1 session:(id)arg2;
+- (void).cxx_destruct;
 @property(nonatomic) unsigned char itemScope; // @synthesize itemScope=_itemScope;
 @property(nonatomic) unsigned short type; // @synthesize type=_type;
 @property(retain, nonatomic) BRCAppLibrary *appLibrary; // @synthesize appLibrary=_appLibrary;
-@property(retain, nonatomic) BRCClientZone *clientZone; // @synthesize clientZone=_clientZone;
 @property(readonly, nonatomic) BRCAccountSession *session; // @synthesize session=_session;
-- (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)description;
 @property(readonly) unsigned long long parentHash;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSString *sharedItemBookmark; // @synthesize sharedItemBookmark=_sharedItemBookmark;
 @property(readonly, nonatomic) NSData *xattrs; // @synthesize xattrs=_xattrs;
 @property(readonly, nonatomic) NSData *quarantineInfo; // @synthesize quarantineInfo=_quarantineInfo;
 @property(readonly, nonatomic) BRCBookmark *bookmark;
 @property(readonly, nonatomic) NSString *faultDisplayName;
 - (BOOL)isEqualToRelativePath:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (void)closeDirectoryScan;
-- (id)nextDescendant;
-- (BOOL)openDirectoryForRecursiveScan;
-- (id)nextChild;
-- (BOOL)openDirectoryForScanWithError:(int *)arg1;
 - (BOOL)performOnOpenParentFileDescriptor:(CDUnknownBlockType)arg1 error:(int *)arg2;
 - (BOOL)performOnOpenFileDescriptor:(CDUnknownBlockType)arg1 error:(int *)arg2;
 - (BOOL)flock:(int)arg1;
@@ -108,15 +85,16 @@
 - (BOOL)_shouldKeepBasePathOpen;
 - (void)refreshPathTypeAndContainer;
 - (id)refreshFromPathMustExist:(BOOL)arg1;
+- (BOOL)resolveAndKeepOpenMustExist:(BOOL)arg1 allowResolveInPkg:(BOOL)arg2 error:(int *)arg3;
 - (BOOL)resolveAndKeepOpenMustExist:(BOOL)arg1 error:(int *)arg2;
-- (BOOL)_resolveAndKeepOpenMustExist:(BOOL)arg1 error:(int *)arg2;
+- (BOOL)_resolveAndKeepOpenMustExist:(BOOL)arg1 allowResolveInPkg:(BOOL)arg2 error:(int *)arg3;
 - (int)_resolveSymlinkRelativeTo:(int)arg1 path:(id)arg2;
 - (int)_resolveWhenDoesntExist;
 - (int)_resolveWhenExists;
 - (BOOL)_fixupRelativePath;
 - (BOOL)_resolveRootWhenExists:(BOOL)arg1;
 - (int)_resolvePathTypeAndContainer;
-- (int)_resolveBasePath;
+- (int)_resolveBasePath:(BOOL)arg1;
 @property(readonly, nonatomic) BOOL hasFinderTags;
 @property(readonly, nonatomic) unsigned int fileType;
 @property(readonly, nonatomic) BOOL isBRAlias;
@@ -129,11 +107,13 @@
 @property(readonly, nonatomic) BOOL isWritable;
 @property(readonly, nonatomic) BRCGenerationID *generationID;
 @property(readonly, nonatomic) unsigned int fsGenerationID;
-@property(readonly, nonatomic) long long birthTime;
+@property(readonly, nonatomic) long long accessTime;
 @property(readonly, nonatomic) long long modificationTime;
+@property(readonly, nonatomic) long long birthTime;
 @property(readonly, nonatomic) long long size;
 @property(readonly, nonatomic) int deviceID;
 @property(readonly, nonatomic) unsigned int documentID;
+@property(readonly, nonatomic) BRFileObjectID *parentFileObjectID;
 @property(readonly, nonatomic) unsigned long long parentFileID;
 @property(readonly, nonatomic) BRFileObjectID *fileObjectID;
 @property(readonly, nonatomic) unsigned long long fileID;
@@ -143,8 +123,8 @@
 @property(readonly, nonatomic) NSString *filename;
 @property(readonly, nonatomic) NSString *pathRelativeToPackageRoot;
 @property(readonly, nonatomic) NSString *pathRelativeToRoot;
+- (id)relativePath;
 @property(readonly, nonatomic) NSString *absolutePath;
-@property(readonly, nonatomic) BRCServerZone *serverZone;
 @property(readonly, nonatomic) BOOL exists;
 @property(readonly, nonatomic) BOOL isSymLink;
 @property(readonly, nonatomic) BOOL isExcluded;
@@ -157,15 +137,18 @@
 @property(readonly, nonatomic) BOOL isBundle;
 @property(readonly, nonatomic) BOOL isFault;
 @property(readonly, nonatomic) BOOL isDocument;
+- (id)logicalURL;
 - (id)logicalURLWithLogicalName:(id)arg1;
-@property(readonly, nonatomic) NSURL *url;
+@property(readonly, nonatomic) NSURL *physicalURL;
 @property(readonly, nonatomic) BRCRelativePath *root;
+- (id)basePath;
 - (void)dealloc;
 - (id)pathOfPackageRoot;
 - (id)pathWithChildAtPath:(id)arg1;
-- (id)initWithFileID:(unsigned long long)arg1 clientZone:(id)arg2 roots:(id)arg3;
-- (id)initWithPath:(id)arg1 appLibrary:(id)arg2 clientZone:(id)arg3;
-- (id)initWithAbsolutePath:(id)arg1 session:(id)arg2 roots:(id)arg3;
+- (id)initWithFileID:(unsigned long long)arg1 root:(id)arg2 session:(id)arg3;
+- (id)initWithFileID:(unsigned long long)arg1 session:(id)arg2;
+- (id)initWithPath:(id)arg1 appLibrary:(id)arg2;
+- (id)initWithAbsolutePath:(id)arg1 session:(id)arg2;
 - (id)_initWithPath:(id)arg1 relativeToRoot:(id)arg2;
 - (id)initWithRootPath:(id)arg1 session:(id)arg2;
 - (id)init;

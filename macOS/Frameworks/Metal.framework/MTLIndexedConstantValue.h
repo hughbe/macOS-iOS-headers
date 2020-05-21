@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
 @property(readonly) unsigned long long dataType; // @synthesize dataType=_dataType;
 @property(readonly) unsigned long long index; // @synthesize index=_index;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (id)describe;
 - (void)dealloc;
 - (id)initWithValue:(const void *)arg1 type:(unsigned long long)arg2 index:(unsigned long long)arg3;

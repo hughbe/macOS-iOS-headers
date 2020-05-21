@@ -8,37 +8,66 @@
 
 #import "NSCopying.h"
 
-@class GEOPDPlace, PBUnknownFields;
+@class GEOPDMapsIdentifier, GEOPDPlace, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDAutocompleteEntryBusiness : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     PBUnknownFields *_unknownFields;
+    double _distance;
+    GEOPDMapsIdentifier *_mapsId;
     unsigned long long _muid;
     GEOPDPlace *_place;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     int _resultProviderId;
     struct {
-        unsigned int muid:1;
-        unsigned int resultProviderId:1;
-    } _has;
+        unsigned int has_distance:1;
+        unsigned int has_muid:1;
+        unsigned int has_resultProviderId:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_mapsId:1;
+        unsigned int read_place:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_distance:1;
+        unsigned int wrote_mapsId:1;
+        unsigned int wrote_muid:1;
+        unsigned int wrote_place:1;
+        unsigned int wrote_resultProviderId:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOPDPlace *place; // @synthesize place=_place;
-@property(nonatomic) int resultProviderId; // @synthesize resultProviderId=_resultProviderId;
-@property(nonatomic) unsigned long long muid; // @synthesize muid=_muid;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
 @property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)copyTo:(id)arg1;
+- (void)clearSensitiveFields;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOPDMapsIdentifier *mapsId;
+@property(readonly, nonatomic) BOOL hasMapsId;
+- (void)_readMapsId;
+@property(nonatomic) BOOL hasDistance;
+@property(nonatomic) double distance;
+@property(retain, nonatomic) GEOPDPlace *place;
 @property(readonly, nonatomic) BOOL hasPlace;
+- (void)_readPlace;
 @property(nonatomic) BOOL hasResultProviderId;
+@property(nonatomic) int resultProviderId;
 @property(nonatomic) BOOL hasMuid;
-- (void)dealloc;
+@property(nonatomic) unsigned long long muid;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

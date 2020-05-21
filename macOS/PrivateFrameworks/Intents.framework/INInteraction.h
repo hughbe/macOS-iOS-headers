@@ -6,15 +6,22 @@
 
 #import "NSObject.h"
 
+#import "INEnumerable.h"
+#import "INImageProxyInjecting.h"
+#import "INInteractionExport.h"
+#import "INKeyImageProducing.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class INIntent, INIntentResponse, NSDate, NSDateInterval, NSString;
+@class CSSearchableItem, INImage, INIntent, INIntentResponse, NSDate, NSDateInterval, NSString, NSUUID, SAUISnippet;
 
-@interface INInteraction : NSObject <NSSecureCoding, NSCopying>
+@interface INInteraction : NSObject <INEnumerable, INInteractionExport, INImageProxyInjecting, INKeyImageProducing, NSSecureCoding, NSCopying>
 {
     INIntent *_intent;
     INIntentResponse *_intentResponse;
+    BOOL _donatedBySiri;
+    SAUISnippet *_snippet;
+    NSUUID *_contextExtensionUUID;
     long long _intentHandlingStatus;
     long long _direction;
     NSDateInterval *_dateInterval;
@@ -22,28 +29,51 @@
     NSString *_groupIdentifier;
 }
 
++ (unsigned long long)_searchableItemVersion;
 + (void)deleteInteractionsWithGroupIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
 + (void)deleteInteractionsWithIdentifiers:(id)arg1 completion:(CDUnknownBlockType)arg2;
 + (void)deleteAllInteractionsWithCompletion:(CDUnknownBlockType)arg1;
 + (BOOL)supportsSecureCoding;
++ (void)initialize;
+- (void).cxx_destruct;
 @property(copy) NSString *groupIdentifier; // @synthesize groupIdentifier=_groupIdentifier;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy) NSDateInterval *dateInterval; // @synthesize dateInterval=_dateInterval;
 @property long long direction; // @synthesize direction=_direction;
 @property long long intentHandlingStatus; // @synthesize intentHandlingStatus=_intentHandlingStatus;
-@property(readonly, copy) INIntentResponse *intentResponse; // @synthesize intentResponse=_intentResponse;
-@property(readonly, copy) INIntent *intent; // @synthesize intent=_intent;
-- (void).cxx_destruct;
-- (unsigned long long)hash;
+@property(copy, setter=_setIntentResponse:) INIntentResponse *intentResponse; // @synthesize intentResponse=_intentResponse;
+@property(copy, setter=_setIntent:) INIntent *intent; // @synthesize intent=_intent;
+@property(copy, setter=_setContextExtensionUUID:) NSUUID *_contextExtensionUUID; // @synthesize _contextExtensionUUID;
+@property(nonatomic, setter=_setDonatedBySiri:) BOOL _donatedBySiri; // @synthesize _donatedBySiri;
+@property(retain, setter=_setSnippet:) SAUISnippet *_snippet; // @synthesize _snippet;
+- (id)parameterValueForParameter:(id)arg1;
+@property(readonly) long long _indexingHash;
+- (id)_searchableItemIncludingData:(BOOL)arg1;
+@property(readonly, copy) CSSearchableItem *_searchableItem;
+- (id)_dictionaryRepresentation;
+- (id)descriptionAtIndent:(unsigned long long)arg1;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (long long)_compareSubProducerOne:(id)arg1 subProducerTwo:(id)arg2;
+@property(readonly) INImage *_keyImage;
+- (void)_injectProxiesForImages:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_donateInteractionWithBundleId:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)donateInteractionWithCompletion:(CDUnknownBlockType)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)_commonInit;
 - (id)initWithIntent:(id)arg1 response:(id)arg2;
+- (id)_init;
 @property(copy, nonatomic) NSString *domainIdentifier;
 @property(nonatomic) double duration;
 @property(retain, nonatomic) NSDate *date;
+- (BOOL)_intents_enumerateObjectsOfClass:(Class)arg1 withBlock:(CDUnknownBlockType)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

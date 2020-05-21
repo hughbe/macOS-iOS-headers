@@ -8,7 +8,7 @@
 
 #import "AVExportSessionHelper.h"
 
-@class AVAsset, AVAssetExportSession, AVAudioMix, AVVideoComposition, NSRunLoop, NSString, NSTimer, NSURL;
+@class AVAsset, AVAssetExportSession, AVAudioMix, AVVideoComposition, NSString, NSTimer, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface AVFoundationExportSession : NSObject <AVExportSessionHelper>
@@ -20,11 +20,9 @@ __attribute__((visibility("hidden")))
     AVVideoComposition *_sourceVideoComposition;
     AVAudioMix *_sourceAudioMix;
     NSTimer *_exportProgressTimer;
-    NSRunLoop *_sessionRunLoop;
-    double _estimatedTimeRemaining;
 }
 
-+ (BOOL)canPassthroughExport:(id)arg1;
++ (id)exportPresetForAsset:(id)arg1 videoComposition:(id)arg2;
 - (void).cxx_destruct;
 - (void)updateProgress:(id)arg1;
 - (void)cancel;

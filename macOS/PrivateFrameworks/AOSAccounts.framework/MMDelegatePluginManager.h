@@ -17,15 +17,17 @@
 }
 
 + (id)shared;
+- (void).cxx_destruct;
 @property(readonly) NSDictionary *delegatesResponseDict; // @synthesize delegatesResponseDict=_delegatesResponseDict;
+- (id)pluginObjectForIdentifier:(id)arg1;
 - (id)filterDelegateRequest:(id)arg1 forIdentifier:(id)arg2;
+- (void)updatePropertiesForAccount:(id)arg1 accountStore:(id)arg2 forIdentifier:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)invokeDelegatesWithAuthenticationResponse:(id)arg1 account:(id)arg2 accountStore:(id)arg3 withDispatchGroup:(id)arg4 context:(long long)arg5 completion:(CDUnknownBlockType)arg6;
 - (id)gatherDelegatesRequestForACAccount:(id)arg1;
 - (id)readDelegatesRequestsForIdentifiers:(id)arg1;
 - (id)readDelegatesRequest;
 - (id)collectAccountInformationFromDelegates;
 - (id)allPlugins;
-- (void)dealloc;
 - (id)init;
 
 @end

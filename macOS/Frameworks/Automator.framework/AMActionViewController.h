@@ -13,7 +13,8 @@
     AMAction *_action;
 }
 
-- (id)action;
+- (void).cxx_destruct;
+@property(retain, nonatomic) AMAction *action; // @synthesize action=_action;
 - (id)initWithAction:(id)arg1 workflowView:(id)arg2;
 
 @end

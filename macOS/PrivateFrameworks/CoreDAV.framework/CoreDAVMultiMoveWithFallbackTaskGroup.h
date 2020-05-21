@@ -22,6 +22,7 @@
     NSMutableArray *_outstandingSourceURLsToMove;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableArray *outstandingSourceURLsToMove; // @synthesize outstandingSourceURLsToMove=_outstandingSourceURLsToMove;
 @property(readonly, nonatomic) NSMutableSet *destinationURLs; // @synthesize destinationURLs=_destinationURLs;
 @property(readonly, nonatomic) NSMutableDictionary *destinationEntityETags; // @synthesize destinationEntityETags=_destinationEntityETags;
@@ -41,7 +42,6 @@
 - (id)filenameFromURL:(id)arg1;
 - (id)fullDestinationURLFromSourceURL:(id)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)initWithSourceURLs:(id)arg1 destinationURL:(id)arg2 overwrite:(BOOL)arg3 useFallback:(BOOL)arg4 sourceEntityDataPayloads:(id)arg5 sourceEntityDataContentTypes:(id)arg6 sourceEntityETags:(id)arg7 accountInfoProvider:(id)arg8 taskManager:(id)arg9;
 
 @end

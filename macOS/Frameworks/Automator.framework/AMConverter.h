@@ -15,7 +15,13 @@
     NSMutableDictionary *_conversionTypes;
 }
 
++ (id)_cachedChildIdentifiersForType:(id)arg1;
++ (id)_cachedParentIdentifiersForType:(id)arg1;
 + (id)sharedConverter;
+- (void).cxx_destruct;
+@property(retain) NSMutableDictionary *_conversionTypes; // @synthesize _conversionTypes;
+@property(retain) NSMutableDictionary *conversionPathCache; // @synthesize conversionPathCache=_conversionPathCache;
+@property(retain) NSMutableDictionary *UTITypes; // @synthesize UTITypes=_utiTypes;
 - (BOOL)doAnyOfTheseTypes:(id)arg1 conformToAnyOfTheseTypes:(id)arg2;
 - (BOOL)doAnyOfTheseTypes:(id)arg1 conformToType:(id)arg2;
 - (BOOL)doesUTIType:(id)arg1 conformToAnyOfTheseTypes:(id)arg2;
@@ -45,10 +51,6 @@
 - (id)convertValueToList:(id)arg1;
 - (id)convertValueToSingle:(id)arg1;
 - (id)conversionTypes;
-- (id)conversionPathCache;
-- (void)setUTITypes:(id)arg1;
-- (id)UTITypes;
-- (void)dealloc;
 - (id)init;
 
 @end

@@ -6,20 +6,33 @@
 
 #import "NSObject.h"
 
+@class NSTimer;
+
+__attribute__((visibility("hidden")))
 @interface NSControlAuxiliary : NSObject
 {
     long long _tag;
     id _target;
     SEL _action;
     struct {
-        unsigned int targetHelperFlag:1;
-        unsigned int reserved:31;
+        unsigned int guardEnabled:1;
+        unsigned int guardLocked:1;
+        unsigned int insetMitigation:2;
+        unsigned int restingMitigation:2;
+        unsigned int reserved:26;
     } _flags;
+    NSTimer *_touchingTooLongTimer;
 }
 
+@property(retain) NSTimer *touchingTooLongTimer; // @synthesize touchingTooLongTimer=_touchingTooLongTimer;
 @property SEL action; // @synthesize action=_action;
 @property long long tag; // @synthesize tag=_tag;
+- (void)removeTouchingTooLongTimer;
 - (void)dealloc;
+@property long long touchBarRestingMitigation;
+@property long long touchBarInsetMitigation;
+@property BOOL guardEnabled;
+@property BOOL guardLocked;
 @property __weak id target;
 
 @end

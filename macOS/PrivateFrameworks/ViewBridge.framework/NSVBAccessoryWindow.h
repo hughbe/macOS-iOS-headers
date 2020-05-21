@@ -6,7 +6,7 @@
 
 #import "NSWindow.h"
 
-@class NSEvent, NSRemoteView, NSVBAccessoryWindowBackstopResponder;
+@class NSEvent, NSRemoteView, NSVBAccessoryWindowBackstopResponder, NSView;
 
 __attribute__((visibility("hidden")))
 @interface NSVBAccessoryWindow : NSWindow
@@ -17,9 +17,14 @@ __attribute__((visibility("hidden")))
     unsigned int _willUpdateAccessibilityChildren:1;
     unsigned int _notificationsRegistered:1;
     unsigned long long _setFrameInProgress;
+    unsigned long long _orderingInProgress;
+    NSView *_view;
 }
 
+@property(readonly, nonatomic) NSRemoteView *remoteView; // @synthesize remoteView=_remoteView;
 @property unsigned int notificationsRegistered; // @synthesize notificationsRegistered=_notificationsRegistered;
+- (void)orderWindow:(long long)arg1 relativeTo:(long long)arg2;
+- (BOOL)makeFirstResponder:(id)arg1;
 - (void)clearUnhandledKeyEvent;
 - (id)unhandledKeyEvent;
 - (void)keyDown:(id)arg1;
@@ -37,6 +42,9 @@ __attribute__((visibility("hidden")))
 - (void)setFrame:(struct CGRect)arg1 display:(BOOL)arg2;
 - (void)superSetFrame:(struct CGRect)arg1 display:(BOOL)arg2;
 - (void)_accessoryViewFrameDidChange:(id)arg1;
+- (id)nextResponder;
+- (void)updateConstraintsIfNeeded;
+- (BOOL)_runningDocModal;
 - (void)dealloc;
 - (id)initWithContentRect:(struct CGRect)arg1 forRemoteView:(id)arg2;
 - (void)invalidate;

@@ -6,7 +6,7 @@
 
 #import <SAObjects/SADomainObject.h>
 
-@class NSString;
+@class NSArray, NSString;
 
 @interface SAUserActivity : SADomainObject
 {
@@ -21,6 +21,7 @@
 @property(nonatomic) BOOL isEligibleForDirections;
 @property(nonatomic) BOOL isEligibleForAppPunchout;
 @property(copy, nonatomic) NSString *internalGUID;
+@property(copy, nonatomic) NSArray *eligibileFunctions;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

@@ -12,16 +12,17 @@
 {
     NSDictionary *_countDictionariesByWorkerType;
     NSDictionary *_countOfDeletionsByWorkerType;
+    NSDictionary *_totalProgressCountsByWorkerType;
 }
 
-+ (void)requestCurrentProgressWithLibrary:(id)arg1 includeDeletedAssetsCount:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
++ (void)requestCurrentProgressWithLibrary:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void).cxx_destruct;
 - (id)statusAsDictionary;
 - (id)description;
 - (unsigned long long)countOfDeletionsForWorkerType:(short)arg1;
 - (float)localPercentAnalyzedForWorkerType:(short)arg1;
 - (float)percentAnalyzedForWorkerType:(short)arg1;
-- (id)initWithCounts:(id)arg1 countOfDeletionsByWorkerType:(id)arg2;
+- (id)initWithCounts:(id)arg1 totalProgressCounts:(id)arg2 countOfDeletionsByWorkerType:(id)arg3;
 - (id)init;
 - (float)_progressFromProcessedCount:(long long)arg1 outOfPossibleCount:(long long)arg2;
 

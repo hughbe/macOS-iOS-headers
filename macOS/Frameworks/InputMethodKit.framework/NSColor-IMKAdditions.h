@@ -7,12 +7,14 @@
 #import "NSColor.h"
 
 @interface NSColor (IMKAdditions)
++ (id)darkExtraMarkColor;
 + (id)darkSelectionBarSeparatorColor;
 + (id)darkSelectionBarBackgroundColor;
 + (id)darkGroupViewSeparatorColor;
 + (id)darkGroupViewBackgroundColor;
 + (id)darkPressAndHoldSelectionBackgroundColor;
 + (id)darkPressAndHoldSelectionBorderColor;
++ (id)extraMarkColor;
 + (id)selectionBarSeparatorColor;
 + (id)selectionBarBackgroundColor;
 + (id)pressAndHoldSelectionBackgroundColor;
@@ -22,5 +24,9 @@
 + (id)groupViewBackgroundColor;
 + (id)grayedOutLineColor;
 + (id)colorWithRGBString:(id)arg1;
++ (id)lineHighlightedColor;
++ (id)lineBackgroundColor;
++ (id)delimitingLineColorForDarkMode;
++ (id)delimitingLineColor;
 @end
 

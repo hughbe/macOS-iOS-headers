@@ -16,6 +16,7 @@
 
 + (id)dropAPinCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)dropAPinCompleted;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SALocalSearchMapItem *mapItem;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableDictionary;
+@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
 __attribute__((visibility("hidden")))
 @interface OITSUIndexedStringStore : NSObject
 {
-    int _lock;
+    NSObject<OS_dispatch_queue> *_accessQueue;
     NSMutableDictionary *_indexByString;
     NSMutableArray *_stringByIndex;
 }

@@ -12,7 +12,5 @@
 - (id)sha256EncodedData;
 - (id)aes128DecryptedDataWithKey:(id)arg1;
 - (id)aes128EncryptedDataWithKey:(id)arg1;
-- (id)base64DecodedData;
-- (id)base64EncodedData;
 @end
 

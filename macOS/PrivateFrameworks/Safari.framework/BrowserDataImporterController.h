@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
-@class BrowserBookmarkImporter, BrowserCredentialImporter, BrowserHistoryImporter, NSObject<OS_dispatch_queue>, NSString, NSURL, NSXPCConnection;
+#import "BrowserBookmarkImporterDelegate.h"
+
+@class BrowserBookmarkImporter, BrowserCredentialImporter, BrowserDataDirectories, BrowserHistoryImporter, NSArray, NSObject<OS_dispatch_queue>, NSString, NSURL, NSXPCConnection;
 
 __attribute__((visibility("hidden")))
-@interface BrowserDataImporterController : NSObject
+@interface BrowserDataImporterController : NSObject <BrowserBookmarkImporterDelegate>
 {
     NSObject<OS_dispatch_queue> *_ivarAccessQueue;
     unsigned long long _dataTypesBeingImported;
@@ -17,7 +19,9 @@ __attribute__((visibility("hidden")))
     unsigned long long _dataTypesThatFailed;
     BOOL _importHasBeenCanceled;
     unsigned long long _numberOfResumptionAttempts;
-    NSString *_sourceBrowserBundleIdentifier;
+    NSURL *_sourceBrowserBundleURL;
+    unsigned long long _cachedDataTypes;
+    BrowserDataDirectories *_cachedBrowserDataDirectories;
     NSXPCConnection *_browserDataImporterServiceConnection;
     BrowserBookmarkImporter *_bookmarkImporter;
     BrowserHistoryImporter *_historyImporter;
@@ -25,11 +29,11 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)sharedController;
+- (void).cxx_destruct;
 @property(retain, nonatomic) BrowserCredentialImporter *credentialImporter; // @synthesize credentialImporter=_credentialImporter;
 @property(retain, nonatomic) BrowserHistoryImporter *historyImporter; // @synthesize historyImporter=_historyImporter;
 @property(retain, nonatomic) BrowserBookmarkImporter *bookmarkImporter; // @synthesize bookmarkImporter=_bookmarkImporter;
 @property(retain, nonatomic) NSXPCConnection *browserDataImporterServiceConnection; // @synthesize browserDataImporterServiceConnection=_browserDataImporterServiceConnection;
-- (void).cxx_destruct;
 - (void)_postCompletionNotificationsAndResetState;
 - (void)_invalidateBrowserDataImporterServiceConnectionIfPossible;
 - (id)_existingBrowserDataImporterServiceConnection;
@@ -41,9 +45,10 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)_dataTypesRemainingToBeImportedOnAccessQueue;
 - (BOOL)_importHasBeenCanceledOnAccessQueue;
 - (BOOL)_importHasBeenCanceled;
-- (id)_firefoxApplicationBundle;
+- (id)undoControllerForBookmarkImporter:(id)arg1;
 - (id)_chromeApplicationBundle;
-@property(readonly, nonatomic) NSURL *firefoxBundleURL;
+@property(readonly, nonatomic) NSArray *browserBundleURLs;
+@property(readonly, nonatomic) NSArray *firefoxBundleURLs;
 @property(readonly, nonatomic) NSURL *chromeBundleURL;
 @property(readonly, nonatomic) BOOL canImportFromFirefox;
 @property(readonly, nonatomic) BOOL canImportFromChrome;
@@ -51,17 +56,20 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL isImporting;
 @property(readonly, nonatomic) BOOL canResumeInterruptedImport;
 - (void)cancelImport;
-- (void)importDataTypesFromDefaultBrowser:(unsigned long long)arg1;
 - (void)abandonInterruptedImport;
-- (void)_resumeInterruptedImportForTestDrive:(BOOL)arg1;
-- (void)resumeInterruptedImportForTestDrive:(BOOL)arg1;
+- (id)_sourceBrowserDataDirectoriesInImportState:(id)arg1;
+- (id)_sourceBrowserBundleInImportState:(id)arg1;
+- (void)_resumeInterruptedImport;
 - (void)resumeInterruptedImport;
-- (void)_importDataTypes:(unsigned long long)arg1 fromBrowserWithApplicationBundle:(id)arg2 forTestDriveImport:(BOOL)arg3;
-- (void)performTestDriveImportOfDataTypes:(unsigned long long)arg1 fromBrowserWithApplicationBundle:(id)arg2;
-- (void)importDataTypes:(unsigned long long)arg1 fromBrowserWithApplicationBundle:(id)arg2;
-- (void)importDataTypesFromFirefox:(unsigned long long)arg1;
-- (void)importDataTypesFromChrome:(unsigned long long)arg1;
+- (void)_importDataTypes:(unsigned long long)arg1 forBrowserDataDirectories:(id)arg2;
+- (void)importDataTypes:(unsigned long long)arg1 forBrowserDataDirectories:(id)arg2;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

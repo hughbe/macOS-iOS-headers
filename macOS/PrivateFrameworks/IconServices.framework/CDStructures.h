@@ -10,9 +10,44 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct CGAffineTransform {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+    double _field5;
+    double _field6;
+};
+
+struct CGPoint {
+    double x;
+    double y;
+};
+
+struct CGRect {
+    struct CGPoint origin;
+    struct CGSize size;
+};
+
 struct CGSize {
     double width;
     double height;
+};
+
+struct FSRef {
+    unsigned char _field1[80];
+};
+
+struct _LIIconVariantInfo {
+    int _field1;
+    struct CGSize _field2;
+    double _field3;
+    unsigned long long _field4;
+    char *_field5;
+};
+
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
 };
 
 #pragma mark Typedef'd Structures
@@ -26,6 +61,12 @@ typedef struct {
 
 typedef struct {
     unsigned int _field1;
+    _Bool _field2;
+    unsigned int _field3;
+} CDStruct_7956d949;
+
+typedef struct {
+    unsigned int _field1;
     unsigned int _field2;
     unsigned int _field3;
 } CDStruct_32a7f38a;
@@ -36,29 +77,65 @@ typedef struct {
     float _field3;
     unsigned int _field4;
     unsigned int _field5;
-} CDStruct_9d4bab76;
+    float _field6;
+    float _field7;
+} CDStruct_601877e8;
 
 typedef struct {
-    double begin;
-    double end;
-} CDStruct_dfa92515;
+    int _field1;
+    unsigned int _field2;
+    double _field3;
+    unsigned int _field4;
+    unsigned long long _field5;
+    unsigned int _field6;
+    unsigned int _field7;
+    char _field8;
+    unsigned int _field9;
+    int _field10;
+    int _field11;
+    int _field12;
+} CDStruct_2eae0794;
 
 typedef struct {
     unsigned long long _field1;
     unsigned char _field2[16];
-    CDStruct_dfa92515 _field3;
+    struct {
+        double _field1;
+        double _field2;
+    } _field3;
     double _field4;
     unsigned int _field5;
-    CDStruct_32a7f38a _field6;
-    unsigned long long _field7;
-    unsigned char _field8[16];
-} CDStruct_76960521;
+    unsigned long long _field6;
+    unsigned char _field7[16];
+    struct {
+        unsigned char _field1[16];
+        unsigned long long _field2;
+        unsigned char _field3[16];
+    } _field8;
+} CDStruct_be136439;
 
 typedef struct {
-    unsigned long long _field1;
+    CDUnion_698d0922 _field1;
+    _Bool _field2;
+    unsigned char _field3[0];
+} CDStruct_31b2f3f3;
+
+typedef struct {
+    unsigned int _field1;
     unsigned long long _field2;
     unsigned int _field3;
     _Bool _field4;
-    CDStruct_76960521 _field5;
-} CDStruct_af6ef5a8;
+    CDStruct_be136439 _field5;
+    CDUnion_698d0922 _field6;
+} CDStruct_155cdb8f;
+
+#pragma mark Typedef'd Unions
+
+typedef union {
+    struct {
+        unsigned int _field1;
+        unsigned int _field2;
+    } _field1;
+    unsigned long long _field2;
+} CDUnion_698d0922;
 

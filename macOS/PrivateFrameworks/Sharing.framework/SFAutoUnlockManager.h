@@ -12,21 +12,18 @@
 
 @interface SFAutoUnlockManager : NSObject <SFUnlockClientProtocol>
 {
-    BOOL _useFakeSession;
     id <SFAutoUnlockManagerDelegate> _delegate;
     NSObject<OS_dispatch_queue> *_delegateQueue;
 }
 
++ (void)enableBluetoothAndWiFi;
++ (BOOL)bluetoothAndWiFiEnabled;
++ (BOOL)autoUnlockEnabled:(unsigned int)arg1;
 + (BOOL)autoUnlockSupported;
-@property BOOL useFakeSession; // @synthesize useFakeSession=_useFakeSession;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(nonatomic) id <SFAutoUnlockManagerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
-- (void)endFakeAutoUnlockSession;
-- (void)beginFakeAutoUnlockSession;
-- (void)removeAllDevices;
-- (void)removeDeviceWithName:(id)arg1;
-- (void)addDeviceWithName:(id)arg1 modelIdentifier:(id)arg2;
+- (void)authPromptInfoWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)autoUnlockStateWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)failedUnlockWithError:(id)arg1;
 - (void)completedUnlockWithDevice:(id)arg1;
@@ -39,9 +36,11 @@
 - (void)cancelAutoUnlock;
 - (void)attemptAutoUnlock;
 - (void)disableAutoUnlockForDevice:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)enableAutoUnlockWithDevice:(id)arg1 passcode:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)cancelEnablingAutoUnlockForDevice:(id)arg1;
 - (void)enableAutoUnlockWithDevice:(id)arg1 passcode:(id)arg2;
 - (void)eligibleAutoUnlockDevicesWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)repairCloudPairing;
+@property(readonly, nonatomic) double spinnerDelay;
 - (id)init;
 
 // Remaining properties

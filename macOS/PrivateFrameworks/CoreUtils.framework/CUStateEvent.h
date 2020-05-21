@@ -17,12 +17,11 @@
 + (id)initialTransition;
 + (id)exitState;
 + (id)enterState;
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSDictionary *userInfo; // @synthesize userInfo=_userInfo;
 @property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (id)description;
 - (void)dealloc;
-- (id)init;
 - (id)initWithName:(id)arg1 userInfo:(id)arg2;
 
 @end

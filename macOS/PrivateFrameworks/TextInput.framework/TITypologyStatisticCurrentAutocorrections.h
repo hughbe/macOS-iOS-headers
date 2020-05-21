@@ -6,16 +6,18 @@
 
 #import <TextInput/TITypologyStatistic.h>
 
-@class TIAutocorrectionList;
+@class TIAutocorrectionList, TICandidateRequestToken;
 
 @interface TITypologyStatisticCurrentAutocorrections : TITypologyStatistic
 {
     TIAutocorrectionList *_autocorrections;
+    TICandidateRequestToken *_requestToken;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) TICandidateRequestToken *requestToken; // @synthesize requestToken=_requestToken;
 @property(retain, nonatomic) TIAutocorrectionList *autocorrections; // @synthesize autocorrections=_autocorrections;
 - (void)visitRecordAutocorrections:(id)arg1;
-- (void)dealloc;
 
 @end
 

@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     long long _updateType;
     long long _insertionAnimationType;
     long long _replacementAnimationType;
+    long long _pinAnimationType;
     long long _updateAnimationType;
 }
 
@@ -24,14 +25,15 @@ __attribute__((visibility("hidden")))
 + (id)confirmationAnimationForTranscriptItem:(id)arg1;
 + (id)animationForTranscriptItem:(id)arg1 updateType:(long long)arg2 replacedView:(id)arg3;
 + (id)animationForTranscriptItem:(id)arg1 updateType:(long long)arg2;
+- (void).cxx_destruct;
 @property(nonatomic) long long updateAnimationType; // @synthesize updateAnimationType=_updateAnimationType;
+@property(readonly, nonatomic) long long pinAnimationType; // @synthesize pinAnimationType=_pinAnimationType;
 @property(readonly, nonatomic) long long replacementAnimationType; // @synthesize replacementAnimationType=_replacementAnimationType;
 @property(readonly, nonatomic) long long insertionAnimationType; // @synthesize insertionAnimationType=_insertionAnimationType;
 @property(readonly, nonatomic) long long updateType; // @synthesize updateType=_updateType;
 @property(readonly, nonatomic) NSView *replacedView; // @synthesize replacedView=_replacedView;
 @property(readonly, nonatomic) SiriUITranscriptItem *transcriptItem; // @synthesize transcriptItem=_transcriptItem;
 @property(readonly, nonatomic) double creationTime; // @synthesize creationTime=_creationTime;
-- (void).cxx_destruct;
 - (id)_animationTypeString;
 - (id)description;
 - (double)animationDelay;

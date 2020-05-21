@@ -8,6 +8,9 @@
 
 @interface NSURL (StoreCacheAdditions)
 + (id)wf_inMemoryAddress;
++ (id)wf_cacheDirectory:(id)arg1;
 - (BOOL)wf_isInMemoryAddress;
+- (BOOL)wf_URLHasParameter:(id)arg1;
+- (id)wf_URLWithTracking:(id)arg1;
 @end
 

@@ -6,27 +6,27 @@
 
 #import <CloudKit/CKOperation.h>
 
-@class NSArray, NSMutableDictionary, NSMutableSet;
+@class NSArray, NSDictionary, NSMutableDictionary, NSMutableSet;
 
 @interface CKFetchShareMetadataOperation : CKOperation
 {
     BOOL _shouldFetchRootRecord;
-    NSArray *_shareURLs;
-    NSArray *_rootRecordDesiredKeys;
     CDUnknownBlockType _perShareMetadataBlock;
     CDUnknownBlockType _fetchShareMetadataCompletionBlock;
+    NSArray *_shareURLs;
+    NSArray *_rootRecordDesiredKeys;
     NSMutableDictionary *_errorsByURL;
     NSMutableSet *_packagesToDestroy;
+    NSDictionary *_shareInvitationTokensByShareURL;
 }
 
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSDictionary *shareInvitationTokensByShareURL; // @synthesize shareInvitationTokensByShareURL=_shareInvitationTokensByShareURL;
 @property(retain, nonatomic) NSMutableSet *packagesToDestroy; // @synthesize packagesToDestroy=_packagesToDestroy;
 @property(retain, nonatomic) NSMutableDictionary *errorsByURL; // @synthesize errorsByURL=_errorsByURL;
-@property(copy, nonatomic) CDUnknownBlockType fetchShareMetadataCompletionBlock; // @synthesize fetchShareMetadataCompletionBlock=_fetchShareMetadataCompletionBlock;
-@property(copy, nonatomic) CDUnknownBlockType perShareMetadataBlock; // @synthesize perShareMetadataBlock=_perShareMetadataBlock;
 @property(copy, nonatomic) NSArray *rootRecordDesiredKeys; // @synthesize rootRecordDesiredKeys=_rootRecordDesiredKeys;
 @property(nonatomic) BOOL shouldFetchRootRecord; // @synthesize shouldFetchRootRecord=_shouldFetchRootRecord;
 @property(copy, nonatomic) NSArray *shareURLs; // @synthesize shareURLs=_shareURLs;
-- (void).cxx_destruct;
 - (id)activityCreate;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
@@ -36,7 +36,11 @@
 - (BOOL)hasCKOperationCallbacksSet;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+@property(copy, nonatomic) CDUnknownBlockType fetchShareMetadataCompletionBlock; // @synthesize fetchShareMetadataCompletionBlock=_fetchShareMetadataCompletionBlock;
+@property(copy, nonatomic) CDUnknownBlockType perShareMetadataBlock; // @synthesize perShareMetadataBlock=_perShareMetadataBlock;
+- (id)initWithShareURLs:(id)arg1 invitationTokensByShareURL:(id)arg2;
 - (id)initWithShareURLs:(id)arg1;
+- (id)init;
 
 @end
 

@@ -7,6 +7,7 @@
 #import "NSImage.h"
 
 @interface NSImage (LUIHelpers)
++ (id)stretchableRoundedRectImage;
 + (int)optionsForStyle:(int)arg1;
 + (id)imageForIdentifier:(id)arg1 options:(int)arg2;
 + (id)imageForIdentifier:(id)arg1 pressed:(BOOL)arg2;
@@ -21,5 +22,8 @@
 + (id)imageForUserFromURL:(id)arg1 avatarType:(int)arg2;
 + (id)imageForUserFromURL:(id)arg1;
 + (id)_imageWithCGImages:(struct CGImage *)arg1;
++ (id)imageWithIdentifier:(id)arg1 pressed:(BOOL)arg2 onLinen:(BOOL)arg3;
++ (id)imageWithIdentifier:(id)arg1 pressed:(BOOL)arg2;
++ (id)imageWithIdentifier:(id)arg1;
 @end
 

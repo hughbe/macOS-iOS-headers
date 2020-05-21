@@ -8,19 +8,22 @@
 
 #import "CAMediaTiming.h"
 #import "CAPropertyInfo.h"
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class CAMeshTransform, NSArray, NSDictionary, NSString;
 
-@interface CALayer : NSObject <CAPropertyInfo, NSCoding, CAMediaTiming>
+@interface CALayer : NSObject <CAPropertyInfo, NSSecureCoding, CAMediaTiming>
 {
     struct _CALayerIvars _attr;
 }
 
++ (double)cornerCurveExpansionFactor:(id)arg1;
 + (id)defaultActionForKey:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (BOOL)CA_automaticallyNotifiesObservers:(Class)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (BOOL)_hasRenderLayerSubclass;
++ (void)initialize;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)layer;
 + (BOOL)needsDisplayForKey:(id)arg1;
@@ -35,21 +38,27 @@
 + (id)properties;
 + (BOOL)needsLayoutForKey:(id)arg1;
 + (id)layerWithRemoteClientId:(unsigned int)arg1;
+@property BOOL invertsContentsAreFlipped;
+@property BOOL allowsGroupOpacity;
+@property BOOL allowsEdgeAntialiasing;
 @property BOOL drawsAsynchronously;
 @property double rasterizationScale;
 @property BOOL rasterizationPrefersDisplayCompositing;
 @property BOOL shouldRasterize;
-@property(retain) id layoutManager;
+@property(retain) id <CALayoutManager> layoutManager;
 @property const struct CGPath *shadowPath;
 @property double shadowRadius;
 @property struct CGSize shadowOffset;
 @property struct CGColor *shadowColor;
 @property float shadowOpacity;
+@property(copy) NSString *contentsSwizzle;
 @property struct CGColor *contentsMultiplyColor;
 @property double cornerRadius;
 @property double borderWidth;
 @property struct CGColor *borderColor;
 @property(copy) NSDictionary *actions;
+@property(copy) NSDictionary *separatedOptions;
+@property(getter=isSeparated) BOOL separated;
 @property(copy) NSDictionary *style;
 @property(copy) NSString *name;
 @property(retain) id compositingFilter;
@@ -72,6 +81,7 @@
 @property(getter=isOpaque) BOOL opaque;
 @property(getter=isDoubleSided) BOOL doubleSided;
 @property(getter=isHidden) BOOL hidden;
+@property(retain) id cornerContents;
 @property double anchorPointZ;
 @property struct CGPoint anchorPoint;
 @property(copy) NSString *fillMode;
@@ -85,7 +95,9 @@
 - (void)resizeWithOldSuperlayerSize:(struct CGSize)arg1;
 - (void)resizeSublayersWithOldSize:(struct CGSize)arg1;
 @property unsigned int autoresizingMask;
-@property unsigned int maskedCorners;
+@property BOOL continuousCorners;
+@property(copy) NSString *cornerCurve;
+@property unsigned long long maskedCorners;
 - (void)layoutSublayers;
 - (void)layoutIfNeeded;
 - (struct CGSize)preferredFrameSize;
@@ -98,6 +110,7 @@
 - (void)_colorSpaceDidChange;
 - (void)_display;
 - (void)display;
+- (int)_overrideImageFormat;
 - (void)_renderBorderInContext:(struct CGContext *)arg1;
 - (void)_renderSublayersInContext:(struct CGContext *)arg1;
 - (void)_renderForegroundInContext:(struct CGContext *)arg1;
@@ -123,15 +136,16 @@
 - (void)addSublayer:(id)arg1;
 - (void)insertSublayer:(id)arg1 atIndex:(unsigned int)arg2;
 - (void)removeFromSuperlayer;
-@property __weak id delegate;
+@property id <CALayerDelegate> unsafeUnretainedDelegate;
+@property __weak id <CALayerDelegate> delegate;
 @property(retain) CALayer *mask;
 @property(readonly) CALayer *superlayer;
 @property(copy) NSArray *sublayers;
 @property(copy) NSString *contentsScaling;
 @property(copy) NSString *contentsGravity;
 @property(copy) NSString *contentsFormat;
+@property(copy) NSString *securityMode;
 @property unsigned int edgeAntialiasingMask;
-@property(retain) id cornerContents;
 @property(retain) id contents;
 - (BOOL)containsPoint:(struct CGPoint)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
@@ -153,11 +167,14 @@
 - (BOOL)shouldArchiveValueForKey:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)setObservationInfo:(void *)arg1;
+- (void *)observationInfo;
 - (void)setValue:(id)arg1 forKeyPath:(id)arg2;
 - (id)valueForKeyPath:(id)arg1;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (void)setValue:(id)arg1 forKey:(id)arg2;
 - (id)valueForUndefinedKey:(id)arg1;
+- (id)CA_archivingValueForKey:(id)arg1;
 - (id)valueForKey:(id)arg1;
 - (id)debugDescription;
 - (void)dealloc;
@@ -170,6 +187,7 @@
 - (oneway void)release;
 - (BOOL)retainWeakReference;
 - (id)retain;
+- (void)addConstraint:(id)arg1;
 - (id)stateTransitionFrom:(id)arg1 to:(id)arg2;
 - (id)dependentStatesOfState:(id)arg1;
 - (id)stateWithName:(id)arg1;
@@ -182,7 +200,6 @@
 - (void)_scrollRect:(struct CGRect)arg1 fromLayer:(id)arg2;
 - (void)scrollPoint:(struct CGPoint)arg1;
 - (void)_scrollPoint:(struct CGPoint)arg1 fromLayer:(id)arg2;
-- (void)addConstraint:(id)arg1;
 @property BOOL acceleratesDrawing;
 @property struct CGSize backgroundColorPhase;
 @property struct CGSize sizeRequisition;
@@ -191,13 +208,17 @@
 - (void)setWantsExtendedDynamicRangeContent:(BOOL)arg1;
 - (BOOL)wantsExtendedDynamicRangeContent;
 @property BOOL allowsDisplayCompositing;
+@property BOOL createsCompositingGroup;
 @property BOOL preloadsCache;
 @property double motionBlurAmount;
+@property BOOL inheritsTiming;
 @property BOOL contentsOpaque;
 @property BOOL contentsDither;
+@property BOOL contentsAlignsToPixels;
 @property struct CGAffineTransform contentsTransform;
 @property BOOL shadowPathIsBounds;
 @property BOOL invertsShadow;
+@property BOOL flipsHorizontalAxis;
 @property BOOL sortsSublayers;
 @property BOOL needsLayoutOnGeometryChange;
 @property(getter=isFrozen) BOOL frozen;
@@ -205,20 +226,26 @@
 @property BOOL canDrawConcurrently;
 @property BOOL literalContentsCenter;
 @property BOOL hitTestsAsOpaque;
+@property BOOL hitTestsContentsAlphaChannel;
 @property BOOL allowsHitTesting;
-@property BOOL allowsGroupOpacity;
-@property BOOL allowsEdgeAntialiasing;
-@property BOOL allowsContentsRectCornerMasking;
 - (void)setFlipped:(BOOL)arg1;
 - (BOOL)isFlipped;
 - (BOOL)floating;
 - (BOOL)doubleSided;
 - (BOOL)opaque;
 - (BOOL)hidden;
+- (BOOL)CAMLTypeSupportedForKey:(id)arg1;
 - (id)CAMLTypeForKey:(id)arg1;
 - (void)encodeWithCAMLWriter:(id)arg1;
 - (void)CAMLParser:(id)arg1 setValue:(id)arg2 forKey:(id)arg3;
 - (void)layerDidChangeDisplay:(unsigned int)arg1;
+- (id)recursiveDescription;
+@property(copy) NSArray *layoutDependents;
+- (void)removeLayoutDependent:(id)arg1;
+- (void)addLayoutDependent:(id)arg1;
+@property(copy) NSArray *presentationModifiers;
+- (void)removePresentationModifier:(id)arg1;
+- (void)addPresentationModifier:(id)arg1;
 - (BOOL)_defersDidBecomeVisiblePostCommit;
 - (void)layerDidBecomeVisible:(BOOL)arg1;
 - (unsigned int)_renderLayerPropertyAnimationFlags:(unsigned int)arg1;
@@ -248,28 +275,17 @@
 - (BOOL)_canDisplayConcurrently;
 - (id)implicitAnimationForKeyPath:(id)arg1;
 - (void)reloadValueForKeyPath:(id)arg1;
-- (void)setLights:(id)arg1;
-- (id)lights;
-@property double velocityStretch;
-@property(copy) NSArray *behaviors;
-@property double coefficientOfRestitution;
-@property double momentOfInertia;
-@property double mass;
+- (void)setBehaviors:(id)arg1;
+- (id)behaviors;
+- (void)setMass:(double)arg1;
+- (double)mass;
 - (BOOL)getRendererInfo:(struct _CARenderRendererInfo *)arg1 size:(unsigned long long)arg2;
 
 // Remaining properties
 @property(copy) NSArray *constraints; // @dynamic constraints;
-@property unsigned int layoutFlags; // @dynamic layoutFlags;
 @property struct CGSize margin; // @dynamic margin;
-@property struct CGSize spacing; // @dynamic spacing;
 @property(copy) NSArray *stateTransitions; // @dynamic stateTransitions;
 @property(copy) NSArray *states; // @dynamic states;
-@property unsigned int tableColumn; // @dynamic tableColumn;
-@property unsigned int tableColumns; // @dynamic tableColumns;
-@property unsigned int tableRow; // @dynamic tableRow;
-@property unsigned int tableRows; // @dynamic tableRows;
-@property(copy) NSString *wrappedDirection; // @dynamic wrappedDirection;
-@property(copy) NSString *wrappedOrigin; // @dynamic wrappedOrigin;
 
 @end
 

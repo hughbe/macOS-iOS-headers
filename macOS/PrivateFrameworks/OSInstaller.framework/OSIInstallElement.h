@@ -6,7 +6,7 @@
 
 #import <OSInstaller/OSIInstallQueueElement.h>
 
-@class NSArray, NSError, NSObject<OS_dispatch_semaphore>;
+@class NSArray, NSError, NSObject<OS_dispatch_semaphore>, NSTimer;
 
 @interface OSIInstallElement : OSIInstallQueueElement
 {
@@ -16,9 +16,19 @@
     NSError *_error;
     BOOL _isOSInstall;
     double _totalEstimatedTime;
+    double _totalSUTimeRemaining;
+    double _suAmountDeducted;
+    NSTimer *_initialSUProgressTimer;
+    BOOL _isSoftwareUpdate;
+    BOOL _shouldInstallIAL;
 }
 
+- (void).cxx_destruct;
+@property BOOL shouldInstallIAL; // @synthesize shouldInstallIAL=_shouldInstallIAL;
+@property BOOL isSoftwareUpdate; // @synthesize isSoftwareUpdate=_isSoftwareUpdate;
 @property BOOL isOSInstall; // @synthesize isOSInstall=_isOSInstall;
+- (BOOL)_isValidCompatibilityUpdatePackage:(id)arg1;
+- (void)updateSUProgress;
 - (double)estimatedTimeToComplete;
 - (void)installClientDidFinish:(id)arg1;
 - (void)installClient:(id)arg1 didFailWithError:(id)arg2;
@@ -28,8 +38,7 @@
 - (id)localizedStatusString;
 - (id)operationName;
 - (BOOL)runReturningError:(id *)arg1;
-- (void)dealloc;
-- (id)initWithOptions:(id)arg1 packageSpecifiers:(id)arg2 isOSInstall:(BOOL)arg3;
+- (id)initWithOptions:(id)arg1 packageSpecifiers:(id)arg2 isOSInstall:(BOOL)arg3 isSoftwareUpdate:(BOOL)arg4 shouldInstallIAL:(BOOL)arg5;
 
 @end
 

@@ -6,22 +6,24 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableSet, NSTimer;
+@class NSMutableArray, NSTimer;
 
 __attribute__((visibility("hidden")))
 @interface NSVB_ViewServiceFencingController : NSObject
 {
-    int _lock;
-    NSMutableSet *_pendingFenceSendRights;
+    struct os_unfair_lock_s _lock;
+    NSMutableArray *_pendingFenceSendRights;
+    NSMutableArray *_proxies;
     NSMutableArray *_resumeActions;
-    unsigned long long _expectedParticipatingFencingProxyCount;
+    unsigned long long _resumedFencingProxyCount;
     NSTimer *_fencingControlTimeoutTimer;
 }
 
 + (id)activeFencePort;
 - (void)_fencingControlTimedOut;
-- (void)fencingControlProxy:(id)arg1 didEndFencingWithSendRight:(id)arg2;
-- (void)fencingControlProxy:(id)arg1 didBeginFencingWithSendRight:(id)arg2 expectedParticipatingFencingProxyCount:(unsigned long long)arg3;
+- (void)forgetFencingMessagesForFencingControlProxy:(id)arg1;
+- (BOOL)fencingControlProxy:(id)arg1 didEndFencingWithSendRight:(id)arg2;
+- (BOOL)fencingControlProxy:(id)arg1 didBeginFencingWithSendRight:(id)arg2;
 - (void)dealloc;
 - (id)init;
 

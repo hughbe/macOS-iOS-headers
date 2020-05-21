@@ -12,11 +12,12 @@ __attribute__((visibility("hidden")))
 @interface _CFXNotificationRegistrationBase : NSObject
 {
     _CFXNotificationRegistrationContainer *_parent;
-    struct os_lock_handoff_s _lock;
+    struct os_unfair_lock_s _lock;
 }
 
 + (const CDStruct_90be15af *)keyCallbacks;
-- (void)removeFromParent;
+- (void).cxx_destruct;
+- (void)removeFromParent:(unsigned long long)arg1;
 - (void)setParent:(id)arg1;
 @property(readonly) __weak _CFXNotificationRegistrationContainer *parent;
 @property(readonly) void *key;

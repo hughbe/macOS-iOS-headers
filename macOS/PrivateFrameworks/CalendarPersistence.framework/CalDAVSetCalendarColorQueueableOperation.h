@@ -13,9 +13,9 @@
     CoreDAVItem *_backupElement;
 }
 
+- (void).cxx_destruct;
 @property(retain) CoreDAVItem *backupElement; // @synthesize backupElement=_backupElement;
 - (void)performOperation;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 session:(id)arg2 URI:(id)arg3 colorString:(id)arg4 colorName:(id)arg5;
 
 @end

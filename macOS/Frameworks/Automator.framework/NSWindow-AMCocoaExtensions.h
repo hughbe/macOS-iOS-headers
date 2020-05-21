@@ -7,6 +7,8 @@
 #import "NSWindow.h"
 
 @interface NSWindow (AMCocoaExtensions)
-- (void)constrainToScreen:(id)arg1 adjustWidth:(BOOL)arg2 adjustHeight:(BOOL)arg3;
+- (struct CGPoint)am_convertPointToScreen:(struct CGPoint)arg1;
+- (struct CGPoint)am_convertPointFromScreen:(struct CGPoint)arg1;
+- (void)am_constrainToScreen:(id)arg1 adjustWidth:(BOOL)arg2 adjustHeight:(BOOL)arg3;
 @end
 

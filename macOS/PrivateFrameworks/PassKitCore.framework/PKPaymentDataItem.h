@@ -8,7 +8,7 @@
 
 #import "PKPaymentValidating.h"
 
-@class NSString, PKPaymentAuthorizationDataModel;
+@class NSArray, NSString, PKPaymentAuthorizationDataModel;
 
 @interface PKPaymentDataItem : NSObject <PKPaymentValidating>
 {
@@ -17,13 +17,15 @@
     PKPaymentAuthorizationDataModel *_model;
 }
 
++ (BOOL)supportsMultipleItems;
 + (long long)dataType;
+- (void).cxx_destruct;
 @property(nonatomic) __weak PKPaymentAuthorizationDataModel *model; // @synthesize model=_model;
 @property(nonatomic) long long status; // @synthesize status=_status;
 @property(nonatomic) long long type; // @synthesize type=_type;
-- (void).cxx_destruct;
-@property(readonly, nonatomic, getter=isRejected) BOOL rejected;
 - (BOOL)isValidWithError:(id *)arg1;
+@property(readonly, nonatomic, getter=isRejected) BOOL rejected;
+@property(readonly, nonatomic) NSArray *errors;
 - (id)initWithModel:(id)arg1;
 
 // Remaining properties

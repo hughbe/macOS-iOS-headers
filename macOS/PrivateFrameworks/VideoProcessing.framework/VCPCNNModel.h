@@ -6,21 +6,26 @@
 
 #import "NSObject.h"
 
+@class VCPCNNBlock, VCPCNNData, VCPCNNMetalContext;
+
 @interface VCPCNNModel : NSObject
 {
-    struct CNNBlock *_blocks[20];
+    VCPCNNBlock *_blocks[200];
     short _quantFactor;
-    struct CNNData *_output;
+    BOOL _useGPU;
+    VCPCNNMetalContext *_context;
+    VCPCNNData *_output;
 }
 
-@property(readonly) struct CNNData *output; // @synthesize output=_output;
-- (int)dynamicForward:(struct CNNData *)arg1 paramFileUrl:(id)arg2 cancel:(CDUnknownBlockType)arg3;
-- (int)forward:(struct CNNData *)arg1;
-- (int)initailizeNetwork:(const struct CNNSize *)arg1 paramFileUrl:(id)arg2;
-- (int)add:(struct CNNBlock *)arg1;
+- (void).cxx_destruct;
+@property(readonly) VCPCNNData *output; // @synthesize output=_output;
+- (int)dynamicForward:(id)arg1 paramFileUrl:(id)arg2 cancel:(CDUnknownBlockType)arg3;
+- (int)forward:(id)arg1;
+- (int)prepareNetworkFromURL:(id)arg1 withInputSize:(id)arg2;
+- (int)add:(id)arg1;
+- (id)getGPUContext;
 - (int)size;
-- (void)dealloc;
-- (id)initWithQuantFactor:(short)arg1;
+- (id)initWithParameters:(short)arg1 useGPU:(BOOL)arg2;
 - (id)init;
 
 @end

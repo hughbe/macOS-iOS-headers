@@ -24,6 +24,7 @@
 - (BOOL)canAddOutput:(id)arg1;
 - (BOOL)_canAddOutput:(id)arg1 exceptionReason:(id *)arg2;
 @property(readonly, nonatomic) NSArray *outputs;
+@property(nonatomic, getter=_readSingleSample, setter=_setReadSingleSample:) BOOL readSingleSample;
 @property(nonatomic) CDStruct_e83c9415 timeRange;
 - (void)_failWithError:(id)arg1;
 @property(readonly) NSError *error;
@@ -32,7 +33,6 @@
 @property(readonly, retain, nonatomic) AVAsset *asset;
 - (id)description;
 - (void)_tearDownFigAssetReader;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithAsset:(id)arg1 error:(id *)arg2;
 - (id)init;

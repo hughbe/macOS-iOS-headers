@@ -8,7 +8,6 @@
 
 @class GEOLocation, NSDate, NSString;
 
-__attribute__((visibility("hidden")))
 @interface GEORouteHypothesisOld : NSObject
 {
     GEOLocation *_lastLocation;
@@ -24,6 +23,7 @@ __attribute__((visibility("hidden")))
     double _travelStateScore;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) double travelStateScore; // @synthesize travelStateScore=_travelStateScore;
 @property(readonly, nonatomic) unsigned long long travelState; // @synthesize travelState=_travelState;
 @property(readonly, nonatomic) NSString *routeIncidentStreetName; // @synthesize routeIncidentStreetName=_routeIncidentStreetName;
@@ -41,7 +41,6 @@ __attribute__((visibility("hidden")))
 - (void)updateHistoricTrafficDensity:(double)arg1 staticTravelTime:(double)arg2;
 - (void)updateCurrentTrafficDensity:(double)arg1 staticTravelTime:(double)arg2;
 - (void)updateDepartureAndArrivalSuggestions:(id)arg1 arrivalDate:(id)arg2 travelTimeWithTraffic:(double)arg3;
-- (void)dealloc;
 
 @end
 

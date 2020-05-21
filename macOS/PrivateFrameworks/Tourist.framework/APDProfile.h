@@ -6,27 +6,36 @@
 
 #import "NSObject.h"
 
-@class NSLocale, NSString;
+@class NSArray, NSString;
 
 @interface APDProfile : NSObject
 {
     NSString *_boardID;
     double _scalingFactor;
     NSString *_previousSystem;
-    NSLocale *_locale;
+    NSArray *_preferredLocalizations;
+    NSString *_platform;
+    NSString *_currentSystem;
+    NSArray *_testCamps;
 }
 
-@property(retain) NSLocale *locale; // @synthesize locale=_locale;
+- (void).cxx_destruct;
+@property(retain) NSArray *testCamps; // @synthesize testCamps=_testCamps;
+@property(retain) NSString *currentSystem; // @synthesize currentSystem=_currentSystem;
+@property(retain) NSString *platform; // @synthesize platform=_platform;
+@property(retain) NSArray *preferredLocalizations; // @synthesize preferredLocalizations=_preferredLocalizations;
 @property(retain) NSString *previousSystem; // @synthesize previousSystem=_previousSystem;
 @property double scalingFactor; // @synthesize scalingFactor=_scalingFactor;
 @property(retain) NSString *boardID; // @synthesize boardID=_boardID;
-- (void).cxx_destruct;
+- (void)mtLogQuickTourPopulation:(id)arg1;
 - (id)_detectPreviousSystem;
+- (id)_detectCurrentSystem;
 - (double)_detectScalingFactor;
 - (id)_detectBoardID;
 - (id)json;
 - (id)description;
-- (id)initWithBoardID:(id)arg1 scalingFactor:(id)arg2 previousSystem:(id)arg3 locale:(id)arg4;
+- (id)decideTestCamps:(id)arg1 useCachedValue:(BOOL)arg2;
+- (id)initWithBoardID:(id)arg1 platform:(id)arg2 scalingFactor:(id)arg3 previousSystem:(id)arg4 currentSystem:(id)arg5 preferredLocalizations:(id)arg6;
 - (id)init;
 
 @end

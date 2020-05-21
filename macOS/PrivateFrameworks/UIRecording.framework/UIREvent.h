@@ -6,18 +6,19 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSMutableDictionary, NSString;
 
-@interface UIREvent : NSObject <NSCopying, NSCoding>
+@interface UIREvent : NSObject <NSCopying, NSSecureCoding>
 {
     NSMutableDictionary *properties;
     struct __CGEvent *_cgEvent;
     NSString *_processName;
 }
 
++ (BOOL)supportsSecureCoding;
 - (BOOL)needsProcessToGenerateCGEvent;
 - (struct __CGEvent *)cgEventToPostToProcess:(id)arg1 withLastEvent:(id)arg2 withLastCGEvent:(struct __CGEvent *)arg3 error:(id *)arg4;
 - (double)timeIntervalSinceStartup;

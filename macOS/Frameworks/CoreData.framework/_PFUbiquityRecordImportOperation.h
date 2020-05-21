@@ -29,7 +29,6 @@ __attribute__((visibility("hidden")))
     BOOL _success;
     BOOL _transactionDidRollback;
     BOOL _wroteKV;
-    int _inMemorySequenceNumber;
     NSError *_operationError;
     NSMutableDictionary *_relationshipsToObjectIDsToCheck;
 }

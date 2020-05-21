@@ -6,28 +6,32 @@
 
 #import "NSObject.h"
 
-@class CKContainer, NSOperationQueue;
+@class CKContainer, NSObject<OS_dispatch_queue>, NSOperationQueue;
 
 @interface CKDatabase : NSObject
 {
     CKContainer *_container;
     long long _scope;
     NSOperationQueue *_operationQueue;
+    NSObject<OS_dispatch_queue> *_underlyingDispatchQueue;
 }
 
-@property(readonly, nonatomic) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
-@property(nonatomic) long long scope; // @synthesize scope=_scope;
-@property(nonatomic) __weak CKContainer *container; // @synthesize container=_container;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *underlyingDispatchQueue; // @synthesize underlyingDispatchQueue=_underlyingDispatchQueue;
+@property(readonly, nonatomic) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
+@property(readonly, nonatomic) long long scope; // @synthesize scope=_scope;
+@property(nonatomic) __weak CKContainer *container; // @synthesize container=_container;
 - (id)CKStatusReportArray;
 - (void)clearCacheEntriesForZone:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)clearCacheEntriesForRecord:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)clearCachesWithOptions:(unsigned long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)getCorruptRecordsForAllZonesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)getPCSDiagnosticsForZonesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)clearAuthTokensForRecordWithID:(id)arg1;
 - (void)clearRecordCache;
 - (void)showAssetCache;
 - (void)clearAssetCache;
+- (unsigned long long)countAssetCacheItems;
 - (id)daemonWithErrorHandler:(CDUnknownBlockType)arg1;
 - (void)addOperation:(id)arg1;
 @property(readonly, nonatomic) long long databaseScope;

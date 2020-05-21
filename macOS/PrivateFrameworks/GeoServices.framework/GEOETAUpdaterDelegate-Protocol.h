@@ -17,6 +17,7 @@
 - (NSArray *)etaUpdaterRoutesForETATrafficUpdateRequest:(GEOETAUpdater *)arg1;
 
 @optional
+- (void)etaUpdaterRequestCompleted:(GEOETAUpdater *)arg1;
 - (BOOL)etaUpdater:(GEOETAUpdater *)arg1 updateRouteWithETATrafficUpdateResponse:(GEOETATrafficUpdateResponse *)arg2 step:(GEOStep *)arg3 percentOfCurrentStepRemaining:(double)arg4;
 @end
 

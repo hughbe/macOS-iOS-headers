@@ -45,6 +45,7 @@ __attribute__((visibility("hidden")))
     struct __CFRunLoop *_runLoop;
     NSOperationQueue *_queryQueue;
     // Error parsing type: Ai, name: _disableCount
+    int _receiverDisableCount;
 }
 
 + (void)initialize;
@@ -52,9 +53,9 @@ __attribute__((visibility("hidden")))
 + (id)willBeginPossibleDeletionOfItemAtURL:(id)arg1;
 + (id)willBeginPossibleMoveOfItemAtURL:(id)arg1 toURL:(id)arg2;
 + (id)willBeginPossibleCreationOfItemAtURL:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) BRNotificationReceiver *receiver; // @synthesize receiver=_receiver;
 @property __weak NSMetadataQuery *query; // @synthesize query=_query;
-- (void).cxx_destruct;
 - (void)notificationReceiverDidReceiveNotifications:(id)arg1;
 - (void)notificationsReceiverDidReceiveNotificationsBatch:(id)arg1;
 - (void)notificationsReceiverDidFinishGathering:(id)arg1;
@@ -65,8 +66,8 @@ __attribute__((visibility("hidden")))
 - (void)_processChanges:(id)arg1;
 - (void)_processUpdates;
 - (BOOL)_collectUpdates:(id)arg1;
-- (void)_postNote:(struct __CFString *)arg1 userInfo:(id)arg2;
-- (void)_postNote:(struct __CFString *)arg1;
+- (void)_postNote:(const struct __CFString *)arg1 userInfo:(id)arg2;
+- (void)_postNote:(const struct __CFString *)arg1;
 - (id)queryQueue;
 - (void)setQueryQueue:(id)arg1;
 - (void)setSortComparator:(CDUnknownFunctionPointerType)arg1 withContext:(void *)arg2;
@@ -84,7 +85,7 @@ __attribute__((visibility("hidden")))
 - (id)attributeValueForName:(id)arg1 forResultAtIndex:(long long)arg2;
 - (unsigned char)executeWithOptions:(unsigned long long)arg1;
 - (void)_runQuery;
-- (void)_startReceiver;
+- (void)_watchScopes;
 - (void)stop;
 - (void)_performBlockAsync:(CDUnknownBlockType)arg1;
 - (void)enableUpdates;

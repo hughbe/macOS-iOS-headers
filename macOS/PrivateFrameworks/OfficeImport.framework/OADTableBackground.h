@@ -17,13 +17,13 @@ __attribute__((visibility("hidden")))
     NSArray *mEffects;
 }
 
+- (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (BOOL)hasEffects;
 - (void)setEffects:(id)arg1;
 - (id)effects;
 - (void)setFill:(id)arg1;
 - (id)fill;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

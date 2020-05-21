@@ -22,8 +22,8 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)filesForUnarchivedFileAtPath:(id)arg1;
-@property(copy, nonatomic) NSData *bookmarkData; // @synthesize bookmarkData=_bookmarkData;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSData *bookmarkData; // @synthesize bookmarkData=_bookmarkData;
 - (id)securityAssessment;
 - (id)description;
 - (BOOL)isMovableOrRemovable;
@@ -34,7 +34,6 @@ __attribute__((visibility("hidden")))
 - (void)setTypeWithEncoding:(id)arg1;
 - (void)setType:(int)arg1;
 - (int)type;
-- (BOOL)isXIP;
 - (BOOL)isGZIP;
 - (BOOL)isBOM;
 - (BOOL)isArchive;
@@ -44,7 +43,6 @@ __attribute__((visibility("hidden")))
 - (id)initWithPath:(id)arg1;
 - (void)setPath:(id)arg1;
 - (void)_setInitialDownloadPath:(id)arg1;
-- (BOOL)_isXIP;
 - (BOOL)_isGZIP;
 - (BOOL)_isBOM;
 - (BOOL)_isMIMEType:(id)arg1;

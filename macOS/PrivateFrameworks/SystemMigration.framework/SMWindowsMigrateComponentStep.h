@@ -14,9 +14,9 @@
     SMCopyEngine *fileCopyEngine;
 }
 
+- (void).cxx_destruct;
 @property(retain) SMCopyEngine *fileCopyEngine; // @synthesize fileCopyEngine;
 @property(retain) SMWindowsMacPathMapper *windowsMacPathMap; // @synthesize windowsMacPathMap;
-- (void).cxx_destruct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)estimatedTimeRemainingChanged:(double)arg1;
 - (void)transferRateChanged:(double)arg1;
@@ -25,7 +25,7 @@
 - (double)estimatedTimeToCompletePhase:(unsigned long long)arg1;
 - (void)cancel;
 - (id)process;
-- (id)preProcess;
+- (id)prepare;
 - (id)initWithEngine:(id)arg1 pathMap:(id)arg2;
 
 @end

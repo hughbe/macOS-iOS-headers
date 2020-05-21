@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSColor, NSString, NSView;
+@class CNContactDetailsViewController, NSColor, NSString, NSView;
 
 @protocol CNContactDetailsViewControllerDelegate <NSObject>
 - (NSColor *)colorForProperty:(NSString *)arg1 identifier:(NSString *)arg2;
@@ -14,6 +14,8 @@
 - (id <ABCardViewDelegate>)delegate;
 
 @optional
+- (void)cardViewNoteDidChange;
+- (void)contactDetailsViewControllerKeyViewLoopNeedsUpdate:(CNContactDetailsViewController *)arg1;
 - (void)valueAlignmentViewDidChange:(NSView *)arg1;
 @end
 

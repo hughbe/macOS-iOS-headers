@@ -18,12 +18,12 @@
 }
 
 + (id)defaultManager;
+- (void).cxx_destruct;
 - (void)scheduleAutoPublish;
 - (void)removePublisherForKey:(id)arg1;
 - (void)setPublisher:(id)arg1 forKey:(id)arg2;
 - (id)publisherForKey:(id)arg1;
 - (void)removeAllPublishers;
-- (void)finalize;
 - (void)dealloc;
 - (BOOL)autoPublishEnabled;
 - (void)setAutoPublishEnabled:(BOOL)arg1;

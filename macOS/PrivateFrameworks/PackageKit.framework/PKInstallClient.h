@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSTimer, PKInstallRequest;
+@class NSArray, NSTimer, PKInstallRequest;
 
 @interface PKInstallClient : NSObject
 {
@@ -21,6 +21,7 @@
     BOOL _isInitialized;
 }
 
++ (BOOL)_inProcessInstall;
 + (id)_connectToDaemonForAuthLevel:(int)arg1 privileged:(BOOL)arg2 recursiveInstall:(BOOL)arg3 silent:(BOOL)arg4 forInstance:(id)arg5;
 + (BOOL)isCurrentlyStagedInstallRequest:(id)arg1 purgeableSize:(id *)arg2;
 + (double)estimatedTimeForInstallRequest:(id)arg1;
@@ -28,10 +29,10 @@
 + (void)unregisterAuthorizations;
 + (BOOL)registerAuthorization:(struct AuthorizationOpaqueRef *)arg1;
 + (void)initialize;
-+ (unsigned long long)purgeOrphanedSandboxesOnVolume:(id)arg1;
 + (unsigned long long)purgeableSpaceForOrphanedSandboxesOnVolume:(id)arg1;
 + (unsigned long long)purgeSandboxesOnVolume:(id)arg1 purgeAmountNeeded:(unsigned long long)arg2 systemSandboxes:(BOOL)arg3;
 + (unsigned long long)estimateOfPurgeableSpaceForSandboxesOnVolume:(id)arg1 systemSandboxes:(BOOL)arg2;
+- (void)installWillProceedForState:(int)arg1 withSandbox:(id)arg2 forToken:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)installDidEndForToken:(id)arg1;
 - (void)installDidBeginCommitForToken:(id)arg1;
 - (void)installDidBeginForToken:(id)arg1;
@@ -42,8 +43,8 @@
 - (void)_scheduleStatusTimerOnCurrentThread;
 - (id)_installStatusByConnectingToDaemon;
 - (void)_installDaemonDidBeginInstall_OnMainThread;
-- (id)displayNames;
-- (id)request;
+@property(readonly) NSArray *displayNames;
+@property(readonly) PKInstallRequest *request;
 - (void)dealloc;
 - (id)_initWithRequest:(id)arg1 options:(unsigned long long)arg2 ignoringBlockingClients:(BOOL)arg3 delegate:(id)arg4 error:(id *)arg5;
 - (id)initWithRequest:(id)arg1 delegate:(id)arg2 options:(unsigned long long)arg3 error:(id *)arg4;

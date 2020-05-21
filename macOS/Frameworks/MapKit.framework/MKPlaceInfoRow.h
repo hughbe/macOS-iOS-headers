@@ -8,16 +8,21 @@
 
 @class MKPlaceSectionRowView;
 
+__attribute__((visibility("hidden")))
 @interface MKPlaceInfoRow : NSObject
 {
+    BOOL _enable;
+    BOOL _showIcon;
     unsigned long long _type;
     MKPlaceSectionRowView *_rowView;
 }
 
 + (id)infoRow:(id)arg1 ofType:(unsigned long long)arg2;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL showIcon; // @synthesize showIcon=_showIcon;
+@property(nonatomic) BOOL enable; // @synthesize enable=_enable;
 @property(readonly, nonatomic) MKPlaceSectionRowView *rowView; // @synthesize rowView=_rowView;
 @property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
-- (void).cxx_destruct;
 
 @end
 

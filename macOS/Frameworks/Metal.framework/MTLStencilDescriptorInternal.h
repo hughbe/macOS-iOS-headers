@@ -25,6 +25,7 @@ __attribute__((visibility("hidden")))
 - (void)setStencilCompareFunction:(unsigned long long)arg1;
 - (unsigned long long)stencilCompareFunction;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 @property(readonly) const struct MTLStencilDescriptorPrivate *stencilPrivate;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;

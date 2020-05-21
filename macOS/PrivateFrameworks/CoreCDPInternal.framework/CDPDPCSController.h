@@ -10,24 +10,27 @@
 
 @interface CDPDPCSController : NSObject
 {
+    id <CDPProtectedCloudStorageProxy> _pcsProxy;
     CDPContext *_context;
-    id <CDPDProtectedCloudStorageProxy> _pcsProxy;
 }
 
-@property(retain, nonatomic) id <CDPDProtectedCloudStorageProxy> pcsProxy; // @synthesize pcsProxy=_pcsProxy;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CDPContext *context; // @synthesize context=_context;
+@property(retain, nonatomic) id <CDPProtectedCloudStorageProxy> pcsProxy; // @synthesize pcsProxy=_pcsProxy;
 - (id)_contextSetupDictionary;
-- (void)getStringrayStatusWithCompletion:(CDUnknownBlockType)arg1;
-- (void)setStingrayState:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_disableCDPWithCompletion:(CDUnknownBlockType)arg1;
 - (void)disableCDPWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_enableCDPWithCompletion:(CDUnknownBlockType)arg1;
 - (void)enableCDPWithCompletion:(CDUnknownBlockType)arg1;
 - (struct _PCSIdentitySetData *)_getOrSetupIdentitySetRef:(id *)arg1;
+- (BOOL)isCompanionInKeychainCircle:(id *)arg1;
+- (BOOL)isCloudProtectionEnabledLocally:(id *)arg1;
 - (void)_checkiCDPStatusNetwork:(BOOL)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)_reauthenticateAndCheckiCDPStatusWithNetwork:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)checkiCDPStatusNetwork:(BOOL)arg1 withCompletion:(CDUnknownBlockType)arg2;
-- (id)initWithContext:(id)arg1;
+- (void)recoverAndSynchronizeKeysWithCompletion:(CDUnknownBlockType)arg1;
+- (void)recoverKeysWithCompletion:(CDUnknownBlockType)arg1;
+- (id)initWithContext:(id)arg1 pcsProxy:(id)arg2;
 - (id)init;
 
 @end

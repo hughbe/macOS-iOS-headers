@@ -7,6 +7,7 @@
 @class NSArray;
 
 @protocol _DPDataRecorder
+- (void)recordBitValues:(NSArray *)arg1;
 - (void)recordWords:(NSArray *)arg1;
 - (void)recordStrings:(NSArray *)arg1;
 - (void)recordNumbers:(NSArray *)arg1;

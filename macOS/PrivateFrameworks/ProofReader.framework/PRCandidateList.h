@@ -6,14 +6,20 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray;
+@class NSArray, NSMutableArray, PRErrorModel;
 
+__attribute__((visibility("hidden")))
 @interface PRCandidateList : NSObject
 {
     NSMutableArray *_candidates;
     unsigned long long _maxCount;
+    struct _NSRange _defaultReplacementRange;
+    PRErrorModel *_errorModel;
+    NSArray *_capitalizationDictionaryArray;
 }
 
+- (id)candidateWithString:(id)arg1;
+- (struct _NSRange)defaultReplacementRange;
 - (BOOL)isFull;
 - (unsigned long long)maxCount;
 - (unsigned long long)count;
@@ -24,10 +30,12 @@
 - (void)addCandidateWithBuffer:(char *)arg1 encoding:(unsigned int)arg2 transform:(unsigned long long)arg3 errorType:(unsigned long long)arg4;
 - (void)addCandidateWithBuffer:(char *)arg1 encoding:(unsigned int)arg2 errorType:(unsigned long long)arg3;
 - (void)addCandidateWithString:(id)arg1 errorType:(unsigned long long)arg2;
+- (void)addCandidateWithString:(id)arg1 replacementRange:(struct _NSRange)arg2 errorType:(unsigned long long)arg3;
+- (void)addCandidateWithWords:(id)arg1 replacementRange:(struct _NSRange)arg2 errorType:(unsigned long long)arg3;
 - (void)addCandidate:(id)arg1;
 - (void)dealloc;
 - (id)description;
-- (id)initWithMaxCount:(unsigned long long)arg1;
+- (id)initWithMaxCount:(unsigned long long)arg1 defaultReplacementRange:(struct _NSRange)arg2 customErrorModel:(id)arg3 capitalizationDictionaryArray:(id)arg4;
 
 @end
 

@@ -30,15 +30,18 @@
     NSButton *_yearlyByDaySwitch;
     NSPopUpButton *_yearlyWeekNumber;
     NSPopUpButton *_yearlyDayNumber;
+    NSStackView *_yearlyWeekDayNumberStackView;
     NSMutableArray *_tabHeights;
     long long _firstDayOfWeek;
     CalUIPopupWindowState *_windowState;
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property(retain) CalUIPopupWindowState *windowState; // @synthesize windowState=_windowState;
 @property long long firstDayOfWeek; // @synthesize firstDayOfWeek=_firstDayOfWeek;
 @property(retain) NSMutableArray *tabHeights; // @synthesize tabHeights=_tabHeights;
+@property __weak NSStackView *yearlyWeekDayNumberStackView; // @synthesize yearlyWeekDayNumberStackView=_yearlyWeekDayNumberStackView;
 @property __weak NSPopUpButton *yearlyDayNumber; // @synthesize yearlyDayNumber=_yearlyDayNumber;
 @property __weak NSPopUpButton *yearlyWeekNumber; // @synthesize yearlyWeekNumber=_yearlyWeekNumber;
 @property __weak NSButton *yearlyByDaySwitch; // @synthesize yearlyByDaySwitch=_yearlyByDaySwitch;
@@ -57,7 +60,6 @@
 @property __weak NSPopUpButton *recurrenceFrequency; // @synthesize recurrenceFrequency=_recurrenceFrequency;
 @property(retain) NSWindow *customRepeatPanel; // @synthesize customRepeatPanel=_customRepeatPanel;
 @property __weak EKCalendarItem *calendarItem; // @synthesize calendarItem=_calendarItem;
-- (void).cxx_destruct;
 - (BOOL)isCustomRecurrenceValid;
 - (void)setOptionsEnabling;
 - (void)switchToPaneAtIndex:(long long)arg1;
@@ -78,7 +80,7 @@
 - (BOOL)_cell:(id)arg1 isLastSelectedInMatrix:(id)arg2;
 - (void)_initializeControls;
 - (id)_byDayArray:(int)arg1 weekItemSelected:(int)arg2;
-- (int)_weekNumberFromSelectedIndex:(int)arg1;
+- (long long)_weekNumberFromSelectedIndex:(long long)arg1;
 - (struct CGRect)_frameForDeltaHeight:(double)arg1;
 - (void)_resetFrameFromViews;
 - (void)_openWithAnimation:(BOOL)arg1;

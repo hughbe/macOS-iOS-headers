@@ -6,33 +6,34 @@
 
 #import <InputMethodKit/IMKUIView.h>
 
-@class IMKCandidateController, NSArray;
+@class IMKUIWindowBasedCandidateController, NSArray, NSButton;
 
 @interface IMKCandidateSelectionView : IMKUIView
 {
     NSArray *_buttons;
-    IMKCandidateController *_candidateController;
-    id <IMKCandidateSelectionViewDelegate> _delegate;
+    IMKUIWindowBasedCandidateController *_candidateController;
     unsigned long long _selectedIndex;
     NSArray *_sortingModes;
+    NSButton *_radarButton;
 }
 
++ (double)minimumWidthForSelectionModesWithRadarButton:(id)arg1;
 + (double)minimumWidthForSelectionModes:(id)arg1;
 + (double)totalButtonWidthWithButtons:(id)arg1;
++ (id)_radarButtonWithTag:(long long)arg1 target:(id)arg2 properties:(id)arg3;
 + (id)_buttonWithTitle:(id)arg1 fontSize:(double)arg2 tag:(long long)arg3 target:(id)arg4 properties:(id)arg5;
+@property(retain, nonatomic) NSButton *radarButton; // @synthesize radarButton=_radarButton;
 @property(retain, nonatomic) NSArray *sortingModes; // @synthesize sortingModes=_sortingModes;
 @property(retain, nonatomic) NSArray *buttons; // @synthesize buttons=_buttons;
 @property(nonatomic) unsigned long long selectedIndex; // @synthesize selectedIndex=_selectedIndex;
-@property(nonatomic) id <IMKCandidateSelectionViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
+@property(nonatomic) IMKUIWindowBasedCandidateController *candidateController; // @synthesize candidateController=_candidateController;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)update;
 - (void)setFrame:(struct CGRect)arg1;
 - (void)setSortingModes:(id)arg1 localizedNames:(id)arg2;
 - (void)setButtonFrames;
+- (void)resetRadarButtonState;
 - (void)_buttonSelected:(id)arg1;
-- (void)selectPreviousIndex;
-- (void)selectNextIndex;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 properties:(id)arg2;
 

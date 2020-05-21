@@ -23,6 +23,7 @@
 + (id)propertyWithName:(id)arg1 withValues:(id)arg2 withType:(int)arg3;
 + (id)propertyWithName:(id)arg1 withValue:(id)arg2 withType:(int)arg3;
 + (id)propertyWithName:(id)arg1 withValue:(id)arg2;
+- (void).cxx_destruct;
 - (id)stringValue;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)restoreAsClean;
@@ -45,7 +46,6 @@
 - (void)removeValue:(id)arg1;
 - (void)addValue:(id)arg1;
 - (void)setSingleValue:(id)arg1;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 withPropertyValues:(id)arg2;
 - (id)initWithName:(id)arg1 withPropertyValue:(id)arg2;
 - (id)initWithName:(id)arg1 withValues:(id)arg2 withType:(int)arg3;

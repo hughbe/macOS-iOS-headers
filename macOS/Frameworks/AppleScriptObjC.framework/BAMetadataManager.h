@@ -8,6 +8,7 @@
 
 @class NSMutableDictionary, NSSet;
 
+__attribute__((visibility("hidden")))
 @interface BAMetadataManager : NSObject
 {
     NSMutableDictionary *_enums;
@@ -38,6 +39,7 @@
 - (id)signatureForClass:(Class)arg1 selector:(SEL)arg2;
 - (id)constantValueForName:(id)arg1;
 - (void)loadMetadataForLoadedImages;
+- (BOOL)loadMetadataFromImagePath:(id)arg1;
 - (BOOL)loadMetadataFromBundle:(id)arg1 error:(id *)arg2;
 - (id)pathForBridgeSupportOfType:(id)arg1 inBundle:(id)arg2;
 - (void)dealloc;

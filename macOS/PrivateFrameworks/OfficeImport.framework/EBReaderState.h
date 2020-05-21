@@ -19,8 +19,9 @@ __attribute__((visibility("hidden")))
     BOOL mImportCSV;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL importCSV; // @synthesize importCSV=mImportCSV;
-- (void)reportWarning:(struct TCTaggedMessageStructure *)arg1;
+- (void)reportWarning:(id)arg1;
 - (id)oaState;
 - (id)columnWidthConvertor;
 - (struct XlSheetInfoTable *)xlSheetInfoTable;
@@ -29,7 +30,7 @@ __attribute__((visibility("hidden")))
 - (void)resumeReading;
 - (void)pauseReading;
 - (void)dealloc;
-- (id)initWithXlReader:(struct XlBinaryReader *)arg1 cancelDelegate:(id)arg2 tracing:(id)arg3;
+- (id)initWithXlReader:(struct XlBinaryReader *)arg1 cancelDelegate:(id)arg2;
 
 @end
 

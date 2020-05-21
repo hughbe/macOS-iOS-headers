@@ -8,11 +8,12 @@
 
 #import "MMWebViewButtonBarDelegate.h"
 #import "NSTableViewDelegate.h"
+#import "NSTouchBarProvider.h"
 #import "iCloudWebViewDelegate.h"
 
-@class CastlePlugin, MMWebViewButtonBar, MM_Account, NSAccountDetailsWebTabViewItem, NSMutableDictionary, NSString, NSView, NSWindow, iCloudAccountDetailsTabView, iCloudAccountsDetailsGeneral;
+@class CastlePlugin, MMWebViewButtonBar, MM_Account, NSAccountDetailsWebTabViewItem, NSMutableDictionary, NSString, NSTouchBar, NSView, NSWindow, iCloudAccountDetailsTabView, iCloudAccountsDetailsGeneral;
 
-@interface iCloudAccountDetailsControllerNew : NSViewController <iCloudWebViewDelegate, NSTableViewDelegate, MMWebViewButtonBarDelegate>
+@interface iCloudAccountDetailsControllerNew : NSViewController <NSTouchBarProvider, iCloudWebViewDelegate, NSTableViewDelegate, MMWebViewButtonBarDelegate>
 {
     NSView *_accountDetailsView;
     iCloudAccountDetailsTabView *_accountDetailsTabView;
@@ -24,14 +25,18 @@
     NSAccountDetailsWebTabViewItem *_devicesTabViewItem;
     MM_Account *_account;
     CastlePlugin *_plugin;
-    NSWindow *_parentWindow;
     NSWindow *_sheet;
     MMWebViewButtonBar *buttonBar;
     NSView *_buttonBarView;
     iCloudAccountsDetailsGeneral *_generalController;
+    NSWindow *_parentWindow;
+    NSString *_sectionToOpen;
 }
 
++ (id)_requestQueue;
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *buttonBarDictionaries; // @synthesize buttonBarDictionaries=_buttonBarDictionaries;
+@property NSString *sectionToOpen; // @synthesize sectionToOpen=_sectionToOpen;
 @property NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
 @property(retain) MM_Account *account; // @synthesize account=_account;
 @property(retain) CastlePlugin *plugin; // @synthesize plugin=_plugin;
@@ -48,10 +53,17 @@
 - (void)sizeChangedFrom:(struct CGSize)arg1 toSize:(struct CGSize)arg2 webViewName:(id)arg3 callback:(id)arg4;
 - (void)loadFailed:(id)arg1;
 - (void)endWebView:(id)arg1;
-- (void)showInWindow:(id)arg1;
+- (void)_showAccountDetailsWithCompletion:(CDUnknownBlockType)arg1;
+- (void)_handleInvalidGSToken:(CDUnknownBlockType)arg1;
+- (void)_isGSTokenValid:(CDUnknownBlockType)arg1;
+- (void)_showGSFailureError:(CDUnknownBlockType)arg1;
+- (void)_handleGetVerificationCode:(CDUnknownBlockType)arg1;
+- (void)_showNetworkReachableError:(CDUnknownBlockType)arg1;
+- (void)showNewAccountDetailsForAccount:(id)arg1 inWindow:(id)arg2 andOpenSection:(id)arg3 withCompletion:(CDUnknownBlockType)arg4;
 - (void)setupTabViews;
 - (void)changeTabToSection:(id)arg1;
 - (void)changeTabNotification:(id)arg1;
+@property(readonly) NSTouchBar *touchBar;
 - (void)dealloc;
 - (id)initWithAccount:(id)arg1 andPlugin:(id)arg2;
 

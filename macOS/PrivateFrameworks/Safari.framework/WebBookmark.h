@@ -6,18 +6,18 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "BookmarkItem.h"
 #import "NSCopying.h"
 #import "NSPasteboardReading.h"
 #import "NSPasteboardWriting.h"
 
-@class BookmarkImportInfo, NSData, NSDate, NSDictionary, NSImage, NSString, WebBookmarkGroup, WebBookmarkList;
+@class BookmarkImportInfo, NSArray, NSData, NSDate, NSDictionary, NSImage, NSString, NSURL, WebBookmarkGroup, WebBookmarkList;
 
-@interface WebBookmark : NSObject <NSPasteboardWriting, NSPasteboardReading, NSCoding, NSCopying>
+__attribute__((visibility("hidden")))
+@interface WebBookmark : NSObject <NSPasteboardWriting, NSPasteboardReading, NSCopying, BookmarkItem>
 {
     BOOL _threadUnsafeShouldOmitFromUI;
     BOOL _canOpenInTabs;
-    BOOL _hasDefaultSiteOrFolderIcon;
     NSString *_UUID;
     NSString *_threadUnsafeTitle;
     NSDictionary *_threadUnsafeReadingListItemAttributes;
@@ -49,36 +49,38 @@
 + (id)_bookmarkForFileOrFolderAtPath:(id)arg1 directoryDepth:(unsigned int)arg2;
 + (id)bookmarkWithURL:(id)arg1 title:(id)arg2;
 + (id)defaultTitleFromURL:(id)arg1;
-+ (void)replaceTabsWithBookmarks:(id)arg1 tabPlacementHint:(const struct TabPlacementHint *)arg2;
-+ (void)replaceTabsWithBookmarks:(id)arg1 tabPlacementHint:(const struct TabPlacementHint *)arg2 confirmQuantity:(BOOL)arg3;
 + (void)performTabVisitingOperationWithURLs:(id)arg1 titles:(id)arg2 tabPlacementHint:(const struct TabPlacementHint *)arg3 confirmQuantity:(BOOL)arg4 confirmationMessageText:(id)arg5 continueButtonMessageText:(id)arg6 operationBlock:(CDUnknownBlockType)arg7;
++ (void)_obtainSandboxExtensionTokensForEveryFileURL:(id)arg1 titles:(id)arg2 browserWindowController:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 + (void)replaceTabsWithURLs:(id)arg1 titles:(id)arg2 tabPlacementHint:(const struct TabPlacementHint *)arg3 confirmQuantity:(BOOL)arg4;
 + (void)openAllUrlsInNewTabs:(id)arg1 withTitles:(id)arg2 tabPlacementHint:(const struct TabPlacementHint *)arg3 confirmQuantity:(BOOL)arg4;
 + (id)urlsForBookmarks:(id)arg1 withTitles:(id *)arg2;
-+ (id)_flattenedDescendantsOfBookmarks:(id)arg1;
-+ (void)_addFlattenedDescendantsOfBookmarks:(id)arg1 toArray:(id)arg2;
 + (unsigned long long)readingOptionsForType:(id)arg1 pasteboard:(id)arg2;
 + (id)readableTypesForPasteboard:(id)arg1;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSData *syncData; // @synthesize syncData=_syncData;
 @property(copy, nonatomic) NSString *syncKey; // @synthesize syncKey=_syncKey;
 @property(copy, nonatomic) NSDictionary *syncExtraAttributes; // @synthesize syncExtraAttributes=_syncExtraAttributes;
 @property(copy, nonatomic) NSString *syncServerID; // @synthesize syncServerID=_syncServerID;
-@property(nonatomic) BOOL hasDefaultSiteOrFolderIcon; // @synthesize hasDefaultSiteOrFolderIcon=_hasDefaultSiteOrFolderIcon;
 @property(readonly, nonatomic) BOOL canOpenInTabs; // @synthesize canOpenInTabs=_canOpenInTabs;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
-@property(nonatomic, setter=_setParent:) __weak WebBookmarkList *parent; // @synthesize parent=_parent;
+@property(setter=_setParent:) __weak WebBookmarkList *parent; // @synthesize parent=_parent;
 @property(nonatomic) __weak WebBookmarkGroup *group; // @synthesize group=_group;
-- (void).cxx_destruct;
 - (void)_updateStateHash:(struct SHA256 *)arg1;
 - (BOOL)_looksLikeTopLevelBookmarkFolderWithTitle:(id)arg1;
+- (BOOL)_canLookLikeTopLevelBookmarkFolder;
+- (BOOL)mergeAttributesFromBookmark:(id)arg1;
 - (BOOL)updateByCopyingAttributesFromBookmark:(id)arg1 withExistingBookmarksByUUID:(id)arg2;
 @property(retain) BookmarkImportInfo *importInfo; // @synthesize importInfo=_threadUnsafeImportInfo;
+- (void)setImportInfo:(id)arg1 changeWasInteractive:(BOOL)arg2;
+- (BOOL)_serverIDMatchesCurrentDAVHomeURL:(id)arg1;
+- (BOOL)hasPriorityOverBookmarkForDeduplication:(id)arg1 currentDAVHomeURL:(id)arg2 preferBookmarkWithSyncData:(BOOL)arg3;
 - (BOOL)isUserVisiblyEqualToBookmark:(id)arg1;
+- (BOOL)isDescendantOf:(id)arg1 comparingUUIDs:(BOOL)arg2;
 - (BOOL)isDescendantOf:(id)arg1;
 - (BOOL)isFolderWithTitle:(id)arg1;
 - (void)clearUUID;
 - (id)init;
-- (id)initWithTopSite:(struct TopSite *)arg1;
+- (id)initWithTopSite:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 UUID:(id)arg2 group:(id)arg3;
 - (id)initFromDictionaryRepresentation:(id)arg1 withGroup:(id)arg2;
 - (id)initFromDictionaryRepresentation:(id)arg1 topLevelOnly:(BOOL)arg2 withGroup:(id)arg3;
@@ -89,9 +91,11 @@
 @property(readonly, nonatomic) unsigned long long numberOfChildren;
 @property(readonly, nonatomic) long long bookmarkType;
 @property(readonly, nonatomic) NSImage *icon;
-- (void)_setTitle:(id)arg1 notifyBookmarkGroup:(BOOL)arg2;
+@property(readonly, nonatomic) NSString *iconURLString;
+- (void)_setTitle:(id)arg1 notifyBookmarkGroup:(BOOL)arg2 changeWasInteractive:(BOOL)arg3;
 - (void)setTitleWithoutNotifications:(id)arg1;
-@property(copy) NSString *title; // @synthesize title=_threadUnsafeTitle;
+- (void)setTitle:(id)arg1 changeWasInteractive:(BOOL)arg2;
+@property(readonly, copy) NSString *title; // @synthesize title=_threadUnsafeTitle;
 - (void)clearDAVSyncState;
 - (void)clearSyncStateForDelete;
 - (void)clearSyncStateForMove;
@@ -104,17 +108,21 @@
 @property(retain) NSDate *readingListItemDateAdded;
 - (void)_removeReadingListAttributeValueForKey:(id)arg1;
 - (void)_setReadingListItemAttributeValue:(id)arg1 forKey:(id)arg2;
+- (void)setReadingListItemNonSyncAttributes:(id)arg1 shouldSuppressChangeNotification:(BOOL)arg2;
 @property(copy) NSDictionary *readingListItemNonSyncAttributes; // @synthesize readingListItemNonSyncAttributes=_threadUnsafeReadingListItemNonSyncAttributes;
+- (void)_setReadingListItemAttributes:(id)arg1 changedAttributes:(id)arg2;
 @property(copy) NSDictionary *readingListItemAttributes; // @synthesize readingListItemAttributes=_threadUnsafeReadingListItemAttributes;
+@property(readonly, nonatomic) BOOL looksLikeReadingList;
 @property(readonly, nonatomic) BOOL looksLikeBookmarksMenu;
 @property(readonly, nonatomic) BOOL looksLikeBookmarksBar;
 @property(readonly, nonatomic) BOOL shouldOmitFromUIOrHasOmittedAncestor;
 @property BOOL shouldOmitFromUI; // @synthesize shouldOmitFromUI=_threadUnsafeShouldOmitFromUI;
 @property(readonly, nonatomic) struct SHA256Hash stateHash;
+@property(readonly, nonatomic) unsigned long long numberOfAncestors;
 @property(copy, nonatomic) NSString *UUID; // @synthesize UUID=_UUID;
 @property(readonly, nonatomic) BOOL hasUUID;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
+@property(readonly, nonatomic) long long preferredIconType;
+@property(readonly, nonatomic) BOOL isList;
 @property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
@@ -125,7 +133,6 @@
 - (id)parentStringForContentItem:(id)arg1;
 - (id)parentOfContentItem:(id)arg1;
 - (int)numberOfChildrenOfContentItem:(id)arg1;
-- (id)imageForContentItem:(id)arg1;
 - (BOOL)isCollection;
 - (id)contentItemsToExpandOnReload;
 - (id)contentItemsToInitiallyExpand;
@@ -144,7 +151,7 @@
 - (void)enumerateDescendantsIncludingFolders:(BOOL)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (BOOL)_enumerateDescendantsIncludingFolders:(BOOL)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)insertChild:(id)arg1 atIndex:(unsigned int)arg2 isCopy:(BOOL)arg3;
-- (id)createInternetLocationFileHierarchyInDirectory:(id)arg1;
+- (void)createInternetLocationFileHierarchyInDirectory:(id)arg1;
 - (BOOL)isDescendantOfFavorites;
 - (BOOL)isAncestorOf:(id)arg1;
 - (BOOL)isOrHasAnyLeaves;
@@ -156,6 +163,7 @@
 - (void)openAllDescendantsInNewTabsWithTabPlacementHint:(const struct TabPlacementHint *)arg1;
 - (id)_urlsOfDescendantsForOpeningTabsWithTitles:(id *)arg1;
 - (id)_flattenedDescendants;
+@property(readonly, copy, nonatomic) NSArray *flattenedDescendants;
 - (void)_addFlattenedDescendantsToArray:(id)arg1;
 - (void)replaceTabsWithDescendantsFromMenuItem:(id)arg1;
 - (void)openAllInNewTabsFromMenuItem:(id)arg1;
@@ -164,19 +172,16 @@
 - (void)goToInNewTabWithTabPlacementHint:(const struct TabPlacementHint *)arg1;
 - (void)goToInNewWindow;
 - (void)goToWithWindowPolicy:(long long)arg1 tabPlacementHint:(const struct TabPlacementHint *)arg2;
-- (void)goToWithTabPlacementHint:(const struct TabPlacementHint *)arg1;
 - (BOOL)insertBookmarkWithUndo:(id)arg1 atIndex:(unsigned long long)arg2 didCheckIfBookmarkEditingIsPermitted:(BOOL)arg3 allowDuplicateURLs:(BOOL)arg4;
-- (id)convertWithUndoToFolderTitled:(id)arg1 addedBookmarks:(id)arg2;
 - (BOOL)moveWithUndoToFolder:(id)arg1 index:(unsigned long long)arg2;
 - (id)addNewSubfolderWithUndoTitled:(id)arg1 insertionIndex:(unsigned long long)arg2;
 - (BOOL)deleteWithUndoWithoutAuthorization;
 - (void)deleteWithUndo;
 - (void)toggleAutomaticallyReplacesTabsWithUndo;
-- (BOOL)setAddressWithUndo:(id)arg1;
+- (BOOL)setAddress:(id)arg1 usingUndoController:(id)arg2;
 - (BOOL)setPreviewTextWithUndo:(id)arg1 isUserCustomized:(BOOL)arg2;
-- (BOOL)setTitleWithUndo:(id)arg1;
-- (BOOL)_bookmarkEditingPermitted;
-- (BOOL)canEditAddress;
+- (BOOL)setTitle:(id)arg1 usingUndoController:(id)arg2;
+- (BOOL)_bookmarkEditingPermittedUsingUndoController:(id)arg1;
 - (id)initWithPasteboardPropertyList:(id)arg1 ofType:(id)arg2;
 - (id)pasteboardPropertyListForType:(id)arg1;
 - (id)writableTypesForPasteboard:(id)arg1;
@@ -184,7 +189,9 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSArray *leafChildren;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic) NSURL *url;
 
 @end
 

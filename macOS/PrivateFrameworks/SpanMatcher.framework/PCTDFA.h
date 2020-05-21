@@ -17,9 +17,9 @@
     NSString *_path;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *path; // @synthesize path=_path;
 @property(retain, nonatomic) NSString *startState; // @synthesize startState=_startState;
-- (void).cxx_destruct;
 - (void)setDataFor:(id)arg1 to:(id)arg2;
 - (id)dataFor:(id)arg1;
 - (id)edgesFromState:(id)arg1;
@@ -27,6 +27,7 @@
 - (void)addFinalState:(id)arg1;
 - (id)followingStateFrom:(id)arg1 withSymbol:(id)arg2;
 - (void)addEdge:(id)arg1 fromState:(id)arg2 toState:(id)arg3;
+- (int)getMode;
 - (void)setMode:(int)arg1;
 - (id)initAtPath:(id)arg1;
 - (id)init;

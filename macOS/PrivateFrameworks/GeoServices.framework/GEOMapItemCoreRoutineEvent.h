@@ -21,11 +21,13 @@
     GEOAddressObject *_addressObject;
 }
 
+- (void).cxx_destruct;
 - (id)weatherDisplayName;
 - (id)addressObject;
 - (id)geoAddress;
 - (id)_clientAttributes;
 - (id)_place;
+- (BOOL)_responseStatusIsIncomplete;
 - (BOOL)_hasResolvablePartialInformation;
 - (BOOL)isEventAllDay;
 - (id)eventDate;
@@ -35,7 +37,6 @@
 - (id)name;
 - (BOOL)isValid;
 - (id)description;
-- (void)dealloc;
 - (id)initWithAddressDictionary:(id)arg1 eventName:(id)arg2 eventTitle:(id)arg3 eventDate:(id)arg4 eventIsAllDay:(BOOL)arg5 coordinate:(CDStruct_c3b9c2ee)arg6 clientAttributes:(id)arg7;
 
 @end

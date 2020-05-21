@@ -6,28 +6,41 @@
 
 #import "NSObject.h"
 
+#import "CARenderValue.h"
+
+@class NSHashTable, NSMapTable, NSString;
+
 __attribute__((visibility("hidden")))
-@interface NSCGLSurface : NSObject
+@interface NSCGLSurface : NSObject <CARenderValue>
 {
+    unsigned int _connectionID;
+    unsigned int _windowID;
+    unsigned int _surfaceID;
+    struct _CAImageQueue *_imageQueue;
+    struct os_unfair_lock_s _lock;
+    id _surface;
+    NSMapTable *_surfacesToImageQueueBufferIDs;
+    NSHashTable *_activeImageQueueBufferIDs;
 }
 
-+ (id)allocWithZone:(struct _NSZone *)arg1;
++ (id)surfaceWithID:(unsigned long long)arg1;
+- (void)synchronize;
 - (void)flushRect:(struct CGRect)arg1;
-- (BOOL)isAttachedToCGLContext:(struct _CGLContextObject *)arg1;
-- (void)attachToCGLContext:(struct _CGLContextObject *)arg1;
-@property(readonly, copy) struct CGColorSpace *colorSpace;
+- (void *)CA_copyRenderValue;
+- (BOOL)isCGLContextAttached:(struct _CGLContextObject *)arg1;
+- (BOOL)attachCGLContext:(struct _CGLContextObject *)arg1;
+@property(copy) struct CGColorSpace *colorSpace;
 @property(readonly, getter=isOpaque) BOOL opaque;
-@property(readonly, getter=isFloatingPoint) BOOL floatingPoint;
-@property(readonly) unsigned long long bitDepth;
-@property(readonly, getter=isStereo) BOOL stereo;
-@property(readonly) unsigned int displayMask;
-@property(readonly) struct CGSize size;
-- (id)initWithSize:(struct CGSize)arg1 colorSpace:(struct CGColorSpace *)arg2 atomic:(BOOL)arg3;
+@property struct CGSize size;
+@property(readonly) unsigned long long surfaceID;
+@property(readonly, copy) NSString *description;
+- (void)dealloc;
 - (id)init;
-@property(readonly, copy) struct CGImage *rightImage;
-@property(readonly, copy) struct CGImage *leftImage;
-@property(readonly, copy) struct CGImage *image;
-@property(readonly, copy) id layerContents;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

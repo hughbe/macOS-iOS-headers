@@ -13,8 +13,9 @@
     NSColor *_textColor;
 }
 
-@property(retain, nonatomic) NSColor *textColor; // @synthesize textColor=_textColor;
++ (Class)cellClass;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSColor *textColor; // @synthesize textColor=_textColor;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

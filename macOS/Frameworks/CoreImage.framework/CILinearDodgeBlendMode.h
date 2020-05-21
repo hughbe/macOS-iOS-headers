@@ -11,8 +11,8 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (id)_kernel;
 + (id)customAttributes;
+- (id)_kernel;
 
 @end
 

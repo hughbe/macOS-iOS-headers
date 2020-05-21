@@ -4,15 +4,23 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import "NSManagedObject.h"
 
-@interface ABCDCustomProperty : NSObject
+@class NSNumber, NSSet, NSString;
+
+@interface ABCDCustomProperty : NSManagedObject
 {
 }
 
-+ (id)fetchCustomPropertiesWithRecordType:(id)arg1 inContext:(id)arg2 persistentStore:(id)arg3;
++ (id)fetchCustomPropertiesWithRecordType:(id)arg1 inContext:(id)arg2 persistentStore:(id)arg3 error:(id *)arg4;
 + (id)recordTypePredicateTemplate;
 + (id)customPropertyFromDescription:(id)arg1 inContext:(id)arg2;
+
+// Remaining properties
+@property(retain, nonatomic) NSSet *customPropertyValues; // @dynamic customPropertyValues;
+@property(retain, nonatomic) NSString *propertyName; // @dynamic propertyName;
+@property(retain, nonatomic) NSString *recordType; // @dynamic recordType;
+@property(retain, nonatomic) NSNumber *valueType; // @dynamic valueType;
 
 @end
 

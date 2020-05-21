@@ -6,25 +6,52 @@
 
 #import "NSObject.h"
 
-@class SGSuggestionsService;
+#import "NSCopying.h"
 
-@interface CNContactsEnvironment : NSObject
+@class CNCDPersistenceStack, NSArray, NSURL;
+
+@interface CNContactsEnvironment : NSObject <NSCopying>
 {
+    BOOL _shouldUseNativeStack;
+    id <CNSchedulerProvider> _schedulerProvider;
     id <CNAccountCollection> _accountCollection;
-    SGSuggestionsService *_suggestionsService;
+    CNCDPersistenceStack *_existingPersistenceStack;
+    id <SGSuggestionsServiceContactsProtocol> _suggestionsService;
+    id <CNSiriIntelligenceSettingsProtocol> _siriIntelligenceSettings;
+    NSArray *_delegateInfos;
+    id <CNContactsLoggerProvider> _loggerProvider;
 }
 
++ (id)baseURLWithDataLocationName:(id)arg1;
++ (BOOL)useNativePersistenceStack;
++ (id)unitTestingEnvironmentWithDataLocationName:(id)arg1 schedulerProvider:(id)arg2 loggerProvider:(id)arg3;
++ (id)unitTestingEnvironmentWithDataLocationName:(id)arg1 schedulerProvider:(id)arg2;
++ (id)unitTestingEnvironmentWithDataLocationName:(id)arg1;
++ (id)unitTestingEnvironmentWithSchedulerProvider:(id)arg1 loggerProvider:(id)arg2;
 + (id)unitTestingEnvironment;
 + (id)inMemoryURL;
 + (id)currentEnvironment;
 + (BOOL)supportsSecureCoding;
-@property(retain) SGSuggestionsService *suggestionsService; // @synthesize suggestionsService=_suggestionsService;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) id <CNContactsLoggerProvider> loggerProvider; // @synthesize loggerProvider=_loggerProvider;
+@property(retain, nonatomic) NSArray *delegateInfos; // @synthesize delegateInfos=_delegateInfos;
+@property(retain) id <CNSiriIntelligenceSettingsProtocol> siriIntelligenceSettings; // @synthesize siriIntelligenceSettings=_siriIntelligenceSettings;
+@property(retain) id <SGSuggestionsServiceContactsProtocol> suggestionsService; // @synthesize suggestionsService=_suggestionsService;
+@property(nonatomic, setter=setUseNativeStack:) BOOL shouldUseNativeStack; // @synthesize shouldUseNativeStack=_shouldUseNativeStack;
+@property(retain) CNCDPersistenceStack *existingPersistenceStack; // @synthesize existingPersistenceStack=_existingPersistenceStack;
 @property(retain) id <CNAccountCollection> accountCollection; // @synthesize accountCollection=_accountCollection;
+@property(readonly, nonatomic) id <CNSchedulerProvider> schedulerProvider; // @synthesize schedulerProvider=_schedulerProvider;
+- (id)copyWithDelegateInfos:(id)arg1;
+- (BOOL)isUITestEnvironment;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithSchedulerProvider:(id)arg1 loggerProvider:(id)arg2;
 - (id)init;
+- (void)retrieveEnvironmentConfigurationFromRemoteProcess;
 @property(readonly) BOOL useInMemoryStores;
+@property(readonly, copy) NSURL *baseURL;
+- (void)makeCurrentEnvironment;
 
 @end
 

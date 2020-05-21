@@ -8,15 +8,17 @@
 
 #import "NSCopying.h"
 
+__attribute__((visibility("hidden")))
 @interface GEOActionComponentMapEntry : PBCodable <NSCopying>
 {
     CDStruct_95bda58d _placeDataComponents;
     int _actionComponent;
     struct {
-        unsigned int actionComponent:1;
-    } _has;
+        unsigned int has_actionComponent:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -24,6 +26,7 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (void)setPlaceDataComponents:(int *)arg1 count:(unsigned long long)arg2;
@@ -35,7 +38,7 @@
 - (int)StringAsActionComponent:(id)arg1;
 - (id)actionComponentAsString:(int)arg1;
 @property(nonatomic) BOOL hasActionComponent;
-@property(nonatomic) int actionComponent; // @synthesize actionComponent=_actionComponent;
+@property(nonatomic) int actionComponent;
 - (void)dealloc;
 
 @end

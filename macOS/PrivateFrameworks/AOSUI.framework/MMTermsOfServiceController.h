@@ -12,7 +12,6 @@
 
 @interface MMTermsOfServiceController : NSObject <MMWebKitViewControllerDelegate>
 {
-    id <MMTermsOfServiceControllerDelegate> _delegate;
     MMWebKitViewController *_webKitViewController;
     NSURLRequest *_tosURLRequest;
     struct {
@@ -20,8 +19,10 @@
         unsigned int delegateDidSucceed:1;
         unsigned int padding:6;
     } _flags;
+    id <MMTermsOfServiceControllerDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSURLRequest *tosURLRequest; // @synthesize tosURLRequest=_tosURLRequest;
 @property(retain, nonatomic) MMWebKitViewController *webKitViewController; // @synthesize webKitViewController=_webKitViewController;
 @property(nonatomic) id <MMTermsOfServiceControllerDelegate> delegate; // @synthesize delegate=_delegate;
@@ -32,7 +33,6 @@
 @property(readonly) NSString *accountID; // @dynamic accountID;
 - (void)closeTermsOfServiceDialog;
 - (void)showTermsOfServiceDialogForWindow:(id)arg1;
-- (void)dealloc;
 - (id)initWithURLRequestInfo:(id)arg1 accountID:(id)arg2 password:(id)arg3 authenticationResults:(id)arg4;
 
 // Remaining properties

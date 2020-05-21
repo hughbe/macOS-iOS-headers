@@ -63,7 +63,6 @@
 - (void)openOnEdge:(unsigned long long)arg1;
 - (void)open;
 @property unsigned long long preferredEdge;
-- (void)_moveByOffset:(struct CGSize)arg1;
 @property(retain) NSView *contentView;
 - (BOOL)_allowsImplicitRemovalFromMovementGroup;
 @property NSWindow *parentWindow;
@@ -89,7 +88,6 @@
 - (void)_size;
 - (void)_position;
 - (void)_displayIfNeeded;
-- (void)_destroyRealWindow;
 - (void)_unhide;
 - (void)_hide;
 - (void)_setDrawerEdge:(unsigned long long)arg1;
@@ -146,6 +144,7 @@
 @property(retain) id accessibilityApplicationFocusedUIElement; // @dynamic accessibilityApplicationFocusedUIElement;
 @property(retain) id accessibilityCancelButton; // @dynamic accessibilityCancelButton;
 @property(copy) NSArray *accessibilityChildren; // @dynamic accessibilityChildren;
+@property(copy) NSArray *accessibilityChildrenInNavigationOrder; // @dynamic accessibilityChildrenInNavigationOrder;
 @property(retain) id accessibilityClearButton; // @dynamic accessibilityClearButton;
 @property(retain) id accessibilityCloseButton; // @dynamic accessibilityCloseButton;
 @property long long accessibilityColumnCount; // @dynamic accessibilityColumnCount;
@@ -155,6 +154,8 @@
 @property(copy) NSArray *accessibilityColumns; // @dynamic accessibilityColumns;
 @property(copy) NSArray *accessibilityContents; // @dynamic accessibilityContents;
 @property(retain) id accessibilityCriticalValue; // @dynamic accessibilityCriticalValue;
+@property(copy) NSArray *accessibilityCustomActions; // @dynamic accessibilityCustomActions;
+@property(copy) NSArray *accessibilityCustomRotors; // @dynamic accessibilityCustomRotors;
 @property(retain) id accessibilityDecrementButton; // @dynamic accessibilityDecrementButton;
 @property(retain) id accessibilityDefaultButton; // @dynamic accessibilityDefaultButton;
 @property(getter=isAccessibilityDisclosed) BOOL accessibilityDisclosed; // @dynamic accessibilityDisclosed;

@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     NSArray *_styleInfoAttributes;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSArray *styleInfoAttributes; // @synthesize styleInfoAttributes=_styleInfoAttributes;
 - (id)_translateColor:(id)arg1;
 - (id)_translateColors:(id)arg1;
@@ -23,7 +24,6 @@ __attribute__((visibility("hidden")))
 - (id)_colorAttributesHashTable;
 - (id)parseValue:(id)arg1 forAttribute:(id)arg2;
 - (id)parseAttributesWithImportance:(id)arg1;
-- (void)dealloc;
 - (id)initWithStyleInfoAttributes:(id)arg1;
 
 @end

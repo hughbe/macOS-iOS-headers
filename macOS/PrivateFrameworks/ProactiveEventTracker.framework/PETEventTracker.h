@@ -17,12 +17,12 @@
     id <PETLoggingOutlet> _loggingOutlet;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) id <PETLoggingOutlet> loggingOutlet; // @synthesize loggingOutlet=_loggingOutlet;
 @property(readonly, nonatomic) BOOL testingMode; // @synthesize testingMode=_testingMode;
 @property(readonly, nonatomic) NSArray *propertySubsets; // @synthesize propertySubsets=_propertySubsets;
 @property(readonly, nonatomic) NSArray *registeredProperties; // @synthesize registeredProperties=_registeredProperties;
 @property(readonly, nonatomic) NSString *featureId; // @synthesize featureId=_featureId;
-- (void).cxx_destruct;
 - (void)disableTestingMode;
 - (id)getValueForKey:(id)arg1;
 - (id)getKeyValueDict;
@@ -32,7 +32,9 @@
 - (id)_stringifiedPropertiesForEvent:(id)arg1 propertyValueArray:(id)arg2;
 - (BOOL)_validatePropertyValues:(id)arg1;
 - (id)_keyMetadataForEvent:(id)arg1;
+- (void)_setValue:(id)arg1 forEvent:(id)arg2 stringifiedProperties:(id)arg3 metaData:(id)arg4;
 - (void)_logValue:(id)arg1 forEvent:(id)arg2 stringifiedProperties:(id)arg3 metaData:(id)arg4;
+- (void)_trackEvent:(id)arg1 withPropertyValues:(id)arg2 value:(id)arg3 overwrite:(BOOL)arg4;
 - (void)_trackEvent:(id)arg1 withPropertyValues:(id)arg2 value:(id)arg3;
 - (void)_checkPropertySubsets:(id)arg1;
 - (void)_checkKeyLengthForEvent:(id)arg1 metaData:(id)arg2;

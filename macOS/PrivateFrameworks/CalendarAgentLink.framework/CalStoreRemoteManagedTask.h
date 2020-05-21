@@ -18,13 +18,13 @@
 + (BOOL)supportsSecureCoding;
 + (id)fetchObjectsWithSharedUID:(id)arg1;
 + (id)fetchObjectsWithPredicate:(id)arg1 inCalendars:(id)arg2;
+- (void).cxx_destruct;
 @property(nonatomic) int priority; // @synthesize priority=_priority;
 @property(retain, nonatomic) NSDate *dueDate; // @synthesize dueDate=_dueDate;
 @property(retain, nonatomic) NSDate *completedDate; // @synthesize completedDate=_completedDate;
 - (void)encodeWithCoder:(id)arg1;
 - (id)saveWithError:(id *)arg1;
 - (BOOL)removeWithError:(id *)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

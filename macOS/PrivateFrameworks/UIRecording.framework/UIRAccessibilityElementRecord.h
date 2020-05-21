@@ -6,15 +6,16 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSMutableDictionary;
 
-@interface UIRAccessibilityElementRecord : NSObject <NSCoding>
+@interface UIRAccessibilityElementRecord : NSObject <NSSecureCoding>
 {
     NSMutableDictionary *_properties;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)accessibilityStackWithStartingElement:(id)arg1;
 - (void)dealloc;
 - (struct CGSize)size;

@@ -6,7 +6,7 @@
 
 #import <SAObjects/SADomainCommand.h>
 
-@class NSNumber, NSString, SAMPMediaItem;
+@class NSArray, NSNumber, NSString, SAMPMediaItem;
 
 @interface SAMPGeniusSummon : SADomainCommand
 {
@@ -14,11 +14,12 @@
 
 + (id)geniusSummonWithDictionary:(id)arg1 context:(id)arg2;
 + (id)geniusSummon;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *upNextQueueInsertLocation;
 @property(copy, nonatomic) NSNumber *startPlaying;
 @property(retain, nonatomic) SAMPMediaItem *mediaItem;
-@property(copy, nonatomic) NSString *airplayRouteUID;
+@property(copy, nonatomic) NSArray *hashedRouteUIDs;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

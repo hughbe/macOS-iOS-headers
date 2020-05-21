@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSData;
+@class NSData, NSString;
 
 @interface CSIBitmapWrapper : NSObject
 {
@@ -17,6 +17,12 @@
     unsigned int _height;
     unsigned long long _rowbytes;
     BOOL _allowsMultiPassEncoding;
+    BOOL _allowsOptimalRowbytesPacking;
+    BOOL _allowsCompactCompression;
+    BOOL _allowsPaletteImageCompression;
+    BOOL _allowsHevcCompression;
+    BOOL _allowsDeepmapImageCompression;
+    BOOL _allowsDeepmap2ImageCompression;
     BOOL _flipped;
     struct CGImage *_sourceImage;
     long long _texturePixelFormat;
@@ -25,15 +31,27 @@
     long long _compressionType;
     unsigned long long _colorSpaceID;
     long long _textureInterpretation;
+    int _exifOrientation;
+    long long _targetPlatform;
+    NSString *_name;
 }
 
+@property(nonatomic) NSString *name; // @synthesize name=_name;
+@property BOOL allowsDeepmap2ImageCompression; // @synthesize allowsDeepmap2ImageCompression=_allowsDeepmap2ImageCompression;
+@property BOOL allowsDeepmapImageCompression; // @synthesize allowsDeepmapImageCompression=_allowsDeepmapImageCompression;
+@property(nonatomic) int exifOrientation; // @synthesize exifOrientation=_exifOrientation;
 @property(nonatomic) long long textureInterpretation; // @synthesize textureInterpretation=_textureInterpretation;
 @property(nonatomic) unsigned long long colorSpaceID; // @synthesize colorSpaceID=_colorSpaceID;
+@property long long targetPlatform; // @synthesize targetPlatform=_targetPlatform;
 @property long long compressionType; // @synthesize compressionType=_compressionType;
 @property(nonatomic) double compressionQuality; // @synthesize compressionQuality=_compressionQuality;
 @property(nonatomic) BOOL flipped; // @synthesize flipped=_flipped;
+@property BOOL allowsHevcCompression; // @synthesize allowsHevcCompression=_allowsHevcCompression;
+@property BOOL allowsPaletteImageCompression; // @synthesize allowsPaletteImageCompression=_allowsPaletteImageCompression;
 @property(nonatomic) unsigned int pixelFormat; // @synthesize pixelFormat=_pixelFormat;
 - (id)compressedData:(BOOL)arg1 usedEncoding:(int *)arg2 andRowChunkSize:(unsigned int *)arg3;
+@property BOOL allowsCompactCompression;
+@property BOOL allowsOptimalRowbytesPacking; // @synthesize allowsOptimalRowbytesPacking=_allowsOptimalRowbytesPacking;
 @property BOOL allowsMultiPassEncoding; // @synthesize allowsMultiPassEncoding=_allowsMultiPassEncoding;
 - (id)pixelData;
 - (void)setPixelData:(id)arg1;

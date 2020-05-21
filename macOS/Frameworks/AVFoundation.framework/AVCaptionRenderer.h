@@ -16,10 +16,12 @@
 - (void)renderInContext:(struct CGContext *)arg1 atTime:(CDStruct_1b6d18a9)arg2;
 - (void)teardownFigCDS;
 - (BOOL)setupFigCDS;
-- (int)connectToSourceCaptions;
 - (int)buildFigCaptionArrayFromAVCaptionArrayAndSubmitToCDSSession;
 - (id)captionSceneChangesInRange:(CDStruct_e83c9415)arg1;
 - (id)description;
+- (void)setDefaultStyles:(id)arg1;
+- (id)defaultStyles;
+- (BOOL)synchronizeWithCurrentAccessibilityPreferencesWithCompletionHandler:(CDUnknownBlockType)arg1;
 @property(nonatomic) struct CGRect bounds;
 @property(copy, nonatomic) NSArray *captions;
 - (void)dealloc;

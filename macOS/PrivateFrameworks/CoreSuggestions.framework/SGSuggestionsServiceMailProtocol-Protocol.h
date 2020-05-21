@@ -14,16 +14,11 @@
 
 @protocol SGSuggestionsServiceMailProtocol <_SGSuggestionsServiceBaseProtocol, _SGSuggestionsServiceEventsConfirmRejectProtocol, _SGSuggestionsServiceContactsConfirmRejectProtocol, _SGSuggestionsServiceContactsObserverProtocol, _SGSuggestionsServiceEventsObserverProtocol>
 - (void)updateMessages:(NSArray *)arg1 state:(unsigned long long)arg2 withCompletion:(void (^)(NSError *))arg3;
-- (BOOL)updateMessages:(NSArray *)arg1 state:(unsigned long long)arg2 error:(id *)arg3;
 - (void)reportMessagesFound:(NSArray *)arg1 lost:(NSArray *)arg2 withCompletion:(void (^)(NSError *))arg3;
-- (BOOL)reportMessagesFound:(NSArray *)arg1 lost:(NSArray *)arg2 error:(id *)arg3;
 - (void)messagesToRefreshWithCompletion:(void (^)(NSArray *, NSError *))arg1;
-- (NSArray *)messagesToRefreshWithError:(id *)arg1;
 - (void)harvestedSuggestionsFromSearchableItem:(CSSearchableItem *)arg1 options:(unsigned long long)arg2 withCompletion:(void (^)(NSArray *, NSError *))arg3;
-- (NSArray *)harvestedSuggestionsFromSearchableItem:(CSSearchableItem *)arg1 options:(unsigned long long)arg2 error:(id *)arg3;
 - (void)suggestionsFromSearchableItem:(CSSearchableItem *)arg1 options:(unsigned long long)arg2 withCompletion:(void (^)(NSArray *, NSError *))arg3;
-- (NSArray *)suggestionsFromSearchableItem:(CSSearchableItem *)arg1 options:(unsigned long long)arg2 error:(id *)arg3;
-- (void)prepareForRealtimeExtractionWithCompletion:(void (^)(NSError *))arg1;
 - (BOOL)prepareForRealtimeExtraction:(id *)arg1;
+- (void)prepareForRealtimeExtractionWithCompletion:(void (^)(NSError *))arg1;
 @end
 

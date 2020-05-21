@@ -11,8 +11,7 @@
     BOOL _isPopUpButtonMenuVisible;
 }
 
-- (void)setIsPopUpButtonMenuVisible:(BOOL)arg1;
-- (BOOL)isPopUpButtonMenuVisible;
+@property BOOL isPopUpButtonMenuVisible; // @synthesize isPopUpButtonMenuVisible=_isPopUpButtonMenuVisible;
 
 @end
 

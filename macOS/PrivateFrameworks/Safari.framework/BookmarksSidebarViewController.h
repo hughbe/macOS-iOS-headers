@@ -18,7 +18,7 @@
 #import "SidebarSearchFieldDelegate.h"
 #import "SidebarSearchFieldViewDelegate.h"
 
-@class BookmarksOutlineView, BookmarksSearcher, NSArray, NSButton, NSMenu, NSSearchField, NSString, NSView, SidebarScrollView;
+@class BookmarksOutlineView, BookmarksSearcher, NSArray, NSButton, NSMenu, NSMutableArray, NSSearchField, NSString, NSView, SidebarScrollView, WBSFaviconRequestsController;
 
 __attribute__((visibility("hidden")))
 @interface BookmarksSidebarViewController : NSViewController <SidebarSearchFieldDelegate, SidebarScrollViewAccessibilityDelegate, SidebarContentViewController, NSMenuDelegate, NSOutlineViewDataSource, BookmarksOutlineViewDelegate, BookmarksSidebarTableCellViewDelegate, CustomKeyViewLoop, SidebarContentFilterDelegate, SidebarContentFiltering, SidebarSearchFieldViewDelegate>
@@ -26,7 +26,9 @@ __attribute__((visibility("hidden")))
     BookmarksSearcher *_searcher;
     NSMenu *_contextMenu;
     BOOL _deselectAfterRowClickIsPending;
+    NSMutableArray *_autosavedItemsToTryToExpandWhenBookmarksHaveReloaded;
     BOOL _userDidDoubleClick;
+    WBSFaviconRequestsController *_requestsController;
     BookmarksOutlineView *_outlineView;
     id <BookmarksSidebarViewControllerDelegate> _delegate;
     NSArray *_draggedBookmarks;
@@ -35,13 +37,13 @@ __attribute__((visibility("hidden")))
     SidebarScrollView *_scrollView;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak SidebarScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(nonatomic) __weak NSButton *editButton; // @synthesize editButton=_editButton;
 @property(nonatomic) __weak NSView *editButtonContainer; // @synthesize editButtonContainer=_editButtonContainer;
 @property(retain, nonatomic) NSArray *draggedBookmarks; // @synthesize draggedBookmarks=_draggedBookmarks;
 @property(nonatomic) __weak id <BookmarksSidebarViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak BookmarksOutlineView *outlineView; // @synthesize outlineView=_outlineView;
-- (void).cxx_destruct;
 - (void)_didRecognizeImmediateAction:(id)arg1;
 - (void)_instrumentUserDidActivateBookmark:(id)arg1 viaContextMenu:(BOOL)arg2;
 - (void)addBookmarkFolder:(id)arg1;
@@ -62,7 +64,7 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)_indexInParent:(id)arg1 forDisplayedBookmarkAtIndex:(unsigned long long)arg2;
 - (id)_bookmarkAtIndex:(unsigned long long)arg1 forParentBookmark:(id)arg2;
 - (unsigned long long)_numberOfChildrenForBookmark:(id)arg1;
-- (void)_bookmarksWereReloaded:(id)arg1;
+- (void)_bookmarksWereReloadedOrCleanedUp:(id)arg1;
 - (void)_bookmarksDidChange:(id)arg1;
 - (void)_bookmarksWereRemoved:(id)arg1;
 - (void)_bookmarksWereAdded:(id)arg1;
@@ -87,6 +89,7 @@ __attribute__((visibility("hidden")))
 - (id)sideBarScrollViewAccessibilityChildren:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)safari_keyViews;
+- (void)didPressShowMenuForTableCellView:(id)arg1;
 - (void)didPressRemoveButtonForTableCellView:(id)arg1;
 - (void)didPressTableCellView:(id)arg1;
 - (void)sidebarContentFilterDidCompleteFilterOperation:(id)arg1;
@@ -103,7 +106,7 @@ __attribute__((visibility("hidden")))
 - (id)outlineView:(id)arg1 menuForEvent:(id)arg2 inRow:(long long)arg3 tableColumn:(id)arg4;
 - (BOOL)outlineView:(id)arg1 writeItems:(id)arg2 toPasteboard:(id)arg3;
 - (void)outlineView:(id)arg1 draggingSession:(id)arg2 endedAtPoint:(struct CGPoint)arg3 operation:(unsigned long long)arg4;
-- (id)outlineView:(id)arg1 namesOfPromisedFilesDroppedAtDestination:(id)arg2 forDraggedItems:(id)arg3;
+- (id)outlineView:(id)arg1 pasteboardWriterForItem:(id)arg2;
 - (BOOL)outlineView:(id)arg1 acceptDrop:(id)arg2 item:(id)arg3 childIndex:(long long)arg4;
 - (unsigned long long)outlineView:(id)arg1 validateDrop:(id)arg2 proposedItem:(id)arg3 proposedChildIndex:(long long)arg4;
 - (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
@@ -118,8 +121,6 @@ __attribute__((visibility("hidden")))
 - (double)outlineView:(id)arg1 heightOfRowByItem:(id)arg2;
 - (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
 - (void)sidebarWillClose:(id)arg1;
-- (void)removedAllIcons:(id)arg1;
-- (void)iconChanged:(id)arg1;
 @property(readonly, nonatomic) NSArray *allFilteringControls;
 @property(readonly, nonatomic) NSSearchField *searchField;
 - (void)cancelDeselectAfterRowClicked;

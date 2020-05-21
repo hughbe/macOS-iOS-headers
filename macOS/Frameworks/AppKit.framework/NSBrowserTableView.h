@@ -14,15 +14,12 @@
     unsigned int _shouldSuppressDropHighlight:1;
     unsigned int _isColumnControllerRetained:1;
     unsigned int _usePrimaryColorForSelection:1;
-    unsigned int _liveResizeImageCachingDisabled:1;
 }
 
 - (BOOL)resignFirstResponder;
 - (BOOL)_sendShouldTrackCell:(id)arg1 forTableColumn:(id)arg2 row:(long long)arg3;
 - (BOOL)_delegateRespondsToShouldTrackCell;
 - (BOOL)_columnPositionsTheSame;
-- (BOOL)_shouldLiveResizeUseCachedImage;
-- (void)_setLiveResizeImageCachingEnabled:(BOOL)arg1;
 - (BOOL)_onlyDragOnContent;
 - (void)dealloc;
 - (void)_drawDropHighlightBackgroundForRow:(long long)arg1;

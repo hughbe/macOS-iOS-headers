@@ -17,12 +17,12 @@
 - (void)moveDown:(id)arg1;
 - (void)moveRight:(id)arg1;
 - (void)takeQTTimeValueFrom:(id)arg1;
-- (void)setQTTimeValue:(CDStruct_900afa40)arg1;
-- (CDStruct_900afa40)QTTimeValue;
-- (struct CGPoint)pointAtTime:(CDStruct_900afa40)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
-- (CDStruct_900afa40)timeAtPoint:(struct CGPoint)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
-- (void)setTimeRange:(CDStruct_977f9211)arg1;
-- (CDStruct_977f9211)timeRange;
+- (void)setQTTimeValue:(CDStruct_2ec95fd7)arg1;
+- (CDStruct_2ec95fd7)QTTimeValue;
+- (struct CGPoint)pointAtTime:(CDStruct_2ec95fd7)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
+- (CDStruct_2ec95fd7)timeAtPoint:(struct CGPoint)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
+- (void)setTimeRange:(CDStruct_7cbd8c8b)arg1;
+- (CDStruct_7cbd8c8b)timeRange;
 - (void)setHighlightedTimeRanges:(id)arg1;
 - (id)highlightedTimeRanges;
 - (id)_QTHUDSliderHighlightedRanges;

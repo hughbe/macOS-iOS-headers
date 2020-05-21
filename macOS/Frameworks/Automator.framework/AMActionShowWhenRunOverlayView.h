@@ -6,21 +6,21 @@
 
 #import "NSView.h"
 
-@class NSBezierPath, NSButton, NSDictionary, NSGradient;
+@class NSButton, NSDictionary, NSGradient;
 
 @interface AMActionShowWhenRunOverlayView : NSView
 {
     NSButton *_button;
-    NSBezierPath *_buttonPath;
-    NSBezierPath *_itemPath;
     NSDictionary *_showWhenRunItemDictionary;
     NSGradient *_gradient;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSGradient *gradient; // @synthesize gradient=_gradient;
+@property(retain, nonatomic) NSButton *button; // @synthesize button=_button;
 @property(retain) NSDictionary *showWhenRunItemDictionary; // @synthesize showWhenRunItemDictionary=_showWhenRunItemDictionary;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)selectedChanged:(id)arg1;
-- (void)dealloc;
 - (void)viewDidMoveToSuperview;
 - (id)initWithFrame:(struct CGRect)arg1;
 

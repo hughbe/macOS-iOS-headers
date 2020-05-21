@@ -6,29 +6,33 @@
 
 #import "NSObject.h"
 
-@class BRCDeadlineScheduler, NSObject<OS_dispatch_source>;
+@class BRCDeadlineScheduler, NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface BRCDeadlineSource : NSObject
 {
     long long _deadline;
-    NSObject<OS_dispatch_source> *_latch;
     BRCDeadlineScheduler *_scheduler;
-    // Error parsing type: Ai, name: _suspendCount
+    int _suspendCount;
+    BOOL _cancelled;
+    BOOL _signaled;
+    NSString *_name;
+    CDUnknownBlockType _eventHandler;
+    NSObject<OS_dispatch_queue> *_queue;
 }
 
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+@property(copy, nonatomic) CDUnknownBlockType eventHandler; // @synthesize eventHandler=_eventHandler;
 - (void)signal;
-- (void)dealloc;
 - (void)signalWithDeadline:(long long)arg1;
+- (void)runEventHandler;
+- (BOOL)willRunEvenHandler;
 - (void)cancel;
 - (void)resume;
 - (void)suspend;
-- (void)setEventHandler:(CDUnknownBlockType)arg1;
-- (void)setBottomQueue:(id)arg1;
-- (void)setTargetQueue:(id)arg1;
 - (id)description;
-- (id)initWithScheduler:(id)arg1;
+- (id)initWithScheduler:(id)arg1 name:(id)arg2;
 
 @end
 

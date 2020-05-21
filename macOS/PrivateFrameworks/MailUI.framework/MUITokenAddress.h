@@ -7,18 +7,19 @@
 #import "NSObject.h"
 
 #import "CNAutocompleteFetchDelegate.h"
+#import "EMBlockedSenderTokenAddress.h"
 #import "NSCopying.h"
 
-@class ABCNContact, ABGroup, CNAutocompleteStore, NSArray, NSMenu, NSString, NSTextView, NSTokenField;
+@class CNAutocompleteStore, CNContact, CNGroup, NSArray, NSMenu, NSString, NSTextView, NSTokenField;
 
-@interface MUITokenAddress : NSObject <CNAutocompleteFetchDelegate, NSCopying>
+@interface MUITokenAddress : NSObject <EMBlockedSenderTokenAddress, CNAutocompleteFetchDelegate, NSCopying>
 {
     BOOL _shouldRefreshNameIfPossible;
     id <MUITokenAddressDelegate> _delegate;
     NSTokenField *_tokenField;
     NSTextView *_textView;
-    ABCNContact *_contact;
-    ABGroup *_group;
+    CNContact *_contact;
+    CNGroup *_group;
     NSString *_recentRawAddress;
     NSString *_recentName;
     NSString *_currentRawAddress;
@@ -34,6 +35,7 @@
 + (id)tokenWithAddress:(id)arg1 isRecent:(BOOL)arg2 contact:(id)arg3;
 + (id)tokenWithAddress:(id)arg1;
 + (BOOL)addressIsExternal:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) CNAutocompleteStore *autocompleteStore; // @synthesize autocompleteStore=_autocompleteStore;
 @property(retain, nonatomic) id <CNCancelable> autocompletionSearchRequest; // @synthesize autocompletionSearchRequest=_autocompletionSearchRequest;
 @property(nonatomic) BOOL shouldRefreshNameIfPossible; // @synthesize shouldRefreshNameIfPossible=_shouldRefreshNameIfPossible;
@@ -42,16 +44,17 @@
 @property(copy, nonatomic) NSString *currentRawAddress; // @synthesize currentRawAddress=_currentRawAddress;
 @property(copy, nonatomic) NSString *recentName; // @synthesize recentName=_recentName;
 @property(copy, nonatomic) NSString *recentRawAddress; // @synthesize recentRawAddress=_recentRawAddress;
-@property(retain, nonatomic) ABGroup *group; // @synthesize group=_group;
-@property(retain, nonatomic) ABCNContact *contact; // @synthesize contact=_contact;
-@property(nonatomic) NSTextView *textView; // @synthesize textView=_textView;
+@property(retain, nonatomic) CNGroup *group; // @synthesize group=_group;
+@property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
+@property(nonatomic) __weak NSTextView *textView; // @synthesize textView=_textView;
 @property(nonatomic) __weak NSTokenField *tokenField; // @synthesize tokenField=_tokenField;
 @property(retain, nonatomic) id <MUITokenAddressDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)searchForToken:(id)arg1;
 - (void)removeFromAddressHistory:(id)arg1;
 - (void)expandGroupAddress:(id)arg1;
 - (void)openNewMessage:(id)arg1;
+- (void)unblockContact:(id)arg1;
+- (void)blockContact:(id)arg1;
 - (void)addToVIPSenders:(id)arg1;
 - (void)removeFromVIPSenders:(id)arg1;
 - (void)openInContacts:(id)arg1;

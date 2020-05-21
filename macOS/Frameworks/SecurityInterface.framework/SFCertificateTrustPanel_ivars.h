@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSBox, NSButton, NSSplitView, NSString, NSTextField, NSWindow, SFIconView;
+@class NSArray, NSBox, NSButton, NSLayoutConstraint, NSSplitView, NSStackView, NSString, NSTextField, NSWindow, SFIconView;
 
 __attribute__((visibility("hidden")))
 @interface SFCertificateTrustPanel_ivars : NSObject
 {
     SFIconView *_iconView;
+    NSStackView *_stackView;
     NSSplitView *_splitView;
     NSTextField *_messageField;
     NSTextField *_informationField;
@@ -20,12 +21,14 @@ __attribute__((visibility("hidden")))
     NSBox *_aboveContentBox;
     NSBox *_discloseContentBox;
     NSBox *_belowContentBox;
+    NSLayoutConstraint *_discloseContentHeightConstraint;
     struct CGRect _lastDiscloseRect;
     NSString *_defaultMessage;
     NSString *_defaultInformation;
     NSWindow *_offScreenWindow;
     BOOL _showsCertButton;
     BOOL _showsTrustButton;
+    long long _trustButtonState;
     BOOL _certificatesDisclosed;
     BOOL _savingTrustSettings;
     BOOL _forceAdminTrust;

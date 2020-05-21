@@ -9,84 +9,102 @@
 #import "DelayedPopUpRolloverImageButtonDelegate.h"
 #import "FormTextStatusWatcherDelegate.h"
 #import "TabBarViewItem.h"
+#import "WBSOrderedTab.h"
 
-@class BrowserWKView, BrowserWindowController, ContinuousReadingListViewController, DelayedPopUpRolloverImageButton, NSArray, NSColor, NSImage, NSMutableArray, NSSet, NSString, NSTimer, NSURL, NSUUID, SearchState, TabContentView;
+@class BrowserTabViewController, BrowserViewController, BrowserWindowController, ContinuousReadingListViewController, DelayedPopUpRolloverImageButton, NSArray, NSColor, NSImage, NSMutableArray, NSSet, NSString, NSTimer, NSURL, NSUUID, SearchState, TabContentViewController;
 
 __attribute__((visibility("hidden")))
-@interface BrowserTabViewItem : NSTabViewItem <DelayedPopUpRolloverImageButtonDelegate, FormTextStatusWatcherDelegate, TabBarViewItem>
+@interface BrowserTabViewItem : NSTabViewItem <DelayedPopUpRolloverImageButtonDelegate, FormTextStatusWatcherDelegate, TabBarViewItem, WBSOrderedTab>
 {
-    BrowserWKView *_wkView;
-    struct RefPtr<Safari::BrowserTab> _browserTab;
-    struct RefPtr<Safari::WebPageProxy> _webPageProxy;
-    struct RefPtr<Safari::ReaderControllerProxy> _readerControllerProxy;
+    BrowserViewController *_currentBrowserViewController;
+    struct RefPtr<Safari::BrowserTab, WTF::DumbPtrTraits<Safari::BrowserTab>> _browserTab;
     BOOL _didFireOpenEvent;
-    BOOL _didFireCloseEvent;
     NSMutableArray *_accessoryViews;
     NSString *_urlFromScript;
-    unsigned long long _nextVisibleContentsRequestIdentifier;
-    struct HashMap<unsigned long long, std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>>> _visibleContentsRequestCallbacks;
     DelayedPopUpRolloverImageButton *_muteButton;
     NSTimer *_siteIconUpdateTimer;
-    id _siteIconRequestToken;
+    id _templateIconRequestToken;
+    id _faviconRequestToken;
+    unsigned long long _currentIconType;
     BOOL _pinned;
+    BOOL _showIcon;
+    BOOL _prefersCachedTabSnapshotForTouchBar;
+    BOOL _showingMonogram;
     BOOL _showingMuteButton;
-    int _muteButtonState;
     BrowserWindowController *_browserWindowController;
-    TabContentView *_tabContentView;
+    TabContentViewController *_tabContentViewController;
     NSUUID *_uuid;
     NSString *_fullLabel;
     NSString *_editedUnifiedFieldString;
     SearchState *_lastSearchState;
     NSString *_templateIconHost;
+    NSImage *_highlightedImage;
+    NSColor *_themeColor;
     NSURL *_pinnedPageURL;
     NSString *_pinnedPageTitle;
     BrowserTabViewItem *_representedPinnedTab;
-    NSImage *_highlightedImage;
-    NSColor *_themeColor;
+    long long _muteButtonState;
     ContinuousReadingListViewController *_continuousReadingListViewController;
 }
 
 + (id)findTabInAnyWindowWithUUID:(id)arg1;
-+ (id)findTabForContentViewController:(const struct BrowserContentViewController *)arg1;
 + (id)findTabForPage:(const struct Page *)arg1;
-@property(nonatomic) int muteButtonState; // @synthesize muteButtonState=_muteButtonState;
-@property(nonatomic, getter=isShowingMuteButton) BOOL showingMuteButton; // @synthesize showingMuteButton=_showingMuteButton;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(retain, nonatomic) ContinuousReadingListViewController *continuousReadingListViewController; // @synthesize continuousReadingListViewController=_continuousReadingListViewController;
-@property(retain, nonatomic) NSColor *themeColor; // @synthesize themeColor=_themeColor;
-@property(retain, nonatomic) NSImage *highlightedImage; // @synthesize highlightedImage=_highlightedImage;
+@property(nonatomic) long long muteButtonState; // @synthesize muteButtonState=_muteButtonState;
+@property(nonatomic, getter=isShowingMuteButton) BOOL showingMuteButton; // @synthesize showingMuteButton=_showingMuteButton;
+@property(readonly, nonatomic, getter=isShowingMonogram) BOOL showingMonogram; // @synthesize showingMonogram=_showingMonogram;
 @property(retain, nonatomic) BrowserTabViewItem *representedPinnedTab; // @synthesize representedPinnedTab=_representedPinnedTab;
 @property(readonly, copy, nonatomic) NSString *pinnedPageTitle; // @synthesize pinnedPageTitle=_pinnedPageTitle;
 @property(readonly, nonatomic) NSURL *pinnedPageURL; // @synthesize pinnedPageURL=_pinnedPageURL;
+@property(retain, nonatomic) NSColor *themeColor; // @synthesize themeColor=_themeColor;
+@property(retain, nonatomic) NSImage *highlightedImage; // @synthesize highlightedImage=_highlightedImage;
 @property(copy, nonatomic) NSString *templateIconHost; // @synthesize templateIconHost=_templateIconHost;
 @property(readonly, copy, nonatomic) NSArray *accessoryViews; // @synthesize accessoryViews=_accessoryViews;
+@property(readonly, nonatomic) BOOL prefersCachedTabSnapshotForTouchBar; // @synthesize prefersCachedTabSnapshotForTouchBar=_prefersCachedTabSnapshotForTouchBar;
 @property(retain, nonatomic) SearchState *lastSearchState; // @synthesize lastSearchState=_lastSearchState;
 @property(copy, nonatomic) NSString *editedUnifiedFieldString; // @synthesize editedUnifiedFieldString=_editedUnifiedFieldString;
 @property(copy, nonatomic) NSString *fullLabel; // @synthesize fullLabel=_fullLabel;
-@property(retain, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
-@property(retain, nonatomic) TabContentView *tabContentView; // @synthesize tabContentView=_tabContentView;
+@property(readonly, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
+@property(retain, nonatomic) TabContentViewController *tabContentViewController; // @synthesize tabContentViewController=_tabContentViewController;
 @property(nonatomic) __weak BrowserWindowController *browserWindowController; // @synthesize browserWindowController=_browserWindowController;
+@property(nonatomic) BOOL showIcon; // @synthesize showIcon=_showIcon;
 @property(nonatomic, getter=isPinned) BOOL pinned; // @synthesize pinned=_pinned;
-- (id).cxx_construct;
-- (void).cxx_destruct;
-- (void)_requestFavoritesTitleForMatchingURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) double lastActivationTime;
+@property(readonly, nonatomic, getter=isClosing) BOOL closing;
+@property(readonly, nonatomic) BOOL shouldSelectOriginatingTabWhenClosed;
+@property(readonly, nonatomic) BOOL isPinnedTab;
+@property(readonly, nonatomic) NSString *windowIdentifier;
+@property(readonly, nonatomic) NSArray *ancestorTabIdentifiers;
+@property(readonly, nonatomic) NSString *identifier;
 - (void)_cancelSiteIconUpdate;
-- (void)_requestTemplateIconWithURL:(id)arg1 title:(id)arg2;
+- (void)_requestFaviconForURL:(id)arg1;
 - (void)_requestTemplateIconWithURL:(id)arg1;
+- (void)_resetCurrentPinnedTabIconType;
+- (void)_setPinnedTabIcon:(id)arg1 ofType:(unsigned long long)arg2;
+- (BOOL)_shouldUpdatePinnedTabIcon;
+- (void)updateSiteIconIgnoringPinnedTabState:(BOOL)arg1;
 - (void)updateSiteIconNow;
 - (void)updateSiteIconSoonIfNecessary;
+- (void)setImage:(id)arg1;
 - (void)transferContentToPlaceholderTab:(id)arg1;
 - (void)restorePinnedState:(BOOL)arg1 pinnedPageURL:(id)arg2 pinnedPageTitle:(id)arg3;
 @property(readonly, nonatomic, getter=isPlaceholderTab) BOOL placeholderTab;
 - (void)_internalSetPinned:(BOOL)arg1;
 - (void)formTextStatusWasVerified:(id)arg1;
 - (id)menuForDelayedPopUpRolloverImageButton:(id)arg1;
+- (void)stopAllMediaPlayback;
 - (void)_muteButtonClicked:(id)arg1;
+- (void)_resumeScreenCapture;
+- (void)_pauseScreenCapture;
+- (void)unmuteMediaCapture;
+- (void)muteMediaCapture;
+- (void)toggleMediaOrScreenCapture;
 - (void)mutableMediaPlayingStateDidChange;
 - (void)_updateMuteButtonImageAndTooltip;
-- (id)cachedWKViewInContinuousMode;
-- (void)exitContinuousMode;
 - (BOOL)continuousPageViewIsHandlingPageTransitionOrLoadingPageItem;
-- (BOOL)isInContinuousMode;
+@property(readonly, nonatomic, getter=isInContinuousMode) BOOL inContinuousMode;
 - (id)currentContinuousReadingListPageItem;
 - (void)loadContinuousReadingListPageItem:(id)arg1;
 - (id)handleSearchTheWebCommand:(id)arg1;
@@ -113,32 +131,34 @@ __attribute__((visibility("hidden")))
 - (void)insertAccessoryView:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)addAccessoryView:(id)arg1;
 - (BOOL)_shouldSuppressExtensionTabEvents;
-- (void)didCreateVisibleContentsSnapshot:(const struct Image *)arg1 forRequestWithIdentifier:(unsigned long long)arg2;
 - (void)getVisibleContentsAsDataURLForContext:(struct OpaqueJSContext *)arg1 callback:(struct OpaqueJSValue *)arg2;
-- (BOOL)allowAccessFromExtensionToAnyAssociatedPage:(const struct ExtensionAPIExtension *)arg1;
-- (BOOL)allowAccessFromExtension:(const struct ExtensionAPIExtension *)arg1;
-- (void)loadURLFromExtension:(id)arg1;
+-     // Error parsing type: c24@0:8r^{ExtensionAPIExtension=^^?{HashSet<Safari::EventTarget *, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *> >={HashTable<Safari::EventTarget *, Safari::EventTarget *, WTF::IdentityExtractor, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *> >=^^{EventTarget}}}{Lock={Atomic<unsigned char>={atomic<unsigned char>={__cxx_atomic_impl<unsigned char, std::__1::__cxx_atomic_base_impl<unsigned char> >=AC}}}}^^?}16, name: allowAccessFromExtensionToAnyAssociatedPage:
+-     // Error parsing type: c24@0:8r^{ExtensionAPIExtension=^^?{HashSet<Safari::EventTarget *, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *> >={HashTable<Safari::EventTarget *, Safari::EventTarget *, WTF::IdentityExtractor, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *> >=^^{EventTarget}}}{Lock={Atomic<unsigned char>={atomic<unsigned char>={__cxx_atomic_impl<unsigned char, std::__1::__cxx_atomic_base_impl<unsigned char> >=AC}}}}^^?}16, name: allowAccessFromExtension:
+- (void)loadURLFromExtension:(id)arg1 waitInQueue:(BOOL)arg2;
 - (void)activateFromExtension;
 @property(readonly, nonatomic, getter=isClosed) BOOL closed;
 @property(readonly, nonatomic) BOOL isPrivate;
 @property(readonly, nonatomic) NSURL *urlForExtensions;
-@property(readonly, nonatomic) struct ReaderControllerProxy *readerControllerProxy;
-@property(readonly, nonatomic) struct WebPageProxy *page;
-- (void)_restoreSessionState:(id)arg1 requestedLabel:(id)arg2 requestedLabelLifetime:(int)arg3 allowJavaScript:(BOOL)arg4;
+- (void)_showIconsInTabsPreferenceDidChange:(id)arg1;
+- (void)setDoesNotPreferCachedTabSnapshotForTouchBar;
 - (void)restoreFromBrowserTabState:(id)arg1 allowJavaScript:(BOOL)arg2;
 - (void)willUnselect;
 - (void)didSelect;
 - (void)willClose;
 - (void)willOpen;
+@property(readonly, copy, nonatomic) NSString *accessibilityItemIdentifier;
 @property(readonly, nonatomic, getter=isFrontmost) BOOL frontmost;
 @property(readonly, nonatomic) BrowserWindowController *representedTabBrowserWindowController;
-@property(readonly, nonatomic) struct BrowserContentViewController *browserContentViewController;
-@property(readonly, nonatomic) TabContentView *representedTabContentView;
-- (id)computeTabLabel;
+@property(readonly, nonatomic) BrowserViewController *currentBrowserViewController;
+@property(readonly, nonatomic) id <VisualTabPickerThumbnailSnapshotProviding> visualTabPickerThumbnailSnapshotProvider;
+@property(readonly, nonatomic) BrowserViewController *browserViewController;
+@property(readonly, nonatomic) TabContentViewController *representedTabContentViewController;
+- (id)computeTabLabelIncludingDebuggingContent:(BOOL)arg1;
 @property(readonly, nonatomic) NSURL *failedOrCurrentURL;
+@property(readonly, nonatomic) NSURL *expectedOrCurrentURLOrLastActiveURLIfCrashed;
 @property(readonly, nonatomic) NSURL *expectedOrCurrentURL;
-@property(readonly, copy, nonatomic) NSSet *allWKViews;
-@property(readonly, nonatomic) BrowserWKView *wkView;
+@property(readonly, copy, nonatomic) NSString *pageTitle;
+@property(readonly, copy, nonatomic) NSSet *allBrowserViewControllers;
 @property(readonly, nonatomic) struct BrowserTab *browserTab;
 - (void)_commonInitWithBrowserWindowController:(id)arg1;
 - (id)initWithRepresentedPinnedTab:(id)arg1 browserWindowController:(id)arg2;
@@ -152,6 +172,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, copy, nonatomic) NSString *label;
 @property(readonly) Class superclass;
 @property(readonly, copy, nonatomic) NSString *toolTip;
+@property(retain) BrowserTabViewController *viewController; // @dynamic viewController;
 
 @end
 

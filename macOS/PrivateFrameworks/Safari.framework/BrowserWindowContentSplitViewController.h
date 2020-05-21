@@ -7,53 +7,57 @@
 #import "NSSplitViewController.h"
 
 #import "NSSplitViewDelegate.h"
+#import "SidebarStateRestorationContext.h"
 
-@class BrowserWindowController, NSClipView, NSSplitViewItem, NSString, NSView, NSVisualEffectView, SidebarViewController;
+@class BrowserWindowController, NSColor, NSSplitViewItem, NSString, NSView, NSVisualEffectView, SidebarViewController;
 
 __attribute__((visibility("hidden")))
-@interface BrowserWindowContentSplitViewController : NSSplitViewController <NSSplitViewDelegate>
+@interface BrowserWindowContentSplitViewController : NSSplitViewController <NSSplitViewDelegate, SidebarStateRestorationContext>
 {
     BrowserWindowController *_browserWindowController;
     NSSplitViewItem *_sidebarSplitViewItem;
     NSSplitViewItem *_tabSwitcherSplitViewItem;
+    NSView *_tabViewControllerView;
     NSView *_webContentSnapshotForSidebarAnimation;
     NSView *_webInspectorSnapshotForSidebarAnimation;
-    struct SidebarAnimationContext {
-        unsigned long long tabViewAutoresizingMask;
-        int revealingOrCoveringSidebar;
-        char sidebarAnimationInProgress;
-        char layoutAnalysisClaimsPageIsCentered;
-    } _sidebarAnimationContext;
+    struct SidebarAnimationContext _sidebarAnimationContext;
     NSVisualEffectView *_visualEffectViewForHidingSeparator;
     unsigned long long _fakeSidebarTransitionDepth;
+    NSString *_lastDisplayedSidebarBookmarkListUUID;
     SidebarViewController *_sidebarViewController;
-    NSClipView *_sidebarClipView;
+    NSView *_sidebarClipView;
     id <BrowserWindowContentSplitViewControllerDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <BrowserWindowContentSplitViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) NSClipView *sidebarClipView; // @synthesize sidebarClipView=_sidebarClipView;
-@property(retain, nonatomic) SidebarViewController *sidebarViewController; // @synthesize sidebarViewController=_sidebarViewController;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <BrowserWindowContentSplitViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) NSView *sidebarClipView; // @synthesize sidebarClipView=_sidebarClipView;
+@property(retain, nonatomic) SidebarViewController *sidebarViewController; // @synthesize sidebarViewController=_sidebarViewController;
+@property(copy, nonatomic) NSString *lastDisplayedSidebarBookmarkListUUID; // @synthesize lastDisplayedSidebarBookmarkListUUID=_lastDisplayedSidebarBookmarkListUUID;
+- (id)_performanceOperationName;
+- (BOOL)_splitView:(id)arg1 canLiveCollapseArrangedSubview:(id)arg2;
 - (void)splitViewItem:(id)arg1 didChangeCollapsed:(BOOL)arg2 animated:(BOOL)arg3;
 - (void)splitViewItem:(id)arg1 isChangingCollapsed:(BOOL)arg2 animated:(BOOL)arg3;
 - (void)splitViewItem:(id)arg1 willChangeCollapsed:(BOOL)arg2 animated:(BOOL)arg3;
 - (BOOL)_isShowingOverlaySidebar;
+- (BOOL)_uncachedSidebarAppearsAsOverlay;
 @property(readonly, nonatomic) BOOL sidebarAppearsAsOverlay;
 - (void)_cleanUpAfterHidingSidebar;
-- (void)_prepareForFadeOutAnimationWithSnapshot:(const RetainPtr_c27edd19 *)arg1;
+- (void)_prepareForFadeOutAnimationWithSnapshot:(const RetainPtr_fae59704 *)arg1;
 - (void)_prepareForSidebarAnimationWithWebContent;
 - (BOOL)_canPerformLiveResizeForSidebarAnimation;
 - (void)_hideSidebarWithAnimation:(BOOL)arg1;
 - (void)_showSidebarWithAnimation:(BOOL)arg1;
 - (void)_installSidebarViewController;
-- (void)_loadTabSwitcherSplitViewItemWithTabView:(id)arg1;
+- (void)_loadTabSwitcherSplitViewItemWithTabViewController:(id)arg1;
 - (void)_loadSidebarSplitViewItemIfNeeded;
 - (void)_updateConstraints;
-@property(nonatomic) BOOL hidesSeparator;
+@property(retain, nonatomic) NSColor *separatorColor;
 - (void)didForceContentRepaintAndCollectPageLayoutInformationForSidebarAnimationAfterResize:(id)arg1;
+- (BOOL)_isPageCenteredGivenLayoutInformation:(id)arg1;
+- (void)_browserViewDidResizeForSidebarAnimation:(id)arg1;
 - (void)didCollectPageLayoutInformationForSidebarAnimationBeforeResize;
-- (void)setSidebarSplitViewItemHasBaseVibrancyEffect:(BOOL)arg1;
+- (id)_browserViewForPageLayoutInformation;
 @property(readonly, nonatomic) BOOL isSidebarAnimationInProgress;
 - (double)sidebarWidth;
 - (void)hideOverlaySidebarIfNeeded;

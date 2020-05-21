@@ -6,22 +6,22 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableDictionary;
+@class NSArray, NSMutableDictionary;
 
 @interface AMVariablesRegistry : NSObject
 {
     NSMutableDictionary *_variables;
     NSMutableDictionary *_variablesByCategory;
     NSMutableDictionary *_variablesByApplication;
-    NSMutableArray *_customVariables;
     NSMutableDictionary *_variableIdentifiers;
-    BOOL _didLoadAllVariables;
 }
 
-+ (id)pathForLargeIconForVariableWithIdentifier:(id)arg1;
 + (id)largeIconForVariableWithIdentifier:(id)arg1;
 + (id)iconForVariableWithIdentifier:(id)arg1;
 + (id)sharedVariablesRegistry;
+- (void).cxx_destruct;
+@property(retain) NSMutableDictionary *variableIdentifiers; // @synthesize variableIdentifiers=_variableIdentifiers;
+@property(retain) NSMutableDictionary *variables; // @synthesize variables=_variables;
 - (void)calculateVariablesByApplication;
 - (void)calculateVariablesByCategory;
 - (id)variableWithIdentifier:(id)arg1;
@@ -30,7 +30,6 @@
 - (void)reallyRemoveVariables:(id)arg1;
 - (void)removeVariables:(id)arg1;
 - (void)removeVariable:(id)arg1;
-- (void)reallyAddVariables:(id)arg1;
 - (void)addCustomVariableDictionary:(id)arg1;
 - (void)addVariablesWithPropertyLists:(id)arg1;
 - (void)_setupVariable:(id)arg1;
@@ -41,7 +40,7 @@
 - (void)createTemplateVariables;
 - (void)createBuiltInVariables;
 - (id)templateVariableIdentifiers;
-- (id)builtInVariableIdentifiers;
+@property(readonly, nonatomic) NSArray *builtInVariableIdentifiers;
 - (void)_mapUtilitiesVariableIdentifiers;
 - (id)utilitiesVariableIdentifiers;
 - (id)textAndDataVariableIdentifiers;
@@ -56,12 +55,8 @@
 - (void)mapVariableIdentifiersToSelectorAndNames;
 - (id)variableWithName:(id)arg1 identifier:(id)arg2 value:(id)arg3;
 - (id)customVariables;
-- (id)variableIdentifiers;
-- (id)variablesByApplication;
-- (id)variablesByCategory;
-- (id)variables;
-- (BOOL)didLoadAllVariables;
-- (void)dealloc;
+@property(readonly, nonatomic) NSArray *variablesByApplication;
+@property(readonly, nonatomic) NSArray *variablesByCategory;
 - (id)init;
 - (void)loadVariablesFromDisk;
 

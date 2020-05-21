@@ -12,6 +12,7 @@
 
 @interface NSBitmapImageRep : NSImageRep <NSSecureCoding>
 {
+    unsigned int _bytesPerRow;
     struct __bitmapRepFlags {
         unsigned int bitsPerPixel:8;
         unsigned int isPlanar:1;
@@ -27,7 +28,6 @@
         unsigned int cgImageIsPrimary:1;
         unsigned int compression:20;
     } _moreRepFlags;
-    unsigned int _bytesPerRow;
     id _dataObj;
     NSData *_tiffData;
     id _properties;
@@ -58,6 +58,9 @@
 + (id)representationOfImageRepsInArray:(id)arg1 usingType:(unsigned long long)arg2 properties:(id)arg3;
 + (void)_setEnableFlippedImageFix:(BOOL)arg1;
 @property(retain, setter=_setBacking:) id _backing; // @synthesize _backing=_dataObj;
+- (id)description;
+- (void)_setImageNumber:(long long)arg1;
+- (long long)_imageNumber;
 - (void)colorizeByMappingGray:(double)arg1 toColor:(id)arg2 blackMapping:(id)arg3 whiteMapping:(id)arg4;
 - (id)_bitmapImageReps;
 - (id)TIFFRepresentationUsingCompression:(unsigned long long)arg1 factor:(float)arg2;
@@ -102,7 +105,7 @@
 - (BOOL)_loadTierTwoInfoIfNotYetLoaded;
 - (void)_loadTierTwoInfoWithCGImage:(struct CGImage *)arg1;
 - (BOOL)_loadTierOneInfoWithCGImage:(struct CGImage *)arg1;
-- (BOOL)_loadTierOneInfoWithImageSource:(void *)arg1 imageNumber:(long long)arg2 properties:(struct __CFDictionary *)arg3;
+- (BOOL)_loadTierOneInfoWithImageSource:(struct CGImageSource *)arg1 imageNumber:(long long)arg2 properties:(struct __CFDictionary *)arg3;
 - (id)bitmapImageRepByRetaggingWithColorSpace:(id)arg1;
 - (id)bitmapImageRepByConvertingToColorSpace:(id)arg1 renderingIntent:(long long)arg2;
 - (void)setColorSpaceName:(id)arg1;
@@ -128,9 +131,6 @@
 - (void)_becomeBackedByCGImage:(struct CGImage *)arg1;
 - (void)_withoutChangingBackingPerformBlockUsingBackingCGImage:(CDUnknownBlockType)arg1;
 - (void)_performBlockUsingBacking:(CDUnknownBlockType)arg1;
-- (id)description;
-- (void)_setImageNumber:(long long)arg1;
-- (long long)_imageNumber;
 - (id)valueForProperty:(id)arg1;
 - (void)setProperty:(id)arg1 withValue:(id)arg2;
 - (id)representationUsingType:(unsigned long long)arg1 properties:(id)arg2;

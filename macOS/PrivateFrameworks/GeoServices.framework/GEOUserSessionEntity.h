@@ -6,18 +6,23 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class NSNumber, NSString;
 
-@interface GEOUserSessionEntity : NSObject
+@interface GEOUserSessionEntity : NSObject <NSCopying>
 {
     struct GEOSessionID _sessionID;
     unsigned int _sequenceNumber;
     double _sessionCreationTime;
+    double _sessionRelativeTimestamp;
 }
 
-@property(nonatomic) unsigned int sequenceNumber; // @synthesize sequenceNumber=_sequenceNumber;
-@property double sessionCreationTime; // @synthesize sessionCreationTime=_sessionCreationTime;
-@property struct GEOSessionID sessionID; // @synthesize sessionID=_sessionID;
+@property(readonly, nonatomic) unsigned int sequenceNumber; // @synthesize sequenceNumber=_sequenceNumber;
+@property(readonly, nonatomic) double sessionRelativeTimestamp; // @synthesize sessionRelativeTimestamp=_sessionRelativeTimestamp;
+@property(nonatomic) double sessionCreationTime; // @synthesize sessionCreationTime=_sessionCreationTime;
+@property(readonly, nonatomic) struct GEOSessionID sessionID; // @synthesize sessionID=_sessionID;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)updateSessionIDFromUUIDString:(id)arg1;
 - (void)updateWithSessionEntityString:(id)arg1;
 - (BOOL)_isValidSessionIDHighOrLowString:(id)arg1;
@@ -31,9 +36,7 @@
 - (id)description;
 - (id)initWithSessionEntityString:(id)arg1;
 - (id)initWithSessionID:(struct GEOSessionID)arg1 sessionCreationTime:(double)arg2 sequenceNumber:(unsigned int)arg3;
-- (id)init;
-@property(readonly) double sessionRelativeTimestamp;
-- (unsigned int)rawSequenceNumber;
+- (double)sessionRelativeTimestampForEventTime:(double)arg1;
 
 @end
 

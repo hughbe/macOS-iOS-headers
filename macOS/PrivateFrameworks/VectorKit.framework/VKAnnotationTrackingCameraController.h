@@ -38,10 +38,10 @@ __attribute__((visibility("hidden")))
     } _flags;
 }
 
+- (id).cxx_construct;
 @property(nonatomic) long long headingAnimationDisplayRate; // @synthesize headingAnimationDisplayRate=_headingAnimationDisplayRate;
 @property(nonatomic) long long zoomStyle; // @synthesize zoomStyle=_zoomStyle;
 @property(readonly, nonatomic) id <VKTrackableAnnotation> annotation; // @synthesize annotation=_annotation;
-- (id).cxx_construct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)resumeAnimation;
 - (void)pauseAnimation;
@@ -55,7 +55,7 @@ __attribute__((visibility("hidden")))
 - (void)updateFramerate;
 @property(readonly, nonatomic, getter=isTrackingHeading) BOOL trackingHeading;
 - (void)dealloc;
-- (id)init;
+- (id)initWithMapDataAccess:(struct MapDataAccess *)arg1 animationRunner:(struct AnimationRunner *)arg2 runLoopController:(struct RunLoopController *)arg3 cameraDelegate:(id)arg4;
 
 @end
 

@@ -16,6 +16,7 @@
 
 + (id)provideContextWithDictionary:(id)arg1 context:(id)arg2;
 + (id)provideContext;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *contextVersion;
 @property(copy, nonatomic) NSString *context;
 - (id)encodedClassName;

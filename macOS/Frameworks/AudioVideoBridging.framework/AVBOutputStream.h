@@ -6,24 +6,28 @@
 
 #import <AudioVideoBridging/AVBStream.h>
 
+@class AVBMACAddress;
+
 @interface AVBOutputStream : AVBStream
 {
-    unsigned long long erasePayloadAddress;
-    unsigned long long erasePayloadSize;
+    unsigned char _priorityCodePoint;
+    unsigned short _vlanID;
+    AVBMACAddress *_destinationMAC;
+    AVBMACAddress *_sourceMAC;
 }
 
 + (id)diagnosticDescriptionForService:(unsigned int)arg1 withIndent:(id)arg2;
 + (id)IOClassName;
+@property(nonatomic) unsigned char priorityCodePoint; // @synthesize priorityCodePoint=_priorityCodePoint;
+@property(nonatomic) unsigned short vlanID; // @synthesize vlanID=_vlanID;
+@property(readonly, copy, nonatomic) AVBMACAddress *sourceMAC; // @synthesize sourceMAC=_sourceMAC;
+@property(copy, nonatomic) AVBMACAddress *destinationMAC; // @synthesize destinationMAC=_destinationMAC;
 - (void)dealloc;
-@property(readonly, nonatomic) unsigned long long erasePayloadLength; // @dynamic erasePayloadLength;
-@property(readonly, nonatomic) void *erasePayloadAddress; // @dynamic erasePayloadAddress;
-- (BOOL)resetDCLProgramWithError:(id *)arg1;
+- (BOOL)updatePacketsFromInfoStartingAt:(unsigned int)arg1 endingAt:(unsigned int)arg2 error:(id *)arg3;
 - (BOOL)outputFrames:(BOOL)arg1 error:(id *)arg2;
-- (BOOL)getDCLLaunchTimeOffset:(unsigned long long *)arg1 error:(id *)arg2;
-- (BOOL)setDCLNoRangesAtIndex:(unsigned int)arg1 error:(id *)arg2;
-- (BOOL)setDCLAtIndex:(unsigned int)arg1 withEraseLength:(unsigned long long)arg2 error:(id *)arg3;
-- (BOOL)setupDCLsWithCallbackPeriod:(unsigned int)arg1 andEraseLength:(unsigned long long)arg2 error:(id *)arg3;
-- (id)initWithStreamID:(unsigned long long)arg1 onInterfaceNamed:(id)arg2;
+- (BOOL)getPrefetchDelay:(unsigned long long *)arg1 error:(id *)arg2;
+- (BOOL)getLaunchTimeOffset:(unsigned long long *)arg1 error:(id *)arg2;
+- (id)initWithStreamID:(unsigned long long)arg1 destinationMACAddess:(id)arg2 vlanID:(unsigned short)arg3 priorityCodePoint:(unsigned char)arg4 onInterfaceNamed:(id)arg5;
 
 @end
 

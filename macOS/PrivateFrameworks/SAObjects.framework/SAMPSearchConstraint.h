@@ -18,6 +18,7 @@
 + (id)searchConstraint;
 @property(copy, nonatomic) NSArray *searchProperties;
 @property(copy, nonatomic) NSString *query;
+@property(copy, nonatomic) NSArray *mediaPlayerOrderingTerms;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

@@ -10,7 +10,6 @@
 {
     id _items;
     void *_fReserved1;
-    void *_fReserved2;
     long long _registeredForNote;
 }
 
@@ -18,8 +17,6 @@
 + (id)systemStatusBar;
 - (void)_statusItemIsDeallocing:(id)arg1;
 - (BOOL)_performKeyEquivalent:(id)arg1;
-- (BOOL)_updatesDisabled;
-- (void)_setUpdatesDisabled:(BOOL)arg1;
 - (void)_requestStatusBarAdjustmentWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_setLengthOfStatusItem:(id)arg1 to:(double)arg2;
 - (void)_removeStatusItem:(id)arg1;
@@ -30,13 +27,11 @@
 - (void)_updateItemsWithAppearanceChange;
 - (void)_updateItemsWithChangedActiveDisplay;
 - (void)_menuBarThemeDidChange:(id)arg1;
-- (void)_menuBarTranslucencyDidChange:(id)arg1;
 - (void)_activeDisplayDidChange:(id)arg1;
 - (void)_setRegisteredForNotifications:(BOOL)arg1;
 - (id)_exitFullScreenItemForSpaceID:(unsigned long long)arg1;
 - (id)_statusItemWithLength:(double)arg1 systemInsertOrder:(long long)arg2;
 - (id)_statusItemWithLength:(double)arg1 withPriority:(long long)arg2;
-- (id)_lockName;
 - (id)_name;
 @property(readonly) double thickness;
 @property(readonly, getter=isVertical) BOOL vertical;
@@ -51,14 +46,11 @@
 - (long long)backgroundStyleForHighlight:(BOOL)arg1;
 - (void)drawBackgroundInRect:(struct CGRect *)arg1 inView:(id)arg2 highlight:(BOOL)arg3;
 - (double)_lengthForSize:(struct CGSize)arg1;
-- (struct CGSize)_initialOffset;
 - (long long)_direction;
 - (long long)_placement;
 - (id)_createStatusItemControlInWindow:(id)arg1;
 - (id)_createStatusItemWindow;
-- (void)_reinstallAllStatusItems;
 - (void)_userRemoveStatusItem:(id)arg1;
-- (void)_terminateAfterRemovalAnimation:(id)arg1;
 - (void)_navigationCtrlF8Pressed;
 - (BOOL)_CGSstatusBarUsesRTLLayoutForWindow:(id)arg1;
 - (struct CGRect)_CGSgetWindowFrame:(id)arg1;

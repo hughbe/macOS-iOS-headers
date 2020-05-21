@@ -6,21 +6,25 @@
 
 #import "NSObject.h"
 
-@class AVAssetCache, AVAssetClientURLRequestHelper, AVAssetInspectorLoader, AVAssetResourceLoader, NSArray, NSDictionary, NSObject<OS_dispatch_queue>, NSURL;
+@class AVAssetCache, AVAssetClientURLRequestHelper, AVAssetCustomURLAuthentication, AVAssetCustomURLBridgeForNSURLProtocol, AVAssetInspectorLoader, AVAssetResourceLoader, AVDispatchOnce, AVWeakReference, NSArray, NSDictionary, NSObject<OS_dispatch_queue>, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface AVURLAssetInternal : NSObject
 {
     AVAssetInspectorLoader *loader;
     AVAssetClientURLRequestHelper *URLRequestHelper;
+    AVAssetCustomURLBridgeForNSURLProtocol *customURLBridgeForNSURLProtocol;
+    AVAssetCustomURLAuthentication *customURLAuthenticationUsingKeychain;
     NSURL *URL;
     NSArray *tracks;
     AVAssetResourceLoader *resourceLoader;
-    long long makeOneResourceLoaderOnly;
+    AVDispatchOnce *makeOneResourceLoaderOnly;
     AVAssetCache *assetCache;
-    long long makeOneAssetDownloadCacheOnly;
+    AVDispatchOnce *makeOneAssetDownloadCacheOnly;
     NSObject<OS_dispatch_queue> *tracksAccessQueue;
     NSDictionary *initializationOptions;
     BOOL hasInstanceIdentifierMapping;
+    AVWeakReference *sessionReference;
 }
 
 @end

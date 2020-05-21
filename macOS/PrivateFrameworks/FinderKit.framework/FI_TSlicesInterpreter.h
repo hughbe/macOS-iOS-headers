@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
 - (id)searchForRules:(id)arg1;
 - (id)queryStringForRules:(id)arg1 searchSystemFiles:(id *)arg2 fileNameOnly:(id *)arg3 searchNonFinderFiles:(id *)arg4;
 - (id)queryDictionaryForRow:(id)arg1 searchSystemFiles:(id *)arg2 fileNameOnly:(id *)arg3 searchNonFinderFiles:(id *)arg4 skipOuterParentheses:(_Bool)arg5;
+- (id)queryStringForParts:(id)arg1 searchSystemFiles:(id *)arg2 fileNameOnly:(id *)arg3 searchNonFinderFiles:(id *)arg4 skipOuterParentheses:(_Bool)arg5 subRows:(id)arg6;
 - (void)queryStringDictionaryForCriterion:(id)arg1 withDisplayValue:(id)arg2 intoDictionary:(id)arg3;
 
 @end

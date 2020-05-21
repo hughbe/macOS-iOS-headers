@@ -14,6 +14,8 @@
 }
 
 @property unsigned short jackIndex; // @synthesize jackIndex;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)objectLogName;
 - (void)appendFixedDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;

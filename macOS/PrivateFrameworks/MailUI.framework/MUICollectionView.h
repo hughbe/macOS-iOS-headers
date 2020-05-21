@@ -17,33 +17,33 @@
     NSMutableIndexSet *_faultedIndexes;
     NSMutableIndexSet *_lockedIndexes;
     NSMutableIndexSet *_selectionIndexes;
+    unsigned long long _focusedIndex;
+    BOOL _emphasized;
+    BOOL _inScroll;
     BOOL _adjustHeightForPinning;
     BOOL _adjustScrollForPinning;
-    BOOL _inScroll;
-    BOOL _emphasized;
     id <MUICollectionViewDelegate> _delegate;
     MUICollectionHeightStorage *_heightStorage;
+    unsigned long long _pinnedIndex;
     unsigned long long _pinnedCellEdge;
     unsigned long long _pinnedEdge;
-    double _pinnedHeightAdjustment;
-    unsigned long long _pinnedIndex;
     double _pinnedOffset;
-    unsigned long long _focusedIndex;
+    double _pinnedHeightAdjustment;
 }
 
 + (id)keyPathsForValuesAffectingNumberOfCells;
 + (BOOL)requiresConstraintBasedLayout;
-@property(nonatomic) double pinnedOffset; // @synthesize pinnedOffset=_pinnedOffset;
-@property(nonatomic) unsigned long long pinnedIndex; // @synthesize pinnedIndex=_pinnedIndex;
-@property(nonatomic) double pinnedHeightAdjustment; // @synthesize pinnedHeightAdjustment=_pinnedHeightAdjustment;
-@property(nonatomic) unsigned long long pinnedEdge; // @synthesize pinnedEdge=_pinnedEdge;
-@property(nonatomic) unsigned long long pinnedCellEdge; // @synthesize pinnedCellEdge=_pinnedCellEdge;
-@property(nonatomic) BOOL inScroll; // @synthesize inScroll=_inScroll;
-@property(readonly, nonatomic) MUICollectionHeightStorage *heightStorage; // @synthesize heightStorage=_heightStorage;
-@property(nonatomic) __weak id <MUICollectionViewDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL adjustScrollForPinning; // @synthesize adjustScrollForPinning=_adjustScrollForPinning;
 @property(nonatomic) BOOL adjustHeightForPinning; // @synthesize adjustHeightForPinning=_adjustHeightForPinning;
-- (void).cxx_destruct;
+@property(nonatomic) double pinnedHeightAdjustment; // @synthesize pinnedHeightAdjustment=_pinnedHeightAdjustment;
+@property(nonatomic) double pinnedOffset; // @synthesize pinnedOffset=_pinnedOffset;
+@property(nonatomic) unsigned long long pinnedEdge; // @synthesize pinnedEdge=_pinnedEdge;
+@property(nonatomic) unsigned long long pinnedCellEdge; // @synthesize pinnedCellEdge=_pinnedCellEdge;
+@property(nonatomic) unsigned long long pinnedIndex; // @synthesize pinnedIndex=_pinnedIndex;
+@property(readonly, nonatomic) MUICollectionHeightStorage *heightStorage; // @synthesize heightStorage=_heightStorage;
+@property(nonatomic) BOOL inScroll; // @synthesize inScroll=_inScroll;
+@property(nonatomic) __weak id <MUICollectionViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (BOOL)_scrollToNextCell:(id)arg1 contiguously:(BOOL)arg2;
 - (BOOL)_scrollToPreviousCell:(id)arg1 contiguously:(BOOL)arg2;
 - (void)scrollPageDown:(id)arg1;
@@ -59,7 +59,6 @@
 - (BOOL)_hasFirstResponder;
 - (BOOL)performKeyEquivalent:(id)arg1;
 - (void)scrollToCellAtIndex:(unsigned long long)arg1 constrainScroll:(BOOL)arg2;
-- (BOOL)scrollRectToVisible:(struct CGRect)arg1;
 - (void)scrollPoint:(struct CGPoint)arg1;
 - (void)_scrollEdge:(unsigned long long)arg1 to:(CDUnknownBlockType)arg2;
 - (id)enclosingScrollView;
@@ -96,6 +95,7 @@
 - (id)_claimUnusedCell;
 - (id)reusableCellViewWithIdentifier:(id)arg1;
 - (void)_faultCellsAtIndexesInRange:(struct _NSRange)arg1;
+- (void)updateVisibleCells;
 - (void)unlockCellsAtIndexes:(id)arg1;
 - (void)unlockCellsAtIndexesInRange:(struct _NSRange)arg1;
 - (void)unlockCellAtIndex:(unsigned long long)arg1;
@@ -120,8 +120,8 @@
 @property(copy, nonatomic) NSIndexSet *selectionIndexes;
 @property(readonly, nonatomic) unsigned long long numberOfCells;
 @property(readonly, nonatomic) unsigned long long firstResponderIndex;
-@property(nonatomic) unsigned long long focusedIndex; // @synthesize focusedIndex=_focusedIndex;
-@property(nonatomic) BOOL emphasized; // @synthesize emphasized=_emphasized;
+@property(nonatomic) unsigned long long focusedIndex;
+@property(nonatomic) BOOL emphasized;
 @property(nonatomic) struct NSEdgeInsets margins;
 @property(nonatomic) struct CGSize cellSpacing;
 - (BOOL)isFlipped;
@@ -131,6 +131,8 @@
 - (id)initWithCoder:(id)arg1;
 
 // Remaining properties
+@property(setter=_setWantsPageAlignedHorizontalAxis:) BOOL _wantsPageAlignedHorizontalAxis;
+@property(setter=_setWantsPageAlignedVerticalAxis:) BOOL _wantsPageAlignedVerticalAxis;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;

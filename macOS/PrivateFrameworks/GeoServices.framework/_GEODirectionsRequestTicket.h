@@ -8,7 +8,7 @@
 
 #import "GEODirectionServiceTicket.h"
 
-@class GEOComposedRoute, GEODirectionsRequest, NSArray, NSDictionary, NSString;
+@class GEOComposedRoute, GEODirectionsRequest, GEODirectionsRequester, NSArray, NSDictionary, NSNumber, NSString;
 
 __attribute__((visibility("hidden")))
 @interface _GEODirectionsRequestTicket : NSObject <GEODirectionServiceTicket>
@@ -17,23 +17,29 @@ __attribute__((visibility("hidden")))
     BOOL _isReroute;
     GEOComposedRoute *_originalRoute;
     NSArray *_waypoints;
+    BOOL _isDoom;
+    NSNumber *_requestPriority;
     BOOL _active;
     BOOL _canceled;
     NSDictionary *_userInfo;
+    GEODirectionsRequester *_directionsRequester;
 }
 
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSNumber *requestPriority; // @synthesize requestPriority=_requestPriority;
+@property(nonatomic) BOOL isDoom; // @synthesize isDoom=_isDoom;
 @property(readonly, nonatomic) BOOL canceled; // @synthesize canceled=_canceled;
 @property(readonly, nonatomic) BOOL active; // @synthesize active=_active;
 @property(retain, nonatomic) NSArray *waypoints; // @synthesize waypoints=_waypoints;
 @property(retain, nonatomic) GEOComposedRoute *originalRoute; // @synthesize originalRoute=_originalRoute;
 @property(nonatomic) BOOL isReroute; // @synthesize isReroute=_isReroute;
+@property(nonatomic) __weak GEODirectionsRequester *directionsRequester; // @synthesize directionsRequester=_directionsRequester;
 @property(readonly, nonatomic) GEODirectionsRequest *request; // @synthesize request=_request;
 - (void)cancel;
-- (void)submitWithHandler:(CDUnknownBlockType)arg1 networkActivity:(CDUnknownBlockType)arg2;
+- (void)submitWithHandler:(CDUnknownBlockType)arg1 auditToken:(id)arg2 networkActivity:(CDUnknownBlockType)arg3;
 @property(readonly, nonatomic) NSDictionary *responseUserInfo;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
-- (id)initWithRequest:(id)arg1;
+- (id)initWithRequest:(id)arg1 directionsRequester:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

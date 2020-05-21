@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
+#import "NSSecureCoding.h"
 
 @class CALayer, CAValueFunction, NSString;
 
-@interface CAForceField : NSObject <NSCopying, NSMutableCopying, NSCoding>
+@interface CAForceField : NSObject <NSCopying, NSMutableCopying, NSSecureCoding>
 {
     NSString *_name;
     CALayer *_layer;
@@ -21,6 +21,7 @@
 }
 
 + (void)CAMLParserStartElement:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (id)attributesForKey:(id)arg1;
 + (id)properties;
 + (id)defaultValueForKey:(id)arg1;

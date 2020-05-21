@@ -14,6 +14,10 @@
 }
 
 @property(readonly, nonatomic) unsigned long long keyModifiers; // @synthesize keyModifiers=_keyModifiers;
+- (BOOL)isInShortcutState;
+- (BOOL)isModifiedByNoneOrAny:(unsigned long long)arg1;
+- (BOOL)isModifiedByAny:(unsigned long long)arg1;
+- (BOOL)isModifiedBy:(unsigned long long)arg1;
 - (id)keyboardStateWithAdditionalModifiers:(unsigned long long)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithKeyModifiers:(unsigned long long)arg1;

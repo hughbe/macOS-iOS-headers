@@ -6,18 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSCGSWindowLayerSurface, NSView, NSWindow;
+@class CAContext, NSArray, NSCGSWindowLayerSurface, NSView, NSWindow;
 
 __attribute__((visibility("hidden")))
 @interface _NSViewLayerSurface : NSObject
 {
     NSView *_view;
-    NSWindow *_danglingWindow;
-    NSWindow *_weakWindow;
+    NSWindow *_window;
     NSCGSWindowLayerSurface *_surface;
+    CAContext *_context;
+    CAContext *_functionRowContext;
+    unsigned long long _viewGeometryObserver;
+    NSArray *_windowObservers;
 }
 
-+ (void)initialize;
+- (void).cxx_destruct;
 - (void)dealloc;
 - (void)invalidate;
 - (void)update;

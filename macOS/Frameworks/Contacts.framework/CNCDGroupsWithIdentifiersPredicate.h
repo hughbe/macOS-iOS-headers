@@ -17,10 +17,10 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)descriptionOfIdentifiers:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSArray *identifiers; // @synthesize identifiers=_identifiers;
 - (id)cn_coreDataPredicate;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)initWithIdentifiers:(id)arg1;
 
 // Remaining properties

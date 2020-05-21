@@ -26,6 +26,7 @@
 - (void)clearInvalidationList;
 - (void)invalidatePackageReference:(id)arg1 reason:(int)arg2;
 - (int)distanceForPackageReference:(id)arg1;
+- (id)validPackageReferencesMatchingIdentifier:(id)arg1 version:(id)arg2;
 - (id)bestPackageReferenceMatchingIdentifier:(id)arg1 version:(id)arg2;
 - (id)_nearestPackageReference:(id)arg1;
 - (id)_validSubsetOfPackageReferences:(id)arg1;

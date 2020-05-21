@@ -8,6 +8,12 @@
 
 @interface NSString (TMAdditions)
 + (id)tm_UUID;
+- (id)tm_pathRelativeToBasePath:(id)arg1;
+- (unsigned long long)tm_unsignedLongLongValue;
+- (id)tm_stringByHidingLastPathComponentWithDotPrefix;
+- (id)tm_stringByReplacingPathExtension:(id)arg1;
+- (id)tm_stringByRemovingSlashes;
+- (id)tm_stringByRemovingColons;
 - (id)tm_stringByAbbreviatingWithTildeUsernameInPath;
 - (id)tm_stringByStandardizingPath;
 - (id)tm_stringBySeveringAtWildcardedPathComponent;

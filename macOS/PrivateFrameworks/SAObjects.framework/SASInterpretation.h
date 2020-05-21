@@ -17,6 +17,7 @@
 + (id)interpretationWithDictionary:(id)arg1 context:(id)arg2;
 + (id)interpretation;
 @property(copy, nonatomic) NSArray *tokens;
+@property(nonatomic) BOOL doNotDedup;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

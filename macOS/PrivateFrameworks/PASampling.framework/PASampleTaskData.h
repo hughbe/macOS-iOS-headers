@@ -20,14 +20,14 @@
 
 + (id)newInstanceWithoutReferencesFromBufferPosition:(const void *)arg1;
 + (id)classDictionaryKey;
+- (void).cxx_destruct;
 @property(readonly) NSDictionary *sampleThreads; // @synthesize sampleThreads=_sampleThreadsDict;
 @property(retain) NSSet *donatingUniqueIds; // @synthesize donatingUniqueIds=_donatingUniqueIds;
-- (void).cxx_destruct;
 - (BOOL)isSameAsTask:(id)arg1;
 - (id)initWithTimeInsensitiveTaskData:(id)arg1;
-- (id)initWithKCDataStackshotDeltaTask:(const struct task_delta_snapshot_v2 *)arg1 andTimeInsensitiveTaskData:(id)arg2;
-- (id)initWithKCDataStackshotTask:(const struct task_snapshot_v2 *)arg1 andTimeInsensitiveTaskData:(id)arg2;
-- (id)initWithStackshotTask:(id)arg1 andTimeInsensitiveTaskData:(id)arg2;
+- (id)initWithKCDataStackshotDeltaTask:(const struct task_delta_snapshot_v2 *)arg1 andTimeInsensitiveTaskData:(id)arg2 andTerminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg3 machTimebase:(struct mach_timebase_info)arg4;
+- (id)initWithKCDataStackshotTask:(const struct task_snapshot_v2 *)arg1 andTimeInsensitiveTaskData:(id)arg2 andTerminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg3 machTimebase:(struct mach_timebase_info)arg4;
+- (id)initWithStackshotTask:(id)arg1 andTimeInsensitiveTaskData:(id)arg2 machTimebase:(struct mach_timebase_info)arg3;
 @property(readonly) BOOL wqExceededTotalThreadLimit;
 @property(readonly) BOOL wqExceededConstrainedThreadLimit;
 @property(readonly) BOOL isDirty;
@@ -47,6 +47,10 @@
 @property(readonly) BOOL isTerminatedSnapshot;
 @property(readonly) BOOL isTaskResourceFlagged;
 @property(readonly) unsigned long long ss_flags;
+@property(readonly) unsigned long long terminatedThreadsCycles;
+@property(readonly) unsigned long long terminatedThreadsInstructions;
+@property(readonly) unsigned long long terminatedThreadsSystemTimeInNs;
+@property(readonly) unsigned long long terminatedThreadsUserTimeInNs;
 @property(readonly) unsigned int latency_qos;
 @property(readonly) int numberOfPageIns;
 @property(readonly) int numberOfCopyOnWritePageFaults;
@@ -55,6 +59,7 @@
 @property(readonly) int suspendCount;
 - (id)architectureString;
 @property(readonly) double mostRecentTimeSamplingOnlyMainThread;
+@property(readonly) BOOL isTranslocated;
 @property(readonly) BOOL isThirdParty;
 @property(readonly) BOOL allowsIdleExit;
 @property(readonly) BOOL usesSuddenTermination;

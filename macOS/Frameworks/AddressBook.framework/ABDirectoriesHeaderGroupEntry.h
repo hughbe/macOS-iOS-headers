@@ -10,19 +10,18 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABDirectoriesHeaderGroupEntry : ABHeaderGroupEntry <ABContactSearching>
 {
     id <ABSearchOperationsFactory> _operationsFactory;
 }
 
+- (void).cxx_destruct;
 - (id)nameWithStyleProvider:(id)arg1;
 - (id)iconWithStyleProvider:(id)arg1;
 - (id)searchOperationsForString:(id)arg1 delegate:(id)arg2;
 @property(readonly) NSString *displayName;
 - (id)selectHelperWithFactory:(id)arg1;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 operationsFactory:(id)arg2 children:(id)arg3;
 
 // Remaining properties

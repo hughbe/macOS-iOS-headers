@@ -23,17 +23,20 @@ __attribute__((visibility("hidden")))
     BOOL _isArbitrationBoundary;
     BOOL _isFilePackageIsFigured;
     BOOL _isFilePackage;
+    BOOL _symbolicLinkIsFirmlink;
     NSString *_lastRequestedChildName;
     NSFileAccessNode *_lastRequestedChild;
     id _progressPublisherOrPublishers;
     id _progressSubscriberOrSubscribers;
 }
 
+- (id)subarbiterDescription;
+- (id)sensitiveSubarbiterDescription;
 - (id)description;
 - (id)sensitiveDescription;
-- (id)descriptionWithIndenting:(id)arg1 excludingExcessNodes:(BOOL)arg2;
-- (id)_childrenExcludingExcessNodes:(BOOL)arg1;
-- (BOOL)_mayContainCriticalDebuggingInformation;
+- (id)descriptionWithIndenting:(id)arg1 excludingExcessNodes:(BOOL)arg2 excludingReactors:(BOOL)arg3;
+- (id)_childrenExcludingExcessNodes:(BOOL)arg1 excludingReactors:(BOOL)arg2;
+- (BOOL)_mayContainCriticalDebuggingInformationExcludingReactors:(BOOL)arg1;
 - (void)assertDescendantsLive;
 - (void)assertLive;
 - (void)assertDead;
@@ -71,6 +74,8 @@ __attribute__((visibility("hidden")))
 - (id)itemProvider;
 - (void)forEachReactorToItemOrContainedItemPerformProcedure:(CDUnknownBlockType)arg1;
 - (void)forEachRelevantAccessClaimPerformProcedure:(CDUnknownBlockType)arg1;
+- (void)forEachRelevantAccessClaimForEvaluatingAgainstClaim:(id)arg1 performProcedure:(CDUnknownBlockType)arg2;
+- (void)_forEachRelevantAccessClaimExcludingClaimsFromSuperarbiter:(BOOL)arg1 performProcedure:(CDUnknownBlockType)arg2;
 - (void)forEachAccessClaimOnItemPerformProcedure:(CDUnknownBlockType)arg1;
 - (void)forEachDescendantPerformProcedure:(CDUnknownBlockType)arg1;
 - (id)biggestFilePackageLocation;
@@ -87,7 +92,9 @@ __attribute__((visibility("hidden")))
 - (void)setChild:(id)arg1 forName:(id)arg2 normalizedName:(id)arg3;
 - (id)pathToDescendantForFileURL:(id)arg1 componentRange:(struct _NSRange *)arg2;
 - (void)dealloc;
+- (void)setFirmlinkDestination:(id)arg1;
 - (void)setSymbolicLinkDestination:(id)arg1;
+- (void)_setLinkDestination:(id)arg1;
 - (id)initWithParent:(id)arg1 name:(id)arg2 normalizedName:(id)arg3;
 
 @end

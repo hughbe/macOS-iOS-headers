@@ -11,7 +11,7 @@
 #import "CalUISuggestionsFieldDelegate.h"
 #import "EKUIAttendeesTokenFieldDelegate.h"
 
-@class CalAutoCompleteOperation, CalUISuggestionsField, EKUITokenField, NSArray, NSMutableDictionary, NSStackView, NSString, NSView;
+@class CalAutoCompleteOperation, CalUISuggestionsField, EKUITokenField, NSArray, NSMutableDictionary, NSOperationQueue, NSStackView, NSString, NSView;
 
 @interface EKUILocationGadget : EKUISingleViewGadget <CalAutoCompleteDelegate, CalUISuggestionsFieldDelegate, CalUIAutocompleteFieldDelegate, EKUIAttendeesTokenFieldDelegate>
 {
@@ -30,9 +30,12 @@
     NSArray *_locationResults;
     NSArray *_roomResults;
     NSString *_currentEditingString;
+    NSOperationQueue *_availabilityRequestQueue;
 }
 
 + (id)interestedChangeKeys;
+- (void).cxx_destruct;
+@property(retain) NSOperationQueue *availabilityRequestQueue; // @synthesize availabilityRequestQueue=_availabilityRequestQueue;
 @property(retain) NSString *currentEditingString; // @synthesize currentEditingString=_currentEditingString;
 @property BOOL ignoreNextEmptySuggestion; // @synthesize ignoreNextEmptySuggestion=_ignoreNextEmptySuggestion;
 @property(retain) NSArray *roomResults; // @synthesize roomResults=_roomResults;
@@ -48,7 +51,6 @@
 @property(retain) NSView *editingView; // @synthesize editingView=_editingView;
 @property(retain) EKUITokenField *roomTokenField; // @synthesize roomTokenField=_roomTokenField;
 @property(retain) NSStackView *stackView; // @synthesize stackView=_stackView;
-- (void).cxx_destruct;
 - (void)_commitAttendeesPreservingTokenSelection;
 - (void)removeAttendee:(id)arg1;
 - (void)toggleOptional:(id)arg1;
@@ -63,9 +65,10 @@
 - (void)selectLastToken;
 - (double)suggestionsWindowWidth;
 - (struct CGPoint)suggestionsWindowOffset;
+- (id)subtitleForSuggestion:(id)arg1;
 - (id)titleForSuggestion:(id)arg1;
 - (id)viewForSuggestion:(id)arg1;
-- (void)queryStringUpdatedToString:(id)arg1 suggestionsFoundHandler:(CDUnknownBlockType)arg2;
+- (void)queryForString:(id)arg1 suggestionsFoundHandler:(CDUnknownBlockType)arg2;
 - (void)findLocationsWithPrefix:(id)arg1;
 - (void)findRoomsWithPrefix:(id)arg1;
 - (void)cancelSearch;
@@ -81,7 +84,6 @@
 - (void)_recordSuggestionAndSaveChangesIfNeededForStructuredLocation:(id)arg1 currentEvent:(id)arg2 suggestion:(id)arg3;
 - (void)addLocationForString:(id)arg1;
 - (void)_updateFreeBusyWithArray:(id)arg1 forCUAddress:(id)arg2;
-- (void)_freeBusyResponse:(id)arg1;
 - (void)updateFreeBusyForAddresses:(id)arg1;
 - (void)updateFreeBusyForAttendees:(id)arg1;
 - (BOOL)isFreeBusySupported;

@@ -16,9 +16,11 @@
 + (id)markerWithFeatureMarker:(const shared_ptr_430519ce *)arg1;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (shared_ptr_430519ce *)actualFeatureMarker;
+@property(readonly) const shared_ptr_430519ce *actualFeatureMarker;
 @property(readonly, nonatomic) GEOFeatureStyleAttributes *styleAttributes;
+@property(readonly, nonatomic) unsigned long long venueID;
 @property(readonly, nonatomic) unsigned long long featureID;
+@property(readonly, nonatomic) NSString *shortName;
 @property(readonly, nonatomic) NSString *name;
 - (void)dealloc;
 - (id)initWithFeatureMarkerPtr:(const shared_ptr_430519ce *)arg1;

@@ -17,11 +17,13 @@
     NSArray *_feedbackKeys;
     NSMutableDictionary *_feedbackValues;
     unsigned long long _feedbackCollectionType;
+    NSString *_sourceIdentifier;
     NSView *_headerBox;
     NSTextField *_titleTextField;
     NSButton *_likeButton;
     NSButton *_dislikeButton;
     NSButton *_exportButton;
+    NSButton *_initialCancelButton;
     NSView *_formBox;
     NSScrollView *_formScrollView;
     NSView *_formPlaceholderView;
@@ -32,6 +34,7 @@
     NSTextField *_formTitleTextField;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSTextField *formTitleTextField; // @synthesize formTitleTextField=_formTitleTextField;
 @property(nonatomic) __weak id <PXFeedbackExportLogs> exportLogsDelegate; // @synthesize exportLogsDelegate=_exportLogsDelegate;
 @property(retain, nonatomic) NSButton *sendButton; // @synthesize sendButton=_sendButton;
@@ -40,12 +43,13 @@
 @property(retain, nonatomic) NSView *formPlaceholderView; // @synthesize formPlaceholderView=_formPlaceholderView;
 @property(retain, nonatomic) NSScrollView *formScrollView; // @synthesize formScrollView=_formScrollView;
 @property(retain, nonatomic) NSView *formBox; // @synthesize formBox=_formBox;
+@property(retain, nonatomic) NSButton *initialCancelButton; // @synthesize initialCancelButton=_initialCancelButton;
 @property(retain, nonatomic) NSButton *exportButton; // @synthesize exportButton=_exportButton;
 @property(retain, nonatomic) NSButton *dislikeButton; // @synthesize dislikeButton=_dislikeButton;
 @property(retain, nonatomic) NSButton *likeButton; // @synthesize likeButton=_likeButton;
 @property(retain, nonatomic) NSTextField *titleTextField; // @synthesize titleTextField=_titleTextField;
 @property(retain, nonatomic) NSView *headerBox; // @synthesize headerBox=_headerBox;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *sourceIdentifier; // @synthesize sourceIdentifier=_sourceIdentifier;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (void)_createFormTableView;

@@ -11,27 +11,31 @@
 @interface GEOTileServerProxy : NSObject
 {
     id <GEOTileServerProxyDelegate> _delegate;
-    NSObject<OS_dispatch_queue> *_delegateQ;
+    NSObject<OS_dispatch_queue> *_delegateQueue;
     GEOResourceManifestConfiguration *_manifestConfiguration;
     NSLocale *_locale;
+    int _resourceNotificationToken;
 }
 
-@property(nonatomic) NSObject<OS_dispatch_queue> *delegateQ; // @synthesize delegateQ=_delegateQ;
-@property(nonatomic) id <GEOTileServerProxyDelegate> delegate; // @synthesize delegate=_delegate;
-- (BOOL)skipNetworkForKeysWhenPreloading:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) __weak id <GEOTileServerProxyDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)generateRequestedFromTileLoaderEndSignpost:(unsigned long long)arg1;
+- (void)generateRequestedFromTileLoaderBeginSignpost:(unsigned long long)arg1 tileKey:(const struct _GEOTileKey *)arg2 options:(unsigned long long)arg3;
 - (void)endPreloadSession;
-- (void)beginPreloadSessionOfSize:(unsigned long long)arg1 exclusive:(BOOL)arg2;
+- (void)beginPreloadSessionOfSize:(unsigned long long)arg1;
+- (unsigned long long)shrinkDiskCacheToSizeSync:(unsigned long long)arg1;
+- (unsigned long long)calculateFreeableSizeSync;
 - (void)shrinkDiskCacheToSize:(unsigned long long)arg1;
 - (void)calculateFreeableSize;
 - (void)flushPendingWrites;
 - (void)reportCorruptTile:(const struct _GEOTileKey *)arg1;
-- (void)reprioritizeKey:(const struct _GEOTileKey *)arg1 newPriority:(unsigned int)arg2;
-- (void)cancel:(const struct _GEOTileKey *)arg1;
-- (void)loadTiles:(id)arg1 priorities:(unsigned int *)arg2 options:(unsigned long long)arg3 client:(id)arg4;
+- (void)reprioritizeKey:(const struct _GEOTileKey *)arg1 newPriority:(unsigned int)arg2 batchID:(int)arg3;
+- (void)cancel:(const struct _GEOTileKey *)arg1 batchID:(int)arg2;
+- (void)loadTiles:(id)arg1 batchID:(int)arg2 priorities:(const unsigned int *)arg3 hasAdditionalInfos:(const _Bool *)arg4 additionalInfos:(const struct GEOTileLoaderAdditionalInfo *)arg5 signpostIDs:(const unsigned long long *)arg6 createTimes:(const double *)arg7 reason:(unsigned char)arg8 options:(unsigned long long)arg9 client:(id)arg10;
 - (void)close;
 - (void)open;
 - (void)dealloc;
-- (id)initWithCacheLocation:(id)arg1 manifestConfiguration:(id)arg2 locale:(id)arg3;
+- (id)initWithCacheLocation:(id)arg1 manifestConfiguration:(id)arg2 locale:(id)arg3 delegateQueue:(id)arg4 delegate:(id)arg5;
 
 @end
 

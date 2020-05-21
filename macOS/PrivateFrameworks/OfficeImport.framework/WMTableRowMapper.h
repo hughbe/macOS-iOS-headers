@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)isTableRowDeleted:(id)arg1;
+- (void).cxx_destruct;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (double)height;
 - (id)initWithWDTableRow:(id)arg1 parent:(id)arg2;

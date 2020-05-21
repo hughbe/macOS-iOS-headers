@@ -16,11 +16,11 @@
 - (void)setDelegate:(id)arg1;
 - (void)mouseUp:(id)arg1;
 - (void)textDidEndEditing:(id)arg1;
-- (void)setPlaceholderAttributedString:(id)arg1;
 - (void)setPlaceholderString:(id)arg1;
 - (id)designatedFocusRingView;
 - (void)setShouldSmoothFonts:(BOOL)arg1;
 - (BOOL)shouldSmoothFonts;
+- (id)_placeholderTextColor;
 - (id)_textColor;
 
 @end

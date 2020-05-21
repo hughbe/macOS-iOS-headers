@@ -17,12 +17,13 @@
     NSString *_deviceName;
     NSNumber *_batteryLife;
     NSNumber *_signalStrength;
-    unsigned char _networkType;
+    unsigned long long _networkType;
+    unsigned long long _deviceGroup;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (void)initialize;
-@property unsigned char networkType; // @synthesize networkType=_networkType;
+@property unsigned long long deviceGroup; // @synthesize deviceGroup=_deviceGroup;
+@property unsigned long long networkType; // @synthesize networkType=_networkType;
 @property(copy) NSNumber *signalStrength; // @synthesize signalStrength=_signalStrength;
 @property(copy) NSNumber *batteryLife; // @synthesize batteryLife=_batteryLife;
 @property(copy) NSString *deviceName; // @synthesize deviceName=_deviceName;
@@ -36,7 +37,6 @@
 - (BOOL)conformsToProtocol:(id)arg1;
 - (id)description;
 - (void)dealloc;
-- (id)initWithHotspotDevice:(id)arg1;
 
 @end
 

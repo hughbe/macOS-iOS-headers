@@ -16,11 +16,11 @@ __attribute__((visibility("hidden")))
     NSString *mExtension;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *path; // @synthesize path=mPath;
 @property(readonly, nonatomic) NSString *contentType; // @synthesize contentType=mContentType;
 - (void)writeToStreamWriter:(id)arg1;
 - (BOOL)isOverride;
-- (void)dealloc;
 - (id)initWithContentType:(id)arg1 path:(id)arg2;
 - (id)initWithContentType:(id)arg1 extension:(id)arg2;
 

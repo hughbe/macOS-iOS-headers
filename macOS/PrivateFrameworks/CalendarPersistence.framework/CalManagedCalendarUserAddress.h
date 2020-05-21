@@ -12,9 +12,11 @@
 {
 }
 
++ (id)_toCalDAVCalendarUserAddress:(id)arg1;
 + (id)preferredAddressURLforAddresses:(id)arg1;
 + (id)entityName;
 - (id)enclosingSource;
+@property long long preferred;
 @property(retain) NSURL *address;
 - (void)willRefresh:(BOOL)arg1;
 

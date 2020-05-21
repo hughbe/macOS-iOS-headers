@@ -7,23 +7,27 @@
 #import "NSObject.h"
 
 #import "GEOTransitRoutingIncidentMessage.h"
+#import "NSSecureCoding.h"
 
 @class GEOPBTransitRoutingIncidentMessage, NSArray, NSString;
 
 __attribute__((visibility("hidden")))
-@interface _GEOTransitRoutingIncidentMessage : NSObject <GEOTransitRoutingIncidentMessage>
+@interface _GEOTransitRoutingIncidentMessage : NSObject <GEOTransitRoutingIncidentMessage, NSSecureCoding>
 {
     GEOPBTransitRoutingIncidentMessage *_routingIncidentMessage;
     NSArray *_transitIncidents;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, nonatomic) NSArray *transitIncidents;
 @property(readonly, nonatomic) NSString *routingMessage;
 - (id)_fakeTransitLineIncidentInLine:(id)arg1;
 - (void)_populateTransitIncidentsWithDecoderData:(id)arg1;
-- (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initFakeLineIncidentMessageInLine:(id)arg1;
 - (id)initWithIncidentMessage:(id)arg1 decoderData:(id)arg2;
 - (id)initWithIncidentMessageIndex:(unsigned long long)arg1 decoderData:(id)arg2;

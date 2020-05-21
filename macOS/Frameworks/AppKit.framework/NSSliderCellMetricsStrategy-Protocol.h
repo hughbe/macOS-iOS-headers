@@ -8,7 +8,7 @@
 #import "NSObject.h"
 
 @protocol NSSliderCellMetricsStrategy <NSObject, NSCopying>
-@property CDStruct_a7350d55 state;
+@property CDStruct_c9beae75 state;
 - (struct CGRect)rectOfMaxValueImageFlipped:(BOOL)arg1;
 - (struct CGRect)rectOfMinValueImageFlipped:(BOOL)arg1;
 - (struct CGRect)rectOfTickMarkForValue:(double)arg1 knobRect:(struct CGRect)arg2 barRect:(struct CGRect)arg3;

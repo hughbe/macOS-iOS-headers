@@ -29,6 +29,8 @@
 @property(copy) NSString *string1; // @synthesize string1;
 @property(copy) NSString *string0; // @synthesize string0;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)objectLogName;
 - (void)appendFixedDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (id)description;

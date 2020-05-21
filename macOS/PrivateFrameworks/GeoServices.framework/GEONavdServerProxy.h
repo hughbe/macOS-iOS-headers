@@ -19,7 +19,6 @@
 - (void)shouldPostDarwinNotificationForNextUpdate:(BOOL)arg1;
 - (void)getDirectionsForClient:(id)arg1 withRouteHypothesisRequest:(id)arg2 andCallback:(CDUnknownBlockType)arg3;
 - (void)statusWithCallback:(CDUnknownBlockType)arg1;
-- (void)dealloc;
 - (void)close;
 - (void)open;
 - (id)init;

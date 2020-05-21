@@ -11,9 +11,7 @@
     struct AugmentableInspectorController *_controller;
 }
 
-- (void)scriptsEnabledWithIsEnabled:(BOOL)arg1;
-- (void)javascriptDialogClosed;
-- (void)javascriptDialogOpeningWithMessage:(id)arg1;
+- (void)defaultAppearanceDidChangeWithAppearance:(long long)arg1;
 - (void)frameClearedScheduledNavigationWithFrameId:(id)arg1;
 - (void)frameScheduledNavigationWithFrameId:(id)arg1 delay:(double)arg2;
 - (void)frameStoppedLoadingWithFrameId:(id)arg1;

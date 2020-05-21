@@ -15,6 +15,12 @@
     BOOL _retryPrefersWWAN;
 }
 
++ (void)logPeriodicUsageIfNeeded;
++ (BOOL)_timestamp:(id)arg1 isAfter:(id)arg2;
++ (BOOL)_hadUserEventSinceIntervalAgo:(double)arg1;
++ (void)noteSuccessOfRequest:(id)arg1 inCar:(BOOL)arg2;
++ (void)noteConnectedToCarPlayHeadunit;
++ (void)logCDMAssetEvictedForAssetType:(id)arg1 language:(id)arg2;
 + (void)logDESEvaluationForLanguage:(id)arg1 error:(id)arg2;
 + (void)logDESRecordingForLanguage:(id)arg1 error:(id)arg2;
 + (void)logLocalRecognitionLostForLanguage:(id)arg1;
@@ -23,8 +29,10 @@
 + (void)logLocalFinalSpeechRecognitionWithDuration:(double)arg1;
 + (void)logLocalSpeechStartedWithDuration:(double)arg1;
 + (void)logLocalRecognitionAssetEvictedForLanguage:(id)arg1;
-+ (void)logDictationEnabled:(BOOL)arg1;
-+ (void)logSiriEnabled:(BOOL)arg1;
++ (void)logDictationEnabledSetTo:(BOOL)arg1 by:(id)arg2;
++ (void)logAssistantEnabledSetTo:(BOOL)arg1 by:(id)arg2;
++ (void)_logFeature:(id)arg1 setTo:(BOOL)arg2 by:(id)arg3;
++ (void)logEnabledState:(unsigned long long)arg1;
 + (void)logPingTimeout;
 + (void)logLoadAssistant;
 + (void)logCreateAssistant;
@@ -44,6 +52,10 @@
 + (void)logSiriSpeechRequestStarted;
 + (void)logRequestLaunchedApp;
 + (id)_fullAggDKeyWithPrefix:(id)arg1 error:(id)arg2;
++ (void)logSiriPausedMedia;
++ (void)logSiriMediaVolumeAction:(long long)arg1;
++ (void)logSiriQuickStopAction:(unsigned long long)arg1;
++ (void)logSiriInvokedVia:(long long)arg1;
 + (void)logRequestCancelAfterSeconds:(double)arg1;
 + (void)missedAlertContextForRequest;
 + (void)missedAppContextForRequest;

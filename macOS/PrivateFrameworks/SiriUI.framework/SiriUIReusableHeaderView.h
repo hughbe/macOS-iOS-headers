@@ -10,7 +10,7 @@
 #import "SiriUIReusableView.h"
 #import "SiriUISizableHeaderView.h"
 
-@class NSImageView, NSString, NSTextField, SiriUIKeyline, SiriUISnippetViewController;
+@class NSImageView, NSString, SiriUIContentLabel, SiriUIKeyline, SiriUISnippetViewController;
 
 @interface SiriUIReusableHeaderView : SiriUIContentButton <NSCollectionViewElement, SiriUIReusableView, SiriUISizableHeaderView>
 {
@@ -18,21 +18,22 @@
     SiriUISnippetViewController *_snippetViewController;
     NSString *_titleText;
     long long _keylineType;
-    NSTextField *_headerLabel;
+    SiriUIContentLabel *_headerLabel;
     SiriUIKeyline *_keyline;
 }
 
 + (id)elementKind;
 + (double)defaultHeight;
 + (id)reuseIdentifier;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) SiriUIKeyline *keyline; // @synthesize keyline=_keyline;
-@property(readonly, nonatomic) NSTextField *headerLabel; // @synthesize headerLabel=_headerLabel;
+@property(readonly, nonatomic) SiriUIContentLabel *headerLabel; // @synthesize headerLabel=_headerLabel;
 @property(nonatomic) long long keylineType; // @synthesize keylineType=_keylineType;
 @property(copy, nonatomic) NSString *titleText; // @synthesize titleText=_titleText;
 @property(nonatomic) __weak SiriUISnippetViewController *snippetViewController; // @synthesize snippetViewController=_snippetViewController;
-- (void).cxx_destruct;
 - (BOOL)wantsLayer;
 - (BOOL)isFlipped;
+- (void)setAttributedTitleText:(id)arg1;
 - (struct CGSize)intrinsicContentSize;
 - (double)desiredHeightForWidth:(double)arg1;
 - (void)updateConstraints;

@@ -19,14 +19,16 @@
 + (Class)classForDict:(id)arg1;
 + (id)keysForValuesToObserveForView;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSUndoManager *undoManager; // @synthesize undoManager=_undoManager;
+@property(nonatomic) BOOL isInitializing; // @synthesize isInitializing=_isInitializing;
 @property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (id)descriptionForDepth:(unsigned long long)arg1;
 - (id)dictionaryForSaving;
-- (void)dealloc;
-- (void)_initWithPlistDictionary:(id)arg1;
+- (void)_configureWithPlistDictionary:(id)arg1;
 - (id)initWithUndoManager:(id)arg1;
 
 @end

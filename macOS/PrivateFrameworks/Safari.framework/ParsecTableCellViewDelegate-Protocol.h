@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-@class ParsecTableCellView, WBSParsecActionButton;
+@class WBSParsecActionButton;
 
 @protocol ParsecTableCellViewDelegate <NSObject>
 
 @optional
-- (void)parsecTableCellViewActionButtonSelectionStateDidChange:(ParsecTableCellView *)arg1;
-- (BOOL)parsecTableCellView:(ParsecTableCellView *)arg1 shouldUseITunesPunchoutForActionButton:(WBSParsecActionButton *)arg2;
-- (BOOL)parsecTableCellView:(ParsecTableCellView *)arg1 shouldShowActionButton:(WBSParsecActionButton *)arg2;
+- (void)parsecTableCellViewActionButtonSelectionStateDidChange:(id <ParsecTableCellView>)arg1;
+- (BOOL)parsecTableCellView:(id <ParsecTableCellView>)arg1 shouldUseITunesPunchoutForActionButton:(WBSParsecActionButton *)arg2;
+- (BOOL)parsecTableCellView:(id <ParsecTableCellView>)arg1 shouldShowActionButton:(WBSParsecActionButton *)arg2;
 @end
 

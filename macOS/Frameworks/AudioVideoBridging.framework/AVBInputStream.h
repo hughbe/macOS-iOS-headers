@@ -8,8 +8,6 @@
 
 @interface AVBInputStream : AVBStream
 {
-    unsigned long long qHeadersAddress;
-    unsigned long long qHeadersSize;
 }
 
 + (id)IOClassName;

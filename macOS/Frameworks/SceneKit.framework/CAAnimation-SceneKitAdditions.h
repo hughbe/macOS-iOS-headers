@@ -9,7 +9,7 @@
 @class NSArray;
 
 @interface CAAnimation (SceneKitAdditions)
-+ (id)scnAnimationNamed:(id)arg1;
++ (id)animationWithSCNAnimation:(id)arg1;
 @property(copy, nonatomic) NSArray *animationEvents;
 - (void)setCommitsOnCompletion:(BOOL)arg1;
 - (BOOL)commitsOnCompletion;

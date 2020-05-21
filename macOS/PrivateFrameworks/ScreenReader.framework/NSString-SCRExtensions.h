@@ -7,9 +7,21 @@
 #import "NSString.h"
 
 @interface NSString (SCRExtensions)
+- (BOOL)containsWhiteSpaceOrNewlineCharacter;
+- (BOOL)containsAlphaNumericCharacter;
+- (BOOL)hasAlphaNumericPrefix;
+- (BOOL)isAllPunctuations;
+- (BOOL)isAllSymbols;
+- (BOOL)isNewline;
+- (BOOL)isAllWhitespaceOrNewline;
+- (BOOL)isAllAlphaNumeric;
+- (BOOL)containsPrintableCharacters;
 - (id)stringByDeletingFormatCharacters;
+- (BOOL)_isLineBreakerAtIndex:(unsigned long long)arg1;
+- (BOOL)containsLineBreaker;
 - (BOOL)isLineBreaker;
 - (BOOL)isWordBreaker;
+- (BOOL)isSingleCharacterWordBreaker;
 - (BOOL)isDecimalDigitValueDescription;
 - (id)componentsSeparatedByStringIncludingSeparators:(id)arg1;
 @end

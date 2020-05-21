@@ -9,7 +9,7 @@
 #import "NSCoding.h"
 #import "NSSecureCoding.h"
 
-@class IOBluetoothRFCOMMConnection, IOBluetoothSDPServiceRecord, NSArray, NSDate, NSDictionary, NSString, NSURL;
+@class IOBluetoothRFCOMMConnection, IOBluetoothSDPServiceRecord, NSArray, NSDate, NSDictionary, NSString, NSURL, NSUUID;
 
 @interface IOBluetoothDevice : IOBluetoothObject <NSCoding, NSSecureCoding>
 {
@@ -57,19 +57,25 @@
 + (id)usbBluetoothDevices;
 + (id)pairedDevices;
 + (id)keyPathsForValuesAffectingIsConnected;
-@property(copy) NSString *name; // @synthesize name=mName;
 @property(retain) NSDate *lastNameUpdate; // @synthesize lastNameUpdate=mLastNameUpdate;
 @property(readonly) unsigned short connectionHandle; // @synthesize connectionHandle=mConnectionHandle;
 @property(retain) NSArray *services; // @synthesize services=mServiceArray;
 @property unsigned int classOfDevice; // @synthesize classOfDevice=mClassOfDevice;
+- (int)createChannelWithCID:(unsigned int)arg1 psm:(unsigned short)arg2 mtu:(unsigned short)arg3;
+- (int)SetIsHIDDevice;
+- (int)channelReadyToReceiveData:(unsigned short)arg1;
 - (BOOL)isiPad;
 - (BOOL)isiPhone;
 - (BOOL)isMac;
+- (void)setAdvancedAppleAudioDeviceRegistry:(BOOL)arg1;
+- (void)setProductIDRegistry:(unsigned short)arg1;
+- (void)setVendorIDRegistry:(unsigned short)arg1;
 - (unsigned short)productID;
 - (unsigned short)vendorID;
 - (BOOL)isAppleDevice;
 - (id)getMacAttributesDictionary;
 - (BOOL)isSpecialMicrosoftMouse;
+- (BOOL)isH1;
 - (BOOL)isKeyboardDevice;
 - (BOOL)isPointingDevice;
 - (unsigned int)lastBytesReceivedTimestamp;
@@ -97,6 +103,7 @@
 - (void)checkRetainCount;
 - (void)release;
 - (id)retain;
+- (void)updateServiceMask;
 - (BOOL)matchesSearchAttributes:(const struct IOBluetoothDeviceSearchAttributes *)arg1 ignoreDeviceNameIfNil:(BOOL)arg2;
 - (oneway void)updateServicesArchive:(in bycopy id)arg1 lastUpdate:(in bycopy id)arg2;
 - (oneway void)updateServices:(in bycopy id)arg1 lastUpdate:(in bycopy id)arg2;
@@ -136,6 +143,7 @@
 - (id)initWithAddress:(const struct BluetoothDeviceAddress *)arg1;
 - (id)initWithIOService:(unsigned int)arg1;
 - (id)initWithIOService:(unsigned int)arg1 address:(const struct BluetoothDeviceAddress *)arg2;
+- (void)initWxProperties;
 - (id)init;
 - (id)getKey;
 - (int)openL2CAPChannelAsync:(id *)arg1 withPSM:(unsigned short)arg2 withConfiguration:(id)arg3 delegate:(id)arg4;
@@ -145,7 +153,6 @@
 - (id)description;
 - (id)getServiceRecordForUUID:(id)arg1;
 - (id)awakeAfterUsingCoder:(id)arg1;
-- (id)replacementObjectForPortCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)rawRSSI;
@@ -169,6 +176,7 @@
 - (id)getNameOrAddress;
 @property(readonly) NSString *nameOrAddress;
 - (id)getName;
+@property(copy) NSString *name;
 - (int)sendL2CAPEchoRequest:(void *)arg1 length:(unsigned short)arg2;
 - (int)openRFCOMMChannel:(unsigned char)arg1 channel:(id *)arg2;
 - (int)openRFCOMMChannelAsync:(id *)arg1 withChannelID:(unsigned char)arg2 delegate:(id)arg3;
@@ -177,6 +185,7 @@
 - (int)openL2CAPChannelAsync:(id *)arg1 withPSM:(unsigned short)arg2 delegate:(id)arg3;
 - (int)openL2CAPChannelSync:(id *)arg1 withPSM:(unsigned short)arg2 delegate:(id)arg3;
 - (id)l2capChannels;
+- (int)requestAuthenticationAsync;
 - (int)requestAuthentication;
 - (int)closeConnection;
 - (void)BluetoothHCIRemoteNameRequestComplete:(id)arg1 inStatus:(int)arg2 inRemoteNameRequestResults:(struct BluetoothHCIEventRemoteNameRequestResults *)arg3;
@@ -198,6 +207,8 @@
 - (BOOL)isInitiator;
 @property(nonatomic) unsigned char addressType;
 @property(readonly, nonatomic) unsigned char linkLevelEncryption;
+@property(readonly, nonatomic) BOOL isMagicCloudPairingCapable;
+@property(nonatomic) BOOL magicCloudPairedPaired;
 @property(nonatomic) BOOL midPriority;
 @property(nonatomic) BOOL highPriority;
 @property(nonatomic) unsigned char codecType;
@@ -205,12 +216,47 @@
 @property(readonly) BOOL isTBFCCapable;
 @property(readonly) BOOL isConnnectionLLREnabled;
 @property(readonly) BOOL isTBFCSuspended;
+@property(nonatomic) NSUUID *identifier;
+- (void)rename:(id)arg1;
+- (void)setHighPower:(BOOL)arg1;
+- (void)setHighPriorityLink:(BOOL)arg1;
+@property(nonatomic) unsigned int listeningModeConfigs;
+@property(nonatomic) unsigned char rightClickHoldMode;
+@property(nonatomic) unsigned char leftClickHoldMode;
+@property(nonatomic) unsigned char doubleClickMode;
+@property(nonatomic) unsigned char singleClickMode;
+@property(retain) NSString *accessoryFWVersion;
+@property(nonatomic) BOOL heySiriEnabled;
+@property(nonatomic) BOOL switchControlEnabled;
+@property(nonatomic) unsigned char listeningMode;
+@property(nonatomic) BOOL isDevFused;
+@property(nonatomic) unsigned char primaryBud;
+@property(nonatomic) unsigned char rightDoubleTap;
+@property(nonatomic) unsigned char leftDoubleTap;
+@property(nonatomic) unsigned char buttonMode;
+@property(nonatomic) unsigned char micMode;
+@property(nonatomic) unsigned char secondaryInEar;
+@property(nonatomic) unsigned char primaryInEar;
+@property(nonatomic) BOOL inEar;
+@property(nonatomic) BOOL inEarDetect;
+@property(nonatomic, getter=encryptionKeySize) unsigned char keySize;
+@property(nonatomic) unsigned char batteryPercentCombined;
+@property(nonatomic) unsigned char batteryPercentCase;
+@property(nonatomic) unsigned char batteryPercentRight;
+@property(nonatomic) unsigned char batteryPercentLeft;
+@property(nonatomic) unsigned char batteryPercentSingle;
+@property(nonatomic) unsigned char capabilityMask;
+@property(nonatomic) unsigned char colorID;
+@property(nonatomic) unsigned int serviceMask;
+@property(nonatomic, getter=isLowEnergyPointer) BOOL lowEnergyPointer;
+@property(nonatomic, getter=isLowEnergyKeyboard) BOOL lowEnergyKeyboard;
 @property(nonatomic, getter=isLowEnergyDeviceHID2) BOOL lowEnergyDeviceHID2;
 @property(readonly, nonatomic) BOOL isLowEnergyConnection;
 @property(nonatomic, getter=isLowEnergyDevice) BOOL lowEnergyDevice;
 @property(nonatomic, getter=headsetBattery) long long headsetBatteryPercent;
 @property(nonatomic, getter=isConnecting) BOOL connecting;
 - (BOOL)isConnected;
+@property(nonatomic, getter=firstPairing) BOOL isFirstPairing;
 - (BOOL)shouldHideDevice;
 - (BOOL)isMCPaired;
 - (BOOL)isPluggedOverUSB;
@@ -244,6 +290,12 @@
 - (unsigned int)getServiceClassMajor;
 - (id)getServices;
 - (unsigned int)getClassOfDevice;
+@property(readonly) BOOL isXboxGameController;
+@property(readonly) BOOL isSonyGameController;
+@property(readonly) BOOL isGameController;
+- (id)appleSupportedFeatures;
+@property(readonly) BOOL isAdvancedAppleAudioDevice;
+@property(readonly) BOOL isCATTSupported;
 @property(readonly) NSURL *PnPDocumentationURL;
 @property(readonly) NSString *PnPServiceDescription;
 @property(readonly) NSURL *PnPClientExecutableURL;
@@ -277,6 +329,26 @@
 - (unsigned int)audioDeviceID:(BOOL)arg1;
 - (void)batteryLevel:(CDUnknownBlockType)arg1;
 - (void)audioCodecString:(CDUnknownBlockType)arg1;
+@property(readonly) BOOL isClickHoldSupported;
+@property(readonly) BOOL isDoubleClickSupported;
+@property(readonly) BOOL isSingleClickSupported;
+@property(readonly) BOOL isDoAPSupported;
+@property(readonly) BOOL isSwitchControlSupported;
+@property(readonly) BOOL isWIAPSink;
+@property(readonly) BOOL isMicSelectionSupported;
+@property(readonly) BOOL isEnhancedDoubleTapSupported;
+@property(readonly) BOOL isFastConnectSupported;
+@property(readonly) BOOL isBasebandFastConnectSupported;
+@property(readonly) BOOL isANCSupported;
+@property(readonly) BOOL isTransparencySupported;
+@property(readonly) BOOL isInEarDetectionSupported;
+- (id)appleSupportFeaturesVersion;
+- (id)appleSupportFeatures;
+@property(readonly) IOBluetoothSDPServiceRecord *WIAPSinkServiceRecord;
+@property(readonly) IOBluetoothSDPServiceRecord *appleAccessoryServiceRecord;
+@property(readonly) BOOL isMultiBatteryDevice;
+@property(readonly) BOOL isW1;
+@property(readonly) BOOL isAppleAccessoryServer;
 @property(readonly) IOBluetoothSDPServiceRecord *appleAccessoryServerServiceRecord;
 @property(readonly) unsigned int serviceForDevice;
 @property(readonly) unsigned int outputAudioDeviceID;
@@ -294,8 +366,8 @@
 - (id)headsetAudioGatewayServiceRecord;
 
 // Remaining properties
-@property(readonly) IOBluetoothSDPServiceRecord *appleAccessoryServiceRecord;
-@property(readonly) BOOL isAppleAccessoryServer;
+@property(readonly) BOOL isEQSupported;
+@property(readonly) BOOL isHeadDetectionSupported;
 
 @end
 

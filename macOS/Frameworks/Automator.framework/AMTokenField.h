@@ -6,7 +6,7 @@
 
 #import "NSTokenField.h"
 
-@class NSCharacterSet;
+@class NSCharacterSet, NSString;
 
 @interface AMTokenField : NSTokenField
 {
@@ -14,6 +14,8 @@
 }
 
 + (Class)cellClass;
+- (void).cxx_destruct;
+@property(retain) NSCharacterSet *retainedTokenizingCharacterSet; // @synthesize retainedTokenizingCharacterSet=_retainedTokenizingCharacterSet;
 - (void)makeNewVariable:(id)arg1;
 - (id)textView:(id)arg1 menu:(id)arg2 forEvent:(id)arg3 atIndex:(unsigned long long)arg4;
 - (void)updateParameter;
@@ -24,8 +26,7 @@
 - (id)tokenFieldCell:(id)arg1 shouldUseWritablePasteboardTypes:(id)arg2;
 - (id)tokenFieldCell:(id)arg1 shouldUseDraggingPasteboardTypes:(id)arg2;
 - (id)stringValue;
-- (id)observedParameterKey;
-- (void)dealloc;
+@property(readonly, nonatomic) NSString *observedParameterKey;
 - (void)awakeFromNib;
 
 @end

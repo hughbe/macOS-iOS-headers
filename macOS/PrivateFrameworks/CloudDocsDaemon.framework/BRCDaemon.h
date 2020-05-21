@@ -10,7 +10,7 @@
 #import "BRCReachabilityDelegate.h"
 #import "NSXPCListenerDelegate.h"
 
-@class BRCAccountHandler, BRCAccountSession, BRCVersionsFileProvider, NSArray, NSDate, NSError, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSOperationQueue, NSString, NSXPCListener, NSXPCListenerEndpoint;
+@class BRCAccountHandler, BRCAccountSession, BRCVersionsFileProvider, NSDate, NSError, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSOperationQueue, NSString, NSXPCListener, NSXPCListenerEndpoint;
 
 @interface BRCDaemon : NSObject <BRCReachabilityDelegate, NSXPCListenerDelegate, BRCAccountHandlerDelegate>
 {
@@ -24,11 +24,12 @@
     BOOL _hasNotEnoughDiskSpaceToBeFunctional;
     BRCAccountSession *_session;
     BRCAccountHandler *_accountHandler;
-    NSObject<OS_dispatch_queue> *_xpcListenerBlocker;
-    NSObject<OS_dispatch_queue> *_xpcTokenListenerBlocker;
+    NSObject<OS_dispatch_queue> *_xpcListenersReadyQueue;
+    NSObject<OS_dispatch_queue> *_accountReadyQueue;
+    NSObject<OS_dispatch_queue> *_accountResumedQueue;
+    NSObject<OS_dispatch_queue> *_startupQueue;
     int _serverAvailabilityNotifyToken;
     NSObject<OS_dispatch_queue> *_accountLoaderQueue;
-    NSArray *_fileProviders;
     NSMutableDictionary *_dirPaths;
     BRCVersionsFileProvider *_versionsProvider;
     NSMutableDictionary *_shareAcceptOperationsByURL;
@@ -45,7 +46,11 @@
     NSDate *_startupDate;
 }
 
++ (id)UTIForExtension:(id)arg1;
++ (BOOL)isDaemonRunning;
 + (id)daemon;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL doesNotHaveEnoughDiskSpaceToBeFunctional; // @synthesize doesNotHaveEnoughDiskSpaceToBeFunctional=_hasNotEnoughDiskSpaceToBeFunctional;
 @property(readonly, nonatomic) BRCVersionsFileProvider *versionsProvider; // @synthesize versionsProvider=_versionsProvider;
 @property(readonly, nonatomic) NSDate *startupDate; // @synthesize startupDate=_startupDate;
 @property(readonly, nonatomic) BRCAccountHandler *accountHandler; // @synthesize accountHandler=_accountHandler;
@@ -58,38 +63,45 @@
 @property(retain, nonatomic) NSString *cacheDirPath; // @synthesize cacheDirPath=_cacheDirPath;
 @property(retain, nonatomic) NSString *appSupportDirPath; // @synthesize appSupportDirPath=_appSupportDirPath;
 @property(retain, nonatomic) NSString *logsDirPath; // @synthesize logsDirPath=_logsDirPath;
-- (void).cxx_destruct;
 - (void)resumeIPCAcceptation;
 - (void)suspendIPCAcceptation;
 - (void)exitWithCode:(int)arg1;
 - (void)handleExitSignal:(int)arg1;
+- (void)networkReachabilityFlagsChanged:(unsigned int)arg1;
 - (void)networkReachabilityChanged:(BOOL)arg1;
 - (BOOL)selfCheck:(struct __sFILE *)arg1;
 @property(readonly, nonatomic) NSXPCListenerEndpoint *endpoint;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
+- (void)waitOnAccountResumedQueue;
 - (void)accountHandler:(id)arg1 didChangeSessionTo:(id)arg2;
 - (void)accountHandler:(id)arg1 willChangeSessionFrom:(id)arg2;
-- (void)suspendFileProviderForSyncedFolderType:(unsigned long long)arg1;
-- (void)resumeFileProviderForSyncedFolderType:(unsigned long long)arg1;
-- (id)fileProviderForURL:(id)arg1;
-- (id)fileProviderForSyncedFolderType:(unsigned long long)arg1;
 - (id)dirPathForSyncedFolderType:(unsigned long long)arg1;
 - (void)setDirPath:(id)arg1 forSyncedFolderType:(unsigned long long)arg2;
 - (void)localeDidChange;
 - (void)dumpToContext:(id)arg1;
 - (id)registerShareAcceptOperation:(id)arg1 forURL:(id)arg2;
+- (void)restart;
 - (void)start;
+- (void)_finishStartup;
+- (void)_resumeAccount;
+- (void)_startupAndLoadAccount;
+- (void)_startXPCListeners;
 - (void)_setupCacheDelete;
+- (unsigned long long)nonPurgeableSizeGivenPurgeableSize:(unsigned long long)arg1;
+- (unsigned long long)totalSize;
+- (unsigned long long)recursivelySizeDirectoryAtPath:(id)arg1;
 - (BOOL)_shouldCacheDeleteForVolume:(id)arg1;
+- (void)loadAndResumeAccount;
 - (void)loadAccount;
 - (void)_loadAccountIfNeeded;
-- (BOOL)hasEnoughDiskSpaceToBeFunctional;
+- (BOOL)checkEnoughDiskSpaceToBeFunctional;
 - (void)setUpSandbox;
 - (BOOL)_haveRequiredKernelFeatures;
 @property(readonly, nonatomic) NSString *ubiquityTokenSalt; // @synthesize ubiquityTokenSalt=_ubiquityTokenSalt;
 - (void)setUpAnonymousListener;
 - (void)waitForConfiguration;
 - (id)init;
+- (void)_setupVNodeRapidAging;
 - (void)_initSignals;
 @property(nonatomic) BOOL isInSyncBubble;
 

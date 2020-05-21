@@ -17,6 +17,7 @@
 + (id)heroImageItemWithDictionary:(id)arg1 context:(id)arg2;
 + (id)heroImageItem;
 @property(retain, nonatomic) SAUINanoImageResource *watchImageResource;
+@property(copy, nonatomic) NSString *position;
 @property(retain, nonatomic) SADecoratedString *caption;
 - (id)encodedClassName;
 - (id)groupIdentifier;

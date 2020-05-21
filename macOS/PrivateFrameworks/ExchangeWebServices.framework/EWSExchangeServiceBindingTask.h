@@ -8,45 +8,49 @@
 
 #import "SOAPParserDelegate.h"
 
-@class EWSBaseRequestType, EWSExchangeServiceBinding, EWSServerVersionInfo, NSConditionLock, NSError, NSMutableData, NSString, NSURLSessionDataTask, SOAPParser;
+@class EWSBaseRequestType, EWSExchangeServiceBinding, EWSServerVersionInfo, NSConditionLock, NSData, NSError, NSMutableData, NSString, SOAPParser;
 
 @interface EWSExchangeServiceBindingTask : NSObject <SOAPParserDelegate>
 {
     NSMutableData *_loggingData;
+    int _retryCount;
     BOOL _logActivity;
+    double _timeout;
+    NSString *_schemaVersion;
+    NSString *_clientRequestID;
+    SOAPParser *_parser;
+    NSConditionLock *_finishedConditionLock;
+    NSError *_error;
     id <EWSExchangeServiceBindingTaskDelegate> _delegate;
     CDUnknownBlockType _completionHandler;
     EWSExchangeServiceBinding *_binding;
-    NSURLSessionDataTask *_dataTask;
     EWSBaseRequestType *_request;
-    double _timeout;
-    SOAPParser *_parser;
     id _ewsResponse;
-    NSError *_error;
-    NSString *_schemaVersion;
-    NSConditionLock *_finishedConditionLock;
     EWSServerVersionInfo *_serverInfo;
 }
 
+- (void).cxx_destruct;
 @property(retain) EWSServerVersionInfo *serverInfo; // @synthesize serverInfo=_serverInfo;
-@property(retain, nonatomic) NSConditionLock *finishedConditionLock; // @synthesize finishedConditionLock=_finishedConditionLock;
-@property(copy) NSString *schemaVersion; // @synthesize schemaVersion=_schemaVersion;
-@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
-@property(retain) id ewsResponse; // @synthesize ewsResponse=_ewsResponse;
-@property(readonly, nonatomic) SOAPParser *parser; // @synthesize parser=_parser;
 @property BOOL logActivity; // @synthesize logActivity=_logActivity;
-@property double timeout; // @synthesize timeout=_timeout;
+@property(retain) id ewsResponse; // @synthesize ewsResponse=_ewsResponse;
 @property(retain) EWSBaseRequestType *request; // @synthesize request=_request;
-@property(retain) NSURLSessionDataTask *dataTask; // @synthesize dataTask=_dataTask;
 @property __weak EWSExchangeServiceBinding *binding; // @synthesize binding=_binding;
 @property(copy) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property __weak id <EWSExchangeServiceBindingTaskDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
+@property(retain, nonatomic) NSConditionLock *finishedConditionLock; // @synthesize finishedConditionLock=_finishedConditionLock;
+@property(readonly, nonatomic) SOAPParser *parser; // @synthesize parser=_parser;
+@property(copy) NSString *clientRequestID; // @synthesize clientRequestID=_clientRequestID;
+@property(copy) NSString *schemaVersion; // @synthesize schemaVersion=_schemaVersion;
+@property double timeout; // @synthesize timeout=_timeout;
 - (id)_serverVersionInfoFromHeaders:(id)arg1;
 - (void)failWithError:(id)arg1;
+- (BOOL)shouldRetryForOAuthTokenRefreshWithError:(id)arg1;
+- (double)_backOffTimeForFaultDetail:(id)arg1;
+- (id)_exchangeServiceErrorFromSOAPError:(id)arg1;
+- (BOOL)_shouldRetryFromParser:(id)arg1 error:(id *)arg2;
 - (void)completeWithResponse:(id)arg1;
-- (id)_requestData;
-- (id)_dataTaskFromCaller:(SEL)arg1;
+@property(readonly, copy) NSData *requestData;
 - (void)soapParser:(id)arg1 didParseEnvelope:(id)arg2;
 - (void)handleData:(id)arg1;
 - (void)cancel;

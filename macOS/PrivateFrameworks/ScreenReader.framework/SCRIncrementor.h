@@ -15,11 +15,8 @@ __attribute__((visibility("hidden")))
     SCRUIElement *_decrementUIElement;
 }
 
-- (BOOL)brailleLineAllowsChildren;
-- (id)brailleLineElementForUIElement:(id)arg1;
-- (void)updateBrailleLineWithFocusedElement:(id)arg1;
-- (void)buildBrailleLineWithFocusedElement:(id)arg1;
-- (void)sendBrailleLineWithElement:(id)arg1 focusThrough:(BOOL)arg2 forceRebuild:(BOOL)arg3;
+- (void).cxx_destruct;
+- (long long)brailleLineType;
 - (void)addActionDescription:(id)arg1 toRequest:(id)arg2;
 - (BOOL)performDefaultActionWithRequest:(id)arg1 allowClick:(BOOL)arg2;
 - (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
@@ -29,9 +26,8 @@ __attribute__((visibility("hidden")))
 - (id)_decrementUIElement;
 - (id)_incrementUIElement;
 - (BOOL)allowBuildChildren;
-- (void)dealloc;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 
 @end
 

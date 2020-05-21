@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
 }
 
 @property id <NSFindPatternManager> findPatternManager; // @synthesize findPatternManager;
+- (BOOL)textView:(id)arg1 shouldChangeTextInRange:(struct _NSRange)arg2 replacementString:(id)arg3;
 - (void)_selectedFindPattern:(id)arg1;
 - (id)menuForFindPatternAttachment:(id)arg1;
 - (id)_uniquePatterns;

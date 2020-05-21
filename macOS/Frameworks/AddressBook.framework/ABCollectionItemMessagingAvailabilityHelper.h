@@ -6,21 +6,32 @@
 
 #import "NSObject.h"
 
-@class NSString;
+#import "ABFaceTimeCommunicationsBridgeDelegate.h"
 
-__attribute__((visibility("hidden")))
-@interface ABCollectionItemMessagingAvailabilityHelper : NSObject
+@class ABFaceTimeCommunicationsBridge, NSString;
+
+@interface ABCollectionItemMessagingAvailabilityHelper : NSObject <ABFaceTimeCommunicationsBridgeDelegate>
 {
     BOOL _availableForMessaging;
+    ABFaceTimeCommunicationsBridge *_bridge;
     NSString *_endpoint;
+    id <ABCollectionItemMessagingAvailabilityHelperDelegate> _delegate;
 }
 
-@property(copy) NSString *endpoint; // @synthesize endpoint=_endpoint;
-@property(getter=isAvailableForMessaging) BOOL availableForMessaging; // @synthesize availableForMessaging=_availableForMessaging;
-- (void)updateMessagingAvailabilityWithNotification:(id)arg1;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <ABCollectionItemMessagingAvailabilityHelperDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) NSString *endpoint; // @synthesize endpoint=_endpoint;
+@property(nonatomic, getter=isAvailableForMessaging) BOOL availableForMessaging; // @synthesize availableForMessaging=_availableForMessaging;
+@property(retain, nonatomic) ABFaceTimeCommunicationsBridge *bridge; // @synthesize bridge=_bridge;
+- (void)faceTimeCommunicationsBridge:(id)arg1 messagingAvailabilityChanged:(BOOL)arg2 forEndpoint:(id)arg3;
 - (void)startAvailabilityCheckForEndpoint:(id)arg1 property:(id)arg2;
-- (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

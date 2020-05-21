@@ -15,7 +15,6 @@
 - (unsigned int)_longCharacterForCharacters:(const unsigned short *)arg1 length:(long long)arg2;
 - (BOOL)_shouldOmitCharacter:(id)arg1;
 - (id)storageIdentifier;
-- (id)characterFromIdentifier:(id)arg1;
 
 @end
 

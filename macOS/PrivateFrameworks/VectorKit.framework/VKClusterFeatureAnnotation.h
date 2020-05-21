@@ -20,7 +20,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) CDStruct_c3b9c2ee coordinate; // @synthesize coordinate=_coordinate;
 - (id)feature;
 - (void)dealloc;
-- (id)initWithClusterNode:(struct ClusterTreeClusterNode *)arg1 clusterTree:(const shared_ptr_e2fd4869 *)arg2 baseStyle:(id)arg3 annotationText:(id)arg4 annotationLocale:(id)arg5;
+- (id)initWithClusterNode:(struct ClusterTreeClusterNode *)arg1 clusterTree:(const shared_ptr_e2fd4869 *)arg2 baseStyle:(id)arg3 imageText:(id)arg4 annotationText:(id)arg5 annotationLocale:(id)arg6;
 
 // Remaining properties
 @property(nonatomic) double course;

@@ -23,18 +23,20 @@
     NSMutableArray *_symbols;
     NSArray *_oldSymbols;
     PASymbol *_testSymbol;
+    BOOL _isTextExecSegment;
 }
 
 + (id)newInstanceWithoutReferencesFromBufferPosition:(const void *)arg1;
 + (id)classDictionaryKey;
+- (void).cxx_destruct;
 @property(readonly) NSString *binaryVersion; // @synthesize binaryVersion=_binaryVersion;
 @property(readonly) NSString *bundleShortVersion; // @synthesize bundleShortVersion=_bundleShortVersion;
 @property(readonly) NSString *bundleVersion; // @synthesize bundleVersion=_bundleVersion;
 @property(readonly) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(readonly) NSUUID *uuid; // @synthesize uuid=_uuid;
-@property(readonly) unsigned long long textSegmentLength; // @synthesize textSegmentLength=_textSegmentLength;
-@property(readonly) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
+@property(readonly) BOOL isTextExecSegment; // @synthesize isTextExecSegment=_isTextExecSegment;
+@property unsigned long long textSegmentLength; // @synthesize textSegmentLength=_textSegmentLength;
+@property(retain) NSString *name; // @synthesize name=_name;
 @property(readonly, copy) NSString *debugDescription;
 - (long long)compareInfoRichnessToSymbolOwner:(id)arg1;
 - (void)addTailspinSymbols:(id)arg1;
@@ -42,7 +44,7 @@
 - (id)initWithPACSSymbolOwner:(id)arg1;
 - (id)initWithCSSymbolOwnerRef:(struct _CSTypeRef)arg1;
 - (id)initWithCSSymbolOwnerRef:(struct _CSTypeRef)arg1 andPath:(id)arg2;
-- (id)initWithUUID:(id)arg1 andPath:(id)arg2;
+- (id)initWithUUID:(id)arg1 andPath:(id)arg2 andSize:(unsigned long long)arg3 isTextExecSegment:(BOOL)arg4;
 - (void)incorporateDataFromPACSSymbolOwner:(id)arg1;
 - (void)incorporateDataFromCSSymbolOwner:(struct _CSTypeRef)arg1 andPath:(id)arg2;
 - (id)oldSymbolContainingOffsetIntoSymbolOwner:(unsigned long long)arg1;
@@ -53,7 +55,7 @@
 @property(retain) NSString *path; // @synthesize path=_path;
 - (BOOL)containsSymbol:(id)arg1;
 - (void)populateReferencesUsingBufferPosition:(const void *)arg1 andDeserializationDictionary:(id)arg2 andDataBufferDictionary:(id)arg3;
-- (id)_initWithSerializedSymbolOwner:(const CDStruct_269c620c *)arg1;
+- (id)_initWithSerializedSymbolOwner:(const CDStruct_cad9ac55 *)arg1;
 - (void)addSelfToSerializationDictionary:(id)arg1;
 - (BOOL)addSelfToBufferAtPosition:(void *)arg1 withCompletedSerializationDictionary:(id)arg2;
 - (unsigned long long)sizeInBytesForSerializedVersion;

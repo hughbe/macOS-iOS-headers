@@ -8,10 +8,18 @@
 
 #import "NSCopying.h"
 
+@class GEOETAServiceResponseSummary;
+
+__attribute__((visibility("hidden")))
 @interface GEODirectionsResponseExtension : PBCodable <NSCopying>
 {
+    GEOETAServiceResponseSummary *_etaServiceSummary;
 }
 
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) GEOETAServiceResponseSummary *etaServiceSummary;
+@property(readonly, nonatomic) BOOL hasEtaServiceSummary;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -19,6 +27,7 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 

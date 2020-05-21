@@ -8,6 +8,7 @@
 
 @class NSButton, NSTextField, SHKProgressIndicator;
 
+__attribute__((visibility("hidden")))
 @interface SHKProgressItemView : NSTableCellView
 {
     BOOL _awake;
@@ -18,8 +19,8 @@
     NSTextField *subtitleField;
 }
 
-@property(readonly) NSTextField *subtitleField; // @synthesize subtitleField;
 - (void).cxx_destruct;
+@property(readonly) NSTextField *subtitleField; // @synthesize subtitleField;
 - (void)viewWasRemovedFromTableView:(id)arg1;
 - (void)viewWasAddedToTableView:(id)arg1;
 - (void)updateLayout;

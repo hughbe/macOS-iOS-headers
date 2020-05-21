@@ -8,23 +8,28 @@
 
 #import "NSCopying.h"
 
-@class NSData, NSString;
+@class NSData, NSString, _MRTransactionKeyProtobuf;
 
 @interface _MRTransactionPacketProtobuf : PBCodable <NSCopying>
 {
     unsigned long long _totalLength;
-    NSData *_data;
+    unsigned long long _totalWritePosition;
     NSString *_identifier;
-    NSString *_key;
+    _MRTransactionKeyProtobuf *_key;
+    NSData *_packetData;
     struct {
         unsigned int totalLength:1;
+        unsigned int totalWritePosition:1;
     } _has;
 }
 
++ (void)initialize;
+- (void).cxx_destruct;
+@property(nonatomic) unsigned long long totalWritePosition; // @synthesize totalWritePosition=_totalWritePosition;
 @property(nonatomic) unsigned long long totalLength; // @synthesize totalLength=_totalLength;
 @property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-@property(retain, nonatomic) NSData *data; // @synthesize data=_data;
-@property(retain, nonatomic) NSString *key; // @synthesize key=_key;
+@property(retain, nonatomic) NSData *packetData; // @synthesize packetData=_packetData;
+@property(retain, nonatomic) _MRTransactionKeyProtobuf *key; // @synthesize key=_key;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -34,11 +39,12 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasTotalWritePosition;
 @property(nonatomic) BOOL hasTotalLength;
 @property(readonly, nonatomic) BOOL hasIdentifier;
-@property(readonly, nonatomic) BOOL hasData;
+@property(readonly, nonatomic) BOOL hasPacketData;
 @property(readonly, nonatomic) BOOL hasKey;
-- (void)dealloc;
+- (id)customDictionaryRepresentation;
 
 @end
 

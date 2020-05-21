@@ -11,6 +11,12 @@
 @protocol QLPreviewItemPrivate <NSObject>
 
 @optional
+@property(readonly) NSURL *searchableItemURL;
+@property(readonly) NSString *searchableItemTitle;
+@property(readonly, copy) NSString *queryString;
+@property(readonly, copy) NSString *extensionPath;
+@property(readonly) NSString *applicationBundleIdentifier;
+@property(readonly) NSString *searchableItemUniqueIdentifier;
 @property(readonly) NSString *previewItemDisplayName;
 @property(readonly) NSString *previewItemLocalizedDescription;
 @property(readonly) NSString *previewItemContentType;

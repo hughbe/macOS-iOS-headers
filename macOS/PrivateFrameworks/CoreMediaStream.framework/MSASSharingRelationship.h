@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSDate, NSString;
 
-@interface MSASSharingRelationship : NSObject <NSCopying>
+@interface MSASSharingRelationship : NSObject <NSCopying, NSSecureCoding>
 {
     BOOL _isMine;
     int _state;
@@ -28,6 +29,7 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)MSASPSharingRelationshipFromProtocolDictionary:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isMine; // @synthesize isMine=_isMine;
 @property(nonatomic) int state; // @synthesize state=_state;
 @property(retain, nonatomic) NSDate *subscriptionDate; // @synthesize subscriptionDate=_subscriptionDate;
@@ -40,7 +42,6 @@
 @property(retain, nonatomic) NSString *email; // @synthesize email=_email;
 @property(retain, nonatomic) NSString *albumGUID; // @synthesize albumGUID=_albumGUID;
 @property(retain, nonatomic) NSString *GUID; // @synthesize GUID=_GUID;
-- (void).cxx_destruct;
 - (id)description;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

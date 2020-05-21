@@ -60,7 +60,7 @@
 @property(readonly, nonatomic) unsigned long long expectedPlayerCount; // @synthesize expectedPlayerCount=_expectedPlayerCount;
 @property(retain, nonatomic) GKConnection *connection; // @synthesize connection=_connection;
 @property(retain, nonatomic) GKSession *session; // @synthesize session=_session;
-@property(nonatomic) NSObject<OS_dispatch_queue> *stateChangeQueue; // @synthesize stateChangeQueue=_stateChangeQueue;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *stateChangeQueue; // @synthesize stateChangeQueue=_stateChangeQueue;
 @property(retain, nonatomic) NSMutableSet *connectedPlayerIDs; // @synthesize connectedPlayerIDs=_connectedPlayerIDs;
 @property(retain, nonatomic) GKThreadsafeDictionary *playersByIdentifier; // @synthesize playersByIdentifier=_playersByIdentifier;
 - (id)dataFromBase64String:(id)arg1;
@@ -87,6 +87,8 @@
 - (void)session:(id)arg1 didFailWithError:(id)arg2;
 - (void)session:(id)arg1 connectionWithPeerFailed:(id)arg2 withError:(id)arg3;
 - (void)session:(id)arg1 peer:(id)arg2 didChangeState:(int)arg3;
+- (id)stringForGKPeerConnectionState:(int)arg1;
+- (id)stringForGKPlayerConnectionState:(long long)arg1;
 - (void)sendHostScoreAsQuery:(BOOL)arg1;
 - (void)calculateHostScore;
 - (BOOL)selectHostIfRequestedAndAllScored;

@@ -6,21 +6,27 @@
 
 #import "NSWindowController.h"
 
+#import "AKAppleIDAuthenticationInAppContextPasswordDelegate.h"
 #import "AuthWebViewDelegate.h"
+#import "NSTouchBarProvider.h"
 
-@class AKAuthWebTabView, AKKeepUsingController, AKNoCodeReceivedController, AKSecondFactorCodeEntryController, AKSignInPromptController, AKTooManyAttemptsController, NSImageView, NSMutableArray, NSString, NSURLRequest, NSView, NSWindow;
+@class AKAuthWebTabView, AKIDPHandler, AKIDPProvidedSignInViewController, AKKeepUsingController, AKNoCodeReceivedController, AKSecondFactorCodeEntryController, AKServerRequestConfiguration, AKSignInPromptController, AKTooManyAttemptsController, CDPEnrollViewController, NSImageView, NSMutableArray, NSString, NSTouchBar, NSView, NSWindow;
 
-@interface AKAuthenticationPromptController : NSWindowController <AuthWebViewDelegate>
+@interface AKAuthenticationPromptController : NSWindowController <NSTouchBarProvider, AuthWebViewDelegate, AKAppleIDAuthenticationInAppContextPasswordDelegate>
 {
     BOOL _makeSheetCritical;
     BOOL _currentlyActive;
     NSView *_view;
     NSWindow *_hostWindow;
     NSString *_windowTitle;
+    NSView *_hostView;
     long long _mode;
-    NSURLRequest *_urlRequest;
+    AKServerRequestConfiguration *_serverRequestConfiguration;
     id _clientInfo;
     NSView *_icscView;
+    CDPEnrollViewController *_iCSCController;
+    AKIDPHandler *_idpHandler;
+    CDUnknownBlockType _passwordHandler;
     NSImageView *_highlightingView;
     AKSignInPromptController *_signInPromptController;
     AKTooManyAttemptsController *_tooManyAttemptsController;
@@ -28,6 +34,7 @@
     AKNoCodeReceivedController *_noCodeReceivedController;
     AKKeepUsingController *_keepUsingController;
     AKAuthWebTabView *_webviewController;
+    AKIDPProvidedSignInViewController *_idpViewController;
     NSView *_signInView;
     NSView *_tooManyAttemptsView;
     NSView *_secondFactorView;
@@ -35,8 +42,11 @@
     NSView *_keepUsingView;
     NSView *_webView;
     NSMutableArray *_viewStack;
+    long long _previousMode;
 }
 
+- (void).cxx_destruct;
+@property long long previousMode; // @synthesize previousMode=_previousMode;
 @property(retain) NSMutableArray *viewStack; // @synthesize viewStack=_viewStack;
 @property(retain) NSView *webView; // @synthesize webView=_webView;
 @property(retain) NSView *keepUsingView; // @synthesize keepUsingView=_keepUsingView;
@@ -44,6 +54,7 @@
 @property(retain) NSView *secondFactorView; // @synthesize secondFactorView=_secondFactorView;
 @property(retain) NSView *tooManyAttemptsView; // @synthesize tooManyAttemptsView=_tooManyAttemptsView;
 @property(retain) NSView *signInView; // @synthesize signInView=_signInView;
+@property(retain) AKIDPProvidedSignInViewController *idpViewController; // @synthesize idpViewController=_idpViewController;
 @property(retain) AKAuthWebTabView *webviewController; // @synthesize webviewController=_webviewController;
 @property(retain) AKKeepUsingController *keepUsingController; // @synthesize keepUsingController=_keepUsingController;
 @property(retain) AKNoCodeReceivedController *noCodeReceivedController; // @synthesize noCodeReceivedController=_noCodeReceivedController;
@@ -52,22 +63,30 @@
 @property(retain) AKSignInPromptController *signInPromptController; // @synthesize signInPromptController=_signInPromptController;
 @property BOOL currentlyActive; // @synthesize currentlyActive=_currentlyActive;
 @property(retain) NSImageView *highlightingView; // @synthesize highlightingView=_highlightingView;
+@property(copy) CDUnknownBlockType passwordHandler; // @synthesize passwordHandler=_passwordHandler;
+@property(retain) AKIDPHandler *idpHandler; // @synthesize idpHandler=_idpHandler;
+@property(retain) CDPEnrollViewController *iCSCController; // @synthesize iCSCController=_iCSCController;
 @property(retain) NSView *icscView; // @synthesize icscView=_icscView;
 @property(retain) id clientInfo; // @synthesize clientInfo=_clientInfo;
-@property(retain) NSURLRequest *urlRequest; // @synthesize urlRequest=_urlRequest;
+@property(retain) AKServerRequestConfiguration *serverRequestConfiguration; // @synthesize serverRequestConfiguration=_serverRequestConfiguration;
 @property(readonly) long long mode; // @synthesize mode=_mode;
+@property __weak NSView *hostView; // @synthesize hostView=_hostView;
 @property(retain) NSString *windowTitle; // @synthesize windowTitle=_windowTitle;
 @property BOOL makeSheetCritical; // @synthesize makeSheetCritical=_makeSheetCritical;
 @property __weak NSWindow *hostWindow; // @synthesize hostWindow=_hostWindow;
 @property(retain) NSView *view; // @synthesize view=_view;
-- (void).cxx_destruct;
+- (void)context:(id)arg1 needsPasswordWithCompletion:(CDUnknownBlockType)arg2;
 - (void)skipAndContinueSignIn;
 - (void)sizeChangedFrom:(struct CGSize)arg1 toSize:(struct CGSize)arg2 webViewName:(id)arg3 callback:(id)arg4;
-- (void)loadFailed:(id)arg1;
+- (void)loadFailed:(id)arg1 withError:(id)arg2;
 - (void)endWebView:(id)arg1;
+- (void)setupViewsForActiveMode;
+- (void)switchToView:(id)arg1;
+- (BOOL)isViewBasedContext;
 - (id)currentViewController;
 - (id)viewControllerForMode:(long long)arg1;
 - (id)_viewForMode:(long long)arg1;
+- (void)_refreshForMode:(long long)arg1;
 - (void)refreshForMode:(long long)arg1;
 - (void)settleNewMode;
 - (double)animationResizeTime;
@@ -80,7 +99,9 @@
 - (void)windowWillClose;
 - (void)closeModal;
 - (void)dismissModal;
+- (void)runModalWithExistingViews;
 - (void)runModal;
+@property(readonly) NSTouchBar *touchBar;
 - (void)awakeFromNib;
 - (id)initAtMode:(long long)arg1;
 - (id)init;

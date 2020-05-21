@@ -8,21 +8,24 @@
 
 #import "NSCoding.h"
 
-@class AVPlayerController, AVTimer;
+@class AVTimer;
 
 @interface AVPlayerControllerTimeResolver : NSObject <NSCoding>
 {
-    AVPlayerController *_playerController;
+    id <AVTimeControlling> _playerController;
     double _interval;
     double _resolution;
     double _currentTime;
     AVTimer *_timer;
+    double _minTime;
+    double _maxTime;
 }
 
 + (BOOL)automaticallyNotifiesObserversOfCurrentTime;
 + (void)initialize;
 + (id)keyPathsForValuesAffectingCurrentTimeAtEndOfSeekableTimeRanges;
 + (id)keyPathsForValuesAffectingThirtySecondsBeforeCurrentTimeWithinSeekableTimeRanges;
++ (id)keyPathsForValuesAffectingSeekableTimeRangeDuration;
 + (id)keyPathsForValuesAffectingRemainingTimeWithinEndTimes;
 + (id)keyPathsForValuesAffectingRemainingTime;
 + (id)keyPathsForValuesAffectingCurrentTimeWithinEndTimes;
@@ -30,17 +33,20 @@
 + (id)keyPathsForValuesAffectingTargetTimeWithinEndTimes;
 + (id)keyPathsForValuesAffectingTargetTime;
 - (void).cxx_destruct;
+@property double maxTime; // @synthesize maxTime=_maxTime;
+@property double minTime; // @synthesize minTime=_minTime;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 @property double currentTime;
 @property double resolution;
 @property double interval;
 @property(retain) id <AVTimeControlling> playerController;
 - (void)encodeWithCoder:(id)arg1;
+- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
-- (void)dealloc;
 @property(readonly, getter=isCurrentTimeAtEndOfSeekableTimeRanges) BOOL currentTimeAtEndOfSeekableTimeRanges;
 @property(readonly, getter=isThirtySecondsBeforeCurrentTimeWithinSeekableTimeRanges) BOOL thirtySecondsBeforeCurrentTimeWithinSeekableTimeRanges;
+@property(readonly) double seekableTimeRangeDuration;
 @property(readonly) double remainingTimeWithinEndTimes;
 @property(readonly) double remainingTime;
 @property double currentTimeWithinEndTimes;

@@ -13,14 +13,15 @@
 
 @interface ABActionEmailSendUpdate : NSObject <ABActionDelegate, NSSharingServiceDelegate>
 {
-    id <ABShareKitTransitionProvider> _transitionProvider;
+    id <CNUIShareKitTransitionProvider> _transitionProvider;
 }
 
-@property(retain) id <ABShareKitTransitionProvider> transitionProvider; // @synthesize transitionProvider=_transitionProvider;
+@property(retain) id <CNUIShareKitTransitionProvider> transitionProvider; // @synthesize transitionProvider=_transitionProvider;
 - (id)sharingService:(id)arg1 sourceWindowForShareItems:(id)arg2 sharingContentScope:(long long *)arg3;
 - (BOOL)shouldEnableActionForPerson:(id)arg1 identifier:(id)arg2;
 @property(readonly) NSString *actionProperty;
 - (id)titleForPerson:(id)arg1 identifier:(id)arg2;
+- (id)unlocalizedTitle;
 - (void)performActionForPerson:(id)arg1 identifier:(id)arg2 transitionProvider:(id)arg3;
 - (void)performActionForPerson:(id)arg1 identifier:(id)arg2;
 - (void)dealloc;

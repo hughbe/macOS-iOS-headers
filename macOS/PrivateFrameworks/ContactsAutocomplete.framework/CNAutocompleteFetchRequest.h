@@ -7,28 +7,34 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@class CNAutocompleteFetchContext, NSArray, NSString;
+@class CNAutocompleteFetchContext, NSArray, NSNumber, NSString;
 
-@interface CNAutocompleteFetchRequest : NSObject <NSCopying>
+@interface CNAutocompleteFetchRequest : NSObject <NSCopying, NSSecureCoding>
 {
     NSString *_searchString;
     NSString *_priorityDomainForSorting;
     unsigned long long _searchType;
     CNAutocompleteFetchContext *_fetchContext;
+    NSNumber *_shouldIncludeGroupResultsImpl;
     BOOL _includeContacts;
     BOOL _includeRecents;
     BOOL _includeSuggestions;
+    BOOL _includeLocalExtensions;
     BOOL _includeDirectoryServers;
     BOOL _includeCalendarServers;
     BOOL _includePredictions;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)searchablePropertiesForSearchType:(unsigned long long)arg1;
 + (id)request;
+- (void).cxx_destruct;
 @property BOOL includePredictions; // @synthesize includePredictions=_includePredictions;
 @property BOOL includeCalendarServers; // @synthesize includeCalendarServers=_includeCalendarServers;
 @property BOOL includeDirectoryServers; // @synthesize includeDirectoryServers=_includeDirectoryServers;
+@property BOOL includeLocalExtensions; // @synthesize includeLocalExtensions=_includeLocalExtensions;
 @property BOOL includeSuggestions; // @synthesize includeSuggestions=_includeSuggestions;
 @property BOOL includeRecents; // @synthesize includeRecents=_includeRecents;
 @property BOOL includeContacts; // @synthesize includeContacts=_includeContacts;
@@ -36,12 +42,15 @@
 @property unsigned long long searchType; // @synthesize searchType=_searchType;
 @property(copy) NSString *priorityDomainForSorting; // @synthesize priorityDomainForSorting=_priorityDomainForSorting;
 @property(copy) NSString *searchString; // @synthesize searchString=_searchString;
-- (void).cxx_destruct;
 @property BOOL includeServers;
 @property(copy) NSString *sendingAddress;
+@property BOOL shouldIncludeGroupResults;
+- (id)shouldIncludeGroupResultsDebugString;
 - (id)searchTypeDebugString;
 - (id)includeDebugString;
 - (id)description;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 @property(readonly) NSArray *searchableProperties;
 - (BOOL)isValid:(id *)arg1;
 - (id)executeWithDelegate:(id)arg1;

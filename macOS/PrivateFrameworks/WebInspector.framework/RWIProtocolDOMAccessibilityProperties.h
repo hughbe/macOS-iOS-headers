@@ -34,6 +34,9 @@
 @property(copy, nonatomic) NSArray *flowedNodeIds;
 @property(nonatomic) BOOL expanded;
 @property(nonatomic) BOOL exists;
+@property(nonatomic) BOOL isPopUpButton;
+@property(nonatomic) double hierarchyLevel;
+@property(nonatomic) double headingLevel;
 @property(nonatomic) BOOL disabled;
 @property(nonatomic) long long current;
 @property(copy, nonatomic) NSArray *controlledNodeIds;

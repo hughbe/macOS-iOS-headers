@@ -17,11 +17,12 @@
 }
 
 + (id)airQualityRequestForLocation:(id)arg1 locale:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL attachRawAPIData; // @synthesize attachRawAPIData=_attachRawAPIData;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
-@property(copy, nonatomic) WFLocation *location; // @synthesize location=_location;
-@property(copy, nonatomic) NSLocale *locale; // @synthesize locale=_locale;
-- (void).cxx_destruct;
+@property(retain, nonatomic) WFLocation *location; // @synthesize location=_location;
+@property(retain, nonatomic) NSLocale *locale; // @synthesize locale=_locale;
+- (void)cleanup;
 - (void)handleResponse:(id)arg1;
 - (void)startWithService:(id)arg1;
 - (id)options;

@@ -6,6 +6,7 @@
 
 #import <AppKit/NSAnimationHelper.h>
 
+__attribute__((visibility("hidden")))
 @interface NSScrollAnimationHelper : NSAnimationHelper
 {
     id _delegate;
@@ -13,7 +14,7 @@
     struct CGPoint _endPoint;
     struct CGPoint _totalDelta;
     CDUnknownBlockType _completionHandler;
-    struct __sahFlags {
+    struct {
         unsigned int logPerformanceAnalysis:1;
         unsigned int logPerformanceAnalysisInProgress:1;
         unsigned int isScrollDueToUserAction:1;

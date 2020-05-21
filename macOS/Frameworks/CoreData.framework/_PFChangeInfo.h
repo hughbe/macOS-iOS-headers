@@ -15,13 +15,15 @@ __attribute__((visibility("hidden")))
     unsigned long long _changeType;
     NSIndexPath *_startIndexPath;
     NSIndexPath *_finalIndexPath;
-    _NSDefaultSectionInfo *_sectionInfo;
+    _NSDefaultSectionInfo *_startSectionInfo;
+    _NSDefaultSectionInfo *_finalSectionInfo;
 }
 
 @property(retain, nonatomic) NSIndexPath *startIndexPath; // @synthesize startIndexPath=_startIndexPath;
 @property(readonly, retain, nonatomic) NSManagedObject *object; // @synthesize object=_object;
 @property(retain, nonatomic) NSIndexPath *finalIndexPath; // @synthesize finalIndexPath=_finalIndexPath;
-@property(retain, nonatomic) _NSDefaultSectionInfo *sectionInfo; // @synthesize sectionInfo=_sectionInfo;
+@property(retain, nonatomic) _NSDefaultSectionInfo *finalSectionInfo; // @synthesize finalSectionInfo=_finalSectionInfo;
+@property(retain, nonatomic) _NSDefaultSectionInfo *startSectionInfo; // @synthesize startSectionInfo=_startSectionInfo;
 @property(nonatomic) unsigned long long changeType; // @synthesize changeType=_changeType;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;

@@ -6,43 +6,53 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSString;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSPointerArray, NSString;
 
-@interface SKShader : NSObject <NSCopying, NSCoding>
+@interface SKShader : NSObject <NSCopying, NSSecureCoding>
 {
     NSMutableArray *_uniforms;
     NSArray *_attributes;
     NSMutableDictionary *_uniformData;
     NSString *_source;
     NSString *_fileName;
+    BOOL _isPrecompiledMetal;
     NSString *_compileLog;
     BOOL _programDirty;
     BOOL _programWithTransformDirty;
-    NSMutableArray *_targetNodes;
+    NSPointerArray *_targetNodes;
     BOOL _usesTimeUniform;
+    BOOL _usesPathLengthUniform;
+    BOOL _usesSpriteSizeUniform;
     shared_ptr_394c00aa _backingProgram;
     shared_ptr_394c00aa _backingProgramWithTransform;
-    map_a51e33c7 _attributeBuffers;
+    map_48758480 _attributeBuffers;
     BOOL _performFullCapture;
 }
 
++ (id)precompiledMetalShaderWithFile:(id)arg1 uniforms:(id)arg2;
 + (id)shaderWithFileNamed:(id)arg1;
 + (id)shaderWithSource:(id)arg1 uniforms:(id)arg2;
 + (id)shaderWithSource:(id)arg1;
 + (id)shader;
-@property BOOL performFullCapture; // @synthesize performFullCapture=_performFullCapture;
++ (BOOL)supportsSecureCoding;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property BOOL performFullCapture; // @synthesize performFullCapture=_performFullCapture;
+- (id)_getLegacyUniformData;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (BOOL)isEqualToShader:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)_removeTargetNode:(id)arg1;
 - (void)_addTargetNode:(id)arg1;
 - (void)_setUniformsDirty;
+- (BOOL)_usesPathLengthUniform;
 - (BOOL)_usesTimeUniform;
+- (id)_getMetalFragmentShaderSource;
+- (id)_getMetalVertexShaderSource:(BOOL)arg1;
 - (id)_getShaderCompilationLog;
 - (id)_getMetalFragmentFunctionName;
 - (id)_getMetalVertexOutDefinition;
@@ -72,7 +82,7 @@
 - (id)fragmentPreludeMetal;
 - (id)fragmentPrelude;
 @property(copy) NSString *source;
-@property(readonly) map_a51e33c7 *_attributeBuffers;
+@property(readonly) map_48758480 *_attributeBuffers;
 @property(copy, nonatomic) NSArray *attributes;
 - (id)initWithSource:(id)arg1 uniforms:(id)arg2;
 - (id)initWithSource:(id)arg1;

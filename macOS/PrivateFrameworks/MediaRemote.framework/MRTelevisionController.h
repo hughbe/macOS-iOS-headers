@@ -4,32 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <MediaRemote/MRExternalDeviceController.h>
 
-#import "NSNetServiceBrowserDelegate.h"
-#import "NSNetServiceDelegate.h"
+#import "MRExternalDeviceControllerDelegate.h"
 
-@class NSMutableSet, NSNetServiceBrowser, NSObject<OS_dispatch_queue>, NSString;
+@class NSString, _MRTelevisionControllerBlockCallback;
 
 __attribute__((visibility("hidden")))
-@interface MRTelevisionController : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
+@interface MRTelevisionController : MRExternalDeviceController <MRExternalDeviceControllerDelegate>
 {
-    NSObject<OS_dispatch_queue> *_serialQueue;
-    NSNetServiceBrowser *_serviceBrowser;
-    NSMutableSet *_discoveredTelevisions;
-    NSMutableSet *_resolvingServices;
-    BOOL _discovering;
-    id <MRTelevisionDelegate> _delegate;
+    _MRTelevisionControllerBlockCallback *_discoveryCallback;
+    _MRTelevisionControllerBlockCallback *_removalCallback;
 }
 
-@property(readonly, nonatomic, getter=isDiscovering) BOOL discovering; // @synthesize discovering=_discovering;
-@property(nonatomic) id <MRTelevisionDelegate> delegate; // @synthesize delegate=_delegate;
-- (void)netServiceDidResolveAddress:(id)arg1;
-- (void)netServiceBrowser:(id)arg1 didRemoveService:(id)arg2 moreComing:(BOOL)arg3;
-- (void)netServiceBrowser:(id)arg1 didFindService:(id)arg2 moreComing:(BOOL)arg3;
-- (void)endDiscovery;
-- (void)beginDiscovery;
-- (void)dealloc;
++ (Class)externalDeviceClass;
+- (void).cxx_destruct;
+@property(retain, nonatomic) _MRTelevisionControllerBlockCallback *removalCallback; // @synthesize removalCallback=_removalCallback;
+@property(retain, nonatomic) _MRTelevisionControllerBlockCallback *discoveryCallback; // @synthesize discoveryCallback=_discoveryCallback;
+- (void)externalDeviceController:(id)arg1 didRemoveDevice:(id)arg2;
+- (void)externalDeviceController:(id)arg1 didDiscoverDevice:(id)arg2;
 - (id)init;
 
 // Remaining properties

@@ -6,8 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSCell, NSEvent, NSIndexSet, NSMutableDictionary, NSString, NSTableDragInfo, NSViewDynamicToolTipManager, _NSCellTrackingData, _NSTableRowHeightStorage, _NSTypeSelectData;
+@class NSArray, NSCell, NSEvent, NSIndexSet, NSMutableDictionary, NSString, NSTableColumn, NSTableDragInfo, NSThemeFrame, NSViewDynamicToolTipManager, NSVisualEffectView, _NSCellTrackingData, _NSTableRowHeightStorage, _NSTypeSelectData;
 
+__attribute__((visibility("hidden")))
 @interface _NSTableViewReserved : NSObject
 {
     NSIndexSet *selectionChanging;
@@ -33,8 +34,7 @@
         unsigned int verticalMotionCanBeginDrag:1;
         unsigned int lastDropHoverInCenter:1;
         unsigned int returnNilHighlightColorForCell:1;
-        unsigned int subclassIsSafeForLiveResize:1;
-        unsigned int hasCachedSubclassIsSafeForLiveResize:1;
+        unsigned int UNUSED:2;
         unsigned int deselectsWhenMouseLeaves:1;
         unsigned int delegateRespondsTo_didDragColumn:1;
         unsigned int delegateRespondsTo_didClickColumn:1;
@@ -43,7 +43,6 @@
         unsigned int sizingToFitForColumnHiding:1;
     } _tvFlags2;
     struct _TvFlags3 tvFlags3;
-    id _hiliteColId;
     long long clickedColumn;
     NSTableDragInfo *dragInfo;
     struct CGRect lastEditingCellFrame;
@@ -53,7 +52,6 @@
     NSMutableDictionary *preLiveColumnResizeWidthsByColumn;
     double preLiveColumnResizeFirstVisibleColumnInset;
     long long preLiveColumnResizeFirstVisibleColumn;
-    NSIndexSet *oldSelection;
     unsigned long long draggingSourceOperationMaskForLocal;
     unsigned long long draggingSourceOperationMaskForNonLocal;
     long long newSelectedRow;
@@ -73,19 +71,25 @@
     long long clickedRow;
     _NSTableRowHeightStorage *rowHeightStorageX;
     struct CGPoint _lastMouseDownLocalPoint;
+    long long _rowSizeStyle;
+    NSViewDynamicToolTipManager *_dynamicToolTipManager;
+    long long _selectionBlendingMode;
+    NSVisualEffectView *_observedVisualEffectView;
+    NSThemeFrame *_observedThemeFrame;
     struct {
         unsigned int calledDrawRow:1;
         unsigned int copyPreparedCell:1;
         unsigned int excludeFloatingGroupRow:1;
         unsigned int subclassOverridesHighlightSelectionInClipRect:1;
         unsigned int subclassOverridesDrawRow:1;
+        unsigned int subclassOverridesIsOpaque:1;
         unsigned int calledBeginUpdatesOnRowData:1;
         unsigned int groupRowStyle:2;
         unsigned int gridStyleMask:4;
         unsigned int accessibilityTracksRowAndCellIndexes:1;
         unsigned int floatsHeaderView:1;
         unsigned int drawingOverhangRect:1;
-        unsigned int registeredForDistNote:1;
+        unsigned int registeredForRowSizeStyleNote:1;
         unsigned int inDesignMode:1;
         unsigned int updatingRowData:1;
         unsigned int scheduledSwitch:1;
@@ -93,16 +97,18 @@
         unsigned int observingViewWillScroll:1;
         unsigned int loadingColumnWidths:1;
         unsigned int isStatic:1;
-        unsigned int unused:1;
         unsigned int suppressSyrahSourceListAttributes:1;
         unsigned int adjustOriginForInsetsDuringTile:1;
         unsigned int delegateCantBeWeak:1;
         unsigned int datasourceCantBeWeak:1;
+        unsigned int usesAutomaticRowHeights:1;
+        unsigned int dying:1;
     } _tvFlags4;
-    long long _rowSizeStyle;
-    NSViewDynamicToolTipManager *_dynamicToolTipManager;
-    long long _selectionBlendingMode;
+    NSTableColumn *_highlightedTableColumn;
 }
+
+- (void).cxx_destruct;
+@property __weak NSTableColumn *highlightedTableColumn; // @synthesize highlightedTableColumn=_highlightedTableColumn;
 
 @end
 

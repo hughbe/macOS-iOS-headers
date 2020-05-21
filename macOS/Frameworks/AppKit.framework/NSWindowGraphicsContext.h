@@ -16,7 +16,6 @@
 - (id)attributes;
 - (id)initWithWindow:(id)arg1;
 - (id)_initWithWindowNumber:(long long)arg1;
-- (id)_initWithWindowNumber:(long long)arg1 useCoreAnimation:(BOOL)arg2;
 
 @end
 

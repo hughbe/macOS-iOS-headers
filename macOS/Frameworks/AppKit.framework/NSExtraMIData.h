@@ -8,6 +8,7 @@
 
 @class NSAttributedString, NSFont, NSImage, NSMenuItemViewer, NSString, _NSBindingAdaptor;
 
+__attribute__((visibility("hidden")))
 @interface NSExtraMIData : NSObject
 {
     NSAttributedString *attributedTitle;
@@ -19,14 +20,17 @@
     NSImage *mixedStateImage;
     NSFont *font;
     NSImage *_image;
+    struct CGSize imageSize;
     NSString *userKE;
+    NSString *kbdKE;
+    NSString *keInputSourceIdentifier;
+    unsigned char kbdKEMask;
     struct CGSize cachedAttributedTitleSize;
     long long cachedAttributedTitleHeightForDrawing;
     BOOL attributedTitleHasAttachment;
     unsigned short virtualKeyCode;
     unsigned short defaultKEPriority;
     unsigned char userKEMask;
-    NSAttributedString *alternateAttributedTitle;
     unsigned long long newItemsCount;
     CDUnknownBlockType actionBlock;
 }

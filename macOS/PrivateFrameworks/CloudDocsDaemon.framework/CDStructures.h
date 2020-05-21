@@ -22,45 +22,18 @@ struct CC_SHA1state_st {
     int num;
 };
 
-struct NSMutableDictionary {
-    Class _field1;
-};
-
-struct NSObject {
-    Class _field1;
-};
-
-struct PQLResultSet {
-    Class _field1;
-};
-
 struct RootItemObject {
     unsigned char _field1;
-    unsigned int _field2;
+    union {
+        unsigned int _field1;
+        unsigned int _field2;
+    } _field2;
 };
 
-struct UUIDItemObject {
+struct _UUIDItemObject_OLD {
     unsigned char _field1;
     unsigned int _field2;
     unsigned char _field3[16];
-};
-
-struct _BRCFrameworkOperation {
-    Class _field1;
-    id _field2;
-    int _field3;
-    int _field4;
-    id _field5;
-    unsigned char _field6[16];
-};
-
-struct _BRCOperation {
-    Class _field1;
-    id _field2;
-    int _field3;
-    int _field4;
-    id _field5;
-    unsigned char _field6[16];
 };
 
 struct __sFILE {
@@ -102,6 +75,11 @@ struct backup_detector {
     unsigned long long _field3;
 };
 
+struct brc_job_update {
+    int _field1;
+    long long _field2;
+};
+
 struct brc_mutex {
     struct _opaque_pthread_mutex_t pthread;
 };
@@ -126,7 +104,8 @@ struct statfs {
     char f_fstypename[16];
     char f_mntonname[1024];
     char f_mntfromname[1024];
-    unsigned int f_reserved[8];
+    unsigned int f_flags_ext;
+    unsigned int f_reserved[7];
 };
 
 struct throttle_stamps {

@@ -6,14 +6,14 @@
 
 #import <ContactsPersistence/ABCDOwnedObject.h>
 
-@class NSManagedObject, NSString;
+@class ABCDRecord, NSManagedObject, NSString;
 
 __attribute__((visibility("hidden")))
 @interface ABCDDateComponents : ABCDOwnedObject
 {
 }
 
-@property(retain, nonatomic) NSManagedObject *owner;
+@property(retain, nonatomic) ABCDRecord *owner;
 - (id)components;
 - (void)setComponents:(id)arg1;
 - (BOOL)abHasAddressBookRelatedContent;

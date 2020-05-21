@@ -17,15 +17,13 @@
     NSView *_contentView;
     NSGridCell *_headOfMergedCell;
     NSArray *_customPlacementConstraints;
-    id _reserved;
-    id _reserved2;
-    id _reserved3;
     long long _xPlacement;
     long long _yPlacement;
     long long _rowAlignment;
 }
 
 + (id)emptyContentView;
+- (void).cxx_destruct;
 @property(readonly) __weak NSGridColumn *column; // @synthesize column=_column;
 @property(readonly) __weak NSGridRow *row; // @synthesize row=_row;
 - (BOOL)_isUnmergedOrHeadOfMergedRegion;

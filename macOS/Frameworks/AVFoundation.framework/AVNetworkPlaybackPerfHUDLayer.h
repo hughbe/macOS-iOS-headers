@@ -6,32 +6,45 @@
 
 #import "CATextLayer.h"
 
-@class AVPlayer, AVWeakReference, NSMutableDictionary, NSObject<OS_dispatch_source>;
+@class AVPlayer, AVPlayerLayer, NSMutableDictionary, NSObject<OS_dispatch_source>;
 
+__attribute__((visibility("hidden")))
 @interface AVNetworkPlaybackPerfHUDLayer : CATextLayer
 {
     NSObject<OS_dispatch_source> *_hudTimer;
     AVPlayer *_player;
+    AVPlayerLayer *_playerLayer;
     _Bool _showHud;
+    _Bool _spatialDiagnostics;
+    int _colorId;
+    double _opacity;
+    int _fontSizeInt;
+    _Bool _updateUISettings;
     int _hudXoffset;
     int _hudYoffset;
     unsigned long long _hudUpdateInterval;
     _Bool _showCompleteURI;
-    AVWeakReference *_playerLayerWeakReference;
+    long long _prevVariantIdx;
+    long long _prevStallCount;
+    long long _totalStallCount;
     NSMutableDictionary *_loadingStatusCache;
 }
 
 + (id)convertBitrate:(double)arg1;
 + (BOOL)runningAnInternalBuild;
+- (void).cxx_destruct;
+@property __weak AVPlayerLayer *playerLayer; // @synthesize playerLayer=_playerLayer;
+@property __weak AVPlayer *player; // @synthesize player=_player;
 - (void)_hudUpdate;
 - (BOOL)valueLoadedForKey:(id)arg1 onObject:(id)arg2;
 - (id)getTrackFormatDesc:(id)arg1;
-- (void)setPlayerLayer:(id)arg1;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)setPlayer:(id)arg1;
+- (id)getVideoRange:(struct opaqueCMFormatDescription *)arg1;
+- (void)currentItemTracksChanged;
+- (void)currentItemChanged;
+- (float)getScaleFactorForDisplaySize:(struct CGSize)arg1;
 - (void)dealloc;
-- (void)removeObserversFromPlayer;
 - (void)startDispatchTimer;
+- (void)readHudSettingsAndCallCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)getHudSetting;
 - (void)setColor:(int)arg1;
 - (void)updateBounds:(struct CGRect)arg1;

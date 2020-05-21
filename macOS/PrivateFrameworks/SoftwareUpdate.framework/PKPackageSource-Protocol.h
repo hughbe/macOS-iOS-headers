@@ -7,7 +7,7 @@
 @class NSArray, NSString;
 
 @protocol PKPackageSource
-- (NSArray *)allPackageReferences;
+@property(readonly) NSArray *allPackageReferences;
 
 @optional
 - (NSArray *)packageReferencesMatchingIdentifier:(NSString *)arg1 version:(NSString *)arg2;

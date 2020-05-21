@@ -9,6 +9,6 @@
 @class NSString;
 
 @protocol MCRemoteAttachmentDataSource <NSObject>
-- (void)fetchAttachmentMimePartNumber:(NSString *)arg1 withCompletionBlock:(void (^)(void))arg2;
+- (void)fetchAttachmentForAccessLevel:(long long)arg1 mimePartNumber:(NSString *)arg2 withCompletionBlock:(void (^)(NSError *))arg3;
 @end
 

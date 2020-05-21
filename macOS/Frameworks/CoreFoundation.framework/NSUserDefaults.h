@@ -14,6 +14,7 @@
     void *_reserved[2];
 }
 
+- (BOOL)_observingCFPreferences;
 - (void)_setContainer:(struct __CFURL *)arg1;
 - (struct __CFString *)_container;
 - (void)_setIdentifier:(struct __CFString *)arg1;

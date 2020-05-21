@@ -15,8 +15,8 @@
     CDUnknownBlockType _completionBlock;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
-- (void)dealloc;
 - (BOOL)serverSupportsDelegates;
 - (void)finishOperation;
 - (void)refreshWithExceptionHandling;

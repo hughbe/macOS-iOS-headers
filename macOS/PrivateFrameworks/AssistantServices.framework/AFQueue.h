@@ -8,27 +8,29 @@
 
 #import "NSFastEnumeration.h"
 
-@class NSMutableArray;
+@class AFLinkedListItem;
 
 @interface AFQueue : NSObject <NSFastEnumeration>
 {
+    AFLinkedListItem *_head;
+    AFLinkedListItem *_tail;
+    unsigned long long _count;
     id <AFQueueDelegate> _delegate;
-    NSMutableArray *_objects;
 }
 
-@property(readonly, nonatomic, getter=_objects) NSMutableArray *objects; // @synthesize objects=_objects;
-@property(nonatomic) __weak id <AFQueueDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <AFQueueDelegate> delegate; // @synthesize delegate=_delegate;
 - (id)description;
 - (id)dequeueAllObjects;
 - (id)dequeueObject;
 - (void)enqueueObjects:(id)arg1;
 - (void)enqueueObject:(id)arg1;
-- (id)objectAtIndex:(long long)arg1;
-@property(readonly, nonatomic) long long count;
+- (id)objectAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long count;
 @property(readonly, nonatomic) id frontObject;
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
-- (id)init;
+- (id)_objects;
+- (void)dealloc;
 
 @end
 

@@ -10,6 +10,7 @@
 {
 }
 
++ (id)validKeyPathsForPredicate;
 + (id)sharedInstance;
 - (id)mailAccountTypeRowTemplatesWithName:(id)arg1 andKeyPath:(id)arg2;
 - (id)convertToEvaluationPredicateFromComparisonUIPredicate:(id)arg1 withItemType:(id)arg2;

@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSColor;
 
-@interface NSTextBlock : NSObject <NSCoding, NSCopying>
+@interface NSTextBlock : NSObject <NSSecureCoding, NSCopying>
 {
     void *_propVals;
     unsigned long long _propMask;
@@ -22,6 +22,7 @@
     void *_blockSecondary;
 }
 
++ (BOOL)supportsSecureCoding;
 + (void)initialize;
 - (id)_attributeDescription;
 - (void)drawBackgroundWithFrame:(struct CGRect)arg1 inView:(id)arg2 characterRange:(struct _NSRange)arg3 layoutManager:(id)arg4;

@@ -9,7 +9,7 @@
 #import "ABCardCollectionViewControllerDelegate.h"
 #import "CNContactCardWidget.h"
 
-@class ABCardCollectionView, ABCardCollectionViewController, ABCardViewStyleProvider, AKCardViewDataSource, CNContact, CNScrollViewOccluderController, NSScrollView, NSString, NSView;
+@class ABCardCollectionView, ABCardCollectionViewController, ABCardViewStyleProvider, AKCardViewDataSource, CNContact, CNUIEditingRules, NSString;
 
 @interface CNContactDetailsViewController : NSViewController <ABCardCollectionViewControllerDelegate, CNContactCardWidget>
 {
@@ -19,28 +19,24 @@
     ABCardViewStyleProvider *_styleProvider;
     AKCardViewDataSource *_dataSource;
     unsigned long long _mode;
+    CNUIEditingRules *_editingRules;
     ABCardCollectionView *_cardCollectionView;
     ABCardCollectionViewController *_cardCollectionViewController;
-    CNScrollViewOccluderController *_occluderController;
-    NSScrollView *_scrollView;
-    NSView *_topOccluder;
-    NSView *_bottomOccluder;
 }
 
-@property(retain, nonatomic) NSView *bottomOccluder; // @synthesize bottomOccluder=_bottomOccluder;
-@property(retain, nonatomic) NSView *topOccluder; // @synthesize topOccluder=_topOccluder;
-@property(retain, nonatomic) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
-@property(retain, nonatomic) CNScrollViewOccluderController *occluderController; // @synthesize occluderController=_occluderController;
+- (void).cxx_destruct;
 @property(retain, nonatomic) ABCardCollectionViewController *cardCollectionViewController; // @synthesize cardCollectionViewController=_cardCollectionViewController;
 @property(retain, nonatomic) ABCardCollectionView *cardCollectionView; // @synthesize cardCollectionView=_cardCollectionView;
+@property(retain, nonatomic) CNUIEditingRules *editingRules; // @synthesize editingRules=_editingRules;
 @property(nonatomic) BOOL isUnified; // @synthesize isUnified=_isUnified;
 @property(nonatomic) unsigned long long mode; // @synthesize mode=_mode;
 @property(retain, nonatomic) AKCardViewDataSource *dataSource; // @synthesize dataSource=_dataSource;
 @property(retain, nonatomic) ABCardViewStyleProvider *styleProvider; // @synthesize styleProvider=_styleProvider;
-@property(retain, nonatomic) id <CNContactDetailsViewControllerDelegate> controllerDelegate; // @synthesize controllerDelegate=_controllerDelegate;
+@property(nonatomic) __weak id <CNContactDetailsViewControllerDelegate> controllerDelegate; // @synthesize controllerDelegate=_controllerDelegate;
 @property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
-- (void).cxx_destruct;
 - (id)userActionListDataSource;
+- (void)showLastItem;
+- (void)showFirstItem;
 - (void)setPropertyKeysToDisplay:(id)arg1;
 - (void)addTemplateItemForKey:(id)arg1;
 - (void)updateFaceTimeAvailability:(BOOL)arg1;
@@ -48,7 +44,6 @@
 - (void)cardViewNoteDidChange;
 - (id)colorForProperty:(id)arg1 identifier:(id)arg2;
 - (void)editExistingKey:(id)arg1 identifier:(id)arg2 yOffset:(double)arg3;
-- (double)firstColumnWidth;
 - (id)delegate;
 - (BOOL)isEditable;
 - (BOOL)isEditing;
@@ -58,7 +53,10 @@
 - (BOOL)isTemplate;
 - (BOOL)importMode;
 - (BOOL)editMode;
-- (void)commitEditing;
+- (void)cardCollectionViewControllerKeyViewLoopNeedsUpdate:(id)arg1;
+- (BOOL)shouldBeIncludedInKeyViewLoop;
+- (id)updateKeyViewLoopAndReturnTailView;
+- (BOOL)commitEditing;
 - (void)applyDisplayAttributes;
 - (void)editCollectionItemWithKey:(id)arg1 label:(id)arg2;
 - (void)highlightSearchTerms:(id)arg1;

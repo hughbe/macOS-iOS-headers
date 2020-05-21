@@ -10,14 +10,13 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewProperty : NSObject <ABCardViewProperty>
 {
     NSString *_key;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *key; // @synthesize key=_key;
-- (void)dealloc;
 - (id)actionForGlyphName:(id)arg1;
 - (id)actionGlyphNames;
 - (CDUnknownBlockType)multiValueEntryToLabel;

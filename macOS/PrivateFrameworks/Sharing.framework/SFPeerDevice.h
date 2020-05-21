@@ -13,6 +13,7 @@
 @interface SFPeerDevice : NSObject <NSSecureCoding>
 {
     BOOL _defaultPairedDevice;
+    BOOL _validKey;
     NSString *_uniqueID;
     NSString *_modelIdentifier;
     NSString *_productName;
@@ -21,9 +22,13 @@
     NSString *_name;
     NSString *_deviceColor;
     NSString *_enclosureColor;
+    long long _keyCounter;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property long long keyCounter; // @synthesize keyCounter=_keyCounter;
+@property BOOL validKey; // @synthesize validKey=_validKey;
 @property(getter=isDefaultPairedDevice) BOOL defaultPairedDevice; // @synthesize defaultPairedDevice=_defaultPairedDevice;
 @property(copy) NSString *enclosureColor; // @synthesize enclosureColor=_enclosureColor;
 @property(copy) NSString *deviceColor; // @synthesize deviceColor=_deviceColor;
@@ -33,7 +38,6 @@
 @property(copy) NSString *productName; // @synthesize productName=_productName;
 @property(copy) NSString *modelIdentifier; // @synthesize modelIdentifier=_modelIdentifier;
 @property(copy) NSString *uniqueID; // @synthesize uniqueID=_uniqueID;
-- (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (unsigned long long)hash;

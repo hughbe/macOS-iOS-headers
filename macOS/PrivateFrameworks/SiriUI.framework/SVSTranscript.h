@@ -12,7 +12,6 @@
 
 @class AFQueue, NSMutableArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface SVSTranscript : NSObject <AFQueueDelegate, SVSTranscriptItemGroupDelegate, NSFastEnumeration>
 {
     id <SVSTranscriptDataSource> _dataSource;
@@ -23,13 +22,13 @@ __attribute__((visibility("hidden")))
     long long _discardedItemCount;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) long long discardedItemCount; // @synthesize discardedItemCount=_discardedItemCount;
 @property(readonly, nonatomic, getter=_loadingTranscriptItemGroupQueue) AFQueue *loadingTranscriptItemGroupQueue; // @synthesize loadingTranscriptItemGroupQueue=_loadingTranscriptItemGroupQueue;
 @property(readonly, nonatomic, getter=_exposedTranscriptItems) NSMutableArray *exposedTranscriptItems; // @synthesize exposedTranscriptItems=_exposedTranscriptItems;
 @property(readonly, nonatomic, getter=_allTranscriptItems) NSMutableArray *allTranscriptItems; // @synthesize allTranscriptItems=_allTranscriptItems;
 @property(nonatomic) __weak id <SVSTranscriptDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <SVSTranscriptDataSource> dataSource; // @synthesize dataSource=_dataSource;
-- (void).cxx_destruct;
 - (BOOL)_transcriptHasProvisionalItems;
 - (id)_aceObjectForItemAtIndex:(long long)arg1;
 - (id)_transcriptItemsForDataSourceItemsAtIndexes:(id)arg1;

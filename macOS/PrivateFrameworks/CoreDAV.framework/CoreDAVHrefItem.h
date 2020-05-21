@@ -14,6 +14,7 @@
     int _writeStyle;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) int writeStyle; // @synthesize writeStyle=_writeStyle;
 @property(retain, nonatomic) NSURL *baseURL; // @synthesize baseURL=_baseURL;
 - (void)parserSuggestsBaseURL:(id)arg1;
@@ -21,7 +22,6 @@
 - (id)payloadAsFullURL;
 - (void)write:(id)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)initWithURL:(id)arg1;
 - (id)init;
 

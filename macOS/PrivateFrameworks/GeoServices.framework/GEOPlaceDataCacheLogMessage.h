@@ -8,16 +8,12 @@
 
 #import "NSCopying.h"
 
-@class GEOPDPlaceRequest, NSString;
-
+__attribute__((visibility("hidden")))
 @interface GEOPlaceDataCacheLogMessage : PBCodable <NSCopying>
 {
-    GEOPDPlaceRequest *_placeDataRequest;
-    NSString *_placeDataRequestingAppIdentifier;
 }
 
-@property(retain, nonatomic) GEOPDPlaceRequest *placeDataRequest; // @synthesize placeDataRequest=_placeDataRequest;
-@property(retain, nonatomic) NSString *placeDataRequestingAppIdentifier; // @synthesize placeDataRequestingAppIdentifier=_placeDataRequestingAppIdentifier;
++ (BOOL)isValid:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +21,9 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-@property(readonly, nonatomic) BOOL hasPlaceDataRequest;
-@property(readonly, nonatomic) BOOL hasPlaceDataRequestingAppIdentifier;
-- (void)dealloc;
 
 @end
 

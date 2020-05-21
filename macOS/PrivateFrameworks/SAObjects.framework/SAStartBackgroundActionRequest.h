@@ -16,6 +16,8 @@
 
 + (id)startBackgroundActionRequestWithDictionary:(id)arg1 context:(id)arg2;
 + (id)startBackgroundActionRequest;
+- (BOOL)requiresResponse;
+@property(retain, nonatomic) id <SAAceSerializable> backgroundActionPayload;
 @property(copy, nonatomic) NSString *backgroundAction;
 - (id)encodedClassName;
 - (id)groupIdentifier;

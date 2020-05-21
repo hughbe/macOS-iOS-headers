@@ -7,23 +7,25 @@
 #import "NSObject.h"
 
 #import "GEOTransitIncident.h"
+#import "NSSecureCoding.h"
 
 @class GEOPBTransitIncident, NSArray, NSDate, NSString;
 
 __attribute__((visibility("hidden")))
-@interface _GEOTransitIncident : NSObject <GEOTransitIncident>
+@interface _GEOTransitIncident : NSObject <GEOTransitIncident, NSSecureCoding>
 {
     GEOPBTransitIncident *_incident;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 @property(readonly, nonatomic) NSArray *affectedEntities;
 @property(readonly, nonatomic, getter=isBlockingIncident) BOOL blockingIncident;
 @property(readonly, nonatomic) NSDate *lastUpdated;
 @property(readonly, nonatomic) NSDate *creationDate;
-@property(readonly, nonatomic) long long iconType;
+@property(readonly, nonatomic) int iconType;
 @property(readonly, nonatomic) NSDate *endDate;
 @property(readonly, nonatomic) NSDate *startDate;
 @property(readonly, nonatomic) NSString *messageForNonRoutable;
@@ -32,10 +34,13 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSString *fullDescription;
 @property(readonly, nonatomic) NSString *summary;
 @property(readonly, nonatomic) NSString *title;
+@property(readonly, nonatomic) unsigned long long muid;
+@property(readonly, copy) NSString *debugDescription;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithIncident:(id)arg1;
 
 // Remaining properties
-@property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) Class superclass;
 

@@ -6,19 +6,39 @@
 
 #import "NSObject.h"
 
-@class NSString;
+#import "MTLComputePipelineState.h"
 
-@interface _MTLComputePipelineState : NSObject
+@class MTLDebugInstrumentationData, MTLIndirectArgumentBufferEmulationData, NSString;
+
+@interface _MTLComputePipelineState : NSObject <MTLComputePipelineState>
 {
     NSString *_label;
     id <MTLDevice> _device;
+    MTLIndirectArgumentBufferEmulationData *_iabEmulationData;
+    MTLDebugInstrumentationData *_debugInstrumentationData;
+    BOOL _supportIndirectCommandBuffers;
+    unsigned long long _resourceIndex;
 }
 
+@property(nonatomic) unsigned long long resourceIndex; // @synthesize resourceIndex=_resourceIndex;
+@property(retain, nonatomic) MTLDebugInstrumentationData *debugInstrumentationData; // @synthesize debugInstrumentationData=_debugInstrumentationData;
+@property(retain, nonatomic) MTLIndirectArgumentBufferEmulationData *IABEmulationData; // @synthesize IABEmulationData=_iabEmulationData;
 @property(readonly) id <MTLDevice> device; // @synthesize device=_device;
 @property(readonly) NSString *label; // @synthesize label=_label;
-- (id)description;
+- (unsigned int)getComputeKernelTelemetryID;
+@property(readonly) unsigned long long uniqueIdentifier;
+@property(readonly, copy) NSString *description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (void)dealloc;
 - (id)initWithDevice:(id)arg1 pipelineStateDescriptor:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) unsigned long long maxTotalThreadsPerThreadgroup; // @dynamic maxTotalThreadsPerThreadgroup;
+@property(readonly) unsigned long long staticThreadgroupMemoryLength; // @dynamic staticThreadgroupMemoryLength;
+@property(readonly) Class superclass;
+@property(readonly) unsigned long long threadExecutionWidth; // @dynamic threadExecutionWidth;
 
 @end
 

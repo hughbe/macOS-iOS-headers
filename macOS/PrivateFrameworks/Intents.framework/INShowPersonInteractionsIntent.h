@@ -6,22 +6,30 @@
 
 #import <Intents/INIntent.h>
 
+#import "INShowPersonInteractionsIntentExport.h"
+
 @class INPerson, NSString;
 
-@interface INShowPersonInteractionsIntent : INIntent
+@interface INShowPersonInteractionsIntent : INIntent <INShowPersonInteractionsIntentExport>
 {
     INPerson *_person;
     NSString *_focusItemIdentifier;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) NSString *focusItemIdentifier; // @synthesize focusItemIdentifier=_focusItemIdentifier;
 @property(copy) INPerson *person; // @synthesize person=_person;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithPerson:(id)arg1 focusItemIdentifier:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

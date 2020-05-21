@@ -11,16 +11,29 @@
 @interface SUAdminInstallController : NSObject
 {
     NSObject<OS_dispatch_queue> *_installQueue;
-    NSObject<OS_dispatch_queue> *_updatesToInstallStackQueue;
-    NSMutableArray *_updatesToInstallStack;
+    NSObject<OS_dispatch_queue> *_updateInfoQueue;
+    BOOL _deferredInstallEnabled;
+    NSMutableArray *_overriddenDeferralProductKeys;
 }
 
++ (BOOL)deferredInstallEnabled;
++ (BOOL)isSeedBuild;
 + (id)sharedAdminInstallController;
-- (void)startInstallingAdminUpdates:(id)arg1 usingClientAuthorization:(struct AuthorizationOpaqueRef *)arg2 allowOnlyAppleSigned:(BOOL)arg3 replyWhenDone:(CDUnknownBlockType)arg4;
+- (id)deferredInstallDescription;
+- (BOOL)isInstallDeferredForProduct:(id)arg1 deferredUntilDate:(id *)arg2;
+- (void)overrideDeferralForProducts:(id)arg1;
+- (void)installerNotificationBundleDeferralDateForMajorOSBundleTag:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)deferralDateForMajorProductTag:(id)arg1 orProductKey:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (BOOL)_shouldDeferFromDate:(id)arg1;
+- (id)_deferralDateFromDate:(id)arg1;
+- (void)_managedPreferencesDidChange:(id)arg1;
+- (void)startInstallingAdminUpdates:(id)arg1 usingClientAuthorization:(struct AuthorizationOpaqueRef *)arg2 replyWhenDone:(CDUnknownBlockType)arg3;
 - (void)_dumpAuthForDebugging:(struct AuthorizationOpaqueRef *)arg1;
 - (void)_doPostDownloadActionsForAdminInitiatedUpdateForProduct:(id)arg1 usingClientAuthorization:(struct AuthorizationOpaqueRef *)arg2 withAction:(long long)arg3 replyWhenDone:(CDUnknownBlockType)arg4;
-- (void)_pushAdminUpdate:(id)arg1;
-- (id)_popAdminUpdate;
+- (void)resetState;
+- (void)archiveToCoder:(id)arg1;
+- (void)restoreFromCoder:(id)arg1;
+- (void)dealloc;
 - (id)init;
 
 @end

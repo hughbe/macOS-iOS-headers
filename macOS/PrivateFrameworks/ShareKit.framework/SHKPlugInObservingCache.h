@@ -10,6 +10,7 @@
 
 @class NSMutableDictionary, NSString;
 
+__attribute__((visibility("hidden")))
 @interface SHKPlugInObservingCache : NSObject <LSApplicationWorkspaceObserverProtocol>
 {
     NSMutableDictionary *_dictionary;
@@ -21,6 +22,7 @@
 - (id)bundleForURL:(id)arg1;
 - (void)setBundle:(id)arg1 forURL:(id)arg2;
 - (void)dealloc;
+- (void)invalidateCache;
 - (BOOL)needsRefresh;
 - (id)init;
 

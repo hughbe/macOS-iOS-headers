@@ -6,33 +6,29 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableSet;
+@class NSArray, NSMutableArray, NSMutableSet;
 
 __attribute__((visibility("hidden")))
 @interface SCRVoiceSelectionRotorListManager : NSObject
 {
-    NSMutableArray *_voicesList;
-    unsigned long long _indexHighlighted;
-    NSMutableSet *_allUsedVoicesSet;
+    NSMutableArray *__voiceRotorItems;
+    unsigned long long __indexHighlighted;
+    NSMutableSet *__allUsedVoicesSet;
 }
 
 + (id)defaultManager;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableSet *_allUsedVoicesSet; // @synthesize _allUsedVoicesSet=__allUsedVoicesSet;
+@property(nonatomic) unsigned long long _indexHighlighted; // @synthesize _indexHighlighted=__indexHighlighted;
+@property(retain, nonatomic) NSMutableArray *_voiceRotorItems; // @synthesize _voiceRotorItems=__voiceRotorItems;
+- (void)_addVoiceWithVoiceIdentifier:(id)arg1 voiceLanguage:(id)arg2 hasBeenSelected:(BOOL)arg3;
 - (id)description;
-- (id)voicesArray;
+@property(readonly, nonatomic) NSArray *voiceRotorItems;
 - (void)saveToConfiguration;
 - (void)selectObjectAtIndex:(unsigned long long)arg1;
-- (unsigned long long)indexHighlighted;
-- (void)setIndexHighlighted:(unsigned long long)arg1;
-- (unsigned long long)count;
-- (id)objectAtIndex:(unsigned long long)arg1;
-- (id)shortVoiceNameAtIndex:(unsigned long long)arg1;
-- (id)voiceIdentifierAtIndex:(unsigned long long)arg1;
-- (unsigned long long)indexForVoiceIdentifier:(id)arg1;
-- (void)removeObjectWithVoiceIdentifier:(id)arg1;
-- (void)addVoiceWithVoiceIdentifier:(id)arg1 hasBeenSelected:(BOOL)arg2;
-- (void)dealloc;
-- (void)updateList;
-- (id)_allVoicesUsedByPrefs;
+@property(nonatomic) unsigned long long indexHighlighted;
+- (unsigned long long)_indexForVoiceIdentifier:(id)arg1;
+- (void)rebuildVoiceRotorList;
 - (id)init;
 
 @end

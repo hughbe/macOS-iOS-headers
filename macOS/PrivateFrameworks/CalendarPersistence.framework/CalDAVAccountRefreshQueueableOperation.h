@@ -16,8 +16,12 @@
     unsigned long long _numberOfInboxEntriesAffected;
     unsigned long long _numberOfEventsAffected;
     unsigned long long _numberOfNotificationsAffected;
+    BOOL fromUserInitiatedRefresh;
 }
 
++ (BOOL)updateLastABCReportTimeAndAllowReport;
++ (void)reportRefreshExceptionToABC:(id)arg1;
+@property(nonatomic) BOOL fromUserInitiatedRefresh; // @synthesize fromUserInitiatedRefresh;
 @property(nonatomic) BOOL fromFullRefresh; // @synthesize fromFullRefresh=_fromFullRefresh;
 @property(nonatomic) BOOL notifyOnChanges; // @synthesize notifyOnChanges=_notifyOnChanges;
 @property(nonatomic) unsigned long long numberOfNotificationsAffected; // @synthesize numberOfNotificationsAffected=_numberOfNotificationsAffected;
@@ -52,11 +56,12 @@
 - (BOOL)updatePrincipal:(id)arg1 forCalendarHome:(id)arg2 error:(id *)arg3;
 - (BOOL)_regularRefreshCalendarsForPrincipalCoreDAV:(id)arg1 isDeepRefresh:(BOOL)arg2 error:(id *)arg3;
 - (BOOL)_syncReportForPrincipalCoreDAV:(id)arg1 error:(id *)arg2;
+- (BOOL)_shouldFallBackToRegularRefreshForPrincipalCoreDAV:(id)arg1 forError:(id)arg2;
 - (BOOL)_refreshCalendarsForPrincipalCoreDAV:(id)arg1 error:(id *)arg2;
 - (BOOL)refreshCalendarsForPrincipalCoreDAV:(id)arg1 error:(id *)arg2;
 - (void)_propPatchWithNoErrorHandlingStringValue:(id)arg1 nameSpace:(id)arg2 name:(id)arg3 accountInfoProvider:(id)arg4 url:(id)arg5;
 - (int)_sharingStatusForContainer:(id)arg1;
-- (void)updateCurrentAddresses:(id)arg1 newAddressStrings:(id)arg2 principal:(id)arg3 calendar:(id)arg4 context:(id)arg5;
+- (void)updateCurrentAddresses:(id)arg1 newAddresses:(id)arg2 principal:(id)arg3 calendar:(id)arg4 context:(id)arg5;
 - (BOOL)refreshPropertiesForPrincipalCoreDAV:(id)arg1 error:(id *)arg2;
 - (BOOL)_accountExistsWithHost:(id)arg1 principalPath:(id)arg2 inManagedObjectContext:(id)arg3;
 - (void)updatePrincipal:(id)arg1 newPrincipalPath:(id)arg2;

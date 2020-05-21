@@ -23,6 +23,7 @@
     NSObject<OS_dispatch_queue> *_queue;
     unsigned int _state;
     long long _transportType;
+    unsigned long long _initialLinkType;
     int _socket;
     BOOL _isAudioEnabled;
     BOOL _isMuted;
@@ -33,24 +34,30 @@
     BOOL _disallowCellularInterface;
     BOOL _disallowWifiInterface;
     unsigned long long _preferredAddressFamily;
+    BOOL _preferCellularForCallSetup;
     NSString *_clientUUID;
     BOOL _disableEncryption;
     BOOL _shouldUseSocketForTransport;
     BOOL _enableSingleChannelDirectMode;
+    BOOL _alwaysSkipSelf;
     unsigned int _sessionEndedReason;
     NSMutableDictionary *_preferences;
     NSMutableDictionary *_sessionConfig;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long initialLinkType; // @synthesize initialLinkType=_initialLinkType;
 @property(retain, nonatomic) id boostContext; // @synthesize boostContext=_boostContext;
 @property(readonly, nonatomic) unsigned int state; // @synthesize state=_state;
 - (void)connection:(id)arg1 didReceiveData:(id)arg2;
+- (void)session:(id)arg1 didReceiveReport:(id)arg2;
 - (void)xpcObject:(id)arg1 objectContext:(id)arg2;
 - (void)session:(id)arg1 muted:(BOOL)arg2;
 - (void)session:(id)arg1 audioEnabled:(BOOL)arg2;
 - (void)sessionEnded:(id)arg1 withReason:(unsigned int)arg2 error:(id)arg3;
 - (void)sessionStarted:(id)arg1;
-- (void)session:(id)arg1 invitationSentToTokens:(id)arg2;
+- (void)allocationDone:(id)arg1 sessionInfo:(id)arg2;
+- (void)session:(id)arg1 invitationSentToTokens:(id)arg2 shouldBreakBeforeMake:(BOOL)arg3;
 - (void)sessionEndReceived:(id)arg1 fromID:(id)arg2 withData:(id)arg3;
 - (void)sessionMessageReceived:(id)arg1 fromID:(id)arg2 withData:(id)arg3;
 - (void)sessionCancelReceived:(id)arg1 fromID:(id)arg2 withData:(id)arg3;
@@ -67,9 +74,11 @@
 - (void)setMuted:(BOOL)arg1;
 - (BOOL)getAudioEnabled;
 - (void)setAudioEnabled:(BOOL)arg1;
+- (void)sendSessionMessage:(id)arg1 toDestinations:(id)arg2;
 - (void)sendSessionMessage:(id)arg1;
 - (void)endSessionWithData:(id)arg1;
 - (void)endSession;
+- (void)reconnectSession;
 - (void)declineInvitationWithData:(id)arg1;
 - (void)declineInvitation;
 - (void)acceptInvitationWithData:(id)arg1;
@@ -79,6 +88,7 @@
 - (void)cancelInvitation;
 - (void)sendInvitationWithData:(id)arg1 declineOnError:(BOOL)arg2;
 - (void)sendInvitationWithOptions:(id)arg1;
+- (void)sendAllocationRequest:(id)arg1;
 - (void)_cleanupSocketPairConnections;
 - (void)_setupSocketPairToDaemon;
 - (void)_setupUnreliableSocketPairConnection;
@@ -94,6 +104,8 @@
 - (id)initWithAccount:(id)arg1 destinations:(id)arg2 transportType:(long long)arg3 uniqueID:(id)arg4 delegateContext:(id)arg5;
 - (id)_initWithAccount:(id)arg1 destinations:(id)arg2 options:(id)arg3 delegateContext:(id)arg4;
 - (id)_initWithAccount:(id)arg1 destinations:(id)arg2 transportType:(long long)arg3 connectionCountHint:(unsigned long long)arg4 needsToWaitForPreConnectionData:(BOOL)arg5 uniqueID:(id)arg6 delegateContext:(id)arg7;
+- (id)daemonController;
+- (id)daemonListener;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

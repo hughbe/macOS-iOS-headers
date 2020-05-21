@@ -11,15 +11,16 @@
 __attribute__((visibility("hidden")))
 @interface BackgroundLoadController : NSObject
 {
-    NSMutableDictionary *_uncommittedUniqueBackgroundLoadsByCanonicalURL;
+    NSMutableDictionary *_urlsToUncommittedBackgroundLoads;
     NSMutableSet *_backgroundLoads;
     id <BackgroundLoadControllerDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <BackgroundLoadControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <BackgroundLoadControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)_kickOffBackgroundLoad:(id)arg1;
 - (void)_restartBackgroundLoadSoon:(id)arg1;
+- (void)_commitBackgroundLoadNow:(id)arg1 wasDeferred:(BOOL)arg2 usingTabViewItemSetUpBlock:(CDUnknownBlockType)arg3;
 - (void)_commitBackgroundLoadNow:(id)arg1 wasDeferred:(BOOL)arg2;
 - (void)_commitBackgroundLoadSoon:(id)arg1;
 - (void)_destinationPageCanBeClosedForCommittingBackgroundLoad:(id)arg1;
@@ -30,7 +31,7 @@ __attribute__((visibility("hidden")))
 - (void)_removeBackgroundLoadFromUncommittedUniqueBackgroundLoads:(id)arg1;
 - (void)_backgroundLoadDidPerformFirstVisuallyNonEmptyLayout:(id)arg1;
 - (id)_backgroundLoadPassingTest:(CDUnknownBlockType)arg1;
-- (void)commitBackgroundLoadImmediately:(id)arg1 toDestinationTabViewItem:(id)arg2;
+- (void)commitBackgroundLoadImmediately:(id)arg1 usingTabViewItemSetUpBlock:(CDUnknownBlockType)arg2;
 - (void)commitBackgroundLoadImmediately:(id)arg1;
 - (void)commitBackgroundLoad:(id)arg1;
 - (void)startTrackingBackgroundLoad:(id)arg1;
@@ -45,7 +46,7 @@ __attribute__((visibility("hidden")))
 - (id)backgroundLoadsPassingTest:(CDUnknownBlockType)arg1;
 - (id)backgroundLoadBeingCommittedIntoTabViewItem:(id)arg1;
 - (id)backgroundLoadWithIdentifier:(id)arg1;
-- (id)backgroundLoadWithWKView:(id)arg1;
+- (id)backgroundLoadWithBrowserViewController:(id)arg1;
 - (id)uncommittedUniqueBackgroundLoadWithURL:(id)arg1;
 - (BOOL)canLoadURLInBackground:(id)arg1;
 - (id)init;

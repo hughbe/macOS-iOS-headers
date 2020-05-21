@@ -25,6 +25,7 @@
 @property(readonly, retain) NSString *productKey; // @synthesize productKey=_productKey;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)dealloc;
 - (id)initWithProductKey:(id)arg1 adminAction:(long long)arg2;
 
 @end

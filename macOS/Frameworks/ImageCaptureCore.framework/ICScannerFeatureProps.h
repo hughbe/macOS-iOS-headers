@@ -8,6 +8,7 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface ICScannerFeatureProps : NSObject
 {
     unsigned long long _type;
@@ -16,11 +17,10 @@
     NSString *_tooltip;
 }
 
-@property(retain) NSString *tooltip; // @synthesize tooltip=_tooltip;
-@property(retain) NSString *humanReadableName; // @synthesize humanReadableName=_humanReadableName;
-@property(retain) NSString *internalName; // @synthesize internalName=_internalName;
+@property(copy) NSString *tooltip; // @synthesize tooltip=_tooltip;
+@property(copy) NSString *humanReadableName; // @synthesize humanReadableName=_humanReadableName;
+@property(copy) NSString *internalName; // @synthesize internalName=_internalName;
 @property unsigned long long type; // @synthesize type=_type;
-- (void)finalize;
 - (void)dealloc;
 
 @end

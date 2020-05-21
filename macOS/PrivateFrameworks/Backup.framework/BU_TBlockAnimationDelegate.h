@@ -13,13 +13,13 @@
 __attribute__((visibility("hidden")))
 @interface BU_TBlockAnimationDelegate : NSObject <NSAnimationDelegate>
 {
-    function_721cd517 _progressCallback;
+    function_07c9e451 _progressCallback;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)animation:(id)arg1 didReachProgressMark:(float)arg2;
-- (id)initWithAnimation:(id)arg1 progressCallback:(function_721cd517)arg2;
+- (id)initWithAnimation:(id)arg1 progressCallback:(function_07c9e451)arg2;
 - (id)init;
 
 // Remaining properties

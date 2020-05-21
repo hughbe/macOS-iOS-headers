@@ -10,6 +10,7 @@
 
 @class AVCallbackContextRegistry, AVWeakReference, NSObject<AVWeakObservable>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVWeaklyObservedObjectClientBlockKVONotifier : NSObject <AVKVONotifier>
 {
     AVCallbackContextRegistry *_callbackContextRegistry;
@@ -25,7 +26,6 @@
 - (void)cancelCallbacks;
 - (void)callbackDidFireWithChangeDictionary:(id)arg1;
 - (void)start;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithCallbackContextRegistry:(id)arg1 observer:(id)arg2 object:(id)arg3 keyPath:(id)arg4 options:(unsigned long long)arg5 block:(CDUnknownBlockType)arg6;
 

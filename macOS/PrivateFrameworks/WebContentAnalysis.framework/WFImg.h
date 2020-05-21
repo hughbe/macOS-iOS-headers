@@ -4,29 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <WebContentAnalysis/XMLNode.h>
 
-@class NSXMLElement;
-
-@interface WFImg : NSObject
+@interface WFImg : XMLNode
 {
-    NSXMLElement *XMLElement;
 }
 
-+ (id)imgWithNode:(id)arg1;
-- (void)dealloc;
++ (id)imgWithNode:(struct _xmlNode *)arg1;
 - (id)description;
 - (long long)area;
 - (long long)height;
 - (long long)width;
-- (long long)_intValueFromAttribute:(id)arg1;
 - (id)src;
 - (id)title;
 - (id)alt;
-- (id)_stringValueFromAttribute:(id)arg1;
-- (void)setXMLElement:(id)arg1;
-- (id)XMLElement;
-- (id)initWithNode:(id)arg1;
 
 @end
 

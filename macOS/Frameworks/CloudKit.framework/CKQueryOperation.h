@@ -6,35 +6,34 @@
 
 #import <CloudKit/CKDatabaseOperation.h>
 
-@class CKQuery, CKQueryCursor, CKRecordZoneID, NSArray;
+@class CKQuery, CKQueryCursor, CKRecordZoneID, NSArray, NSDictionary;
 
 @interface CKQueryOperation : CKDatabaseOperation
 {
     BOOL _shouldFetchAssetContent;
     BOOL _fetchAllResults;
+    CDUnknownBlockType _recordFetchedBlock;
+    CDUnknownBlockType _queryCompletionBlock;
+    CDUnknownBlockType _queryCursorFetchedBlock;
     CKQuery *_query;
     CKQueryCursor *_cursor;
     CKRecordZoneID *_zoneID;
     unsigned long long _resultsLimit;
     NSArray *_desiredKeys;
-    CDUnknownBlockType _recordFetchedBlock;
-    CDUnknownBlockType _queryCompletionBlock;
     CKQueryCursor *_resultsCursor;
-    CDUnknownBlockType _queryCursorFetchedBlock;
+    NSDictionary *_assetTransferOptionsByKey;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType queryCursorFetchedBlock; // @synthesize queryCursorFetchedBlock=_queryCursorFetchedBlock;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSDictionary *assetTransferOptionsByKey; // @synthesize assetTransferOptionsByKey=_assetTransferOptionsByKey;
 @property(nonatomic) BOOL fetchAllResults; // @synthesize fetchAllResults=_fetchAllResults;
 @property(nonatomic) BOOL shouldFetchAssetContent; // @synthesize shouldFetchAssetContent=_shouldFetchAssetContent;
 @property(retain, nonatomic) CKQueryCursor *resultsCursor; // @synthesize resultsCursor=_resultsCursor;
-@property(copy, nonatomic) CDUnknownBlockType queryCompletionBlock; // @synthesize queryCompletionBlock=_queryCompletionBlock;
-@property(copy, nonatomic) CDUnknownBlockType recordFetchedBlock; // @synthesize recordFetchedBlock=_recordFetchedBlock;
 @property(copy, nonatomic) NSArray *desiredKeys; // @synthesize desiredKeys=_desiredKeys;
 @property(nonatomic) unsigned long long resultsLimit; // @synthesize resultsLimit=_resultsLimit;
 @property(copy, nonatomic) CKRecordZoneID *zoneID; // @synthesize zoneID=_zoneID;
 @property(copy, nonatomic) CKQueryCursor *cursor; // @synthesize cursor=_cursor;
 @property(copy, nonatomic) CKQuery *query; // @synthesize query=_query;
-- (void).cxx_destruct;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
@@ -44,6 +43,9 @@
 - (BOOL)hasCKOperationCallbacksSet;
 - (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
+@property(copy, nonatomic) CDUnknownBlockType queryCursorFetchedBlock; // @synthesize queryCursorFetchedBlock=_queryCursorFetchedBlock;
+@property(copy, nonatomic) CDUnknownBlockType queryCompletionBlock; // @synthesize queryCompletionBlock=_queryCompletionBlock;
+@property(copy, nonatomic) CDUnknownBlockType recordFetchedBlock; // @synthesize recordFetchedBlock=_recordFetchedBlock;
 - (id)initWithCursor:(id)arg1;
 - (id)initWithQuery:(id)arg1;
 - (id)init;

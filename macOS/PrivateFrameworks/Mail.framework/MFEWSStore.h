@@ -18,8 +18,8 @@
     NSString *_folderIdString;
 }
 
-@property(copy) NSString *folderIdString; // @synthesize folderIdString=_folderIdString;
 - (void).cxx_destruct;
+@property(copy) NSString *folderIdString; // @synthesize folderIdString=_folderIdString;
 - (void)handleEWSError:(id)arg1;
 - (BOOL)_loadFolderId;
 - (void)_setSyncState:(id)arg1 persistToLibrary:(BOOL)arg2;
@@ -31,17 +31,10 @@
 - (void)undeleteMessagesWithEWSItemIdStrings:(id)arg1;
 - (void)deleteMessageWithEWSItemIdString:(id)arg1;
 - (id)updateWithSyncState:(id)arg1 newMessages:(id)arg2 updatedMessages:(id)arg3 updatedLibraryIdStrings:(id)arg4 deletedMessages:(id)arg5 flagsByMessages:(id)arg6 isFinalBatch:(BOOL)arg7;
-- (long long)_addMessages:(id)arg1 fromStore:(id)arg2 missedMessages:(id)arg3 newMessages:(id)arg4 newDocumentIDsByOld:(id)arg5 flagsToSet:(id)arg6 appendReason:(long long)arg7 userInitiated:(BOOL)arg8 error:(id *)arg9;
-- (BOOL)_copyMessagesByID:(id)arg1 toStore:(id)arg2 appendReason:(long long)arg3 userInitiated:(BOOL)arg4 settingFlags:(id)arg5 newMessages:(id *)arg6 error:(id *)arg7;
 - (void)forceResync;
-- (long long)undoAppendOfLibraryIDs:(id)arg1;
-- (id)setFlagsFromDictionary:(id)arg1 forMessages:(id)arg2;
-- (void)async_setFlagsFromDictionary:(id)arg1 forMessages:(id)arg2;
-- (void)messagesWereAdded:(id)arg1 secondaryMessages:(id)arg2 duringOpen:(BOOL)arg3 options:(id)arg4;
-- (id)fullBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id *)arg2 fetchIfNotAvailable:(BOOL)arg3;
+- (id)lastSyncDate;
 - (id)_fetchBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id *)arg2 fetchIfNotAvailable:(BOOL)arg3 allowPartial:(BOOL)arg4;
 - (id)_fetchHeaderDataForMessage:(id)arg1 fetchIfNotAvailable:(BOOL)arg2 allowPartial:(BOOL)arg3;
-- (void)startSynchronization;
 - (void)fetchSynchronously;
 - (void)openSynchronouslyIfWaitingToOpen;
 - (void)openSynchronouslyUpdatingMetadata:(BOOL)arg1;

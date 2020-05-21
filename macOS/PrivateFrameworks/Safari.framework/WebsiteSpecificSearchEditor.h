@@ -9,17 +9,19 @@
 #import "TableViewPlusDataSource.h"
 #import "TableViewPlusDelegate.h"
 
-@class NSMutableArray, NSString, NSTextField;
+@class NSMutableArray, NSString, NSTextField, WBSFaviconRequestsController;
 
 __attribute__((visibility("hidden")))
 @interface WebsiteSpecificSearchEditor : SheetWithTableController <TableViewPlusDataSource, TableViewPlusDelegate>
 {
     NSMutableArray *_websiteHosts;
+    BOOL _didAwakeFromNib;
+    WBSFaviconRequestsController *_requestController;
     NSTextField *_emptyTablePlaceholderText;
 }
 
-@property(nonatomic) __weak NSTextField *emptyTablePlaceholderText; // @synthesize emptyTablePlaceholderText=_emptyTablePlaceholderText;
 - (void).cxx_destruct;
+@property(nonatomic) __weak NSTextField *emptyTablePlaceholderText; // @synthesize emptyTablePlaceholderText=_emptyTablePlaceholderText;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)reloadTableData;
@@ -31,6 +33,7 @@ __attribute__((visibility("hidden")))
 - (void)_updateVisibilityOfPlaceholderText;
 - (void)_quickWebsiteSearchProvidersDidChange:(id)arg1;
 - (void)awakeFromNib;
+- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -4,28 +4,34 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <HelpData/HPDBaseClient.h>
 
-@class NSArray, NSDictionary;
+@class NSObject<OS_dispatch_queue>;
 
-@interface HPDClient : NSObject
+@interface HPDClient : HPDBaseClient
 {
     struct __CFMessagePort *_serverPortRef;
+    struct __CFMessagePort *_localPortRef;
+    NSObject<OS_dispatch_queue> *_messageQueue;
 }
 
+- (void).cxx_destruct;
 - (void)abort;
 - (BOOL)stop;
 - (BOOL)collect;
 - (BOOL)cancelQuery:(id)arg1;
-- (BOOL)performQuery:(id)arg1 withDelegate:(id)arg2;
-@property(readonly, copy) NSArray *preferredLocalizations;
-@property(readonly, copy) NSDictionary *bookList;
-- (BOOL)registerBookWithIdentifier:(id)arg1 appBundle:(id)arg2 bookVersion:(id)arg3 bookURL:(id)arg4;
+- (BOOL)performQuery:(id)arg1;
+- (id)preferredLocalizations;
+- (id)indexedBookIDs;
+- (id)bookList;
+- (BOOL)registerBookWithIdentifier:(id)arg1 appBundleURL:(id)arg2 bookVersion:(id)arg3 bookURL:(id)arg4;
+- (BOOL)_registerBookWithIdentifier:(id)arg1 appBundleURL:(id)arg2 bookVersion:(id)arg3 bookURL:(id)arg4;
 - (id)bookWithIdentifier:(id)arg1;
-- (id)sendMessage:(int)arg1 withData:(void *)arg2 withReply:(BOOL)arg3;
-- (struct __CFMessagePort *)createLocalPortWithDelegate:(id)arg1;
-@property(readonly) BOOL createServerPortIfNeeded;
+- (id)sendMessage:(int)arg1 withData:(id)arg2 withReply:(BOOL)arg3;
+- (struct __CFMessagePort *)createLocalPortIfNeeded;
+- (BOOL)createServerPortIfNeeded;
 - (void)dealloc;
+- (id)init;
 
 @end
 

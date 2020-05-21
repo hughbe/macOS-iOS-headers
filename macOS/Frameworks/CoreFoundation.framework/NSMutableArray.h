@@ -11,6 +11,7 @@
 }
 
 + (id)arrayWithCapacity:(unsigned long long)arg1;
+- (id)arrayByAddingObjectsFromArray:(id)arg1;
 - (id)initWithObjects:(const id *)arg1 count:(unsigned long long)arg2;
 - (id)initWithCapacity:(unsigned long long)arg1;
 - (void)sortUsingSelector:(SEL)arg1;
@@ -21,10 +22,10 @@
 - (void)sortRange:(struct _NSRange)arg1 options:(unsigned long long)arg2 usingComparator:(CDUnknownBlockType)arg3;
 - (void)setSet:(id)arg1;
 - (void)setOrderedSet:(id)arg1;
+- (id)sortedArrayFromRange:(struct _NSRange)arg1 options:(unsigned long long)arg2 usingComparator:(CDUnknownBlockType)arg3;
 - (void)setArray:(id)arg1;
 - (void)setObject:(id)arg1 atIndexedSubscript:(unsigned long long)arg2;
 - (void)setObject:(id)arg1 atIndex:(unsigned long long)arg2;
-- (void)rollObjectsInRange:(struct _NSRange)arg1 by:(long long)arg2;
 - (void)replaceObjectsInRange:(struct _NSRange)arg1 withObjectsFromSet:(id)arg2;
 - (void)replaceObjectsInRange:(struct _NSRange)arg1 withObjectsFromOrderedSet:(id)arg2;
 - (void)replaceObjectsInRange:(struct _NSRange)arg1 withObjectsFromOrderedSet:(id)arg2 range:(struct _NSRange)arg3;

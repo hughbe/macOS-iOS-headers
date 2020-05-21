@@ -4,18 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <SAObjects/SABaseCommand.h>
+#import <SAObjects/SABaseClientBoundCommand.h>
 
 #import "SAServerBoundCommand.h"
 
 @class NSString;
 
-@interface SASyncFinished : SABaseCommand <SAServerBoundCommand>
+@interface SASyncFinished : SABaseClientBoundCommand <SAServerBoundCommand>
 {
 }
 
 + (id)finishedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)finished;
+- (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

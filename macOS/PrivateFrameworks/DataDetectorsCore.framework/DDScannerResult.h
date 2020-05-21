@@ -6,15 +6,16 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSSecureCoding.h"
 
-@class NSArray;
+@class NSArray, NSString, NSURL;
 
-@interface DDScannerResult : NSObject <NSCoding, NSSecureCoding>
+@interface DDScannerResult : NSObject <NSSecureCoding>
 {
-    struct __DDResult *_coreResult;
+    // Error parsing type: ^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}, name: _coreResult
     NSArray *_subResultsCache;
+    NSURL *_cachedURL;
+    BOOL _hasCachedURL;
 }
 
 + (id)scannerResultFromXML:(id)arg1 stringToScan:(id)arg2;
@@ -22,7 +23,9 @@
 + (id)verboseXMLDescriptionFromElements:(id)arg1 stringToScan:(id)arg2;
 + (BOOL)supportsSecureCoding;
 + (id)resultsFromCoreResults:(struct __CFArray *)arg1;
-+ (id)resultFromCoreResult:(struct __DDResult *)arg1;
++     // Error parsing type: @24@0:8^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}16, name: resultFromCoreResult:
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSURL *url;
 - (void)offsetRangeBy:(long long)arg1;
 - (id)XMLDescription;
 - (id)detailedDescription;
@@ -44,20 +47,23 @@
 - (id)subResults;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
-- (id)matchedString;
+@property(readonly, nonatomic) NSString *matchedString;
 - (id)contextualData;
 - (id)location;
 - (id)rawValue;
-- (id)value;
+@property(readonly, nonatomic) NSString *value;
 - (void)setType:(id)arg1;
-- (id)type;
+@property(readonly, nonatomic) NSString *type;
+- (BOOL)typeIs:(struct __CFString *)arg1;
 - (long long)score;
 - (CDStruct_912cb5d2)cfRange;
 @property struct _NSRange range;
-- (struct __DDResult *)coreResult;
+@property(readonly, nonatomic) int category;
+@property(readonly, nonatomic) struct _NSRange urlificationRange;
+-     // Error parsing type: ^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}16@0:8, name: coreResult
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
-- (id)initWithCoreResult:(struct __DDResult *)arg1;
+-     // Error parsing type: @24@0:8^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}16, name: initWithCoreResult:
 - (id)init;
 
 @end

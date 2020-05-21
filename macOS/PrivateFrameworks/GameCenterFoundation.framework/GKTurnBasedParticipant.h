@@ -33,6 +33,7 @@
 @property(copy) NSDate *lastTurnDate; // @dynamic lastTurnDate;
 @property(readonly) BOOL isWinner;
 @property(readonly) NSString *matchOutcomeString;
+- (id)matchOutcomeStringForLocalPlayer;
 - (id)basicMatchOutcomeString;
 @property(readonly) NSString *matchStatusString;
 - (void)setStatus:(long long)arg1;

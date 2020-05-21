@@ -34,7 +34,6 @@
 @property(readonly, copy) NSString *redoActionName;
 @property(readonly, copy) NSString *undoActionName;
 - (void)registerUndoWithTarget:(id)arg1 handler:(CDUnknownBlockType)arg2;
-- (void)registerUndoWithTarget:(id)arg1 selector:(SEL)arg2 arguments:(id *)arg3 argumentCount:(unsigned long long)arg4;
 - (void)registerUndoWithTarget:(id)arg1 selector:(SEL)arg2 object:(id)arg3;
 - (void)_forwardTargetInvocation:(id)arg1;
 - (void)_registerUndoObject:(id)arg1;
@@ -46,6 +45,8 @@
 @property(readonly, getter=isUndoing) BOOL undoing;
 @property(readonly) BOOL canRedo;
 @property(readonly) BOOL canUndo;
+- (void)__redoCommonDoSingle:(BOOL)arg1;
+- (void)__redoSingle;
 - (void)redo;
 - (void)undoNestedGroup;
 - (void)undo;
@@ -64,7 +65,6 @@
 - (void)_cancelAutomaticTopLevelGroupEnding;
 - (void)_scheduleAutomaticTopLevelGroupEnding;
 - (void)_delayAutomaticTermination:(double)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 - (void)_rollbackUndoGrouping;

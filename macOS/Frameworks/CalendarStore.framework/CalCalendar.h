@@ -23,30 +23,27 @@
     BOOL _isEditable;
 }
 
-+ (id)calendar;
-+ (id)calendarWithGroup:(id)arg1 uid:(id)arg2;
-+ (id)calendarWithGroup:(id)arg1;
 + (id)calendarFromRemoteManagedObject:(id)arg1;
++ (id)_colorStringRepresentation:(id)arg1;
++ (id)_colorFromString:(id)arg1;
++ (id)calendar;
 @property(readonly) NSString *uid; // @synthesize uid=_uid;
 @property(readonly) NSString *type; // @synthesize type=_type;
 @property(copy) NSString *title; // @synthesize title=_title;
 @property(copy) NSString *notes; // @synthesize notes=_notes;
 @property(copy) NSColor *color; // @synthesize color=_color;
+- (id)remoteManagedCalendarFromCalendar;
+@property(copy) NSString *managedObjectIDString;
+@property(nonatomic) unsigned long long calendarItemTypes;
+@property(retain) CalGroup *group;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
 @property(readonly) BOOL isEditable;
-- (id)init;
-@property(readonly) unsigned long long calendarItemTypes;
-@property(retain) CalGroup *group;
-- (id)initWithGroup:(id)arg1 uid:(id)arg2;
-- (id)initWithGroup:(id)arg1;
-- (void)setCalendarItemTypes:(unsigned long long)arg1;
-@property(copy) NSString *managedObjectIDString;
 - (id)initWithUID:(id)arg1 type:(id)arg2 editable:(BOOL)arg3;
-- (id)remoteManagedCalendarFromCalendar;
+- (id)init;
 
 @end
 

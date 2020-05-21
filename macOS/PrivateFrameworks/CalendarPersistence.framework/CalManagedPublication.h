@@ -31,6 +31,7 @@
 - (void)setUser:(id)arg1 password:(id)arg2;
 @property(readonly) NSString *filename;
 @property(retain) NSURL *publicationURL; // @dynamic publicationURL;
+- (id)initWithEntity:(id)arg1 insertIntoManagedObjectContext:(id)arg2;
 
 // Remaining properties
 @property BOOL hasAlarmFilter; // @dynamic hasAlarmFilter;

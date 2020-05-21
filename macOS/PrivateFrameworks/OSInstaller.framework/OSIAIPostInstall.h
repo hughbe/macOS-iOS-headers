@@ -10,8 +10,8 @@
 {
 }
 
-+ (id)extrasDirectory;
-+ (BOOL)shouldBeRun;
++ (id)extrasDirectoryWithPayloadDmgMountPoint:(id)arg1;
++ (BOOL)shouldBeRunWithPayloadDmgMountPoint:(id)arg1;
 - (double)estimatedTimeToComplete;
 - (id)operationName;
 - (BOOL)runReturningError:(id *)arg1;

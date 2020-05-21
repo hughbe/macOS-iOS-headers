@@ -11,6 +11,8 @@ __attribute__((visibility("hidden")))
 {
 }
 
++ (double)minimumBackupDistanceFromMonitorEdge;
++ (struct CGSize)backupWindowMaximumSize;
 + (_Bool)forceWindowOntoPrimaryDisplay:(id)arg1 offsetFromBottom:(double)arg2;
 + (id)screenWithDisplayID:(unsigned int)arg1;
 + (struct CGRect)availableWindowPositioningBoundsForPoint:(const struct CGPoint *)arg1;
@@ -19,7 +21,7 @@ __attribute__((visibility("hidden")))
 + (id)closestScreenForOffScreenRect:(const struct CGRect *)arg1;
 + (id)greatestAreaScreenForPoint:(const struct CGPoint *)arg1;
 + (id)greatestAreaScreenForRect:(const struct CGRect *)arg1;
-+ (set_bb8d1d1f)availableScaleFactors;
++ (set_8681f3ab)availableScaleFactors;
 + (double)cgScaleFactorForGreatestAreaScreenRect:(const struct CGRect *)arg1;
 + (double)primaryScreenCGScaleFactor;
 + (double)cgScaleFactorForScreen:(id)arg1;

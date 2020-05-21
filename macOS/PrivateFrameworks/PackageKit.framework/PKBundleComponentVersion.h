@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSDictionary, NSString;
 
 @interface PKBundleComponentVersion : NSObject
 {
@@ -26,13 +26,14 @@
 + (id)bundleComponentVersionWithOnDiskCFBundle:(struct __CFBundle *)arg1;
 + (id)bundleComponentVersionWithOnDiskBundle:(id)arg1;
 + (id)bundleComponentVersionWithPackageAttributes:(id)arg1;
-- (id)combinedVersionString;
-- (id)attributeDictionary;
++ (BOOL)_checksBuildVersion;
+@property(readonly) NSString *combinedVersionString;
+@property(readonly) NSDictionary *attributeDictionary;
 - (BOOL)_isOnDiskComponent;
-- (id)buildVersion;
-- (id)sourceVersion;
-- (id)bundleVersion;
-- (id)shortVersionString;
+@property(readonly) NSString *buildVersion;
+@property(readonly) NSString *sourceVersion;
+@property(readonly) NSString *bundleVersion;
+@property(readonly) NSString *shortVersionString;
 - (long long)compare:(id)arg1;
 - (id)description;
 - (void)dealloc;

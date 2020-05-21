@@ -19,10 +19,10 @@
     NSWindow *_hostingWindow;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL needsHostingWindow; // @synthesize needsHostingWindow=_needsHostingWindow;
 @property(retain, nonatomic) NSWindow *hostingWindow; // @synthesize hostingWindow=_hostingWindow;
 @property(retain) CNContactPickerInProccessViewController *inProcessContactPicker; // @synthesize inProcessContactPicker=_inProcessContactPicker;
-- (void).cxx_destruct;
 @property(getter=isSearchFieldVisible) BOOL searchFieldVisible;
 - (void)registerSectionsForDraggedTypes:(id)arg1;
 - (void)showSectionWithIdentifier:(id)arg1;
@@ -32,7 +32,7 @@
 - (void)setDisplayedKeys:(id)arg1;
 - (void)setAccounts:(id)arg1;
 - (void)setPickerScope:(id)arg1;
-- (void)setInitialSelection;
+- (void)performInitialSelection;
 @property(readonly) ABPersonListSearchController *searchController;
 @property(readonly) CNContactListController *contactListController;
 - (void)pickerDidCreate;

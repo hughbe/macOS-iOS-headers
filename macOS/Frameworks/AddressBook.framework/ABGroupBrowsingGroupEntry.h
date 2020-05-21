@@ -8,7 +8,6 @@
 
 @class ABAccount, ABAddressBook, ABGroup;
 
-__attribute__((visibility("hidden")))
 @interface ABGroupBrowsingGroupEntry : ABBrowsingGroupEntry
 {
     ABAccount *_account;
@@ -18,6 +17,7 @@ __attribute__((visibility("hidden")))
 
 + (id)identifierForGroupWithIdentifier:(id)arg1;
 + (id)identifierForGroup:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, retain) ABGroup *group; // @synthesize group=_group;
 @property(readonly, retain) ABAddressBook *addressBook; // @synthesize addressBook=_addressBook;
 @property(readonly, retain) ABAccount *account; // @synthesize account=_account;
@@ -42,9 +42,9 @@ __attribute__((visibility("hidden")))
 - (BOOL)canSendEmailToGroup;
 - (BOOL)canExportGroupVCard;
 - (BOOL)canEditDistributionLists;
+- (BOOL)isRestricted;
 - (BOOL)canRename;
 - (id)actionScope;
-- (void)dealloc;
 - (id)initWithAccount:(id)arg1 addressBook:(id)arg2 group:(id)arg3;
 
 @end

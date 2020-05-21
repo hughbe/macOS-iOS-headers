@@ -19,17 +19,19 @@ __attribute__((visibility("hidden")))
     CKDPQuery *_query;
     CKDPRequestedFields *_requestedFields;
     CKDPRecordZoneIdentifier *_zoneIdentifier;
-    CDStruct_88fc3008 _has;
+    struct {
+        unsigned int limit:1;
+    } _has;
 }
 
 + (id)options;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CKDPAssetsToDownload *assetsToDownload; // @synthesize assetsToDownload=_assetsToDownload;
 @property(retain, nonatomic) CKDPRequestedFields *requestedFields; // @synthesize requestedFields=_requestedFields;
 @property(retain, nonatomic) CKDPRecordZoneIdentifier *zoneIdentifier; // @synthesize zoneIdentifier=_zoneIdentifier;
 @property(nonatomic) unsigned int limit; // @synthesize limit=_limit;
 @property(retain, nonatomic) NSData *continuationMarker; // @synthesize continuationMarker=_continuationMarker;
 @property(retain, nonatomic) CKDPQuery *query; // @synthesize query=_query;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;

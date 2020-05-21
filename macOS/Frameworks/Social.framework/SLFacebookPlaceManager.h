@@ -27,10 +27,10 @@
     ACAccount *_account;
 }
 
+- (void).cxx_destruct;
 @property(retain) ACAccount *account; // @synthesize account=_account;
 @property __weak NSObject<SLPlaceDataSourceDelegate> *delegate; // @synthesize delegate=_delegate;
-@property CLLocation *currentLocation; // @synthesize currentLocation=_currentLocation;
-- (void).cxx_destruct;
+@property(retain) CLLocation *currentLocation; // @synthesize currentLocation=_currentLocation;
 - (void)locationManager:(id)arg1 didFailWithError:(id)arg2;
 - (void)locationManager:(id)arg1 didUpdateToLocation:(id)arg2 fromLocation:(id)arg3;
 - (void)connectionDidFinishLoading:(id)arg1;

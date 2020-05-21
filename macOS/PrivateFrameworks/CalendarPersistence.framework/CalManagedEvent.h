@@ -6,11 +6,11 @@
 
 #import <CalendarPersistence/CalManagedCalendarItem.h>
 
-#import "EKProtocolEventOccurrence.h"
+#import "EventOccurrenceModelProtocol.h"
 
-@class CalManagedAttendee, CalManagedLocation, CalManagedRecurrenceException, NSArray, NSDate, NSDictionary, NSManagedObjectID, NSMutableSet, NSNumber, NSString, NSTimeZone, NSURL;
+@class CalManagedAttendee, CalManagedLocation, CalManagedRecurrenceException, NSArray, NSData, NSDate, NSDictionary, NSManagedObjectID, NSMutableSet, NSNumber, NSString, NSTimeZone, NSURL;
 
-@interface CalManagedEvent : CalManagedCalendarItem <EKProtocolEventOccurrence>
+@interface CalManagedEvent : CalManagedCalendarItem <EventOccurrenceModelProtocol>
 {
 }
 
@@ -23,6 +23,7 @@
 + (id)fetchRequestWithSharedUID:(id)arg1 occurrence:(id)arg2 inManagedObjectContext:(id)arg3;
 + (id)fetchRequestWithLocalUID:(id)arg1 occurrence:(id)arg2 inManagedObjectContext:(id)arg3;
 + (id)fetchRequestWithPredicate:(id)arg1 inManagedObjectContext:(id)arg2;
++ (id)propertiesRequiringExchangeReschedule;
 + (id)recognizedICSPropertyParameterMap;
 + (id)recognizedICSProperties;
 + (id)entityName;
@@ -34,8 +35,8 @@
 @property(readonly, nonatomic) BOOL dontSendNotificationForChanges;
 @property(readonly, nonatomic) NSString *nameForBirthday;
 @property(readonly, nonatomic) BOOL isYearlessBirthday;
-@property(readonly, copy, nonatomic) NSString *birthdayTitle;
-@property(readonly, nonatomic) NSString *lunarCalendarString;
+- (void)setLunarCalendarString:(id)arg1;
+@property(readonly, copy, nonatomic) NSString *lunarCalendarString;
 @property(readonly, copy, nonatomic) NSString *sliceParentID;
 @property(readonly, nonatomic) BOOL cachedIsCurrentUserInvitedAttendee;
 @property(readonly, nonatomic) BOOL cachedIsCalendarOwnerInvitedAttendee;
@@ -54,11 +55,15 @@
 @property(readonly) NSString *locationString;
 @property(readonly, retain, nonatomic) NSDate *recurrenceDateUnadjustedFromUTC;
 @property(readonly, nonatomic) unsigned long long participantsStatus;
+- (void)resetNewTimeProposals;
+@property(readonly, copy, nonatomic) NSDate *proposedEndDateUnadjustedFromUTCForMe;
+@property(readonly, copy, nonatomic) NSDate *proposedStartDateUnadjustedFromUTCForMe;
 @property(readonly, copy, nonatomic) id <EKProtocolParticipant> participantForMe;
 - (id)attendeeSet;
 @property(readonly, nonatomic) BOOL organizedByMe;
 - (void)setOrganizerEncodedLikenessData:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *organizerEncodedLikenessData;
+@property(copy, nonatomic) NSString *organizerPhoneNumber;
 - (void)setOrganizerEmail:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *organizerEmail;
 - (void)setOrganizerURL:(id)arg1;
@@ -67,6 +72,8 @@
 @property(readonly, copy, nonatomic) NSString *organizerName;
 - (void)setAvailabilityEnum:(int)arg1;
 @property(readonly, nonatomic) int availabilityEnum;
+- (void)setJunkStatus:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long junkStatus;
 - (void)setStatusString:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *statusString;
 - (id)durationComponents;
@@ -94,7 +101,7 @@
 - (id)travelRouteType;
 - (void)updateScheduleTag:(id)arg1;
 - (void)updateETag:(id)arg1;
-@property(retain) NSDate *endDate; // @dynamic endDate;
+@property(retain, nonatomic) NSDate *endDate; // @dynamic endDate;
 - (void)setStartDate:(id)arg1;
 - (void)updateDurationDerivedProperties;
 - (id)defaultAlarmsBasedOnItemAndPreferencesFromServer:(BOOL)arg1;
@@ -102,8 +109,8 @@
 - (void)setTravelAdvisoryBehaviorString:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *travelAdvisoryBehaviorString;
 - (double)duration;
-- (id)birthdayStringForDate:(id)arg1;
 - (BOOL)allowAttendeePreservingMoveToCalendar:(id)arg1;
+- (BOOL)isOlderThanICSEvent:(id)arg1 fromICSCalendar:(id)arg2;
 - (BOOL)isOrganizerScheduleAgentNonServer;
 - (id)relationshipsToCompareForMerge;
 - (id)attributesToCompareForMerge;
@@ -156,6 +163,8 @@
 - (int)_commonDetachmentTests;
 - (id)newestInvitation;
 @property(retain) NSURL *organizerAddress; // @dynamic organizerAddress;
+- (void)setConferenceURL:(id)arg1;
+@property(readonly, nonatomic) NSURL *conferenceURL;
 @property(nonatomic) int statusType;
 - (void)updateAttendeeDerivedPropertiesInCalendar:(id)arg1 processPendingChanges:(BOOL)arg2 myAttendee:(id)arg3;
 - (void)updateAttendeeDerivedPropertiesInCalendar:(id)arg1 processPendingChanges:(BOOL)arg2;
@@ -178,7 +187,7 @@
 - (void)_sendCalDAViTIP:(id)arg1 changeRequest:(id *)arg2;
 - (id)alarmsFromICSEventHelper:(id)arg1;
 - (id)eventsFromICSDocumentHelper:(id)arg1;
-- (void)importiCalendarComponent:(id)arg1 occurrences:(id)arg2 fromDocument:(id)arg3 inCalendar:(id)arg4 options:(unsigned long long)arg5 deletionBlock:(CDUnknownBlockType)arg6;
+- (BOOL)importiCalendarComponent:(id)arg1 occurrences:(id)arg2 fromDocument:(id)arg3 inCalendar:(id)arg4 options:(unsigned long long)arg5 deletionBlock:(CDUnknownBlockType)arg6;
 - (void)_updateAfterStartDateWithComponent:(id)arg1;
 - (void)_zeroTimeIfUndefinedInComponents:(id)arg1;
 - (void)_invalidInstances:(id *)arg1 _duplicateExceptions:(id *)arg2;
@@ -186,7 +195,6 @@
 - (id)iCalendarDocumentWithMethod:(int)arg1 options:(unsigned long long)arg2;
 - (id)_iCalendarElementWithOptions:(unsigned long long)arg1;
 - (Class)entityClass;
-- (id)occurrenceIDFromCommittedValues;
 - (id)occurrenceID;
 - (id)occurrenceIDForOccurrenceDate:(id)arg1;
 - (id)entityID;
@@ -194,9 +202,7 @@
 - (void)updateWithEntity:(id)arg1 alarms:(BOOL)arg2 inCalendar:(id)arg3 processChanges:(BOOL)arg4;
 - (void)updateWithEntity:(id)arg1 alarms:(BOOL)arg2 inCalendar:(id)arg3;
 - (void)_updateWithEntity:(id)arg1 alarms:(BOOL)arg2 omitSyncRecord:(BOOL)arg3 inCalendar:(id)arg4;
-- (void)updateBirthdayEventWithSummary:(id)arg1 birthday:(id)arg2 linkID:(id)arg3 abUID:(id)arg4 isYearless:(BOOL)arg5 name:(id)arg6 lunarCalendarString:(id)arg7;
-- (void)setBirthday:(id)arg1 isYearless:(BOOL)arg2 isYearlessLeapMonthBirthday:(BOOL)arg3 name:(id)arg4 lunarCalendarString:(id)arg5;
-- (id)_getBirthdayCalendarWithPotentialLunarCalendarString:(id)arg1;
+- (id)rawTitle;
 
 // Remaining properties
 @property BOOL amIInvited; // @dynamic amIInvited;
@@ -208,8 +214,9 @@
 @property(readonly, nonatomic) BOOL cachedHasAttachment;
 @property(readonly, nonatomic) NSNumber *calendarItemPermissionNumber;
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;
+@property(retain) NSString *conferenceURLString; // @dynamic conferenceURLString;
 @property(readonly, copy, nonatomic) NSString *contactIdentifiersString;
-@property(readonly, copy, nonatomic) id <EKProtocolCalendar> container;
+@property(readonly, retain, nonatomic) id <CalendarModelProtocol> container;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, nonatomic) BOOL defaultAlarmWasDeleted;
 @property(readonly, copy) NSString *description;
@@ -230,12 +237,13 @@
 @property BOOL isMyResponseDirty; // @dynamic isMyResponseDirty;
 @property BOOL isOrganizerMe; // @dynamic isOrganizerMe;
 @property(readonly, nonatomic) BOOL isPartialObject;
-@property BOOL isPhantom; // @dynamic isPhantom;
+@property(nonatomic) BOOL isPhantom; // @dynamic isPhantom;
 @property BOOL isRSVPNeeded; // @dynamic isRSVPNeeded;
 @property BOOL isVeryLongDuration; // @dynamic isVeryLongDuration;
 @property(nonatomic) BOOL isYearlessLeapMonthBirthday; // @dynamic isYearlessLeapMonthBirthday;
-@property(readonly, copy, nonatomic) NSDate *lastModifiedDate;
+@property unsigned long long junkStatusEnum; // @dynamic junkStatusEnum;
 @property(retain) NSString *linkID; // @dynamic linkID;
+@property(readonly, copy, nonatomic) NSData *localStructuredData;
 @property(retain) NSString *lunarCalendarID; // @dynamic lunarCalendarID;
 @property(readonly, nonatomic) NSManagedObjectID *managedObjectID;
 @property(retain) CalManagedRecurrenceException *masterException; // @dynamic masterException;
@@ -256,9 +264,11 @@
 @property(readonly, copy, nonatomic) NSString *recurrenceSetID;
 @property(readonly, copy, nonatomic) NSString *relatedExternalID;
 @property(retain) CalManagedEvent *sliceChild; // @dynamic sliceChild;
-@property(retain) NSDate *sliceDate; // @dynamic sliceDate;
+@property(retain, nonatomic) NSDate *sliceDate; // @dynamic sliceDate;
 @property(retain) CalManagedEvent *sliceParent; // @dynamic sliceParent;
+@property(readonly, nonatomic) NSDate *startDate;
 @property(retain) NSDate *startDateIncludingTravel; // @dynamic startDateIncludingTravel;
+@property(readonly, copy, nonatomic) NSData *structuredData;
 @property(nonatomic) BOOL suggestionInfoAcknowledged; // @dynamic suggestionInfoAcknowledged;
 @property(nonatomic) unsigned long long suggestionInfoChangedFields; // @dynamic suggestionInfoChangedFields;
 @property(retain, nonatomic) NSString *suggestionInfoOpaqueKey; // @dynamic suggestionInfoOpaqueKey;

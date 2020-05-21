@@ -7,12 +7,12 @@
 #import "NSViewController.h"
 
 #import "MMCSCSetupControllerDelegate.h"
+#import "NSTouchBarProvider.h"
 
-@class MMPhoneNumberFormatter, NSBox, NSButton, NSImageView, NSPopUpButton, NSString, NSTextField, NSWindow;
+@class MMPhoneNumberFormatter, NSBox, NSButton, NSImageView, NSPopUpButton, NSString, NSTextField, NSTouchBar, NSWindow, iCloudTouchBarController;
 
-@interface MMKeychainOptionsController : NSViewController <MMCSCSetupControllerDelegate>
+@interface MMKeychainOptionsController : NSViewController <MMCSCSetupControllerDelegate, NSTouchBarProvider>
 {
-    id _delegate;
     NSString *_accountID;
     BOOL _didModifySecurityCode;
     NSWindow *_sheet;
@@ -31,7 +31,6 @@
     NSTextField *_phoneNumberInfoLabel;
     NSImageView *_keychainImageView;
     NSImageView *_cautionImageView;
-    NSWindow *_parentWindow;
     NSString *_fullName;
     NSString *_emailAddress;
     NSString *_description;
@@ -48,12 +47,17 @@
     NSString *_initialSMSTarget;
     MMPhoneNumberFormatter *_smsTargetFormatter;
     CDUnknownBlockType _completionHandler;
+    id _delegate;
+    NSWindow *_parentWindow;
+    iCloudTouchBarController *_touchBarController;
 }
 
+- (void).cxx_destruct;
+@property(retain) iCloudTouchBarController *touchBarController; // @synthesize touchBarController=_touchBarController;
 @property int numericPassphraseLength; // @synthesize numericPassphraseLength=_numericPassphraseLength;
 @property BOOL usingNumericPassphrase; // @synthesize usingNumericPassphrase=_usingNumericPassphrase;
 @property BOOL didModifySecurityCode; // @synthesize didModifySecurityCode=_didModifySecurityCode;
-@property(readonly, retain) NSWindow *sheet; // @synthesize sheet=_sheet;
+@property(readonly) NSWindow *sheet; // @synthesize sheet=_sheet;
 @property(retain) MMPhoneNumberFormatter *smsTargetFormatter; // @synthesize smsTargetFormatter=_smsTargetFormatter;
 @property(copy) NSString *initialSMSTarget; // @synthesize initialSMSTarget=_initialSMSTarget;
 @property(copy) NSString *initialSMSCountryCode; // @synthesize initialSMSCountryCode=_initialSMSCountryCode;
@@ -95,7 +99,7 @@
 - (id)_getKeychainBackupStatus;
 - (BOOL)_isDeviceInCircle;
 - (void)showInWindow:(id)arg1 deviceInCircle:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)dealloc;
+@property(readonly) NSTouchBar *touchBar;
 - (id)initWithAccountID:(id)arg1;
 
 // Remaining properties

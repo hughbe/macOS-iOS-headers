@@ -26,7 +26,8 @@
 + (id)_findWindowTabViewControllerInWindow:(id)arg1;
 + (id)_recursiveFindWindowTabViewController:(id)arg1;
 + (BOOL)automaticallyNotifiesObserversOfSelectedTabViewItemIndex;
-+ (BOOL)requiresConstraintBasedLayout;
++ (Class)_classToCheckForRequiresConstraintBasedLayout;
++ (unsigned long long)defaultTransitionOptions;
 - (long long)_associatedTabStyleForUIProvider:(id)arg1;
 - (id)_implicitUIProviderForTabStyle:(long long)arg1;
 - (void)setUIProvider:(id)arg1;
@@ -72,6 +73,7 @@
 @property(copy) NSArray *tabViewItems;
 - (void)removeChildViewControllerAtIndex:(long long)arg1;
 - (void)insertChildViewController:(id)arg1 atIndex:(long long)arg2;
+- (void)setChildViewControllers:(id)arg1;
 - (void)updateViewConstraints;
 - (void)setWindowTabsDelegate:(id)arg1;
 - (id)windowTabsDelegate;

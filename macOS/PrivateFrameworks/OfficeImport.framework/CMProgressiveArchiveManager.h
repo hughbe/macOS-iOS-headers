@@ -4,36 +4,31 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <OfficeImport/CMArchiveManager.h>
+#import <OfficeImport/CMStylingArchiveManager.h>
 
 @class NSDate, NSMutableDictionary, NSMutableString;
 
 __attribute__((visibility("hidden")))
-@interface CMProgressiveArchiveManager : CMArchiveManager
+@interface CMProgressiveArchiveManager : CMStylingArchiveManager
 {
     const void *mClient;
     CDStruct_4e53fc95 *mCallBacks;
     NSMutableDictionary *mDataCache;
-    NSMutableDictionary *mStyleCache;
-    NSMutableString *mCssString;
     BOOL mMainDataInited;
     NSDate *mStartDate;
     NSDate *mLastCommitDate;
     NSMutableString *mHtmlLogString;
 }
 
-- (id)cssStylesheetString;
+- (void).cxx_destruct;
 - (void)pushCssToPath:(id)arg1;
-- (void)addCssStyle:(id)arg1 withName:(id)arg2;
-- (id)addCssStyle:(id)arg1;
 - (BOOL)isCancelled;
 - (void)closeResourceAtPath:(id)arg1;
 - (void)commitDataAtPath:(id)arg1;
 - (void)pushText:(id)arg1 toPath:(id)arg2;
 - (void)pushData:(id)arg1 toPath:(id)arg2;
-- (id)copyResourceWithName:(id)arg1;
+- (id)copyResourceWithName:(id)arg1 type:(int)arg2;
 - (BOOL)isProgressive;
-- (void)dealloc;
 - (id)initWithClient:(const void *)arg1 andCallBacks:(CDStruct_4e53fc95 *)arg2;
 
 @end

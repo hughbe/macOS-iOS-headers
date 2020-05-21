@@ -18,13 +18,13 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)sharedManager;
+- (void).cxx_destruct;
 - (BOOL)isOptimizedKeyboardNavigationEnabled;
 - (void)setIsOptimizedKeyboardNavigationEnabled:(BOOL)arg1;
 - (void)_removeKeysFromPreferences;
 - (BOOL)_isSymbolicHotKeyEnabled:(unsigned int)arg1;
 - (void)_restoreKeyboardMode;
 - (void)_enableFullKeyboardAccess;
-- (void)dealloc;
 - (id)init;
 
 @end

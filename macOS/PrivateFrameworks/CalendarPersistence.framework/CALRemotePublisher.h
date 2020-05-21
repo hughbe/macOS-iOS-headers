@@ -26,6 +26,7 @@
 }
 
 + (id)errorForUnpublishOperation:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) NSManagedObjectID *nodeID; // @synthesize nodeID=_nodeID;
 - (void)publishOperation:(id)arg1 progressedToCurrentUnits:(unsigned long long)arg2 totalUnits:(unsigned long long)arg3;
 - (void)publishOperation:(id)arg1 didFinishWithError:(id)arg2;
@@ -43,7 +44,6 @@
 - (void)setMinimumPublishInterval:(double)arg1;
 - (void)setSchedulePublishTimer:(double)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 - (BOOL)persistError:(id)arg1 inContext:(id)arg2;

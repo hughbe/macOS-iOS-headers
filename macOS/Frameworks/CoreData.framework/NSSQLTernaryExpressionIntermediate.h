@@ -6,18 +6,23 @@
 
 #import <CoreData/NSSQLExpressionIntermediate.h>
 
-@class NSSQLEntity;
+@class NSArray, NSSQLEntity;
 
 __attribute__((visibility("hidden")))
 @interface NSSQLTernaryExpressionIntermediate : NSSQLExpressionIntermediate
 {
     NSSQLEntity *_disambiguatingEntity;
+    NSArray *_disambiguationKeypath;
+    BOOL _disambiguationKeypathHasToMany;
 }
 
 - (id)generateSQLStringInContext:(id)arg1;
 - (id)_generateSQLForPredicate:(id)arg1 inContext:(id)arg2;
-- (void)setDisambiguatingEntity:(id)arg1;
+- (void)setDisambiguatingEntity:(id)arg1 withKeypath:(id)arg2 hasToMany:(BOOL)arg3;
+- (BOOL)disambiguationKeypathHasToMany;
+- (id)disambiguationKeypath;
 - (id)disambiguatingEntity;
+- (void)dealloc;
 
 @end
 

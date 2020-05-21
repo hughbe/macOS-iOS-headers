@@ -16,6 +16,7 @@
 
 + (id)vehicleEventSearchCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)vehicleEventSearchCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *events;
 - (id)encodedClassName;
 - (id)groupIdentifier;

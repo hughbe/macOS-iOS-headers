@@ -20,6 +20,8 @@
 @property unsigned short elementaryStream; // @synthesize elementaryStream;
 @property unsigned short programStream; // @synthesize programStream;
 @property unsigned short streamIndex; // @synthesize streamIndex;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)debugLogStringWithIndentation:(id)arg1;
 - (BOOL)updateWithXML:(id)arg1;

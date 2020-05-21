@@ -12,7 +12,8 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)shared;
-- (void)_offerToSaveCreditCardData:(id)arg1 submittedToFrame:(const struct Frame *)arg2 fromFrame:(const struct Frame *)arg3 finishedSavingFormDataBlock:(CDUnknownBlockType)arg4;
+- (unsigned long long)virtualCardFieldsToRequest;
+- (void)_offerToSaveCreditCardData:(id)arg1 submittedToFrameInBrowserViewController:(id)arg2 fromFrameInBrowserViewController:(id)arg3 finishedSavingFormDataBlock:(CDUnknownBlockType)arg4;
 - (void)_userDidSelectNeverSaveForCardData:(id)arg1;
 - (void)_userDidSelectSaveForCardData:(id)arg1;
 - (void)willSubmitFormContainingCreditCardData:(id)arg1 toFrame:(const struct Frame *)arg2 fromFrame:(const struct Frame *)arg3 finishedSavingFormDataHandler:(struct ScopeExitHandler *)arg4;

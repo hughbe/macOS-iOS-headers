@@ -11,13 +11,19 @@
 __attribute__((visibility("hidden")))
 @interface SCNCommonProfileProgramGeneratorMetal : SCNCommonProfileProgramGenerator
 {
+    BOOL _useFunctionConstants;
     NSString *_originalSourceCode;
     NSArray *_injectionPointRanges;
+    NSString *_originalLightingSourceCode;
+    NSArray *_lightingInjectionPointRanges;
 }
 
-- (struct __C3DFXProgram *)_programWithHashCode:(struct __C3DRendererElementProgramHashCode *)arg1 introspectionDataPtr:(CDStruct_5d961f59 *)arg2;
+- (struct __C3DFXProgram *)_newProgramWithHashCode:(struct __C3DProgramHashCode *)arg1 engineContext:(struct __C3DEngineContext *)arg2 introspectionDataPtr:(CDStruct_5d961f59 *)arg3;
+- (struct __C3DFXProgram *)_newProgramWithHashCodeWithFunctionConstants:(struct __C3DProgramHashCode *)arg1 engineContext:(struct __C3DEngineContext *)arg2 introspectionDataPtr:(CDStruct_5d961f59 *)arg3;
 - (void)dealloc;
 - (id)init;
+- (void)emptyShaderCache;
+- (void)_loadSourceCode;
 - (int)profile;
 
 @end

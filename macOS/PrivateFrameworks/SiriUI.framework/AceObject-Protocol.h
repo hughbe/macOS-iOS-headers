@@ -12,8 +12,6 @@
 @class NSDictionary, NSMutableDictionary, NSString;
 
 @protocol AceObject <NSObject, NSCopying, NSMutableCopying, NSSecureCoding>
-- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
-- (id)copyWithZone:(struct _NSZone *)arg1;
 - (NSString *)groupIdentifier;
 - (NSString *)encodedClassName;
 - (NSMutableDictionary *)properties;

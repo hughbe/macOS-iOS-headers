@@ -6,27 +6,12 @@
 
 #import <Photos/PHAssetCollection.h>
 
-@class NSArray;
-
 @interface PHAlbum : PHAssetCollection
 {
-    long long _assetCollectionType;
-    long long _assetCollectionSubtype;
-    unsigned long long _estimatedAssetCount;
-    NSArray *_localizedLocationNames;
 }
 
-+ (id)identifierCode;
-- (id)localizedLocationNames;
-- (unsigned long long)estimatedAssetCount;
-- (long long)assetCollectionSubtype;
-- (long long)assetCollectionType;
-- (void).cxx_destruct;
-- (id)approximateLocation;
-- (id)endDate;
-- (id)startDate;
-- (id)localizedTitle;
-- (id)initWithModel:(id)arg1 photoLibrary:(id)arg2;
++ (id)fetchType;
++ (id)managedEntityName;
 
 @end
 

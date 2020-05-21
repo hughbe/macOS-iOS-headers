@@ -11,20 +11,23 @@
 @interface SMODDBAccess : SMDBAccess
 {
     ODSession *_session;
-    ODNode *_node;
     NSURL *_path;
     long long accessCount;
+    ODNode *_node;
 }
 
 + (id)sharedDBToPathMap;
 + (id)sharedQueue;
 - (void).cxx_destruct;
+@property(retain) ODNode *node; // @synthesize node=_node;
+- (BOOL)setRequirePasswordResetOnNextLoginForUser:(id)arg1 error:(id *)arg2;
 - (BOOL)setPassword:(id)arg1 forUser:(id)arg2 error:(id *)arg3;
 - (void)removeEmptyAttributes:(id)arg1;
 - (BOOL)deleteEntryAtPath:(id)arg1;
 - (BOOL)addMemberRecord:(id)arg1 ofType:(id)arg2 atPath:(id)arg3;
 - (BOOL)removeValuesForKey:(id)arg1 atPath:(id)arg2;
 - (BOOL)insertValue:(id)arg1 forKey:(id)arg2 atPath:(id)arg3;
+- (BOOL)removeValue:(id)arg1 forKey:(id)arg2 atPath:(id)arg3;
 - (long long)addValue:(id)arg1 forKey:(id)arg2 atPath:(id)arg3;
 - (BOOL)createEntry:(id)arg1 atPath:(id)arg2 mergeAttributes:(id)arg3 error:(id *)arg4;
 - (BOOL)createEntry:(id)arg1 atPath:(id)arg2 error:(id *)arg3;
@@ -32,6 +35,11 @@
 - (id)recordTypes;
 - (id)entryAtPath:(id)arg1;
 - (id)entriesAtPath:(id)arg1;
+- (BOOL)replaceUserRecord:(id)arg1 withRecord:(id)arg2 attributes:(id)arg3 password:(id)arg4 options:(unsigned int)arg5 error:(id *)arg6;
+- (BOOL)validatePassword:(id)arg1 againstSecureTokenForUser:(id)arg2;
+- (BOOL)userIsASecureTokenHolder:(id)arg1;
+- (BOOL)enableSecureTokenForUser:(id)arg1 withPassword:(id)arg2 andDiskPassword:(id)arg3 returningError:(id *)arg4;
+- (BOOL)establishCredentialsForSecureTokenWithName:(id)arg1 password:(id)arg2 error:(id *)arg3;
 - (void)dealloc;
 - (void)closeDatabase;
 - (BOOL)openDatabaseForWriting:(BOOL)arg1;

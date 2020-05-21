@@ -23,6 +23,8 @@
 @property(copy) NSArray *options; // @synthesize options;
 @property unsigned short unitType; // @synthesize unitType;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (BOOL)validControlValueType:(unsigned short)arg1;
 - (id)objectsForSetCommandValuesData:(id)arg1;
 @property unsigned char unitCode; // @dynamic unitCode;

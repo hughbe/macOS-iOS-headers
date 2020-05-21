@@ -4,11 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABCommand.h>
+#import "ABCommand.h"
 
 @class ABGroup, NSMutableArray;
 
-__attribute__((visibility("hidden")))
 @interface ABPastePeopleCommand : ABCommand
 {
     NSMutableArray *_people;
@@ -20,7 +19,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)doIt;
 - (void)redoIt;
 - (void)undoIt;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithGroup:(id)arg1 addressBook:(id)arg2;
 

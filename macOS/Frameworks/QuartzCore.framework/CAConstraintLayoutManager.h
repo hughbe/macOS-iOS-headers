@@ -6,20 +6,30 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "CALayoutManager.h"
+#import "NSSecureCoding.h"
 
-@interface CAConstraintLayoutManager : NSObject <NSCoding>
+@class NSString;
+
+@interface CAConstraintLayoutManager : NSObject <NSSecureCoding, CALayoutManager>
 {
 }
 
 + (void)CAMLParserStartElement:(id)arg1;
 + (id)layoutManager;
++ (BOOL)supportsSecureCoding;
 - (void)invalidateLayoutOfLayer:(id)arg1;
 - (struct CGSize)preferredSizeOfLayer:(id)arg1;
 - (void)layoutSublayersOfLayer:(id)arg1;
 - (id)init;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

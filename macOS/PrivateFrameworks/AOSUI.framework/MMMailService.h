@@ -16,6 +16,7 @@
     BOOL _shouldEnable;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL shouldEnable; // @synthesize shouldEnable=_shouldEnable;
 @property(retain, nonatomic) MMWebKitViewController *webKitViewController; // @synthesize webKitViewController=_webKitViewController;
 - (void)_closeModalWindow;
@@ -29,9 +30,10 @@
 - (void)disableMailAddressListeners;
 - (void)enableMailAddressListeners;
 - (void)_showClientFailureSheet:(id)arg1 enabling:(BOOL)arg2;
+- (BOOL)hasDataToMerge;
+- (BOOL)shouldEnableOnLogin;
 - (void)setEnabled:(BOOL)arg1 creating:(BOOL)arg2 withWindow:(id)arg3;
 - (id)icon;
-- (void)dealloc;
 - (id)initWithServiceID:(id)arg1 forAccount:(id)arg2;
 
 // Remaining properties

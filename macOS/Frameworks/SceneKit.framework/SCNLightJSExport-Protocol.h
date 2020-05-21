@@ -23,6 +23,12 @@
 @property(nonatomic) double zFar;
 @property(nonatomic) double zNear;
 @property(nonatomic) double orthographicScale;
+@property(nonatomic) double shadowCascadeSplittingFactor;
+@property(nonatomic) unsigned long long shadowCascadeCount;
+@property(nonatomic) BOOL sampleDistributedShadowMaps;
+@property(nonatomic) BOOL forcesBackFaceCasters;
+@property(nonatomic) double maximumShadowDistance;
+@property(nonatomic) BOOL automaticallyAdjustsShadowProjection;
 @property(nonatomic) double shadowBias;
 @property(nonatomic) long long shadowMode;
 @property(nonatomic) unsigned long long shadowSampleCount;

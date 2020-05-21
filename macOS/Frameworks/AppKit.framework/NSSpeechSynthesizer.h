@@ -45,7 +45,7 @@
 @property float rate;
 - (BOOL)setVoice:(id)arg1;
 - (id)voice;
-@property id <NSSpeechSynthesizerDelegate> delegate;
+@property __weak id <NSSpeechSynthesizerDelegate> delegate;
 - (void)continueSpeaking;
 - (void)pauseSpeakingAtBoundary:(unsigned long long)arg1;
 - (void)stopSpeakingAtBoundary:(unsigned long long)arg1;

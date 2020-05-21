@@ -18,6 +18,7 @@
     unsigned long long _uniqueIdentifier;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) MRTextEditingAttributes *attributes; // @synthesize attributes=_attributes;
 @property(readonly, nonatomic, getter=isEditing) BOOL editing; // @synthesize editing=_editing;
 @property(readonly, nonatomic) NSString *text; // @synthesize text=_text;
@@ -26,7 +27,6 @@
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)init;
 - (id)initWithText:(id)arg1 attributes:(id)arg2;
 

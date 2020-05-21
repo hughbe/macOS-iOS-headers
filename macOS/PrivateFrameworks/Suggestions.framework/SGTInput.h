@@ -33,14 +33,15 @@
     NSString *substringOfInterest;
 }
 
-@property(retain) NSString *substringOfInterest; // @synthesize substringOfInterest;
+- (void).cxx_destruct;
+@property(copy) NSString *substringOfInterest; // @synthesize substringOfInterest;
 @property long long typingScope; // @synthesize typingScope;
 @property(readonly) NSIndexSet *validatedSuggestionScopes; // @synthesize validatedSuggestionScopes;
 @property(readonly) NSString *filterQueryString; // @synthesize filterQueryString;
 @property(readonly, getter=isValid) BOOL valid; // @synthesize valid;
 @property(readonly) NSArray *attributeNames; // @synthesize attributeNames;
 @property(copy) CDUnknownBlockType suggestersAreReadyBlock; // @synthesize suggestersAreReadyBlock;
-@property id <SGTInputDelegate> delegate; // @synthesize delegate;
+@property __weak id <SGTInputDelegate> delegate; // @synthesize delegate;
 @property(readonly) unsigned long long userTypedStringLength; // @synthesize userTypedStringLength;
 - (id)description;
 - (struct _NSRange)searchFieldRangeForInputRange:(struct _NSRange)arg1;
@@ -62,14 +63,13 @@
 - (void)_performBlock:(CDUnknownBlockType)arg1;
 - (void)_performBlockOnMainThread:(CDUnknownBlockType)arg1;
 - (id)comparatorForValue:(id)arg1 attributeName:(id)arg2;
-- (unsigned int)matchesValue:(id)arg1 withAttributeName:(id)arg2 minimumTokenLength:(unsigned long long)arg3;
-- (unsigned int)matchesValue:(id)arg1 withAttributeName:(id)arg2;
+- (unsigned long long)matchesValue:(id)arg1 withAttributeName:(id)arg2 minimumTokenLength:(unsigned long long)arg3;
+- (unsigned long long)matchesValue:(id)arg1 withAttributeName:(id)arg2;
 @property(readonly) BOOL containsCJK;
 - (void)setInputString:(id)arg1;
 @property(readonly, copy) NSString *inputString; // @synthesize inputString;
 - (id)initWithSuggestion:(id)arg1;
 - (id)initWithSuggestion:(id)arg1 filterQueryString:(id)arg2 validatedSuggestionScopes:(id)arg3 searchFieldUsesTokens:(BOOL)arg4 rangeInSearchField:(struct _NSRange)arg5;
-- (void)finalize;
 - (void)dealloc;
 
 @end

@@ -21,6 +21,7 @@
 + (id)remoteTokenForLocalUIElement:(id)arg1;
 + (void)setRemoteUIApp:(BOOL)arg1;
 + (BOOL)isRemoteUIApp;
+- (void).cxx_destruct;
 @property __weak NSView *presenterView; // @synthesize presenterView=_presenterView;
 @property(retain) id topLevelUIElement; // @synthesize topLevelUIElement=_topLevelUIElement;
 @property(retain) id windowUIElement; // @synthesize windowUIElement=_windowUIElement;

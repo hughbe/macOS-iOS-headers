@@ -9,6 +9,8 @@
 @class NSDictionary, NSUUID, NSXPCListenerEndpoint;
 
 @protocol NCNotificationCenterProtocol <NSObject>
+- (void)ncReleaseKeyAlert:(NSUUID *)arg1;
+- (void)ncMakeKeyAlert:(NSUUID *)arg1 completion:(void (^)(void))arg2;
 - (void)ncDismissAlert:(NSUUID *)arg1 withAnimation:(unsigned long long)arg2 completion:(void (^)(void))arg3;
 - (void)ncActuallyPresentRemoteAlert:(NSUUID *)arg1;
 - (void)ncRequestPresentationOfRemoteAlert:(NSUUID *)arg1 options:(NSDictionary *)arg2 withVBEndpoint:(NSXPCListenerEndpoint *)arg3;

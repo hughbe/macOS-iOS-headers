@@ -21,7 +21,6 @@
 + (id)portWithMachPort:(unsigned int)arg1;
 + (id)port;
 + (void)resetAllPorts;
-- (void)dealloc;
 - (id)init;
 - (id)initWithMachPort:(unsigned int)arg1;
 - (id)initWithMachPort:(unsigned int)arg1 options:(unsigned long long)arg2;

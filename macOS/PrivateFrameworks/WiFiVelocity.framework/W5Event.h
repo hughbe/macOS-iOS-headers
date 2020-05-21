@@ -19,9 +19,9 @@
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy) NSDictionary *info; // @synthesize info=_info;
-@property double timestamp; // @synthesize timestamp=_timestamp;
-@property long long eventID; // @synthesize eventID=_eventID;
+@property(copy, nonatomic) NSDictionary *info; // @synthesize info=_info;
+@property(nonatomic) double timestamp; // @synthesize timestamp=_timestamp;
+@property(nonatomic) long long eventID; // @synthesize eventID=_eventID;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

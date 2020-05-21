@@ -8,10 +8,13 @@
 
 @class NSURL;
 
+__attribute__((visibility("hidden")))
 @interface AVMediaDataStorageInternal : NSObject
 {
     NSURL *URL;
 }
+
+- (void).cxx_destruct;
 
 @end
 

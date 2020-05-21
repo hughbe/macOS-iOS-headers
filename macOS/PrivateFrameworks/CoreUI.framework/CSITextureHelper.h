@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     unsigned long long sourceRowbytes;
     unsigned int width;
     unsigned int height;
+    unsigned int imageBytes;
     int pixelFormat;
 }
 

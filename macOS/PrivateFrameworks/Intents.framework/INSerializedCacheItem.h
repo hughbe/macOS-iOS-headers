@@ -19,16 +19,21 @@
 }
 
 + (BOOL)supportsSecureCoding;
++ (void)deserializeCacheItem:(id)arg1 completion:(CDUnknownBlockType)arg2;
++ (void)deserializeCacheItems:(id)arg1 completion:(CDUnknownBlockType)arg2;
++ (void)serializeCacheableObjects:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSDictionary *payload; // @synthesize payload=_payload;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly, nonatomic) long long type; // @synthesize type=_type;
-- (void).cxx_destruct;
+- (id)description;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)initWithType:(long long)arg1 identifier:(id)arg2 payload:(id)arg3;
+- (id)init;
 
 @end
 

@@ -7,11 +7,10 @@
 #import "NSObject.h"
 
 #import "VideoConferenceDelegate.h"
-#import "VideoConferenceRealTimeChannel.h"
 
 @class GKVoiceChatDictionary, GKVoiceChatService, NSLock, NSRecursiveLock, VideoConference;
 
-@interface GKVoiceChatServicePrivate : NSObject <VideoConferenceDelegate, VideoConferenceRealTimeChannel>
+@interface GKVoiceChatServicePrivate : NSObject <VideoConferenceDelegate>
 {
     id <GKVoiceChatClient> client;
     BOOL outputMeteringEnabled;
@@ -27,7 +26,6 @@
     GKVoiceChatService *wrapperService;
     BOOL forceNoICE;
     VideoConference *conf;
-    BOOL clientHasRTChannel;
     int chatMode;
     BOOL focus;
 }
@@ -36,6 +34,7 @@
 @property GKVoiceChatService *wrapperService; // @synthesize wrapperService;
 @property int state; // @synthesize state;
 @property(nonatomic) id client; // @synthesize client;
+@property(readonly, nonatomic) long long outputAudioPowerSpectrumToken;
 - (id)remoteDisplayNameForCallID:(unsigned int)arg1;
 - (id)localDisplayNameForCallID:(unsigned int)arg1;
 @property(readonly) double remoteBitrate;
@@ -44,7 +43,6 @@
 @property(readonly) double localFramerate;
 @property(nonatomic) void *remoteVideoLayer;
 @property(nonatomic) void *localVideoLayer;
-- (void)vcArg:(id)arg1 sendRealTimeData:(id)arg2 toParticipantID:(id)arg3;
 - (void)videoConference:(id)arg1 didStopWithCallID:(unsigned int)arg2 error:(id)arg3;
 - (void)videoConference:(id)arg1 didStartSession:(BOOL)arg2 withCallID:(unsigned int)arg3 error:(id)arg4;
 - (void)forceNoICE:(BOOL)arg1;
@@ -56,8 +54,8 @@
 @property(readonly, nonatomic) float outputMeterLevel;
 @property(getter=isInputMeteringEnabled) BOOL inputMeteringEnabled; // @synthesize inputMeteringEnabled;
 @property(getter=isOutputMeteringEnabled) BOOL outputMeteringEnabled; // @synthesize outputMeteringEnabled;
-- (void)getNSError:(id *)arg1 code:(long long)arg2 description:(id)arg3 reason:(id)arg4;
-- (void)getNSError:(id *)arg1 code:(long long)arg2 description:(id)arg3 hResult:(int)arg4;
+- (BOOL)getNSError:(id *)arg1 code:(long long)arg2 description:(id)arg3 reason:(id)arg4;
+- (BOOL)getNSError:(id *)arg1 code:(long long)arg2 description:(id)arg3 hResult:(int)arg4;
 - (int)startICEConnectionCheck:(id)arg1 isCaller:(BOOL)arg2 withCallID:(unsigned int)arg3;
 - (int)startICEConnectionCheck:(id)arg1 isCaller:(BOOL)arg2;
 - (id)createInvite:(id *)arg1 toParticipant:(id)arg2 callID:(unsigned int *)arg3;
@@ -65,7 +63,6 @@
 - (BOOL)inviteIsValid:(id)arg1;
 - (void)receivedData:(id)arg1 fromParticipantID:(id)arg2;
 - (void)resetState;
-- (void)receivedRealTimeData:(id)arg1 fromParticipantID:(id)arg2;
 - (void)informClientVoiceChatDidStop:(id)arg1;
 - (void)informClientVoiceChatDidNotStartMainSelector:(id)arg1;
 - (void)informClientVoiceChatDidNotStart:(id)arg1;

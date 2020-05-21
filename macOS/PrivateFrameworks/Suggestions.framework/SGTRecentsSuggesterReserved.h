@@ -22,7 +22,7 @@ __attribute__((visibility("hidden")))
     BOOL isSaving;
 }
 
-- (void)finalize;
+- (void).cxx_destruct;
 - (void)dealloc;
 
 @end

@@ -20,12 +20,13 @@
 + (id)samplerWithImage:(id)arg1;
 - (id)debugDescription;
 - (id)description;
-- (void *)colorSpace;
+- (const void *)colorSpace;
 - (id)wrapMode;
 @property(readonly) struct CGRect extent;
 - (id)opaqueShape;
 @property(readonly) CIFilterShape *definition;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)forwardingTargetForSelector:(SEL)arg1;
 - (void *)_internalRepresentation;
 - (id)initWithImage:(id)arg1 options:(id)arg2;
 - (id)_initWithImage:(id)arg1 key0:(id)arg2 vargs:(struct __va_list_tag [1])arg3;

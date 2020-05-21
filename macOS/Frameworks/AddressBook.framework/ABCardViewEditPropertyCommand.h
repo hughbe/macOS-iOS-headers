@@ -4,11 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABBookUndoableCommand.h>
+#import "ABBookUndoableCommand.h"
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewEditPropertyCommand : ABBookUndoableCommand
 {
     id <ABCardViewDataSourceProvider> _dataSourceProvider;
@@ -17,13 +16,13 @@ __attribute__((visibility("hidden")))
     NSString *_propertyKey;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) id <ABCardViewDataSourceProvider> dataSourceProvider; // @synthesize dataSourceProvider=_dataSourceProvider;
 @property(retain, nonatomic) id <NSObject> updatedValue; // @synthesize updatedValue=_updatedValue;
 @property(copy, nonatomic) NSString *propertyKey; // @synthesize propertyKey=_propertyKey;
 @property(retain, nonatomic) id <NSObject> oldValue; // @synthesize oldValue=_oldValue;
 - (void)executeUndo;
 - (void)execute;
-- (void)dealloc;
 - (id)initWithDataSourceProvider:(id)arg1 propertyKey:(id)arg2 oldValue:(id)arg3 updatedValue:(id)arg4;
 
 @end

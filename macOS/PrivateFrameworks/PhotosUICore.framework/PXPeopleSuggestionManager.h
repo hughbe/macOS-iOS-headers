@@ -6,50 +6,64 @@
 
 #import "NSObject.h"
 
-@class NSIndexPath, NSMutableArray;
+@class NSArray, NSMutableSet, PXPeoplePagingSuggestionProvider, PXSuggestionToken;
 
 @interface PXPeopleSuggestionManager : NSObject
 {
     BOOL _mute;
+    BOOL _didReachEnd;
     unsigned int _confirmYesSoundID;
     unsigned int _confirmNoSoundID;
     id <PXPeopleSuggestionManagerDelegate> _delegate;
     id <PXPeopleSuggestionManagerDataSource> _dataSource;
-    id <PXFaceCollection> _faceCollection;
+    id <PXPerson> _person;
     unsigned long long _userConfirmationsCount;
     unsigned long long _autoConfirmationsCount;
-    NSMutableArray *_confirmedSuggestions;
-    NSMutableArray *_rejectedSuggestions;
-    NSMutableArray *_allSuggestions;
-    NSIndexPath *_suggestionIndexPath;
+    NSMutableSet *_skippedSuggestions;
+    PXSuggestionToken *_suggestionToken;
+    PXPeoplePagingSuggestionProvider *_suggestionProvider;
+    NSMutableSet *_confirmedSuggestions;
+    NSMutableSet *_rejectedSuggestions;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableSet *rejectedSuggestions; // @synthesize rejectedSuggestions=_rejectedSuggestions;
+@property(retain, nonatomic) NSMutableSet *confirmedSuggestions; // @synthesize confirmedSuggestions=_confirmedSuggestions;
+@property(retain, nonatomic) PXPeoplePagingSuggestionProvider *suggestionProvider; // @synthesize suggestionProvider=_suggestionProvider;
 @property(nonatomic) unsigned int confirmNoSoundID; // @synthesize confirmNoSoundID=_confirmNoSoundID;
 @property(nonatomic) unsigned int confirmYesSoundID; // @synthesize confirmYesSoundID=_confirmYesSoundID;
-@property(retain) NSIndexPath *suggestionIndexPath; // @synthesize suggestionIndexPath=_suggestionIndexPath;
-@property(retain, nonatomic) NSMutableArray *allSuggestions; // @synthesize allSuggestions=_allSuggestions;
-@property(retain, nonatomic) NSMutableArray *rejectedSuggestions; // @synthesize rejectedSuggestions=_rejectedSuggestions;
-@property(retain, nonatomic) NSMutableArray *confirmedSuggestions; // @synthesize confirmedSuggestions=_confirmedSuggestions;
+@property(retain, nonatomic) PXSuggestionToken *suggestionToken; // @synthesize suggestionToken=_suggestionToken;
+@property(retain, nonatomic) NSMutableSet *skippedSuggestions; // @synthesize skippedSuggestions=_skippedSuggestions;
+@property(nonatomic) BOOL didReachEnd; // @synthesize didReachEnd=_didReachEnd;
 @property(nonatomic) unsigned long long autoConfirmationsCount; // @synthesize autoConfirmationsCount=_autoConfirmationsCount;
 @property(nonatomic) unsigned long long userConfirmationsCount; // @synthesize userConfirmationsCount=_userConfirmationsCount;
-@property(retain, nonatomic) id <PXFaceCollection> faceCollection; // @synthesize faceCollection=_faceCollection;
-@property BOOL mute; // @synthesize mute=_mute;
+@property(retain, nonatomic) id <PXPerson> person; // @synthesize person=_person;
+@property(nonatomic) BOOL mute; // @synthesize mute=_mute;
 @property(retain, nonatomic) id <PXPeopleSuggestionManagerDataSource> dataSource; // @synthesize dataSource=_dataSource;
-@property __weak id <PXPeopleSuggestionManagerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
-- (BOOL)_loadMoreSuggestions;
+@property(nonatomic) __weak id <PXPeopleSuggestionManagerDelegate> delegate; // @synthesize delegate=_delegate;
+- (BOOL)_fetchingSuggestions;
+- (id)_nonSkippedSuggestionsForSuggestions:(id)arg1;
+- (void)_notifyDelegateWeHaveMoreSuggestions:(BOOL)arg1;
+- (void)_loadMoreSuggestionsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_playConfirmNoSound;
 - (void)_playConfirmYesSound;
 - (unsigned int)_soundIdWithFilename:(id)arg1;
+- (void)cancelPendingSuggestionLoading;
+- (id)commitUserResponsesToPerson:(id)arg1;
 - (void)commitUserResponses;
 - (void)undo;
-- (void)markCurrentSuggestionAsConfirmed:(BOOL)arg1;
+- (void)markSuggestionsAsSkipped:(id)arg1;
+- (void)markSuggestions:(id)arg1 confirmed:(BOOL)arg2;
+- (BOOL)isSuggestionConfirmed:(id)arg1;
+- (void)requestNextSuggestionsWithPageLimit:(unsigned long long)arg1;
+- (void)requestNextSuggestion;
 - (void)preloadSounds;
-@property(readonly) BOOL canUndo;
-@property(readonly) id <PXFaceCollection> currentSuggestion;
+@property(readonly, nonatomic) BOOL isLoading;
+@property(readonly, nonatomic) BOOL canUndo;
+@property(readonly, nonatomic) NSArray *currentSuggestions;
 - (void)dealloc;
 - (id)init;
-- (id)initWithFaceCollection:(id)arg1;
+- (id)initWithPerson:(id)arg1;
 
 @end
 

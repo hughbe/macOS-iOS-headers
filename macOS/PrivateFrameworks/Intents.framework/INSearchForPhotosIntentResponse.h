@@ -6,25 +6,38 @@
 
 #import <Intents/INIntentResponse.h>
 
-@class NSNumber, _INPBSearchForPhotosIntentResponse;
+#import "INSearchForPhotosIntentResponseExport.h"
 
-@interface INSearchForPhotosIntentResponse : INIntentResponse
+@class NSNumber, NSString;
+
+@interface INSearchForPhotosIntentResponse : INIntentResponse <INSearchForPhotosIntentResponseExport>
 {
-    _INPBSearchForPhotosIntentResponse *_responseMessagePBRepresentation;
 }
 
++ (BOOL)_appLaunchRequestedFromCode:(long long)arg1;
 + (int)_errorCodeFromCode:(long long)arg1;
-+ (long long)_codeFromErrorCode:(int)arg1;
++ (int)_typeFromCode:(long long)arg1;
++ (long long)_codeFromType:(int)arg1 errorCode:(int)arg2 appLaunchRequested:(BOOL)arg3;
 + (BOOL)supportsSecureCoding;
-- (void).cxx_destruct;
+- (void)setPropertiesByName:(id)arg1;
+- (id)propertiesByName;
+- (id)_dictionaryRepresentation;
 @property(copy) NSNumber *searchResultsCount;
-- (id)_responseMessagePBRepresentation;
+- (long long)_codeWithName:(id)arg1;
+- (long long)_intentResponseCode;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 @property(readonly) long long code;
 - (id)initWithBackingStore:(id)arg1;
+- (id)_initWithCode:(long long)arg1 userActivity:(id)arg2;
 - (id)initWithCode:(long long)arg1 userActivity:(id)arg2;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

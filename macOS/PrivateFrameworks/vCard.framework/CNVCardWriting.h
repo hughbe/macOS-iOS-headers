@@ -12,6 +12,7 @@
 
 + (void)makevCardWithBuilder:(id)arg1 serializer:(id)arg2 options:(id)arg3;
 + (void)serializePerson:(id)arg1 withSerializer:(id)arg2 options:(id)arg3;
++ (id)scopeForPerson:(id)arg1 options:(id)arg2;
 + (id)blacklistedMeCardFields;
 + (id)blacklistFieldsForPerson:(id)arg1 options:(id)arg2;
 + (id)dataWithPerson:(id)arg1 options:(id)arg2 error:(id *)arg3;

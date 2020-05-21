@@ -14,9 +14,10 @@
     NSDictionary *_contactToRemindersCount;
 }
 
++ (BOOL)shouldLogFor35464009;
+- (void).cxx_destruct;
 @property(retain) NSDictionary *contactToRemindersCount; // @synthesize contactToRemindersCount=_contactToRemindersCount;
 @property unsigned long long reminderBadgeCount; // @synthesize reminderBadgeCount=_reminderBadgeCount;
-- (void).cxx_destruct;
 - (void)_remindersBadgeCountForContactIdentifier:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (BOOL)_contributesToRemindersWithContactBadgeCount;
 - (void)_remindersBadgeCountWithReply:(CDUnknownBlockType)arg1;
@@ -30,8 +31,9 @@
 - (void)_updateContactRemindersCount;
 - (void)_updateOverdueReminderCount;
 - (void)_updateBadgeCount;
+- (void)_acknowledgeAlarms:(id)arg1 originalAlarmUID:(id)arg2;
 - (void)_completeReminderWithIdentifier:(id)arg1 userInfo:(id)arg2;
-- (void)_handleDismissalForIdentifier:(id)arg1 userInfo:(id)arg2;
+- (void)_handleDismissalForIdentifier:(id)arg1 userInfo:(id)arg2 dismissedAlert:(BOOL)arg3;
 - (BOOL)_handlesType:(id)arg1;
 - (BOOL)_handlesDismissalForType:(id)arg1;
 - (id)_interestingNotifications;

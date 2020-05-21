@@ -15,9 +15,9 @@
     int _token;
 }
 
-@property(readonly, retain, nonatomic) NSString *service;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSString *service;
 - (long long)serviceAvailability;
-- (void)handleActiveAccountsChanged:(id)arg1;
 - (void)updateAvailability;
 - (void)_updateAvailability;
 - (void)_postAvailability:(long long)arg1;

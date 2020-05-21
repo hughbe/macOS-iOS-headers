@@ -13,11 +13,11 @@
     AMApplicationDefinition *_applicationDefinition;
 }
 
+- (void).cxx_destruct;
 @property(retain) AMApplicationDefinition *applicationDefinition; // @synthesize applicationDefinition=_applicationDefinition;
 - (void)updateName;
 - (void)updateNameForApplication:(id)arg1 findingName:(id)arg2;
 - (void)awakeFromNib;
-- (void)dealloc;
 - (id)initWithDefinition:(id)arg1 fromArchive:(BOOL)arg2;
 
 @end

@@ -8,16 +8,19 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBUnknownFields;
 
 @interface GEONamedFeature : PBCodable <NSCopying>
 {
-    double _value;
+    PBUnknownFields *_unknownFields;
     NSString *_name;
+    double _value;
 }
 
-@property(nonatomic) double value; // @synthesize value=_value;
-@property(retain, nonatomic) NSString *name; // @synthesize name=_name;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,9 +28,11 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-- (void)dealloc;
+@property(nonatomic) double value;
+@property(retain, nonatomic) NSString *name;
 
 @end
 

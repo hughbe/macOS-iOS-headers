@@ -26,11 +26,13 @@
 + (void)t_setDefaultConnection:(id)arg1;
 + (id)t_connectionForUUID:(id)arg1;
 + (id)secondaryConnection;
++ (id)secondaryConnectionIfExists;
 + (id)defaultConnection;
++ (id)defaultConnectionIfExists;
 + (void)initialize;
 - (void).cxx_destruct;
-- (struct BRXPCSyncProxy *)newSyncTokenProxy;
-- (struct BRXPCSyncProxy *)newSyncProxy;
+- (id)newSyncTokenProxy;
+- (id)newSyncProxy;
 - (void)_setupAndResume;
 - (id)initUsingUserLocalDaemonTokenService;
 - (id)initUsingUserLocalDaemon;

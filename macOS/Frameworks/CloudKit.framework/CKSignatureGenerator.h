@@ -12,6 +12,8 @@
     void *_generator;
 }
 
++ (id)signatureForStreamingAsset;
++ (BOOL)isValidV2Signature:(id)arg1;
 + (BOOL)isValidSignature:(id)arg1;
 + (id)signatureWithFileDescriptor:(int)arg1 error:(id *)arg2;
 @property(nonatomic, getter=isValid) BOOL valid; // @synthesize valid=_valid;

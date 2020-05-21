@@ -6,7 +6,7 @@
 
 #import <Contacts/CNGroup.h>
 
-@class NSString;
+@class NSData, NSDate, NSString;
 
 @interface CNMutableGroup : CNGroup
 {
@@ -15,7 +15,14 @@
 - (id)freezeWithSelfAsSnapshot;
 - (id)freeze;
 @property(copy, nonatomic) CNGroup *snapshot; // @dynamic snapshot;
-- (void)adoptValuesFromAndSetSnaphot:(id)arg1;
+- (void)adoptValuesFromAndSetSnapshot:(id)arg1;
+@property(copy) NSString *externalUUID; // @dynamic externalUUID;
+@property(copy) NSString *externalModificationTag; // @dynamic externalModificationTag;
+@property(copy) NSData *externalRepresentation; // @dynamic externalRepresentation;
+@property(copy) NSString *externalURI;
+@property(copy) NSString *externalIdentifier; // @dynamic externalIdentifier;
+@property(copy) NSDate *modificationDate; // @dynamic modificationDate;
+@property(copy) NSDate *creationDate; // @dynamic creationDate;
 @property(copy) NSString *name; // @dynamic name;
 @property(copy) NSString *identifier; // @dynamic identifier;
 - (id)copy;

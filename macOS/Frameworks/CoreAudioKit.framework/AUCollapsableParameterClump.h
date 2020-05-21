@@ -41,6 +41,7 @@ __attribute__((visibility("hidden")))
 - (void)drawRect:(struct CGRect)arg1;
 - (void)cleanup;
 - (void)dealloc;
+- (id)initWithParameterStrips:(id)arg1 title:(id)arg2 displayFlags:(unsigned int)arg3 width:(double)arg4 showDisclosure:(BOOL)arg5;
 - (id)initWithParameterStrips:(id)arg1 title:(id)arg2 displayFlags:(unsigned int)arg3 width:(double)arg4;
 - (void)updateParametersForSetFlags;
 

@@ -9,6 +9,7 @@
 @class NSArray, NSString;
 
 @interface ACAccount (AccountsUI)
+- (void)addAllowRecoverableTrustCertificateIfNeeded;
 - (void)processUsernameIfNeeded;
 - (id)localizedStringForSaveError:(id)arg1;
 @property(retain) NSString *identityEmailAddress;

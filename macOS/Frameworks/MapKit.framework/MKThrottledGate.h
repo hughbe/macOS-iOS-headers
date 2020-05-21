@@ -8,6 +8,7 @@
 
 @class NSMutableArray, NSObject<OS_dispatch_queue>, VKTimer;
 
+__attribute__((visibility("hidden")))
 @interface MKThrottledGate : NSObject
 {
     NSObject<OS_dispatch_queue> *_queue;

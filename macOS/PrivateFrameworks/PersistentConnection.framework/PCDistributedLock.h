@@ -16,6 +16,7 @@
     int _fd;
 }
 
+- (void).cxx_destruct;
 - (void)unlock;
 - (void)lock;
 - (BOOL)tryLock;

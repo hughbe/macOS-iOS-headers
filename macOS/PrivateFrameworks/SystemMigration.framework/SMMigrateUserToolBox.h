@@ -14,6 +14,7 @@
 + (BOOL)migrateRootUserFrom:(id)arg1 toDestinationSystem:(id)arg2 error:(id *)arg3;
 + (BOOL)migrateGlimmerblockerUserFrom:(id)arg1 toDestinationSystem:(id)arg2;
 + (BOOL)migrateFinalCutProServerUserFrom:(id)arg1 toDestinationSystem:(id)arg2;
++ (void)migrateUserRoleAccountsFrom:(id)arg1 toDestinationSystem:(id)arg2;
 + (void)migrateExtraHiddenSystemUsersFrom:(id)arg1 toDestinationSystem:(id)arg2;
 + (BOOL)archiveUserDatabaseForDebuggingFromSourceSystem:(id)arg1 toDestinationSystem:(id)arg2;
 + (BOOL)migrateFileVaultMasterPasswordInfoFromSourceSystem:(id)arg1 toDestinationSystem:(id)arg2;
@@ -24,11 +25,10 @@
 + (unsigned int)gidForEveryoneACL;
 + (BOOL)deleteConflictingUsers:(id)arg1 onSystem:(id)arg2;
 + (BOOL)convertLegacyFilevaultAccountForUserEntry:(id)arg1 onDestinationSystem:(id)arg2;
-+ (BOOL)migrateUserEntry:(id)arg1 andGroup:(BOOL)arg2 andDeletePrevious:(BOOL)arg3 toDestinationSystem:(id)arg4 error:(id *)arg5;
++ (BOOL)migrateUserEntry:(id)arg1 andGroup:(BOOL)arg2 inDB:(id)arg3 toDestinationSystem:(id)arg4 error:(id *)arg5;
 + (BOOL)tenaciousCreateUserRecord:(id)arg1 inDB:(id)arg2;
 + (BOOL)createUser:(id)arg1 andCorrespondingGroup:(id)arg2 inDB:(id)arg3 onDestinationSystem:(id)arg4 error:(id *)arg5;
 + (BOOL)recreateAdminUsersForSourceSystem:(id)arg1 andDestinationSystem:(id)arg2;
-+ (BOOL)copyPasswordForUser:(id)arg1 toDestinationSystem:(id)arg2;
 + (BOOL)migrateUserCustomImages:(id)arg1 fromSourceSystem:(id)arg2 toDestinationSystem:(id)arg3;
 
 @end

@@ -20,15 +20,15 @@
     unsigned int _routeStartIndex;
     unsigned int _routeEndIndex;
     unsigned int _unsnappedPointCount;
-    CDStruct_b2fbf00d *_unsnappedPoints;
+    CDStruct_869f9c67 *_unsnappedPoints;
 }
 
-@property(readonly) unsigned int routeEndIndex; // @synthesize routeEndIndex=_routeEndIndex;
-@property(readonly) unsigned int routeStartIndex; // @synthesize routeStartIndex=_routeStartIndex;
-@property(readonly) GEOComposedRouteSection *section; // @synthesize section=_section;
-@property(readonly) NSArray *edges; // @synthesize edges=_edges;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(readonly) unsigned int routeEndIndex; // @synthesize routeEndIndex=_routeEndIndex;
+@property(readonly) unsigned int routeStartIndex; // @synthesize routeStartIndex=_routeStartIndex;
+@property(readonly) __weak GEOComposedRouteSection *section; // @synthesize section=_section;
+@property(readonly) NSArray *edges; // @synthesize edges=_edges;
 - (BOOL)hasObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (BOOL)removeObserver:(id)arg1;

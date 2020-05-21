@@ -17,21 +17,20 @@
     BOOL _journaling;
     BOOL _inMemory;
     SGDatabaseJournalFile *_currentFile;
-    id _closeCurrentFilesObserver;
 }
 
++ (id)_allowedTypesForQueryKeyedArchives;
 + (CDUnknownBlockType)_binderForDictionary:(id)arg1;
 + (id)journalForInMemoryDb;
 + (id)journalWithName:(id)arg1;
-@property(readonly, nonatomic) BOOL journaling; // @synthesize journaling=_journaling;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL journaling; // @synthesize journaling=_journaling;
 - (BOOL)stopJournaling;
 - (BOOL)startJournaling;
 - (BOOL)deleteAllJournaledQueries;
-- (BOOL)executeQueriesFromAllJournalFilesOnDatabase:(id)arg1;
+- (BOOL)executeQueriesOnDatabase:(id)arg1;
 - (BOOL)_executeFile:(id)arg1 onDb:(id)arg2 becameLocked:(char *)arg3;
 - (void)runQuery:(id)arg1 values:(id)arg2 onDb:(id)arg3;
-- (void)dealloc;
 
 @end
 

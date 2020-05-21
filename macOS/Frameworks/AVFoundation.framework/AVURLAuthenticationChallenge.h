@@ -8,23 +8,26 @@
 
 #import "AVAssetResourceLoaderRequest.h"
 
-@class AVWeakReference, NSDictionary, NSString;
+@class AVWeakReference, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVURLAuthenticationChallenge : NSURLAuthenticationChallenge <AVAssetResourceLoaderRequest>
 {
     AVWeakReference *_weakReference;
-    NSDictionary *_requestDictionary;
+    unsigned long long _requestID;
+    struct __CFDictionary *_requestInfo;
 }
 
 + (SEL)_selectorForInformingDelegateOfCancellationByFig;
+@property(readonly, nonatomic) struct __CFDictionary *_requestInfo; // @synthesize _requestInfo;
 - (void)_performCancellationByClient;
 - (BOOL)_shouldInformDelegateOfFigCancellation;
-- (id)_requestDictionary;
+@property(readonly, nonatomic) unsigned long long _requestID;
 - (id)_weakReference;
 - (void)dealloc;
 - (id)initWithProtectionSpace:(id)arg1 proposedCredential:(id)arg2 previousFailureCount:(long long)arg3 failureResponse:(id)arg4 error:(id)arg5 sender:(id)arg6;
 - (id)initWithAuthenticationChallenge:(id)arg1 sender:(id)arg2;
-- (id)initWithAuthenticationChallenge:(id)arg1 sender:(id)arg2 requestDictionary:(id)arg3;
+- (id)initWithAuthenticationChallenge:(id)arg1 sender:(id)arg2 requestInfo:(struct __CFDictionary *)arg3 requestID:(unsigned long long)arg4;
 - (id)init;
 
 // Remaining properties

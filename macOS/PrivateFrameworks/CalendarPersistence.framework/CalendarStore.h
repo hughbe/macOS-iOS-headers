@@ -12,7 +12,6 @@
 
 + (void)disableSuddenTermination;
 + (void)enableSuddenTermination;
-+ (id)preferredCalendarUserAddress:(id)arg1;
 + (long long)prefFirstMinuteOfWorkHours;
 + (id)propertiesToIgnoreWhenUpdatingDetachedEvents;
 + (id)propertiesToAlwaysUpdateOnDetachedEvents;

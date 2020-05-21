@@ -4,54 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <GeoServices/GEOAbstractMapServiceTicket.h>
 
-#import "GEOMapServiceTicket.h"
-
-@class GEOMapRegion, GEOMapServiceTraits, GEORelatedSearchSuggestion, NSArray, NSDictionary, NSString;
+@class GEOMapItemIdentifier, NSDictionary, NSString;
 
 __attribute__((visibility("hidden")))
-@interface _GEOComponentsTicket : NSObject <GEOMapServiceTicket>
+@interface _GEOComponentsTicket : GEOAbstractMapServiceTicket
 {
     NSDictionary *_components;
-    unsigned long long _muid;
+    GEOMapItemIdentifier *_identifier;
     int _resultProviderID;
     NSString *_contentProvider;
-    GEOMapServiceTraits *_traits;
-    BOOL _canceled;
 }
 
-@property(readonly, nonatomic) GEOMapServiceTraits *traits; // @synthesize traits=_traits;
-@property(readonly, nonatomic, getter=isCanceled) BOOL canceled; // @synthesize canceled=_canceled;
-- (void)applyToPlaceInfo:(id)arg1;
-- (void)applyToCorrectedSearch:(id)arg1;
-- (void)cancel;
-- (void)submitWithRefinedHandler:(CDUnknownBlockType)arg1 timeout:(long long)arg2 networkActivity:(CDUnknownBlockType)arg3 queue:(id)arg4;
-- (void)submitWithRefinedHandler:(CDUnknownBlockType)arg1 networkActivity:(CDUnknownBlockType)arg2 queue:(id)arg3;
-- (void)submitWithHandler:(CDUnknownBlockType)arg1 timeout:(long long)arg2 networkActivity:(CDUnknownBlockType)arg3 queue:(id)arg4;
-- (void)submitWithHandler:(CDUnknownBlockType)arg1 networkActivity:(CDUnknownBlockType)arg2 queue:(id)arg3;
-- (void)submitWithRefinedHandler:(CDUnknownBlockType)arg1 timeout:(long long)arg2 networkActivity:(CDUnknownBlockType)arg3;
-- (void)submitWithHandler:(CDUnknownBlockType)arg1 timeout:(long long)arg2 networkActivity:(CDUnknownBlockType)arg3;
-- (void)submitWithRefinedHandler:(CDUnknownBlockType)arg1 networkActivity:(CDUnknownBlockType)arg2;
-- (void)submitWithHandler:(CDUnknownBlockType)arg1 networkActivity:(CDUnknownBlockType)arg2;
-@property(readonly, nonatomic) BOOL shouldEnableRedoSearch;
-@property(readonly, nonatomic) NSString *resultDisplayHeader;
-@property(readonly, nonatomic) int searchResultType;
-@property(readonly, nonatomic) NSString *resultSectionHeader;
-@property(readonly, nonatomic) GEORelatedSearchSuggestion *defaultRelatedSuggestion;
-@property(readonly, nonatomic) NSArray *relatedSearchSuggestions;
-@property(readonly, nonatomic, getter=isChainResultSet) BOOL chainResultSet;
-@property(readonly, nonatomic) GEOMapRegion *resultBoundingRegion;
-@property(readonly, nonatomic) NSDictionary *responseUserInfo;
-@property(readonly, copy) NSString *description;
-- (void)dealloc;
-- (id)initWithComponents:(id)arg1 muid:(unsigned long long)arg2 resultProviderID:(int)arg3 contentProvider:(id)arg4 traits:(id)arg5;
-- (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (void).cxx_destruct;
+- (CDStruct_d1a7ebee)dataRequestKind;
+- (void)submitWithHandler:(CDUnknownBlockType)arg1 auditToken:(id)arg2 timeout:(long long)arg3 networkActivity:(CDUnknownBlockType)arg4;
+- (id)description;
+- (id)initWithComponents:(id)arg1 identifier:(id)arg2 resultProviderID:(int)arg3 contentProvider:(id)arg4 traits:(id)arg5;
+- (id)initWithTraits:(id)arg1;
 
 @end
 

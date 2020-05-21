@@ -6,33 +6,41 @@
 
 #import <TextInput/TIKeyboardCandidateSingle.h>
 
-@class NSString, TIProactiveTrigger;
+@class NSString, TIProactiveTrigger, _ICPredictedItem;
 
 @interface TIZephyrCandidate : TIKeyboardCandidateSingle
 {
     BOOL _isFromPhraseDictionary;
     BOOL _isFromTextChecker;
     BOOL _isSecureContentCandidate;
-    BOOL _isSendCurrentLocation;
-    BOOL _fromBundleIdWhitelistedForMetrics;
-    BOOL _targetBundleIdWhitelistedForMetrics;
+    BOOL _continuousPathConversion;
+    BOOL _shouldAccept;
+    BOOL _shouldInsertSpaceAfterSelection;
     unsigned int _usageTrackingMask;
+    int _confidence;
     unsigned long long _wordOriginFeedbackID;
     TIProactiveTrigger *_proactiveTrigger;
+    NSString *_responseKitCategory;
     NSString *_fromBundleId;
     unsigned long long _ageForConnectionsMetrics;
+    double _excessPathRatio;
+    _ICPredictedItem *_proactivePredictedItem;
     NSString *_label;
 }
 
 + (int)type;
 + (BOOL)supportsSecureCoding;
-@property(copy, nonatomic) NSString *label; // @synthesize label=_label;
+- (void).cxx_destruct;
+@property(nonatomic, getter=confidence) int confidence; // @synthesize confidence=_confidence;
+@property(nonatomic, getter=shouldInsertSpaceAfterSelection) BOOL shouldInsertSpaceAfterSelection; // @synthesize shouldInsertSpaceAfterSelection=_shouldInsertSpaceAfterSelection;
+@property(nonatomic, getter=shouldAccept) BOOL shouldAccept; // @synthesize shouldAccept=_shouldAccept;
+@property(copy, nonatomic) _ICPredictedItem *proactivePredictedItem; // @synthesize proactivePredictedItem=_proactivePredictedItem;
+@property(nonatomic) double excessPathRatio; // @synthesize excessPathRatio=_excessPathRatio;
+@property(nonatomic, getter=isContinuousPathConversion) BOOL continuousPathConversion; // @synthesize continuousPathConversion=_continuousPathConversion;
 @property(nonatomic) unsigned long long ageForConnectionsMetrics; // @synthesize ageForConnectionsMetrics=_ageForConnectionsMetrics;
-@property(nonatomic) BOOL targetBundleIdWhitelistedForMetrics; // @synthesize targetBundleIdWhitelistedForMetrics=_targetBundleIdWhitelistedForMetrics;
-@property(nonatomic) BOOL fromBundleIdWhitelistedForMetrics; // @synthesize fromBundleIdWhitelistedForMetrics=_fromBundleIdWhitelistedForMetrics;
 @property(copy, nonatomic) NSString *fromBundleId; // @synthesize fromBundleId=_fromBundleId;
+- (id)responseKitCategory;
 - (id)proactiveTrigger;
-@property(nonatomic) BOOL isSendCurrentLocation; // @synthesize isSendCurrentLocation=_isSendCurrentLocation;
 - (BOOL)isSecureContentCandidate;
 @property(nonatomic) BOOL isFromTextChecker; // @synthesize isFromTextChecker=_isFromTextChecker;
 @property(nonatomic) BOOL isFromPhraseDictionary; // @synthesize isFromPhraseDictionary=_isFromPhraseDictionary;
@@ -41,13 +49,16 @@
 - (id)initWithCandidateResultSetCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)candidateByReplacingWithCandidate:(id)arg1 input:(id)arg2 label:(id)arg3;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isAutocorrection;
 - (unsigned long long)wordOriginFeedbackID;
-- (id)initWithCandidate:(id)arg1 forInput:(id)arg2 wordOriginFeedbackID:(unsigned long long)arg3 usageTrackingMask:(unsigned int)arg4 secureContentCandidate:(BOOL)arg5 proactiveTrigger:(id)arg6;
+- (id)initWithCandidate:(id)arg1 responseKitCategory:(id)arg2;
+- (id)initWithCandidate:(id)arg1 forInput:(id)arg2 wordOriginFeedbackID:(unsigned long long)arg3 usageTrackingMask:(unsigned int)arg4 secureContentCandidate:(BOOL)arg5 proactiveTrigger:(id)arg6 proactivePredictedItem:(id)arg7;
+- (id)initWithCandidate:(id)arg1 forInput:(id)arg2 wordOriginFeedbackID:(unsigned long long)arg3 usageTrackingMask:(unsigned int)arg4 secureContentCandidate:(BOOL)arg5 proactiveTrigger:(id)arg6 proactivePredictedItem:(id)arg7 responseKitCategory:(id)arg8;
 - (id)initWithCandidate:(id)arg1 forInput:(id)arg2 wordOriginFeedbackID:(unsigned long long)arg3 usageTrackingMask:(unsigned int)arg4;
 - (id)initWithCandidate:(id)arg1 forInput:(id)arg2 wordOriginFeedbackID:(unsigned long long)arg3;
-- (void)dealloc;
+@property(copy, nonatomic) NSString *label; // @synthesize label=_label;
 
 @end
 

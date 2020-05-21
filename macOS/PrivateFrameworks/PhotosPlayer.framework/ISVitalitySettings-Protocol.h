@@ -7,16 +7,12 @@
 #import "NSObject.h"
 
 @protocol ISVitalitySettings <NSObject>
-- (double)minimumDurationForColorMismatch;
+- (double)maxVitalityDelay;
 - (double)maximumDelayBeforePlayback;
 - (double)minimumVisibilityFactor;
 - (double)endTimeOffset;
 - (double)playbackRate;
-- (long long)maximumNumberOfFrames;
-- (double)relativeEnd;
-- (double)relativeStart;
-- (double)maximumDeceleration;
-- (double)maximumRate;
+- (double)minimumPhotoTransitionDuration;
 - (double)postDuration;
 - (double)preDuration;
 - (long long)behavior;

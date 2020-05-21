@@ -6,13 +6,11 @@
 
 #import <AppKit/NSPanel.h>
 
-@class CALayer, _NSFullScreenTransition;
+@class CALayer;
 
 __attribute__((visibility("hidden")))
 @interface _NSFullScreenTransitionOverlayWindow : NSPanel
 {
-    _NSFullScreenTransition *fullScreenTransition;
-    unsigned int transitionedWindow;
     struct CGRect _transitionedWindowTargetFrame;
     id _transitionedWindowBeforeContents;
     id _transitionedWindowAfterContents;
@@ -22,35 +20,28 @@ __attribute__((visibility("hidden")))
     CALayer *rootLayer;
     CALayer *_transitionedWindowBeforeLayer;
     CALayer *_transitionedWindowAfterLayer;
-    unsigned int shieldWindowNumber;
 }
 
-@property(nonatomic) unsigned int shieldWindowNumber; // @synthesize shieldWindowNumber;
 @property(nonatomic) struct CGRect shadowAfterDeltaRect; // @synthesize shadowAfterDeltaRect=_shadowAfterDeltaRect;
 @property(nonatomic) struct CGRect shadowDeltaRect; // @synthesize shadowDeltaRect;
 @property(nonatomic) struct CGRect windowSnapshotStartFrame; // @synthesize windowSnapshotStartFrame=_windowSnapshotStartFrame;
 @property(retain, nonatomic) id transitionedWindowAfterContents; // @synthesize transitionedWindowAfterContents=_transitionedWindowAfterContents;
 @property(retain, nonatomic) id transitionedWindowBeforeContents; // @synthesize transitionedWindowBeforeContents=_transitionedWindowBeforeContents;
 @property(nonatomic) struct CGRect transitionedWindowTargetFrame; // @synthesize transitionedWindowTargetFrame=_transitionedWindowTargetFrame;
-@property(nonatomic) unsigned int transitionedWindow; // @synthesize transitionedWindow;
 - (BOOL)_hostsLayersInWindowServer;
 - (void)dealloc;
 - (void)disableAutomaticTermination;
 - (void)enableAutomaticTermination;
 - (void)startExitFullScreenAnimationWithDuration:(double)arg1 reduced:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)exitFullScreenAnimationFinished;
 - (void)startEnterFullScreenAnimationWithDuration:(double)arg1 reduced:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (struct CGRect)_adjustedWindowEndFrame;
-- (void)enterFullScreenAnimationFinished;
 - (void)orderWindow:(long long)arg1 relativeTo:(long long)arg2;
 - (void)positionLayersForEnter:(BOOL)arg1 reduced:(BOOL)arg2;
 - (struct CGRect)adjustedStartFrame;
-- (void)display;
-- (void)displayIfNeeded;
 - (struct CGRect)constrainFrameRect:(struct CGRect)arg1 toScreen:(id)arg2;
 - (void)_setWindowTag;
 - (BOOL)_shouldAutoFlattenLayerTree;
-- (id)initWithFullScreenTransition:(id)arg1 screen:(id)arg2;
+- (id)initWithScreen:(id)arg1;
 
 @end
 

@@ -7,6 +7,6 @@
 #import "GEOLocation.h"
 
 @interface GEOLocation (CLGeocoderExtras)
-- (id)_initWithCLClientLocation:(const CDStruct_1920e936 *)arg1;
+- (id)_initWithCLClientLocation:(const CDStruct_4d1fbe9a *)arg1;
 @end
 

@@ -15,7 +15,7 @@
 {
     struct CGRect windowRect;
     int windowStyleMask;
-    int windowBacking;
+    unsigned long long windowBacking;
     NSString *windowTitle;
     id viewClass;
     NSString *windowClass;
@@ -64,11 +64,17 @@
     BOOL _maxFullScreenContentSizeIsSet;
     NSString *_tabbingIdentifier;
     long long _tabbingMode;
+    long long _titleVisibility;
+    BOOL _titlebarAppearsTransparent;
+    long long _level;
 }
 
 + (void)initialize;
 @property BOOL maxFullScreenContentSizeIsSet; // @synthesize maxFullScreenContentSizeIsSet=_maxFullScreenContentSizeIsSet;
 @property BOOL minFullScreenContentSizeIsSet; // @synthesize minFullScreenContentSizeIsSet=_minFullScreenContentSizeIsSet;
+@property long long level; // @synthesize level=_level;
+@property BOOL titlebarAppearsTransparent; // @synthesize titlebarAppearsTransparent=_titlebarAppearsTransparent;
+@property long long titleVisibility; // @synthesize titleVisibility=_titleVisibility;
 @property long long tabbingMode; // @synthesize tabbingMode=_tabbingMode;
 @property(copy, nonatomic) NSString *tabbingIdentifier; // @synthesize tabbingIdentifier=_tabbingIdentifier;
 @property(retain, nonatomic) NSViewController *contentViewController; // @synthesize contentViewController=_contentViewController;

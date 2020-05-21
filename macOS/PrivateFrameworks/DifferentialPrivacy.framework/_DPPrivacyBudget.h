@@ -15,27 +15,25 @@
     _DPPrivacyBudgetRecord *_budgetRecord;
 }
 
-+ (void)saveAllBudgetsIn:(id)arg1;
 + (BOOL)createDatabaseRecordIfMissingIn:(id)arg1 key:(id)arg2 balance:(long long)arg3;
++ (id)fetchBudgetKeyNamesFrom:(id)arg1;
 + (id)fetchBudgetRecordFrom:(id)arg1 key:(id)arg2;
 + (void)createBudgetRecordsIn:(id)arg1;
++ (void)updateAllBudgetsUnsafeIn:(id)arg1;
 + (void)updateAllBudgetsIn:(id)arg1;
-+ (long long)balanceForbudgetWithName:(id)arg1;
++ (void)resetLastUpdateDateForName:(id)arg1;
++ (long long)balanceForBudgetWithName:(id)arg1;
 + (BOOL)credit:(unsigned long long)arg1 budgetWithName:(id)arg2;
 + (BOOL)debit:(unsigned long long)arg1 budgetWithName:(id)arg2;
++ (void)removeBudgetWithName:(id)arg1;
 + (id)budgetWithName:(id)arg1;
 + (void)initialize;
-@property(readonly, nonatomic) _DPPrivacyBudgetRecord *budgetRecord; // @synthesize budgetRecord=_budgetRecord;
+- (void).cxx_destruct;
+@property(retain) _DPPrivacyBudgetRecord *budgetRecord; // @synthesize budgetRecord=_budgetRecord;
 @property(readonly, nonatomic) _DPPrivacyBudgetProperties *budgetProperties; // @synthesize budgetProperties=_budgetProperties;
 @property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (BOOL)initializeBudgetRecordFrom:(id)arg1;
-- (long long)balanceUnsafe;
-- (BOOL)debitUnsafe:(unsigned long long)arg1;
-- (BOOL)creditUnsafe:(unsigned long long)arg1;
 - (id)description;
-- (BOOL)debit:(unsigned long long)arg1;
-- (BOOL)credit:(unsigned long long)arg1;
 - (id)initWithName:(id)arg1 budgetProperties:(id)arg2;
 - (id)init;
 

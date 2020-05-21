@@ -6,7 +6,7 @@
 
 #import <CoreUI/CUIThemeRendition.h>
 
-@class CUIRenditionMetrics, CUIRenditionSliceInformation, MTLTextureDescriptor, NSMutableArray, _CSIRenditionBlockData;
+@class CUIRenditionMetrics, CUIRenditionSliceInformation, NSMutableArray, _CSIRenditionBlockData;
 
 __attribute__((visibility("hidden")))
 @interface _CUIThemePixelRendition : CUIThemeRendition
@@ -18,9 +18,10 @@ __attribute__((visibility("hidden")))
     CUIRenditionSliceInformation *_sliceInformation;
     _CSIRenditionBlockData *_cachedBlockDataBGRX;
     _CSIRenditionBlockData *_cachedBlockDataRGBX;
+    _CSIRenditionBlockData *_cachedBlockDataGray;
     unsigned long long _sourceRowbytes;
     NSMutableArray *_layers;
-    MTLTextureDescriptor *_textureDescriptor;
+    struct CGSize _unslicedSize;
 }
 
 - (BOOL)edgesOnly;
@@ -36,6 +37,7 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)sourceRowbytes;
 - (void)setSharedBlockData:(id)arg1;
 - (id)copySharedBlockDataWithPixelFormat:(int)arg1;
+- (struct CGSize)unslicedSize;
 - (int)pixelFormat;
 - (id)_initWithCSIHeader:(const struct _csiheader *)arg1;
 - (struct CGImage *)newImageFromCSIDataSlice:(struct _slice)arg1 ofBitmap:(struct _csibitmap *)arg2 usingColorspace:(struct CGColorSpace *)arg3;

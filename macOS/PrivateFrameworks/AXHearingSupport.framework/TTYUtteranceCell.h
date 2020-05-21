@@ -20,10 +20,10 @@
 }
 
 + (double)heightForUtterance:(id)arg1 andWidth:(double)arg2;
+- (void).cxx_destruct;
 @property(nonatomic) id <TTYUtteranceCellDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic, getter=isEditingUtterance) BOOL editingUtterance; // @synthesize editingUtterance=_editingUtterance;
 @property(retain, nonatomic) TTYUtterance *utterance; // @synthesize utterance=_utterance;
-- (void).cxx_destruct;
 - (id)accessibilityLabel;
 - (BOOL)isAccessibilityElement;
 - (void)updateLayout;
@@ -32,6 +32,7 @@
 - (void)textDidChange:(id)arg1;
 - (void)adjustTextViewSize;
 - (double)preferredHeightForWidth:(double)arg1;
+- (struct CGSize)preferredSizeForSize:(struct CGSize)arg1;
 - (void)dealloc;
 - (void)setSendProgressIndex:(unsigned long long)arg1;
 - (void)updateUtterance:(id)arg1;

@@ -13,5 +13,6 @@
 @property(copy) NSArray *recipients;
 @property(copy) NSArray *entityNames;
 @property(copy) NSString *shareMode;
+- (id)init;
 @end
 

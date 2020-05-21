@@ -17,6 +17,7 @@
 }
 
 + (void)initialize;
++ (BOOL)expectsPropertyRevisedNotifications;
 + (BOOL)supportsSecureCoding;
 @property(readonly, copy, nonatomic) NSDictionary *URLAssetInitializationOptions;
 - (BOOL)_setURLAssetInitializationOptions:(id)arg1 error:(id *)arg2;
@@ -39,7 +40,6 @@
 - (void)_loadAssetInspectorAndLoaderOnce;
 - (struct OpaqueFigMutableComposition *)_mutableComposition;
 - (id)description;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 - (id)_initWithComposition:(id)arg1;

@@ -4,29 +4,28 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <CloudDocsDaemon/BRCPersistedState.h>
 
-#import "NSCopying.h"
-#import "NSSecureCoding.h"
-
-@class CKServerChangeToken, NSDate;
+@class CKOperationGroup, CKServerChangeToken, NSDate;
 
 __attribute__((visibility("hidden")))
-@interface BRCZoneHealthSyncPersistedState : NSObject <NSSecureCoding, NSCopying>
+@interface BRCZoneHealthSyncPersistedState : BRCPersistedState
 {
     BOOL _needsSyncDown;
     NSDate *_lastSyncDownDate;
     CKServerChangeToken *_changeToken;
     unsigned long long _requestID;
+    CKOperationGroup *_ckGroup;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)loadFromClientStateInSession:(id)arg1;
++ (id)loadFromClientStateInSession:(id)arg1 options:(id)arg2;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CKOperationGroup *ckGroup; // @synthesize ckGroup=_ckGroup;
 @property(nonatomic) BOOL needsSyncDown; // @synthesize needsSyncDown=_needsSyncDown;
 @property(readonly, nonatomic) unsigned long long requestID; // @synthesize requestID=_requestID;
 @property(readonly, nonatomic) CKServerChangeToken *changeToken; // @synthesize changeToken=_changeToken;
 @property(readonly) NSDate *lastSyncDownDate; // @synthesize lastSyncDownDate=_lastSyncDownDate;
-- (void).cxx_destruct;
 - (id)description;
 - (unsigned long long)allocateNextRequestID;
 - (void)zoneHealthWasReset;

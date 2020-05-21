@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface _CNSpatialBufferingStrategy : NSObject <_CNBufferingStrategy>
 {
     unsigned long long _capacity;

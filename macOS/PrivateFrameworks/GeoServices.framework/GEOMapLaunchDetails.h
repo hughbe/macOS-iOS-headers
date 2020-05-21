@@ -8,16 +8,11 @@
 
 #import "NSCopying.h"
 
-@class NSString;
-
 @interface GEOMapLaunchDetails : PBCodable <NSCopying>
 {
-    NSString *_launchUri;
-    NSString *_sourceAppId;
 }
 
-@property(retain, nonatomic) NSString *launchUri; // @synthesize launchUri=_launchUri;
-@property(retain, nonatomic) NSString *sourceAppId; // @synthesize sourceAppId=_sourceAppId;
++ (BOOL)isValid:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +20,9 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-@property(readonly, nonatomic) BOOL hasLaunchUri;
-@property(readonly, nonatomic) BOOL hasSourceAppId;
-- (void)dealloc;
 
 @end
 

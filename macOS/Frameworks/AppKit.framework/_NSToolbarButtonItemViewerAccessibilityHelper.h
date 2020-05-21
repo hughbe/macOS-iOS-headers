@@ -6,10 +6,13 @@
 
 #import <AppKit/_NSToolbarProxyItemViewerAccessibilityHelper.h>
 
+__attribute__((visibility("hidden")))
 @interface _NSToolbarButtonItemViewerAccessibilityHelper : _NSToolbarProxyItemViewerAccessibilityHelper
 {
 }
 
+- (BOOL)isAccessibilityElement;
+- (BOOL)accessibilityIsIgnored;
 - (id)accessibilityRoleAttribute;
 - (id)initWithToolbarItemViewer:(id)arg1;
 - (id)_accessibilityToolbarButtonElement;

@@ -8,31 +8,33 @@
 
 #import "VKAnchorDelegate.h"
 
-@class MDDisplayLayer, NSString;
+@class NSString;
 
 @interface VKAnchorWrapper : NSObject <VKAnchorDelegate>
 {
     shared_ptr_2fc78ff4 _anchor;
     BOOL _followsTerrain;
     struct CGPoint _screenPointInCanvas;
-    struct LayoutContext *_lastLayoutContext;
+    struct CGSize _canvasSize;
+    const struct CameraContext *_cameraContext;
+    struct AnchorManager *_anchorManager;
     struct Coordinate2D<Degrees, double> _lastCoordinate;
     BOOL _isUpdating;
     double _pointsPerMeter;
-    MDDisplayLayer *_displayLayer;
+    id <MDRenderTarget> _displayLayer;
 }
 
-@property(nonatomic) MDDisplayLayer *displayLayer; // @synthesize displayLayer=_displayLayer;
-@property(nonatomic) BOOL followsTerrain; // @synthesize followsTerrain=_followsTerrain;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) id <MDRenderTarget> displayLayer; // @synthesize displayLayer=_displayLayer;
+@property(nonatomic) BOOL followsTerrain; // @synthesize followsTerrain=_followsTerrain;
 - (void)anchorWorldPointDidChange:(void *)arg1;
 - (void)updateIfNeeded;
-- (void)layoutWithContext:(struct LayoutContext *)arg1;
-- (void)_updateCachedPointWithContext:(struct LayoutContext *)arg1;
-- (shared_ptr_2fc78ff4)_anchorWithContext:(struct LayoutContext *)arg1;
+- (void)layoutWithContext:(const struct LayoutContext *)arg1;
+- (void)_updateCachedPoint;
+- (shared_ptr_2fc78ff4)_anchorWithContext:(struct AnchorManager *)arg1;
 - (double)pointOffsetForDistanceOffset:(double)arg1;
-- (struct CGPoint)pointInLayer:(id)arg1;
+- (struct CGPoint)pointInLayer:(id)arg1 bound:(struct CGRect)arg2;
 @property(readonly, nonatomic) CDStruct_c3b9c2ee coordinate;
 - (void)destroyAnchor;
 - (void)dealloc;

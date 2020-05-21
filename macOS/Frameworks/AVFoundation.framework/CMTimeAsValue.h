@@ -6,12 +6,18 @@
 
 #import "NSValue.h"
 
+__attribute__((visibility("hidden")))
 @interface CMTimeAsValue : NSValue
 {
     CDStruct_1b6d18a9 _time;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)valueWithCMTime:(CDStruct_1b6d18a9)arg1;
+- (Class)classForCoder;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqualToValue:(id)arg1;
 - (id)description;

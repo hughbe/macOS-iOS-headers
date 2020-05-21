@@ -6,18 +6,27 @@
 
 #import <SocialUI/SOChatDisplayController.h>
 
-@class NSMutableDictionary, NSUndoManager;
+@class NSDate, NSMutableDictionary, NSUndoManager;
 
 @interface SONewChatDisplayController : SOChatDisplayController
 {
     NSMutableDictionary *_knownIDStatus;
+    NSDate *_referenceDate;
     NSUndoManager *_recipientBarUndoManager;
 }
 
-@property(readonly, nonatomic) NSUndoManager *recipientBarUndoManager; // @synthesize recipientBarUndoManager=_recipientBarUndoManager;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSUndoManager *recipientBarUndoManager; // @synthesize recipientBarUndoManager=_recipientBarUndoManager;
+@property(copy, nonatomic) NSDate *referenceDate; // @synthesize referenceDate=_referenceDate;
+- (long long)compareForConversationListSorting:(id)arg1;
+- (id)init;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)chatTranscriptItems;
+- (id)chatTranscriptItemAtIndex:(unsigned long long)arg1;
+- (unsigned long long)numberOfChatTranscriptItems;
+- (BOOL)filterEmptyChatOut;
 - (BOOL)removeParticipant:(id)arg1;
 - (BOOL)canInsertFilesAtURLs:(id)arg1 intoInputLineContentsReturningError:(id *)arg2;
 - (unsigned long long)validateIMHandle:(id)arg1;

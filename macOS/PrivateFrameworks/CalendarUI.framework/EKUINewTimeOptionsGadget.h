@@ -9,12 +9,13 @@
 #import "EKUINewTimeOptionViewDelegate.h"
 #import "EKUIShowMoreOptionViewDelegate.h"
 
-@class CalUIControlView, EKEvent, EKInviteeAlternativeTimeSearcher, EKUINewTimeOptionView, EKUIShowMoreOptionView, NSArray, NSDate, NSStackView, NSString, NSView;
+@class CalUIControlView, EKEvent, EKInviteeAlternativeTimeSearcher, EKUINewTimeOptionView, EKUIProposedTimeDateTimeGadget, EKUIShowMoreOptionView, NSArray, NSDate, NSStackView, NSString, NSView;
 
 @interface EKUINewTimeOptionsGadget : EKUISingleViewGadget <EKUINewTimeOptionViewDelegate, EKUIShowMoreOptionViewDelegate>
 {
     BOOL _hasAvailabilityResults;
     CalUIControlView *_container;
+    EKUIProposedTimeDateTimeGadget *_proposedTimeDateTimeGadget;
     NSStackView *_containerStackView;
     NSStackView *_allInviteesStackView;
     NSStackView *_someInviteesStackView;
@@ -34,6 +35,7 @@
 }
 
 + (id)interestedChangeKeys;
+- (void).cxx_destruct;
 @property(retain) NSArray *someInviteeTimes; // @synthesize someInviteeTimes=_someInviteeTimes;
 @property(retain) NSArray *allInviteeTimes; // @synthesize allInviteeTimes=_allInviteeTimes;
 @property(retain) NSDate *currentProposedStartDate; // @synthesize currentProposedStartDate=_currentProposedStartDate;
@@ -51,8 +53,8 @@
 @property(retain) NSStackView *someInviteesStackView; // @synthesize someInviteesStackView=_someInviteesStackView;
 @property(retain) NSStackView *allInviteesStackView; // @synthesize allInviteesStackView=_allInviteesStackView;
 @property(retain) NSStackView *containerStackView; // @synthesize containerStackView=_containerStackView;
+@property(retain) EKUIProposedTimeDateTimeGadget *proposedTimeDateTimeGadget; // @synthesize proposedTimeDateTimeGadget=_proposedTimeDateTimeGadget;
 @property(retain) CalUIControlView *container; // @synthesize container=_container;
-- (void).cxx_destruct;
 - (void)showMoreOptionsForView:(id)arg1;
 - (void)selectAlternativeTimeView:(id)arg1;
 - (double)maxHeight;
@@ -61,11 +63,13 @@
 - (BOOL)shouldDisplay;
 - (void)updateWithChanges:(id)arg1;
 - (id)control;
+- (BOOL)_proposalDateIsEqual:(id)arg1;
 - (void)_refreshIfNeeded;
 - (void)_searcherStateChanged:(long long)arg1;
 - (id)_createNewTimeOptionViewWithAlternativeTime:(id)arg1;
 - (void)showAdditionalSomeInviteeTime;
 - (void)showAdditionalAllInviteeTime;
+- (void)_updateShowMoreVisibilityOnShowMoreView:(id)arg1 inStackView:(id)arg2;
 - (BOOL)canShowAdditionalSomeInviteeTime;
 - (BOOL)canShowAdditionalAllInviteeTime;
 - (void)updateAvailabilityResults;

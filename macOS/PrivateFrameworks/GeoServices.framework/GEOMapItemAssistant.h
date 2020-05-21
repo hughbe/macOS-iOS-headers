@@ -23,6 +23,7 @@
     GEOAddressObject *_addressObject;
 }
 
+- (void).cxx_destruct;
 - (id)weatherDisplayName;
 - (id)addressObject;
 - (float)_normalizedUserRatingScore;
@@ -33,13 +34,13 @@
 - (BOOL)_hasMUID;
 - (id)geoAddress;
 - (id)_place;
+- (BOOL)_responseStatusIsIncomplete;
 - (BOOL)_hasResolvablePartialInformation;
 - (id)addressDictionary;
 - (CDStruct_c3b9c2ee)coordinate;
 - (id)name;
 - (BOOL)isValid;
 - (id)description;
-- (void)dealloc;
 - (id)initWithWithLocation:(id)arg1 addressDictionary:(id)arg2 name:(id)arg3 businessURL:(id)arg4 phoneNumber:(id)arg5 sessionID:(id)arg6 muid:(unsigned long long)arg7 attributionID:(id)arg8 sampleSizeForUserRatingScore:(unsigned int)arg9 normalizedUserRatingScore:(float)arg10;
 
 @end

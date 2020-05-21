@@ -7,7 +7,6 @@
 #import "MCFileWrapper.h"
 
 @interface MCFileWrapper (MailAdditions)
-+ (id)_quarantinePropertiesQueue;
 - (void)setPreferredFilename:(id)arg1;
 - (BOOL)writeToURL:(id)arg1 options:(unsigned long long)arg2 originalContentsURL:(id)arg3 error:(id *)arg4;
 - (id)sharedKeySetForQuarantineProperties;

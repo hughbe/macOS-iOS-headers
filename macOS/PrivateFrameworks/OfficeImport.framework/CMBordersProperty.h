@@ -22,6 +22,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)isStroked:(id)arg1;
+- (void).cxx_destruct;
 - (id)colorString;
 - (id)widthString;
 - (id)styleString;

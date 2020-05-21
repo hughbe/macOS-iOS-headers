@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class IDSSession, NSDictionary, NSFileHandle, NSMutableSet, NSString, NSXPCConnection, NWDatagramConnection;
+@class IDSSession, NSDictionary, NSFileHandle, NSMutableSet, NSString, NSXPCConnection, NWConnectionManager, NWDatagramConnection;
 
 @interface SSAddress : NSObject <NSCopying>
 {
@@ -28,7 +28,9 @@
     unsigned long long _multicastPort;
     unsigned long long _session;
     IDSSession *_idsSession;
-    NWDatagramConnection *_connection;
+    IDSSession *_idsSessionOSX_QR;
+    NWDatagramConnection *_datagramConnection;
+    NWConnectionManager *_datagramConnectionManager;
     NSMutableSet *_types;
     NSFileHandle *__socketHandle;
     struct in6_addr _address;
@@ -36,20 +38,25 @@
 
 + (id)multicastUDPSocketAddressWithSocket:(int)arg1 remoteIPPort:(id)arg2 multicastAddress:(unsigned long long)arg3 multicastPort:(unsigned long long)arg4 session:(unsigned long long)arg5;
 + (id)udpSocketAddressWithSocket:(int)arg1 remoteIPPort:(id)arg2;
++ (id)addressWithNWDatagramConnection:(id)arg1 xpcConnection:(id)arg2 NWConnectionManager:(id)arg3 fromAcceptedInvitationAtAddress:(id)arg4;
 + (id)addressWithNWDatagramConnection:(id)arg1 remoteIPPort:(id)arg2 fromAcceptedInvitationAtAddress:(id)arg3;
 + (id)udpSocketAddressWithSocket:(int)arg1 remoteIPPort:(id)arg2 fromAcceptedInvitationAtAddress:(id)arg3;
 + (id)udpSocketAddressWithSocketHandle:(id)arg1 remoteIPPort:(id)arg2 xpcConnection:(id)arg3 fromAcceptedInvitationAtAddress:(id)arg4;
 + (id)appleIDAddressWithIDSSession:(id)arg1 fromAddress:(id)arg2;
++ (id)appleIDAddressWithIDSSession:(id)arg1 osxSecondarySession:(id)arg2 fromAddress:(id)arg3;
 + (id)addressFromString:(id)arg1;
 + (id)ipv6AddressWithIn6Addr:(struct in6_addr)arg1 port:(unsigned short)arg2 bonjourName:(id)arg3 resolvedFromAddress:(id)arg4;
 + (id)ipv6AddressWithIn6Addr:(struct in6_addr)arg1 port:(unsigned short)arg2;
 + (id)ipv6AddressWithIn6Addr:(struct in6_addr)arg1 port:(unsigned short)arg2 resolvedFromAddress:(id)arg3;
 + (id)stringFromIn6Addr:(struct in6_addr)arg1 port:(unsigned short)arg2;
 + (id)optionsFromURL:(id)arg1;
++ (id)newSSAddress;
 @property(retain) NSFileHandle *_socketHandle; // @synthesize _socketHandle=__socketHandle;
 @property BOOL isOSX_10OrLater; // @synthesize isOSX_10OrLater=_isOSX_10OrLater;
 @property(retain) NSMutableSet *types; // @synthesize types=_types;
-@property(readonly) NWDatagramConnection *connection; // @synthesize connection=_connection;
+@property(retain) NWConnectionManager *datagramConnectionManager; // @synthesize datagramConnectionManager=_datagramConnectionManager;
+@property(retain) NWDatagramConnection *datagramConnection; // @synthesize datagramConnection=_datagramConnection;
+@property(retain) IDSSession *idsSessionOSX_QR; // @synthesize idsSessionOSX_QR=_idsSessionOSX_QR;
 @property(retain) IDSSession *idsSession; // @synthesize idsSession=_idsSession;
 @property unsigned long long session; // @synthesize session=_session;
 @property unsigned long long multicastPort; // @synthesize multicastPort=_multicastPort;
@@ -67,6 +74,8 @@
 @property int resolverStatus; // @synthesize resolverStatus;
 @property unsigned short port; // @synthesize port;
 - (id)canonicalURLWithStrippedUser:(BOOL)arg1 passwordBullets:(BOOL)arg2;
+- (BOOL)isLinkLocalIPv6;
+- (BOOL)foundPhoneNumber:(id)arg1;
 - (BOOL)foundBonjourInString:(id)arg1;
 - (BOOL)foundIPv4InString:(id)arg1;
 - (BOOL)foundIPv6InString:(id)arg1;
@@ -86,6 +95,7 @@
 @property(readonly, copy) NSString *invitationType;
 - (BOOL)hasAppleIDInvitationType;
 @property(readonly, copy) NSString *inviterName;
+@property(readonly, retain) NSString *idsDestination;
 @property(readonly, copy) NSString *connectionID;
 @property(readonly) BOOL isPerson;
 @property int socket;
@@ -94,6 +104,7 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithString:(id)arg1;
 - (id)init;
+- (id)addressCopy;
 
 @end
 

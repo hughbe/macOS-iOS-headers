@@ -14,9 +14,11 @@
 {
 }
 
++ (BOOL)supportsSecureCoding;
 
 // Remaining properties
 @property(readonly) const void *bytes; // @dynamic bytes;
 @property(readonly) unsigned long long length; // @dynamic length;
+
 @end
 

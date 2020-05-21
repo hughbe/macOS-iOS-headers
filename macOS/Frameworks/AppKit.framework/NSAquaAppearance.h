@@ -11,8 +11,8 @@ __attribute__((visibility("hidden")))
 {
 }
 
-- (BOOL)_isDefaultAppearance;
-- (id)name;
+- (id)_appearanceForNonVibrantContent;
+- (id)_appearanceForVibrantContent;
 
 @end
 

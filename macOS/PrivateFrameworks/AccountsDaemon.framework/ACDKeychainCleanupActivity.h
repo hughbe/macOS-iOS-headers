@@ -17,14 +17,16 @@
 
 + (id)sharedActivity;
 - (void).cxx_destruct;
-- (void)_unregisterActivity;
-- (BOOL)_canRemoveCredentialItem:(id)arg1;
-- (void)_removeCredentialItem:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
-- (void)_removeExpiredCredentials;
-- (void)_configureXPCActivityWithCriteria:(id)arg1;
-- (void)_queueCredentialItemWithAccount:(id)arg1 serviceName:(id)arg2;
+- (void)_activityQueue_unregisterActivity;
+- (void)_activityQueue_removeCredentialItem:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (BOOL)_removeExpiredCredentials;
+- (void)_activityQueue_removeExpiredCredentials;
+- (void)_activityQueue_registerXPCActivityWithCriteria:(id)arg1;
+- (void)_activityQueue_configureXPCActivityWithCriteria:(id)arg1;
+- (void)_activityQueue_queueCredentialItemWithAccount:(id)arg1 serviceName:(id)arg2;
+- (void)_activityQueue_checkIn;
 - (void)queueNonPersistentCredentialRemoval:(id)arg1;
-- (void)checkIn;
+- (void)checkInIfNecessary;
 - (id)init;
 
 @end

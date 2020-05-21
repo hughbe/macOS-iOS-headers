@@ -7,18 +7,36 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "PHMediaRequestThreadingOptions.h"
 
-@interface PHImageRequestOptions : NSObject <NSCopying>
+@class NSObject<OS_dispatch_queue>, NSString;
+
+@interface PHImageRequestOptions : NSObject <PHMediaRequestThreadingOptions, NSCopying>
 {
+    int _requestID;
     BOOL _networkAccessAllowed;
     BOOL _synchronous;
+    BOOL _allowPlaceholder;
+    BOOL _allowSecondaryOpportunisticImage;
+    BOOL _onlyUseFetchedAssetPropertiesDuringChoosing;
     long long _version;
     long long _deliveryMode;
     long long _resizeMode;
     CDUnknownBlockType _progressHandler;
+    long long _loadingMode;
+    NSObject<OS_dispatch_queue> *_resultHandlerQueue;
+    CDUnknownBlockType _cachingCompleteHandler;
     struct CGRect _normalizedCropRect;
 }
 
++ (id)defaultOptionsAllowingPlaceholder;
+- (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType cachingCompleteHandler; // @synthesize cachingCompleteHandler=_cachingCompleteHandler;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *resultHandlerQueue; // @synthesize resultHandlerQueue=_resultHandlerQueue;
+@property(nonatomic) BOOL onlyUseFetchedAssetPropertiesDuringChoosing; // @synthesize onlyUseFetchedAssetPropertiesDuringChoosing=_onlyUseFetchedAssetPropertiesDuringChoosing;
+@property(nonatomic) BOOL allowSecondaryOpportunisticImage; // @synthesize allowSecondaryOpportunisticImage=_allowSecondaryOpportunisticImage;
+@property(nonatomic) BOOL allowPlaceholder; // @synthesize allowPlaceholder=_allowPlaceholder;
+@property(nonatomic) long long loadingMode; // @synthesize loadingMode=_loadingMode;
 @property(copy, nonatomic) CDUnknownBlockType progressHandler; // @synthesize progressHandler=_progressHandler;
 @property(nonatomic, getter=isSynchronous) BOOL synchronous; // @synthesize synchronous=_synchronous;
 @property(nonatomic, getter=isNetworkAccessAllowed) BOOL networkAccessAllowed; // @synthesize networkAccessAllowed=_networkAccessAllowed;
@@ -26,10 +44,14 @@
 @property(nonatomic) long long resizeMode; // @synthesize resizeMode=_resizeMode;
 @property(nonatomic) long long deliveryMode; // @synthesize deliveryMode=_deliveryMode;
 @property(nonatomic) long long version; // @synthesize version=_version;
-- (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

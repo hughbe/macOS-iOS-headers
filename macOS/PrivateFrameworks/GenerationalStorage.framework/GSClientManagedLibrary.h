@@ -16,8 +16,8 @@ __attribute__((visibility("hidden")))
     GSTemporaryStorage *_ts;
 }
 
+- (void).cxx_destruct;
 - (BOOL)generationsRemove:(id)arg1 error:(id *)arg2;
-- (void)dealloc;
 - (id)initWithURL:(id)arg1 error:(id *)arg2;
 @property(readonly, nonatomic) NSString *nameSpace;
 @property(readonly, nonatomic) NSObject<GSAdditionStoring> *storage;

@@ -14,9 +14,11 @@ __attribute__((visibility("hidden")))
 @interface FI_TSharedServerViewController : NSNavSharedServerController <TNodeObserverProtocol>
 {
     _Bool _waitingToEject;
-    struct TNodeObserverCocoaBridge *_nodeObserver;
+    struct shared_ptr<TNodeObserverCocoaBridge> _nodeObserver;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 - (void)screenShareClicked:(id)arg1;
 - (void)askToUseODSClicked:(id)arg1;
 - (void)connectAsButtonClicked:(id)arg1;

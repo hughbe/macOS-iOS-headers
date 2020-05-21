@@ -11,15 +11,17 @@
 __attribute__((visibility("hidden")))
 @interface FI_TAirDropLegacyModeButtonController : FI_TViewController
 {
-    struct TNSRef<FI_TAirDropDiscoveryController *, void> _discoveryController;
-    struct TNSRef<FI_TAirDropLegacyModePopoverViewController *, void> _popoverViewContoller;
+    struct TNSRef<FI_TAirDropDiscoveryController, void> _discoveryController;
+    struct TNSRef<FI_TAirDropLegacyModePopoverViewController, void> _popoverViewContoller;
     struct TNotificationCenterObserver _popoverWillCloseObserver;
 }
 
++ (id)keyPathsForValuesAffectingLegacyModeSupported;
 + (id)keyPathsForValuesAffectingButtonTitle;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)popoverWillClose;
+@property(readonly, getter=isLegacyModeSupported) _Bool legacyModeSupported;
 - (void)buttonPressed:(id)arg1;
 @property(readonly, retain, nonatomic) NSString *buttonTitle; // @dynamic buttonTitle;
 @property(readonly) FI_TAirDropDiscoveryController *discoveryController;

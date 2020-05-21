@@ -22,6 +22,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)canClose;
 - (BOOL)monitorItemDescriptionChanges;
 - (BOOL)allowAlternateSpeechToTitle;
+- (void)addItemDescriptionForBrailleToRequest:(id)arg1;
 - (void)addItemDescriptionToRequest:(id)arg1;
 - (void)addItemNameToRequest:(id)arg1;
 - (void)addItemShortNameToRequest:(id)arg1;

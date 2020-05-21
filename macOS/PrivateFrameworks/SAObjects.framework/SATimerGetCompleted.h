@@ -16,6 +16,7 @@
 
 + (id)getCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getCompleted;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SATimerObject *timer;
 - (id)encodedClassName;
 - (id)groupIdentifier;

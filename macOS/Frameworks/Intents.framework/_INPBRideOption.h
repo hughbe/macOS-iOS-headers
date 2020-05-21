@@ -7,17 +7,23 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBRideOption.h"
 
-@class NSMutableArray, NSString, PBUnknownFields, _INPBImageValue, _INPBPriceRangeValue, _INPBTimestamp, _INPBUserActivity;
+@class NSArray, NSString, _INPBImageValue, _INPBPriceRangeValue, _INPBTimestamp, _INPBUserActivity;
 
-@interface _INPBRideOption : PBCodable <NSCopying>
+@interface _INPBRideOption : PBCodable <_INPBRideOption, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    NSMutableArray *_availablePartySizeOptions;
+    struct {
+        unsigned int usesMeteredFare:1;
+    } _has;
+    BOOL _usesMeteredFare;
+    BOOL __encodeLegacyGloryData;
+    NSArray *_availablePartySizeOptions;
     NSString *_availablePartySizeOptionsSelectionPrompt;
     NSString *_disclaimerMessage;
     _INPBTimestamp *_estimatedPickupDate;
-    NSMutableArray *_fareLineItems;
+    NSArray *_fareLineItems;
     NSString *_name;
     _INPBPriceRangeValue *_priceRange;
     NSString *_specialPricing;
@@ -26,47 +32,54 @@
     _INPBUserActivity *_userActivityForBookingInApplication;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)fareLineItemsType;
 + (Class)availablePartySizeOptionsType;
-+ (id)options;
-@property(retain, nonatomic) _INPBUserActivity *userActivityForBookingInApplication; // @synthesize userActivityForBookingInApplication=_userActivityForBookingInApplication;
-@property(retain, nonatomic) NSMutableArray *fareLineItems; // @synthesize fareLineItems=_fareLineItems;
-@property(retain, nonatomic) _INPBImageValue *specialPricingBadgeImage; // @synthesize specialPricingBadgeImage=_specialPricingBadgeImage;
-@property(retain, nonatomic) NSString *specialPricing; // @synthesize specialPricing=_specialPricing;
-@property(retain, nonatomic) NSString *availablePartySizeOptionsSelectionPrompt; // @synthesize availablePartySizeOptionsSelectionPrompt=_availablePartySizeOptionsSelectionPrompt;
-@property(retain, nonatomic) NSMutableArray *availablePartySizeOptions; // @synthesize availablePartySizeOptions=_availablePartySizeOptions;
-@property(retain, nonatomic) NSString *disclaimerMessage; // @synthesize disclaimerMessage=_disclaimerMessage;
-@property(retain, nonatomic) _INPBPriceRangeValue *priceRange; // @synthesize priceRange=_priceRange;
-@property(retain, nonatomic) _INPBTimestamp *estimatedPickupDate; // @synthesize estimatedPickupDate=_estimatedPickupDate;
-@property(retain, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
-@property(retain, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(nonatomic) BOOL usesMeteredFare; // @synthesize usesMeteredFare=_usesMeteredFare;
+@property(retain, nonatomic) _INPBUserActivity *userActivityForBookingInApplication; // @synthesize userActivityForBookingInApplication=_userActivityForBookingInApplication;
+@property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
+@property(retain, nonatomic) _INPBImageValue *specialPricingBadgeImage; // @synthesize specialPricingBadgeImage=_specialPricingBadgeImage;
+@property(copy, nonatomic) NSString *specialPricing; // @synthesize specialPricing=_specialPricing;
+@property(retain, nonatomic) _INPBPriceRangeValue *priceRange; // @synthesize priceRange=_priceRange;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
+@property(copy, nonatomic) NSArray *fareLineItems; // @synthesize fareLineItems=_fareLineItems;
+@property(retain, nonatomic) _INPBTimestamp *estimatedPickupDate; // @synthesize estimatedPickupDate=_estimatedPickupDate;
+@property(copy, nonatomic) NSString *disclaimerMessage; // @synthesize disclaimerMessage=_disclaimerMessage;
+@property(copy, nonatomic) NSString *availablePartySizeOptionsSelectionPrompt; // @synthesize availablePartySizeOptionsSelectionPrompt=_availablePartySizeOptionsSelectionPrompt;
+@property(copy, nonatomic) NSArray *availablePartySizeOptions; // @synthesize availablePartySizeOptions=_availablePartySizeOptions;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
+@property(nonatomic) BOOL hasUsesMeteredFare;
 @property(readonly, nonatomic) BOOL hasUserActivityForBookingInApplication;
-- (id)fareLineItemsAtIndex:(unsigned long long)arg1;
-- (unsigned long long)fareLineItemsCount;
-- (void)addFareLineItems:(id)arg1;
-- (void)clearFareLineItems;
+@property(readonly, nonatomic) BOOL hasSubtitle;
 @property(readonly, nonatomic) BOOL hasSpecialPricingBadgeImage;
 @property(readonly, nonatomic) BOOL hasSpecialPricing;
+@property(readonly, nonatomic) BOOL hasPriceRange;
+@property(readonly, nonatomic) BOOL hasName;
+- (id)fareLineItemsAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long fareLineItemsCount;
+- (void)addFareLineItems:(id)arg1;
+- (void)clearFareLineItems;
+@property(readonly, nonatomic) BOOL hasEstimatedPickupDate;
+@property(readonly, nonatomic) BOOL hasDisclaimerMessage;
 @property(readonly, nonatomic) BOOL hasAvailablePartySizeOptionsSelectionPrompt;
 - (id)availablePartySizeOptionsAtIndex:(unsigned long long)arg1;
-- (unsigned long long)availablePartySizeOptionsCount;
+@property(readonly, nonatomic) unsigned long long availablePartySizeOptionsCount;
 - (void)addAvailablePartySizeOptions:(id)arg1;
 - (void)clearAvailablePartySizeOptions;
-@property(readonly, nonatomic) BOOL hasDisclaimerMessage;
-@property(readonly, nonatomic) BOOL hasPriceRange;
-@property(readonly, nonatomic) BOOL hasEstimatedPickupDate;
-@property(readonly, nonatomic) BOOL hasSubtitle;
-@property(readonly, nonatomic) BOOL hasName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

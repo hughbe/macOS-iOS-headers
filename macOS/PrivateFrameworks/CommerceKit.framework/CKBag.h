@@ -4,23 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <CommerceKit/CKServiceInterface.h>
+#import "NSObject.h"
 
-@interface CKBag : CKServiceInterface
+@class CKStoreClient;
+
+@interface CKBag : NSObject
 {
+    CKStoreClient *_storeClient;
 }
 
-+ (void)_invalidateAllBags;
 + (id)valueForKey:(id)arg1;
 + (id)urlForKey:(id)arg1;
-+ (id)serialDispatchQueue;
 + (id)bagWithType:(unsigned long long)arg1;
 + (id)sandboxBox;
 + (id)productionBag;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) CKStoreClient *storeClient; // @synthesize storeClient=_storeClient;
 - (void)startUpdate;
 - (void)stopObservingBagWithObserver:(id)arg1;
 - (id)loadBagAndObserveUpdatesWithHandler:(CDUnknownBlockType)arg1;
-- (BOOL)_loadBagSynchronouslyReturningError:(id *)arg1;
 - (id)storefrontURL;
 - (id)dictionary;
 - (BOOL)sendGUIDWithURL:(id)arg1;
@@ -30,6 +32,7 @@
 - (id)urlForKey:(id)arg1;
 - (id)valueForKey:(id)arg1;
 - (id)initWithBagType:(unsigned long long)arg1;
+- (id)initWithStoreClient:(id)arg1;
 
 @end
 

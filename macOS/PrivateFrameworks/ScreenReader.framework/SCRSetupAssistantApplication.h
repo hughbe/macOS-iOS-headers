@@ -15,15 +15,18 @@ __attribute__((visibility("hidden")))
     SCRUIElement *_currentUIWindow;
 }
 
+- (void).cxx_destruct;
 - (BOOL)isPreLoginApp;
-- (int)imageMappingLevel;
-- (void)dealloc;
+- (long long)imageMappingLevel;
 - (void)_keyboardFocusDidChange:(id)arg1;
 - (void)_webAreaWasLoaded:(id)arg1;
 - (void)_titleWasDestroyed:(id)arg1;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (void)_setIsRegisteredForTitleDeath:(BOOL)arg1;
 - (void)setIsFocusedEventHandler:(BOOL)arg1;
+- (void)_focusIfNeeded;
+- (void)applicationDidInitialize;
+- (BOOL)isSetupAssistantApplication;
 
 @end
 

@@ -22,7 +22,6 @@
 - (void)removeLastRect;
 - (void)addRect:(struct PXMagazineRect)arg1;
 - (unsigned long long)rowsUsed;
-- (void)_makeACopyWith:(struct PXMagazineRect *)arg1 currentIndex:(unsigned long long)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 - (id)initWithSize:(unsigned long long)arg1;

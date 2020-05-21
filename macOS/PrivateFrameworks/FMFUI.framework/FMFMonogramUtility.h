@@ -11,12 +11,12 @@ __attribute__((visibility("hidden")))
 {
 }
 
++ (struct __CFString *)hexStringFromColor:(id)arg1;
 + (id)monogramImageOfDiameter:(double)arg1 forPerson:(id)arg2 monogramStyle:(long long)arg3 tintColor:(id)arg4 customFont:(id)arg5 isPersonImage:(char *)arg6;
 + (id)monogramImageOfDiameter:(double)arg1 forPerson:(id)arg2 useTintColor:(id)arg3 useCustomFont:(BOOL)arg4 isPersonImage:(char *)arg5;
 + (void)clearMonogramCache;
 + (id)contactStatusCache;
 + (id)contactImageCache;
-+ (void)setAddressBook:(id)arg1;
 
 @end
 

@@ -17,8 +17,10 @@
 + (id)sendTitle;
 + (id)replyTitle;
 + (id)revertTitle;
++ (id)cancelTitle;
 + (id)deleteTitle;
 + (id)showTitle;
++ (id)showOriginalTitle;
 - (BOOL)_useForwardButton;
 - (BOOL)_useProposeButton;
 - (BOOL)_useReplyButton;
@@ -27,6 +29,7 @@
 - (BOOL)_useSendButton;
 - (BOOL)_useRevertButton;
 - (BOOL)_useDeleteButton;
+- (BOOL)_useCancelProposalButton;
 - (void)thirdButtonClicked:(id)arg1;
 - (void)secondButtonClicked:(id)arg1;
 - (void)firstButtonClicked:(id)arg1;

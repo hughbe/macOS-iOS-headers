@@ -40,12 +40,8 @@ struct CGRect {
 };
 
 struct CGSize {
-    double _field1;
-    double _field2;
-};
-
-struct NSColor {
-    Class _field1;
+    double width;
+    double height;
 };
 
 struct NSEdgeInsets {
@@ -55,50 +51,7 @@ struct NSEdgeInsets {
     double right;
 };
 
-struct NSView {
-    Class _field1;
-    id _field2;
-    struct CGRect _field3;
-    struct CGRect _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    id _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    struct __VFlags {
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :5;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :2;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :6;
-        unsigned int :1;
-        unsigned int :1;
-    } _field13;
-    struct __VFlags2 {
-        unsigned int :14;
-        unsigned int :14;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-    } _field14;
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
 };
 

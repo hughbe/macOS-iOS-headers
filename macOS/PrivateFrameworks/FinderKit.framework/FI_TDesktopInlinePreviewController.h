@@ -9,16 +9,16 @@
 #import "QLInlinePreviewDelegate.h"
 #import "TTrackingAreaOwnerProtocol.h"
 
-@class NSString, QLPreviewView;
+@class NSObject<TDesktopInlinePreviewDataSource>, NSString, QLPreviewView;
 
 __attribute__((visibility("hidden")))
 @interface FI_TDesktopInlinePreviewController : NSObject <QLInlinePreviewDelegate, TTrackingAreaOwnerProtocol>
 {
-    struct TMutex _lock;
-    id <TDesktopInlinePreviewDataSource> _dataSource;
-    struct TNSRef<QLInlinePreviewController *, void> _rolloverInlinePreviewController;
-    struct TNSRef<QLInlinePreviewController *, void> _playInlinePreviewController;
-    struct TNSRef<QLInlinePreviewController *, void> _mouseInlinePreviewController;
+    struct mutex _lock;
+    struct TNSWeakPtr<NSObject<TDesktopInlinePreviewDataSource>, void> _weakDataSource;
+    struct TNSRef<QLInlinePreviewController, void> _rolloverInlinePreviewController;
+    struct TNSRef<QLInlinePreviewController, void> _playInlinePreviewController;
+    struct TNSRef<QLInlinePreviewController, void> _mouseInlinePreviewController;
 }
 
 - (id).cxx_construct;
@@ -45,7 +45,7 @@ __attribute__((visibility("hidden")))
 - (void)_stopInlinePreview;
 - (void)_startInlinePreview;
 @property(readonly, retain, nonatomic) QLPreviewView *sharedPreviewView; // @dynamic sharedPreviewView;
-- (void)setDataSource:(id)arg1;
+@property(nonatomic) __weak NSObject<TDesktopInlinePreviewDataSource> *dataSource;
 - (void)dealloc;
 - (id)initWithDataSource:(id)arg1;
 

@@ -14,6 +14,7 @@
 }
 
 + (BOOL)replacePersistentStore:(id)arg1 withURL:(id)arg2;
++ (BOOL)makeDatabaseAtURLClassCDataProtected:(id)arg1;
 + (id)mangedObjectWithURI:(id)arg1 inContext:(id)arg2;
 + (id)getStoreURLforContext:(id)arg1;
 + (id)getPropertyValueForKey:(id)arg1 forContext:(id)arg2;
@@ -24,13 +25,14 @@
 + (id)migrateDataStoreAtLocation:(id)arg1 withGetDestinationModel:(CDUnknownBlockType)arg2 isEncrypted:(BOOL)arg3;
 + (long long)mapToDBMErrorCode:(id)arg1;
 + (long long)versionForDBAtLocation:(id)arg1;
-+ (long long)getVersionForMappingModel:(id)arg1;
++ (id)modelForDBAtLocation:(id)arg1;
++ (long long)versionForManagedObjectModel:(id)arg1;
 + (id)instanceWithModelURL:(id)arg1;
 + (long long)isDataStoreAtURLInitialized:(id)arg1 withModelAtURL:(id)arg2;
 + (id)getPersistentCoordinator:(id)arg1;
-+ (id)dbOptions:(BOOL)arg1;
-@property(retain, nonatomic) NSPersistentStoreCoordinator *fPersistentStoreCoordinator; // @synthesize fPersistentStoreCoordinator;
++ (id)persistentStoreOptions:(BOOL)arg1;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSPersistentStoreCoordinator *fPersistentStoreCoordinator; // @synthesize fPersistentStoreCoordinator;
 - (id)createManagedObjectContext;
 - (void)removeDataStoreAtLocation:(id)arg1;
 - (BOOL)addDataStoreAtLocation:(id)arg1 isEncrypted:(BOOL)arg2;

@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     NSString *_serviceName;
     NSObject<OS_xpc_object> *_connection;
     NSObject<OS_dispatch_queue> *_queue;
+    int _pid;
     CDUnknownBlockType _receiveHandler;
 }
 
@@ -23,6 +24,7 @@ __attribute__((visibility("hidden")))
 + (id)allConnections;
 @property(readonly, copy) NSString *serviceName; // @synthesize serviceName=_serviceName;
 - (void)_processEvent:(id)arg1;
+- (int)dockPid;
 - (void)sendMessage:(id)arg1 synchronous:(BOOL)arg2 replyHandler:(CDUnknownBlockType)arg3;
 - (void)sendMessage:(id)arg1;
 - (void)_makeConnectionIfNeeded;

@@ -14,16 +14,24 @@
 }
 
 + (id)actionWithActions:(id)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSArray *subactions; // @synthesize subactions=_subactions;
-- (void)dealloc;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)hasAssociatedSound;
+- (BOOL)hasAssociatedSoundForDoubleAction;
+- (BOOL)_hasAssociatedSoundForDoubleAction:(BOOL)arg1;
+- (BOOL)shouldPerformDoubleActionIfPossible;
 - (unsigned long long)hash;
-- (void)repeatEnded;
+- (void)repeatEndedWithEventSourceData:(id)arg1;
 - (void)setRepeatCount:(unsigned long long)arg1;
-- (void)perform;
+- (void)performDoubleActionWithEventSourceData:(id)arg1;
+- (void)performDeactivateWithEventSourceData:(id)arg1;
+- (void)performWithEventSourceData:(id)arg1;
+- (void)setEventPerformer:(id)arg1;
+- (void)_performDoubleAction:(BOOL)arg1 eventSourceData:(id)arg2;
 - (id)paramDescription;
 - (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
+- (void)_configureWithPlistDictionary:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 

@@ -6,17 +6,26 @@
 
 #import "NSCollectionView.h"
 
-@class CNRecentLikenessesViewController;
+#import "NSAccessibilityGroup.h"
 
-@interface CNRecentLikenessesCollectionView : NSCollectionView
+@class CNRecentLikenessesViewController, NSString;
+
+@interface CNRecentLikenessesCollectionView : NSCollectionView <NSAccessibilityGroup>
 {
     CNRecentLikenessesViewController *_recentLikenessesViewController;
 }
 
-@property __weak CNRecentLikenessesViewController *recentLikenessesViewController; // @synthesize recentLikenessesViewController=_recentLikenessesViewController;
 - (void).cxx_destruct;
+@property __weak CNRecentLikenessesViewController *recentLikenessesViewController; // @synthesize recentLikenessesViewController=_recentLikenessesViewController;
+- (id)accessibilityLabel;
 - (BOOL)_autoConfigureScrollers;
 - (void)keyDown:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

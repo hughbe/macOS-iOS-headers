@@ -37,6 +37,7 @@ __attribute__((visibility("hidden")))
     NSArray *pageAlignmentsHorizontal;
     NSArray *pageAlignmentsVertical;
     struct CGRect initialDocumentFrame;
+    struct NSEdgeInsets initialContentInsets;
     struct CGPoint initialOriginConstraintLoc;
     struct CGSize initialStretchAmount;
     struct CGPoint initialClipOrigin;
@@ -50,6 +51,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) struct CGPoint initialClipOrigin; // @synthesize initialClipOrigin;
 @property(nonatomic) struct CGSize initialStretchAmount; // @synthesize initialStretchAmount;
 @property(nonatomic) struct CGPoint initialOriginConstraintLoc; // @synthesize initialOriginConstraintLoc;
+@property(nonatomic) struct NSEdgeInsets initialContentInsets; // @synthesize initialContentInsets;
 @property(nonatomic) struct CGRect initialDocumentFrame; // @synthesize initialDocumentFrame;
 @property(retain, nonatomic) NSArray *pageAlignmentsVertical; // @synthesize pageAlignmentsVertical;
 @property(retain, nonatomic) NSArray *pageAlignmentsHorizontal; // @synthesize pageAlignmentsHorizontal;

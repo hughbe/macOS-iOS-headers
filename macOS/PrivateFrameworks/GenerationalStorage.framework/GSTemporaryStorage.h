@@ -9,7 +9,7 @@
 #import "GSAdditionStoring.h"
 #import "GSAdditionStoringPrivate.h"
 
-@class NSURL;
+@class NSObject<OS_dispatch_queue>, NSURL;
 
 @interface GSTemporaryStorage : NSObject <GSAdditionStoringPrivate, GSAdditionStoring>
 {
@@ -17,14 +17,16 @@
     NSURL *_documentURL;
     NSURL *_stagingURL;
     int _lockFd;
+    NSObject<OS_dispatch_queue> *_workQueue;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSURL *documentURL; // @synthesize documentURL=_documentURL;
 @property(readonly, nonatomic) NSURL *libraryURL; // @synthesize libraryURL=_libraryURL;
 - (void)removeAllAdditionsForNamespaces:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)removeAdditions:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)_enumerateItemsAtURL:(id)arg1;
-- (struct NSEnumerator *)enumeratorForAdditionsInNameSpace:(id)arg1 withOptions:(unsigned long long)arg2 withoutOptions:(unsigned long long)arg3 ordering:(int)arg4;
+- (id)enumeratorForAdditionsInNameSpace:(id)arg1 withOptions:(unsigned long long)arg2 withoutOptions:(unsigned long long)arg3 ordering:(int)arg4;
 - (id)additionsWithNames:(id)arg1 inNameSpace:(id)arg2 error:(id *)arg3;
 - (id)additionWithName:(id)arg1 inNameSpace:(id)arg2 error:(id *)arg3;
 - (BOOL)replaceDocumentWithContentsOfItemAtURL:(id)arg1 preservingCurrentVersionWithCreationInfo:(id)arg2 createdAddition:(id *)arg3 error:(id *)arg4;

@@ -4,21 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <FinderKit/FI_TInfoWindowViewController.h>
+#import <FinderKit/FI_TBaseInfoWindowViewController.h>
 
 @class FI_TColumnQLPreviewViewController;
 
 __attribute__((visibility("hidden")))
-@interface FI_TColumnPreviewViewController : FI_TInfoWindowViewController
+@interface FI_TColumnPreviewViewController : FI_TBaseInfoWindowViewController
 {
     FI_TColumnQLPreviewViewController *_qlPreviewViewController;
+    struct TNSWeakPtr<NSLayoutConstraint, void> _maxRelativeHeightConstraint;
+    struct TNSWeakPtr<NSLayoutConstraint, void> _heightHintConstraint;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
+- (void)updateRelativeHeightConstraintForView:(id)arg1;
+@property(nonatomic) struct TFENode browserTargetNode;
+@property(nonatomic, getter=isApplicableToUI) _Bool applicableToUI; // @dynamic applicableToUI;
 - (void)targetNodesChanged;
-- (void)targetNodesChanging;
-- (void)setSubviewsHidden:(_Bool)arg1;
-- (_Bool)expandedDefaultValue;
-- (_Bool)expanded;
 - (void)loadValueControllers;
 
 @end

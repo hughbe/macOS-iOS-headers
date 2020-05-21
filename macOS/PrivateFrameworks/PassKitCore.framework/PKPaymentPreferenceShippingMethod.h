@@ -6,16 +6,15 @@
 
 #import <PassKitCore/PKPaymentPreference.h>
 
-@class NSNumberFormatter, NSString;
+@class NSString;
 
 @interface PKPaymentPreferenceShippingMethod : PKPaymentPreference
 {
-    NSNumberFormatter *_formatter;
     NSString *_currency;
 }
 
-@property(copy, nonatomic) NSString *currency; // @synthesize currency=_currency;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSString *currency; // @synthesize currency=_currency;
 - (BOOL)supportsDeletion;
 
 @end

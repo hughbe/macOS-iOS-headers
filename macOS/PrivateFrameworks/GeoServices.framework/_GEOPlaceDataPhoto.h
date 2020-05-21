@@ -8,23 +8,30 @@
 
 #import "GEOMapItemPhoto.h"
 
-@class GEOPDPhoto, GEOPhoto, NSString, NSURL;
+@class GEOPDCaptionedPhoto, GEOPDPhoto, NSArray, NSString, NSURL;
 
-__attribute__((visibility("hidden")))
 @interface _GEOPlaceDataPhoto : NSObject <GEOMapItemPhoto>
 {
     GEOPDPhoto *_photo;
-    GEOPhoto *_geoPhoto;
+    GEOPDCaptionedPhoto *_captionedPhoto;
+    NSArray *_sortedPhotoInfos;
 }
 
-@property(readonly, nonatomic) GEOPhoto *geoPhoto; // @synthesize geoPhoto=_geoPhoto;
-@property(readonly, nonatomic) BOOL displayFullPhotoInline;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL businessProvided;
+@property(readonly, nonatomic) BOOL highQuality;
+@property(readonly, nonatomic) double sizeRatio;
+- (id)bestPhotoForSize:(struct CGSize)arg1 allowSmaller:(BOOL)arg2;
+- (id)largestPhoto;
+@property(readonly, nonatomic) NSString *uid;
+@property(readonly, nonatomic) BOOL useGallery;
+@property(readonly, nonatomic) BOOL displayFullScreenPhotoGallery;
 @property(readonly, nonatomic) NSURL *licenseURL;
 @property(readonly, nonatomic) NSString *licenseDescription;
 @property(readonly, nonatomic) NSString *caption;
 @property(readonly, nonatomic) NSString *author;
-- (void)dealloc;
 - (id)initWithPhoto:(id)arg1;
+- (id)initWithCaptionedPhoto:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

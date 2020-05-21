@@ -15,7 +15,7 @@ __attribute__((visibility("hidden")))
     NSObject *mOwningParameterStrip;
 }
 
-- (long long)isVertical;
+- (BOOL)isVertical;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;

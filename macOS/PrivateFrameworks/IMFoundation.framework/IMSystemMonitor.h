@@ -37,35 +37,25 @@
     NSString *_userID;
     double _delayTime;
     NSMutableArray *_earlyListeners;
+    long long _resignActiveCount;
+    struct _opaque_pthread_mutex_t _ivarLock;
 }
 
 + (id)sharedInstance;
+@property(nonatomic) long long resignActiveCount; // @synthesize resignActiveCount=_resignActiveCount;
+@property(nonatomic) struct _opaque_pthread_mutex_t ivarLock; // @synthesize ivarLock=_ivarLock;
 @property(nonatomic) int userIdleToken; // @synthesize userIdleToken=_userIdleToken;
-@property(readonly, nonatomic) BOOL isInBackground; // @synthesize isInBackground=_inBackground;
-@property(nonatomic) BOOL usesSystemIdleState; // @synthesize usesSystemIdleState=_usesSystemIdleState;
-@property(nonatomic) BOOL usesPowerNotifications; // @synthesize usesPowerNotifications=_usesPowerNotifications;
 @property(retain, nonatomic) NSMutableArray *_earlyListeners; // @synthesize _earlyListeners;
 @property(nonatomic) BOOL _idleOverride; // @synthesize _idleOverride;
 @property(nonatomic) double _delayTime; // @synthesize _delayTime;
 @property(retain, nonatomic) NSString *_userID; // @synthesize _userID;
-@property(readonly, nonatomic) BOOL isSystemLocked; // @synthesize isSystemLocked=_systemLocked;
-@property(readonly, retain, nonatomic) NSDate *dateSystemLockLastChanged; // @synthesize dateSystemLockLastChanged=_dateSystemLockLastChanged;
-@property(readonly, retain, nonatomic) NSDate *dateScreenLightLastChanged; // @synthesize dateScreenLightLastChanged=_dateScreenLightLastChanged;
-@property(readonly, nonatomic) BOOL isScreenLit; // @synthesize isScreenLit=_screenLit;
 @property(retain, nonatomic) NSTimer *_timer; // @synthesize _timer;
 @property(retain, nonatomic) NSDate *_idleStart; // @synthesize _idleStart;
 @property(retain, nonatomic) NSMutableArray *_listeners; // @synthesize _listeners;
 @property(nonatomic) BOOL isFastUserSwitched; // @synthesize isFastUserSwitched=_switchedOut;
-@property(readonly, nonatomic) BOOL isBackingUp; // @synthesize isBackingUp=_backingUp;
-@property(nonatomic, setter=setActive:) BOOL isActive; // @synthesize isActive=_active;
 @property(nonatomic) BOOL _underFirstLock; // @synthesize _underFirstLock;
 @property(nonatomic) int _dataProtectionState; // @synthesize _dataProtectionState;
-@property(nonatomic) BOOL watchesSystemLockState; // @synthesize watchesSystemLockState=_watchesSystemLockState;
-@property(readonly, nonatomic) BOOL isScreenSaverActive; // @synthesize isScreenSaverActive=_screensaverActive;
-@property(readonly, nonatomic) BOOL systemIsSleeping; // @synthesize systemIsSleeping=_willSleep;
 @property(nonatomic) BOOL receivesMemoryWarnings; // @synthesize receivesMemoryWarnings=_receivesMemoryWarnings;
-@property(nonatomic) BOOL watchesScreenLightState; // @synthesize watchesScreenLightState=_watchesScreenLightState;
-@property(nonatomic) BOOL watchesDataProtectionLockState; // @synthesize watchesDataProtectionLockState=_watchesDataProtectionLockState;
 - (void)_receivedMemoryNotification;
 - (void)_unregisterForLoginWindowNotifications;
 - (void)_registerForLoginWindowNotifications;
@@ -86,18 +76,27 @@
 - (void)_systemWillShutdown;
 @property(readonly, nonatomic) BOOL systemIsShuttingDown;
 @property(readonly, nonatomic) double systemIdleTime;
+- (BOOL)_alreadyLocked_isSystemIdle;
 @property(readonly, nonatomic) BOOL isSystemIdle;
 - (void)_checkIdleTime:(id)arg1;
+- (void)_alreadyLocked_clearIdleTimer;
 - (void)_clearIdleTimer;
 - (void)_armIdleTimer;
 - (void)_overrideAndDisableIdleTimer:(BOOL)arg1;
 - (void)_setIdleState:(BOOL)arg1;
+@property(nonatomic) BOOL usesSystemIdleState; // @synthesize usesSystemIdleState=_usesSystemIdleState;
 - (void)_updateIdleState;
 - (void)_setSystemLockState:(BOOL)arg1;
 - (void)_setSystemScreenState:(BOOL)arg1;
+@property(nonatomic) BOOL usesPowerNotifications; // @synthesize usesPowerNotifications=_usesPowerNotifications;
+@property(nonatomic) BOOL watchesScreenLightState; // @synthesize watchesScreenLightState=_watchesScreenLightState;
+@property(nonatomic) BOOL watchesSystemLockState; // @synthesize watchesSystemLockState=_watchesSystemLockState;
+@property(nonatomic) BOOL watchesDataProtectionLockState; // @synthesize watchesDataProtectionLockState=_watchesDataProtectionLockState;
 @property(readonly, nonatomic) BOOL isUnderFirstDataProtectionLock;
+- (BOOL)_isUnderDataProtectionLockForState:(int)arg1;
 @property(readonly, nonatomic) BOOL isUnderDataProtectionLock;
 - (void)_setDataProtectionLockState:(int)arg1;
+- (BOOL)_deviceStillUnderFirstLock;
 - (void)_applicationDidRemoveDeactivationReason:(id)arg1;
 - (void)_applicationWillAddDeactivationReason:(id)arg1;
 - (void)_applicationDidEnterBackground:(id)arg1;
@@ -120,8 +119,17 @@
 - (void)_systemWillSleep;
 - (void)_systemDidWake;
 - (void)_deliverNotificationSelector:(SEL)arg1;
+@property(nonatomic, setter=setActive:) BOOL isActive; // @synthesize isActive=_active;
 - (void)dealloc;
 - (id)init;
+@property(readonly, nonatomic) BOOL isInBackground; // @synthesize isInBackground=_inBackground;
+@property(readonly, nonatomic) BOOL isSystemLocked; // @synthesize isSystemLocked=_systemLocked;
+@property(readonly, nonatomic) BOOL isScreenLit; // @synthesize isScreenLit=_screenLit;
+@property(readonly, nonatomic) BOOL isBackingUp; // @synthesize isBackingUp=_backingUp;
+@property(readonly, nonatomic) BOOL isScreenSaverActive; // @synthesize isScreenSaverActive=_screensaverActive;
+@property(readonly, nonatomic) BOOL systemIsSleeping; // @synthesize systemIsSleeping=_willSleep;
+@property(readonly, retain, nonatomic) NSDate *dateSystemLockLastChanged; // @synthesize dateSystemLockLastChanged=_dateSystemLockLastChanged;
+@property(readonly, retain, nonatomic) NSDate *dateScreenLightLastChanged; // @synthesize dateScreenLightLastChanged=_dateScreenLightLastChanged;
 
 @end
 

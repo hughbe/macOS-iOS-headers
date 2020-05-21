@@ -20,6 +20,12 @@ struct _NSRange {
     unsigned long long length;
 };
 
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
+};
+
+struct re_guts;
+
 #pragma mark Typedef'd Structures
 
 typedef struct {
@@ -31,20 +37,16 @@ typedef struct {
 typedef struct {
     unsigned long long _field1;
     unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned long long _field4;
+} CDStruct_33dcf794;
+
+typedef struct {
+    unsigned long long _field1;
+    unsigned long long _field2;
     char _field3;
     char _field4;
 } CDStruct_c53ccb4e;
-
-typedef struct {
-    int version;
-    int count;
-    int timeStamp;
-    float tocHeight;
-    unsigned int sortOrder;
-    unsigned int sortedAscending;
-    int unused1;
-    int unused2;
-} CDStruct_c4d47a41;
 
 typedef struct {
     long long _field1;
@@ -65,4 +67,11 @@ typedef struct {
     long long _field6;
     long long _field7;
 } CDStruct_f9502b4c;
+
+typedef struct {
+    int re_magic;
+    unsigned long long re_nsub;
+    char *re_endp;
+    struct re_guts *re_g;
+} CDStruct_a3227609;
 

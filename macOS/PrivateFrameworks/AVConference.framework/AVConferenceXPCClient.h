@@ -17,27 +17,19 @@
     BOOL connectionPersists;
 }
 
-+ (id)dictionaryForVideoConfig:(id)arg1;
-+ (id)dictionaryForAudioConfig:(id)arg1;
-+ (id)dictionaryForCommonStreamConfig:(id)arg1;
-+ (id)dictionaryForMediaStreamConfig:(id)arg1;
 + (id)AVConferenceXPCClientSingleton;
 @property(readonly) BOOL connectionPersists; // @synthesize connectionPersists;
 @property(readonly) NSMutableDictionary *registeredBlocks; // @synthesize registeredBlocks;
 @property(readonly) NSObject<OS_xpc_object> *connection; // @synthesize connection;
 - (void)deregisterFromService:(char *)arg1;
+- (void)registerBlockForService:(char *)arg1 block:(CDUnknownBlockType)arg2 queue:(id)arg3 eventLogLevel:(int)arg4;
 - (void)registerBlockForService:(char *)arg1 block:(CDUnknownBlockType)arg2 queue:(id)arg3;
 - (void)registerBlockForService:(char *)arg1 block:(CDUnknownBlockType)arg2;
-- (id)sendMessageSync:(char *)arg1 arguments:(id)arg2 xpcArguments:(id)arg3 timeout:(unsigned int)arg4;
 - (id)sendMessageSync:(char *)arg1 arguments:(id)arg2 xpcArguments:(id)arg3;
-- (id)sendMessageSync:(char *)arg1 arguments:(id)arg2 fileDescriptor:(int)arg3 timeout:(unsigned int)arg4;
-- (id)sendMessageSync:(char *)arg1 arguments:(id)arg2 timeout:(unsigned int)arg3;
-- (id)sendMessageSync:(char *)arg1 arguments:(id)arg2 fileDescriptor:(int)arg3;
 - (id)sendMessageSync:(char *)arg1 arguments:(id)arg2;
 - (id)sendMessageSync:(char *)arg1;
 - (void)sendMessageAsync:(char *)arg1 arguments:(id)arg2 xpcArguments:(id)arg3 reply:(CDUnknownBlockType)arg4 queue:(id)arg5;
 - (void)sendMessageAsync:(char *)arg1 arguments:(id)arg2 xpcArguments:(id)arg3 reply:(CDUnknownBlockType)arg4;
-- (void)sendMessageAsync:(char *)arg1 arguments:(id)arg2 fileDescriptor:(int)arg3 reply:(CDUnknownBlockType)arg4 queue:(id)arg5;
 - (void)sendMessageAsync:(char *)arg1 arguments:(id)arg2 reply:(CDUnknownBlockType)arg3 queue:(id)arg4;
 - (void)sendMessageAsync:(char *)arg1 arguments:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)sendMessageAsync:(char *)arg1 arguments:(id)arg2;
@@ -45,12 +37,12 @@
 - (id)createConnectionToServer;
 - (void)closeConnectionToServer;
 - (id)copyConnection;
-- (id)createTimeoutDictionary;
-- (id)createServerDiedDictionary;
-- (id)createNSDictionaryFromNSError:(id)arg1;
-- (id)createNSErrorFromNSDictionary:(id)arg1;
-- (id)createXPCDictionaryFromNSDictionary:(id)arg1;
-- (id)createNSDictionaryFromXPCDictionary:(id)arg1;
+- (id)newTimeoutDictionary;
+- (id)newServerDiedDictionary;
+- (id)newNSDictionaryFromNSError:(id)arg1;
+- (id)newNSErrorFromNSDictionary:(id)arg1;
+- (id)newXPCDictionaryFromNSDictionary:(id)arg1;
+- (id)newNSDictionaryFromXPCDictionary:(id)arg1;
 - (void)dealloc;
 - (id)init;
 

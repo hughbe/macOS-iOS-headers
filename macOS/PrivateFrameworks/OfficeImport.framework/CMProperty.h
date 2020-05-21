@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     NSString *cachedCssString;
 }
 
+- (void).cxx_destruct;
 - (int)compareValue:(id)arg1;
 - (id)cssStringForName:(id)arg1;
 - (id)cachedCssStringForName:(id)arg1;

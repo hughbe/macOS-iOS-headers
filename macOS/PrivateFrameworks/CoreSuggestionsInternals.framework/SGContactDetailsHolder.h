@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class NSArray, SGContactDetail;
 
 @interface SGContactDetailsHolder : NSObject
 {
@@ -14,13 +14,19 @@
     NSArray *_postalAddresses;
     NSArray *_phoneNumbers;
     NSArray *_instantMessageAddresses;
+    NSArray *_socialProfiles;
+    SGContactDetail *_birthday;
+    SGContactDetail *_photoPath;
 }
 
-@property(retain) NSArray *instantMessageAddresses; // @synthesize instantMessageAddresses=_instantMessageAddresses;
-@property(retain) NSArray *phoneNumbers; // @synthesize phoneNumbers=_phoneNumbers;
-@property(retain) NSArray *postalAddresses; // @synthesize postalAddresses=_postalAddresses;
-@property(retain) NSArray *emailAddresses; // @synthesize emailAddresses=_emailAddresses;
 - (void).cxx_destruct;
+@property(retain, nonatomic) SGContactDetail *photoPath; // @synthesize photoPath=_photoPath;
+@property(retain, nonatomic) SGContactDetail *birthday; // @synthesize birthday=_birthday;
+@property(retain, nonatomic) NSArray *socialProfiles; // @synthesize socialProfiles=_socialProfiles;
+@property(retain, nonatomic) NSArray *instantMessageAddresses; // @synthesize instantMessageAddresses=_instantMessageAddresses;
+@property(retain, nonatomic) NSArray *phoneNumbers; // @synthesize phoneNumbers=_phoneNumbers;
+@property(retain, nonatomic) NSArray *postalAddresses; // @synthesize postalAddresses=_postalAddresses;
+@property(retain, nonatomic) NSArray *emailAddresses; // @synthesize emailAddresses=_emailAddresses;
 
 @end
 

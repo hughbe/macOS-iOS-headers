@@ -9,40 +9,41 @@
 #import "NSCollectionViewDataSource.h"
 #import "NSCollectionViewDelegate.h"
 
-@class CNContact, NSArray, NSCollectionView, NSString, NSTextField;
+@class NSArray, NSCollectionView<NSAccessibilityGroup>, NSString, NSTextField;
 
 @interface CNRecentLikenessesViewController : NSViewController <NSCollectionViewDelegate, NSCollectionViewDataSource>
 {
-    BOOL _isMe;
     id <CNRecentLikenessesViewDelegate> _delegate;
     id <CNRecentLikenessesDataSource> _dataSource;
     NSTextField *_descriptionField;
-    NSCollectionView *_likenessCollectionView;
+    NSCollectionView<NSAccessibilityGroup> *_likenessCollectionView;
     NSArray *_likenessesFromStore;
     NSArray *_displayedItems;
-    CNContact *_contact;
     id <CNCancelable> _contactLikenessesModelCancelable;
 }
 
-@property BOOL isMe; // @synthesize isMe=_isMe;
++ (id)makeFlowLayout;
++ (id)makeLikenessCollectionView;
++ (id)makeDescriptionField;
+- (void).cxx_destruct;
 @property(retain) id <CNCancelable> contactLikenessesModelCancelable; // @synthesize contactLikenessesModelCancelable=_contactLikenessesModelCancelable;
-@property(retain) CNContact *contact; // @synthesize contact=_contact;
 @property(retain) NSArray *displayedItems; // @synthesize displayedItems=_displayedItems;
 @property(retain) NSArray *likenessesFromStore; // @synthesize likenessesFromStore=_likenessesFromStore;
-@property(retain) NSCollectionView *likenessCollectionView; // @synthesize likenessCollectionView=_likenessCollectionView;
+@property(retain) NSCollectionView<NSAccessibilityGroup> *likenessCollectionView; // @synthesize likenessCollectionView=_likenessCollectionView;
 @property(retain) NSTextField *descriptionField; // @synthesize descriptionField=_descriptionField;
 @property(retain, nonatomic) id <CNRecentLikenessesDataSource> dataSource; // @synthesize dataSource=_dataSource;
 @property __weak id <CNRecentLikenessesViewDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
-- (void)setContact:(id)arg1 isMe:(BOOL)arg2;
+- (BOOL)existingLikenessPerformPress:(id)arg1;
+- (void)newLikenessPerformPress;
 - (id)likeness;
 - (void)removeLikeness:(id)arg1;
 - (void)editLikeness:(id)arg1;
+- (void)addNewLikeness;
 - (id)_selectedLikeness;
 - (BOOL)likenessIsDeletable:(id)arg1;
-- (BOOL)likenessIsEditable:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)collectionView:(id)arg1 didSelectItemsAtIndexPaths:(id)arg2;
+- (id)collectionView:(id)arg1 shouldSelectItemsAtIndexPaths:(id)arg2;
 - (id)collectionView:(id)arg1 itemForRepresentedObjectAtIndexPath:(id)arg2;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
 - (BOOL)isCollectionIndexNewButton:(id)arg1;
@@ -50,12 +51,14 @@
 - (double)desiredHeight;
 - (void)stopFetchingRecentLikenesses;
 - (void)startFetchingRecentLikenesses;
-- (void)viewDidDisappear;
+- (BOOL)acceptsFirstResponder;
+- (void)viewWillDisappear;
+- (void)viewDidAppear;
 - (void)viewWillAppear;
 - (void)viewDidLoad;
-- (void)dealloc;
 - (void)loadView;
 - (void)setDescriptionString:(id)arg1;
+- (void)setupLikenessCollectionView;
 - (id)init;
 
 // Remaining properties

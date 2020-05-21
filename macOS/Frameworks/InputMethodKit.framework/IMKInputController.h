@@ -18,8 +18,13 @@
 
 + (id)currentController;
 + (id)currentClientWrapper;
+- (void)setInputMethodProperty:(unsigned long long)arg1 value:(id)arg2;
+- (BOOL)allowsCollapsingCandidateList;
+- (struct CGSize)setAllowsCollapsingCandidateList:(BOOL)arg1;
 - (void)performViewBridgeSafeOperation:(CDUnknownBlockType)arg1;
 - (void)setSimulatorClient:(id)arg1;
+- (id)functionRowItemCPButtonViewController;
+- (id)functionRowItemTextInputViewController;
 - (void)inputControllerWillClose;
 - (void)setServer:(id)arg1;
 - (id)client;
@@ -27,11 +32,7 @@
 - (id)server;
 - (id)composedString:(id)arg1;
 - (id)originalString:(id)arg1;
-- (void)multiCandidates:(id)arg1;
 - (id)candidates:(id)arg1;
-- (void)candidateSelected:(id)arg1 forNode:(unsigned long long)arg2;
-- (void)candidateSelectionChanged:(id)arg1 forNode:(unsigned long long)arg2;
-- (void)annotationSelected:(id)arg1 forNode:(unsigned long long)arg2;
 - (void)candidateSelected:(id)arg1;
 - (void)candidateSelectionChanged:(id)arg1;
 - (void)annotationSelected:(id)arg1 forCandidate:(id)arg2;

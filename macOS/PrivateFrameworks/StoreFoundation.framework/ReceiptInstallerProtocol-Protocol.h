@@ -11,10 +11,11 @@
 - (oneway void)writeUpToDateInfo:(NSData *)arg1;
 - (oneway void)createUpToDateFirstCheckinCookie;
 - (oneway void)deleteVPPInviteFromPreferences;
-- (oneway void)setAutoUpdateRestartRequiredEnabledPreference:(NSNumber *)arg1;
+- (oneway void)setAutoUpdateMajorOSVersionPreference;
 - (oneway void)setAutoUpdateEnabledPreference:(NSNumber *)arg1;
 - (oneway void)removeCriticalUpdateTimeStamp;
 - (oneway void)createCriticalUpdateTimeStamp;
+- (oneway void)removePlaceholderWithName:(NSString *)arg1;
 - (oneway void)updateLockedFilePaths:(NSArray *)arg1 addOrDelete:(BOOL)arg2;
 - (oneway void)unlockApplicationsAtPaths:(NSArray *)arg1;
 - (oneway void)lockApplicationAtPath:(NSString *)arg1;

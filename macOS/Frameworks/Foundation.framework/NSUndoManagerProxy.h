@@ -22,7 +22,8 @@ __attribute__((visibility("hidden")))
 - (oneway void)release;
 - (BOOL)_tryRetain;
 - (id)retain;
-- (id)initWithManager:(id)arg1 targetClass:(Class)arg2;
+- (void)setTargetClass:(Class)arg1;
+- (id)initWithManager:(id)arg1;
 
 @end
 

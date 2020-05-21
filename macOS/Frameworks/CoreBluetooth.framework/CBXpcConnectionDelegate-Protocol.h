@@ -4,12 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class CBXpcConnection, NSDictionary;
+#import "NSObject.h"
 
-@protocol CBXpcConnectionDelegate
-- (void)xpcConnectionDidFinalize;
-- (void)xpcConnection:(CBXpcConnection *)arg1 didReceiveMsg:(int)arg2 args:(NSDictionary *)arg3;
-- (void)xpcConnectionIsInvalid:(CBXpcConnection *)arg1;
-- (void)xpcConnectionDidReset:(CBXpcConnection *)arg1;
+@class NSDictionary;
+
+@protocol CBXpcConnectionDelegate <NSObject>
+- (void)xpcConnectionDidReceiveMsg:(unsigned short)arg1 args:(NSDictionary *)arg2;
+- (void)xpcConnectionIsInvalid;
+- (void)xpcConnectionDidReset;
 @end
 

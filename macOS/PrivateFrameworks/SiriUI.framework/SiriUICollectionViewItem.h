@@ -13,6 +13,10 @@
 
 + (id)reuseIdentifier;
 @property BOOL remainsVisibleOnDrag; // @synthesize remainsVisibleOnDrag=_remainsVisibleOnDrag;
+- (BOOL)_isTranscriptCollectionViewItem;
+- (id)accessibilityIdentifier;
+- (id)accessibilityParent;
+- (BOOL)isAccessibilityElement;
 - (void)setSelected:(BOOL)arg1;
 - (void)setHighlightState:(long long)arg1;
 - (id)draggingImageComponents;

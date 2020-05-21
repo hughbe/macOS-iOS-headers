@@ -10,6 +10,21 @@
 {
 }
 
+- (void)sampleCountersInBuffer:(id)arg1 atSampleIndex:(unsigned long long)arg2 withBarrier:(BOOL)arg3;
+- (void)memoryBarrierWithResources:(const id *)arg1 count:(unsigned long long)arg2;
+- (void)memoryBarrierWithScope:(unsigned long long)arg1;
+- (void)setEmulationSamplerStates:(const id *)arg1 withRange:(struct _NSRange)arg2;
+- (void)setEmulationTextures:(const id *)arg1 withRange:(struct _NSRange)arg2;
+- (void)setEmulationBuffers:(const id *)arg1 offsets:(const unsigned long long *)arg2 withRange:(struct _NSRange)arg3;
+- (void)useHeaps:(const id *)arg1 count:(unsigned long long)arg2;
+- (void)useHeap:(id)arg1;
+- (void)useResources:(const id *)arg1 count:(unsigned long long)arg2 usage:(unsigned long long)arg3;
+- (void)useResource:(id)arg1 usage:(unsigned long long)arg2;
+- (void)bindEmulationArguments;
+- (void *)getBufferContentsAtIndex:(unsigned long long)arg1;
+- (id)getComputePipelineState;
+- (void)waitForFence:(id)arg1;
+- (void)updateFence:(id)arg1;
 - (unsigned long long)getType;
 
 @end

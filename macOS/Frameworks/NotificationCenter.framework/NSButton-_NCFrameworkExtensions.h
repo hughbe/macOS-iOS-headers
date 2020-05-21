@@ -6,9 +6,14 @@
 
 #import "NSButton.h"
 
+#import "NCMaterialDelegate.h"
+
 @class NSString;
 
-@interface NSButton (_NCFrameworkExtensions)
+@interface NSButton (_NCFrameworkExtensions) <NCMaterialDelegate>
+- (void)appearanceChanged:(_Bool)arg1;
+- (void)materialChanged:(unsigned char)arg1;
+- (void)_actuallySetImages:(id)arg1;
 @property(retain) NSString *_ncImageAssetName;
 @end
 

@@ -16,6 +16,7 @@
 
 + (id)socialCredentialResultWithDictionary:(id)arg1 context:(id)arg2;
 + (id)socialCredentialResult;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SAMicroblogSocialCredential *socialCredential;
 - (id)encodedClassName;
 - (id)groupIdentifier;

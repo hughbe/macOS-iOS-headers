@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
+#import "IMCloudKitEventHandlerAccountInfoProvider.h"
+
 @class IMAccount, IMServiceImpl, NSTimer, SOAccountAliasController;
 
-@interface SOAccountRegistrationController : NSObject
+@interface SOAccountRegistrationController : NSObject <IMCloudKitEventHandlerAccountInfoProvider>
 {
     BOOL _isSigningOut;
     BOOL _isSignedIn;
-    int _registrationState;
-    int _enabledState;
+    long long _registrationState;
+    long long _enabledState;
     IMAccount *_account;
     SOAccountAliasController *_aliasController;
     IMServiceImpl *_serviceType;
@@ -26,15 +28,16 @@
 + (id)faceTimeRegistrationController;
 + (id)registrationController;
 + (void)resetSharedInstance;
+- (void).cxx_destruct;
 @property(retain) NSTimer *authenticationTimer; // @synthesize authenticationTimer=_authenticationTimer;
 @property(nonatomic) BOOL isSignedIn; // @synthesize isSignedIn=_isSignedIn;
 @property(nonatomic) BOOL isSigningOut; // @synthesize isSigningOut=_isSigningOut;
 @property(retain, nonatomic) IMServiceImpl *serviceType; // @synthesize serviceType=_serviceType;
 @property(retain, nonatomic) SOAccountAliasController *aliasController; // @synthesize aliasController=_aliasController;
 @property(retain, nonatomic) IMAccount *account; // @synthesize account=_account;
-@property(nonatomic) int enabledState; // @synthesize enabledState=_enabledState;
-@property(nonatomic) int registrationState; // @synthesize registrationState=_registrationState;
-- (void).cxx_destruct;
+@property(nonatomic) long long enabledState; // @synthesize enabledState=_enabledState;
+@property(nonatomic) long long registrationState; // @synthesize registrationState=_registrationState;
+- (BOOL)cloudKitEventNotificationManagerAccountHasiMessageEnabled:(id)arg1;
 - (void)_clearAliasController;
 - (void)_setupAliasController;
 - (void)_authenticationTimerTimedOut:(id)arg1;
@@ -55,6 +58,7 @@
 - (BOOL)addAndConfirmNewAlias:(id)arg1;
 - (void)enableAccount:(BOOL)arg1;
 - (BOOL)deleteAccount;
+- (void)signOutAndUpdateDaemon:(BOOL)arg1;
 - (void)signOut;
 - (void)_registerAccountIfNecessary;
 - (void)registerAccount;
@@ -62,8 +66,8 @@
 - (void)authenticateWithUsername:(id)arg1 authID:(id)arg2 authToken:(id)arg3;
 - (void)authenticateWithUsername:(id)arg1 password:(id)arg2;
 - (void)updateStateForAccountStatusAndPostNotification:(BOOL)arg1;
-- (void)setEnabledState:(int)arg1 andPostNotification:(BOOL)arg2;
-- (void)setRegistrationState:(int)arg1 andPostNotification:(BOOL)arg2;
+- (void)setEnabledState:(long long)arg1 andPostNotification:(BOOL)arg2;
+- (void)setRegistrationState:(long long)arg1 andPostNotification:(BOOL)arg2;
 - (void)dealloc;
 
 @end

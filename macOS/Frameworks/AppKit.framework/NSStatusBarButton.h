@@ -8,10 +8,11 @@
 
 @interface NSStatusBarButton : NSButton
 {
-    id _statusBarButtonPrivate;
 }
 
 + (void)initialize;
+- (void)setImage:(id)arg1;
+- (id)_statusItem;
 - (void)rightMouseDown:(id)arg1;
 - (void)setDoubleAction:(SEL)arg1;
 - (SEL)doubleAction;
@@ -20,8 +21,6 @@
 - (void)setLooksDisabled:(BOOL)arg1;
 - (BOOL)looksDisabled;
 @property BOOL appearsDisabled;
-- (void)setHighlightMode:(BOOL)arg1;
-- (BOOL)highlightMode;
 - (void)setStatusMenu:(id)arg1;
 - (id)statusMenu;
 - (id)initWithFrame:(struct CGRect)arg1 inStatusBar:(id)arg2;

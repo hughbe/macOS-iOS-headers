@@ -19,6 +19,7 @@
 @property(copy, nonatomic) NSString *temperatureUnits;
 @property(copy, nonatomic) NSString *speedUnits;
 @property(copy, nonatomic) NSString *pressureUnits;
+@property(copy, nonatomic) NSString *precipitationUnits;
 @property(copy, nonatomic) NSString *distanceUnits;
 - (id)encodedClassName;
 - (id)groupIdentifier;

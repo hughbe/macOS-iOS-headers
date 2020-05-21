@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABBookUndoableCommand.h>
+#import "ABBookUndoableCommand.h"
 
 @class ABGroupEntriesList, ABImportRecordFactory, ABLazyGroup, ABRecordContext, NSArray, NSMutableArray;
 
@@ -19,8 +19,11 @@
     ABImportRecordFactory *_importRecordFactory;
     NSMutableArray *_importedGroups;
     NSMutableArray *_importedPeopleUids;
+    BOOL ignoresGuardianRestrictions;
 }
 
+- (void)setIgnoresGuardianRestrictions:(BOOL)arg1;
+- (BOOL)ignoresGuardianRestrictions;
 - (void)removeRecords:(id)arg1;
 - (void)undoImportedGroups;
 - (void)undoImportedPeople;

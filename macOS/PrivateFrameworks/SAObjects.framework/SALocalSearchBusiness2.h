@@ -32,7 +32,6 @@
 @property(copy, nonatomic) NSArray *commands;
 @property(copy, nonatomic) NSArray *categories;
 @property(copy, nonatomic) NSURL *businessUrl;
-@property(copy, nonatomic) NSArray *attributions;
 @property(retain, nonatomic) SALocation *address;
 - (id)encodedClassName;
 - (id)groupIdentifier;

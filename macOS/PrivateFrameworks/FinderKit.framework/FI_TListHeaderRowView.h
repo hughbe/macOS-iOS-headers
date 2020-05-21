@@ -6,31 +6,26 @@
 
 #import "NSTableRowView.h"
 
-@class FI_TListView, FI_TListViewController;
+@class NSObject<TListHeaderRowViewDelegate>;
 
 __attribute__((visibility("hidden")))
 @interface FI_TListHeaderRowView : NSTableRowView
 {
-    struct TNSRef<NSVisualEffectView *, void> _blurBackgroundView;
-    FI_TListView *_listView;
-    FI_TListViewController *_listViewController;
     struct TFENode _node;
     long long _columnBeingDragged;
-    struct TNSRef<FI_TListHeaderCellView *, void> _cellViewForDrag;
-    struct TNSRef<FI_TUpdateLayerView *, void> _topHorizontalLineView;
-    struct TNSRef<NSMutableArray *, void> _cellViews;
+    struct TNSRef<FI_TListHeaderCellView, void> _cellViewForDrag;
+    struct TNSRef<NSMutableArray, void> _cellViews;
     long long _sortColumnIndex;
     _Bool _isSortAscending;
-    struct TNSRef<NSTrackingArea *, void> _headerTrackingArea;
+    struct TNSRef<NSTrackingArea, void> _headerTrackingArea;
     _Bool _isCursorOverDivider;
+    struct TNSWeakPtr<NSObject<TListHeaderRowViewDelegate>, void> _weakDelegate;
 }
 
-@property(nonatomic, getter=isSortAscending) _Bool sortAscending; // @synthesize sortAscending=_isSortAscending;
-@property(nonatomic) long long sortColumnIndex; // @synthesize sortColumnIndex=_sortColumnIndex;
-@property(readonly, nonatomic) FI_TListView *listView; // @synthesize listView=_listView;
-@property(readonly, nonatomic) FI_TListViewController *listViewController; // @synthesize listViewController=_listViewController;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic, getter=isSortAscending) _Bool sortAscending; // @synthesize sortAscending=_isSortAscending;
+@property(nonatomic) long long sortColumnIndex; // @synthesize sortColumnIndex=_sortColumnIndex;
 - (void)setNeedsDisplayForColumn:(long long)arg1 draggedDelta:(double)arg2;
 - (void)rightMouseDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
@@ -39,27 +34,24 @@ __attribute__((visibility("hidden")))
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
 - (void)updateCursor:(id)arg1;
-- (long long)interiorBackgroundStyle;
-- (id)resizeColumnForDivider:(long long)arg1;
+- (id)columnForDivider:(long long)arg1;
 - (long long)mouseInDivider:(id)arg1;
-- (void)setBackgroundColor:(id)arg1;
-- (void)updateBackgroundColor;
 - (void)updateLayer;
 - (void)performUpdateLayer;
 - (void)layout;
 - (void)performLayout;
 - (void)updateCellViews;
+- (id)firstRowViewIfAvailable;
 - (void)setFloating:(BOOL)arg1;
 - (void)setFrameOrigin:(struct CGPoint)arg1;
 - (void)updateNextFloatingHeader;
-- (_Bool)isLTRLocalization;
 - (_Bool)isGroupHeader;
 - (void)setNode:(const struct TFENode *)arg1;
+- (void)setDelegate:(id)arg1;
+@property(readonly, nonatomic) __weak NSObject<TListHeaderRowViewDelegate> *delegate; // @dynamic delegate;
 - (void)dealloc;
-- (id)initAsGroupHeader:(struct CGRect)arg1 controller:(id)arg2 node:(const struct TFENode *)arg3;
-- (id)initWithCoder:(id)arg1;
-- (id)initWithFrame:(struct CGRect)arg1;
-- (id)initWithFrame:(struct CGRect)arg1 controller:(id)arg2;
+- (id)initAsGroupHeader:(struct CGRect)arg1 node:(const struct TFENode *)arg2 delegate:(id)arg3;
+- (id)initWithFrame:(struct CGRect)arg1 delegate:(id)arg2;
 
 @end
 

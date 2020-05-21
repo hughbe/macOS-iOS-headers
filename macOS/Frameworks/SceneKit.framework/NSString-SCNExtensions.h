@@ -7,6 +7,7 @@
 #import "NSString.h"
 
 @interface NSString (SCNExtensions)
+- (id)scn_stringByReplacingCharactersInRanges:(id)arg1 withStrings:(id)arg2;
 - (unsigned long long)SCN_safeHash;
 @end
 

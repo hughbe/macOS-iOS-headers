@@ -8,7 +8,7 @@
 
 #import "NSDraggingDestination.h"
 
-@class NSCollectionView, NSIndexPath, NSString, NSView;
+@class NSCollectionView, NSString, NSView;
 
 __attribute__((visibility("hidden")))
 @interface _NSCollectionViewDropReceiver : NSObject <NSDraggingDestination>
@@ -17,12 +17,13 @@ __attribute__((visibility("hidden")))
     long long sessionNumber;
     unsigned long long _currentDragOperation;
     long long _currentDropOperation;
-    NSIndexPath *_dropTargetIndexPath;
     NSView *_dropTargetGapIndicatorView;
     NSView *_dropTargetSectionFrameView;
     BOOL _sourceIsThisCollectionView;
     BOOL _acceptedDrop;
     BOOL _exitedDrag;
+    struct CGPoint _lastDraggingLocation;
+    unsigned long long _lastDraggingSourceOperationMask;
 }
 
 + (id)dropReceiverWithCollectionView:(id)arg1;
@@ -42,8 +43,6 @@ __attribute__((visibility("hidden")))
 - (id)_dropIndexPathForDraggingInfo:(id)arg1 dropTargetRect:(struct CGRect *)arg2 proposedDropOperation:(long long *)arg3 allowDropOnOnly:(BOOL)arg4;
 - (void)_setWholeSectionDropTargetRect:(struct CGRect)arg1;
 - (void)_setDropTargetGapRect:(struct CGRect)arg1;
-- (void)_setDropTargetIndexPath:(id)arg1;
-- (id)_dropTargetIndexPath;
 - (id)initWithCollectionView:(id)arg1;
 
 // Remaining properties

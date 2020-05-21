@@ -16,6 +16,7 @@
 + (void)_enableForUnitTesting;
 + (void)_disableForUnitTesting;
 + (id)defaultMonitor;
+- (void).cxx_destruct;
 - (void)managedObjectContextDidSave:(id)arg1;
 - (BOOL)isInterestedInContext:(id)arg1;
 - (void)removeFilesForObjects:(id)arg1;

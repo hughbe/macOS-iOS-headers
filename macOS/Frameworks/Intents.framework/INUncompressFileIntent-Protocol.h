@@ -12,5 +12,6 @@
 @protocol INUncompressFileIntent <NSObject, JSExport>
 @property(copy) NSString *entityName;
 @property(copy) NSString *entityType;
+- (id)init;
 @end
 

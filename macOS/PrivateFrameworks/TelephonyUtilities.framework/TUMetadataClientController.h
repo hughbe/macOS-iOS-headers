@@ -14,11 +14,11 @@
 }
 
 + (id)sharedInstance;
-@property(retain, nonatomic) TUMetadataCache *metadataCache; // @synthesize metadataCache=_metadataCache;
 - (void).cxx_destruct;
-- (void)updateMetadataForTUCall:(id)arg1;
+@property(retain, nonatomic) TUMetadataCache *metadataCache; // @synthesize metadataCache=_metadataCache;
 - (void)updateMetadataForDestinationID:(id)arg1;
 - (void)updateMetadataForRecentCalls:(id)arg1;
+- (void)updateMetadataForCall:(id)arg1;
 - (id)_metadataDestinationIdForSearchItem:(id)arg1;
 - (id)directoryLabelForSearchItem:(id)arg1;
 - (id)locationForSearchItem:(id)arg1;

@@ -9,6 +9,8 @@
 @class IMServiceImpl;
 
 @interface IMMessage (SocialAppsCoreAdditions)
+@property(readonly, getter=isInvisibleInk) BOOL invisibleInk;
+@property(readonly, getter=isAcknowledgment) BOOL acknowledgment;
 - (BOOL)isStale;
 - (BOOL)isAddressedTo:(id)arg1;
 @property(nonatomic) BOOL nameFound;

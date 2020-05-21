@@ -10,11 +10,11 @@
 
 @interface MFEWSMessage : MCRemoteMessage
 {
-    NSString *_itemId;
-    NSString *_changeKey;
-    NSData *_bodyData;
     NSData *_headerData;
     MCMessageHeaders *_headers;
+    NSString *_itemId;
+    NSString *_changeKey;
+    NSData *_fetchedBodyData;
     MFLibraryCalendarEvent *_associatedCalendarEvent;
     long long _libraryID;
 }
@@ -39,7 +39,7 @@
 + (id)_extendedFieldsForFlags:(long long)arg1 importance:(long long *)arg2;
 + (id)_newEWSDeleteItemWithDistinguishedPropertySetId:(long long)arg1 propertyType:(long long)arg2 propertyId:(long long)arg3;
 + (id)_newEWSDeleteItemWithPropertyTag:(id)arg1 propertyType:(long long)arg2;
-+ (id)updatesForEWSItem:(id)arg1 applyingFlags:(id)arg2;
++ (id)updatesForEWSItem:(id)arg1 applyingFlagChange:(id)arg2;
 + (id)propertiesToGetBeforeUpdatingMessageFlags:(id)arg1 forMessageType:(BOOL)arg2 includesReadReceipts:(char *)arg3;
 + (id)extendedFieldsForEWSCalendarType;
 + (id)extendedFieldsForEWSMeetingRequestMessageType;
@@ -50,19 +50,18 @@
 + (BOOL)messageTypeForEWSItemClass:(id)arg1;
 + (long long)flagsForEWSItemType:(id)arg1;
 + (id)newMessageWithEWSItemType:(id)arg1;
-+ (void)initialize;
+- (void).cxx_destruct;
 @property(nonatomic) long long libraryID; // @synthesize libraryID=_libraryID;
 @property(retain) MFLibraryCalendarEvent *associatedCalendarEvent; // @synthesize associatedCalendarEvent=_associatedCalendarEvent;
-@property(retain) MCMessageHeaders *headers; // @synthesize headers=_headers;
-@property(retain) NSData *headerData; // @synthesize headerData=_headerData;
-@property(retain) NSData *fetchedBodyData; // @synthesize fetchedBodyData=_bodyData;
+@property(retain) NSData *fetchedBodyData; // @synthesize fetchedBodyData=_fetchedBodyData;
 @property(copy, nonatomic) NSString *changeKey; // @synthesize changeKey=_changeKey;
 @property(copy, nonatomic) NSString *itemId; // @synthesize itemId=_itemId;
-- (void).cxx_destruct;
+@property(retain) MCMessageHeaders *headers; // @synthesize headers=_headers;
+@property(retain) NSData *headerData; // @synthesize headerData=_headerData;
 - (void)setHeaderAndBodyFromFullData:(id)arg1;
 - (BOOL)isEditable;
 - (id)remoteID;
-- (id)headersIfAvailable;
+- (id)headersFetchIfNotAvailable:(BOOL)arg1;
 - (void)setDataSource:(id)arg1;
 - (id)dataSource;
 @property(readonly, nonatomic) MFMailbox *mailbox;

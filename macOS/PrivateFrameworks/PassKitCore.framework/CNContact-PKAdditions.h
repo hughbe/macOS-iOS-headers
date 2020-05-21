@@ -9,16 +9,32 @@
 @class CRRecentContact;
 
 @interface CNContact (PKAdditions)
-+ (id)pkContactWithFirstName:(id)arg1 lastName:(id)arg2 district:(id)arg3 postalAddresses:(id)arg4 emailAddresses:(id)arg5 phoneNumbers:(id)arg6;
++ (id)pk_predicateForContactsMatchingPhoneNumber:(id)arg1;
++ (id)pk_predicateForContactsMatchingEmailAddress:(id)arg1;
++ (id)pkContactWithNameComponents:(id)arg1 postalAddresses:(id)arg2 emailAddresses:(id)arg3 phoneNumbers:(id)arg4;
 + (id)pkContactWithNameFromContact:(id)arg1 labeledValue:(id)arg2 property:(id)arg3;
-+ (id)pkContactWithFirstName:(id)arg1 lastName:(id)arg2 district:(id)arg3 labeledValues:(id)arg4;
-+ (id)pkContactWithFirstName:(id)arg1 lastName:(id)arg2 labeledValues:(id)arg3;
++ (id)pkContactWithNameComponents:(id)arg1 labeledValues:(id)arg2;
 + (id)contactWithPkDictionary:(id)arg1;
 + (id)pkPassbookRequiredKeys;
+- (id)pkDeconstructContactUsingKey:(id)arg1 substring:(id)arg2;
+- (id)pkDeconstructContactUsingKey:(id)arg1;
+- (id)localizedDisplayNameWithLabel:(id)arg1;
+- (id)contactWithCleanedUpDistrict;
+- (id)sanitizedContact;
+- (id)nameComponents;
+- (id)_phoneticNameFromComponents:(id)arg1 style:(long long)arg2;
+- (id)_fullNameFromComponents:(id)arg1 style:(long long)arg2;
+- (id)pkFullAndPhoneticName;
+- (id)pkPhoneticName;
 - (id)pkFullName;
+- (id)pkFullyQualifiedName;
+- (BOOL)isSubsetOfMeCard;
 @property(nonatomic) unsigned long long contactSource;
 @property(retain, nonatomic) CRRecentContact *recentContact;
 - (id)pkSingleLineFormattedContactAddress;
+- (id)pkFormattedContactAddressIncludingPhoneticName:(BOOL)arg1 showName:(BOOL)arg2;
+- (id)pkFormattedContactAddressIncludingPhoneticName:(BOOL)arg1;
+- (id)pkFormattedContactAddressWithoutName;
 - (id)pkFormattedContactAddress;
 - (void)pkAddLabeledValues:(id)arg1 withProperty:(id)arg2;
 - (id)pkDictionaryForProperty:(id)arg1;

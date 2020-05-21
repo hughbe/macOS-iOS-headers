@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class CLLocation, NSArray, NSString, _MKLocalSearchExternalTransitLookupParameters, _MKLocalSearchMerchantParameters;
+@class CLLocation, MKPointOfInterestFilter, NSArray, NSString, _MKLocalSearchExternalTransitLookupParameters, _MKLocalSearchMerchantParameters;
 
 @interface MKLocalSearchRequest : NSObject <NSCopying>
 {
@@ -26,9 +26,14 @@
     NSArray *_muids;
     NSString *_contactsDataString;
     NSString *_canonicalSearchString;
+    unsigned long long _resultTypes;
+    MKPointOfInterestFilter *_pointOfInterestFilter;
 }
 
 + (id)searchRequestWithCompletion:(id)arg1;
+- (void).cxx_destruct;
+@property(copy, nonatomic) MKPointOfInterestFilter *pointOfInterestFilter; // @synthesize pointOfInterestFilter=_pointOfInterestFilter;
+@property(nonatomic) unsigned long long resultTypes; // @synthesize resultTypes=_resultTypes;
 @property(nonatomic) BOOL hasSentFeedbackForCompletion; // @synthesize hasSentFeedbackForCompletion=_hasSentFeedbackForCompletion;
 @property(nonatomic, getter=_allowPhoneNumberLookupUsingCellular, setter=_setAllowPhoneNumberLookupUsingCellular:) BOOL allowPhoneNumberLookupUsingCellular; // @synthesize allowPhoneNumberLookupUsingCellular=_allowPhoneNumberLookupUsingCellular;
 @property(retain, nonatomic, getter=_canonicalSearchString, setter=_setCanonicalSearchString:) NSString *canonicalSearchString; // @synthesize canonicalSearchString=_canonicalSearchString;
@@ -43,12 +48,14 @@
 @property(readonly, nonatomic) BOOL _hasRegion; // @synthesize _hasRegion;
 @property(nonatomic) CDStruct_b7cb895d region; // @synthesize region=_region;
 @property(copy, nonatomic) NSString *naturalLanguageQuery; // @synthesize naturalLanguageQuery=_naturalLanguageQuery;
-- (void).cxx_destruct;
 - (id)description;
 - (id)_dictionaryRepresentation;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithMapsURL:(id)arg1;
+- (id)initWithNaturalLanguageQuery:(id)arg1 region:(CDStruct_b7cb895d)arg2;
+- (id)initWithNaturalLanguageQuery:(id)arg1;
 - (id)initWithCompletion:(id)arg1;
+- (id)init;
 
 @end
 

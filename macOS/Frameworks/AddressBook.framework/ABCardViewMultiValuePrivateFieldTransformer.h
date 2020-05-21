@@ -8,17 +8,20 @@
 
 #import "ABCardViewMultiValueTransformer.h"
 
-@class ABCNContact, ABCardViewPersonMapper, NSString;
+@class ABCardViewPersonMapper, CNContact, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewMultiValuePrivateFieldTransformer : NSObject <ABCardViewMultiValueTransformer>
 {
     ABCardViewPersonMapper *_personMapper;
-    ABCNContact *_person;
+    CNContact *_contact;
     NSString *_field;
 }
 
-+ (id)transformerWithPerson:(id)arg1 personMapper:(id)arg2 field:(id)arg3;
++ (id)transformerWithContact:(id)arg1 personMapper:(id)arg2 field:(id)arg3;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *field; // @synthesize field=_field;
+@property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
+@property(retain, nonatomic) ABCardViewPersonMapper *personMapper; // @synthesize personMapper=_personMapper;
 - (CDUnknownBlockType)setIdentifierIsPrivate:(BOOL)arg1;
 - (void)setPrivacyStateOfAggregateIdentifier:(id)arg1 isPrivate:(BOOL)arg2;
 - (id)reverseTransformMultiValue:(id)arg1;
@@ -26,8 +29,7 @@ __attribute__((visibility("hidden")))
 - (CDUnknownBlockType)identifierIsPrivate;
 - (BOOL)privacyStateOfAggregateIdentifier:(id)arg1;
 - (id)transformMultiValue:(id)arg1;
-- (void)dealloc;
-- (id)initWithPerson:(id)arg1 personMapper:(id)arg2 field:(id)arg3;
+- (id)initWithContact:(id)arg1 personMapper:(id)arg2 field:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

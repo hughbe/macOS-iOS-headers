@@ -15,10 +15,10 @@
     NSString *_isoEnd;
 }
 
-@property(retain, nonatomic) NSString *isoEnd; // @synthesize isoEnd=_isoEnd;
-@property(retain, nonatomic) NSString *isoStart; // @synthesize isoStart=_isoStart;
-@property(retain, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *isoEnd; // @synthesize isoEnd=_isoEnd;
+@property(copy, nonatomic) NSString *isoStart; // @synthesize isoStart=_isoStart;
+@property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 
 @end
 

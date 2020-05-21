@@ -18,6 +18,7 @@
 }
 
 + (id)sharedProfiler;
+- (void).cxx_destruct;
 @property BOOL isSSD; // @synthesize isSSD=_isSSD;
 @property(retain) NSDictionary *userMachineDictionary; // @synthesize userMachineDictionary=_userMachineDictionary;
 @property double migrationTime; // @synthesize migrationTime=_migrationTime;
@@ -27,7 +28,7 @@
 - (void)populateStats;
 - (id)modelName;
 - (void)setTarget:(id)arg1;
-- (id)initWithDisk:(id)arg1;
+- (id)initWithOptions:(id)arg1;
 
 @end
 

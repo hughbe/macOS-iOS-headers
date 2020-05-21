@@ -5,15 +5,23 @@
 //
 
 #import "NSObject.h"
-#import "PCLoggingDelegate.h"
 
 @class NSDictionary, NSString;
 
-@protocol PCGrowthAlgorithm <PCLoggingDelegate, NSObject>
+@protocol PCGrowthAlgorithm <NSObject>
+@property(readonly, nonatomic) int growthStage;
 @property(readonly, copy, nonatomic) NSDictionary *cacheInfo;
 @property(readonly, nonatomic) unsigned long long countOfGrowthActions;
+@property(nonatomic) double minimumIntervalFallbackStateTimeout;
+@property(nonatomic) BOOL usingServerStatsAggressively;
+@property(nonatomic) BOOL minimumIntervalFallbackEnabled;
+@property(nonatomic) double lastSuccessfulKeepAliveInterval;
+@property(nonatomic) double serverStatsMinKeepAliveInterval;
+@property(nonatomic) double serverStatsMaxKeepAliveInterval;
+@property(nonatomic) double serverStatsExpectedKeepAliveInterval;
 @property(nonatomic) double maximumKeepAliveInterval;
 @property(nonatomic) double minimumKeepAliveInterval;
+@property(nonatomic) BOOL isServerOriginatedKeepAlive;
 @property(readonly, nonatomic) double currentKeepAliveInterval;
 - (void)processNextAction:(int)arg1;
 - (BOOL)useIntervalIfImprovement:(double)arg1;

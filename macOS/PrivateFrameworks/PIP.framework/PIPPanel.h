@@ -6,10 +6,13 @@
 
 #import "NSPanel.h"
 
+__attribute__((visibility("hidden")))
 @interface PIPPanel : NSPanel
 {
+    _Bool isWindowDragging;
 }
 
+@property(nonatomic) _Bool isWindowDragging; // @synthesize isWindowDragging;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)performWindowDragWithEvent:(id)arg1;

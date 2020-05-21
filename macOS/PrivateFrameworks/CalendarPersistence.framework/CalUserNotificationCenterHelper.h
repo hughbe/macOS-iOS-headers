@@ -17,6 +17,7 @@
 
 + (id)defaultHelper;
 + (void)initialize;
+- (void).cxx_destruct;
 - (BOOL)_isPrincipalOrAccountDisabledOrDelegate:(id)arg1 forCalendar:(BOOL)arg2;
 - (BOOL)_doesEvent:(id)arg1 haveOccurrenceOnDate:(id)arg2;
 - (BOOL)_isEventOccurrenceTooFarInFuture:(id)arg1 occurrenceDate:(id)arg2;
@@ -47,13 +48,13 @@
 - (void)resolveBookmarks:(id)arg1;
 - (void)_deleteAlarms:(id)arg1;
 - (void)deleteAlarms:(id)arg1;
+- (void)deleteAllAlarms;
 - (BOOL)_isExpired:(id)arg1;
 - (void)_removeOldAlarms;
 - (void)_scheduleAlarms:(id)arg1;
 - (void)scheduleAlarms:(id)arg1;
 - (void)_findAndScheduleUpcomingAlarms:(id)arg1;
 - (void)findAndScheduleUpcomingAlarms:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

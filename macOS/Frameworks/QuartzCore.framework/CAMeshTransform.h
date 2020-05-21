@@ -6,21 +6,23 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSString;
 
-@interface CAMeshTransform : NSObject <NSCoding, NSCopying, NSMutableCopying>
+@interface CAMeshTransform : NSObject <NSSecureCoding, NSCopying, NSMutableCopying>
 {
     void *_impl;
     unsigned long long _normalization;
     long long _subdivisionSteps;
+    BOOL _replicatesEdges;
 }
 
 + (void)CAMLParserEndElement:(id)arg1 content:(id)arg2;
 + (void)CAMLParserStartElement:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (id)meshTransformWithVertexCount:(unsigned long long)arg1 vertices:(const struct CAMeshVertex *)arg2 faceCount:(unsigned long long)arg3 faces:(const struct CAMeshFace *)arg4 depthNormalization:(id)arg5;
 - (id)meshTransformForLayer:(id)arg1;
 - (double)CA_distanceToValue:(id)arg1;
@@ -29,12 +31,15 @@
 - (void)encodeWithCAMLWriter:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (id)inverseMesh;
+- (id)subdividedMesh:(int)arg1;
 - (id)_subdivideToDepth:(long long)arg1;
 - (id)_data;
 - (BOOL)_constructWithData:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (struct Object *)CA_copyRenderValue;
+@property(readonly) BOOL replicatesEdges;
 @property(readonly) int subdivisionSteps;
 @property(readonly, copy) NSString *depthNormalization;
 - (struct CAMeshFace)faceAtIndex:(unsigned long long)arg1;

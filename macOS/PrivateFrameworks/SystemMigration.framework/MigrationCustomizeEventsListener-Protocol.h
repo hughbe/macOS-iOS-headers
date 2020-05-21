@@ -7,7 +7,10 @@
 @class NSArray, NSDictionary, NSNumber, NSString;
 
 @protocol MigrationCustomizeEventsListener
+- (void)sizingCompletedForCustomPathType:(unsigned long long)arg1 user:(NSString *)arg2 onSystem:(id)arg3 withSize:(unsigned long long)arg4;
+- (void)preliminarySizeForCustomPaths:(unsigned long long)arg1 type:(unsigned long long)arg2 user:(NSString *)arg3 onSystem:(id)arg4;
 - (void)sizingCompletedForComponent:(NSNumber *)arg1 onSystem:(id)arg2 withSize:(unsigned long long)arg3;
+- (void)preliminarySize:(unsigned long long)arg1 forComponent:(NSNumber *)arg2 onSystem:(id)arg3;
 - (void)sizingCompletedForPathGroup:(unsigned long long)arg1 onSystem:(id)arg2 withSize:(unsigned long long)arg3;
 - (void)pathingProgressFormatKey:(NSString *)arg1 arguments:(NSArray *)arg2;
 - (void)preliminarySize:(unsigned long long)arg1 andCount:(unsigned long long)arg2 forPathGroup:(unsigned long long)arg3 onSystem:(id)arg4;

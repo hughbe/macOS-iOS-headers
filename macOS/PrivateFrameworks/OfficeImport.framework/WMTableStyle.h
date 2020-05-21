@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     WDTableProperties *mWdTableProperties;
 }
 
+- (void).cxx_destruct;
 - (void)addTableProperties:(id)arg1;
 - (id)initWithWDTableProperties:(id)arg1;
 

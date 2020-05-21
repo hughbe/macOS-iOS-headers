@@ -6,38 +6,32 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableDictionary, SearchProvider;
+@class NSArray, SearchProvider;
 
 __attribute__((visibility("hidden")))
 @interface SearchProvidersController : NSObject
 {
     SearchProvider *_defaultProvider;
     NSArray *_providers;
-    NSMutableDictionary *_providersNotAllowedToPromptToBeMadeDefault;
 }
 
 + (struct URLRequest)redirectToSafeSearchIfNeeded:(const struct URLRequest *)arg1;
-+ (id)_countrySetInMacBuddy;
 + (id)_internetServicesRegion;
-+ (void)_getProviders:(id *)arg1 newDefaultProvider:(id *)arg2;
++ (void)_getAllProviders:(id *)arg1 userVisibleProviders:(id *)arg2 newDefaultProvider:(id *)arg3;
 + (void)_getSortedSearchProviderList:(id *)arg1 andDefaultProvider:(id *)arg2 fromProviderList:(id)arg3;
 + (void)_sortSearchProviders:(id)arg1;
-+ (BOOL)countrySetInMacBuddyIsChina;
 + (id)sharedController;
 - (void).cxx_destruct;
-- (void)removeAllPromptingPolicies;
-- (void)removePromptingPoliciesAddedAfterDate:(id)arg1 beforeDate:(id)arg2;
-- (void)doNotAllowSearchProviderToPromptToBeMadeDefault:(id)arg1;
-- (BOOL)searchProviderAllowedToPromptToBeMadeDefault:(id)arg1;
 @property(readonly, nonatomic) NSArray *providerList;
 - (id)providerFromIdentifier:(id)arg1;
-- (id)providerFromScriptingName:(id)arg1;
+- (void)_sortProviders;
 - (void)_setDefaultProvider:(id)arg1;
 @property(retain, nonatomic) SearchProvider *defaultProvider;
+- (BOOL)urlIsValidSearch:(id)arg1;
 - (void)_setSystemDefaultProvider:(id)arg1;
-- (void)_providersNotAllowedToPromptToBeMadeDefaultChanged;
-- (void)_loadProvidersNotAllowedToPromptToBeMadeDefault;
+- (void)_sendAllProvidersToWebKit;
 - (void)_loadAllProviders;
+- (id)initAndSendProvidersToWebKit:(BOOL)arg1;
 - (id)init;
 
 @end

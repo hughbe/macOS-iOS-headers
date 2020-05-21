@@ -16,13 +16,13 @@ struct CGPoint {
 };
 
 struct CGRect {
-    struct CGPoint _field1;
-    struct CGSize _field2;
+    struct CGPoint origin;
+    struct CGSize size;
 };
 
 struct CGSize {
-    double _field1;
-    double _field2;
+    double width;
+    double height;
 };
 
 struct _NSRange {
@@ -37,33 +37,22 @@ struct _ShortRect {
     short _field4;
 };
 
+struct _img {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned long long _field4;
+    unsigned char _field5;
+    unsigned char _field6[4];
+};
+
 struct vector<TIHandwritingPoint, std::__1::allocator<TIHandwritingPoint>>;
 
 struct vector<std::__1::vector<TIHandwritingPoint, std::__1::allocator<TIHandwritingPoint>>, std::__1::allocator<std::__1::vector<TIHandwritingPoint, std::__1::allocator<TIHandwritingPoint>>>> {
     struct vector<TIHandwritingPoint, std::__1::allocator<TIHandwritingPoint>> *__begin_;
     struct vector<TIHandwritingPoint, std::__1::allocator<TIHandwritingPoint>> *__end_;
     struct __compressed_pair<std::__1::vector<TIHandwritingPoint, std::__1::allocator<TIHandwritingPoint>>*, std::__1::allocator<std::__1::vector<TIHandwritingPoint, std::__1::allocator<TIHandwritingPoint>>>> {
-        struct vector<TIHandwritingPoint, std::__1::allocator<TIHandwritingPoint>> *__first_;
+        struct vector<TIHandwritingPoint, std::__1::allocator<TIHandwritingPoint>> *__value_;
     } __end_cap_;
 };
-
-#pragma mark Typedef'd Structures
-
-typedef struct {
-    id _field1;
-    id _field2;
-    char _field3;
-    char _field4;
-    unsigned long long _field5;
-    int _field6;
-} CDStruct_59875e80;
-
-typedef struct {
-    id _field1;
-    id _field2;
-    int _field3;
-    id _field4;
-    id _field5;
-    int _field6;
-} CDStruct_982099be;
 

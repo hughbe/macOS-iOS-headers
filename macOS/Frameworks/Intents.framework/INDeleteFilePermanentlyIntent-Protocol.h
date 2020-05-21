@@ -8,5 +8,6 @@
 #import "NSObject.h"
 
 @protocol INDeleteFilePermanentlyIntent <NSObject, JSExport>
+- (id)init;
 @end
 

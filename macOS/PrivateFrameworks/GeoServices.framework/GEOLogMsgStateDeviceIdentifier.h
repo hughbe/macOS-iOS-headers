@@ -8,16 +8,35 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader;
 
 @interface GEOLogMsgStateDeviceIdentifier : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_deviceHwIdentifier;
     NSString *_deviceOsVersion;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    BOOL _deviceDarkMode;
+    BOOL _isInternalInstall;
+    BOOL _isInternalTool;
+    struct {
+        unsigned int has_deviceDarkMode:1;
+        unsigned int has_isInternalInstall:1;
+        unsigned int has_isInternalTool:1;
+        unsigned int read_deviceHwIdentifier:1;
+        unsigned int read_deviceOsVersion:1;
+        unsigned int wrote_deviceHwIdentifier:1;
+        unsigned int wrote_deviceOsVersion:1;
+        unsigned int wrote_deviceDarkMode:1;
+        unsigned int wrote_isInternalInstall:1;
+        unsigned int wrote_isInternalTool:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *deviceHwIdentifier; // @synthesize deviceHwIdentifier=_deviceHwIdentifier;
-@property(retain, nonatomic) NSString *deviceOsVersion; // @synthesize deviceOsVersion=_deviceOsVersion;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +44,23 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasDeviceDarkMode;
+@property(nonatomic) BOOL deviceDarkMode;
+@property(nonatomic) BOOL hasIsInternalInstall;
+@property(nonatomic) BOOL isInternalInstall;
+@property(nonatomic) BOOL hasIsInternalTool;
+@property(nonatomic) BOOL isInternalTool;
+@property(retain, nonatomic) NSString *deviceHwIdentifier;
 @property(readonly, nonatomic) BOOL hasDeviceHwIdentifier;
+- (void)_readDeviceHwIdentifier;
+@property(retain, nonatomic) NSString *deviceOsVersion;
 @property(readonly, nonatomic) BOOL hasDeviceOsVersion;
-- (void)dealloc;
+- (void)_readDeviceOsVersion;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

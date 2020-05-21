@@ -18,6 +18,7 @@
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)description;
+- (struct _NSRange)rangeWithName:(id)arg1;
 @property(readonly) NSArray *rangeArray;
 @property(readonly) NSRegularExpression *regularExpression;
 - (id)initWithRangeArray:(id)arg1 regularExpression:(id)arg2;

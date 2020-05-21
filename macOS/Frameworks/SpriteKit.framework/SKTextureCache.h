@@ -12,17 +12,18 @@ __attribute__((visibility("hidden")))
     long long filteringMode;
     struct CGSize size;
     struct CGSize pixelSize;
-    BOOL isLoaded;
     BOOL hasAlpha;
     BOOL isPOT;
     char *pixelData;
     int state;
-    int lock;
+    struct _opaque_pthread_mutex_t lock;
     shared_ptr_bb77cfd9 _backingTexture;
     unsigned int _textureFormat;
     int wrapMode;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(nonatomic) shared_ptr_bb77cfd9 backingTexture; // @synthesize backingTexture=_backingTexture;
 @property(nonatomic) unsigned int textureFormat; // @synthesize textureFormat=_textureFormat;
 @property(nonatomic) int wrapMode; // @synthesize wrapMode;
@@ -32,11 +33,8 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) char *pixelData; // @synthesize pixelData;
 @property(nonatomic) BOOL hasAlpha; // @synthesize hasAlpha;
 @property(nonatomic) BOOL isPOT; // @synthesize isPOT;
-@property(nonatomic) BOOL isLoaded; // @synthesize isLoaded;
 @property(nonatomic) struct CGSize size; // @synthesize size;
-- (id).cxx_construct;
-- (void).cxx_destruct;
-@property(readonly, nonatomic, getter=getLock) int *lock;
+@property(readonly, nonatomic, getter=getLock) struct _opaque_pthread_mutex_t *lock;
 - (void)_reset;
 - (void)dealloc;
 - (id)init;

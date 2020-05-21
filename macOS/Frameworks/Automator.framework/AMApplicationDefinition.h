@@ -19,16 +19,15 @@
     NSArray *_definedActions;
     NSDictionary *_scripts;
     NSMutableArray *_elements;
-    NSArray *_libraryActions;
     NSArray *_variables;
     NSDictionary *_registryTypes;
     NSDictionary *_definition;
     BOOL _didLoadDefinedActions;
-    BOOL _didLoadLibraryActions;
-    BOOL _didLoadVariables;
 }
 
-@property(retain) NSDictionary *definition; // @synthesize definition=_definition;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *definedActions; // @synthesize definedActions=_definedActions;
+@property(retain, nonatomic) NSDictionary *definition; // @synthesize definition=_definition;
 @property(retain) NSDictionary *registryTypes; // @synthesize registryTypes=_registryTypes;
 @property(retain) NSDictionary *scripts; // @synthesize scripts=_scripts;
 @property(retain) NSString *iconName; // @synthesize iconName=_iconName;
@@ -38,24 +37,21 @@
 @property(retain) NSMutableArray *elements; // @synthesize elements=_elements;
 @property(retain) NSArray *variables; // @synthesize variables=_variables;
 - (id)filterLibraryActions:(id)arg1;
-@property(readonly) BOOL isDeprecated;
+@property(readonly, nonatomic) BOOL isDeprecated;
 - (id)dictionaryForElementName:(id)arg1 key:(id)arg2;
 - (id)disallowedApplicationNames;
 - (id)disallowedIdentifiers;
 - (id)allowedApplicationNames;
 - (id)allowedIdentifiers;
-- (void)setDefinedActions:(id)arg1;
-@property(readonly) NSArray *definedActions;
-@property(readonly, retain) NSString *version;
-- (void)dealloc;
+@property(readonly, nonatomic) NSString *version;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)initWithTigerDefinition:(id)arg1;
 - (id)description;
 - (BOOL)initWithLeopardDefinition:(id)arg1;
 - (id)initWithDefinitionDictionary:(id)arg1 bundle:(id)arg2;
 - (id)initWithDefinitionURL:(id)arg1;
-@property(readonly) BOOL isLeopardDefinition;
-@property(readonly) BOOL isTigerDefinition;
+@property(readonly, nonatomic) BOOL isLeopardDefinition;
+@property(readonly, nonatomic) BOOL isTigerDefinition;
 
 @end
 

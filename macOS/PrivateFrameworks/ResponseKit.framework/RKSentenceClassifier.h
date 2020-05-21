@@ -6,18 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString, NSValue;
+@class NSArray, NSMutableDictionary, NSString, NSValue;
 
 @interface RKSentenceClassifier : NSObject
 {
-    BOOL _lexicalClassAvailable;
-    BOOL _lemmaAvailable;
     BOOL _sentenceIsTerminated;
     BOOL _sentenceIsAllSymbols;
     BOOL _sentenceHasQuestionTerminator;
     BOOL _sentenceHasAlternativeConjunction;
     NSArray *_sentenceEntities;
+    NSArray *_matchedRanges;
     NSString *_languageIdentifier;
+    NSMutableDictionary *_partofSpeechAvailabilityByLanguage;
+    NSMutableDictionary *_lemmaAvailabilityByLanguage;
     NSString *_sentenceStringOriginal;
     NSString *_sentenceString;
     NSValue *_sentenceTag;
@@ -42,6 +43,7 @@
 + (Class)subclassForLocale:(id)arg1;
 + (Class)subclassForLanguageIdentifier:(id)arg1;
 + (id)languageIdentifierFromClassName;
+- (void).cxx_destruct;
 @property(retain) NSString *RKLinguisticTagDataDetected; // @synthesize RKLinguisticTagDataDetected=_RKLinguisticTagDataDetected;
 @property(retain) NSArray *dataDetected; // @synthesize dataDetected=_dataDetected;
 @property(retain) NSArray *appreciations; // @synthesize appreciations=_appreciations;
@@ -56,11 +58,11 @@
 @property BOOL sentenceIsTerminated; // @synthesize sentenceIsTerminated=_sentenceIsTerminated;
 @property(retain) NSString *sentenceString; // @synthesize sentenceString=_sentenceString;
 @property(retain) NSString *sentenceStringOriginal; // @synthesize sentenceStringOriginal=_sentenceStringOriginal;
-@property(readonly) BOOL lemmaAvailable; // @synthesize lemmaAvailable=_lemmaAvailable;
-@property(readonly) BOOL lexicalClassAvailable; // @synthesize lexicalClassAvailable=_lexicalClassAvailable;
+@property(retain) NSMutableDictionary *lemmaAvailabilityByLanguage; // @synthesize lemmaAvailabilityByLanguage=_lemmaAvailabilityByLanguage;
+@property(retain) NSMutableDictionary *partofSpeechAvailabilityByLanguage; // @synthesize partofSpeechAvailabilityByLanguage=_partofSpeechAvailabilityByLanguage;
 @property(readonly) NSString *languageIdentifier; // @synthesize languageIdentifier=_languageIdentifier;
+@property(retain) NSArray *matchedRanges; // @synthesize matchedRanges=_matchedRanges;
 @property(retain) NSArray *sentenceEntities; // @synthesize sentenceEntities=_sentenceEntities;
-- (void).cxx_destruct;
 - (id)classifySentence;
 - (void)analyzeSentence;
 - (id)addSentenceTerminatorQuestion:(id)arg1;

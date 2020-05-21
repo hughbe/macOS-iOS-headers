@@ -12,9 +12,13 @@
 {
     int _overwrite;
     NSURL *_destinationURL;
+    NSURL *_priorOrderedURL;
+    BOOL _shouldSendOrder;
 }
 
 + (id)stringFromOverwriteValue:(int)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSURL *priorOrderedURL; // @synthesize priorOrderedURL=_priorOrderedURL;
 @property(retain, nonatomic) NSURL *destinationURL; // @synthesize destinationURL=_destinationURL;
 @property(nonatomic) int overwrite; // @synthesize overwrite=_overwrite;
 - (void)_callBackToDelegateWithResponses:(id)arg1 error:(id)arg2;
@@ -22,7 +26,6 @@
 - (id)additionalHeaderValues;
 - (id)requestBody;
 - (id)description;
-- (void)dealloc;
 - (id)initWithSourceURL:(id)arg1 destinationURL:(id)arg2 andOverwrite:(int)arg3;
 - (id)initWithSourceURL:(id)arg1 destinationURL:(id)arg2;
 - (id)initWithURL:(id)arg1;

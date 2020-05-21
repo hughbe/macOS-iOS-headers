@@ -43,6 +43,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)convertToIntersect:(unsigned int)arg1;
 - (BOOL)convertToList:(unsigned int)arg1 withFinalParen:(BOOL)arg2;
 - (BOOL)convertToList:(unsigned int)arg1;
+- (BOOL)isConstantList:(unsigned int)arg1;
 - (BOOL)addArrayWithCol:(int)arg1 andRow:(int)arg2;
 - (char *)setExtendedDataForLastTokenAtIndex:(unsigned int)arg1 length:(unsigned int)arg2;
 - (BOOL)insertExternalName:(unsigned long long)arg1 withLink:(unsigned long long)arg2 atIndex:(unsigned int)arg3;

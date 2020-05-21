@@ -10,65 +10,46 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct LogServer;
-
-struct LoggerBase<std::__1::shared_ptr<ctu::LogServer>> {
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field1;
-    unsigned char _field2;
-    unsigned char _field3;
-    struct shared_ptr<ctu::LogServer> _field4;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*> *__next_;
 };
 
-struct StaticLogger {
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> fLogDomain;
-    unsigned char fLogLevel;
-    unsigned char fParentLevel;
-    struct shared_ptr<ctu::LogServer> fServer;
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*> **__value_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*>*>> {
+                unsigned long long __value_;
+            } __data_;
+        } __value_;
+    } __ptr_;
 };
 
-struct __va_list_tag {
-    unsigned int _field1;
-    unsigned int _field2;
-    void *_field3;
-    void *_field4;
-};
-
-struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> {
-    struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__rep, std::__1::allocator<char>> {
-        struct __rep {
-            union {
-                struct __long {
-                    unsigned long long __cap_;
-                    unsigned long long __size_;
-                    char *__data_;
-                } __l;
-                struct __short {
-                    union {
-                        unsigned char __size_;
-                        char __lx;
-                    } ;
-                    char __data_[23];
-                } __s;
-                struct __raw {
-                    unsigned long long __words[3];
-                } __r;
-            } ;
-        } __first_;
-    } __r_;
-};
-
-struct shared_ptr<ctu::LogServer> {
-    struct LogServer *__ptr_;
-    struct __shared_weak_count *__cntrl_;
+struct unordered_map<const char *, os_log_s *, std::__1::hash<const char *>, std::__1::equal_to<const char *>, std::__1::allocator<std::__1::pair<const char *const, os_log_s *>>> {
+    struct __hash_table<std::__1::__hash_value_type<const char *, os_log_s *>, std::__1::__unordered_map_hasher<const char *, std::__1::__hash_value_type<const char *, os_log_s *>, std::__1::hash<const char *>, true>, std::__1::__unordered_map_equal<const char *, std::__1::__hash_value_type<const char *, os_log_s *>, std::__1::equal_to<const char *>, true>, std::__1::allocator<std::__1::__hash_value_type<const char *, os_log_s *>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<const char *, os_log_s *>, void *>*> __value_;
+        } __p1_;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<const char *, std::__1::__hash_value_type<const char *, os_log_s *>, std::__1::hash<const char *>, true>> {
+            unsigned long long __value_;
+        } __p2_;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<const char *, std::__1::__hash_value_type<const char *, os_log_s *>, std::__1::equal_to<const char *>, true>> {
+            float __value_;
+        } __p3_;
+    } __table_;
 };
 
 #pragma mark Typedef'd Structures
 
-// Template types
-typedef struct LoggerBase<std::__1::shared_ptr<ctu::LogServer>> {
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field1;
-    unsigned char _field2;
-    unsigned char _field3;
-    struct shared_ptr<ctu::LogServer> _field4;
-} LoggerBase_f7398810;
+typedef struct {
+    unsigned int timestamp:1;
+} CDStruct_b5306035;
+
+// Ambiguous groups
+typedef struct {
+    unsigned int timestamp:1;
+    unsigned int domain:1;
+    unsigned int error:1;
+} CDStruct_6e486683;
 

@@ -11,6 +11,7 @@
 }
 
 + (id)commandName;
+- (void)finishWithItems:(id)arg1;
 
 @end
 

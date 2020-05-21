@@ -12,6 +12,10 @@
 
 - (BOOL)canAuthenticateWithScheme:(id)arg1;
 - (BOOL)shouldRetryConnectionWithoutCertificateCheckingAfterError:(id)arg1 host:(id)arg2 didPromptUser:(char *)arg3;
+- (id)clientInfo;
+- (id)_anisetteData;
+- (id)oneTimePassword;
+- (id)machineID;
 - (id)appleAuthenticationToken;
 - (id)applePersonID;
 - (void)setPassword:(id)arg1;

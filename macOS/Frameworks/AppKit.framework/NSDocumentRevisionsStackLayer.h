@@ -15,6 +15,8 @@ __attribute__((visibility("hidden")))
 }
 
 @property(retain) CABackdropLayer *backdropLayer; // @synthesize backdropLayer;
+- (struct CGPoint)anchorPoint;
+- (void)setAnchorPoint:(struct CGPoint)arg1;
 - (void)dealloc;
 
 @end

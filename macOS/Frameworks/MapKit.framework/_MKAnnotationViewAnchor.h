@@ -8,13 +8,13 @@
 
 @class MKAnnotationView;
 
+__attribute__((visibility("hidden")))
 @interface _MKAnnotationViewAnchor : VKAnchorWrapper
 {
     MKAnnotationView *_annotationView;
 }
 
-@property(nonatomic) __weak MKAnnotationView *annotationView; // @synthesize annotationView=_annotationView;
-- (void).cxx_destruct;
+@property(nonatomic) MKAnnotationView *annotationView; // @synthesize annotationView=_annotationView;
 - (CDStruct_c3b9c2ee)coordinate;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "PKPackageReferable.h"
 
-@class NSMutableArray, NSString, PKDistribution;
+@class NSDictionary, NSMutableArray, NSString, NSURL, PKDistribution;
 
 @interface PKDistributionPackageReference : NSObject <PKPackageReferable>
 {
@@ -40,9 +40,9 @@
 - (BOOL)validatePkgRefIdentifier:(id *)arg1 error:(id *)arg2;
 - (void)setPkgRefIdentifier:(id)arg1;
 - (id)pkgRefIdentifier;
-- (id)URL;
-- (id)version;
-- (id)identifier;
+@property(readonly) NSURL *URL;
+@property(readonly) NSString *version;
+@property(readonly) NSString *identifier;
 - (void)_replacePkgRefIdentifier:(id)arg1;
 - (id)_pkgRefElements;
 - (void)_removePkgRefElement:(id)arg1;
@@ -57,7 +57,13 @@
 - (id)init;
 
 // Remaining properties
+@property(readonly) NSString *MD5;
+@property(readonly) NSDictionary *additionalInfo;
 @property(readonly, copy) NSString *debugDescription;
+@property(readonly) NSString *digest;
+@property(readonly) NSString *fileDigest;
+@property(readonly) long long fileDigestType;
+@property(readonly) unsigned long long fileSize;
 @property(readonly) Class superclass;
 
 @end

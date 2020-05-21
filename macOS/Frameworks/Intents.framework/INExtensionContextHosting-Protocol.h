@@ -6,9 +6,6 @@
 
 #import "NSObject.h"
 
-@class INImage;
-
 @protocol INExtensionContextHosting <NSObject>
-- (void)extensionContextVendorWantsToCacheImage:(INImage *)arg1;
 @end
 

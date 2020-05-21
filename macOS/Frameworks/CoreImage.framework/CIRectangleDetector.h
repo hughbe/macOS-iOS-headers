@@ -15,16 +15,23 @@ __attribute__((visibility("hidden")))
     double _width;
     double _height;
     NSMutableDictionary *featureOptions;
-    float *perMeshPtr;
-    void *_internalBuffer;
+    struct {
+        CDUnknownFunctionPointerType _field1;
+        CDUnknownFunctionPointerType _field2;
+        CDUnknownFunctionPointerType _field3;
+        CDUnknownFunctionPointerType _field4;
+        CDUnknownFunctionPointerType _field5;
+    } *CVMLFuncs;
+    float *_perMeshPtr;
+    struct vImage_Buffer *_internalBuffer;
 }
 
 @property(retain, nonatomic) CIContext *context; // @synthesize context;
-- (id)featuresInImage:(id)arg1;
 - (id)featuresInImage:(id)arg1 options:(id)arg2;
-- (id)featuresInImageUsingCCRect:(id)arg1 options:(id)arg2;
+- (id)featuresInImage:(id)arg1;
 - (void)finalize;
 - (void)dealloc;
+- (void)releaseResources;
 - (id)initWithContext:(id)arg1 options:(id)arg2;
 
 @end

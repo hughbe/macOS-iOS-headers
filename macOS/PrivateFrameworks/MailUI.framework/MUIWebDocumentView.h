@@ -14,26 +14,19 @@
     struct CGSize _contentSize;
     double _preferredMinLayoutWidth;
     BOOL _preparingToLayoutSynchronously;
-    BOOL _supportsAttachments;
     NSView *_snapshotView;
-    MUIWKWebViewController *_wkWebViewController;
     CDUnknownBlockType _prepareToLayoutSynchronouslyCompletionHandler;
-    id <MUIWebDocumentViewDelegate> _delegate;
+    MUIWKWebViewController *_wkWebViewController;
 }
 
-+ (id)keyPathsForValuesAffectingEditable;
 + (id)keyPathsForValuesAffectingPageZoom;
 + (id)keyPathsForValuesAffectingWebDocument;
 + (BOOL)requiresConstraintBasedLayout;
-@property(nonatomic) BOOL supportsAttachments; // @synthesize supportsAttachments=_supportsAttachments;
-@property(nonatomic) __weak id <MUIWebDocumentViewDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(retain, nonatomic) MUIWKWebViewController *wkWebViewController; // @synthesize wkWebViewController=_wkWebViewController;
 @property(copy, nonatomic) CDUnknownBlockType prepareToLayoutSynchronouslyCompletionHandler; // @synthesize prepareToLayoutSynchronouslyCompletionHandler=_prepareToLayoutSynchronouslyCompletionHandler;
 @property(nonatomic) BOOL preparingToLayoutSynchronously; // @synthesize preparingToLayoutSynchronously=_preparingToLayoutSynchronously;
-@property(retain, nonatomic) MUIWKWebViewController *wkWebViewController; // @synthesize wkWebViewController=_wkWebViewController;
 @property(readonly, nonatomic) NSView *snapshotView; // @synthesize snapshotView=_snapshotView;
-- (void).cxx_destruct;
-- (void)toggleAutomaticListInsertion:(id)arg1;
-- (void)reloadDocument;
 - (void)exportAttachmentsToApplication:(id)arg1;
 - (BOOL)canExportAttachmentsToApplication:(id)arg1;
 - (void)saveAttachments:(id)arg1 toDirectory:(id)arg2 makePathsUnique:(BOOL)arg3;
@@ -45,18 +38,9 @@
 - (void)getSelectedText:(CDUnknownBlockType)arg1;
 - (void)selectFindMatch:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)findMatchesForString:(id)arg1 relativeToMatch:(id)arg2 findOptions:(unsigned long long)arg3 maxResults:(unsigned long long)arg4 resultCollector:(CDUnknownBlockType)arg5;
-- (void)discardEditing;
-- (void)commitEditingWithDelegate:(id)arg1 didCommitSelector:(SEL)arg2 contextInfo:(void *)arg3;
-- (BOOL)commitEditingAndReturnError:(id *)arg1;
-- (BOOL)commitEditing;
 - (void)generateSelectionWebDocument:(CDUnknownBlockType)arg1;
 - (void)generateStyleInlinedWebDocument:(CDUnknownBlockType)arg1;
-- (void)removeAttachment:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)appendAttributedString:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)appendString:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)appendAttachment:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)setAttachments:(id)arg1 asHidden:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
-@property(nonatomic) BOOL editable;
 - (void)layoutSublayersOfLayer:(id)arg1;
 - (void)mui_cancelSynchronousLayout;
 - (void)mui_performLayoutSynchronously;
@@ -72,6 +56,7 @@
 - (id)evaluateJavaScriptSynchronously:(id)arg1;
 - (void)evaluateJavaScript:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @property(nonatomic) BOOL drawsBackground;
+@property(nonatomic) BOOL shouldPaintToBounds;
 @property(nonatomic) double pageZoom;
 @property(retain, nonatomic) MUIWebDocument *webDocument;
 @property(nonatomic) unsigned long long loadedState;

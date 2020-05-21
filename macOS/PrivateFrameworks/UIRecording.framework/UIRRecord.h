@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSDictionary, UIRAccessibilityElement, UIRAccessibilityProcess;
 
-@interface UIRRecord : NSObject <NSCopying, NSCoding>
+@interface UIRRecord : NSObject <NSCopying, NSSecureCoding>
 {
     NSArray *_uiEvents;
     id _delegate;
@@ -37,8 +37,9 @@
     id _future4;
 }
 
++ (BOOL)supportsSecureCoding;
 @property BOOL userCanceledPlayback; // @synthesize userCanceledPlayback=_userCanceledPlayback;
-@property BOOL isPlayingBack; // @synthesize isPlayingBack=_isPlayingBack;
+@property(nonatomic) BOOL isPlayingBack; // @synthesize isPlayingBack=_isPlayingBack;
 @property(copy) NSDictionary *playbackErrorInfo; // @synthesize playbackErrorInfo=_playbackErrorInfo;
 @property(retain) UIRAccessibilityProcess *targetApplicationElement; // @synthesize targetApplicationElement=_targetApplicationElement;
 @property(retain) UIRAccessibilityElement *systemWideElement; // @synthesize systemWideElement=_systemWideElement;

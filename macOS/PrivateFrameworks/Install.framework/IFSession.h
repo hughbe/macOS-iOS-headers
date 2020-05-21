@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IFInstallQueueElement, IFSessionState, NSConditionLock, NSLock, NSMutableArray, NSMutableDictionary;
+@class IFInstallQueueElement, IFRunnerProxy, IFSessionState, NSConditionLock, NSLock, NSMutableArray, NSMutableDictionary;
 
 @interface IFSession : NSObject
 {
@@ -20,12 +20,16 @@
     IFSessionState *_sessionState;
     IFInstallQueueElement *_frontQueueElement;
     CDUnknownBlockType _warningHandler;
+    BOOL _userConsentedInstall;
+    IFRunnerProxy *_runnerProxy;
 }
 
 + (void)_setSharedAuthorization:(struct AuthorizationOpaqueRef *)arg1;
 + (void)setSessionType:(Class)arg1;
 + (id)sharedSession;
 + (void)initialize;
+@property(retain) IFRunnerProxy *runnerProxy; // @synthesize runnerProxy=_runnerProxy;
+@property BOOL userConsentedInstall; // @synthesize userConsentedInstall=_userConsentedInstall;
 - (id)endJobIdentifier;
 - (void)setCurrentMediaHasFinishedInstalling:(BOOL)arg1;
 - (id)queueElementForActionsGroup:(id)arg1;

@@ -6,13 +6,13 @@
 
 #import <CoreFoundation/_NSSharedKeySetS.h>
 
+__attribute__((visibility("hidden")))
 @interface __NSISOLatin4TrigramKeySet : _NSSharedKeySetS
 {
 }
 
 - (BOOL)isEmpty;
 - (id)initWithKeys:(unsigned short **)arg1 keyLenghtInBytes:(unsigned int)arg2 count:(unsigned int)arg3;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

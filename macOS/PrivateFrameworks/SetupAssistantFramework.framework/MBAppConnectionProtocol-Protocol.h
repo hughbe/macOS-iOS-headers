@@ -6,10 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSString, NSUUID;
+@class NSDictionary, NSUUID;
 
 @protocol MBAppConnectionProtocol <NSObject>
-- (void)progressUpdate:(float)arg1 status:(NSString *)arg2 forUUID:(NSUUID *)arg3;
+- (void)progressUpdate:(float)arg1 status:(NSDictionary *)arg2 forUUID:(NSUUID *)arg3;
 - (void)exitBuddyApp:(void (^)(BOOL))arg1;
 - (void)getBuddyWindowRepresentationFromApp:(void (^)(NSDictionary *))arg1;
 @end

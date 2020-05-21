@@ -18,6 +18,7 @@
 }
 
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) NSDate *dictationCommandTimeStamp; // @synthesize dictationCommandTimeStamp=_dictationCommandTimeStamp;
 @property(copy) NSString *dictationCommandWorkflowURLString; // @synthesize dictationCommandWorkflowURLString=_dictationCommandWorkflowURLString;
 @property(copy) NSString *dictationCommandIdentifier; // @synthesize dictationCommandIdentifier=_dictationCommandIdentifier;
@@ -25,10 +26,9 @@
 @property BOOL dictationCommandEnabled; // @synthesize dictationCommandEnabled=_dictationCommandEnabled;
 - (void)updateDictationCommandProperties:(id)arg1;
 - (void)updateDictationCommandPropertiesWithURL:(id)arg1;
-- (void)syncMetaDataForDocument:(id)arg1;
+- (void)syncMetaDataForWorkflow:(id)arg1 atURL:(id)arg2;
 - (id)metaData;
 - (void)setFromDictionary:(id)arg1;
-- (void)dealloc;
 - (id)initWithPersonality:(id)arg1;
 
 @end

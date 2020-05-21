@@ -15,7 +15,7 @@
 - (id)initWithDataPayload:(id)arg1 dataContentType:(id)arg2 atURL:(id)arg3 previousETag:(id)arg4;
 
 // Remaining properties
-@property(nonatomic) id <CoreDAVTaskDelegate> delegate; // @dynamic delegate;
+@property(nonatomic) __weak id <CoreDAVTaskDelegate> delegate; // @dynamic delegate;
 
 @end
 

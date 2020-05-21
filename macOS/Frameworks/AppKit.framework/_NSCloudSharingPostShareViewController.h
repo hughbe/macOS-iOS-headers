@@ -15,10 +15,11 @@ __attribute__((visibility("hidden")))
     CDUnknownBlockType _disconnectionHandler;
 }
 
-+ (void)requestViewControllerForPopover:(BOOL)arg1 withItem:(id)arg2 options:(unsigned long long)arg3 participantDetails:(id)arg4 connectionHandler:(CDUnknownBlockType)arg5;
++ (void)requestViewControllerForPopover:(BOOL)arg1 withItem:(id)arg2 options:(unsigned long long)arg3 sharingServiceParameters:(id)arg4 connectionHandler:(CDUnknownBlockType)arg5;
 @property(copy) CDUnknownBlockType disconnectionHandler; // @synthesize disconnectionHandler=_disconnectionHandler;
 - (void)dealloc;
 - (void)viewDidInvalidate:(id)arg1;
+- (id)serviceViewControllerInterface;
 
 // Remaining properties
 @property(readonly) BOOL shouldRetainExportedObject;

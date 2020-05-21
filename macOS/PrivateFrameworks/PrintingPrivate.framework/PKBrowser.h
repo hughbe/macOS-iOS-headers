@@ -6,25 +6,26 @@
 
 #import "NSObject.h"
 
-#import "PKBrowserClientProtocol.h"
+#import "PMXPCSupportDelegate.h"
 
-@class NSArray, NSMutableDictionary, NSString, NSXPCConnection;
+@class NSArray, NSMutableDictionary, NSString, PMXPCSupport;
 
-@interface PKBrowser : NSObject <PKBrowserClientProtocol>
+@interface PKBrowser : NSObject <PMXPCSupportDelegate>
 {
     id <PKBrowserDelegate> _delegate;
     BOOL _browsing;
     NSMutableDictionary *_devices;
-    NSXPCConnection *_xpcConnection;
+    PMXPCSupport *_xpc;
 }
 
-@property(retain, nonatomic) NSXPCConnection *xpcConnection; // @synthesize xpcConnection=_xpcConnection;
+@property(retain) PMXPCSupport *xpc; // @synthesize xpc=_xpc;
 @property(nonatomic) BOOL browsing; // @synthesize browsing=_browsing;
 @property id <PKBrowserDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSMutableDictionary *devices; // @synthesize devices=_devices;
 - (void)printerUpdated:(id)arg1 more:(BOOL)arg2;
 - (void)printerRemoved:(id)arg1 more:(BOOL)arg2;
 - (void)printerAdded:(id)arg1 more:(BOOL)arg2;
+- (void)handleEventForCommand:(int)arg1 status:(int)arg2 event:(id)arg3;
 - (id)queueList;
 - (void)stop;
 - (void)start;

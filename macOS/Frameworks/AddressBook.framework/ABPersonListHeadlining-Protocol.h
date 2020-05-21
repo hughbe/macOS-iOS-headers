@@ -9,9 +9,10 @@
 @class NSArray;
 
 @protocol ABPersonListHeadlining <NSObject>
-@property(readonly) unsigned long long numberOfMeCards;
-@property unsigned long long countLabelThreshold;
-@property long long sectioningThreshold;
+@property(nonatomic) BOOL vibrantHeaders;
+@property(readonly, nonatomic) unsigned long long numberOfMeCards;
+@property(nonatomic) unsigned long long countLabelThreshold;
+@property(nonatomic) long long sectioningThreshold;
 - (NSArray *)bucketedEntriesForSortedEntries:(NSArray *)arg1;
 @end
 

@@ -8,15 +8,24 @@
 
 #import "NSCopying.h"
 
+@class PBUnknownFields;
+
+__attribute__((visibility("hidden")))
 @interface GEOPDEntityFilter : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
+    BOOL _includeName;
     BOOL _includeSpokenNames;
     struct {
-        unsigned int includeSpokenNames:1;
-    } _has;
+        unsigned int has_includeName:1;
+        unsigned int has_includeSpokenNames:1;
+    } _flags;
 }
 
-@property(nonatomic) BOOL includeSpokenNames; // @synthesize includeSpokenNames=_includeSpokenNames;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -24,9 +33,13 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasIncludeName;
+@property(nonatomic) BOOL includeName;
 @property(nonatomic) BOOL hasIncludeSpokenNames;
+@property(nonatomic) BOOL includeSpokenNames;
 
 @end
 

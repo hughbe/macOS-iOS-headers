@@ -12,13 +12,12 @@
 #import "NSCopying.h"
 #import "NSImmediateActionAnimationController.h"
 #import "NSMenuItem.h"
-#import "NSPopoverPresenting.h"
 #import "NSUserInterfaceItemIdentification.h"
 #import "NSValidatedUserInterfaceItem.h"
 
 @class NSArray, NSAttributedString, NSImage, NSMenu, NSString, NSURL, NSView;
 
-@interface NSMenuItem : NSObject <NSImmediateActionAnimationController, NSPopoverPresenting, NSMenuItem, NSCopying, NSCoding, NSValidatedUserInterfaceItem, NSUserInterfaceItemIdentification, NSAccessibilityElement, NSAccessibility>
+@interface NSMenuItem : NSObject <NSImmediateActionAnimationController, NSMenuItem, NSCopying, NSCoding, NSValidatedUserInterfaceItem, NSUserInterfaceItemIdentification, NSAccessibilityElement, NSAccessibility>
 {
     NSMenu *_menu;
     NSString *_title;
@@ -43,14 +42,17 @@
         unsigned int keShareMode:3;
         unsigned int state:2;
         unsigned int destructive:1;
-        unsigned int RESERVED1:1;
+        unsigned int reserved:2;
         unsigned int limitedView:1;
+        unsigned int drawingOnlyView:1;
         unsigned int nextItemIsAlternate:1;
         unsigned int blockKE:1;
         unsigned int ignoredForAccessibility:1;
         unsigned int hiddenActiveKE:1;
         unsigned int noRepeatKEs:1;
-        unsigned int targetWeak:1;
+        unsigned int blockedByScreenTime:1;
+        unsigned int submenuParentUnchoosable:1;
+        unsigned int allowedForLimitedAppMode:1;
     } _miFlags;
 }
 
@@ -70,9 +72,13 @@
 + (id)_defaultWindowMenuStateImageDirtyWindow;
 + (id)_defaultWindowMenuStateImageKeyWindow;
 + (id)_defaultWindowMenuStateImageMinimizedWindow;
++ (id)standardImportFromDeviceMenuItem;
++ (id)_sidecarServicesMenuItemWithTarget:(id)arg1 action:(SEL)arg2 options:(unsigned long long)arg3;
++ (id)_sidecarServicesMenuItemWithOptions:(unsigned long long)arg1;
 + (id)_menuItemForItem:(id)arg1 view:(id)arg2 itemFrame:(struct CGRect)arg3 aimFrame:(struct CGRect)arg4 options:(id)arg5;
 + (void)_dispatchActionBlockFor:(id)arg1;
 + (id)_menuItemWithTitle:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void).cxx_destruct;
 @property(copy) NSString *identifier;
 - (void)setUserInterfaceItemIdentifier:(id)arg1;
 - (id)userInterfaceItemIdentifier;
@@ -91,6 +97,9 @@
 - (id)_startingWindowForSendAction:(SEL)arg1;
 - (id)_menuItemViewer;
 @property(retain) NSView *view;
+- (BOOL)_viewWantsHIView;
+- (BOOL)_viewIsDrawingOnly;
+- (void)_setViewIsDrawingOnly:(BOOL)arg1;
 - (BOOL)_viewHandlesEvents;
 - (void)_setViewHandlesEvents:(BOOL)arg1;
 - (void)_setViewNeedsDisplayInRect:(struct CGRect)arg1;
@@ -106,11 +115,19 @@
 @property long long indentationLevel;
 - (void)_setNextItemIsAlternate:(BOOL)arg1;
 - (BOOL)_nextItemIsAlternate;
+- (BOOL)_allowedForLimitedAppMode;
+- (void)_setAllowedForLimitedAppMode:(BOOL)arg1;
+- (BOOL)_submenuParentItemUnchoosable;
+- (void)_setSubmenuParentItemUnchoosable:(BOOL)arg1;
+- (BOOL)_showsBlockedByScreenTime;
+- (void)_setShowsBlockedByScreenTime:(BOOL)arg1;
 - (BOOL)isDestructive;
 - (void)setDestructive:(BOOL)arg1;
 @property(getter=isAlternate) BOOL alternate;
 - (BOOL)_isEnabled;
 @property(readonly, getter=isHighlighted) BOOL highlighted;
+- (BOOL)_submenuParentItemChoosable;
+- (BOOL)_shouldBeDisabledForLimitedAppMode;
 - (BOOL)_canBeHighlighted;
 @property(getter=isEnabled) BOOL enabled;
 @property(retain) NSImage *mixedStateImage;
@@ -121,6 +138,8 @@
 - (id)_imageForState:(long long)arg1;
 - (void)_setIconRef:(struct OpaqueIconRef *)arg1;
 - (struct OpaqueIconRef *)_iconRef;
+- (struct CGSize)_imageSize;
+- (void)_setImageSize:(struct CGSize)arg1;
 @property(retain) NSImage *image;
 - (void)setTitleWithMnemonic:(id)arg1;
 - (id)mnemonic;
@@ -142,6 +161,9 @@
 - (id)_desiredKeyEquivalent;
 - (unsigned long long)_rawKeyEquivalentModifierMask;
 - (id)_rawKeyEquivalent;
+- (unsigned long long)_keyboardAwareEquivalentModifierMask;
+- (id)_keyboardAwareEquivalent;
+- (id)_rawKeyboardAwareEquivalent;
 - (BOOL)_mayBeInvolvedInMenuItemPath;
 - (void)_recacheUserKeyEquivalentOnlyIfStale:(BOOL)arg1;
 - (unsigned long long)userKeyEquivalentModifierMask;
@@ -155,10 +177,15 @@
 - (BOOL)_shouldForceShiftModifierWithKeyEquivalent:(id)arg1;
 - (id)_applicableImage;
 - (unsigned long long)_applicableKeyEquivalentModifierMask;
+@property BOOL allowsKeyEquivalentWhenHidden;
 @property unsigned long long keyEquivalentModifierMask;
+- (void)_setKeyboardAwareEquivalentModifierMask:(unsigned long long)arg1;
 @property(copy) NSString *keyEquivalent;
 - (void)_cacheUserKeyEquivalentInfo:(struct NSMenuUserKeyEquivalentInfo_t)arg1;
 - (struct NSMenuUserKeyEquivalentInfo_t)_fetchFreshUserKeyEquivalentInfo;
+- (void)_setKeyboardAwareEquivalent:(id)arg1 modifiers:(unsigned long long)arg2;
+- (void)_setKeyEquivalentInputSourceIdentifier:(id)arg1;
+- (id)_keyEquivalentInputSourceIdentifier;
 @property(readonly, getter=isSeparatorItem) BOOL separatorItem;
 - (struct CGSize)_cachedAttributedTitleSizeForMeasuring:(BOOL)arg1 hasAttachment:(char *)arg2;
 - (struct CGSize)_computeBoundingRectSizeForTitle:(id)arg1 hasAttachment:(char *)arg2;
@@ -166,12 +193,11 @@
 - (id)font;
 - (void)_setNewItemsCount:(unsigned long long)arg1;
 - (unsigned long long)_newItemsCount;
-- (id)_alternateAttributedTitle;
-- (void)_setAlternateAttributedTitle:(id)arg1;
 @property(copy) NSAttributedString *attributedTitle;
 @property(copy) NSString *title;
 - (id)_titlePathForUserKeyEquivalents;
 - (id)_titleForUserKeyEquivalents;
+- (void)_unconfigureAsSeparatorItem;
 - (void)_configureAsSeparatorItem;
 @property(readonly, getter=isHiddenOrHasHiddenAncestor) BOOL hiddenOrHasHiddenAncestor;
 @property(getter=isHidden) BOOL hidden;
@@ -190,6 +216,8 @@
 - (void)dealloc;
 - (long long)backgroundStyle;
 - (id)init;
+- (id)copyNormalizedTitle:(id)arg1;
+- (BOOL)_isSelectorAllowedForLimitedAppMode:(SEL)arg1;
 - (id)initWithTitle:(id)arg1 action:(SEL)arg2 keyEquivalent:(id)arg3;
 - (BOOL)accessibilityPerformShowMenu;
 - (BOOL)accessibilityPerformShowDefaultUI;
@@ -202,6 +230,8 @@
 - (BOOL)accessibilityPerformDecrement;
 - (BOOL)accessibilityPerformConfirm;
 - (BOOL)accessibilityPerformCancel;
+- (void)setAccessibilityOverridesAlwaysTakePrecedence:(BOOL)arg1;
+- (BOOL)accessibilityOverridesAlwaysTakePrecedence;
 - (void)setAccessibilityContentSiblingBelow:(id)arg1;
 - (id)accessibilityContentSiblingBelow;
 - (void)setAccessibilityContentSiblingAbove:(id)arg1;
@@ -303,6 +333,8 @@
 @property(retain) id accessibilityHeader; // @dynamic accessibilityHeader;
 @property(copy) NSArray *accessibilityHandles; // @dynamic accessibilityHandles;
 @property(retain) id accessibilityGrowArea; // @dynamic accessibilityGrowArea;
+- (void)setAccessibilityFunctionRowTopLevelElements:(id)arg1;
+- (id)accessibilityFunctionRowTopLevelElements;
 @property(retain) id accessibilityFullScreenButton; // @dynamic accessibilityFullScreenButton;
 @property(getter=isAccessibilityFrontmost) BOOL accessibilityFrontmost; // @dynamic accessibilityFrontmost;
 @property(retain) id accessibilityFocusedWindow; // @dynamic accessibilityFocusedWindow;
@@ -324,8 +356,10 @@
 - (id)_accessibilityLabel;
 @property(retain) id accessibilityDefaultButton; // @dynamic accessibilityDefaultButton;
 @property(retain) id accessibilityDecrementButton; // @dynamic accessibilityDecrementButton;
+@property(copy) NSArray *accessibilityCustomRotors; // @dynamic accessibilityCustomRotors;
 - (void)setAccessibilityCustomChoosers:(id)arg1;
 - (id)accessibilityCustomChoosers;
+@property(copy) NSArray *accessibilityCustomActions; // @dynamic accessibilityCustomActions;
 @property(retain) id accessibilityCriticalValue; // @dynamic accessibilityCriticalValue;
 @property(copy) NSArray *accessibilityContents; // @dynamic accessibilityContents;
 @property(getter=isAccessibilityProtectedContent) BOOL accessibilityProtectedContent; // @dynamic accessibilityProtectedContent;
@@ -336,8 +370,7 @@
 @property long long accessibilityColumnCount; // @dynamic accessibilityColumnCount;
 @property(retain) id accessibilityCloseButton; // @dynamic accessibilityCloseButton;
 @property(retain) id accessibilityClearButton; // @dynamic accessibilityClearButton;
-- (void)setAccessibilityChildrenInNavigationOrder:(id)arg1;
-- (id)accessibilityChildrenInNavigationOrder;
+@property(copy) NSArray *accessibilityChildrenInNavigationOrder; // @dynamic accessibilityChildrenInNavigationOrder;
 @property(copy) NSArray *accessibilityChildren; // @dynamic accessibilityChildren;
 @property(retain) id accessibilityCancelButton; // @dynamic accessibilityCancelButton;
 - (void)setAccessibilityAuditIssues:(id)arg1;
@@ -373,7 +406,6 @@
 - (void)_doPredeepAnimationWithProgress:(double)arg1;
 - (void)_beginPredeepAnimationAgainstPoint:(struct CGPoint)arg1 inView:(id)arg2;
 @property(readonly) BOOL _wantsDeepAnimationCallbacks;
-- (void)showPopover:(id)arg1;
 - (void)setActionBlock:(CDUnknownBlockType)arg1;
 - (void)invokeActionBlock:(id)arg1;
 - (id)controlView;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CNAutocompleteNameComponents, CNAutocompleteResultValue, NSArray, NSDictionary, NSString;
+@class CNAutocompleteNameComponents, CNAutocompleteResultValue, NSArray, NSDictionary, NSNumber, NSString;
 
 @interface CNAutocompleteResult : NSObject
 {
@@ -19,11 +19,13 @@
     CNAutocompleteResultValue *_value;
     NSDictionary *_userInfo;
     NSString *_lastSendingAddress;
+    NSString *_descriptionMemo;
     CDUnknownBlockType _membersProvider;
     CDUnknownBlockType _contactProvider;
     NSArray *_diagnosticLogs;
     CDUnknownBlockType _ignoreResultBlock;
     long long _resultType;
+    NSNumber *_recentsIdentifier;
 }
 
 + (BOOL)isSourceTypeConsideredSuggestion:(unsigned long long)arg1;
@@ -39,6 +41,8 @@
 + (id)messagesResultWithAddress:(id)arg1 displayName:(id)arg2 nameComponents:(id)arg3 resultType:(long long)arg4 groupMembersProvider:(CDUnknownBlockType)arg5 userInfo:(id)arg6;
 + (id)calDAVResultWithAddress:(id)arg1 displayName:(id)arg2 nameComponents:(id)arg3 resultType:(long long)arg4 groupMembersProvider:(CDUnknownBlockType)arg5;
 + (id)calDAVResultWithAddress:(id)arg1 displayName:(id)arg2 nameComponents:(id)arg3;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSNumber *recentsIdentifier; // @synthesize recentsIdentifier=_recentsIdentifier;
 @property long long resultType; // @synthesize resultType=_resultType;
 @property(copy) NSString *displayName; // @synthesize displayName=_displayName;
 @property(copy) NSString *lastSendingAddress; // @synthesize lastSendingAddress=_lastSendingAddress;
@@ -52,7 +56,6 @@
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property unsigned long long sourceType; // @synthesize sourceType=_sourceType;
 @property BOOL hasPreferredDomain; // @synthesize hasPreferredDomain=_hasPreferredDomain;
-- (void).cxx_destruct;
 - (id)diagnosticLog;
 - (void)addDiagnosticLogFuture:(id)arg1;
 - (void)addDiagnosticLog:(CDUnknownBlockType)arg1;

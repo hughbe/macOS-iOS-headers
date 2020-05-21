@@ -6,17 +6,22 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSString, SFSafariExtensionViewController, SFSafariPage, SFSafariWindow;
+@class NSArray, NSDictionary, NSString, NSURL, SFSafariExtensionViewController, SFSafariPage, SFSafariWindow;
 
 @protocol SFSafariExtensionHandling <NSObject>
 
 @optional
+- (void)page:(SFSafariPage *)arg1 willNavigateToURL:(NSURL *)arg2;
+- (void)contentBlockerWithIdentifier:(NSString *)arg1 blockedResourcesWithURLs:(NSArray *)arg2 onPage:(SFSafariPage *)arg3;
+- (void)additionalRequestHeadersForURL:(NSURL *)arg1 completionHandler:(void (^)(NSDictionary *))arg2;
 - (SFSafariExtensionViewController *)popoverViewController;
 - (void)popoverDidCloseInWindow:(SFSafariWindow *)arg1;
 - (void)popoverWillShowInWindow:(SFSafariWindow *)arg1;
+- (void)validateContextMenuItemWithCommand:(NSString *)arg1 inPage:(SFSafariPage *)arg2 userInfo:(NSDictionary *)arg3 validationHandler:(void (^)(BOOL, NSString *))arg4;
 - (void)contextMenuItemSelectedWithCommand:(NSString *)arg1 inPage:(SFSafariPage *)arg2 userInfo:(NSDictionary *)arg3;
 - (void)validateToolbarItemInWindow:(SFSafariWindow *)arg1 validationHandler:(void (^)(BOOL, NSString *))arg2;
 - (void)toolbarItemClickedInWindow:(SFSafariWindow *)arg1;
+- (void)messageReceivedFromContainingAppWithName:(NSString *)arg1 userInfo:(NSDictionary *)arg2;
 - (void)messageReceivedWithName:(NSString *)arg1 fromPage:(SFSafariPage *)arg2 userInfo:(NSDictionary *)arg3;
 @end
 

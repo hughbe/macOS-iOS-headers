@@ -13,19 +13,6 @@
 
 @interface NSFont : NSObject <NSCopying, NSSecureCoding>
 {
-    NSString *_name;
-    double _size;
-    long long _retainCount;
-    struct __fFlags {
-        unsigned int _isScreenFont:1;
-        unsigned int _systemFontType:8;
-        unsigned int _reserved1:4;
-        unsigned int _matrixIsIdentity:1;
-        unsigned int _renderingMode:3;
-        unsigned int _inInstanceCache:1;
-        unsigned int _reserved2:14;
-    } _fFlags;
-    id _private;
 }
 
 + (BOOL)_characterCannotBeRendered:(unsigned int)arg1;
@@ -41,8 +28,13 @@
 + (id)findFontLike:(id)arg1 forCharacter:(unsigned int)arg2 inLanguage:(id)arg3;
 + (void)setLocaleListForDefaultFontFallback:(id)arg1;
 + (void)useFont:(id)arg1;
++ (id)availableMembersOfFontFamily:(id)arg1;
++ (id)availableFontFamilies;
++ (id)availableFonts;
 + (double)toolbarLabelFontSizeForToolbarSize:(unsigned long long)arg1;
 + (id)toolbarLabelFontOfSize:(double)arg1;
++ (id)monospacedSystemFontOfSize:(double)arg1 weight:(double)arg2;
++ (id)systemFontOfSize:(double)arg1 weight:(double)arg2 design:(id)arg3;
 + (id)monospacedDigitSystemFontOfSize:(double)arg1 weight:(double)arg2;
 + (id)systemFontOfSize:(double)arg1 weight:(double)arg2;
 + (id)_mediumSystemFontOfSize:(double)arg1;
@@ -73,6 +65,7 @@
 + (id)fontWithDescriptor:(id)arg1 textTransform:(id)arg2;
 + (id)fontWithDescriptor:(id)arg1 size:(double)arg2;
 + (id)fontWithName:(id)arg1 matrix:(const double *)arg2;
++ (id)_fontWithName:(id)arg1 size:(double)arg2;
 + (id)fontWithName:(id)arg1 size:(double)arg2;
 + (void)initialize;
 + (BOOL)_allowsDefaultFontSubstitutionFor1XOnly;
@@ -82,18 +75,21 @@
 + (void)_registerForFontSetNotification;
 + (void)_postFontSetChangedNotifications;
 + (void)_updateAntialiasingThreshold;
-+ (id)allocWithZone:(struct _NSZone *)arg1;
-- (id)initWithFontRef:(unsigned int)arg1 size:(double)arg2;
+- (double)_bodyLeading;
 - (BOOL)coversCharacter:(unsigned short)arg1;
 - (BOOL)coversAllCharactersInString:(id)arg1;
 - (unsigned long long)_numberOfGlyphs;
 - (unsigned int)hyphenGlyphForLanguage:(id)arg1;
+- (BOOL)_isScreenFont;
 - (BOOL)isScreenFont;
 - (double)_widthOfPackedGlyphs:(const char *)arg1 count:(unsigned long long)arg2;
 - (BOOL)_glyphDrawsOutsideLineHeight:(unsigned int)arg1;
 - (BOOL)_canDrawOutsideLineHeight;
 - (BOOL)_isFakeFixedPitch;
 - (id)_coveredCharSet;
+- (double)__ascenderDeltaForBehavior:(long long)arg1;
+- (double)_defaultLineHeight:(BOOL)arg1;
+- (BOOL)_drawsOutsideBBox;
 - (unsigned int)_defaultGlyphForChar:(unsigned short)arg1;
 - (struct CGPoint)positionOfGlyph:(unsigned int)arg1 forCharacter:(unsigned short)arg2 struckOverRect:(struct CGRect)arg3;
 - (struct CGPoint)positionOfGlyph:(unsigned int)arg1 struckOverRect:(struct CGRect)arg2 metricsExist:(char *)arg3;
@@ -109,6 +105,7 @@
 - (id)afmDictionary;
 - (BOOL)isBaseFont;
 - (double)widthOfString:(id)arg1;
+- (void)applyToGraphicsContext:(id)arg1;
 - (id)fontWithSize:(double)arg1;
 - (id)fontForAppearance:(id)arg1;
 - (id)preferredFallbackFontForLanguage:(id)arg1;
@@ -118,20 +115,21 @@
 @property(readonly, copy) NSFont *verticalFont;
 - (unsigned long long)getCaretPositions:(double *)arg1 forGlyph:(unsigned int)arg2 maximumLength:(unsigned long long)arg3;
 - (id)bestMatchingFontForCharacters:(const unsigned short *)arg1 length:(unsigned long long)arg2 attributes:(id)arg3 actualCoveredLength:(unsigned long long *)arg4;
+- (BOOL)_isUIFont;
 - (id)nameOfGlyph:(unsigned int)arg1;
 - (unsigned int)hyphenGlyphForLocale:(id)arg1;
 - (id)lastResortFont;
+- (BOOL)_matrixIsIdentity;
 - (const void *)ctFontRef;
 - (id)initWithCoder:(id)arg1;
-- (Class)classForKeyedArchiver;
 - (Class)classForCoder;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copy;
-@property(readonly) unsigned long long renderingMode;
+- (unsigned long long)renderingMode;
 - (id)screenFontWithRenderingMode:(unsigned long long)arg1;
-@property(readonly, copy) NSFont *screenFont;
-@property(readonly, copy) NSFont *printerFont;
+- (id)screenFont;
+- (id)printerFont;
 - (void)setInContext:(id)arg1;
 - (void)set;
 - (void)getAdvancements:(struct CGSize *)arg1 forCGGlyphs:(const unsigned short *)arg2 count:(unsigned long long)arg3;
@@ -140,7 +138,10 @@
 - (void)getBoundingRects:(struct CGRect *)arg1 forCGGlyphs:(const unsigned short *)arg2 count:(unsigned long long)arg3;
 - (void)getBoundingRects:(struct CGRect *)arg1 forGlyphs:(const unsigned int *)arg2 count:(unsigned long long)arg3;
 - (struct CGSize)advancementForGlyph:(unsigned int)arg1;
+- (struct CGSize)advancementForCGGlyph:(unsigned short)arg1;
 - (struct CGRect)boundingRectForGlyph:(unsigned int)arg1;
+- (struct CGRect)boundingRectForCGGlyph:(unsigned short)arg1;
+- (id)_externalFontName;
 - (unsigned long long)traits;
 @property(readonly, getter=isFixedPitch) BOOL fixedPitch;
 @property(readonly) double xHeight;
@@ -148,6 +149,7 @@
 @property(readonly) double italicAngle;
 @property(readonly) double underlineThickness;
 @property(readonly) double underlinePosition;
+- (double)lineHeight;
 @property(readonly) double leading;
 @property(readonly) double descender;
 @property(readonly) double ascender;
@@ -168,13 +170,18 @@
 @property(readonly) const double *matrix;
 @property(readonly) double pointSize;
 @property(readonly, copy) NSString *fontName;
+- (const double *)_matrix;
+- (id)_fontWithDescriptor:(id)arg1;
 - (id)initWithBaseFont:(id)arg1;
-- (id)initWithInstanceInfo:(id)arg1 renderingMode:(unsigned long long)arg2;
+- (id)initWithTypefaceInfo:(id)arg1 key:(id)arg2 renderingMode:(unsigned long long)arg3;
+- (void)_setSystemFontType:(unsigned long long)arg1 usesAppearanceFontSize:(BOOL)arg2;
+- (BOOL)_usesAppearanceFontSize;
 - (unsigned long long)_metaType;
-- (_Bool)_getLatin1GlyphMapping:(const unsigned short **)arg1 andAdvanceMapping:(const struct CGSize **)arg2;
+- (_Bool)_getLatin1Glyphs:(const unsigned short **)arg1 advanceWidths:(const double **)arg2;
 - (BOOL)_hasColorGlyphs;
 - (id)_similarFontWithName:(id)arg1;
 - (double)_totalAdvancementForNativeGlyphs:(const unsigned short *)arg1 count:(long long)arg2;
+- (char *)_glyphAdvancementCacheWithLength:(long long)arg1;
 - (struct CGAffineTransform)_textMatrixTransformForContext:(id)arg1;
 - (id)_kernOverride;
 - (const unsigned short *)_latin1MappingTable:(_Bool *)arg1;
@@ -185,18 +192,17 @@
 - (double)_ascenderDeltaForBehavior:(long long)arg1;
 - (double)_baseLineHeightForFont:(BOOL)arg1;
 - (double)_defaultLineHeightForUILayout;
-- (id)_sharedFontInstanceInfo;
 - (BOOL)_hasNonNominalDescriptor;
 - (BOOL)_isIdealMetricsOnly;
 - (BOOL)_isHiraginoFont;
 - (BOOL)_isDefaultFace;
 - (BOOL)__isSystemFont;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (void)dealloc;
+- (BOOL)isSystemFont;
+- (id)_typeface;
+- (id)_substituteFontWithFontDescriptor:(struct __CTFontDescriptor *)arg1;
+- (id)verticalFontInstanceForRenderingMode:(unsigned long long)arg1;
+- (id)fontInstanceForRenderingMode:(unsigned long long)arg1;
+- (id)newFontInstanceForRenderingMode:(unsigned long long)arg1;
 
 @end
 

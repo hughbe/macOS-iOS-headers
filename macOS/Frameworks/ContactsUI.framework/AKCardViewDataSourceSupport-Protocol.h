@@ -6,13 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class ABAddressBook, CNContainer, NSString;
 
 @protocol AKCardViewDataSourceSupport <NSObject>
+- (CNContainer *)parentContainer;
+- (ABAddressBook *)addressBookForActionExecution;
 - (void)reloadNameDataForKey:(NSString *)arg1;
 - (void)reloadCollectionData;
 - (BOOL)editMode;
 - (BOOL)canEditContact;
+- (void)refreshDisplayedValues;
 - (void)reloadData;
 @end
 

@@ -7,35 +7,41 @@
 #import "NSObject.h"
 
 #import "FetchableItem.h"
-#import "NSCoding.h"
 
-@class NSArray, NSDate, NSImage, NSMutableDictionary, NSString, WebBookmark, WebBookmarkLeaf;
+@class NSArray, NSDate, NSImage, NSMutableDictionary, NSString, NSURL, WebBookmarkLeaf;
 
-@interface ReadingListItem : NSObject <NSCoding, FetchableItem>
+__attribute__((visibility("hidden")))
+@interface ReadingListItem : NSObject <FetchableItem>
 {
     WebBookmarkLeaf *_bookmark;
     BOOL _hasDefaultSiteIcon;
     BOOL _isReaderAvailable;
     BOOL _isFetchInProgress;
     NSMutableDictionary *_pageURLStringToPageNumberMap;
+    id _faviconToken;
+    NSImage *_icon;
+    NSImage *_lastRetrievedFallbackIcon;
 }
 
 + (unsigned long long)firstPageNumber;
 + (id)keyPathsForValuesAffectingUnread;
 + (id)keyPathsForValuesAffectingHasDefaultSiteIcon;
 + (id)keyPathsForValuesAffectingIcon;
+- (void).cxx_destruct;
+@property(retain) NSImage *lastRetrievedFallbackIcon; // @synthesize lastRetrievedFallbackIcon=_lastRetrievedFallbackIcon;
 @property(nonatomic) BOOL hasDefaultSiteIcon; // @synthesize hasDefaultSiteIcon=_hasDefaultSiteIcon;
-@property(readonly, nonatomic) WebBookmark *bookmark; // @synthesize bookmark=_bookmark;
+@property(readonly, nonatomic) WebBookmarkLeaf *bookmark; // @synthesize bookmark=_bookmark;
 @property(nonatomic) BOOL isReaderAvailable; // @synthesize isReaderAvailable=_isReaderAvailable;
 @property(nonatomic) BOOL isFetchInProgress; // @synthesize isFetchInProgress=_isFetchInProgress;
-- (void).cxx_destruct;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)removeNonSyncAttributeValueForKey:(id)arg1;
+- (void)_setExtraNonSyncAttributeValue:(id)arg1 forKey:(id)arg2 shouldSuppressChangeNotification:(BOOL)arg3;
 - (void)setExtraNonSyncAttributeValue:(id)arg1 forKey:(id)arg2;
 - (void)setExtraAttributeValue:(id)arg1 forKey:(id)arg2;
 - (id)extraNonSyncAttributeValueForKey:(id)arg1;
 - (id)extraAttributeValueForKey:(id)arg1;
+- (void)resetImageURLIconFetchAndOfflineArchiveRequestState;
 - (id)urlStringFromPageNumber:(unsigned long long)arg1;
 - (unsigned long long)pageNumberFromURLString:(id)arg1;
 - (void)addURLStringForAdditionalPage:(id)arg1;
@@ -43,9 +49,11 @@
 - (void)removeDateLastViewed;
 - (void)didFailFetchingItemWithResult:(int)arg1;
 - (void)updateWithFetchedInfo:(id)arg1;
-- (void)updateSiteIcon;
 @property(nonatomic, getter=isUnread) BOOL unread;
-@property(readonly, nonatomic) NSImage *icon;
+@property(retain, nonatomic) NSURL *leadingImageURL;
+@property(readonly, nonatomic) NSImage *icon; // @synthesize icon=_icon;
+@property(nonatomic) BOOL didAttemptToFetchIconFromImageURL;
+@property(nonatomic) BOOL didUserExplicitlyRequestOfflineArchive;
 @property(nonatomic) BOOL addedLocally;
 @property(readonly, nonatomic) BOOL needsInfoUpdated;
 @property(readonly, nonatomic) NSArray *urlStringsForAdditionalPages;
@@ -54,7 +62,6 @@
 @property(nonatomic) int fetchResult;
 @property(nonatomic) BOOL isArchiveOnDisk;
 @property(copy, nonatomic) NSDate *dateAdded;
-@property(readonly, retain, nonatomic) NSDate *legacySyncedDateLastFetched;
 @property(copy, nonatomic) NSDate *dateLastFetched;
 @property(copy, nonatomic) NSDate *dateLastViewed;
 - (void)removeLocalPreviewText;
@@ -67,8 +74,7 @@
 @property(copy, nonatomic, setter=setURLString:) NSString *urlString;
 @property(copy, nonatomic) NSString *title;
 @property(readonly, nonatomic) NSString *UUID;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
+- (void)dealloc;
 - (id)initAsNewItemWithBookmark:(id)arg1;
 - (id)initAsExistingItemWithBookmark:(id)arg1;
 

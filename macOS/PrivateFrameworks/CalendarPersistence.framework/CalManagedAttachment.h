@@ -23,11 +23,11 @@
 + (id)fetchRequestWithURL:(id)arg1 inManagedObjectContext:(id)arg2;
 + (id)entityName;
 + (BOOL)_isManagedAttachmentCalendar:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) NSData *data; // @synthesize data=_data;
 - (id)enclosingSource;
 - (id)uniqueKeyForObject;
 - (id)uniqueIdentifier;
-- (void)dealloc;
 - (void)willSave;
 - (BOOL)isInDetachedEvent;
 - (BOOL)isLocalAttachment;
@@ -37,6 +37,7 @@
 @property(readonly, retain) NSURL *urlOnDisk;
 @property(retain) NSURL *url;
 - (void)willRefresh:(BOOL)arg1;
+- (id)keysOnlyRelevantToNetworkDetails;
 - (void)setAttachmentIDOnServer:(id)arg1;
 @property(readonly, retain) NSString *attachmentIDOnServer;
 @property(retain) NSURL *urlOnServer;
@@ -50,6 +51,7 @@
 @property(retain) NSString *attachmentID; // @dynamic attachmentID;
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;
 @property(retain) NSString *contentType; // @dynamic contentType;
+@property(retain) NSString *contentTypeFromServer; // @dynamic contentTypeFromServer;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(retain) NSString *filenameSuggestedByServer; // @dynamic filenameSuggestedByServer;

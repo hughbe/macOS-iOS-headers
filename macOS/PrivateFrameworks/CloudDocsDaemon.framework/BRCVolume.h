@@ -14,9 +14,15 @@ __attribute__((visibility("hidden")))
     struct statfs _stfs;
     BOOL _isCaseSensitive;
     BOOL _isIgnoringOwnership;
+    BOOL _hasRenameExcl;
+    BOOL _hasRenameSwap;
+    BOOL _hasCloning;
     int _deviceID;
 }
 
+@property(readonly, nonatomic) BOOL hasCloning; // @synthesize hasCloning=_hasCloning;
+@property(readonly, nonatomic) BOOL hasRenameSwap; // @synthesize hasRenameSwap=_hasRenameSwap;
+@property(readonly, nonatomic) BOOL hasRenameExcl; // @synthesize hasRenameExcl=_hasRenameExcl;
 @property(readonly, nonatomic) BOOL isIgnoringOwnership; // @synthesize isIgnoringOwnership=_isIgnoringOwnership;
 @property(readonly, nonatomic) BOOL isCaseSensitive; // @synthesize isCaseSensitive=_isCaseSensitive;
 @property(readonly, nonatomic) int deviceID; // @synthesize deviceID=_deviceID;

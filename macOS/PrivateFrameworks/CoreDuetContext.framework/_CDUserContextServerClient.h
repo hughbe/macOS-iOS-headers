@@ -8,7 +8,7 @@
 
 #import "_CDUserContextServer.h"
 
-@class NSMutableSet, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, _CDInMemoryUserContext, _CDUserContextService;
+@class NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, _CDInMemoryUserContext, _CDUserContextService;
 
 @interface _CDUserContextServerClient : NSObject <_CDUserContextServer>
 {
@@ -19,9 +19,12 @@
     NSXPCConnection *_clientConnection;
     NSMutableSet *_wakingRegistrations;
     NSMutableSet *_nonWakingRegistration;
+    NSMutableDictionary *_devicesToActivateByRemoteUserContextProxySourceDeviceUUID;
 }
 
 + (id)clientOfService:(id)arg1 withConnection:(id)arg2 andContext:(id)arg3;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableDictionary *devicesToActivateByRemoteUserContextProxySourceDeviceUUID; // @synthesize devicesToActivateByRemoteUserContextProxySourceDeviceUUID=_devicesToActivateByRemoteUserContextProxySourceDeviceUUID;
 @property(retain, nonatomic) NSMutableSet *nonWakingRegistration; // @synthesize nonWakingRegistration=_nonWakingRegistration;
 @property(retain, nonatomic) NSMutableSet *wakingRegistrations; // @synthesize wakingRegistrations=_wakingRegistrations;
 @property(retain, nonatomic) NSXPCConnection *clientConnection; // @synthesize clientConnection=_clientConnection;
@@ -29,15 +32,46 @@
 @property(retain, nonatomic) _CDUserContextService *service; // @synthesize service=_service;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *activateMonitorQueue; // @synthesize activateMonitorQueue=_activateMonitorQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
-- (void).cxx_destruct;
+- (void)_valuesForPaths:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)valuesForPaths:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)valuesForPaths:(id)arg1 inContextsMatching:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (void)removeObjects:(id)arg1 fromArrayAtPath:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (void)addObjects:(id)arg1 toArrayAtPath:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (void)addObjects:(id)arg1 andRemoveObjects:(id)arg2 forArrayAtPath:(id)arg3 handler:(CDUnknownBlockType)arg4;
 - (void)setObject:(id)arg1 forPath:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (BOOL)isMDCSNeededForKeyPathInKeyPaths:(id)arg1;
+- (BOOL)isMDCSNeededForKeyPath:(id)arg1;
+- (id)deviceIDsSortedByRemoteUserContextProxySourceDeviceUUIDFromDeviceIDs:(id)arg1;
+- (id)remoteUserContextProxySourceDeviceUUIDByDeviceID;
+- (id)keyPathsSortedByDeviceID:(id)arg1;
+- (id)deviceIDsForDeviceTypes:(unsigned long long)arg1;
+- (id)remoteDeviceIDsForRemoteUserContextProxySourceDeviceUUID:(id)arg1;
+- (id)remoteDevicesForRemoteUserContextProxySourceDeviceUUID:(id)arg1;
+- (id)remoteDeviceIDs;
+- (id)remoteDevices;
+- (id)remoteUserContextProxySourceDeviceUUIDForKeyPath:(id)arg1;
+- (void)subscribeToDeviceStatusChangeNotificationsForDeviceTypes:(unsigned long long)arg1;
+- (void)unsubscribeFromContextValueNotificationsWithRegistration:(id)arg1 deviceIDs:(id)arg2;
+- (void)subscribeToContextValueNotificationsWithRegistration:(id)arg1 deviceIDs:(id)arg2;
+- (void)fetchPropertiesOfRemoteKeyPaths:(id)arg1 remoteUserContextProxySourceDeviceUUID:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (void)fetchPropertiesOfRemoteKeyPaths:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)deactivateDevices:(id)arg1 remoteUserContextProxySourceDeviceUUID:(id)arg2;
+- (void)activateDevices:(id)arg1 remoteUserContextProxySourceDeviceUUID:(id)arg2;
+- (void)proxyTokenDidUpdate;
+- (void)setObject:(id)arg1 lastModifiedDate:(id)arg2 forContextualKeyPath:(id)arg3 handler:(CDUnknownBlockType)arg4;
 - (void)evaluatePredicate:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)deregisterCallback:(id)arg1;
 - (void)deregisterAllCallbacks:(BOOL)arg1;
+- (void)performRegistrationCallbackWithRegistration:(id)arg1 info:(id)arg2;
 - (void)registerCallback:(id)arg1;
-- (void)handlePreviouslyFiredRegistration:(id)arg1;
+- (void)handlePreviouslyFiredRegistration:(id)arg1 info:(id)arg2;
+- (void)_valueForRemotePath:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)_propertiesOfRemotePath:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)propertiesOfRemotePath:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)_valueForPath:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)_propertiesOfPath:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)propertiesOfPath:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)_hasKnowledgeOfPath:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)hasKnowledgeOfPath:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)dealloc;
 - (id)initForService:(id)arg1 withConnection:(id)arg2 andContext:(id)arg3;

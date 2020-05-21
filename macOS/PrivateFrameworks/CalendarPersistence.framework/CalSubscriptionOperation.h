@@ -30,6 +30,7 @@
 
 + (id)scrubSchemeOnSubscriptionURL:(id)arg1;
 + (BOOL)canHandleURL:(id)arg1;
+- (void).cxx_destruct;
 @property BOOL calendarIsTaskContainer; // @synthesize calendarIsTaskContainer=_calendarIsTaskContainer;
 @property BOOL calendarIsEventContainer; // @synthesize calendarIsEventContainer=_calendarIsEventContainer;
 @property BOOL isSynchronous; // @synthesize isSynchronous=_isSynchronous;
@@ -58,7 +59,6 @@
 - (id)displayURL;
 - (id)response;
 - (id)protectionSpace;
-- (void)dealloc;
 - (id)initWithURL:(id)arg1;
 - (void)_retryRequestWithoutAcceptHeader:(BOOL)arg1;
 - (void)connection:(id)arg1 didFailWithError:(id)arg2;

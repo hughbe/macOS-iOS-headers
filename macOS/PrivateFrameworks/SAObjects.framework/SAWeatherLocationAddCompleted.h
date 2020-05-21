@@ -18,6 +18,7 @@
 + (id)locationAddCompletedWithError:(id)arg1;
 + (id)locationAddCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)locationAddCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSURL *weatherLocationId;
 @property(copy, nonatomic) NSString *error;
 - (id)initWithWeatherLocationId:(id)arg1;

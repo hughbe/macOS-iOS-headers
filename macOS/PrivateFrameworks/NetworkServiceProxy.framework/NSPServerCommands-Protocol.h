@@ -6,20 +6,22 @@
 
 #import "NSObject.h"
 
-@class NEConfiguration;
+@class NPUsageReport, NPWaldo, NSDate, NSDictionary, NSPAppRule, NSPConfiguration, NSString;
 
 @protocol NSPServerCommands <NSObject>
-- (void)pingWithCompletionHandler:(void (^)(void))arg1;
-- (void)getCurrentConnectionStatisticsWithCompletionHandler:(void (^)(NSDictionary *))arg1;
-- (void)closeCurrentConnectionWithCompletionHandler:(void (^)(void))arg1;
-- (void)fetchConnectionInfoForFlow:(unsigned long long)arg1 withCompletionHandler:(void (^)(NSPConnectionInfo *))arg2;
-- (void)fetchCurrentWaldoInfoWithCompletionHandler:(void (^)(NPWaldo *))arg1;
-- (void)refreshWaldoNowWithCompletionHandler:(void (^)(BOOL))arg1;
-- (void)reportMetricsNowWithCompletionHandler:(void (^)(BOOL))arg1;
-- (void)probeNowWithCompletionHandler:(void (^)(BOOL))arg1;
-- (void)resetCurrentMetricsWithCompletionHandler:(void (^)(void))arg1;
-- (void)fetchCurrentMetricsWithCompletionHandler:(void (^)(NSDictionary *))arg1;
-- (void)setCurrentConfiguration:(NEConfiguration *)arg1 withCompletionHandler:(void (^)(NSString *))arg2;
-- (void)fetchCurrentConfigurationWithCompletionHandler:(void (^)(NEConfiguration *))arg1;
+
+@optional
+- (void)setTestLatencyMap:(NSDictionary *)arg1 completionHandler:(void (^)(BOOL))arg2;
+- (void)fetchStateForClient:(NSString *)arg1 withPeerEndpoint:(NSString *)arg2 completionHandler:(void (^)(NSDictionary *, NSString *, NSURL *))arg3;
+- (void)setCurrentLatitude:(double)arg1 longitude:(double)arg2 timestamp:(NSDate *)arg3 forClient:(NSString *)arg4;
+- (void)reportUsage:(NPUsageReport *)arg1 fromClient:(NSString *)arg2;
+- (void)refreshWaldoNowWithCompletionHandler:(void (^)(BOOL, NSString *))arg1;
+- (void)establishTrustWithEdgeSetForIdentifier:(NSString *)arg1 completionHandler:(void (^)(NSString *))arg2;
+- (void)setAppRule:(NSPAppRule *)arg1 forLabel:(NSString *)arg2 completionHandler:(void (^)(NSString *))arg3;
+- (void)fetchAppRuleForLabel:(NSString *)arg1 completionHandler:(void (^)(NSArray *))arg2;
+- (void)setEdgeSet:(NPWaldo *)arg1 forIdentifier:(NSString *)arg2 completionHandler:(void (^)(NSString *))arg3;
+- (void)fetchEdgeSetForIdentifier:(NSString *)arg1 completionHandler:(void (^)(NSArray *))arg2;
+- (void)setCurrentConfiguration:(NSPConfiguration *)arg1 withCompletionHandler:(void (^)(NSString *))arg2;
+- (void)fetchCurrentConfigurationWithCompletionHandler:(void (^)(NSPConfiguration *))arg1;
 @end
 

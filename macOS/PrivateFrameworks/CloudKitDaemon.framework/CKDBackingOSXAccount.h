@@ -18,20 +18,23 @@ __attribute__((visibility("hidden")))
 + (void)determineCloudKitInfoFromEmail:(id)arg1 password:(id)arg2 completion:(CDUnknownBlockType)arg3;
 + (id)primaryAccountInStore:(id)arg1;
 + (id)accountWithIdentifier:(id)arg1 inStore:(id)arg2;
+- (void).cxx_destruct;
 @property(retain, nonatomic) ACAccount *parentAppleAccount; // @synthesize parentAppleAccount=_parentAppleAccount;
 @property(readonly, nonatomic) ACAccountStore *accountStore; // @synthesize accountStore=_accountStore;
-- (void).cxx_destruct;
 - (id)accountPropertiesForDataclass:(id)arg1;
 - (BOOL)iCloudDriveAllowsCellularAccess;
 - (BOOL)isDataclassEnabled:(id)arg1;
-- (BOOL)cloudPhotosIsEnabled;
-- (BOOL)cloudKitIsEnabled;
-- (id)iCloudAuthToken;
-- (id)cloudKitAuthToken;
+- (void)updateAccountPropertiesAndSaveAccountInStore:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (BOOL)canRenew;
+- (id)iCloudAuthTokenWithError:(id *)arg1;
+- (id)cloudKitAuthTokenWithError:(id *)arg1;
+- (id)displayedHostname;
 - (id)fullName;
 - (id)identifier;
 - (id)dsid;
+- (id)username;
 - (id)primaryEmail;
+- (BOOL)isPrimaryEmailVerified;
 @property(readonly, nonatomic) ACAccount *ckAccount;
 - (id)_initWithParentAccount:(id)arg1 inStore:(id)arg2;
 

@@ -12,7 +12,7 @@
 #import "PFUbiquityBaselineRollResponseOperationDelegate.h"
 #import "_PFUbiquityRecordImportOperationDelegate.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSOperationQueue, NSPersistentStore, NSPersistentStoreCoordinator, NSRecursiveLock, NSSQLCore, NSString, PFUbiquityLocation, PFUbiquityRecordsImporterSchedulingContext, PFUbiquitySwitchboardCacheWrapper;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSOperationQueue, NSPersistentStore, NSPersistentStoreCoordinator, NSRecursiveLock, NSSQLCore, NSString, PFUbiquityLocation, PFUbiquityRecordsImporterSchedulingContext, PFUbiquitySwitchboardCacheWrapper;
 
 __attribute__((visibility("hidden")))
 @interface _PFUbiquityRecordsImporter : NSObject <_PFUbiquityRecordImportOperationDelegate, NSManagedObjectContextFaultingDelegate, PFUbiquityBaselineRollOperationDelegate, PFUbiquityBaselineRecoveryOperationDelegate, PFUbiquityBaselineRollResponseOperationDelegate>
@@ -33,7 +33,6 @@ __attribute__((visibility("hidden")))
     BOOL _importOnlyActiveStores;
     BOOL _throttleNotifications;
     unsigned long long _numPendingNotifications;
-    NSMutableDictionary *_pendingNotificationUserInfo;
     BOOL _allowBaselineRoll;
     unsigned long long _pendingImportOperationsCount;
 }

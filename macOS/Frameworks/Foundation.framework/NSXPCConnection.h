@@ -24,12 +24,12 @@
     id _importInfo;
     id <NSObject> _otherInfo;
     id _reserved1;
-    id _lock;
     NSXPCInterface *_remoteObjectInterface;
     NSString *_serviceName;
     NSXPCListenerEndpoint *_endpoint;
     id _eCache;
     id _dCache;
+    struct os_unfair_lock_s _lock;
 }
 
 + (void)endTransaction;
@@ -37,7 +37,7 @@
 + (id)_currentBoost;
 + (id)currentConnection;
 @property(retain) NSXPCInterface *remoteObjectInterface; // @synthesize remoteObjectInterface=_remoteObjectInterface;
-- (void)_decodeProgressMessageWithData:(id)arg1;
+- (void)_decodeProgressMessageWithData:(id)arg1 flags:(unsigned long long)arg2;
 - (void)_resumeProgress:(unsigned long long)arg1;
 - (void)_pauseProgress:(unsigned long long)arg1;
 - (void)_cancelProgress:(unsigned long long)arg1;
@@ -58,6 +58,7 @@
 - (id)remoteObjectProxyWithErrorHandler:(CDUnknownBlockType)arg1;
 - (id)_unboostingRemoteObjectProxy;
 @property(readonly, retain) id remoteObjectProxy;
+- (Class)_remoteObjectInterfaceClass;
 @property(retain) NSXPCInterface *exportedInterface;
 @property(retain) id exportedObject;
 - (void)_addClassToDecodeCache:(Class)arg1;
@@ -75,18 +76,24 @@
 - (id)userInfo;
 - (unsigned long long)_generationCount;
 - (id)valueForEntitlement:(id)arg1;
-- (CDStruct_6ad76789)auditToken;
+- (CDStruct_4c969caf)auditToken;
 - (void)setOptions:(unsigned long long)arg1;
 - (id)_exportTable;
 @property(readonly, retain) NSXPCListenerEndpoint *endpoint;
 @property(readonly, copy) NSString *serviceName;
+- (CDUnknownBlockType)_additionalInvalidationHandler;
+- (void)set_additionalInvalidationHandler:(CDUnknownBlockType)arg1;
 @property(copy) CDUnknownBlockType invalidationHandler;
 @property(copy) CDUnknownBlockType interruptionHandler;
-- (void)_sendInvocation:(id)arg1 withProxy:(id)arg2 remoteInterface:(id)arg3 withErrorHandler:(CDUnknownBlockType)arg4 timeout:(double)arg5 userInfo:(id)arg6;
-- (void)_sendInvocation:(id)arg1 withProxy:(id)arg2 remoteInterface:(id)arg3 withErrorHandler:(CDUnknownBlockType)arg4 timeout:(double)arg5;
-- (void)_sendInvocation:(id)arg1 withProxy:(id)arg2 remoteInterface:(id)arg3 withErrorHandler:(CDUnknownBlockType)arg4;
-- (void)_sendInvocation:(id)arg1 withProxy:(id)arg2 remoteInterface:(id)arg3;
+- (void)_sendInvocation:(id)arg1 orArguments:(id *)arg2 count:(unsigned long long)arg3 methodSignature:(id)arg4 selector:(SEL)arg5 withProxy:(id)arg6;
+- (void)_sendInvocation:(id)arg1 withProxy:(id)arg2;
+- (void)_sendSelector:(SEL)arg1 withProxy:(id)arg2 arg1:(id)arg3 arg2:(id)arg4 arg3:(id)arg5 arg4:(id)arg6;
+- (void)_sendSelector:(SEL)arg1 withProxy:(id)arg2 arg1:(id)arg3 arg2:(id)arg4 arg3:(id)arg5;
+- (void)_sendSelector:(SEL)arg1 withProxy:(id)arg2 arg1:(id)arg3 arg2:(id)arg4;
+- (void)_sendSelector:(SEL)arg1 withProxy:(id)arg2 arg1:(id)arg3;
+- (void)_sendSelector:(SEL)arg1 withProxy:(id)arg2;
 - (void)_sendDesistForProxy:(id)arg1;
+- (void)scheduleSendBarrierBlock:(CDUnknownBlockType)arg1;
 - (void)addBarrierBlock:(CDUnknownBlockType)arg1;
 - (void)invalidate;
 - (void)stop;
@@ -102,8 +109,8 @@
 - (id)initWithServiceName:(id)arg1 options:(unsigned long long)arg2;
 - (id)_initWithPeerConnection:(id)arg1 name:(id)arg2 options:(unsigned long long)arg3;
 - (id)init;
-- (void)_decodeAndInvokeMessageWithData:(id)arg1;
-- (void)_decodeAndInvokeReplyBlockWithData:(id)arg1 sequence:(unsigned long long)arg2 replyInfo:(id)arg3;
+- (void)_decodeAndInvokeMessageWithEvent:(id)arg1 flags:(unsigned long long)arg2;
+- (void)_decodeAndInvokeReplyBlockWithEvent:(id)arg1 sequence:(unsigned long long)arg2 replyInfo:(id)arg3;
 
 @end
 

@@ -6,30 +6,30 @@
 
 #import "NSObject.h"
 
+#import "CalActivatable.h"
+
 @class NSObject<OS_dispatch_queue>, NSString;
 
-@interface CalDarwinNotificationListener : NSObject
+@interface CalDarwinNotificationListener : NSObject <CalActivatable>
 {
-    BOOL _internalListening;
+    BOOL _listening;
     NSString *_notificationName;
     CDUnknownBlockType _callback;
     NSObject<OS_dispatch_queue> *_workQueue;
     NSObject<OS_dispatch_queue> *_callbackQueue;
 }
 
-@property(nonatomic) BOOL internalListening; // @synthesize internalListening=_internalListening;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL listening; // @synthesize listening=_listening;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *callbackQueue; // @synthesize callbackQueue=_callbackQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 @property(copy, nonatomic) CDUnknownBlockType callback; // @synthesize callback=_callback;
 @property(retain, nonatomic) NSString *notificationName; // @synthesize notificationName=_notificationName;
-- (void).cxx_destruct;
 - (BOOL)_removeObserver;
 - (BOOL)_addObserver;
-- (void)_stopAndEmitWarningIfNeeded:(BOOL)arg1;
 - (void)_notificationWithNameReceived:(id)arg1;
-- (void)stop;
-- (void)start;
-@property(readonly, nonatomic) BOOL listening;
+- (void)deactivate;
+- (void)activate;
 - (id)description;
 - (void)dealloc;
 - (id)initWithNotificationName:(id)arg1 callback:(CDUnknownBlockType)arg2;

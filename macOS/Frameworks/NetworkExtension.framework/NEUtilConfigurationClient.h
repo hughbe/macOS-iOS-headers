@@ -8,7 +8,7 @@
 
 #import "NEConfigurationCommandHandling.h"
 
-@class NEConfiguration, NEConfigurationManager, NSArray, NSMutableArray, NSString;
+@class NEConfiguration, NEConfigurationManager, NEDNSProxyProviderProtocol, NEFilterProviderConfiguration, NSArray, NSMutableArray, NSString;
 
 @interface NEUtilConfigurationClient : NSObject <NEConfigurationCommandHandling>
 {
@@ -18,8 +18,6 @@
     NSMutableArray *_createdConfigurations;
     NSMutableArray *_currentConfigurations;
     NSMutableArray *_identities;
-    NSString *_configFile;
-    NSString *_configFileLast;
     NEConfiguration *_currentConfiguration;
     struct AuthorizationOpaqueRef *_authorization;
 }
@@ -27,17 +25,15 @@
 + (void)removeClientWithName:(id)arg1;
 + (id)clientWithName:(id)arg1;
 + (id)allClients;
+- (void).cxx_destruct;
 @property(readonly) BOOL isAlwaysOn; // @synthesize isAlwaysOn=_isAlwaysOn;
 @property(readonly) struct AuthorizationOpaqueRef *authorization; // @synthesize authorization=_authorization;
 @property(retain) NEConfiguration *currentConfiguration; // @synthesize currentConfiguration=_currentConfiguration;
-@property(copy) NSString *configFileLast; // @synthesize configFileLast=_configFileLast;
-@property(copy) NSString *configFile; // @synthesize configFile=_configFile;
 @property(retain) NSMutableArray *identities; // @synthesize identities=_identities;
 @property(retain) NSMutableArray *currentConfigurations; // @synthesize currentConfigurations=_currentConfigurations;
 @property(retain) NSMutableArray *createdConfigurations; // @synthesize createdConfigurations=_createdConfigurations;
 @property(readonly) NEConfigurationManager *manager; // @synthesize manager=_manager;
 @property(readonly) NSString *clientName; // @synthesize clientName=_clientName;
-- (void).cxx_destruct;
 - (void)handleCommand:(int)arg1 forConfigWithName:(id)arg2 withParameters:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (BOOL)unsetProxyServer:(id)arg1 errorStr:(id *)arg2;
 - (BOOL)setProxyServer:(id)arg1 errorStr:(id *)arg2;
@@ -47,8 +43,13 @@
 - (BOOL)setAlwaysOnParameters:(id)arg1 errorStr:(id *)arg2;
 - (void)reloadIdentityListWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)addIdentityProperties:(id)arg1 withDomain:(long long)arg2;
+- (void)loadFromDiskForGivenPath:(id)arg1 configName:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (id)decodeConfigurationWithIdentifier:(id)arg1 andDecoder:(id)arg2;
+- (id)readIndexFromDiskForGivenPatahWithError:(id)arg1 returnError:(id *)arg2 fileDecoder:(id *)arg3;
 - (void)loadConfigurationWithName:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)loadConfigurationsForceRefresh:(BOOL)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (BOOL)removePersonalDNSWithParameters:(id)arg1 errorStr:(id *)arg2;
+- (BOOL)addPersonalDNSWithParameters:(id)arg1 errorStr:(id *)arg2;
 - (BOOL)removeAppRuleWithParameters:(id)arg1 errorStr:(id *)arg2;
 - (BOOL)addAppRuleWithParameters:(id)arg1 errorStr:(id *)arg2;
 - (BOOL)removePathRuleWithParameters:(id)arg1 errorStr:(id *)arg2;
@@ -67,13 +68,19 @@
 - (BOOL)setProviderTypeWithParameters:(id)arg1 errorStr:(id *)arg2;
 - (BOOL)setPasswordWithParameters:(id)arg1 errorStr:(id *)arg2;
 - (BOOL)setCommonParameters:(id)arg1 errorStr:(id *)arg2;
+- (BOOL)unsetDNSProxyWithParameters:(id)arg1 errorStr:(id *)arg2;
+- (BOOL)setDNSProxyWithParameters:(id)arg1 errorStr:(id *)arg2;
+- (BOOL)unsetFilterPluginParameters:(id)arg1 errorStr:(id *)arg2;
 - (BOOL)setFilterPluginWithParameters:(id)arg1 errorStr:(id *)arg2;
 - (BOOL)setProtocolWithParameters:(id)arg1 errorStr:(id *)arg2;
 - (BOOL)swapConfigurationTypeWithParameters:(id)arg1 errorStr:(id *)arg2;
 - (BOOL)createConfigurationWithParameters:(id)arg1 errorStr:(id *)arg2;
+@property(readonly) NEDNSProxyProviderProtocol *dnsProxyConfiguration;
+@property(readonly) NEFilterProviderConfiguration *filterConfiguration;
 - (id)protocolForParameters:(id)arg1;
 - (BOOL)isIsAlwaysOn;
 @property(copy) NSArray *onDemandRules;
+@property(nonatomic) BOOL disconnectOnDemandEnabled;
 @property BOOL onDemandEnabled;
 @property BOOL enabled;
 - (void)dealloc;

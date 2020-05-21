@@ -6,52 +6,47 @@
 
 #import "FRJSObject.h"
 
+#import "CKAccountObserver.h"
 #import "NSSecureCoding.h"
 
-@class FRJSAccountCreationSecureContext, FRJSAppleAccountStore, FRJSStorage, FRJSWindow, FRWKView, ISServiceProxy, NSNumber, NSObject<OS_xpc_object>, NSOperationQueue;
+@class CKStoreClient, FRJSAppleAccountStore, FRJSCodeRedeemer, FRWKView, NSString;
 
-@interface FRJSRootObject : FRJSObject <NSSecureCoding>
+@interface FRJSRootObject : FRJSObject <CKAccountObserver, NSSecureCoding>
 {
+    BOOL _startedProgressSpinner;
     FRWKView *_webView;
-    FRJSAccountCreationSecureContext *_accountCreationSecureContext;
-    ISServiceProxy *_serviceProxy;
-    FRJSAppleAccountStore *_accountStore;
-    FRJSStorage *_localStorage;
-    FRJSStorage *_sessionStorage;
-    FRJSWindow *_mainWindow;
+    CKStoreClient *_storeClient;
+    FRJSAppleAccountStore *_jsAccountStore;
+    FRJSCodeRedeemer *_jsCodeRedeemer;
     id _accountStoreObserverToken;
-    NSNumber *_lastSeenAccountID;
-    NSObject<OS_xpc_object> *_pluginRelayXPCConnection;
-    NSOperationQueue *_dialogQueue;
 }
 
-@property(readonly, nonatomic) NSOperationQueue *dialogQueue; // @synthesize dialogQueue=_dialogQueue;
-@property(retain, nonatomic) NSObject<OS_xpc_object> *pluginRelayXPCConnection; // @synthesize pluginRelayXPCConnection=_pluginRelayXPCConnection;
-@property(retain, nonatomic) NSNumber *lastSeenAccountID; // @synthesize lastSeenAccountID=_lastSeenAccountID;
-@property(retain, nonatomic) id accountStoreObserverToken; // @synthesize accountStoreObserverToken=_accountStoreObserverToken;
-@property(readonly, nonatomic) FRJSWindow *mainWindow; // @synthesize mainWindow=_mainWindow;
-@property(readonly, nonatomic) FRJSStorage *sessionStorage; // @synthesize sessionStorage=_sessionStorage;
-@property(readonly, nonatomic) FRJSStorage *localStorage; // @synthesize localStorage=_localStorage;
-@property(readonly, nonatomic) FRJSAppleAccountStore *accountStore; // @synthesize accountStore=_accountStore;
-@property(readonly, nonatomic) ISServiceProxy *serviceProxy; // @synthesize serviceProxy=_serviceProxy;
-@property(readonly, nonatomic) FRJSAccountCreationSecureContext *accountCreationSecureContext; // @synthesize accountCreationSecureContext=_accountCreationSecureContext;
-@property(readonly, nonatomic) __weak FRWKView *webView; // @synthesize webView=_webView;
 - (void).cxx_destruct;
+@property(retain, nonatomic) id accountStoreObserverToken; // @synthesize accountStoreObserverToken=_accountStoreObserverToken;
+@property(nonatomic) BOOL startedProgressSpinner; // @synthesize startedProgressSpinner=_startedProgressSpinner;
+@property(readonly, nonatomic) FRJSCodeRedeemer *jsCodeRedeemer; // @synthesize jsCodeRedeemer=_jsCodeRedeemer;
+@property(readonly, nonatomic) FRJSAppleAccountStore *jsAccountStore; // @synthesize jsAccountStore=_jsAccountStore;
+@property(retain, nonatomic) CKStoreClient *storeClient; // @synthesize storeClient=_storeClient;
+@property(readonly, nonatomic) __weak FRWKView *webView; // @synthesize webView=_webView;
+- (void)_triggerDownloadQueueCheck;
+- (void)_signTouchIDChallenge:(id)arg1;
+- (id)_signStorePlatformRequestData:(id)arg1;
+- (BOOL)_sendAccountCreationRequest:(id)arg1;
+- (void)_setCookies:(id)arg1;
 - (void)_viewAccount:(id)arg1;
 - (void)_signOut:(id)arg1;
 - (id)_getUserDSID:(id)arg1;
 - (id)_getUserAppleID:(id)arg1;
-- (void)_authenticateForAccount:(id)arg1;
+- (void)_deauthorizeMachine;
+- (void)_authorizeMachine:(id)arg1;
+- (void)_authenticateForAccount:(id)arg1 withOptions:(id)arg2 callback:(id)arg3;
 - (id)_accountForDSID:(id)arg1;
 - (id)callFunction:(id)arg1 withArguments:(id)arg2;
-- (BOOL)callCameraRedeemFunction:(id)arg1 withArguments:(id)arg2;
-- (void)removeCameraRedeemNotificationObservers;
-- (void)addCameraRedeemNotificationObservers;
 - (void)doDialogXMLWithArgs:(id)arg1;
 - (void)showSharingPickerForServicesNamed:(id)arg1 fromPageRect:(struct CGRect)arg2 sharingOptions:(id)arg3;
 - (void)shareWithServiceNamed:(id)arg1 sharingOptions:(id)arg2;
 - (id)prepareSharingArgumentsWithOptions:(id)arg1;
-- (void)buyWithPurchaseDescription:(id)arg1 callback:(id)arg2;
+- (void)_buy:(id)arg1;
 - (void)addProtocolFromDataString:(id)arg1;
 - (id)_primaryAccount;
 - (id)_cookies;
@@ -60,13 +55,18 @@
 - (id)getProperty:(id)arg1;
 - (id)_sysctlNumberForMIBName:(int *)arg1 length:(unsigned int)arg2;
 - (id)_sysctlStringForMIBName:(int *)arg1 length:(unsigned int)arg2;
+- (void)accountStore:(id)arg1 primaryAccountChanged:(id)arg2;
 - (void)_handleAppIsFrontmostChangedNotification:(id)arg1;
-- (void)_postAuthenticateFinished:(id)arg1;
-- (void)_postUserChangedEvent:(id)arg1;
 - (void)dispatchGlobalEvent:(id)arg1 withObject:(id)arg2;
 - (void)dispatchEvent:(id)arg1 withObject:(id)arg2;
 - (void)dealloc;
-- (id)initWithWebView:(id)arg1;
+- (id)initWithWebView:(id)arg1 storeClient:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

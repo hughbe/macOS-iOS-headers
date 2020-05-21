@@ -6,21 +6,19 @@
 
 #import "NSObject.h"
 
-@class CDSession, NSString;
+@class NSString;
 
 @interface CDBudget : NSObject
 {
-    CDSession *_session;
     NSString *_name;
     long long _type;
     unsigned long long _integerId;
 }
 
+- (void).cxx_destruct;
 @property(readonly) unsigned long long integerId; // @synthesize integerId=_integerId;
-@property(readonly) __weak CDSession *session; // @synthesize session=_session;
 @property(readonly) long long type; // @synthesize type=_type;
 @property(readonly) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (id)forecastEffectiveOnDate:(id)arg1 error:(id *)arg2;
 - (id)childBudgetWithName:(id)arg1 maxFraction:(double)arg2 type:(long long)arg3 withOptions:(unsigned long long)arg4 error:(id *)arg5;
 - (id)childBudgetWithName:(id)arg1 maxFraction:(double)arg2 type:(long long)arg3 error:(id *)arg4;

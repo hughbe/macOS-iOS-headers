@@ -6,12 +6,10 @@
 
 #import "NSObject.h"
 
-#import "GEORouteMapMatchingDataSource.h"
-
-@class NSSet, NSString, VKPolylineOverlay, VKPolylineOverlayRenderRegion;
+@class NSSet, VKPolylineOverlay, VKPolylineOverlayRenderRegion;
 
 __attribute__((visibility("hidden")))
-@interface VKRouteLine : NSObject <GEORouteMapMatchingDataSource>
+@interface VKRouteLine : NSObject
 {
     BOOL _matchToRoads;
     BOOL _hasNewRoadMatches;
@@ -24,42 +22,42 @@ __attribute__((visibility("hidden")))
     double _simplificationEpsilonPoints;
     double _viewUnitsPerPoint;
     id <VKRouteLineObserverProtocol> _observer;
-    vector_8449fd58 _sections;
-    struct fast_shared_ptr<md::RouteLineSection> _userLocationSection;
+    vector_78427fd2 _sections;
+    struct fast_shared_ptr<md::RouteLineSection, std::allocator> _userLocationSection;
     struct PolylineCoordinate _userLocationIndex;
     Matrix_8746f91e _userLocation;
-    double _lastUserLocationMatchTimestamp;
     double _lastTrafficTimeStamp;
     NSSet *_retainedTiles;
     VKPolylineOverlayRenderRegion *_renderRegion;
+    struct ManeuverArrowCoordinates _maneuverArrowCoordinates;
+    double _builtViewUnitsPerPoint;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) VKPolylineOverlayRenderRegion *renderRegion; // @synthesize renderRegion=_renderRegion;
 @property(nonatomic) id <VKRouteLineObserverProtocol> observer; // @synthesize observer=_observer;
 @property(nonatomic) double simplificationEpsilonPoints; // @synthesize simplificationEpsilonPoints=_simplificationEpsilonPoints;
 @property BOOL hasNewRoadMatches; // @synthesize hasNewRoadMatches=_hasNewRoadMatches;
-@property(nonatomic) VKPolylineOverlay *overlay; // @synthesize overlay=_overlay;
+@property(readonly, nonatomic) VKPolylineOverlay *overlay; // @synthesize overlay=_overlay;
 @property(readonly, nonatomic) Box_3d7e3c2c bounds; // @synthesize bounds=_bounds;
-@property(readonly, nonatomic) vector_8449fd58 sections; // @synthesize sections=_sections;
-- (id).cxx_construct;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) vector_78427fd2 sections; // @synthesize sections=_sections;
+- (double)boundsUnitsPerMeter;
+- (Matrix_08d701e4)maneuverTransform;
+- (Matrix_08d701e4)inverseManeuverTransform;
+- (vector_d9a07fc0)maneuverPoints;
 - (void)_updateBounds:(id)arg1;
-- (void)forEachMapMatchingSection:(CDUnknownBlockType)arg1;
 - (void)forEachSection:(CDUnknownBlockType)arg1;
 - (void)splitRouteLineAtAnnotation:(id)arg1;
-@property(readonly, nonatomic) BOOL needsUpdate;
+- (BOOL)needsUpdateForViewingScale:(double)arg1;
 - (BOOL)isTrafficUptoDate:(double)arg1;
 - (BOOL)isTrafficUpToDate;
 - (void)createMeshIfNecessary:(long long)arg1;
 - (void)generateArrowsForManeuverDisplayMode:(int)arg1 routeLineWidth:(double)arg2;
-- (BOOL)buildRouteLineForPainter:(id)arg1 keysInView:(id)arg2 tiles:(id)arg3 containerModel:(id)arg4 viewUnitsPerPoint:(double)arg5 force:(BOOL)arg6 selected:(BOOL)arg7;
+- (_Bool)buildRouteLine:(id)arg1 matchToRoads:(_Bool)arg2 viewUnitsPerPoint:(double)arg3 force:(_Bool)arg4;
 - (void)_updateTilesCovered:(id)arg1;
 - (void)dealloc;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithPolylineOverlay:(id)arg1;
 
 @end
 

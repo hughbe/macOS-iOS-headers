@@ -6,7 +6,7 @@
 
 #import "NSPredicateEditorRowTemplate.h"
 
-@class NSNumberFormatter, NSPopUpButton, NSTextField;
+@class NSArray, NSMenu, NSNumberFormatter, NSPopUpButton, NSTextField;
 
 @interface AMWithinLastDateRowTemplate : NSPredicateEditorRowTemplate
 {
@@ -17,13 +17,18 @@
     NSPopUpButton *unitPopUpButton;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(retain) NSPopUpButton *unitPopUpButton; // @synthesize unitPopUpButton;
+@property(retain) NSNumberFormatter *unitTextFieldFormatter; // @synthesize unitTextFieldFormatter;
+@property(retain) NSTextField *unitTextField; // @synthesize unitTextField;
+@property(retain) NSPopUpButton *datePopUpButton; // @synthesize datePopUpButton;
+@property BOOL hasCreatedViews; // @synthesize hasCreatedViews;
 - (double)matchForPredicate:(id)arg1;
-- (id)matchingLeftExpressions;
+@property(readonly) NSArray *matchingLeftExpressions;
 - (id)predicateWithSubpredicates:(id)arg1;
 - (void)setPredicate:(id)arg1;
 - (id)templateViews;
-- (id)menuForUnitPopUpButton;
+@property(readonly) NSMenu *menuForUnitPopUpButton;
 - (void)createViewsIfNecessary;
 
 @end

@@ -6,12 +6,20 @@
 
 #import <ViewBridge/NSCFRunLoopSemaphore.h>
 
+@class NSObject<OS_os_activity>;
+
 __attribute__((visibility("hidden")))
 @interface NSRemoteViewSemaphore : NSCFRunLoopSemaphore
 {
+    NSObject<OS_os_activity> *_activity;
 }
 
-- (void)wait;
++ (id)semaphoreWithActivity:(id)arg1;
+- (BOOL)wait:(double)arg1;
+- (void)applyActivity:(CDUnknownBlockType)arg1;
+- (id)init;
+- (id)initWithActivity:(id)arg1;
+- (void)dealloc;
 
 @end
 

@@ -8,7 +8,6 @@
 
 @class NSMutableSet;
 
-__attribute__((visibility("hidden")))
 @interface _CNDistinctObservable : CNObservable
 {
     id <CNObservable> _observable;

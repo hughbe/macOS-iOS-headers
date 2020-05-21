@@ -12,15 +12,13 @@ __attribute__((visibility("hidden")))
 @interface _NSManagedObject_st : NSObject
 {
     int _cd_rc;
-    unsigned long long _cd_stateFlags;
+    unsigned int _cd_lockingInfo;
+    unsigned int _cd_stateFlags;
+    unsigned int _cd_extraFlags;
     id _cd_rawData;
-    id _cd_entity;
     NSManagedObjectContext *_cd_managedObjectContext;
     NSManagedObjectID *_cd_objectID;
-    unsigned long long _cd_extraFlags;
-    id _cd_observationInfo;
-    id *_cd_snapshots;
-    unsigned long long _cd_lockingInfo;
+    void *_cd_extras;
     id _cd_queueReference;
 }
 

@@ -14,6 +14,7 @@
 
 + (id)multiPersonSearchWithDictionary:(id)arg1 context:(id)arg2;
 + (id)multiPersonSearch;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSNumber *resultsLimit;
 @property(copy, nonatomic) NSArray *personSearches;

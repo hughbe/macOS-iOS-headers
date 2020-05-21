@@ -16,12 +16,16 @@
     BOOL hasCreatedViews;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSPopUpButton *rightExpressionPopup; // @synthesize rightExpressionPopup;
+@property(retain) NSPopUpButton *operatorPopup; // @synthesize operatorPopup;
+@property(retain) NSPopUpButton *leftExpressionPopup; // @synthesize leftExpressionPopup;
+@property BOOL hasCreatedViews; // @synthesize hasCreatedViews;
 - (double)matchForPredicate:(id)arg1;
 - (id)predicateWithSubpredicates:(id)arg1;
 - (void)setPredicate:(id)arg1;
 - (id)templateViews;
 - (void)createViewsIfNecessary;
-- (void)dealloc;
 
 @end
 

@@ -16,19 +16,18 @@
     NSImage *_smallIcon;
 }
 
-@property(readonly, retain) NSString *genericActionBundleIdentifier; // @synthesize genericActionBundleIdentifier=_genericActionBundleIdentifier;
-@property(readonly, retain) AMApplicationDefinition *applicationDefinition; // @synthesize applicationDefinition=_applicationDefinition;
-@property(readonly, retain) NSImage *largeIcon; // @synthesize largeIcon=_largeIcon;
-@property(readonly, retain) NSImage *smallIcon; // @synthesize smallIcon=_smallIcon;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *genericActionBundleIdentifier; // @synthesize genericActionBundleIdentifier=_genericActionBundleIdentifier;
+@property(retain, nonatomic) AMApplicationDefinition *applicationDefinition; // @synthesize applicationDefinition=_applicationDefinition;
+@property(retain, nonatomic) NSImage *largeIcon; // @synthesize largeIcon=_largeIcon;
+@property(retain, nonatomic) NSImage *smallIcon; // @synthesize smallIcon=_smallIcon;
 - (void)fault;
-- (id)genericActionBundleForIdentifier:(id)arg1;
 - (void)_setIsDeprecated:(BOOL)arg1;
-@property(retain) NSString *bundleVersion; // @dynamic bundleVersion;
-@property(retain) NSArray *replacementActions; // @dynamic replacementActions;
+@property(retain, nonatomic) NSString *bundleVersion; // @dynamic bundleVersion;
+@property(retain, nonatomic) NSArray *replacementActions; // @dynamic replacementActions;
 - (void)setDeprecatedNumber:(id)arg1;
 - (id)icon;
 - (id)initWithGenericActionBundleIdentifier:(id)arg1 applicationDefintiion:(id)arg2;
-- (void)dealloc;
 
 @end
 

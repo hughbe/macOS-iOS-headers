@@ -4,20 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSViewController.h"
+#import <AuthKitUI/AKBaseSignInViewController.h>
 
 #import "AKAppleIDAuthenticationDelegate.h"
+#import "AKAppleIDAuthenticationInAppContextAlertDelegate.h"
+#import "AKAppleIDAuthenticationInAppContextPasswordDelegate.h"
 
-@class AKAppleIDAuthenticationController, AKAppleIDAuthenticationInAppContext, AKRoundLoginContainerView, NSButton, NSProgressIndicator, NSString, NSTextField, NSView;
+@class AKAppleIDAuthenticationController, AKRoundLoginContainerView, NSButton, NSLayoutConstraint, NSProgressIndicator, NSString, NSTextField, NSView;
 
-@interface AKInlineSignInViewController : NSViewController <AKAppleIDAuthenticationDelegate>
+@interface AKInlineSignInViewController : AKBaseSignInViewController <AKAppleIDAuthenticationDelegate, AKAppleIDAuthenticationInAppContextPasswordDelegate, AKAppleIDAuthenticationInAppContextAlertDelegate>
 {
     BOOL _usesDarkMode;
     BOOL _usesCenteringContainerView;
     AKAppleIDAuthenticationController *_authenticationController;
     BOOL _wantsAuthenticationProgress;
-    AKAppleIDAuthenticationInAppContext *_context;
-    id <AKInlineSignInViewControllerDelegate> _delegate;
     NSView *_signInView;
     NSTextField *_usernameLabel;
     NSTextField *_passwordLabel;
@@ -28,10 +28,15 @@
     NSButton *_forgotButton;
     NSButton *_createAccountButton;
     AKRoundLoginContainerView *_roundLoginContainerView;
+    NSLayoutConstraint *_roundLoginContainerHeight;
     NSProgressIndicator *_indeterminateSpinner;
+    CDUnknownBlockType _passwordHandler;
 }
 
+- (void).cxx_destruct;
+@property(copy) CDUnknownBlockType passwordHandler; // @synthesize passwordHandler=_passwordHandler;
 @property(retain) NSProgressIndicator *indeterminateSpinner; // @synthesize indeterminateSpinner=_indeterminateSpinner;
+@property(retain) NSLayoutConstraint *roundLoginContainerHeight; // @synthesize roundLoginContainerHeight=_roundLoginContainerHeight;
 @property(retain) AKRoundLoginContainerView *roundLoginContainerView; // @synthesize roundLoginContainerView=_roundLoginContainerView;
 @property(retain) NSButton *createAccountButton; // @synthesize createAccountButton=_createAccountButton;
 @property(retain) NSButton *forgotButton; // @synthesize forgotButton=_forgotButton;
@@ -42,25 +47,29 @@
 @property(retain) NSTextField *passwordLabel; // @synthesize passwordLabel=_passwordLabel;
 @property(retain) NSTextField *usernameLabel; // @synthesize usernameLabel=_usernameLabel;
 @property(retain) NSView *signInView; // @synthesize signInView=_signInView;
-@property __weak id <AKInlineSignInViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain) AKAppleIDAuthenticationInAppContext *context; // @synthesize context=_context;
 @property BOOL wantsAuthenticationProgress; // @synthesize wantsAuthenticationProgress=_wantsAuthenticationProgress;
-- (void).cxx_destruct;
+- (void)displayAlertForContext:(id)arg1 error:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)context:(id)arg1 needsPasswordWithCompletion:(CDUnknownBlockType)arg2;
 - (void)authenticationController:(id)arg1 shouldContinueWithAuthenticationResults:(id)arg2 error:(id)arg3 forContext:(id)arg4 completion:(CDUnknownBlockType)arg5;
 - (void)createAccountButtonClicked:(id)arg1;
 - (void)forgotButtonClicked:(id)arg1;
 - (void)signInButtonClicked:(id)arg1;
-@property(readonly) AKAppleIDAuthenticationController *authenticationController;
-- (void)provideDelegateWithAuthResults:(id)arg1 error:(id)arg2;
+- (id)authenticationController;
+- (void)_provideDelegateWithAuthResults:(id)arg1 error:(id)arg2;
+- (void)_setPasswordFieldHidden:(BOOL)arg1 animated:(BOOL)arg2;
+- (BOOL)_isSatisfyingPasswordRequirements;
 - (void)controlTextDidChange:(id)arg1;
 - (void)showIndeterminateSpinner:(BOOL)arg1;
 - (void)allowUserInteraction:(BOOL)arg1;
 - (void)updateUIToReflectDarkMode;
-@property(nonatomic) BOOL usesDarkMode;
+- (BOOL)usesDarkMode;
+- (void)setUsesDarkMode:(BOOL)arg1;
 - (void)_authenticateWithCredentialRecovery:(BOOL)arg1 needsNewAppleID:(BOOL)arg2;
+- (BOOL)_attemptDisplayAlertForError:(id)arg1;
 - (void)viewDidAppear;
 - (void)awakeFromNib;
 - (void)loadView;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)init;
 
 // Remaining properties

@@ -18,11 +18,11 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSString *contactIdentifier; // @synthesize contactIdentifier=_contactIdentifier;
 @property(readonly, copy, nonatomic) CNContact *contact; // @synthesize contact=_contact;
 @property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithContactIdentifier:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithContact:(id)arg1;

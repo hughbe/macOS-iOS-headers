@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface AVSampleCursorInternal : NSObject
 {
     struct OpaqueFigSampleCursor *figSampleCursor;
@@ -16,6 +17,7 @@
     BOOL implementsCreateSampleBuffer;
     BOOL implementsCopyChunkDetails;
     BOOL implementsCopySampleLocation;
+    BOOL implementsGetMPEG2FrameType;
 }
 
 @end

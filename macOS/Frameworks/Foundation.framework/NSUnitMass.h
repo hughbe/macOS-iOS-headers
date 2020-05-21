@@ -12,6 +12,7 @@
 {
 }
 
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 + (id)slugs;
 + (id)ouncesTroy;
 + (id)carats;
@@ -29,6 +30,7 @@
 + (id)grams;
 + (id)kilograms;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

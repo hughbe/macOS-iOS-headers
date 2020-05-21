@@ -6,17 +6,18 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSData;
 
-@interface GCKOOBMessage : NSObject <NSCoding>
+@interface GCKOOBMessage : NSObject <NSSecureCoding>
 {
     unsigned int type;
     unsigned int band;
     NSData *data;
 }
 
++ (BOOL)supportsSecureCoding;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

@@ -6,51 +6,39 @@
 
 #import "NSObject.h"
 
-@class GEOResourceManifestConfiguration, GEOTileKeyList, GEOTileKeyMap, NSData, NSLocale, NSString, NSThread;
+@class GEOResourceManifestManager, GEOTileRequest, NSObject<OS_dispatch_queue>, NSString, NSThread;
 
 @interface GEOTileRequester : NSObject
 {
-    GEOResourceManifestConfiguration *_manifestConfiguration;
-    NSLocale *_locale;
-    GEOTileKeyList *_keyList;
-    GEOTileKeyMap *_cachedEtags;
-    GEOTileKeyMap *_cachedData;
-    GEOTileKeyMap *_priorities;
+    GEOTileRequest *_tileRequest;
     id <GEOTileRequesterDelegate> _delegate;
+    NSObject<OS_dispatch_queue> *_delegateQueue;
     id _context;
     NSThread *_thread;
-    NSString *_bundleIdentifier;
-    NSString *_bundleVersion;
-    NSData *_auditToken;
-    BOOL _requireWiFi;
     NSString *_deviceCountry;
     NSString *_deviceRegion;
 }
 
-+ (BOOL)skipNetworkForKeysWhenPreloading:(id)arg1;
 + (CDStruct_e4886f83 *)newExpiringTilesets;
 + (unsigned long long)expiringTilesetsCount;
 + (unsigned char)tileProviderIdentifier;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *deviceRegion; // @synthesize deviceRegion=_deviceRegion;
 @property(retain, nonatomic) NSString *deviceCountry; // @synthesize deviceCountry=_deviceCountry;
-@property(nonatomic) BOOL requireWiFi; // @synthesize requireWiFi=_requireWiFi;
-@property(retain, nonatomic) NSData *auditToken; // @synthesize auditToken=_auditToken;
-@property(retain, nonatomic) NSString *bundleVersion; // @synthesize bundleVersion=_bundleVersion;
-@property(retain, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(retain, nonatomic) id context; // @synthesize context=_context;
-@property(retain, nonatomic) NSThread *thread; // @synthesize thread=_thread;
-@property(readonly, nonatomic) GEOTileKeyMap *priorities; // @synthesize priorities=_priorities;
-@property(readonly, nonatomic) GEOTileKeyMap *cachedData; // @synthesize cachedData=_cachedData;
-@property(readonly, nonatomic) GEOTileKeyMap *cachedEtags; // @synthesize cachedEtags=_cachedEtags;
-@property(readonly, nonatomic) GEOTileKeyList *keyList; // @synthesize keyList=_keyList;
-@property(nonatomic) id <GEOTileRequesterDelegate> delegate; // @synthesize delegate=_delegate;
-- (void)dealloc;
+@property(readonly, nonatomic) GEOTileRequest *tileRequest; // @synthesize tileRequest=_tileRequest;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
+@property(readonly, nonatomic) __weak id <GEOTileRequesterDelegate> delegate; // @synthesize delegate=_delegate;
+- (id)activeTileSetForKey:(const struct _GEOTileKey *)arg1;
 - (unsigned int)tileSetForKey:(const struct _GEOTileKey *)arg1;
 - (void)reprioritizeKey:(const struct _GEOTileKey *)arg1 newPriority:(unsigned int)arg2;
 - (void)cancelKey:(const struct _GEOTileKey *)arg1;
 - (void)cancel;
+- (void)tearDown;
 - (void)start;
-- (id)initWithKeyList:(id)arg1 manifestConfiguration:(id)arg2 locale:(id)arg3 cachedEtags:(id)arg4 cachedData:(id)arg5 priorities:(id)arg6;
+- (id)initWithTileRequest:(id)arg1 delegateQueue:(id)arg2 delegate:(id)arg3;
+- (id)init;
+@property(readonly, nonatomic) GEOResourceManifestManager *resourceManifestManager;
 
 @end
 

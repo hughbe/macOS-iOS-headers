@@ -9,19 +9,19 @@
 #import "NSOutlineViewDataSource.h"
 #import "NSOutlineViewDelegate.h"
 
-@class CKUIActivitiesOutlineView, NSString;
+@class CSKActivitiesOutlineView, NSString;
 
 @interface CSKActivitiesViewController : CSKTableViewController <NSOutlineViewDelegate, NSOutlineViewDataSource>
 {
     BOOL _allowsActivitiesInsertion;
     id <CSKActivitiesViewControllerDataSource> _dataSource;
-    CKUIActivitiesOutlineView *_outlineView;
+    CSKActivitiesOutlineView *_outlineView;
 }
 
-@property(readonly, nonatomic) CKUIActivitiesOutlineView *outlineView; // @synthesize outlineView=_outlineView;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) CSKActivitiesOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 @property(nonatomic) BOOL allowsActivitiesInsertion; // @synthesize allowsActivitiesInsertion=_allowsActivitiesInsertion;
 @property(nonatomic) __weak id <CSKActivitiesViewControllerDataSource> dataSource; // @synthesize dataSource=_dataSource;
-- (void).cxx_destruct;
 - (void)_removeActivitiesAtIndexes:(id)arg1 parentActivity:(id)arg2;
 - (void)_insertActivitiesAtIndexes:(id)arg1 parentActivity:(id)arg2;
 - (BOOL)outlineView:(id)arg1 isItemExpandable:(id)arg2;
@@ -30,6 +30,8 @@
 - (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
 - (BOOL)supportsFind;
 - (id)defaultColumnLayout;
+- (void)collapseEntitiesAtIndexes:(id)arg1;
+- (void)expandEntitiesAtIndexes:(id)arg1;
 - (id)entitiesAtIndexes:(id)arg1;
 - (id)entityAtIndex:(unsigned long long)arg1;
 - (void)scrollToMostRecentRows;

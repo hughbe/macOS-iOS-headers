@@ -6,52 +6,42 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSButton, NSImage, NSImageCell, NSMutableArray, NSPopUpButton, NSTextFieldCell, NSView, SFCertificateData;
+@class NSArray, NSButton, NSGridView, NSImage, NSImageView, NSMutableArray, NSPopUpButton, NSStackView, NSTextField, NSView, SFCertificateData;
 
 __attribute__((visibility("hidden")))
 @interface SFCertificateView_ivars : NSObject
 {
     SFCertificateData *_certData;
-    NSImageCell *_certImage;
-    struct CGRect _certImageRect;
-    NSTextFieldCell *_titleText;
-    struct CGRect _titleTextRect;
-    NSTextFieldCell *_issuerText;
-    struct CGRect _issuerTextRect;
-    NSTextFieldCell *_dateText;
-    struct CGRect _dateTextRect;
-    NSTextFieldCell *_statusText;
-    struct CGRect _statusTextRect;
+    NSImageView *_certImage;
+    NSTextField *_titleText;
+    NSTextField *_issuerText;
+    NSTextField *_dateText;
+    NSTextField *_statusText;
     NSButton *_detailsButton;
-    struct CGRect _detailsButtonRect;
-    NSTextFieldCell *_detailsLabel;
-    struct CGRect _detailsLabelRect;
+    NSTextField *_detailsLabel;
     NSView *_detailsContainer;
-    struct CGRect _detailsContainerRect;
-    NSTextFieldCell *_popupLabel;
-    struct CGRect _popupLabelRect;
-    NSTextFieldCell *_popupText;
-    struct CGRect _popupTextRect;
+    NSTextField *_popupLabel;
+    NSTextField *_popupText;
     NSPopUpButton *_popupButton;
-    struct CGRect _popupButtonRect;
     NSButton *_helpButton;
-    struct CGRect _helpButtonRect;
     NSButton *_disclosureButton;
-    struct CGRect _disclosureButtonRect;
-    NSTextFieldCell *_disclosureLabel;
-    struct CGRect _disclosureLabelRect;
+    NSTextField *_disclosureLabel;
     NSView *_policyContainer;
-    struct CGRect _policyContainerRect;
     NSMutableArray *_policyLabels;
     NSMutableArray *_policyValues;
     NSMutableArray *_policyPopUps;
     struct CGRect *_plrects;
     struct CGRect *_pvrects;
     struct CGRect *_pprects;
-    struct CGRect _dividerRect;
+    NSGridView *_trustGrid;
+    NSGridView *_detailsGrid;
+    NSStackView *_outerStack;
     int _extDividerIndex;
     int _minBoundsHeight;
     int _minVisibleHeight;
+    int _detailsMinHeight;
+    int _policiesMinHeight;
+    int _summaryStackHeight;
     BOOL _trustNotSet;
     BOOL _uniformTrust;
     BOOL _editableTrust;

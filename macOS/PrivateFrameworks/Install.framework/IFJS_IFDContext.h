@@ -25,10 +25,8 @@
     struct __CFBundle *currentBundle;
     NSString *distributionScriptsPath;
     IFSearchContext *searchContext;
-    NSDictionary *_evaluatorMetaInfo;
 }
 
-@property(retain) NSDictionary *evaluatorMetaInfo; // @synthesize evaluatorMetaInfo=_evaluatorMetaInfo;
 @property IFSearchContext *searchContext; // @synthesize searchContext;
 @property(retain) NSString *distributionScriptsPath; // @synthesize distributionScriptsPath;
 @property IFDocument *document; // @synthesize document;
@@ -36,12 +34,13 @@
 @property IFDTarget *target; // @synthesize target;
 @property id choicesDelegate; // @synthesize choicesDelegate;
 @property IFDCustomizationItem *currentChoice; // @synthesize currentChoice;
+@property(retain) NSDictionary *evaluatorMetaInfo; // @synthesize evaluatorMetaInfo;
 @property(retain) NSDictionary *systemVersionToBeInstalled; // @synthesize systemVersionToBeInstalled;
 @property BOOL allowInsecure; // @synthesize allowInsecure;
 @property(retain) NSString *destinationPath; // @synthesize destinationPath;
 @property(retain) NSMutableDictionary *result; // @synthesize result;
-@property PKDistributionChoiceItem *choiceItem; // @synthesize choiceItem;
-@property PKDistributionController *distributionController; // @synthesize distributionController;
+@property __weak PKDistributionChoiceItem *choiceItem; // @synthesize choiceItem;
+@property __weak PKDistributionController *distributionController; // @synthesize distributionController;
 @property struct __CFBundle *currentBundle;
 - (void)dealloc;
 

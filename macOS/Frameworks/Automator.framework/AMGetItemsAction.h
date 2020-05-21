@@ -18,6 +18,13 @@
     NSIndexSet *_draggedIndexes;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSIndexSet *draggedIndexes; // @synthesize draggedIndexes=_draggedIndexes;
+@property(retain) NSMutableArray *items; // @synthesize items=_items;
+@property(nonatomic) __weak NSTableView *_itemsTableView; // @synthesize _itemsTableView;
+@property(nonatomic) __weak NSButton *_removeButton; // @synthesize _removeButton;
+@property(nonatomic) __weak NSButton *_addButton; // @synthesize _addButton;
+@property(nonatomic) __weak NSArrayController *_itemsController; // @synthesize _itemsController;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)addItems:(id)arg1;
 - (void)_panelDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
@@ -26,14 +33,10 @@
 - (id)itemsPasteboardTypes;
 - (id)itemsPanelNibName;
 - (Class)itemsPanelControllerClass;
-- (void)setDraggedIndexes:(id)arg1;
-- (id)draggedIndexes;
-- (void)setItems:(id)arg1;
-- (id)items;
-- (id)itemsController;
+@property(readonly, nonatomic) __weak NSArrayController *itemsController;
+@property(readonly, nonatomic) __weak NSTableView *itemsTableView;
 - (void)closed;
 - (void)awakeFromNib;
-- (void)dealloc;
 - (id)initWithDefinition:(id)arg1 fromArchive:(BOOL)arg2;
 - (id)init;
 - (BOOL)tableView:(id)arg1 acceptDrop:(id)arg2 row:(long long)arg3 dropOperation:(unsigned long long)arg4;

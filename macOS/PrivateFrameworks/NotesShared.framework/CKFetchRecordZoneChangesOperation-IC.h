@@ -9,7 +9,6 @@
 @interface CKFetchRecordZoneChangesOperation (IC)
 - (void)ic_removeAllCompletionBlocks;
 - (id)ic_shortLoggingDescription;
-- (id)ic_loggingDescriptionStrings;
-- (id)ic_operationType;
+- (id)ic_loggingValues;
 @end
 

@@ -7,17 +7,16 @@
 #import "NSView.h"
 
 #import "AFUISiriRemoteViewHosting.h"
+#import "SiriUIFlamesAndAuraViewDelegate.h"
 #import "SiriUISiriStatusViewDelegate.h"
 
-@class NSString, SiriUIButton, SiriUIConfiguration, SiriUIHelpButton, SiriUISiriStatusView;
+@class NSString, SiriUIButton, SiriUIConfiguration, SiriUIFlamesAndAuraView, SiriUIHelpButton, SiriUISiriStatusView;
 
-__attribute__((visibility("hidden")))
-@interface SiriUISiriView : NSView <SiriUISiriStatusViewDelegate, AFUISiriRemoteViewHosting>
+@interface SiriUISiriView : NSView <SiriUISiriStatusViewDelegate, SiriUIFlamesAndAuraViewDelegate, AFUISiriRemoteViewHosting>
 {
     BOOL _disabled;
     BOOL _statusViewHidden;
     BOOL _keepStatusViewHidden;
-    BOOL _flamesViewDeferred;
     NSView *_remoteContentView;
     SiriUISiriStatusView *_statusView;
     SiriUIHelpButton *_helpButton;
@@ -27,9 +26,11 @@ __attribute__((visibility("hidden")))
     id <SiriUISiriViewDelegate> _delegate;
     long long _siriSessionState;
     long long _mode;
+    SiriUIFlamesAndAuraView *_flamesAndAuraView;
 }
 
-@property(nonatomic) BOOL flamesViewDeferred; // @synthesize flamesViewDeferred=_flamesViewDeferred;
+- (void).cxx_destruct;
+@property(retain) SiriUIFlamesAndAuraView *flamesAndAuraView; // @synthesize flamesAndAuraView=_flamesAndAuraView;
 @property(nonatomic) long long mode; // @synthesize mode=_mode;
 @property(nonatomic) long long siriSessionState; // @synthesize siriSessionState=_siriSessionState;
 @property(nonatomic) BOOL keepStatusViewHidden; // @synthesize keepStatusViewHidden=_keepStatusViewHidden;
@@ -42,17 +43,20 @@ __attribute__((visibility("hidden")))
 @property(retain) SiriUIHelpButton *helpButton; // @synthesize helpButton=_helpButton;
 @property(retain) SiriUISiriStatusView *statusView; // @synthesize statusView=_statusView;
 @property(retain, nonatomic) NSView *remoteContentView; // @synthesize remoteContentView=_remoteContentView;
-- (void).cxx_destruct;
+- (struct CGRect)flamesBoundsForViewBounds:(struct CGRect)arg1;
+- (void)flamesAndAuraDidDisappear;
+- (float)audioLevel;
 - (BOOL)wantsScrollEventsForSwipeTrackingOnAxis:(long long)arg1;
 - (void)setBugReportingAvailable:(BOOL)arg1;
 - (void)reportBugButtonTapped:(id)arg1;
 - (void)_loadReportBugButtonTemplateImageInBackgroundWithCompletion:(CDUnknownBlockType)arg1;
 - (BOOL)_showsReportBugButton;
 - (void)siriDidActivateFromSource:(long long)arg1;
+- (void)siriWillActivateFromSource:(long long)arg1;
+- (void)siriStatusView:(id)arg1 didReceiveTextInput:(id)arg2;
 - (void)siriStatusViewHoldDidEnd:(id)arg1;
 - (void)siriStatusViewHoldDidBegin:(id)arg1;
 - (void)siriStatusViewWasClicked:(id)arg1;
-- (float)audioLevelForSiriStatusView:(id)arg1;
 - (void)closeButtonTapped:(id)arg1;
 - (void)setHideCloseButton:(BOOL)arg1;
 - (void)helpButtonTapped:(id)arg1;
@@ -60,8 +64,14 @@ __attribute__((visibility("hidden")))
 - (void)setHelpButtonEmphasized:(BOOL)arg1;
 - (void)_animateButtonsHidden:(BOOL)arg1;
 - (void)_updateControlsAppearance;
+- (void)_updateFlamesAndAuraViewState;
 - (void)viewDidMoveToWindow;
+- (void)viewWillMoveToWindow:(id)arg1;
+- (void)setFrame:(struct CGRect)arg1;
+- (void)_createFlamesView;
+- (void)_createCloseButtonImage;
 - (void)awakeFromNib;
+- (void)cleanupFlames;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

@@ -15,6 +15,7 @@
 }
 
 + (BOOL)canBackgroundForCurrentSystemState;
++ (long long)expectedInstallPhaseForRequest:(id)arg1 analyzer:(id)arg2;
 - (void)cancel;
 - (void)main;
 - (BOOL)_updateDYLDSharedCacheInSandboxReturningError:(id *)arg1;

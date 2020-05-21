@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     NSViewController *_destinationTransitionViewController;
     NSString *_destinationTransitionIdentifier;
     long long _ignoreCompleteTransitionCount;
+    BOOL _expectingCompleteTransition;
 }
 
 - (void)dealloc;

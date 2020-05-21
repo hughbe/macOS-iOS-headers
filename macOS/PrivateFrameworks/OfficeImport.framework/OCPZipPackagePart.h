@@ -14,12 +14,12 @@ __attribute__((visibility("hidden")))
     OISFUZipEntry *mEntry;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) OISFUZipEntry *zipEntry; // @synthesize zipEntry=mEntry;
 - (struct _xmlTextReader *)xmlReader;
 - (struct _xmlDoc *)xmlDocument;
 - (void)copyToFile:(id)arg1;
 - (id)data;
-- (void)dealloc;
 - (id)initWithArchive:(id)arg1 location:(id)arg2 package:(id)arg3;
 
 @end

@@ -8,6 +8,7 @@
 
 @class GEOAutomobileOptions, GEOTransitOptions, MKDirections, MKMapItem, NSMutableDictionary;
 
+__attribute__((visibility("hidden")))
 @interface _MKRouteETAFetcher : NSObject
 {
     NSMutableDictionary *_etaResults;
@@ -25,12 +26,12 @@
     GEOTransitOptions *_transitOptions;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) GEOTransitOptions *transitOptions; // @synthesize transitOptions=_transitOptions;
 @property(copy, nonatomic) GEOAutomobileOptions *automobileOptions; // @synthesize automobileOptions=_automobileOptions;
 @property(retain, nonatomic) MKMapItem *originMapItem; // @synthesize originMapItem=_originMapItem;
 @property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
 @property(readonly, nonatomic) NSMutableDictionary *etaResults; // @synthesize etaResults=_etaResults;
-- (void).cxx_destruct;
 - (void)_didUpdateETAResult;
 - (void)invalidateETAForTransportType:(unsigned long long)arg1;
 - (BOOL)isValidETA:(id)arg1;

@@ -22,16 +22,16 @@
     NSMutableArray *_foregroundColorStack;
     NSMutableDictionary *_currentAttributes;
     BOOL _didAddBodyAttributes;
-    long long _baseWritingDirection;
-    NSString *_backgroundColor;
-    NSString *_foregroundColor;
     NSMutableAttributedString *_body;
     NSMutableArray *_fileTransferGUIDs;
+    NSString *_backgroundColor;
+    NSString *_foregroundColor;
+    long long _baseWritingDirection;
 }
 
 @property long long baseWritingDirection; // @synthesize baseWritingDirection=_baseWritingDirection;
-@property(retain, nonatomic) NSString *foregroundColor; // @synthesize foregroundColor=_foregroundColor;
-@property(retain, nonatomic) NSString *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(copy, nonatomic) NSString *foregroundColor; // @synthesize foregroundColor=_foregroundColor;
+@property(copy, nonatomic) NSString *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 @property(retain, nonatomic) NSArray *fileTransferGUIDs; // @synthesize fileTransferGUIDs=_fileTransferGUIDs;
 @property(readonly, nonatomic) NSAttributedString *body;
 - (void)appendBreadcrumbText:(id)arg1 withOptions:(unsigned int)arg2;

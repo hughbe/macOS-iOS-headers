@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     NSDictionary *_defaultFormat;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSDictionary *defaultFormat; // @synthesize defaultFormat=_defaultFormat;
 @property(readonly, nonatomic) NSArray *supportedFormats; // @synthesize supportedFormats=_supportedFormats;
 - (id)_copyWithZone:(struct _NSZone *)arg1 usingConcreteClass:(Class)arg2;
@@ -24,7 +25,6 @@ __attribute__((visibility("hidden")))
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly, nonatomic) _MRVoiceInputDeviceDescriptorProtobuf *protobuf;
 @property(readonly, nonatomic) NSData *data;
-- (void)dealloc;
 - (id)description;
 - (id)initWithProtobuf:(id)arg1;
 - (id)initWithData:(id)arg1;

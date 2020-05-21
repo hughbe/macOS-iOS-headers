@@ -27,6 +27,7 @@
 @property(readonly, nonatomic) long long numberOfDroppedVideoFrames;
 @property(readonly, nonatomic) double averageAudioBitrate;
 @property(readonly, nonatomic) double averageVideoBitrate;
+@property(readonly, nonatomic) double indicatedAverageBitrate;
 @property(readonly, nonatomic) double indicatedBitrate;
 - (double)currentObservedBitrate;
 @property(readonly, nonatomic) double observedBitrate;
@@ -44,7 +45,6 @@
 @property(readonly, nonatomic) long long numberOfSegmentsDownloaded;
 @property(readonly, nonatomic) long long numberOfMediaRequests;
 - (void)dealloc;
-- (void)finalize;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithDictionary:(id)arg1;
 - (id)init;

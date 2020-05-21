@@ -11,10 +11,12 @@
 @interface ABDateComponentsValueTransformer : NSValueTransformer
 {
     ABDateComponentsFormatter *_dateFormatter;
+    BOOL _shouldReinterpretAsGregorian;
 }
 
 + (BOOL)allowsReverseTransformation;
 + (Class)transformedValueClass;
+@property(nonatomic) BOOL shouldReinterpretAsGregorian; // @synthesize shouldReinterpretAsGregorian=_shouldReinterpretAsGregorian;
 - (void)dealloc;
 @property(retain, nonatomic) NSLocale *locale;
 @property(readonly) NSCalendar *calendar;

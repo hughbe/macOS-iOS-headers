@@ -25,6 +25,7 @@
     NSLayoutConstraint *_editorWidthConstraint;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSLayoutConstraint *editorWidthConstraint; // @synthesize editorWidthConstraint=_editorWidthConstraint;
 @property BOOL isNewLikeness; // @synthesize isNewLikeness=_isNewLikeness;
 @property BOOL isMe; // @synthesize isMe=_isMe;
@@ -36,7 +37,7 @@
 @property(retain) NSView *editorAreaView; // @synthesize editorAreaView=_editorAreaView;
 @property(retain) CNRecentLikenessesViewController *recentsViewController; // @synthesize recentsViewController=_recentsViewController;
 @property(retain, nonatomic) id <CNLikenessEditorPresentationStrategy> presentationStrategy; // @synthesize presentationStrategy=_presentationStrategy;
-- (void).cxx_destruct;
+- (void)save;
 - (void)setReadyToSave;
 - (BOOL)isBackwardsNavigationEnabled;
 - (void)setNextButtonTitle:(id)arg1;
@@ -46,9 +47,9 @@
 - (void)deleteButton:(id)arg1;
 - (void)cancelButton:(id)arg1;
 - (void)actionButton:(id)arg1;
-- (void)didRemoveLikeness:(id)arg1 withNewCurrentLikeness:(id)arg2;
 - (void)saveAsNewPrimaryLikeness:(id)arg1;
-- (void)beginEditingLikeness:(id)arg1 isMe:(BOOL)arg2;
+- (void)addNewLikenessRecentLikenessesViewController:(id)arg1;
+- (void)recentLikenessesViewController:(id)arg1 beginEditingLikeness:(id)arg2;
 - (void)configureRecentsEditor;
 - (void)showRecentsEditorOnView:(id)arg1 forContact:(id)arg2 isMe:(BOOL)arg3;
 - (id)_deletionStringForLikeness:(id)arg1;

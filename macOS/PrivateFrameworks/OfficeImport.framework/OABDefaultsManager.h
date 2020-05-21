@@ -49,6 +49,7 @@ __attribute__((visibility("hidden")))
 - (int)strokeMiterLimit;
 - (int)strokeWidth;
 - (int)strokeFgAlpha;
+- (struct EshBlip *)strokeFillBlipDataReference;
 - (id)strokeFillBlipName;
 - (unsigned int)strokeFillBlipID;
 - (int)strokeFillType;

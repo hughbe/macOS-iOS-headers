@@ -8,6 +8,7 @@
 
 @class DEDragReceiverView, NSButton, NSData, NSDictionary, NSImageView, NSMutableArray, NSMutableDictionary, NSOutlineView, NSPanel, NSPopUpButton, NSSegmentedControl, NSSplitView, NSString, NSTabView, NSTextField, NSTextView, NSView;
 
+__attribute__((visibility("hidden")))
 @interface DefaultDirEditorPlugin : DirEditorPlugin
 {
     NSOutlineView *_outlineView;
@@ -21,6 +22,7 @@
     NSSegmentedControl *_attributeValueAddRemoveSegmented;
     NSPopUpButton *_attributeValueTypePopUp;
     NSSegmentedControl *_attributeValueTypeSegmented;
+    NSTextField *_attributeDataHintMessageTextField;
     NSPanel *_newAttributeSheet;
     NSPopUpButton *_newAttributeSheetAttrPopup;
     NSTextField *_newAttributeSheetNativeTextField;
@@ -31,6 +33,7 @@
     NSMutableArray *_retainedOutlineViewObjects;
     NSDictionary *_attrValueTypeTabToMenuItemMapping;
     NSDictionary *_metaAttrStringAttrs;
+    BOOL _outlineViewSelectionIsChanging;
     BOOL selectedRecordIsEditable;
     BOOL selectedAttributeIsEditable;
     BOOL selectedAttributeIsRemovable;
@@ -56,7 +59,6 @@
 @property BOOL selectedRecordIsEditable; // @synthesize selectedRecordIsEditable;
 - (void)dealloc;
 - (void)awakeFromNib;
-- (void)outlineViewSelectionDidChange:(id)arg1;
 - (void)attributeImageValueChanged:(id)arg1;
 - (void)controlTextDidChange:(id)arg1;
 - (void)newAttributeSheetButtonHit:(id)arg1;
@@ -76,6 +78,8 @@
 - (BOOL)handleDropOfType:(id)arg1 withPasteboard:(id)arg2;
 - (id)dragTypesForViewToRegisterFor:(id)arg1;
 - (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
+- (void)outlineViewSelectionDidChange:(id)arg1;
+- (void)outlineViewSelectionIsChanging:(id)arg1;
 - (id)outlineView:(id)arg1 objectValueForTableColumn:(id)arg2 byItem:(id)arg3;
 - (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
 - (BOOL)outlineView:(id)arg1 isItemExpandable:(id)arg2;

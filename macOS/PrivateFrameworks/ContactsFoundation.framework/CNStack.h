@@ -13,13 +13,15 @@
     NSMutableArray *_objects;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long count;
+- (void)removeObject:(id)arg1;
 @property(readonly, nonatomic) id peek;
 - (void)popAllWithHandler:(CDUnknownBlockType)arg1;
 - (void)popWithHandler:(CDUnknownBlockType)arg1;
+- (id)popAll;
 - (id)pop;
 - (void)push:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

@@ -10,18 +10,17 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface _CNDataURLSessionTaskAdapter : NSObject <NSURLSessionDataDelegate>
 {
     CDUnknownBlockType _onDataReceived;
     CDUnknownBlockType _onCompletion;
 }
 
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType onCompletion; // @synthesize onCompletion=_onCompletion;
 @property(copy) CDUnknownBlockType onDataReceived; // @synthesize onDataReceived=_onDataReceived;
 - (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

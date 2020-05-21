@@ -21,10 +21,10 @@
     BOOL _localImport;
 }
 
+- (void).cxx_destruct;
 @property BOOL localImport; // @synthesize localImport=_localImport;
 - (id)eTag;
 - (id)serverFilename;
-- (void)dealloc;
 @property(readonly, copy) NSString *description;
 - (long long)compare:(id)arg1;
 - (id)occurrences;

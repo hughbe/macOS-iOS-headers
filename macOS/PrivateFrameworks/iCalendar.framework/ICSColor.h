@@ -6,9 +6,9 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
-@interface ICSColor : NSObject <NSCoding>
+@interface ICSColor : NSObject <NSSecureCoding>
 {
     unsigned char _red;
     unsigned char _green;
@@ -17,6 +17,7 @@
 
 + (BOOL)colorDetailsAreEffectivelyDifferentFirstColor:(id)arg1 secondColor:(id)arg2 firstSymbolicName:(id)arg3 secondSymbolicName:(id)arg4;
 + (id)symbolicColorForLegacyRGB:(id)arg1;
++ (BOOL)supportsSecureCoding;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned char)blue;

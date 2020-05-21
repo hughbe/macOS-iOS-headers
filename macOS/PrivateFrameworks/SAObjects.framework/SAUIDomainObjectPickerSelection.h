@@ -14,6 +14,7 @@
 
 + (id)domainObjectPickerSelectionWithDictionary:(id)arg1 context:(id)arg2;
 + (id)domainObjectPickerSelection;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SADomainObject *selectedItem;
 @property(retain, nonatomic) SAUIDomainObjectPicker *domainObjectPicker;
 - (id)encodedClassName;

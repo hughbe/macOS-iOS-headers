@@ -6,18 +6,20 @@
 
 #import <AppKit/NSView.h>
 
-@class NSClipView, NSScrollView;
+@class NSPortalView, NSScrollView;
 
 __attribute__((visibility("hidden")))
 @interface NSScrollViewMirrorView : NSView
 {
     NSScrollView *_associatedScrollView;
-    NSClipView *_clipView;
+    NSPortalView *_portalView;
 }
 
-- (void)geometryInWindowDidChange;
-- (void)reflectUpdatedAssociatedView;
-@property NSScrollView *associatedScrollView;
++ (BOOL)automaticallyNotifiesObserversOfAssociatedScrollView;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+@property(retain) NSScrollView *associatedScrollView;
+- (void)layout;
+- (id)hitTest:(struct CGPoint)arg1;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 

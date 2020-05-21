@@ -8,13 +8,14 @@
 
 @class NSArray;
 
+__attribute__((visibility("hidden")))
 @interface _MXVersion : NSObject
 {
     NSArray *_components;
 }
 
-@property(readonly, nonatomic) NSArray *components; // @synthesize components=_components;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSArray *components; // @synthesize components=_components;
 - (long long)compare:(id)arg1;
 - (id)initWithVersionString:(id)arg1;
 - (id)initWithComponents:(id)arg1;

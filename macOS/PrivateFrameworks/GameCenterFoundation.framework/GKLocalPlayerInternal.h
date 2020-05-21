@@ -21,6 +21,7 @@
 }
 
 + (id)secureCodedPropertyKeys;
++ (BOOL)supportsSecureCoding;
 @property unsigned long long loginStatus; // @synthesize loginStatus=_loginStatus;
 - (void)setNumberOfChallenges:(unsigned short)arg1;
 - (unsigned short)numberOfChallenges;
@@ -45,6 +46,8 @@
 - (BOOL)isFindable;
 - (void)setUnderage:(BOOL)arg1;
 - (BOOL)isUnderage;
+- (void)setDefaultNickname:(BOOL)arg1;
+- (BOOL)isDefaultNickname;
 - (void)setPurpleBuddyAccount:(BOOL)arg1;
 - (BOOL)isPurpleBuddyAccount;
 - (id)minimalInternal;

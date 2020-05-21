@@ -17,14 +17,16 @@
     IMKKeyboardDescriptor *_keyboardDescriptor;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) IMKKeyboardDescriptor *keyboardDescriptor; // @synthesize keyboardDescriptor=_keyboardDescriptor;
 @property(retain, nonatomic) id <IMKInputMethod> inputMethod; // @synthesize inputMethod=_inputMethod;
 @property(retain, nonatomic) id <IMKTextDocument> attachedTextDocument; // @synthesize attachedTextDocument=_attachedTextDocument;
-- (void).cxx_destruct;
 - (BOOL)releaseKeyWithKeycode:(unsigned short)arg1 applyKeyModifiers:(unsigned long long)arg2;
 - (BOOL)releaseKey:(id)arg1 applyKeyModifiers:(unsigned long long)arg2;
 - (BOOL)pressKeyWithKeycode:(unsigned short)arg1 applyKeyModifiers:(unsigned long long)arg2;
 - (BOOL)pressKey:(id)arg1 applyKeyModifiers:(unsigned long long)arg2;
+- (BOOL)modifyWith:(unsigned long long)arg1;
+@property(readonly, nonatomic) id <IMKCandidateMenu> candidateMenu;
 - (id)initWithKeyboardDescriptor:(id)arg1;
 - (id)init;
 

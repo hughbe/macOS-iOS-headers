@@ -6,12 +6,13 @@
 
 #import <LoginUIKit/LUIController.h>
 
-@class CWInterface, NSImageView;
+@class CWInterface, CWWiFiClient, NSImageView;
 
 @interface LUIWiFiStatusController : LUIController
 {
     NSImageView *_wifiImageView;
     CWInterface *_interface;
+    CWWiFiClient *_client;
     BOOL _paused;
 }
 
@@ -22,6 +23,13 @@
 - (void)pauseController;
 - (void)tearDownController;
 - (void)_setupContentView;
+- (void)ssidDidChangeForWiFiInterfaceWithName:(id)arg1;
+- (void)powerStateDidChangeForWiFiInterfaceWithName:(id)arg1;
+- (void)modeDidChangeForWiFiInterfaceWithName:(id)arg1;
+- (void)linkQualityDidChangeForWiFiInterfaceWithName:(id)arg1 rssi:(long long)arg2 transmitRate:(double)arg3;
+- (void)linkDidChangeForWiFiInterfaceWithName:(id)arg1;
+- (void)interfaceRemovedWithName:(id)arg1;
+- (void)interfaceAddedWithName:(id)arg1;
 - (void)_updateStatus;
 - (void)_handleNotification:(id)arg1;
 

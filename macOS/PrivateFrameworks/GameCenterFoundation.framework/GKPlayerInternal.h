@@ -11,9 +11,18 @@
 @interface GKPlayerInternal : GKInternalRepresentation
 {
     NSString *_playerID;
+    NSString *_gamePlayerID;
+    NSString *_teamPlayerID;
     NSString *_alias;
+    NSNumber *_avatarType;
     NSDictionary *_photos;
     NSString *_messagesID;
+    NSNumber *_friendLevel;
+    NSNumber *_friendBiDirectional;
+    NSNumber *_friendPlayedWith;
+    NSNumber *_friendPlayedNearby;
+    NSString *_lastPersonalizationVersionDisplayed;
+    unsigned long long _lastPrivacyNoticeVersionDisplayed;
     unsigned short _numberOfFriends;
     unsigned short _numberOfGames;
     unsigned short _numberOfFriendsInCommon;
@@ -27,16 +36,26 @@
             unsigned int _underage:1;
             unsigned int _photoPending:1;
             unsigned int _findable:1;
+            unsigned int _defaultNickname:1;
             unsigned int _reserved:18;
         } ;
         unsigned int _value;
     } _flags;
+    NSArray *_monogramComponents;
 }
 
 + (Class)classForFamiliarity:(int)arg1;
 + (id)displayNameWithOptions:(unsigned char)arg1 alias:(id)arg2 composite:(id)arg3;
 + (id)compositeNameForFirstName:(id)arg1 lastName:(id)arg2;
 + (id)secureCodedPropertyKeys;
++ (BOOL)supportsSecureCoding;
+@property(retain, nonatomic) NSArray *monogramComponents; // @synthesize monogramComponents=_monogramComponents;
+@property(nonatomic) unsigned long long lastPrivacyNoticeVersionDisplayed; // @synthesize lastPrivacyNoticeVersionDisplayed=_lastPrivacyNoticeVersionDisplayed;
+@property(retain, nonatomic) NSString *lastPersonalizationVersionDisplayed; // @synthesize lastPersonalizationVersionDisplayed=_lastPersonalizationVersionDisplayed;
+@property(retain, nonatomic) NSNumber *friendPlayedNearby; // @synthesize friendPlayedNearby=_friendPlayedNearby;
+@property(retain, nonatomic) NSNumber *friendPlayedWith; // @synthesize friendPlayedWith=_friendPlayedWith;
+@property(retain, nonatomic) NSNumber *friendBiDirectional; // @synthesize friendBiDirectional=_friendBiDirectional;
+@property(retain, nonatomic) NSNumber *friendLevel; // @synthesize friendLevel=_friendLevel;
 @property(retain, nonatomic) NSString *messagesID; // @synthesize messagesID=_messagesID;
 @property(nonatomic) unsigned int numberOfAchievementPoints; // @synthesize numberOfAchievementPoints=_numberOfAchievementPoints;
 @property(nonatomic) unsigned int numberOfAchievements; // @synthesize numberOfAchievements=_numberOfAchievements;
@@ -45,7 +64,10 @@
 @property(nonatomic) unsigned short numberOfFriendsInCommon; // @synthesize numberOfFriendsInCommon=_numberOfFriendsInCommon;
 @property(nonatomic) unsigned short numberOfFriends; // @synthesize numberOfFriends=_numberOfFriends;
 @property(retain, nonatomic) NSDictionary *photos; // @synthesize photos=_photos;
+@property(retain, nonatomic) NSNumber *avatarType; // @synthesize avatarType=_avatarType;
 @property(retain, nonatomic) NSString *alias; // @synthesize alias=_alias;
+@property(retain, nonatomic) NSString *teamPlayerID; // @synthesize teamPlayerID=_teamPlayerID;
+@property(retain, nonatomic) NSString *gamePlayerID; // @synthesize gamePlayerID=_gamePlayerID;
 @property(retain, nonatomic) NSString *playerID; // @synthesize playerID=_playerID;
 @property(retain, nonatomic) NSString *guestIdentifier; // @dynamic guestIdentifier;
 @property(nonatomic) unsigned short numberOfChallenges; // @dynamic numberOfChallenges;
@@ -56,6 +78,7 @@
 @property(nonatomic, getter=isPhotoPending) BOOL photoPending; // @dynamic photoPending;
 @property(nonatomic, getter=isFindable) BOOL findable; // @dynamic findable;
 @property(nonatomic, getter=isUnderage) BOOL underage; // @dynamic underage;
+@property(nonatomic, getter=isDefaultNickname) BOOL defaultNickname; // @dynamic defaultNickname;
 @property(nonatomic, getter=isPurpleBuddyAccount) BOOL purpleBuddyAccount; // @dynamic purpleBuddyAccount;
 @property(retain, nonatomic) NSNumber *iCloudUserID; // @dynamic iCloudUserID;
 @property(retain, nonatomic) NSString *facebookUserID; // @dynamic facebookUserID;
@@ -85,6 +108,7 @@
 - (id)conciseDescription;
 - (id)cacheKey;
 - (void)dealloc;
+- (BOOL)_gkIsSameAsPlayer:(id)arg1;
 
 @end
 

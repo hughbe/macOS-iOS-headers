@@ -11,24 +11,24 @@
 __attribute__((visibility("hidden")))
 @interface CKDContainerSpecificInfoURLRequest : CKDURLRequest
 {
-    BOOL _needUserID;
+    BOOL _requireUserIDs;
     NSString *_containerIdentifier;
     CKDContainerInfo *_containerInfo;
 }
 
-@property(copy, nonatomic) CKDContainerInfo *containerInfo; // @synthesize containerInfo=_containerInfo;
-@property(nonatomic) NSString *containerIdentifier; // @synthesize containerIdentifier=_containerIdentifier;
-@property(nonatomic) BOOL needUserID; // @synthesize needUserID=_needUserID;
 - (void).cxx_destruct;
+@property(copy, nonatomic) CKDContainerInfo *containerInfo; // @synthesize containerInfo=_containerInfo;
+@property(copy, nonatomic) NSString *containerIdentifier; // @synthesize containerIdentifier=_containerIdentifier;
+@property(nonatomic) BOOL requireUserIDs; // @synthesize requireUserIDs=_requireUserIDs;
 - (void)requestDidParseJSONObject:(id)arg1;
-- (id)additionalHeaderValues;
 - (BOOL)hasRequestBody;
 - (id)url;
 - (long long)partitionType;
 - (long long)serverType;
+- (BOOL)usesiCloudAuthToken;
+- (BOOL)usesCloudKitAuthToken;
 - (BOOL)allowsAuthedAccount;
 - (BOOL)allowsAnonymousAccount;
-- (BOOL)requiresSignature;
 - (BOOL)requiresDeviceID;
 - (BOOL)requiresConfiguration;
 - (id)initWithContainerIdentifier:(id)arg1;

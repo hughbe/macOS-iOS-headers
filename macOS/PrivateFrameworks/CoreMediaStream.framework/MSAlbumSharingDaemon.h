@@ -21,6 +21,7 @@
     NSMutableDictionary *_nextUpdateDateByPersonID;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *nextUpdateDateByPersonID; // @synthesize nextUpdateDateByPersonID=_nextUpdateDateByPersonID;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *mapQueue; // @synthesize mapQueue=_mapQueue;
@@ -30,7 +31,7 @@
 @property(retain, nonatomic) NSMutableDictionary *personIDToDelegateMap; // @synthesize personIDToDelegateMap=_personIDToDelegateMap;
 @property(retain, nonatomic) NSMutableDictionary *personIDToStateMachineMap; // @synthesize personIDToStateMachineMap=_personIDToStateMachineMap;
 @property(nonatomic) __weak id <MSAlbumSharingDaemonDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+- (void)updateOwnerReputationScoreForAlbum:(id)arg1;
 - (void)didReceiveCommentTooLongError:(id)arg1 forAssetCollection:(id)arg2 inAlbum:(id)arg3 personID:(id)arg4;
 - (void)didReceiveTooManyCommentsError:(id)arg1 forAssetCollection:(id)arg2 inAlbum:(id)arg3 personID:(id)arg4;
 - (void)didReceiveTooManySubscriptionsError:(id)arg1 personID:(id)arg2;
@@ -77,6 +78,9 @@
 - (void)acceptInvitationWithGUID:(id)arg1 personID:(id)arg2;
 - (void)acceptInvitationWithToken:(id)arg1 personID:(id)arg2 info:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)acceptInvitationWithToken:(id)arg1 personID:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)markAsSpamInvitationWithToken:(id)arg1 personID:(id)arg2;
+- (void)markAsSpamInvitationWithGUID:(id)arg1 personID:(id)arg2;
+- (void)markAsSpamAlbumWithGUID:(id)arg1 personID:(id)arg2;
 - (void)unsubscribeFromAlbumWithGUID:(id)arg1 personID:(id)arg2 info:(id)arg3;
 - (void)unsubscribeFromAlbumWithGUID:(id)arg1 personID:(id)arg2;
 - (void)subscribeToAlbumWithGUID:(id)arg1 personID:(id)arg2 info:(id)arg3;
@@ -105,7 +109,7 @@
 - (void)setNextActivityDate:(id)arg1 forPersonID:(id)arg2;
 - (void)pollForSubscriptionUpdatesTriggeredByPushNotificationForPersonID:(id)arg1;
 - (id)personIDsListeningToPushNotification;
-- (void)deleteAlbumWithGUID:(id)arg1;
+- (void)deleteAlbumWithGUID:(id)arg1 inviterAddress:(id)arg2;
 - (void)addAlbum:(id)arg1;
 - (void)cancelActivitiesForPersonID:(id)arg1;
 - (void)stopAssetDownloadsForPersonID:(id)arg1;
@@ -130,7 +134,6 @@
 - (void)mapQueueShutDownStateMachineInMap:(id)arg1 personIDs:(id)arg2 index:(unsigned long long)arg3 forDestruction:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)shutDown;
 - (void)start;
-- (void)dealloc;
 - (id)init;
 
 @end

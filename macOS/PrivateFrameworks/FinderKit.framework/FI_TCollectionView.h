@@ -6,14 +6,20 @@
 
 #import "NSCollectionView.h"
 
-@class NSObject<TCollectionViewDelegateProtocol>;
+#import "TMarkTornDown.h"
+
+@class NSObject<TCollectionViewDelegateProtocol>, NSString;
 
 __attribute__((visibility("hidden")))
-@interface FI_TCollectionView : NSCollectionView
+@interface FI_TCollectionView : NSCollectionView <TMarkTornDown>
 {
-    NSObject<TCollectionViewDelegateProtocol> *_collectionViewDelegate;
+    struct TNSWeakPtr<NSObject<TCollectionViewDelegateProtocol>, void> _weakCollectionViewDelegate;
+    _Bool tornDown;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(getter=isTornDown) _Bool tornDown; // @synthesize tornDown;
 - (void)draggingEnded:(id)arg1 dropTargetView:(id)arg2;
 - (void)draggingExited:(id)arg1 dropTargetView:(id)arg2;
 - (void)concludeDragOperation:(id)arg1 dropTargetView:(id)arg2;
@@ -31,7 +37,8 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)draggingUpdated:(id)arg1;
 - (void)updateDraggingItemsForDrag:(id)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
-- (void)enumerateAvailableItemsUsingBlock:(const function_f7c1d6aa *)arg1;
+- (void)enumerateAvailableItemsUsingBlock:(const function_ba1d2ad4 *)arg1;
+- (id)popoverAnchorViewForNode:(const struct TFENode *)arg1;
 - (id)iconViewForNode:(const struct TFENode *)arg1;
 - (id)iconViewForIndexPath:(id)arg1;
 - (struct TFENode)nodeAtPoint:(const struct CGPoint *)arg1;
@@ -42,25 +49,32 @@ __attribute__((visibility("hidden")))
 - (id)indexPathForSectionIndex:(unsigned long long)arg1;
 - (id)indexPathForNode:(const struct TFENode *)arg1;
 - (unsigned long long)numberOfItems;
+- (void)quickLookWithEvent:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)rightMouseDown:(id)arg1;
-- (void)dumpRepresentedObjectCache:(id)arg1;
 - (void)layout;
+- (struct CGSize)intrinsicContentSize;
+- (void)viewDidChangeBackingProperties;
 - (void)viewDidMoveToSuperview;
 - (void)viewWillMoveToSuperview:(id)arg1;
 - (void)viewDidMoveToWindow;
 - (void)viewWillMoveToWindow:(id)arg1;
-- (void)setCollectionViewDelegate:(id)arg1;
-- (id)collectionViewDelegate;
+@property(nonatomic) __weak NSObject<TCollectionViewDelegateProtocol> *collectionViewDelegate;
 - (BOOL)_allowsDropOnBackground;
 - (BOOL)_collectionViewSupports10_11Features;
 - (void)aboutToTearDown;
 - (void)initCommon;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

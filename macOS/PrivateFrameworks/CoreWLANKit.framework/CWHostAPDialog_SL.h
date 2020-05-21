@@ -8,7 +8,7 @@
 
 #import "NSTextFieldDelegate.h"
 
-@class CWInterface, NSButton, NSImageView, NSPopUpButton, NSProgressIndicator, NSSecureTextField, NSString, NSTextField, NSView, SFAuthorization;
+@class CWInterface, NSButton, NSGridView, NSImageView, NSLayoutConstraint, NSPopUpButton, NSProgressIndicator, NSSecureTextField, NSString, NSTextField, NSView, SFAuthorization;
 
 @interface CWHostAPDialog_SL : NSWindowController <NSTextFieldDelegate>
 {
@@ -30,19 +30,25 @@
     NSTextField *networkNameField;
     NSView *passwordView;
     NSSecureTextField *passwordField;
-    NSSecureTextField *confirmPasswordField;
+    NSTextField *revealedPasswordField;
+    NSView *showPasswordView;
+    NSButton *showPasswordCheckboxButton;
+    NSView *securityHintView;
     NSTextField *securityText;
     NSTextField *statusMessageLabel;
     NSButton *warningButton;
     NSProgressIndicator *progressIndicator;
     NSButton *helpButton;
     NSImageView *imageView;
+    NSGridView *gridView;
+    NSLayoutConstraint *okButtonBottomConstrain;
 }
 
 + (id)hostAPDialogWithInterface:(id)arg1;
 + (id)hostAPDialogWithInterface:(id)arg1 authorization:(id)arg2;
 @property id delegate; // @synthesize delegate=delegate_;
 @property(retain) CWInterface *interface; // @synthesize interface=interface_;
+- (id)_getGeneratedDefaultPassword;
 - (BOOL)validateEntries;
 - (void)resetSecurityEntries;
 - (id)errorStringForErrorCode:(long long)arg1;
@@ -50,8 +56,10 @@
 - (void)populateHostAPChannels;
 - (void)populateSecurityTypes;
 - (id)localizedStringForKey:(id)arg1;
+- (void)_applyDefaultPassword;
 - (void)populateWiFiOptions;
 - (void)controlTextDidChange:(id)arg1;
+- (void)onShowPasswordCheckboxButton:(id)arg1;
 - (void)onSecurityTypePopupButton:(id)arg1;
 - (void)onCancelButton:(id)arg1;
 - (void)onOKButton:(id)arg1;
@@ -61,12 +69,7 @@
 - (void)windowDidLoad;
 - (void)close;
 - (void)awakeFromNib;
-- (void)removePasswordView:(struct CGRect *)arg1;
-- (void)insertPasswordView;
-- (void)expandFrameForPasswordView:(struct CGRect *)arg1;
-- (void)insertManualConnectView;
-- (void)removeManualConnectView:(struct CGRect *)arg1;
-- (void)expandFrameForManualConnectView:(struct CGRect *)arg1;
+- (void)__updateWindowFrame:(struct CGRect)arg1 complete:(CDUnknownBlockType)arg2;
 - (id)initWithInterface:(id)arg1;
 - (id)initWithInterface:(id)arg1 authorization:(id)arg2;
 - (void)dealloc;

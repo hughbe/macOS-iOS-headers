@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)defaultProperties;
+- (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isBlipRefOverridden;
@@ -24,7 +25,6 @@ __attribute__((visibility("hidden")))
 - (void)fixPropertiesForChangingParentPreservingEffectiveValues:(id)arg1;
 - (BOOL)isAnythingOverridden;
 - (id)initWithDefaults;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end

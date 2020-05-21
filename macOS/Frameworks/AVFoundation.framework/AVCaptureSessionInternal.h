@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-@class AVCaptureSessionInternalState, NSError, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
+@class AVCaptureSessionInternalState, NSError, NSMutableArray, NSMutableSet, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureSessionInternal : NSObject
 {
     NSString *sessionPreset;
     int beginConfigRefCount;
-    NSObject<OS_dispatch_queue> *buildAndRunGraphQueue;
     NSMutableArray *inputs;
     NSMutableArray *outputs;
     NSMutableArray *connections;
@@ -24,6 +24,7 @@
     BOOL running;
     AVCaptureSessionInternalState *state;
     struct OpaqueCMClock *masterClock;
+    struct os_unfair_lock_s internalLock;
 }
 
 @end

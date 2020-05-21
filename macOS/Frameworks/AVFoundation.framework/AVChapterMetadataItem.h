@@ -8,6 +8,7 @@
 
 @class AVChapterMetadataItemInternal;
 
+__attribute__((visibility("hidden")))
 @interface AVChapterMetadataItem : AVMetadataItem
 {
     AVChapterMetadataItemInternal *_privChapter;
@@ -38,7 +39,6 @@
 - (id)description;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (void)_removeFigAssetNotifications;
 - (void)_addFigAssetNotifications;

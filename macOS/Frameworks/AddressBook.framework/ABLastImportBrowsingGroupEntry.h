@@ -6,7 +6,6 @@
 
 #import <AddressBook/ABGroupBrowsingGroupEntry.h>
 
-__attribute__((visibility("hidden")))
 @interface ABLastImportBrowsingGroupEntry : ABGroupBrowsingGroupEntry
 {
 }
@@ -16,7 +15,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)isAvailableInTimeMachine;
 - (BOOL)containsPeople:(id)arg1;
 - (BOOL)canDrop;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 addressBook:(id)arg2;
 
 @end

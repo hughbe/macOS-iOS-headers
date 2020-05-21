@@ -8,7 +8,7 @@
 
 #import "SASTTemplateItem.h"
 
-@class NSString;
+@class NSString, SADecoratedString;
 
 @interface SASTBodyTextItem : AceObject <SASTTemplateItem>
 {
@@ -16,7 +16,10 @@
 
 + (id)bodyTextItemWithDictionary:(id)arg1 context:(id)arg2;
 + (id)bodyTextItem;
+@property(copy, nonatomic) NSString *position;
+@property(retain, nonatomic) SADecoratedString *decoratedBodyText;
 @property(copy, nonatomic) NSString *bodyText;
+@property(copy, nonatomic) NSString *alignment;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

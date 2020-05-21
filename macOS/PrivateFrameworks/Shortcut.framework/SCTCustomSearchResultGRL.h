@@ -6,6 +6,7 @@
 
 #import <Shortcut/SCTGRL.h>
 
+__attribute__((visibility("hidden")))
 @interface SCTCustomSearchResultGRL : SCTGRL
 {
     id <NSUserInterfaceItemSearching><NSUserInterfaceItemSearching_Private> mSearchHandler;

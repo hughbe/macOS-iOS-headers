@@ -15,10 +15,10 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSURL *principalURL; // @synthesize principalURL=_principalURL;
 @property(retain, nonatomic) NSString *principalPath; // @synthesize principalPath=_principalPath;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

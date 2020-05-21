@@ -11,17 +11,41 @@
 @interface AVCaptureDeviceFormat : NSObject
 {
     AVCaptureDeviceFormatInternal *_internal;
+    BOOL _videoStabilizationSupported;
 }
 
 + (id)deviceFormatWithFormatDescription:(struct opaqueCMFormatDescription *)arg1;
++ (id)deviceFormatWithFormatDescription:(struct opaqueCMFormatDescription *)arg1 supportedFrameRateRanges:(id)arg2 autoFocusSystem:(long long)arg3;
 + (id)_stringForFormatDescription:(struct opaqueCMFormatDescription *)arg1 frameRateRanges:(id)arg2;
-- (void)_setVideoSupportedFrameRateRanges:(id)arg1;
+@property(readonly, nonatomic, getter=isVideoStabilizationSupported) BOOL videoStabilizationSupported; // @synthesize videoStabilizationSupported=_videoStabilizationSupported;
+- (float)geometricDistortionCorrectedVideoFieldOfView;
+- (BOOL)isMultiCamSupported;
+@property(readonly, nonatomic, getter=isHighestPhotoQualitySupported) BOOL highestPhotoQualitySupported;
+- (BOOL)isPortraitEffectsMatteStillImageDeliverySupported;
+@property(readonly, nonatomic) NSArray *unsupportedCaptureOutputClasses;
+@property(readonly, nonatomic) NSArray *supportedDepthDataFormats;
+@property(readonly, nonatomic) double videoMaxZoomFactorForDepthDataDelivery;
+@property(readonly, nonatomic) double videoMinZoomFactorForDepthDataDelivery;
+@property(readonly, nonatomic) NSArray *supportedColorSpaces;
+@property(readonly, nonatomic) long long autoFocusSystem;
+@property(readonly, nonatomic) CDStruct_79c71658 highResolutionStillImageDimensions;
+@property(readonly, nonatomic, getter=isVideoHDRSupported) BOOL videoHDRSupported;
+@property(readonly, nonatomic, getter=isGlobalToneMappingSupported) BOOL globalToneMappingSupported;
+@property(readonly, nonatomic) float maxISO;
+@property(readonly, nonatomic) float minISO;
+@property(readonly, nonatomic) CDStruct_1b6d18a9 maxExposureDuration;
+@property(readonly, nonatomic) CDStruct_1b6d18a9 minExposureDuration;
+@property(readonly, nonatomic) double videoZoomFactorUpscaleThreshold;
+@property(readonly, nonatomic) double videoMaxZoomFactor;
+- (BOOL)isVideoStabilizationModeSupported:(long long)arg1;
+@property(readonly, nonatomic, getter=isVideoBinned) BOOL videoBinned;
+@property(readonly, nonatomic) float videoFieldOfView;
 @property(readonly, nonatomic) NSArray *videoSupportedFrameRateRanges;
-@property(readonly, nonatomic) struct opaqueCMFormatDescription *formatDescription;
+@property(readonly, nonatomic) const struct opaqueCMFormatDescription *formatDescription;
 @property(readonly, nonatomic) NSString *mediaType;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithFormatDescription:(struct opaqueCMFormatDescription *)arg1;
+- (id)initWithFormatDescription:(struct opaqueCMFormatDescription *)arg1 supportedFrameRateRanges:(id)arg2 autoFocusSystem:(long long)arg3;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
 

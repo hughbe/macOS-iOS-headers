@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     float mDefaultScale;
 }
 
+- (void).cxx_destruct;
 - (struct CGSize)sizeForNode:(id)arg1 atIndex:(unsigned long long)arg2;
 - (float)setFonSizeForChildNode:(id)arg1 atIndex:(unsigned long long)arg2 level:(int)arg3;
 - (struct CGSize)textSizeForShapeSize:(struct CGSize)arg1;

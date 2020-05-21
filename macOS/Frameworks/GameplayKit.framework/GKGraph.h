@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSMutableArray, NSMutableDictionary;
 
-@interface GKGraph : NSObject <NSCopying, NSCoding>
+@interface GKGraph : NSObject <NSCopying, NSSecureCoding>
 {
     NSMutableArray *_nodes;
     struct GKCGraph *_cGraph;
@@ -20,8 +20,9 @@
 
 + (id)graphWithNodes:(id)arg1;
 + (id)graph;
-@property(retain, nonatomic) NSMutableDictionary *_info; // @synthesize _info=__info;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableDictionary *_info; // @synthesize _info=__info;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copy;
 - (void)encodeWithCoder:(id)arg1;

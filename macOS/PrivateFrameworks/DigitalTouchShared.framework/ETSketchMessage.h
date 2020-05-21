@@ -15,14 +15,17 @@
     BOOL _hasMultipleColors;
     BOOL _didEndWisping;
     BOOL _didDrawPoints;
+    BOOL _hideComet;
 }
 
 + (unsigned short)messageType;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL hideComet; // @synthesize hideComet=_hideComet;
 @property(nonatomic) BOOL didDrawPoints; // @synthesize didDrawPoints=_didDrawPoints;
 @property(nonatomic) BOOL didEndWisping; // @synthesize didEndWisping=_didEndWisping;
 @property(nonatomic) BOOL hasMultipleColors; // @synthesize hasMultipleColors=_hasMultipleColors;
-- (void).cxx_destruct;
 - (double)messageDuration;
+- (void)convertToSimulatedPlaybackSpeed;
 - (void)setParentMessage:(id)arg1;
 - (void)didEndWisp;
 - (void)willBeginWisp;

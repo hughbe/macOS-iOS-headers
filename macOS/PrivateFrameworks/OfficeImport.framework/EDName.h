@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)name;
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long sheetIndex; // @synthesize sheetIndex=_sheetIndex;
 @property(readonly, nonatomic) EDFormula *formula; // @synthesize formula=_formula;
 @property(retain, nonatomic) EDString *nameString; // @synthesize nameString=_nameString;
@@ -31,7 +32,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToString:(id)arg1;
 - (BOOL)isEqualToEDName:(id)arg1;
-- (void)dealloc;
 - (id)init;
 - (void)setFormulaString:(id)arg1 workbook:(id)arg2;
 - (id)formulaString;

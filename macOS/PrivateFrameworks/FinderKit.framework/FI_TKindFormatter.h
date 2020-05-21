@@ -10,13 +10,15 @@ __attribute__((visibility("hidden")))
 @interface FI_TKindFormatter : NSFormatter
 {
     double _width;
-    struct TNSRef<NSDictionary *, void> _stringAttributes;
+    struct TNSRef<NSDictionary, void> _stringAttributes;
     struct unordered_map<TString, std::__1::vector<TruncationTableElement, std::__1::allocator<TruncationTableElement>>, TStringCaseInsensitiveHash, TStringCaseInsensitiveCompare, std::__1::allocator<std::__1::pair<const TString, std::__1::vector<TruncationTableElement, std::__1::allocator<TruncationTableElement>>>>> _truncationTables;
 }
 
++ (id)sharedFormatter;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)stringForObjectValue:(id)arg1;
+- (unordered_set_66d0470b)kindStringSetForFullKindString:(const struct TString *)arg1;
 - (void)setWidth:(double)arg1 forAttributes:(id)arg2;
 - (double)measureTemplate:(const struct TString *)arg1 forAttributes:(id)arg2;
 - (id)init;

@@ -17,10 +17,14 @@
 
 - (void).cxx_destruct;
 - (void)removePass:(id)arg1;
+- (id)peerPaymentPassUniqueID;
 - (id)passWithUniqueID:(id)arg1;
 - (id)passWithPassTypeIdentifier:(id)arg1 serialNumber:(id)arg2;
 - (id)paymentPasses;
+- (BOOL)canProvisionAccessPassWithConfiguration:(id)arg1;
+- (BOOL)canAddSecureElementPassWithConfiguration:(id)arg1;
 @property(readonly, nonatomic) BOOL canAddPaymentPass;
+- (id)initWithPassLibrary:(id)arg1;
 - (id)init;
 
 // Remaining properties

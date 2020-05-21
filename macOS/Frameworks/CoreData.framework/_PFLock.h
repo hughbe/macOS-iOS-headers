@@ -11,7 +11,6 @@
 __attribute__((visibility("hidden")))
 @interface _PFLock : NSObject <NSLocking>
 {
-    int _cd_rc;
     struct _opaque_pthread_mutex_t _lock;
     struct _opaque_pthread_t {
         long long _field1;
@@ -25,7 +24,6 @@ __attribute__((visibility("hidden")))
 - (void)unlock;
 - (BOOL)tryLock;
 - (void)lock;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

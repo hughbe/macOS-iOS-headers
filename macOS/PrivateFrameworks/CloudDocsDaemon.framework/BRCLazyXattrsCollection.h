@@ -24,7 +24,7 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (void)clearCache;
 - (id)getXattrValue:(id)arg1 error:(id *)arg2;
-- (id)initWithFD:(int)arg1 sizeLimit:(long long)arg2 error:(id *)arg3;
+- (id)initWithFD:(int)arg1 sizeLimit:(long long)arg2 syncable:(BOOL)arg3 error:(id *)arg4;
 - (unsigned int)contentXattrNamesCount;
 - (const char **)contentXattrNamesEnd;
 - (const char **)contentXattrNamesBegin;

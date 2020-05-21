@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "MCTask.h"
+#import <Mail/MFEWSTask.h>
 
 #import "MCBodyTracker.h"
 #import "MFEWSBodyFetchOperationDelegate.h"
@@ -12,7 +12,7 @@
 
 @class MFEWSBodyFetchOperation, MFEWSBodyPersistOperation, NSMutableDictionary, NSMutableSet, NSString;
 
-@interface MFEWSVisibleBodyFetchTask : MCTask <MFEWSBodyFetchOperationDelegate, MFEWSBodyPersistOperationDelegate, MCBodyTracker>
+@interface MFEWSVisibleBodyFetchTask : MFEWSTask <MFEWSBodyFetchOperationDelegate, MFEWSBodyPersistOperationDelegate, MCBodyTracker>
 {
     MFEWSBodyFetchOperation *_fetchOperation;
     MFEWSBodyPersistOperation *_persistOperation;
@@ -32,7 +32,7 @@
 - (void)cacheVisibleMessages:(id)arg1;
 @property(retain, nonatomic) MFEWSBodyPersistOperation *persistOperation;
 @property(retain, nonatomic) MFEWSBodyFetchOperation *fetchOperation;
-- (id)init;
+- (id)initWithAccountName:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

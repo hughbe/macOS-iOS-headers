@@ -10,10 +10,12 @@ __attribute__((visibility("hidden")))
 @interface CHDPieDataValueProperties : CHDDataValueProperties
 {
     int mExplosion;
+    _Bool mIsExplosionSet;
 }
 
 - (id)shallowCopyWithIndex:(unsigned long long)arg1;
 - (void)setExplosion:(int)arg1;
+- (_Bool)isExplosionSet;
 - (int)explosion;
 - (id)init;
 

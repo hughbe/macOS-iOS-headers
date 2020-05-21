@@ -4,11 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSArray, PHObject, PHPhotoLibrary;
+#import "NSObject.h"
 
-@protocol PHObjectPropertySet
-+ (void)fetchPropertiesForObjects:(NSArray *)arg1 photoLibrary:(PHPhotoLibrary *)arg2;
-+ (NSArray *)propertiesToLoadFromPhotoLibrary:(PHPhotoLibrary *)arg1;
-+ (id <PHObjectPropertySet>)propertySetWithObject:(PHObject *)arg1;
+@class NSArray, NSString;
+
+@protocol PHObjectPropertySet <NSObject>
++ (BOOL)isToMany;
++ (NSString *)keyPathToPrimaryObject;
++ (NSString *)keyPathFromPrimaryObject;
++ (NSString *)entityName;
++ (NSArray *)propertiesToFetch;
 @end
 

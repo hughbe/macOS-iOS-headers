@@ -6,10 +6,12 @@
 
 #import "NSTextField.h"
 
+@class NSFont;
+
 @interface SiriUIContentLabel : NSTextField
 {
     BOOL _willAppearDirectlyOverUltraDarkBackground;
-    BOOL _shouldAllowVibrancy;
+    NSFont *_superScriptFont;
 }
 
 + (id)labelWithBodyFont;
@@ -22,9 +24,10 @@
 + (id)labelWithLightWeightRegularFont;
 + (id)labelWithThinWeightRegularFont;
 + (id)label;
-@property(nonatomic) BOOL shouldAllowVibrancy; // @synthesize shouldAllowVibrancy=_shouldAllowVibrancy;
+- (void).cxx_destruct;
+@property(retain) NSFont *superScriptFont; // @synthesize superScriptFont=_superScriptFont;
 @property(nonatomic) BOOL willAppearDirectlyOverUltraDarkBackground; // @synthesize willAppearDirectlyOverUltraDarkBackground=_willAppearDirectlyOverUltraDarkBackground;
-- (BOOL)allowsVibrancy;
+- (void)setAttributedStringValue:(id)arg1;
 - (void)setStringValue:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

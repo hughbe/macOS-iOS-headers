@@ -16,17 +16,19 @@
     unsigned long long _offset;
     unsigned long long _bufferIndex;
     unsigned long long _format;
+    double _time;
     // Error parsing type: , name: _initializationValue
 }
 
+- (void).cxx_destruct;
 // Error parsing type for property initializationValue:
 // Property attributes: T,N,V_initializationValue
 
+@property(nonatomic) double time; // @synthesize time=_time;
 @property(nonatomic) unsigned long long bufferIndex; // @synthesize bufferIndex=_bufferIndex;
 @property(nonatomic) unsigned long long offset; // @synthesize offset=_offset;
 @property(nonatomic) unsigned long long format; // @synthesize format=_format;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;

@@ -8,15 +8,19 @@
 
 #import "PKMicaResizableView.h"
 
-@class NSString;
+@class NSDictionary, NSString;
 
 @interface PKMicaLayer : CALayer <PKMicaResizableView>
 {
     CALayer *_rootLayer;
+    NSDictionary *_publishedColorLayers;
+    NSDictionary *_publishedColorShapeLayers;
 }
 
-@property(readonly, nonatomic) CALayer *rootLayer; // @synthesize rootLayer=_rootLayer;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSDictionary *publishedColorShapeLayers; // @synthesize publishedColorShapeLayers=_publishedColorShapeLayers;
+@property(readonly, nonatomic) NSDictionary *publishedColorLayers; // @synthesize publishedColorLayers=_publishedColorLayers;
+@property(readonly, nonatomic) CALayer *rootLayer; // @synthesize rootLayer=_rootLayer;
 - (struct CGSize)boundsSizeToMatchPointScale:(double)arg1;
 - (double)pointScaleToMatchBoundsSize:(struct CGSize)arg1;
 - (void)layoutSublayers;

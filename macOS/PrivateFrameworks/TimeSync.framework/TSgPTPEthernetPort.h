@@ -6,19 +6,19 @@
 
 #import <TimeSync/TSgPTPFDPtPPort.h>
 
-@class NSString;
-
 @interface TSgPTPEthernetPort : TSgPTPFDPtPPort
 {
-    NSString *_interfaceName;
 }
 
 + (id)diagnosticDescriptionForService:(unsigned int)arg1 withIndent:(id)arg2;
 + (id)iokitMatchingDictionaryForInterfaceName:(id)arg1;
-@property(readonly, copy, nonatomic) NSString *interfaceName; // @synthesize interfaceName=_interfaceName;
 - (void)dealloc;
+- (int)portType;
+- (id)_destinationAddressString;
+- (id)_sourceAddressString;
 - (id)initWithInterfaceName:(id)arg1;
 - (id)initWithMatchingDictionary:(id)arg1;
+- (id)initWithService:(unsigned int)arg1;
 
 @end
 

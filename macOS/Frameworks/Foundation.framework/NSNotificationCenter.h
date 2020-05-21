@@ -13,6 +13,7 @@
     void *_pad[11];
 }
 
++ (id)_defaultCenterWithoutCreating;
 + (id)defaultCenter;
 - (id)debugDescription;
 - (BOOL)isEmpty;
@@ -23,9 +24,12 @@
 - (void)removeObserver:(id)arg1 name:(id)arg2 object:(id)arg3;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1 selector:(SEL)arg2 name:(id)arg3 object:(id)arg4;
+- (void)_removeObserver:(unsigned long long)arg1;
+- (unsigned long long)_addObserver:(id)arg1 selector:(SEL)arg2 name:(id)arg3 object:(id)arg4 options:(unsigned long long)arg5;
 - (id)description;
 - (void)dealloc;
 - (id)init;
+- (id)_initWithCFNotificationCenter:(struct __CFNotificationCenter *)arg1;
 
 @end
 

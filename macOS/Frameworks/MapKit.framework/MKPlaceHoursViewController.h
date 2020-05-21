@@ -6,34 +6,45 @@
 
 #import <MapKit/MKPlaceSectionViewController.h>
 
+#import "MKInfoCardThemeListener.h"
+#import "MKModuleViewControllerProtocol.h"
 #import "MKStackingViewControllerFixedHeightAware.h"
 #import "_MKInfoCardChildViewControllerAnalyticsDelegate.h"
-#import "_MKStackViewDelegate.h"
 
-@class MKMapItem, MKPlaceSectionHeaderView, NSString;
+@class MKMapItem, MKPlaceSectionHeaderView, NSArray, NSString, NSTimeZone;
 
-@interface MKPlaceHoursViewController : MKPlaceSectionViewController <_MKStackViewDelegate, MKStackingViewControllerFixedHeightAware, _MKInfoCardChildViewControllerAnalyticsDelegate>
+__attribute__((visibility("hidden")))
+@interface MKPlaceHoursViewController : MKPlaceSectionViewController <MKStackingViewControllerFixedHeightAware, MKInfoCardThemeListener, _MKInfoCardChildViewControllerAnalyticsDelegate, MKModuleViewControllerProtocol>
 {
-    MKMapItem *_mapItem;
     BOOL _isExpanded;
     MKPlaceSectionHeaderView *_headerView;
+    NSArray *_businessHours;
     BOOL _resizableViewsDisabled;
-    id <MKPlaceHoursViewControllerDelegate> _hoursDelegate;
+    id <_MKInfoCardAnalyticsDelegate> _analyticsDelegate;
+    MKMapItem *_mapItem;
 }
 
-@property(nonatomic) __weak id <MKPlaceHoursViewControllerDelegate> hoursDelegate; // @synthesize hoursDelegate=_hoursDelegate;
-@property(nonatomic) BOOL resizableViewsDisabled; // @synthesize resizableViewsDisabled=_resizableViewsDisabled;
++ (id)placeHoursWithMapItem:(id)arg1;
 - (void).cxx_destruct;
+@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
+@property(nonatomic) __weak id <_MKInfoCardAnalyticsDelegate> analyticsDelegate; // @synthesize analyticsDelegate=_analyticsDelegate;
+@property(nonatomic) BOOL resizableViewsDisabled; // @synthesize resizableViewsDisabled=_resizableViewsDisabled;
+- (id)infoCardChildUnactionableUIElements;
 - (id)infoCardChildPossibleActions;
+- (void)infoCardThemeChanged;
 - (void)_updateHoursAnimated:(BOOL)arg1;
 - (void)_contentSizeDidChange;
 - (void)_toggleShowAllHours;
 - (void)_setExpanded:(BOOL)arg1;
-- (double)stackView:(id)arg1 distanceBetweenUpperView:(id)arg2 andLowerView:(id)arg3;
-@property(retain, nonatomic) MKMapItem *mapItem;
-- (void)dealloc;
-- (double)extraHeightToReserveInLayout;
+- (BOOL)_shouldOnlyShowExpanded;
+@property(readonly, nonatomic) NSArray *businessHours;
+- (id)hoursBuilderWithHours:(id)arg1;
+@property(readonly, nonatomic) NSTimeZone *timeZone;
+- (void)viewWillAppear:(BOOL)arg1;
 - (void)viewDidLoad;
+- (id)titleString;
+- (id)initWithMapItem:(id)arg1;
+- (BOOL)_canShowWhileLocked;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

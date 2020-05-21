@@ -6,15 +6,15 @@
 
 #import "NSObject.h"
 
-@class NSMutableSet, NSObject<OS_dispatch_queue>;
+@class NSMutableSet, geo_isolater;
 
-__attribute__((visibility("hidden")))
 @interface GEOMapRequestManager : NSObject
 {
     NSMutableSet *_requests;
-    NSObject<OS_dispatch_queue> *_queue;
+    geo_isolater *_isolater;
 }
 
+- (void).cxx_destruct;
 - (void)requestComplete:(id)arg1;
 - (void)trackRequest:(id)arg1;
 - (void)dealloc;

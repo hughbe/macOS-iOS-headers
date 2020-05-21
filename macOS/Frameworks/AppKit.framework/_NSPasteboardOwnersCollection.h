@@ -8,6 +8,7 @@
 
 @class NSMapTable, NSPasteboard;
 
+__attribute__((visibility("hidden")))
 @interface _NSPasteboardOwnersCollection : NSObject
 {
     NSMapTable *_ownersByIndex;
@@ -15,9 +16,10 @@
     NSPasteboard *_pasteboard;
 }
 
-- (void)_handleOwnershipChange;
-- (void)_removeOwnerForTypeIdentifier:(id)arg1 atIndex:(unsigned long long)arg2;
-- (void)_setOwner:(id)arg1 forTypeIdentifier:(id)arg2 atIndex:(unsigned long long)arg3;
+- (void).cxx_destruct;
+- (void)handleOwnershipChange;
+- (void)removeOwnerForTypeIdentifier:(id)arg1 atIndex:(unsigned long long)arg2;
+- (void)setOwner:(id)arg1 forTypeIdentifier:(id)arg2 atIndex:(unsigned long long)arg3;
 - (void)_incrementCountForOwner:(id)arg1;
 - (void)_decrementCountForOwner:(id)arg1;
 - (void)dealloc;

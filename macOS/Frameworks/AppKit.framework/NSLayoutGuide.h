@@ -7,13 +7,14 @@
 #import "NSObject.h"
 
 #import "NSCoding.h"
+#import "NSLayoutSpacingItem.h"
 #import "NSUserInterfaceItemIdentification.h"
 
 @class NSISVariable, NSLayoutDimension, NSLayoutXAxisAnchor, NSLayoutYAxisAnchor, NSString, NSView;
 
-@interface NSLayoutGuide : NSObject <NSCoding, NSUserInterfaceItemIdentification>
+@interface NSLayoutGuide : NSObject <NSLayoutSpacingItem, NSCoding, NSUserInterfaceItemIdentification>
 {
-    NSView *_owningView;
+    id _owningView;
     NSString *_identifier;
     NSISVariable *_minYVariable;
     NSISVariable *_minXVariable;
@@ -30,15 +31,19 @@
     NSLayoutXAxisAnchor *_centerX;
     NSLayoutYAxisAnchor *_centerY;
     struct CGRect _frame;
+    struct CGRect _internalFrame;
     id _aux;
-    id _reserved2;
+    id _systemConstraints;
     unsigned int _shouldBeArchived:1;
-    unsigned int _weakHelper:1;
     unsigned int _frameNeedsUpdate:1;
     unsigned int _frameIsObserved:1;
-    unsigned int _reservedFlags:28;
+    unsigned int _lockedToOwner:1;
+    unsigned int _internalFrameDiverged:1;
+    unsigned int _reservedFlags:27;
 }
 
++ (void)_allowingStaleFramesPerformBlock:(CDUnknownBlockType)arg1;
+- (void).cxx_destruct;
 @property(readonly) NSLayoutYAxisAnchor *centerYAnchor;
 @property(readonly) NSLayoutXAxisAnchor *centerXAnchor;
 @property(readonly) NSLayoutDimension *heightAnchor;
@@ -59,6 +64,7 @@
 - (id)left;
 - (id)trailing;
 - (id)leading;
+- (int)nsis_orientationHintForVariable:(id)arg1;
 - (id)nsis_descriptionOfVariable:(id)arg1;
 - (BOOL)nsis_valueOfVariableIsUserObservable:(id)arg1;
 - (BOOL)nsis_shouldIntegralizeVariable:(id)arg1;
@@ -68,6 +74,8 @@
 - (id)_widthVariable;
 - (id)_minYVariable;
 - (id)_minXVariable;
+- (id)nsli_boundsHeightVariable;
+- (id)nsli_boundsWidthVariable;
 - (id)nsli_heightVariable;
 - (id)nsli_widthVariable;
 - (id)nsli_minYVariable;
@@ -76,14 +84,18 @@
 - (double)nsli_marginOffsetForAttribute:(long long)arg1;
 - (BOOL)nsli_removeConstraint:(id)arg1;
 - (void)nsli_addConstraint:(id)arg1;
+- (void)nsli_setPiercingToken:(unsigned long long)arg1;
+- (unsigned long long)nsli_piercingToken;
 - (id)nsli_itemDescribingLayoutDirectionForConstraint:(id)arg1 toItem:(id)arg2;
 - (BOOL)nsli_isRTL;
 - (BOOL)nsli_isFlipped;
 - (unsigned long long)nsli_autoresizingMask;
 - (BOOL)nsli_descriptionIncludesPointer;
 - (id)nsli_description;
+- (BOOL)nsli_defaultResolvedValue:(double *)arg1 forSymbolicConstant:(id)arg2 inConstraint:(id)arg3 error:(id *)arg4;
 - (BOOL)nsli_resolvedValue:(double *)arg1 forSymbolicConstant:(id)arg2 inConstraint:(id)arg3 error:(id *)arg4;
 - (id)nsli_ancestorSharedWithItem:(id)arg1;
+- (id)nsli_layoutRect;
 - (id)nsli_superitem;
 - (struct CGSize)nsli_convertSizeFromEngineSpace:(struct CGSize)arg1;
 - (struct CGSize)nsli_convertSizeToEngineSpace:(struct CGSize)arg1;
@@ -94,12 +106,14 @@
 - (void)_discardEngine:(id)arg1;
 - (void)_didMoveFromLayoutEngine:(id)arg1 toEngine:(id)arg2;
 - (void)_updateFrameIfNeeded;
+- (void)_updateInternalFrameIfNeeded;
 - (void)setShouldBeArchived:(BOOL)arg1;
 - (BOOL)shouldBeArchived;
 @property(copy) NSString *identifier;
 - (void)_snipReferencingConstraints;
 @property __weak NSView *owningView;
 - (struct CGRect)convertRect:(struct CGRect)arg1 toView:(id)arg2;
+- (id)layoutRect;
 - (struct CGRect)bounds;
 - (struct CGRect)_alignmentFrame;
 - (void)setFrame:(struct CGRect)arg1;
@@ -108,6 +122,10 @@
 - (BOOL)nsli_lowersExpressionRelativeToConstraintContainer;
 - (BOOL)nsli_lowerAttribute:(int)arg1 intoExpression:(id)arg2 withCoefficient:(double)arg3 container:(id)arg4;
 - (BOOL)nsli_lowerAttribute:(int)arg1 intoExpression:(id)arg2 withCoefficient:(double)arg3 forConstraint:(id)arg4;
+- (void)setSystemConstraints:(id)arg1;
+- (id)systemConstraints;
+- (void)setLockedToOwningView:(BOOL)arg1;
+- (BOOL)isLockedToOwningView;
 - (void)removeFromOwningView;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

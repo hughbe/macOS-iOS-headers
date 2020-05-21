@@ -7,11 +7,12 @@
 #import <EventKit/EKObject.h>
 
 #import "EKIdentityProtocol.h"
+#import "EKJunkInvitationProtocol_Private.h"
 #import "EKProtocolMutableCalendarNotification.h"
 
-@class EKEvent, NSDate, NSDictionary, NSManagedObjectID, NSNumber, NSString;
+@class EKEventStore, NSDate, NSDictionary, NSManagedObjectID, NSNumber, NSString;
 
-@interface EKCalendarNotification : EKObject <EKProtocolMutableCalendarNotification, EKIdentityProtocol>
+@interface EKCalendarNotification : EKObject <EKProtocolMutableCalendarNotification, EKIdentityProtocol, EKJunkInvitationProtocol_Private>
 {
     BOOL dateChanged;
     BOOL timeChanged;
@@ -29,23 +30,26 @@
     NSString *firstName;
     NSString *lastName;
     NSString *attendeeComment;
+    NSString *phoneNumber;
     NSString *calendarName;
     NSString *principalName;
     NSString *componentType;
     NSString *filename;
     NSNumber *senders;
     NSDate *proposedStartDateUnadjustedFromUTC;
-    EKEvent *_cachedClosestOccurrence;
+    NSDate *proposedEndDateUnadjustedFromUTC;
 }
 
 + (Class)frozenClass;
 + (id)uniqueIdentifierForObject:(id)arg1;
++ (id)knownSummaryKeys;
 + (id)knownSingleValueKeys;
 + (id)knownIdentityKeys;
 + (id)knownImmutableKeys;
 + (id)notificationWithCalendarNotification:(id)arg1 eventStore:(id)arg2;
 + (Class)_realClassForNotification:(id)arg1;
-@property(retain) EKEvent *cachedClosestOccurrence; // @synthesize cachedClosestOccurrence=_cachedClosestOccurrence;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSDate *proposedEndDateUnadjustedFromUTC; // @synthesize proposedEndDateUnadjustedFromUTC;
 @property(readonly, nonatomic) NSDate *proposedStartDateUnadjustedFromUTC; // @synthesize proposedStartDateUnadjustedFromUTC;
 @property(readonly, nonatomic) NSNumber *senders; // @synthesize senders;
 @property(readonly, nonatomic) BOOL attachmentsChanged; // @synthesize attachmentsChanged;
@@ -57,6 +61,7 @@
 @property(readonly, nonatomic) NSString *componentType; // @synthesize componentType;
 @property(readonly, nonatomic) NSString *principalName; // @synthesize principalName;
 @property(readonly) NSString *calendarName; // @synthesize calendarName;
+@property(readonly, nonatomic) NSString *phoneNumber; // @synthesize phoneNumber;
 @property(readonly) NSString *attendeeComment; // @synthesize attendeeComment;
 @property(readonly, nonatomic) NSString *lastName; // @synthesize lastName;
 @property(readonly, nonatomic) NSString *firstName; // @synthesize firstName;
@@ -68,10 +73,15 @@
 @property(readonly, nonatomic) NSString *title; // @synthesize title;
 @property(readonly) NSString *uuid; // @synthesize uuid;
 @property(readonly, nonatomic) NSNumber *notificationType; // @synthesize notificationType;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL supportsJunkReporting;
+@property(readonly, nonatomic) NSString *sendersPhoneNumber;
+@property(readonly, nonatomic) NSString *sendersEmail;
+- (BOOL)couldBeJunk;
+- (void)setJunkStatus:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long junkStatus;
 - (BOOL)supportsConflictDecisions;
 - (BOOL)supportsConflictScanning;
-- (void)_forceUpdateTitle:(id)arg1 name:(id)arg2 emailAddress:(id)arg3;
+- (void)_forceUpdateTitle:(id)arg1 name:(id)arg2 emailAddress:(id)arg3 phoneNumber:(id)arg4;
 - (void)setDismissed:(BOOL)arg1;
 @property(readonly) BOOL dismissed;
 @property(readonly, nonatomic) unsigned long long numberOfSenders;
@@ -88,17 +98,22 @@
 - (BOOL)supportsAction:(unsigned long long)arg1;
 - (unsigned long long)supportedActions;
 - (long long)_ekTypeForNotificationType:(id)arg1;
+- (id)notificationTypeString;
 @property(readonly) long long type;
 - (BOOL)isProposedNewTime;
+- (BOOL)isSuggestion;
 - (BOOL)isResourceChange;
 - (BOOL)isSharedCalendarReply;
 - (BOOL)isSharedCalendarInvitation;
 - (BOOL)isInvitation;
+- (BOOL)shouldDisplayInNobo;
+- (id)proposedEndDate;
+- (BOOL)proposedEndDateIsInFuture;
 - (id)calendar;
 - (void)setOccurrence:(id)arg1;
-@property(readonly, nonatomic) id <EKProtocolEventOccurrence> occurrence;
+@property(readonly, nonatomic) id <EventOccurrenceModelProtocol> occurrence;
 - (id)event;
-@property(readonly, nonatomic) id <EKProtocolCalendarSource> containerSource;
+@property(readonly, nonatomic) id <CalendarSourceModelProtocol> containerSource;
 - (void)setContainerSource:(id)arg1;
 - (id)source;
 - (long long)compare:(id)arg1;
@@ -108,9 +123,10 @@
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) EKEventStore *eventStore;
 @property(readonly) unsigned long long hash;
-@property(readonly) BOOL isCurrentUserForScheduling;
-@property(readonly) BOOL isCurrentUserForSharing;
+@property(readonly, nonatomic) BOOL isCurrentUserForScheduling;
+@property(readonly, nonatomic) BOOL isCurrentUserForSharing;
 @property(readonly, nonatomic) BOOL isPartialObject;
 @property(readonly, nonatomic) NSManagedObjectID *managedObjectID;
 @property(readonly, nonatomic) NSDictionary *preFrozenRelationshipObjects;

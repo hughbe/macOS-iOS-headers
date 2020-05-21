@@ -19,25 +19,32 @@
     BOOL _keptHidden;
     NSString *_guideNumber;
     BOOL _forceNoSelection;
+    BOOL _roundsLeftCorners;
+    BOOL _roundsRightCorners;
 }
 
+@property(nonatomic) BOOL roundsRightCorners; // @synthesize roundsRightCorners=_roundsRightCorners;
+@property(nonatomic) BOOL roundsLeftCorners; // @synthesize roundsLeftCorners=_roundsLeftCorners;
 @property(nonatomic) BOOL forceNoSelection; // @synthesize forceNoSelection=_forceNoSelection;
 @property(copy, nonatomic) NSString *guideNumber; // @synthesize guideNumber=_guideNumber;
 @property(nonatomic) BOOL keptHidden; // @synthesize keptHidden=_keptHidden;
 @property(nonatomic) BOOL animateChanges; // @synthesize animateChanges=_animateChanges;
-@property(retain, nonatomic) IMKCandidateController *controller; // @synthesize controller=_controller;
+@property(nonatomic) IMKCandidateController *controller; // @synthesize controller=_controller;
 @property(retain, nonatomic) IMKCandidateUnitViewContentView *contentView; // @synthesize contentView=_contentView;
 @property(retain, nonatomic) IMKCandidateLayoutUnit *layoutUnit; // @synthesize layoutUnit=_layoutUnit;
+- (void)shouldUpdateForPressAndHold:(id)arg1 position:(struct CGPoint)arg2 with:(long long)arg3;
 - (void)touchesEnded:(id)arg1 position:(struct CGPoint)arg2;
 - (void)scrubbed:(id)arg1 position:(struct CGPoint)arg2;
 - (void)tapped:(id)arg1 position:(struct CGPoint)arg2;
 - (void)mouseUp:(id)arg1;
 @property(readonly, nonatomic) NSString *uniqueKey;
 - (void)setNeedsDisplay:(BOOL)arg1;
+@property(nonatomic) BOOL drawsBackgroundColor;
 @property(retain, nonatomic) NSColor *backgroundColor;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (BOOL)wantsUpdateLayer;
 - (BOOL)isFlipped;
+- (void)setUpLayer;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 properties:(id)arg2;
 

@@ -28,6 +28,7 @@
         unsigned int isVisible:1;
     } _flags;
     BOOL _logRenderingTimes;
+    BOOL _unloadsOnDisappear;
     OMSlideshow *_slideshow;
     double _audioVolume;
     id <OMSlideshowViewControllerPrepareDelegate> _prepareDelegate;
@@ -35,6 +36,7 @@
 }
 
 @property(readonly) BOOL isStretchableWithoutReauthoring; // @synthesize isStretchableWithoutReauthoring=_isStretchableWithoutReauthoring;
+@property BOOL unloadsOnDisappear; // @synthesize unloadsOnDisappear=_unloadsOnDisappear;
 @property(nonatomic) BOOL logRenderingTimes; // @synthesize logRenderingTimes=_logRenderingTimes;
 @property(nonatomic) double audioVolume; // @synthesize audioVolume=_audioVolume;
 - (void)marimbaPlaybackIsOver:(id)arg1;

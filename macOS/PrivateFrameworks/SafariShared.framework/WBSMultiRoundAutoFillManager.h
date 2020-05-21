@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSMutableSet, NSSet, NSString, NSTimer;
+@class NSMutableSet, NSSet, NSString, NSTimer, WBSFormMetadata;
 
 @interface WBSMultiRoundAutoFillManager : NSObject
 {
     unsigned long long _autoFillAttemptTrigger;
-    NSDictionary *_formMetadataFromPreviousAutoFillAttempt;
+    WBSFormMetadata *_formMetadataFromPreviousAutoFillAttempt;
     BOOL _userDidInteractWithForm;
     unsigned long long _numberOfFollowUpAutoFillAttempts;
     NSTimer *_timerForFollowUpAutoFill;
@@ -20,9 +20,9 @@
     NSSet *_addressBookPropertiesThatCanBeFilled;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSSet *addressBookPropertiesThatCanBeFilled; // @synthesize addressBookPropertiesThatCanBeFilled=_addressBookPropertiesThatCanBeFilled;
 @property(copy, nonatomic) NSString *addressSetLabelUsedDuringFirstAutoFillPass; // @synthesize addressSetLabelUsedDuringFirstAutoFillPass=_addressSetLabelUsedDuringFirstAutoFillPass;
-- (void).cxx_destruct;
 - (BOOL)shouldControlBeIgnoredByFollowUpAutoFill:(id)arg1;
 - (void)addControlUniqueIDsIgnoredByFollowUpAutoFill:(id)arg1;
 - (void)addControlUniqueIDIgnoredByFollowUpAutoFill:(id)arg1;

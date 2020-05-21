@@ -27,6 +27,8 @@
 @property unsigned short jackType; // @synthesize jackType;
 @property unsigned short jackFlags; // @synthesize jackFlags;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)objectLogName;
 - (void)renumberDescriptorWithNextIndexes:(id)arg1;
 - (void)updateDependentContent;

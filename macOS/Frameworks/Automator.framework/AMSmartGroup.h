@@ -15,15 +15,12 @@
     BOOL _hasItemLimit;
 }
 
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSPredicate *predicate; // @synthesize predicate=_predicate;
+@property BOOL hasItemLimit; // @synthesize hasItemLimit=_hasItemLimit;
 - (id)assets;
-- (void)setItemLimit:(unsigned long long)arg1;
-- (unsigned long long)itemLimit;
-- (void)setHasItemLimit:(BOOL)arg1;
-- (BOOL)hasItemLimit;
-- (void)setPredicate:(id)arg1;
-- (id)predicate;
+@property(nonatomic) unsigned long long itemLimit;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)propertyListRepresentation;
 - (id)initWithPropertyListRepresentation:(id)arg1;
 

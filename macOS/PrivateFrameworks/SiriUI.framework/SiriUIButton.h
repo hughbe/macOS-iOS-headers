@@ -25,6 +25,10 @@
 - (void)setTitle:(id)arg1;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
+- (BOOL)allowsVibrancy;
+- (void)_commonInit;
+- (id)initWithCoder:(id)arg1;
+- (id)init;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

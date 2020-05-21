@@ -13,10 +13,10 @@
 }
 
 + (id)CALRedBlackNodeWithKey:(id)arg1 value:(id)arg2;
+- (void).cxx_destruct;
 - (id)description;
 - (id)value;
 - (id)key;
-- (void)dealloc;
 - (id)initWithKey:(id)arg1 value:(id)arg2;
 
 @end

@@ -6,11 +6,12 @@
 
 #import "NSView.h"
 
-@class CALayer, MMInfoCapacityPopoverViewController, NSArray, NSLayoutConstraint, NSMutableArray, NSPopover;
+@class CALayer, MMInfoCapacityPopoverViewController, NSArray, NSDictionary, NSLayoutConstraint, NSMutableArray, NSPopover;
 
 @interface MMInfoCapacityBarView : NSView
 {
     unsigned long long _capacity;
+    NSDictionary *_quotaDictionary;
     NSMutableArray *_categories;
     CALayer *_backgroundLayer;
     CALayer *_foregroundLayer;
@@ -23,6 +24,7 @@
     MMInfoCapacityPopoverViewController *_toolTipPopoverViewController;
 }
 
+- (void).cxx_destruct;
 @property(retain) MMInfoCapacityPopoverViewController *toolTipPopoverViewController; // @synthesize toolTipPopoverViewController=_toolTipPopoverViewController;
 @property(retain) NSPopover *toolTipPopover; // @synthesize toolTipPopover=_toolTipPopover;
 @property(retain) NSLayoutConstraint *requiredHeightLayoutConstraint; // @synthesize requiredHeightLayoutConstraint=_requiredHeightLayoutConstraint;
@@ -32,7 +34,8 @@
 @property(retain) CALayer *maskLayer; // @synthesize maskLayer=_maskLayer;
 @property(retain) CALayer *foregroundLayer; // @synthesize foregroundLayer=_foregroundLayer;
 @property(retain) CALayer *backgroundLayer; // @synthesize backgroundLayer=_backgroundLayer;
-@property(retain) NSMutableArray *categories; // @synthesize categories=_categories;
+@property(retain, nonatomic) NSMutableArray *categories; // @synthesize categories=_categories;
+@property(nonatomic, setter=setQuotaInfoDictionary:) NSDictionary *quotaDictionary; // @synthesize quotaDictionary=_quotaDictionary;
 @property unsigned long long capacity; // @synthesize capacity=_capacity;
 - (BOOL)isVoiceOverEnabled;
 - (void)createPopover;
@@ -45,10 +48,8 @@
 - (void)updateLayer;
 - (BOOL)layer:(id)arg1 shouldInheritContentsScale:(double)arg2 fromWindow:(id)arg3;
 - (BOOL)wantsUpdateLayer;
-- (void)updateLabels;
-- (void)setValue:(unsigned long long)arg1 forCategory:(long long)arg2;
+- (void)addCategoryWithDictionary:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)resetValues;
-- (void)dealloc;
 - (void)awakeFromNib;
 - (void)initCategories;
 - (id)initWithFrame:(struct CGRect)arg1;

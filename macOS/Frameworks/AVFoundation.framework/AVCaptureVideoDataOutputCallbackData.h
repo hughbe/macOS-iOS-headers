@@ -8,6 +8,7 @@
 
 @class AVCaptureConnection, AVCaptureVideoDataOutput;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureVideoDataOutputCallbackData : NSObject
 {
     AVCaptureVideoDataOutput *_output;
@@ -21,7 +22,6 @@
 - (id)connection;
 - (id)output;
 - (struct opaqueCMBufferQueue *)bufferQueue;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithOutput:(id)arg1 connection:(id)arg2;
 

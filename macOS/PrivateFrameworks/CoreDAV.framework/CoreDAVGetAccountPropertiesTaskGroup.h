@@ -27,6 +27,7 @@
     NSMutableSet *_redirectHistory;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL shouldIgnoreHomeSetOnDifferentHost; // @synthesize shouldIgnoreHomeSetOnDifferentHost=_shouldIgnoreHomeSetOnDifferentHost;
 @property(readonly, nonatomic) NSSet *principalSearchProperties; // @synthesize principalSearchProperties=_principalSearchProperties;
 @property(nonatomic) BOOL fetchPrincipalSearchProperties; // @synthesize fetchPrincipalSearchProperties=_fetchPrincipalSearchProperties;
@@ -49,12 +50,11 @@
 - (id)_copyAccountPropertiesPropFindElements;
 - (void)taskGroupWillCancelWithError:(id)arg1;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)initWithAccountInfoProvider:(id)arg1 taskManager:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(nonatomic) id <CoreDAVGetAccountPropertiesTaskGroupDelegate> delegate; // @dynamic delegate;
+@property(nonatomic) __weak id <CoreDAVGetAccountPropertiesTaskGroupDelegate> delegate; // @dynamic delegate;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

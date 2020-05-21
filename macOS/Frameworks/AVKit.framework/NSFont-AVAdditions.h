@@ -7,10 +7,12 @@
 #import "NSFont.h"
 
 @interface NSFont (AVAdditions)
++ (id)compactMonospacedTimeFontOfSize:(double)arg1 weight:(double)arg2;
++ (id)compactMonospacedTimeFontOfSize:(double)arg1;
 + (id)monospacedTimeFontOfSize:(double)arg1;
 + (id)boldTimeFontOfSize:(double)arg1;
 + (id)timeFontOfSize:(double)arg1;
 + (id)timeFontWithName:(id)arg1 size:(double)arg2;
-+ (id)_timeFontFromFont:(id)arg1;
++ (id)_timeFontFromFont:(id)arg1 compact:(BOOL)arg2 monospacedDigits:(BOOL)arg3 weight:(double)arg4;
 @end
 

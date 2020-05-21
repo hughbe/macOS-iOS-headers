@@ -6,21 +6,20 @@
 
 #import "NSObject.h"
 
-@class CIMBaseEngine, NSMenu;
+@class NSMenu;
 
 @interface CIMMenuController : NSObject
 {
-    NSMenu *_menu;
     NSMenu *_originalMenu;
-    CIMBaseEngine *_baseEngine;
+    NSMenu *_menu;
+    id <CIMMenuControllerDataSource> _dataSource;
 }
 
-+ (id)sharedMenuController;
-@property(retain, nonatomic) CIMBaseEngine *baseEngine; // @synthesize baseEngine=_baseEngine;
-@property(retain, nonatomic) NSMenu *menu; // @synthesize menu=_menu;
++ (id)sharedMenuControllerWithDataSource:(id)arg1;
 - (void).cxx_destruct;
-- (id)menuForInputMethodIdentifier:(id)arg1;
-- (void)setupDefaultActions;
+@property(nonatomic) __weak id <CIMMenuControllerDataSource> dataSource; // @synthesize dataSource=_dataSource;
+@property(retain, nonatomic) NSMenu *menu; // @synthesize menu=_menu;
+@property(retain, nonatomic) NSMenu *originalMenu; // @synthesize originalMenu=_originalMenu;
 - (void)awakeFromNib;
 - (id)init;
 

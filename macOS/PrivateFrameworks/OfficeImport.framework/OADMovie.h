@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     BOOL loop;
 }
 
+- (void).cxx_destruct;
 @property BOOL loop; // @synthesize loop;
 @property float movieEndPoint; // @synthesize movieEndPoint=mEnd;
 @property float movieStartPoint; // @synthesize movieStartPoint=mStart;
@@ -26,7 +27,6 @@ __attribute__((visibility("hidden")))
 @property(retain) NSString *name; // @synthesize name=mName;
 @property(retain) NSData *data; // @synthesize data=mData;
 - (id)description;
-- (void)dealloc;
 
 @end
 

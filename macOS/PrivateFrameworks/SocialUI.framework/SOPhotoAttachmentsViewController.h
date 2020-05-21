@@ -6,24 +6,18 @@
 
 #import <SocialUI/SOAttachmentsViewController.h>
 
-@class IKImageBrowserView, NSArray, NSLayoutConstraint;
+@class IKImageBrowserView;
 
 @interface SOPhotoAttachmentsViewController : SOAttachmentsViewController
 {
     IKImageBrowserView *_imageBrowserView;
-    NSArray *_attachments;
-    NSLayoutConstraint *_imageBrowserViewHeightConstraint;
 }
 
-+ (struct CGSize)_imageBrowserIntercellSpacing;
-+ (struct CGSize)_imageBrowserCellSize;
-@property(retain) NSLayoutConstraint *imageBrowserViewHeightConstraint; // @synthesize imageBrowserViewHeightConstraint=_imageBrowserViewHeightConstraint;
-@property(retain, nonatomic) NSArray *attachments; // @synthesize attachments=_attachments;
-@property(retain) IKImageBrowserView *imageBrowserView; // @synthesize imageBrowserView=_imageBrowserView;
 - (void).cxx_destruct;
+@property(retain) IKImageBrowserView *imageBrowserView; // @synthesize imageBrowserView=_imageBrowserView;
+- (void)loadView;
 - (void)chatDisplayControllerWillChange:(id)arg1;
-- (double)stackViewFrameDidChange:(struct CGSize)arg1;
-@property(readonly) BOOL hasAttachments;
+- (void)attachmentsDidChange;
 - (id)imageBrowser:(id)arg1 itemAtIndex:(unsigned long long)arg2;
 - (unsigned long long)numberOfItemsInImageBrowser:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
@@ -32,9 +26,9 @@
 - (id)actionableIndexes:(id)arg1;
 - (void)_openImageBrowserSelection;
 - (void)imageBrowser:(id)arg1 cellWasRightClickedAtIndex:(unsigned long long)arg2 withEvent:(id)arg3;
+- (id)imageBrowser:(id)arg1 pasteboardWriterForItemAtIndex:(unsigned long long)arg2;
 - (void)viewDidAppear;
 - (void)setUpImageBrowser;
-- (id)init;
 
 @end
 

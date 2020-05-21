@@ -12,6 +12,7 @@
 
 + (id)widgetController;
 + (id)defaultWidgetController;
+- (void)_setSystemTemperatureUnit:(BOOL)arg1;
 - (void)setHasContent:(BOOL)arg1 forWidgetWithBundleIdentifier:(id)arg2;
 - (id)__init;
 - (id)init;

@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class CLLocation, NSLocale, NSString, NSURL;
 
-@interface WFURLComponents : NSObject <NSCopying>
+@interface WFURLComponents : NSObject <NSSecureCoding, NSCopying>
 {
     BOOL _showHourlyWeatherOnly;
     BOOL _isLocalWeatherCity;
@@ -22,10 +23,12 @@
     NSString *_platform;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)componentsForLocation:(id)arg1;
 + (id)componentsForURL:(id)arg1;
 + (void)locationForURL:(id)arg1 completion:(CDUnknownBlockType)arg2;
 + (void)locationForURLComponents:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void).cxx_destruct;
 @property(retain) NSString *platform; // @synthesize platform=_platform;
 @property(retain) NSLocale *locale; // @synthesize locale=_locale;
 @property unsigned long long cityIndex; // @synthesize cityIndex=_cityIndex;
@@ -34,13 +37,14 @@
 @property(copy) NSString *locationName; // @synthesize locationName=_locationName;
 @property(copy) CLLocation *location; // @synthesize location=_location;
 @property unsigned long long destination; // @synthesize destination=_destination;
-- (void).cxx_destruct;
 - (BOOL)_canBuildURLWithProvidedComponents;
 @property(readonly, copy) NSURL *URL;
 - (unsigned long long)hash;
 - (BOOL)isEqualToComponents:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithLocation:(id)arg1;
 - (id)init;
 

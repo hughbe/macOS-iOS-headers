@@ -6,7 +6,6 @@
 
 #import "NSWindowController.h"
 
-__attribute__((visibility("hidden")))
 @interface SSConnectionWindowController : NSWindowController
 {
 }

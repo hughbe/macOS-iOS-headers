@@ -6,43 +6,39 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>;
+@class NSObject<OS_dispatch_queue>, SCNRecursiveLock;
 
 __attribute__((visibility("hidden")))
 @interface SCNDisplayLink : NSObject
 {
     unsigned int _displayID;
-    struct _CGLPixelFormatObject *_pixelFormat;
     struct __CVDisplayLink *_cvDisplayLink;
     struct _CGLContextObject *_cglContext;
-    id _owner;
     CDUnknownBlockType _block;
+    CDUnknownBlockType _adaptativeFrameDuration;
     NSObject<OS_dispatch_queue> *_queue;
     BOOL _paused;
     BOOL _invalidated;
-    BOOL _asynchronous;
     double _lastFrameTime;
     float _preferredFrameRate;
-    int _queuedFrameCount;
+    SCNRecursiveLock *_runningLock;
+    // Error parsing type: Ai, name: _queuedFrameCount
 }
 
 - (void)displayIDDidChange:(unsigned int)arg1;
 - (BOOL)_isInvalidated;
 - (void)setNeedsDisplay;
 - (void)invalidate;
-- (void)_teardown;
-- (void)_resume;
-- (void)_pause;
+- (void)_cleanup;
+- (void)setCGLContextObj:(struct _CGLContextObject *)arg1;
 - (void)_callbackWithTime:(double)arg1;
 - (int)queuedFrameCount;
-@property struct _CGLPixelFormatObject *pixelFormat;
-@property struct _CGLContextObject *CGLContext;
 @property(nonatomic) float preferredFrameRate;
+@property(copy, nonatomic) CDUnknownBlockType adaptativeFrameRate;
 - (BOOL)setPaused:(BOOL)arg1 nextFrameTimeHint:(double)arg2 lastUpdate:(double)arg3;
 @property(nonatomic, getter=isPaused) BOOL paused;
 - (void)dealloc;
-- (void)willDie;
-- (id)initWithOwner:(id)arg1 context:(struct _CGLContextObject *)arg2 pixelFormat:(struct _CGLPixelFormatObject *)arg3 asynchronous:(BOOL)arg4 displayID:(unsigned int)arg5 queue:(id)arg6 block:(CDUnknownBlockType)arg7;
+- (id)initWithDisplayID:(unsigned int)arg1 queue:(id)arg2 block:(CDUnknownBlockType)arg3;
 - (id)init;
 
 @end

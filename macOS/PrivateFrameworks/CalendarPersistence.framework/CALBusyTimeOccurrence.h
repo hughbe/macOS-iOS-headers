@@ -15,11 +15,11 @@
     int _type;
 }
 
+- (void).cxx_destruct;
 - (id)occurrenceID;
 - (id)endDate;
 - (int)type;
 - (id)duration;
-- (void)dealloc;
 - (id)initWithEntity:(id)arg1 withFreeBusyTime:(id)arg2;
 
 @end

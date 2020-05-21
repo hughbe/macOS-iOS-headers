@@ -6,21 +6,23 @@
 
 #import "NSManagedObject.h"
 
-@class NSData, NSSet, NSString, _DKEventMO, _DKSourceMO;
+@class NSDate, NSNumber, NSSet, NSString, _DKEventMO, _DKSourceMO;
 
 @interface _DKObjectMO : NSManagedObject
 {
 }
 
++ (id)fetchRequest;
 
 // Remaining properties
-@property(nonatomic) double creationDate; // @dynamic creationDate;
+@property(copy, nonatomic) NSDate *creationDate; // @dynamic creationDate;
 @property(retain, nonatomic) _DKEventMO *event; // @dynamic event;
-@property(retain, nonatomic) NSData *metadata; // @dynamic metadata;
+@property(copy, nonatomic) NSDate *localCreationDate; // @dynamic localCreationDate;
 @property(retain, nonatomic) NSSet *relationObject; // @dynamic relationObject;
 @property(retain, nonatomic) NSSet *relationSubject; // @dynamic relationSubject;
 @property(retain, nonatomic) _DKSourceMO *source; // @dynamic source;
-@property(retain, nonatomic) NSString *uuid; // @dynamic uuid;
-@property(nonatomic) long long uuidHash; // @dynamic uuidHash;
+@property(copy, nonatomic) NSString *uuid; // @dynamic uuid;
+@property(copy, nonatomic) NSNumber *uuidHash; // @dynamic uuidHash;
+
 @end
 

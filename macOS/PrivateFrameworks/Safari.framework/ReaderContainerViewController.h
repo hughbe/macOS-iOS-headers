@@ -6,7 +6,7 @@
 
 #import "NSViewController.h"
 
-@class NSColor, NSView, ReaderWKView;
+@class NSColor, NSView, ReaderContainerView, ReaderViewController;
 
 __attribute__((visibility("hidden")))
 @interface ReaderContainerViewController : NSViewController
@@ -15,35 +15,35 @@ __attribute__((visibility("hidden")))
     double _amountOfContinuousReadingViewBannerThatIsVisible;
     long long _animationState;
     BOOL _deactivationIsAnimated;
-    BOOL _shouldCoordinateAnimationsWithContinuousReadingBanners;
-    ReaderWKView *_readerWKView;
+    long long _theme;
+    ReaderViewController *_readerViewController;
     CDUnknownBlockType _deactivationAnimationDidFinishBlock;
 }
 
 + (id)_animationWithKeyPath:(id)arg1;
 + (id)_moveAnimationWithStartingRect:(struct CGRect)arg1 endingRect:(struct CGRect)arg2;
 + (id)_fadeAnimationWithStartingOpacity:(double)arg1 endingOpacity:(double)arg2;
-@property(copy) CDUnknownBlockType deactivationAnimationDidFinishBlock; // @synthesize deactivationAnimationDidFinishBlock=_deactivationAnimationDidFinishBlock;
-@property(nonatomic) BOOL shouldCoordinateAnimationsWithContinuousReadingBanners; // @synthesize shouldCoordinateAnimationsWithContinuousReadingBanners=_shouldCoordinateAnimationsWithContinuousReadingBanners;
-@property(nonatomic) __weak ReaderWKView *readerWKView; // @synthesize readerWKView=_readerWKView;
 - (void).cxx_destruct;
-- (void)setTheme:(long long)arg1;
+@property(copy) CDUnknownBlockType deactivationAnimationDidFinishBlock; // @synthesize deactivationAnimationDidFinishBlock=_deactivationAnimationDidFinishBlock;
+@property(retain, nonatomic) ReaderViewController *readerViewController; // @synthesize readerViewController=_readerViewController;
+@property(nonatomic) long long theme; // @synthesize theme=_theme;
 @property(readonly) NSColor *backgroundColor;
-- (void)_unmaskLayersOccludingContinuousReadingViewBanner;
-- (void)_maskLayersOccludingContinuousReadingViewBanner;
-- (id)_maskLayerForContinuousReadingViewBannerOfHeight:(long long)arg1;
 - (struct CGRect)_frameBelowTheViewFrame;
 - (double)_currentBackgroundViewOpacity;
 - (struct CGRect)_readerWKViewFrameForStartOfAnimationWhenInterruptingExistingAnimation;
 - (void)_updateReaderWKViewFromFrame:(struct CGRect)arg1 toFrame:(struct CGRect)arg2 backgroundViewFromOpacity:(double)arg3 toOpacity:(double)arg4 animated:(BOOL)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (void)finishAsynchronousDeactivation;
 - (void)deactivateWithAnimation:(BOOL)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)_didReplaceReaderViewController:(id)arg1;
 @property(readonly, getter=isAnimatingDeactivation) BOOL animatingDeactivation;
 @property(readonly, getter=isAnimatingActivation) BOOL animatingActivation;
-- (void)finishAsynchronousActivation;
 - (void)activateWithAnimation:(BOOL)arg1 verticalScrollOffsetOfBrowserPage:(double)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (id)initWithReaderWKView:(id)arg1;
-- (id)init;
+- (void)viewDidDisappear;
+- (void)viewDidLoad;
+- (void)loadView;
+
+// Remaining properties
+@property(retain) ReaderContainerView *view; // @dynamic view;
 
 @end
 

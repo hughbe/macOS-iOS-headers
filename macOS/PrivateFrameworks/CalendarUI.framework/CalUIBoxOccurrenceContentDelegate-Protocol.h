@@ -16,15 +16,18 @@
 - (BOOL)occurrenceWantsTentativeAppearance:(CalUIBoxOccurrenceContentView *)arg1;
 - (NSImage *)customImageForNewDot;
 - (BOOL)shouldShowNewDotForOccurrence:(CalUIBoxOccurrenceContentView *)arg1;
+- (long long)myParticipantStatus;
 - (NSFont *)timeZoneFont;
 - (NSFont *)timeFont;
 - (NSFont *)titleFont;
 - (NSFont *)locationFont;
+- (BOOL)isProposal;
 - (BOOL)shouldAlwaysShowColorBar;
 - (BOOL)shouldShowTime;
 - (long long)backgroundStyle;
 - (double)currentYInDayGridForOccurrence:(CalUIBoxOccurrenceContentView *)arg1;
 - (double)properYInDayGridForOccurrence:(CalUIBoxOccurrenceContentView *)arg1;
+- (BOOL)shouldDragCompletionProposeNewTime;
 - (BOOL)occurrenceBeginsOnThisDate;
 - (BOOL)shouldOccurrenceInsetForEnclosingScrollView:(CalUIBoxOccurrenceContentView *)arg1;
 - (BOOL)shouldOccurrenceShowStartEndTime:(CalUIBoxOccurrenceContentView *)arg1;

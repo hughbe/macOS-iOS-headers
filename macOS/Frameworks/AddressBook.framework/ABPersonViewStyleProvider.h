@@ -10,6 +10,7 @@
 {
 }
 
+- (BOOL)allowsPhotoEditing;
 - (BOOL)allowsImmediateEditing;
 - (id)init;
 

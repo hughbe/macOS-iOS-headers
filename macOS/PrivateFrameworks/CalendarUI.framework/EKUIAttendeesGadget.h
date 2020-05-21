@@ -8,18 +8,20 @@
 
 #import "CalAutoCompleteDelegate.h"
 #import "CalUIAutocompleteFieldDelegate.h"
+#import "CalUIResizingTextFieldDelegate.h"
 #import "CalUISuggestionsFieldDelegate.h"
 #import "EKUIAttendeesTokenFieldDelegate.h"
 
-@class CalAutoCompleteOperation, EKUIAttendeesControlContainer, EKUIEditingField, EKUIPlusButton, EKUITextButton, EKUITokenField, NSDictionary, NSLayoutConstraint, NSMutableDictionary, NSMutableSet, NSProgressIndicator, NSStackView, NSString, NSView;
+@class CUIKPhoneNumberDescriptionGenerator, CalAutoCompleteOperation, CalUISuggestionsField, EKUIAttendeesControlContainer, EKUIEditingField, EKUIErrorButton, EKUIPlusButton, EKUITextButton, EKUITokenField, NSDictionary, NSLayoutConstraint, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSProgressIndicator, NSStackView, NSString, NSView;
 
-@interface EKUIAttendeesGadget : EKUISingleViewGadget <CalAutoCompleteDelegate, CalUISuggestionsFieldDelegate, CalUIAutocompleteFieldDelegate, EKUIAttendeesTokenFieldDelegate>
+@interface EKUIAttendeesGadget : EKUISingleViewGadget <CalAutoCompleteDelegate, CalUISuggestionsFieldDelegate, CalUIAutocompleteFieldDelegate, CalUIResizingTextFieldDelegate, EKUIAttendeesTokenFieldDelegate>
 {
     BOOL _sortAttendeeTokensOnNextUpdate;
     BOOL _canShowAvailabilityButton;
     EKUIAttendeesControlContainer *_controlContainer;
     NSStackView *_stackView;
     EKUITokenField *_attendeesField;
+    double _lastAttendeesFieldWidth;
     NSView *_editingView;
     EKUIEditingField *_editingField;
     NSLayoutConstraint *_editingFieldLeadingConstraint;
@@ -29,16 +31,22 @@
     NSMutableDictionary *_cachedFreeBusyInfo;
     EKUIPlusButton *_plusButton;
     EKUITextButton *_linkButton;
+    EKUIErrorButton *_errorButton;
     NSMutableSet *_attendeesAddedInCurrentSession;
     NSDictionary *_viewMetrics;
     CalAutoCompleteOperation *_suggestedPeopleOperation;
     CalAutoCompleteOperation *_acOperation;
     NSString *_lastEventID;
+    CUIKPhoneNumberDescriptionGenerator *_phoneNumberDescriptionGenerator;
     CDUnknownBlockType _suggestionsUpdatedBlock;
+    NSOperationQueue *_availabilityRequestsQueue;
 }
 
 + (id)interestedChangeKeys;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSOperationQueue *availabilityRequestsQueue; // @synthesize availabilityRequestsQueue=_availabilityRequestsQueue;
 @property(copy) CDUnknownBlockType suggestionsUpdatedBlock; // @synthesize suggestionsUpdatedBlock=_suggestionsUpdatedBlock;
+@property(readonly, nonatomic) CUIKPhoneNumberDescriptionGenerator *phoneNumberDescriptionGenerator; // @synthesize phoneNumberDescriptionGenerator=_phoneNumberDescriptionGenerator;
 @property BOOL canShowAvailabilityButton; // @synthesize canShowAvailabilityButton=_canShowAvailabilityButton;
 @property BOOL sortAttendeeTokensOnNextUpdate; // @synthesize sortAttendeeTokensOnNextUpdate=_sortAttendeeTokensOnNextUpdate;
 @property(retain) NSString *lastEventID; // @synthesize lastEventID=_lastEventID;
@@ -46,6 +54,7 @@
 @property(retain) CalAutoCompleteOperation *suggestedPeopleOperation; // @synthesize suggestedPeopleOperation=_suggestedPeopleOperation;
 @property(retain) NSDictionary *viewMetrics; // @synthesize viewMetrics=_viewMetrics;
 @property(retain) NSMutableSet *attendeesAddedInCurrentSession; // @synthesize attendeesAddedInCurrentSession=_attendeesAddedInCurrentSession;
+@property(retain) EKUIErrorButton *errorButton; // @synthesize errorButton=_errorButton;
 @property(retain) EKUITextButton *linkButton; // @synthesize linkButton=_linkButton;
 @property(retain) EKUIPlusButton *plusButton; // @synthesize plusButton=_plusButton;
 @property(retain) NSMutableDictionary *cachedFreeBusyInfo; // @synthesize cachedFreeBusyInfo=_cachedFreeBusyInfo;
@@ -55,10 +64,10 @@
 @property(retain) NSLayoutConstraint *editingFieldLeadingConstraint; // @synthesize editingFieldLeadingConstraint=_editingFieldLeadingConstraint;
 @property(retain) EKUIEditingField *editingField; // @synthesize editingField=_editingField;
 @property(retain) NSView *editingView; // @synthesize editingView=_editingView;
+@property double lastAttendeesFieldWidth; // @synthesize lastAttendeesFieldWidth=_lastAttendeesFieldWidth;
 @property(retain) EKUITokenField *attendeesField; // @synthesize attendeesField=_attendeesField;
 @property(retain) NSStackView *stackView; // @synthesize stackView=_stackView;
 @property(retain) EKUIAttendeesControlContainer *controlContainer; // @synthesize controlContainer=_controlContainer;
-- (void).cxx_destruct;
 - (void)_inviteAttendeeAgain:(id)arg1;
 - (void)_commitAttendeesPreservingTokenSelection;
 - (void)_previewAttendee:(id)arg1;
@@ -66,8 +75,8 @@
 - (void)_removeCachedAttendeeDataForKey:(id)arg1;
 - (void)sendEmail:(id)arg1;
 - (void)inviteAgain:(id)arg1;
-- (void)addToAddressBook:(id)arg1;
-- (void)openInAddressBook:(id)arg1;
+- (void)addToContacts:(id)arg1;
+- (void)openInContacts:(id)arg1;
 - (void)copyAddress:(id)arg1;
 - (void)removeAttendee:(id)arg1;
 - (void)toggleOptional:(id)arg1;
@@ -80,17 +89,19 @@
 - (void)setCNAutocompleteStore:(id)arg1;
 - (void)suggestionSelected:(id)arg1;
 - (void)savePendingChanges;
-- (void)searchForRelevantPeopleIfNeeded;
 - (void)selectAllInEmptyField;
 - (void)moveUp;
 - (void)deleteInEmptyField;
 - (void)selectLastToken;
+- (long long)_tokenCount;
+- (id)subtitleForSuggestion:(id)arg1;
 - (id)titleForSuggestion:(id)arg1;
 - (id)viewForSuggestion:(id)arg1;
-- (void)queryStringUpdatedToString:(id)arg1 suggestionsFoundHandler:(CDUnknownBlockType)arg2;
+- (void)queryForString:(id)arg1 suggestionsFoundHandler:(CDUnknownBlockType)arg2;
 - (id)matchWithPrefix:(id)arg1;
 - (void)cancelSearch;
 - (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
+- (void)controlTextDidChange:(id)arg1;
 - (int)freeBusyForAttendee:(id)arg1;
 - (id)tokenField:(id)arg1 setUpTokenAttachmentCell:(id)arg2 forRepresentedObject:(id)arg3;
 - (id)tokenField:(id)arg1 menuForRepresentedObject:(id)arg2;
@@ -100,7 +111,7 @@
 - (id)quickLookURLForAttendee:(id)arg1;
 - (void)addNewAttendeesToRecents;
 - (BOOL)addPotentialAttendeeToEvent:(id)arg1;
-- (id)expandedAttendeesFromGroupAttendee:(id)arg1 abGroup:(id)arg2;
+- (id)expandedAttendeesFromGroupAttendee:(id)arg1;
 - (BOOL)addAttendeeForResult:(id)arg1;
 - (BOOL)addAttendeesForEditingString:(id)arg1;
 - (void)linkButtonClicked:(id)arg1;
@@ -117,12 +128,14 @@
 - (BOOL)updateAttendeesFromPasteboard:(id)arg1;
 - (BOOL)readPasteboard:(id)arg1;
 - (id)representedObjectsFromPasteboard:(id)arg1;
+- (void)addContactsFromVCardData:(id)arg1 toSet:(id)arg2;
 - (void)_updateFreeBusyWithArray:(id)arg1 forCUAddress:(id)arg2;
-- (void)_freeBusyResponse:(id)arg1;
+- (void)refreshTokenField;
 - (void)updateFreeBusyForAttendees:(id)arg1;
 - (BOOL)isFreeBusySupported;
 - (id)claimedPboardTypes;
 - (void)updateIntrinsicContentSizeForTokenField;
+- (void)attendeesFieldFrameDidChange;
 - (id)control;
 - (double)horizontalPadding;
 - (double)horizontalInset;
@@ -131,14 +144,18 @@
 - (BOOL)isEditable;
 - (void)updateConstraints;
 - (BOOL)_shouldShowAvailabilityLink;
-- (BOOL)_shouldShowPlusButton;
 - (BOOL)_shouldShowEditingField;
 - (void)setObject:(id)arg1;
 - (void)updateWithChanges:(id)arg1;
 - (void)sessionStatusChanged:(id)arg1;
 - (BOOL)needsExpansion;
+- (void)showErrorAlert;
 - (void)selectEditingField;
+@property(readonly) CalUISuggestionsField *textField;
 - (double)maxHeight;
+- (void)_setEditingFieldPlaceholderString;
+- (BOOL)_shouldShowMaxAttendeesPlaceholderString;
+- (long long)_maxAttendeeCount;
 - (void)dealloc;
 - (id)initWithViewController:(id)arg1;
 

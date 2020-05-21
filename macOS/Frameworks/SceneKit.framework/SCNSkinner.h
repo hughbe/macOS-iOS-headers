@@ -13,16 +13,16 @@
 @interface SCNSkinner : NSObject <NSSecureCoding>
 {
     struct __C3DSkinner *_skinner;
-    SCNNode *_skeleton;
     SCNGeometry *_baseGeometry;
     BOOL _bonesAndIndicesCompression;
+    SCNNode *_skeleton;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)_skinnerWithBaseGeometry:(id)arg1 skinnableGeometry:(id)arg2 bones:(id)arg3 boneInverseBindTransforms:(id)arg4 bindMatrix:(struct CATransform3D)arg5;
 + (id)skinnerWithBaseGeometry:(id)arg1 bones:(id)arg2 boneInverseBindTransforms:(id)arg3 boneWeights:(id)arg4 boneIndices:(id)arg5;
 + (struct __C3DSkinner *)_createSkinnerWithCompressedData:(id)arg1 bonesCount:(unsigned long long)arg2 vertexCount:(unsigned long long)arg3;
-+ (struct __C3DSkinner *)_createSkinnerWithVertexCount:(long long)arg1 bones:(id)arg2 boneWeights:(id)arg3 boneIndices:(id)arg4;
++ (struct __C3DSkinner *)_createSkinnerWithVertexCount:(long long)arg1 bones:(id)arg2 boneWeights:(id)arg3 boneIndices:(id)arg4 baseGeometry:(id)arg5;
 + (struct __C3DSkinner *)createSkinnerWithBaseGeometry:(id)arg1 bones:(id)arg2 boneWeights:(id)arg3 boneIndices:(id)arg4;
 + (id)skinnerWithSkinnerRef:(struct __C3DSkinner *)arg1;
 - (id)scene;
@@ -44,7 +44,7 @@
 - (BOOL)_bonesAndIndicesCompression;
 - (void)setWantsCPUSkinning:(BOOL)arg1;
 - (BOOL)wantsCPUSkinning;
-@property(retain, nonatomic) SCNNode *skeleton;
+@property(nonatomic) __weak SCNNode *skeleton;
 - (void)_syncObjCModel;
 - (void)_setSkeleton:(id)arg1;
 - (struct __C3DSkinner *)skinnerRef;

@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class NSArray, NSString;
 
-@interface TDDeviceTraits : NSObject
+@interface TDDeviceTraits : NSObject <NSCopying>
 {
     double _scale;
     long long _idiomValue;
@@ -22,8 +24,12 @@
     long long _graphicsPerformanceClass;
     long long _graphicsFeatureSetClassValue;
     NSArray *_graphicsFeatureSetFallbackValues;
+    NSArray *_subtypeFallbackValues;
+    long long _dynamicDisplayModeValue;
 }
 
+@property(nonatomic) long long dynamicDisplayModeValue; // @synthesize dynamicDisplayModeValue=_dynamicDisplayModeValue;
+@property(retain, nonatomic) NSArray *subtypeFallbackValues; // @synthesize subtypeFallbackValues=_subtypeFallbackValues;
 @property(copy, nonatomic) NSArray *graphicsFeatureSetFallbackValues; // @synthesize graphicsFeatureSetFallbackValues=_graphicsFeatureSetFallbackValues;
 @property(nonatomic) long long graphicsFeatureSetClassValue; // @synthesize graphicsFeatureSetClassValue=_graphicsFeatureSetClassValue;
 @property(nonatomic) long long graphicsPerformanceClass; // @synthesize graphicsPerformanceClass=_graphicsPerformanceClass;
@@ -34,6 +40,9 @@
 @property(copy, nonatomic) NSArray *hostedIdiomValues; // @synthesize hostedIdiomValues=_hostedIdiomValues;
 @property(nonatomic) long long idiomValue; // @synthesize idiomValue=_idiomValue;
 @property(nonatomic) double scale; // @synthesize scale=_scale;
+@property(retain, nonatomic) NSString *dynamicDisplayMode;
+- (long long)_dynamicDisplayModeFromTraitString:(id)arg1;
+- (id)_dynamicDisplayModeToTraitString:(long long)arg1;
 @property(retain, nonatomic) NSString *deploymentTarget;
 - (long long)_deploymentTargetFromTraitString:(id)arg1;
 - (id)_deploymentTargetToTraitString:(long long)arg1;
@@ -49,6 +58,7 @@
 - (long long)_idiomFromTraitString:(id)arg1;
 - (id)_idiomToTraitString:(long long)arg1;
 - (id)description;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 - (id)init;
 

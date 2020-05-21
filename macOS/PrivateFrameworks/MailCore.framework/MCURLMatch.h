@@ -14,9 +14,9 @@
     struct _NSRange _range;
 }
 
-@property(readonly, copy, nonatomic) NSString *urlString; // @synthesize urlString=_urlString;
-@property(readonly, nonatomic) struct _NSRange range; // @synthesize range=_range;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) struct _NSRange range; // @synthesize range=_range;
+@property(readonly, copy, nonatomic) NSString *urlString; // @synthesize urlString=_urlString;
 - (id)description;
 - (id)debugDescription;
 - (id)init;

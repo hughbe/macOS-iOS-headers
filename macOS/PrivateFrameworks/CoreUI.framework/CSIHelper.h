@@ -18,11 +18,15 @@ __attribute__((visibility("hidden")))
     _CUIThemePixelRendition *rendition;
     _CSIRenditionBlockData *sharedBlockDataBGRX;
     _CSIRenditionBlockData *sharedBlockDataRGBX;
+    _CSIRenditionBlockData *sharedBlockDataGray;
+    _CSIRenditionBlockData *retainedBlockData;
     NSString *blockDataCacheKeyBGRX;
     NSString *blockDataCacheKeyRGBX;
+    NSString *blockDataCacheKeyGray;
     unsigned long long sourceRowbytes;
     unsigned int shouldCache:1;
-    unsigned int _reserved:31;
+    unsigned int usedForDataProvider:1;
+    unsigned int _reserved:30;
 }
 
 @end

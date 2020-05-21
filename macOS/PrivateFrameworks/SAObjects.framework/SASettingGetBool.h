@@ -12,6 +12,7 @@
 
 + (id)getBoolWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getBool;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;

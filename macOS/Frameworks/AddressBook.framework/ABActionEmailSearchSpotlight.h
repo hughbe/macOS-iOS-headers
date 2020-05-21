@@ -13,10 +13,12 @@
     NSString *_actionProperty;
 }
 
+- (void).cxx_destruct;
 - (BOOL)shouldEnableActionForPerson:(id)arg1 identifier:(id)arg2;
 - (void)setActionProperty:(id)arg1;
 - (id)actionProperty;
 - (id)titleForPerson:(id)arg1 identifier:(id)arg2;
+- (id)unlocalizedTitle;
 - (void)performActionForPerson:(id)arg1 identifier:(id)arg2;
 - (id)init;
 

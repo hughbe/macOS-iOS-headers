@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
 + (id)caller;
 + (id)new;
 + (id)backtrace;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)callee;
 - (id)caller;

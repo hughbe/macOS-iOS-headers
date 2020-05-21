@@ -13,9 +13,9 @@
     NSString *_dropBoxUri;
 }
 
+- (void).cxx_destruct;
 - (BOOL)_isLowPriority;
 - (void)performOperation;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 dropBoxUri:(id)arg2 fromSource:(id)arg3;
 
 @end

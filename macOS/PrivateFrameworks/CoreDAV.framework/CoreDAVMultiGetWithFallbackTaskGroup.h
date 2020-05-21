@@ -20,6 +20,7 @@
     NSMutableSet *_parsedContents;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL shouldIgnoreResponseErrors; // @synthesize shouldIgnoreResponseErrors=_shouldIgnoreResponseErrors;
 @property(readonly, nonatomic) NSSet *parsedContents;
 @property(readonly, nonatomic) NSSet *deletedURLs;
@@ -29,7 +30,6 @@
 - (void)_fetchOneItem;
 - (void)_switchToSingleGetMode;
 - (void)_configureAndSubmitTask:(id)arg1;
-- (void)dealloc;
 - (id)initWithURLs:(id)arg1 multiGetBlock:(CDUnknownBlockType)arg2 getBlock:(CDUnknownBlockType)arg3 accountInfoProvider:(id)arg4 taskManager:(id)arg5;
 
 // Remaining properties

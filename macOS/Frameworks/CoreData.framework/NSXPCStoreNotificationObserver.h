@@ -16,8 +16,9 @@ __attribute__((visibility("hidden")))
     id _store;
 }
 
+- (void).cxx_destruct;
 - (void)setStore:(id)arg1;
-- (id)store;
+- (id)_store;
 - (void)dealloc;
 - (id)initForObservationWithName:(id)arg1 store:(id)arg2;
 

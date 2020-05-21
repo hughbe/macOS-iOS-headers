@@ -6,21 +6,20 @@
 
 #import "NSObject.h"
 
-@class NSSet, NSString, WebBookmarkList;
+@class NSArray, NSSet, NSString, TouchIconCache, WebBookmarkList;
 
 __attribute__((visibility("hidden")))
 @interface CombinedFavoritesController : NSObject
 {
     NSSet *_canonicalURLsOfAllFavorites;
-    Vector_eea79b75 _frequentlyVisitedSites;
+    TouchIconCache *_touchIconCache;
+    NSArray *_frequentlyVisitedSites;
     NSString *_UUIDOfRootBookmarkList;
 }
 
-+ (id)sharedController;
-@property(copy, nonatomic) NSString *UUIDOfRootBookmarkList; // @synthesize UUIDOfRootBookmarkList=_UUIDOfRootBookmarkList;
-@property(readonly, nonatomic) const Vector_eea79b75 *frequentlyVisitedSites; // @synthesize frequentlyVisitedSites=_frequentlyVisitedSites;
-- (id).cxx_construct;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSString *UUIDOfRootBookmarkList; // @synthesize UUIDOfRootBookmarkList=_UUIDOfRootBookmarkList;
+@property(readonly, nonatomic) NSArray *frequentlyVisitedSites; // @synthesize frequentlyVisitedSites=_frequentlyVisitedSites;
 - (void)_touchIconsCacheWillPurge:(id)arg1;
 - (void)_titleOfFrequentlyVisitedSiteDidChange:(id)arg1;
 - (void)_frequentlyVisitedSitesDidChange:(id)arg1;
@@ -28,13 +27,16 @@ __attribute__((visibility("hidden")))
 - (void)_favoritesContentsChangedWithModifiedBookmark:(id)arg1;
 - (void)_favoritesContentsChanged;
 - (void)_bookmarksWereReloaded:(id)arg1;
+- (void)_bookmarksWereCleanedUp:(id)arg1;
+- (BOOL)_refreshFrequentlyVisitedSitesIfNecessary:(id)arg1 updateCacheIfChanged:(BOOL)arg2;
 - (BOOL)_refreshFrequentlyVisitedSitesIfNecessary;
-- (void)_collectCanonicalURLsOfAllFavorites;
+- (BOOL)_loadFrequentlyVisitedSitesFromCache;
+- (void)_collectCanonicalURLsOfAllFavoritesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)combinedFavoritesGridViewControllerViewDidHide;
 - (void)combinedFavoritesGridViewControllerViewWillShow;
 @property(retain, nonatomic) WebBookmarkList *rootBookmarkListForFavorites;
-- (void)warmUp;
-- (id)init;
+- (id)bookmarkForUUID:(id)arg1;
+- (id)initWithTouchIconCache:(id)arg1;
 
 @end
 

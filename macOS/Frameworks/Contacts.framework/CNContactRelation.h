@@ -19,13 +19,13 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)contactRelationWithName:(id)arg1;
+- (void).cxx_destruct;
 @property(copy) NSString *name; // @synthesize name=_name;
 - (BOOL)isValid:(id *)arg1;
 @property(readonly) unsigned long long hash;
 @property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithName:(id)arg1;

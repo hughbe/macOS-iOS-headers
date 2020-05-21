@@ -6,17 +6,26 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray;
+@class MSVCallback, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>;
 
 @interface MSVMultiCallback : NSObject
 {
     NSMutableArray *_callbacks;
+    MSVCallback *_firstCallback;
+    MSVCallback *_lastCallback;
+    NSObject<OS_dispatch_queue> *_serialQueue;
 }
 
 - (void).cxx_destruct;
-- (void)invoke:(id)arg1;
-- (void)removeCallback:(id)arg1;
+@property(readonly, nonatomic) unsigned long long count;
+@property(readonly, nonatomic) NSArray *callbacks;
+- (void)invokeWithObject:(id)arg1;
+- (void)invoke;
+- (BOOL)removeCallback:(id)arg1;
+@property(retain, nonatomic) MSVCallback *lastCallback;
+@property(retain, nonatomic) MSVCallback *firstCallback;
 - (void)addCallback:(id)arg1;
+- (id)init;
 
 @end
 

@@ -8,18 +8,18 @@
 
 #import "ABCardViewMultiValueTransformer.h"
 
-@class NSDictionary, NSString;
+@class ABCardViewPersonMapper, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewMultiValueAccountNameTransformer : NSObject <ABCardViewMultiValueTransformer>
 {
-    NSDictionary *_personIdentifierToAccountMap;
+    ABCardViewPersonMapper *_personMapper;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) ABCardViewPersonMapper *personMapper; // @synthesize personMapper=_personMapper;
 - (id)reverseTransformMultiValue:(id)arg1;
 - (id)transformMultiValue:(id)arg1;
-- (void)dealloc;
-- (id)initWithPersonIdentifierToAccountMap:(id)arg1;
+- (id)initWithPersonMapper:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

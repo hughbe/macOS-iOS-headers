@@ -21,9 +21,12 @@ __attribute__((visibility("hidden")))
     unsigned long long _publicKeyVersion;
     NSData *_oonProtectionInfo;
     NSString *_oonParticipantID;
+    NSData *_dugongInvitationProtectionInfo;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL acceptedInProcess; // @synthesize acceptedInProcess=_acceptedInProcess;
+@property(retain, nonatomic) NSData *dugongInvitationProtectionInfo; // @synthesize dugongInvitationProtectionInfo=_dugongInvitationProtectionInfo;
 @property(retain, nonatomic) NSString *oonParticipantID; // @synthesize oonParticipantID=_oonParticipantID;
 @property(retain, nonatomic) NSData *oonProtectionInfo; // @synthesize oonProtectionInfo=_oonProtectionInfo;
 @property(nonatomic) unsigned long long publicKeyVersion; // @synthesize publicKeyVersion=_publicKeyVersion;
@@ -33,7 +36,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSString *etag; // @synthesize etag=_etag;
 @property(retain, nonatomic) CKRecordID *shareRecordID; // @synthesize shareRecordID=_shareRecordID;
 @property(retain, nonatomic) NSURL *shareURL; // @synthesize shareURL=_shareURL;
-- (void).cxx_destruct;
 
 @end
 

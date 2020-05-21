@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface AVCaptionPositionInternal : NSObject
 {
-    long long cellX;
-    long long cellY;
+    long long unitType;
+    CDUnion_4a99137e x;
+    CDUnion_4a99137e y;
 }
 
 @end

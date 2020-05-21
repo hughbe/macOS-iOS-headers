@@ -6,7 +6,7 @@
 
 #import <SAObjects/SADomainCommand.h>
 
-@class NSNumber;
+@class NSArray, NSNumber;
 
 @interface SANPSkipTimeInterval : SADomainCommand
 {
@@ -15,6 +15,7 @@
 + (id)skipTimeIntervalWithDictionary:(id)arg1 context:(id)arg2;
 + (id)skipTimeInterval;
 - (BOOL)requiresResponse;
+@property(copy, nonatomic) NSArray *hashedRouteUIDs;
 @property(copy, nonatomic) NSNumber *adjustmentInMilliseconds;
 - (id)encodedClassName;
 - (id)groupIdentifier;

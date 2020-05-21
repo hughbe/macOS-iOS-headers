@@ -9,7 +9,6 @@
 @class NSImage;
 
 @protocol CNPhotoLikenessEditorCroppingDataSource <NSObject>
-@property(readonly) BOOL shouldFitToViewFinder;
 @property(readonly) double viewFinderDiameter;
 @property struct CGRect cropRect;
 - (void)setZoomFraction:(double)arg1;

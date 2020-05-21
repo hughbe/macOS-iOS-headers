@@ -12,57 +12,42 @@
 #import "ABSuggestedValueDataSource.h"
 #import "NSObject.h"
 
-@class ABCNContact, NSArray, NSSet, NSString, NSTimer, NSURL;
+@class ABAddressBook, CNContact, NSArray, NSSet, NSString, NSTimer, NSURL;
 
 @protocol ABCardViewDataSource <ABNameViewDataSource, ABCardViewImageDataSource, ABCardViewActionDataSource, ABFaceTimeDataSource, ABSuggestedValueDataSource, ABMutableKeyValueCoding, NSObject>
-@property(getter=isTransient) BOOL transient;
-- (void)setTexttone:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)texttone;
-- (void)setRingtone:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)ringtone;
-- (void)setPreferredForName:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)preferredForName;
-- (void)setLinkedPeople:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)linkedPeople;
-- (void)setPostalAddresses:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)postalAddresses;
-- (void)setNote:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)note;
-- (void)setMaidenName:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)maidenName;
-- (void)setRelatedNames:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)relatedNames;
-- (void)setSocialProfiles:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)socialProfiles;
-- (void)setInstantMessageAddresses:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)instantMessageAddresses;
-- (void)setUrlAddresses:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)urlAddresses;
-- (void)setOtherDateComponents:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)otherDateComponents;
-- (void)setAlternateBirthdayComponents:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)alternateBirthdayComponents;
-- (void)setBirthdayComponents:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)birthdayComponents;
-- (void)setEmailAddresses:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)emailAddresses;
-- (void)setPhoneNumbers:(id <ABCardViewMultiValue>)arg1;
-- (id <ABCardViewMultiValue>)phoneNumbers;
+@property(retain, nonatomic) id <ABCardViewMultiValue> textAlert;
+@property(retain, nonatomic) id <ABCardViewMultiValue> callAlert;
+@property(retain, nonatomic) id <ABCardViewMultiValue> preferredForName;
+@property(retain, nonatomic) id <ABCardViewMultiValue> linkedContacts;
+@property(retain, nonatomic) id <ABCardViewMultiValue> postalAddresses;
+@property(retain, nonatomic) id <ABCardViewMultiValue> note;
+@property(retain, nonatomic) id <ABCardViewMultiValue> previousFamilyName;
+@property(retain, nonatomic) id <ABCardViewMultiValue> contactRelations;
+@property(retain, nonatomic) id <ABCardViewMultiValue> socialProfiles;
+@property(retain, nonatomic) id <ABCardViewMultiValue> instantMessageAddresses;
+@property(retain, nonatomic) id <ABCardViewMultiValue> urlAddresses;
+@property(retain, nonatomic) id <ABCardViewMultiValue> dates;
+@property(retain, nonatomic) id <ABCardViewMultiValue> nonGregorianBirthday;
+@property(retain, nonatomic) id <ABCardViewMultiValue> birthday;
+@property(retain, nonatomic) id <ABCardViewMultiValue> emailAddresses;
+@property(retain, nonatomic) id <ABCardViewMultiValue> phoneNumbers;
+@property(readonly, getter=isTransient) BOOL transient;
 - (void)manuallyAddPropertyKey:(NSString *)arg1;
 - (BOOL)hasKeyBeenManuallyAdded:(NSString *)arg1;
 - (NSArray *)phoneticNameKeys;
 - (NSArray *)nameKeys;
 - (BOOL)keyAvailable:(NSString *)arg1;
 - (NSArray *)multiValueKeys;
+- (ABAddressBook *)addressBookForActionExecution;
 - (void)markAsViewed:(NSTimer *)arg1;
 - (NSURL *)URL;
-- (BOOL)isAvailableForFaceTime;
 - (BOOL)hasChanges;
 - (BOOL)isEmpty;
 - (BOOL)isDirectoryResult;
 - (BOOL)isReadOnly;
 - (BOOL)isMe;
+- (NSString *)contactIdentifer;
 - (NSSet *)uniqueIdentifiers;
-- (ABCNContact *)person;
+- (CNContact *)contact;
 @end
 

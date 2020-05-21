@@ -9,10 +9,10 @@
 @class NSArray, NSString, NSURL;
 
 @protocol BRItemNotificationSending <BRCancellable>
-- (void)watchItemAtURL:(NSURL *)arg1 options:(unsigned short)arg2 reply:(void (^)(int))arg3;
-- (void)watchItemsNamesPrefixedBy:(NSString *)arg1 inScopes:(unsigned short)arg2 appLibraryIDs:(NSArray *)arg3 gatheringDone:(void (^)(int))arg4;
-- (void)watchScopes:(unsigned short)arg1 gatheringDone:(void (^)(int))arg2;
-- (void)watchScopes:(unsigned short)arg1 appLibraryIDs:(NSArray *)arg2 gatheringDone:(void (^)(int))arg3;
+- (void)watchItemAtURL:(NSURL *)arg1 options:(unsigned short)arg2 gatherReply:(void (^)(NSError *))arg3;
+- (void)watchItemsNamesPrefixedBy:(NSString *)arg1 inScopes:(unsigned short)arg2 appLibraryIDs:(NSArray *)arg3 gatherReply:(void (^)(NSError *))arg4;
+- (void)watchScopes:(unsigned short)arg1 gatherReply:(void (^)(NSError *))arg2;
+- (void)watchScopes:(unsigned short)arg1 appLibraryIDs:(NSArray *)arg2 gatherReply:(void (^)(NSError *))arg3;
 - (void)boostPriority:(void (^)(void))arg1;
 @end
 

@@ -11,13 +11,11 @@
 @interface NSClipView : NSView
 {
     NSColor *_backgroundColor;
-    NSView *_docView;
-    struct CGRect _docRect;
     struct CGRect _oldDocFrame;
     NSCursor *_cursor;
     id _scrollAnimationHelper;
-    struct __cvFlags {
-        unsigned int :1;
+    struct {
+        unsigned int unused:1;
         unsigned int onlyUncovered:1;
         unsigned int reflectScroll:1;
         unsigned int usedByCell:1;
@@ -43,6 +41,8 @@
         unsigned int hasOverlappingViews:1;
         unsigned int automaticallyCalculateContentSize:1;
     } _cvFlags;
+    NSView *_docView;
+    struct CGRect _docRect;
     struct CGPoint _scrollVelocity;
     struct NSEdgeInsets _contentInsets;
     struct CGSize _contentSize;
@@ -50,7 +50,7 @@
 }
 
 + (id)defaultAnimationForKey:(id)arg1;
-+ (BOOL)requiresConstraintBasedLayout;
++ (Class)_classToCheckForRequiresConstraintBasedLayout;
 + (id)_contentShadow;
 + (BOOL)isCompatibleWithResponsiveScrolling;
 + (double)_autoscrollResponseMultiplier;
@@ -79,7 +79,7 @@
 - (BOOL)_shouldAdjustPatternPhase;
 - (BOOL)_scrollInProgress;
 - (void)scrollToPoint:(struct CGPoint)arg1;
-- (BOOL)_needsClipViewAncestorDidScroll;
+- (void)_oldImmediateScrollToPoint:(struct CGPoint)arg1;
 - (void)_immediateScrollToPoint:(struct CGPoint)arg1;
 - (void)_invalidateFocusRingIfItBleedsIntoOurBounds;
 - (void)_invalidateIntersectionsWithSiblingViews;
@@ -124,7 +124,7 @@
 - (void)_selfBoundsChanged;
 - (BOOL)_shouldRedisplayOnChanges;
 - (BOOL)preservesContentDuringLiveResize;
-- (id)_computeBounds;
+- (void)_computeBounds;
 - (void)rotateByAngle:(double)arg1;
 - (void)scaleUnitSquareToSize:(struct CGSize)arg1;
 - (void)translateOriginToPoint:(struct CGPoint)arg1;
@@ -159,10 +159,9 @@
 - (void)_pinDocRect;
 - (void)updateConstraints;
 - (unsigned long long)_effectiveAutoresizingMask;
+- (void)viewDidMoveToSuperview;
 - (void)updateLayer;
-- (BOOL)wantsUpdateLayer;
-- (void)_recursiveLostLayerTreeHostAncestor;
-- (void)_recursiveGainedLayerTreeHostAncestor;
+- (Class)_classToCheckForWantsUpdateLayer;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)_cuiSourceListBackgroundOptions;
 - (void)_addOverhangSubviewsIfNeeded;
@@ -178,9 +177,7 @@
 - (id)_newShadowOfSize:(struct CGSize)arg1 fromOffset:(struct CGPoint)arg2 inImage:(id)arg3;
 - (void)setDrawsContentShadow:(BOOL)arg1;
 - (BOOL)drawsContentShadow;
-- (unsigned long long)_backgroundFillOperation;
 - (id)makeBackingLayer;
-- (BOOL)_canUseTiledBackingLayer;
 @property BOOL drawsBackground;
 @property(copy) NSColor *backgroundColor;
 - (BOOL)_isUsedByCell;
@@ -190,7 +187,7 @@
 - (struct CGRect)_effectiveContentFrame;
 @property(readonly) struct CGRect documentRect;
 - (void)_setDocViewFromRead:(id)arg1;
-@property NSView *documentView;
+@property(retain) NSView *documentView;
 - (void)willRemoveSubview:(id)arg1;
 - (void)_unregisterForDocViewFrameAndBoundsChangeNotifications;
 - (void)_registerForDocViewFrameAndBoundsChangeNotifications;
@@ -200,8 +197,6 @@
 - (id)initWithFrame:(struct CGRect)arg1;
 - (BOOL)_drawsNothing;
 - (void)setLayer:(id)arg1;
-- (id)ibShadowedSubviews;
-- (BOOL)ibHasResolved14284306;
 
 @end
 

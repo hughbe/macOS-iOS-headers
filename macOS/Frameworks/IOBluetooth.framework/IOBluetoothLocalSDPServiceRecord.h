@@ -6,9 +6,12 @@
 
 #import <IOBluetooth/IOBluetoothSDPServiceRecord.h>
 
+#import "NSCoding.h"
+#import "NSSecureCoding.h"
+
 @class IOBluetoothUserNotification, NSDictionary, NSMutableSet;
 
-@interface IOBluetoothLocalSDPServiceRecord : IOBluetoothSDPServiceRecord
+@interface IOBluetoothLocalSDPServiceRecord : IOBluetoothSDPServiceRecord <NSCoding, NSSecureCoding>
 {
     NSDictionary *mServerAttributeDictionary;
     NSDictionary *mLocalAttributeDictionary;
@@ -19,6 +22,7 @@
 
 + (id)withServerAttributeDictionary:(id)arg1 localAttributeDictionary:(id)arg2;
 + (void)initialize;
++ (BOOL)supportsSecureCoding;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)shouldVendServiceForUser:(int)arg1;

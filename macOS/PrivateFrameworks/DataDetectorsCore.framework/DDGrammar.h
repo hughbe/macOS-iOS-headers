@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class DDNonTerminal, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet;
 
 __attribute__((visibility("hidden")))
-@interface DDGrammar : NSObject <NSCoding>
+@interface DDGrammar : NSObject <NSSecureCoding>
 {
     NSMutableArray *_nonTerminals;
     NSMutableSet *_allNames;
@@ -24,6 +24,7 @@ __attribute__((visibility("hidden")))
     struct __DDProtoLexemeCollection *_plCollection;
 }
 
++ (BOOL)supportsSecureCoding;
 - (void)setNonTerminalSymbol:(id)arg1 forVariable:(id)arg2;
 - (id)nonTerminalSymbolForVariable:(id)arg1;
 - (struct __DDProtoLexemeCollection *)plCollection;

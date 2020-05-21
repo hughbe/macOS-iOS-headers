@@ -8,11 +8,12 @@
 
 #import "NSCopying.h"
 
-@class CKDPRecordZoneIdentifier;
+@class CKDPDate, CKDPRecordZoneIdentifier;
 
 __attribute__((visibility("hidden")))
 @interface CKDPZoneDeleteRequest : PBRequest <NSCopying>
 {
+    CKDPDate *_lastMissingManateeIdentityErrorDate;
     CKDPRecordZoneIdentifier *_zoneIdentifier;
     BOOL _userPurge;
     struct {
@@ -21,9 +22,10 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)options;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CKDPDate *lastMissingManateeIdentityErrorDate; // @synthesize lastMissingManateeIdentityErrorDate=_lastMissingManateeIdentityErrorDate;
 @property(nonatomic) BOOL userPurge; // @synthesize userPurge=_userPurge;
 @property(retain, nonatomic) CKDPRecordZoneIdentifier *zoneIdentifier; // @synthesize zoneIdentifier=_zoneIdentifier;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -35,6 +37,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasLastMissingManateeIdentityErrorDate;
 @property(nonatomic) BOOL hasUserPurge;
 @property(readonly, nonatomic) BOOL hasZoneIdentifier;
 

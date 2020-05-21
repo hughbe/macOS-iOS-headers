@@ -8,12 +8,14 @@
 
 @class AVWeakReference, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
 
+__attribute__((visibility("hidden")))
 @interface AVTimebaseObserver : NSObject
 {
     NSObject<OS_dispatch_queue> *_timerQueue;
     AVWeakReference *_weakReference;
     NSObject<OS_dispatch_source> *_timerSource;
     struct OpaqueCMTimebase *_timebase;
+    BOOL _isObservingTimebase;
     double _lastRate;
     double _currentRate;
     BOOL _invalid;
@@ -23,7 +25,7 @@
 - (void)_stopObservingTimebaseNotifications;
 - (void)_startObservingTimebaseNotifications;
 - (void)_removeTimebaseFromTimerSource;
-- (void)_finishInitialization;
+- (void)_finishInitializationWithTimerEventHandler:(CDUnknownBlockType)arg1;
 - (void)_attachTimerSourceToTimebase;
 @property(readonly, nonatomic) BOOL invalidated;
 - (void)_effectiveRateChanged;
@@ -32,7 +34,6 @@
 - (void)_reallyInvalidate;
 - (void)invalidate;
 @property(readonly) struct OpaqueCMTimebase *timebase;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithTimebase:(struct OpaqueCMTimebase *)arg1 queue:(id)arg2;
 

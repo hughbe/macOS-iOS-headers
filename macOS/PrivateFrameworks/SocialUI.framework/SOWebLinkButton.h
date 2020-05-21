@@ -15,9 +15,9 @@
 }
 
 + (Class)cellClass;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDictionary *mouseOverAttributes; // @synthesize mouseOverAttributes=_mouseOverAttributes;
 @property(retain, nonatomic) NSDictionary *attributes; // @synthesize attributes=_attributes;
-- (void).cxx_destruct;
 - (void)setTitle:(id)arg1;
 - (void)setAttributedTitle:(id)arg1;
 - (void)cursorUpdate:(id)arg1;
@@ -27,7 +27,7 @@
 - (void)_initializeButtonStyle;
 - (void)sizeToFit;
 - (void)setFont:(id)arg1;
-- (void)setAlignment:(unsigned long long)arg1;
+- (void)setAlignment:(long long)arg1;
 - (void)updateTrackingAreas;
 - (void)awakeFromNib;
 - (id)init;

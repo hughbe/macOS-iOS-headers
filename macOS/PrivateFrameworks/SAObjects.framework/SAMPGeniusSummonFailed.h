@@ -18,6 +18,7 @@
 + (id)geniusSummonFailedWithErrorCode:(long long)arg1;
 + (id)geniusSummonFailedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)geniusSummonFailed;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *reason;
 @property(nonatomic) long long errorCode;
 - (id)initWithReason:(id)arg1;

@@ -18,8 +18,12 @@ __attribute__((visibility("hidden")))
 + (id)wrapSendRight:(unsigned int)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
+- (id)description;
 - (unsigned int)sendRight;
 - (void)dealloc;
+- (void)forgetSendRight;
 
 @end
 

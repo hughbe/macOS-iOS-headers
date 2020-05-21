@@ -8,20 +8,20 @@
 
 #import "NSSecureCoding.h"
 
-@class NSString;
+@class NSNumber, NSString;
 
 @interface PKPaymentDeviceConfigurationData : NSObject <NSSecureCoding>
 {
     BOOL _devSigned;
-    NSString *_primaryJSBLSequenceCounter;
+    NSNumber *_primaryJSBLSequenceCounter;
     NSString *_secureElementIdentifier;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL devSigned; // @synthesize devSigned=_devSigned;
 @property(copy, nonatomic) NSString *secureElementIdentifier; // @synthesize secureElementIdentifier=_secureElementIdentifier;
-@property(copy, nonatomic) NSString *primaryJSBLSequenceCounter; // @synthesize primaryJSBLSequenceCounter=_primaryJSBLSequenceCounter;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSNumber *primaryJSBLSequenceCounter; // @synthesize primaryJSBLSequenceCounter=_primaryJSBLSequenceCounter;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

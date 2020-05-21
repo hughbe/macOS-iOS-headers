@@ -8,6 +8,7 @@
 
 @class NCVerticalListController, NSArray, NSLayoutConstraint, NSView;
 
+__attribute__((visibility("hidden")))
 @interface _NCVerticalListContainer : _NCFlippedView
 {
     NCVerticalListController *_owner;
@@ -16,11 +17,11 @@
     NSView *_view;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSView *view; // @synthesize view=_view;
 @property(retain, nonatomic) NSArray *sideConstraints; // @synthesize sideConstraints=_sideConstraints;
 @property(retain, nonatomic) NSLayoutConstraint *contentBottomConstraint; // @synthesize contentBottomConstraint=_contentBottomConstraint;
 @property(nonatomic) __weak NCVerticalListController *owner; // @synthesize owner=_owner;
-- (void).cxx_destruct;
 - (void)willRemoveSubview:(id)arg1;
 - (id)makeBackingLayer;
 

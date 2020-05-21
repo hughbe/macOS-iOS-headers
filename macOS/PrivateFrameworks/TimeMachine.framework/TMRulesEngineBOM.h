@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableDictionary, NSSet;
+@class NSArray, NSMutableDictionary, NSSet, NSString;
 
 @interface TMRulesEngineBOM : NSObject
 {
@@ -16,8 +16,10 @@
     NSSet *_userHomes;
     NSArray *_pathExclusions;
     NSMutableDictionary *_systemFilesExcludedMap;
+    NSString *_mailRealmSubpath;
 }
 
+@property(copy) NSString *mailRealmSubpath; // @synthesize mailRealmSubpath=_mailRealmSubpath;
 @property(copy) NSArray *pathExclusions; // @synthesize pathExclusions=_pathExclusions;
 @property(copy) NSSet *userHomes; // @synthesize userHomes=_userHomes;
 @property(copy) NSSet *spotlightOracles; // @synthesize spotlightOracles=_spotlightOracles;

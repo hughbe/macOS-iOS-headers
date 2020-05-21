@@ -11,14 +11,12 @@
 @interface IMAPPersistBodiesOperation : IMAPPersistenceTaskOperation
 {
     NSOrderedSet *_downloads;
-    id <IMAPMessageDataSource> _dataSource;
     id <IMAPPersistBodiesOperationDelegate> _delegate;
 }
 
-@property(readonly, nonatomic) __weak id <IMAPPersistBodiesOperationDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) id <IMAPMessageDataSource> dataSource; // @synthesize dataSource=_dataSource;
-@property(readonly, copy, nonatomic) NSOrderedSet *downloads; // @synthesize downloads=_downloads;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) __weak id <IMAPPersistBodiesOperationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, copy, nonatomic) NSOrderedSet *downloads; // @synthesize downloads=_downloads;
 - (void)main;
 - (id)description;
 - (id)initWithDataSource:(id)arg1;

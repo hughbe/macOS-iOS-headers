@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class ABCardViewStyleProvider, ABCollectionRowViewFactory;
+@class ABCardViewStyleProvider, ABCollectionRowViewFactory, CNUIEditingRules;
 
 @interface ABCollectionViewItemFactory : NSObject
 {
@@ -16,6 +16,7 @@
     ABCardViewStyleProvider *_styleProvider;
     ABCollectionRowViewFactory *_rowViewFactory;
     ABCollectionRowViewFactory *_rowViewEditModeFactory;
+    CNUIEditingRules *_editingRules;
 }
 
 + (id)actionsForItem:(id)arg1;
@@ -26,6 +27,8 @@
 + (id)itemFromPoolWithKey:(id)arg1;
 + (void)addItemToPool:(id)arg1;
 + (void)initialize;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CNUIEditingRules *editingRules; // @synthesize editingRules=_editingRules;
 @property(retain, nonatomic) ABCardViewStyleProvider *styleProvider; // @synthesize styleProvider=_styleProvider;
 @property(nonatomic) BOOL shouldShowActionMenu; // @synthesize shouldShowActionMenu=_shouldShowActionMenu;
 @property(nonatomic) BOOL shouldFormatURLs; // @synthesize shouldFormatURLs=_shouldFormatURLs;
@@ -46,9 +49,10 @@
 - (id)birthdayCollectionItemForMultiValue:(id)arg1 index:(unsigned long long)arg2 delegate:(id)arg3;
 - (id)emailCollectionItemForMultiValue:(id)arg1 index:(unsigned long long)arg2 delegate:(id)arg3;
 - (id)phoneCollectionItemForMultiValue:(id)arg1 index:(unsigned long long)arg2 delegate:(id)arg3;
+- (void)buildActionGlyphsForItem:(id)arg1 delegate:(id)arg2;
+- (void)buildVisibleViewForItem:(id)arg1 delegate:(id)arg2;
 - (id)collectionItemForKey:(id)arg1 multiValue:(id)arg2 index:(unsigned long long)arg3 delegate:(id)arg4;
 @property(nonatomic) BOOL shouldBuildActionGlyphs;
-- (void)dealloc;
 - (id)initWithUserActionListDataSource:(id)arg1;
 - (id)init;
 

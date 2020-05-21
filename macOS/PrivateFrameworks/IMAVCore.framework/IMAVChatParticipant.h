@@ -45,6 +45,7 @@
     struct CGRect _remoteLandscapeContentRect;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSData *outFrequencyLevel; // @synthesize outFrequencyLevel=_outFrequencyLevel;
 @property(retain, nonatomic) NSData *inFrequencyLevel; // @synthesize inFrequencyLevel=_inFrequencyLevel;
 @property(nonatomic) BOOL hasReinitiateCapability; // @synthesize hasReinitiateCapability=_hasReinitiateCapability;
@@ -64,8 +65,8 @@
 @property(readonly, nonatomic) unsigned int reasonChatEnded; // @synthesize reasonChatEnded=_chatEndedReason;
 @property(readonly, nonatomic) BOOL isInitiator; // @synthesize isInitiator=_isInitiator;
 @property(nonatomic, setter=setAVChat:) IMAVChat *avChat; // @synthesize avChat=_avChat;
-@property(readonly, retain, nonatomic) IMHandle *invitedBy; // @synthesize invitedBy=_inviter;
-@property(readonly, retain, nonatomic) IMHandle *imHandle; // @synthesize imHandle=_imHandle;
+@property(readonly, nonatomic) IMHandle *invitedBy; // @synthesize invitedBy=_inviter;
+@property(readonly, nonatomic) IMHandle *imHandle; // @synthesize imHandle=_imHandle;
 @property(setter=_setCameraOrientation:) unsigned int cameraOrientation; // @synthesize cameraOrientation=_cameraOrientation;
 @property(setter=_setCameraType:) unsigned int cameraType; // @synthesize cameraType=_cameraType;
 @property(retain, setter=setVCPartyID:) NSString *vcPartyID; // @synthesize vcPartyID=_vcPartyID;
@@ -102,7 +103,7 @@
 - (id)_callInfoWithState:(long long)arg1;
 - (void)requestIconIfNecessary;
 @property(readonly, nonatomic) BOOL isLocalParticipant;
-@property(readonly, retain, nonatomic) NSString *name;
+@property(readonly, nonatomic) NSString *name;
 - (void)dealloc;
 - (id)description;
 - (void)disconnectFromAVChat;
@@ -122,7 +123,8 @@
 - (void)setWaitingToConnect:(BOOL)arg1;
 - (void)sendResponse:(unsigned int)arg1;
 - (void)_sendResponse:(unsigned int)arg1 callInfo:(id)arg2;
-- (void)_cancelInvitationWithReason:(id)arg1;
+- (void)_cancelInvitationWithReason:(unsigned int)arg1 response:(id)arg2;
+- (void)cancelInvitationWithReason:(unsigned int)arg1;
 - (void)cancelInvitationWithResponse:(unsigned int)arg1;
 - (void)cancelInvitation;
 - (void)sendInvitation;

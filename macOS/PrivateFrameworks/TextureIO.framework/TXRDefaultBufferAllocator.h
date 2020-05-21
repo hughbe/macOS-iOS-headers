@@ -14,6 +14,7 @@
 {
 }
 
++ (id)newBufferWithLength:(unsigned long long)arg1;
 - (id)newBufferWithLength:(unsigned long long)arg1;
 
 // Remaining properties

@@ -4,10 +4,29 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSDictionary, NSString;
+@class NSDictionary, NSObject<NSSecureCoding>, NSString, NSXPCListenerEndpoint;
 
 @protocol IMKXPCSupport
 - (oneway void)imkxpc_updateMenusDictionary:(NSDictionary *)arg1;
+- (void)imkxpc_getApplicationProperty:(unsigned long long)arg1 reply:(void (^)(NSObject<NSSecureCoding> *))arg2;
+- (oneway void)imkxpc_setApplicationProperty:(unsigned long long)arg1 value:(NSObject<NSSecureCoding> *)arg2;
+- (void)imkxpc_setApplicationProperty:(unsigned long long)arg1 value:(NSObject<NSSecureCoding> *)arg2 reply:(void (^)(BOOL))arg3;
+- (void)imkxpc_windowEffectiveAppearanceNameWithReply:(void (^)(NSString *))arg1;
+- (void)imkxpc_viewEffectiveAppearanceNameWithReply:(void (^)(NSString *))arg1;
+- (void)imkxpc_windowEffectiveAppearanceWithReply:(void (^)(NSAppearance *))arg1;
+- (void)imkxpc_viewEffectiveAppearanceWithReply:(void (^)(NSAppearance *))arg1;
+- (void)imkxpc_isAutomaticPeriodSubstitutionEnabledWithReply:(void (^)(BOOL, BOOL))arg1;
+- (void)imkxpc_isAutomaticCapitalizationEnabledWithReply:(void (^)(BOOL, BOOL))arg1;
+- (void)imkxpc_isSmartInsertDeleteEnabledWithReply:(void (^)(BOOL, BOOL))arg1;
+- (void)imkxpc_isAutomaticQuoteSubstitutionEnabledWithReply:(void (^)(BOOL, BOOL))arg1;
+- (void)imkxpc_isAutomaticDashSubstitutionEnabledWithReply:(void (^)(BOOL, BOOL))arg1;
+- (void)imkxpc_isAutomaticSpellingCorrectionEnabledWithReply:(void (^)(BOOL, BOOL))arg1;
+- (void)imkxpc_isAutomaticTextReplacementEnabledWithReply:(void (^)(BOOL, BOOL))arg1;
+- (void)imkxpc_isAutomaticTextCompletionEnabledWithReply:(void (^)(BOOL, BOOL))arg1;
+- (void)imkxpc_isGrammarCheckingEnabledWithReply:(void (^)(BOOL, BOOL))arg1;
+- (void)imkxpc_isContinuousSpellCheckingEnabledWithReply:(void (^)(BOOL, BOOL))arg1;
+- (void)imkxpc_dismissFunctionRowItemTextInputViewWithReply:(void (^)(BOOL))arg1;
+- (void)imkxpc_presentFunctionRowItemTextInputViewWithEndpoint:(NSXPCListenerEndpoint *)arg1 reply:(void (^)(BOOL))arg2;
 - (void)imkxpc_supportsTextAttachmentInsertionWithReply:(void (^)(BOOL))arg1;
 - (void)imkxpc_supportsChromaticMarkedTextWithReply:(void (^)(BOOL))arg1;
 - (void)imkxpc_incrementalSearchClientGeometryWithReply:(void (^)(unsigned long long))arg1;

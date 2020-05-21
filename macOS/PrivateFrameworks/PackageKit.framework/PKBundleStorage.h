@@ -18,9 +18,9 @@
 
 + (id)bundleStorageWithPath:(id)arg1;
 + (id)_allStorageClasses;
-- (id)versionAttributes;
-- (id)identifier;
-- (id)storageType;
+@property(readonly) NSDictionary *versionAttributes;
+@property(readonly) NSString *identifier;
+@property(readonly) NSString *storageType;
 - (id)description;
 - (void)dealloc;
 - (id)_initWithPath:(id)arg1 storageType:(id)arg2 identifier:(id)arg3 versionAttributes:(id)arg4;

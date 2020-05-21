@@ -6,14 +6,25 @@
 
 #import "NSObject.h"
 
+@class ICAppearanceInfo;
+
 @interface ICPreviewDeviceInfo : NSObject
 {
     double _imageSize;
     double _scale;
+    ICAppearanceInfo *_appearanceInfo;
 }
 
++ (id)previewDeviceInfoForPreviewImage:(id)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) ICAppearanceInfo *appearanceInfo; // @synthesize appearanceInfo=_appearanceInfo;
 @property(nonatomic) double scale; // @synthesize scale=_scale;
 @property(nonatomic) double imageSize; // @synthesize imageSize=_imageSize;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
+- (id)description;
+- (id)deviceInfoFromAddingAppearanceInfo:(id)arg1;
+- (id)initWithImageSize:(double)arg1 scale:(double)arg2 appearanceInfo:(id)arg3;
 - (id)initWithImageSize:(double)arg1 scale:(double)arg2;
 - (id)init;
 

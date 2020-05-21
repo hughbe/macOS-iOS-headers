@@ -13,13 +13,14 @@
 __attribute__((visibility("hidden")))
 @interface GEOMapAccessBuilding : NSObject <GEOMapBuilding>
 {
-    CDStruct_cae2bc5c *_buildingFeature;
+    CDStruct_2043ea72 *_buildingFeature;
     NSArray *_sections;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSArray *sections; // @synthesize sections=_sections;
 - (void)dealloc;
-- (id)initWithBuildingFeature:(CDStruct_cae2bc5c *)arg1;
+- (id)initWithBuildingFeature:(CDStruct_2043ea72 *)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -15,7 +15,10 @@
     void *_reserved;
 }
 
+- (void)__apply:(CDUnknownBlockType)arg1;
 - (id)allObjects;
+- (void)setEvictsObjectsWhenApplicationEntersBackground:(BOOL)arg1;
+- (BOOL)evictsObjectsWhenApplicationEntersBackground;
 @property BOOL evictsObjectsWithDiscardedContent;
 - (unsigned long long)minimumObjectCount;
 - (void)setMinimumObjectCount:(unsigned long long)arg1;

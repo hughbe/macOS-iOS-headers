@@ -26,6 +26,7 @@ __attribute__((visibility("hidden")))
     OADOrientedBounds *mOrientedBounds;
 }
 
+- (void).cxx_destruct;
 - (id)convertMetafileToPdf;
 - (void)mapTextBoxAt:(id)arg1 withState:(id)arg2;
 - (struct CGRect)shapeTextBoxRect;
@@ -45,7 +46,6 @@ __attribute__((visibility("hidden")))
 - (struct CGRect)box;
 - (id)initWithOadDrawable:(id)arg1 parent:(id)arg2;
 - (id)initWithParent:(id)arg1;
-- (void)dealloc;
 
 @end
 

@@ -8,17 +8,19 @@
 
 #import "CalendarAgent.h"
 
-@class NSMutableDictionary;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
 @interface CalAgentProxy : CalendarLinkProxy <CalendarAgent>
 {
     NSMutableDictionary *_identifiersToRecentContacts;
+    NSObject<OS_dispatch_queue> *_accountsSerialQueue;
 }
 
 + (BOOL)_clientHasEntitlement:(id)arg1;
 + (BOOL)_clientIsReminders;
 + (BOOL)_clientIsiCal;
 - (void).cxx_destruct;
+- (void)_forceResetCalendarCacheAndShutdown;
 - (void)_migrateLocalDataIntoParentAccountWithID:(id)arg1 delay:(long long)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)openURL:(id)arg1;
 - (void)setPreventShutdownAfterIAMigration:(BOOL)arg1;
@@ -39,15 +41,16 @@
 - (void)isLocalToServerInProgressForReminders:(CDUnknownBlockType)arg1;
 - (void)_isLocalToServerInProgressForComponentType:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)isPersistenceAvailableWithReply:(CDUnknownBlockType)arg1;
+- (void)getLastSelectedCalendarIdentifierWithReply:(CDUnknownBlockType)arg1;
 - (void)setDefaultCalendarForRemindersToCalendarIdentifier:(id)arg1;
 - (void)getDefaultCalendarForRemindersCalendarIdentifierWithReply:(CDUnknownBlockType)arg1;
 - (void)setDefaultCalendarForEventsToCalendarIdentifier:(id)arg1;
 - (void)getDefaultCalendarForEventsCalendarIdentifierWithReply:(CDUnknownBlockType)arg1;
 - (void)getPreference:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)attemptLocationGeocodeOnEvents;
-- (void)calMeCardWithReply:(CDUnknownBlockType)arg1;
 - (void)temporarilyAcceptCertificates:(id)arg1 forHost:(id)arg2;
 - (void)cacheWeatherForEventsWithStartDateBetweenStart:(id)arg1 andEnd:(id)arg2;
+- (void)sendEmailFromAddress:(id)arg1 toRecipients:(id)arg2 withSubject:(id)arg3 withBody:(id)arg4 withAttachment:(id)arg5 attachmentFilename:(id)arg6;
 - (void)sendEmailTo:(id)arg1 withSubject:(id)arg2 withBody:(id)arg3 withAttachment:(id)arg4 attachmentFilename:(id)arg5;
 - (void)restoreToBackupWithBookmark:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)travelTimeFrom:(id)arg1 to:(id)arg2 arrivalDate:(id)arg3 withRouteTypes:(id)arg4 withCompletionBlock:(CDUnknownBlockType)arg5;
@@ -56,19 +59,26 @@
 - (void)removeGrantedDelegate:(id)arg1 fromAccount:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)addGrantedDelegate:(id)arg1 toAccount:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)getGrantedDelegateListForAccount:(id)arg1 reply:(CDUnknownBlockType)arg2;
+- (void)removeDelegate:(id)arg1 fromAccount:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)addDelegate:(id)arg1 toAccount:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)refreshDelegateListForAccount:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)expandGroupForCalDAVprincipalWithObjectIDString:(id)arg1 groupIdentifier:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)principalPropertSearchForCalDAVPrincipalWithObjectIDString:(id)arg1 searchString:(id)arg2 searchTypes:(id)arg3 reply:(CDUnknownBlockType)arg4;
 - (void)getUserAvailabilityForObjectID:(id)arg1 maskedSharedUID:(id)arg2 addresses:(id)arg3 timeRange:(id)arg4 reply:(CDUnknownBlockType)arg5;
-- (void)setOfficeHoursForPrincipalObjectIDString:(id)arg1 officeHours:(id)arg2;
+- (void)setOfficeHoursForPrincipalObjectIDString:(id)arg1 officeHours:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)getOfficeHoursForPrincipalObjectIDString:(id)arg1 reply:(CDUnknownBlockType)arg2;
+- (void)removeNaturalLanguageSuggestedEventCalendar;
+- (void)createNaturalLanguageSuggestedEventCalendar;
 - (void)removeSuggestedEventCalendar;
 - (void)createSuggestedEventCalendar;
 - (void)disableBirthdayCalendars;
 - (void)addBirthdayCalendars;
 - (void)disableHolidayCalendars;
 - (void)addHolidayCalendars;
+- (void)updateNCMessages;
+- (void)remindersBadgeCount:(CDUnknownBlockType)arg1;
+- (void)calendarBadgeCount:(CDUnknownBlockType)arg1;
+- (void)pokeNotificationService;
 - (void)fullySynchronizeAllSessions;
 - (void)reloadNetworkObjects;
 - (void)registerWithAgent;
@@ -85,11 +95,12 @@
 - (void)calDAVCalendarDeletedWithUID:(id)arg1;
 - (void)principalDeletedWithObjectID:(id)arg1;
 - (void)updateSessionCacheWithReply:(CDUnknownBlockType)arg1;
-- (void)stopDebugQueueWithObjectID:(id)arg1;
-- (void)startDebugQueueWithObjectID:(id)arg1;
-- (void)sessionDebugInfoWithObjectID:(id)arg1 reply:(CDUnknownBlockType)arg2;
+- (void)stopDebugQueueWithSourceID:(id)arg1;
+- (void)startDebugQueueWithSourceID:(id)arg1;
+- (void)sessionDebugInfoWithSourceID:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)reinviteSharees:(id)arg1 withCalendarObjectIDString:(id)arg2;
 - (void)setupCoreDataXPCServerWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)init;
 
 @end
 

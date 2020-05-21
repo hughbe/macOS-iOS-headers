@@ -8,21 +8,21 @@
 
 #import "MCAttachmentDataSource.h"
 
-@class MCMimePart, NSNumber, NSString;
+@class MCMimePart, NSString;
 
 @interface MCMimePartAttachmentDataSource : NSObject <MCAttachmentDataSource>
 {
     MCMimePart *_mimePart;
-    NSNumber *_approximateSize;
+    unsigned long long _approximateSize;
 }
 
-@property(readonly, nonatomic) NSNumber *approximateSize; // @synthesize approximateSize=_approximateSize;
-@property(readonly, nonatomic) MCMimePart *mimePart; // @synthesize mimePart=_mimePart;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long approximateSize; // @synthesize approximateSize=_approximateSize;
+@property(readonly, nonatomic) MCMimePart *mimePart; // @synthesize mimePart=_mimePart;
 @property(readonly, nonatomic) BOOL isDirectory;
 @property(readonly, nonatomic) BOOL canResultsBeCached;
 @property(readonly, nonatomic) BOOL dataIsLocallyAvailable;
-- (id)approximateSizeForAccessLevel:(long long)arg1;
+- (unsigned long long)approximateSizeForAccessLevel:(long long)arg1;
 - (void)fileWrapperForAccessLevel:(long long)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)dataForAccessLevel:(long long)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)init;

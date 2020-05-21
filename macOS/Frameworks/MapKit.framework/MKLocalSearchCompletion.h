@@ -6,30 +6,54 @@
 
 #import "NSObject.h"
 
-@class GEOSearchCategory, MKMapItem, NSArray, NSString;
+@class GEODirectionIntent, GEOResolvedItem, GEORetainedSearchMetadata, GEOSearchCategory, GEOServerResultScoreMetadata, MKMapItem, NSArray, NSString;
 
 @interface MKLocalSearchCompletion : NSObject
 {
     id <GEOCompletionItem> _item;
+    unsigned long long _serverSectionIndex;
+    unsigned long long _serverItemIndexInSection;
     NSString *_sourceID;
     NSString *_localizedSectionHeader;
     MKMapItem *_mapItem;
     BOOL _alreadySentFeedback;
+    BOOL _shouldDisplayNoResults;
+    BOOL _shouldEnableRAPForNoResults;
+    MKLocalSearchCompletion *_directionIntentOrigin;
+    MKLocalSearchCompletion *_directionIntentDestination;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) MKLocalSearchCompletion *directionIntentDestination; // @synthesize directionIntentDestination=_directionIntentDestination;
+@property(retain, nonatomic) MKLocalSearchCompletion *directionIntentOrigin; // @synthesize directionIntentOrigin=_directionIntentOrigin;
 @property(readonly, nonatomic, getter=_alreadySentFeedback) BOOL alreadySentFeedback; // @synthesize alreadySentFeedback=_alreadySentFeedback;
 @property(copy, nonatomic) NSString *localizedSectionHeader; // @synthesize localizedSectionHeader=_localizedSectionHeader;
 @property(copy, nonatomic) NSString *sourceID; // @synthesize sourceID=_sourceID;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long serverItemIndexInSection; // @synthesize serverItemIndexInSection=_serverItemIndexInSection;
+@property(readonly, nonatomic) unsigned long long serverSectionIndex; // @synthesize serverSectionIndex=_serverSectionIndex;
 - (id)icon;
 - (id)highlightsForLine:(unsigned long long)arg1;
 @property(readonly, nonatomic) NSArray *displayLines;
+@property(readonly, nonatomic, getter=_hasDisambiguationRadiusMeters) BOOL hasDisambiguationRadiusMeters;
+@property(readonly, nonatomic, getter=_disambiguationRadiusMeters) float disambiguationRadiusMeters;
+@property(readonly, nonatomic, getter=_placeType) int placeType;
 @property(readonly, nonatomic, getter=_type) long long type;
 - (void)sendFeedback;
 - (id)copyStorage;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
+- (id)_geoCompletionItem;
+@property(readonly, nonatomic) NSString *queryAcceleratorCompletionString;
+@property(readonly, nonatomic) BOOL hasQueryAcceleratorAffordanceEnabled;
+@property(readonly, nonatomic) GEOServerResultScoreMetadata *serverResultScoreMetadata;
+@property(readonly, nonatomic) long long autocompleteCellType;
+@property(readonly, nonatomic) long long entryTapBehavior;
+@property(readonly, nonatomic) long long sortPriority;
+@property(readonly, nonatomic) BOOL hasSortPriority;
+@property(readonly, nonatomic) GEORetainedSearchMetadata *retainedSearchMetadata;
+@property(readonly, nonatomic) GEODirectionIntent *directionIntent;
+@property(readonly, nonatomic) GEOResolvedItem *clientResolved;
 @property(readonly, nonatomic) GEOSearchCategory *category;
 @property(readonly, nonatomic) MKMapItem *mapItem;
 - (id)calloutTitle;
@@ -40,7 +64,7 @@
 @property(readonly, nonatomic) NSArray *titleHighlightRanges;
 @property(readonly, nonatomic) NSString *title;
 - (BOOL)isKindOfClass:(Class)arg1;
-- (id)initWithGeoCompletionItem:(id)arg1;
+- (id)initWithGeoCompletionItem:(id)arg1 serverSectionIndex:(unsigned long long)arg2 serverItemIndexInSection:(unsigned long long)arg3;
 @property(readonly, nonatomic) id <GEOCompletionItem> geoCompletionItem;
 
 @end

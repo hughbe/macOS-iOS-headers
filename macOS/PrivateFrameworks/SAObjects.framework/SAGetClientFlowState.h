@@ -16,6 +16,7 @@
 
 + (id)getClientFlowStateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getClientFlowState;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(retain, nonatomic) SAClientFlowState *clientState;
 - (id)encodedClassName;

@@ -12,12 +12,14 @@
 {
 }
 
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 + (id)kilowattHours;
 + (id)calories;
 + (id)kilocalories;
 + (id)joules;
 + (id)kilojoules;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

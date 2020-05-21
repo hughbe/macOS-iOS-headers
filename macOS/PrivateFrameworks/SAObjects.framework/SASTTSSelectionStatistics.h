@@ -16,6 +16,7 @@
 
 + (id)tTSSelectionStatisticsWithDictionary:(id)arg1 context:(id)arg2;
 + (id)tTSSelectionStatistics;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *timesListened;
 @property(copy, nonatomic) NSString *sessionId;
 @property(nonatomic) long long selectedItemIndex;

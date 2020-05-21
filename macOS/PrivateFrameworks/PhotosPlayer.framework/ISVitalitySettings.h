@@ -12,6 +12,7 @@
 
 @interface ISVitalitySettings : ISSettings <ISVitalitySettings>
 {
+    BOOL _shouldPreroll;
     BOOL _useLegacyBehavior;
     ISVitalitySpecificSettings *_oneUpSettings;
     ISVitalitySpecificSettings *_shareViewSettings;
@@ -20,23 +21,20 @@
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property(retain, nonatomic) ISVitalitySpecificSettings *orbPreviewSettings; // @synthesize orbPreviewSettings=_orbPreviewSettings;
 @property(retain, nonatomic) ISVitalitySpecificSettings *activityViewSettings; // @synthesize activityViewSettings=_activityViewSettings;
 @property(retain, nonatomic) ISVitalitySpecificSettings *shareViewSettings; // @synthesize shareViewSettings=_shareViewSettings;
 @property(retain, nonatomic) ISVitalitySpecificSettings *oneUpSettings; // @synthesize oneUpSettings=_oneUpSettings;
 @property(nonatomic) BOOL useLegacyBehavior; // @synthesize useLegacyBehavior=_useLegacyBehavior;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL shouldPreroll; // @synthesize shouldPreroll=_shouldPreroll;
+- (double)maxVitalityDelay;
 - (id)_defaultSettings;
-- (double)minimumDurationForColorMismatch;
 - (double)maximumDelayBeforePlayback;
 - (double)minimumVisibilityFactor;
 - (double)endTimeOffset;
 - (double)playbackRate;
-- (long long)maximumNumberOfFrames;
-- (double)relativeEnd;
-- (double)relativeStart;
-- (double)maximumDeceleration;
-- (double)maximumRate;
+- (double)minimumPhotoTransitionDuration;
 - (double)postDuration;
 - (double)preDuration;
 - (long long)behavior;

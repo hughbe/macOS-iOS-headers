@@ -8,7 +8,7 @@
 
 #import "MFPOPAccount.h"
 
-@class MCActivityMonitor, MCAuthScheme, MFPOPStore, NSArray, NSLock, NSOperationQueue, NSString;
+@class ACAccount, ECAuthScheme, ECPOPAccount, MCActivityMonitor, MFPOPStore, NSArray, NSDate, NSLock, NSOperationQueue, NSString;
 
 @interface MFPOPAccount : MFMailAccount <MFPOPAccount>
 {
@@ -16,8 +16,8 @@
     id _seenMessagesManagerLock;
     id _backgroundActivityFlagsLock;
     BOOL _backgroundFetchInProgress;
-    BOOL _fetcherNeedsReset;
     BOOL _deletingMessages;
+    BOOL _fetcherNeedsReset;
     BOOL _hasDoneBackgroundSynchronization;
     MFPOPStore *_fetcher;
     MCActivityMonitor *_fetchMonitor;
@@ -25,13 +25,16 @@
 
 + (id)standardSSLPorts;
 + (id)standardPorts;
++ (id)csAccountTypeString;
 + (id)accountTypeString;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL hasDoneBackgroundSynchronization; // @synthesize hasDoneBackgroundSynchronization=_hasDoneBackgroundSynchronization;
-@property(nonatomic) BOOL deletingMessages; // @synthesize deletingMessages=_deletingMessages;
 @property(nonatomic) BOOL fetcherNeedsReset; // @synthesize fetcherNeedsReset=_fetcherNeedsReset;
 @property(retain, nonatomic) MCActivityMonitor *fetchMonitor; // @synthesize fetchMonitor=_fetchMonitor;
 @property(retain, nonatomic) MFPOPStore *fetcher; // @synthesize fetcher=_fetcher;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL deletingMessages; // @synthesize deletingMessages=_deletingMessages;
+- (void)_sendMailboxDidEndSyncTaskNotification;
+- (void)_sendMailboxDidStartSyncTaskNotification;
 - (id)storeForMailbox:(id)arg1 createIfNeeded:(BOOL)arg2;
 - (id)URLPersistenceScheme;
 - (void)_addAccountAndSeenMessagesToMessageManager;
@@ -51,11 +54,10 @@
 - (BOOL)containsMailboxes;
 - (id)primaryMailbox;
 - (id)mailboxPathExtension;
+- (BOOL)_setChildren:(id)arg1 forMailbox:(id)arg2;
 - (Class)storeClassForMailbox:(id)arg1;
 @property(readonly, nonatomic) BOOL requiresAuthentication;
 @property(readonly, copy, nonatomic) NSString *saslProfileName;
-- (long long)defaultSecurePortNumber;
-- (long long)defaultPortNumber;
 - (void)_readCustomInfoFromMailboxCache:(id)arg1;
 - (void)setIsOffline:(BOOL)arg1;
 - (BOOL)canGoOffline;
@@ -86,28 +88,39 @@
 @property(readonly, copy) NSString *appleAuthenticationToken;
 @property(readonly, copy) NSString *applePersonID;
 @property(copy) NSString *authenticationScheme;
+@property(readonly) ECPOPAccount *baseAccount; // @dynamic baseAccount;
 @property(copy) NSString *canonicalEmailAddress;
+@property(readonly, copy) NSString *clientInfo;
 @property BOOL configureDynamically;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(copy) NSString *displayName;
+@property(readonly, copy) NSArray *emailAddressStrings;
+@property(readonly, copy, nonatomic) NSDate *expiryDate;
 @property(copy) NSString *externalHostname;
 @property(readonly) unsigned long long hash;
-@property(copy) NSString *hostname;
+@property(readonly, copy) NSString *hostname;
 @property(readonly, copy) NSString *identifier;
 @property(readonly, nonatomic) BOOL isGmailAccount;
+@property(readonly) BOOL isYahooAccount;
+@property(readonly, copy) NSString *machineID;
+@property(readonly, nonatomic, getter=isManaged) BOOL managed;
 @property(readonly, copy) NSString *oauthToken;
-@property(copy) NSString *password;
+@property(readonly, copy) NSString *oneTimePassword;
+@property(readonly, copy) NSString *password;
 @property long long portNumber;
-@property(retain) MCAuthScheme *preferredAuthScheme;
+@property(retain) ECAuthScheme *preferredAuthScheme;
+@property(readonly) BOOL primaryiCloudAccount;
 @property(readonly, nonatomic) NSOperationQueue *remoteFetchQueue;
 @property(readonly, nonatomic) NSOperationQueue *remoteTaskQueue;
 @property long long securityLayerType;
 @property BOOL shouldUseAuthentication;
 @property(readonly, copy, nonatomic) NSArray *standardPorts;
 @property(readonly, copy, nonatomic) NSArray *standardSSLPorts;
+@property(readonly, copy, nonatomic) NSString *statisticsKind;
 @property(readonly) Class superclass;
-@property(copy) NSString *username;
+@property(readonly, copy) ACAccount *systemAccount;
+@property(readonly, copy) NSString *username;
 @property BOOL usesSSL;
 
 @end

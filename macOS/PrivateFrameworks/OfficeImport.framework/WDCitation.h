@@ -11,7 +11,6 @@
 __attribute__((visibility("hidden")))
 @interface WDCitation : NSObject
 {
-    WDDocument *mDocument;
     NSString *mSourceType;
     NSMutableArray *mAuthors;
     NSString *mYear;
@@ -23,6 +22,7 @@ __attribute__((visibility("hidden")))
     NSString *mSection;
     NSString *mPubDate;
     NSString *mPages;
+    WDDocument *mDocument;
 }
 
 + (id)stringValuesForNodesAtPath:(id)arg1 nodePtr:(struct _xmlNode *)arg2 trimStyle:(BOOL)arg3;
@@ -33,7 +33,10 @@ __attribute__((visibility("hidden")))
 + (id)wordStringForRefType:(int)arg1;
 + (int)refTypeForWordString:(id)arg1;
 + (id)endNoteStringForRefType:(int)arg1;
-+ (void)initialize;
++ (id)refTypeEnumMap;
++ (id)wordRefTypeEnumMap;
+- (void).cxx_destruct;
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 @property(retain, nonatomic) NSString *pages; // @synthesize pages=mPages;
 @property(retain, nonatomic) NSMutableArray *urls; // @synthesize urls=mUrls;
 @property(retain, nonatomic) NSString *pubDate; // @synthesize pubDate=mPubDate;
@@ -47,8 +50,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSString *year; // @synthesize year=mYear;
 - (id)description;
 - (id)initWithDocument:(id)arg1;
-- (id)document;
-- (void)dealloc;
 
 @end
 

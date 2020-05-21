@@ -11,6 +11,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 
 @end

@@ -12,14 +12,6 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 struct Mutex;
 
-struct NSArray {
-    Class _field1;
-};
-
-struct NSDictionary {
-    Class _field1;
-};
-
 struct Options {
     int _field1;
     _Bool _field2;
@@ -64,28 +56,44 @@ struct SGDSuggestManagerCTSCriteriaState {
     char hasItemsLowPriority;
 };
 
-struct SGHistorySharedData {
-    id _field1;
-    id _field2;
-    id _field3;
-    id _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    id _field8;
+struct SGMContactDetailExtractionOutcome_ {
+    unsigned long long _field1;
 };
 
-struct SGMutexSynchronizedObject<SGHistorySharedData> {
-    struct SGHistorySharedData *_field1;
-    struct _opaque_pthread_mutex_t _field2;
+struct SGMContactDetailExtractionSignatureSource_ {
+    unsigned long long _field1;
 };
 
-struct SGMutexSynchronizedPtr<SGHistorySharedData> {
-    struct SGMutexSynchronizedObject<SGHistorySharedData> *_field1;
+struct SGMContactDetailFoundIn_ {
+    unsigned long long _field1;
 };
 
-struct SGTuple3 {
-    Class _field1;
+struct SGMContactDetailOwner_ {
+    unsigned long long _field1;
+};
+
+struct SGMContactDetailType_ {
+    unsigned long long _field1;
+};
+
+struct SGMContactDetailUsedApp_ {
+    unsigned long long _field1;
+};
+
+struct SGMDocumentType_ {
+    unsigned long long _field1;
+};
+
+struct SGMEventICSSourceType_ {
+    unsigned long long _field1;
+};
+
+struct SGMFoundInMailModelType_ {
+    unsigned long long _field1;
+};
+
+struct SGMSelfIdModelType_ {
+    unsigned long long _field1;
 };
 
 struct SGUnixTimestamp_ {
@@ -100,6 +108,10 @@ struct StringPiece {
 struct _NSRange {
     unsigned long long location;
     unsigned long long length;
+};
+
+struct _PASDBIterAction_ {
+    char _field1;
 };
 
 struct _opaque_pthread_mutex_t {
@@ -161,6 +173,12 @@ struct map<std::__1::basic_string<char>, int, std::__1::less<std::__1::basic_str
 
 typedef struct {
     unsigned long long _field1;
+    unsigned long long _field2;
+    long long _field3;
+} CDStruct_69bb5998;
+
+typedef struct {
+    unsigned long long _field1;
     unsigned short _field2;
     char _field3[3];
 } CDStruct_e59a5d79;
@@ -188,6 +206,18 @@ typedef struct {
 } CDStruct_beb4cc23;
 
 typedef struct {
+    char _field1;
+    char _field2;
+    char _field3;
+    int _field4;
+    int _field5;
+    CDStruct_beb4cc23 _field6;
+    CDStruct_beb4cc23 _field7;
+    CDStruct_beb4cc23 _field8;
+    long long _field9;
+} CDStruct_08971326;
+
+typedef struct {
     struct {
         unsigned short bom;
         unsigned short tag;
@@ -199,15 +229,52 @@ typedef struct {
     char isTemplate;
 } CDStruct_b2968299;
 
+typedef struct {
+    struct {
+        unsigned short _field1;
+        unsigned short _field2;
+    } _field1;
+    int _field2;
+    int _field3;
+    int _field4;
+    char _field5;
+    char _field6;
+    char _field7;
+    char _field8;
+    char _field9;
+    float _field10;
+    int _field11;
+    int _field12;
+    int _field13;
+    int _field14;
+    int _field15;
+    char _field16;
+} CDStruct_9bb40f6c;
+
 // Ambiguous groups
 typedef struct {
     unsigned short _field1;
     unsigned short _field2;
 } CDStruct_d65e47c4;
 
-typedef struct SGMutexSynchronizedPtr<SGHistorySharedData> {
-    struct SGMutexSynchronizedObject<SGHistorySharedData> *_field1;
-} SGMutexSynchronizedPtr_22985514;
+typedef struct {
+    unsigned int app:1;
+    unsigned int wasKnownContact:1;
+    unsigned int wasSuggestedContact:1;
+} CDStruct_73da3db5;
+
+typedef struct {
+    unsigned int app:1;
+    unsigned int wasSuggestedContact:1;
+} CDStruct_02d9bdfe;
+
+typedef struct {
+    unsigned int app:1;
+} CDStruct_2bda6786;
+
+typedef struct {
+    unsigned int cacheHit:1;
+} CDStruct_fbc31351;
 
 #pragma mark Typedef'd Unions
 

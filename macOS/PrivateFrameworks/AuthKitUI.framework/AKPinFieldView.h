@@ -10,9 +10,7 @@
 
 @interface AKPinFieldView : NSView
 {
-    id <AKPinFieldViewDelegate> _delegate;
     NSImage *_digitField;
-    NSImage *_digitFieldHightlight;
     NSArray *_pinFieldBoxArray;
     struct CGRect *_digitRects;
     struct CGRect _progressRect;
@@ -23,29 +21,34 @@
     BOOL _enabled;
     BOOL _echosBullets;
     BOOL _supportsRTL;
-    NSButton *_nextButtonResponder;
     int _pinLength;
     struct {
         unsigned int pinFieldViewTextDidChange:1;
         unsigned int pinFieldViewTextDidComplete:1;
         unsigned int padding:6;
     } _delegateFlags;
+    id <AKPinFieldViewDelegate> _delegate;
+    NSButton *_nextButtonResponder;
     unsigned long long _chunkingStyle;
 }
 
 + (struct CGSize)viewSizeWithLength:(int)arg1 chunkingStyle:(unsigned long long)arg2;
 + (struct CGSize)digitViewSizeWithLength:(int)arg1;
+- (void).cxx_destruct;
 @property unsigned long long chunkingStyle; // @synthesize chunkingStyle=_chunkingStyle;
-@property NSButton *nextButtonResponder; // @synthesize nextButtonResponder=_nextButtonResponder;
+@property(retain) NSButton *nextButtonResponder; // @synthesize nextButtonResponder=_nextButtonResponder;
 @property BOOL supportsRTL; // @synthesize supportsRTL=_supportsRTL;
 @property(nonatomic) BOOL echosBullets; // @synthesize echosBullets=_echosBullets;
-@property(nonatomic) id <AKPinFieldViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <AKPinFieldViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (int)activeInputIndex;
 - (struct CGRect)rectForIndex:(int)arg1;
+- (void)handleTextChange;
+- (void)_handleBackspaceEvent;
+- (void)_appendNewCharacterWithEvent:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (BOOL)acceptsFirstResponder;
+- (void)drawFocusRingOnRect:(struct CGRect)arg1;
 - (void)drawRect:(struct CGRect)arg1;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 pinLength:(int)arg2 supportsRTL:(BOOL)arg3 chunkingStyle:(unsigned long long)arg4;
 - (id)initWithFrame:(struct CGRect)arg1 pinLength:(int)arg2;
 - (id)initWithFrame:(struct CGRect)arg1;

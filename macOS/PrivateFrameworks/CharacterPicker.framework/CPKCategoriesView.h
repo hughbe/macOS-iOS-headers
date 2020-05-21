@@ -11,10 +11,12 @@
 __attribute__((visibility("hidden")))
 @interface CPKCategoriesView : NSView
 {
+    long long _categoryCount;
     CPKBaseMatrix *_fixedCategories;
-    CPKBaseMatrix *_scrollbaleCategories;
+    CPKBaseMatrix *_scrollableCategories;
     NSView *_scrollEnclosure;
     BOOL _enabled;
+    BOOL _isRTLLayout;
     long long _separatorIndex;
     long long _scrollerIndex;
     long long _lastSelectedIndex;
@@ -24,17 +26,19 @@ __attribute__((visibility("hidden")))
 }
 
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
-- (long long)_localIndexFromGlobalIndex:(long long)arg1 outMatrix:(id *)arg2;
-- (long long)_globalIndexFromLocalIndex:(long long)arg1 inMatrix:(id)arg2;
+- (long long)_cellIndexFromCategoryIndex:(long long)arg1 outMatrix:(id *)arg2;
+- (long long)_categoryIndexFromCellIndex:(long long)arg1 inMatrix:(id)arg2;
 - (BOOL)_shouldIgnoreUserSelectionOnMatrix:(id)arg1;
-- (void)_scrollCategoriesWithCompletion:(CDUnknownBlockType)arg1;
+- (void)_scrollToShowCategory:(long long)arg1 animate:(BOOL)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (void)_selectedCatageoryIndex:(long long)arg1 byUser:(BOOL)arg2;
+- (BOOL)allowsVibrancy;
 - (void)scrollItemClicked:(id)arg1;
 - (void)myDefaultAction:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
-- (void)navigationSelectionDidMoved:(id)arg1;
+- (long long)initialSelectionForState:(id)arg1;
 - (void)setState:(id)arg1;
-- (id)stateForPersistent:(BOOL)arg1;
+- (id)state;
+- (void)fillCategoryInfo:(CDUnknownBlockType)arg1;
 - (void)setEnabled:(BOOL)arg1 atIndex:(long long)arg2;
 - (long long)selectedCategoryIndex;
 - (id)selectedCategoryAXElement;

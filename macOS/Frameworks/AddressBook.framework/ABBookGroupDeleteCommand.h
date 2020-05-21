@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABBookUndoableCommand.h>
+#import "ABBookUndoableCommand.h"
 
 @class ABGroupEntriesList, ABRecordContext, NSDictionary, NSString;
 
@@ -16,8 +16,11 @@
     NSDictionary *_undoState;
     ABGroupEntriesList *_groupEntriesList;
     int _containmentPersonality;
+    BOOL ignoresGuardianRestrictions;
 }
 
+- (void)setIgnoresGuardianRestrictions:(BOOL)arg1;
+- (BOOL)ignoresGuardianRestrictions;
 @property(copy) NSDictionary *undoState; // @synthesize undoState=_undoState;
 - (void)executeUndo;
 - (id)group;

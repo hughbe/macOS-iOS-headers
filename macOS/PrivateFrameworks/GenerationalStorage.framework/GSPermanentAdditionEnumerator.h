@@ -24,6 +24,7 @@ __attribute__((visibility("hidden")))
     id _token;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSError *error; // @synthesize error=_error;
 - (id)nextObject;
 - (void)_fetchNextBatch;

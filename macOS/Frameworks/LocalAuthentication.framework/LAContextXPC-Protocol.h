@@ -12,7 +12,7 @@
 @class NSData;
 
 @protocol LAContextXPC <LAContextExternalizationProt, LAContextPropertiesProt, LAContextClientEvaluationProt, LAContextEventFeedbackProt>
-- (void)setCredential:(NSData *)arg1 type:(long long)arg2 reply:(void (^)(BOOL, NSError *))arg3;
-- (void)isCredentialSet:(long long)arg1 reply:(void (^)(BOOL, NSError *))arg2;
+- (void)tokenForTransferToUnknownProcess:(void (^)(NSData *, NSError *))arg1;
+- (void)allowTransferToProcess:(int)arg1 receiverAuditTokenData:(NSData *)arg2 reply:(void (^)(BOOL, NSError *))arg3;
 @end
 

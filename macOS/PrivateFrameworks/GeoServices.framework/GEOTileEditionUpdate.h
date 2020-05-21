@@ -8,7 +8,6 @@
 
 @class NSMutableArray;
 
-__attribute__((visibility("hidden")))
 @interface GEOTileEditionUpdate : NSObject
 {
     NSMutableArray *_entries;
@@ -16,9 +15,9 @@ __attribute__((visibility("hidden")))
     BOOL _invalidateEverything;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL invalidateEverything; // @synthesize invalidateEverything=_invalidateEverything;
 @property(nonatomic) BOOL flushEverything; // @synthesize flushEverything=_flushEverything;
-- (void)dealloc;
 - (void)tileset:(unsigned int *)arg1 edition:(unsigned int *)arg2 provider:(unsigned int *)arg3 invalidateOnly:(char *)arg4 atIndex:(unsigned long long)arg5;
 - (unsigned long long)tilesetCount;
 - (void)addTileset:(unsigned int)arg1 edition:(unsigned int)arg2 provider:(unsigned int)arg3 invalidateOnly:(BOOL)arg4;

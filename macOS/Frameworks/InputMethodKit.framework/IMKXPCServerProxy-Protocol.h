@@ -4,13 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class IMKEvent, NSDictionary;
+@class IMKEvent, NSDictionary, NSObject<NSSecureCoding>;
 
 @protocol IMKXPCServerProxy
 - (oneway void)ironwoodPlaceholderWasInvalidated:(id)arg1;
 - (oneway void)ironwoodTextWasCorrected:(id)arg1;
 - (oneway void)sendInputSessionSessAction:(unsigned int)arg1 timestamp:(double)arg2 withInfo:(NSDictionary *)arg3;
 - (oneway void)sendInputSessionSessAction:(unsigned int)arg1;
+- (void)setInputMethodProperty:(unsigned long long)arg1 value:(NSObject<NSSecureCoding> *)arg2;
 - (void)invalidateClientGeometry;
 - (void)recognizedEventsWithReply:(void (^)(unsigned long long))arg1;
 - (void)recognizedEventsWithClientAsync:(BOOL)arg1 reply:(void (^)(unsigned long long))arg2;

@@ -8,6 +8,8 @@
 
 #import "NSScrollerImpDelegate.h"
 
+@class NSString;
+
 @interface NSScroller : NSControl <NSScrollerImpDelegate>
 {
     double _curValue;
@@ -47,7 +49,8 @@
     } sFlags;
 }
 
-+ (void)_drawEndCapInRect:(struct CGRect)arg1;
++ (BOOL)scrollerSubclassIsCompatibleWithOverlayScrollers;
++ (id)defaultAnimationForKey:(id)arg1;
 + (void)_setArrowsConfig:(int)arg1;
 + (int)_arrowsConfig;
 + (long long)preferredScrollerStyle;
@@ -56,12 +59,55 @@
 + (double)scrollerWidthForControlSize:(unsigned long long)arg1;
 + (double)scrollerWidthForControlSize:(unsigned long long)arg1 scrollerStyle:(long long)arg2;
 + (void)_aquaScrollerVariantChanged:(id)arg1;
-+ (void)_aquaScrollerBehaviorChanged:(id)arg1;
 + (BOOL)isCompatibleWithOverlayScrollers;
-+ (id)defaultAnimationForKey:(id)arg1;
-+ (BOOL)scrollerSubclassIsCompatibleWithOverlayScrollers;
++ (void)_aquaScrollerBehaviorChanged:(id)arg1;
++ (long long)clickBehavior;
 + (BOOL)accessibilityIsSingleCelled;
-- (unsigned int)_CAViewFlags;
+- (struct CGRect)_drawingRectForPart:(unsigned long long)arg1;
+- (void)_setThumbingKnobProportion:(double)arg1;
+- (double)_thumbingKnobProportion;
+- (void)_setThumbingDoubleValue:(double)arg1;
+- (double)_thumbingDoubleValue;
+- (void)_scrollByDelta:(double)arg1;
+- (void)_incrementPage:(id)arg1;
+- (void)_decrementPage:(id)arg1;
+- (void)_incrementLine:(id)arg1;
+- (void)_decrementLine:(id)arg1;
+- (void)setUsePresentationValue:(BOOL)arg1;
+- (void)setPresentationValue:(double)arg1;
+- (double)overlayScrollerTrackAlpha;
+- (double)overlayScrollerKnobAlpha;
+- (unsigned long long)_overlayScrollerState;
+- (id)scrollerImp;
+- (long long)_orientation;
+- (void)_setIsHorizontal:(BOOL)arg1;
+- (void)_setNeedsDisplayIfNotLayerBackedOverlayCompatibleInRect:(struct CGRect)arg1;
+- (void)_setNeedsDisplayIfNotLayerBackedOverlayCompatible;
+- (void)setNeedsDisplayInRect:(struct CGRect)arg1;
+- (void)_setOverlayScrollerState:(unsigned long long)arg1 forceImmediately:(BOOL)arg2;
+- (void)scrollerImp:(id)arg1 overlayScrollerStateChangedTo:(unsigned long long)arg2;
+- (void)scrollerImp:(id)arg1 animateTrackAlphaTo:(double)arg2 duration:(double)arg3;
+- (void)scrollerImp:(id)arg1 animateKnobAlphaTo:(double)arg2 duration:(double)arg3;
+- (void)scrollerImp:(id)arg1 animateExpansionTransitionWithDuration:(double)arg2;
+- (void)scrollerImp:(id)arg1 animateUIStateTransitionWithDuration:(double)arg2;
+- (struct CGPoint)mouseLocationInScrollerForScrollerImp:(id)arg1;
+- (BOOL)shouldUseLayerPerPartForScrollerImp:(id)arg1;
+- (void)_setAvoidingOtherScrollerThumb:(BOOL)arg1;
+- (void)resetCursorRects;
+- (double)_expansionTransitionProgress;
+- (void)setExpansionTransitionProgress:(double)arg1;
+- (double)_uiStateTransitionProgress;
+- (void)setUiStateTransitionProgress:(double)arg1;
+- (void)setOverlayScrollerTrackAlpha:(double)arg1;
+- (void)setOverlayScrollerKnobAlpha:(double)arg1;
+- (BOOL)layer:(id)arg1 shouldInheritContentsScale:(double)arg2 fromWindow:(id)arg3;
+- (void)setLayer:(id)arg1;
+- (void)_setTrackingInKnob:(BOOL)arg1;
+- (BOOL)_isTrackingInKnob;
+- (BOOL)_fixScrollerImpForSwizzlers;
+- (void)_replaceScrollerImp;
+- (void)_setLionScrollerStyle:(long long)arg1;
+- (long long)_lionScrollerStyle;
 - (void)_windowChangedKeyState;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -89,22 +135,22 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
+- (long long)_preferredLayerContentsRedrawPolicy;
 - (void)_compositeScrollerPart:(unsigned long long)arg1 inRect:(struct CGRect)arg2 withAlpha:(double)arg3 drawHandler:(CDUnknownBlockType)arg4;
 - (void)drawKnobSlotInRect:(struct CGRect)arg1 highlight:(BOOL)arg2;
-- (void)_old_drawKnobSlotInRect:(struct CGRect)arg1 highlight:(BOOL)arg2;
 - (void)drawKnob;
-- (void)_old_drawKnob;
 - (void)drawArrow:(unsigned long long)arg1 highlight:(BOOL)arg2;
 - (void)drawArrow:(unsigned long long)arg1 highlightPart:(unsigned long long)arg2;
 - (void)_old_drawArrow:(unsigned long long)arg1 highlightPart:(unsigned long long)arg2;
-- (id)_vibrancyFilter;
+- (int)_vibrancyBlendMode;
 - (BOOL)allowsVibrancy;
-- (struct __CFDictionary *)_copyCompositeCoreUIDrawOptions;
+- (id)effectiveAppearance;
 - (void)setEnabled:(BOOL)arg1;
-- (unsigned long long)_realControlTint;
 @property unsigned long long controlSize;
-@property unsigned long long controlTint;
-@property unsigned long long arrowsPosition;
+- (unsigned long long)controlTint;
+- (void)setControlTint:(unsigned long long)arg1;
+- (unsigned long long)arrowsPosition;
+- (void)setArrowsPosition:(unsigned long long)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (void)setAction:(SEL)arg1;
 - (void)setTarget:(id)arg1;
@@ -116,8 +162,6 @@
 @property long long scrollerStyle;
 - (void)_really_setLionScrollerStyle:(long long)arg1;
 - (BOOL)wantsLayer;
-- (void)_updateWantsLayer;
-- (BOOL)_scrollerWantsLayer;
 - (BOOL)isFlipped;
 - (BOOL)isOpaque;
 - (void)dealloc;
@@ -125,56 +169,6 @@
 - (BOOL)_routeAroundScrollerStyleAccessors;
 - (void)_setWindow:(id)arg1;
 - (double)_repeatTime;
-- (BOOL)_useTigerMetrics;
-- (BOOL)_desiredLayerSizeMeritsTiledBackingLayer:(struct CGSize)arg1;
-- (long long)_orientation;
-- (void)_setIsHorizontal:(BOOL)arg1;
-- (void)_setNeedsDisplayIfNotLayerBackedOverlayCompatibleInRect:(struct CGRect)arg1;
-- (void)_setNeedsDisplayIfNotLayerBackedOverlayCompatible;
-- (void)setNeedsDisplayInRect:(struct CGRect)arg1;
-- (void)setNeedsDisplay:(BOOL)arg1;
-- (void)_setOverlayScrollerState:(unsigned long long)arg1 forceImmediately:(BOOL)arg2;
-- (void)scrollerImp:(id)arg1 overlayScrollerStateChangedTo:(unsigned long long)arg2;
-- (void)scrollerImp:(id)arg1 animateTrackAlphaTo:(double)arg2 duration:(double)arg3;
-- (void)scrollerImp:(id)arg1 animateKnobAlphaTo:(double)arg2 duration:(double)arg3;
-- (void)scrollerImp:(id)arg1 animateExpansionTransitionWithDuration:(double)arg2;
-- (void)scrollerImp:(id)arg1 animateUIStateTransitionWithDuration:(double)arg2;
-- (struct CGPoint)mouseLocationInScrollerForScrollerImp:(id)arg1;
-- (BOOL)shouldUseLayerPerPartForScrollerImp:(id)arg1;
-- (void)_setAvoidingOtherScrollerThumb:(BOOL)arg1;
-- (BOOL)_avoidingOtherScrollerThumb;
-- (void)resetCursorRects;
-- (double)_expansionTransitionProgress;
-- (void)setExpansionTransitionProgress:(double)arg1;
-- (double)_uiStateTransitionProgress;
-- (void)setUiStateTransitionProgress:(double)arg1;
-- (void)setOverlayScrollerTrackAlpha:(double)arg1;
-- (void)setOverlayScrollerKnobAlpha:(double)arg1;
-- (BOOL)layer:(id)arg1 shouldInheritContentsScale:(double)arg2 fromWindow:(id)arg3;
-- (void)setLayer:(id)arg1;
-- (BOOL)_needsMasksToBounds;
-- (void)_setTrackingInKnob:(BOOL)arg1;
-- (BOOL)_isTrackingInKnob;
-- (BOOL)_fixScrollerImpForSwizzlers;
-- (void)_replaceScrollerImp;
-- (void)_setLionScrollerStyle:(long long)arg1;
-- (long long)_lionScrollerStyle;
-- (struct CGRect)_drawingRectForPart:(unsigned long long)arg1;
-- (void)_setThumbingKnobProportion:(double)arg1;
-- (double)_thumbingKnobProportion;
-- (void)_setThumbingDoubleValue:(double)arg1;
-- (double)_thumbingDoubleValue;
-- (void)_scrollByDelta:(double)arg1;
-- (void)_incrementPage:(id)arg1;
-- (void)_decrementPage:(id)arg1;
-- (void)_incrementLine:(id)arg1;
-- (void)_decrementLine:(id)arg1;
-- (void)setUsePresentationValue:(BOOL)arg1;
-- (void)setPresentationValue:(double)arg1;
-- (double)overlayScrollerTrackAlpha;
-- (double)overlayScrollerKnobAlpha;
-- (unsigned long long)_overlayScrollerState;
-- (id)scrollerImp;
 - (void)_automateLiveScroll;
 - (id)accessibilitySizeOfChild:(id)arg1;
 - (id)accessibilityPositionOfChild:(id)arg1;
@@ -197,6 +191,12 @@
 - (id)accessibilityValueAttribute;
 - (id)accessibilityRoleAttribute;
 - (id)accessibilityAttributeNames;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

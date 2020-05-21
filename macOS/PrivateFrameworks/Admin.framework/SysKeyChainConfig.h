@@ -12,10 +12,7 @@
 
 + (id)sharedSysKeyChainConfig;
 - (void)setRestrictAppInstallations:(BOOL)arg1 allowCaspianIdentifiedApps:(BOOL)arg2;
-- (BOOL)FDERevertRequiresRestart:(id)arg1;
-- (long long)resetFDERecoveryPassword:(id)arg1 existing:(id)arg2 new:(id)arg3;
-- (void)overwriteGatekeeperForURL:(id)arg1 withAuthorization:(id)arg2;
-- (void)overwriteGatekeeperForURL:(id)arg1;
+- (void)setRestrictAppInstallations:(unsigned long long)arg1;
 - (BOOL)setODSDPassword:(id)arg1 accountName:(id)arg2;
 - (int)storeKeyInSystemKeychain:(id)arg1 forUser:(id)arg2 serverURL:(id)arg3 description:(id)arg4;
 - (BOOL)storeSystemKeychainPassword:(id)arg1 account:(id)arg2 service:(id)arg3;

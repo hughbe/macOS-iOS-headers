@@ -12,7 +12,6 @@
 
 + (BOOL)supportsSecureCoding;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

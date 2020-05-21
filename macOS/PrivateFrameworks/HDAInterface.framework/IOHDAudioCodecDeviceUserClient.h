@@ -37,7 +37,9 @@
 - (unsigned int)getAppleHDADriver_allMicsMode;
 - (int)setAppleHDADriver_dspMode:(unsigned int)arg1 input:(_Bool)arg2 output:(_Bool)arg3;
 - (int)setAppleHDADriver_i2cRead:(unsigned int)arg1 register:(unsigned int)arg2 data:(unsigned int *)arg3;
+- (int)setAppleHDADriver_i2cRead:(unsigned int)arg1 register:(unsigned int)arg2 data:(unsigned int *)arg3 paged:(_Bool)arg4;
 - (int)setAppleHDADriver_i2cWrite:(unsigned int)arg1 register:(unsigned int)arg2 data:(unsigned int)arg3;
+- (int)setAppleHDADriver_i2cWrite:(unsigned int)arg1 register:(unsigned int)arg2 data:(unsigned int)arg3 paged:(_Bool)arg4;
 - (int)setAppleHDADriver_i2cConfig:(unsigned int)arg1;
 - (int)getAppleHDADriver_i2cConfig:(unsigned int *)arg1;
 - (int)setAppleHDADriver_spiRead:(unsigned short)arg1 register:(unsigned short)arg2 data:(unsigned int *)arg3;

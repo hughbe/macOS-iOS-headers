@@ -8,7 +8,7 @@
 
 #import "NSSharingPlugInViewControllerProtocol.h"
 
-@class NSButton, NSImage, NSImageView, NSString, NSTextField;
+@class NSButton, NSImage, NSImageView, NSString, NSTextField, NSTouchBar;
 
 @interface NSSharingAccountConfigurationViewController : NSViewController <NSSharingPlugInViewControllerProtocol>
 {
@@ -17,14 +17,17 @@
     NSTextField *setupTextField;
     NSButton *cancelButton;
     NSButton *configureButton;
+    NSTouchBar *configurationTouchBar;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSButton *configureButton; // @synthesize configureButton;
 @property(readonly) NSButton *cancelButton; // @synthesize cancelButton;
 @property(readonly) NSTextField *setupTextField; // @synthesize setupTextField;
 @property(readonly) NSImageView *iconImageView; // @synthesize iconImageView;
 @property(readonly) NSImageView *logoImageView; // @synthesize logoImageView;
-- (void).cxx_destruct;
+- (id)makeTouchBar;
+- (void)viewDidAppear;
 - (void)closeAndConfigure:(id)arg1;
 - (void)close:(id)arg1;
 - (BOOL)attemptRecoveryFromError:(id)arg1 optionIndex:(unsigned long long)arg2;

@@ -6,22 +6,31 @@
 
 #import <ContactsPersistence/ABCDRecord.h>
 
-@interface ABCDGroup : ABCDRecord
+#import "ABCDContainedRecord.h"
+
+@class CNCDContainer, NSSet, NSString;
+
+@interface ABCDGroup : ABCDRecord <ABCDContainedRecord>
 {
     id _readWriteSharingACL;
     id _readSharingACL;
 }
 
++ (id)contactMembershipPredicateWithUniqueIds:(id)arg1;
 + (id)contactMembershipPredicateWithUniqueId:(id)arg1;
 + (id)_table;
 + (id)abEntityName;
+- (void).cxx_destruct;
+- (BOOL)validateForDelete:(id *)arg1;
+- (BOOL)validateForUpdate:(id *)arg1;
+- (BOOL)validateForInsert:(id *)arg1;
 - (id)membersIncludingMembersOfSubgroups:(BOOL)arg1;
 - (id)affectedStoresInMembershipPredicate;
 - (id)contactMembershipRecursivePredicate;
 - (void)removeMembers:(id)arg1;
 - (void)addMembers:(id)arg1;
 - (id)contactMembershipPredicate;
-- (void)setName:(id)arg1;
+@property(retain, nonatomic) NSString *name; // @dynamic name;
 - (id)valueForKeyPath:(id)arg1;
 - (id)stringForIndexing;
 - (id)displayName;
@@ -29,6 +38,13 @@
 - (id)sortingFirstName;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)nameWithFormatter:(id)arg1 rangeOfSortingSubstring:(struct _NSRange *)arg2;
+
+// Remaining properties
+@property(readonly, nonatomic) NSSet *contacts; // @dynamic contacts;
+@property(retain, nonatomic) CNCDContainer *container; // @dynamic container;
+@property(nonatomic) unsigned long long externalGroupBehavior; // @dynamic externalGroupBehavior;
+@property(retain, nonatomic) NSString *nameNormalized; // @dynamic nameNormalized;
+@property(retain, nonatomic) NSString *primitiveName; // @dynamic primitiveName;
 
 @end
 

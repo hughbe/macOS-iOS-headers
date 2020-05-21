@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class DDBinderInfo, DDGrammar, NSMutableArray, NSString;
 
 __attribute__((visibility("hidden")))
-@interface DDNonTerminal : NSObject <NSCoding>
+@interface DDNonTerminal : NSObject <NSSecureCoding>
 {
     NSMutableArray *_productions;
     DDBinderInfo *_info;
@@ -24,6 +24,7 @@ __attribute__((visibility("hidden")))
     struct __DDIndexSet *_followSet;
 }
 
++ (BOOL)supportsSecureCoding;
 @property BOOL forceNonSkippable; // @synthesize forceNonSkippable=_forceNonSkippable;
 @property BOOL skippable; // @synthesize skippable=_skippable;
 @property BOOL matchesEpsilon; // @synthesize matchesEpsilon=_matchesEpsilon;

@@ -13,29 +13,24 @@
 __attribute__((visibility("hidden")))
 @interface FI_TAirDropWirelessSettingsController : NSObject <SFWirelessSettingsControllerDelegate>
 {
-    struct TNSRef<SFWirelessSettingsController *, void> _settingsController;
+    struct TNSRef<SFWirelessSettingsController, void> _settingsController;
     _Bool _isBluetoothEnabled;
     _Bool _isWifiEnabled;
     _Bool _deviceSupportsWAPI;
-    struct TNotificationCenterObserver _forceBluetoothDisabledPrefChangedObserver;
-    struct TNotificationCenterObserver _forceWiFiDisabledPrefChangedObserver;
-    struct TNotificationCenterObserver _forceWiFiAndBluetoothDisabledPrefChangedObserver;
 }
 
 + (id)controller;
-@property(readonly) _Bool deviceSupportsWAPI; // @synthesize deviceSupportsWAPI=_deviceSupportsWAPI;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)preferencesUpdated:(id)arg1;
+@property(readonly) _Bool deviceSupportsWAPI; // @synthesize deviceSupportsWAPI=_deviceSupportsWAPI;
+@property(nonatomic, getter=isWifiEnabled) _Bool wifiEnabled; // @synthesize wifiEnabled=_isWifiEnabled;
+@property(nonatomic, getter=isBluetoothEnabled) _Bool bluetoothEnabled; // @synthesize bluetoothEnabled=_isBluetoothEnabled;
 - (void)wirelessSettingsDidChange:(id)arg1;
 - (void)updateState;
 - (void)_setDeviceSupportsWAPIForUpdateState:(_Bool)arg1;
 - (void)_setWifiEnabledForUpdateState:(_Bool)arg1;
-@property(nonatomic, getter=isWifiEnabled) _Bool wifiEnabled; // @synthesize wifiEnabled=_isWifiEnabled;
 - (void)_setBluetoothEnabledForUpdateState:(_Bool)arg1;
-@property(nonatomic, getter=isBluetoothEnabled) _Bool bluetoothEnabled; // @synthesize bluetoothEnabled=_isBluetoothEnabled;
 - (void)dealloc;
-- (id)init;
 - (id)_init;
 
 // Remaining properties

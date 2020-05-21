@@ -16,16 +16,19 @@
     struct IONotificationPort *mNotificationPort;
 }
 
++ (id)openOnDeviceForFC:(id)arg1 doSyncronously:(BOOL)arg2;
 + (id)openOnDevice:(id)arg1 doSyncronously:(BOOL)arg2;
 + (id)getUniqueConnectionForDevice:(id)arg1;
 + (id)getKeyForIOService:(unsigned int)arg1;
 + (id)getUniqueObjectDictionary:(BOOL)arg1;
 @property(retain) IOBluetoothDevice *device; // @synthesize device=mReferenceDevice;
 - (int)destroyChannel:(unsigned char)arg1;
+- (int)createNewFCChannel:(unsigned char)arg1 channel:(id)arg2;
 - (int)createNewChannel:(unsigned char)arg1 channel:(id)arg2;
 - (int)actOnNewConnection:(unsigned int)arg1;
 - (void)finalize;
 - (void)dealloc;
+- (void)createNewFCConnection:(id)arg1;
 - (id)getKey;
 
 @end

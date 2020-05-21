@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSViewService.h"
+#import "NSServiceViewController.h"
 
 #import "AUAudioUnitRemoteViewProtocol.h"
 
 @class AURemoteExtensionContext, NSString, NSWindow;
 
-@interface AUAudioUnitViewService : NSViewService <AUAudioUnitRemoteViewProtocol>
+@interface AUAudioUnitViewService : NSServiceViewController <AUAudioUnitRemoteViewProtocol>
 {
     NSWindow *__window;
     AURemoteExtensionContext *_extensionContext;

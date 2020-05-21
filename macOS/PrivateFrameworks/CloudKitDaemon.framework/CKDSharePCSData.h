@@ -6,17 +6,20 @@
 
 #import <CloudKitDaemon/CKDPCSData.h>
 
+#import "NSCopying.h"
+#import "NSSecureCoding.h"
+
 @class CKRecordID, NSData, NSString;
 
 __attribute__((visibility("hidden")))
-@interface CKDSharePCSData : CKDPCSData
+@interface CKDSharePCSData : CKDPCSData <NSSecureCoding, NSCopying>
 {
     struct _OpaquePCSShareProtection *_publicPCS;
     CKRecordID *_shareID;
     unsigned long long _serviceType;
     NSString *_shareEtag;
     long long _publicPermission;
-    long long _myParticipantType;
+    long long _myParticipantRole;
     long long _myParticipantPermission;
     struct _OpaquePCSShareProtection *_myParticipantPCS;
     NSData *_myParticipantPCSData;
@@ -26,17 +29,19 @@ __attribute__((visibility("hidden")))
 
 + (BOOL)supportsSecureCoding;
 + (id)dataWithShareID:(id)arg1 pcsData:(id)arg2;
++ (id)dataWithShare:(id)arg1 serviceType:(unsigned long long)arg2;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSData *publicPCSData; // @synthesize publicPCSData=_publicPCSData;
 @property(copy, nonatomic) NSString *publicPCSEtag; // @synthesize publicPCSEtag=_publicPCSEtag;
 @property(copy, nonatomic) NSData *myParticipantPCSData; // @synthesize myParticipantPCSData=_myParticipantPCSData;
 @property(nonatomic) struct _OpaquePCSShareProtection *myParticipantPCS; // @synthesize myParticipantPCS=_myParticipantPCS;
 @property(nonatomic) long long myParticipantPermission; // @synthesize myParticipantPermission=_myParticipantPermission;
-@property(nonatomic) long long myParticipantType; // @synthesize myParticipantType=_myParticipantType;
+@property(nonatomic) long long myParticipantRole; // @synthesize myParticipantRole=_myParticipantRole;
 @property(nonatomic) long long publicPermission; // @synthesize publicPermission=_publicPermission;
 @property(retain, nonatomic) NSString *shareEtag; // @synthesize shareEtag=_shareEtag;
 @property(nonatomic) unsigned long long serviceType; // @synthesize serviceType=_serviceType;
 @property(retain, nonatomic) CKRecordID *shareID; // @synthesize shareID=_shareID;
-- (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)CKPropertiesDescription;

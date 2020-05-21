@@ -17,6 +17,7 @@
 
 + (id)proxyWithAuthProvider:(id)arg1;
 - (void).cxx_destruct;
+- (void)cdpContext:(id)arg1 verifyMasterKey:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)cdpContext:(id)arg1 performSilentRecoveryTokenRenewal:(CDUnknownBlockType)arg2;
 
 // Remaining properties

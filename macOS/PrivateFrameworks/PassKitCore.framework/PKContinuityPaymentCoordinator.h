@@ -16,6 +16,7 @@
     NSObject<OS_dispatch_queue> *_internalQueue;
     NSObject<OS_dispatch_queue> *_callbackQueue;
     NSObject<OS_dispatch_source> *_deviceUpdateTimeoutTimer;
+    NSObject<OS_dispatch_source> *_deviceTotalUpdateTimeoutTimer;
     BOOL _isUpdatingDevices;
     PKRemotePaymentRequest *_currentRemotePaymentRequest;
     long long _messageSendCount;
@@ -28,15 +29,17 @@
 - (void)_send_didReceiveCancellation;
 - (void)_send_didReceivePayment:(id)arg1;
 - (void)_send_didReceiveUpdatedPaymentDevice:(id)arg1;
+- (void)_send_didTimeoutTotalUpdatePaymentDevices;
 - (void)_send_didTimeoutUpdatePaymentDevices;
+- (void)_deviceUpdateTotalTimerDidTimeout;
 - (void)_deviceUpdateTimerDidTimeout;
 - (void)_resetRequest;
-- (void)_queue_sendPaymentStatus:(long long)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_queue_sendPaymentResult:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)didReceiveCancellationForRemotePaymentRequest:(id)arg1;
 - (void)didReceivePayment:(id)arg1 forRemotePaymentRequest:(id)arg2;
 - (void)didReceiveUpdatedPaymentDevices:(id)arg1;
 - (void)cancelRemotePaymentRequestWithCompletion:(CDUnknownBlockType)arg1;
-- (void)sendPaymentStatus:(long long)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)sendPaymentResult:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)sendPaymentClientUpdate:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)sendRemotePaymentRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)updatePaymentDevices;

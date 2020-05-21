@@ -25,7 +25,13 @@
             unsigned int textScriptType:4;
             unsigned int enablesReturnKeyAutomatically:1;
             unsigned int secureTextEntry:1;
+            unsigned int smartInsertDeleteEnabled:1;
+            unsigned int smartQuotesEnabled:1;
+            unsigned int smartDashesEnabled:1;
             unsigned int disablePrediction:1;
+            unsigned int smartInsertDeleteType:2;
+            unsigned int smartQuotesType:2;
+            unsigned int smartDashesType:2;
         } fields;
     } _mask;
     NSString *_textContentType;
@@ -33,6 +39,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *recentInputIdentifier; // @synthesize recentInputIdentifier=_recentInputIdentifier;
 @property(copy, nonatomic) NSString *textContentType; // @synthesize textContentType=_textContentType;
 - (id)description;
@@ -41,6 +48,12 @@
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(nonatomic) BOOL disablePrediction;
+@property(nonatomic) unsigned long long smartDashesType;
+@property(nonatomic) unsigned long long smartQuotesType;
+@property(nonatomic) unsigned long long smartInsertDeleteType;
+@property(nonatomic) BOOL smartDashesEnabled;
+@property(nonatomic) BOOL smartQuotesEnabled;
+@property(nonatomic) BOOL smartInsertDeleteEnabled;
 @property(nonatomic) unsigned long long textScriptType;
 @property(nonatomic) BOOL secureTextEntry;
 @property(nonatomic) BOOL enablesReturnKeyAutomatically;
@@ -50,7 +63,6 @@
 @property(nonatomic) unsigned long long spellCheckingType;
 @property(nonatomic) unsigned long long autocorrectionType;
 @property(nonatomic) unsigned long long autocapitalizationType;
-- (void)dealloc;
 
 @end
 

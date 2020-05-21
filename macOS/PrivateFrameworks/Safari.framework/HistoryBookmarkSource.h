@@ -6,18 +6,22 @@
 
 #import <Safari/BookmarkSource.h>
 
-@class NSArray, NSDate, NSDateFormatter, NSMenu, NSMenuItem;
+#import "NSMenuDelegate.h"
+
+@class NSArray, NSDate, NSDateFormatter, NSMapTable, NSMenu, NSMenuItem, NSString;
 
 __attribute__((visibility("hidden")))
-@interface HistoryBookmarkSource : BookmarkSource
+@interface HistoryBookmarkSource : BookmarkSource <NSMenuDelegate>
 {
     NSMenu *_historyMenu;
     NSMenuItem *_recentlyClosedSubmenuMenuItem;
     NSMenuItem *_reopenRecentlyClosedTabsMenuItem;
     unsigned long long _builtInHistoryMenuItemsCount;
+    BOOL _isHistoryMenuUpToDate;
     NSArray *_sessions;
     NSDate *_oldestDateLoaded;
     NSDateFormatter *_dateFormatter;
+    NSMapTable *_bookmarkCache;
 }
 
 + (id)sharedSource;
@@ -41,11 +45,14 @@ __attribute__((visibility("hidden")))
 - (id)_titleForSession:(id)arg1;
 - (void)_removeHistoryFromMenu;
 - (void)_recentlyClosedTabsOrWindowsDidChange;
-- (void)_historySessionsDidChange;
+- (void)refreshContents;
+- (void)_historySessionsDidChange:(id)arg1;
 - (id)titleStringForContentItem:(id)arg1;
 - (id)parentOfContentItem:(id)arg1;
 - (unsigned int)numberOfChildrenOfContentItem:(id)arg1;
+- (id)imageURLStringForContentItem:(id)arg1;
 - (id)imageForContentItem:(id)arg1;
+- (BOOL)deleteContentItems:(id)arg1;
 - (BOOL)deleteContentItems:(id)arg1 withParentWindow:(id)arg2 undoManager:(id)arg3;
 - (id)child:(unsigned int)arg1 ofContentItem:(id)arg2;
 - (id)contentItemsToInitiallyExpand;
@@ -59,11 +66,19 @@ __attribute__((visibility("hidden")))
 - (id)bookmarkSourceImage;
 - (id)bookmarkFromContentItem:(id)arg1;
 - (id)addressStringForContentItem:(id)arg1;
+- (BOOL)menuHasKeyEquivalent:(id)arg1 forEvent:(id)arg2 target:(id *)arg3 action:(SEL *)arg4;
+- (void)menuWillOpen:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
 - (void)performDelayedLaunchOperations;
 - (void)setHistoryMenu:(id)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -15,11 +15,11 @@
     NSString *_value;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *value; // @synthesize value=_value;
 @property(retain, nonatomic) NSString *nameSpace; // @synthesize nameSpace=_nameSpace;
 @property(retain, nonatomic) NSString *name; // @synthesize name=_name;
 - (id)description;
-- (void)dealloc;
 - (id)initWithNameSpace:(id)arg1 name:(id)arg2 value:(id)arg3;
 - (id)init;
 

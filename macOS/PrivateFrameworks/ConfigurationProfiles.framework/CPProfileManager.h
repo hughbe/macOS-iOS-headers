@@ -32,7 +32,7 @@
 - (void)processPluginInstallActions:(id)arg1 compositorWatcher:(id)arg2 forUser:(id)arg3;
 - (id)guidForUser:(id)arg1;
 - (BOOL)isUserAllowed:(id)arg1 profile:(id)arg2;
-- (void)recompositeManagedClient:(id)arg1 profileUUID:(id)arg2 withUID:(unsigned int)arg3;
+- (void)recompositeManagedClient:(id)arg1 profileUUID:(id)arg2 withUID:(unsigned int)arg3 infoDict:(id)arg4;
 - (id)uninstallProfileCore:(id)arg1 forUser:(id)arg2;
 
 @end

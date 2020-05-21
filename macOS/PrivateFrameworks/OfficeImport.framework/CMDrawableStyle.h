@@ -8,11 +8,13 @@
 
 @class OADDrawable;
 
+__attribute__((visibility("hidden")))
 @interface CMDrawableStyle : EMCellStyle
 {
     OADDrawable *mDrawable;
 }
 
+- (void).cxx_destruct;
 - (void)addPositionUsingOffsets:(struct CGRect)arg1;
 - (void)addPositionProperties:(struct CGRect)arg1;
 

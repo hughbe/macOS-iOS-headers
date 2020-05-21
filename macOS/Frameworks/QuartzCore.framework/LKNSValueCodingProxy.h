@@ -17,9 +17,11 @@ __attribute__((visibility("hidden")))
         struct CATransform3D transform;
         struct CAPoint3D point3d;
         struct CAColorMatrix color_matrix;
+        struct CGAffineTransform affine_transform;
     } _u;
 }
 
++ (BOOL)supportsSecureCoding;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)decodedObject;

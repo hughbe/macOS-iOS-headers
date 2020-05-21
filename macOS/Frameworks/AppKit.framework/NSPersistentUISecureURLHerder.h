@@ -8,19 +8,19 @@
 
 @class NSMutableDictionary, NSString;
 
+__attribute__((visibility("hidden")))
 @interface NSPersistentUISecureURLHerder : NSObject
 {
-    NSMutableDictionary *urlsStashedInLSToSharedFileListItemRefs;
-    void *lsSharedFileList;
-    NSString *bundleID;
+    NSMutableDictionary *_urlsStashedInLSToSharedFileListItemRefs;
+    void *_lsSharedFileList;
+    NSString *_bundleID;
 }
 
-- (void)setLSPersistentFileList:(id)arg1;
 - (void)resolveSecurityScopedURLsFromRecords:(id)arg1;
 - (void)fetchAndConsumeLSPersistentFileList;
 - (struct OpaqueLSSharedFileListRef *)getLSPersistentFileList;
 - (void)dealloc;
-- (id)init;
+- (id)initWithBundleID:(id)arg1;
 
 @end
 

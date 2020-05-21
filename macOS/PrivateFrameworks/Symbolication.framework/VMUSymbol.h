@@ -14,7 +14,7 @@
     VMUSourceInfo *_sourceInfo;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)sourceInfoForAddress:(unsigned long long)arg1;
 - (id)name;
 - (id)initWithSymbolicator:(struct _CSTypeRef)arg1 address:(unsigned long long)arg2;

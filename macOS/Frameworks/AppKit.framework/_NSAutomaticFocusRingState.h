@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CALayer, NSBitmapImageRep, NSRegion, NSResponder, NSTimer, NSView, NSWindow;
+@class CALayer, NSBitmapImageRep, NSRegion, NSResponder, NSTimer, NSValue, NSView;
 
 __attribute__((visibility("hidden")))
 @interface _NSAutomaticFocusRingState : NSObject
@@ -22,14 +22,18 @@ __attribute__((visibility("hidden")))
     double focusRingAnimationStartTime;
     NSTimer *animationTimer;
     struct CGRect animatedFocusRingBounds;
-    NSWindow *alreadyFocusedWindow;
+    NSValue *alreadyFocusedWindow;
     NSView *lastNonNilFocusRingView;
     double nilFocusTime;
+    NSValue *forceRect;
+    BOOL isAccessibilityRequest;
 }
 
+@property BOOL isAccessibilityRequest; // @synthesize isAccessibilityRequest;
+@property(retain) NSValue *forceRect; // @synthesize forceRect;
 @property double nilFocusTime; // @synthesize nilFocusTime;
 @property NSView *lastNonNilFocusRingView; // @synthesize lastNonNilFocusRingView;
-@property(retain) NSWindow *alreadyFocusedWindow; // @synthesize alreadyFocusedWindow;
+@property(retain) NSValue *alreadyFocusedWindow; // @synthesize alreadyFocusedWindow;
 @property struct CGRect animatedFocusRingBounds; // @synthesize animatedFocusRingBounds;
 @property(retain) NSTimer *animationTimer; // @synthesize animationTimer;
 @property double focusRingAnimationStartTime; // @synthesize focusRingAnimationStartTime;
@@ -41,6 +45,7 @@ __attribute__((visibility("hidden")))
 @property(retain) NSView *automaticFocusRingView; // @synthesize automaticFocusRingView;
 @property BOOL automaticFocusRingNeedsUpdate; // @synthesize automaticFocusRingNeedsUpdate;
 @property BOOL automaticFocusRingShown; // @synthesize automaticFocusRingShown;
+- (void)dealloc;
 
 @end
 

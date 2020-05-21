@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class NSDictionary, NSMutableDictionary, NSString, NSURL;
+@class NSDictionary, NSMutableDictionary, NSPersistentCloudKitContainerOptions, NSString, NSURL;
 
 @interface NSPersistentStoreDescription : NSObject <NSCopying>
 {
@@ -18,10 +18,17 @@
     NSURL *_url;
 }
 
++ (id)inMemoryPersistentStoreDescription;
 + (id)persistentStoreDescriptionWithURL:(id)arg1;
 @property(copy) NSURL *URL; // @synthesize URL=_url;
 @property(copy) NSString *configuration; // @synthesize configuration=_configuration;
 @property(copy) NSString *type; // @synthesize type=_type;
+- (void)setUsesPersistentHistoryTracking:(BOOL)arg1;
+- (BOOL)usesPersistentHistoryTracking;
+- (void)setOption:(id)arg1 forMirroringKey:(id)arg2;
+- (id)mirroringOptions;
+- (id)mirroringDelegate;
+- (void)setMirroringDelegate:(id)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -31,6 +38,8 @@
 - (id)init;
 @property BOOL shouldInferMappingModelAutomatically;
 @property BOOL shouldMigrateStoreAutomatically;
+- (void)setShouldInvokeCompletionHandlerConcurrently:(BOOL)arg1;
+- (BOOL)shouldInvokeCompletionHandlerConcurrently;
 @property BOOL shouldAddStoreAsynchronously;
 - (void)setValue:(id)arg1 forPragmaNamed:(id)arg2;
 @property(readonly, copy, nonatomic) NSDictionary *sqlitePragmas;
@@ -38,6 +47,7 @@
 @property(getter=isReadOnly) BOOL readOnly;
 - (void)setOption:(id)arg1 forKey:(id)arg2;
 @property(readonly, copy, nonatomic) NSDictionary *options;
+@property(retain) NSPersistentCloudKitContainerOptions *cloudKitContainerOptions;
 
 @end
 

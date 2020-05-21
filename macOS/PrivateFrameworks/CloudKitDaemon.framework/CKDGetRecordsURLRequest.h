@@ -15,6 +15,8 @@ __attribute__((visibility("hidden")))
     NSSet *_assetFieldNamesToPublishURLs;
     unsigned long long _requestedTTL;
     unsigned long long _URLOptions;
+    NSSet *_desiredAssetKeys;
+    NSArray *_desiredIndexedListKeys;
     CDUnknownBlockType _recordFetchedBlock;
     NSArray *_recordIDs;
     NSDictionary *_recordIDsToETags;
@@ -24,6 +26,7 @@ __attribute__((visibility("hidden")))
     NSSet *_desiredKeys;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSSet *desiredKeys; // @synthesize desiredKeys=_desiredKeys;
 @property(retain, nonatomic) NSMutableDictionary *recordIDByRequestID; // @synthesize recordIDByRequestID=_recordIDByRequestID;
 @property(nonatomic) unsigned long long recordCount; // @synthesize recordCount=_recordCount;
@@ -32,13 +35,16 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSArray *recordIDs; // @synthesize recordIDs=_recordIDs;
 @property(copy, nonatomic) CDUnknownBlockType recordFetchedBlock; // @synthesize recordFetchedBlock=_recordFetchedBlock;
 @property(nonatomic) BOOL shouldFetchAssetContent; // @synthesize shouldFetchAssetContent=_shouldFetchAssetContent;
+@property(retain, nonatomic) NSArray *desiredIndexedListKeys; // @synthesize desiredIndexedListKeys=_desiredIndexedListKeys;
+@property(retain, nonatomic) NSSet *desiredAssetKeys; // @synthesize desiredAssetKeys=_desiredAssetKeys;
 @property(nonatomic) unsigned long long URLOptions; // @synthesize URLOptions=_URLOptions;
 @property(nonatomic) unsigned long long requestedTTL; // @synthesize requestedTTL=_requestedTTL;
 @property(retain, nonatomic) NSSet *assetFieldNamesToPublishURLs; // @synthesize assetFieldNamesToPublishURLs=_assetFieldNamesToPublishURLs;
-- (void).cxx_destruct;
 - (void)requestDidParseNodeFailure:(id)arg1;
 - (id)requestDidParseProtobufObject:(id)arg1;
-- (id)requestOperations;
+- (id)requestedListFieldsForDesiredIndexedListKeys;
+- (id)generateRequestOperations;
+- (BOOL)requestGETPreAuth;
 - (id)requestOperationClasses;
 - (id)zoneIDsToLock;
 - (int)operationType;

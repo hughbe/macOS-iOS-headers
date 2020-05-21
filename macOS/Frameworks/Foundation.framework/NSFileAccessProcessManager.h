@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class BKSApplicationStateMonitor, BKSProcessAssertion, NSArray, NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>;
+@class BKSApplicationStateMonitor, NSArray, NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>;
 
 __attribute__((visibility("hidden")))
 @interface NSFileAccessProcessManager : NSObject
@@ -16,7 +16,7 @@ __attribute__((visibility("hidden")))
     CDUnknownBlockType _suspensionHandler;
     NSArray *_urls;
     BKSApplicationStateMonitor *_monitor;
-    BKSProcessAssertion *_assertion;
+    id _assertionToken;
     int _pendingMessageCount;
 }
 

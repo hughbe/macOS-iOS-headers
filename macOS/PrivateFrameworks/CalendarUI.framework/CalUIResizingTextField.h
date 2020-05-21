@@ -13,27 +13,19 @@
 @interface CalUIResizingTextField : NSTextField <NSTextFieldDelegate>
 {
     BOOL _resizingEnabled;
-    BOOL _skipSizeToFit;
     BOOL _automaticLinkDetection;
     BOOL _alwaysTreatAsLink;
-    BOOL _hasEverLayedOutWithContent;
-    long long _maxLines;
     NSDictionary *_textAttributes;
     id <CalUIResizingTextFieldDelegate> _calDelegate;
-    double _lineHeight;
 }
 
 + (Class)cellClass;
-@property BOOL hasEverLayedOutWithContent; // @synthesize hasEverLayedOutWithContent=_hasEverLayedOutWithContent;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL alwaysTreatAsLink; // @synthesize alwaysTreatAsLink=_alwaysTreatAsLink;
 @property(nonatomic) BOOL automaticLinkDetection; // @synthesize automaticLinkDetection=_automaticLinkDetection;
-@property double lineHeight; // @synthesize lineHeight=_lineHeight;
 @property(retain, nonatomic) id <CalUIResizingTextFieldDelegate> calDelegate; // @synthesize calDelegate=_calDelegate;
 @property(retain) NSDictionary *textAttributes; // @synthesize textAttributes=_textAttributes;
-@property BOOL skipSizeToFit; // @synthesize skipSizeToFit=_skipSizeToFit;
 @property BOOL resizingEnabled; // @synthesize resizingEnabled=_resizingEnabled;
-@property(nonatomic) long long maxLines; // @synthesize maxLines=_maxLines;
-- (void).cxx_destruct;
 - (BOOL)readPasteboard:(id)arg1;
 - (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
 - (void)setDelegate:(id)arg1;

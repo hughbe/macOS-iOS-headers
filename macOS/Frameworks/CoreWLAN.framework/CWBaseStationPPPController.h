@@ -27,7 +27,6 @@
 - (void)poll;
 - (void)setPollInterval:(double)arg1;
 - (id)pollPPPStatus;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

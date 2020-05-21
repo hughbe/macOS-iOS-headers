@@ -6,20 +6,24 @@
 
 #import "CKDatabaseOperationInfo.h"
 
-@class NSSet;
+@class NSDictionary, NSSet;
 
 __attribute__((visibility("hidden")))
 @interface CKRecordFetchAggregatorOperationInfo : CKDatabaseOperationInfo
 {
     BOOL _fetchAssetContents;
     BOOL _preserveOrdering;
+    BOOL _forceDecryptionAttempt;
     NSSet *_desiredKeys;
+    NSDictionary *_assetTransferOptionsByRecordTypeAndKey;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL forceDecryptionAttempt; // @synthesize forceDecryptionAttempt=_forceDecryptionAttempt;
+@property(retain, nonatomic) NSDictionary *assetTransferOptionsByRecordTypeAndKey; // @synthesize assetTransferOptionsByRecordTypeAndKey=_assetTransferOptionsByRecordTypeAndKey;
 @property(retain, nonatomic) NSSet *desiredKeys; // @synthesize desiredKeys=_desiredKeys;
 @property(nonatomic) BOOL preserveOrdering; // @synthesize preserveOrdering=_preserveOrdering;
 @property(nonatomic) BOOL fetchAssetContents; // @synthesize fetchAssetContents=_fetchAssetContents;
-- (void).cxx_destruct;
 - (id)init;
 
 @end

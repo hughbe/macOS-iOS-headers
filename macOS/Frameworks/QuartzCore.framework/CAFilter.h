@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSString;
 
-@interface CAFilter : NSObject <NSCopying, NSMutableCopying, NSCoding>
+@interface CAFilter : NSObject <NSCopying, NSMutableCopying, NSSecureCoding>
 {
     unsigned int _type;
     NSString *_name;
@@ -22,6 +22,7 @@
 }
 
 + (void)CAMLParserStartElement:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (id)attributesForKey:(id)arg1;
 + (id)filterWithName:(id)arg1;
@@ -34,6 +35,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)description;
 - (struct Object *)CA_copyRenderValue;
 - (id)attributesForKeyPath:(id)arg1;
 - (id)outputKeys;
@@ -42,6 +44,7 @@
 - (void)setDefaults;
 - (id)valueForKey:(id)arg1;
 - (void)setValue:(id)arg1 forKey:(id)arg2;
+@property(getter=isAccessibility) BOOL accessibility;
 @property BOOL cachesInputImage;
 @property(getter=isEnabled) BOOL enabled;
 - (BOOL)enabled;

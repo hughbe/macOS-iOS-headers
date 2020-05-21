@@ -8,7 +8,7 @@
 
 #import "NSURLConnectionDelegate.h"
 
-@class ISDataProvider, ISURLRequest, NSCountedSet, NSDictionary, NSMutableData, NSString, NSURLConnection, NSURLRequest, NSURLResponse;
+@class ISDataProvider, ISURLRequest, NSArray, NSCountedSet, NSDictionary, NSMutableData, NSString, NSURLConnection, NSURLRequest, NSURLResponse;
 
 @interface ISURLOperation : ISOperation <NSURLConnectionDelegate>
 {
@@ -25,23 +25,30 @@
     unsigned long long _countedBytes;
     BOOL _checkForIncompleteFinish;
     BOOL _cancelIfNotAlreadyOnDisk;
+    BOOL _requireExtendedValidationCertificate;
+    BOOL _anchorRevocationCheck;
     BOOL _fileWasAlreadyOnDisk;
     BOOL _shouldRetryOnNetworkError;
+    NSArray *_anchorCertificates;
     NSDictionary *_conditionalConnectionProperties;
     CDUnknownBlockType _outputHandler;
 }
 
 + (long long)operationType;
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType outputHandler; // @synthesize outputHandler=_outputHandler;
 @property(copy) NSDictionary *conditionalConnectionProperties; // @synthesize conditionalConnectionProperties=_conditionalConnectionProperties;
 @property BOOL shouldRetryOnNetworkError; // @synthesize shouldRetryOnNetworkError=_shouldRetryOnNetworkError;
 @property(readonly) BOOL fileWasAlreadyOnDisk; // @synthesize fileWasAlreadyOnDisk=_fileWasAlreadyOnDisk;
+@property BOOL anchorRevocationCheck; // @synthesize anchorRevocationCheck=_anchorRevocationCheck;
+@property(copy) NSArray *anchorCertificates; // @synthesize anchorCertificates=_anchorCertificates;
+@property BOOL requireExtendedValidationCertificate; // @synthesize requireExtendedValidationCertificate=_requireExtendedValidationCertificate;
 @property BOOL cancelIfNotAlreadyOnDisk; // @synthesize cancelIfNotAlreadyOnDisk=_cancelIfNotAlreadyOnDisk;
 @property BOOL checkForIncompleteFinish; // @synthesize checkForIncompleteFinish=_checkForIncompleteFinish;
 @property(getter=_shouldSetCookies, setter=_setShouldSetCookies:) BOOL _shouldSetCookies; // @synthesize _shouldSetCookies;
 @property(retain) NSURLResponse *response; // @synthesize response=_response;
 @property(retain) ISDataProvider *dataProvider; // @synthesize dataProvider=_dataProvider;
-- (void).cxx_destruct;
+@property(readonly, copy) NSString *description;
 - (void)_updateProgress;
 - (void)_stopConnection;
 - (void)_sendResponseToDelegate:(id)arg1;
@@ -81,7 +88,6 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property __weak id <ISURLOperationDelegate><ISOperationDelegate> delegate; // @dynamic delegate;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

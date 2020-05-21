@@ -10,6 +10,7 @@
 
 @class MTKMeshBufferAllocator, NSMutableOrderedSet, NSString;
 
+__attribute__((visibility("hidden")))
 @interface MTKMeshBufferZone : NSObject <MDLMeshBufferZone>
 {
     NSMutableOrderedSet *_buffers;
@@ -19,10 +20,10 @@
     id <MTLBuffer> _buffer;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) id <MTLBuffer> buffer; // @synthesize buffer=_buffer;
 @property(readonly, nonatomic) unsigned long long capacity; // @synthesize capacity=_capacity;
 @property(readonly, nonatomic) id <MDLMeshBufferAllocator> allocator; // @synthesize allocator=_allocator;
-- (void).cxx_destruct;
 - (void)destroyBuffer:(id)arg1;
 - (id)newBufferWithLength:(unsigned long long)arg1 type:(unsigned long long)arg2;
 - (id)initWithCapacity:(unsigned long long)arg1 allocator:(id)arg2;

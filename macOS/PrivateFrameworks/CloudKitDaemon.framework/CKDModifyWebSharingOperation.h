@@ -21,6 +21,8 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_recordsToSaveByID;
 }
 
++ (long long)isPredominatelyDownload;
+- (void).cxx_destruct;
 @property(nonatomic) int numSaveAttempts; // @synthesize numSaveAttempts=_numSaveAttempts;
 @property(retain, nonatomic) NSMutableDictionary *recordsToSaveByID; // @synthesize recordsToSaveByID=_recordsToSaveByID;
 @property(retain, nonatomic) NSMutableSet *fetchedRecordIDs; // @synthesize fetchedRecordIDs=_fetchedRecordIDs;
@@ -29,7 +31,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSArray *recordIDsToShare; // @synthesize recordIDsToShare=_recordIDsToShare;
 @property(copy, nonatomic) CDUnknownBlockType recordWebUnsharedBlock; // @synthesize recordWebUnsharedBlock=_recordWebUnsharedBlock;
 @property(copy, nonatomic) CDUnknownBlockType recordWebSharedBlock; // @synthesize recordWebSharedBlock=_recordWebSharedBlock;
-- (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)main;
 - (void)_fetchRecords;

@@ -13,7 +13,8 @@
 
 + (id)checkerboardNoiseWithSquareSize:(double)arg1;
 @property(nonatomic) double squareSize; // @synthesize squareSize=_squareSize;
-- (struct Module *)__newModule;
+- (id)cloneModule;
+- (double)valueAt: /* Error: Ran out of types for this method. */;
 - (id)initWithSquareSize:(double)arg1;
 - (id)init;
 

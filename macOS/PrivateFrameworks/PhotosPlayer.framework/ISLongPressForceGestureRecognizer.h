@@ -6,6 +6,7 @@
 
 #import "NSPressGestureRecognizer.h"
 
+__attribute__((visibility("hidden")))
 @interface ISLongPressForceGestureRecognizer : NSPressGestureRecognizer
 {
     double _lastEventPressure;

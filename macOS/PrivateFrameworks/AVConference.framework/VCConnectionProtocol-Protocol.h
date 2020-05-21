@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSString, NSUUID;
 
 @protocol VCConnectionProtocol <NSObject>
+@property unsigned int downlinkBitrateCap;
+@property unsigned int uplinkBitrateCap;
 @property(readonly) NSString *remoteInterfaceTypeString;
 @property(readonly) NSString *localInterfaceTypeString;
 @property(readonly) unsigned int type;
@@ -17,9 +19,12 @@
 @property int localCellTech;
 @property(readonly) int remoteConnectionType;
 @property(readonly) int localConnectionType;
+@property(readonly) NSUUID *connectionUUID;
+@property(readonly) BOOL serverIsDegraded;
 @property(readonly) BOOL isVPN;
 @property(readonly) BOOL isRelay;
-@property int cellularMTU;
+@property(readonly) int connectionId;
+@property int connectionMTU;
 @property(readonly) BOOL isIPv6;
 @property(readonly) BOOL isRemoteOnCellular;
 @property(readonly) BOOL isLocalOnCellular;

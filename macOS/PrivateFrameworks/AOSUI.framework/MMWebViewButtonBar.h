@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSButton, NSDictionary, NSProgressIndicator, NSTextField, NSView;
+#import "NSTouchBarProvider.h"
 
-@interface MMWebViewButtonBar : NSObject
+@class NSArray, NSButton, NSDictionary, NSProgressIndicator, NSString, NSTextField, NSTouchBar, NSView, iCloudTouchBarController;
+
+@interface MMWebViewButtonBar : NSObject <NSTouchBarProvider>
 {
     NSView *_buttonBarView;
     NSButton *_button1;
@@ -18,10 +20,13 @@
     NSTextField *_spinnerTitle;
     NSButton *_helpButton;
     NSDictionary *_buttonBarDict;
-    id <MMWebViewButtonBarDelegate> _delegate;
     NSArray *_buttonArray;
+    id <MMWebViewButtonBarDelegate> _delegate;
+    iCloudTouchBarController *_touchBarController;
 }
 
+- (void).cxx_destruct;
+@property(retain) iCloudTouchBarController *touchBarController; // @synthesize touchBarController=_touchBarController;
 @property id <MMWebViewButtonBarDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) NSDictionary *buttonBarDict; // @synthesize buttonBarDict=_buttonBarDict;
 - (void)updateDefaultButtons;
@@ -33,9 +38,15 @@
 - (void)button2Pressed:(id)arg1;
 - (void)button1Pressed:(id)arg1;
 - (id)buttonBarView;
-- (void)dealloc;
+@property(readonly) NSTouchBar *touchBar;
 - (id)initWithDict:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -12,9 +12,15 @@ __attribute__((visibility("hidden")))
     struct Context *_impl;
 }
 
+- (struct Context *)retainRenderContext;
 - (struct Context *)renderContext;
+- (void)setAnnotation:(id)arg1;
+- (id)annotation;
+- (unsigned int)hitTestContext:(struct CGPoint)arg1;
 - (void)setObject:(id)arg1 forSlot:(unsigned int)arg2;
 - (void)deleteSlot:(unsigned int)arg1;
+- (unsigned int)createImageSlot:(struct CGSize)arg1 hasAlpha:(BOOL)arg2 extendedColors:(BOOL)arg3;
+- (unsigned int)createImageSlot:(struct CGSize)arg1 hasAlpha:(BOOL)arg2;
 - (unsigned int)createSlot;
 - (void)invalidateFences;
 - (void)setFence:(unsigned int)arg1 count:(unsigned int)arg2;
@@ -23,10 +29,23 @@ __attribute__((visibility("hidden")))
 - (unsigned int)createFencePort;
 - (BOOL)valid;
 - (id)options;
-- (void)setEventMask:(unsigned int)arg1;
-- (unsigned int)eventMask;
+- (float)desiredDynamicRange;
+- (void)setDesiredDynamicRange:(float)arg1;
+- (BOOL)isSecure;
+- (void)setSecure:(BOOL)arg1;
+- (unsigned int)displayId;
+- (float)level;
+- (void)setLevel:(float)arg1;
+- (void)orderBelow:(unsigned int)arg1;
+- (void)orderAbove:(unsigned int)arg1;
+- (void)setUnobscuredRegionOfInterest:(struct CGRect)arg1;
+- (struct CGRect)unobscuredRegionOfInterest;
 - (void)setRestrictedHostProcessId:(int)arg1;
 - (int)restrictedHostProcessId;
+- (void)setEventMask:(unsigned int)arg1;
+- (unsigned int)eventMask;
+- (void)setGPURegistryID:(unsigned long long)arg1;
+- (unsigned long long)GPURegistryID;
 - (void)setDisplayMask:(unsigned int)arg1;
 - (unsigned int)displayMask;
 - (void)setDisplayNumber:(unsigned int)arg1;
@@ -37,6 +56,8 @@ __attribute__((visibility("hidden")))
 - (id)contentsFormat;
 - (void)setColorMatchUntaggedContent:(BOOL)arg1;
 - (BOOL)colorMatchUntaggedContent;
+- (void)setCommitPriority:(unsigned int)arg1;
+- (unsigned int)commitPriority;
 - (void)setColorSpace:(struct CGColorSpace *)arg1;
 - (struct CGColorSpace *)colorSpace;
 - (unsigned int)contextId;

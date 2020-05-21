@@ -21,6 +21,7 @@
 + (BOOL)supportsSecureCoding;
 + (id)contactPropertyWithContactNoCopy:(id)arg1 propertyKey:(id)arg2 identifier:(id)arg3;
 + (id)contactPropertyWithContact:(id)arg1 propertyKey:(id)arg2 identifier:(id)arg3;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CNContact *internalContact; // @synthesize internalContact=_internalContact;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy) NSString *key; // @synthesize key=_key;
@@ -38,7 +39,6 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 
 @end
 

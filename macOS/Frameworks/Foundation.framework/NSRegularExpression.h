@@ -26,6 +26,7 @@
 + (id)regularExpressionWithPattern:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3;
 + (void)initialize;
 + (id)escapedTemplateForString:(id)arg1;
+- (unsigned long long)_captureGroupNumberWithName:(id)arg1;
 @property(readonly) unsigned long long numberOfCaptureGroups;
 @property(readonly) unsigned long long options;
 @property(readonly, copy) NSString *pattern;

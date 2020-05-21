@@ -12,9 +12,6 @@
 {
     NSOpenGLContext *_openGLContext;
     NSOpenGLPixelFormat *_pixelFormat;
-    long long _reserved1;
-    long long _reserved2;
-    long long _reserved3;
 }
 
 + (id)defaultPixelFormat;
@@ -34,21 +31,15 @@
 - (void)clearGLContext;
 @property(retain) NSOpenGLContext *openGLContext;
 - (void)dealloc;
+- (BOOL)wantsLayer;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 pixelFormat:(id)arg2;
 - (id)makeBackingLayer;
 - (long long)layerContentsRedrawPolicy;
-@property BOOL canAnimateOnBackgroundThread;
-@property BOOL animates;
-- (void)setWantsBestResolutionOpenGLSurface:(BOOL)arg1;
-- (BOOL)wantsBestResolutionOpenGLSurface;
-- (struct CGRect)convertRectFromOpenGLSurface:(struct CGRect)arg1;
-- (struct CGRect)convertRectToOpenGLSurface:(struct CGRect)arg1;
-- (struct CGSize)convertSizeFromOpenGLSurface:(struct CGSize)arg1;
-- (struct CGSize)convertSizeToOpenGLSurface:(struct CGSize)arg1;
-- (struct CGPoint)convertPointFromOpenGLSurface:(struct CGPoint)arg1;
-- (struct CGPoint)convertPointToOpenGLSurface:(struct CGPoint)arg1;
-@property(readonly) struct CGSize openGLSurfaceSize;
+
+// Remaining properties
+@property BOOL wantsBestResolutionOpenGLSurface; // @dynamic wantsBestResolutionOpenGLSurface;
+@property BOOL wantsExtendedDynamicRangeOpenGLSurface; // @dynamic wantsExtendedDynamicRangeOpenGLSurface;
 
 @end
 

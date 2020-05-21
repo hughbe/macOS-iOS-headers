@@ -7,6 +7,7 @@
 #import "PRLikeness.h"
 
 @interface PRLikeness (PersonaUI)
+- (id)_photoSnapshotWithSize:(struct CGSize)arg1 scale:(double)arg2 options:(id)arg3;
 - (id)snapshotWithSize:(struct CGSize)arg1 scale:(double)arg2 options:(id)arg3;
 - (id)_accentColorForPhoto;
 - (id)_accentColorForMonogram;

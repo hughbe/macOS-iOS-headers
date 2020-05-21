@@ -26,13 +26,13 @@
 }
 
 + (id)accountTypeString;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) ICNFIMAPMailboxProxy *defaultHighPriorityMailbox; // @synthesize defaultHighPriorityMailbox=_defaultHighPriorityMailbox;
 @property(retain) ICNFIMAPGateway *offlineRecoveryGateway; // @synthesize offlineRecoveryGateway=_offlineRecoveryGateway;
 @property unsigned int readBufferSize; // @synthesize readBufferSize=_readBufferSize;
 @property(copy) NSDictionary *serverID; // @synthesize serverID=_serverID;
 @property BOOL recoveringFromConnectionLoss; // @synthesize recoveringFromConnectionLoss=_recoveringFromConnectionLoss;
 @property(copy) NSString *separatorCharacter; // @synthesize separatorCharacter=_separatorCharacter;
-- (void).cxx_destruct;
 - (id)_serverNameComponentForMailboxName:(id)arg1;
 - (id)_serverNameForMailbox:(id)arg1 parentMailbox:(id)arg2 separatorCharacter:(id)arg3;
 - (id)_separatorCharacterWithGateway:(id)arg1;
@@ -70,7 +70,6 @@
 - (id)IMAPMailboxForMailboxName:(id)arg1 createIfNeeded:(BOOL)arg2;
 - (void)setServerPathPrefix:(id)arg1 permanently:(BOOL)arg2;
 - (id)serverPathPrefix;
-@property(readonly) id <ICNFIMAPOfflineCache> offlineCache;
 @property long long gmailCapabilitiesSupport;
 @property BOOL useIDLEIfAvailable;
 - (void)presentOverQuotaAlert;
@@ -99,6 +98,7 @@
 @property(readonly, copy) NSString *appleAuthenticationToken;
 @property(readonly, copy) NSString *applePersonID;
 @property(copy) NSString *canonicalEmailAddress;
+@property(readonly, copy) NSString *clientInfo;
 @property BOOL configureDynamically;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
@@ -107,7 +107,9 @@
 @property(readonly) unsigned long long hash;
 @property(copy) NSString *hostname;
 @property(readonly, copy) NSString *identifier;
+@property(readonly, copy) NSString *machineID;
 @property(readonly, copy) NSString *oauthToken;
+@property(readonly, copy) NSString *oneTimePassword;
 @property(copy) NSString *password;
 @property long long portNumber;
 @property(retain) ICNFMCAuthScheme *preferredAuthScheme;

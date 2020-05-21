@@ -10,7 +10,6 @@
 
 @class NSObject<OS_dispatch_data>, NSObject<OS_dispatch_queue>, NSURLResponse, NSURLSessionTask;
 
-__attribute__((visibility("hidden")))
 @interface __NSCFURLSessionConnection : NSObject <NSCopying>
 {
     NSURLSessionTask *_task;
@@ -29,6 +28,10 @@ __attribute__((visibility("hidden")))
 - (void)_tossCache;
 - (void)_appendDataToCache:(id)arg1;
 - (void)_setupForCache:(BOOL)arg1 expectedLength:(long long)arg2 response:(id)arg3;
+- (void)setIsDownload:(BOOL)arg1;
+- (void)setTLSMaximumSupportedProtocolVersion:(unsigned short)arg1;
+- (void)setTLSMinimumSupportedProtocolVersion:(unsigned short)arg1;
+- (void)expectedProgressTargetChanged;
 - (void)setBytesPerSecondLimit:(long long)arg1;
 - (void)setPriorityHint:(float)arg1;
 - (void)setPoolPriority:(long long)arg1;

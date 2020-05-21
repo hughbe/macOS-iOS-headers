@@ -9,7 +9,7 @@
 #import "NSCoding.h"
 #import "NSSecureCoding.h"
 
-@class GKGameInternal, GKStoreItemInternal, NSDictionary, NSNumber, NSString;
+@class GKGameDescriptor, GKGameInternal, GKStoreItemInternal, NSDictionary, NSNumber, NSString;
 
 @interface GKGame : NSObject <NSCoding, NSSecureCoding>
 {
@@ -28,11 +28,8 @@
 + (id)currentGame;
 + (BOOL)isGameCenter;
 + (BOOL)isPreferences;
-+ (void)markGameRecommendationsViewed:(id)arg1 complete:(CDUnknownBlockType)arg2;
-+ (void)markGameRecommendationsDisplayed:(id)arg1 complete:(CDUnknownBlockType)arg2;
 @property long long environment; // @synthesize environment=_environment;
 @property(retain) GKGameInternal *internal; // @synthesize internal=_internal;
-@property(readonly, nonatomic, getter=isDownloading) BOOL downloading;
 @property(readonly, nonatomic, getter=isInstalled) BOOL installedGame;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)valueForUndefinedKey:(id)arg1;
@@ -42,7 +39,8 @@
 - (BOOL)isStoreItemUnexpired;
 @property(readonly, nonatomic) struct GKGameInfo gameInfo;
 @property(readonly, nonatomic) NSString *cacheKey;
-@property(readonly, nonatomic) NSDictionary *gameDescriptor;
+@property(readonly, nonatomic) NSDictionary *gameDescriptorDictionary;
+@property(readonly, nonatomic) GKGameDescriptor *gameDescriptor;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
@@ -59,19 +57,17 @@
 - (void)getFriendPlayersIncludingCompatibleGames:(BOOL)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)submitRating:(float)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)loadGameRatingWithCompletionHandler:(CDUnknownBlockType)arg1;
-@property(readonly, nonatomic) BOOL isGameRecommendation; // @dynamic isGameRecommendation;
 
 // Remaining properties
 @property(readonly, nonatomic) NSNumber *adamID; // @dynamic adamID;
 @property(readonly, nonatomic) NSString *bundleIdentifier; // @dynamic bundleIdentifier;
 @property(readonly, nonatomic) NSString *bundleVersion; // @dynamic bundleVersion;
 @property(readonly, nonatomic) NSString *defaultCategory; // @dynamic defaultCategory;
-@property(retain, nonatomic) NSString *engineID; // @dynamic engineID;
 @property(readonly, nonatomic) NSNumber *externalVersion; // @dynamic externalVersion;
 @property(readonly, nonatomic) NSString *name; // @dynamic name;
-@property(nonatomic) unsigned char platform; // @dynamic platform;
+@property(nonatomic) long long platform; // @dynamic platform;
 @property(nonatomic, getter=isPrerendered) BOOL prerendered; // @dynamic prerendered;
-@property(retain, nonatomic) NSString *reason; // @dynamic reason;
+@property(readonly, nonatomic) NSString *shortBundleVersion; // @dynamic shortBundleVersion;
 @property(retain, nonatomic) GKStoreItemInternal *storeItem; // @dynamic storeItem;
 @property(readonly, nonatomic) BOOL supportsMultiplayer; // @dynamic supportsMultiplayer;
 @property(readonly, nonatomic) BOOL supportsTurnBasedMultiplayer; // @dynamic supportsTurnBasedMultiplayer;

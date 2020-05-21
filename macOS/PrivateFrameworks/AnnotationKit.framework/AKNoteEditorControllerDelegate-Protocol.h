@@ -6,10 +6,10 @@
 
 #import "NSObject.h"
 
-@class AKNoteAnnotation, AKNoteEditorController, NSView, NSViewController;
+@class AKNoteEditorController, AKPopupAnnotation, NSView, NSViewController;
 
 @protocol AKNoteEditorControllerDelegate <NSObject>
-- (BOOL)handleEditAnnotation:(AKNoteAnnotation *)arg1;
+- (BOOL)handleEditAnnotation:(AKPopupAnnotation *)arg1;
 - (NSViewController *)popoverPresentingViewControllerForNoteEditor:(AKNoteEditorController *)arg1;
 - (struct CGRect)stickyViewFrameForNoteEditor:(AKNoteEditorController *)arg1;
 - (NSView *)stickyContainerForNoteEditor:(AKNoteEditorController *)arg1;

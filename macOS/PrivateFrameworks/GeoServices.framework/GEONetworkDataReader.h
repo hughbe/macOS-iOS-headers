@@ -17,6 +17,7 @@
     unsigned long long _offset;
 }
 
+- (void).cxx_destruct;
 - (BOOL)hasUnreadData;
 - (void)seekToMarkedOffset;
 - (void)markOffset;

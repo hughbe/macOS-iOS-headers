@@ -19,9 +19,15 @@
     unsigned long long _cachedTrackpadType;
 }
 
++ (BOOL)hasBattery;
++ (BOOL)isService:(id)arg1 available:(BOOL)arg2;
 + (BOOL)isServiceAvailable:(id)arg1;
 + (const struct __CFDictionary *)createdMatchingDictionaryForTrackpaType:(unsigned long long)arg1;
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property unsigned long long cachedTrackpadType; // @synthesize cachedTrackpadType=_cachedTrackpadType;
+@property long long updateDelay; // @synthesize updateDelay=_updateDelay;
+@property unsigned long long mtLogCounter; // @synthesize mtLogCounter=_mtLogCounter;
 @property BOOL enableMTLogging; // @synthesize enableMTLogging=_enableMTLogging;
 @property BOOL allowToCoalesce; // @synthesize allowToCoalesce=_allowToCoalesce;
 @property BOOL forceSuppressed; // @dynamic forceSuppressed;
@@ -46,6 +52,7 @@
 @property long long twoFingerDoubleTap; // @dynamic twoFingerDoubleTap;
 @property long long twoFingerTap; // @dynamic twoFingerTap;
 @property BOOL twoFingerSecondaryClick; // @dynamic twoFingerSecondaryClick;
+@property BOOL ignoreTrackpadIfMouseOnSystem; // @dynamic ignoreTrackpadIfMouseOnSystem;
 @property long long cornerClickBehavior; // @dynamic cornerClickBehavior;
 @property long long tapBehavior; // @dynamic tapBehavior;
 @property double doubleClickDelayRaw; // @dynamic doubleClickDelayRaw;
@@ -67,11 +74,11 @@
 - (id)initWithCoder:(id)arg1;
 - (void)_setAppKitIntValue:(int)arg1 forKey:(struct __CFString *)arg2;
 - (void)_setMTTBoolValue:(BOOL)arg1 forKey:(struct __CFString *)arg2 coalesce:(BOOL)arg3;
-- (void)_setMTTIntValue:(int)arg1 forKey:(struct __CFString *)arg2;
-- (BOOL)_mttBOOLValueForKey:(struct __CFString *)arg1 withDefaultValue:(int)arg2 domain:(struct __CFString *)arg3;
-- (int)_appKitIntValueForKey:(struct __CFString *)arg1 withDefaultValue:(int)arg2;
-- (int)_mttIntValueForKey:(struct __CFString *)arg1 withDefaultValue:(int)arg2;
-- (int)_intValueForKey:(struct __CFString *)arg1 withDefaultValue:(int)arg2 inDomain:(struct __CFString *)arg3;
+- (void)_setMTTIntValue:(long long)arg1 forKey:(struct __CFString *)arg2;
+- (BOOL)_mttBOOLValueForKey:(struct __CFString *)arg1 withDefaultValue:(BOOL)arg2 domain:(struct __CFString *)arg3;
+- (long long)_appKitIntValueForKey:(struct __CFString *)arg1 withDefaultValue:(int)arg2;
+- (long long)_mttIntValueForKey:(struct __CFString *)arg1 withDefaultValue:(int)arg2;
+- (long long)_intValueForKey:(struct __CFString *)arg1 withDefaultValue:(int)arg2 inDomain:(struct __CFString *)arg3;
 - (void)_mtLogTapticSettings;
 - (long long)_tickMarkIndexForValue:(double)arg1 fromList:(double *)arg2 ofSize:(unsigned long long)arg3;
 

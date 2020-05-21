@@ -11,6 +11,10 @@ __attribute__((visibility("hidden")))
 {
 }
 
+- (BOOL)_collectionShouldFocusThroughSingleChild;
+- (BOOL)interactDownShiftWithEvent:(id)arg1 request:(id)arg2;
+- (BOOL)interactUpShiftWithEvent:(id)arg1 request:(id)arg2;
+- (void)handleSelectionChange:(id)arg1;
 - (BOOL)handleLayoutChangeWithInfo:(id)arg1;
 - (BOOL)_moveToContentSiblingBelow;
 - (BOOL)_moveToContentSiblingAbove;
@@ -19,7 +23,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)_moveToContentSibling:(id)arg1;
 - (BOOL)_shouldUseCollectionSpecificFocusBehavior;
 - (BOOL)shouldPromoteForMovingUIElement:(id)arg1;
-- (id)focusOntoUIElement:(id)arg1 withScrolling:(BOOL)arg2 withSelection:(BOOL)arg3;
+- (Class)classForChildUIElement:(id)arg1 parent:(id)arg2;
 
 @end
 

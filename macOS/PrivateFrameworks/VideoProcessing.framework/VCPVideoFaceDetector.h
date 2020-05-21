@@ -6,25 +6,20 @@
 
 #import <VideoProcessing/VCPVideoAnalyzer.h>
 
-@class NSMutableArray, NSMutableDictionary;
+@class NSDictionary, NSMutableDictionary;
 
 @interface VCPVideoFaceDetector : VCPVideoAnalyzer
 {
     int _angle;
-    struct CGAffineTransform _transform;
-    NSMutableArray *_detections;
+    CDStruct_1b6d18a9 _timeLastDetection;
     NSMutableDictionary *_activeFaces;
-    CDStruct_1b6d18a9 _timeLastProcess;
+    NSDictionary *_results;
 }
 
-+ (id)faceDetectorWithTransform:(struct CGAffineTransform)arg1 cancel:(CDUnknownBlockType)arg2;
++ (id)faceDetectorWithTransform:(struct CGAffineTransform)arg1 withExistingFaceprints:(id)arg2 frameStats:(id)arg3 tracking:(BOOL)arg4 cancel:(CDUnknownBlockType)arg5;
 - (void).cxx_destruct;
+- (id)faceRanges;
 - (id)results;
-- (int)finishAnalysisPass:(CDStruct_e83c9415)arg1;
-- (int)analyzeFrame:(struct __CVBuffer *)arg1 withTimestamp:(CDStruct_1b6d18a9)arg2 andDuration:(CDStruct_1b6d18a9)arg3 flags:(unsigned long long *)arg4;
-- (float)minProcessTimeIntervalInSecs;
-- (int)detectFaces:(struct __CVBuffer *)arg1 faces:(id)arg2;
-- (id)init;
 
 @end
 

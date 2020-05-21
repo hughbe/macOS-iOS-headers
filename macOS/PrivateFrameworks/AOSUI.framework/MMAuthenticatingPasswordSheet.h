@@ -19,18 +19,25 @@
     NSString *_cancelButtonString;
     NSString *_alternateButtonString;
     NSDictionary *_authenticationResults;
-    NSWindow *_parentWindow;
     NSURL *_iForgotURL;
     NSError *_authenticationError;
     NSImage *_displayImage;
     BOOL _shouldPromptForPasswordOnly;
     BOOL _isEphemeral;
+    BOOL _supportsPiggybacking;
+    BOOL _shouldForceInteractiveAuth;
+    BOOL _shouldOfferSecurityUpgrade;
     CDUnknownBlockType _helpHandler;
+    NSWindow *_parentWindow;
 }
 
 + (id)standardiForgotURL;
+- (void).cxx_destruct;
+@property BOOL shouldOfferSecurityUpgrade; // @synthesize shouldOfferSecurityUpgrade=_shouldOfferSecurityUpgrade;
+@property BOOL shouldForceInteractiveAuth; // @synthesize shouldForceInteractiveAuth=_shouldForceInteractiveAuth;
 @property(copy) NSURL *iForgotURL; // @synthesize iForgotURL=_iForgotURL;
 @property BOOL shouldPromptForPasswordOnly; // @synthesize shouldPromptForPasswordOnly=_shouldPromptForPasswordOnly;
+@property BOOL supportsPiggybacking; // @synthesize supportsPiggybacking=_supportsPiggybacking;
 @property BOOL isEphemeral; // @synthesize isEphemeral=_isEphemeral;
 @property(copy) NSImage *displayImage; // @synthesize displayImage=_displayImage;
 @property(retain) NSError *authenticationError; // @synthesize authenticationError=_authenticationError;
@@ -47,7 +54,6 @@
 - (void)showAuthPasswordSheetUsingWindow:(id)arg1 shouldNest:(BOOL)arg2 helpHandler:(CDUnknownBlockType)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)showAuthPasswordSheetUsingWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)showAuthPasswordSheetUsingWindow:(id)arg1;
-- (void)dealloc;
 - (id)initWithAccountID:(id)arg1 title:(id)arg2 message:(id)arg3 defaultButtonTitle:(id)arg4 cancelButtonTitle:(id)arg5 alternateButtonTitle:(id)arg6 icon:(id)arg7 iconLabel:(id)arg8;
 
 @end

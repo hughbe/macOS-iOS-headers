@@ -16,6 +16,7 @@
 
 + (id)listenForPronunciationCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)listenForPronunciationCompleted;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SASPronunciationData *pronunciationData;
 @property(copy, nonatomic) NSString *interactionId;
 @property(copy, nonatomic) NSNumber *errorCode;

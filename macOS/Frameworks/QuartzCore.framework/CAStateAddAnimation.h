@@ -14,6 +14,7 @@
     CAAnimation *_animation;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(retain, nonatomic) CAAnimation *animation; // @synthesize animation=_animation;
 @property(copy, nonatomic) NSString *key; // @synthesize key=_key;
 - (id)debugDescription;

@@ -14,13 +14,13 @@
 }
 
 + (id)actionWithString:(id)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *charString; // @synthesize charString=_charString;
-- (void)perform;
+- (void)performWithEventSourceData:(id)arg1;
 - (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
+- (void)_configureWithPlistDictionary:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (void)dealloc;
 - (id)init;
 
 @end

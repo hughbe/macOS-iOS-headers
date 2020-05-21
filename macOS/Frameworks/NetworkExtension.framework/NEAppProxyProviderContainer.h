@@ -6,45 +6,37 @@
 
 #import "NSObject.h"
 
-#import "NEExtensionAppProxyProviderHostDelegate.h"
+@class NEAppProxyProvider, NSObject<OS_dispatch_queue>;
 
-@class NEAppProxyProvider, NEAppProxyProviderContainerHostContext, NSString;
-
-@interface NEAppProxyProviderContainer : NSObject <NEExtensionAppProxyProviderHostDelegate>
+@interface NEAppProxyProviderContainer : NSObject
 {
+    unsigned int _delegateInterfaceIndex;
+    NEAppProxyProvider *_provider;
     id <NEAppProxyProviderContainerDelegate> _delegate;
-    NEAppProxyProviderContainerHostContext *_containerHostContext;
-    NSString *_identifier;
+    NSObject<OS_dispatch_queue> *_flowQueue;
+    struct _NEFlowDirector *_director;
+    CDUnknownBlockType _stopCompletionHandler;
 }
 
-@property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
-@property(readonly) NEAppProxyProviderContainerHostContext *containerHostContext; // @synthesize containerHostContext=_containerHostContext;
-@property(readonly) __weak id <NEAppProxyProviderContainerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)extension:(id)arg1 didStartWithError:(id)arg2;
-- (void)extension:(id)arg1 didFailWithError:(id)arg2;
-- (void)extension:(id)arg1 didRequestSocket:(BOOL)arg2 interface:(id)arg3 local:(id)arg4 remote:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
-- (void)extensionDidDetachIPC:(id)arg1;
-- (void)extension:(id)arg1 didSetTunnelConfiguration:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)extension:(id)arg1 didSetStatus:(long long)arg2;
-- (void)extension:(id)arg1 didRequestFlowDivertControlSocketWithCompletionHandler:(CDUnknownBlockType)arg2;
-- (void)extension:(id)arg1 didRequestMatchAppPID:(long long)arg2 uuid:(id)arg3 withAppRule:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
-@property(readonly) NEAppProxyProvider *provider;
+@property(copy) CDUnknownBlockType stopCompletionHandler; // @synthesize stopCompletionHandler=_stopCompletionHandler;
+@property unsigned int delegateInterfaceIndex; // @synthesize delegateInterfaceIndex=_delegateInterfaceIndex;
+@property struct _NEFlowDirector *director; // @synthesize director=_director;
+@property(retain) NSObject<OS_dispatch_queue> *flowQueue; // @synthesize flowQueue=_flowQueue;
+@property(retain) id <NEAppProxyProviderContainerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly) NEAppProxyProvider *provider; // @synthesize provider=_provider;
 - (void)handleAppMessage:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)setInitialFlowDivertControlSocket:(id)arg1;
+- (void)flowDivertNewFlow:(struct _NEFlow *)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)flowDivertOpenControlSocket;
 - (void)setDelegateInterface:(unsigned int)arg1;
 - (void)stop;
-- (void)startWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)startWithOptions:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)setConfiguration:(id)arg1;
 - (void)wake;
 - (void)sleepWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)initWithDelegate:(id)arg1 providerClass:(Class)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

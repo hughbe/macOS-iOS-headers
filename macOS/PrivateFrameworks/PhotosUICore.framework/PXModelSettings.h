@@ -16,6 +16,7 @@
 @property(nonatomic) double photoAnalysisGraphProgressUpdateInterval; // @synthesize photoAnalysisGraphProgressUpdateInterval=_photoAnalysisGraphProgressUpdateInterval;
 @property(nonatomic) double photoAnalysisGraphInitialGraceDelay; // @synthesize photoAnalysisGraphInitialGraceDelay=_photoAnalysisGraphInitialGraceDelay;
 - (void)setDefaultValues;
+- (id)parentSettings;
 
 @end
 

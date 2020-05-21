@@ -8,19 +8,35 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray, NSString;
+@class NSMutableArray, NSString, PBDataReader, PBUnknownFields;
 
 @interface GEOPhoto : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_photoInfos;
-    int _photoType;
     NSString *_uid;
-    CDStruct_86c1f53f _has;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    int _photoType;
+    struct {
+        unsigned int has_photoType:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_photoInfos:1;
+        unsigned int read_uid:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_photoInfos:1;
+        unsigned int wrote_uid:1;
+        unsigned int wrote_photoType:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)photoInfoType;
-@property(retain, nonatomic) NSString *uid; // @synthesize uid=_uid;
-@property(retain, nonatomic) NSMutableArray *photoInfos; // @synthesize photoInfos=_photoInfos;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -28,20 +44,25 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *uid;
 @property(readonly, nonatomic) BOOL hasUid;
+- (void)_readUid;
 - (id)photoInfoAtIndex:(unsigned long long)arg1;
 - (unsigned long long)photoInfosCount;
+- (void)_addNoFlagsPhotoInfo:(id)arg1;
 - (void)addPhotoInfo:(id)arg1;
 - (void)clearPhotoInfos;
+@property(retain, nonatomic) NSMutableArray *photoInfos;
+- (void)_readPhotoInfos;
 - (int)StringAsPhotoType:(id)arg1;
 - (id)photoTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasPhotoType;
-@property(nonatomic) int photoType; // @synthesize photoType=_photoType;
-- (void)dealloc;
-- (id)_bestURLForSize:(int)arg1;
-- (id)_photoInfoForSize:(int)arg1 includeSmallerSizes:(BOOL)arg2;
+@property(nonatomic) int photoType;
+- (id)initWithData:(id)arg1;
+- (id)init;
 - (id)initWithPlaceDataPhoto:(id)arg1;
 
 @end

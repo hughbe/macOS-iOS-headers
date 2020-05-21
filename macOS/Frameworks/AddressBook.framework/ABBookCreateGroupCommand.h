@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABBookUndoableCommand.h>
+#import "ABBookUndoableCommand.h"
 
 @class ABAccount, ABAddressBook, ABGroupEntriesList, NSString;
 
@@ -15,8 +15,11 @@
     ABGroupEntriesList *_groupEntriesList;
     NSString *_groupUid;
     NSString *_groupName;
+    BOOL ignoresGuardianRestrictions;
 }
 
+- (void)setIgnoresGuardianRestrictions:(BOOL)arg1;
+- (BOOL)ignoresGuardianRestrictions;
 @property(copy) NSString *groupName; // @synthesize groupName=_groupName;
 @property(copy) NSString *groupUid; // @synthesize groupUid=_groupUid;
 - (void)executeRedo;

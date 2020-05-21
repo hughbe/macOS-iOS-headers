@@ -8,7 +8,7 @@
 
 #import "NSTextViewDelegate.h"
 
-@class NSImageView, NSMutableDictionary, NSPanel, NSScrollView, NSString, NSTextField, NSTextView;
+@class NSImageView, NSLayoutConstraint, NSMutableDictionary, NSPanel, NSScrollView, NSString, NSTextField, NSTextView;
 
 @interface NSSystemInfoPanel : NSObject <NSTextViewDelegate>
 {
@@ -18,7 +18,10 @@
     NSTextField *appNameField;
     NSTextView *creditView;
     NSTextView *copyrightView;
+    NSTextField *copyrightField;
+    NSScrollView *copyrightScrollView;
     NSTextField *versionField;
+    NSLayoutConstraint *creditScrollViewWidthConstraint;
     NSMutableDictionary *_optionsDictionary;
 }
 
@@ -30,6 +33,9 @@
 + (void)updateOptionsWithApplicationIcon:(id)arg1;
 + (void)updateOptions:(id)arg1;
 + (id)sharedInfoPanel;
+@property NSLayoutConstraint *creditScrollViewWidthConstraint; // @synthesize creditScrollViewWidthConstraint;
+@property NSScrollView *copyrightScrollView; // @synthesize copyrightScrollView;
+@property NSTextField *copyrightField; // @synthesize copyrightField;
 @property NSTextField *versionField; // @synthesize versionField;
 @property NSTextView *copyrightView; // @synthesize copyrightView;
 @property NSTextView *creditView; // @synthesize creditView;

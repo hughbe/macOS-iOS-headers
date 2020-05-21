@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class IOBluetoothSDPDataElement;
 
-@interface IOBluetoothSDPServiceAttribute : NSObject <NSCoding>
+@interface IOBluetoothSDPServiceAttribute : NSObject <NSCoding, NSSecureCoding>
 {
     unsigned short mAttributeID;
     IOBluetoothSDPDataElement *mAttributeDataElement;
@@ -20,7 +21,7 @@
 
 + (id)withID:(unsigned short)arg1 attributeElement:(id)arg2;
 + (id)withID:(unsigned short)arg1 attributeElementValue:(id)arg2;
-- (id)replacementObjectForPortCoder:(id)arg1;
++ (BOOL)supportsSecureCoding;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (long long)compareAttributeID:(id)arg1;

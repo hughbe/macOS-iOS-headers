@@ -21,7 +21,9 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 // Remaining properties
+@property(nonatomic) unsigned long long borderColor; // @dynamic borderColor;
 @property(nonatomic) unsigned long long compareFunction; // @dynamic compareFunction;
+@property(nonatomic) BOOL forceResourceIndex; // @dynamic forceResourceIndex;
 @property(copy, nonatomic) NSString *label; // @dynamic label;
 @property(nonatomic) float lodMaxClamp; // @dynamic lodMaxClamp;
 @property(nonatomic) float lodMinClamp; // @dynamic lodMinClamp;
@@ -30,8 +32,12 @@
 @property(nonatomic) unsigned long long minFilter; // @dynamic minFilter;
 @property(nonatomic) unsigned long long mipFilter; // @dynamic mipFilter;
 @property(nonatomic) BOOL normalizedCoordinates; // @dynamic normalizedCoordinates;
+@property(nonatomic) unsigned long long pixelFormat; // @dynamic pixelFormat;
 @property(nonatomic) unsigned long long rAddressMode; // @dynamic rAddressMode;
+@property(nonatomic) unsigned long long reductionMode; // @dynamic reductionMode;
+@property(nonatomic) unsigned long long resourceIndex; // @dynamic resourceIndex;
 @property(nonatomic) unsigned long long sAddressMode; // @dynamic sAddressMode;
+@property(nonatomic) BOOL supportArgumentBuffers; // @dynamic supportArgumentBuffers;
 @property(nonatomic) unsigned long long tAddressMode; // @dynamic tAddressMode;
 
 @end

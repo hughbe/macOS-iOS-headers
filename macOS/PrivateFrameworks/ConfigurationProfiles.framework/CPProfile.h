@@ -32,6 +32,7 @@
     struct AuthorizationOpaqueRef *authorizationRef;
 }
 
++ (id)profileFromArchivedData:(id)arg1;
 + (int)calculateVerificationStateForCertificatesInfo:(id)arg1 indexOfFailedSigner:(unsigned long long *)arg2;
 + (id)buildCertificateListFromSigners:(id)arg1 firstCertData:(id)arg2;
 + (id)decodeProfileData:(id)arg1 returningError:(id *)arg2;
@@ -49,14 +50,19 @@
 @property(readonly, retain) NSString *configurationDescription; // @synthesize configurationDescription;
 @property(readonly, retain) NSString *organization; // @synthesize organization;
 @property(readonly, retain) NSString *name; // @synthesize name;
+- (id)identityPrivateKeyReferencesFromPayload:(id)arg1;
+- (id)identityCertificateReferencesFromPayload:(id)arg1;
+- (id)certificateReferencesFromPayload:(id)arg1;
+- (id)archivedData;
 - (void)priv_SetConfigurationItems:(id)arg1;
-- (id)getOTAIdentityProfileIdentifier;
 - (BOOL)isFinalOTAProfile;
 - (BOOL)isOTAProfile;
 @property(retain) NSMutableDictionary *internalData;
 @property(readonly, retain) NSString *signerName;
 - (id)firstInvalidSignerCertificateData;
 @property(readonly) int verificationState;
+- (BOOL)hidden;
+- (BOOL)priv_ShouldBeHidden;
 - (BOOL)adminRemovalDisallowed;
 - (BOOL)removalPasswordMatches:(id)arg1;
 - (BOOL)haveRemovalPassword;
@@ -64,6 +70,7 @@
 @property(readonly, nonatomic) NSDate *effectiveRemovalDate;
 - (id)signerCertificatesInfo;
 @property(readonly, retain) NSDictionary *consentText;
+@property(readonly) long long targetDeviceType;
 @property(readonly, retain) NSString *profileScope;
 - (BOOL)payloadDisabled:(id)arg1;
 @property(readonly, nonatomic) BOOL payloadIsExpired;
@@ -76,13 +83,16 @@
 @property(readonly, nonatomic) BOOL wasEncrypted;
 - (void)setAuthorizationFromData:(id)arg1;
 @property(nonatomic) struct AuthorizationOpaqueRef *authorizationRef;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithConfigurationProfileDictionary:(id)arg1 error:(id *)arg2;
 - (id)initForProvisioningProfile:(id)arg1;
 - (id)initWithData:(id)arg1 error:(id *)arg2;
 - (BOOL)_initFromDict:(id)arg1 error:(id *)arg2;
 - (id)configurationProfileDictionary;
+- (id)configurationProfileMutableDictionary;
+- (void)setFromArchiverDictionary:(id)arg1;
+- (id)dictionaryForArchiver;
+- (void)setFrom:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)validateKeys;

@@ -6,8 +6,6 @@
 
 #import <OfficeImport/OITSUCustomFormat.h>
 
-@class NSString;
-
 __attribute__((visibility("hidden")))
 @interface OITSUMutableCustomFormat : OITSUCustomFormat
 {
@@ -15,9 +13,6 @@ __attribute__((visibility("hidden")))
 
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)addConditionalFormatOfType:(int)arg1 value:(double)arg2 data:(id)arg3;
-
-// Remaining properties
-@property(retain, nonatomic) NSString *formatName; // @dynamic formatName;
 
 @end
 

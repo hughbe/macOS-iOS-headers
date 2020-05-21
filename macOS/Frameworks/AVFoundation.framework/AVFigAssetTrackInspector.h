@@ -6,26 +6,32 @@
 
 #import <AVFoundation/AVAssetTrackInspector.h>
 
-@class AVWeakReference, NSMutableArray, NSObject<OS_dispatch_queue>;
+@class AVDispatchOnce, AVWeakReference, NSMutableArray, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVFigAssetTrackInspector : AVAssetTrackInspector
 {
     struct OpaqueFigAsset *_figAsset;
-    struct OpaqueFigFormatReader *_figFormatReader;
     struct OpaqueFigAssetTrack *_figAssetTrack;
+    AVDispatchOnce *_copyFigFormatReaderOnce;
+    struct OpaqueFigFormatReader *_figFormatReader;
+    AVDispatchOnce *_copyFigTrackReaderOnce;
     struct OpaqueFigTrackReader *_figTrackReader;
-    long long _copySampleCursorServiceOnce;
+    AVDispatchOnce *_copySampleCursorServiceOnce;
     struct OpaqueFigSampleCursorService *_figSampleCursorService;
     BOOL _sampleCursorTimeAccuracyIsExact;
     struct OpaqueFigSimpleMutex *_loadingMutex;
     NSObject<OS_dispatch_queue> *_completionHandlerQueue;
     NSMutableArray *_loadingBatches;
+    unsigned int _mediaType;
     AVWeakReference *_weakReferenceToAsset;
 }
 
 - (void)_invokeCompletionHandlerForLoadingBatches:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isAudibleBooksContentAuthorized;
+- (BOOL)hasAudibleBooksContent;
 - (BOOL)hasProtectedContent;
 - (id)_trackReferences;
 - (BOOL)isExcludedFromAutoselectionInTrackGroup;
@@ -37,6 +43,7 @@
 - (id)commonMetadata;
 - (id)segmentForTrackTime:(CDStruct_1b6d18a9)arg1;
 - (id)segments;
+- (CDStruct_1b6d18a9)latentBaseDecodeTimeStampOfFirstTrackFragment;
 - (CDStruct_1b6d18a9)minSampleDuration;
 - (float)nominalFrameRate;
 - (id)loudnessInfo;
@@ -47,6 +54,7 @@
 - (struct CGSize)naturalSize;
 - (id)extendedLanguageTag;
 - (id)languageCode;
+- (float)peakDataRate;
 - (float)estimatedDataRate;
 - (int)naturalTimeScale;
 - (BOOL)requiresFrameReordering;
@@ -56,6 +64,8 @@
 - (long long)totalSampleDataLength;
 - (BOOL)isSelfContained;
 - (BOOL)isEnabled;
+- (int)decodabilityValidationResult;
+- (BOOL)isDecodable;
 - (int)playabilityValidationResult;
 - (BOOL)isPlayable;
 - (id)formatDescriptions;
@@ -67,6 +77,7 @@
 - (id)_loadingBatches;
 - (struct OpaqueFigSimpleMutex *)_loadingMutex;
 - (struct OpaqueFigTrackReader *)_figTrackReader;
+- (struct OpaqueFigFormatReader *)_figFormatReader;
 - (struct OpaqueFigAssetTrack *)_figAssetTrack;
 - (id)asset;
 - (void)_ensureAllDependenciesOfKeyAreLoaded:(id)arg1;
@@ -75,7 +86,6 @@
 - (long long)_loadStatusForFigAssetTrackProperty:(id)arg1 error:(id *)arg2;
 - (void)_removeFigNotifications;
 - (void)_addFigNotifications;
-- (void)finalize;
 - (void)dealloc;
 - (id)_initWithAsset:(id)arg1 trackID:(int)arg2 trackIndex:(long long)arg3;
 

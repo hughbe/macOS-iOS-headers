@@ -24,7 +24,6 @@
 - (id)localizedMessageForErrorCode:(unsigned long long)arg1;
 - (long long)queryStatusForIDSService:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (long long)compareToHandle:(id)arg1 usingFirstNameSort:(BOOL)arg2;
-- (BOOL)canReceiveFiles;
-- (BOOL)isiMessageServiceHandle;
+@property(readonly) BOOL canReceiveFiles;
 @end
 

@@ -26,6 +26,12 @@
 - (BOOL)isEqualToScanResult:(id)arg1;
 - (BOOL)conformsToProtocol:(id)arg1;
 - (id)description;
+- (BOOL)fastBSSTransitionRequestResourceProtocol;
+- (BOOL)fastBSSTransitionOverDS;
+- (BOOL)fastBSSTransitionEnabled;
+- (long long)channelUtilization;
+- (long long)stationCount;
+- (BOOL)isLeakyAP;
 - (long long)beaconInterval;
 - (id)channel;
 - (id)countryCode;
@@ -45,6 +51,8 @@
 - (BOOL)supportsPHYMode:(int)arg1;
 - (BOOL)supportsSecurity:(long long)arg1;
 - (long long)strongestSupportedSecurity;
+- (BOOL)__supportsWPA3Enterprise;
+- (BOOL)__supportsWPA3Personal;
 - (BOOL)__supportsWPA2Enterprise;
 - (BOOL)__supportsWPAEnterprise;
 - (BOOL)__supportsWPA2Personal;

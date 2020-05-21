@@ -6,26 +6,39 @@
 
 #import "NSObject.h"
 
-@class CNCache, NSArray;
+#import "CNUIIDSAvailabilityProvider.h"
 
-@interface CNUIIDSAvailabilityProvider : NSObject
+@class CNUIDSHandleAvailabilityCache, NSArray, NSString;
+
+@interface CNUIIDSAvailabilityProvider : NSObject <CNUIIDSAvailabilityProvider>
 {
-    CNCache *_faceTimeRequests;
-    CNCache *_iMessageRequests;
+    id <CNUIIDSIDQueryControllerWrapper> _queryControllerWrapper;
+    CNUIDSHandleAvailabilityCache *_faceTimeRequests;
+    CNUIDSHandleAvailabilityCache *_iMessageRequests;
     NSArray *_requestFutures;
     id <CNScheduler> _resourceLock;
 }
 
++ (id)makeIMessageRequestsCache;
++ (id)makeFaceTimeRequestsCache;
+- (void).cxx_destruct;
 @property(retain, nonatomic) id <CNScheduler> resourceLock; // @synthesize resourceLock=_resourceLock;
 @property(retain, nonatomic) NSArray *requestFutures; // @synthesize requestFutures=_requestFutures;
-@property(retain, nonatomic) CNCache *iMessageRequests; // @synthesize iMessageRequests=_iMessageRequests;
-@property(retain, nonatomic) CNCache *faceTimeRequests; // @synthesize faceTimeRequests=_faceTimeRequests;
-- (void).cxx_destruct;
+@property(retain, nonatomic) CNUIDSHandleAvailabilityCache *iMessageRequests; // @synthesize iMessageRequests=_iMessageRequests;
+@property(retain, nonatomic) CNUIDSHandleAvailabilityCache *faceTimeRequests; // @synthesize faceTimeRequests=_faceTimeRequests;
+@property(retain, nonatomic) id <CNUIIDSIDQueryControllerWrapper> queryControllerWrapper; // @synthesize queryControllerWrapper=_queryControllerWrapper;
 - (id)validateHandlesForIMessage:(id)arg1 schedulerProvider:(id)arg2;
 - (id)validateHandlesForFaceTime:(id)arg1 schedulerProvider:(id)arg2;
 - (id)validateHandles:(id)arg1 forService:(long long)arg2 schedulerProvider:(id)arg3;
 - (void)startRequestForCacheMisses:(id)arg1 service:(long long)arg2 scheduler:(id)arg3;
 - (id)init;
+- (id)initWithQueryControllerWrapper:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

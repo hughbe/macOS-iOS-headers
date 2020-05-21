@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
 }
 
 @property(copy) NSArray *filePromiseProviders; // @synthesize filePromiseProviders=_filePromiseProviders;
+- (void)draggingCancelled:(id)arg1;
 - (void)draggingEnded:(id)arg1;
 - (void)pasteboardFinishedWithDataProvider:(id)arg1;
 - (void)pasteboard:(id)arg1 provideDataForType:(id)arg2;

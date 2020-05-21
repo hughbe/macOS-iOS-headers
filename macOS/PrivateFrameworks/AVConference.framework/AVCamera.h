@@ -11,6 +11,7 @@
     unsigned int _deviceID;
 }
 
++ (id)UIDforDeviceID:(unsigned int)arg1;
 + (unsigned int)deviceIDForUID:(id)arg1;
 + (id)cameraList;
 - (BOOL)cameraSupportsWidth:(int)arg1 height:(int)arg2;

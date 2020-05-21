@@ -12,6 +12,7 @@
 {
     NSMutableDictionary *_packageReferencesByProduct;
     NSMutableDictionary *_digestByPackageURLPath;
+    NSMutableDictionary *_extraPackageReferencesByProduct;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -22,6 +23,8 @@
 - (id)descriptionForProduct:(id)arg1;
 - (void)dealloc;
 - (BOOL)registerProduct:(id)arg1;
+- (void)unregisterExtraPackageReference:(id)arg1 forProductKey:(id)arg2;
+- (void)registerExtraPackageReference:(id)arg1 forProductKey:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithCatalog:(id)arg1;

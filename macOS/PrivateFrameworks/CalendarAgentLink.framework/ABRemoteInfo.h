@@ -15,10 +15,10 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) NSString *remoteLocation; // @synthesize remoteLocation=_remoteLocation;
 @property(copy) NSString *meUID; // @synthesize meUID=_meUID;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

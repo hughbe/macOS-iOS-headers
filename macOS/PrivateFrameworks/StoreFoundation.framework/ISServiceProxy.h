@@ -15,8 +15,8 @@
 
 + (id)genericSharedProxy;
 + (void)initialize;
-@property(retain, nonatomic) ISStoreClient *storeClient; // @synthesize storeClient=_storeClient;
 - (void).cxx_destruct;
+@property(retain, nonatomic) ISStoreClient *storeClient; // @synthesize storeClient=_storeClient;
 - (void)uiServiceSynchronousBlock:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) id <ISUIService> uiService;
 - (id)uiServiceWithErrorHandler:(CDUnknownBlockType)arg1;
@@ -35,6 +35,8 @@
 - (void)accountServiceSynchronousBlock:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) id <ISAccountService> accountService;
 - (id)accountServiceWithErrorHandler:(CDUnknownBlockType)arg1;
+- (void)connectionWasInterrupted;
+- (void)registerForInterrptionNotification;
 - (void)performSynchronousBlock:(CDUnknownBlockType)arg1 withServiceName:(id)arg2 protocol:(id)arg3 isMachService:(BOOL)arg4 interfaceClassName:(id)arg5;
 - (id)objectProxyForServiceName:(id)arg1 protocol:(id)arg2 interfaceClassName:(id)arg3 isMachService:(BOOL)arg4 errorHandler:(CDUnknownBlockType)arg5;
 - (id)connectionWithServiceName:(id)arg1 protocol:(id)arg2 isMachService:(BOOL)arg3;

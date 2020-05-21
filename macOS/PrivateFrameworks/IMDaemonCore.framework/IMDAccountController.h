@@ -6,19 +6,29 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSMutableDictionary;
+#import "IDSAccountDelegate.h"
 
-@interface IMDAccountController : NSObject
+@class NSArray, NSDictionary, NSMutableDictionary, NSSet, NSString;
+
+@interface IMDAccountController : NSObject <IDSAccountDelegate>
 {
     NSMutableDictionary *_accounts;
     NSMutableDictionary *_activeAccounts;
+    NSSet *_operationalAccountsCache;
     BOOL _isLoading;
     BOOL _isFirstLoad;
+    BOOL _networkDataAvailable;
 }
 
 + (id)sharedAccountController;
 + (id)sharedInstance;
+@property(nonatomic) BOOL networkDataAvailable; // @synthesize networkDataAvailable=_networkDataAvailable;
 @property(readonly, nonatomic) BOOL isLoading; // @synthesize isLoading=_isLoading;
+- (void)account:(id)arg1 isActiveChanged:(BOOL)arg2;
+- (id)_nicknameController;
+- (BOOL)_isOperationalForAccount:(id)arg1;
+- (id)_operationalAccounts;
+- (void)_rebuildOperationalAccountsCache;
 - (void)_checkPowerAssertion;
 - (id)anySessionForServiceName:(id)arg1;
 - (id)sessionForAccount:(id)arg1;
@@ -51,8 +61,17 @@
 - (void)_daemonWillShutdown:(id)arg1;
 - (void)dealloc;
 - (id)init;
+- (BOOL)hasActivePhoneAccount;
+- (BOOL)receiverIsCandidateForSpamFiltering:(id)arg1;
+- (BOOL)activeAccountsAreEligibleForSpamFilter;
 @property(readonly, nonatomic) NSDictionary *loadOldStatusStore;
 - (id)_superFormatFromAIML:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

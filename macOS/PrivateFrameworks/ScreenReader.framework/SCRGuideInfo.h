@@ -15,9 +15,10 @@ __attribute__((visibility("hidden")))
     unsigned long long _selectionIndex;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long selectionIndex; // @synthesize selectionIndex=_selectionIndex;
 @property(retain, nonatomic) SCRGuide *guide; // @synthesize guide=_guide;
-- (void)dealloc;
+- (id)init;
 - (id)initWithGuide:(id)arg1 selectionIndex:(unsigned long long)arg2;
 
 @end

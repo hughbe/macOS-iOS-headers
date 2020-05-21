@@ -10,11 +10,14 @@
 #import "NSTableViewDelegate.h"
 #import "SOAttachmentsTabViewControllerDelegate.h"
 
-@class NSButton, NSLayoutConstraint, NSStackView, NSString, NSTableView, NSTextField, NSView, SOAddRecipientFieldViewController, SOAttachmentsTabViewController, SOHandleMenuController, SOMapViewController;
+@class NSButton, NSLayoutConstraint, NSStackView, NSString, NSTableView, NSTextField, NSView, SOAddRecipientFieldViewController, SOAttachmentsTabViewController, SOCKDownloadPurgedAttachmentsView, SOHandleMenuController, SOMapViewController;
 
 @interface SOChatDetailsViewController : SOChatViewController <NSTableViewDataSource, NSTableViewDelegate, SOAttachmentsTabViewControllerDelegate>
 {
     BOOL _hasUpdatedAttachments;
+    BOOL _didCacheIsCurrentlyDownloadingCheck;
+    BOOL _cachedValueForCurrentlyDownloadingCheck;
+    BOOL _didCacheAttachmentCount;
     NSStackView *_stackView;
     NSLayoutConstraint *_preferredScrollViewHeightConstraint;
     NSLayoutConstraint *_maximumScrollViewHeightConstraint;
@@ -24,12 +27,12 @@
     NSView *_titleSeparatorView;
     NSView *_mapViewContainer;
     SOMapViewController *_mapViewController;
+    NSStackView *_multiwayButtonsAndGroupNameContainer;
     NSView *_participantLabelContainer;
     NSTextField *_participantLabel;
     NSTableView *_participantTableView;
     NSLayoutConstraint *_participantTableHeightConstraint;
     SOHandleMenuController *_handleMenuController;
-    NSButton *_addRecipientButton;
     NSView *_addRecipientContainer;
     SOAddRecipientFieldViewController *_addRecipientFieldViewController;
     NSButton *_muteUnmuteButton;
@@ -37,17 +40,25 @@
     NSButton *_enableDisableReadReceiptButton;
     NSView *_leaveContainer;
     NSButton *_leaveButton;
-    NSView *_attachmentsSeparator;
-    NSView *_attachmentsContainer;
+    NSStackView *_attachmentsContainer;
     SOAttachmentsTabViewController *_attachmentsTabViewController;
+    NSView *_attachmentsSeparator;
     NSLayoutConstraint *_tabViewControllerViewHeightConstraint;
+    unsigned long long _cachedValueForAttachmentCount;
+    SOCKDownloadPurgedAttachmentsView *_downloadAttachmentsView;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) SOCKDownloadPurgedAttachmentsView *downloadAttachmentsView; // @synthesize downloadAttachmentsView=_downloadAttachmentsView;
+@property(nonatomic) unsigned long long cachedValueForAttachmentCount; // @synthesize cachedValueForAttachmentCount=_cachedValueForAttachmentCount;
+@property(nonatomic) BOOL didCacheAttachmentCount; // @synthesize didCacheAttachmentCount=_didCacheAttachmentCount;
+@property(nonatomic) BOOL cachedValueForCurrentlyDownloadingCheck; // @synthesize cachedValueForCurrentlyDownloadingCheck=_cachedValueForCurrentlyDownloadingCheck;
+@property(nonatomic) BOOL didCacheIsCurrentlyDownloadingCheck; // @synthesize didCacheIsCurrentlyDownloadingCheck=_didCacheIsCurrentlyDownloadingCheck;
 @property BOOL hasUpdatedAttachments; // @synthesize hasUpdatedAttachments=_hasUpdatedAttachments;
 @property(retain) NSLayoutConstraint *tabViewControllerViewHeightConstraint; // @synthesize tabViewControllerViewHeightConstraint=_tabViewControllerViewHeightConstraint;
-@property(retain) SOAttachmentsTabViewController *attachmentsTabViewController; // @synthesize attachmentsTabViewController=_attachmentsTabViewController;
-@property(retain) NSView *attachmentsContainer; // @synthesize attachmentsContainer=_attachmentsContainer;
 @property(retain) NSView *attachmentsSeparator; // @synthesize attachmentsSeparator=_attachmentsSeparator;
+@property(retain) SOAttachmentsTabViewController *attachmentsTabViewController; // @synthesize attachmentsTabViewController=_attachmentsTabViewController;
+@property(retain) NSStackView *attachmentsContainer; // @synthesize attachmentsContainer=_attachmentsContainer;
 @property(retain) NSButton *leaveButton; // @synthesize leaveButton=_leaveButton;
 @property(retain, nonatomic) NSView *leaveContainer; // @synthesize leaveContainer=_leaveContainer;
 @property(retain) NSButton *enableDisableReadReceiptButton; // @synthesize enableDisableReadReceiptButton=_enableDisableReadReceiptButton;
@@ -55,12 +66,12 @@
 @property(retain) NSButton *muteUnmuteButton; // @synthesize muteUnmuteButton=_muteUnmuteButton;
 @property(retain) SOAddRecipientFieldViewController *addRecipientFieldViewController; // @synthesize addRecipientFieldViewController=_addRecipientFieldViewController;
 @property(retain) NSView *addRecipientContainer; // @synthesize addRecipientContainer=_addRecipientContainer;
-@property(retain) NSButton *addRecipientButton; // @synthesize addRecipientButton=_addRecipientButton;
 @property(retain) SOHandleMenuController *handleMenuController; // @synthesize handleMenuController=_handleMenuController;
 @property(retain) NSLayoutConstraint *participantTableHeightConstraint; // @synthesize participantTableHeightConstraint=_participantTableHeightConstraint;
 @property(retain) NSTableView *participantTableView; // @synthesize participantTableView=_participantTableView;
 @property(retain) NSTextField *participantLabel; // @synthesize participantLabel=_participantLabel;
 @property(retain) NSView *participantLabelContainer; // @synthesize participantLabelContainer=_participantLabelContainer;
+@property(retain) NSStackView *multiwayButtonsAndGroupNameContainer; // @synthesize multiwayButtonsAndGroupNameContainer=_multiwayButtonsAndGroupNameContainer;
 @property(retain) SOMapViewController *mapViewController; // @synthesize mapViewController=_mapViewController;
 @property(retain) NSView *mapViewContainer; // @synthesize mapViewContainer=_mapViewContainer;
 @property(retain) NSView *titleSeparatorView; // @synthesize titleSeparatorView=_titleSeparatorView;
@@ -70,8 +81,8 @@
 @property(retain) NSLayoutConstraint *maximumScrollViewHeightConstraint; // @synthesize maximumScrollViewHeightConstraint=_maximumScrollViewHeightConstraint;
 @property(retain) NSLayoutConstraint *preferredScrollViewHeightConstraint; // @synthesize preferredScrollViewHeightConstraint=_preferredScrollViewHeightConstraint;
 @property(retain) NSStackView *stackView; // @synthesize stackView=_stackView;
-- (void).cxx_destruct;
-- (void)dealloc;
+- (unsigned long long)_uncachedAttachmentCount;
+- (BOOL)_isCurrentlyDownloading;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)doCommandBySelector:(SEL)arg1;
@@ -97,6 +108,9 @@
 - (void)_updateAddRecipientFieldVisibility;
 - (void)_updateFMFMapVisibility;
 - (void)_updateSeparatorLayout;
+- (void)_chatPurgedAttachmentsDownloadBatchDidComplete:(id)arg1;
+- (void)_chatAllowedByScreenTimeChanged:(id)arg1;
+- (void)_chatPurgedAttachmentsDownloadFinished:(id)arg1;
 - (void)_chatJoinStateDidChange:(id)arg1;
 - (void)_chatPropertiesDidChange:(id)arg1;
 - (void)_chatDisplayControllerTitleDidChange:(id)arg1;
@@ -112,6 +126,7 @@
 - (void)removeParticipant:(id)arg1;
 - (void)updateLocationTracking;
 - (void)copy:(id)arg1;
+- (void)downloadMoreAttachments:(id)arg1;
 - (void)mapViewControllerSelectionDidChange:(id)arg1;
 - (void)tableViewWasDoubleClicked:(id)arg1;
 - (void)showContactCard:(id)arg1;
@@ -119,8 +134,20 @@
 - (void)muteUnmute:(id)arg1;
 - (void)leaveChat:(id)arg1;
 - (void)titleTextFieldDidEndEditing:(id)arg1;
-- (void)attachmentsTabViewControllerAttachmentsViewDidChange:(BOOL)arg1;
-@property BOOL showsAttachments; // @dynamic showsAttachments;
+- (void)startAudioMultiwayCall:(id)arg1;
+- (void)startFaceTimeMultiwayCall:(id)arg1;
+- (void)_callButtonPressedWithVideo:(BOOL)arg1;
+- (BOOL)hasUncachedImageAttachmentsForTabViewController:(id)arg1;
+- (void)attachmentsTabViewController:(id)arg1 viewDidChangeAfterUpdatingAttachments:(BOOL)arg2;
+- (void)_updateShowAttachmentsGrid;
+@property BOOL showsAttachmentsGrid;
+@property(readonly) BOOL shouldShowAttachmentsGrid;
+- (void)_updateDownloadMoreButton;
+@property(readonly) BOOL shouldShowDownloadMoreButton;
+- (void)_updateShowAttachmentsContainer;
+@property BOOL showsAttachmentsContainer;
+- (void)_setupDownloadMoreButtonIfNeeded;
+@property(readonly) BOOL shouldShowAttachmentsContainer;
 @property(nonatomic) BOOL showsFMFMap; // @dynamic showsFMFMap;
 @property double maximumHeight; // @dynamic maximumHeight;
 

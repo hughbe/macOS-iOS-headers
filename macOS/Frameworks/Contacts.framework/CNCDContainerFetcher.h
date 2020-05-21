@@ -8,7 +8,6 @@
 
 @class CNCDPersistenceContext, NSPredicate;
 
-__attribute__((visibility("hidden")))
 @interface CNCDContainerFetcher : NSObject
 {
     NSPredicate *_predicate;
@@ -17,14 +16,15 @@ __attribute__((visibility("hidden")))
 
 + (id)defaultContainerIdentiferInPersistenceStack:(id)arg1;
 + (id)containersForPredicate:(id)arg1 inPersistenceStack:(id)arg2 error:(id *)arg3;
+- (void).cxx_destruct;
 - (id)fetchRequestWithPredicate:(id)arg1;
 - (id)effectivePredicate:(id)arg1;
 - (id)validatePredicate:(id)arg1 error:(id *)arg2;
 - (id)containersMatchingPredicate:(id)arg1 fromContainers:(id)arg2 error:(id *)arg3;
+- (BOOL)recurseOnPredicate:(id)arg1 forGroup:(id)arg2;
 - (id)exchangeSubContainersMatchingPredicate:(id)arg1 fromContainers:(id)arg2 error:(id *)arg3;
 - (id)topLevelContainersMatchingPredicate:(id)arg1 fromContainers:(id)arg2;
 - (id)fetchContainers:(id *)arg1;
-- (void)dealloc;
 - (id)initWithPredicate:(id)arg1 persistenceContext:(id)arg2;
 - (id)init;
 

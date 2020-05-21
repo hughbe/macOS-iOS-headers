@@ -7,8 +7,12 @@
 #import "NSDate.h"
 
 @interface NSDate (FCTimeAdditions)
-- (id)midnightDate;
-- (BOOL)approximatelyEqualTo:(id)arg1;
 - (id)timeValue;
+- (id)midnightDate;
+- (BOOL)isLastDayOfWeekend;
+- (BOOL)isFirstDayOfWeekend;
+- (BOOL)isDayBeforeWeekend;
+- (BOOL)isWeekend;
+- (id)dateByAddingDays:(long long)arg1;
 @end
 

@@ -7,6 +7,7 @@
 #import "NSCursor.h"
 
 @interface NSCursor (RDCursorAdditions)
++ (id)localIndicatorImage;
 + (id)localIndicatorForPointerCursor;
 + (id)hilightCursor;
 + (id)invisibleCursor;

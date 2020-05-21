@@ -7,13 +7,11 @@
 #import "NSViewController.h"
 
 #import "GKDialogControllerSizing.h"
-#import "GKRemoteViewControllerDelegate.h"
-#import "GKRestrictedViewController.h"
 #import "GKViewController.h"
 
-@class GKRemoteViewController, NSMutableDictionary, NSString;
+@class NSMutableDictionary, NSString;
 
-@interface GKFriendRequestComposeViewController : NSViewController <GKRemoteViewControllerDelegate, GKDialogControllerSizing, GKRestrictedViewController, GKViewController>
+@interface GKFriendRequestComposeViewController : NSViewController <GKDialogControllerSizing, GKViewController>
 {
     id _remoteViewController;
     id <GKFriendRequestComposeViewControllerDelegate> _composeViewDelegateWeak;
@@ -22,21 +20,15 @@
 }
 
 + (unsigned long long)maxNumberOfRecipients;
-@property BOOL didRequestRemoteViewController; // @synthesize didRequestRemoteViewController=_internalFlag;
 @property(retain) NSMutableDictionary *initialState; // @synthesize initialState=_initialState;
-@property(retain) GKRemoteViewController *remoteViewController; // @synthesize remoteViewController=_remoteViewController;
 - (id)_gkInGameUIUnavailableAlertWithDismissHandler:(CDUnknownBlockType)arg1;
-- (BOOL)remoteViewControllerRequestingDismiss:(id)arg1;
 - (void)addRecipientsWithEmailAddresses:(id)arg1;
 - (void)addRecipientPlayers:(id)arg1;
 - (void)addRecipientsWithPlayerIDs:(id)arg1;
 - (void)setMessage:(id)arg1;
 @property(nonatomic) id <GKFriendRequestComposeViewControllerDelegate> composeViewDelegate; // @synthesize composeViewDelegate=_composeViewDelegateWeak;
 - (struct CGSize)_gkSizeForDialogController;
-- (void)viewDidDisappear;
-- (void)requestRemoteViewController;
 - (void)loadView;
-- (id)view;
 - (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 

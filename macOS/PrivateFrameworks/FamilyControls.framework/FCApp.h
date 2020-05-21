@@ -13,17 +13,12 @@
     NSMutableDictionary *_dictionary;
 }
 
-+ (void)setKeychainForCodesigning:(struct OpaqueSecKeychainRef *)arg1;
-+ (id)appStoreRatingForString:(id)arg1;
++ (void)setKeychainForCodesigning:(struct __SecKeychain *)arg1;
 + (id)appWithDictionary:(id)arg1;
 + (id)appWithPath:(id)arg1;
-+ (id)appWithPath:(id)arg1 addingSubApps:(BOOL)arg2;
 + (id)appWithPath:(id)arg1 addingSubApps:(BOOL)arg2 creatingSignature:(BOOL)arg3 detached:(BOOL)arg4;
 - (long long)compare:(id)arg1;
-- (void)setAppStoreRating:(id)arg1;
 - (id)appStoreRating;
-- (void)setIsFromAppStore:(BOOL)arg1;
-- (BOOL)isFromAppStore;
 - (void)setDetachedSignature:(id)arg1;
 - (id)detachedSignature;
 - (void)setSubApps:(id)arg1;
@@ -38,7 +33,6 @@
 - (id)path;
 - (id)description;
 - (void)readBundleInfo;
-- (BOOL)validateCodeSig:(id *)arg1;
 - (id)plistRepresentation;
 - (id)_stringWithOSType:(unsigned int)arg1;
 - (id)_dictionary;

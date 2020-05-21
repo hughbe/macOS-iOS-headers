@@ -7,11 +7,13 @@
 #import "NSCalendar.h"
 
 @interface NSCalendar (CalClassAdditions)
-+ (id)overlayCalendarForCalendarIdentifier:(id)arg1 timezone:(id)arg2;
++ (id)CalDateFromBirthdayComponents:(id)arg1;
 + (id)CalCalendarWithUnsanitizedCalendarIdentifier:(id)arg1;
 + (id)sharedAutoupdatingCurrentCalendar;
 + (id)CalGregorianCalendarForTimeZone:(id)arg1;
 + (id)CalGregorianGMTCalendar;
++ (id)CalYearlessDateThreshold;
+- (id)mapDatesFromDate:(id)arg1 stepSize:(unsigned long long)arg2 range:(unsigned long long)arg3 mapBlock:(CDUnknownBlockType)arg4;
 - (id)CalOccurrencesForBirthday:(id)arg1 inDateRange:(id)arg2;
 - (id)CalDateBySubtractingComponents:(id)arg1 fromDate:(id)arg2;
 - (id)CalDateFromComponents:(id)arg1 inTimeZone:(id)arg2;

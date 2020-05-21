@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     BOOL _isAllowedToAccessAnyCloudService;
     BOOL _isProxyEntitled;
     BOOL _isSharingProxyEntitled;
+    BOOL _isFolderSharingProxyEntitled;
     BOOL _isSharingPrivateInterfaceEntitled;
     BOOL _isAutomationEntitled;
     BOOL _hasAuditToken;
@@ -28,18 +29,20 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)_isNonSandboxedForAuditToken:(CDStruct_4c969caf)arg1;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL hasAuditToken; // @synthesize hasAuditToken=_hasAuditToken;
 @property(readonly, nonatomic) NSString *defaultAppLibraryID; // @synthesize defaultAppLibraryID=_defaultAppLibraryID;
 @property(readonly, nonatomic) NSSet *appLibraryIDs; // @synthesize appLibraryIDs=_appLibraryIDs;
 @property(readonly, nonatomic) BOOL isAutomationEntitled; // @synthesize isAutomationEntitled=_isAutomationEntitled;
 @property(readonly, nonatomic) BOOL isSharingPrivateInterfaceEntitled; // @synthesize isSharingPrivateInterfaceEntitled=_isSharingPrivateInterfaceEntitled;
+@property(readonly, nonatomic) BOOL isFolderSharingProxyEntitled; // @synthesize isFolderSharingProxyEntitled=_isFolderSharingProxyEntitled;
 @property(readonly, nonatomic) BOOL isSharingProxyEntitled; // @synthesize isSharingProxyEntitled=_isSharingProxyEntitled;
 @property(readonly, nonatomic) BOOL isProxyEntitled; // @synthesize isProxyEntitled=_isProxyEntitled;
 @property(readonly, nonatomic) BOOL isAllowedToAccessAnyCloudService; // @synthesize isAllowedToAccessAnyCloudService=_isAllowedToAccessAnyCloudService;
 @property(readonly, nonatomic) BOOL isNonAppSandboxed; // @synthesize isNonAppSandboxed=_isNonAppSandboxed;
 @property(readonly, nonatomic) NSString *applicationIdentifier; // @synthesize applicationIdentifier=_applicationIdentifier;
-- (void).cxx_destruct;
 - (BOOL)_computeCloudEnabledStatusWithoutLogOutStatus;
+- (void)updateCloudEnabledStatus;
 - (BOOL)cloudEnabledStatusForSession:(id)arg1;
 - (id)description;
 @property(readonly, nonatomic) BOOL canFetchUserQuota;
@@ -48,7 +51,6 @@ __attribute__((visibility("hidden")))
 - (int)pid;
 - (BOOL)hasPid;
 - (id)initWithNonSandboxedAppWithAppLibraryIDs:(id)arg1 bundleID:(id)arg2 auditToken:(CDStruct_4c969caf)arg3;
-- (id)initWithPid:(int)arg1;
 - (id)initWithAuditToken:(CDStruct_4c969caf)arg1;
 
 @end

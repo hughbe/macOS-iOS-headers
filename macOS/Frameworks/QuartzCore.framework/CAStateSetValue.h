@@ -14,11 +14,13 @@
     id _value;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(copy, nonatomic) NSString *keyPath; // @synthesize keyPath=_keyPath;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)debugDescription;
 - (void)dealloc;
+- (BOOL)CAMLTypeSupportedForKey:(id)arg1;
 - (id)CAMLTypeForKey:(id)arg1;
 - (void)encodeWithCAMLWriter:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

@@ -4,10 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSArray, NSDictionary, NSError;
+@class CKSoftwareUpdateStatus, NSArray;
 
 @protocol ISOSUpdateProgressObserver
-- (void)osUpdates:(NSArray *)arg1 didFailWithError:(NSError *)arg2;
-- (void)osUpdates:(NSArray *)arg1 didProgressWithState:(long long)arg2 percentComplete:(double)arg3 statusInfo:(NSDictionary *)arg4 includesCriticalUpdates:(BOOL)arg5 canCancel:(BOOL)arg6;
+- (void)osUpdates:(NSArray *)arg1 changedProgress:(CKSoftwareUpdateStatus *)arg2;
 @end
 

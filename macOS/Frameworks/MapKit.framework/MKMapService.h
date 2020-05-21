@@ -6,86 +6,96 @@
 
 #import "NSObject.h"
 
-@interface MKMapService : NSObject
+#import "GEOLogContextDelegate.h"
+
+@class NSString;
+
+@interface MKMapService : NSObject <GEOLogContextDelegate>
 {
 }
 
 + (id)sharedService;
-- (id)ticketForNearestTransitStation:(unsigned long long)arg1 coordinate:(struct CLLocationCoordinate2D)arg2 includeETA:(BOOL)arg3 traits:(id)arg4;
+- (id)ticketForNearestTransitStation:(id)arg1 coordinate:(struct CLLocationCoordinate2D)arg2 traits:(id)arg3;
 - (id)ticketForTransitLines:(id)arg1 traits:(id)arg2;
+- (id)ticketForChildPlace:(id)arg1 traits:(id)arg2;
 - (id)mapItemsForPlacesInDetails:(id)arg1;
+- (id)ticketForBrandLookupWithIMessageUid:(id)arg1 traits:(id)arg2;
 - (id)ticketForProblemResubmission:(id)arg1 traits:(id)arg2;
-- (id)ticketForProblem:(id)arg1 mapItemForProblemContext:(id)arg2 mapItemForStartDirectionsSearchInput:(id)arg3 mapitemForEndDirectionsSearchInput:(id)arg4 pushToken:(id)arg5 allowContactBackAtEmailAddress:(id)arg6 traits:(id)arg7;
+- (id)ticketForProblem:(id)arg1 mapItemForProblemContext:(id)arg2 userCredentials:(id)arg3 pushToken:(id)arg4 allowContactBackAtEmailAddress:(id)arg5 traits:(id)arg6;
+- (id)ticketForFeedbackRequestData:(id)arg1 traits:(id)arg2;
+- (id)ticketForFeedbackRequest:(id)arg1 traits:(id)arg2;
+- (id)ticketForFeedbackRequestParameters:(id)arg1 mapItemForProblemContext:(id)arg2 userCredentials:(id)arg3 pushToken:(id)arg4 allowContactBackAtEmailAddress:(id)arg5 traits:(id)arg6;
 - (void)_mapItemsForResponseData:(id)arg1 handler:(CDUnknownBlockType)arg2;
-- (void)submitUsageForTraits:(id)arg1 actionDetails:(id)arg2 routeDetails:(id)arg3;
-- (void)submitUsageForTraits:(id)arg1 mapItem:(id)arg2 timestamp:(double)arg3 resultIndex:(int)arg4 targetID:(unsigned long long)arg5;
-- (void)submitUsageForTraits:(id)arg1 mapItem:(id)arg2 timestamp:(double)arg3 resultIndex:(int)arg4;
-- (void)submitUsageForTraits:(id)arg1;
-- (void)submitUserAction:(id)arg1 eventKey:(int)arg2;
-- (void)submitUserAction:(id)arg1 eventKey:(int)arg2 selectedIndex:(unsigned long long)arg3 uniqueID:(id)arg4;
-- (void)submitUserAction:(id)arg1 eventKey:(int)arg2 uniqueURL:(id)arg3;
-- (void)submitUserAction:(id)arg1 eventKey:(int)arg2 eventValue:(id)arg3;
-- (void)submitUserAction:(id)arg1 sharingType:(id)arg2;
-- (void)submitUsageForTraitsWithSearchFieldType:(int)arg1 prefix:(id)arg2 displayedResults:(id)arg3 selectedIndex:(int)arg4;
-- (void)submitUsageForTraitsWithAction:(int)arg1 uiTarget:(int)arg2;
-- (void)submitUsageForTraitsWithAction:(int)arg1 actionDetails:(id)arg2 uiTarget:(int)arg3 eventValue:(id)arg4;
-- (void)submitUsageForTraitsWithAction:(int)arg1 actionDetails:(id)arg2 uiTarget:(int)arg3;
-- (void)submitUsageForTraitsWithAction:(int)arg1 categoriesDisplayed:(id)arg2 categorySelected:(id)arg3;
-- (void)submitUsageForTraitsWithAction:(int)arg1 mapRegion:(id)arg2 zoomLevel:(double)arg3;
-- (void)submitUsageForTraitsWithAction:(int)arg1 flyoverAnimationID:(unsigned long long)arg2;
-- (void)submitUsageForTraitsWithAction:(int)arg1 mapItem:(id)arg2 providerID:(id)arg3 resultIndex:(int)arg4 targetID:(unsigned long long)arg5 transitCardCategory:(int)arg6 transitSystem:(id)arg7 transitIncident:(id)arg8;
-- (void)submitUsageForTraitsWithAction:(int)arg1 mapItem:(id)arg2 providerID:(id)arg3 resultIndex:(int)arg4 targetID:(unsigned long long)arg5 transitCardCategory:(int)arg6 transitSystem:(id)arg7 transitDepartureSequence:(id)arg8;
-- (void)submitUsageForTraitsWithAction:(int)arg1 mapItem:(id)arg2 providerID:(id)arg3 resultIndex:(int)arg4 targetID:(unsigned long long)arg5 transitCardCategory:(int)arg6 transitSystem:(id)arg7;
-- (void)submitUsageForTraitsWithAction:(int)arg1 mapItem:(id)arg2 providerID:(id)arg3 resultIndex:(int)arg4 targetID:(unsigned long long)arg5 transitCardCategory:(int)arg6;
-- (void)submitUsageForTraitsWithAction:(int)arg1 mapItem:(id)arg2 providerID:(id)arg3 targetID:(unsigned long long)arg4;
-- (void)submitUsageForTraits:(id)arg1 eventValue:(id)arg2;
-- (void)submitUsageForTraitsWithAction:(int)arg1 regionName:(id)arg2;
-- (void)submitUsageForTraitsWithAction:(int)arg1 mapItem:(id)arg2 providerID:(id)arg3;
-- (void)submitUsageForTraitsWithAction:(int)arg1 mapItem:(id)arg2 targetID:(unsigned long long)arg3;
-- (void)submitUsageForTraitsWithAction:(int)arg1 mapItem:(id)arg2;
-- (void)submitUsageForTraitsWithAction:(int)arg1;
-- (id)_mk_ticketForSearchQuery:(id)arg1 completionItem:(id)arg2 traits:(id)arg3;
+- (id)_mk_ticketForSearchQuery:(id)arg1 completionItem:(id)arg2 traits:(id)arg3 filters:(id)arg4;
 - (id)ticketForSearchFieldPlaceholderWithTraits:(id)arg1;
-- (id)ticketForBatchPopularNearbyForSearchCategories:(id)arg1 maxResults:(unsigned int)arg2 traits:(id)arg3;
 - (id)ticketForPopularNearbyForSearchCategory:(id)arg1 maxResults:(unsigned int)arg2 traits:(id)arg3;
-- (id)ticketForSearchCategory:(id)arg1 searchString:(id)arg2 maxResults:(unsigned int)arg3 traits:(id)arg4;
+- (id)ticketForSearchCategory:(id)arg1 venueIdentifier:(id)arg2 maxResults:(unsigned int)arg3 traits:(id)arg4;
+- (id)ticketForSearchQuery:(id)arg1 filters:(id)arg2 maxResults:(unsigned int)arg3 traits:(id)arg4;
 - (id)ticketForSearchAlongRouteWithCategory:(id)arg1 zilchData:(id)arg2 sessionState:(id)arg3 routeId:(id)arg4 maxResults:(unsigned int)arg5 traits:(id)arg6;
 - (id)ticketForCategory:(id)arg1 maxResults:(unsigned int)arg2 traits:(id)arg3;
-- (id)ticketForCategoryListWithTraits:(id)arg1;
-- (id)ticketForURLQuery:(id)arg1 coordinate:(struct CLLocationCoordinate2D)arg2 muid:(unsigned long long)arg3 resultProviderId:(int)arg4 contentProvider:(id)arg5 maxResults:(unsigned int)arg6 traits:(id)arg7;
-- (id)ticketForSearchQuery:(id)arg1 completionItem:(id)arg2 relatedSearchSuggestion:(id)arg3 maxResults:(unsigned int)arg4 includeETA:(BOOL)arg5 traits:(id)arg6;
-- (id)ticketForSearchQuery:(id)arg1 completionItem:(id)arg2 maxResults:(unsigned int)arg3 includeETA:(BOOL)arg4 traits:(id)arg5;
+- (id)ticketForDFRCategoryListWithTraits:(id)arg1;
+- (id)ticketForRelatedPlaceList:(id)arg1 traits:(id)arg2;
+- (id)ticketForUpdatedTransitScheduleDetailsAtStation:(unsigned long long)arg1 line:(unsigned long long)arg2 referenceTripID:(unsigned long long)arg3 routingParameters:(id)arg4 traits:(id)arg5;
+- (id)ticketForTransitDeparturesAtStation:(unsigned long long)arg1 line:(unsigned long long)arg2 referenceTripID:(unsigned long long)arg3 traits:(id)arg4;
+- (id)ticketForTransitTripDetailsAtStation:(unsigned long long)arg1 line:(unsigned long long)arg2 referenceTripID:(unsigned long long)arg3 routingParameters:(id)arg4 traits:(id)arg5;
+- (id)ticketForTransitScheduleAtStation:(unsigned long long)arg1 line:(unsigned long long)arg2 referenceTripID:(unsigned long long)arg3 routingParameters:(id)arg4 traits:(id)arg5;
+- (id)ticketForSearchPoisForCollectionMUID:(unsigned long long)arg1 traits:(id)arg2;
+- (id)ticketForCategoryListWithTraits:(id)arg1 isFromNoQueryState:(BOOL)arg2;
+- (id)ticketForSearchPoisForBrandMUID:(unsigned long long)arg1 traits:(id)arg2;
+- (id)ticketForURLQuery:(id)arg1 identifier:(id)arg2 resultProviderId:(int)arg3 contentProvider:(id)arg4 maxResults:(unsigned int)arg5 traits:(id)arg6;
+- (id)ticketForSearchQuery:(id)arg1 completionItem:(id)arg2 relatedSearchSuggestion:(id)arg3 maxResults:(unsigned int)arg4 traits:(id)arg5;
+- (id)ticketForSearchQuery:(id)arg1 completionItem:(id)arg2 retainedSearch:(id)arg3 maxResults:(unsigned int)arg4 traits:(id)arg5;
+- (id)ticketForSearchQuery:(id)arg1 completionItem:(id)arg2 maxResults:(unsigned int)arg3 traits:(id)arg4;
 - (id)ticketForExternalTransitStationCodes:(id)arg1 sourceID:(id)arg2 transactionDate:(id)arg3 transactionLocation:(id)arg4 traits:(id)arg5;
-- (id)ticketForMerchantCode:(id)arg1 rawMerchantCode:(id)arg2 paymentNetwork:(id)arg3 transactionDate:(id)arg4 transactionLocation:(id)arg5 traits:(id)arg6;
+- (id)ticketForMerchantCode:(id)arg1 rawMerchantCode:(id)arg2 industryCategory:(id)arg3 industryCode:(id)arg4 paymentNetwork:(id)arg5 transactionDate:(id)arg6 transactionLocation:(id)arg7 traits:(id)arg8;
 - (id)ticketForCanonicalLocationSearchQueryString:(id)arg1 traits:(id)arg2;
 - (id)ticketForPlaceRefinementRequestWithCoordinate:(struct CLLocationCoordinate2D *)arg1 addressLine:(id)arg2 placeName:(id)arg3 traits:(id)arg4;
 - (id)ticketForMapItemToRefine:(id)arg1 traits:(id)arg2;
+- (id)_ticketForReverseGeocodeDroppedPinCoordinate:(struct CLLocationCoordinate2D)arg1 floorOrdinal:(id)arg2 traits:(id)arg3;
+- (id)ticketForReverseGeocodeDroppedPinCoordinate:(struct CLLocationCoordinate2D)arg1 floorOrdinal:(int)arg2 traits:(id)arg3;
 - (id)ticketForReverseGeocodeDroppedPinCoordinate:(struct CLLocationCoordinate2D)arg1 traits:(id)arg2;
-- (id)ticketForReverseGeocodeCoordinate:(struct CLLocationCoordinate2D)arg1 includeETA:(BOOL)arg2 traits:(id)arg3;
-- (id)_ticketForReverseGeocodeCoordinate:(struct CLLocationCoordinate2D)arg1 includeEntryPoints:(BOOL)arg2 includeETA:(BOOL)arg3 preserveOriginalLocation:(BOOL)arg4 traits:(id)arg5;
+- (id)ticketForReverseGeocodeCoordinate:(struct CLLocationCoordinate2D)arg1 traits:(id)arg2;
+- (id)_ticketForReverseGeocodeCoordinate:(struct CLLocationCoordinate2D)arg1 floorOrdinal:(int)arg2 includeEntryPoints:(BOOL)arg3 preserveOriginalLocation:(BOOL)arg4 traits:(id)arg5;
+- (id)_ticketForReverseGeocodeCoordinate:(struct CLLocationCoordinate2D)arg1 includeEntryPoints:(BOOL)arg2 preserveOriginalLocation:(BOOL)arg3 traits:(id)arg4;
 - (id)ticketForForwardGeocodeAddressDictionary:(id)arg1 traits:(id)arg2;
 - (id)ticketForForwardGeocodeString:(id)arg1 traits:(id)arg2;
 - (id)ticketForForwardGeocodeAddress:(id)arg1 traits:(id)arg2;
-- (id)ticketForExternalBusinessID:(id)arg1 contentProvider:(id)arg2 includeETA:(BOOL)arg3 traits:(id)arg4;
+- (id)ticketForExternalBusinessID:(id)arg1 contentProvider:(id)arg2 traits:(id)arg3;
 - (id)ticketForPhoneNumbers:(id)arg1 allowCellularDataForLookup:(BOOL)arg2 traits:(id)arg3;
-- (id)ticketForFreshBusinessClaimComponentWithMUID:(unsigned long long)arg1 resultProviderID:(int)arg2 traits:(id)arg3;
-- (id)ticketForFreshMUIDs:(id)arg1 resultProviderID:(int)arg2 contentProvider:(id)arg3 includeETA:(BOOL)arg4 traits:(id)arg5;
-- (id)ticketForMUIDs:(id)arg1 resultProviderID:(int)arg2 contentProvider:(id)arg3 includeETA:(BOOL)arg4 traits:(id)arg5;
-- (id)ticketForMUIDs:(id)arg1 includeETA:(BOOL)arg2 traits:(id)arg3;
-- (id)defaultTraitsWithCurrentLocation;
+- (id)ticketForFreshBusinessClaimComponentWithIdentifier:(id)arg1 resultProviderID:(int)arg2 traits:(id)arg3;
+- (id)ticketForNonExpiredIdentifier:(id)arg1 resultProviderID:(int)arg2 contentProvider:(id)arg3 traits:(id)arg4;
+- (id)ticketForFreshIdentifier:(id)arg1 resultProviderID:(int)arg2 contentProvider:(id)arg3 traits:(id)arg4;
+- (id)ticketForIdentifiers:(id)arg1 resultProviderID:(int)arg2 contentProvider:(id)arg3 traits:(id)arg4;
+- (id)ticketForIdentifiers:(id)arg1 traits:(id)arg2;
+- (id)ticketForMUIDs:(id)arg1 resultProviderID:(int)arg2 contentProvider:(id)arg3 traits:(id)arg4;
+- (id)ticketForMUIDs:(id)arg1 traits:(id)arg2;
+- (id)defaultTraitsForAnalyticsWithTraits:(id)arg1;
 - (id)defaultTraitsWithTraits:(id)arg1;
 - (id)defaultTraitsWithTransportType:(unsigned long long)arg1;
 - (id)defaultTraits;
-- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 categoriesDisplayed:(id)arg4 categorySelected:(id)arg5 traits:(id)arg6;
-- (void)captureTransitPlaceCardUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapItem:(id)arg4 timestamp:(double)arg5 resultIndex:(int)arg6 targetID:(unsigned long long)arg7 providerID:(id)arg8 animationID:(unsigned long long)arg9 transitCardCategory:(int)arg10 transitSystem:(id)arg11 transitDepartureSequence:(id)arg12 transitIncident:(id)arg13 traits:(id)arg14;
-- (void)capturePlaceCardUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapItem:(id)arg4 timestamp:(double)arg5 resultIndex:(int)arg6 targetID:(unsigned long long)arg7 providerID:(id)arg8 animationID:(unsigned long long)arg9 actionURL:(id)arg10 photoID:(id)arg11 traits:(id)arg12 placeCardType:(int)arg13 unlocalizedMapItemCategory:(id)arg14 availableActions:(id)arg15 unactionableUIElements:(id)arg16;
-- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 placeActionDetails:(id)arg4 traits:(id)arg5;
-- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 routeDetails:(id)arg4 traits:(id)arg5;
-- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapRegion:(id)arg4 zoomLevel:(double)arg5 traits:(id)arg6;
-- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 launchUrl:(id)arg4 sourceAppId:(id)arg5 traits:(id)arg6;
-- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 traits:(id)arg4;
-- (void)captureMapUIStateWithLayoutInfo:(int)arg1 layoutStyle:(int)arg2 numberOfTabs:(unsigned int)arg3 currentTabIndex:(unsigned int)arg4;
-- (void)captureMapUIStateWithLayoutInfo:(int)arg1 layoutStyle:(int)arg2;
+- (void)capturePlaceCardUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapItem:(id)arg4 timestamp:(double)arg5 placeCardType:(int)arg6 categoriesDisplayed:(id)arg7 categorySelected:(id)arg8;
+- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 categoriesDisplayed:(id)arg4 categorySelected:(id)arg5;
+- (void)captureTransitPlaceCardUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapItem:(id)arg4 timestamp:(double)arg5 resultIndex:(int)arg6 targetID:(unsigned long long)arg7 providerID:(id)arg8 animationID:(unsigned long long)arg9 transitCardCategory:(int)arg10 transitSystem:(id)arg11 transitDepartureSequence:(id)arg12 transitIncident:(id)arg13;
+- (void)capturePlaceCardUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapItem:(id)arg4 timestamp:(double)arg5 resultIndex:(int)arg6 targetID:(unsigned long long)arg7 providerID:(id)arg8 animationID:(unsigned long long)arg9 actionURL:(id)arg10 photoID:(id)arg11 placeCardType:(int)arg12 localizedMapItemCategory:(id)arg13 availableActions:(id)arg14 unactionableUIElements:(id)arg15;
+- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 placeActionDetails:(id)arg4;
+- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 placeActionDetails:(id)arg3 mapItem:(id)arg4 resultIndex:(int)arg5;
+- (void)captureUserAction:(int)arg1 flyoverAnimationID:(unsigned long long)arg2;
+- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapItem:(id)arg4 timestamp:(double)arg5 resultIndex:(int)arg6 mapRegion:(id)arg7 zoomLevel:(double)arg8 mapType:(int)arg9;
+- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapItem:(id)arg4 timestamp:(double)arg5 resultIndex:(int)arg6;
+- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 routeDetails:(id)arg4;
+- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapRegion:(id)arg4 zoomLevel:(double)arg5 mapType:(int)arg6;
+- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 queryString:(id)arg3;
+- (void)captureUserAction:(int)arg1 onTarget:(int)arg2 eventValue:(id)arg3;
+- (id)problemTicketForWalletRAPReport:(id)arg1;
+- (id)feedbackTicketForWalletRAPReport:(id)arg1;
+- (id)stylingForWalletCategory:(id)arg1;
+- (id)ticketForWalletMerchantLookupRequest:(id)arg1 traits:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,6 +8,7 @@
 
 @class NSMapTable, NSOperationQueue, NSRegion, NSView, NSWindow;
 
+__attribute__((visibility("hidden")))
 @interface _NSDisplayOperation : NSObject
 {
     NSWindow *_window;
@@ -17,7 +18,7 @@
     NSView *_clipRootView;
     NSOperationQueue *_viewDrawOperationQueue;
     NSMapTable *_viewToDrawOperationMapTable;
-    int _viewToDrawOperationMapTableLock;
+    struct os_unfair_lock_s _viewToDrawOperationMapTableLock;
     BOOL _attemptingConcurrentViewDrawing;
 }
 

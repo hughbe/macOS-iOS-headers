@@ -6,16 +6,20 @@
 
 #import <SearchFoundation/SFFeedback.h>
 
-@class SFCardSection;
+@class NSString;
 
 @interface SFCardSectionFeedback : SFFeedback
 {
-    SFCardSection *_cardSection;
+    id <SFCardSection> _cardSection;
+    NSString *_cardSectionId;
+    NSString *_resultId;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain, nonatomic) SFCardSection *cardSection; // @synthesize cardSection=_cardSection;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSString *resultId; // @synthesize resultId=_resultId;
+@property(copy, nonatomic) NSString *cardSectionId; // @synthesize cardSectionId=_cardSectionId;
+@property(retain, nonatomic) id <SFCardSection> cardSection; // @synthesize cardSection=_cardSection;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithCardSection:(id)arg1;

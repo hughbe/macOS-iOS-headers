@@ -32,6 +32,7 @@ __attribute__((visibility("hidden")))
 
 - (id)generateSQLStringInContext:(id)arg1;
 - (void)_createCollectionJoinsForFetchInContext:(id)arg1;
+- (BOOL)canDoDirectJoinGivenPredicate:(id)arg1;
 - (void)_setVariableColumn:(id)arg1;
 - (void)_createSelectClauseInFetchWithContext:(id)arg1;
 - (void)selectDistinct;

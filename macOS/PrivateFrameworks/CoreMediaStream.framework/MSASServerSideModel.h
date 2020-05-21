@@ -22,6 +22,7 @@
     MSASPendingChanges *_pendingChanges;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) MSASPendingChanges *pendingChanges; // @synthesize pendingChanges=_pendingChanges;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *memberQueue; // @synthesize memberQueue=_memberQueue;
 @property(retain, nonatomic) MSASServerSideModelGroupedCommandQueue *commandQueue; // @synthesize commandQueue=_commandQueue;
@@ -29,7 +30,6 @@
 @property(retain, nonatomic) NSCountedSet *observers; // @synthesize observers=_observers;
 @property(nonatomic) __weak MSAlbumSharingDaemon *daemon; // @synthesize daemon=_daemon;
 @property(nonatomic) MSASStateMachine *MSASCounterpartInstance; // @synthesize MSASCounterpartInstance=_counterpartInstance;
-- (void).cxx_destruct;
 - (BOOL)errorIsCancellation:(id)arg1;
 - (void)MSASStateMachine:(id)arg1 didFinishAddingComment:(id)arg2 toAssetCollection:(id)arg3 inAlbum:(id)arg4 info:(id)arg5 error:(id)arg6;
 - (void)MSASStateMachine:(id)arg1 didFinishRemovingSharingRelationship:(id)arg2 fromOwnedAlbum:(id)arg3 info:(id)arg4 error:(id)arg5;
@@ -162,6 +162,11 @@
 - (void)removeAccessControlEntryWithGUID:(id)arg1;
 - (void)addAccessControlEntries:(id)arg1 toAlbumWithGUID:(id)arg2 info:(id)arg3;
 - (void)addAccessControlEntries:(id)arg1 toAlbumWithGUID:(id)arg2;
+- (void)MSASStateMachine:(id)arg1 didFinishMarkingAsSpamInvitationForToken:(id)arg2 info:(id)arg3 error:(id)arg4;
+- (void)markAsSpamInvitationWithToken:(id)arg1 info:(id)arg2;
+- (void)MSASStateMachine:(id)arg1 didFinishMarkingAsSpamInvitationForAlbum:(id)arg2 invitationGUID:(id)arg3 info:(id)arg4 error:(id)arg5;
+- (void)markAsSpamInvitationWithGUID:(id)arg1 info:(id)arg2;
+- (void)markAsSpamAlbumWithGUID:(id)arg1 info:(id)arg2;
 - (void)rejectInvitationWithGUID:(id)arg1 info:(id)arg2;
 - (void)rejectInvitationWithGUID:(id)arg1;
 - (void)acceptInvitationWithGUID:(id)arg1 info:(id)arg2;
@@ -234,7 +239,6 @@
 - (BOOL)hasCommandsInGroupedCommandQueue;
 - (void)shutDownForDestruction:(BOOL)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)shutDown;
-- (void)dealloc;
 - (void)cancel;
 - (void)start;
 - (BOOL)dbQueueUpgradeFromDatabaseVersion:(int)arg1 currentVersion:(int)arg2;

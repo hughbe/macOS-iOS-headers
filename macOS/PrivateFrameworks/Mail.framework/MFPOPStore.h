@@ -16,15 +16,16 @@
     NSMutableSet *_skippedMessageIds;
     NSMutableIndexSet *_messageNumbersToDelete;
     BOOL _lastConnectionFailed;
-    BOOL _routerCancelled;
     BOOL _performingUserInitiatedFetch;
+    BOOL _routerCancelled;
     NSProgress *_checkProgress;
 }
 
-@property(nonatomic) BOOL performingUserInitiatedFetch; // @synthesize performingUserInitiatedFetch=_performingUserInitiatedFetch;
++ (id)_log;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSProgress *checkProgress; // @synthesize checkProgress=_checkProgress;
 @property BOOL routerCancelled; // @synthesize routerCancelled=_routerCancelled;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL performingUserInitiatedFetch; // @synthesize performingUserInitiatedFetch=_performingUserInitiatedFetch;
 - (void)_finishCheckingForMailProgress;
 - (void)_setFoundNewUnreadMessageInInbox;
 - (void)_incrementFoundMessages:(unsigned long long)arg1;
@@ -37,6 +38,8 @@
 - (long long)connection:(id)arg1 willRetrieveMessageNumber:(unsigned long long)arg2 header:(id)arg3 size:(unsigned long long)arg4;
 - (void)connection:(id)arg1 receivedNumberOfBytes:(unsigned long long)arg2;
 @property(readonly, nonatomic) BOOL connectionShouldPrefetchMessages;
+- (void)deleteMessages:(id)arg1 moveToTrash:(BOOL)arg2;
+- (id)moveMessages:(id)arg1 destinationMailboxURL:(id)arg2 userInitiated:(BOOL)arg3;
 - (void)messageFlagsDidChange:(id)arg1 flags:(id)arg2;
 - (void)_cancelAutosave;
 - (void)_setNeedsAutosave;

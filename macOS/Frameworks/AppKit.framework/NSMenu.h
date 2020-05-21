@@ -12,7 +12,7 @@
 #import "NSCopying.h"
 #import "NSUserInterfaceItemIdentification.h"
 
-@class NSArray, NSFont, NSMenuItem, NSString, NSURL;
+@class NSArray, NSFont, NSMenuItem, NSString, NSURL, NSView;
 
 @interface NSMenu : NSObject <NSCopying, NSCoding, NSUserInterfaceItemIdentification, NSAccessibilityElement, NSAccessibility>
 {
@@ -39,13 +39,13 @@
         unsigned int noTopPadding:1;
         unsigned int noBottomPadding:1;
         unsigned int hasNCStyle:1;
-        unsigned int delegateIsUnsafeUnretained:1;
         unsigned int avoidUsingCache:1;
-        unsigned int RESERVED:10;
+        unsigned int RESERVED:11;
     } _mFlags;
     NSString *_uiid;
 }
 
++ (double)_revealedMenuBarHeight;
 + (void)_drawHelpResultsSeparatorInRect:(struct CGRect)arg1 withClipRect:(struct CGRect)arg2 flags:(unsigned long long)arg3;
 + (void)_drawOverlayForMenuHelpResultsInRect:(struct CGRect)arg1 withClipRect:(struct CGRect)arg2 flags:(unsigned long long)arg3;
 + (double)menuBarHeight;
@@ -54,6 +54,8 @@
 + (void)_setHelpMenu:(id)arg1;
 + (id)_helpMenu;
 + (id)_currentTrackingInfo;
++ (BOOL)_menuBarIsDark;
++ (BOOL)isMenuBarVisible;
 + (BOOL)menuBarVisible;
 + (void)setMenuBarVisible:(BOOL)arg1;
 + (void)_setAppleMenuEnabled:(BOOL)arg1;
@@ -68,6 +70,9 @@
 + (struct _NSZone *)menuZone;
 + (void)setMenuZone:(struct _NSZone *)arg1;
 + (void)initialize;
++ (id)standardImportFromDeviceMenuWithOptions:(unsigned long long)arg1;
++ (id)_sidecarServicesMenuWithTarget:(id)arg1 action:(SEL)arg2 options:(unsigned long long)arg3;
++ (id)_sidecarServicesMenuWithOptions:(unsigned long long)arg1;
 + (id)_captureKeyEquivalentsWithOptions:(unsigned long long)arg1 inMode:(id)arg2 finalEvent:(id *)arg3 status:(long long *)arg4 additionalEventProcessing:(CDUnknownBlockType)arg5;
 + (id)_captureKeyEquivalentsFromEvent:(id)arg1 withOptions:(unsigned long long)arg2;
 + (BOOL)_validateCaptureKeyEquivalentsFromEvent:(id)arg1 withOptions:(unsigned long long)arg2;
@@ -85,16 +90,21 @@
 @property(copy) NSString *identifier;
 - (void)setUserInterfaceItemIdentifier:(id)arg1;
 - (id)userInterfaceItemIdentifier;
+- (void)_menuItem:(id)arg1 didChangeRequiresModifiersToBeVisibleFrom:(BOOL)arg2 to:(BOOL)arg3;
+- (void)_menuItem:(id)arg1 didChangeImageSizeFrom:(struct CGSize)arg2 to:(struct CGSize)arg3;
 - (void)_menuDidChangeAccessibilityOverriddenAttribute:(id)arg1 from:(id)arg2 to:(id)arg3;
 - (void)_menuItem:(id)arg1 didChangeRespectsKeyEquivalentWhileHiddenFrom:(BOOL)arg2 to:(BOOL)arg3;
 - (void)_menuItem:(id)arg1 didChangeAccessibilityOverriddenAttribute:(id)arg2 from:(id)arg3 to:(id)arg4;
 - (void)_menuItem:(id)arg1 didChangeSeparatorStatusFrom:(BOOL)arg2 to:(BOOL)arg3;
 - (void)_menuItem:(id)arg1 didChangeHiddenFrom:(BOOL)arg2 to:(BOOL)arg3;
-- (void)_menuItem:(id)arg1 didChangeCustomViewHandlesEventsFrom:(BOOL)arg2 to:(BOOL)arg3;
+- (void)_menuItem:(id)arg1 didChangeCustomViewIsDrawingOnlyFrom:(BOOL)arg2 to:(BOOL)arg3 viewDidWantHIView:(BOOL)arg4;
+- (void)_menuItem:(id)arg1 didChangeCustomViewHandlesEventsFrom:(BOOL)arg2 to:(BOOL)arg3 viewDidWantHIView:(BOOL)arg4;
 - (void)_menuItem:(id)arg1 didChangeCustomViewFrom:(id)arg2 to:(id)arg3;
 - (void)_menuItem:(id)arg1 didChangeTooltipFrom:(id)arg2 to:(id)arg3;
 - (void)_menuItem:(id)arg1 didChangeIndentFrom:(long long)arg2 to:(long long)arg3;
 - (void)_menuItem:(id)arg1 didChangeNextItemIsAlternateFrom:(BOOL)arg2 to:(BOOL)arg3;
+- (void)_menuItem:(id)arg1 didChangeSubmenuParentItemUnchoosableFrom:(BOOL)arg2 to:(BOOL)arg3;
+- (void)_menuItem:(id)arg1 didChangeShowsBlockedByScreenTimeFrom:(BOOL)arg2 to:(BOOL)arg3;
 - (void)_menuItem:(id)arg1 didChangeDestructiveFrom:(BOOL)arg2 to:(BOOL)arg3;
 - (void)_menuItem:(id)arg1 didChangeAlternateFrom:(BOOL)arg2 to:(BOOL)arg3;
 - (void)_menuItem:(id)arg1 didChangeKeyEquivalentModifierMaskFrom:(unsigned long long)arg2 to:(unsigned long long)arg3;
@@ -112,6 +122,8 @@
 - (void)_menuItem:(id)arg1 didChangeEnabledStateFrom:(BOOL)arg2 to:(BOOL)arg3;
 - (void)_notifySupermenuOfSubmenuChange;
 - (void)_limitedViewWantsRedisplayForItem:(id)arg1 inRect:(struct CGRect)arg2;
+- (id)_lastInputSourceIdentifierForKeyboardAdjustedShortcuts;
+- (void)_setLastInputSourceIdentifierForKeyboardAdjustedShortcuts:(id)arg1;
 - (const struct AEDesc *)_contextMenuPluginAEDesc;
 - (void)_setContextMenuPluginAEDesc:(const struct AEDesc *)arg1;
 @property BOOL showsStateColumn;
@@ -159,10 +171,8 @@
 - (BOOL)_hasPendingCancellationEvent;
 @property long long userInterfaceLayoutDirection;
 - (long long)_layoutDirectionIfExists;
-- (void)_setIndentationWidth:(unsigned long long)arg1;
-- (unsigned long long)_indentationWidth;
-- (void)_setHasNCStyle:(BOOL)arg1;
-- (BOOL)_hasNCStyle;
+@property(setter=_setIndentationWidth:) unsigned long long _indentationWidth;
+@property(setter=_setHasNCStyle:) BOOL _hasNCStyle;
 - (void)_setHasPadding:(BOOL)arg1 onEdge:(unsigned long long)arg2;
 - (BOOL)_hasPaddingOnEdge:(unsigned long long)arg1;
 - (BOOL)_condensesSeparators;
@@ -188,10 +198,12 @@
 - (void)_setIsContextualMenu:(BOOL)arg1;
 - (BOOL)_isContextualMenu;
 - (void)_image:(id *)arg1 frame:(struct CGRect *)arg2 forPopUpMenuPositioningItem:(id)arg3 atLocation:(struct CGPoint)arg4 inView:(id)arg5 appearance:(id)arg6;
+- (BOOL)_popUpMenuRelativeToRect:(struct CGRect)arg1 inView:(id)arg2 preferredEdge:(unsigned long long)arg3;
 - (BOOL)popUpMenuPositioningItem:(id)arg1 atLocation:(struct CGPoint)arg2 inView:(id)arg3 appearance:(id)arg4;
 - (BOOL)popUpMenuPositioningItem:(id)arg1 atLocation:(struct CGPoint)arg2 inView:(id)arg3;
 - (void)_popUpContextMenu:(id)arg1 withEvent:(id)arg2 forView:(id)arg3 withFont:(id)arg4;
 - (void)_popUpContextMenu:(id)arg1 withEvent:(id)arg2 forView:(id)arg3;
+@property(readonly) NSView *_presentingView;
 - (BOOL)_servicesMenuItemsAreForContextMenu;
 - (id)_insertItemInSortedOrderWithTitle:(id)arg1 action:(SEL)arg2 keyEquivalent:(id)arg3;
 - (void)_internalPerformActionForItemAtIndex:(long long)arg1;
@@ -225,6 +237,9 @@
 - (void)_enableItems;
 - (void)_enableItem:(id)arg1;
 - (BOOL)performKeyEquivalent:(id)arg1;
+- (void)_setAllowsKeyboardAdjustedShortcuts:(BOOL)arg1;
+- (void)recordKeyboardShortcutEvent:(id)arg1 withKeyEquivalent:(id)arg2 modifierMask:(unsigned long long)arg3 title:(id)arg4;
+- (BOOL)_allowsKeyboardAdjustedShortcuts;
 - (void)_setAvoidUsingCache:(BOOL)arg1;
 - (void)_performActionWithHighlightingForItemAtIndex:(long long)arg1;
 - (void)_performActionWithHighlightingForItemAtIndex:(long long)arg1 sendAccessibilityNotification:(BOOL)arg2;
@@ -243,7 +258,7 @@
 - (long long)indexOfItem:(id)arg1;
 @property(readonly) long long numberOfItems;
 - (id)_itemArray;
-@property(readonly, copy) NSArray *itemArray;
+@property(copy) NSArray *itemArray;
 - (void)setSubmenu:(id)arg1 forItem:(id)arg2;
 - (void)removeAllItems;
 - (void)removeItem:(id)arg1;
@@ -276,6 +291,8 @@
 - (BOOL)accessibilityPerformDecrement;
 - (BOOL)accessibilityPerformConfirm;
 - (BOOL)accessibilityPerformCancel;
+- (void)setAccessibilityOverridesAlwaysTakePrecedence:(BOOL)arg1;
+- (BOOL)accessibilityOverridesAlwaysTakePrecedence;
 - (void)setAccessibilityContentSiblingBelow:(id)arg1;
 - (id)accessibilityContentSiblingBelow;
 - (void)setAccessibilityContentSiblingAbove:(id)arg1;
@@ -377,6 +394,8 @@
 @property(retain) id accessibilityHeader; // @dynamic accessibilityHeader;
 @property(copy) NSArray *accessibilityHandles; // @dynamic accessibilityHandles;
 @property(retain) id accessibilityGrowArea; // @dynamic accessibilityGrowArea;
+- (void)setAccessibilityFunctionRowTopLevelElements:(id)arg1;
+- (id)accessibilityFunctionRowTopLevelElements;
 @property(retain) id accessibilityFullScreenButton; // @dynamic accessibilityFullScreenButton;
 @property(getter=isAccessibilityFrontmost) BOOL accessibilityFrontmost; // @dynamic accessibilityFrontmost;
 @property(retain) id accessibilityFocusedWindow; // @dynamic accessibilityFocusedWindow;
@@ -398,8 +417,10 @@
 - (id)_accessibilityLabel;
 @property(retain) id accessibilityDefaultButton; // @dynamic accessibilityDefaultButton;
 @property(retain) id accessibilityDecrementButton; // @dynamic accessibilityDecrementButton;
+@property(copy) NSArray *accessibilityCustomRotors; // @dynamic accessibilityCustomRotors;
 - (void)setAccessibilityCustomChoosers:(id)arg1;
 - (id)accessibilityCustomChoosers;
+@property(copy) NSArray *accessibilityCustomActions; // @dynamic accessibilityCustomActions;
 @property(retain) id accessibilityCriticalValue; // @dynamic accessibilityCriticalValue;
 @property(copy) NSArray *accessibilityContents; // @dynamic accessibilityContents;
 @property(getter=isAccessibilityProtectedContent) BOOL accessibilityProtectedContent; // @dynamic accessibilityProtectedContent;
@@ -410,8 +431,7 @@
 @property long long accessibilityColumnCount; // @dynamic accessibilityColumnCount;
 @property(retain) id accessibilityCloseButton; // @dynamic accessibilityCloseButton;
 @property(retain) id accessibilityClearButton; // @dynamic accessibilityClearButton;
-- (void)setAccessibilityChildrenInNavigationOrder:(id)arg1;
-- (id)accessibilityChildrenInNavigationOrder;
+@property(copy) NSArray *accessibilityChildrenInNavigationOrder; // @dynamic accessibilityChildrenInNavigationOrder;
 @property(copy) NSArray *accessibilityChildren; // @dynamic accessibilityChildren;
 @property(retain) id accessibilityCancelButton; // @dynamic accessibilityCancelButton;
 - (void)setAccessibilityAuditIssues:(id)arg1;
@@ -442,6 +462,7 @@
 - (void)_recursivelyUpdateKeyEquivalents;
 - (id)_getKeyEquivalentUniquerCreatingIfNecessary:(BOOL)arg1;
 - (void)_addMenuItemWithTitle:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (id)_recursiveItemWithTarget:(id)arg1 action:(SEL)arg2 allowNilTarget:(BOOL)arg3;
 - (BOOL)accessibilitySetOverrideValue:(id)arg1 forAttribute:(id)arg2;
 - (BOOL)accessibilitySupportsOverriddenAttributes;
 - (BOOL)accessibilityIsIgnored;

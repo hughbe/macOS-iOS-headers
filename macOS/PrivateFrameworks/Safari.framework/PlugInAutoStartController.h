@@ -6,16 +6,17 @@
 
 #import "NSObject.h"
 
+@class WBSCoalescedAsynchronousWriter;
+
 __attribute__((visibility("hidden")))
 @interface PlugInAutoStartController : NSObject
 {
-    struct unique_ptr<SafariShared::CoalescedAsynchronousWriter, std::__1::default_delete<SafariShared::CoalescedAsynchronousWriter>> _savePlugInAutoStartOriginHashesToDiskWriter;
+    WBSCoalescedAsynchronousWriter *_savePlugInAutoStartOriginHashesToDiskWriter;
 }
 
 + (void)removeAllOriginsAddedAfterDate:(id)arg1;
 + (void)removeAllOrigins;
 + (id)sharedPlugInAutoStartController;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)initializeContext:(struct Context *)arg1;

@@ -10,15 +10,15 @@
 
 @interface MFEWSFindItemsRequestOperation : MFEWSRequestOperation
 {
-    NSArray *_additionalProperties;
     NSArray *_EWSFolderIdStrings;
+    NSArray *_additionalProperties;
     EWSSearchExpressionType *_searchExpression;
 }
 
-@property(readonly, nonatomic) EWSSearchExpressionType *searchExpression; // @synthesize searchExpression=_searchExpression;
-@property(readonly, copy, nonatomic) NSArray *EWSFolderIdStrings; // @synthesize EWSFolderIdStrings=_EWSFolderIdStrings;
-@property(readonly, copy, nonatomic) NSArray *additionalProperties; // @synthesize additionalProperties=_additionalProperties;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) EWSSearchExpressionType *searchExpression; // @synthesize searchExpression=_searchExpression;
+@property(readonly, copy, nonatomic) NSArray *additionalProperties; // @synthesize additionalProperties=_additionalProperties;
+@property(readonly, copy, nonatomic) NSArray *EWSFolderIdStrings; // @synthesize EWSFolderIdStrings=_EWSFolderIdStrings;
 - (id)prepareRequest;
 - (id)newResponseOperationWithGateway:(id)arg1 errorHandler:(id)arg2;
 @property(retain, nonatomic) MFEWSFindItemsResponseOperation *responseOperation;

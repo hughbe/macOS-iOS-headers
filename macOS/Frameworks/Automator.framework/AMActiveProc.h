@@ -17,7 +17,12 @@
     OSALanguage *_language;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(retain) OSALanguage *language; // @synthesize language=_language;
+@property(retain) AMWorkflowRunner *runner; // @synthesize runner=_runner;
+@property CDUnknownFunctionPointerType activeProc; // @synthesize activeProc=_activeProc;
+@property CDUnknownFunctionPointerType oldActiveProc; // @synthesize oldActiveProc=_oldActiveProc;
+@property void *oldRefCon; // @synthesize oldRefCon=_oldRefCon;
 - (void)cleanUp;
 - (id)initWithRunner:(id)arg1 forLanguage:(id)arg2;
 

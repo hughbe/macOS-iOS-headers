@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @protocol SiriUITalkGestureTargetDelegate <NSObject>
+- (void)_siriStatusViewWasClickedFromOrbButton;
 - (long long)mode;
 @end
 

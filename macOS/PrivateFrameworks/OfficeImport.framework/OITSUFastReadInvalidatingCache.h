@@ -6,15 +6,15 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSCondition;
+@class NSCondition;
 
 __attribute__((visibility("hidden")))
 @interface OITSUFastReadInvalidatingCache : NSObject
 {
     CDUnknownBlockType mGenerator;
-    id mValue;
-    long long mReaderCount;
-    NSArray *mToDispose;
+    // Error parsing type: A@, name: mValue
+    // Error parsing type: Aq, name: mReaderCount
+    // Error parsing type: A@, name: mToDispose
     BOOL mReentrant;
     NSCondition *mCondition;
     BOOL mIsGenerating;

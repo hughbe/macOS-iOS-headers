@@ -16,6 +16,7 @@
 
 + (id)startSessionWithDictionary:(id)arg1 context:(id)arg2;
 + (id)startSession;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *acousticIdSessionId;
 - (id)encodedClassName;
 - (id)groupIdentifier;

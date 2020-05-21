@@ -11,6 +11,7 @@
 @protocol NSRolloverButtonDelegate <NSObject>
 
 @optional
+- (void)setShowingCloseButton:(BOOL)arg1;
 - (void)rolloverButtonDidResignFirstResponder:(NSRolloverButton *)arg1;
 - (void)rolloverButtonDidBecomeFirstResponder:(NSRolloverButton *)arg1;
 @end

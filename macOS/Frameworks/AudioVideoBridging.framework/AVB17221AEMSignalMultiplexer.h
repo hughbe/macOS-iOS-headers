@@ -19,6 +19,8 @@
 @property(copy) NSArray *map; // @synthesize map;
 @property(copy) NSArray *sources; // @synthesize sources;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)objectLogName;
 - (void)appendVariableDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;

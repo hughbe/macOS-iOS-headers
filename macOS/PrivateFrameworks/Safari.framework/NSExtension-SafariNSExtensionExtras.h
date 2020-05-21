@@ -9,10 +9,13 @@
 @class NSDictionary, NSString;
 
 @interface NSExtension (SafariNSExtensionExtras)
+@property(readonly, nonatomic) NSString *safari_humanReadableDescription;
 @property(readonly, nonatomic) NSString *safari_versionNumber;
 @property(readonly, nonatomic) NSString *safari_displayVersion;
-@property(readonly, nonatomic) NSString *safari_displayName;
+@property(readonly, nonatomic) NSString *safari_localizedContainingAppDisplayName;
+@property(readonly, nonatomic) NSString *safari_localizedDisplayName;
 @property(readonly, nonatomic) NSString *safari_developerIdentifier;
 @property(readonly, nonatomic) NSDictionary *safari_untrustedCodeSigningDictionary;
+- (id)safari_untrustedCodeSigningDictionaryWithCodeRef:(struct __SecCode *)arg1 failedCodeSigningRequirements:(char *)arg2;
 @end
 

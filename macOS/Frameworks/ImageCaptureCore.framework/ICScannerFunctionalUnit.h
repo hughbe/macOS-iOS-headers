@@ -25,7 +25,6 @@
 - (unsigned char)backgroundGrayValue;
 - (void)clearOverviewImageBuffer;
 - (id)initWithDictionary:(id)arg1 andScanner:(id)arg2;
-- (void)finalize;
 - (void)dealloc;
 @property(readonly) NSDictionary *scanParams;
 @property unsigned long long scanAreaOrientation;
@@ -35,7 +34,10 @@
 - (void)addScanAreaToDictionary:(id)arg1;
 - (void)setScanProgressPercentDone:(double)arg1;
 @property unsigned long long overviewResolution;
-- (void)setState:(unsigned int)arg1;
+- (BOOL)scanningInProgress;
+- (void)setScanInProgress:(BOOL)arg1;
+- (void)setOverviewScanInProgress:(BOOL)arg1;
+- (void)setState:(unsigned long long)arg1;
 - (void)setVendorFeatures:(id)arg1;
 @property unsigned long long scaleFactor;
 @property unsigned long long resolution;
@@ -48,7 +50,7 @@
 @property(readonly) struct CGImage *overviewImage;
 @property(readonly) BOOL overviewScanInProgress;
 @property(readonly) BOOL scanInProgress;
-@property(readonly) unsigned int state;
+@property(readonly) unsigned long long state;
 @property(readonly) BOOL canPerformOverviewScan;
 - (id)currentSettings;
 @property(readonly) NSArray *vendorFeatures;

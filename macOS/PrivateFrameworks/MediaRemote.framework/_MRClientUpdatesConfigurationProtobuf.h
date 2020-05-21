@@ -13,15 +13,18 @@
     BOOL _artworkUpdates;
     BOOL _keyboardUpdates;
     BOOL _nowPlayingUpdates;
+    BOOL _outputDeviceUpdates;
     BOOL _volumeUpdates;
     struct {
         unsigned int artworkUpdates:1;
         unsigned int keyboardUpdates:1;
         unsigned int nowPlayingUpdates:1;
+        unsigned int outputDeviceUpdates:1;
         unsigned int volumeUpdates:1;
     } _has;
 }
 
+@property(nonatomic) BOOL outputDeviceUpdates; // @synthesize outputDeviceUpdates=_outputDeviceUpdates;
 @property(nonatomic) BOOL keyboardUpdates; // @synthesize keyboardUpdates=_keyboardUpdates;
 @property(nonatomic) BOOL volumeUpdates; // @synthesize volumeUpdates=_volumeUpdates;
 @property(nonatomic) BOOL artworkUpdates; // @synthesize artworkUpdates=_artworkUpdates;
@@ -35,6 +38,7 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasOutputDeviceUpdates;
 @property(nonatomic) BOOL hasKeyboardUpdates;
 @property(nonatomic) BOOL hasVolumeUpdates;
 @property(nonatomic) BOOL hasArtworkUpdates;

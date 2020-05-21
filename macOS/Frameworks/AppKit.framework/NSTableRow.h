@@ -15,6 +15,7 @@
 }
 
 + (id)tableRow:(long long)arg1 ofTableView:(id)arg2;
+- (BOOL)accessibilityHasOutlineColumnMockGroupForRow:(long long)arg1 column:(long long)arg2;
 - (long long)_childrenCount;
 - (id)_accessibilityChildrenWithIndexes:(id)arg1;
 - (long long)row;
@@ -22,6 +23,7 @@
 - (BOOL)isEqual:(id)arg1;
 - (void)dealloc;
 - (id)initWithRow:(long long)arg1 ofTableView:(id)arg2;
+- (id)deepestAccessibilityDescendants;
 - (id)_accessibilityChildUIElementForSpecifierComponent:(long long)arg1;
 - (long long)_accessibilitySpecifierComponentForChildUIElement:(id)arg1 registerIfNeeded:(BOOL)arg2;
 - (BOOL)accessibilitySupportsNotifications;

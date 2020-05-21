@@ -8,41 +8,67 @@
 
 #import "NSCopying.h"
 
-@class GEOLocation, NSMutableArray, NSString;
+@class GEOLocation, NSMutableArray, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDExternalTransitLookupParameters : PBCodable <NSCopying>
 {
-    double _transactionTimestamp;
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_externalTransitStationCodes;
     NSString *_sourceId;
     GEOLocation *_transactionLocation;
+    double _transactionTimestamp;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     struct {
-        unsigned int transactionTimestamp:1;
-    } _has;
+        unsigned int has_transactionTimestamp:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_externalTransitStationCodes:1;
+        unsigned int read_sourceId:1;
+        unsigned int read_transactionLocation:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_externalTransitStationCodes:1;
+        unsigned int wrote_sourceId:1;
+        unsigned int wrote_transactionLocation:1;
+        unsigned int wrote_transactionTimestamp:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)externalTransitStationCodeType;
-@property(retain, nonatomic) NSMutableArray *externalTransitStationCodes; // @synthesize externalTransitStationCodes=_externalTransitStationCodes;
-@property(retain, nonatomic) NSString *sourceId; // @synthesize sourceId=_sourceId;
-@property(retain, nonatomic) GEOLocation *transactionLocation; // @synthesize transactionLocation=_transactionLocation;
-@property(nonatomic) double transactionTimestamp; // @synthesize transactionTimestamp=_transactionTimestamp;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)copyTo:(id)arg1;
+- (void)clearSensitiveFields;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)externalTransitStationCodeAtIndex:(unsigned long long)arg1;
 - (unsigned long long)externalTransitStationCodesCount;
+- (void)_addNoFlagsExternalTransitStationCode:(id)arg1;
 - (void)addExternalTransitStationCode:(id)arg1;
 - (void)clearExternalTransitStationCodes;
+@property(retain, nonatomic) NSMutableArray *externalTransitStationCodes;
+- (void)_readExternalTransitStationCodes;
+@property(retain, nonatomic) NSString *sourceId;
 @property(readonly, nonatomic) BOOL hasSourceId;
+- (void)_readSourceId;
+@property(retain, nonatomic) GEOLocation *transactionLocation;
 @property(readonly, nonatomic) BOOL hasTransactionLocation;
+- (void)_readTransactionLocation;
 @property(nonatomic) BOOL hasTransactionTimestamp;
-- (void)dealloc;
+@property(nonatomic) double transactionTimestamp;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

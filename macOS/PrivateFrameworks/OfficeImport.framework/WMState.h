@@ -6,7 +6,7 @@
 
 #import <OfficeImport/CMState.h>
 
-@class CMOutlineState, NSMutableDictionary, WDText;
+@class CMOutlineState, NSMutableDictionary, WDParagraph, WDText;
 
 __attribute__((visibility("hidden")))
 @interface WMState : CMState
@@ -27,8 +27,11 @@ __attribute__((visibility("hidden")))
     BOOL mIsFrameEnd;
     BOOL mIsHeaderOrFooter;
     float mTotalPageHeight;
+    WDParagraph *_currentParagraph;
 }
 
+- (void).cxx_destruct;
+@property(retain) WDParagraph *currentParagraph; // @synthesize currentParagraph=_currentParagraph;
 - (BOOL)isHeaderOrFooter;
 - (void)setIsHeaderOrFooter:(BOOL)arg1;
 - (BOOL)isFrameEnd;
@@ -56,11 +59,11 @@ __attribute__((visibility("hidden")))
 - (float)pageOffset;
 - (unsigned int)currentPage;
 - (void)setCurrentPage:(unsigned int)arg1;
-- (void)setListState:(id)arg1 forListId:(unsigned long long)arg2;
-- (id)listStateForListWithId:(int)arg1 settingUpStateIfNeededWithDocument:(id)arg2;
-- (id)listStateForListId:(unsigned long long)arg1;
+- (void)setListState:(id)arg1 forListDefinitionId:(int)arg2;
+- (id)listStateForListDefinitionWithId:(int)arg1 settingUpStateIfNeededWithDocument:(id)arg2;
+- (id)listStateForListDefinitionId:(int)arg1;
 - (void)clearCurrentListState;
-- (BOOL)isCurrentListId:(unsigned long long)arg1;
+- (BOOL)isCurrentListDefinitionId:(int)arg1;
 - (BOOL)isCurrentListStateOverridden;
 - (void)setCurrentListState:(id)arg1;
 - (id)outlineState;

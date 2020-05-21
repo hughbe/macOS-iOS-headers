@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSColor, NSString;
+@class CNContactNameViewController, NSColor, NSString;
 
 @protocol CNContactNameViewControllerDelegate <NSObject>
+- (void)contactNameViewController:(CNContactNameViewController *)arg1 willLoseFocusInDirection:(unsigned long long)arg2;
 - (void)editExistingKey:(NSString *)arg1 identifier:(NSString *)arg2 yOffset:(double)arg3;
 - (NSColor *)colorForProperty:(NSString *)arg1;
 @end

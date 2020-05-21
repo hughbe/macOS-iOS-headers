@@ -26,6 +26,7 @@
 }
 
 + (Class)packetDescriptionsType;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableArray *packetDescriptions; // @synthesize packetDescriptions=_packetDescriptions;
 @property(retain, nonatomic) NSData *contents; // @synthesize contents=_contents;
 @property(nonatomic) long long packetCount; // @synthesize packetCount=_packetCount;
@@ -50,7 +51,6 @@
 @property(nonatomic) BOOL hasMaximumPacketSize;
 @property(nonatomic) BOOL hasPacketCapacity;
 @property(readonly, nonatomic) BOOL hasFormatSettings;
-- (void)dealloc;
 
 @end
 

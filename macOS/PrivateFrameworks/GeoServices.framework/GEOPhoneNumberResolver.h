@@ -6,18 +6,18 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>;
-
 @interface GEOPhoneNumberResolver : NSObject
 {
     id <GEOPhoneNumberResolving> _resolver;
-    NSObject<OS_dispatch_queue> *_workQueue;
 }
 
++ (void)useRemoteResolver;
 + (void)useLocalResolver;
++ (void)useProxy:(Class)arg1;
++ (id)sharedResolver;
+- (void).cxx_destruct;
 - (void)_alePackResolution:(id)arg1 handler:(CDUnknownBlockType)arg2 queue:(id)arg3;
 - (void)resolvePhoneNumbers:(id)arg1 handler:(CDUnknownBlockType)arg2 queue:(id)arg3;
-- (void)dealloc;
 - (id)init;
 
 @end

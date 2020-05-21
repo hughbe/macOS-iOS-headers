@@ -8,17 +8,15 @@
 
 #import "AKICAUIDelegate.h"
 #import "AKICAWebKitViewControllerDelegate.h"
+#import "AKInAssistantNavigationHandler.h"
 #import "AKMBICAUIDelegate.h"
 #import "AKWebViewButtonBarDelegate.h"
 #import "AuthWebViewDelegate.h"
 
-@class ADMChangePasswordController, AKAppleIDServerResourceLoadDelegate, AKICAWebKitViewController, AKWebViewButtonBar, JSValue, NSImage, NSLayoutConstraint, NSProgressIndicator, NSString, NSTextField, NSTimer, NSURLRequest, NSView, NSWindow;
+@class ADMChangePasswordController, AKAppleIDServerResourceLoadDelegate, AKAppleIDServerUIContextController, AKICAWebKitViewController, AKServerRequestConfiguration, AKWebViewButtonBar, JSValue, NSHTTPURLResponse, NSImage, NSLayoutConstraint, NSProgressIndicator, NSString, NSTextField, NSTimer, NSURLRequest, NSView, NSWindow;
 
-@interface AKAuthWebTabView : NSObject <AKICAUIDelegate, AKICAWebKitViewControllerDelegate, AuthWebViewDelegate, AKWebViewButtonBarDelegate, AKMBICAUIDelegate>
+@interface AKAuthWebTabView : NSObject <AKICAUIDelegate, AKICAWebKitViewControllerDelegate, AuthWebViewDelegate, AKWebViewButtonBarDelegate, AKMBICAUIDelegate, AKInAssistantNavigationHandler>
 {
-    id <AuthWebViewDelegate> _delegate;
-    id <MBUIDelegate> _mbUIDelegate;
-    id <MBWebKitViewControllerDelegate> _mbWebKitViewControllerDelegate;
     NSView *_containerView;
     NSView *_webViewContainer;
     NSView *_webView;
@@ -59,6 +57,7 @@
     CDUnknownBlockType _defaultAction;
     NSImage *_displayImage;
     ADMChangePasswordController *mChangePasswordController;
+    NSHTTPURLResponse *_latestReadResponse;
     struct {
         unsigned int delegateSetWindowTitle:1;
         unsigned int delegateSetWindowMessage:1;
@@ -84,16 +83,28 @@
     JSValue *_leftButtonCallback;
     JSValue *_rightButtonCallback;
     JSValue *_alternateButtonCallback;
+    BOOL _loadContentImmediately;
+    BOOL _contentLoaded;
+    id <AuthWebViewDelegate> _delegate;
+    id <MBUIDelegate> _mbUIDelegate;
+    id <MBWebKitViewControllerDelegate> _mbWebKitViewControllerDelegate;
+    AKServerRequestConfiguration *_serverRequestConfiguration;
+    AKAppleIDServerUIContextController *_serverUIContext;
 }
 
+- (void).cxx_destruct;
+@property(retain) AKAppleIDServerUIContextController *serverUIContext; // @synthesize serverUIContext=_serverUIContext;
+@property BOOL contentLoaded; // @synthesize contentLoaded=_contentLoaded;
+@property BOOL loadContentImmediately; // @synthesize loadContentImmediately=_loadContentImmediately;
+@property(retain, nonatomic) AKServerRequestConfiguration *serverRequestConfiguration; // @synthesize serverRequestConfiguration=_serverRequestConfiguration;
 @property(nonatomic) unsigned long long webViewType; // @synthesize webViewType=_webViewType;
+@property(retain) NSHTTPURLResponse *latestReadResponse; // @synthesize latestReadResponse=_latestReadResponse;
 @property(retain, nonatomic) NSWindow *sheet; // @synthesize sheet=_sheet;
 @property(retain) NSImage *displayImage; // @synthesize displayImage=_displayImage;
 @property(retain, nonatomic) JSValue *alternateButtonCallback; // @synthesize alternateButtonCallback=_alternateButtonCallback;
 @property(retain, nonatomic) JSValue *rightButtonCallback; // @synthesize rightButtonCallback=_rightButtonCallback;
 @property(retain, nonatomic) JSValue *leftButtonCallback; // @synthesize leftButtonCallback=_leftButtonCallback;
 @property(copy) CDUnknownBlockType defaultAction; // @synthesize defaultAction=_defaultAction;
-@property(retain) AKAppleIDServerResourceLoadDelegate *resourceLoadDelegate; // @synthesize resourceLoadDelegate=_resourceLoadDelegate;
 @property BOOL isWebClientIsReadyCalled; // @synthesize isWebClientIsReadyCalled=_isWebClientIsReadyCalled;
 @property BOOL isWebClientHasLoadedCalled; // @synthesize isWebClientHasLoadedCalled=_isWebClientHasLoadedCalled;
 @property(retain) NSTimer *waitTimer; // @synthesize waitTimer=_waitTimer;
@@ -111,28 +122,27 @@
 @property(retain) NSView *unavailibleView; // @synthesize unavailibleView=_unavailibleView;
 @property(retain) NSView *loadingViewCancelButton; // @synthesize loadingViewCancelButton=_loadingViewCancelButton;
 @property(retain) NSView *loadingView; // @synthesize loadingView=_loadingView;
-@property(retain) NSView *webView; // @synthesize webView=_webView;
+@property(retain, nonatomic) NSView *webView; // @synthesize webView=_webView;
 @property(retain) NSView *containerView; // @synthesize containerView=_containerView;
 @property struct CGSize contentSize; // @synthesize contentSize=_contentSize;
 @property(retain) NSView *webViewContainer; // @synthesize webViewContainer=_webViewContainer;
 @property(retain) JSValue *callback; // @synthesize callback=_callback;
-@property NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
+@property(retain) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
 @property(copy) NSString *accountID; // @synthesize accountID=_accountID;
-@property(nonatomic) id <MBWebKitViewControllerDelegate> mbWebKitViewControllerDelegate; // @synthesize mbWebKitViewControllerDelegate=_mbWebKitViewControllerDelegate;
-@property(nonatomic) id <MBUIDelegate> mbUIDelegate; // @synthesize mbUIDelegate=_mbUIDelegate;
-@property id <AuthWebViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property NSString *content; // @synthesize content=_content;
-@property NSString *parentURL; // @synthesize parentURL=_parentURL;
-@property(retain) NSURLRequest *urlRequest; // @synthesize urlRequest=_urlRequest;
-@property NSString *url; // @synthesize url=_url;
-@property NSString *viewName; // @synthesize viewName=_viewName;
-- (id)getAuthKitData:(id)arg1;
+@property(nonatomic) __weak id <MBWebKitViewControllerDelegate> mbWebKitViewControllerDelegate; // @synthesize mbWebKitViewControllerDelegate=_mbWebKitViewControllerDelegate;
+@property(nonatomic) __weak id <MBUIDelegate> mbUIDelegate; // @synthesize mbUIDelegate=_mbUIDelegate;
+@property __weak id <AuthWebViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(copy) NSString *content; // @synthesize content=_content;
+@property(copy) NSString *parentURL; // @synthesize parentURL=_parentURL;
+@property(copy) NSString *url; // @synthesize url=_url;
+@property(copy) NSString *viewName; // @synthesize viewName=_viewName;
+- (void)_displayAuthRightWithCallback:(id)arg1;
+- (void)getAuthKitDataWithResponse:(id)arg1 error:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)wasNotifiedOfDataChange:(id)arg1;
 - (BOOL)shouldSelectToLocation:(id)arg1 toSection:(id)arg2;
 - (void)didChangetoLocation:(id)arg1 toSection:(id)arg2 withContext:(id)arg3;
 - (BOOL)willChangetoLocation:(id)arg1 toSection:(id)arg2 withContext:(id)arg3;
-- (void)icaWebKitViewControllerSendFinalResponse:(id)arg1;
-- (BOOL)icaWebKitViewControllerIsFinalResponse:(id)arg1;
+- (void)icaWebKitViewControllerDidReceiveResponse:(id)arg1;
 - (void)icaWebKitViewControllerSignRequest:(id)arg1;
 - (void)icaWebKitViewControllerDidFail:(id)arg1 error:(id)arg2;
 - (void)icaWebKitViewControllerDidFinishLoading:(id)arg1;
@@ -143,6 +153,8 @@
 - (void)alternateNavigationButtonClicked:(id)arg1;
 - (void)rightNavigationButtonClicked:(id)arg1;
 - (void)leftNavigationButtonClicked:(id)arg1;
+- (void)validateLocalPassword:(id)arg1;
+- (void)obtainAuthRight:(id)arg1;
 - (void)runAppleIDOptOut:(id)arg1;
 - (void)skipSignIn;
 - (void)dismiss:(id)arg1;
@@ -155,6 +167,9 @@
 - (void)setLeftNavButton:(id)arg1 callback:(id)arg2;
 - (void)setPageSubTitle:(id)arg1;
 - (void)setNavTitle:(id)arg1;
+- (unsigned long long)presentationType;
+- (void)triggerAKAction:(id)arg1;
+- (BOOL)shouldShowButtonBar:(id)arg1;
 - (id)clientInfo;
 - (void)skipAndContinueSignIn;
 - (void)icaSetButtonBar:(id)arg1;
@@ -167,9 +182,10 @@
 - (void)icaWebKitViewHasLoaded;
 - (void)icaWebKitViewIsAvailable;
 - (void)sizeChangedFrom:(struct CGSize)arg1 toSize:(struct CGSize)arg2 webViewName:(id)arg3 callback:(id)arg4;
-- (void)loadFailed:(id)arg1;
+- (void)loadFailed:(id)arg1 withError:(id)arg2;
 - (void)endWebView:(id)arg1;
 - (void)showUnavailable:(id)arg1;
+- (void)webviewFailedWithError:(id)arg1;
 - (void)_fireWaitTimer:(id)arg1;
 - (void)_destroyWaitTimer;
 - (void)_createWaitTimer;
@@ -177,18 +193,21 @@
 - (void)cancelPressed:(id)arg1;
 - (void)OKPressed:(id)arg1;
 - (id)urlRequestFromInfo:(id)arg1;
+- (BOOL)hasModalSheet;
 - (void)resizeModalSheet:(struct CGSize)arg1;
 - (void)closeModalSheet;
 - (void)beginModalSheetWithInitialWidth:(unsigned long long)arg1 initialHeight:(unsigned long long)arg2 callback:(id)arg3 optionalContext:(id)arg4;
 - (void)beginModalSheetWithInviteDict:(id)arg1;
 - (void)beginModalSheet;
-- (void)refreshWithURLRequest:(id)arg1;
+- (void)refreshWithConfiguration:(id)arg1;
+- (void)loadContent;
 - (id)webViewWithInviteDict:(id)arg1;
 - (id)webViewWithWorkflowDict:(id)arg1;
 - (void)refreshNotification:(id)arg1;
 - (void)cleanUp;
+- (id)touchBar;
 - (void)dealloc;
-- (id)initWithURLRequest:(id)arg1 parentWindow:(id)arg2;
+- (id)initWithServerConfiguration:(id)arg1 parentWindow:(id)arg2;
 - (id)initWithContent:(id)arg1 andAccountID:(id)arg2 parentWindow:(id)arg3;
 - (id)initWithURL:(id)arg1 andAccountID:(id)arg2 parentWindow:(id)arg3;
 - (id)initWithName:(id)arg1 andAccountID:(id)arg2 parentWindow:(id)arg3;

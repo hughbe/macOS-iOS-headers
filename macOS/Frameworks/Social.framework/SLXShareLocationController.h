@@ -8,6 +8,7 @@
 
 @class NSArray, NSButton, NSPopUpButton, NSTrackingArea;
 
+__attribute__((visibility("hidden")))
 @interface SLXShareLocationController : NSViewController
 {
     NSArray *_locations;
@@ -22,10 +23,10 @@
 
 + (id)keyPathsForValuesAffectingCurrentLocationDisplayName;
 + (id)keyPathsForValuesAffectingCurrentLocation;
+- (void).cxx_destruct;
 @property(retain) id <SLXShareLocationControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy) CDUnknownBlockType updateLocationsBlock; // @synthesize updateLocationsBlock=_updateLocationsBlock;
 @property long long currentLocationIndex; // @synthesize currentLocationIndex=_currentLocationIndex;
-- (void).cxx_destruct;
 - (void)locationPopupChanged:(id)arg1;
 - (void)locationClicked:(id)arg1;
 - (id)currentLocationDisplayName;

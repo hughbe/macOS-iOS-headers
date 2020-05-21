@@ -6,15 +6,23 @@
 
 #import <AddressBook/ABCollectionViewItem.h>
 
-@class ABCollectionItemMessagingAvailabilityHelper;
+#import "ABCollectionItemMessagingAvailabilityHelperDelegate.h"
 
-__attribute__((visibility("hidden")))
-@interface ABEmailCollectionViewItem : ABCollectionViewItem
+@class ABCollectionItemMessagingAvailabilityHelper, CNFuture;
+
+@interface ABEmailCollectionViewItem : ABCollectionViewItem <ABCollectionItemMessagingAvailabilityHelperDelegate>
 {
     ABCollectionItemMessagingAvailabilityHelper *_messagingHelper;
+    CNFuture *_availabilityFuture;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) CNFuture *availabilityFuture; // @synthesize availabilityFuture=_availabilityFuture;
+@property(readonly, nonatomic) ABCollectionItemMessagingAvailabilityHelper *messagingHelper; // @synthesize messagingHelper=_messagingHelper;
+- (void)messagingAvailabilityDidChangeHelper:(id)arg1;
 - (BOOL)shouldShowGlyphButton:(id)arg1;
+- (void)stopAvailabilityLookup;
+- (void)startAvailabilityLookup;
 - (void)didRemoveFromCollection:(id)arg1;
 - (void)didInsertIntoCollectionView:(id)arg1;
 - (void)dealloc;

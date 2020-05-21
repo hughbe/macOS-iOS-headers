@@ -15,12 +15,16 @@
     IMKServerPrivate *_private;
 }
 
++ (id)inputDelegateClassNameFor:(id)arg1;
++ (id)inputControllerClassNameFor:(id)arg1;
++ (id)connectionNameFor:(id)arg1;
 + (id)_clientWrapperForXPCConn:(id)arg1;
 + (id)_clientWrapperForDOProxy:(id)arg1;
 + (id)imkServerSingleton;
+- (void)doCommandBySelector:(SEL)arg1;
+- (void)insertText:(id)arg1;
 - (id)keyBindingManager;
 - (void)setEventHandlingStatus:(int)arg1;
-- (id)keyBindingState;
 - (void)ironwoodPlaceholderWasInvalidated_Common:(id)arg1 clientWrapper:(id)arg2 controller:(id)arg3;
 - (void)ironwoodPlaceholderWasInvalidated:(id)arg1 client:(id)arg2;
 - (void)ironwoodTextWasCorrected_Common:(id)arg1 clientWrapper:(id)arg2 controller:(id)arg3;
@@ -44,7 +48,7 @@
 - (id)_attributedStringFromEventPack:(id)arg1;
 - (id)modes_CommonWithClientWrapper:(id)arg1 controller:(id)arg2;
 - (id)modes:(id)arg1;
-- (id)_keys;
+- (id)newKeyBindings;
 - (void)clientProxy:(id)arg1;
 - (unsigned long long)recognizedEvents_CommonWithClientWrapper:(id)arg1 controller:(id)arg2;
 - (unsigned long long)recognizedEvents:(id)arg1;
@@ -71,6 +75,8 @@
 - (void)deactivateServer_CommonWithClientWrapper:(id)arg1 controller:(id)arg2;
 - (void)deactivateServer:(id)arg1;
 - (void)releasePAHController:(id)arg1;
+- (void)setFunctionRowItemViewServiceXPCEndpoint:(id)arg1;
+- (id)functionRowItemViewServiceXPCEndpoint;
 - (id)IMBundleIdentifier;
 - (void)_forgetValidEventsInClient:(id)arg1;
 - (void)_rememberValidEvent:(id)arg1 fromEventPack:(id)arg2 inClient:(id)arg3;
@@ -80,6 +86,7 @@
 - (id)_preferences;
 - (id)_currentPresentingController;
 - (id)_currentController;
+- (void)_setCurrentController:(id)arg1;
 - (void)_setPresentingClientWrapper:(id)arg1;
 - (id)_presentingClientWrapper;
 - (void)_setCurrentClientWrapper:(id)arg1;
@@ -90,7 +97,7 @@
 - (id)_eventsForController:(id)arg1;
 - (void)_setMouseMovedState:(BOOL)arg1 forClient:(id)arg2 controller:(id)arg3;
 - (id)_eventRefToNSEvent:(id)arg1 repeat:(BOOL)arg2;
-- (id)_getStringKey:(unsigned int *)arg1 andModifiers:(unsigned long long *)arg2 unmodifiedString:(id *)arg3 fromEventPackage:(id)arg4;
+- (id)_getStringForKeyCode:(unsigned int *)arg1 andModifiers:(unsigned long long *)arg2 unmodifiedString:(id *)arg3 fromEventPackage:(id)arg4;
 - (struct CGPoint)_breakDownMouseEvent:(id)arg1 theModifiers:(unsigned long long *)arg2;
 - (void)_handleText:(id)arg1;
 - (void)_handleCommand:(SEL)arg1;
@@ -114,6 +121,7 @@
 - (BOOL)_windowIsOpen;
 - (BOOL)_isMenuKeyEquivalent:(id)arg1 modifierMask:(unsigned long long)arg2;
 - (void)_setCachedMenu:(id)arg1;
+- (id)keyboardService;
 - (void)dealloc;
 - (id)initWithName:(id)arg1 controllerClass:(Class)arg2 delegateClass:(Class)arg3;
 - (BOOL)paletteWillTerminate;
@@ -123,10 +131,12 @@
 - (void)performDelayedEndpointCheckin:(id)arg1;
 - (void)registerIMKXPCEndpointWithLaunchAgent;
 - (BOOL)_createConnection;
+- (struct __CFString *)privateRunLoopMode;
 - (oneway void)ironwoodPlaceholderWasInvalidated:(id)arg1;
 - (oneway void)ironwoodTextWasCorrected:(id)arg1;
 - (oneway void)sendInputSessionSessAction:(unsigned int)arg1 timestamp:(double)arg2 withInfo:(id)arg3;
 - (oneway void)sendInputSessionSessAction:(unsigned int)arg1;
+- (void)setInputMethodProperty:(unsigned long long)arg1 value:(id)arg2;
 - (oneway void)invalidateClientGeometry;
 - (void)recognizedEventsWithReply:(CDUnknownBlockType)arg1;
 - (void)recognizedEventsWithClientAsync:(BOOL)arg1 reply:(CDUnknownBlockType)arg2;

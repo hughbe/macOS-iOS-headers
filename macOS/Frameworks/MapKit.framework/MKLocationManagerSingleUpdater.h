@@ -11,6 +11,7 @@
 
 @class MKLocationManager, NSString, NSTimer;
 
+__attribute__((visibility("hidden")))
 @interface MKLocationManagerSingleUpdater : NSObject <MKLocationManagerObserver, MKLocationManagerOperation>
 {
     CDUnknownBlockType _handler;
@@ -23,9 +24,9 @@
     double _maxLocationAge;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) double timeout; // @synthesize timeout=_timeout;
 @property(copy, nonatomic) CDUnknownBlockType handler; // @synthesize handler=_handler;
-- (void).cxx_destruct;
 - (void)locationManagerDidResumeLocationUpdates:(id)arg1;
 - (void)locationManagerDidPauseLocationUpdates:(id)arg1;
 - (BOOL)locationManagerShouldPauseLocationUpdates:(id)arg1;

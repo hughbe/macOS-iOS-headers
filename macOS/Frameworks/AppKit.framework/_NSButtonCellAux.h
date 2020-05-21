@@ -6,24 +6,42 @@
 
 #import "NSObject.h"
 
-@class _NSAcceleratorButtonHelper, _NSButtonAnimationView;
+@class NSColor, NSMutableArray, NSUserInterfaceCompressionOptions, _NSAcceleratorButtonHelper;
 
 __attribute__((visibility("hidden")))
 @interface _NSButtonCellAux : NSObject
 {
-    _NSButtonAnimationView *_animator;
-    _NSAcceleratorButtonHelper *acceleratorHelper;
+    _NSAcceleratorButtonHelper *_acceleratorHelper;
+    NSMutableArray *_animatingOutImageViews;
+    NSMutableArray *_animatingOutTextFields;
+    NSColor *_bezelTintColor;
+    NSColor *_contentTintColor;
     double _doubleValue;
     long long _maxAcceleratorLevel;
     double _acceleratorClickTimestamp;
-    unsigned char _buttonType;
-    BOOL _exceededInitialValue;
-    BOOL _springLoaded;
-    BOOL _springLoadingEmphasized;
-    BOOL _animationsAllowed;
+    double _minimumPressDuration;
+    NSUserInterfaceCompressionOptions *_compressibleOptions;
+    unsigned long long _modelImagePosition;
+    struct {
+        unsigned int exceededInitialValue:1;
+        unsigned int springLoaded:1;
+        unsigned int springLoadingEmphasized:1;
+        unsigned int animationsAllowed:1;
+        unsigned int inFunctionRowAppearance:1;
+        unsigned int showsDisclosureChevron:1;
+        unsigned int guarded:1;
+        unsigned int _reserved:25;
+    } _flags;
 }
 
+@property(retain) NSMutableArray *animatingOutTextFields; // @synthesize animatingOutTextFields=_animatingOutTextFields;
+@property(retain) NSMutableArray *animatingOutImageViews; // @synthesize animatingOutImageViews=_animatingOutImageViews;
+@property double minimumPressDuration; // @synthesize minimumPressDuration=_minimumPressDuration;
+@property(copy) NSColor *contentTintColor; // @synthesize contentTintColor=_contentTintColor;
+@property(copy) NSColor *bezelTintColor; // @synthesize bezelTintColor=_bezelTintColor;
+- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)init;
 
 @end
 

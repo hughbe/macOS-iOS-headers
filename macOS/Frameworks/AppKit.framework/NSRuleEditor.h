@@ -21,7 +21,6 @@
     long long _subviewIndexOfDropLine;
     id _dropLineView;
     NSViewAnimation *_currentAnimation;
-    id _unused1;
     NSString *_stringsFileName;
     id _standardLocalizer;
     id _headerLocalizer;
@@ -49,12 +48,11 @@
     Class _rowClass;
     id _boundArrayOwner;
     NSString *_boundArrayKeyPath;
-    id _ruleReserved1;
     long long _lastRow;
-    id _ruleReserved2;
 }
 
 + (BOOL)accessibilityIsSingleCelled;
+- (void).cxx_destruct;
 - (id)_generateFormattingDictionaryStringsFile;
 - (void)_recursiveGenerateFormattingDictionaryPlistForItem:(id)arg1 rowType:(unsigned long long)arg2 intoArray:(id)arg3 withPriorValues:(id)arg4 hasSiblings:(BOOL)arg5;
 @property(copy) NSString *displayValuesKeyPath;
@@ -93,15 +91,6 @@
 - (BOOL)_validateItem:(id)arg1 value:(id)arg2 inRow:(long long)arg3;
 - (BOOL)_shouldHideSubtractButtonForSlice:(id)arg1;
 - (BOOL)_shouldHideAddButtonForSlice:(id)arg1;
-- (void)drawRect:(struct CGRect)arg1;
-- (id)_selectedInactiveRowColor;
-- (id)_selectedActiveRowColor;
-- (void)_drawSliceBackgroundsWithClipRect:(struct CGRect)arg1;
-- (id)_dragHandleColors;
-- (id)_sliceLastBottomBorderColor;
-- (id)_sliceBottomBorderColor;
-- (id)_sliceTopBorderColor;
-- (id)_backgroundColors;
 - (BOOL)isFlipped;
 - (void)_deleteSlice:(id)arg1;
 - (void)_addOptionFromSlice:(id)arg1 ofRowType:(unsigned long long)arg2;
@@ -119,7 +108,7 @@
 - (long long)_lastRow;
 - (void)_setPredicate:(id)arg1;
 @property(readonly) NSPredicate *predicate;
-@property id <NSRuleEditorDelegate> delegate;
+@property __weak id <NSRuleEditorDelegate> delegate;
 - (double)_alignmentGridWidth;
 - (void)_setAlignmentGridWidth:(double)arg1;
 - (unsigned long long)_applicableNestingMode;

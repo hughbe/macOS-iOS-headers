@@ -8,7 +8,7 @@
 
 #import "NSFilePresenter.h"
 
-@class NSArray, NSDocument, NSDocumentRevisionsPlaceholderView, NSDocumentRevisionsWindow, NSFileVersion, NSMutableArray, NSMutableSet, NSOperationQueue, NSString, NSURL, NSWindow, _NSDocumentRevisionsCache;
+@class NSArray, NSDocument, NSDocumentRevisionsPlaceholderView, NSDocumentRevisionsWindow, NSFileVersion, NSMutableArray, NSMutableSet, NSOperationQueue, NSSet, NSString, NSURL, NSWindow, _NSDocumentRevisionsCache;
 
 __attribute__((visibility("hidden")))
 @interface NSDocumentRevisionsController : NSObject <NSFilePresenter>
@@ -53,6 +53,7 @@ __attribute__((visibility("hidden")))
     id eventMonitorUninstaller;
     NSMutableArray *transitoryAnimations;
     BOOL ending;
+    BOOL reverting;
     BOOL preparedForRevert;
     BOOL needToRestoreLiveEnvironment;
     long long outcome;
@@ -63,7 +64,6 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)_windowForDocument:(id)arg1;
-+ (id)_takeScreenshotExcludingWindows:(id)arg1;
 + (void)doOrderingWithoutAnimationForWindow:(id)arg1 preventScrollerFlashing:(BOOL)arg2 withBlock:(CDUnknownBlockType)arg3;
 + (void)_setOverlayScrollersHidden:(BOOL)arg1 forWindow:(id)arg2;
 + (void)_setOverlayScrollersHidden:(BOOL)arg1 forView:(id)arg2;
@@ -116,13 +116,14 @@ __attribute__((visibility("hidden")))
 - (long long)_outcome;
 - (void)startVisualizationWithDocument:(id)arg1 options:(unsigned long long)arg2 thenContinue:(CDUnknownBlockType)arg3;
 - (id)_originalDocument;
+- (BOOL)isVisualizingDocument:(id)arg1;
 - (BOOL)isVisualizing;
 - (void)_performStartAnimation;
 - (BOOL)_prepareForStartAnimation;
 - (void)_cancelTransitoryAnimations;
 - (void)_animateDisplayFadeOut:(BOOL)arg1;
 - (void)_animateInspectorWindows;
-- (id)_closeDrawers;
+- (void)_closeDrawers;
 - (void)_startTransitoryAnimationsThenContinue:(CDUnknownBlockType)arg1;
 - (id)_scheduleTransitoryAnimationOfWindow:(id)arg1 startFrame:(struct CGRect)arg2 endFrame:(struct CGRect)arg3 startSize:(struct CGSize)arg4 endSize:(struct CGSize)arg5 hop:(BOOL)arg6 duration:(double)arg7;
 - (void)_uninstallEventTap;
@@ -153,7 +154,6 @@ __attribute__((visibility("hidden")))
 - (void)_preventWindowCycling;
 - (void)takeOverWindow:(id)arg1 forRevision:(id)arg2;
 - (BOOL)interceptsWindowClose:(id)arg1;
-- (void)_takeStartAnimationTransitionSnapshotsExcludingWindows:(id)arg1;
 - (struct CGRect)_destinationFrameForResizeAfterFinishAnimation;
 - (struct CGRect)_frameForAnimatingWindowFrame:(struct CGRect)arg1 toSize:(struct CGSize)arg2;
 - (struct CGRect)_destinationFrameForFinishAnimation;
@@ -211,6 +211,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSSet *observedPresentedItemUbiquityAttributes;
 @property(readonly, copy) NSURL *primaryPresentedItemURL;
 @property(readonly) Class superclass;
 

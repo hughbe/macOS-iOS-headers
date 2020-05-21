@@ -15,7 +15,6 @@
 {
 }
 
-+ (id)resolveBookmark:(id)arg1 error:(id *)arg2 isSecurityScoped:(char *)arg3;
 + (id)generateSnoozeAlarmFromAlarm:(id)arg1 onDate:(id)arg2 inManagedObjectContext:(id)arg3;
 + (void)addAlarmPrefetchToCalendarItemFetch:(id)arg1;
 + (id)insertNoneAlarmInManagedObjectContext:(id)arg1;
@@ -55,6 +54,7 @@
 @property(readonly, nonatomic) BOOL isSnoozed;
 - (void)makeExchangeCompatible;
 - (BOOL)isExchangeCompatible;
+- (BOOL)shouldSyncToExchange;
 - (long long)compareAlarmOrder:(id)arg1;
 - (id)occurrenceDateForTrigger:(id)arg1;
 - (id)triggersBetweenStartDate:(id)arg1 endDate:(id)arg2;
@@ -79,6 +79,7 @@
 @property(retain) NSString *action; // @dynamic action;
 - (id)defaultAlarmPropertiesHelperForKey:(id)arg1;
 - (void)willRefresh:(BOOL)arg1;
+- (id)keysOnlyRelevantToNetworkDetails;
 - (id)_iCalendarElementWithOptions:(unsigned long long)arg1;
 - (id)iCalendarElementWithOptions:(unsigned long long)arg1 inCalendar:(id)arg2;
 - (void)importiCalendarComponent:(id)arg1 fromDocument:(id)arg2 inCalendar:(id)arg3;

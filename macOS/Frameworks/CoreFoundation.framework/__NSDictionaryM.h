@@ -9,35 +9,37 @@
 __attribute__((visibility("hidden")))
 @interface __NSDictionaryM : NSMutableDictionary
 {
-    unsigned int _used:58;
-    unsigned int _kvo:1;
-    unsigned long long _size;
-    unsigned long long _mutations;
-    id *_objs;
-    id *_keys;
+    CDStruct_bc24fd1e storage;
+    // Error parsing type: A^{__cow_state_t}, name: cow
 }
 
-+ (void)initialize;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
-+ (id)__new:(const id *)arg1:(const id *)arg2:(unsigned long long)arg3:(BOOL)arg4:(BOOL)arg5;
 - (double)_clumpingInterestingThreshold;
 - (double)_clumpingFactor;
-- (void)__setObject:(id)arg1 forKey:(id)arg2;
+- (id)_cfMutableCopy;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
+- (id)mutableCopy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)setObservationInfo:(void *)arg1;
+- (id)copy;
 - (void)dealloc;
 - (void)removeAllObjects;
-- (void)removeObjectForKey:(id)arg1;
-- (void)setObject:(id)arg1 forKey:(id)arg2;
-- (void)_mutate;
+- (void)removeEntriesWithOptions:(unsigned long long)arg1 passingTest:(CDUnknownBlockType)arg2;
+- (id)objectForKeyedSubscript:(id)arg1;
+- (id)keysOfEntriesWithOptions:(unsigned long long)arg1 passingTest:(CDUnknownBlockType)arg2;
+- (id)keyOfEntryWithOptions:(unsigned long long)arg1 passingTest:(CDUnknownBlockType)arg2;
 - (void)enumerateKeysAndObjectsWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
-- (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
+- (unsigned long long)countByEnumeratingWithState:(CDStruct_58648341 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 - (void)__apply:(CDUnknownFunctionPointerType)arg1 context:(void *)arg2;
-- (void)getObjects:(id *)arg1 andKeys:(id *)arg2 count:(unsigned long long)arg3;
-- (id)keyEnumerator;
+- (void)setObservationInfo:(void *)arg1;
+- (void)_mutate;
+- (void)__setObject:(id)arg1 forKey:(id)arg2;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
+- (void)setObject:(id)arg1 forKey:(id)arg2;
+- (void)removeObjectForKey:(id)arg1;
 - (id)objectForKey:(id)arg1;
+- (id)keyEnumerator;
+- (void)getObjects:(id *)arg1 andKeys:(id *)arg2 count:(unsigned long long)arg3;
 - (unsigned long long)count;
 
 @end

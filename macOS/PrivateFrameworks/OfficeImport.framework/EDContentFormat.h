@@ -23,6 +23,7 @@ __attribute__((visibility("hidden")))
 + (id)contentFormatWithFormatString:(id)arg1;
 + (id)contentFormatWithFormatString:(id)arg1 formatId:(unsigned long long)arg2;
 + (id)contentFormatWithNSString:(id)arg1 formatId:(unsigned long long)arg2 builtIn:(_Bool)arg3;
+- (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (_Bool)referenced;
 - (_Bool)builtIn;
@@ -33,7 +34,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToContentFormat:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)init;
 - (void)setReferenced:(_Bool)arg1;
 - (void)setFormatId:(unsigned long long)arg1;

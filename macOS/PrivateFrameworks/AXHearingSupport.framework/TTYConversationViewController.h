@@ -11,7 +11,7 @@
 #import "NSTextViewDelegate.h"
 #import "TTYUtteranceCellDelegate.h"
 
-@class CAShapeLayer, NSImageView, NSLock, NSScrollView, NSString, NSTableView, NSTextView, TTYConversation, TUCall;
+@class CAShapeLayer, NSImageView, NSLock, NSMutableArray, NSObject<OS_dispatch_queue>, NSScrollView, NSString, NSTableView, NSTextView, TTYConversation, TTYUtterance, TUCall;
 
 @interface TTYConversationViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource, TTYUtteranceCellDelegate, NSTextViewDelegate>
 {
@@ -20,19 +20,26 @@
     id _keyboardEventMonitor;
     NSImageView *_gaButton;
     NSLock *_realtimeSendLock;
+    NSObject<OS_dispatch_queue> *_utteranceRequestQueue;
+    BOOL _processingUtteranceBuffer;
     TTYConversation *_conversation;
     NSScrollView *_scrollView;
     NSTableView *_tableView;
+    TTYUtterance *_currentUtterance;
     TUCall *_call;
+    NSMutableArray *_utteranceBuffer;
 }
 
 + (id)viewControllerForConversation:(id)arg1;
 + (id)viewControllerForCall:(id)arg1;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL processingUtteranceBuffer; // @synthesize processingUtteranceBuffer=_processingUtteranceBuffer;
+@property(retain, nonatomic) NSMutableArray *utteranceBuffer; // @synthesize utteranceBuffer=_utteranceBuffer;
 @property(retain, nonatomic) TUCall *call; // @synthesize call=_call;
+@property(retain, nonatomic) TTYUtterance *currentUtterance; // @synthesize currentUtterance=_currentUtterance;
 @property(retain, nonatomic) NSTableView *tableView; // @synthesize tableView=_tableView;
 @property(retain, nonatomic) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain, nonatomic) TTYConversation *conversation; // @synthesize conversation=_conversation;
-- (void).cxx_destruct;
 - (void)textDidChange:(id)arg1;
 - (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (double)tableView:(id)arg1 sizeToFitWidthOfColumn:(long long)arg2;
@@ -41,22 +48,29 @@
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)utteranceCellDidUpdateContent:(id)arg1;
-- (void)updateTableViewSize;
+- (void)updateTableViewSizeAnimated:(BOOL)arg1;
 - (void)viewDidAppear;
 - (void)setupTableView;
 - (void)loadView;
 - (void)realtimeTextDidChange;
 - (void)gaButtonPressed:(id)arg1;
-- (void)deviceDidReceiveCharacter:(unsigned short)arg1;
+- (void)deviceDidReceiveCharacter:(unsigned short)arg1 forUtterance:(id)arg2;
+- (id)currentContactPath;
+- (id)cannedResponses;
+- (id)cellAtIndexPath:(id)arg1;
 - (void)setTextViewUtterance:(id)arg1;
 - (id)textViewUtterance;
 - (void)sendNewUtteranceString:(id)arg1;
-- (void)_sendNewUtteranceString:(id)arg1 atIndex:(unsigned long long)arg2 forCell:(id)arg3;
+- (void)_sendNewUtteranceString:(id)arg1 atIndex:(unsigned long long)arg2 forCellPath:(id)arg3;
+- (void)processUtteranceQueue;
 - (id)addUtterance:(id)arg1;
 - (id)callContainingUtterance;
+- (void)toggleMute:(id)arg1;
+- (void)updateMuteButton;
 - (void)callDidConnect:(id)arg1;
 - (void)viewDidLoad;
 - (void)dealloc;
+- (id)inputTextView;
 - (id)init;
 
 // Remaining properties

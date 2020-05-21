@@ -18,7 +18,6 @@
 + (id)_extensionAuxiliaryVendorProtocol;
 - (void)attachmentsForParameters:(id)arg1 withHandler:(CDUnknownBlockType)arg2;
 - (void)attachmentListWithHandler:(CDUnknownBlockType)arg1;
-- (id)extensionAPIProxy;
 - (BOOL)hasEntitlement;
 
 // Remaining properties

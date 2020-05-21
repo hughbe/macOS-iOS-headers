@@ -12,10 +12,16 @@
 {
 }
 
-+ (id)hours;
-+ (id)minutes;
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
++ (id)picoseconds;
++ (id)nanoseconds;
++ (id)microseconds;
++ (id)milliseconds;
 + (id)seconds;
++ (id)minutes;
++ (id)hours;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

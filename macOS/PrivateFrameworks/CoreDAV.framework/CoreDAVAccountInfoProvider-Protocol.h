@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class AKAppleIDSession, CoreDAVTask, NSData, NSDictionary, NSError, NSSet, NSString, NSURL, NSURLAuthenticationChallenge, NSURLConnection, NSURLProtectionSpace;
+@class AKAppleIDSession, CoreDAVTask, NSData, NSDictionary, NSError, NSObject<OS_dispatch_queue>, NSSet, NSString, NSURL, NSURLAuthenticationChallenge, NSURLConnection, NSURLProtectionSpace;
 
 @protocol CoreDAVAccountInfoProvider <NSObject>
 - (BOOL)shouldFailAllTasks;
@@ -26,7 +26,7 @@
 
 @optional
 - (AKAppleIDSession *)getAppleIDSession;
-- (void)webLoginRequestedAtURL:(NSURL *)arg1 reasonString:(NSString *)arg2 completionBlock:(void (^)(int))arg3;
+- (void)webLoginRequestedAtURL:(NSURL *)arg1 reasonString:(NSString *)arg2 inQueue:(NSObject<OS_dispatch_queue> *)arg3 completionBlock:(void (^)(int))arg4;
 - (NSString *)clientToken;
 - (void)clientTokenRequestedByServer;
 - (BOOL)shouldCompressRequests;

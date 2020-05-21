@@ -23,6 +23,7 @@
 
 + (id)traitsWithFontName:(id)arg1 maxFontSize:(double)arg2 minFontSize:(double)arg3 textColor:(id)arg4 yCoordinate:(double)arg5 baselineOffset:(double)arg6;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) double baselineOffset; // @synthesize baselineOffset=_baselineOffset;
 @property(nonatomic) double yCoordinate; // @synthesize yCoordinate=_yCoordinate;
 @property(retain, nonatomic) TIKeyboardSecureCandidateRGBColor *textColor; // @synthesize textColor=_textColor;
@@ -34,7 +35,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithFontName:(id)arg1 maxFontSize:(double)arg2 minFontSize:(double)arg3 textColor:(id)arg4 yCoordinate:(double)arg5 baselineOffset:(double)arg6;
 - (id)initWithFontName:(id)arg1 maxFontSize:(double)arg2 minFontSize:(double)arg3 textColor:(id)arg4;
 - (id)initWithFontName:(id)arg1 fontSize:(double)arg2 textColor:(id)arg3;

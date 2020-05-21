@@ -16,27 +16,29 @@
     PASampleUserFrame *_user;
     BOOL _hideKernelFrames;
     BOOL _hideUserFrames;
-    const struct stack_snapshot_frame64 *user64Frames;
+    struct stack_snapshot_frame64 *user64Frames;
     int numUser64Frames;
-    const unsigned long long *user64LRs;
+    unsigned long long *user64LRs;
     int numUser64LRs;
-    const struct stack_snapshot_frame32 *user32Frames;
+    struct stack_snapshot_frame32 *user32Frames;
     int numUser32Frames;
-    const unsigned int *user32LRs;
+    unsigned int *user32LRs;
     int numUser32LRs;
-    const struct stack_snapshot_frame64 *kernel64Frames;
+    struct stack_snapshot_frame64 *kernel64Frames;
     int numKernel64Frames;
-    const unsigned long long *kernel64LRs;
+    unsigned long long *kernel64LRs;
     int numKernel64LRs;
-    const struct stack_snapshot_frame32 *kernel32Frames;
+    struct stack_snapshot_frame32 *kernel32Frames;
     int numKernel32Frames;
-    const unsigned int *kernel32LRs;
+    unsigned int *kernel32LRs;
     int numKernel32LRs;
     unsigned long long continuation;
     BOOL isUserStackTruncated;
 }
 
 - (void).cxx_destruct;
+- (void)dealloc;
+- (BOOL)hasUserStack;
 - (BOOL)hasStack;
 - (void)clear;
 - (void)iterateFrames:(CDUnknownBlockType)arg1;

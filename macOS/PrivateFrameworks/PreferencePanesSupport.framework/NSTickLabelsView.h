@@ -15,11 +15,11 @@
     NSArray *fTickLabels;
 }
 
+- (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)setTickLabels:(id)arg1;
 - (void)setFontAttributes:(id)arg1;
 - (void)setSlider:(id)arg1;
-- (void)dealloc;
 
 @end
 

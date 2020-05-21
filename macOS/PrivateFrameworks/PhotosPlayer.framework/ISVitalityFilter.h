@@ -8,6 +8,7 @@
 
 @class NSDate;
 
+__attribute__((visibility("hidden")))
 @interface ISVitalityFilter : NSObject
 {
     BOOL _isVisible;
@@ -27,6 +28,7 @@
     CDUnknownBlockType _outputChangeHandler;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic, setter=_setOutputDidChange:) BOOL _outputDidChange; // @synthesize _outputDidChange=__outputDidChange;
 @property(nonatomic, setter=_setPerformingOutputChanges:) BOOL _isPerformingOutputChanges; // @synthesize _isPerformingOutputChanges=__isPerformingOutputChanges;
 @property(nonatomic, setter=_setPerformingInputChanges:) BOOL _isPerformingInputChanges; // @synthesize _isPerformingInputChanges=__isPerformingInputChanges;
@@ -42,7 +44,6 @@
 @property(nonatomic) double visibilityOffset; // @synthesize visibilityOffset=_visibilityOffset;
 @property(nonatomic, setter=setVisible:) BOOL isVisible; // @synthesize isVisible=_isVisible;
 @property(readonly, nonatomic) id <ISVitalitySettings> settings; // @synthesize settings=_settings;
-- (void).cxx_destruct;
 - (void)inputDidChange;
 - (void)_invalidateOutput;
 - (void)performOutputChanges:(CDUnknownBlockType)arg1;

@@ -37,7 +37,10 @@
 @property(retain) NSString *title;
 @property(retain) NSURL *thumbnailImageURL;
 @property(retain) NSString *subtitle;
+@property(readonly) NSString *sortName;
+@property(readonly) NSString *sortArtist;
 @property(retain) NSString *ipaInstallPath;
+@property(retain) NSString *managedAppUUIDString;
 @property BOOL isMDMProvided;
 - (void)setUncompressedSize:(id)arg1;
 - (void)setExtractionCanBeStreamed:(BOOL)arg1;
@@ -49,6 +52,7 @@
 @property(retain) NSString *genre;
 @property(retain) NSNumber *durationInMilliseconds;
 @property(retain) NSString *collectionName;
+@property(retain) NSNumber *version;
 @property(retain) NSString *bundleVersion;
 @property(retain) NSString *bundleIdentifier;
 @property BOOL artworkIsPrerendered;
@@ -62,8 +66,8 @@
 @property(readonly) NSString *purchaseDate;
 @property(readonly) BOOL isExplicitContents;
 @property(readonly) NSNumber *ageRestriction;
+@property(readonly) NSNumber *collectionID;
 @property(retain) NSString *productType;
-@property(readonly) NSNumber *version;
 @property(readonly) NSString *applicationIdentifier;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;

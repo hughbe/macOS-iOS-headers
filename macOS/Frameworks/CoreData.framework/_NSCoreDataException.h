@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)exceptionWithName:(id)arg1 code:(long long)arg2 reason:(id)arg3 userInfo:(id)arg4;
+- (id)errorObjectWithUserInfo:(id)arg1;
 - (id)domain;
 - (long long)code;
 - (void)_setDomain:(id)arg1;

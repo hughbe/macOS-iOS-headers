@@ -22,6 +22,7 @@
 
 + (id)generateTimeZoneString:(id)arg1;
 + (id)mkcalendarPropertiesWithDisplayName:(id)arg1 color:(id)arg2 symbolicColorName:(id)arg3 order:(unsigned long long)arg4 notes:(id)arg5 timeZone:(id)arg6 shouldSetTransparency:(BOOL)arg7 isAffectingAvailability:(BOOL)arg8 isAutoscheduleSupported:(BOOL)arg9 fallbackProperties:(id)arg10;
+- (void).cxx_destruct;
 @property(retain) NSString *inboxURI; // @synthesize inboxURI=_inboxURI;
 @property(retain) NSString *uri; // @synthesize uri=_uri;
 @property(retain) NSSet *fallbackProperties; // @synthesize fallbackProperties=_fallbackProperties;
@@ -32,7 +33,6 @@
 - (void)_updateACL;
 - (id)_createReadFreeBusyACE;
 - (void)performOperation;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 session:(id)arg2 isAffectingAvailability:(BOOL)arg3 isAutoscheduleSupported:(BOOL)arg4;
 
 @end

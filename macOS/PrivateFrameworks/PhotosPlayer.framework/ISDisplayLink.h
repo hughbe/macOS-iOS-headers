@@ -6,16 +6,19 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface ISDisplayLink : NSObject
 {
     struct __CVDisplayLink *_displayLinkRef;
+    long long _preferredFramesPerSecond;
     CDUnknownBlockType _updateHandler;
     CDUnknownBlockType _completionHandler;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(copy, nonatomic) CDUnknownBlockType updateHandler; // @synthesize updateHandler=_updateHandler;
-- (void).cxx_destruct;
+@property(nonatomic) long long preferredFramesPerSecond; // @synthesize preferredFramesPerSecond=_preferredFramesPerSecond;
 - (void)_callUpdateHandler;
 - (void)stop;
 - (void)start;

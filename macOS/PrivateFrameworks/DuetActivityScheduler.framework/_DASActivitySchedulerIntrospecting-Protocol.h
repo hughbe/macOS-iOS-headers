@@ -9,10 +9,20 @@
 @class NSArray, NSDictionary, NSString;
 
 @protocol _DASActivitySchedulerIntrospecting <NSObject>
+- (void)pauseWithParameters:(NSDictionary *)arg1;
+- (void)enterTestModeWithParameters:(NSDictionary *)arg1;
+- (NSArray *)blockingPoliciesWithParameters:(NSDictionary *)arg1;
+- (NSArray *)policies;
+- (void)setCapacity:(double)arg1 forBudgetWithName:(NSString *)arg2;
+- (void)setBalance:(double)arg1 forBudgetWithName:(NSString *)arg2;
+- (double)remainingBalanceForBudgetWithName:(NSString *)arg1;
+- (NSDictionary *)currentPredictions;
 - (void)forceRunActivities:(NSArray *)arg1;
 - (NSDictionary *)activityRunStatistics;
 - (NSArray *)scoresForActivityWithName:(NSString *)arg1;
+- (BOOL)deferActivities:(NSArray *)arg1;
 - (NSArray *)runningGroupActivities;
+- (NSArray *)delayedRunningActivities;
 - (NSArray *)runningActivities;
 - (NSArray *)submittedActivities;
 @end

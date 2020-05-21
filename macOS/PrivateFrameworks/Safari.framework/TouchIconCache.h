@@ -15,13 +15,12 @@ __attribute__((visibility("hidden")))
 + (id)_imageDirectoryURL;
 + (void)deleteDeprecatedCacheDirectory;
 + (id)sharedCache;
-+ (id)_generateDefaultFavoritesIconWithGlyphColor:(id)arg1;
-+ (id)_favoritesGlyph;
++ (id)_generateDefaultFavoritesIcon;
 + (id)_paddedUncoloredFavoritesGlyph;
 + (id)_monogramConfiguration;
 - (void)_willSaveTouchIcon:(id)arg1 withCacheSettingsEntry:(id)arg2;
 - (void)_didLoadTouchIcon:(id)arg1 withCacheSettingsEntry:(id)arg2;
-- (id)_operationWithRequest:(id)arg1 processPool:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (id)_operationWithRequest:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)_didGenerateResponse:(id)arg1 forRequest:(id)arg2;
 - (id)initWithImageDirectoryURL:(id)arg1;
 

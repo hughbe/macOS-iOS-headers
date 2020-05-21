@@ -9,12 +9,7 @@
 __attribute__((visibility("hidden")))
 @interface FI_TColumnRowView : NSTableRowView
 {
-    struct TFENode _node;
 }
-
-@property(nonatomic) struct TFENode node; // @synthesize node=_node;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 
 @end
 

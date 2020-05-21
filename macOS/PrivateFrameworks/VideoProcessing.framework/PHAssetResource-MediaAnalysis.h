@@ -7,18 +7,15 @@
 #import "PHAssetResource.h"
 
 @interface PHAssetResource (MediaAnalysis)
-+ (id)vcp_largestLocalMovieResourceForAsset:(id)arg1;
-+ (id)vcp_largestMovieDerivativeResourceForAsset:(id)arg1;
-+ (id)vcp_originalResourceForAsset:(id)arg1;
-+ (id)vcp_thumbnailResourceForAsset:(id)arg1;
-+ (id)vcp_resourceForAsset:(id)arg1 withType:(unsigned long long)arg2;
 + (id)vcp_allResourcesForAsset:(id)arg1;
 - (struct CGSize)vcp_size;
 - (unsigned long long)vcp_fileSize;
 - (BOOL)vcp_isLocallyAvailable;
-- (BOOL)vcp_isJPEG;
+- (BOOL)vcp_isDecodable;
+- (BOOL)vcp_isPhotoResourceUsable:(BOOL)arg1;
+- (BOOL)vcp_isVideoResourceUsable:(BOOL)arg1;
 - (BOOL)vcp_isPhoto;
 - (BOOL)vcp_isMovie;
-- (id)vcp_url;
+- (id)vcp_avAsset;
 @end
 

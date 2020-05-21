@@ -19,16 +19,13 @@
 + (id)imageUnfilteredFileTypes;
 + (id)imageUnfilteredTypes;
 + (BOOL)canInitWithData:(id)arg1;
-+ (id)_imagesFromIcon:(id)arg1 inApp:(id)arg2 zone:(struct _NSZone *)arg3;
 + (id)imageRepWithData:(id)arg1;
 + (void)initialize;
 @property(readonly, copy) NSData *EPSRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (BOOL)_wantsToBeCached;
 - (BOOL)draw;
 - (void)prepareGState;
-- (BOOL)drawInRect:(struct CGRect)arg1;
 @property(readonly) struct CGRect boundingBox;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithData:(id)arg1;

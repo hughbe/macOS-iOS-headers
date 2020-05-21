@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     NSMutableSet *_expectedSources;
     NSMutableSet *_sourcesThatFailed;
     NSMutableDictionary *_suggestionsBySource;
+    NSMutableDictionary *_fallbackSuggestionsBySource;
 }
 
 - (void).cxx_destruct;
@@ -22,6 +23,7 @@ __attribute__((visibility("hidden")))
 - (id)suggestionsFromSource:(int)arg1;
 - (void)didFailToReceiveSuggestionsFromSource:(int)arg1;
 - (void)setSuggestions:(id)arg1 fromSource:(int)arg2;
+- (void)setFallbackSuggestions:(id)arg1 fromSource:(int)arg2;
 - (void)expectSuggestionsFromSource:(int)arg1;
 - (BOOL)isExpectingSuggestionsFromSource:(int)arg1;
 - (id)init;

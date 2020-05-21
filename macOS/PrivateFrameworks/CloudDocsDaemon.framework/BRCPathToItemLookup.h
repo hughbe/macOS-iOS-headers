@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class BRCDocumentItem, BRCItemID, BRCLocalItem, BRCPackageItem, BRCRelativePath, BRCServerItem;
+@class BRCClientZone, BRCDocumentItem, BRCLocalItem, BRCPQLConnection, BRCPackageItem, BRCRelativePath, BRCServerItem;
 
 @interface BRCPathToItemLookup : NSObject
 {
@@ -15,37 +15,49 @@
     BRCLocalItem *_matchByFileID;
     BRCDocumentItem *_matchByDocumentID;
     BRCLocalItem *_matchByPath;
-    BRCServerItem *_serverItem;
     BRCServerItem *_serverByPath;
     BRCPackageItem *_packageItem;
-    BRCItemID *_parentID;
+    BRCLocalItem *_parentItem;
+    BRCLocalItem *_matchByFileIDGlobally;
+    BRCDocumentItem *_matchByDocumentIDGlobally;
+    BRCClientZone *_clientZone;
     struct {
         unsigned int byFileID:1;
         unsigned int byDocumentID:1;
         unsigned int byPath:1;
-        unsigned int parentID:1;
+        unsigned int parentItem:1;
         unsigned int serverItem:1;
         unsigned int serverByPath:1;
         unsigned int packageItem:1;
+        unsigned int clientZone:1;
     } _fetched;
+    BRCPQLConnection *_db;
 }
 
 + (id)lookupForRelativePath:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BRCPQLConnection *db; // @synthesize db=_db;
 @property(readonly, nonatomic) BRCRelativePath *relpathOfFSEvent; // @synthesize relpathOfFSEvent=_relpathOfFSEvent;
 @property(readonly, nonatomic) BRCRelativePath *relpathOfItem; // @synthesize relpathOfItem=_pathOfItem;
-- (void).cxx_destruct;
 - (id)description;
-- (BOOL)_fetchByDocumentID;
-- (BOOL)_fetchByFileID;
+- (BOOL)_fetchClientZone;
+- (BOOL)_shareIDMatchesParent:(id)arg1;
+- (id)_resolveClientZoneWhileFetchingFileID:(BOOL)arg1 fetchindDocID:(BOOL)arg2;
+@property(readonly, nonatomic) BRCClientZone *clientZone;
+- (BOOL)_fetchByDocumentID:(BOOL)arg1;
+- (BOOL)_fetchByFileID:(BOOL)arg1;
 - (id)_byPathWithLastPathComponent:(id)arg1;
 - (BOOL)_fetchByPath;
 @property(readonly, nonatomic) BRCLocalItem *byPath;
 - (id)byPathWithLastPathComponent:(id)arg1;
 @property(readonly, nonatomic) BRCServerItem *serverByPath;
+@property(readonly, retain) BRCDocumentItem *byDocumentIDGlobally;
 @property(retain, nonatomic) BRCDocumentItem *byDocumentID;
+@property(readonly, retain) BRCLocalItem *byFileIDGlobally;
 @property(retain, nonatomic) BRCLocalItem *byFileID;
-@property(readonly, nonatomic) BRCItemID *parentID;
+@property(readonly, nonatomic) BRCLocalItem *parentItem;
 - (id)initWithRelativePath:(id)arg1;
+- (id)initWithRelativePath:(id)arg1 db:(id)arg2;
 
 @end
 

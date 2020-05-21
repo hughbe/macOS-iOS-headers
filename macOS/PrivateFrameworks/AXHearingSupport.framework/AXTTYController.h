@@ -16,16 +16,21 @@
 }
 
 + (id)sharedController;
-@property(retain, nonatomic) NSMutableArray *ttyCalls; // @synthesize ttyCalls=_ttyCalls;
 - (void).cxx_destruct;
-- (void)ttyCall:(id)arg1 didReceiveCharacter:(unsigned short)arg2;
+@property(retain, nonatomic) NSMutableArray *ttyCalls; // @synthesize ttyCalls=_ttyCalls;
+- (void)ttyCall:(id)arg1 didReceiveCharacter:(unsigned short)arg2 forUtterance:(id)arg3;
+- (id)handleIncomingNotificationSuppressionChange:(id)arg1;
 - (id)displayCallPrompt:(id)arg1;
+- (id)handleSettingsRequest:(id)arg1;
 - (id)handleDictionaryRequest:(id)arg1;
 - (id)handleDatabaseRequest:(id)arg1;
 - (void)dealloc;
-- (void)updateRelayNumber;
+- (void)displayRTTFirstUseAlert;
+- (void)dismissRTTFirstUseAlert;
 - (id)callForUUID:(id)arg1;
+- (void)handleUpdatedCalls:(id)arg1;
 - (void)callDidConnect:(id)arg1;
+- (void)telephonySupportDidChange:(id)arg1;
 - (id)init;
 
 // Remaining properties

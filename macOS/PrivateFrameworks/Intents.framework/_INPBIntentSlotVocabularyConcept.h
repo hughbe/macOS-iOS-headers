@@ -7,34 +7,43 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBIntentSlotVocabularyConcept.h"
 
-@class NSMutableArray, NSString, PBUnknownFields;
+@class NSArray, NSString;
 
-@interface _INPBIntentSlotVocabularyConcept : PBCodable <NSCopying>
+@interface _INPBIntentSlotVocabularyConcept : PBCodable <_INPBIntentSlotVocabularyConcept, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
     NSString *_identifier;
-    NSMutableArray *_synonyms;
+    NSArray *_synonyms;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)synonymsType;
-@property(retain, nonatomic) NSMutableArray *synonyms; // @synthesize synonyms=_synonyms;
-@property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(copy, nonatomic) NSArray *synonyms; // @synthesize synonyms=_synonyms;
+@property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
 - (id)synonymsAtIndex:(unsigned long long)arg1;
-- (unsigned long long)synonymsCount;
+@property(readonly, nonatomic) unsigned long long synonymsCount;
 - (void)addSynonyms:(id)arg1;
 - (void)clearSynonyms;
 @property(readonly, nonatomic) BOOL hasIdentifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

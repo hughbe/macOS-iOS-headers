@@ -17,6 +17,7 @@
     BOOL _addressCreationPending;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL addressCreationPending; // @synthesize addressCreationPending=_addressCreationPending;
 @property(retain, nonatomic) MMWebKitViewController *webKitViewController; // @synthesize webKitViewController=_webKitViewController;
 - (void)_closeModalWindow;
@@ -25,7 +26,6 @@
 - (void)mmWebKitViewControllerDidFailLoading:(id)arg1 error:(id)arg2;
 - (void)mmWebKitViewControllerDidSucceed:(id)arg1;
 - (void)mmWebKitViewControllerDidCancel:(id)arg1;
-- (BOOL)hasPreflightAction;
 - (void)_propertiesChanged:(id)arg1;
 - (void)disableNotesAddressListeners;
 - (void)enableNotesAddressListeners;
@@ -33,11 +33,10 @@
 - (BOOL)_hasEmailAddress;
 - (void)_showClientFailureSheet:(id)arg1;
 - (void)_showMergeConfirmationSheet:(id)arg1;
+- (BOOL)shouldEnableOnLogin;
 - (BOOL)isDataService;
-- (BOOL)hasDataToMerge;
 - (void)setEnabled:(BOOL)arg1 creating:(BOOL)arg2 withWindow:(id)arg3;
 - (id)icon;
-- (void)dealloc;
 - (id)initWithServiceID:(id)arg1 forAccount:(id)arg2;
 
 // Remaining properties

@@ -11,21 +11,31 @@
 __attribute__((visibility("hidden")))
 @interface CKDPCSCacheZoneFetchOperation : CKDPCSCacheFetchOperation
 {
+    BOOL _shouldCreateZoneishPCS;
 }
 
+@property(nonatomic) BOOL shouldCreateZoneishPCS; // @synthesize shouldCreateZoneishPCS=_shouldCreateZoneishPCS;
 - (BOOL)_savePCSDataToCache;
+- (BOOL)_saveUpdatedPCSToServer;
+- (void)_handleDecryptedZonePCSData:(id)arg1 withError:(id)arg2;
+- (void)_decryptZonePCSUsingServiceIdentities;
+- (void)_decryptZonePCSInSharedDatabase;
 - (BOOL)_decryptPCS;
+- (BOOL)_createAdditionalPCS;
 - (BOOL)_fetchPCSDataFromServer;
 - (void)_saveNewPCSOnDefaultZone:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_saveZoneToServer:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_saveZoneToServer:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2 zoneishPCS:(struct _OpaquePCSShareProtection *)arg3 previousEtag:(id)arg4 completion:(CDUnknownBlockType)arg5;
+- (void)_saveZoneToServer:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_fetchDepedentPCSInSharedDatabase;
+- (BOOL)_fetchDependentPCS;
 - (BOOL)_fetchPCSDataFromDatabase;
 - (void)_handlePCSDataFetched:(id)arg1 withError:(id)arg2;
-- (void)dataWasFetched:(id)arg1 withError:(id)arg2 forRecordID:(id)arg3;
+- (void)_willRetryFetch;
 - (BOOL)hasAllPCSData;
+@property(readonly, nonatomic) BOOL needsZoneishPCS;
 - (id)itemTypeName;
 @property(retain, nonatomic) CKDZonePCSData *zonePCSData;
 @property(readonly, nonatomic) CKRecordZoneID *zoneID;
-- (id)initWithZoneID:(id)arg1 parentOperation:(id)arg2 cache:(id)arg3 options:(unsigned long long)arg4;
 
 @end
 

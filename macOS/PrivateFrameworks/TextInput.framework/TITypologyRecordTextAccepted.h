@@ -13,12 +13,14 @@
     TIKeyboardCandidate *_candidate;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) TIKeyboardCandidate *candidate; // @synthesize candidate=_candidate;
+- (id)changedText;
 - (id)shortDescription;
 - (id)textSummary;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 - (void)applyToStatistic:(id)arg1;
 
 @end

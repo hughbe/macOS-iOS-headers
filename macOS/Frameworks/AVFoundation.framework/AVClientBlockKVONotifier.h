@@ -6,11 +6,13 @@
 
 #import "NSObject.h"
 
+#import "AVKVOIntrospection.h"
 #import "AVKVONotifier.h"
 
 @class AVCallbackContextRegistry, NSString;
 
-@interface AVClientBlockKVONotifier : NSObject <AVKVONotifier>
+__attribute__((visibility("hidden")))
+@interface AVClientBlockKVONotifier : NSObject <AVKVONotifier, AVKVOIntrospection>
 {
     AVCallbackContextRegistry *_callbackContextRegistry;
     void *_callbackContextToken;
@@ -24,7 +26,7 @@
 - (void)cancelCallbacks;
 - (void)callbackDidFireWithChangeDictionary:(id)arg1;
 - (void)start;
-- (void)finalize;
+@property(readonly, nonatomic) NSObject *observedObject;
 - (void)dealloc;
 - (id)initWithCallbackContextRegistry:(id)arg1 observer:(id)arg2 object:(id)arg3 keyPath:(id)arg4 options:(unsigned long long)arg5 block:(CDUnknownBlockType)arg6;
 

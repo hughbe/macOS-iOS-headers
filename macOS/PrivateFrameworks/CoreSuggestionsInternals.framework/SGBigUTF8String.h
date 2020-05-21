@@ -28,11 +28,15 @@
     BOOL _ascii;
 }
 
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
-- (id)replacementObjectForCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (Class)classForCoder;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)hash;
+- (unsigned long long)fastestEncoding;
 - (const char *)_fastCStringContents:(BOOL)arg1;
 - (id)dataUsingEncoding:(unsigned long long)arg1;
 - (void)getCharacters:(unsigned short *)arg1 range:(struct _NSRange)arg2;

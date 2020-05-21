@@ -11,20 +11,22 @@
     long long _trackingTagNum;
     id _eventMonitor;
     unsigned int _ignoreRentry:1;
-    unsigned int __babahfillerfunfun:31;
+    unsigned int __themeWidgetReserved:31;
 }
 
 + (id)widgetInView:(id)arg1 withButtonID:(long long)arg2 action:(SEL)arg3;
 + (void)initialize;
+- (id)_startingWindowForSendAction:(SEL)arg1;
 - (void)viewDidMoveToWindow;
 - (void)stopMonitoringFlagsChanged;
 - (void)startMonitoringFlagsChanged;
+- (void)flagsChanged;
 - (struct NSEdgeInsets)alignmentRectInsets;
 - (void)update;
 - (void)mouseDown:(id)arg1;
-- (id)initWithButtonID:(long long)arg1;
 - (void)setFrameOrigin:(struct CGPoint)arg1;
 - (void)setFrameOrigin:(struct CGPoint)arg1 ignoreRentry:(BOOL)arg2;
+- (id)initWithButtonID:(long long)arg1;
 
 @end
 

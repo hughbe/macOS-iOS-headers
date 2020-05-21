@@ -13,11 +13,16 @@
     NSString *_id;
     NSString *_unformattedID;
     NSString *_countryCode;
+    NSString *_personCentricID;
+    NSString *_CNContactID;
 }
 
+@property(copy, nonatomic) NSString *CNContactID; // @synthesize CNContactID=_CNContactID;
 @property(retain, nonatomic) NSString *unformattedID; // @synthesize unformattedID=_unformattedID;
 @property(retain, nonatomic) NSString *countryCode; // @synthesize countryCode=_countryCode;
 @property(retain, nonatomic) NSString *ID; // @synthesize ID=_id;
+@property(retain, nonatomic) NSString *personCentricID; // @synthesize personCentricID=_personCentricID;
+- (BOOL)isBusiness;
 @property(readonly, retain, nonatomic) NSDictionary *handleInfo;
 - (id)description;
 - (unsigned long long)hash;
@@ -25,6 +30,7 @@
 - (long long)compareIDs:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (void)dealloc;
+- (id)initWithID:(id)arg1 unformattedID:(id)arg2 countryCode:(id)arg3 personCentricID:(id)arg4;
 - (id)initWithID:(id)arg1 unformattedID:(id)arg2 countryCode:(id)arg3;
 
 @end

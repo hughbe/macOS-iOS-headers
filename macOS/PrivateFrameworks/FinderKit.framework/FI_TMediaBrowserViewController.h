@@ -15,13 +15,14 @@ __attribute__((visibility("hidden")))
     struct NSEdgeInsets _contentInsets;
 }
 
-@property(copy, nonatomic) NSString *searchString; // @dynamic searchString;
+@property(copy, nonatomic) NSString *searchNSString; // @dynamic searchNSString;
+- (struct TString)searchString;
 - (void)updateSTFEditorLocation;
 - (void)stopEditing:(_Bool)arg1;
 - (_Bool)startEditingWithNode:(const struct TFENode *)arg1 renameOp:(id)arg2;
 - (void)privateBindSettings;
-- (BOOL)mediaBrowserView:(id)arg1 shouldPreviewDoubleClickedItem:(id)arg2;
 - (void)mediaBrowserViewSelectionDidChange:(id)arg1;
+- (BOOL)mediaBrowserView:(id)arg1 shouldPreviewDoubleClickedItem:(id)arg2;
 - (id)mediaBrowserView:(id)arg1 attributedDisplayNameForMediaObject:(id)arg2;
 - (BOOL)mediaBrowserView:(id)arg1 shouldSelectMediaObject:(id)arg2;
 - (_Bool)urlIsDimmed:(id)arg1;
@@ -36,12 +37,14 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)selectedNodesCount;
 - (unsigned long long)itemCount;
 - (id)selectedURLs;
-- (unsigned long long)getSelectedNodes:(struct TFENodeVector *)arg1 upTo:(unsigned long long)arg2;
-- (unsigned int)viewStyle;
+- (unsigned long long)getSelectedNodesFromView:(struct TFENodeVector *)arg1 upTo:(unsigned long long)arg2;
+- (void)reloadIconsInView;
+- (int)viewStyle;
 - (struct TFENodeVector)typeSelectCandidateNodes;
 - (unsigned long long)indexForNode:(const struct TFENode *)arg1;
 - (_Bool)containsNode:(const struct TFENode *)arg1;
 - (void)updateSubviewContentInsets:(struct NSEdgeInsets)arg1;
+- (void)dataSourceChanged:(const vector_274a36ec *)arg1;
 - (void)aboutToTearDown;
 - (id)mediaBrowserView;
 - (void)viewLoaded;

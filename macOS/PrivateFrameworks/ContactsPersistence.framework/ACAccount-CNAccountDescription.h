@@ -8,11 +8,13 @@
 
 #import "CNAccountDescription.h"
 
-@class ABCDContainer, NSString, NSURL;
+@class ABCDContainer, NSArray, NSNumber, NSString, NSURL;
 
 @interface ACAccount (CNAccountDescription) <CNAccountDescription>
 - (id)_interestedAccountTypeIdentifiers;
 - (long long)_containerType;
+@property(readonly) BOOL isChildAccount;
+@property(readonly) NSNumber *dsid;
 @property(readonly) ABCDContainer *containerRepresentation;
 @property(readonly) NSURL *persistentStoreURL;
 @property(readonly) BOOL isPersistent;
@@ -20,6 +22,7 @@
 @property(readonly, copy) NSURL *baseURL;
 
 // Remaining properties
+@property(readonly, copy) NSArray *childAccounts;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;

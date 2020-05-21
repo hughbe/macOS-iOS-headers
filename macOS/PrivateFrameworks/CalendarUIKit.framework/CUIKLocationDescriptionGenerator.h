@@ -12,6 +12,7 @@
 
 + (id)locationStringForEvent:(id)arg1;
 + (id)locationStringForEvent:(id)arg1 options:(unsigned long long)arg2;
++ (void)locationStringForEvent:(id)arg1 options:(unsigned long long)arg2 completionBlock:(CDUnknownBlockType)arg3;
 
 @end
 

@@ -11,9 +11,8 @@
     BOOL _paranoid;
 }
 
-+ (void)initialize;
 - (void)dissectInternal:(id)arg1 inContext:(id)arg2;
-- (id)quotedRegionsFrom:(id)arg1 isAOSPMail:(BOOL)arg2;
+- (id)quotedRegionsFrom:(id)arg1 isAOSPMail:(BOOL)arg2 foundToEndOfMessage:(char *)arg3;
 - (id)_xWrote:(id)arg1 utf8:(const char *)arg2;
 - (id)_tofuRegions:(id)arg1 utf8:(const char *)arg2 utf16:(id)arg3 isAOSPMail:(BOOL)arg4;
 - (id)initParanoid;

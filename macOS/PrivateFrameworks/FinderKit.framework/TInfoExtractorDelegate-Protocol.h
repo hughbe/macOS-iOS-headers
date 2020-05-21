@@ -5,7 +5,6 @@
 //
 
 @protocol TInfoExtractorDelegate
-- (struct CGRect)infoTextMaxFrameForNode:(const struct TFENode *)arg1;
 - (void)invalidateInfoTextForKeyNodes:(const struct TFENodeVector *)arg1;
 @end
 

@@ -14,6 +14,7 @@
 
 + (id)startCorrectedSpeechRequestWithDictionary:(id)arg1 context:(id)arg2;
 + (id)startCorrectedSpeechRequest;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *utteranceSource;
 @property(copy, nonatomic) NSString *sessionId;
 @property(copy, nonatomic) NSString *previousUtterance;

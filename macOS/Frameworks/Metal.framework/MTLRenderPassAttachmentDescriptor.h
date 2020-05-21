@@ -24,6 +24,7 @@
 @property(retain, nonatomic) id <MTLTexture> resolveTexture; // @dynamic resolveTexture;
 @property(nonatomic) unsigned long long slice; // @dynamic slice;
 @property(nonatomic) unsigned long long storeAction; // @dynamic storeAction;
+@property(nonatomic) unsigned long long storeActionOptions; // @dynamic storeActionOptions;
 @property(retain, nonatomic) id <MTLTexture> texture; // @dynamic texture;
 
 @end

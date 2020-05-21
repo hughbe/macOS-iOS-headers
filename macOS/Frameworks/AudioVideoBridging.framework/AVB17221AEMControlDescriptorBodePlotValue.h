@@ -23,6 +23,8 @@
 @property(copy, nonatomic) AVB17221AEMBodePlotEntry *maxValue; // @synthesize maxValue;
 @property(copy, nonatomic) AVB17221AEMBodePlotEntry *minValue; // @synthesize minValue;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (BOOL)validControlValueType:(unsigned short)arg1;
 - (id)objectsForSetCommandValuesData:(id)arg1;
 - (id)debugLogStringWithIndentation:(id)arg1;

@@ -8,10 +8,11 @@
 
 #import "NSCopying.h"
 
-@class EKCalendar, EKEvent, EKStructuredLocation, NSArray, NSDate, NSMutableSet, NSString, NSTimeZone, NSURL;
+@class EKCalendar, EKEvent, EKStructuredLocation, EKSuggestedEventInfo, NSArray, NSData, NSDate, NSMutableSet, NSString, NSTimeZone, NSURL;
 
 @interface CUIKEventSuggestion : NSObject <NSCopying>
 {
+    BOOL _isZKWSuggestion;
     BOOL _wasTimeDetected;
     BOOL _allDay;
     EKEvent *_referenceEvent;
@@ -30,6 +31,8 @@
     NSURL *_URL;
     long long _privacyLevel;
     long long _availability;
+    EKSuggestedEventInfo *_suggestionInfo;
+    NSData *_localStructuredData;
     NSArray *_attachments;
     NSArray *_alarms;
     NSArray *_recurrenceRules;
@@ -38,9 +41,12 @@
 + (id)propertiesForEquality;
 + (id)allProperties;
 + (id)similarityPropertiesConsideringTimeProperties:(BOOL)arg1;
+- (void).cxx_destruct;
 @property(retain) NSArray *recurrenceRules; // @synthesize recurrenceRules=_recurrenceRules;
 @property(retain) NSArray *alarms; // @synthesize alarms=_alarms;
 @property(retain) NSArray *attachments; // @synthesize attachments=_attachments;
+@property(retain) NSData *localStructuredData; // @synthesize localStructuredData=_localStructuredData;
+@property(retain) EKSuggestedEventInfo *suggestionInfo; // @synthesize suggestionInfo=_suggestionInfo;
 @property long long availability; // @synthesize availability=_availability;
 @property long long privacyLevel; // @synthesize privacyLevel=_privacyLevel;
 @property(retain) NSURL *URL; // @synthesize URL=_URL;
@@ -57,9 +63,9 @@
 @property(retain) NSDate *startDate; // @synthesize startDate=_startDate;
 @property(retain) NSString *title; // @synthesize title=_title;
 @property BOOL wasTimeDetected; // @synthesize wasTimeDetected=_wasTimeDetected;
+@property BOOL isZKWSuggestion; // @synthesize isZKWSuggestion=_isZKWSuggestion;
 @property(retain) NSMutableSet *additionalReferenceEvents; // @synthesize additionalReferenceEvents=_additionalReferenceEvents;
 @property(retain) EKEvent *referenceEvent; // @synthesize referenceEvent=_referenceEvent;
-- (void).cxx_destruct;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;

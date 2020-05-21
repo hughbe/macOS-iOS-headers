@@ -10,9 +10,12 @@
 {
 }
 
++ (BOOL)setNVRAMKeyWithValue:(id)arg1 key:(id)arg2 error:(id *)arg3;
++ (id)getNvramDataForKey:(id)arg1;
++ (id)nvramStringForKey:(id)arg1;
++ (id)getBootSessionUUID:(id *)arg1;
 + (id)localVisibleUsers;
 + (id)machineBoardID;
-+ (id)nvramStringForKey:(id)arg1;
 + (BOOL)runningFromInstallMedia;
 + (BOOL)hasAppleIPAddress;
 + (BOOL)isRunningOnACPower;

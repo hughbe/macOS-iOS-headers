@@ -6,12 +6,12 @@
 
 #import <Safari/FirefoxImporter.h>
 
-#import "BrowserBookmarkImporter.h"
+#import "BrowserBookmarkImportEngine.h"
 
 @class NSString;
 
 __attribute__((visibility("hidden")))
-@interface FirefoxBookmarkImporter : FirefoxImporter <BrowserBookmarkImporter>
+@interface FirefoxBookmarkImporter : FirefoxImporter <BrowserBookmarkImportEngine>
 {
 }
 

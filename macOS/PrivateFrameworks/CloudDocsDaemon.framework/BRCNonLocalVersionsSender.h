@@ -9,7 +9,7 @@
 #import "BRCOperationSubclass.h"
 #import "BRNonLocalVersionSending.h"
 
-@class BRCAppLibrary, BRCItemID, BRCServerZone, BRCStatInfo, BRCXPCClient, CKRecordID, NSString, NSURL;
+@class BRCAppLibrary, BRCItemID, BRCServerZone, BRCStatInfo, BRCXPCClient, CKRecordID, NSObject<GSAdditionStoring>, NSString, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface BRCNonLocalVersionsSender : _BRCOperation <BRNonLocalVersionSending, BRCOperationSubclass>
@@ -19,7 +19,7 @@ __attribute__((visibility("hidden")))
     BRCStatInfo *_st;
     NSString *_currentEtag;
     NSString *_storagePathPrefix;
-    struct NSObject *_storage;
+    NSObject<GSAdditionStoring> *_storage;
     BRCXPCClient *_client;
     BRCServerZone *_serverZone;
     BRCAppLibrary *_appLibrary;
@@ -31,10 +31,10 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)senderWithLookup:(id)arg1 client:(id)arg2 XPCReceiver:(id)arg3 error:(id *)arg4;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL includeCachedVersions; // @synthesize includeCachedVersions=_includeCachedVersions;
 @property(readonly, nonatomic) NSURL *physicalURL; // @synthesize physicalURL=_physicalURL;
 @property(readonly, nonatomic) NSURL *logicalURL; // @synthesize logicalURL=_logicalURL;
-- (void).cxx_destruct;
 - (void)finishWithResult:(id)arg1 error:(id)arg2;
 - (BOOL)shouldRetryForError:(id)arg1;
 - (void)main;
@@ -42,7 +42,7 @@ __attribute__((visibility("hidden")))
 - (id)_fetchVersionsOperationWithDepsOp:(id)arg1;
 - (id)_fetchThumbnailOperationForVersionRecord:(id)arg1 physicalURL:(id)arg2;
 - (id)createActivity;
-- (id)initWithDocument:(id)arg1 serverItem:(id)arg2 relpath:(id)arg3 logicalURL:(id)arg4 client:(id)arg5 XPCReceiver:(id)arg6 error:(id *)arg7;
+- (id)initWithDocument:(id)arg1 serverItem:(id)arg2 relpath:(id)arg3 client:(id)arg4 XPCReceiver:(id)arg5 error:(id *)arg6;
 - (oneway void)invalidate;
 - (void)listNonLocalVersionsWithReply:(CDUnknownBlockType)arg1;
 

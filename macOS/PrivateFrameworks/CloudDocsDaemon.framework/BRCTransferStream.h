@@ -7,11 +7,12 @@
 #import "NSObject.h"
 
 #import "BRCLifeCycle.h"
+#import "BRCSuspendable.h"
 
 @class BRCAccountSession, BRCDeadlineSource, BRCSyncContext, NSArray, NSMutableDictionary, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
-@interface BRCTransferStream : NSObject <BRCLifeCycle>
+@interface BRCTransferStream : NSObject <BRCLifeCycle, BRCSuspendable>
 {
     BRCAccountSession *_session;
     BRCSyncContext *_syncContext;
@@ -23,19 +24,20 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_group> *_transferBatchRequestWaiter;
     BOOL _isWaitingForTransferBatch;
     BOOL _hasReachedCap;
+    // Error parsing type: Ai, name: _multipleItemsInteractiveSchedulingCount
     BOOL _isCancelled;
     CDUnknownBlockType _streamDidBecomeReadyToTransferRecords;
     unsigned long long _maxCountOfBatchesInFlight;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long inFlightSize; // @synthesize inFlightSize=_inFlightSize;
 @property(nonatomic) unsigned long long maxCountOfBatchesInFlight; // @synthesize maxCountOfBatchesInFlight=_maxCountOfBatchesInFlight;
 @property(readonly, nonatomic) BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
 @property(copy, nonatomic) CDUnknownBlockType streamDidBecomeReadyToTransferRecords; // @synthesize streamDidBecomeReadyToTransferRecords=_streamDidBecomeReadyToTransferRecords;
-- (void).cxx_destruct;
+- (void)suspend;
 - (void)close;
 - (void)cancel;
-- (void)suspend;
 - (void)resume;
 - (double)progressForTransferID:(id)arg1 operationID:(id)arg2;
 - (void)addAliasItem:(id)arg1 toTransferWithID:(id)arg2 operationID:(id)arg3;
@@ -46,6 +48,8 @@ __attribute__((visibility("hidden")))
 - (void)_addBatchOperation:(id)arg1;
 - (void)_evaluateCap;
 - (void)forceSchedulingPendingInteractiveTransfers;
+- (void)endSchedulingMultipleItemsInteractively;
+- (void)startSchedulingMultipleItemsInteractively;
 - (void)_setReachedCap:(BOOL)arg1;
 - (void)signal;
 - (void)signalWithDeadline:(long long)arg1;

@@ -12,6 +12,7 @@
 {
 }
 
+@property(copy, nonatomic) NSString *targetId;
 @property(copy, nonatomic) NSString *sourceMapURL;
 @property(nonatomic) BOOL canceled;
 @property(nonatomic) BOOL failed;

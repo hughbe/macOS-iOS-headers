@@ -13,10 +13,12 @@ __attribute__((visibility("hidden")))
 {
     void *memlist_key;
     MTLIOAccelResource *fResourceListHead;
-    int _memoryInfoLock;
+    struct os_unfair_lock_s _memoryInfoLock;
 }
 
 + (id)initialize;
+- (void)unlock;
+- (void)lock;
 - (void)removeDataSource:(void *)arg1;
 - (void *)addDataSource:(CDUnknownBlockType)arg1;
 - (void)dealloc;

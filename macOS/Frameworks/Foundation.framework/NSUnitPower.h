@@ -12,6 +12,7 @@
 {
 }
 
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 + (id)horsepower;
 + (id)femtowatts;
 + (id)picowatts;
@@ -24,6 +25,7 @@
 + (id)gigawatts;
 + (id)terawatts;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

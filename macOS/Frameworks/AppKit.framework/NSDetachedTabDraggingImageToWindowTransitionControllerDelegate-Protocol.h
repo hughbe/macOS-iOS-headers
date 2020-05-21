@@ -9,7 +9,8 @@
 @class NSDetachedTabDraggingImageToWindowTransitionController, NSWindow;
 
 @protocol NSDetachedTabDraggingImageToWindowTransitionControllerDelegate <NSObject>
-- (void)NSDetachedTabDraggingImageToWindowTransitionController:(NSDetachedTabDraggingImageToWindowTransitionController *)arg1 didFinishTransitionAnimationForWindow:(NSWindow *)arg2;
-- (NSWindow *)destinationWindowForNSDetachedTabDraggingImageToWindowTransitionController:(NSDetachedTabDraggingImageToWindowTransitionController *)arg1;
+- (void)detachedTabDraggingImageToWindowTransitionController:(NSDetachedTabDraggingImageToWindowTransitionController *)arg1 didFinishTransitionAnimationForWindow:(NSWindow *)arg2;
+- (NSWindow *)destinationWindowForDetachedTabDraggingImageToWindowTransitionController:(NSDetachedTabDraggingImageToWindowTransitionController *)arg1;
+- (BOOL)destinationWindowShouldMoveToDropPointInSpace:(unsigned long long)arg1 forDetachedTabDraggingImageToWindowTransitionController:(NSDetachedTabDraggingImageToWindowTransitionController *)arg2;
 @end
 

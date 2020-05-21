@@ -4,20 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <CoreImage/CIFilter.h>
-
-@class CIImage, NSNumber;
+#import <CoreImage/CIMorphology.h>
 
 __attribute__((visibility("hidden")))
-@interface CIMorphologyGradient : CIFilter
+@interface CIMorphologyGradient : CIMorphology
 {
-    CIImage *inputImage;
-    NSNumber *inputRadius;
 }
 
 + (id)customAttributes;
-@property(retain, nonatomic) NSNumber *inputRadius; // @synthesize inputRadius;
-@property(retain, nonatomic) CIImage *inputImage; // @synthesize inputImage;
 - (id)outputImage;
 
 @end

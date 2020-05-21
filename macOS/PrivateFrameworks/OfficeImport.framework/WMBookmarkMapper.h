@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     int mBookmarkType;
 }
 
+- (void).cxx_destruct;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (id)initWithWDBookmark:(id)arg1 parent:(id)arg2;
 

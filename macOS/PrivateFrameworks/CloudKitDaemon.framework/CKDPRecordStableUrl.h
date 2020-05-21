@@ -12,17 +12,19 @@
 
 @interface CKDPRecordStableUrl : PBCodable <NSCopying>
 {
+    NSString *_displayedHostname;
     NSData *_encryptedPublicSharingKey;
     NSData *_protectedFullToken;
     NSString *_routingKey;
     NSData *_shortTokenHash;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *displayedHostname; // @synthesize displayedHostname=_displayedHostname;
 @property(retain, nonatomic) NSData *encryptedPublicSharingKey; // @synthesize encryptedPublicSharingKey=_encryptedPublicSharingKey;
 @property(retain, nonatomic) NSData *protectedFullToken; // @synthesize protectedFullToken=_protectedFullToken;
 @property(retain, nonatomic) NSData *shortTokenHash; // @synthesize shortTokenHash=_shortTokenHash;
 @property(retain, nonatomic) NSString *routingKey; // @synthesize routingKey=_routingKey;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -32,6 +34,7 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasDisplayedHostname;
 @property(readonly, nonatomic) BOOL hasEncryptedPublicSharingKey;
 @property(readonly, nonatomic) BOOL hasProtectedFullToken;
 @property(readonly, nonatomic) BOOL hasShortTokenHash;

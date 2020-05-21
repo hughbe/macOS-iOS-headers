@@ -6,10 +6,10 @@
 
 #import "NSObject.h"
 
-@class ABSuggestedValueViewController, SGLabeledObject;
+@class ABSuggestedValueViewController, CNLabeledValue;
 
 @protocol ABSuggestedValueViewControllerDelegate <NSObject>
-- (void)confirmationViewController:(ABSuggestedValueViewController *)arg1 didRejectValue:(SGLabeledObject *)arg2;
-- (void)confirmationViewController:(ABSuggestedValueViewController *)arg1 didConfirmValue:(SGLabeledObject *)arg2;
+- (void)confirmationViewController:(ABSuggestedValueViewController *)arg1 didRejectLabeledValue:(CNLabeledValue *)arg2;
+- (void)confirmationViewController:(ABSuggestedValueViewController *)arg1 didConfirmLabeledValue:(CNLabeledValue *)arg2;
 @end
 

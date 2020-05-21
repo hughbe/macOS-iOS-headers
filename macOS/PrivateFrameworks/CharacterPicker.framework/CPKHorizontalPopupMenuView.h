@@ -11,40 +11,48 @@
 __attribute__((visibility("hidden")))
 @interface CPKHorizontalPopupMenuView : NSView
 {
-    CPKHorizontalPopupMenu *_parentMenu;
-    NSArray *_menuItems;
-    NSArray *_buttons;
-    struct CGSize _cellSize;
-    double _menuOpenedTime;
-    long long _mouseDownCount;
     BOOL _selected;
     BOOL _trackingCanceled;
     BOOL _doubleClicked;
+    BOOL _rowCount;
+    BOOL _isRTLLayout;
+    CPKHorizontalPopupMenu *_parentMenu;
+    NSArray *_buttons;
+    double _cellGap;
+    double _dividerGap;
+    double _menuOpenedTime;
     NSButton *_highlightedButton;
+    struct CGSize _cellSize;
 }
 
+@property BOOL isRTLLayout; // @synthesize isRTLLayout=_isRTLLayout;
 @property(readonly) NSButton *highlightedButton; // @synthesize highlightedButton=_highlightedButton;
+@property BOOL rowCount; // @synthesize rowCount=_rowCount;
 @property BOOL doubleClicked; // @synthesize doubleClicked=_doubleClicked;
 @property BOOL trackingCanceled; // @synthesize trackingCanceled=_trackingCanceled;
 @property BOOL selected; // @synthesize selected=_selected;
 @property double menuOpenedTime; // @synthesize menuOpenedTime=_menuOpenedTime;
+@property(readonly) double dividerGap; // @synthesize dividerGap=_dividerGap;
+@property(readonly) double cellGap; // @synthesize cellGap=_cellGap;
 @property(readonly) struct CGSize cellSize; // @synthesize cellSize=_cellSize;
-@property(readonly) NSArray *menuItems; // @synthesize menuItems=_menuItems;
+@property(retain) NSArray *buttons; // @synthesize buttons=_buttons;
 @property CPKHorizontalPopupMenu *parentMenu; // @synthesize parentMenu=_parentMenu;
-- (void)_myHorizontalMenuSelected:(id)arg1;
+- (void)_updateCombinedButton;
 - (id)_buttonAtPoint:(struct CGPoint)arg1;
 - (void)_highlightButton:(id)arg1;
-- (void)_moveHighlightToLeft:(BOOL)arg1;
+- (id)_findPreviousActiveButton:(BOOL)arg1 startButton:(id)arg2;
+- (void)_moveHighlightToUp:(BOOL)arg1;
+- (void)_moveHighlightToBackward:(BOOL)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (BOOL)shouldDelayWindowOrderingForEvent:(id)arg1;
+- (void)myHorizontalMenuSelected:(id)arg1;
 - (void)clearHighlightedButton;
 - (void)highlightButtonAtIndex:(long long)arg1;
 - (void)highlightButtonAt:(struct CGPoint)arg1;
-- (void)drawRect:(struct CGRect)arg1;
 - (void)dealloc;
-- (id)initWithItems:(id)arg1 cellSize:(struct CGSize)arg2;
+- (id)initForCharacter:(id)arg1 fontSize:(double)arg2 cellSize:(struct CGSize)arg3;
 
 @end
 

@@ -15,7 +15,6 @@
 + (void)registerForShouldLogChangedNotification;
 + (void)disablePhoneLogging;
 + (void)enablePhoneLogging;
-+ (BOOL)isWalkaboutEnabled;
 
 @end
 

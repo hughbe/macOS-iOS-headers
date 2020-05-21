@@ -6,14 +6,15 @@
 
 #import "WBSCloudHistoryConfiguration.h"
 
-#import "RemoteConfigurationConsumer.h"
+#import "RemoteConfigurationsControllerDelegate.h"
 
-@class NSDictionary, NSString;
+@class NSDictionary, NSString, RemoteConfigurationsController;
 
 __attribute__((visibility("hidden")))
-@interface CloudHistoryConfiguration : WBSCloudHistoryConfiguration <RemoteConfigurationConsumer>
+@interface CloudHistoryConfiguration : WBSCloudHistoryConfiguration <RemoteConfigurationsControllerDelegate>
 {
     NSDictionary *_remoteConfiguration;
+    RemoteConfigurationsController *_remoteConfigurationsController;
     BOOL _fullyConfigured;
     double _historyModificationIdleDelayBeforeSyncAttempt;
     double _historyRemovalIdleDelayBeforeSyncAttempt;
@@ -21,15 +22,16 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)sharedConfiguration;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) double saveChangesBeforeTerminationTimeout; // @synthesize saveChangesBeforeTerminationTimeout=_saveChangesBeforeTerminationTimeout;
 @property(readonly, nonatomic) double historyRemovalIdleDelayBeforeSyncAttempt; // @synthesize historyRemovalIdleDelayBeforeSyncAttempt=_historyRemovalIdleDelayBeforeSyncAttempt;
 @property(readonly, nonatomic) double historyModificationIdleDelayBeforeSyncAttempt; // @synthesize historyModificationIdleDelayBeforeSyncAttempt=_historyModificationIdleDelayBeforeSyncAttempt;
 @property(readonly, nonatomic, getter=isFullyConfigured) BOOL fullyConfigured; // @synthesize fullyConfigured=_fullyConfigured;
-- (void).cxx_destruct;
-- (BOOL)remoteConfigurationsController:(id)arg1 didReceiveNewConfiguration:(id)arg2 forKey:(id)arg3;
+- (void)remoteConfigurationsController:(id)arg1 didReceiveNewConfiguration:(id)arg2;
 - (void)applyPlatformConfiguration:(id)arg1 withTolerance:(long long)arg2;
 - (id)remoteConfiguration;
 - (id)platformBuiltInConfiguration;
+- (void)stopTryingToLoadRemoteConfiguration;
 - (id)init;
 
 // Remaining properties

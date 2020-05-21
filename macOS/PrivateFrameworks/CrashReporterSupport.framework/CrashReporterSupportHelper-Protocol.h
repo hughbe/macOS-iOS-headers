@@ -5,6 +5,7 @@
 //
 
 @protocol CrashReporterSupportHelper
+- (void)setupSystemDiagnosticReportsDirectoryWithReply:(void (^)(BOOL))arg1;
 - (void)createAppleInternalNetworkCacheIfRequired;
 - (void)isAppleInternalWithReply:(void (^)(BOOL))arg1;
 @end

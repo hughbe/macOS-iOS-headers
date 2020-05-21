@@ -10,13 +10,20 @@
 {
 }
 
-+ (id)logMessageCacheDirectoryPath;
++ (id)analtyicsPipelineFilePath;
++ (id)pdPlaceCacheFilePath;
++ (id)geodLibraryDirectoryURL;
++ (id)aleStringsCacheDirectoryPath;
++ (id)mapsSuggestionsCacheDirectoryPath;
++ (id)analyticsUploadDirectoryPath;
++ (id)imageServiceDBFileURL;
++ (id)locationShifterDBFilePath;
 + (id)requestCountsDBFilePath;
 + (id)tileCacheDirectoryPath;
-+ (id)navdCacheDirectoryPath;
 + (id)placeDataCacheDirectoryPath;
 + (id)phoneNumberMUIDMappingFilePath;
 + (id)geoServicesCacheDirectoryPath;
++ (id)geodCacheDirectoryPath;
 + (id)preferencesDirectoryPath;
 + (id)homeDirectory;
 + (void)initialize;

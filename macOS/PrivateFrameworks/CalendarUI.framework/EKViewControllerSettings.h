@@ -11,6 +11,7 @@
     BOOL _canResizeWindow;
     BOOL _useWideSpacing;
     BOOL _showCalendarPopUp;
+    BOOL _showEventSuggestions;
     BOOL _isReadOnly;
     BOOL _miniInspector;
     BOOL _showLinksAsText;
@@ -18,7 +19,9 @@
     BOOL _hideEventSuggestions;
     BOOL _disableAttachments;
     BOOL _allowsCustomPickers;
+    BOOL _delayDatePickerBecomingKey;
     BOOL _disableEditingContext;
+    BOOL _useAlternateFont;
     double _topMargin;
     double _bottomMargin;
     double _leftMargin;
@@ -27,11 +30,14 @@
     double _contentFontSize;
     double _expandedContentFontSize;
     double _labelFontSize;
+    double _smallLabelFontSize;
     double _leftDividerMargin;
     double _rightDividerMargin;
 }
 
+@property BOOL useAlternateFont; // @synthesize useAlternateFont=_useAlternateFont;
 @property BOOL disableEditingContext; // @synthesize disableEditingContext=_disableEditingContext;
+@property BOOL delayDatePickerBecomingKey; // @synthesize delayDatePickerBecomingKey=_delayDatePickerBecomingKey;
 @property BOOL allowsCustomPickers; // @synthesize allowsCustomPickers=_allowsCustomPickers;
 @property BOOL disableAttachments; // @synthesize disableAttachments=_disableAttachments;
 @property BOOL hideEventSuggestions; // @synthesize hideEventSuggestions=_hideEventSuggestions;
@@ -41,8 +47,10 @@
 @property BOOL isReadOnly; // @synthesize isReadOnly=_isReadOnly;
 @property double rightDividerMargin; // @synthesize rightDividerMargin=_rightDividerMargin;
 @property double leftDividerMargin; // @synthesize leftDividerMargin=_leftDividerMargin;
+@property BOOL showEventSuggestions; // @synthesize showEventSuggestions=_showEventSuggestions;
 @property BOOL showCalendarPopUp; // @synthesize showCalendarPopUp=_showCalendarPopUp;
 @property BOOL useWideSpacing; // @synthesize useWideSpacing=_useWideSpacing;
+@property double smallLabelFontSize; // @synthesize smallLabelFontSize=_smallLabelFontSize;
 @property double labelFontSize; // @synthesize labelFontSize=_labelFontSize;
 @property double expandedContentFontSize; // @synthesize expandedContentFontSize=_expandedContentFontSize;
 @property double contentFontSize; // @synthesize contentFontSize=_contentFontSize;

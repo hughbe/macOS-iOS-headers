@@ -10,16 +10,19 @@ __attribute__((visibility("hidden")))
 @interface SKPerformSelector : SKAction
 {
     SEL _selector;
-    id _target;
+    id <NSObject> _weakTarget;
+    id <NSObject> _strongTarget;
 }
 
 + (id)perfromSelector:(SEL)arg1 onTarget:(id)arg2;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
 - (id)reversedAction;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)updateWithTarget:(id)arg1 forTime:(double)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)dealloc;
 - (id)init;
 
 @end

@@ -19,7 +19,6 @@
     id _lastCell;
     struct CGRect _lastCellFrame;
     char *_autoCompleteCancel;
-    id _reserved[6];
     struct {
         unsigned int _style:4;
         unsigned int _invalidCache:1;
@@ -36,6 +35,7 @@
 + (double)defaultCompletionDelay;
 + (id)defaultTokenizingCharacterSet;
 + (void)initialize;
+- (void).cxx_destruct;
 - (void)mouseMoved:(id)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
 - (id)acceptableDragTypes;
@@ -82,12 +82,12 @@
 - (void)setControlSize:(unsigned long long)arg1;
 - (void)setFont:(id)arg1;
 - (void)setWraps:(BOOL)arg1;
-- (void)setAlignment:(unsigned long long)arg1;
+- (void)setAlignment:(long long)arg1;
 - (void)setScrollable:(BOOL)arg1;
 - (BOOL)allowsEditingTokens;
 - (BOOL)allowsEditingTextAttributes;
 @property unsigned long long tokenStyle;
-@property id <NSTokenFieldCellDelegate> delegate;
+@property __weak id <NSTokenFieldCellDelegate> delegate;
 @property double completionDelay;
 @property(copy) NSCharacterSet *tokenizingCharacterSet;
 - (id)initWithCoder:(id)arg1;

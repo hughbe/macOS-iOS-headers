@@ -6,21 +6,20 @@
 
 #import <FamilyControls/FCSafariBookmark.h>
 
-#import "NSCoding.h"
-
 @class NSMutableArray;
 
-@interface FCSafariBookmarkFolder : FCSafariBookmark <NSCoding>
+@interface FCSafariBookmarkFolder : FCSafariBookmark
 {
     NSMutableArray *_children;
 }
 
++ (id)defaultBookmarksForLevel:(id)arg1;
 + (id)bookmarkWithDictionary:(id)arg1;
 + (id)bookmarkFolderWithFlatArray:(id)arg1;
-- (id)description;
-- (id)flatArrayOLD;
-- (id)flatArray;
++ (BOOL)supportsSecureCoding;
 - (id)flatArrayWithArray:(id)arg1 beginningAtPath:(id)arg2;
+- (id)description;
+- (id)flatArray;
 - (void)removeBookmarkAtIndex:(long long)arg1;
 - (void)removeBookmarks:(id)arg1;
 - (void)removeBookmark:(id)arg1;
@@ -37,6 +36,7 @@
 - (id)bookmarks;
 - (void)setTitle:(id)arg1;
 - (id)title;
+- (void)dealloc;
 - (id)initWithTitle:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

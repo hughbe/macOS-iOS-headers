@@ -6,12 +6,14 @@
 
 #import "MCRemoteStoreAccount.h"
 
-@class IMAPConnection, IMAPMailbox, IMAPQuotaRoot, IMAPResponse, IMAPServerInterface, IMAPTaskManager, NSArray, NSDictionary, NSError, NSString;
+@class IMAPConnection, IMAPMailbox, IMAPQuotaRoot, IMAPResponse, IMAPServerInterface, IMAPTaskManager, NSArray, NSDictionary, NSError, NSString, NSURL;
 
 @protocol IMAPAccount <MCRemoteStoreAccount>
 @property(copy) NSString *serverPathPrefix;
+@property(readonly, nonatomic) BOOL supportsMove;
 @property BOOL supportsQuickResynchronization;
 @property(readonly, copy, nonatomic) NSArray *allBackgroundMailboxNames;
+@property(readonly) BOOL compactWhenClosingMailboxes;
 @property(readonly) BOOL shouldMoveDeletedMessagesToTrash;
 @property(readonly) BOOL allowsPartialDownloads;
 @property(copy) NSDictionary *serverID;
@@ -20,6 +22,7 @@
 - (NSArray *)messageActionsAfterActionID:(long long)arg1;
 - (void)setSupportsModificationSequences:(BOOL)arg1 forMailboxName:(NSString *)arg2;
 - (id <MCMailbox>)mailboxForName:(NSString *)arg1;
+- (id <IMAPMessageDataSource>)dataSourceForMailboxURL:(NSURL *)arg1 createIfNeeded:(BOOL)arg2;
 - (id <IMAPMessageDataSource>)dataSourceForMailbox:(id <MCMailbox>)arg1 createIfNeeded:(BOOL)arg2;
 - (id <IMAPMessageDataSource>)dataSourceForMailboxName:(NSString *)arg1 createIfNeeded:(BOOL)arg2;
 - (void)didConnectToServerWithServerInterface:(IMAPServerInterface *)arg1;
@@ -31,6 +34,6 @@
 
 @optional
 - (void)detectAllMailMailboxWithConnection:(IMAPConnection *)arg1;
-- (id <MCGmailLabel>)gmailLabelWithName:(NSString *)arg1;
+- (id <ECGmailLabel>)gmailLabelWithName:(NSString *)arg1;
 @end
 

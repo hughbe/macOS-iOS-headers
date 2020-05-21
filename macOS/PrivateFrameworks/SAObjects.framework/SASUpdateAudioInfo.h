@@ -16,6 +16,7 @@
 
 + (id)updateAudioInfoWithDictionary:(id)arg1 context:(id)arg2;
 + (id)updateAudioInfo;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *vendorId;
 @property(nonatomic) BOOL triggeredTwoShotBorealis;
 @property(retain, nonatomic) SASRecordingInfo *recordingInfo;
@@ -25,11 +26,13 @@
 @property(copy, nonatomic) NSString *headsetName;
 @property(copy, nonatomic) NSString *headsetId;
 @property(copy, nonatomic) NSString *headsetAddress;
+@property(copy, nonatomic) NSString *firmwareVersion;
 @property(copy, nonatomic) NSString *dspStatus;
 @property(copy, nonatomic) NSString *deviceModel;
 @property(copy, nonatomic) NSString *deviceIdentifier;
 @property(nonatomic) int codec;
 @property(copy, nonatomic) NSString *audioSource;
+@property(copy, nonatomic) NSString *audioDestination;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

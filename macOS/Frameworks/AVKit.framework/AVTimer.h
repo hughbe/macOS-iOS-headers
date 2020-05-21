@@ -13,9 +13,12 @@ __attribute__((visibility("hidden")))
 {
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_dispatch_source> *_timer;
+    BOOL _invalidated;
+    double _interval;
 }
 
 - (void).cxx_destruct;
+@property(readonly) double interval; // @synthesize interval=_interval;
 - (void)invalidate;
 - (void)dealloc;
 - (id)init;

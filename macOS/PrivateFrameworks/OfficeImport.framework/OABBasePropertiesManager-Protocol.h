@@ -30,6 +30,7 @@
 - (int)strokeMiterLimit;
 - (int)strokeWidth;
 - (int)strokeFgAlpha;
+- (struct EshBlip *)strokeFillBlipDataReference;
 - (NSString *)strokeFillBlipName;
 - (unsigned int)strokeFillBlipID;
 - (int)strokeFillType;

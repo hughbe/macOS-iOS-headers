@@ -6,15 +6,24 @@
 
 #import "NSObject.h"
 
-@class GEOMapRegion, GEOMapServiceTraits, GEORPCorrectedSearch, GEORPPlaceInfo, GEORelatedSearchSuggestion, NSArray, NSError, NSObject<OS_dispatch_queue>, NSString;
+@class GEOCategorySearchResultSection, GEODirectionIntent, GEOMapRegion, GEOMapServiceTraits, GEORPCorrectedSearch, GEORPPlaceInfo, GEORelatedSearchSuggestion, GEOResolvedItem, NSArray, NSError, NSObject<OS_dispatch_queue>, NSString;
 
 @protocol MKMapServiceTicket <NSObject>
+@property(readonly, nonatomic) GEOCategorySearchResultSection *categorySearchResultSection;
+@property(readonly, nonatomic) NSArray *searchResultSections;
 @property(readonly, nonatomic) NSString *sectionHeader;
 @property(readonly, nonatomic) double requestResponseTime;
+@property(readonly, nonatomic) BOOL showDymSuggestionCloseButton;
+@property(readonly, nonatomic) unsigned int dymSuggestionVisibleTime;
+@property(readonly, nonatomic) GEODirectionIntent *directionIntent;
+@property(readonly, nonatomic) NSArray *retainedSearchMetadata;
+@property(readonly, nonatomic) GEOResolvedItem *clientResolvedResult;
 @property(readonly, nonatomic) NSError *error;
 @property(readonly, nonatomic) BOOL shouldEnableRedoSearch;
+@property(readonly, nonatomic) NSArray *displayHeaderSubstitutes;
 @property(readonly, nonatomic) NSString *resultDisplayHeader;
 @property(readonly, nonatomic) int searchResultType;
+@property(readonly, nonatomic) NSArray *browseCategories;
 @property(readonly, nonatomic) GEORelatedSearchSuggestion *defaultRelatedSuggestion;
 @property(readonly, nonatomic) NSArray *relatedSearchSuggestions;
 @property(readonly, nonatomic, getter=isChainResultSet) BOOL chainResultSet;

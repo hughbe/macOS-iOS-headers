@@ -24,6 +24,8 @@
 @property unsigned short targetDescriptorIndex; // @synthesize targetDescriptorIndex;
 @property unsigned short targetDescriptorType; // @synthesize targetDescriptorType;
 @property unsigned short memoryObjectType; // @synthesize memoryObjectType;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)objectLogName;
 - (void)appendFixedDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;

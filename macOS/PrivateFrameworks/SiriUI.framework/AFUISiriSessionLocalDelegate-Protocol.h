@@ -12,7 +12,6 @@
 - (void)siriSessionDidEnd:(AFUISiriSession *)arg1;
 - (void)siriSessionWillEnd:(AFUISiriSession *)arg1;
 - (BOOL)siriSessionCanEnd:(AFUISiriSession *)arg1;
-- (void)siriSessionDidResetContext:(AFUISiriSession *)arg1;
 - (void)siriSession:(AFUISiriSession *)arg1 didChangeDialogPhase:(AFDialogPhase *)arg2;
 - (void)siriSessionDidReceiveDelayedActionCancelCommand:(SAUIDelayedActionCancelCommand *)arg1;
 - (void)siriSessionDidReceiveDelayedActionCommand:(SAUIDelayedActionCommand *)arg1;

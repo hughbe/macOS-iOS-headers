@@ -16,6 +16,7 @@
     NSArray *fTickLabels;
 }
 
+- (void).cxx_destruct;
 - (void)pageDown:(id)arg1;
 - (void)pageUp:(id)arg1;
 - (void)moveDown:(id)arg1;
@@ -28,7 +29,6 @@
 - (void)sendUpAction;
 - (void)mouseDown:(id)arg1;
 - (void)setUpTarget:(id)arg1 action:(SEL)arg2;
-- (void)dealloc;
 - (void)addTickLabelsView:(id)arg1;
 
 @end

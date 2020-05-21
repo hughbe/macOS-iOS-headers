@@ -6,34 +6,37 @@
 
 #import "NSObject.h"
 
+@class NSObject<IAsyncNodeOperationDelegateProtocol>;
+
 __attribute__((visibility("hidden")))
 @interface FI_IAsyncNodeOperation : NSObject
 {
     struct OpaqueOperationRef *_operationRef;
-    struct OperationMonitor _operationMonitor;
+    struct TOperationMonitor _operationMonitor;
     struct vector<TOperationRecord, std::__1::allocator<TOperationRecord>> _operationRecordList;
     struct TFENodeVector _nodes;
-    struct TAsyncNodeOperationAssistant *_operationAssistant;
+    struct shared_ptr<TAsyncNodeOperationAssistant> _operationAssistant;
     struct OperationIterator _operationIterator;
     struct __wrap_iter<TOperationRecord *> {
         struct TOperationRecord *__i;
     } _operationRecordIter;
     struct OperationStatus _status;
-    id <IAsyncNodeOperationDelegateProtocol> _delegate;
+    struct TNSWeakPtr<NSObject<IAsyncNodeOperationDelegateProtocol>, void> _weakDelegate;
     unsigned int _respondsToFlags;
     unsigned int _options;
+    FI_IAsyncNodeOperation *_selfReference;
 }
 
 + (id)operationWithNodes:(const struct TFENodeVector *)arg1;
-@property unsigned int options; // @synthesize options=_options;
-@property(nonatomic) id <IAsyncNodeOperationDelegateProtocol> delegate; // @synthesize delegate=_delegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(retain, nonatomic) FI_IAsyncNodeOperation *selfReference; // @synthesize selfReference=_selfReference;
+@property unsigned int options; // @synthesize options=_options;
 - (int)handleCompletedNotification;
 - (int)handleSuboperationCompleted:(unsigned int)arg1 targetNode:(const struct TFENode *)arg2;
 - (int)handleSuboperationStarted:(unsigned int)arg1;
-- (int)handleErrorNotification:(const struct OperationMonitor *)arg1 error:(const struct OperationErrorRecord *)arg2;
-- (int)handleStatusNotification:(const struct OperationMonitor *)arg1;
+- (int)handleErrorNotification:(const struct TOperationMonitor *)arg1 error:(const struct OperationErrorRecord *)arg2;
+- (int)handleStatusNotification:(const struct TOperationMonitor *)arg1;
 - (void)resetOperationRecordIter;
 - (struct OperationRecord *)operationIterNext;
 - (struct OperationRecord *)operationIterFirst;
@@ -43,7 +46,10 @@ __attribute__((visibility("hidden")))
 - (int)cancelOperation;
 - (int)cancelCurrentSuboperation;
 - (int)startOperation;
+- (struct TString)authorizationPrompt;
+- (struct TString)firstNodeName;
 - (const struct TFENodeVector *)nodes;
+@property(nonatomic) __weak NSObject<IAsyncNodeOperationDelegateProtocol> *delegate; // @dynamic delegate;
 - (void)dealloc;
 - (id)initWithNodes:(const struct TFENodeVector *)arg1;
 

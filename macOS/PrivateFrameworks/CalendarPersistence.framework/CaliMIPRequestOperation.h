@@ -15,6 +15,7 @@
 + (BOOL)managedEventHasChangeRequringiMIPReschedule:(id)arg1;
 + (BOOL)iMIPSchedulingWillResultFromChangesToManagedEvent:(id)arg1 ignoreiMIPSuppression:(BOOL)arg2;
 + (id)operationsWithManagedAttendees:(id)arg1 areNewRequests:(BOOL)arg2;
++ (BOOL)supportsSecureCoding;
 @property BOOL isNewRequest; // @synthesize isNewRequest=_isNewRequest;
 - (id)emailSubjectInContext:(id)arg1;
 - (id)emailRecipientsInContext:(id)arg1;

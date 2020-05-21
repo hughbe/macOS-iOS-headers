@@ -8,37 +8,40 @@
 
 #import "NSTextFieldDelegate.h"
 
-@class CAGradientLayer, CUIStyleEffectConfiguration, NSAppearance, NSLayoutConstraint, NSString, NSTextField, PRMonogram;
+@class CAGradientLayer, NSLayoutConstraint, NSString, NSTextField, PRMonogram;
 
 @interface PRMonogramView : NSView <NSTextFieldDelegate>
 {
     BOOL _bordered;
     BOOL _selected;
+    BOOL _highlighted;
     BOOL _allowsEditing;
+    BOOL _circular;
     PRMonogram *_monogram;
     NSTextField *_textField;
     NSLayoutConstraint *_textFieldYOffset;
-    NSAppearance *_monogramAppearance;
     CAGradientLayer *_circleGradient;
-    CUIStyleEffectConfiguration *_styleEffectConfigurationCache;
 }
 
 + (id)makeTextField;
-@property(retain, nonatomic) CUIStyleEffectConfiguration *styleEffectConfigurationCache; // @synthesize styleEffectConfigurationCache=_styleEffectConfigurationCache;
++ (id)implicitAnimatedActionsToDisable;
+- (void).cxx_destruct;
+@property(nonatomic, getter=isCircular) BOOL circular; // @synthesize circular=_circular;
 @property(retain, nonatomic) CAGradientLayer *circleGradient; // @synthesize circleGradient=_circleGradient;
-@property(retain, nonatomic) NSAppearance *monogramAppearance; // @synthesize monogramAppearance=_monogramAppearance;
 @property(retain, nonatomic) NSLayoutConstraint *textFieldYOffset; // @synthesize textFieldYOffset=_textFieldYOffset;
 @property(retain, nonatomic) NSTextField *textField; // @synthesize textField=_textField;
 @property(nonatomic) BOOL allowsEditing; // @synthesize allowsEditing=_allowsEditing;
+@property(nonatomic) BOOL highlighted; // @synthesize highlighted=_highlighted;
 @property(nonatomic, getter=isSelected) BOOL selected; // @synthesize selected=_selected;
 @property(nonatomic) BOOL bordered; // @synthesize bordered=_bordered;
 @property(retain, nonatomic) PRMonogram *monogram; // @synthesize monogram=_monogram;
-- (void).cxx_destruct;
 - (void)saveMonogramString;
 - (void)restoreMonogramString;
 - (void)controlTextDidEndEditing:(id)arg1;
 - (void)controlTextDidChange:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (id)_plateColor;
+- (id)_monogramTextColor;
 - (void)updateTextField;
 - (void)updateWithMonogram:(id)arg1;
 - (BOOL)shouldDisplayTextEffectsForMonogram:(id)arg1;
@@ -47,7 +50,9 @@
 - (void)updateVisualAppearance;
 - (void)textFieldResignFirstResponder;
 - (void)dealloc;
+- (void)viewDidChangeBackingProperties;
 - (void)resizeSubviewsWithOldSize:(struct CGSize)arg1;
+- (void)updateLayer;
 - (void)layout;
 - (void)_monogramView_CommonInit;
 - (id)initWithCoder:(id)arg1;

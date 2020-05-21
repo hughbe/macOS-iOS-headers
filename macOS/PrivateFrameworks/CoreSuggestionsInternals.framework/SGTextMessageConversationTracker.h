@@ -6,19 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableDictionary;
+@class _PASLRUCache;
 
 @interface SGTextMessageConversationTracker : NSObject
 {
     struct _opaque_pthread_mutex_t _lock;
-    NSMutableArray *_conversationIdsMRU;
-    NSMutableDictionary *_conversations;
+    _PASLRUCache *_conversations;
 }
 
 + (id)instance;
 - (void).cxx_destruct;
 - (void)clear;
+- (id)addItem:(id)arg1;
+- (id)addMessage:(id)arg1 withDetectedData:(id)arg2;
 - (id)addMessage:(id)arg1;
+- (id)conversationForIdentifier:(id)arg1;
 - (id)init;
 
 @end

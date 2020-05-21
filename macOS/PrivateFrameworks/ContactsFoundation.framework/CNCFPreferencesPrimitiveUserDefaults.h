@@ -10,13 +10,13 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface CNCFPreferencesPrimitiveUserDefaults : NSObject <CNPrimitiveUserDefaults>
 {
     NSString *_applicationID;
     long long _autosyncTimerIsActive;
 }
 
+- (void).cxx_destruct;
 - (void)setupAutosync;
 - (BOOL)synchronize;
 - (void)primitiveRemoveObjectForKey:(id)arg1;
@@ -24,7 +24,6 @@ __attribute__((visibility("hidden")))
 - (long long)primitiveIntegerValueForKey:(id)arg1 keyExists:(char *)arg2;
 - (void)setPrimitiveObject:(id)arg1 forKey:(id)arg2;
 - (id)primitiveObjectForKey:(id)arg1;
-- (void)dealloc;
 - (struct __CFString *)CFApplicationID;
 - (id)initWithApplicationID:(id)arg1;
 

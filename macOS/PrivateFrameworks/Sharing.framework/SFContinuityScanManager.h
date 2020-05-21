@@ -4,35 +4,40 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Sharing/SFXPCClient.h>
 
-#import "SFCompanionXPCManagerObserver.h"
 #import "SFContinuityScannerClient.h"
 
 @class NSHashTable, NSMutableSet, NSString;
 
 __attribute__((visibility("hidden")))
-@interface SFContinuityScanManager : NSObject <SFCompanionXPCManagerObserver, SFContinuityScannerClient>
+@interface SFContinuityScanManager : SFXPCClient <SFContinuityScannerClient>
 {
-    id <SFContinuityScannerProtocol><NSXPCProxyCreating> _connectionProxy;
     NSMutableSet *_foundDevices;
     NSHashTable *_observers;
+    unsigned long long _scanTypes;
 }
 
 + (id)sharedManager;
+- (void).cxx_destruct;
+@property unsigned long long scanTypes; // @synthesize scanTypes=_scanTypes;
 @property(retain) NSHashTable *observers; // @synthesize observers=_observers;
 @property(retain) NSMutableSet *foundDevices; // @synthesize foundDevices=_foundDevices;
-@property(retain) id <SFContinuityScannerProtocol><NSXPCProxyCreating> connectionProxy; // @synthesize connectionProxy=_connectionProxy;
-- (void).cxx_destruct;
-- (void)xpcManagerConnectionInterrupted;
+- (BOOL)shouldEscapeXpcTryCatch;
+- (id)remoteObjectInterface;
+- (id)exportedInterface;
+- (id)machServiceName;
+- (void)pairedDevicesChanged:(id)arg1;
 - (void)lostDeviceWithDevice:(id)arg1;
 - (void)foundDeviceWithDevice:(id)arg1;
 - (void)receivedAdvertisement:(id)arg1;
-- (void)activityPayloadFromDeviceUniqueID:(id)arg1 forAdvertisementPayload:(id)arg2 command:(id)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
-- (void)setForceScanningEnabled:(BOOL)arg1;
+- (void)onqueue_connectionInterrupted;
+- (void)onqueue_connectionEstablished;
+- (void)activityPayloadFromDeviceUniqueID:(id)arg1 forAdvertisementPayload:(id)arg2 command:(id)arg3 timeout:(long long)arg4 withCompletionHandler:(CDUnknownBlockType)arg5;
+- (void)scanForTypes:(unsigned long long)arg1;
+- (void)_getRemoteObjectProxyOnQueue:(CDUnknownBlockType)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
-- (void)setupXPCConnection;
 - (id)init;
 
 // Remaining properties

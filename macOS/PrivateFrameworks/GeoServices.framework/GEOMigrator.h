@@ -10,8 +10,7 @@
 {
 }
 
-- (BOOL)_migratePhoneNumberMappingWithError:(id *)arg1;
-- (BOOL)performMigrationWithError:(id *)arg1;
++ (BOOL)performMigration;
 
 @end
 

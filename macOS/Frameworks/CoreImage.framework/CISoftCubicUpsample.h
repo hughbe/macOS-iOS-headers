@@ -19,7 +19,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSNumber *inputScale; // @synthesize inputScale;
 @property(retain, nonatomic) CIImage *inputImage; // @synthesize inputImage;
 - (id)outputImage;
-- (id)_kernel;
 - (BOOL)_isIdentity;
 - (struct vec2)_scale;
 

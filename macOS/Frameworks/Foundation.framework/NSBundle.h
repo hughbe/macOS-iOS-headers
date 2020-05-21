@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSString, NSURL;
+@class NSArray, NSDictionary, NSString, NSURL, _NSBundleODRTagManager;
 
 @interface NSBundle : NSObject
 {
@@ -16,8 +16,9 @@
     Class _principalClass;
     id _initialPath;
     id _resolvedPath;
-    id _reserved3;
-    id _lock;
+    NSString *_firstClassName;
+    struct os_unfair_lock_s _lock;
+    _NSBundleODRTagManager *_odrTagManager;
 }
 
 + (id)preferredLocalizationsFromArray:(id)arg1 forPreferences:(id)arg2;
@@ -28,6 +29,7 @@
 + (id)allBundles;
 + (id)loadedBundles;
 + (id)bundleForClass:(Class)arg1;
++ (id)_bundleWithIdentifier:(id)arg1 andLibraryName:(id)arg2;
 + (id)bundleWithIdentifier:(id)arg1;
 + (id)bundleWithURL:(id)arg1;
 + (id)bundleWithPath:(id)arg1;
@@ -38,6 +40,7 @@
 + (id)pathForResource:(id)arg1 ofType:(id)arg2 inDirectory:(id)arg3;
 + (id)findBundleResourceURLsCallingMethod:(SEL)arg1 baseURL:(id)arg2 passingTest:(CDUnknownBlockType)arg3;
 + (id)findBundleResources:(id)arg1 callingMethod:(SEL)arg2 directory:(id)arg3 languages:(id)arg4 name:(id)arg5 types:(id)arg6 limit:(unsigned long long)arg7;
+- (id)_odrTagManager;
 @property(readonly, copy) NSArray *executableArchitectures;
 - (BOOL)preflightAndReturnError:(id *)arg1;
 @property(readonly, copy) NSString *developmentLocalization;
@@ -83,6 +86,7 @@
 - (BOOL)unload;
 - (BOOL)loadAndReturnError:(id *)arg1;
 - (BOOL)load;
+- (BOOL)_searchForLocalizedString:(id)arg1 foundKey:(id *)arg2 foundTable:(id *)arg3;
 - (id)localizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
 - (id)URLsForResourcesWithExtension:(id)arg1 subdirectory:(id)arg2;
 - (id)pathsForResourcesOfType:(id)arg1 inDirectory:(id)arg2;
@@ -95,7 +99,11 @@
 - (id)URLForResource:(id)arg1 withExtension:(id)arg2 subdirectory:(id)arg3 localization:(id)arg4;
 - (id)pathForResource:(id)arg1 ofType:(id)arg2 inDirectory:(id)arg3 forLocalization:(id)arg4;
 - (id)findBundleResourceURLsCallingMethod:(SEL)arg1 passingTest:(CDUnknownBlockType)arg2;
+- (struct __CFBundle *)_cfBundleIfPresent;
 - (struct __CFBundle *)_cfBundle;
+- (double)preservationPriorityForTag:(id)arg1;
+- (void)setPreservationPriority:(double)arg1 forTag:(id)arg2;
+- (void)setPreservationPriority:(double)arg1 forTags:(id)arg2;
 
 @end
 

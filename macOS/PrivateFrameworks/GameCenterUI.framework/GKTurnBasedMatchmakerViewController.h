@@ -8,22 +8,24 @@
 
 #import "GKDialogControllerSizing.h"
 #import "GKRemoteViewControllerDelegate.h"
-#import "GKRestrictedViewController.h"
 #import "GKViewController.h"
 
-@class GKMatchRequest, GKRemoteViewController, NSString;
+@class GKMatchRequest, NSString;
 
-@interface GKTurnBasedMatchmakerViewController : NSViewController <GKRemoteViewControllerDelegate, GKDialogControllerSizing, GKRestrictedViewController, GKViewController>
+@interface GKTurnBasedMatchmakerViewController : NSViewController <GKRemoteViewControllerDelegate, GKDialogControllerSizing, GKViewController>
 {
     id _remoteViewController;
-    id <GKTurnBasedMatchmakerViewControllerDelegate> _turnBasedMatchmakerDelegateWeak;
+    id <GKTurnBasedMatchmakerViewControllerDelegate> _turnBasedMatchmakerDelegate;
     GKMatchRequest *_matchRequest;
     BOOL _showExistingMatches;
     BOOL _internalFlag;
+    id <GKTurnBasedMatchmakerViewControllerDelegate> turnBasedMatchmakerDelegate;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <GKTurnBasedMatchmakerViewControllerDelegate> turnBasedMatchmakerDelegate; // @synthesize turnBasedMatchmakerDelegate;
 @property BOOL didRequestRemoteViewController; // @synthesize didRequestRemoteViewController=_internalFlag;
-@property(retain, nonatomic) GKRemoteViewController *remoteViewController; // @synthesize remoteViewController=_remoteViewController;
+@property(retain, nonatomic) id <GKRemoteViewController> remoteViewController; // @synthesize remoteViewController=_remoteViewController;
 @property(nonatomic) BOOL showExistingMatches; // @synthesize showExistingMatches=_showExistingMatches;
 @property(retain, nonatomic) GKMatchRequest *matchRequest; // @synthesize matchRequest=_matchRequest;
 - (id)_gkInGameUIUnavailableAlertWithDismissHandler:(CDUnknownBlockType)arg1;
@@ -34,11 +36,10 @@
 - (void)cancel;
 - (BOOL)remoteViewControllerRequestingDismiss:(id)arg1;
 - (void)remoteViewController:(id)arg1 receivedMessageFromService:(id)arg2;
-@property(nonatomic) id <GKTurnBasedMatchmakerViewControllerDelegate> turnBasedMatchmakerDelegate; // @dynamic turnBasedMatchmakerDelegate;
 - (struct CGSize)_gkSizeForDialogController;
-- (void)viewDidDisappear;
 - (BOOL)shouldShowQuitForTurnBasedMatch;
 - (BOOL)shouldShowPlayForTurnBasedMatch;
+- (void)viewDidDisappear;
 - (void)requestRemoteViewController;
 - (void)loadView;
 - (id)view;

@@ -17,11 +17,12 @@
     long long _discoverableMode;
 }
 
-@property __weak id <SFAirDropDiscoveryControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property __weak id <SFAirDropDiscoveryControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (id)discoverableModeToString:(long long)arg1;
 - (long long)operationDiscoverableModeToInteger:(id)arg1;
 @property long long discoverableMode;
+- (void)invalidate;
 - (void)dealloc;
 @property(readonly, getter=isLegacyModeSettable) BOOL legacyModeSettable;
 @property(getter=isLegacyModeEnabled) BOOL legacyModeEnabled;

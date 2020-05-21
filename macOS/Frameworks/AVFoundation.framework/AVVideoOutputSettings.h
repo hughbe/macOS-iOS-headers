@@ -16,7 +16,7 @@
 + (id)_videoOutputSettingsWithVideoSettingsDictionary:(id)arg1 exceptionReason:(id *)arg2;
 + (id)videoOutputSettingsWithTrustedVideoSettingsDictionary:(id)arg1;
 + (id)videoOutputSettingsWithVideoSettingsDictionary:(id)arg1;
-+ (id)_outputSettingsWithOutputSettingsDictionary:(id)arg1 exceptionReason:(id *)arg2;
++ (id)_outputSettingsWithOutputSettingsDictionary:(id)arg1 mediaType:(id)arg2 exceptionReason:(id *)arg3;
 + (id)registeredOutputSettingsClasses;
 + (id)_validValuesForScalingMode;
 - (BOOL)validateUsingOutputSettingsValidator:(id)arg1 reason:(id *)arg2;
@@ -24,7 +24,7 @@
 @property(readonly, nonatomic) NSString *frameRateConversionAlgorithm;
 @property(readonly, nonatomic) CDStruct_1b6d18a9 minimumFrameDuration;
 @property(readonly, nonatomic) BOOL dimensionsAreBoundingBox;
-@property(readonly, nonatomic) NSDictionary *videoCompositionProcessorProperties;
+- (void)colorPropertiesConsideringFormatDescriptions:(id)arg1 colorPrimaries:(id *)arg2 transferFunction:(id *)arg3 ycbcrMatrix:(id *)arg4;
 @property(readonly, nonatomic) NSDictionary *pixelTransferProperties;
 @property(readonly, nonatomic) NSDictionary *videoScalingProperties;
 @property(readonly, nonatomic) NSDictionary *cleanApertureDictionary;

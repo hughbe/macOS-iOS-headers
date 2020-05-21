@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     unsigned int mNextIndex;
 }
 
+- (void).cxx_destruct;
 - (id)next;
 - (BOOL)hasNext;
 - (id)initWithArray:(id)arg1;

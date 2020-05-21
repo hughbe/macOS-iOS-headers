@@ -15,6 +15,8 @@
 
 @property(copy) NSString *value; // @synthesize value;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (BOOL)validControlValueType:(unsigned short)arg1;
 - (id)objectsForSetCommandValuesData:(id)arg1;
 - (id)debugLogStringWithIndentation:(id)arg1;

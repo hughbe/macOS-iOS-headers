@@ -39,6 +39,7 @@
 + (BOOL)supportsSecureCoding;
 + (id)dialogWithError:(id)arg1;
 + (id)dialogWithDictionary:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <ISDialogDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) ISDialogButton *suppressionCheckbox; // @synthesize suppressionCheckbox=_suppressionCheckbox;
 @property(readonly) ISDialogButton *otherButton; // @synthesize otherButton=_otherButton;
@@ -58,7 +59,8 @@
 @property(retain) NSArray *buttons; // @synthesize buttons=_buttons;
 @property BOOL authorizationIsForced; // @synthesize authorizationIsForced=_authorizationIsForced;
 @property BOOL allowDuplicates; // @synthesize allowDuplicates=_allowDuplicates;
-- (void).cxx_destruct;
+- (id)_bundleForStoreClient:(id)arg1 authenticationReason:(long long)arg2;
+- (id)_appWindow;
 - (void)stopModalForDialog:(id)arg1;
 - (void)handleDismissNoficiation:(id)arg1;
 @property(readonly) BOOL needsDedicatedUI;
@@ -66,6 +68,7 @@
 - (void)dismissDialogWithExitCode:(long long)arg1;
 - (void)_runModalWithSettings:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)performAction:(long long)arg1;
+- (void)_gotoFollowUpURL:(id)arg1;
 - (void)beginSheetModalForWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (long long)_kindForString:(id)arg1;
 - (id)valueForUserInfoKey:(id)arg1;

@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class IOBluetoothDevice, IOBluetoothSDPUUID, NSArray, NSDictionary;
 
-@interface IOBluetoothSDPServiceRecord : NSObject <NSCoding>
+@interface IOBluetoothSDPServiceRecord : NSObject <NSCoding, NSSecureCoding>
 {
     NSDictionary *mAttributeDictionary;
     IOBluetoothDevice *mDeviceForService;
@@ -20,6 +21,7 @@
 + (id)withServiceDictionary:(id)arg1 device:(id)arg2;
 + (id)withSDPServiceRecordRef:(struct OpaqueIOBluetoothObjectRef *)arg1;
 + (id)publishedServiceRecordWithDictionary:(id)arg1;
++ (BOOL)supportsSecureCoding;
 @property(copy) NSArray *sortedAttributes; // @synthesize sortedAttributes;
 @property(retain) IOBluetoothDevice *device; // @synthesize device=mDeviceForService;
 @property(copy) NSDictionary *attributes; // @synthesize attributes=mAttributeDictionary;
@@ -27,7 +29,6 @@
 - (id)description;
 - (oneway void)release;
 - (void)dealloc;
-- (id)replacementObjectForPortCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 @property(readonly) IOBluetoothSDPUUID *serviceUUID;

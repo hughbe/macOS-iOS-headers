@@ -10,16 +10,18 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface _GEOTransitLineMarker : NSObject <MKTransitLineMarker>
 {
     id <GEOTransitLine> _line;
+    struct CLLocationCoordinate2D _locationHint;
 }
 
 - (void).cxx_destruct;
 - (id)artwork;
 - (id)labelText;
-- (unsigned long long)featureID;
-- (id)initWithGEOTransitLine:(id)arg1;
+- (id)mapItemIdentifier;
+- (id)initWithGEOTransitLine:(id)arg1 locationHint:(struct CLLocationCoordinate2D)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

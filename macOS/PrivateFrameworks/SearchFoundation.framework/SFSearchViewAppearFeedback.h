@@ -10,10 +10,12 @@
 {
     BOOL _isOnLockScreen;
     BOOL _isOverApp;
+    BOOL _readerTextAvailable;
     unsigned long long _viewAppearEvent;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(nonatomic) BOOL readerTextAvailable; // @synthesize readerTextAvailable=_readerTextAvailable;
 @property(nonatomic) BOOL isOverApp; // @synthesize isOverApp=_isOverApp;
 @property(nonatomic) BOOL isOnLockScreen; // @synthesize isOnLockScreen=_isOnLockScreen;
 @property(nonatomic) unsigned long long viewAppearEvent; // @synthesize viewAppearEvent=_viewAppearEvent;

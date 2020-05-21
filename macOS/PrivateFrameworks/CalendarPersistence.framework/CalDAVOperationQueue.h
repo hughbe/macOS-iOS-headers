@@ -19,6 +19,7 @@
     id <EKServerChangeObserver> _observer;
 }
 
+- (void).cxx_destruct;
 - (id)threadSafeQueueDescription;
 - (id)description;
 - (void)registerObserver:(id)arg1;
@@ -60,7 +61,6 @@
 - (void)enqueueOperation:(id)arg1;
 - (void)insertOperation:(id)arg1;
 - (id)_operationAtIndex:(unsigned long long)arg1;
-- (void)dealloc;
 - (id)initWithSessionID:(id)arg1;
 
 @end

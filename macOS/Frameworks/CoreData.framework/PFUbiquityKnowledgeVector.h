@@ -8,11 +8,12 @@
 
 #import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSDictionary;
 
 __attribute__((visibility("hidden")))
-@interface PFUbiquityKnowledgeVector : NSObject <NSCoding, NSCopying>
+@interface PFUbiquityKnowledgeVector : NSObject <NSCoding, NSCopying, NSSecureCoding>
 {
     NSDictionary *_kv;
     NSDictionary *_storeKVDict;
@@ -21,6 +22,7 @@ __attribute__((visibility("hidden")))
 
 + (id)createKnowledgeVectorDictionaryFromString:(id)arg1;
 + (id)createSetOfAllPeerIDsInKnowledgeVectors:(id)arg1;
++ (BOOL)supportsSecureCoding;
 @property(readonly, nonatomic) unsigned long long hash; // @synthesize hash=_hash;
 - (id)createStoreKnowledgeVectorDictionary;
 - (BOOL)conflictsWithKnowledgeVector:(id)arg1;

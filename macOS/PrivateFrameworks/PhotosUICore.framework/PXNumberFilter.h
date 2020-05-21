@@ -30,6 +30,7 @@
 - (void)_updateIfNeeded;
 - (void)_setNeedsUpdate;
 - (BOOL)_needsUpdate;
+- (void)invalidateOutput;
 @property(readonly, nonatomic) double currentTime;
 - (void)setInput:(double)arg1;
 - (void)_setLastTime:(double)arg1;

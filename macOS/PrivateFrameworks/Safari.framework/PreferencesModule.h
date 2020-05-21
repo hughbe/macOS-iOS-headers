@@ -6,18 +6,22 @@
 
 #import "NSPreferencesModule.h"
 
+@class NSString;
+
 __attribute__((visibility("hidden")))
 @interface PreferencesModule : NSPreferencesModule
 {
 }
 
 - (void)removeRowUsingAutoLayout:(long long)arg1 fromMatrix:(id)arg2;
+- (void)removeViewsUsingAutoLayout:(id)arg1 resizeContainer:(BOOL)arg2;
 - (void)removeViewsUsingAutoLayout:(id)arg1;
+- (void)addSubviewsUsingAutoLayout:(id)arg1 toView:(id)arg2 withConstraints:(id)arg3 resizeContainer:(BOOL)arg4;
 - (void)addSubviewsUsingAutoLayout:(id)arg1 toView:(id)arg2 withConstraints:(id)arg3;
 - (void)resizeWindowUsingAutoLayout;
 - (void)_layoutSubtreeIfNeededAndResizeWindowWithContainer:(id)arg1 originalContainerHeight:(double)arg2;
 - (BOOL)isResizable;
-- (id)helpAnchor;
+@property(readonly, nonatomic) NSString *safariHelpAnchor;
 - (void)openHelpPage:(id)arg1;
 - (id)imageForPreferenceNamed:(id)arg1;
 - (void)moduleWasInstalled;

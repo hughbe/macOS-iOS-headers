@@ -6,7 +6,7 @@
 
 #import <CloudKitDaemon/CKDOperation.h>
 
-@class NSMutableArray, NSMutableDictionary, NSSet;
+@class NSDictionary, NSMutableArray, NSMutableDictionary, NSSet;
 
 __attribute__((visibility("hidden")))
 @interface CKDFetchShareMetadataOperation : CKDOperation
@@ -19,8 +19,11 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_shareURLsToFetch;
     NSMutableDictionary *_shareTokenMetadatasToFetchByURL;
     NSSet *_rootRecordDesiredKeysSet;
+    NSDictionary *_shareInvitationTokensByShareURL;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSDictionary *shareInvitationTokensByShareURL; // @synthesize shareInvitationTokensByShareURL=_shareInvitationTokensByShareURL;
 @property(nonatomic) BOOL clientWillDisplaySystemAcceptPrompt; // @synthesize clientWillDisplaySystemAcceptPrompt=_clientWillDisplaySystemAcceptPrompt;
 @property(retain, nonatomic) NSSet *rootRecordDesiredKeysSet; // @synthesize rootRecordDesiredKeysSet=_rootRecordDesiredKeysSet;
 @property(nonatomic) BOOL shouldFetchRootRecord; // @synthesize shouldFetchRootRecord=_shouldFetchRootRecord;
@@ -29,11 +32,15 @@ __attribute__((visibility("hidden")))
 @property(copy, nonatomic) CDUnknownBlockType shareMetadataFetchedBlock; // @synthesize shareMetadataFetchedBlock=_shareMetadataFetchedBlock;
 @property(nonatomic) BOOL errorOnOON; // @synthesize errorOnOON=_errorOnOON;
 @property(nonatomic) BOOL forceDSRefetch; // @synthesize forceDSRefetch=_forceDSRefetch;
-- (void).cxx_destruct;
 - (void)main;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_prepareShortTokens;
-- (void)_performCallbackAfterFetchingRootRecordForURL:(id)arg1 withMetadata:(id)arg2;
+- (BOOL)_currentUserIsOONForShareMetadata:(id)arg1;
+- (void)_decryptRootRecordsForShareURL:(id)arg1 withMetadata:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)_continueHandlingFetchedShareMetadata:(id)arg1 shareURL:(id)arg2;
+- (void)_prepPPPCSDataForDugongShareMetadata:(id)arg1 withInvitationToken:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)_continueSharePCSPrepForShareMetadata:(id)arg1 shareURL:(id)arg2;
+- (void)_handleTokenResolveWithLookupInfo:(id)arg1 shareMetadata:(id)arg2 responseCode:(id)arg3 urlByShortTokenLookupInfos:(id)arg4 tokensToFetchByURL:(id)arg5;
 - (void)_fetchShortTokenMetadata;
 - (id)_decodeProtectedFullToken:(id)arg1 tokenMetadata:(id)arg2;
 - (void)_performCallbackForURL:(id)arg1 withMetadata:(id)arg2 error:(id)arg3;

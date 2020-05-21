@@ -6,7 +6,7 @@
 
 #import <Automator/AMGenericAction.h>
 
-@class AMApplicationDefinition, AMWhoseListView, NSArray, NSBox, NSMutableArray, NSPopUpButton, NSTextField;
+@class AMApplicationDefinition, AMWhoseListView, NSArray, NSBox, NSBundle, NSMutableArray, NSPopUpButton, NSTextField;
 
 @interface AMFindItemsAction : AMGenericAction
 {
@@ -21,6 +21,15 @@
     NSMutableArray *_whoseItems;
 }
 
+- (void).cxx_destruct;
+@property(retain) AMApplicationDefinition *applicationDefinition; // @synthesize applicationDefinition=_applicationDefinition;
+@property(retain, nonatomic) NSArray *findingNames; // @synthesize findingNames=_findingNames;
+@property(retain) NSMutableArray *whoseItems; // @synthesize whoseItems=_whoseItems;
+@property(nonatomic) __weak AMWhoseListView *_whoseListView; // @synthesize _whoseListView;
+@property(nonatomic) __weak NSTextField *_whoseLabel; // @synthesize _whoseLabel;
+@property(nonatomic) __weak NSBox *_whoseBox; // @synthesize _whoseBox;
+@property(nonatomic) __weak NSTextField *_findingLabel; // @synthesize _findingLabel;
+@property(nonatomic) __weak NSPopUpButton *_findingPopUpButton; // @synthesize _findingPopUpButton;
 - (void)removeWhoseItem:(id)arg1;
 - (void)addWhoseItem:(id)arg1;
 - (void)changeFinding:(id)arg1;
@@ -28,30 +37,22 @@
 - (void)updateName;
 - (void)updateNameForApplication:(id)arg1 findingName:(id)arg2;
 - (void)_addLocalizedItemsWithTitles:(id)arg1 toPopUpButton:(id)arg2;
-- (id)_applicationDefinitionBundle;
+@property(readonly, nonatomic) NSBundle *_applicationDefinitionBundle;
 - (id)_propertyWithName:(id)arg1 inProperties:(id)arg2;
 - (void)_setProperties:(id)arg1 andSettings:(id)arg2 ofWhoseItemAtIndex:(unsigned long long)arg3;
 - (void)_removeAllWhoseItems;
 - (void)_removeWhoseItemAtIndex:(unsigned long long)arg1;
 - (void)_insertWhoseItemAtIndex:(unsigned long long)arg1 withSettings:(id)arg2;
-- (void)_adjustView;
 - (id)_elementOfElements:(id)arg1 withName:(id)arg2 usingKey:(id)arg3;
 - (id)_elementNamesFromElements:(id)arg1 usingKey:(id)arg2;
 - (void)_addSettings:(id)arg1;
 - (void)_insertSettings:(id)arg1 atIndex:(unsigned long long)arg2;
 - (id)_settingsAtIndex:(unsigned long long)arg1;
 - (id)_defaultSettings;
-- (void)setWhoseItems:(id)arg1;
-- (id)whoseItems;
-- (void)setFindingNames:(id)arg1;
-- (id)findingNames;
 - (id)providesDictionary;
-- (id)applicationNames;
-- (void)setApplicationDefinition:(id)arg1;
-- (id)applicationDefinition;
+@property(readonly, nonatomic) NSArray *applicationNames;
 - (id)script;
 - (void)awakeFromNib;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithDefinition:(id)arg1 fromArchive:(BOOL)arg2;
 - (id)initWithBundle:(id)arg1;

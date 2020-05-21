@@ -17,9 +17,12 @@
     NSData *_separator;
 }
 
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSData *separator; // @synthesize separator=_separator;
 @property(readonly, nonatomic) NSData *data; // @synthesize data=_data;
-- (void).cxx_destruct;
+- (id)setPersistenceConversationFlags:(unsigned long long)arg1 forMessages:(id)arg2;
+- (void)unmuteConversationForMessages:(id)arg1;
+- (void)muteConversationForMessages:(id)arg1;
 - (id)uniquedString:(id)arg1;
 - (void)flushAllCaches;
 - (void)invalidateMessage:(id)arg1;
@@ -29,8 +32,6 @@
 @property(readonly, nonatomic) BOOL canCompact;
 - (void)deleteMessages:(id)arg1 moveToTrash:(BOOL)arg2;
 - (void)saveSnippetsForMessages:(id)arg1;
-- (id)snippetsForMessages:(id)arg1;
-@property(readonly, nonatomic) BOOL supportsSnippets;
 - (void)setNumberOfAttachments:(unsigned int)arg1 isSigned:(BOOL)arg2 isEncrypted:(BOOL)arg3 forMessage:(id)arg4;
 - (id)attachmentsDirectoryForMessage:(id)arg1 partNumber:(id)arg2;
 - (id)attachmentsDirectoryForMessage:(id)arg1;
@@ -42,11 +43,10 @@
 - (void)async_setFlagWithKey:(id)arg1 state:(BOOL)arg2 forMessages:(id)arg3;
 - (id)setFlagsFromDictionary:(id)arg1 forMessages:(id)arg2;
 - (void)async_setFlagsFromDictionary:(id)arg1 forMessages:(id)arg2;
-- (id)fullBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id *)arg2 fetchIfNotAvailable:(BOOL)arg3;
+- (id)bodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id *)arg2 fetchIfNotAvailable:(BOOL)arg3 allowPartial:(BOOL)arg4;
 - (id)bodyDataForMessage:(id)arg1 fetchIfNotAvailable:(BOOL)arg2 allowPartial:(BOOL)arg3;
-- (id)bodyForMessage:(id)arg1 fetchIfNotAvailable:(BOOL)arg2 updateFlags:(BOOL)arg3 allowPartial:(BOOL)arg4;
 - (id)headerDataForMessage:(id)arg1 fetchIfNotAvailable:(BOOL)arg2 allowPartial:(BOOL)arg3;
-- (id)headersForMessage:(id)arg1 fetchIfNotAvailable:(BOOL)arg2;
+- (void)getTopLevelMimePart:(id *)arg1 headers:(id *)arg2 body:(id *)arg3 forMessage:(id)arg4 fetchIfNotAvailable:(BOOL)arg5 updateFlags:(BOOL)arg6 allowPartial:(BOOL)arg7 skipSignatureVerification:(BOOL)arg8;
 - (id)messageForMessageID:(id)arg1;
 @property(readonly, nonatomic) id <MCMailbox> mailbox;
 @property(readonly, nonatomic) id <MCMailAccount> account;
@@ -61,7 +61,6 @@
 @property(readonly, copy) NSString *description;
 @property(readonly, copy, nonatomic) NSString *displayName;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) BOOL isSmartMailbox;
 @property(readonly) Class superclass;
 
 @end

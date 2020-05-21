@@ -11,22 +11,26 @@
 __attribute__((visibility("hidden")))
 @interface CKDTokenRegistrationURLRequest : CKDURLRequest
 {
-    NSData *_token;
-    NSString *_bundleID;
+    BOOL _skipBundleIDCheck;
+    NSData *_apsToken;
     NSString *_apsEnvironmentString;
+    NSString *_bundleID;
 }
 
-@property(retain, nonatomic) NSString *apsEnvironmentString; // @synthesize apsEnvironmentString=_apsEnvironmentString;
-@property(retain, nonatomic) NSString *bundleID; // @synthesize bundleID=_bundleID;
-@property(retain, nonatomic) NSData *token; // @synthesize token=_token;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL skipBundleIDCheck; // @synthesize skipBundleIDCheck=_skipBundleIDCheck;
+@property(retain, nonatomic) NSString *bundleID; // @synthesize bundleID=_bundleID;
+@property(retain, nonatomic) NSString *apsEnvironmentString; // @synthesize apsEnvironmentString=_apsEnvironmentString;
+@property(retain, nonatomic) NSData *apsToken; // @synthesize apsToken=_apsToken;
 - (id)requestDidParseProtobufObject:(id)arg1;
-- (id)requestOperations;
+- (id)sourceApplicationSecondaryIdentifier;
+- (id)sourceApplicationBundleIdentifier;
+- (id)generateRequestOperations;
 - (id)requestOperationClasses;
 - (int)operationType;
 - (BOOL)requiresTokenRegistration;
 - (id)flowControlKey;
-- (id)initWithToken:(id)arg1 bundleID:(id)arg2;
+- (id)initWithApsToken:(id)arg1 apsEnvironmentString:(id)arg2 bundleID:(id)arg3 skipBundleIDCheck:(BOOL)arg4;
 
 @end
 

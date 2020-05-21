@@ -8,7 +8,7 @@
 
 #import "NSSplitViewDelegate.h"
 
-@class AMDescriptionViewController, AMGlossyStatusView, AMGradientBackgroundView, AMLibraryOutlineView, AMLibraryTableView, AMSmartGroupsController, AMSplitView, NSArray, NSArrayController, NSButton, NSMenu, NSPopUpButton, NSSearchField, NSString, NSTabView, NSTreeController, NSView;
+@class AMDescriptionViewController, AMGlossyStatusView, AMGradientBackgroundView, AMLibrary, AMLibraryOutlineView, AMLibraryTableView, AMSmartGroupsController, AMSplitView, NSArray, NSArrayController, NSButton, NSMenu, NSOutlineView, NSPopUpButton, NSSearchField, NSString, NSTabView, NSTableView, NSTreeController, NSView;
 
 @interface AMLibraryViewController : NSViewController <NSSplitViewDelegate>
 {
@@ -40,16 +40,36 @@
     AMSmartGroupsController *_smartGroupsController;
     AMDescriptionViewController *_actionDescriptionViewController;
     AMDescriptionViewController *_variableDescriptionViewController;
-    struct __AMLibraryViewFlags {
-        unsigned int viewMode:1;
-        unsigned int draggingOutsideLibrary:1;
-        unsigned int acceptedDraggedAssets:1;
-        unsigned int isEditingNewSmartGroup:1;
-        unsigned int hasShownVariables:1;
-        unsigned int reserved:27;
-    } _libraryViewFlags;
+    struct __AMLibraryViewFlags _libraryViewFlags;
 }
 
+- (void).cxx_destruct;
+@property struct __AMLibraryViewFlags libraryViewFlags; // @synthesize libraryViewFlags=_libraryViewFlags;
+@property(retain) AMDescriptionViewController *variableDescriptionViewController; // @synthesize variableDescriptionViewController=_variableDescriptionViewController;
+@property(retain) AMDescriptionViewController *actionDescriptionViewController; // @synthesize actionDescriptionViewController=_actionDescriptionViewController;
+@property __weak NSButton *_toggleDescriptionButton; // @synthesize _toggleDescriptionButton;
+@property __weak NSMenu *_libraryMenu; // @synthesize _libraryMenu;
+@property __weak NSPopUpButton *_libraryMenuButton; // @synthesize _libraryMenuButton;
+@property __weak AMGlossyStatusView *_statusView; // @synthesize _statusView;
+@property __weak NSView *_variableDescriptionViewContainer; // @synthesize _variableDescriptionViewContainer;
+@property __weak NSView *_actionDescriptionViewContainer; // @synthesize _actionDescriptionViewContainer;
+@property __weak NSArrayController *_variablesArrayController; // @synthesize _variablesArrayController;
+@property __weak AMLibraryTableView *_variablesTableView; // @synthesize _variablesTableView;
+@property __weak NSTreeController *_variablesTreeController; // @synthesize _variablesTreeController;
+@property __weak AMLibraryOutlineView *_variablesOutlineView; // @synthesize _variablesOutlineView;
+@property __weak NSArrayController *_actionsArrayController; // @synthesize _actionsArrayController;
+@property __weak AMLibraryTableView *_actionsTableView; // @synthesize _actionsTableView;
+@property __weak NSTreeController *_actionsTreeController; // @synthesize _actionsTreeController;
+@property __weak AMLibraryOutlineView *_actionsOutlineView; // @synthesize _actionsOutlineView;
+@property __weak AMSplitView *_variablesMinorSplitView; // @synthesize _variablesMinorSplitView;
+@property __weak AMSplitView *_variablesMajorSplitView; // @synthesize _variablesMajorSplitView;
+@property __weak AMSplitView *_actionsMinorSplitView; // @synthesize _actionsMinorSplitView;
+@property __weak AMSplitView *_actionsMajorSplitView; // @synthesize _actionsMajorSplitView;
+@property __weak NSTabView *_tabView; // @synthesize _tabView;
+@property __weak NSButton *_variablesButton; // @synthesize _variablesButton;
+@property __weak NSButton *_actionsButton; // @synthesize _actionsButton;
+@property(readonly) __weak NSSearchField *_searchField; // @synthesize _searchField;
+@property __weak AMGradientBackgroundView *_headerBackgroundView; // @synthesize _headerBackgroundView;
 @property(copy) NSArray *draggedGroups; // @synthesize draggedGroups=_draggedGroups;
 @property(copy) NSArray *draggedAssets; // @synthesize draggedAssets=_draggedAssets;
 - (void)restoreStateWithCoder:(id)arg1;
@@ -113,17 +133,17 @@
 - (void)find:(id)arg1;
 - (id)selectGroup:(id)arg1 byExtendingSelection:(BOOL)arg2;
 - (void)selectAction:(id)arg1;
-- (id)selectedVariables;
-- (id)selectedActions;
+@property(readonly, nonatomic) NSArray *selectedVariables;
+@property(readonly, nonatomic) NSArray *selectedActions;
 - (id)clickedNodes;
 - (id)currentDescriptionContainerView;
-- (id)currentMajorSplitView;
-- (id)currentRootNodes;
-- (id)currentTableView;
-- (id)currentOutlineView;
-- (id)currentTreeController;
-- (id)currentArrayController;
-- (id)library;
+@property(readonly, nonatomic) AMSplitView *currentMajorSplitView;
+@property(readonly, nonatomic) NSArray *currentRootNodes;
+@property(readonly, nonatomic) NSTableView *currentTableView;
+@property(readonly, nonatomic) NSOutlineView *currentOutlineView;
+@property(readonly, nonatomic) NSTreeController *currentTreeController;
+@property(readonly, nonatomic) NSArrayController *currentArrayController;
+@property(readonly, nonatomic) AMLibrary *library;
 - (BOOL)isShowingVariables;
 - (BOOL)isShowingActions;
 - (void)dealloc;

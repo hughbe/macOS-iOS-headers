@@ -14,6 +14,7 @@
     struct _opaque_pthread_mutex_t _delegateIdentifiersMutex;
 }
 
+- (void).cxx_destruct;
 - (void)_accessDelegateIdentifiersInCriticalSectionWithBlock:(CDUnknownBlockType)arg1;
 - (void)stopAwaitingAcknowledgementFromAllServiceDelegates;
 - (void)stopAwaitingAcknowledgementFromServiceDelegateWithIdentifier:(id)arg1;

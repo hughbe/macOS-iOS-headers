@@ -8,6 +8,7 @@
 
 @class NSDate;
 
+__attribute__((visibility("hidden")))
 @interface _NSConcreteDateInterval : NSDateInterval
 {
     NSDate *_startDate;

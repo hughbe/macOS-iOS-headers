@@ -11,10 +11,12 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (id)immutablePlaceholder;
 - (id)initWithLocale:(id)arg1;
 - (id)initWithAllAvailableDescriptors;
 - (id)initWithDescriptors:(id)arg1;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
 
 @end
 

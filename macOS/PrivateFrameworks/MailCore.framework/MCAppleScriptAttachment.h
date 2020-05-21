@@ -12,14 +12,14 @@
 {
     NSString *_uuidString;
     MCAttachment *_attachment;
-    NSScriptClassDescription *_messageClassDescription;
     NSScriptObjectSpecifier *_messageContainer;
+    NSScriptClassDescription *_messageClassDescription;
 }
 
-@property(retain, nonatomic) NSScriptObjectSpecifier *messageContainer; // @synthesize messageContainer=_messageContainer;
-@property(retain, nonatomic) NSScriptClassDescription *messageClassDescription; // @synthesize messageClassDescription=_messageClassDescription;
-@property(retain, nonatomic) MCAttachment *attachment; // @synthesize attachment=_attachment;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSScriptClassDescription *messageClassDescription; // @synthesize messageClassDescription=_messageClassDescription;
+@property(retain, nonatomic) NSScriptObjectSpecifier *messageContainer; // @synthesize messageContainer=_messageContainer;
+@property(retain, nonatomic) MCAttachment *attachment; // @synthesize attachment=_attachment;
 - (id)objectSpecifier;
 @property(readonly, copy, nonatomic) NSString *uniqueID;
 - (id)handleSaveAttachmentCommand:(id)arg1;

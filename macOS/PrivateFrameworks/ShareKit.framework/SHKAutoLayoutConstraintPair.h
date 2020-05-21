@@ -8,15 +8,16 @@
 
 @class NSLayoutConstraint;
 
+__attribute__((visibility("hidden")))
 @interface SHKAutoLayoutConstraintPair : NSObject
 {
     NSLayoutConstraint *_firstConstraint;
     NSLayoutConstraint *_secondConstraint;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSLayoutConstraint *secondConstraint; // @synthesize secondConstraint=_secondConstraint;
 @property(readonly) NSLayoutConstraint *firstConstraint; // @synthesize firstConstraint=_firstConstraint;
-- (void).cxx_destruct;
 - (id)constraints;
 - (id)initWithFirstConstraint:(id)arg1 secondConstraint:(id)arg2;
 

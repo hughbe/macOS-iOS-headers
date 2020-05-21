@@ -16,6 +16,7 @@
     BOOL _allCompletedRemindersReceipt;
     BOOL _allIncompletedRemindersReceipt;
     BOOL _allRemindersWithContactIdentifier;
+    unsigned long long _cachePruneCount;
     NSMutableSet *_itemIdentifiers;
     NSMutableDictionary *_externalIdentifierMap;
     NSMutableSet *_calendarIdentifiersWithAllRemindersCached;
@@ -23,18 +24,18 @@
     NSMutableSet *_generalLookupPredicates;
     unsigned long long _receiptGeneration;
     CalDisjointDateRange *_cachedEventsInRange;
-    EKCalendarStoreBackingStore *_backingStore;
     NSObject<OS_dispatch_queue> *_fetchSerialQueue;
+    EKCalendarStoreBackingStore *_backingStore;
 }
 
-@property(retain) NSObject<OS_dispatch_queue> *fetchSerialQueue; // @synthesize fetchSerialQueue=_fetchSerialQueue;
+- (void).cxx_destruct;
 @property(nonatomic) __weak EKCalendarStoreBackingStore *backingStore; // @synthesize backingStore=_backingStore;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *fetchSerialQueue; // @synthesize fetchSerialQueue=_fetchSerialQueue;
 @property(readonly, nonatomic) NSSet *generalLookupPredicates; // @synthesize generalLookupPredicates=_generalLookupPredicates;
 @property(copy, nonatomic) CalDisjointDateRange *cachedEventsInRange; // @synthesize cachedEventsInRange=_cachedEventsInRange;
 @property(readonly, nonatomic) NSSet *calendarIdentifiersWithAllRemindersCached; // @synthesize calendarIdentifiersWithAllRemindersCached=_calendarIdentifiersWithAllRemindersCached;
 @property(readonly, nonatomic) NSSet *itemIdentifiers; // @synthesize itemIdentifiers=_itemIdentifiers;
 @property(nonatomic) unsigned long long receiptGeneration; // @synthesize receiptGeneration=_receiptGeneration;
-- (void).cxx_destruct;
 - (void)addReceiptForEventsInCalendars:(id)arg1;
 - (void)addReceiptForRemindersInCalendars:(id)arg1;
 - (BOOL)eventsInCalendarsAccountedFor:(id)arg1;
@@ -80,13 +81,15 @@
 - (id)accountedForAllRemindersInQueue:(id)arg1 lookupCachedBlock:(CDUnknownBlockType)arg2 calendarsBlock:(CDUnknownBlockType)arg3 fetchBlock:(CDUnknownBlockType)arg4 updateBlock:(CDUnknownBlockType)arg5;
 - (id)accountedForEventsInCalendars:(id)arg1 queue:(id)arg2 lookupCachedBlock:(CDUnknownBlockType)arg3 fetchBlock:(CDUnknownBlockType)arg4 updateBlock:(CDUnknownBlockType)arg5;
 - (id)accountedForEventsWithGeneralLookupPredicate:(id)arg1 queue:(id)arg2 lookupCachedBlock:(CDUnknownBlockType)arg3 fetchBlock:(CDUnknownBlockType)arg4 updateBlock:(CDUnknownBlockType)arg5;
-- (id)accountedForEventsInRange:(id)arg1 queue:(id)arg2 lookupCachedBlock:(CDUnknownBlockType)arg3 calendarsBlock:(CDUnknownBlockType)arg4 fetchBlock:(CDUnknownBlockType)arg5 updateBlock:(CDUnknownBlockType)arg6 fetchedMasters:(id *)arg7;
+- (id)accountedForEventsInRange:(id)arg1 queue:(id)arg2 lookupCachedBlock:(CDUnknownBlockType)arg3 calendarsBlock:(CDUnknownBlockType)arg4 fetchBlock:(CDUnknownBlockType)arg5 updateBlock:(CDUnknownBlockType)arg6 fetchedMasters:(id)arg7;
 - (id)accountedForAllEventsInQueue:(id)arg1 lookupCachedBlock:(CDUnknownBlockType)arg2 calendarsBlock:(CDUnknownBlockType)arg3 fetchBlock:(CDUnknownBlockType)arg4 updateBlock:(CDUnknownBlockType)arg5;
 - (id)accountedForOccurrencesWithExternalIdentifier:(id)arg1 queue:(id)arg2 lookupCachedBlock:(CDUnknownBlockType)arg3 fetchBlock:(CDUnknownBlockType)arg4 updateBlock:(CDUnknownBlockType)arg5;
 - (id)accountedForOccurrencesWithIdentifiers:(id)arg1 queue:(id)arg2 lookupCachedBlock:(CDUnknownBlockType)arg3 fetchBlock:(CDUnknownBlockType)arg4 updateBlock:(CDUnknownBlockType)arg5;
 - (id)accountedForOccurrenceWithIdentifier:(id)arg1 queue:(id)arg2 lookupCachedBlock:(CDUnknownBlockType)arg3 fetchBlock:(CDUnknownBlockType)arg4 updateBlock:(CDUnknownBlockType)arg5;
 - (void)_accountForMultipleObjectsCheckBlock:(CDUnknownBlockType)arg1 lookupCachedBlock:(CDUnknownBlockType)arg2 fetchContainersBlock:(CDUnknownBlockType)arg3 fetchObjectsBlock:(CDUnknownBlockType)arg4 updateBlock:(CDUnknownBlockType)arg5 addReceiptBlock:(CDUnknownBlockType)arg6 queue:(id)arg7;
 - (void)_accountForObjectCheckBlock:(CDUnknownBlockType)arg1 lookupCachedBlock:(CDUnknownBlockType)arg2 fetchContainersBlock:(CDUnknownBlockType)arg3 fetchObjectsBlock:(CDUnknownBlockType)arg4 updateBlock:(CDUnknownBlockType)arg5 addReceiptBlock:(CDUnknownBlockType)arg6 queue:(id)arg7;
+- (void)cacheWasPruned;
+- (void)clearAll;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copyForBackingStore:(id)arg1;

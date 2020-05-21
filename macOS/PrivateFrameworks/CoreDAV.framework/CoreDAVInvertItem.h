@@ -14,10 +14,10 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVPrincipalItem *principal; // @synthesize principal=_principal;
 - (id)description;
 - (void)write:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

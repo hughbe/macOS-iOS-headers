@@ -18,6 +18,9 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) CIImage *inputImage; // @synthesize inputImage;
 - (int)_maxVersion;
 - (id)outputImage;
+- (id)cubeColorSpaceName;
+- (id)cubePath;
+- (id)cubeName;
 - (int)_defaultVersion;
 - (void)setDefaults;
 - (id)init;

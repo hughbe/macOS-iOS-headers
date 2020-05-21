@@ -9,6 +9,7 @@
 @class JSValue, NSArray, NSString;
 
 @protocol AKMBICAUIDelegate <NSObject>
+- (void)validateLocalPasswordWithCompletion:(JSValue *)arg1;
 - (void)skipSignIn;
 - (void)dismiss:(NSString *)arg1;
 - (void)showTermsAndConditions:(NSArray *)arg1 callback:(JSValue *)arg2;

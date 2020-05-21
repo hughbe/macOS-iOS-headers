@@ -17,11 +17,11 @@
     BOOL _placeholder;
 }
 
+- (void).cxx_destruct;
 @property(readonly, getter=isPlaceholder) BOOL placeholder; // @synthesize placeholder=_placeholder;
 @property(readonly, copy) NSString *photoIdentifier; // @synthesize photoIdentifier=_photoIdentifier;
 @property(readonly, retain) NSImage *image; // @synthesize image=_image;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithImage:(id)arg1 photoIdentifier:(id)arg2 isPlaceholder:(BOOL)arg3;
 
 @end

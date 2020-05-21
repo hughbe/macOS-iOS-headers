@@ -13,10 +13,12 @@ __attribute__((visibility("hidden")))
 
 - (BOOL)toggleExpandedWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)isControlElement;
+- (void)echoValueChangeToRequest:(id)arg1;
 - (void)addActionDescription:(id)arg1 toRequest:(id)arg2;
-- (void)addItemDescriptionForActionToRequest:(id)arg1;
-- (id)statusDescriptionWithOptionsMask:(int)arg1;
+- (id)statusDescription;
+- (id)_theCorrectDefaultActionDescription;
 - (id)defaultActionDescription;
+- (BOOL)ignoreValueChangeAfterAction;
 - (void)appendExpandedStatusDescription:(id)arg1;
 - (BOOL)isExpanded;
 

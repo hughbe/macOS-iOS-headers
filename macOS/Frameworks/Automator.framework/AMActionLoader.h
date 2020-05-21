@@ -6,24 +6,24 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary;
-
 @interface AMActionLoader : NSObject
 {
-    NSMutableDictionary *_validationCache;
 }
 
++ (id)coreTypesBundle;
++ (id)displayNameAtPathWithCaching:(id)arg1;
 + (id)sharedActionLoader;
 - (id)validationErrorsForActionResourcesWithAction:(id)arg1;
 - (id)validateWarningActionsForAction:(id)arg1;
 - (id)validateActionResourcesForAction:(id)arg1 withResourceDictionary:(id)arg2;
 - (id)validateLicenseResourcesForAction:(id)arg1 withResourceDictionary:(id)arg2;
-- (id)validateCreatorResourcesForAction:(id)arg1 withResourceDictionary:(id)arg2;
 - (id)validateApplicationResourcesForAction:(id)arg1 withResourceDictionary:(id)arg2;
 - (id)validateFileResourcesForAction:(id)arg1 withResourceDictionary:(id)arg2;
 - (id)actionWithPropertyList:(id)arg1 error:(id *)arg2;
 - (id)actionWithBundle:(id)arg1 error:(id *)arg2;
 - (Class)classForActionWithBundle:(id)arg1 error:(id *)arg2;
+- (BOOL)_loadBundleIfNeeded:(id)arg1 error:(id *)arg2;
+- (BOOL)_validateBundle:(id)arg1 error:(id *)arg2;
 - (id)actionWithBundleIdentifier:(id)arg1 error:(id *)arg2;
 - (id)actionWithURL:(id)arg1 error:(id *)arg2;
 - (id)cachingDictionaryForActionBundle:(id)arg1;
@@ -34,12 +34,8 @@
 - (void)generateLocalizedCategoryNamesForDefinition:(id)arg1 fromBundle:(id)arg2;
 - (void)generateLocalizedApplicationNamesForDefinition:(id)arg1 fromBundle:(id)arg2;
 - (id)bundleForActionWithPropertyList:(id)arg1;
-- (id)bundleForActionWithBundleIdentifier:(id)arg1;
+- (id)loadedBundleForActionWithBundleIdentifier:(id)arg1;
 - (id)bundleForActionWithURL:(id)arg1 error:(id *)arg2;
-- (id)nestedBundleWithBundleIdentifier:(id)arg1;
-- (id)nestedBundleWithBundleName:(id)arg1;
-- (void)dealloc;
-- (id)init;
 
 @end
 

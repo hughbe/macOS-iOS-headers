@@ -6,18 +6,37 @@
 
 #import "NSObject.h"
 
+#import "WBSURLCompletionDataSource.h"
 #import "WBSURLCompletionSessionProtocol.h"
 
-@class WBSHistoryService;
+@class NSObject<OS_dispatch_queue>, NSString, WBSHistoryService, WBSHistoryServiceDatabase, WBSURLCompletionDatabase;
 
-@interface WBSHistoryURLCompletionSession : NSObject <WBSURLCompletionSessionProtocol>
+@interface WBSHistoryURLCompletionSession : NSObject <WBSURLCompletionDataSource, WBSURLCompletionSessionProtocol>
 {
     WBSHistoryService *_historyService;
+    NSObject<OS_dispatch_queue> *_internalQueue;
+    WBSHistoryServiceDatabase *_database;
+    WBSURLCompletionDatabase *_urlCompletionDatabase;
 }
 
 - (void).cxx_destruct;
-- (void)getBestMatchesForTypedString:(id)arg1 limit:(unsigned long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
+@property(readonly, nonatomic, getter=isEnumeratingHistoryMatches) BOOL enumeratingHistoryMatches;
+@property(readonly, nonatomic, getter=isEnumeratingBookmarkMatches) BOOL enumeratingBookmarkMatches;
+- (id)fakeBookmarkMatchDataWithURLString:(id)arg1 title:(id)arg2 shouldPreload:(BOOL)arg3;
+- (void)enumerateMatchDataForTypedStringHint:(id)arg1 options:(unsigned long long)arg2 withBlock:(CDUnknownBlockType)arg3;
+- (void)getBestMatchesForTypedString:(id)arg1 limit:(unsigned long long)arg2 forQueryID:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)_ensureDatabaseIsWarmed;
+- (id)_databaseConnectionOptions;
+- (void)_getBestMatchesForTypedString:(id)arg1 limit:(unsigned long long)arg2 forQueryID:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (id)_matchSnapshotForCompletionMatch:(id)arg1;
+- (void)dealloc;
 - (id)initWithHistoryService:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

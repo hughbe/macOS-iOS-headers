@@ -16,12 +16,12 @@ __attribute__((visibility("hidden")))
     id <GEOMapTransitHall> _hall;
 }
 
+- (void).cxx_destruct;
 - (id)findLinksOut:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)findLinksIn:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)findAccessPoints:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)findHall:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) unsigned long long hallID;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, nonatomic) double boundingRadius;

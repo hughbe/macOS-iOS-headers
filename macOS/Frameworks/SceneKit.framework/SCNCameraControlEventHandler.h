@@ -12,7 +12,7 @@
 {
     SCNNode *_freeViewCameraNode;
     struct CGPoint _initialPoint;
-    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]), name: _initialMatrix
+    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]"simd"{?="columns"[4]}), name: _initialMatrix
     float _initialZoom;
     float _originalFovX;
     float _originalFovY;
@@ -21,12 +21,14 @@
     // Error parsing type: , name: _clickOrigin
     BOOL _stickyMove;
     struct CGPoint _stickyDirection;
-    long long _currentStickyAxis;
+    unsigned long long _currentStickyAxis;
     struct CGPoint _lastDragLocation;
     double _lastDragTime;
-    long long _stickyAxis;
+    unsigned long long _stickyAxis;
     // Error parsing type: {C3DSphere="vector"}, name: _viewedObjectSphere
     unsigned int _isViewedObjectSphereComputed:1;
+    struct os_unfair_lock_s _stateLock;
+    unsigned int _enabled:1;
     unsigned int _hasAutomaticCameraTarget:1;
     unsigned int _automaticCameraTargetUpToDate:1;
     unsigned int _inertia:1;
@@ -50,6 +52,9 @@
 
 + (struct CATransform3D)matrixWithNoRoll:(struct CATransform3D)arg1;
 +     // Error parsing type: 24@0:8@16, name: frontVectorWithPointOfView:
+- (BOOL)flagsChanged:(id)arg1;
+- (BOOL)keyDown:(id)arg1;
+- (BOOL)keyUp:(id)arg1;
 - (BOOL)mouseUp:(id)arg1;
 - (BOOL)mouseDragged:(id)arg1;
 - (void)_computeStickyAxisIfNeeded:(struct CGPoint)arg1;
@@ -59,7 +64,7 @@
 - (BOOL)scrollWheel:(id)arg1;
 - (float)_scrollWheelMultiplier;
 - (void)_translateTo:(struct CGPoint)arg1;
-- (void)_rotateWithDrag:(struct CGPoint)arg1 mode:(long long)arg2 stickyAxis:(long long)arg3;
+- (void)_rotateWithDrag:(struct CGPoint)arg1 mode:(long long)arg2 stickyAxis:(unsigned long long)arg3;
 - (void)clearRoll;
 - (void)_beginTranslateAtLocation:(struct CGPoint)arg1;
 -     // Error parsing type: 16@0:8, name: frontVector
@@ -70,10 +75,12 @@
 - (void)_didDragTo:(struct CGPoint)arg1;
 - (void)endDraggingWithVelocity:(struct CGPoint)arg1;
 - (BOOL)wantsRedraw;
-- (void)viewWillDraw;
+- (BOOL)_3DConnexionIsPressed;
+- (BOOL)_isInertiaRunning;
+- (void)_setInertiaRunning:(BOOL)arg1;
+- (void)viewWillDrawAtTime:(double)arg1;
 - (void)rotateWithVector:(long long)arg1 mode: /* Error: Ran out of types for this method. */;
 - (void)_onInertiaTimer;
-- (void)_stopInertiaIfNeeded;
 - (void)cameraDidChange;
 - (void)cameraWillChange;
 - (void)sceneDidChange;
@@ -97,7 +104,7 @@
 - (void)_resetFreeViewCamera;
 - (void)activateFreeCamera;
 - (void)setEnableFreeCamera:(BOOL)arg1;
-@property long long stickyAxis;
+@property unsigned long long stickyAxis;
 - (void)focusNode:(id)arg1;
 - (id)freeCamera;
 @property struct SCNVector3 cameraTarget;
@@ -108,6 +115,8 @@
 @property double friction;
 @property BOOL enableInertia;
 @property BOOL allowsTranslation;
+- (void)setEnabled:(BOOL)arg1;
+- (BOOL)enabled;
 - (void)dealloc;
 - (id)init;
 

@@ -16,14 +16,16 @@
     NSPopover *_popover;
     WebView *_webView;
     IMKCandidateUnitView *_descriptionTargetView;
+    struct CGSize _minimumSize;
     NSURL *_stylesheetURL;
     NSTimer *_popoverTimer;
 }
 
 @property(retain, nonatomic) NSTimer *popoverTimer; // @synthesize popoverTimer=_popoverTimer;
 @property(retain, nonatomic) NSURL *stylesheetURL; // @synthesize stylesheetURL=_stylesheetURL;
+@property(nonatomic) struct CGSize minimumSize; // @synthesize minimumSize=_minimumSize;
 @property(retain, nonatomic) IMKCandidateUnitView *descriptionTargetView; // @synthesize descriptionTargetView=_descriptionTargetView;
-@property(readonly, retain, nonatomic) IMKCandidateController *controller; // @synthesize controller=_controller;
+@property(nonatomic) IMKCandidateController *controller; // @synthesize controller=_controller;
 - (void)hide;
 - (void)_setupWebview;
 - (void)_setupPopover;

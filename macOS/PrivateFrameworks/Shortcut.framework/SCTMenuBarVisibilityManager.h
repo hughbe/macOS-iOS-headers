@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface SCTMenuBarVisibilityManager : NSObject
 {
     id delegate;
@@ -16,7 +17,6 @@
 - (void)_showMenu;
 - (void)_showMenuFail;
 - (void)_showMenuNow;
-- (BOOL)_load_HIMenuBarRequestVisibility;
 - (void)dealloc;
 - (id)initWithDelegate:(id)arg1;
 

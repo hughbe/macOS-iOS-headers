@@ -6,14 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSObject<OS_xpc_object>, NSString;
+@class NSDictionary, NSObject<OS_os_log>, NSObject<OS_xpc_object>, NSString;
 
 @interface APMessage : NSObject
 {
     int _messageType;
-    unsigned int _requestID;
-    unsigned int _messageNumber;
     NSDictionary *_messageData;
+    NSObject<OS_os_log> *_logHandle;
     NSObject<OS_xpc_object> *_receivedXPCMessage;
 }
 
@@ -21,13 +20,12 @@
 + (id)stringForResult:(int)arg1;
 + (id)messageWithReceivedXPCMessage:(id)arg1;
 + (id)outgoingMessageWithType:(int)arg1 andData:(id)arg2;
-+ (id)messageWithType:(int)arg1 data:(id)arg2 requestID:(unsigned int)arg3 messageNumber:(unsigned int)arg4 receivedXPCMessage:(id)arg5;
++ (id)messageWithType:(int)arg1 data:(id)arg2 receivedXPCMessage:(id)arg3;
+- (void).cxx_destruct;
 @property(readonly, copy) NSObject<OS_xpc_object> *receivedXPCMessage; // @synthesize receivedXPCMessage=_receivedXPCMessage;
-@property(readonly) unsigned int messageNumber; // @synthesize messageNumber=_messageNumber;
-@property(readonly) unsigned int requestID; // @synthesize requestID=_requestID;
+@property(readonly) NSObject<OS_os_log> *logHandle; // @synthesize logHandle=_logHandle;
 @property(readonly) NSDictionary *messageData; // @synthesize messageData=_messageData;
 @property(readonly) int messageType; // @synthesize messageType=_messageType;
-- (void).cxx_destruct;
 - (id)description;
 - (id)debugDescription;
 - (void)updateMessageDataWithEntriesFromDictionary:(id)arg1;
@@ -45,7 +43,7 @@
 - (id)replyWithData:(id)arg1;
 - (id)initWithReceivedXPCMessage:(id)arg1;
 - (id)initOutgoingMessageWithType:(int)arg1 andData:(id)arg2;
-- (id)initWithType:(int)arg1 data:(id)arg2 requestID:(unsigned int)arg3 messageNumber:(unsigned int)arg4 receivedXPCMessage:(id)arg5;
+- (id)initWithType:(int)arg1 data:(id)arg2 receivedXPCMessage:(id)arg3;
 
 @end
 

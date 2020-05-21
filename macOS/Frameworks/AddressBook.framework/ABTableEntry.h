@@ -8,19 +8,18 @@
 
 @class NSMutableArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABTableEntry : NSObject
 {
     NSMutableArray *_children;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableArray *children; // @synthesize children=_children;
 - (BOOL)canSwipeToDelete;
 - (BOOL)hasChildren;
 - (BOOL)canSelect;
 - (BOOL)canDrag;
 @property(readonly, copy) NSString *recordIdentifier;
-- (void)dealloc;
 - (id)init;
 
 @end

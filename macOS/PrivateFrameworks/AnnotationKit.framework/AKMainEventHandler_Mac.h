@@ -12,21 +12,23 @@
 {
     BOOL _shouldEatNextKeyUp;
     BOOL _lastCursorWasInVisibleBounds;
+    BOOL _candidatePickerWasDismissed;
     id _eventMonitor;
     AKPageController *_lastPageControllerWithCropRollover;
 }
 
+- (void).cxx_destruct;
+@property BOOL candidatePickerWasDismissed; // @synthesize candidatePickerWasDismissed=_candidatePickerWasDismissed;
 @property BOOL lastCursorWasInVisibleBounds; // @synthesize lastCursorWasInVisibleBounds=_lastCursorWasInVisibleBounds;
 @property __weak AKPageController *lastPageControllerWithCropRollover; // @synthesize lastPageControllerWithCropRollover=_lastPageControllerWithCropRollover;
 @property BOOL shouldEatNextKeyUp; // @synthesize shouldEatNextKeyUp=_shouldEatNextKeyUp;
 @property(retain) id eventMonitor; // @synthesize eventMonitor=_eventMonitor;
-- (void).cxx_destruct;
 - (BOOL)_eventHasValidLocation:(id)arg1;
 - (BOOL)_mouseEventInVisibleBounds:(id)arg1;
 - (BOOL)_eventIsForOurWindow:(id)arg1;
-- (void)updateCropHandleVisibilityForEvent:(id)arg1;
 - (void)updateCursorForEvent:(id)arg1;
 - (void)applyToAllSelectedAnnotationsRotateEvent:(id)arg1 orRecognizer:(id)arg2;
+- (void)_candidatePickerDidDismissNotification:(id)arg1;
 - (BOOL)handleKeyboardEvent:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (BOOL)_validateChangingSelectionZOrderForDirection:(BOOL)arg1 onPageModelController:(id)arg2;

@@ -14,9 +14,10 @@ __attribute__((visibility("hidden")))
     NSVB_ViewServiceFencingController *_fencingController;
 }
 
-+ (id)proxyWithTarget:(id)arg1 fencingController:(id)arg2 exportedProtocol:(id)arg3;
++ (id)proxyWithTarget:(id)arg1 connectionClient:(id)arg2 fencingController:(id)arg3 exportedProtocol:(id)arg4;
+- (void)__forgetFencingMessages;
 - (void)__endFencingMessagesForSendRight:(id)arg1;
-- (void)__beginFencingMessagesWithSendRight:(id)arg1 connectionCount:(unsigned long long)arg2;
+- (void)__beginFencingMessagesWithSendRight:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (void)dealloc;
 

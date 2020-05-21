@@ -20,11 +20,16 @@
     NSString *_productVersion;
     NSString *_systemVersion;
     NSString *_modelID;
+    NSString *_modelUTI;
     unsigned long long _migratableItemsSupported;
 }
 
++ (id)fdeSignedUsersFilter;
++ (id)secureTokenAdminUsersFilter;
 + (id)migratableUsersFilter;
+- (void).cxx_destruct;
 @property(readonly) unsigned long long migratableItemsSupported; // @synthesize migratableItemsSupported=_migratableItemsSupported;
+@property(retain) NSString *modelUTI; // @synthesize modelUTI=_modelUTI;
 @property(retain) NSString *modelID; // @synthesize modelID=_modelID;
 @property(readonly) __weak NSString *systemVersion; // @synthesize systemVersion=_systemVersion;
 @property(readonly) __weak NSString *productVersion; // @synthesize productVersion=_productVersion;
@@ -35,7 +40,6 @@
 @property unsigned long long state; // @synthesize state=_state;
 @property BOOL valid; // @synthesize valid=_valid;
 @property(retain) NSURL *path; // @synthesize path=_path;
-- (void).cxx_destruct;
 - (void)invalidate;
 - (void)scannerInit;
 - (void)unmount;
@@ -43,6 +47,7 @@
 - (void)mount;
 @property(readonly, getter=isMounted) BOOL mounted;
 - (id)filteredUsers:(id)arg1;
+@property(readonly) NSString *localizationPrefix;
 @property(readonly, getter=isClientInstall) BOOL clientInstall;
 @property(readonly, getter=isSelfContainedServerInstall) BOOL selfContainedServerInstall;
 @property(readonly, getter=isMixedLegacyServerInstall) BOOL mixedLegacyServerInstall;

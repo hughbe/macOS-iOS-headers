@@ -26,13 +26,11 @@
 + (id)joinGroupWithName:(id)arg1;
 + (id)joinGroup;
 @property(retain, nonatomic) NSString *name; // @synthesize name=_name;
-@property(nonatomic) NSObject<OS_dispatch_group> *dispatchGroup; // @synthesize dispatchGroup=_dispatchGroup;
 @property(retain) NSError *error; // @synthesize error=_error;
 @property(retain) NSMutableArray *rightResults; // @synthesize rightResults=_rightResults;
 @property(retain) NSMutableArray *leftResults; // @synthesize leftResults=_leftResults;
 @property(retain, nonatomic) NSMutableArray *rightNotifiers; // @synthesize rightNotifiers=_rightNotifiers;
 @property(retain, nonatomic) NSMutableArray *leftNotifiers; // @synthesize leftNotifiers=_leftNotifiers;
-@property(nonatomic) NSObject<OS_dispatch_queue> *targetQueue; // @synthesize targetQueue=_targetQueue;
 @property(retain) NSLock *lock; // @synthesize lock=_lock;
 - (void)applyUpdates;
 - (void)wait;

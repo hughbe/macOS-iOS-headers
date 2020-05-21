@@ -9,14 +9,16 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSDictionary, NSString, STSiriContext;
+@class AFLanguageDetectionUserContext, NSArray, NSDictionary, NSString, NSURL, STSiriContext;
 
 @interface AFDictationOptions : NSObject <NSSecureCoding, NSCopying>
 {
     BOOL _forceOfflineRecognition;
     BOOL _detectUtterances;
     BOOL _secureOfflineOnly;
+    BOOL _farField;
     BOOL _releaseAudioSessionOnRecordingCompletion;
+    BOOL _incremental;
     NSString *_applicationName;
     NSString *_applicationVersion;
     STSiriContext *_context;
@@ -33,19 +35,34 @@
     NSArray *_inlineItemList;
     NSString *_microphoneIdentifier;
     NSString *_orthography;
+    NSString *_keyboardIdentifier;
     NSString *_languageCodeOverride;
+    NSString *_offlineLanguage;
     long long _voiceSearchTypeOptions;
     NSDictionary *_voiceSearchHeaderFields;
     NSDictionary *_voiceSearchQueryParameters;
     NSDictionary *_voiceTriggerEventInfo;
     double _maximumRecognitionDuration;
     long long _taskHint;
+    NSURL *_originalAudioFileURL;
+    NSDictionary *_recognitionOverrides;
+    NSURL *_modelOverrideURL;
+    AFLanguageDetectionUserContext *_languageDetectionUserContext;
+    long long _dictationInputOrigin;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(nonatomic) long long dictationInputOrigin; // @synthesize dictationInputOrigin=_dictationInputOrigin;
+@property(copy, nonatomic) AFLanguageDetectionUserContext *languageDetectionUserContext; // @synthesize languageDetectionUserContext=_languageDetectionUserContext;
+@property(copy, nonatomic) NSURL *modelOverrideURL; // @synthesize modelOverrideURL=_modelOverrideURL;
+@property(copy, nonatomic) NSDictionary *recognitionOverrides; // @synthesize recognitionOverrides=_recognitionOverrides;
+@property(copy, nonatomic) NSURL *originalAudioFileURL; // @synthesize originalAudioFileURL=_originalAudioFileURL;
 @property(nonatomic) long long taskHint; // @synthesize taskHint=_taskHint;
 @property(nonatomic) double maximumRecognitionDuration; // @synthesize maximumRecognitionDuration=_maximumRecognitionDuration;
+@property(nonatomic) BOOL incremental; // @synthesize incremental=_incremental;
 @property(nonatomic) BOOL releaseAudioSessionOnRecordingCompletion; // @synthesize releaseAudioSessionOnRecordingCompletion=_releaseAudioSessionOnRecordingCompletion;
+@property(nonatomic) BOOL farField; // @synthesize farField=_farField;
 @property(nonatomic) BOOL secureOfflineOnly; // @synthesize secureOfflineOnly=_secureOfflineOnly;
 @property(nonatomic) BOOL detectUtterances; // @synthesize detectUtterances=_detectUtterances;
 @property(nonatomic) BOOL forceOfflineRecognition; // @synthesize forceOfflineRecognition=_forceOfflineRecognition;
@@ -53,7 +70,9 @@
 @property(copy, nonatomic) NSDictionary *voiceSearchQueryParameters; // @synthesize voiceSearchQueryParameters=_voiceSearchQueryParameters;
 @property(copy, nonatomic) NSDictionary *voiceSearchHeaderFields; // @synthesize voiceSearchHeaderFields=_voiceSearchHeaderFields;
 @property(nonatomic) long long voiceSearchTypeOptions; // @synthesize voiceSearchTypeOptions=_voiceSearchTypeOptions;
+@property(copy, nonatomic) NSString *offlineLanguage; // @synthesize offlineLanguage=_offlineLanguage;
 @property(copy, nonatomic) NSString *languageCodeOverride; // @synthesize languageCodeOverride=_languageCodeOverride;
+@property(copy, nonatomic) NSString *keyboardIdentifier; // @synthesize keyboardIdentifier=_keyboardIdentifier;
 @property(copy, nonatomic) NSString *orthography; // @synthesize orthography=_orthography;
 @property(copy, nonatomic) NSString *microphoneIdentifier; // @synthesize microphoneIdentifier=_microphoneIdentifier;
 @property(copy, nonatomic) NSArray *inlineItemList; // @synthesize inlineItemList=_inlineItemList;
@@ -70,7 +89,6 @@
 @property(retain, nonatomic) STSiriContext *context; // @synthesize context=_context;
 @property(copy, nonatomic) NSString *applicationVersion; // @synthesize applicationVersion=_applicationVersion;
 @property(copy, nonatomic) NSString *applicationName; // @synthesize applicationName=_applicationName;
-- (void).cxx_destruct;
 - (id)dictationOptionsWithoutTextContext;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;

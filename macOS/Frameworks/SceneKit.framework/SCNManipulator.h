@@ -6,42 +6,66 @@
 
 #import "NSObject.h"
 
-@class NSMutableIndexSet, NSOrderedSet, SCNAuthoringEnvironment, SCNNode;
+@class NSMutableIndexSet, NSOrderedSet, SCNAuthoringEnvironment, SCNBillboardConstraint, SCNNode;
 
-__attribute__((visibility("hidden")))
 @interface SCNManipulator : NSObject
 {
     SCNAuthoringEnvironment *_authoringEnvironment;
     NSOrderedSet *_targets;
-    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]), name: _xAxisToZAxisTransform
-    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]), name: _yAxisToZAxisTransform
-    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]), name: _xyPlaneToYZPlaneTransform
-    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]), name: _xyPlaneToXZPlaneTransform
-    // Error parsing type: (?="axisMove"{?="selectedAxis"S"originalPosition""axisDirection""mouseDeltaVector"}"planeMove"{?="selectedPlane"S"originalPosition""planeNormal""pointInPlane""mouseDeltaVector"}"axisRotate"{?="selectedAxis"S"originalMouseLocation"{CGPoint="x"d"y"d}"rotationSign"f"originalRotation"{__C3DQuaternion="x"f"y"f"z"f"s"f}}), name: _actionData
+    SCNNode *_node;
+    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]"simd"{?="columns"[4]}), name: _xAxisToZAxisTransform
+    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]"simd"{?="columns"[4]}), name: _yAxisToZAxisTransform
+    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]"simd"{?="columns"[4]}), name: _xyPlaneToYZPlaneTransform
+    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]"simd"{?="columns"[4]}), name: _xyPlaneToXZPlaneTransform
+    unsigned short _selectedAxis;
+    // Error parsing type: (?="axisMove"{?="originalPosition""axisDirection""mouseDeltaVector"}"planeMove"{?="originalPosition""planeNormal""pointInPlane""mouseDeltaVector"}"axisRotate"{?="rotationSign"f"originalRotation"}), name: _actionData
     BOOL _isMouseDown;
     BOOL _readonly;
     unsigned long long _lastModifierFlags;
     unsigned short _action;
+    struct CGPoint _originalMouseLocation;
     struct {
         void *positions;
-        struct __C3DQuaternion *orientations;
+        void *orientations;
         struct CATransform3D *originalLocalMatrix;
+        void *scales;
     } _originalData;
     unsigned int _originalDataCount;
-    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]), name: _worldInitialMatrix
-    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]), name: _worldMatrix
+    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]"simd"{?="columns"[4]}), name: _worldInitialMatrix
+    // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]"simd"{?="columns"[4]}), name: _worldMatrix
     long long _snapToAlignCount;
-    CDStruct_62d14fc2 *_snapToAlignOnX;
-    CDStruct_62d14fc2 *_snapToAlignOnY;
-    CDStruct_62d14fc2 *_snapToAlignOnZ;
+    CDStruct_962da47d *_snapToAlignOnX;
+    CDStruct_962da47d *_snapToAlignOnY;
+    CDStruct_962da47d *_snapToAlignOnZ;
     NSMutableIndexSet *_snapXIndexes;
     NSMutableIndexSet *_snapYIndexes;
     NSMutableIndexSet *_snapZIndexes;
     long long _xAlignment;
     long long _yAlignment;
     long long _zAlignment;
+    SCNNode *_planarTranslationHandleXY;
+    SCNNode *_planarTranslationHandleYZ;
+    SCNNode *_planarTranslationHandleXZ;
+    SCNNode *_planarTranslationHandles;
+    SCNNode *_axis;
+    SCNNode *_arcHandleXY;
+    SCNNode *_arcHandleYZ;
+    SCNNode *_arcHandleXZ;
+    SCNNode *_arcHandles;
+    SCNNode *_scaleNode;
+    SCNNode *_screenSpaceRotation;
+    SCNNode *_highlightNode;
+    // Error parsing type: , name: _planarTranslationLayout
+    BOOL _layoutLocked;
+    SCNNode *_zArrow;
+    SCNNode *_rotationHandles;
+    SCNNode *_occluder;
+    SCNNode *_translateHandles;
+    SCNBillboardConstraint *_billboard;
     NSOrderedSet *_cloneSet;
     BOOL _cloning;
+    unsigned long long _features;
+    BOOL _alternateMode;
 }
 
 @property(nonatomic) long long zAlignment; // @synthesize zAlignment=_zAlignment;
@@ -52,25 +76,39 @@ __attribute__((visibility("hidden")))
 - (void)prepareSnapToAlignDataIfNeeded;
 - (void)prepareSnapToAlignData;
 - (void)_prepareSnapToAlignData:(unsigned short)arg1 minOffset:maxOffset: /* Error: Ran out of types for this method. */;
-- (const CDStruct_62d14fc2 *)snapInfoAtIndex:(unsigned long long)arg1 axis:(long long)arg2;
-- (id)snapGuideIndexesOnAxis:(long long)arg1;
-- (void)_updateCloneStateWithEvent:(CDStruct_811921b8)arg1;
+- (const CDStruct_962da47d *)snapInfoAtIndex:(unsigned long long)arg1 axis:(unsigned long long)arg2;
+- (id)snapGuideIndexesOnAxis:(unsigned long long)arg1;
+- (void)_updateCloneStateWithEvent:(CDStruct_8e4f4b1c)arg1;
 - (id)setupClones;
 - (void)validateClones;
 - (void)addClonesToScene;
 - (void)removeClonesFromScene;
 - (id)scene;
-- (BOOL)mouseUp:(CDStruct_811921b8)arg1;
-- (BOOL)mouseDown:(CDStruct_811921b8)arg1;
-- (BOOL)mouseDragged:(CDStruct_811921b8)arg1;
+- (BOOL)mouseUp:(CDStruct_8e4f4b1c)arg1;
+- (BOOL)mouseDown:(CDStruct_8e4f4b1c)arg1;
+- (BOOL)mouseDragged:(CDStruct_8e4f4b1c)arg1;
 - (void)clearSnapIndexes;
-- (BOOL)_applyWithEvent:(CDStruct_811921b8)arg1;
+- (BOOL)_applyWithEvent:(CDStruct_8e4f4b1c)arg1;
 - (void)_deleteOriginalData;
 - (void)_saveOriginalData;
-- (void)updateItemsRotation:(struct __C3DQuaternion)arg1;
+- (void)updateItemsScale:(float)arg1;
+- (void)updateItemsRotation: /* Error: Ran out of types for this method. */;
 - (void)updateItemsPosition;
-- (BOOL)mouseMoved:(CDStruct_811921b8)arg1;
-- (void)draw;
+- (BOOL)mouseMoved:(CDStruct_8e4f4b1c)arg1;
+- (void)_updateActionWithEvent:(CDStruct_8e4f4b1c)arg1;
+- (id)hitTest:(CDStruct_8e4f4b1c)arg1;
+- (void)unhighlightSelectedNode;
+- (void)unlockLayout;
+- (void)lockLayout;
+@property(nonatomic) unsigned long long features;
+- (void)setAlternateMode:(BOOL)arg1;
+- (unsigned long long)_effectiveFeatures;
+- (void)updateManipulatorComponents;
+- (void)editingSpaceChanged;
+- (void)updateManipulatorNode;
+- (void)updateManipulatorPosition:(struct __C3DEngineContext *)arg1;
+- (void)setupNode;
+@property(readonly) SCNNode *manipulatorNode;
 - (BOOL)isDragging;
 - (long long)effectiveEditingSpace;
 - (id)copy;

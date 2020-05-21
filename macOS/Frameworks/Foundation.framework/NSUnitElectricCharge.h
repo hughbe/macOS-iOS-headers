@@ -12,6 +12,7 @@
 {
 }
 
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 + (id)microampereHours;
 + (id)milliampereHours;
 + (id)ampereHours;
@@ -19,6 +20,7 @@
 + (id)megaampereHours;
 + (id)coulombs;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

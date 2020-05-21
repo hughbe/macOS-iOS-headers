@@ -11,6 +11,8 @@
     BOOL _shouldCache;
 }
 
++ (BOOL)_canConvertBetweenCoordinateSpace:(id)arg1 andCoordinateSpace:(id)arg2;
++ (BOOL)canConvertBetweenCoordinateSpaceIdentifier:(void *)arg1 andCoordinateSpaceIdentifier:(void *)arg2;
 + (id)defaultConverter;
 @property(nonatomic) BOOL shouldCache; // @synthesize shouldCache=_shouldCache;
 - (void)invalidateCache;

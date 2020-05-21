@@ -6,7 +6,7 @@
 
 #import "NSPredicateEditorRowTemplate.h"
 
-@class NSPopUpButton;
+@class NSArray, NSPopUpButton;
 
 @interface AMRelativeDateRowTemplate : NSPredicateEditorRowTemplate
 {
@@ -14,9 +14,11 @@
     NSPopUpButton *datePopUpButton;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(retain) NSPopUpButton *datePopUpButton; // @synthesize datePopUpButton;
+@property BOOL hasCreatedViews; // @synthesize hasCreatedViews;
 - (double)matchForPredicate:(id)arg1;
-- (id)matchingLeftExpressions;
+@property(readonly) NSArray *matchingLeftExpressions;
 - (id)predicateWithSubpredicates:(id)arg1;
 - (void)setPredicate:(id)arg1;
 - (id)templateViews;

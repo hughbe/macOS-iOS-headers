@@ -8,13 +8,13 @@
 
 @interface RWIProtocolJSONObject : NSObject
 {
-    RefPtr_441310bd _inspectorObject;
+    RefPtr_568d2869 _object;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (RefPtr_97d4108e)inspectorArrayForKey:(id)arg1;
-- (void)setInspectorArray:(RefPtr_97d4108e *)arg1 forKey:(id)arg2;
+- (RefPtr_7a6ac2d3)JSONArrayForKey:(id)arg1;
+- (void)setJSONArray:(RefPtr_7a6ac2d3 *)arg1 forKey:(id)arg2;
 - (void)removeKey:(id)arg1;
 - (id)objectForKey:(id)arg1;
 - (id)stringForKey:(id)arg1;
@@ -26,8 +26,8 @@
 - (void)setDouble:(double)arg1 forKey:(id)arg2;
 - (void)setInteger:(int)arg1 forKey:(id)arg2;
 - (void)setBool:(BOOL)arg1 forKey:(id)arg2;
-- (RefPtr_441310bd)toInspectorObject;
-- (id)initWithInspectorObject:(const struct InspectorObject *)arg1;
+- (RefPtr_568d2869)toJSONObject;
+- (id)initWithJSONObject:(const struct Object *)arg1;
 - (id)init;
 
 @end

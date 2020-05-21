@@ -27,7 +27,7 @@
 - (BOOL)setValue:(id)arg1 withValueID:(unsigned int)arg2 forAttributeType:(id)arg3;
 - (BOOL)addValue:(id)arg1 toAttributeType:(id)arg2;
 - (BOOL)addAttribute:(id)arg1 value:(id)arg2;
-- (BOOL)setRecordNameTo:(id)arg1;
+- (long long)setRecordNameTo:(id)arg1;
 - (id)attributesForTypes:(id)arg1;
 - (id)attributeForType:(id)arg1 fullInfo:(BOOL)arg2;
 - (id)node;
@@ -35,7 +35,6 @@
 - (void)close;
 - (BOOL)isOpen;
 - (BOOL)open;
-- (id)replacementObjectForPortCoder:(id)arg1;
 - (id)description;
 - (void)finalize;
 - (void)dealloc;

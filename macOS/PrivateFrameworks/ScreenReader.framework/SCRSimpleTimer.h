@@ -6,20 +6,20 @@
 
 #import "NSObject.h"
 
-@class NSTimer, SCRCWeakReferenceContainer;
+@class NSTimer;
 
 __attribute__((visibility("hidden")))
 @interface SCRSimpleTimer : NSObject
 {
     NSTimer *__timer;
-    SCRCWeakReferenceContainer *__targetContainer;
+    id __target;
     SEL __selector;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) SEL _selector; // @synthesize _selector=__selector;
-@property(retain, nonatomic) SCRCWeakReferenceContainer *_targetContainer; // @synthesize _targetContainer=__targetContainer;
+@property(nonatomic) __weak id _target; // @synthesize _target=__target;
 @property(retain, nonatomic) NSTimer *_timer; // @synthesize _timer=__timer;
-- (void)dealloc;
 - (void)cancel;
 - (void)_fire;
 - (void)dispatchAfterDelay:(double)arg1;

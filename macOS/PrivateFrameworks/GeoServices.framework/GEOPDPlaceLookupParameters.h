@@ -8,14 +8,46 @@
 
 #import "NSCopying.h"
 
+@class NSMutableArray, PBDataReader, PBUnknownFields;
+
+__attribute__((visibility("hidden")))
 @interface GEOPDPlaceLookupParameters : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     CDStruct_62a50c50 _muids;
+    NSMutableArray *_identifiers;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     int _resultProviderId;
-    CDStruct_08086d5c _has;
+    BOOL _enablePartialClientization;
+    struct {
+        unsigned int has_resultProviderId:1;
+        unsigned int has_enablePartialClientization:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_muids:1;
+        unsigned int read_identifiers:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_muids:1;
+        unsigned int wrote_identifiers:1;
+        unsigned int wrote_resultProviderId:1;
+        unsigned int wrote_enablePartialClientization:1;
+    } _flags;
 }
 
-@property(nonatomic) int resultProviderId; // @synthesize resultProviderId=_resultProviderId;
++ (Class)identifierType;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (id)identifierAtIndex:(unsigned long long)arg1;
+- (unsigned long long)identifiersCount;
+- (void)_addNoFlagsIdentifier:(id)arg1;
+- (void)addIdentifier:(id)arg1;
+- (void)clearIdentifiers;
+@property(retain, nonatomic) NSMutableArray *identifiers;
+- (void)_readIdentifiers;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -23,17 +55,25 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasEnablePartialClientization;
+@property(nonatomic) BOOL enablePartialClientization;
 - (void)setMuids:(unsigned long long *)arg1 count:(unsigned long long)arg2;
 - (unsigned long long)muidAtIndex:(unsigned long long)arg1;
+- (void)_addNoFlagsMuid:(unsigned long long)arg1;
 - (void)addMuid:(unsigned long long)arg1;
 - (void)clearMuids;
 @property(readonly, nonatomic) unsigned long long *muids;
 @property(readonly, nonatomic) unsigned long long muidsCount;
+- (void)_readMuids;
 @property(nonatomic) BOOL hasResultProviderId;
+@property(nonatomic) int resultProviderId;
 - (void)dealloc;
-- (id)initWithMUIDs:(id)arg1 resultProviderID:(int)arg2;
+- (id)initWithData:(id)arg1;
+- (id)init;
+- (id)initWithIdentifiers:(id)arg1 resultProviderID:(int)arg2;
 
 @end
 

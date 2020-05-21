@@ -13,12 +13,14 @@
     CNContactCardViewController *_cardViewController;
 }
 
+- (void).cxx_destruct;
 - (id)identifiersForRecords:(id)arg1;
 - (id)updatedRecordsInLocalNotification:(id)arg1;
-- (BOOL)shouldRefreshCardViewWithIdentifiers:(id)arg1;
+- (BOOL)isCardViewProcessingChanges;
+- (BOOL)isSaving;
+- (BOOL)shouldRefreshCardViewWithIdentifiers:(id)arg1 forNotification:(id)arg2;
 - (void)handleExternalNotification:(id)arg1;
 - (void)handleLocalNotification:(id)arg1;
-- (void)dealloc;
 - (id)initWithCardViewController:(id)arg1;
 
 @end

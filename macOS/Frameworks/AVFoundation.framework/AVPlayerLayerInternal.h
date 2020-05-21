@@ -6,35 +6,42 @@
 
 #import "NSObject.h"
 
-@class AVNetworkPlaybackPerfHUDLayer, AVPlayer, AVPlayerItem, CALayer, FigSubtitleCALayer, FigVideoContainerLayer, NSDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString;
+@class AVKeyPathDependencyManager, AVNetworkPlaybackPerfHUDLayer, AVPlayer, AVPlayerLayer, CALayer, FigBaseCALayer, FigSubtitleCALayer, FigVideoContainerLayer, NSDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVPlayerLayerInternal : NSObject
 {
-    AVPlayer *_player;
-    CALayer *maskLayer;
-    FigVideoContainerLayer *videoLayer;
-    CALayer *closedCaptionLayer;
-    NSString *videoGravity;
-    NSString *subtitleGravity;
-    FigSubtitleCALayer *subtitleLayer;
     AVNetworkPlaybackPerfHUDLayer *hudLayer;
-    struct CGRect latestPlayerLayerBoundsAtRendering;
-    struct CGRect latestSubtitleLayoutAtRendering;
-    BOOL shouldObservePlayer;
-    BOOL isObservingPlayer;
-    BOOL hasPlayerToObserve;
-    NSSet *KVOInvokers;
     NSObject<OS_dispatch_queue> *serialQueue;
     BOOL isPresentationLayer;
-    BOOL isReadyForDisplay;
     struct OpaqueFigSimpleMutex *isReadyForDisplayMutex;
-    AVPlayerItem *itemMarkedReadyForDisplay;
-    struct CGSize presentationSize;
-    struct CGSize latestPresentationSizeAtRendering;
+    NSObject<OS_dispatch_queue> *configurationQueue;
+    AVKeyPathDependencyManager *dependencyManager;
+    id playerItemHasEnqueuedVideoFrameListener;
+    AVPlayer *player;
+    NSString *videoGravity;
     NSDictionary *pixelBufferAttributes;
-    struct CATransform3D oldSublayerTransform;
     BOOL lanczosDownscalingEnabled;
     long long lanczosDownscalingFactor;
+    FigBaseCALayer *maskLayer;
+    FigVideoContainerLayer *videoLayer;
+    FigSubtitleCALayer *subtitleLayer;
+    FigBaseCALayer *closedCaptionLayer;
+    BOOL isForScrubbingOnly;
+    AVPlayerLayer *associatedRemoteModeLayer;
+    BOOL willManageSublayersAsSwappedLayers;
+    long long activeMode;
+    BOOL isReadyForDisplay;
+    AVPlayer *playerBeingObserved;
+    NSSet *KVOInvokers;
+    struct CGSize latestAppliedPresentationSize;
+    BOOL preventsChangesToSublayerHierarchy;
+    NSDictionary *clientLayers;
+    BOOL isPIPModeEnabled;
+    CALayer *placeholderContentLayerDuringPIPMode;
+    BOOL isConnectedToSecondScreen;
+    BOOL honorContentScale;
+    double screenScale;
 }
 
 @end

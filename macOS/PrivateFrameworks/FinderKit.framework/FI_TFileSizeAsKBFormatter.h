@@ -9,9 +9,10 @@
 __attribute__((visibility("hidden")))
 @interface FI_TFileSizeAsKBFormatter : FI_TFileSizeFormatter
 {
-    struct TNSRef<FI_TFileSizeFormatter *, void> _fileSizeFormatterZeroValue;
+    struct TNSRef<FI_TFileSizeFormatter, void> _fileSizeFormatterZeroValue;
 }
 
++ (id)sharedFormatter;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)stringForObjectValue:(id)arg1;

@@ -13,19 +13,20 @@
 __attribute__((visibility("hidden")))
 @interface FI_TTagSuggestionsWindowController : NSWindowController <NSWindowDelegate>
 {
-    FI_TTaggingTokenField *_taggingTokenField;
+    struct TNSWeakPtr<FI_TTaggingTokenField, void> _weakTaggingTokenField;
     struct CGRect _tokenFieldFrameInWindowCache;
     struct TRef<__CFMachPort *, TRetainReleasePolicy<CFMachPortRef>> _localEventMonitor;
     struct TRef<__CFRunLoopSource *, TRetainReleasePolicy<CFRunLoopSourceRef>> _localEventSource;
     _Bool _hideSuggestionsWindowOnMouseUp;
     _Bool _isShowingSuggestionsWindow;
+    struct TNSRef<NSLayoutConstraint, void> _widthConstraint;
     struct TNotificationCenterObserver _tfWillMoveToWindowObserver;
     struct TNotificationCenterObserver _tfDidMoveToWindowObserver;
     struct TNotificationCenterObserver _tfFrameDidChangeObserver;
     struct TNotificationCenterObserver _tfSuperScrollViewDidScrollObserver;
-    struct TNotificationCenterObserver _tfWindowWillZoomClosedObserver;
     struct TNotificationCenterObserver _tfWindowWillCloseObserver;
     struct TNotificationCenterObserver _tfWindowDidResizeObserver;
+    struct TKeyValueObserver _taggingTokenFieldTornDownObserver;
 }
 
 - (id).cxx_construct;
@@ -43,16 +44,17 @@ __attribute__((visibility("hidden")))
 - (void)tokenFieldWillMoveToWindow:(id)arg1;
 - (void)stopObservingTokenFieldWindow;
 - (void)startObservingTokenFieldWindow:(id)arg1;
+- (id)superScrollView;
 - (void)setTaggingTokenField:(id)arg1;
+@property(readonly, nonatomic) __weak FI_TTaggingTokenField *taggingTokenField; // @dynamic taggingTokenField;
 - (void)dealloc;
-- (id)initWithSuggestionsTable:(id)arg1 taggingTokenField:(id)arg2;
+- (id)initWithSuggestionsViewController:(id)arg1 taggingTokenField:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
-@property(readonly, nonatomic) FI_TTaggingTokenField *taggingTokenField; // @dynamic taggingTokenField;
 
 @end
 

@@ -15,6 +15,7 @@
 - (void)recordUserSelectedIndex:(unsigned long long)arg1;
 - (void)recordUserSelectedPredictionAtIndex:(unsigned long long)arg1;
 - (void)recordUserSawResultsConsideredSuggestion:(unsigned long long)arg1;
+- (void)recordUserSawCuratedResults:(unsigned long long)arg1;
 - (void)recordUserSawPredictions;
 @end
 

@@ -14,20 +14,11 @@
 }
 
 + (unsigned long long)targetVersion;
-@property(readonly, copy, nonatomic) NSArray *accounts; // @synthesize accounts=_accounts;
 - (void).cxx_destruct;
-- (long long)_messageForTemporaryUID:(unsigned int)arg1 mailboxID:(long long)arg2;
-- (long long)_messageIDForUID:(unsigned int)arg1 mailboxID:(long long)arg2;
-- (void)_addActionMessagesForActionID:(long long)arg1 uids:(id)arg2 uidsAreReal:(BOOL)arg3 mailboxID:(long long)arg4;
-- (id)_convertLabelNameArrayToLabelSet:(id)arg1 account:(id)arg2;
-- (void)_convertCopyMessagesOperation:(id)arg1 mailboxID:(long long)arg2 account:(id)arg3;
-- (void)_convertAppendMessageOperation:(id)arg1 mailboxID:(long long)arg2;
-- (void)_setLabelsOnAction:(long long)arg1 labels:(id)arg2 add:(BOOL)arg3 handle:(id)arg4 db:(struct sqlite3 *)arg5;
-- (void)_convertStoreLabelsOperation:(id)arg1 mailboxID:(long long)arg2 account:(id)arg3;
-- (void)_convertStoreFlagsOperation:(id)arg1 mailboxID:(long long)arg2;
+@property(readonly, copy, nonatomic) NSArray *accounts; // @synthesize accounts=_accounts;
 - (void)runWithRowIDsNeedingConversationRecalculation:(id)arg1;
-- (id)initWithSQLHandle:(id)arg1;
-- (id)initWithSQLHandle:(id)arg1 accounts:(id)arg2;
+- (id)initWithDatabaseConnection:(id)arg1;
+- (id)initWithDatabaseConnection:(id)arg1 accounts:(id)arg2;
 
 @end
 

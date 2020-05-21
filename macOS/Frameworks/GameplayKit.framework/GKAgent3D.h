@@ -10,10 +10,14 @@
 {
 }
 
++ (BOOL)supportsSecureCoding;
+- (void)applyBrakingForce:(float)arg1 deltaTime:(double)arg2;
+- (void)applySteeringForce:(double)arg1 deltaTime: /* Error: Ran out of types for this method. */;
 - (void)updateWithDeltaTime:(double)arg1;
 // Error parsing type for property rotation:
 // Property attributes: T{?=[3]},N
 
+@property(nonatomic) BOOL rightHanded;
 // Error parsing type for property velocity:
 // Property attributes: T,R,N
 

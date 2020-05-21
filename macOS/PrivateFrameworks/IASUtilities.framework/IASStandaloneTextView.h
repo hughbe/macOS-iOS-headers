@@ -13,10 +13,11 @@
     IASFirstResponderDisablingTextView *textView;
 }
 
-@property(retain) IASFirstResponderDisablingTextView *textView; // @synthesize textView;
 - (void).cxx_destruct;
+@property(retain) IASFirstResponderDisablingTextView *textView; // @synthesize textView;
 - (struct CGSize)intrinsicContentSize;
 - (void)dealloc;
+- (void)awakeFromNib;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

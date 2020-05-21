@@ -6,30 +6,51 @@
 
 #import <CloudKitDaemon/CKDDatabaseOperation.h>
 
-@class NSArray, NSObject<OS_dispatch_group>;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet;
 
 __attribute__((visibility("hidden")))
 @interface CKDFetchRecordZonesOperation : CKDDatabaseOperation
 {
     BOOL _isFetchAllRecordZonesOperation;
+    BOOL _shouldRetry;
+    BOOL _onlyFetchPCSInfo;
     BOOL _ignorePCSFailures;
     CDUnknownBlockType _recordZoneFetchedProgressBlock;
     NSArray *_recordZoneIDs;
-    NSObject<OS_dispatch_group> *_zoneFetchGroup;
+    NSMutableDictionary *_zonesToSaveForPCSUpdateByZoneID;
+    NSMutableArray *_zoneIDsNeedingPCSUpdateRetry;
+    NSMutableDictionary *_pcsUpdateErrorsByZoneID;
+    long long _numZoneSaveAttempts;
+    NSMutableSet *_zoneIDsNeedingDugongKeyRoll;
 }
 
-@property(retain, nonatomic) NSObject<OS_dispatch_group> *zoneFetchGroup; // @synthesize zoneFetchGroup=_zoneFetchGroup;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL ignorePCSFailures; // @synthesize ignorePCSFailures=_ignorePCSFailures;
+@property(retain, nonatomic) NSMutableSet *zoneIDsNeedingDugongKeyRoll; // @synthesize zoneIDsNeedingDugongKeyRoll=_zoneIDsNeedingDugongKeyRoll;
+@property(nonatomic) BOOL onlyFetchPCSInfo; // @synthesize onlyFetchPCSInfo=_onlyFetchPCSInfo;
+@property(nonatomic) long long numZoneSaveAttempts; // @synthesize numZoneSaveAttempts=_numZoneSaveAttempts;
+@property(retain, nonatomic) NSMutableDictionary *pcsUpdateErrorsByZoneID; // @synthesize pcsUpdateErrorsByZoneID=_pcsUpdateErrorsByZoneID;
+@property(retain, nonatomic) NSMutableArray *zoneIDsNeedingPCSUpdateRetry; // @synthesize zoneIDsNeedingPCSUpdateRetry=_zoneIDsNeedingPCSUpdateRetry;
+@property(nonatomic) BOOL shouldRetry; // @synthesize shouldRetry=_shouldRetry;
+@property(retain, nonatomic) NSMutableDictionary *zonesToSaveForPCSUpdateByZoneID; // @synthesize zonesToSaveForPCSUpdateByZoneID=_zonesToSaveForPCSUpdateByZoneID;
 @property(nonatomic) BOOL isFetchAllRecordZonesOperation; // @synthesize isFetchAllRecordZonesOperation=_isFetchAllRecordZonesOperation;
 @property(retain, nonatomic) NSArray *recordZoneIDs; // @synthesize recordZoneIDs=_recordZoneIDs;
 @property(copy, nonatomic) CDUnknownBlockType recordZoneFetchedProgressBlock; // @synthesize recordZoneFetchedProgressBlock=_recordZoneFetchedProgressBlock;
-- (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)main;
+- (void)checkPCSIdentity;
+- (void)fetchZonesFromServer;
+- (void)_cachePCSOnRecordZone:(id)arg1;
+- (void)_continueHandlingFetchedRecordZone:(id)arg1 zoneID:(id)arg2;
 - (void)_handleRecordZoneFetch:(id)arg1 zoneID:(id)arg2 responseCode:(id)arg3;
-- (void)_updateZonePCSIfNeeded:(id)arg1 operation:(id)arg2 completion:(CDUnknownBlockType)arg3;
-- (BOOL)_saveUpdatedZoneToServer:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2 operation:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)saveZonesWithUpdatedZonePCS;
+- (void)_handleRecordZoneSaved:(id)arg1 error:(id)arg2;
+- (BOOL)_locked_checkAndUpdateZonePCSIfNeededForZone:(id)arg1 error:(id *)arg2;
+- (void)_locked_callbackForRecordZone:(id)arg1 zoneID:(id)arg2 error:(id)arg3;
+- (void)_sendErrorForFailedZones;
 - (id)activityCreate;
+- (id)nameForState:(unsigned long long)arg1;
+- (BOOL)makeStateTransition;
 - (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2;
 
 @end

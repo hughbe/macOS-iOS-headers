@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSImage, NSMutableDictionary;
+@class NSColor, NSMutableDictionary, NSSliderAccessory, NSTimer;
 
 __attribute__((visibility("hidden")))
 @interface _NSSliderCellPrivateData : NSObject
@@ -14,11 +14,15 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_tickMarkProminence;
     double originalValue;
     double defaultValue;
-    NSImage *minValueImage;
-    NSImage *maxValueImage;
+    long long trackingPressureStage;
+    NSSliderAccessory *minimumValueAccessory;
+    NSSliderAccessory *maximumValueAccessory;
     id <NSSliderCellMetricsStrategy> metricsStrategy;
+    NSTimer *repeatTimer;
+    NSColor *_trackFillColor;
 }
 
+@property(copy) NSColor *trackFillColor; // @synthesize trackFillColor=_trackFillColor;
 - (void)dealloc;
 @property(copy) NSMutableDictionary *tickMarkProminence;
 

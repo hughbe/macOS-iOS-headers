@@ -15,10 +15,10 @@
 }
 
 + (id)sharedInstance;
-@property(retain) FTMessageDelivery *_delivery; // @synthesize _delivery;
-@property(retain) NSArray *_regions; // @synthesize _regions;
+- (void).cxx_destruct;
+@property(retain) FTMessageDelivery *delivery; // @synthesize delivery=_delivery;
+@property(retain) NSArray *regions; // @synthesize regions=_regions;
 - (id)regionForID:(id)arg1;
-@property(readonly) NSArray *regions;
 @property(readonly) BOOL isLoading;
 @property(readonly) BOOL isLoaded;
 - (void)flushRegions;

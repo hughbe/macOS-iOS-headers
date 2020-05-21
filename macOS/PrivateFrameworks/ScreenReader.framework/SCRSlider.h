@@ -6,7 +6,7 @@
 
 #import <ScreenReader/SCRMapElement.h>
 
-@class SCRElement;
+@class NSString, SCRElement;
 
 __attribute__((visibility("hidden")))
 @interface SCRSlider : SCRMapElement
@@ -14,24 +14,26 @@ __attribute__((visibility("hidden")))
     long long _orientation;
     SCRElement *_valueIndicator;
     unsigned char _echoState;
+    BOOL __handlingValueChangeNotification;
+    NSString *_valueDescriptionAtLastValueChange;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL _handlingValueChangeNotification; // @synthesize _handlingValueChangeNotification=__handlingValueChangeNotification;
+@property(copy, nonatomic) NSString *valueDescriptionAtLastValueChange; // @synthesize valueDescriptionAtLastValueChange=_valueDescriptionAtLastValueChange;
 @property(nonatomic) unsigned char echoState; // @synthesize echoState=_echoState;
 - (void)setIsEventHandler:(BOOL)arg1 isKeyboardHandler:(BOOL)arg2;
 - (void)echoValueChangeToRequest:(id)arg1;
 - (BOOL)handleReadValueChangeCallbackForEvent:(id)arg1 request:(id)arg2;
 - (void)handleAttributeChange:(id)arg1;
-- (BOOL)brailleLineAllowsChildren;
-- (id)brailleLineElementForUIElement:(id)arg1;
-- (void)updateBrailleLineWithFocusedElement:(id)arg1;
-- (void)buildBrailleLineWithFocusedElement:(id)arg1;
-- (void)sendBrailleLineWithElement:(id)arg1 focusThrough:(BOOL)arg2 forceRebuild:(BOOL)arg3;
+- (long long)brailleLineType;
 - (id)description;
+- (id)_defaultLocalizedStringForCommandKey:(id)arg1;
 - (void)delayOutputValueDescription;
 - (void)addElementSummaryToRequest:(id)arg1;
 - (id)summaryTypeDescription;
 - (id)typeDescription;
-- (id)statusDescriptionWithOptionsMask:(int)arg1;
+- (id)statusDescription;
 - (id)valueDescription;
 - (id)interactionValueDescription;
 - (id)_linkedDescription;
@@ -52,7 +54,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)interactLeftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpWithEvent:(id)arg1 request:(id)arg2;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 - (BOOL)isControlElement;
 - (BOOL)isInteractive;
 - (BOOL)isAdjustable;
@@ -80,7 +82,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)_hasMultipleIndicators;
 - (BOOL)allowBuildChildren;
 - (BOOL)canHandleValueChange;
-- (void)deallocChildren;
 - (void)dealloc;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 

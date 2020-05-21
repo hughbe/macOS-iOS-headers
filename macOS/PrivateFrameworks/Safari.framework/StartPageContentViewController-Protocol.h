@@ -10,6 +10,7 @@
 
 @protocol StartPageContentViewController <NSObject>
 + (NSString *)defaultPageTitle;
+@property(readonly, nonatomic) double topContentInset;
 @property(readonly, nonatomic) NSView *titleView;
 @property(retain, nonatomic) NSView *externalCenteringView;
 @property(readonly, nonatomic) NSString *pageTitle;

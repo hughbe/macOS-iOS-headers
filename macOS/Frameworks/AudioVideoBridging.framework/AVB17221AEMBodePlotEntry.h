@@ -20,6 +20,8 @@
 @property(nonatomic) float phase; // @synthesize phase;
 @property(nonatomic) float magnitude; // @synthesize magnitude;
 @property(nonatomic) float frequency; // @synthesize frequency;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 @property(readonly, copy, nonatomic) NSData *valueData; // @dynamic valueData;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)updateWithXML:(id)arg1;

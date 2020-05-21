@@ -33,6 +33,7 @@
     NSArray *configurations;
 }
 
++ (id)keyPathsForValuesAffectingCurrentConfigurationObject;
 + (id)keyPathsForValuesAffectingDynamicEntityModelID;
 + (id)keyPathsForValuesAffectingDynamicEntityID;
 + (id)keyPathsForValuesAffectingLocalizedModelName;
@@ -94,6 +95,8 @@
 @property unsigned long long entityModelID; // @synthesize entityModelID;
 @property unsigned long long entityID; // @synthesize entityID;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (void)renumberDescriptorWithNextIndexes:(id)arg1;
 - (void)updateDependentContent;
 - (id)debugLogStringWithIndentation:(id)arg1;

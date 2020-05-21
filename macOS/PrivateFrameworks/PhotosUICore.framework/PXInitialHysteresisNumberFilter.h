@@ -14,6 +14,7 @@
 }
 
 @property(nonatomic) double hysteresis; // @synthesize hysteresis=_hysteresis;
+@property(readonly, nonatomic) double outputDerivative;
 - (double)updatedOutput;
 
 @end

@@ -7,6 +7,9 @@
 #import "PQLBindable.h"
 
 @protocol PQLValuable <PQLBindable>
-+ (id)newFromSqliteValue:(struct Mem *)arg1;
+
+@optional
++ (id)newFromSqliteStatement:(struct sqlite3_stmt *)arg1 atIndex:(int)arg2;
++ (id)newFromSqliteValue:(struct sqlite3_value *)arg1;
 @end
 

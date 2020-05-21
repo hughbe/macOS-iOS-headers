@@ -8,14 +8,21 @@
 
 #import "NSCopying.h"
 
-@class NSArray, NSData, NSDate, NSDictionary, NSMutableDictionary, NSNumber, NSString;
+@class IDSDestination, IDSOutgoingMessageCheckpointTrace, NSArray, NSData, NSDate, NSDictionary, NSMutableDictionary, NSNumber, NSString;
 
 @interface IDSSendParameters : NSObject <NSCopying>
 {
     NSMutableDictionary *_params;
+    IDSOutgoingMessageCheckpointTrace *_checkpointTrace;
 }
 
-@property(readonly, retain, nonatomic) NSDate *expirationDate;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSDate *expirationDate;
+@property(nonatomic) BOOL ignoreMaxRetryCount;
+@property(nonatomic) BOOL sessionForceInternetInvitation;
+@property(nonatomic) BOOL liveMessageDelivery;
+@property(nonatomic) BOOL disallowRefresh;
+@property(nonatomic) BOOL alwaysSkipSelf;
 @property(nonatomic) BOOL allowCloudDelivery;
 @property(nonatomic) BOOL forceEncryptionOff;
 @property(nonatomic) BOOL disableAliasValidation;
@@ -25,16 +32,20 @@
 @property(nonatomic) BOOL fireAndForget;
 @property(nonatomic) BOOL bypassSizeCheck;
 @property(nonatomic) BOOL daemonDeathResend;
+@property(nonatomic) BOOL nonCloudWaking;
 @property(nonatomic) BOOL nonWaking;
 @property(nonatomic) BOOL activityContinuation;
 @property(nonatomic) BOOL bypassStorage;
 @property(nonatomic) BOOL fakeMessage;
 @property(nonatomic) BOOL bypassDuet;
 @property(nonatomic) double timeout;
+@property(nonatomic) BOOL requireLocalWiFi;
 @property(nonatomic) BOOL requireBluetooth;
 @property(nonatomic) BOOL localDelivery;
 @property(nonatomic) long long priority;
+@property(nonatomic) BOOL wantsCertifiedDelivery;
 @property(nonatomic) BOOL wantsDeliveryStatus;
+@property(nonatomic) BOOL wantsProgress;
 @property(nonatomic) BOOL wantsResponse;
 @property(nonatomic) BOOL compressPayload;
 @property(nonatomic) BOOL encryptPayload;
@@ -42,6 +53,11 @@
 @property(nonatomic) BOOL useDictAsTopLevel;
 @property(nonatomic) BOOL compressed;
 @property(nonatomic) BOOL expectsPeerResponse;
+@property(retain, nonatomic) NSNumber *originalTimestamp;
+@property(retain, nonatomic) NSNumber *dropMessageIndicatorCommand;
+@property(retain, nonatomic) NSString *metricReportIdentifier;
+@property(retain, nonatomic) NSData *groupData;
+@property(retain, nonatomic) NSString *sessionID;
 @property(retain, nonatomic) NSNumber *messageType;
 @property(retain, nonatomic) NSString *localDestinationDeviceUUID;
 @property(retain, nonatomic) NSString *originalfromID;
@@ -60,21 +76,24 @@
 @property(retain, nonatomic) NSData *messageUUID;
 @property(retain, nonatomic) NSDictionary *deliveryStatusContext;
 @property(retain, nonatomic) NSString *identifier;
+@property(retain, nonatomic) NSNumber *commandContext;
 @property(retain, nonatomic) NSNumber *command;
 @property(retain, nonatomic) NSData *dataToEncrypt;
 @property(retain, nonatomic) NSString *accountUUID;
-@property(retain, nonatomic) NSArray *destinations;
+@property(retain, nonatomic) NSArray *finalDestinations;
+@property(retain, nonatomic) IDSDestination *destinations;
 @property(retain, nonatomic) NSString *fromID;
 @property(retain, nonatomic) NSDictionary *resourceMetadata;
 @property(retain, nonatomic) NSString *resourcePath;
 @property(retain, nonatomic) NSDictionary *protobuf;
 @property(retain, nonatomic) NSDictionary *message;
 @property(retain, nonatomic) NSData *data;
-@property(readonly, retain, nonatomic) NSDictionary *dictionaryRepresentation;
+@property(retain, nonatomic) IDSOutgoingMessageCheckpointTrace *checkpointTrace; // @synthesize checkpointTrace=_checkpointTrace;
+@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
+- (id)dictionaryRepresentationIncludingTrace:(BOOL)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
 - (id)objectForKey:(id)arg1;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDictionary:(id)arg1;

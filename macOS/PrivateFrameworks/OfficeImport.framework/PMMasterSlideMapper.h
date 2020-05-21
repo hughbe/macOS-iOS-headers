@@ -14,8 +14,8 @@ __attribute__((visibility("hidden")))
     PDSlideBase *_slide;
 }
 
+- (void).cxx_destruct;
 - (void)mapMasterGraphicsAt:(id)arg1 withState:(id)arg2;
-- (void)dealloc;
 - (id)initWithPDSlide:(id)arg1 parent:(id)arg2;
 
 @end

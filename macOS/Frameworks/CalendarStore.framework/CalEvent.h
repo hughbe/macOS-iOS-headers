@@ -20,9 +20,9 @@
     NSDate *_occurrence;
 }
 
-+ (id)event;
 + (id)eventFromRemoteManagedObject:(id)arg1 skipTimezoneTranslation:(BOOL)arg2;
 + (id)eventFromRemoteManagedObject:(id)arg1;
++ (id)event;
 @property(copy, nonatomic) NSDate *occurrence; // @synthesize occurrence=_occurrence;
 @property BOOL isDetached; // @synthesize isDetached=_isDetached;
 @property(copy) NSArray *attendees; // @synthesize attendees=_attendees;
@@ -31,7 +31,11 @@
 @property(copy) CalRecurrenceRule *recurrenceRule; // @synthesize recurrenceRule=_recurrenceRule;
 @property(copy) NSString *location; // @synthesize location=_location;
 @property BOOL isAllDay; // @synthesize isAllDay=_isAllDay;
-@property BOOL isInvitation;
+- (id)remoteManagedEventFromEvent;
+- (id)attachments;
+- (void)setAttachments:(id)arg1;
+- (BOOL)isInvitation;
+- (void)setIsInvitation:(BOOL)arg1;
 - (void)_createReservedDictionaryIfNeeded;
 - (void)finalize;
 - (void)dealloc;
@@ -43,9 +47,6 @@
 - (id)nextAlarmDate;
 - (id)initWithTitle:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 UID:(id)arg4;
 - (id)initWithTitle:(id)arg1 UID:(id)arg2;
-- (id)attachments;
-- (void)setAttachments:(id)arg1;
-- (id)remoteManagedEventFromEvent;
 
 @end
 

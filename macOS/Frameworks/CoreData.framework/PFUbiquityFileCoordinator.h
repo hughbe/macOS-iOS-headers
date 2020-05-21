@@ -19,7 +19,7 @@ __attribute__((visibility("hidden")))
 + (id)newFileCoordinatorForUbiquityRootLocation:(id)arg1;
 @property(readonly, nonatomic) NSString *localPeerID; // @synthesize localPeerID=_localPeerID;
 - (BOOL)shouldRetryForError:(id)arg1 ignoreFile:(char *)arg2;
-- (void)coordinateReadingItemAtLocation:(id)arg1 options:(unsigned long long)arg2 retryOnError:(BOOL)arg3 error:(id *)arg4 byAccessor:(CDUnknownBlockType)arg5;
+- (BOOL)coordinateReadingItemAtLocation:(id)arg1 options:(unsigned long long)arg2 retryOnError:(BOOL)arg3 error:(id *)arg4 byAccessor:(CDUnknownBlockType)arg5;
 - (void)dealloc;
 - (id)initWithFilePresenter:(id)arg1;
 

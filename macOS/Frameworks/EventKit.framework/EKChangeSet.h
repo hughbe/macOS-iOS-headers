@@ -12,6 +12,7 @@
 
 @interface EKChangeSet : NSObject <NSCopying>
 {
+    BOOL _skipsPersistentObjectCopy;
     BOOL _isNew;
     BOOL _isModified;
     BOOL _isSaved;
@@ -22,6 +23,7 @@
     NSMutableDictionary *_multiValueRemovals;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *multiValueRemovals; // @synthesize multiValueRemovals=_multiValueRemovals;
 @property(retain, nonatomic) NSMutableDictionary *multiValueAdditions; // @synthesize multiValueAdditions=_multiValueAdditions;
 @property(retain, nonatomic) NSMutableDictionary *singleValueChanges; // @synthesize singleValueChanges=_singleValueChanges;
@@ -30,15 +32,23 @@
 @property(nonatomic) BOOL isSaved; // @synthesize isSaved=_isSaved;
 @property(nonatomic) BOOL isModified; // @synthesize isModified=_isModified;
 @property(nonatomic) BOOL isNew; // @synthesize isNew=_isNew;
-- (void).cxx_destruct;
+- (BOOL)isEffectivelyEqual:(id)arg1;
+- (BOOL)isEqual:(id)arg1;
 - (id)summary;
 - (id)description;
+- (void)setSkipsPersistentObjectCopy:(BOOL)arg1;
+- (BOOL)skipsPersistentObjectCopy;
 - (void)forceChangeValue:(id)arg1 forKey:(id)arg2;
-- (id)_uniqueIDToObjectMapForObjects:(id)arg1;
+- (id)_semanticIdentifierToObjectMapForObjects:(id)arg1;
 - (void)_cleanupEmptySetsForMultiValueKey:(id)arg1;
+- (void)addChangesAndUpdateUniqueMultiValueObjects:(id)arg1;
+- (void)replaceUniqueMultiValueObjectsWithUpdatedObjects:(id)arg1;
 - (void)removeFromChanges:(id)arg1 forMultiValueKey:(id)arg2 basedOn:(id)arg3;
 - (void)addToChanges:(id)arg1 forMultiValueKey:(id)arg2 basedOn:(id)arg3;
 - (void)addChanges:(id)arg1;
+- (void)replaceMultiChangeAddedObject:(id)arg1 withObject:(id)arg2 forKey:(id)arg3;
+- (BOOL)isUniqueAddedObject:(id)arg1 forKey:(id)arg2;
+- (id)valuesForMultiValueKey:(id)arg1 basedOnSet:(id)arg2;
 - (id)valuesForMultiValueKey:(id)arg1 basedOn:(id)arg2;
 - (void)changeSingleValue:(id)arg1 forKey:(id)arg2 basedOn:(id)arg3 and:(id)arg4;
 - (void)changeSingleValue:(id)arg1 forKey:(id)arg2 basedOn:(id)arg3;

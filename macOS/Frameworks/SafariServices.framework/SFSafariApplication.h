@@ -10,8 +10,12 @@
 {
 }
 
++ (void)dispatchMessageWithName:(id)arg1 toExtensionWithIdentifier:(id)arg2 userInfo:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
++ (void)showPreferencesForExtensionWithIdentifier:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
++ (void)getHostApplicationWithCompletionHandler:(CDUnknownBlockType)arg1;
 + (void)setToolbarItemsNeedUpdate;
 + (void)openWindowWithURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
++ (void)getAllWindowsWithCompletionHandler:(CDUnknownBlockType)arg1;
 + (void)getActiveWindowWithCompletionHandler:(CDUnknownBlockType)arg1;
 
 @end

@@ -16,6 +16,7 @@
 
 + (id)appPunchOutEventWithDictionary:(id)arg1 context:(id)arg2;
 + (id)appPunchOutEvent;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSURL *punchOutUri;
 @property(copy, nonatomic) NSString *punchOutName;
 @property(copy, nonatomic) NSString *originalCommandId;

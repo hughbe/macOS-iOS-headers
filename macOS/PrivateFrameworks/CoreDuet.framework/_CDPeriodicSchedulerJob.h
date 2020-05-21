@@ -11,21 +11,29 @@
 @interface _CDPeriodicSchedulerJob : NSObject
 {
     long long _period;
+    double _interval;
     NSString *_jobName;
     NSObject<OS_dispatch_queue> *_queue;
     CDUnknownBlockType _handler;
     NSObject<OS_xpc_object> *_executionCriteria;
+    BOOL _isHandlerAsynchronous;
+    NSObject<OS_xpc_object> *_activity;
 }
 
++ (id)jobWithInterval:(double)arg1 schedulerJobName:(id)arg2 queue:(id)arg3 asynchronousHandler:(BOOL)arg4 handler:(CDUnknownBlockType)arg5;
++ (id)jobWithInterval:(double)arg1 schedulerJobName:(id)arg2 handler:(CDUnknownBlockType)arg3;
 + (id)jobWithPeriod:(long long)arg1 schedulerJobName:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (void).cxx_destruct;
+@property(readonly) BOOL isHandlerAsynchronous; // @synthesize isHandlerAsynchronous=_isHandlerAsynchronous;
+@property(retain) NSObject<OS_xpc_object> *activity; // @synthesize activity=_activity;
 @property(readonly) NSObject<OS_xpc_object> *executionCriteria; // @synthesize executionCriteria=_executionCriteria;
 @property(readonly) CDUnknownBlockType handler; // @synthesize handler=_handler;
 @property(readonly) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(readonly) NSString *jobName; // @synthesize jobName=_jobName;
+@property(readonly) double interval; // @synthesize interval=_interval;
 @property(readonly) long long period; // @synthesize period=_period;
-- (void).cxx_destruct;
-- (id)initWithPeriod:(long long)arg1 schedulerJobName:(id)arg2 queue:(id)arg3 handler:(CDUnknownBlockType)arg4;
-- (id)initWithPeriod:(long long)arg1 schedulerJobName:(id)arg2 handler:(CDUnknownBlockType)arg3;
+- (void)setExecutionCriteria:(id)arg1;
+- (id)initWithPeriod:(long long)arg1 interval:(double)arg2 schedulerJobName:(id)arg3 queue:(id)arg4 asynchronousHandler:(BOOL)arg5 handler:(CDUnknownBlockType)arg6;
 - (id)init;
 
 @end

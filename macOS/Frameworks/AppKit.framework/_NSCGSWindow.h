@@ -6,24 +6,24 @@
 
 #import <AppKit/NSCGSWindow.h>
 
-@class NSCGSWindowCornerMask, NSDictionary;
+@class NSCGSWindowCornerMask, NSDictionary, NSMapTable, _NSCGSWindowMovementChildren;
 
 __attribute__((visibility("hidden")))
 @interface _NSCGSWindow : NSCGSWindow
 {
     unsigned int _windowID;
+    unsigned int _ownerID;
     unsigned int _externalWindow:1;
-    unsigned short _flags;
-    struct CGSRegionObject *_shape;
+    unsigned int _flags;
+    struct CGSRegionObject *_relativeShape;
     struct CGSRegionObject *_opaqueShape;
     struct CGSRegionObject *_eventShape;
     NSCGSWindowCornerMask *_cornerMask;
     NSDictionary *_shadowProperties;
     struct CGPoint _origin;
     double _opacity;
+    double _backdropChameleonContribution;
     double _backdropBleedFraction;
-    int _level;
-    int _subLevel;
     struct CGSRegionObject *_dragRegion;
     struct CGSRegionObject *_activationRegion;
     struct CGSRegionObject *_buttonRegion;
@@ -31,30 +31,46 @@ __attribute__((visibility("hidden")))
     unsigned int _backdropsAreFrozen:1;
     unsigned int _hasKeyAppearance:1;
     unsigned int _hasMainAppearance:1;
-    unsigned int _clearDragRegion:1;
-    unsigned int _clearActivationRegion:1;
-    unsigned int _clearButtonRegion:1;
     unsigned int _useActiveShadow:1;
+    NSMapTable *_transforms;
+    _NSCGSWindowMovementChildren *_movementChildren;
+    NSCGSWindow *_relativeMoveParent;
+    struct CGSize _relativeMoveOffset;
+    struct CGSRegionObject *_mouseConfinementRegion;
+    struct CGColor *_chameleonOverrideColor;
 }
 
-- (void)removeDragSubregionForCommandModifier:(struct CGSRegionObject *)arg1;
-- (void)removeDragSubregion:(struct CGSRegionObject *)arg1;
-- (void)addButtonRegion:(struct CGSRegionObject *)arg1;
-- (void)addActivationRegion:(struct CGSRegionObject *)arg1;
-- (void)addDragRegion:(struct CGSRegionObject *)arg1;
-- (void)clearButtonRegion;
-- (void)clearActivationRegion;
-- (void)clearDragRegion;
+- (void)setChameleonOverrideColor:(struct CGColor *)arg1;
+- (struct CGColor *)chameleonOverrideColor;
+- (void)moveToWindow:(id)arg1 offsetX:(double)arg2 Y:(double)arg3;
+- (id)movementChildren;
+- (void)setMovementChildren:(id)arg1;
+- (void)removeAllMovementChildren;
+- (void)removeMovementChild:(id)arg1;
+- (void)addMovementChild:(id)arg1;
+- (void)setTransform:(struct CGAffineTransform)arg1 placement:(int)arg2;
+- (void)setButtonShape:(struct CGSRegionObject *)arg1;
+- (struct CGSRegionObject *)buttonShape;
+- (void)setActivationShape:(struct CGSRegionObject *)arg1;
+- (struct CGSRegionObject *)activationShape;
+- (void)confineMouseToRect:(struct CGRect)arg1;
+- (void)setCommandModifierExclusionShape:(struct CGSRegionObject *)arg1;
+- (struct CGSRegionObject *)commandModifierExclusionShape;
+- (void)setDragShape:(struct CGSRegionObject *)arg1;
+- (struct CGSRegionObject *)dragShape;
 - (void)thaw;
 - (void)freezeWithOptions:(id)arg1;
 - (void)setHasMainAppearance:(BOOL)arg1;
 - (BOOL)hasMainAppearance;
 - (void)setHasKeyAppearance:(BOOL)arg1;
 - (BOOL)hasKeyAppearance;
+- (void)_setBackdropChameleonContribution:(double)arg1;
+- (double)_backdropChameleonContribution;
 - (void)_setBackdropBleedFraction:(double)arg1;
 - (double)_backdropBleedFraction;
 - (void)_setBackdropsAreFrozen:(BOOL)arg1;
 - (BOOL)_backdropsAreFrozen;
+- (void)invalidateAlphaShape;
 - (void)setUseActiveShadow:(BOOL)arg1;
 - (BOOL)useActiveShadow;
 - (void)setShadowProperties:(id)arg1;
@@ -67,23 +83,25 @@ __attribute__((visibility("hidden")))
 - (struct CGSRegionObject *)opaqueShape;
 - (void)setOpacity:(double)arg1;
 - (double)opacity;
-- (void)setSubLevel:(int)arg1;
-- (int)subLevel;
-- (void)setLevel:(int)arg1;
-- (int)level;
+- (void)setSize:(struct CGSize)arg1;
 - (struct CGSize)size;
+- (void)moveGroupByX:(double)arg1 Y:(double)arg2 isChildOfGroupMovement:(BOOL)arg3;
+- (void)moveGroupByX:(double)arg1 Y:(double)arg2;
+- (void)moveByX:(double)arg1 Y:(double)arg2 isChildOfGroupMovement:(BOOL)arg3;
 - (void)moveByX:(double)arg1 Y:(double)arg2;
 - (void)setFrame:(struct CGRect)arg1;
 - (struct CGRect)frame;
+- (void)_prepareForRelativeMoveForWindow:(id)arg1;
 - (void)setShape:(struct CGSRegionObject *)arg1;
 - (struct CGSRegionObject *)shape;
-- (struct CGImage *)imageInRect:(struct CGRect)arg1;
+- (unsigned int)ownerID;
 - (unsigned int)windowID;
 - (id)description;
 - (void)dealloc;
 - (id)initWithWindowID:(unsigned int)arg1;
 - (id)init;
 - (id)initWithConnectionID:(unsigned int)arg1;
+- (BOOL)_hasUncommittedSpaceGeometryChanges;
 
 @end
 

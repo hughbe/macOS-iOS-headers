@@ -6,7 +6,7 @@
 
 #import <OfficeImport/OCXReadState.h>
 
-@class CXNamespace, ECColumnWidthConvertor, EDReference, EDResources, EDSheet, EDWorkbook, EXOAVState, EXOfficeArtState, NSMutableArray, NSMutableDictionary, OCPPackagePart, TCImportTracing;
+@class CXNamespace, ECColumnWidthConvertor, EDReference, EDResources, EDSheet, EDWorkbook, EXOAVState, EXOfficeArtState, NSMutableArray, NSMutableDictionary, OCPPackagePart;
 
 __attribute__((visibility("hidden")))
 @interface EXReadState : OCXReadState
@@ -34,7 +34,6 @@ __attribute__((visibility("hidden")))
     EDWorkbook *mWorkbook;
     EDResources *mResources;
     id <TCCancelDelegate> mCancelDelegate;
-    TCImportTracing *mTracing;
     CXNamespace *mEXSpreadsheetMLNamespace;
     CXNamespace *mEXSpreadsheetDrawingNamespace;
     CXNamespace *mEXSpreadsheetRelationsNamespace;
@@ -42,16 +41,16 @@ __attribute__((visibility("hidden")))
     unsigned int mCurrentRowMaxColumnIndex;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) id <TCCancelDelegate> cancelDelegate; // @synthesize cancelDelegate=mCancelDelegate;
 @property(retain, nonatomic) CXNamespace *EXSpreadsheetRelationsNamespace; // @synthesize EXSpreadsheetRelationsNamespace=mEXSpreadsheetRelationsNamespace;
 @property(retain, nonatomic) CXNamespace *EXSpreadsheetDrawingNamespace; // @synthesize EXSpreadsheetDrawingNamespace=mEXSpreadsheetDrawingNamespace;
 @property(retain, nonatomic) CXNamespace *EXSpreadsheetMLNamespace; // @synthesize EXSpreadsheetMLNamespace=mEXSpreadsheetMLNamespace;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (void)setupNSForXMLFormat:(int)arg1;
 - (BOOL)isCancelled;
-- (void)reportWorksheetWarning:(struct TCTaggedMessageStructure *)arg1;
-- (void)reportWarning:(struct TCTaggedMessageStructure *)arg1;
+- (void)reportWorksheetWarning:(id)arg1;
+- (void)reportWarning:(id)arg1;
 - (id)legacyDrawables;
 - (id)columnWidthConvertor;
 - (void)relationshipNameSpaceForWorkbook:(struct _xmlNs *)arg1;
@@ -93,8 +92,7 @@ __attribute__((visibility("hidden")))
 - (unsigned int)currentRowMinColumnIndex;
 - (void)setCurrentSheetIndex:(unsigned int)arg1;
 - (unsigned int)currentSheetIndex;
-- (void)dealloc;
-- (id)initWithWorkbookPart:(id)arg1 cancelDelegate:(id)arg2 tracing:(id)arg3;
+- (id)initWithWorkbookPart:(id)arg1 cancelDelegate:(id)arg2;
 
 @end
 

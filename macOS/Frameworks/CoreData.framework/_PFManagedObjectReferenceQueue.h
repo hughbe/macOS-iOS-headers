@@ -24,7 +24,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)_queueBatchForDealloc:(struct __CFArray *)arg1;
 - (BOOL)_queueForDealloc:(id)arg1;
 - (BOOL)_signal;
-- (BOOL)_GC_queueForDealloc:(id)arg1;
 - (void)_processReferenceQueue:(BOOL)arg1;
 - (long long)_queueCount;
 - (void)_contextDidDealloc;

@@ -8,16 +8,26 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader;
 
 @interface GEOLogMsgStateMapLaunch : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_launchUri;
     NSString *_sourceAppId;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_launchUri:1;
+        unsigned int read_sourceAppId:1;
+        unsigned int wrote_launchUri:1;
+        unsigned int wrote_sourceAppId:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *launchUri; // @synthesize launchUri=_launchUri;
-@property(retain, nonatomic) NSString *sourceAppId; // @synthesize sourceAppId=_sourceAppId;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +35,17 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *launchUri;
 @property(readonly, nonatomic) BOOL hasLaunchUri;
+- (void)_readLaunchUri;
+@property(retain, nonatomic) NSString *sourceAppId;
 @property(readonly, nonatomic) BOOL hasSourceAppId;
-- (void)dealloc;
+- (void)_readSourceAppId;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

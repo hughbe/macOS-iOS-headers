@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
     NSDictionary *_webSharingIdentityDataByRecordID;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDictionary *webSharingIdentityDataByRecordID; // @synthesize webSharingIdentityDataByRecordID=_webSharingIdentityDataByRecordID;
 @property(nonatomic) unsigned long long maxUnwrapAttempts; // @synthesize maxUnwrapAttempts=_maxUnwrapAttempts;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *recordDecryptQueue; // @synthesize recordDecryptQueue=_recordDecryptQueue;
@@ -29,18 +30,20 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSObject<OS_dispatch_group> *recordDecryptGroup; // @synthesize recordDecryptGroup=_recordDecryptGroup;
 @property(retain, nonatomic) NSMutableArray *outstandingDecryptions; // @synthesize outstandingDecryptions=_outstandingDecryptions;
 @property(nonatomic) BOOL forcePCSDecrypt; // @synthesize forcePCSDecrypt=_forcePCSDecrypt;
-- (void).cxx_destruct;
 - (void)main;
+- (id)_possiblyWrapError:(id)arg1 forRecordWithID:(id)arg2 withCode:(long long)arg3 format:(id)arg4;
 - (void)_finishDecryptOperation;
 - (void)finishDecryption;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (id)_unwrapEncryptedPropertiesOnRecord:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2;
-- (id)_unwrapPackageAssets:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2;
-- (id)_unwrapAssetKey:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2;
+- (id)_unwrapEncryptedPropertiesForRecordValueStore:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2;
+- (id)_unwrapPackageAssets:(id)arg1 inRecordWithID:(id)arg2 forField:(id)arg3 withPCS:(struct _OpaquePCSShareProtection *)arg4;
+- (id)_unwrapAssetKeyForAsset:(id)arg1 inRecordWithID:(id)arg2 forField:(id)arg3 withPCS:(struct _OpaquePCSShareProtection *)arg4;
 - (void)_handleProtectionDataForRecordInfo:(id)arg1;
 - (void)_handleShareProtectionDataForRecordInfo:(id)arg1;
 - (id)_decryptRecordPCSForRecord:(id)arg1 usingChainPCS:(id)arg2;
 - (id)_decryptRecordPCSForRecord:(id)arg1 usingSharePCS:(id)arg2;
+- (id)_decryptRecordPCSForRecord:(id)arg1 usingZonePCS:(id)arg2;
 - (void)_handleZoneProtectionDataForRecordInfo:(id)arg1;
 - (void)_decryptRecordInfo:(id)arg1 usingWebSharingIdentityData:(id)arg2;
 - (void)_decryptRecordInfo:(id)arg1;

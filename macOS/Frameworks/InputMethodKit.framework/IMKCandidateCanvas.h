@@ -35,7 +35,7 @@
 @property(retain, nonatomic) NSView *informationView; // @synthesize informationView=_informationView;
 @property(nonatomic) struct CGSize size; // @synthesize size=_size;
 @property(nonatomic) long long canvasTypeForWindowType; // @synthesize canvasTypeForWindowType=_canvasTypeForWindowType;
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
+@property(nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
 @property(retain, nonatomic) IMKCandidateStepperView *stepperView; // @synthesize stepperView=_stepperView;
 @property(retain, nonatomic) IMKCandidateSelectionView *selectionView; // @synthesize selectionView=_selectionView;
 @property(retain, nonatomic) IMKCandidateGroupView *groupView; // @synthesize groupView=_groupView;
@@ -56,16 +56,20 @@
 - (void)showArrowViewWithAnimation:(BOOL)arg1;
 - (void)hideArrowViewWithAnimation:(BOOL)arg1;
 - (void)updateStepperViewVisibility;
+- (void)updateArrowViewVisibilityWithTarget:(id)arg1;
 - (void)updateArrowViewVisibility;
 - (void)removeAuxilliaryViews;
 - (void)hideSelectionView;
 - (void)showSelectionViewAtBottom;
 - (void)showCandidateAndGroupView;
-- (void)removeCandidateView;
+- (void)removeCandidateAndRelatedViews;
+- (void)updateClipViewRadius;
 - (void)showCandidateViewAtTop;
 - (void)showCandidateViewAtTopWithBottomMargin:(double)arg1;
 - (void)updateViewForWindowType;
+- (void)updateConnections;
 @property(readonly, nonatomic) BOOL layoutDirectionIsRTL;
+- (void)nilOutConnectionsToCandidateController;
 - (void)dealloc;
 - (id)initWithCanvasView:(id)arg1 candidateController:(id)arg2;
 

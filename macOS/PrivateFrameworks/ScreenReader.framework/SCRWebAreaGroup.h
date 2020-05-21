@@ -18,15 +18,22 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldMap;
 - (BOOL)shouldMapElement:(id)arg1;
 - (BOOL)handleEvent:(id)arg1 request:(id)arg2;
+- (id)childInAXOrderForward:(BOOL)arg1 horizontal:(BOOL)arg2 visibleOnly:(BOOL)arg3 wrapped:(char *)arg4 didHitBoundary:(char *)arg5 startElement:(id)arg6;
+- (id)prepareArrayToFocusInto;
+- (BOOL)needToRebuildChildren;
+- (BOOL)shouldPromoteForMovingUIElement:(id)arg1;
+- (id)focusOntoUIElement:(id)arg1 withScrolling:(BOOL)arg2 withSelection:(BOOL)arg3;
 - (id)lastChildForFocusing;
 - (id)firstChildForFocusing;
 - (id)visibleChildrenDescriptionIgnoringChild:(id)arg1;
+- (BOOL)_addContainerSummaryToRequest:(id)arg1;
 - (void)addElementSummaryToRequest:(id)arg1;
-- (id)statusDescriptionWithOptionsMask:(int)arg1;
+- (id)statusDescription;
 - (BOOL)shouldPromoteUIElement:(id)arg1;
 - (void)addItemNameToRequest:(id)arg1;
 - (BOOL)performDefaultActionWithRequest:(id)arg1 allowClick:(BOOL)arg2;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
+- (BOOL)shouldSpeakItemCountWhenFocusingIn;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end

@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSSecureCoding.h"
+
 @class NSArray, NSDictionary, NSManagedObject;
 
-@interface NSConstraintConflict : NSObject
+@interface NSConstraintConflict : NSObject <NSSecureCoding>
 {
     NSArray *_constraint;
     NSManagedObject *_databaseObject;
@@ -18,6 +20,7 @@
     NSArray *_conflictingSnapshots;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(readonly, retain) NSDictionary *databaseSnapshot; // @synthesize databaseSnapshot=_databaseSnapshot;
 @property(readonly, retain) NSManagedObject *databaseObject; // @synthesize databaseObject=_databaseObject;
 @property(readonly, copy) NSArray *conflictingSnapshots; // @synthesize conflictingSnapshots=_conflictingSnapshots;
@@ -25,8 +28,11 @@
 @property(readonly, copy) NSArray *conflictingObjects; // @synthesize conflictingObjects=_conflictingObjects;
 @property(readonly, copy) NSArray *constraint; // @synthesize constraint=_constraint;
 - (BOOL)_isDBConflict;
+- (id)debugDescription;
 - (id)description;
-- (BOOL)supportsSecureCoding;
+- (void)_doCleanupForXPCStore:(id)arg1 context:(id)arg2;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)initWithConstraint:(id)arg1 databaseObject:(id)arg2 databaseSnapshot:(id)arg3 conflictingObjects:(id)arg4 conflictingSnapshots:(id)arg5;
 

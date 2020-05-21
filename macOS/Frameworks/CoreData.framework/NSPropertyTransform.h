@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSSecureCoding.h"
+
 @class NSExpression, NSString;
 
 __attribute__((visibility("hidden")))
-@interface NSPropertyTransform : NSObject
+@interface NSPropertyTransform : NSObject <NSSecureCoding>
 {
     NSExpression *_valueExpression;
     NSString *_propertyName;
@@ -17,6 +19,7 @@ __attribute__((visibility("hidden")))
     BOOL _replaceMissingValueOnly;
 }
 
++ (BOOL)supportsSecureCoding;
 @property BOOL replaceMissingValueOnly; // @synthesize replaceMissingValueOnly=_replaceMissingValueOnly;
 @property(retain, nonatomic) NSPropertyTransform *prerequisiteTransform; // @synthesize prerequisiteTransform=_prerequisiteTransform;
 @property(retain, nonatomic) NSExpression *valueExpression; // @synthesize valueExpression=_valueExpression;

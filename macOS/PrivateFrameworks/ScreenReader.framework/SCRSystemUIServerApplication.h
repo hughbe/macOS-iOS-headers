@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)openFauxMenuExtraItem:(id)arg1;
+- (void).cxx_destruct;
 - (void)_focusOnMenuExtras;
 - (void)_refreshMenuExtras;
 - (id)_menuExtraMenuBar;
@@ -27,7 +28,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)handleEvent:(id)arg1 request:(id)arg2;
 - (void)setChildren:(id)arg1;
 - (void)focusOut;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (void)addItemDescriptionToRequest:(id)arg1;
 - (BOOL)trackMenuBarGestureEvent:(id)arg1 request:(id)arg2;
 - (id)uiElementForPersistentSpotData:(id)arg1 frontmostOnly:(BOOL)arg2;
@@ -36,7 +37,6 @@ __attribute__((visibility("hidden")))
 - (id)uiMenuBar;
 - (id)menuBar;
 - (BOOL)isSystemUIServerApplication;
-- (void)dealloc;
 
 @end
 

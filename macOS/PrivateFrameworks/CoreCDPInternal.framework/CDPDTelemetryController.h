@@ -13,6 +13,9 @@
 + (id)sharedInstance;
 - (void)stateMachineStartedFromClient:(unsigned long long)arg1;
 - (void)signInSucceededWithIncorrectICSCAttemptCount:(unsigned long long)arg1 didUseRemoteApproval:(BOOL)arg2;
+- (void)signInWithUserElectingResetProtectedData;
+- (void)signInWithUserSkippingFlow;
+- (void)stateMachineFailureDueToSyncFailure;
 - (void)signInFailedDueIncorrectICSCAttempts;
 - (void)signInFailedDueToLockedAccount;
 - (void)piggybackSuccess;
@@ -25,6 +28,7 @@
 - (void)pcsMigrationFailed;
 - (void)pcsMigrationSucceeded;
 - (void)didRemoveLocalSecret;
+- (void)didAttemptEscrowPreRecord;
 - (void)didChangeLocalSecret;
 
 @end

@@ -15,6 +15,11 @@ struct CGSize {
     double height;
 };
 
+struct _MSVSignedRange {
+    long long _field1;
+    long long _field2;
+};
+
 struct internal_state;
 
 struct z_stream_s {

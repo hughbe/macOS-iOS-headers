@@ -10,6 +10,7 @@
 
 @class NSString, SHKSharingService;
 
+__attribute__((visibility("hidden")))
 @interface SHKHostExtensionContext : NSExtensionContext <SHKHostExtensionContextProtocol>
 {
     id <NSSharingExtensionContextProtocol> _remote;
@@ -18,8 +19,8 @@
 
 + (id)_extensionAuxiliaryVendorProtocol;
 + (id)_extensionAuxiliaryHostProtocol;
-@property __weak SHKSharingService *service; // @synthesize service=_service;
 - (void).cxx_destruct;
+@property __weak SHKSharingService *service; // @synthesize service=_service;
 - (void)invalidateRemoteWindowControllerWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)startSessionTeardownByCallingContinuationBlock:(CDUnknownBlockType)arg1;
 - (void)animateRemoteWithCompletionHandler:(CDUnknownBlockType)arg1;

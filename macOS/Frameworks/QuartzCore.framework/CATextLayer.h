@@ -37,7 +37,6 @@
 - (id)_createStringDict;
 - (void)didChangeValueForKey:(id)arg1;
 - (void)dealloc;
-- (id)initWithLayer:(id)arg1;
 - (id)init;
 - (id)implicitAnimationForKeyPath:(id)arg1;
 @property(copy) id truncationString;

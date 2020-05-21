@@ -26,10 +26,11 @@
 - (void)requestFreeSpace:(unsigned long long)arg1 onVolume:(id)arg2 forInstallingRequest:(id)arg3 appStoreOnly:(BOOL)arg4 forSystemSoftware:(BOOL)arg5 notifyOn:(id)arg6 withBlock:(CDUnknownBlockType)arg7;
 - (unsigned long long)irrelevantSpaceOnVolume:(id)arg1 forInstallingRequest:(id)arg2;
 - (unsigned long long)purgeableSpaceOnVolume:(id)arg1 appStoreOnly:(BOOL)arg2 forSystemSoftware:(BOOL)arg3;
-- (unsigned long long)purgeOrphanedSpaceOnVolume:(id)arg1;
-- (unsigned long long)orphanedSpaceOnVolume:(id)arg1;
+- (unsigned long long)cleanupOrphanedSpaceOnVolume:(id)arg1;
 - (unsigned long long)purgeableSpaceOnVolume:(id)arg1 appStoreOnly:(BOOL)arg2;
 - (unsigned long long)purgeableSpaceOnVolume:(id)arg1;
+- (id)_installerSandboxesPathForVolume:(id)arg1 forSystemSoftware:(BOOL)arg2;
+- (BOOL)_ensureDirectoryExists:(id)arg1 withMode:(unsigned short)arg2 withUID:(unsigned int)arg3 withGID:(unsigned int)arg4;
 - (BOOL)_canCreateDirectoryUnder:(id)arg1;
 - (id)_repositoryParentPathForRootVolume;
 - (id)_sandboxRepositoryForDestination:(id)arg1 forSystemSoftware:(BOOL)arg2 create:(BOOL)arg3 error:(id *)arg4;
@@ -44,14 +45,15 @@
 - (id)_activeSandboxPathsForDestination:(id)arg1 forSystemSoftware:(BOOL)arg2;
 - (id)_currentSandboxPathsForDestination:(id)arg1 forSystemSoftware:(BOOL)arg2;
 - (id)_sandboxAtPath:(id)arg1 matchingRequest:(id)arg2 forUse:(BOOL)arg3;
+- (BOOL)_isSandboxStaleAtPath:(id)arg1;
 - (id)_statePathForSandboxAtPath:(id)arg1;
 - (BOOL)hasStagedSandboxForRequest:(id)arg1;
+- (void)discardSandbox:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)discardSandbox:(id)arg1;
 - (BOOL)saveSandboxAsStaged:(id)arg1;
-- (BOOL)_saveSandboxState:(id)arg1 sessionIDOnly:(BOOL)arg2;
+- (BOOL)_saveSandboxState:(id)arg1;
 - (id)_sessionUUIDFilePathForSandboxAtPath:(id)arg1;
-- (id)_sessionUUIDForSandboxPath:(id)arg1 oSandboxCreationDate:(id *)arg2;
-- (id)sandboxForRequest:(id)arg1 error:(id *)arg2;
+- (id)sandboxForRequest:(id)arg1 created:(char *)arg2 error:(id *)arg3;
 - (void)dealloc;
 - (id)init;
 

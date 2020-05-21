@@ -7,10 +7,7 @@
 #import "NSObject.h"
 
 @protocol GGLRenderQueueSource <NSObject>
-- (RenderQueue_e4212455 *)renderQueue;
-
-@optional
-- (void)didReadPixels:(shared_ptr_4ce39eb2 *)arg1;
-- (void)didPresent;
+- (struct RenderQueue *)renderQueueForTimestamp:(double)arg1;
+- (BOOL)isDelayedRenderQueueConsumptionSupported;
 @end
 

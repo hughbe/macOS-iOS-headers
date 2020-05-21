@@ -14,11 +14,11 @@ __attribute__((visibility("hidden")))
     NSMutableArray *mStopArray;
 }
 
+- (void).cxx_destruct;
 - (unsigned long long)count;
 - (unsigned int)columnSpan:(float)arg1 at:(unsigned int)arg2;
 - (void)mergeStopArray:(id)arg1;
 - (float)stopAt:(unsigned int)arg1;
-- (void)dealloc;
 - (id)initWithStopArray:(id)arg1;
 
 @end

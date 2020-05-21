@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class CKDPRecord, CKDPRecordSaveRequestConflictLoserUpdate, CKDPRecordSaveRequestShareIdUpdate, CKDPRecordSaveRequestShareSaveInfo, NSMutableArray, NSString;
+@class CKDPRecord, CKDPRecordSaveRequestConflictLoserUpdate, CKDPRecordSaveRequestShareIdUpdate, CKDPRequestedFields, NSMutableArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CKDPRecordSaveRequest : PBRequest <NSCopying>
@@ -20,10 +20,10 @@ __attribute__((visibility("hidden")))
     NSString *_parentChainProtectionInfoTag;
     CKDPRecord *_record;
     NSString *_recordProtectionInfoTag;
+    CKDPRequestedFields *_requestedFields;
     int _saveSemantics;
     NSString *_shareEtag;
     CKDPRecordSaveRequestShareIdUpdate *_shareIDUpdate;
-    CKDPRecordSaveRequestShareSaveInfo *_shareSaveInfo;
     NSString *_zoneProtectionInfoTag;
     BOOL _merge;
     struct {
@@ -35,7 +35,8 @@ __attribute__((visibility("hidden")))
 + (Class)conflictLosersToResolveType;
 + (Class)fieldsToDeleteIfExistOnMergeType;
 + (id)options;
-@property(retain, nonatomic) CKDPRecordSaveRequestShareSaveInfo *shareSaveInfo; // @synthesize shareSaveInfo=_shareSaveInfo;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CKDPRequestedFields *requestedFields; // @synthesize requestedFields=_requestedFields;
 @property(retain, nonatomic) NSString *parentChainProtectionInfoTag; // @synthesize parentChainProtectionInfoTag=_parentChainProtectionInfoTag;
 @property(retain, nonatomic) CKDPRecordSaveRequestShareIdUpdate *shareIDUpdate; // @synthesize shareIDUpdate=_shareIDUpdate;
 @property(retain, nonatomic) NSString *shareEtag; // @synthesize shareEtag=_shareEtag;
@@ -47,7 +48,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSMutableArray *fieldsToDeleteIfExistOnMerges; // @synthesize fieldsToDeleteIfExistOnMerges=_fieldsToDeleteIfExistOnMerges;
 @property(nonatomic) BOOL merge; // @synthesize merge=_merge;
 @property(retain, nonatomic) CKDPRecord *record; // @synthesize record=_record;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -59,7 +59,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-@property(readonly, nonatomic) BOOL hasShareSaveInfo;
+@property(readonly, nonatomic) BOOL hasRequestedFields;
 @property(readonly, nonatomic) BOOL hasParentChainProtectionInfoTag;
 @property(readonly, nonatomic) BOOL hasShareIDUpdate;
 @property(readonly, nonatomic) BOOL hasShareEtag;

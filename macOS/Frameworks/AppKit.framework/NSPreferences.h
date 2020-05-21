@@ -8,7 +8,7 @@
 
 #import "NSWindowRestoration.h"
 
-@class NSBox, NSButton, NSMatrix, NSMutableArray, NSMutableDictionary, NSString, NSWindow;
+@class NSBox, NSButton, NSLayoutConstraint, NSMatrix, NSMutableArray, NSMutableDictionary, NSString, NSWindow;
 
 @interface NSPreferences : NSObject <NSWindowRestoration>
 {
@@ -27,6 +27,10 @@
     double _constrainedWidth;
     id _currentModule;
     void *_reserved;
+    BOOL _needsCentering;
+    NSLayoutConstraint *_helpButtonLeadingConstraint;
+    NSLayoutConstraint *_helpButtonTopConstraint;
+    NSButton *_helpButton;
 }
 
 + (void)restoreWindowWithIdentifier:(id)arg1 state:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
@@ -45,6 +49,9 @@
 - (BOOL)windowShouldClose:(id)arg1;
 - (void)confirmCloseSheetIsDone:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (id)windowTitle;
+- (void)activateModuleHelp:(id)arg1;
+- (id)_currentModuleHelpBook;
+- (id)_currentModuleHelpAnchor;
 - (void)_selectModuleOwner:(id)arg1;
 - (void)apply:(id)arg1;
 - (void)cancel:(id)arg1;
@@ -56,7 +63,6 @@
 - (id)_setupPreferencesPanelForOwnerAtIndex:(long long)arg1;
 - (id)_setupPreferencesPanelForOwner:(id)arg1;
 - (void)showPreferencesPanel;
-- (struct CGSize)preferencesContentSize;
 - (void)_setupUI;
 - (void)_setupToolbar;
 - (void)addPreferenceNamed:(id)arg1 owner:(id)arg2;

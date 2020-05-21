@@ -14,6 +14,7 @@
 - (long long)currentThemeForReaderAppearanceViewController:(ReaderAppearanceViewController *)arg1;
 - (WBSReaderFont *)currentFontForReaderAppearanceViewController:(ReaderAppearanceViewController *)arg1;
 - (void)readerAppearanceViewController:(ReaderAppearanceViewController *)arg1 switchToFont:(WBSReaderFont *)arg2;
+- (NSArray *)possibleFontsForReaderAppearanceViewController:(ReaderAppearanceViewController *)arg1;
 - (NSArray *)availableFontsForReaderAppearanceViewController:(ReaderAppearanceViewController *)arg1;
 - (void)readerAppearanceViewController:(ReaderAppearanceViewController *)arg1 switchToTheme:(long long)arg2;
 - (void)readerAppearanceViewController:(ReaderAppearanceViewController *)arg1 performFontSizeAdjustment:(long long)arg2;

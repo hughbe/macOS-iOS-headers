@@ -17,6 +17,7 @@
 }
 
 + (id)completionForSubstring:(id)arg1 displayedName:(id)arg2 firstName:(id)arg3 lastName:(id)arg4 address:(id)arg5 isLocation:(BOOL)arg6;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *cuAddress; // @synthesize cuAddress=_cuAddress;
 @property(retain) NSString *address; // @synthesize address=_address;
 @property int freeBusyType; // @synthesize freeBusyType=_freeBusyType;
@@ -38,7 +39,6 @@
 - (id)firstName;
 - (id)displayedName;
 - (id)principalPath;
-- (void)dealloc;
 - (id)initWithAddress:(id)arg1;
 
 @end

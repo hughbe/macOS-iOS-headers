@@ -6,7 +6,7 @@
 
 #import <ContactsPersistence/ABCDOwnedObject.h>
 
-@class NSString;
+@class ABCDContact, NSString;
 
 @interface ABCDNote : ABCDOwnedObject
 {
@@ -17,6 +17,10 @@
 - (void)setOwner:(id)arg1;
 - (id)owner;
 @property(retain, nonatomic) NSString *text; // @dynamic text;
+
+// Remaining properties
+@property(readonly, nonatomic) ABCDContact *contact; // @dynamic contact;
+@property(retain, nonatomic) NSString *primitiveText; // @dynamic primitiveText;
 
 @end
 

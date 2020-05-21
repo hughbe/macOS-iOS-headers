@@ -6,8 +6,6 @@
 
 #import <Metal/MTLArgumentInternal.h>
 
-@class MTLStructTypeInternal;
-
 __attribute__((visibility("hidden")))
 @interface MTLBufferArgument : MTLArgumentInternal
 {
@@ -15,19 +13,24 @@ __attribute__((visibility("hidden")))
     unsigned int _vertexDescriptorBuffer:1;
     unsigned short _alignment;
     unsigned int _dataSize;
-    MTLStructTypeInternal *_structType;
 }
 
-- (id)describe;
+- (id)formattedDescription:(unsigned long long)arg1;
+- (id)bufferIndirectArgumentType;
+- (id)bufferPointerType;
+- (id)structType;
 - (id)bufferStructType;
 - (unsigned long long)bufferDataSize;
 - (unsigned long long)bufferDataType;
 - (unsigned long long)bufferAlignment;
 - (void)setStructType:(id)arg1;
+- (void)setStructType:(id)arg1 doRetain:(BOOL)arg2;
 - (BOOL)isVertexDescriptorBuffer;
 - (void)setVertexDescriptorBuffer:(BOOL)arg1;
+- (void)setAlignment:(unsigned long long)arg1;
+- (void)setDataSize:(unsigned long long)arg1;
 - (void)dealloc;
-- (id)initWithName:(id)arg1 type:(unsigned long long)arg2 access:(unsigned long long)arg3 isActive:(BOOL)arg4 locationIndex:(unsigned long long)arg5 arraySize:(unsigned long long)arg6 dataType:(unsigned long long)arg7 dataSize:(unsigned long long)arg8 alignment:(unsigned long long)arg9;
+- (id)initWithName:(id)arg1 type:(unsigned long long)arg2 access:(unsigned long long)arg3 isActive:(BOOL)arg4 locationIndex:(unsigned long long)arg5 arraySize:(unsigned long long)arg6 dataType:(unsigned long long)arg7 isConstantBuffer:(BOOL)arg8 dataSize:(unsigned long long)arg9 alignment:(unsigned long long)arg10;
 
 @end
 

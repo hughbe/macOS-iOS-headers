@@ -11,7 +11,7 @@
 }
 
 - (void)parsePluginStatusChatItem:(id)arg1 withElement:(id)arg2;
-- (id)contentTypeForImageData:(id)arg1;
+- (id)payloadDictionary:(id)arg1;
 
 @end
 

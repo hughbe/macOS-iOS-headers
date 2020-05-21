@@ -4,28 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <MediaRemote/_MRLanguageOptionGroupProtobuf.h>
 
 #import "NSSecureCoding.h"
 
-@class MRLanguageOption, NSArray;
-
 __attribute__((visibility("hidden")))
-@interface MRLanguageOptionGroup : NSObject <NSSecureCoding>
+@interface MRLanguageOptionGroup : _MRLanguageOptionGroupProtobuf <NSSecureCoding>
 {
-    BOOL _allowEmptySelection;
-    MRLanguageOption *_defaultLanguageOption;
-    NSArray *_languageOptions;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(readonly, nonatomic) NSArray *languageOptions; // @synthesize languageOptions=_languageOptions;
-@property(readonly, nonatomic) MRLanguageOption *defaultLanguageOption; // @synthesize defaultLanguageOption=_defaultLanguageOption;
-@property(readonly, nonatomic) BOOL allowEmptySelection; // @synthesize allowEmptySelection=_allowEmptySelection;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
-- (id)initWithLanguageOptions:(id)arg1 defaultLanguageOption:(void *)arg2 allowEmptySelection:(BOOL)arg3;
 
 @end
 

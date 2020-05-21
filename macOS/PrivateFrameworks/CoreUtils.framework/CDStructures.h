@@ -4,7 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#pragma mark Blocks
+#pragma mark Function Pointers and Blocks
+
+typedef void (*CDUnknownFunctionPointerType)(void); // return type and parameters are unknown
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
@@ -50,6 +52,50 @@ struct __va_list_tag {
     void *_field4;
 };
 
+struct _opaque_pthread_mutex_t {
+    long long __sig;
+    char __opaque[56];
+};
+
+struct buffer {
+    char *x;
+    unsigned int p;
+    unsigned int n;
+    int fd;
+    CDUnknownFunctionPointerType op;
+};
+
+struct cdb {
+    char *map;
+    int fd;
+    unsigned int size;
+    unsigned int loop;
+    unsigned int khash;
+    unsigned int kpos;
+    unsigned int hpos;
+    unsigned int hslots;
+    unsigned int dpos;
+    unsigned int dlen;
+};
+
+struct cdb_hp;
+
+struct cdb_hplist;
+
+struct cdb_make {
+    char bspace[8192];
+    char final[2048];
+    unsigned int count[256];
+    unsigned int start[256];
+    struct cdb_hplist *head;
+    struct cdb_hp *split;
+    struct cdb_hp *hash;
+    unsigned int numentries;
+    struct buffer b;
+    unsigned int pos;
+    int fd;
+};
+
 struct in6_addr {
     union {
         unsigned char __u6_addr8[16];
@@ -60,6 +106,11 @@ struct in6_addr {
 
 struct in_addr {
     unsigned int s_addr;
+};
+
+struct iovec {
+    void *iov_base;
+    unsigned long long iov_len;
 };
 
 struct sockaddr {
@@ -84,4 +135,31 @@ struct sockaddr_in6 {
     struct in6_addr sin6_addr;
     unsigned int sin6_scope_id;
 };
+
+#pragma mark Typedef'd Structures
+
+typedef struct {
+    unsigned char bytes[6];
+} CDStruct_83abfce7;
+
+typedef struct {
+    int _field1;
+    long long _field2;
+    long long _field3;
+    char *_field4;
+    int _field5;
+    long long _field6;
+    long long _field7;
+    int _field8;
+    struct _opaque_pthread_mutex_t _field9;
+    struct _telldir *_field10;
+} CDStruct_56034278;
+
+#pragma mark Typedef'd Unions
+
+typedef union {
+    struct sockaddr sa;
+    struct sockaddr_in v4;
+    struct sockaddr_in6 v6;
+} CDUnion_fab80606;
 

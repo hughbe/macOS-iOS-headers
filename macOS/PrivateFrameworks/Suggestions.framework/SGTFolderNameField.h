@@ -19,9 +19,10 @@
     NSObject<OS_dispatch_queue> *_cacheAccessQueue;
 }
 
-@property(retain) NSString *lastCompletedText; // @synthesize lastCompletedText=_lastCompletedText;
-@property(retain) NSArray *suggestions; // @synthesize suggestions=_suggestions;
-@property(retain) NSString *lastActualText; // @synthesize lastActualText=_lastActualText;
+- (void).cxx_destruct;
+@property(copy) NSString *lastCompletedText; // @synthesize lastCompletedText=_lastCompletedText;
+@property(copy) NSArray *suggestions; // @synthesize suggestions=_suggestions;
+@property(copy) NSString *lastActualText; // @synthesize lastActualText=_lastActualText;
 - (void)textDidChange:(id)arg1;
 - (void)textViewDidChangeSelection:(id)arg1;
 - (void)dd_complete;

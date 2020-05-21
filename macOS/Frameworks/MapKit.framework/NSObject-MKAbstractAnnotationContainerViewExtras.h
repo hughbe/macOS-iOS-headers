@@ -7,8 +7,10 @@
 #import "NSObject.h"
 
 @interface NSObject (MKAbstractAnnotationContainerViewExtras)
++ (BOOL)_mapkit_instanceImplementationOfSelector:(SEL)arg1 isFromSubclassOfClass:(Class)arg2;
 - (BOOL)_mapkit_isInternalAnnotationView;
 - (BOOL)_mapkit_isInternalAnnotation;
-- (BOOL)_mapkit_internalAnnotationAllowsCustomView;
+- (BOOL)_isMKClusterAnnotation;
+- (BOOL)_mapkit_implementationOfSelector:(SEL)arg1 isFromSubclassOfClass:(Class)arg2;
 @end
 

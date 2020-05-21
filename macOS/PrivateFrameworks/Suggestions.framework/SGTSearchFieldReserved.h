@@ -52,6 +52,7 @@ __attribute__((visibility("hidden")))
     BOOL ignoreWindowResizeNotifications;
     BOOL _highlightsMatches;
     id <SGTSearchFieldQueryScopeDelegate> queryScopeDelegate;
+    id <SGTSearchFieldDelegate> delegate;
     _SGTQueryScopeMenuOverride *queryScopeMenuOverride;
     NSProgressIndicator *spinner;
     long long currentRequest;
@@ -61,9 +62,12 @@ __attribute__((visibility("hidden")))
     SEL selectionSelectorCache;
     BOOL queryStringChangesAreTransient;
     unsigned long long oldStringLength;
+    unsigned long long maximumEffectiveInputLength;
+    long long searchQueryIndex;
     CDUnknownBlockType _didFindSuggestionsCallback;
 }
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (id)init;
 

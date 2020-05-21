@@ -8,28 +8,45 @@
 
 #import "NSCopying.h"
 
-@class GEOLocation, NSString;
+@class GEOLocation, NSString, PBDataReader;
 
 @interface GEOAddressCorrectionAddress : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_addressID;
     GEOLocation *_addressLocation;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_addressID:1;
+        unsigned int read_addressLocation:1;
+        unsigned int wrote_addressID:1;
+        unsigned int wrote_addressLocation:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *addressID; // @synthesize addressID=_addressID;
-@property(retain, nonatomic) GEOLocation *addressLocation; // @synthesize addressLocation=_addressLocation;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)copyTo:(id)arg1;
+- (void)clearSensitiveFields;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *addressID;
 @property(readonly, nonatomic) BOOL hasAddressID;
+- (void)_readAddressID;
+@property(retain, nonatomic) GEOLocation *addressLocation;
 @property(readonly, nonatomic) BOOL hasAddressLocation;
-- (void)dealloc;
+- (void)_readAddressLocation;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

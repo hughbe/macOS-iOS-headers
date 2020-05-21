@@ -6,11 +6,9 @@
 
 #import "NSObject.h"
 
-#import "_EARWordPart_JSExport.h"
-
 @class NSSet, NSString;
 
-@interface _EARWordPart : NSObject <_EARWordPart_JSExport>
+@interface _EARWordPart : NSObject
 {
     NSString *_tagName;
     NSString *_orthography;
@@ -19,17 +17,14 @@
     NSSet *_pronunciations;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSSet *pronunciations; // @synthesize pronunciations=_pronunciations;
 @property(readonly, nonatomic) unsigned long long frequency; // @synthesize frequency=_frequency;
 @property(readonly, nonatomic) long long tag; // @synthesize tag=_tag;
 @property(readonly, nonatomic) NSString *orthography; // @synthesize orthography=_orthography;
-- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *tagName;
 - (id)initWithOrthography:(id)arg1 pronunciations:(id)arg2 tagName:(id)arg3 frequency:(unsigned long long)arg4;
 - (id)initWithOrthography:(id)arg1 pronunciations:(id)arg2 tag:(long long)arg3;
-- (id)getPronuncations;
-- (id)getTagName;
-- (id)getOrthography;
 
 @end
 

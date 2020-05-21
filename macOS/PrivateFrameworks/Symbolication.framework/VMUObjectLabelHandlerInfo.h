@@ -16,7 +16,7 @@ __attribute__((visibility("hidden")))
     SEL _handlerSelector;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 
 @end
 

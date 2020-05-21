@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface ABPersonListControllerTracing : NSObject
 {
 }
 
++ (BOOL)shouldShowSiriSuggestions;
++ (id)suggestionLoggingForService;
 + (void)traceSearchDidComplete:(BOOL)arg1;
-+ (void)traceDidSelectSuggestion:(BOOL)arg1;
++ (void)traceDidSelectSuggestion:(BOOL)arg1 suggestedRecordId:(id)arg2 contactId:(id)arg3;
 
 @end
 

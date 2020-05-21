@@ -8,6 +8,7 @@
 
 #import "NSCopying.h"
 
+__attribute__((visibility("hidden")))
 @interface _NSSharedKeySetS : NSObject <NSCopying>
 {
     char *_g;
@@ -50,7 +51,6 @@
 - (unsigned short *)keyAtIndex:(unsigned long long)arg1;
 - (unsigned long long)indexForBytes:(char *)arg1 length:(unsigned long long)arg2;
 - (unsigned long long)indexForKey:(unsigned short *)arg1 length:(unsigned long long)arg2;
-- (id)newKeySetWithKeys:(id)arg1 encoding:(unsigned int)arg2;
 - (id)allKeys;
 - (unsigned int)maximumIndex;
 - (BOOL)isEmpty;

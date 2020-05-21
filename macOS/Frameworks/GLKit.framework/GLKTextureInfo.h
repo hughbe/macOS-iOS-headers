@@ -20,6 +20,7 @@
     BOOL containsMipmaps;
     unsigned int mimapLevelCount;
     unsigned int arrayLength;
+    BOOL lossyCompressedSource;
 }
 
 @property(readonly) unsigned int arrayLength; // @synthesize arrayLength;
@@ -34,6 +35,7 @@
 @property(readonly) unsigned int name; // @synthesize name;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
+- (BOOL)lossyCompressedSource;
 - (id)description;
 - (id)initWithTextureTXR:(id)arg1 textureName:(unsigned int)arg2;
 - (id)initWithTexture:(id)arg1 textureName:(unsigned int)arg2;

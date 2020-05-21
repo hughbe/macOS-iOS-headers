@@ -14,10 +14,10 @@
     NSString *_etag;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSString *etag; // @synthesize etag=_etag;
 @property(retain) NSURL *fileURL; // @synthesize fileURL=_fileURL;
 - (id)initWithFileURL:(id)arg1 etag:(id)arg2;
-- (void)dealloc;
 
 @end
 

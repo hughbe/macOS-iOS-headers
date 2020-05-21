@@ -4,13 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSUUID, W5DiagnosticsTestRequest, W5DiagnosticsTestResult, W5Event, W5PerfUpdate;
+@class W5Event, W5LogItemRequest;
 
 @protocol W5SystemXPCEventDelegate
-- (void)collectUserLogItemID:(long long)arg1 reply:(void (^)(NSError *, NSURL *))arg2;
-- (void)updatedPerformanceTest:(W5PerfUpdate *)arg1 uuid:(NSUUID *)arg2;
-- (void)collectedLogItemID:(long long)arg1 next:(long long)arg2 completed:(double)arg3 uuid:(NSUUID *)arg4;
-- (void)completedDiagnosticsTest:(W5DiagnosticsTestResult *)arg1 next:(W5DiagnosticsTestRequest *)arg2 completed:(double)arg3 uuid:(NSUUID *)arg4;
+- (void)collectLogItem:(W5LogItemRequest *)arg1 reply:(void (^)(NSError *, NSURL *, W5LogItemReceipt *))arg2;
 - (void)receivedEvent:(W5Event *)arg1;
 @end
 

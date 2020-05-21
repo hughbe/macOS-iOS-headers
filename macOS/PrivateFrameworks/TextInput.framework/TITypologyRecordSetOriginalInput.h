@@ -13,11 +13,12 @@
     NSString *_originalInput;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *originalInput; // @synthesize originalInput=_originalInput;
 - (id)shortDescription;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 - (void)applyToStatistic:(id)arg1;
 
 @end

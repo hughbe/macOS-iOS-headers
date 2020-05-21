@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     NSArray *_members;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSArray *members; // @synthesize members=_members;
 @property(readonly, nonatomic) NSDictionary *namesByLanguage; // @synthesize namesByLanguage=_namesByLanguage;
 - (id)description;
@@ -35,7 +36,6 @@ __attribute__((visibility("hidden")))
 - (id)memberForFullName:(id)arg1;
 - (id)memberForPSName:(id)arg1;
 - (id)bestMatchForStyling:(struct TCFontStyling)arg1;
-- (void)dealloc;
 - (id)initWithNamesByLanguage:(id)arg1 members:(id)arg2;
 
 @end

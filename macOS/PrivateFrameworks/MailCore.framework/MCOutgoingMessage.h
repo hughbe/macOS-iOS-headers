@@ -6,32 +6,28 @@
 
 #import <MailCore/MCMessage.h>
 
-@class MCMutableMessageHeaders, NSData, NSString, _MCOutgoingMimeBody;
+@class MCMutableMessageHeaders, NSData, NSString;
 
 @interface MCOutgoingMessage : MCMessage
 {
-    _MCOutgoingMimeBody *_mimeBody;
     unsigned long long _localAttachmentsSize;
+    NSString *_remoteID;
     MCMutableMessageHeaders *_mutableHeaders;
     NSString *_existingRemoteID;
-    NSString *_remoteID;
     NSData *_rawData;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSData *rawData; // @synthesize rawData=_rawData;
-@property(copy, nonatomic) NSString *remoteID; // @synthesize remoteID=_remoteID;
 @property(retain, nonatomic) NSString *existingRemoteID; // @synthesize existingRemoteID=_existingRemoteID;
 @property(retain, nonatomic) MCMutableMessageHeaders *mutableHeaders; // @synthesize mutableHeaders=_mutableHeaders;
-- (void).cxx_destruct;
+@property(copy) NSString *remoteID; // @synthesize remoteID=_remoteID;
 - (void)setLocalAttachmentsSize:(unsigned long long)arg1;
 - (unsigned long long)messageSize;
-- (id)headersIfAvailable;
-- (id)headers;
-- (id)messageDataIncludingFromSpace:(BOOL)arg1 newDocumentID:(id)arg2 fetchIfNotAvailable:(BOOL)arg3;
-@property(retain, nonatomic) _MCOutgoingMimeBody *mimeBody;
+- (id)headersFetchIfNotAvailable:(BOOL)arg1;
+- (id)messageDataFetchIfNotAvailable:(BOOL)arg1 newDocumentID:(id)arg2;
 - (id)dataSource;
 - (id)bodyDataFetchIfNotAvailable:(BOOL)arg1 allowPartial:(BOOL)arg2;
-- (id)bodyData;
 - (id)init;
 
 @end

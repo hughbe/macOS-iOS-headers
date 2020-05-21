@@ -4,33 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <MapKit/_MXExtensionObject.h>
+#import "NSObject.h"
 
-#import "_MXExtensionRequestObject.h"
+#import "NSSecureCoding.h"
 
-@class NSString;
-
-@interface _MXExtensionBaseMapRequest : _MXExtensionObject <_MXExtensionRequestObject>
+@interface _MXExtensionBaseMapRequest : NSObject <NSSecureCoding>
 {
     CDStruct_02837cd9 _mapRect;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (void)load;
-+ (void)dispatchRequest:(id)arg1 toVendor:(id)arg2 completion:(CDUnknownBlockType)arg3;
-+ (BOOL)supportedByExtensionWithCapabilities:(id)arg1;
-+ (id)serviceProtocol;
 @property(nonatomic) CDStruct_02837cd9 mapRect; // @synthesize mapRect=_mapRect;
-@property(readonly, copy) NSString *description;
+- (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

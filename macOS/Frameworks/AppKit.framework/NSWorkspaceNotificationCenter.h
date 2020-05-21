@@ -8,14 +8,18 @@
 
 @class NSHashTable, NSLock, NSWorkspace;
 
+__attribute__((visibility("hidden")))
 @interface NSWorkspaceNotificationCenter : NSNotificationCenter
 {
     NSWorkspace *_workspace;
     NSLock *_workspaceLock;
-    struct NSWorkspaceNotificationCenterSubsystemContext_t _subsystemContexts[17];
-    NSHashTable *_notificationObservers[22];
+    struct NSWorkspaceNotificationCenterSubsystemContext_t _subsystemContexts[20];
+    NSHashTable *_notificationObservers[25];
 }
 
+- (void)_menuBarDidChangeAppearance:(id)arg1;
+- (void)_switchControlStatusDidChange:(id)arg1;
+- (void)_voiceOverStatusDidChange:(id)arg1;
 - (void)_accessibilityDisplaySettingsDidChange:(id)arg1;
 - (void)_workspaceDidResignActive:(id)arg1;
 - (void)_workspaceDidBecomeActive:(id)arg1;

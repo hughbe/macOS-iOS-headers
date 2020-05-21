@@ -17,6 +17,9 @@
 @property(readonly, nonatomic) NSString *name;
 @property(readonly, nonatomic) NSString *phone;
 @property(readonly, nonatomic) NSString *email;
+- (id)errorsForContactFields:(id)arg1;
+- (id)requiredContactFields;
+- (id)errors;
 
 @end
 

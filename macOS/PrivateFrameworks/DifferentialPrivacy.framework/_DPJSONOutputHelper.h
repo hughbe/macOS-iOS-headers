@@ -8,13 +8,10 @@
 
 @interface _DPJSONOutputHelper : NSObject
 {
-    unsigned long long _version;
 }
 
-@property(readonly, nonatomic) unsigned long long version; // @synthesize version=_version;
-- (id)submissionContentForSegments:(id)arg1;
-- (id)initWithVersion:(unsigned long long)arg1;
-- (id)init;
++ (unsigned long long)currentVersion;
++ (id)submissionContentForSegments:(id)arg1;
 
 @end
 

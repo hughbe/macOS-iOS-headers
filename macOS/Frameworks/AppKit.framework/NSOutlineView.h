@@ -60,7 +60,6 @@
         unsigned int delegateShouldEditTableColumn:1;
         unsigned int delegateWillDisplayCell:1;
     } _ovFlags;
-    id _ovLock;
     long long *_indentArray;
     long long _originalWidth;
     id _expandSet;
@@ -74,9 +73,7 @@
 + (BOOL)_shouldRequireAutoCollapseOutlineAfterDropsDefault;
 + (BOOL)_shouldAllowAutoCollapseItemsDuringDragsDefault;
 + (BOOL)_shouldAllowAutoExpandItemsDuringDragsDefault;
-+ (void)_initializeRegisteredDefaults;
 + (void)_delayedFreeRowEntryFreeList;
-+ (void)initialize;
 - (Class)_animatorClass;
 - (void)_updateForSizeModeChange;
 - (void)_sizeModeChangeForRowView:(id)arg1 row:(long long)arg2;
@@ -107,18 +104,20 @@
 - (void)_throwExceptionForUpdateErrorAtIndexes:(id)arg1 kind:(id)arg2 ofParentRowEntry:(id)arg3;
 - (id)_rowEntryForItem:(id)arg1;
 - (struct CGRect)_dropDestinationIndicatorFrameForDraggingDestinationStyle:(long long)arg1 rowIndexes:(id)arg2;
+- (double)_dropHighlightIndentationForRow:(long long)arg1 withLevel:(long long)arg2;
 - (void)prepareDraggingDestinationView:(id)arg1 forRowIndexes:(id)arg2 draggingStyle:(long long)arg3;
 - (id)_delegate_viewForTableColumn:(id)arg1 row:(long long)arg2;
 - (id)_delegateRowViewForRow:(long long)arg1;
 - (id)_makeNewRowViewForItem:(id)arg1;
-- (void)didRemoveRowView:(id)arg1 forRow:(long long)arg2;
 - (id)_disclosureButtonForRowView:(id)arg1;
 - (void)addDropBetweenFeedbackViewsForRow:(long long)arg1;
 - (void)addDropOnFeedbackViewsForRow:(long long)arg1;
 - (void)didAddRowView:(id)arg1 forRow:(long long)arg2;
-- (void)_updateDisclosureButtonForRowView:(id)arg1 forRow:(long long)arg2 removeIfNotAvailable:(BOOL)arg3 updatePosition:(BOOL)arg4;
+- (void)_updateDisclosureButtonForRowView:(id)arg1 forRow:(long long)arg2 removeIfNotAvailable:(BOOL)arg3 updatePosition:(BOOL)arg4 inDidAddRowView:(BOOL)arg5;
 - (void)noteHeightOfRowsWithIndexesChanged:(id)arg1;
 - (void)_removeDisclosureButtonForRowView:(id)arg1;
+- (void)_removeDisclosureButtonOtherIdentifierForRowView:(id)arg1 withIdentifier:(id)arg2;
+- (BOOL)_removeDisclosureButtonForRowView:(id)arg1 withIdentifier:(id)arg2;
 - (id)_identifierForDisclosureButtonForRowView:(id)arg1;
 - (id)makeViewWithIdentifier:(id)arg1 owner:(id)arg2;
 - (void)_outlineControlClicked:(id)arg1;
@@ -137,7 +136,9 @@
 - (void)removeFromSuperview;
 - (id)_findParentWithLevel:(long long)arg1 beginingAtItem:(id)arg2 childEncountered:(long long *)arg3;
 - (long long)_countDisplayedDescendantsOfItem:(id)arg1;
+- (double)_maxXLocOfOutlineColumn;
 - (double)_minXLocOfOutlineColumn;
+- (double)_locOfOutlineColumnAtMin:(BOOL)arg1;
 - (id)_itemsFromRowsWithIndexes:(id)arg1;
 - (void)_collapseAutoExpandedItems:(id)arg1;
 - (void)_cancelAnyScheduledAutoCollapse;
@@ -230,7 +231,7 @@
 - (void)_outlineMouseExited:(id)arg1;
 - (void)_outlineMouseEntered:(id)arg1;
 - (long long)_outlineTrackingRowForEvent:(id)arg1;
-- (void)_updateTrackingAreas;
+- (void)_updateTrackingAreasWithInvalidCursorRects:(BOOL)arg1;
 - (BOOL)_shouldUseTrackingAreasForOutlineCell;
 - (void)_addOutlineCellTrackingAreas;
 - (void)_delegateWantsTrackingAreasForRow:(long long)arg1 column:(long long)arg2;
@@ -245,7 +246,9 @@
 - (BOOL)_shouldShowOutlineCellForRow:(long long)arg1;
 - (BOOL)_delegateShouldShowOutlineCellForItem:(id)arg1;
 - (void)_setNeedsDisplayInRow:(long long)arg1;
+- (struct CGRect)_cellOffsetConstraintConstantsForColumn:(long long)arg1 row:(long long)arg2;
 - (struct CGRect)frameOfCellAtColumn:(long long)arg1 row:(long long)arg2;
+- (void)_gutterSpacingChanged;
 - (BOOL)_isOutlineView;
 - (BOOL)shouldShowOutlineCellInlineForRow:(long long)arg1;
 - (double)_indentationForRow:(long long)arg1 withLevel:(long long)arg2 isSourceListGroupRow:(BOOL)arg3;
@@ -265,7 +268,6 @@
 - (void)_setOutlineCell:(id)arg1;
 - (void)_ensureTextOutlineCell;
 - (id)_makeTextOutlineCell;
-- (BOOL)_isSidebar;
 - (void)_notifyDelegateOfStateChangeForCell:(id)arg1;
 - (void)_setupStateForOutlineCell:(id)arg1 atRow:(long long)arg2;
 - (long long)_outlineCellBackgroundStyleForRow:(long long)arg1;
@@ -275,7 +277,6 @@
 - (BOOL)_priorRowIsSelectedFromRow:(long long)arg1 inSelection:(id)arg2;
 - (void)_debugDrawRowNumberInCell:(id)arg1 withFrame:(struct CGRect)arg2 forRow:(long long)arg3;
 - (id)_alternateAutoExpandImageForOutlineCell:(id)arg1 inRow:(long long)arg2 withFrame:(struct CGRect)arg3;
-- (BOOL)_wantsLiveResizeToUseCachedImage;
 - (void)_sendDelegateWillDisplayCell:(id)arg1 forColumn:(id)arg2 row:(long long)arg3;
 - (void)_sendBindingAdapterWillDisplayCell:(id)arg1 forColumn:(id)arg2 row:(long long)arg3;
 - (id)_sendDelegateToolTipForCell:(id)arg1 tableColumn:(id)arg2 rect:(struct CGRect *)arg3 row:(long long)arg4 mouseLocation:(struct CGPoint)arg5;
@@ -347,6 +348,7 @@
 - (void)removeTableColumn:(id)arg1;
 - (void)addTableColumn:(id)arg1;
 @property NSTableColumn *outlineTableColumn;
+- (void)_setOutlineTableColumn:(id)arg1;
 @property BOOL indentationMarkerFollowsCell;
 @property double indentationPerLevel;
 - (void)reloadItem:(id)arg1 reloadChildren:(BOOL)arg2;
@@ -412,7 +414,6 @@
 @property long long userInterfaceLayoutDirection; // @dynamic userInterfaceLayoutDirection;
 - (BOOL)_supportsRTL;
 - (id)_disclosureTriangleButtonImageSorceID;
-- (BOOL)_userInterfaceDirectionIsLTR;
 - (id)_tableViewColumnDidResizeNotificationName;
 - (id)_selectionIsChangingNotificationName;
 - (id)_selectionDidChangeNotificationName;

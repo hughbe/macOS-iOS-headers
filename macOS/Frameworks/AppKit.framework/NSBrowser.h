@@ -59,6 +59,7 @@
 }
 
 + (void)removeSavedColumnsWithAutosaveName:(id)arg1;
++ (BOOL)_prefersCellUserInterfaceLayoutDirection;
 + (Class)browserTableColumnClass;
 + (Class)browserTableViewClass;
 + (Class)matrixColumnViewControllerClass;
@@ -69,6 +70,7 @@
 + (void)initialize;
 + (id)defaultAnimationForKey:(id)arg1;
 + (BOOL)accessibilityIsSingleCelled;
+- (void).cxx_destruct;
 - (void)setAutomaticallyAdjustsContentInsets:(BOOL)arg1;
 - (BOOL)automaticallyAdjustsContentInsets;
 - (void)setContentInsets:(struct NSEdgeInsets)arg1;
@@ -236,7 +238,7 @@
 - (BOOL)_getMatchingRow:(long long *)arg1 forString:(id)arg2 inMatrix:(id)arg3 startingAtRow:(long long)arg4 prefixMatch:(BOOL)arg5 caseSensitive:(BOOL)arg6;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)updateLayer;
-- (BOOL)wantsUpdateLayer;
+- (Class)_classToCheckForWantsUpdateLayer;
 - (void)_drawScrollViewFocusRing:(id)arg1 clipRect:(struct CGRect)arg2 needsFullDisplay:(BOOL)arg3;
 - (void)_drawTitlesForView:(id)arg1 inRect:(struct CGRect)arg2;
 - (void)_drawEmptyColumnsForView:(id)arg1 inRect:(struct CGRect)arg2;
@@ -250,7 +252,6 @@
 - (void)updateCell:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)tile;
-- (BOOL)_shouldUseCellUserInterfaceLayoutDirection;
 - (void)_tileContinuousScrollingBrowser;
 - (unsigned long long)_borderType;
 - (void)setBorderType:(unsigned long long)arg1;
@@ -385,6 +386,7 @@
 - (void)_setFocusRingNeedsDisplay;
 - (BOOL)_hasKeyboardFocus;
 - (BOOL)_shouldDrawFocus;
+- (void)setControlSize:(unsigned long long)arg1;
 - (void)_setUsesSmallTitleFont:(BOOL)arg1;
 - (void)setTitle:(id)arg1 ofColumn:(long long)arg2;
 - (void)_setTitle:(id)arg1 ofColumn:(long long)arg2;
@@ -449,7 +451,7 @@
 @property BOOL allowsEmptySelection;
 @property BOOL allowsBranchSelection;
 @property BOOL allowsMultipleSelection;
-@property id <NSBrowserDelegate> delegate;
+@property __weak id <NSBrowserDelegate> delegate;
 - (void)setCellClass:(Class)arg1;
 @property(retain) id cellPrototype;
 - (Class)matrixClass;

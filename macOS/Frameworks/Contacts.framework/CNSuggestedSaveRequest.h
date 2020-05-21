@@ -14,6 +14,7 @@
     NSMutableSet *_mutableRejectedSuggestions;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableSet *mutableRejectedSuggestions; // @synthesize mutableRejectedSuggestions=_mutableRejectedSuggestions;
 @property(retain, nonatomic) NSMutableSet *mutableConfirmedSuggestions; // @synthesize mutableConfirmedSuggestions=_mutableConfirmedSuggestions;
 @property(readonly, copy) NSSet *rejectedSuggestions;
@@ -21,7 +22,6 @@
 - (void)rejectSuggestion:(id)arg1;
 - (void)confirmSuggestion:(id)arg1;
 - (id)storeIdentifier;
-- (void)dealloc;
 
 @end
 

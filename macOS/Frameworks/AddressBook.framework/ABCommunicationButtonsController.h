@@ -6,44 +6,65 @@
 
 #import "NSObject.h"
 
-@class ABFaceTimeCommunicationsBridge, NSButton, NSStackView;
+#import "ABFaceTimeCommunicationsBridgeDelegate.h"
 
-@interface ABCommunicationButtonsController : NSObject
+@class ABFaceTimeCommunicationsBridge, CNFuture, NSButton, NSStackView, NSString;
+
+@interface ABCommunicationButtonsController : NSObject <ABFaceTimeCommunicationsBridgeDelegate>
 {
-    NSButton *_faceTimeButton;
-    NSButton *_faceTimeAudioButton;
+    BOOL _availableForFaceTime;
     NSStackView *_communicationButtonsRow;
     id <ABFaceTimeDataSource> _dataSource;
     ABFaceTimeCommunicationsBridge *_bridge;
-    BOOL _communicationsAvailable;
+    CNFuture *_availabilityFuture;
+    NSButton *_faceTimeButton;
+    NSButton *_faceTimeAudioButton;
 }
 
-@property(readonly) NSButton *faceTimeAudioButton; // @synthesize faceTimeAudioButton=_faceTimeAudioButton;
-@property(readonly) NSButton *faceTimeVideoButton; // @synthesize faceTimeVideoButton=_faceTimeButton;
-@property(readonly) NSStackView *communicationButtonsRow; // @synthesize communicationButtonsRow=_communicationButtonsRow;
++ (BOOL)isIdentifierFromCuratedSource:(id)arg1;
++ (id)uniqueIdentifiersSuitableForAvailabilityLookupFromIdentifiers:(id)arg1;
++ (id)emailEndpointsFromEmailAddresses:(id)arg1;
++ (id)phoneEndpointsFromPhoneNumbers:(id)arg1;
++ (id)communicationEndpointsFromPhoneNumbers:(id)arg1 emailAddresses:(id)arg2;
++ (id)faceTimeImageWrapper;
++ (id)faceTimeAudioImageWrapper;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSButton *faceTimeAudioButton; // @synthesize faceTimeAudioButton=_faceTimeAudioButton;
+@property(readonly, nonatomic) NSButton *faceTimeVideoButton; // @synthesize faceTimeVideoButton=_faceTimeButton;
+@property(retain, nonatomic) CNFuture *availabilityFuture; // @synthesize availabilityFuture=_availabilityFuture;
+@property(nonatomic) BOOL availableForFaceTime; // @synthesize availableForFaceTime=_availableForFaceTime;
+@property(retain, nonatomic) ABFaceTimeCommunicationsBridge *bridge; // @synthesize bridge=_bridge;
+@property(nonatomic) __weak id <ABFaceTimeDataSource> dataSource; // @synthesize dataSource=_dataSource;
+@property(retain, nonatomic) NSStackView *communicationButtonsRow; // @synthesize communicationButtonsRow=_communicationButtonsRow;
 - (id)callRelayPhoneNumberItems;
 - (id)faceTimeAudioMenuItem;
 - (void)showTelephonyMenu;
 - (BOOL)shouldShowTelephonyMenu;
 - (void)makeTelephonyCallWithItem:(id)arg1;
-- (id)preferredEndpoint;
+- (id)communicationEndpoints;
 - (BOOL)shouldUseSingleEndpoint;
 - (void)makeFaceTimeCallWithButton:(id)arg1;
 - (void)faceTimeAudioItemChosen:(id)arg1;
 - (void)handleFaceTimeAudioPressed;
 - (void)performActionForButton:(id)arg1;
-- (id)faceTimeBridge;
 - (void)adjustStateOfButton:(id)arg1;
-- (void)setFaceTimeEnabled:(BOOL)arg1;
+- (void)adjustStateOfButtons;
+- (void)faceTimeCommunicationsBridge:(id)arg1 faceTimeAvailabilityChaged:(BOOL)arg2 forContactWithIdentifier:(id)arg3;
 - (void)buildLabelForButton:(id)arg1;
 - (id)allButtons;
-- (void)buildCommunicationsRowStackView;
+- (void)stopAvailabilityLookup;
+- (void)startAvailabilityLookup;
 - (void)buildFaceTimeAudioButton;
 - (void)buildFaceTimeButton;
-- (void)setDataSource:(id)arg1;
+- (void)buildCommunicationsRowStackView;
 - (void)dealloc;
-- (id)initWithFaceTimeBridge:(id)arg1;
-- (id)init;
+- (id)initWithFaceTimeBridge:(id)arg1 dataSource:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

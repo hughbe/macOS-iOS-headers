@@ -15,17 +15,23 @@
 {
     BOOL _isActiveDevice;
     BOOL _isThisDevice;
+    BOOL _isCompanionDevice;
+    BOOL _isAutoMeCapable;
     NSString *_deviceId;
     NSString *_deviceName;
+    NSString *_idsDeviceId;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)deviceWithId:(id)arg1 name:(id)arg2 isActive:(BOOL)arg3 isThisDevice:(BOOL)arg4;
++ (id)deviceWithId:(id)arg1 name:(id)arg2 idsDeviceId:(id)arg3 isActive:(BOOL)arg4 isThisDevice:(BOOL)arg5 isCompanionDevice:(BOOL)arg6 isAutoMeCapable:(BOOL)arg7;
+- (void).cxx_destruct;
+@property BOOL isAutoMeCapable; // @synthesize isAutoMeCapable=_isAutoMeCapable;
+@property(copy) NSString *idsDeviceId; // @synthesize idsDeviceId=_idsDeviceId;
+@property BOOL isCompanionDevice; // @synthesize isCompanionDevice=_isCompanionDevice;
 @property BOOL isThisDevice; // @synthesize isThisDevice=_isThisDevice;
 @property BOOL isActiveDevice; // @synthesize isActiveDevice=_isActiveDevice;
 @property(copy) NSString *deviceName; // @synthesize deviceName=_deviceName;
 @property(copy) NSString *deviceId; // @synthesize deviceId=_deviceId;
-- (void).cxx_destruct;
 - (id)debugDescription;
 - (id)description;
 - (unsigned long long)hash;

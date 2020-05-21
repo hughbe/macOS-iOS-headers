@@ -15,6 +15,7 @@
     BOOL _allowResumingPartialDownload;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic, getter=_allowResumingPartialDownload, setter=_setAllowResumingPartialDownload:) BOOL allowResumingPartialDownload; // @synthesize allowResumingPartialDownload=_allowResumingPartialDownload;
 @property(readonly, nonatomic) GEOResource *resource; // @synthesize resource=_resource;
 @property(copy, nonatomic) NSArray *equivalentResources; // @synthesize equivalentResources=_equivalentResources;
@@ -22,7 +23,6 @@
 @property(readonly, nonatomic) NSData *checksum;
 @property(readonly, nonatomic) int type;
 @property(readonly, nonatomic) NSString *name;
-- (void)dealloc;
 - (id)initWithResource:(id)arg1;
 
 @end

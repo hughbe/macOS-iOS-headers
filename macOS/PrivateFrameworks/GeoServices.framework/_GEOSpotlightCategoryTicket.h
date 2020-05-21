@@ -4,31 +4,29 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <GeoServices/GEOAbstractTicket.h>
 
 #import "GEOMapServiceCategoriesTicket.h"
 
 @class GEOMapServiceTraits, NSDictionary, NSString;
 
 __attribute__((visibility("hidden")))
-@interface _GEOSpotlightCategoryTicket : NSObject <GEOMapServiceCategoriesTicket>
+@interface _GEOSpotlightCategoryTicket : GEOAbstractTicket <GEOMapServiceCategoriesTicket>
 {
-    GEOMapServiceTraits *_traits;
-    BOOL _canceled;
 }
 
-@property(readonly, nonatomic) NSDictionary *responseUserInfo;
-@property(readonly, nonatomic) GEOMapServiceTraits *traits;
-- (void)cancel;
+@property(readonly, nonatomic) CDStruct_d1a7ebee dataRequestKind;
+- (void)submitWithHandler:(CDUnknownBlockType)arg1 auditToken:(id)arg2 networkActivity:(CDUnknownBlockType)arg3;
 - (void)submitWithHandler:(CDUnknownBlockType)arg1 networkActivity:(CDUnknownBlockType)arg2;
-- (void)dealloc;
-- (id)initWithTraits:(id)arg1;
 
 // Remaining properties
+@property(readonly, nonatomic, getter=isCancelled) BOOL cancelled;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSDictionary *responseUserInfo;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic) GEOMapServiceTraits *traits;
 
 @end
 

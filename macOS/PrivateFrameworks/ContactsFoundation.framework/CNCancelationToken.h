@@ -21,6 +21,7 @@
 + (id)tokenWithCancelationBlock:(CDUnknownBlockType)arg1;
 - (void).cxx_destruct;
 - (void)callCancelationBlocks:(id)arg1;
+- (void)performBlock:(CDUnknownBlockType)arg1;
 - (BOOL)isCanceled;
 - (void)addCancelable:(id)arg1;
 - (void)addCancelationBlock:(CDUnknownBlockType)arg1;

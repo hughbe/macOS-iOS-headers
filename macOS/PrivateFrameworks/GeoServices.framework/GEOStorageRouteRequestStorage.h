@@ -8,21 +8,34 @@
 
 #import "NSCopying.h"
 
-@class GEOURLRouteHandle, NSMutableArray, PBUnknownFields;
+@class GEOURLRouteHandle, NSMutableArray, PBDataReader, PBUnknownFields;
 
 @interface GEOStorageRouteRequestStorage : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     PBUnknownFields *_unknownFields;
     GEOURLRouteHandle *_routeHandle;
-    int _transportType;
     NSMutableArray *_waypoints;
-    CDStruct_a995201b _has;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    int _transportType;
+    struct {
+        unsigned int has_transportType:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_routeHandle:1;
+        unsigned int read_waypoints:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_routeHandle:1;
+        unsigned int wrote_waypoints:1;
+        unsigned int wrote_transportType:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)waypointsType;
-@property(retain, nonatomic) GEOURLRouteHandle *routeHandle; // @synthesize routeHandle=_routeHandle;
-@property(nonatomic) int transportType; // @synthesize transportType=_transportType;
-@property(retain, nonatomic) NSMutableArray *waypoints; // @synthesize waypoints=_waypoints;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
 @property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -31,17 +44,25 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOURLRouteHandle *routeHandle;
 @property(readonly, nonatomic) BOOL hasRouteHandle;
+- (void)_readRouteHandle;
 - (int)StringAsTransportType:(id)arg1;
 - (id)transportTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasTransportType;
+@property(nonatomic) int transportType;
 - (id)waypointsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)waypointsCount;
+- (void)_addNoFlagsWaypoints:(id)arg1;
 - (void)addWaypoints:(id)arg1;
 - (void)clearWaypoints;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *waypoints;
+- (void)_readWaypoints;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

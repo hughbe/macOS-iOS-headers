@@ -6,25 +6,26 @@
 
 #import <CoreData/NSFetchRequest.h>
 
-@class NSDictionary, NSHashTable;
+@class NSDictionary;
 
 @interface NSCachingFetchRequest : NSFetchRequest
 {
     NSDictionary *_substitutionVariables;
-    NSHashTable *_cachingCoordinators;
-    BOOL _hasCachedInfo;
+    id _cachedInfo;
     id _identifier;
+    int _lock;
 }
 
 + (id)_generateIdentifier;
 @property(readonly, nonatomic) id _identifier; // @synthesize _identifier;
-- (BOOL)_isCachingFetchRequest__;
+- (BOOL)_isCachingFetchRequest;
 @property(copy, nonatomic) NSDictionary *substitutionVariables;
 - (void)_sanityCheckVariables:(id)arg1;
-- (void)_registerCachingCoordinator:(id)arg1;
-- (BOOL)_hasRegisteredCachingCoordinator:(id)arg1;
+- (id)_cachedInfoForRequestor:(id)arg1;
+- (void)_cacheInfo:(id)arg1 forRequestor:(id)arg2;
 - (id)_copyForDirtyContext;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)_disableSQLStatementCaching;
 - (void)dealloc;
 - (id)init;
 

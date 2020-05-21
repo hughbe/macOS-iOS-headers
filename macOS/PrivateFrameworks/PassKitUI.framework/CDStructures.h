@@ -34,6 +34,12 @@ struct NSEdgeInsets {
     double right;
 };
 
+struct PKAutocompleteRowInfo {
+    long long _field1;
+    long long _field2;
+    long long _field3;
+};
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;

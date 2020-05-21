@@ -7,6 +7,6 @@
 #import "NSLocale.h"
 
 @interface NSLocale (TSULocaleAdditions)
-+ (id)firstPreferredLanguage;
++ (id)tsu_firstPreferredLocalization;
 @end
 

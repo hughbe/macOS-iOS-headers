@@ -12,18 +12,18 @@
 {
     EWSItemResponseShapeType *_ItemShape;
     EWSTargetFolderIdType *_SyncFolderId;
-    NSString *_SyncState;
     NSArray *_Ignore;
+    NSString *_SyncState;
     long long _MaxChangesReturned;
 }
 
 + (id)definition;
+- (void).cxx_destruct;
 @property(nonatomic) long long MaxChangesReturned; // @synthesize MaxChangesReturned=_MaxChangesReturned;
-@property(copy, nonatomic) NSArray *Ignore; // @synthesize Ignore=_Ignore;
 @property(copy, nonatomic) NSString *SyncState; // @synthesize SyncState=_SyncState;
+@property(copy, nonatomic) NSArray *Ignore; // @synthesize Ignore=_Ignore;
 @property(retain, nonatomic) EWSTargetFolderIdType *SyncFolderId; // @synthesize SyncFolderId=_SyncFolderId;
 @property(retain, nonatomic) EWSItemResponseShapeType *ItemShape; // @synthesize ItemShape=_ItemShape;
-- (void).cxx_destruct;
 
 @end
 

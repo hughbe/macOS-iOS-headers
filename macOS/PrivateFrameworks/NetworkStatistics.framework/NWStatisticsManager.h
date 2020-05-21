@@ -13,7 +13,7 @@
     BOOL _systemInformationSubscribed;
     unsigned int _filter;
     unsigned int _continuationCount;
-    unsigned long long _providerFilters[8];
+    unsigned long long _providerFilters[9];
     char *_iftracebuf;
     unsigned int _id;
     unsigned long long _numUpdatesDispatched;
@@ -44,6 +44,7 @@
     id _strongDelegate;
 }
 
+- (void).cxx_destruct;
 @property(retain) id strongDelegate; // @synthesize strongDelegate=_strongDelegate;
 @property(readonly) NSObject<OS_dispatch_queue> *clientQueue; // @synthesize clientQueue=_clientQueue;
 @property(readonly) NSObject<OS_dispatch_queue> *internalQueue; // @synthesize internalQueue=_internalQueue;
@@ -61,7 +62,6 @@
 @property(nonatomic) int interfaceTraceFd; // @synthesize interfaceTraceFd=_interfaceTraceFd;
 @property(nonatomic) unsigned int mgrflags; // @synthesize mgrflags=_mgrflags;
 @property(nonatomic) __weak id <NWStatisticsManagerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (id)init;
 - (id)initWithQueue:(id)arg1;
 - (void)dealloc;
@@ -79,6 +79,7 @@
 - (unsigned long long)_nextReferenceForTarget:(unsigned long long)arg1 command:(unsigned int)arg2;
 - (void)removeSource:(id)arg1;
 - (BOOL)addAllRoute;
+- (BOOL)addAllRoute:(unsigned long long)arg1;
 - (BOOL)addAllUDP:(unsigned long long)arg1;
 - (BOOL)addAllTCP:(unsigned long long)arg1;
 - (BOOL)addAllUDP:(unsigned long long)arg1 events:(unsigned long long)arg2 pid:(int)arg3 uuid:(unsigned char (*)[16])arg4;

@@ -22,6 +22,7 @@
 + (void)_globalChangeNotification:(id)arg1;
 + (BOOL)_isThisUserInfoForThisProcess:(id)arg1;
 + (id)_userInfoForThisProcess;
+- (void).cxx_destruct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)categoryForSuggestion:(id)arg1;
 - (id)_staticSuggestionDisplayNames;
@@ -40,7 +41,6 @@
 - (id)_recentValueFromSavedObject:(id)arg1;
 - (void)_saveToDefaults;
 - (void)_updateFromDefaults;
-- (void)finalize;
 - (void)dealloc;
 - (void)_removeLegacyGlobalDomainDefaultsEntriesWithSaveName:(id)arg1;
 - (id)initWithSaveName:(id)arg1 global:(BOOL)arg2;

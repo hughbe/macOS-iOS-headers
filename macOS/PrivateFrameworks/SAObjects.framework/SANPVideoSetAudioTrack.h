@@ -15,6 +15,7 @@
 + (id)setAudioTrackWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setAudioTrack;
 - (BOOL)requiresResponse;
+@property(copy, nonatomic) NSString *languageOptionChangeUserSetting;
 @property(copy, nonatomic) NSString *desiredOptionId;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -6,8 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSData, NSDictionary, NSMutableArray, NSObject<OS_dispatch_semaphore>, NSURL;
+@class AVDispatchOnce, NSData, NSDictionary, NSMutableArray, NSObject<OS_dispatch_semaphore>, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface AVMutableMovieInternal : NSObject
 {
     struct OpaqueFigMutableMovie *figMutableMovie;
@@ -16,10 +17,13 @@
     NSURL *URL;
     NSData *data;
     NSDictionary *initializationOptions;
-    NSObject<OS_dispatch_semaphore> *waitingSemaphore;
+    NSObject<OS_dispatch_semaphore> *trackWaitingSemaphore;
+    NSObject<OS_dispatch_semaphore> *metadataWaitingSemaphore;
     NSMutableArray *tracks;
-    long long makeTracksArrayOnce;
+    AVDispatchOnce *makeTracksArrayOnce;
 }
+
+- (void).cxx_destruct;
 
 @end
 

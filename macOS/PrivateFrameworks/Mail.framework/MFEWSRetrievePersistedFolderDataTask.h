@@ -4,21 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "MCTask.h"
+#import <Mail/MFEWSTask.h>
 
 #import "MFEWSRetrievePersistedFolderDataDelegate.h"
 
 @class MFEWSRetrievePersistedFolderDataOperation, NSMutableSet, NSString;
 
-@interface MFEWSRetrievePersistedFolderDataTask : MCTask <MFEWSRetrievePersistedFolderDataDelegate>
+@interface MFEWSRetrievePersistedFolderDataTask : MFEWSTask <MFEWSRetrievePersistedFolderDataDelegate>
 {
     MFEWSRetrievePersistedFolderDataOperation *_retrievePersistedFolderDataOperation;
     NSMutableSet *_urlsNeedingData;
     id <MFEWSMailboxDataCache> _cache;
 }
 
-@property(readonly, nonatomic) id <MFEWSMailboxDataCache> cache; // @synthesize cache=_cache;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) id <MFEWSMailboxDataCache> cache; // @synthesize cache=_cache;
 - (void)recalculatePriorities;
 - (id)nextPersistenceOperation;
 - (id)nextNetworkOperation;
@@ -27,7 +27,7 @@
 @property(retain, nonatomic) MFEWSRetrievePersistedFolderDataOperation *retrievePersistedFolderDataOperation;
 - (void)retrieveDataForMailboxURLs:(id)arg1;
 - (id)init;
-- (id)initWithMailboxDataCache:(id)arg1;
+- (id)initWithMailboxDataCache:(id)arg1 accountName:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

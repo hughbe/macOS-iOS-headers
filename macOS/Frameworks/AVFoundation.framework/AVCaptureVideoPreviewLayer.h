@@ -11,17 +11,26 @@
 @interface AVCaptureVideoPreviewLayer : CALayer
 {
     AVCaptureVideoPreviewLayerInternal *_internal;
+    BOOL _orientationSupported;
+    BOOL _mirroringSupported;
+    BOOL _automaticallyAdjustsMirroring;
+    BOOL _mirrored;
+    long long _orientation;
 }
 
 + (id)layerWithSessionWithNoConnection:(id)arg1;
 + (id)layerWithSession:(id)arg1;
 + (void)initialize;
+@property(nonatomic, getter=isMirrored) BOOL mirrored; // @synthesize mirrored=_mirrored;
+@property(nonatomic) BOOL automaticallyAdjustsMirroring; // @synthesize automaticallyAdjustsMirroring=_automaticallyAdjustsMirroring;
+@property(readonly, nonatomic, getter=isMirroringSupported) BOOL mirroringSupported; // @synthesize mirroringSupported=_mirroringSupported;
+@property(nonatomic) long long orientation; // @synthesize orientation=_orientation;
+@property(readonly, nonatomic, getter=isOrientationSupported) BOOL orientationSupported; // @synthesize orientationSupported=_orientationSupported;
 - (id)notReadyError;
 - (BOOL)canAddConnectionForMediaType:(id)arg1;
 - (void)removeConnection:(id)arg1;
 - (id)addConnection:(id)arg1 error:(id *)arg2;
 - (id)connectionMediaTypes;
-- (void)didStopForSession:(id)arg1 error:(id)arg2;
 - (BOOL)resumePreviewForConnection:(id)arg1;
 - (BOOL)pausePreviewForConnection:(id)arg1;
 - (BOOL)setPaused:(BOOL)arg1 forConnection:(id)arg2;
@@ -43,6 +52,12 @@
 - (id)_videoPreviewUnitPixelBufferAttributes;
 - (id)pixelBufferAttributes;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (struct CGRect)rectForMetadataOutputRectOfInterest:(struct CGRect)arg1;
+- (struct CGRect)metadataOutputRectOfInterestForRect:(struct CGRect)arg1;
+- (struct CGPoint)pointForCaptureDevicePointOfInterest:(struct CGPoint)arg1;
+- (struct CGPoint)captureDevicePointOfInterestForPoint:(struct CGPoint)arg1;
+- (id)transformedMetadataObjectForMetadataObject:(id)arg1;
+- (void)_updateCaptureDeviceTransformWithConnection:(id)arg1 videoGravity:(id)arg2 sourceSize:(struct CGSize)arg3;
 - (void)inputFormatDescriptionChanged:(id)arg1;
 - (void)refreshFormatDescriptionFromInputPort:(id)arg1;
 - (void)positionSublayer;
@@ -51,10 +66,10 @@
 @property(copy) NSString *videoGravity;
 - (id)subLayer;
 - (void)layoutSublayers;
+@property(readonly, nonatomic, getter=isPreviewing) BOOL previewing;
 - (void)setBounds:(struct CGRect)arg1;
 - (void)setSessionWithNoConnection:(id)arg1;
 @property(retain, nonatomic) AVCaptureSession *session;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithLayer:(id)arg1;
 - (id)initWithSessionWithNoConnection:(id)arg1;

@@ -12,6 +12,7 @@
 }
 
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)siriCore_invokeThunk;
 - (id)initWithThunk:(CDUnknownBlockType)arg1;
 

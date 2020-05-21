@@ -11,24 +11,20 @@
 __attribute__((visibility("hidden")))
 @interface NSSQLAttribute : NSSQLColumn
 {
-    BOOL _unique;
-    BOOL _constrained;
-    BOOL _backedByTrigger;
-    NSSet *_triggerKeys;
 }
 
-@property(readonly, nonatomic) NSSet *triggerKeys; // @synthesize triggerKeys=_triggerKeys;
-@property(nonatomic, getter=isConstrained) BOOL constrained; // @synthesize constrained=_constrained;
+- (BOOL)isFileBackedFuture;
 - (void)addKeyForTriggerOnRelationship:(id)arg1;
+@property(readonly, nonatomic) NSSet *triggerKeys;
 - (void)_setIsBackedByTrigger:(BOOL)arg1;
 - (BOOL)isBackedByTrigger;
-- (BOOL)isUnique;
+- (BOOL)isDerivedAttribute;
 - (BOOL)shouldIndex;
 - (id)attributeDescription;
 - (void)dealloc;
 - (id)initForReadOnlyFetchWithExpression:(id)arg1;
 - (id)initWithEntity:(id)arg1 propertyDescription:(id)arg2;
-- (unsigned int)_sqlTypeForAttributeType:(unsigned long long)arg1 flags:(unsigned long long)arg2;
+- (unsigned char)_sqlTypeForAttributeType:(unsigned long long)arg1 flags:(unsigned long long)arg2;
 
 @end
 

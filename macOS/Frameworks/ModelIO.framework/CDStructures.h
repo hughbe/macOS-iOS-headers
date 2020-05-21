@@ -11,9 +11,9 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 #pragma mark Named Structures
 
 struct BSDFMaterialValues {
-    float _field1;
+    struct CGColor *_field1;
     float _field2;
-    float _field3;
+    struct CGColor *_field3;
     float _field4;
     float _field5;
     float _field6;
@@ -25,6 +25,8 @@ struct BSDFMaterialValues {
     float _field12;
     float _field13;
     float _field14;
+    float _field15;
+    float _field16;
 };
 
 struct BidirectionalScatteringDistributionFunction {
@@ -32,7 +34,13 @@ struct BidirectionalScatteringDistributionFunction {
     struct BSDFMaterialValues _field2;
 };
 
+struct CGColor;
+
 struct Detail;
+
+struct Handle {
+    unsigned int _field1;
+};
 
 struct IESData {
     int _field1;
@@ -66,13 +74,9 @@ struct PhysicallyPlausibleDistribution {
     struct BSDFMaterialValues _field2;
 };
 
-struct RTColor {
-    int _field1;
-};
-
 struct RTIESLight {
     CDUnknownFunctionPointerType *_field1;
-    struct RTColor _field2;
+    struct CGColor *_field2;
     id _field3;
     int _field4;
     float _field5;
@@ -88,7 +92,7 @@ struct RTIESLight {
 
 struct RTLight {
     CDUnknownFunctionPointerType *_field1;
-    struct RTColor _field2;
+    struct CGColor *_field2;
     id _field3;
     int _field4;
 };
@@ -96,6 +100,19 @@ struct RTLight {
 struct RTRenderable;
 
 struct SCNOctree;
+
+struct SdfPath {
+    struct Sdf_PathNodeHandleImpl<Sdf_Pool<Sdf_PathPrimTag, 24, 8, 16384>::Handle, true, const Sdf_PathNode> _field1;
+    struct Sdf_PathNodeHandleImpl<Sdf_Pool<Sdf_PathPropTag, 24, 8, 16384>::Handle, false, const Sdf_PathNode> _field2;
+};
+
+struct Sdf_PathNodeHandleImpl<Sdf_Pool<Sdf_PathPrimTag, 24, 8, 16384>::Handle, true, const Sdf_PathNode> {
+    struct Handle _field1;
+};
+
+struct Sdf_PathNodeHandleImpl<Sdf_Pool<Sdf_PathPropTag, 24, 8, 16384>::Handle, false, const Sdf_PathNode> {
+    struct Handle _field1;
+};
 
 struct SkyDescriptor {
     float _field1;
@@ -115,17 +132,56 @@ struct SkyDescriptor {
     float _field15;
     float _field16;
     float _field17;
-    struct Detail *_field18;
-    unsigned int _field19;
+    float _field18;
+    struct Detail *_field19;
     unsigned int _field20;
-    float _field21;
+    unsigned int _field21;
     float _field22;
     float _field23;
     float _field24;
-    void *_field25;
+    float _field25;
+    void *_field26;
 };
 
-struct __hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>;
+struct TfPointerAndBits<const TfToken::_Rep> {
+    struct _Rep *_field1;
+};
+
+struct TfPointerAndBits<const VtValue::_TypeInfo> {
+    struct _TypeInfo *_ptrAndBits;
+};
+
+struct TfToken {
+    struct TfPointerAndBits<const TfToken::_Rep> _field1;
+};
+
+struct TimeSampledVtValue;
+
+struct UsdAttribute {
+    int _field1;
+    struct Usd_PrimDataHandle _field2;
+    struct SdfPath _field3;
+    struct TfToken _field4;
+};
+
+struct Usd_PrimData;
+
+struct Usd_PrimDataHandle {
+    struct intrusive_ptr<const Usd_PrimData> _field1;
+};
+
+struct VtValue {
+    struct type _storage;
+    struct TfPointerAndBits<const VtValue::_TypeInfo> _info;
+};
+
+struct _Rep;
+
+struct _TypeInfo;
+
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*> *__next_;
+};
 
 struct __sFILE {
     char *_field1;
@@ -155,6 +211,10 @@ struct __sbuf {
     int _field2;
 };
 
+struct intrusive_ptr<const Usd_PrimData> {
+    struct Usd_PrimData *_field1;
+};
+
 struct mutex {
     struct _opaque_pthread_mutex_t {
         long long _field1;
@@ -162,57 +222,67 @@ struct mutex {
     } _field1;
 };
 
+struct type {
+    unsigned char __lx[8];
+};
+
 struct unique_ptr<ModelIO::BidirectionalScatteringDistributionFunction, std::__1::default_delete<ModelIO::BidirectionalScatteringDistributionFunction>> {
     struct __compressed_pair<ModelIO::BidirectionalScatteringDistributionFunction *, std::__1::default_delete<ModelIO::BidirectionalScatteringDistributionFunction>> {
-        struct BidirectionalScatteringDistributionFunction *__first_;
+        struct BidirectionalScatteringDistributionFunction *__value_;
     } __ptr_;
 };
 
 struct unique_ptr<ModelIO::Octree, std::__1::default_delete<ModelIO::Octree>> {
     struct __compressed_pair<ModelIO::Octree *, std::__1::default_delete<ModelIO::Octree>> {
-        struct Octree *__first_;
+        struct Octree *__value_;
     } __ptr_;
 };
 
 struct unique_ptr<ModelIO::SCNOctree, std::__1::default_delete<ModelIO::SCNOctree>> {
     struct __compressed_pair<ModelIO::SCNOctree *, std::__1::default_delete<ModelIO::SCNOctree>> {
-        struct SCNOctree *__first_;
+        struct SCNOctree *__value_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>> {
-                unsigned long long __first_;
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*> **__value_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*>> {
+                unsigned long long __value_;
             } __data_;
-        } __second_;
+        } __value_;
     } __ptr_;
 };
 
 struct unordered_map<unsigned long long, int, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, int>>> {
     struct __hash_table<std::__1::__hash_value_type<unsigned long long, int>, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, int>, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, int>, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::__hash_value_type<unsigned long long, int>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*> __value_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, int>, std::__1::hash<unsigned long long>, true>> {
-            unsigned long long __first_;
+            unsigned long long __value_;
         } __p2_;
         struct __compressed_pair<float, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, int>, std::__1::equal_to<unsigned long long>, true>> {
-            float __first_;
+            float __value_;
         } __p3_;
     } __table_;
+};
+
+struct vector<(anonymous namespace)::TimeSampledVtValue, std::__1::allocator<(anonymous namespace)::TimeSampledVtValue>> {
+    struct TimeSampledVtValue *__begin_;
+    struct TimeSampledVtValue *__end_;
+    struct __compressed_pair<(anonymous namespace)::TimeSampledVtValue *, std::__1::allocator<(anonymous namespace)::TimeSampledVtValue>> {
+        struct TimeSampledVtValue *__value_;
+    } __end_cap_;
 };
 
 struct vector<MDLLight *, std::__1::allocator<MDLLight *>> {
     id *__begin_;
     id *__end_;
     struct __compressed_pair<MDLLight *__strong *, std::__1::allocator<MDLLight *>> {
-        id *__first_;
+        id *__value_;
     } __end_cap_;
 };
 
@@ -220,7 +290,7 @@ struct vector<ModelIO::RTRenderable *, std::__1::allocator<ModelIO::RTRenderable
     struct RTRenderable **__begin_;
     struct RTRenderable **__end_;
     struct __compressed_pair<ModelIO::RTRenderable **, std::__1::allocator<ModelIO::RTRenderable *>> {
-        struct RTRenderable **__first_;
+        struct RTRenderable **__value_;
     } __end_cap_;
 };
 
@@ -244,7 +314,7 @@ struct vector<unsigned long long, std::__1::allocator<unsigned long long>> {
     unsigned long long *__begin_;
     unsigned long long *__end_;
     struct __compressed_pair<unsigned long long *, std::__1::allocator<unsigned long long>> {
-        unsigned long long *__first_;
+        unsigned long long *__value_;
     } __end_cap_;
 };
 

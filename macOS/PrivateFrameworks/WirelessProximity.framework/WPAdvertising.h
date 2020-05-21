@@ -13,12 +13,12 @@
 
 + (id)puckTypeToString:(unsigned char)arg1;
 + (unsigned char)puckStringToType:(id)arg1;
-@property(retain, nonatomic) id <WPAdvertisingDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(retain, nonatomic) id <WPAdvertisingDelegate> delegate; // @synthesize delegate=_delegate;
 - (id)parseCompanyData:(id)arg1;
 - (void)advertisingPendingOfType:(unsigned char)arg1;
 - (void)advertisingFailedToStart:(id)arg1 ofType:(unsigned char)arg2;
-- (void)advertisingStoppedOfType:(unsigned char)arg1;
+- (void)advertisingStoppedOfType:(unsigned char)arg1 withError:(id)arg2;
 - (void)advertisingStartedOfType:(unsigned char)arg1;
 - (void)stateDidChange:(long long)arg1;
 - (void)deregisterService:(id)arg1;

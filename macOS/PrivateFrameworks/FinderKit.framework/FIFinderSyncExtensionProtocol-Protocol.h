@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSString;
+@class NSArray, NSDictionary, NSString, NSURL;
 
 @protocol FIFinderSyncExtensionProtocol <NSObject>
+- (void)valuesForAttributes:(NSArray *)arg1 forItemWithURL:(NSURL *)arg2 completion:(void (^)(NSDictionary *, NSError *))arg3;
+- (void)supportedServiceNamesForItemWithURL:(NSURL *)arg1 completionHandler:(void (^)(NSXPCListenerEndpoint *, NSArray *, NSError *))arg2;
 - (void)executeCommandWithMenuItemDictionary:(NSDictionary *)arg1 target:(NSDictionary *)arg2 items:(NSArray *)arg3;
 - (void)executeCommand:(NSString *)arg1 target:(NSDictionary *)arg2 items:(NSArray *)arg3;
 - (void)requestMenuItemsForTarget:(NSDictionary *)arg1 selectedItems:(NSArray *)arg2 menu:(unsigned long long)arg3 result:(void (^)(NSArray *))arg4;

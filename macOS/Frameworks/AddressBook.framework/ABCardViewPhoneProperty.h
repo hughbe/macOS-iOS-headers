@@ -6,17 +6,18 @@
 
 #import <AddressBook/ABCardViewProperty.h>
 
-@class ABTTYServices;
+@class ABRTTServices;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewPhoneProperty : ABCardViewProperty
 {
-    ABTTYServices *_ttyServices;
+    ABRTTServices *_ttyServices;
 }
 
+- (void).cxx_destruct;
+- (id)emptyValueForMultiValue:(id)arg1 label:(id)arg2;
+- (BOOL)isValueEmpty:(id)arg1;
 - (id)actionForGlyphName:(id)arg1;
 - (id)actionGlyphNames;
-- (void)dealloc;
 - (id)initWithValueKey:(id)arg1 TTYServices:(id)arg2;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "MMCSOperationMetric.h"
 
-@class NSArray, NSDate, NSMutableArray, NSString;
+@class NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 
 __attribute__((visibility("hidden")))
 @interface MMCSOperationMetric : NSObject <MMCSOperationMetric>
@@ -19,21 +19,29 @@ __attribute__((visibility("hidden")))
     unsigned long long _bytesDownloaded;
     unsigned long long _connections;
     unsigned long long _connectionsCreated;
+    NSMutableDictionary *_totalBytesByChunkProfile;
+    NSMutableDictionary *_chunkCountByChunkProfile;
+    NSMutableDictionary *_fileCountByChunkProfile;
+    NSMutableSet *_requestUUIDs;
     NSDate *_startDate;
     double _duration;
     NSMutableArray *_ranges;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableArray *ranges; // @synthesize ranges=_ranges;
 @property double duration; // @synthesize duration=_duration;
 @property(retain, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;
+@property(readonly) NSMutableSet *requestUUIDs; // @synthesize requestUUIDs=_requestUUIDs;
+@property(readonly) NSMutableDictionary *fileCountByChunkProfile; // @synthesize fileCountByChunkProfile=_fileCountByChunkProfile;
+@property(readonly) NSMutableDictionary *chunkCountByChunkProfile; // @synthesize chunkCountByChunkProfile=_chunkCountByChunkProfile;
+@property(readonly) NSMutableDictionary *totalBytesByChunkProfile; // @synthesize totalBytesByChunkProfile=_totalBytesByChunkProfile;
 @property unsigned long long connectionsCreated; // @synthesize connectionsCreated=_connectionsCreated;
 @property unsigned long long connections; // @synthesize connections=_connections;
 @property unsigned long long bytesDownloaded; // @synthesize bytesDownloaded=_bytesDownloaded;
 @property unsigned long long bytesUploaded; // @synthesize bytesUploaded=_bytesUploaded;
 @property double executing; // @synthesize executing=_executing;
 @property double queueing; // @synthesize queueing=_queueing;
-- (void).cxx_destruct;
 - (double)absoluteStop;
 - (long long)compareExecutingStartTime:(id)arg1;
 - (long long)compareStartTime:(id)arg1;

@@ -18,13 +18,15 @@
     MCInvocationQueue *_indexQueue;
 }
 
++ (id)_log;
 + (id)sharedInstance;
 + (id)allocWithZone:(struct _NSZone *)arg1;
-@property(readonly, nonatomic) MCInvocationQueue *indexQueue; // @synthesize indexQueue=_indexQueue;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) MCInvocationQueue *indexQueue; // @synthesize indexQueue=_indexQueue;
 - (id)acquireQueryObserver:(long long)arg1;
 - (void)unregisterQueryObserver:(long long)arg1;
 - (long long)registerQueryObserver:(id)arg1;
+@property(readonly, nonatomic, getter=isSpotlightEnabled) BOOL spotlightEnabled;
 - (void)immediatelyIndexAttachmentsForMessage:(id)arg1;
 - (void)indexAttachmentsForMessage:(id)arg1;
 - (void)_synchronouslyIndexAttachmentsForMessages:(id)arg1 messageCount:(unsigned long long)arg2;
@@ -44,7 +46,6 @@
 @property(readonly, copy) NSString *description;
 @property(readonly, copy, nonatomic) NSString *displayName;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) BOOL isSmartMailbox;
 @property(readonly) Class superclass;
 
 @end

@@ -17,12 +17,12 @@ __attribute__((visibility("hidden")))
     long long _readPosition;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) long long readPosition; // @synthesize readPosition=_readPosition;
 @property(readonly, nonatomic) BOOL canPurge;
 @property(readonly, nonatomic, getter=isFinished) BOOL finished;
 @property(readonly, nonatomic) MRProtocolMessage *message;
 @property(readonly, nonatomic) NSData *data;
-- (void)dealloc;
 - (id)initWithMessage:(id)arg1 createDataBlock:(CDUnknownBlockType)arg2;
 
 @end

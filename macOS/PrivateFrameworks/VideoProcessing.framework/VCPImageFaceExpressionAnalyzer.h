@@ -14,7 +14,7 @@
 }
 
 - (void).cxx_destruct;
-- (int)analyzePixelBuffer:(struct __CVBuffer *)arg1 withTransform:(struct CGAffineTransform)arg2 flags:(unsigned long long *)arg3 results:(id *)arg4 cancel:(CDUnknownBlockType)arg5;
+- (int)analyzePixelBuffer:(struct __CVBuffer *)arg1 flags:(unsigned long long *)arg2 results:(id *)arg3 cancel:(CDUnknownBlockType)arg4;
 - (id)initWithFaceResults:(id)arg1;
 
 @end

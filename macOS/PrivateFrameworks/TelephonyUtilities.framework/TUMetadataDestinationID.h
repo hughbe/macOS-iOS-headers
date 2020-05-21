@@ -6,32 +6,33 @@
 
 #import "NSObject.h"
 
-@class NSString;
+#import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@interface TUMetadataDestinationID : NSObject
+@class NSString, TUHandle;
+
+@interface TUMetadataDestinationID : NSObject <NSSecureCoding, NSCopying>
 {
-    NSString *_destinationID;
-    NSString *_countryCode;
-    NSString *_cacheKey;
-    struct __CFPhoneNumber *_phoneNumber;
+    TUHandle *_handle;
 }
 
-+ (id)destinationIDWithRecentCall:(id)arg1;
-+ (id)destinationIDWithCall:(id)arg1;
-+ (id)destinationIDWithDestinationID:(id)arg1 countryCode:(id)arg2;
-@property(nonatomic) struct __CFPhoneNumber *phoneNumber; // @synthesize phoneNumber=_phoneNumber;
-@property(retain, nonatomic) NSString *cacheKey; // @synthesize cacheKey=_cacheKey;
-@property(readonly, nonatomic) NSString *countryCode; // @synthesize countryCode=_countryCode;
-@property(readonly, nonatomic) NSString *destinationID; // @synthesize destinationID=_destinationID;
++ (BOOL)supportsSecureCoding;
++ (id)metadataDestinationIDForCall:(id)arg1;
++ (id)metadataDestinationIDsForCHRecentCalls:(id)arg1;
++ (id)metadataDestinationIDsForCHRecentCall:(id)arg1;
 - (void).cxx_destruct;
-- (unsigned long long)hash;
+@property(readonly, nonatomic) TUHandle *handle; // @synthesize handle=_handle;
+- (BOOL)isEqualToMetadataDestinationID:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)description;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+@property(readonly, copy, nonatomic) NSString *isoCountryCode;
+- (id)initWithHandle:(id)arg1;
+- (id)initWithDestinationID:(id)arg1 isoCountryCode:(id)arg2;
 - (id)init;
-- (id)initWithRecentCall:(id)arg1;
-- (id)initWithCall:(id)arg1;
-- (id)initWithDestinationID:(id)arg1 countryCode:(id)arg2;
-- (void)dealloc;
 
 @end
 

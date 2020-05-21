@@ -8,21 +8,25 @@
 
 #import "NSAccessibilityImage.h"
 
-@class MKMapItem, NSString;
+@class MKMapItem, NSString, NSURL;
 
 @interface EKUIMapView : MKMapView <NSAccessibilityImage>
 {
     BOOL _directionsAreWalking;
+    BOOL _suggestedEvent;
+    NSURL *_mapHandleURL;
     MKMapItem *_location;
     MKMapItem *_startLocation;
     NSString *_searchString;
 }
 
+- (void).cxx_destruct;
+@property BOOL suggestedEvent; // @synthesize suggestedEvent=_suggestedEvent;
 @property BOOL directionsAreWalking; // @synthesize directionsAreWalking=_directionsAreWalking;
 @property(copy) NSString *searchString; // @synthesize searchString=_searchString;
 @property(retain) MKMapItem *startLocation; // @synthesize startLocation=_startLocation;
 @property(retain) MKMapItem *location; // @synthesize location=_location;
-- (void).cxx_destruct;
+@property(retain) NSURL *mapHandleURL; // @synthesize mapHandleURL=_mapHandleURL;
 - (id)accessibilityLabel;
 - (void)scrollWheel:(id)arg1;
 - (void)mouseDown:(id)arg1;

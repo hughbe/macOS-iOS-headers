@@ -17,12 +17,10 @@
     NSString *_address;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *address; // @synthesize address=_address;
 @property(copy, nonatomic) NSString *participantID; // @synthesize participantID=_participantID;
 @property(retain, nonatomic) CKShareMetadata *shareMetadata; // @synthesize shareMetadata=_shareMetadata;
-@property(copy, nonatomic) CDUnknownBlockType participantVettingInitiationCompletionBlock; // @synthesize participantVettingInitiationCompletionBlock=_participantVettingInitiationCompletionBlock;
-@property(copy, nonatomic) CDUnknownBlockType participantVettingInitiatedBlock; // @synthesize participantVettingInitiatedBlock=_participantVettingInitiatedBlock;
-- (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
 - (void)performCKOperation;
@@ -31,6 +29,8 @@
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
 - (Class)operationInfoClass;
+@property(copy, nonatomic) CDUnknownBlockType participantVettingInitiationCompletionBlock; // @synthesize participantVettingInitiationCompletionBlock=_participantVettingInitiationCompletionBlock;
+@property(copy, nonatomic) CDUnknownBlockType participantVettingInitiatedBlock; // @synthesize participantVettingInitiatedBlock=_participantVettingInitiatedBlock;
 - (id)initWithShareMetadata:(id)arg1 participantID:(id)arg2 address:(id)arg3;
 
 @end

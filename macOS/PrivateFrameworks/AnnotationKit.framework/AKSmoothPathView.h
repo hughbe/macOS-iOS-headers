@@ -6,9 +6,11 @@
 
 #import "NSView.h"
 
-@class AKBitmapFIFO, AKController, CHBoxcarFilterPointFIFO, CHPointStrokeFIFO, CHQuadCurvePointFIFO, NSColor;
+#import "CHPointFIFODrawingTarget.h"
 
-@interface AKSmoothPathView : NSView
+@class AKBitmapFIFO, AKController, CHBoxcarFilterPointFIFO, CHPointStrokeFIFO, CHQuadCurvePointFIFO, NSColor, NSString;
+
+@interface AKSmoothPathView : NSView <CHPointFIFODrawingTarget>
 {
     double _cachedEffectiveStrokeWidthInModel;
     double _cachedModelToViewScale;
@@ -38,6 +40,7 @@
 }
 
 + (id)newSmoothPathViewForCurrentPlatformWithController:(id)arg1;
+- (void).cxx_destruct;
 @property double singleDotCurrentSize; // @synthesize singleDotCurrentSize=_singleDotCurrentSize;
 @property BOOL disableSingleDotSpecialCase; // @synthesize disableSingleDotSpecialCase=_disableSingleDotSpecialCase;
 @property double currentWeight; // @synthesize currentWeight=_currentWeight;
@@ -60,9 +63,8 @@
 @property(nonatomic) double strokeWidth; // @synthesize strokeWidth=_strokeWidth;
 @property(retain, nonatomic) NSColor *strokeColor; // @synthesize strokeColor=_strokeColor;
 @property(nonatomic) BOOL prestrokedOutputMode; // @synthesize prestrokedOutputMode=_prestrokedOutputMode;
-@property id <AKSmoothPathViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain) id <AKSmoothPathViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property __weak AKController *controller; // @synthesize controller=_controller;
-- (void).cxx_destruct;
 - (void)_updateInterpolatingFifoLineWidth;
 - (double)_windowBackingScaleFactor;
 -     // Error parsing type: 24@0:8@16, name: _pointForRecognizer:
@@ -74,6 +76,7 @@
 - (void)_clear;
 - (double)weightForValue:(double)arg1;
 - (void)handleDragAction:(id)arg1;
+- (BOOL)_catchUpAccumulatedTouchesForRecognizer:(id)arg1;
 - (void)handleTapAction:(id)arg1;
 - (void)handleForwardedEvent:(id)arg1;
 - (void)terminateStroke;
@@ -91,6 +94,12 @@
 - (void)awakeFromNib;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithController:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

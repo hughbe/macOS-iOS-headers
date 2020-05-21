@@ -10,19 +10,24 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABUndoableCommandVisitor : NSObject <ABCommandVisitor>
 {
     CDUnknownBlockType _didExecuteCommandWithSaveRequest;
+    CDUnknownBlockType _didExecuteCommandWithCNSaveRequest;
 }
 
 + (id)visitor;
 + (id)executeRedoVisitor;
 + (id)executeUndoVisitor;
 + (id)executeVisitor;
+@property(copy, nonatomic) CDUnknownBlockType didExecuteCommandWithCNSaveRequest; // @synthesize didExecuteCommandWithCNSaveRequest=_didExecuteCommandWithCNSaveRequest;
 @property(copy, nonatomic) CDUnknownBlockType didExecuteCommandWithSaveRequest; // @synthesize didExecuteCommandWithSaveRequest=_didExecuteCommandWithSaveRequest;
+- (void)postProcessCNSaveRequest:(id)arg1;
 - (void)postProcessSaveRequest:(id)arg1;
+- (id)makeCNSaveRequest;
 - (id)makeSaveRequest;
+- (void)visitUndoableSaveCNRequestCommand:(id)arg1;
+- (void)visitSaveCNRequestCommand:(id)arg1;
 - (void)visitSaveRequestCommand:(id)arg1;
 - (void)visitUndoableCommand:(id)arg1;
 - (void)visitCommand:(id)arg1;

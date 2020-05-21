@@ -14,11 +14,11 @@ __attribute__((visibility("hidden")))
     SidebarSearchFieldView *_searchFieldView;
 }
 
-@property(readonly, nonatomic) SidebarSearchFieldView *searchFieldView; // @synthesize searchFieldView=_searchFieldView;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) SidebarSearchFieldView *searchFieldView; // @synthesize searchFieldView=_searchFieldView;
 - (void)_didRecogizeLongPress:(id)arg1;
 - (double)_totalHeightOfTableView;
-- (id)accessibilityAttributeValue:(id)arg1;
+- (struct CGRect)accessibilityFrame;
 - (id)hitTest:(struct CGPoint)arg1;
 - (BOOL)validateProposedFirstResponder:(id)arg1 forEvent:(id)arg2;
 - (void)drawGridInClipRect:(struct CGRect)arg1;

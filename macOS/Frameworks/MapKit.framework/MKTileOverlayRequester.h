@@ -6,14 +6,16 @@
 
 #import "GEOTileRequester.h"
 
-@class NSMutableArray, NSMutableSet;
+@class NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface MKTileOverlayRequester : GEOTileRequester
 {
     BOOL _cancelled;
     NSMutableArray *_waiting;
     NSMutableSet *_running;
     NSMutableArray *_errors;
+    NSObject<OS_dispatch_queue> *_workQueue;
 }
 
 + (void)unregisterOverlay:(unsigned int)arg1;
@@ -23,11 +25,13 @@
 - (void)dealloc;
 - (void)cancel;
 - (BOOL)isRunning;
+- (void)_startOnWorkQueue;
 - (void)start;
 - (void)_operationFailed:(id)arg1 error:(id)arg2;
 - (void)_operationFinished:(id)arg1;
 - (void)_cleanup;
 - (void)_doWorkOrFinish;
+- (id)initWithTileRequest:(id)arg1 delegateQueue:(id)arg2 delegate:(id)arg3;
 
 @end
 

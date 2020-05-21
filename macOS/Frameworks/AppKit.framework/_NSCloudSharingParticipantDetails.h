@@ -8,15 +8,17 @@
 
 #import "NSSecureCoding.h"
 
-@class CKShareParticipant, NSString;
+@class CKShareParticipant, NSColor, NSString;
 
 @interface _NSCloudSharingParticipantDetails : NSObject <NSSecureCoding>
 {
     CKShareParticipant *_participant;
     NSString *_detailText;
+    NSColor *_participantColor;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(copy) NSColor *participantColor; // @synthesize participantColor=_participantColor;
 @property(readonly, copy) NSString *detailText; // @synthesize detailText=_detailText;
 @property(readonly) CKShareParticipant *participant; // @synthesize participant=_participant;
 - (void)encodeWithCoder:(id)arg1;

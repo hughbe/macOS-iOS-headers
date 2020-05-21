@@ -6,12 +6,14 @@
 
 #import "NSApplication.h"
 
-@class NSMutableArray, NSObject, NSTimer;
+#import "AppControllerTouchBarProviderDelegate.h"
+#import "NSTouchBarProvider.h"
+
+@class AppControllerTouchBarProvider, NSObject, NSString, NSTimer, NSTouchBar;
 
 __attribute__((visibility("hidden")))
-@interface BrowserApplication : NSApplication
+@interface BrowserApplication : NSApplication <AppControllerTouchBarProviderDelegate, NSTouchBarProvider>
 {
-    BOOL _isProcessingContextMenuEvent;
     BOOL _isClosingAllWindows;
     BOOL _isDockBouncingSuppressed;
     NSObject *_terminateSender;
@@ -31,19 +33,24 @@ __attribute__((visibility("hidden")))
     unsigned int _logPowerUsageRandomNumber;
     NSTimer *_usageLoggingTimer;
     double _usageLoggingTimeRemaining;
-    NSMutableArray *_secureAlerts;
+    AppControllerTouchBarProvider *_touchBarProvider;
 }
 
-+ (id)safariFrameworkBundle;
 - (void).cxx_destruct;
+- (id)init;
+- (void)finishLaunching;
+- (void)_logSafariUsage:(id)arg1;
+- (void)createNewPrivateBrowsingWindowFromTouchBarProvider:(id)arg1;
+- (void)createNewWindowFromTouchBarProvider:(id)arg1;
+@property(readonly) NSTouchBar *touchBar;
 - (BOOL)restoreWindowWithIdentifier:(id)arg1 state:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)tryToTerminate;
 - (void)terminate:(id)arg1;
+- (void)_applicationWillTerminate:(id)arg1;
 - (void)setDockBouncingSuppressed:(BOOL)arg1;
 - (BOOL)isDockBouncingSuppressed;
 - (long long)requestUserAttention:(unsigned long long)arg1;
 - (id)orderedWindows;
-- (BOOL)isProcessingContextMenuEvent;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (BOOL)anyWindowsVisible;
 - (id)makeWindowsPerform:(SEL)arg1 inOrder:(BOOL)arg2;
@@ -64,14 +71,16 @@ __attribute__((visibility("hidden")))
 - (BOOL)_shouldLogPowerUsage;
 - (BOOL)_isOnBatteryPower;
 - (void)sendEvent:(id)arg1;
-- (void)_checkSecureAlertsForUntrustedEvent:(id)arg1;
-- (void)endSecureAlert:(id)arg1;
-- (void)beginSecureAlert:(id)arg1;
 - (BOOL)sendAction:(SEL)arg1 to:(id)arg2 from:(id)arg3;
 - (SEL)currentAction;
 - (id)targetForAction:(SEL)arg1 to:(id)arg2 from:(id)arg3;
 - (void)orderFrontStandardAboutPanel:(id)arg1;
-- (void)_logSafariUsage:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

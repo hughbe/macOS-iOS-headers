@@ -8,19 +8,20 @@
 
 #import "CalAutoCompleteDelegate.h"
 #import "CalUIAutocompleteFieldDelegate.h"
+#import "CalUIResizingTextFieldDelegate.h"
 #import "CalUISuggestionsFieldDelegate.h"
 #import "EKUITokenFieldDelegate.h"
 
-@class CalAutoCompleteOperation, EKUIEditingField, EKUIPlusButton, EKUIResizingTextField, EKUIShareeControlContainer, EKUITokenField, NSDictionary, NSLayoutConstraint, NSMenuItem, NSMutableSet, NSProgressIndicator, NSStackView, NSString, NSView;
+@class CalAutoCompleteOperation, CalUILabel, EKUIEditingField, EKUIPlusButton, EKUIShareeControlContainer, EKUITokenField, NSDictionary, NSLayoutConstraint, NSMenuItem, NSMutableSet, NSProgressIndicator, NSStackView, NSString, NSView;
 
-@interface EKUIShareesGadget : EKUISingleViewGadget <CalAutoCompleteDelegate, CalUISuggestionsFieldDelegate, CalUIAutocompleteFieldDelegate, EKUITokenFieldDelegate>
+@interface EKUIShareesGadget : EKUISingleViewGadget <CalAutoCompleteDelegate, CalUISuggestionsFieldDelegate, CalUIAutocompleteFieldDelegate, CalUIResizingTextFieldDelegate, EKUITokenFieldDelegate>
 {
     BOOL _sortTokensOnNextUpdate;
     EKUIShareeControlContainer *_controlContainer;
     NSStackView *_stackView;
     EKUITokenField *_shareesField;
     NSView *_titleView;
-    EKUIResizingTextField *_titleField;
+    CalUILabel *_titleField;
     NSView *_editingView;
     EKUIEditingField *_editingField;
     NSLayoutConstraint *_editingFieldLeadingConstraint;
@@ -37,6 +38,7 @@
 }
 
 + (id)interestedChangeKeys;
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType suggestionsUpdatedBlock; // @synthesize suggestionsUpdatedBlock=_suggestionsUpdatedBlock;
 @property(retain) NSMenuItem *viewAndEditMenuItem; // @synthesize viewAndEditMenuItem=_viewAndEditMenuItem;
 @property(retain) NSMenuItem *viewOnlyMenuItem; // @synthesize viewOnlyMenuItem=_viewOnlyMenuItem;
@@ -51,12 +53,11 @@
 @property(retain) NSLayoutConstraint *editingFieldLeadingConstraint; // @synthesize editingFieldLeadingConstraint=_editingFieldLeadingConstraint;
 @property(retain) EKUIEditingField *editingField; // @synthesize editingField=_editingField;
 @property(retain) NSView *editingView; // @synthesize editingView=_editingView;
-@property(retain) EKUIResizingTextField *titleField; // @synthesize titleField=_titleField;
+@property(retain) CalUILabel *titleField; // @synthesize titleField=_titleField;
 @property(retain) NSView *titleView; // @synthesize titleView=_titleView;
 @property(retain) EKUITokenField *shareesField; // @synthesize shareesField=_shareesField;
 @property(retain) NSStackView *stackView; // @synthesize stackView=_stackView;
 @property(retain) EKUIShareeControlContainer *controlContainer; // @synthesize controlContainer=_controlContainer;
-- (void).cxx_destruct;
 - (void)inviteAgain:(id)arg1;
 - (void)removeSharee:(id)arg1;
 - (void)updatedAutoComplete:(id)arg1;
@@ -69,12 +70,14 @@
 - (void)moveUp;
 - (void)deleteInEmptyField;
 - (void)selectLastToken;
+- (id)subtitleForSuggestion:(id)arg1;
 - (id)titleForSuggestion:(id)arg1;
 - (id)viewForSuggestion:(id)arg1;
-- (void)queryStringUpdatedToString:(id)arg1 suggestionsFoundHandler:(CDUnknownBlockType)arg2;
+- (void)queryForString:(id)arg1 suggestionsFoundHandler:(CDUnknownBlockType)arg2;
 - (id)matchWithPrefix:(id)arg1;
 - (void)cancelSearch;
 - (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
+- (void)controlTextDidChange:(id)arg1;
 - (id)tokenField:(id)arg1 setUpTokenAttachmentCell:(id)arg2 forRepresentedObject:(id)arg3;
 - (id)tokenField:(id)arg1 menuForRepresentedObject:(id)arg2;
 - (BOOL)tokenField:(id)arg1 hasMenuForRepresentedObject:(id)arg2;
@@ -100,6 +103,7 @@
 - (BOOL)updateShareesFromPasteboard:(id)arg1;
 - (BOOL)readPasteboard:(id)arg1;
 - (id)representedObjectsFromPasteboard:(id)arg1;
+- (void)addContactsFromVCardData:(id)arg1 toSet:(id)arg2;
 - (id)claimedPboardTypes;
 - (void)updateIntrinsicContentSizeForTokenField;
 - (id)control;

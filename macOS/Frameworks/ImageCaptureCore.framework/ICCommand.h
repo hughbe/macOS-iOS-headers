@@ -8,6 +8,7 @@
 
 @class NSMutableDictionary, NSNumber, NSString;
 
+__attribute__((visibility("hidden")))
 @interface ICCommand : NSObject
 {
     NSNumber *_transactionID;
@@ -23,8 +24,7 @@
 @property(retain) id delegate; // @synthesize delegate=_delegate;
 @property(retain) NSMutableDictionary *dict; // @synthesize dict=_dict;
 @property(copy) NSString *type; // @synthesize type=_type;
-@property(retain) NSNumber *transactionID; // @synthesize transactionID=_transactionID;
-- (void)finalize;
+@property(copy) NSNumber *transactionID; // @synthesize transactionID=_transactionID;
 - (void)dealloc;
 
 @end

@@ -15,15 +15,20 @@
 }
 
 + (id)localizedFileSize:(long long)arg1;
++ (id)homeVolume;
 + (id)homeFolder;
 - (id)confirmationTextForSummaryAction:(id)arg1;
 - (id)performSummaryAction:(id)arg1;
+- (id)localizedRevealButtonTitle;
+- (BOOL)showRevealButton;
+- (BOOL)showItemPaths;
 - (BOOL)showsSummaryPanel;
 - (long long)totalSpaceUsed;
 - (id)managedPaths;
 - (id)representedApplication;
 - (id)localizedStringForCategory:(id)arg1;
 - (BOOL)isHidden;
+- (id)localizedHeaderMessage;
 - (id)performHeaderAction;
 - (id)localizedHeaderButtonTitle;
 - (id)confirmationTextForTipAction:(id)arg1;

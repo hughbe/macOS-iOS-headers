@@ -13,10 +13,12 @@
     NSMutableDictionary *_harvestedData;
 }
 
-@property(readonly, nonatomic) NSDictionary *harvestedData; // @synthesize harvestedData=_harvestedData;
 - (void).cxx_destruct;
+- (void)harvestIDMSRecoveryInfoFromHeaders:(id)arg1;
+- (void)harvestIDMSRecoveryInfoFromClientInfo:(id)arg1;
 - (void)_harvestIDMSRecoveryHeadersInfo:(id)arg1;
 - (void)harvestDataFromServerHTTPResponse:(id)arg1;
+@property(readonly, copy, nonatomic) NSDictionary *harvestedData;
 - (id)init;
 
 @end

@@ -6,28 +6,41 @@
 
 #import "NSObject.h"
 
-#import "GEOPBSessionRequesterDelegate.h"
+#import "GEOProtobufSessionTaskDelegate.h"
 
-@class GEORequester, NSString;
+@class GEOProtobufSession, GEOProtobufSessionTask, NSString;
 
-@interface GEOVoltaireAddressCorrectionProvider : NSObject <GEOPBSessionRequesterDelegate>
+@interface GEOVoltaireAddressCorrectionProvider : NSObject <GEOProtobufSessionTaskDelegate>
 {
-    GEORequester *_requester;
-    CDUnknownBlockType _errorHandler;
+    GEOProtobufSession *_protobufSession;
+    GEOProtobufSessionTask *_initializationTask;
+    GEOProtobufSessionTask *_updateTask;
+    CDUnknownBlockType _initErrorHandler;
     CDUnknownBlockType _initFinishedHandler;
     CDUnknownBlockType _updateFinishedHandler;
+    CDUnknownBlockType _updateErrorHandler;
 }
 
++ (BOOL)acUpdateNeedsProxy;
 + (id)acUpdateURL;
-+ (id)acInitUrl;
-@property(retain, nonatomic) GEORequester *requester; // @synthesize requester=_requester;
-- (void)requesterDidFinish:(id)arg1;
-- (void)requesterDidCancel:(id)arg1;
-- (void)requester:(id)arg1 didFailWithError:(id)arg2;
++ (BOOL)acInitNeedsProxy;
++ (id)acInitURL;
+- (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType updateErrorHandler; // @synthesize updateErrorHandler=_updateErrorHandler;
+@property(copy, nonatomic) CDUnknownBlockType updateFinishedHandler; // @synthesize updateFinishedHandler=_updateFinishedHandler;
+@property(copy, nonatomic) CDUnknownBlockType initErrorHandler; // @synthesize initErrorHandler=_initErrorHandler;
+@property(copy, nonatomic) CDUnknownBlockType initFinishedHandler; // @synthesize initFinishedHandler=_initFinishedHandler;
+@property(retain, nonatomic) GEOProtobufSessionTask *updateTask; // @synthesize updateTask=_updateTask;
+@property(retain, nonatomic) GEOProtobufSessionTask *initializationTask; // @synthesize initializationTask=_initializationTask;
+@property(readonly, nonatomic) GEOProtobufSession *protobufSession; // @synthesize protobufSession=_protobufSession;
 - (void)cancelRequest;
 - (void)startUpdateRequest:(id)arg1 finished:(CDUnknownBlockType)arg2 error:(CDUnknownBlockType)arg3;
 - (void)startInitRequest:(id)arg1 finished:(CDUnknownBlockType)arg2 error:(CDUnknownBlockType)arg3;
-- (void)dealloc;
+- (id)init;
+- (id)cancelError;
+- (void)didCompleteUpdateTask;
+- (void)didCompleteInitTask;
+- (void)protobufSession:(id)arg1 didCompleteTask:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

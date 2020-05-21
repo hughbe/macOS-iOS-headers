@@ -33,12 +33,22 @@ struct LogCategoryPrivate;
 
 struct LogOutput;
 
-struct NSMutableArray {
-    Class _field1;
+struct PairingSubstate {
+    int contacts;
+    int homeKit;
+    int visual;
+    int pairVerify;
+    int pin;
 };
 
-struct NSMutableDictionary {
-    Class _field1;
+struct _NSRange {
+    unsigned long long location;
+    unsigned long long length;
+};
+
+struct __sbuf {
+    char *_field1;
+    int _field2;
 };
 
 #pragma mark Typedef'd Structures
@@ -58,17 +68,4 @@ typedef struct {
     unsigned long long *_field3;
     unsigned long long _field4[5];
 } CDStruct_70511ce9;
-
-typedef struct {
-    unsigned int timestamp:1;
-    unsigned int errorCode:1;
-} CDStruct_64772c88;
-
-// Ambiguous groups
-typedef struct {
-    unsigned int timestamp:1;
-    unsigned int count:1;
-    unsigned int errorCode:1;
-    unsigned int found:1;
-} CDStruct_ff718a68;
 

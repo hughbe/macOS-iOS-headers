@@ -7,34 +7,42 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBSelectionItem.h"
 
-@class NSString, PBUnknownFields, _INPBIntentSlotValue;
+@class NSString, _INPBIntentSlotValue;
 
-@interface _INPBSelectionItem : PBCodable <NSCopying>
+@interface _INPBSelectionItem : PBCodable <_INPBSelectionItem, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
     NSString *_uuid;
     _INPBIntentSlotValue *_value;
     NSString *_vocabularyValue;
 }
 
-+ (id)options;
-@property(retain, nonatomic) _INPBIntentSlotValue *value; // @synthesize value=_value;
-@property(retain, nonatomic) NSString *vocabularyValue; // @synthesize vocabularyValue=_vocabularyValue;
-@property(retain, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(copy, nonatomic) NSString *vocabularyValue; // @synthesize vocabularyValue=_vocabularyValue;
+@property(retain, nonatomic) _INPBIntentSlotValue *value; // @synthesize value=_value;
+@property(copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-@property(readonly, nonatomic) BOOL hasValue;
 @property(readonly, nonatomic) BOOL hasVocabularyValue;
+@property(readonly, nonatomic) BOOL hasValue;
 @property(readonly, nonatomic) BOOL hasUuid;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

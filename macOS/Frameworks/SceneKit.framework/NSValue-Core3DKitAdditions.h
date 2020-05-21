@@ -7,10 +7,12 @@
 #import "NSValue.h"
 
 @interface NSValue (Core3DKitAdditions)
++     // Error parsing type: @80@0:8{?=[4]}16, name: SCN_valueWithSimdMatrix4:
 + (id)valueWithSCNMatrix4:(struct CATransform3D)arg1;
 + (id)valueWithSCNVector4:(struct SCNVector4)arg1;
 + (id)valueWithSCNVector3:(struct SCNVector3)arg1;
 + (id)SCN_valueWithCGPoint:(struct CGPoint)arg1;
+-     // Error parsing type: {?=[4]}16@0:8, name: SCN_simdMatrix4Value
 - (struct CATransform3D)SCNMatrix4Value;
 - (struct SCNVector4)SCNVector4Value;
 - (struct SCNVector3)SCNVector3Value;

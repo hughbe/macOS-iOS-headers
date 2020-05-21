@@ -6,16 +6,19 @@
 
 #import <PassKitCore/PKPaymentAuthorizationStateParam.h>
 
-@class NSData;
+@class NSData, PKAuthenticatorEvaluationResponse;
 
 @interface PKPaymentAuthorizationNonceStateParam : PKPaymentAuthorizationStateParam
 {
     NSData *_credential;
+    PKAuthenticatorEvaluationResponse *_evaluationResponse;
 }
 
++ (id)paramWithAuthenticatorEvaluationResponse:(id)arg1;
 + (id)paramWithCredential:(id)arg1;
-@property(retain, nonatomic) NSData *credential; // @synthesize credential=_credential;
 - (void).cxx_destruct;
+@property(retain, nonatomic) PKAuthenticatorEvaluationResponse *evaluationResponse; // @synthesize evaluationResponse=_evaluationResponse;
+@property(retain, nonatomic) NSData *credential; // @synthesize credential=_credential;
 - (id)description;
 
 @end

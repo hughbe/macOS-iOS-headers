@@ -19,10 +19,10 @@
 - (void)setDelegate:(id)arg1;
 - (id)delegate;
 - (void)takeQTTimeValueFrom:(id)arg1;
-- (void)setQTTimeValue:(CDStruct_900afa40)arg1;
-- (CDStruct_900afa40)QTTimeValue;
-- (void)setTimeRange:(CDStruct_977f9211)arg1;
-- (CDStruct_977f9211)timeRange;
+- (void)setQTTimeValue:(CDStruct_2ec95fd7)arg1;
+- (CDStruct_2ec95fd7)QTTimeValue;
+- (void)setTimeRange:(CDStruct_7cbd8c8b)arg1;
+- (CDStruct_7cbd8c8b)timeRange;
 - (void)setHighlightedTimeRanges:(id)arg1;
 - (id)highlightedTimeRanges;
 - (void)setBordered:(BOOL)arg1;
@@ -31,7 +31,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)exposedBindings;
-- (CDStruct_900afa40)timelineCell:(id)arg1 willChangeTimeValue:(CDStruct_900afa40)arg2;
+- (CDStruct_2ec95fd7)timelineCell:(id)arg1 willChangeTimeValue:(CDStruct_2ec95fd7)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

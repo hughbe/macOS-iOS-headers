@@ -17,11 +17,11 @@
 }
 
 + (BOOL)supportsSecureCoding;
-@property(readonly, retain, nonatomic) GEORouteHypothesisRequest *request; // @synthesize request=_request;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) GEORouteHypothesisRequest *request; // @synthesize request=_request;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)_isEqual:(id)arg1;

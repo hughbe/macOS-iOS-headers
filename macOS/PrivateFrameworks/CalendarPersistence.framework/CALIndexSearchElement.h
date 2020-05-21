@@ -16,12 +16,12 @@
 }
 
 + (id)searchElementForIndex:(id)arg1 withEntityType:(int)arg2 matchedProperty:(id)arg3;
+- (void).cxx_destruct;
 - (BOOL)isEqualToSearchElement:(id)arg1;
 - (BOOL)matchesEntity:(id)arg1;
 - (id)property;
 - (int)entityType;
 - (id)indexString;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initForIndexString:(id)arg1 withEntityType:(int)arg2 matchedProperty:(id)arg3;
 

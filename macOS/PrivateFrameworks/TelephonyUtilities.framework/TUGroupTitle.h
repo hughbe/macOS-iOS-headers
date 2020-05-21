@@ -15,16 +15,15 @@
     NSString *_value;
 }
 
-@property(retain, nonatomic) NSString *value; // @synthesize value=_value;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSString *value; // @synthesize value=_value;
 @property(readonly) NSArray *idsCanonicalDestinations;
-@property(readonly) NSString *idsCanonicalDestination;
-@property(readonly) NSString *idsUniqueId;
 @property(readonly) BOOL mostRecentCallWasMissed;
 @property(readonly) long long mostRecentCallType;
 @property(readonly) NSArray *handles;
 @property(readonly) NSString *isoCountryCode;
 @property(readonly) NSString *destinationId;
+@property(readonly) NSString *backingContactIdentifier;
 @property(readonly) NSString *backingContactId;
 @property(readonly) CNContact *backingContact;
 @property(readonly) NSString *callerId;

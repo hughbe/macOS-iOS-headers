@@ -7,15 +7,21 @@
 #import <AppKit/NSViewController.h>
 
 #import "NSSplitViewDelegate.h"
+#import "NSUserInterfaceValidations.h"
 
 @class NSArray, NSSplitView, NSString;
 
-@interface NSSplitViewController : NSViewController <NSSplitViewDelegate>
+@interface NSSplitViewController : NSViewController <NSSplitViewDelegate, NSUserInterfaceValidations>
 {
     NSSplitView *_splitView;
     id _splitViewControllerPrivateData;
 }
 
+- (BOOL)validateToolbarItem:(id)arg1;
+- (BOOL)validateUserInterfaceItem:(id)arg1;
+- (BOOL)respondsToSelector:(SEL)arg1;
+- (void)toggleSidebar:(id)arg1;
+- (id)_sidebarItemForToggling;
 - (void)_splitView:(id)arg1 didStopOverlayingView:(id)arg2;
 - (void)_splitView:(id)arg1 didStartOverlayingView:(id)arg2;
 - (void)setHidesFirstDivider:(BOOL)arg1;
@@ -85,10 +91,6 @@
 - (void)splitViewItem:(id)arg1 didChangeCollapsed:(BOOL)arg2 animated:(BOOL)arg3;
 - (void)splitViewItem:(id)arg1 isChangingCollapsed:(BOOL)arg2 animated:(BOOL)arg3;
 - (void)splitViewItem:(id)arg1 willChangeCollapsed:(BOOL)arg2 animated:(BOOL)arg3;
-- (BOOL)validateUserInterfaceItem:(id)arg1;
-- (BOOL)respondsToSelector:(SEL)arg1;
-- (void)toggleSidebar:(id)arg1;
-- (id)_sidebarItemForToggling;
 - (void)_stopObservingEdgeHover;
 - (void)_uncollapseEdgeRevealItem:(id)arg1;
 - (void)_startObservingEdgeHover;

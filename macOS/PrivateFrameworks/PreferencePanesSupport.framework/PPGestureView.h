@@ -21,6 +21,7 @@
     long long mSelectionType;
 }
 
+- (void).cxx_destruct;
 @property(readonly) double animationTotalTime; // @synthesize animationTotalTime=mAnimationTotalTime;
 @property long long selectionType; // @synthesize selectionType=mSelectionType;
 - (void)drawRect:(struct CGRect)arg1;

@@ -6,13 +6,13 @@
 
 #import "NSTextField.h"
 
-@class ABPhoneFormatter, NSArray;
+@class ABPhoneFormatter, NSArray, NSColor;
 
-__attribute__((visibility("hidden")))
 @interface ABShadowTextField : NSTextField
 {
     ABPhoneFormatter *_phoneFormatter;
     NSArray *_highlightStrings;
+    NSColor *_deselctedPlaceholderTextColor;
     BOOL _allowsMultipleLines;
     BOOL _drawsShadow;
     BOOL _isDraggingOperationActive;
@@ -21,13 +21,13 @@ __attribute__((visibility("hidden")))
 }
 
 + (Class)cellClass;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL needsCardViewBorderDrawing; // @synthesize needsCardViewBorderDrawing=_needsCardViewBorderDrawing;
 @property(retain, nonatomic) NSArray *highlightStrings; // @synthesize highlightStrings=_highlightStrings;
 @property(nonatomic) BOOL selectAllOnFirstResponder; // @synthesize selectAllOnFirstResponder=_shouldSelectAllOnFirstResponder;
 @property(nonatomic) BOOL drawsShadow; // @synthesize drawsShadow=_drawsShadow;
 @property(nonatomic) BOOL allowsMultipleLines; // @synthesize allowsMultipleLines=_allowsMultipleLines;
 @property(retain, nonatomic) ABPhoneFormatter *phoneFormatter; // @synthesize phoneFormatter=_phoneFormatter;
-- (void)setFrame:(struct CGRect)arg1;
 - (struct CGSize)intrinsicContentSize;
 @property(nonatomic) BOOL displaysAlternatePlaceholder;
 - (void)setObjectValue:(id)arg1;
@@ -35,20 +35,17 @@ __attribute__((visibility("hidden")))
 - (BOOL)performDragOperation:(id)arg1;
 - (void)draggingExited:(id)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
-- (id)draggingBackgroundColor;
-- (void)drawRect:(struct CGRect)arg1;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
 - (void)removeBackgroundSelectionHighlightFromPlaceholderText;
 - (void)applyBackgroundSelectionHighlightToPlaceholderText;
 - (BOOL)becomeFirstResponder;
+- (void)_commonInit;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)revealCellToAccessibility;
 - (void)hideCellFromAccessibility;
 - (BOOL)accessibilityIsIgnored;
-- (void)_commonInit;
-- (void)dealloc;
 
 @end
 

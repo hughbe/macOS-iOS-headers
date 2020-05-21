@@ -12,18 +12,18 @@
 {
     NSMutableDictionary *_contactsCache;
     NSObject *_contactsCacheLock;
-    NSOperationQueue *_contactsUpdateQueue;
-    CNContactStore *_contactStore;
     CNAvatarCache *_avatarCache;
+    CNContactStore *_contactStore;
+    NSOperationQueue *_contactsUpdateQueue;
 }
 
 + (id)_defaultKeyDescriptors;
 + (id)sharedInstance;
 + (id)allocWithZone:(struct _NSZone *)arg1;
-@property(readonly, nonatomic) CNAvatarCache *avatarCache; // @synthesize avatarCache=_avatarCache;
-@property(readonly, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
-@property(readonly, nonatomic) NSOperationQueue *contactsUpdateQueue; // @synthesize contactsUpdateQueue=_contactsUpdateQueue;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSOperationQueue *contactsUpdateQueue; // @synthesize contactsUpdateQueue=_contactsUpdateQueue;
+@property(readonly, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
+@property(readonly, nonatomic) CNAvatarCache *avatarCache; // @synthesize avatarCache=_avatarCache;
 @property(readonly, copy, nonatomic) CNContact *meContact;
 - (void)fetchContactForAddress:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (id)contactForAddress:(id)arg1;

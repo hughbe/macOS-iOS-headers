@@ -11,7 +11,7 @@
 @interface EKConflictScanJob : NSObject
 {
     EKEvent *_event;
-    NSArray *_calendars;
+    NSArray *_calendarIdentifiers;
     CalDateRange *_scanRange;
     NSArray *_occurrences;
     NSSet *_eventsConflictedWith;
@@ -19,14 +19,14 @@
     NSSet *_conflictDates;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSSet *conflictDates; // @synthesize conflictDates=_conflictDates;
 @property(retain) NSSet *nonAcceptedEvents; // @synthesize nonAcceptedEvents=_nonAcceptedEvents;
 @property(retain) NSSet *eventsConflictedWith; // @synthesize eventsConflictedWith=_eventsConflictedWith;
 @property(retain) NSArray *occurrences; // @synthesize occurrences=_occurrences;
 @property(retain) CalDateRange *scanRange; // @synthesize scanRange=_scanRange;
-@property(retain) NSArray *calendars; // @synthesize calendars=_calendars;
+@property(retain) NSArray *calendarIdentifiers; // @synthesize calendarIdentifiers=_calendarIdentifiers;
 @property(retain) EKEvent *event; // @synthesize event=_event;
-- (void).cxx_destruct;
 
 @end
 

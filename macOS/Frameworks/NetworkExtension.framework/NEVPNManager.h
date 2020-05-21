@@ -13,6 +13,7 @@
 @interface NEVPNManager : NSObject <NEPrettyDescription>
 {
     BOOL _hasLoaded;
+    BOOL _notificationSent;
     NEVPNConnection *_connection;
     NEConfiguration *_configuration;
 }
@@ -20,10 +21,11 @@
 + (id)mapError:(id)arg1;
 + (id)sharedManager;
 + (id)loadedManagers;
+- (void).cxx_destruct;
+@property BOOL notificationSent; // @synthesize notificationSent=_notificationSent;
 @property BOOL hasLoaded; // @synthesize hasLoaded=_hasLoaded;
 @property(copy) NEConfiguration *configuration; // @synthesize configuration=_configuration;
 @property(readonly) NEVPNConnection *connection; // @synthesize connection=_connection;
-- (void).cxx_destruct;
 - (id)description;
 - (id)descriptionWithIndent:(int)arg1 options:(unsigned long long)arg2;
 @property(copy) NSString *localizedDescription;
@@ -38,7 +40,7 @@
 - (BOOL)isProtocolTypeValid:(long long)arg1;
 - (void)removeFromPreferencesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)loadFromPreferencesWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (id)initWithGrade:(long long)arg1 connection:(id)arg2;
+- (id)initWithGrade:(long long)arg1 connection:(id)arg2 tunnelType:(long long)arg3;
 - (id)init;
 
 @end

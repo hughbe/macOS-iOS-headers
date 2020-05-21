@@ -6,13 +6,15 @@
 
 #import "NSObject.h"
 
-#import "MCGmailLabel.h"
+#import "ECGmailLabel.h"
+#import "EDIndexableMailbox.h"
 #import "MCMailbox.h"
+#import "MFMailboxDisplayCountUpdater.h"
 #import "MFUIMailbox.h"
 
-@class MFCriterion, MFMailAccount, MFMessageCounts, MFMessageStore, NSArray, NSDictionary, NSEnumerator, NSError, NSImage, NSMutableIndexSet, NSMutableSet, NSOperationQueue, NSString, NSURL;
+@class MFCriterion, MFMailAccount, MFMessageCounts, MFMessageStore, NSArray, NSDate, NSDictionary, NSEnumerator, NSError, NSImage, NSMutableIndexSet, NSMutableSet, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSURL;
 
-@interface MFMailbox : NSObject <MCGmailLabel, MCMailbox, MFUIMailbox>
+@interface MFMailbox : NSObject <ECGmailLabel, MCMailbox, MFUIMailbox, EDIndexableMailbox, MFMailboxDisplayCountUpdater>
 {
     MFMailAccount *_account;
     NSMutableSet *_reservedPathComponents;
@@ -23,7 +25,6 @@
     BOOL _countsWereLoaded;
     struct __CFTree *_tree;
     NSString *_pendingNameChange;
-    BOOL _isSmartMailbox;
     id _criteriaLock;
     NSArray *_criteria;
     long long _criteriaState;
@@ -49,18 +50,19 @@
     BOOL _deletionInProgress;
     id _statusCountsLock;
     BOOL _useStatusCounts;
-    BOOL _storeIsReadOnly;
-    BOOL _uuidUpdatedInDatabase;
     BOOL _respectsMailboxExclusions;
-    BOOL _needsToSaveMailboxName;
     BOOL _allCriteriaMustBeSatisfied;
     BOOL _isPublicOrShared;
+    BOOL _storeIsReadOnly;
+    BOOL _uuidUpdatedInDatabase;
+    BOOL _needsToSaveMailboxName;
     BOOL _displayCountHasEverBeenSet;
     NSString *_syncId;
     NSString *_name;
     NSString *_pathComponent;
-    long long _unreadCountQueryObserverID;
     NSString *_uuid;
+    long long _unreadCountQueryObserverID;
+    NSObject<OS_dispatch_queue> *_storeCreationQueue;
     NSOperationQueue *_statusCountsQueue;
     MFMessageCounts *_savedDatabaseMessageCounts;
 }
@@ -70,14 +72,16 @@
 + (void)setShouldIndexJunk:(BOOL)arg1;
 + (void)reimportJunk;
 + (void)setShouldIndexTrash:(BOOL)arg1;
-+ (BOOL)typeIsGeneric:(int)arg1;
-+ (id)displayNameForMessage:(id)arg1 mailboxCriteria:(id)arg2;
++ (id)mailboxForDisplayForMessage:(id)arg1 mailboxCriteria:(id)arg2;
 + (id)_mailboxesFromCriterion:(id)arg1;
 + (id)mailboxFromPath:(id)arg1;
-+ (id)mailboxWithPersistentID:(id)arg1;
++ (id)mailboxWithIdentifier:(id)arg1;
 + (BOOL)mailboxTypeAllowsDeduplication:(int)arg1;
 + (BOOL)mailboxTypeIsAlwaysUnread:(int)arg1;
 + (BOOL)mailboxTypeAllowsConversations:(int)arg1;
++ (void)_removeLocalProperties:(id)arg1 fromSmartMailboxes:(id)arg2;
++ (void)_switchMailboxTypesFromPersistedTypesForMailboxDictionary:(id)arg1;
++ (void)_switchMailboxTypesToPersistedTypesForMailboxDictionary:(id)arg1 isRoot:(BOOL)arg2;
 + (id)smartMailboxesEnumeratorIncludingFlagMailboxes:(BOOL)arg1 VIPSenderMailboxes:(BOOL)arg2;
 + (id)smartMailboxWithIdentifier:(id)arg1;
 + (id)_smartMailboxWithIdentifier:(id)arg1 inArray:(id)arg2;
@@ -86,28 +90,28 @@
 + (BOOL)logMailboxUUIDErrors;
 + (void)initialize;
 + (id)flagNameSyncLog;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL displayCountHasEverBeenSet; // @synthesize displayCountHasEverBeenSet=_displayCountHasEverBeenSet;
 @property(retain, nonatomic) MFMessageCounts *savedDatabaseMessageCounts; // @synthesize savedDatabaseMessageCounts=_savedDatabaseMessageCounts;
 @property(retain) NSOperationQueue *statusCountsQueue; // @synthesize statusCountsQueue=_statusCountsQueue;
-@property BOOL isPublicOrShared; // @synthesize isPublicOrShared=_isPublicOrShared;
-@property BOOL allCriteriaMustBeSatisfied; // @synthesize allCriteriaMustBeSatisfied=_allCriteriaMustBeSatisfied;
 @property BOOL needsToSaveMailboxName; // @synthesize needsToSaveMailboxName=_needsToSaveMailboxName;
-@property(copy) NSString *uuid; // @synthesize uuid=_uuid;
-@property BOOL respectsMailboxExclusions; // @synthesize respectsMailboxExclusions=_respectsMailboxExclusions;
 @property BOOL uuidUpdatedInDatabase; // @synthesize uuidUpdatedInDatabase=_uuidUpdatedInDatabase;
+@property BOOL storeIsReadOnly; // @synthesize storeIsReadOnly=_storeIsReadOnly;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *storeCreationQueue; // @synthesize storeCreationQueue=_storeCreationQueue;
 @property long long unreadCountQueryObserverID; // @synthesize unreadCountQueryObserverID=_unreadCountQueryObserverID;
+@property(copy) NSString *uuid; // @synthesize uuid=_uuid;
 @property(copy) NSString *pathComponent; // @synthesize pathComponent=_pathComponent;
 @property(copy) NSString *name; // @synthesize name=_name;
-@property BOOL storeIsReadOnly; // @synthesize storeIsReadOnly=_storeIsReadOnly;
+@property BOOL isPublicOrShared; // @synthesize isPublicOrShared=_isPublicOrShared;
+@property BOOL allCriteriaMustBeSatisfied; // @synthesize allCriteriaMustBeSatisfied=_allCriteriaMustBeSatisfied;
 @property(copy) NSString *syncId; // @synthesize syncId=_syncId;
-- (void).cxx_destruct;
+@property BOOL respectsMailboxExclusions; // @synthesize respectsMailboxExclusions=_respectsMailboxExclusions;
 - (void)enumerateDescendantsInOrder:(long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)_VIPSendersChanged:(id)arg1;
 - (void)_addressBookDidChange:(id)arg1;
 - (BOOL)isEqualToSmartMailbox:(id)arg1;
 @property(readonly, nonatomic) BOOL isValidDestinationMailbox;
 @property(readonly, nonatomic) BOOL isPlaceholder;
-@property(readonly) BOOL allowsMoveDeletedMessagesToTrash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)setFailedToOpen:(BOOL)arg1 error:(id)arg2;
 @property(readonly) NSError *openFailureError;
@@ -121,7 +125,8 @@
 - (void)_setDisplayCountWithMessageCounts:(id)arg1;
 - (void)setMessageCounts:(id)arg1;
 @property(readonly) unsigned long long deletedCount;
-@property unsigned long long displayCount;
+- (void)setDisplayCount:(unsigned long long)arg1;
+@property(readonly) unsigned long long displayCount;
 - (BOOL)_isNormalMailbox;
 - (BOOL)criteriaAreValid:(id *)arg1;
 - (id)_abGroupsUsedInCriteria;
@@ -147,6 +152,7 @@
 - (id)userInfoObjectForKey:(id)arg1;
 - (void)_userInfoDidLoad:(id)arg1;
 - (id)_loadUserInfo;
+@property(retain) NSDate *lastSyncDate;
 @property(readonly) BOOL hasFirstTimeSyncBeenDetermined;
 @property BOOL isFirstTimeSync;
 - (void)_updateDontIndexFlagFile;
@@ -155,7 +161,6 @@
 @property unsigned long long attributes;
 @property(readonly, nonatomic) BOOL isVisible;
 @property(readonly, nonatomic) BOOL preferredMessageType;
-- (void)setPrimitiveType:(int)arg1;
 @property int mailboxType;
 @property(readonly) long long type;
 @property(readonly, copy) NSString *description;
@@ -170,7 +175,6 @@
 - (id)_URLStringWithAccount:(id)arg1;
 @property(readonly, nonatomic) NSURL *URL;
 - (id)pathRelativeToMailbox:(id)arg1;
-@property(readonly, copy, nonatomic) NSString *tildeAbbreviatedPath;
 @property(readonly, copy) NSString *realFullPath;
 @property(readonly, copy, nonatomic) NSString *fullPath;
 @property(readonly, copy, nonatomic) NSString *accountRelativeFilesystemPath;
@@ -179,7 +183,9 @@
 @property(readonly, nonatomic) BOOL isAllMailMailbox;
 @property(readonly) BOOL isGmailStarredLabel;
 @property(readonly) BOOL isGmailImportantLabel;
-@property(readonly, nonatomic) BOOL isPlainSmartMailbox;
+@property(readonly, nonatomic) BOOL isJunk;
+@property(readonly, nonatomic) BOOL isSmartMailboxOrFolder;
+@property(readonly, nonatomic) BOOL isGeneric;
 @property(readonly) BOOL isSpecialMailbox;
 @property(readonly, nonatomic) BOOL isStore;
 @property(readonly, nonatomic) BOOL isContainer;
@@ -206,6 +212,8 @@
 - (BOOL)isGmailWhiteMailboxOrDescendant:(BOOL)arg1;
 - (id)_gmailWhiteMailboxChild;
 - (id)sortedChildAtIndex:(unsigned long long)arg1 hidingGmail:(BOOL)arg2;
+- (id)selfOrOnlyVisibleChildHidingGmail:(BOOL)arg1;
+- (void)enumerateVisibleChildrenHidingGmail:(BOOL)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (id)visibleChildAtIndex:(unsigned long long)arg1;
 - (id)childAtIndex:(unsigned long long)arg1;
 @property(readonly) unsigned long long numberOfChildren;
@@ -243,7 +251,9 @@
 - (void)cancelUnreadCountQuery;
 - (id)dictionaryRepresentationIncludePII:(BOOL)arg1;
 - (id)dictionaryRepresentation;
-@property(readonly, copy, nonatomic) NSString *persistentID;
+@property(readonly, nonatomic) NSString *persistentID;
+- (long long)databaseID;
+@property(readonly, copy, nonatomic) NSString *persistentUIIdentifier;
 - (id)initWithDictionaryRepresentation:(id)arg1 copyUUID:(BOOL)arg2;
 - (id)initWithMailbox:(id)arg1;
 - (id)initWithName:(id)arg1 pathComponent:(id)arg2 attributes:(unsigned long long)arg3 forAccount:(id)arg4;
@@ -251,11 +261,11 @@
 - (id)initWithAccount:(id)arg1;
 - (id)init;
 - (void)dealloc;
-- (void)_registerForSmartMailboxNotification;
+- (void)_registerForCriteriaNotificationsForSpotlightMailbox;
 @property(readonly, nonatomic) NSImage *accountIcon;
 @property(readonly, nonatomic) BOOL isAccountActive;
 @property(readonly, nonatomic) BOOL isLocal;
-@property(nonatomic) BOOL isSmartMailbox;
+@property(readonly, nonatomic) BOOL isSpotlightMailbox;
 @property(readonly) id backupID;
 @property(readonly) long long backupType;
 - (BOOL)isPointedToBySmartMailbox:(id)arg1;

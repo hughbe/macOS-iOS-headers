@@ -30,6 +30,7 @@
 - (void)addLockStatusObserver:(id)arg1;
 - (void)stopObservingKeyBagStatus;
 - (void)beginObservingKeyBagStatusWithCallback:(CDUnknownFunctionPointerType)arg1;
+- (id)platformBuildVersion;
 - (id)buildVersionHeader;
 - (id)protocolVersionHeader;
 - (id)storeUserAgent;
@@ -39,6 +40,7 @@
 - (void)dealloc;
 @property(readonly, nonatomic) NSString *udid;
 - (id)init;
+- (BOOL)isProductType:(unsigned int)arg1;
 - (BOOL)isFocusDevice;
 - (BOOL)isDevelopmentDevice;
 - (void)_initPlatform;

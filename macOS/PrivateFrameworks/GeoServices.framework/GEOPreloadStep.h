@@ -19,19 +19,18 @@ __attribute__((visibility("hidden")))
     unsigned int bytesLoaded;
     unsigned int bytesLoadedFromNetwork;
     unsigned int generation;
+    unsigned int numRetries;
     unsigned int hasError:1;
     unsigned int hasLifetimeError:1;
     unsigned int nearManeuver:1;
     unsigned int loading:1;
     unsigned int loaded:1;
-    unsigned int preempted:1;
 }
 
+- (void).cxx_destruct;
 - (double)networkDataRateKB;
-- (double)dataRateKB;
 - (void)resetErrors;
 - (BOOL)okToLoad;
-- (void)dealloc;
 
 @end
 

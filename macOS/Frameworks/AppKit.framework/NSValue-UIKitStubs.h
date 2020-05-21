@@ -7,6 +7,7 @@
 #import "NSValue.h"
 
 @interface NSValue (UIKitStubs)
-+ (id)valueWithCGRect:(struct CGRect)arg1;
++ (id)_valueWithCGRect:(struct CGRect)arg1;
++ (id)_valueWithCGPoint:(struct CGPoint)arg1;
 @end
 

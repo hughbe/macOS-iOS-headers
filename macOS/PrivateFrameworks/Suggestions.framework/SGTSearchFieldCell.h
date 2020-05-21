@@ -15,6 +15,7 @@
     SGTSearchFieldCellReserved *_sgtReserved;
 }
 
+- (void).cxx_destruct;
 - (id)accessibilitySizeOfChild:(id)arg1;
 - (id)accessibilityPositionOfChild:(id)arg1;
 - (id)accessibilityHitTest:(struct CGPoint)arg1;
@@ -60,7 +61,6 @@
 - (void)_resetTokens;
 - (void)_forwardTokenFieldCellAction:(id)arg1;
 @property(readonly) SGTSearchField *searchField;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initTextCell:(id)arg1;
 - (id)initWithCoder:(id)arg1;

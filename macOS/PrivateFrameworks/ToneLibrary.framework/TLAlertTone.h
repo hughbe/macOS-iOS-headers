@@ -6,20 +6,24 @@
 
 #import "NSObject.h"
 
-@class NSString, TLSound;
+@class NSURL, TLSystemSound;
 
 @interface TLAlertTone : NSObject
 {
-    NSString *_filePath;
-    TLSound *_actualSound;
-    TLSound *_previewSound;
+    unsigned int _actualSoundID;
+    unsigned int _previewSoundID;
+    TLSystemSound *_actualSound;
+    TLSystemSound *_previewSound;
+    BOOL _requiresLongFormPlayback;
+    NSURL *_soundFileURL;
 }
 
-@property(retain, nonatomic, setter=_setPreviewSound:) TLSound *previewSound; // @synthesize previewSound=_previewSound;
-@property(retain, nonatomic, setter=_setActualSound:) TLSound *actualSound; // @synthesize actualSound=_actualSound;
-@property(copy, nonatomic, setter=_setFilePath:) NSString *filePath; // @synthesize filePath=_filePath;
-- (void)dealloc;
-- (id)initWithFilePath:(id)arg1 actualSoundID:(unsigned int)arg2 previewSoundID:(unsigned int)arg3;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL requiresLongFormPlayback; // @synthesize requiresLongFormPlayback=_requiresLongFormPlayback;
+@property(readonly, nonatomic) NSURL *soundFileURL; // @synthesize soundFileURL=_soundFileURL;
+@property(readonly, nonatomic) TLSystemSound *previewSound;
+@property(readonly, nonatomic) TLSystemSound *actualSound;
+- (id)initWithSoundFileURL:(id)arg1 actualSoundID:(unsigned int)arg2 previewSoundID:(unsigned int)arg3 requiresLongFormPlayback:(BOOL)arg4;
 
 @end
 

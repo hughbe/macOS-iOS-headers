@@ -6,21 +6,27 @@
 
 #import "NSObject.h"
 
-@class AVPlayerItem, AVQueuePlayer, NSMutableArray, NSObject<OS_dispatch_queue>;
+@class AVPlayerItem, AVQueuePlayer, AVWeakReference, NSError, NSMutableArray, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVPlayerLooperInternal : NSObject
 {
     AVQueuePlayer *loopingPlayer;
     AVPlayerItem *loopingItem;
     NSMutableArray *loopingItemCopies;
     CDStruct_e83c9415 loopRange;
-    BOOL loopingEnabled;
     long long loopCount;
     NSObject<OS_dispatch_queue> *ivarAccessQueue;
     long long playerOriginalActionAtItemEnd;
     CDStruct_1b6d18a9 forwardPlaybackStartTime;
     AVPlayerItem *lastEnqueuedLoopingItem;
     BOOL waitingForLastLoopingCopyToFinish;
+    long long status;
+    NSError *error;
+    id <AVCallbackCancellation> playerCurrentItemKVOInvoker;
+    NSMutableArray *loopingItemStatusKVOInvokers;
+    AVWeakReference *weakReference;
+    BOOL listeningForItemFailedToPlayToEndTime;
 }
 
 @end

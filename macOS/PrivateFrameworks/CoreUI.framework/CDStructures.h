@@ -4,7 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#pragma mark Blocks
+#pragma mark Function Pointers and Blocks
+
+typedef void (*CDUnknownFunctionPointerType)(void); // return type and parameters are unknown
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
@@ -245,10 +247,12 @@ struct CUIDescriptor {
     long long _field36;
     double _field37;
     double _field38;
+    struct CGColor *_field39;
+    struct __CFArray *_field40;
     union {
         struct CGRect _field1[5];
         double _field2[20];
-    } _field39;
+    } _field41;
 };
 
 struct FontValue {
@@ -282,6 +286,11 @@ struct PSDGradientColorStop;
 
 struct PSDGradientOpacityStop;
 
+struct _NSRange {
+    unsigned long long location;
+    unsigned long long length;
+};
+
 struct _PSDImageInfo {
     unsigned int _field1;
     unsigned int _field2;
@@ -295,6 +304,29 @@ struct __CUIThemeGradientRenditionInitializerStruct {
     unsigned int _field1;
     double _field2;
     id _field3;
+};
+
+struct _carextendedMetadata {
+    unsigned int _field1;
+    char _field2[256];
+    char _field3[256];
+    char _field4[256];
+    char _field5[256];
+};
+
+struct _carheader {
+    unsigned int _field1;
+    unsigned int _field2;
+    unsigned int _field3;
+    unsigned int _field4;
+    unsigned int _field5;
+    char _field6[128];
+    char _field7[256];
+    unsigned char _field8[16];
+    unsigned int _field9;
+    unsigned int _field10;
+    unsigned int _field11;
+    unsigned int _field12;
 };
 
 struct _colordef {
@@ -316,6 +348,16 @@ struct _csibitmap {
     unsigned int _field3;
     unsigned int _field4;
     unsigned char _field5[0];
+};
+
+struct _csicolor {
+    unsigned int _field1;
+    unsigned int _field2;
+    unsigned int :8;
+    unsigned int :3;
+    unsigned int :21;
+    unsigned int _field3;
+    double _field4[0];
 };
 
 struct _csigradientdatanode {
@@ -354,6 +396,18 @@ struct _csiheader {
     } _field10;
 };
 
+struct _csitextstyle {
+    unsigned int _field1;
+    unsigned int _field2;
+    unsigned int _field3;
+    float _field4;
+    float _field5;
+    float _field6;
+    unsigned int _field7;
+    unsigned int _field8;
+    char _field9[0];
+};
+
 struct _cuieffectdata {
     unsigned int _field1;
     unsigned int _field2;
@@ -370,6 +424,13 @@ struct _psdGradientColor {
     double green;
     double blue;
     double alpha;
+};
+
+struct _renditionkeyattributeindex {
+    unsigned long long keymask;
+    unsigned char keyindices[65];
+    unsigned int nkeys;
+    unsigned int keylist[29];
 };
 
 struct _renditionkeyfmt {
@@ -398,15 +459,27 @@ struct _slice {
     unsigned int height;
 };
 
-struct _themelook {
-    long long _field1;
-    char *_field2;
-};
-
 struct crmFlags {
     unsigned int scalesVertically:1;
     unsigned int scalesHorizontally:1;
     unsigned int reserved:14;
+};
+
+struct cuithemerenditionrenditionflags {
+    unsigned int isHeaderFlaggedFPO:1;
+    unsigned int isExcludedFromContrastFilter:1;
+    unsigned int isVectorBased:1;
+    unsigned int isOpaque:1;
+    unsigned int bitmapEncoding:4;
+    unsigned int optOutOfThinning:1;
+    unsigned int isFlippable:1;
+    unsigned int isTintable:1;
+    unsigned int preservedVectorRepresentation:1;
+    unsigned int reserved:20;
+};
+
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
 };
 
 struct vImage_Buffer {
@@ -473,11 +546,6 @@ struct vector<PSDGradientOpacityStop, std::__1::allocator<PSDGradientOpacityStop
 };
 
 #pragma mark Typedef'd Structures
-
-typedef struct {
-    unsigned int _field1;
-    unsigned int _field2;
-} CDStruct_c0454aff;
 
 typedef struct {
     unsigned int _field1;
@@ -618,8 +686,9 @@ typedef struct {
     unsigned long long _field2;
     unsigned long long _field3;
     unsigned long long _field4;
-    CDStruct_c57d91d4 _field5[125];
-} CDStruct_32d4b02d;
+    unsigned long long _field5;
+    CDStruct_c57d91d4 _field6[125];
+} CDStruct_35a2250d;
 
 #pragma mark Typedef'd Unions
 

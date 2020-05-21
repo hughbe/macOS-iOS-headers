@@ -17,7 +17,7 @@
     NSWindowController *_zoomWindowController;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 - (void)scrollZoomCheckboxSetHidden:(BOOL)arg1;

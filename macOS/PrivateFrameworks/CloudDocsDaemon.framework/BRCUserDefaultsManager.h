@@ -21,9 +21,11 @@ __attribute__((visibility("hidden")))
     NSURLSession *_urlSession;
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_dispatch_queue> *_callbackQueue;
+    id <NSObject> _defaultsDidChangeNotificationObserver;
 }
 
 - (void).cxx_destruct;
+- (void)dealloc;
 - (void)_saveServerConfigurationDictionaryToDB:(id)arg1;
 - (void)_loadCachedServerConfigurationDictionaryFromDB:(id)arg1;
 - (void)reset;
@@ -35,8 +37,7 @@ __attribute__((visibility("hidden")))
 - (void)URLSession:(id)arg1 downloadTask:(id)arg2 didFinishDownloadingToURL:(id)arg3;
 - (void)setServerConfigurationURL:(id)arg1 whenLoaded:(CDUnknownBlockType)arg2;
 - (void)_setServerConfigurationURL:(id)arg1 whenLoaded:(CDUnknownBlockType)arg2;
-- (id)defaultsForAppLibraryName:(id)arg1;
-- (id)defaultsForAppLibraryIdentifier:(id)arg1;
+- (id)defaultsForIdentifier:(id)arg1;
 - (id)init;
 - (void)_prepopulateGlobalUserDefaults;
 

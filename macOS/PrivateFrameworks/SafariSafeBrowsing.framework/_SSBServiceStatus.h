@@ -15,11 +15,12 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long databaseUpdaterState;
+@property(readonly, nonatomic) NSArray *databaseUpdatersStatuses;
 - (id)bundleIdentifierForConnectionAtIndex:(unsigned long long)arg1;
 - (int)processIdentifierForConnectionAtIndex:(unsigned long long)arg1;
 @property(readonly, nonatomic) unsigned long long connectionCount;
 @property(readonly, copy, nonatomic) NSArray *activeTransactions;
-@property(readonly, nonatomic) unsigned long long databaseUpdaterState;
 @property(readonly) int processIdentifier;
 @property(readonly, copy, nonatomic) NSString *name;
 - (id)initWithServiceStatus:(struct ServiceStatus)arg1;

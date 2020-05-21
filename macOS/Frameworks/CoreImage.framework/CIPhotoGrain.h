@@ -23,7 +23,6 @@ __attribute__((visibility("hidden")))
 @property(copy, nonatomic) NSNumber *inputISO; // @synthesize inputISO;
 @property(retain, nonatomic) CIImage *inputImage; // @synthesize inputImage;
 - (id)outputImage;
-- (void)paramtersFor:(float)arg1 destination:(struct GrainParameters *)arg2 imageScaleFactor:(float)arg3;
 - (id)_paddedTileKernel;
 - (id)_grainBlendAndMixKernel;
 - (id)_interpolateGrainKernel;

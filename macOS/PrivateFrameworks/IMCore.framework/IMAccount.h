@@ -8,14 +8,14 @@
 
 #import "IMSystemMonitorListener.h"
 
-@class IMHandle, IMPeople, IMServiceImpl, NSArray, NSAttributedString, NSData, NSDate, NSDictionary, NSMutableDictionary, NSRecursiveLock, NSString;
+@class IMHandle, IMPeople, IMServiceImpl, NSArray, NSAttributedString, NSData, NSDate, NSDictionary, NSMapTable, NSMutableDictionary, NSRecursiveLock, NSString;
 
 @interface IMAccount : NSObject <IMSystemMonitorListener>
 {
     IMServiceImpl *_service;
     IMPeople *_buddyList;
     NSRecursiveLock *_lock;
-    NSMutableDictionary *_imHandles;
+    NSMapTable *_imHandles;
     IMHandle *_loginIMHandle;
     NSArray *_cachedAllowList;
     NSArray *_cachedBlockList;
@@ -87,6 +87,7 @@
 + (void)removePasswordForAccount:(id)arg1 forServiceName:(id)arg2;
 + (void)setPassword:(id)arg1 forAccount:(id)arg2 forAuthID:(id)arg3 forServiceName:(id)arg4;
 + (id)passwordForAccount:(id)arg1 forServiceName:(id)arg2;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL justLoggedIn; // @synthesize justLoggedIn=_justLoggedIn;
 @property(readonly, nonatomic) IMPeople *buddyList; // @synthesize buddyList=_buddyList;
 @property(readonly, nonatomic) id loginIMHandle; // @synthesize loginIMHandle=_loginIMHandle;
@@ -105,7 +106,6 @@
 @property(readonly, nonatomic) __weak IMServiceImpl *service; // @synthesize service=_service;
 @property(readonly, nonatomic) NSString *strippedLogin; // @synthesize strippedLogin=_strippedLogin;
 @property(retain, nonatomic) NSString *login; // @synthesize login=_loginID;
-- (void).cxx_destruct;
 - (void)_handleIncomingCommand:(id)arg1 withProperties:(id)arg2 fromBuddyInfo:(id)arg3;
 - (void)_handleDeliveredCommand:(id)arg1 withProperties:(id)arg2 fromBuddyInfo:(id)arg3;
 - (BOOL)_updateDisplayName:(id)arg1;
@@ -168,9 +168,12 @@
 - (BOOL)hasAlias:(id)arg1;
 - (void)_invalidateCachedAliases;
 @property(readonly, nonatomic) NSArray *aliases;
+@property(readonly, nonatomic, getter=isMakoAccount) BOOL makoAccount;
 - (id)_statuses;
 - (id)_aliasInfoForAlias:(id)arg1;
+- (BOOL)_aliasIsVisible:(id)arg1;
 - (id)_aliases;
+@property(readonly, nonatomic) NSArray *aliasesToRegister;
 @property(readonly, nonatomic) NSArray *vettedAliases;
 - (void)_updateProfileInfo:(id)arg1;
 - (long long)profileValidationErrorReason;
@@ -200,7 +203,7 @@
 - (void)handleSubscriptionRequestFrom:(id)arg1 withMessage:(id)arg2;
 - (void)imHandle:(id)arg1 buddyStatusChanged:(BOOL)arg2;
 - (void)disconnectAllIMHandles;
-- (void)unregisterIMHandle:(id)arg1;
+- (void)unregisterIMHandleWithID:(id)arg1;
 - (void)registerIMHandle:(id)arg1;
 - (void)_refreshLoginIMHandle;
 - (void)forgetAllWatches;
@@ -252,6 +255,7 @@
 - (void)_updateRegistrationStatus:(int)arg1 error:(int)arg2 info:(id)arg3;
 @property(readonly, nonatomic) BOOL supportsRegistration;
 @property(readonly, nonatomic) NSDictionary *registrationFailureAlertInfo;
+@property(readonly, nonatomic) BOOL canSendMessages;
 @property(readonly, nonatomic) BOOL isOperational;
 @property(readonly, nonatomic) BOOL isRegistered;
 @property(readonly, nonatomic) BOOL _isUsableForSending;

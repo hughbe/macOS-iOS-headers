@@ -6,37 +6,55 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSData, NSDate, NSString, PKPaymentApplication;
+@class NSArray, NSData, NSDate, NSString, PKCurrencyAmount, PKPaymentApplication;
 
-@interface PKRemotePaymentInstrument : NSObject <NSSecureCoding>
+@interface PKRemotePaymentInstrument : NSObject <NSSecureCoding, NSCopying>
 {
+    BOOL _supportsAutomaticSelection;
+    BOOL _hasAssociatedPeerPaymentAccount;
     NSString *_passIdentifier;
+    NSString *_organizationName;
     NSData *_manifestHash;
     NSString *_displayName;
     NSString *_primaryAccountNumberSuffix;
+    NSString *_primaryAccountIdentifier;
+    NSString *_issuerCountryCode;
     NSArray *_paymentApplications;
     PKPaymentApplication *_primaryPaymentApplication;
     NSDate *_ingestedDate;
+    PKCurrencyAmount *_peerPaymentAccountBalance;
+    unsigned long long _peerPaymentAccountState;
     NSArray *_associatedWebDomains;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)sortDescriptorForDefaultPaymentInstrument:(id)arg1 supportedNetworks:(id)arg2 merchantCapabilities:(unsigned long long)arg3;
++ (id)sortDescriptorForDefaultPaymentInstrument:(id)arg1 supportedNetworks:(id)arg2 merchantCapabilities:(unsigned long long)arg3 webService:(id)arg4;
 + (id)remotePaymentInstrumentWithProtobuf:(id)arg1;
++ (id)thumbnailCachePathForManifestHash:(id)arg1 size:(struct CGSize)arg2;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSArray *associatedWebDomains; // @synthesize associatedWebDomains=_associatedWebDomains;
+@property(nonatomic) unsigned long long peerPaymentAccountState; // @synthesize peerPaymentAccountState=_peerPaymentAccountState;
+@property(nonatomic) BOOL hasAssociatedPeerPaymentAccount; // @synthesize hasAssociatedPeerPaymentAccount=_hasAssociatedPeerPaymentAccount;
+@property(retain, nonatomic) PKCurrencyAmount *peerPaymentAccountBalance; // @synthesize peerPaymentAccountBalance=_peerPaymentAccountBalance;
+@property(nonatomic) BOOL supportsAutomaticSelection; // @synthesize supportsAutomaticSelection=_supportsAutomaticSelection;
 @property(retain, nonatomic) NSDate *ingestedDate; // @synthesize ingestedDate=_ingestedDate;
 @property(retain, nonatomic) PKPaymentApplication *primaryPaymentApplication; // @synthesize primaryPaymentApplication=_primaryPaymentApplication;
 @property(retain, nonatomic) NSArray *paymentApplications; // @synthesize paymentApplications=_paymentApplications;
+@property(copy, nonatomic) NSString *issuerCountryCode; // @synthesize issuerCountryCode=_issuerCountryCode;
+@property(copy, nonatomic) NSString *primaryAccountIdentifier; // @synthesize primaryAccountIdentifier=_primaryAccountIdentifier;
 @property(copy, nonatomic) NSString *primaryAccountNumberSuffix; // @synthesize primaryAccountNumberSuffix=_primaryAccountNumberSuffix;
 @property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(copy, nonatomic) NSData *manifestHash; // @synthesize manifestHash=_manifestHash;
+@property(copy, nonatomic) NSString *organizationName; // @synthesize organizationName=_organizationName;
 @property(copy, nonatomic) NSString *passIdentifier; // @synthesize passIdentifier=_passIdentifier;
-- (void).cxx_destruct;
 - (BOOL)isEqualToRemotePaymentInstrument:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)sortedPaymentApplications:(id)arg1 ascending:(BOOL)arg2;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

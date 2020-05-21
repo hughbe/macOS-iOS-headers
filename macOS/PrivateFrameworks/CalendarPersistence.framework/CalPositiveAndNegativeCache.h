@@ -13,8 +13,8 @@
     NSMutableDictionary *_backingDictionary;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *backingDictionary; // @synthesize backingDictionary=_backingDictionary;
-- (void)dealloc;
 - (void)markKeysMissingFromCacheAsNegativeForKeys:(id)arg1;
 - (void)markCacheNegativeForKey:(id)arg1;
 - (BOOL)cacheWasNegativeForKey:(id)arg1;

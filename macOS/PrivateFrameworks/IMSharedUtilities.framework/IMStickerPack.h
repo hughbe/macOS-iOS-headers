@@ -10,8 +10,8 @@
 
 @interface IMStickerPack : NSObject
 {
-    struct NSString *_GUID;
     NSMutableSet *_stickers;
+    NSString *_GUID;
     NSString *_name;
     NSURL *_displayAssetURL;
     NSURL *_fileURL;
@@ -33,7 +33,7 @@
 - (void)addSticker:(id)arg1;
 - (void)dealloc;
 @property(readonly, nonatomic) NSSet *stickers;
-- (id)initWithGUID:(struct NSString *)arg1 name:(id)arg2 displayAssetURL:(id)arg3 fileURL:(id)arg4 appBundleIdentifier:(id)arg5 appVersion:(id)arg6;
+- (id)initWithGUID:(id)arg1 name:(id)arg2 displayAssetURL:(id)arg3 fileURL:(id)arg4 appBundleIdentifier:(id)arg5 appVersion:(id)arg6;
 
 @end
 

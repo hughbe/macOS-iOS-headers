@@ -8,6 +8,7 @@
 
 @protocol CNLikenessEditorHostDelegate
 - (BOOL)isBuddy;
+- (void)close;
 - (void)save;
 - (void)setReadyToSave;
 - (void)updateNavigationForReturn;

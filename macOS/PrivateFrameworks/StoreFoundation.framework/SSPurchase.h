@@ -28,6 +28,7 @@
     BOOL _shouldBeInstalledAfterLogout;
     BOOL _isCancelled;
     BOOL _isDSIDLessPurchase;
+    NSString *_managedAppUUIDString;
     NSString *_sortableAccountIdentifier;
     unsigned long long _itemIdentifier;
     CDUnknownBlockType _authFallbackHandler;
@@ -39,6 +40,7 @@
 + (id)purchasesGroupedByAccountIdentifierWithPurchases:(id)arg1;
 + (BOOL)supportsSecureCoding;
 + (id)purchaseWithBuyParameters:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) NSDictionary *dsidLessOptions; // @synthesize dsidLessOptions=_dsidLessOptions;
 @property BOOL isDSIDLessPurchase; // @synthesize isDSIDLessPurchase=_isDSIDLessPurchase;
 @property(copy) NSDictionary *responseDialog; // @synthesize responseDialog=_responseDialog;
@@ -52,6 +54,7 @@
 @property(retain, nonatomic) NSString *parentalControls; // @synthesize parentalControls=_parentalControls;
 @property(retain, nonatomic) NSData *receiptData; // @synthesize receiptData=_receiptData;
 @property(nonatomic) long long purchaseType; // @synthesize purchaseType=_purchaseType;
+@property(retain, nonatomic) NSString *managedAppUUIDString; // @synthesize managedAppUUIDString=_managedAppUUIDString;
 @property BOOL isVPP; // @synthesize isVPP=_isVPP;
 @property BOOL isRedownload; // @synthesize isRedownload=_isRedownload;
 @property BOOL isUpdate; // @synthesize isUpdate=_isUpdate;
@@ -59,7 +62,6 @@
 @property(copy, nonatomic) SSDownloadMetadata *downloadMetadata; // @synthesize downloadMetadata=_downloadMetadata;
 @property(copy, nonatomic) NSString *buyParameters; // @synthesize buyParameters=_buyParameters;
 @property(retain, nonatomic) NSNumber *accountIdentifier; // @synthesize accountIdentifier=_accountIdentifier;
-- (void).cxx_destruct;
 - (BOOL)purchaseDSIDMatchesPrimaryAccount;
 @property(readonly) BOOL needsAuthentication; // @dynamic needsAuthentication;
 @property BOOL isRecoveryPurchase; // @dynamic isRecoveryPurchase;

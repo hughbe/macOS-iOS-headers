@@ -37,6 +37,7 @@
 @property(copy, nonatomic) NSDictionary *firstNameAPGs;
 @property(copy, nonatomic) NSString *firstName;
 @property(copy, nonatomic) NSArray *emails;
+@property(copy, nonatomic) NSString *companyPhonetic;
 @property(copy, nonatomic) NSString *company;
 @property(copy, nonatomic) NSDate *birthday;
 @property(copy, nonatomic) NSArray *addresses;

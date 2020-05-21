@@ -6,13 +6,12 @@
 
 #import <EventKit/EKObject.h>
 
-#import "EKProtocolMutableCalendarSource.h"
+#import "MutableCalendarSourceModelProtocol.h"
 
-@class EKAvailabilityCache, NSDictionary, NSError, NSManagedObjectID, NSSet, NSString, NSURL;
+@class EKAvailabilityCache, EKSourceConstraints, NSDate, NSDictionary, NSError, NSManagedObjectID, NSSet, NSString, NSURL, REMObjectID;
 
-@interface EKSource : EKObject <EKProtocolMutableCalendarSource>
+@interface EKSource : EKObject <MutableCalendarSourceModelProtocol>
 {
-    EKAvailabilityCache *_availabilityCache;
     BOOL isDelegate;
     BOOL isWritable;
     BOOL isEnabledForEvents;
@@ -22,12 +21,15 @@
     BOOL supportsEmailValidation;
     BOOL supportsEventCalendarCreation;
     BOOL supportsFreebusy;
+    BOOL supportsJunkReporting;
     BOOL supportsLikenessPropagation;
     BOOL supportsManagedAttachments;
+    BOOL supportsPhoneNumbers;
     BOOL supportsPrivateEvents;
     BOOL supportsSharingScheduling;
     BOOL supportsTaskCalendarCreation;
     BOOL supportsUnbind;
+    BOOL requiresOpeningAttachmentAsLink;
     int displayOrder;
     NSString *externalSourceIdentifier;
     NSSet *ownerAddresses;
@@ -37,6 +39,7 @@
     NSString *dropBoxPathString;
     NSURL *serverURL;
     NSSet *_calendars;
+    NSString *_delegatedAccountOwnerStoreID;
 }
 
 + (id)knownSingleValueKeys;
@@ -51,16 +54,20 @@
 + (Class)frozenClass;
 + (id)sourceWithEventStore:(id)arg1;
 + (id)sourceWithCalendarSource:(id)arg1 eventStore:(id)arg2;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *delegatedAccountOwnerStoreID; // @synthesize delegatedAccountOwnerStoreID=_delegatedAccountOwnerStoreID;
 @property(readonly, nonatomic) NSSet *calendars; // @synthesize calendars=_calendars;
+@property(readonly, nonatomic) BOOL requiresOpeningAttachmentAsLink; // @synthesize requiresOpeningAttachmentAsLink;
 @property(readonly, nonatomic) BOOL supportsUnbind; // @synthesize supportsUnbind;
 @property(readonly, nonatomic) NSURL *serverURL; // @synthesize serverURL;
 @property(readonly, nonatomic) NSString *dropBoxPathString; // @synthesize dropBoxPathString;
 @property(readonly, retain, nonatomic) NSString *typeString; // @synthesize typeString;
-@property(readonly, nonatomic) BOOL supportsTaskCalendarCreation; // @synthesize supportsTaskCalendarCreation;
 @property(readonly, nonatomic) BOOL supportsSharingScheduling; // @synthesize supportsSharingScheduling;
 @property(readonly, nonatomic) BOOL supportsPrivateEvents; // @synthesize supportsPrivateEvents;
+@property(readonly, nonatomic) BOOL supportsPhoneNumbers; // @synthesize supportsPhoneNumbers;
 @property(readonly, nonatomic) BOOL supportsManagedAttachments; // @synthesize supportsManagedAttachments;
 @property(readonly, nonatomic) BOOL supportsLikenessPropagation; // @synthesize supportsLikenessPropagation;
+@property(readonly, nonatomic) BOOL supportsJunkReporting; // @synthesize supportsJunkReporting;
 @property(readonly, nonatomic) BOOL supportsFreebusy; // @synthesize supportsFreebusy;
 @property(readonly, nonatomic) BOOL supportsEventCalendarCreation; // @synthesize supportsEventCalendarCreation;
 @property(readonly, nonatomic) BOOL supportsEmailValidation; // @synthesize supportsEmailValidation;
@@ -69,41 +76,56 @@
 @property(readonly, nonatomic) NSString *sourceIdentifier; // @synthesize sourceIdentifier;
 @property(readonly, retain, nonatomic) NSString *providerIdentifier; // @synthesize providerIdentifier;
 @property(readonly, nonatomic) NSSet *ownerAddresses; // @synthesize ownerAddresses;
-@property(readonly, nonatomic) BOOL isEnabledForReminders; // @synthesize isEnabledForReminders;
 @property(readonly, nonatomic) BOOL isEnabledForEvents; // @synthesize isEnabledForEvents;
 @property(readonly, nonatomic) BOOL isWritable; // @synthesize isWritable;
 @property(readonly, nonatomic) BOOL isDelegate; // @synthesize isDelegate;
 @property(readonly, nonatomic) int displayOrder; // @synthesize displayOrder;
 @property(readonly, copy, nonatomic) NSString *externalSourceIdentifier; // @synthesize externalSourceIdentifier;
-- (void).cxx_destruct;
 - (id)_defaultSchedulingCalendar;
+- (id)_createSubscribedSourceConstraints;
+- (id)_createBirthdaySourceConstraints;
+- (id)_createLocalSourceConstraints;
+- (id)_createConstraintsFromManagedPrincipal;
+@property(readonly, nonatomic) EKSourceConstraints *constraints;
+- (void)setOfficeHours:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (id)_ekOfficeHoursFromCalDAVOfficeHoursData:(id)arg1;
+- (void)fetchOfficeHours:(CDUnknownBlockType)arg1;
+- (void)_performBlockWithManagedPrincipal:(CDUnknownBlockType)arg1;
+- (id)_principalObjectIDString;
 - (BOOL)revert;
 - (void)refetch;
 - (id)_updatedBackingSource;
 - (BOOL)_refreshable;
 - (BOOL)_reset;
-- (id)_existingObjectForDecodedIdentifier:(id)arg1;
-- (BOOL)_useExistingObjectWhenDecoding;
+- (BOOL)isPushAvailable;
 - (BOOL)supportsInvitationModificationsWithoutNotification;
 - (BOOL)_validateDeletable:(id *)arg1;
 - (BOOL)validate:(id *)arg1;
 - (void)_applyKnownImmutableValuesFrom:(id)arg1;
 - (id)backingSource;
+@property(readonly, nonatomic) BOOL supportsTaskCalendarCreation; // @synthesize supportsTaskCalendarCreation;
+@property(readonly, nonatomic) BOOL isEnabledForReminders; // @synthesize isEnabledForReminders;
+@property(readonly, nonatomic) REMObjectID *remAccountObjectID;
 @property(readonly, nonatomic) NSError *sourceError;
 - (id)sharedCalendarInvitationsForEntityType:(unsigned long long)arg1;
 - (id)dropBoxPathFromEvent:(id)arg1;
 @property(readonly, copy) NSString *description;
 - (unsigned int)_adjustedDisplayOrder;
+- (id)frozenOrNewCalendarsForEntityType:(unsigned long long)arg1;
+- (id)allFrozenOrNewCalendars;
 - (id)calendarsForEntityType:(unsigned long long)arg1;
 @property(readonly, nonatomic) NSSet *allCalendars;
+@property(readonly, nonatomic) BOOL isFacebookSource;
 @property(readonly, nonatomic) long long sourceType;
 - (id)coreDataEntityName;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)changeDefaultSchedulingCalendar;
 @property(readonly, nonatomic) NSString *symbolicColorForNewCalendar;
+@property(readonly, nonatomic) BOOL syncs;
 @property(readonly, nonatomic) BOOL supportsAttendeeEventForwarding;
 @property(readonly, nonatomic) BOOL supportsYearlyRecurrenceWithArbitraryInterval;
 @property(readonly, nonatomic) BOOL prefersSuggestingNewTimeViaEmail;
+@property(readonly, nonatomic) BOOL preferUsingEventOrganizerEmailWhenComposingMail;
 @property(readonly, nonatomic) BOOL supportsSuggestingNewTime;
 @property(readonly, nonatomic) BOOL supportsURLs;
 - (BOOL)supportsSeriesStartingOnDateOutsideRecurrence;
@@ -116,10 +138,9 @@
 - (BOOL)supportsDurationLongerThanRecurrenceInterval;
 - (BOOL)supportsCalendarItemsStartingOnSameDayInSameSeries;
 - (BOOL)supportsCalendarItemsOverlappingInSameSeries;
-- (BOOL)supportsAlarmsOverlappingCalendarItemsInSameSeries;
 - (BOOL)supportsAbsoluteAlarms;
 @property(readonly, nonatomic) BOOL supportsCalendarCreation;
-@property(readonly, nonatomic, getter=isEnabled) BOOL enabled;
+@property(nonatomic, getter=isEnabled) BOOL enabled;
 @property(readonly, nonatomic) int displayOrderForNewCalendar;
 @property(readonly, nonatomic) EKAvailabilityCache *availabilityCache;
 - (void)setTitle:(id)arg1;
@@ -128,8 +149,12 @@
 @property(copy, nonatomic) NSString *externalID;
 - (id)initWithTypeString:(id)arg1;
 - (id)initWithObject:(id)arg1 createPartialBackingObject:(BOOL)arg2 keepBackingObject:(BOOL)arg3 preFrozenRelationshipObjects:(id)arg4 additionalFrozenProperties:(id)arg5;
-- (BOOL)removeWithSpan:(long long)arg1 error:(id *)arg2;
-- (BOOL)saveWithSpan:(long long)arg1 error:(id *)arg2;
+- (id)readWriteCalendarsForEntityType:(unsigned long long)arg1;
+@property(nonatomic) long long preferredEventPrivateValue;
+@property(retain, nonatomic) NSDate *lastSyncEndDate;
+@property(nonatomic) unsigned long long lastSyncError;
+@property(readonly, nonatomic) BOOL isSyncing;
+@property(readonly, nonatomic) BOOL hasOwnerEmailAddress;
 
 // Remaining properties
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;

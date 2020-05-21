@@ -29,13 +29,16 @@
     long long _noise;
     double _txRate;
     long long _security;
-    long long _mcsIndex;
-    long long _guardInterval;
-    long long _numberOfSpacialStreams;
+    unsigned long long _mcsIndex;
+    unsigned long long _guardInterval;
+    unsigned long long _numberOfSpacialStreams;
     W5WiFiChannel *_channel;
     NSArray *_linkQualityUpdates;
     NSArray *_supportedChannels;
     NSString *_countryCode;
+    NSString *_networkServiceID;
+    long long _ipv4ConfigMethod;
+    long long _ipv6ConfigMethod;
     NSArray *_ipv4Addresses;
     NSArray *_ipv6Addresses;
     NSString *_ipv4RouterAddress;
@@ -50,9 +53,11 @@
     NSData *_btcProfiles5GHz;
     W5WiFiScanResult *_lastJoinedScanResult;
     W5WiFiPreferredNetwork *_lastJoinedPreferredNetwork;
+    NSArray *_cachedScanResults;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(copy, nonatomic) NSArray *cachedScanResults; // @synthesize cachedScanResults=_cachedScanResults;
 @property(copy, nonatomic) W5WiFiPreferredNetwork *lastJoinedPreferredNetwork; // @synthesize lastJoinedPreferredNetwork=_lastJoinedPreferredNetwork;
 @property(copy, nonatomic) W5WiFiScanResult *lastJoinedScanResult; // @synthesize lastJoinedScanResult=_lastJoinedScanResult;
 @property(copy, nonatomic) NSData *btcProfiles5GHz; // @synthesize btcProfiles5GHz=_btcProfiles5GHz;
@@ -68,13 +73,16 @@
 @property(copy, nonatomic) NSString *ipv4RouterAddress; // @synthesize ipv4RouterAddress=_ipv4RouterAddress;
 @property(copy, nonatomic) NSArray *ipv6Addresses; // @synthesize ipv6Addresses=_ipv6Addresses;
 @property(copy, nonatomic) NSArray *ipv4Addresses; // @synthesize ipv4Addresses=_ipv4Addresses;
+@property(nonatomic) long long ipv6ConfigMethod; // @synthesize ipv6ConfigMethod=_ipv6ConfigMethod;
+@property(nonatomic) long long ipv4ConfigMethod; // @synthesize ipv4ConfigMethod=_ipv4ConfigMethod;
+@property(copy, nonatomic) NSString *networkServiceID; // @synthesize networkServiceID=_networkServiceID;
 @property(copy, nonatomic) NSString *countryCode; // @synthesize countryCode=_countryCode;
 @property(copy, nonatomic) NSArray *supportedChannels; // @synthesize supportedChannels=_supportedChannels;
 @property(copy, nonatomic) NSArray *linkQualityUpdates; // @synthesize linkQualityUpdates=_linkQualityUpdates;
 @property(copy, nonatomic) W5WiFiChannel *channel; // @synthesize channel=_channel;
-@property(nonatomic) long long numberOfSpacialStreams; // @synthesize numberOfSpacialStreams=_numberOfSpacialStreams;
-@property(nonatomic) long long guardInterval; // @synthesize guardInterval=_guardInterval;
-@property(nonatomic) long long mcsIndex; // @synthesize mcsIndex=_mcsIndex;
+@property(nonatomic) unsigned long long numberOfSpacialStreams; // @synthesize numberOfSpacialStreams=_numberOfSpacialStreams;
+@property(nonatomic) unsigned long long guardInterval; // @synthesize guardInterval=_guardInterval;
+@property(nonatomic) unsigned long long mcsIndex; // @synthesize mcsIndex=_mcsIndex;
 @property(nonatomic) int phyMode; // @synthesize phyMode=_phyMode;
 @property(nonatomic) unsigned int eapolSupplicantState; // @synthesize eapolSupplicantState=_eapolSupplicantState;
 @property(nonatomic) unsigned int eapolControlMode; // @synthesize eapolControlMode=_eapolControlMode;

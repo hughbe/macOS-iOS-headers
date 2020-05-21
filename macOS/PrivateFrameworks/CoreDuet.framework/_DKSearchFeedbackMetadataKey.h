@@ -10,6 +10,7 @@
 {
 }
 
++ (id)contactID;
 + (id)suggestionType;
 + (id)interactionType;
 + (id)client;

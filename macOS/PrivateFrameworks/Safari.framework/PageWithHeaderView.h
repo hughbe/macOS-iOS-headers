@@ -11,19 +11,17 @@
 __attribute__((visibility("hidden")))
 @interface PageWithHeaderView : NSView
 {
-    BOOL _social;
     BrowserWKView *_browserWKView;
     NSView *_headerBannerView;
     ReaderContainerView *_readerContainerView;
     id <PageWithHeaderViewDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <PageWithHeaderViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic, getter=isSocial) BOOL social; // @synthesize social=_social;
 @property(nonatomic) __weak ReaderContainerView *readerContainerView; // @synthesize readerContainerView=_readerContainerView;
 @property(nonatomic) __weak NSView *headerBannerView; // @synthesize headerBannerView=_headerBannerView;
 @property(nonatomic) __weak BrowserWKView *browserWKView; // @synthesize browserWKView=_browserWKView;
-- (void).cxx_destruct;
 - (struct CGRect)_pageContentFrame;
 - (void)setFrame:(struct CGRect)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

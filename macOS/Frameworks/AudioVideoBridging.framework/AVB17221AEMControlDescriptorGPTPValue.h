@@ -15,6 +15,8 @@
 }
 
 @property(nonatomic) unsigned int nanoseconds; // @synthesize nanoseconds=_nanoseconds;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (BOOL)validControlValueType:(unsigned short)arg1;
 - (id)objectsForSetCommandValuesData:(id)arg1;
 @property(copy, nonatomic) TSgPTPTime *gPTPTime; // @dynamic gPTPTime;

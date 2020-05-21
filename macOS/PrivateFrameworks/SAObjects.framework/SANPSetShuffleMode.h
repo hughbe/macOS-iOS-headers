@@ -6,7 +6,7 @@
 
 #import <SAObjects/SADomainCommand.h>
 
-@class NSString;
+@class NSArray, NSString;
 
 @interface SANPSetShuffleMode : SADomainCommand
 {
@@ -16,6 +16,7 @@
 + (id)setShuffleMode;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *shuffleMode;
+@property(copy, nonatomic) NSArray *hashedRouteUIDs;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

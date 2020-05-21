@@ -16,14 +16,15 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSError *uploadError; // @synthesize uploadError=_uploadError;
 @property(retain, nonatomic) CKRecord *uploadedAssets; // @synthesize uploadedAssets=_uploadedAssets;
-- (void).cxx_destruct;
 - (void)sqliteBind:(struct sqlite3_stmt *)arg1 index:(int)arg2;
-- (void)updateLocationAndMetaFromFSAtPath:(id)arg1 updateFilename:(BOOL)arg2;
-- (void)updateFromFSAtPath:(id)arg1;
+- (void)updateLocationAndMetaFromFSAtPath:(id)arg1 updateFilename:(BOOL)arg2 filenameOverride:(id)arg3;
+- (void)updateFromFSAtPath:(id)arg1 filenameOverride:(id)arg2;
 - (void)_clearSignatures:(unsigned long long)arg1 isPackage:(BOOL)arg2;
 - (BOOL)isMissingUploadsWithDiffs:(unsigned long long)arg1;
+- (BOOL)shouldRecreateUploadJobGivenDiffs:(unsigned long long)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

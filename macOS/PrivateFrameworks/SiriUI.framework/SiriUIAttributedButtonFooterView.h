@@ -17,11 +17,18 @@
 }
 
 + (double)defaultHeight;
+- (void).cxx_destruct;
 @property(retain) NSImageView *attributionIcon; // @synthesize attributionIcon=_attributionIcon;
 @property(retain) NSTextField *label; // @synthesize label=_label;
 @property(retain) NSStackView *stackView; // @synthesize stackView=_stackView;
 @property(retain) NSButton *containingButton; // @synthesize containingButton=_containingButton;
-- (void).cxx_destruct;
+- (id)accessibilityIdentifier;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityLabel;
+- (id)accessibilityChildren;
+- (id)accessibilityRole;
+- (BOOL)isAccessibilityElement;
+- (struct NSEdgeInsets)edgeInsets;
 - (void)setTarget:(id)arg1 action:(SEL)arg2;
 - (void)setAttributionImage:(id)arg1;
 - (void)setText:(id)arg1;

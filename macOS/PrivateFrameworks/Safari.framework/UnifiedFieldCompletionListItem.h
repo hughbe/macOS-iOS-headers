@@ -8,27 +8,31 @@
 
 #import "WBSCompletionListItem.h"
 
-@class NSString, SFSearchResult;
+@class NSString, SFSearchResult, WBSQuerySuggestion;
 
 __attribute__((visibility("hidden")))
 @interface UnifiedFieldCompletionListItem : NSObject <WBSCompletionListItem>
 {
     NSString *_domainIdentifier;
+    SFSearchResult *_sfSearchResult;
+    long long _parsecQueryID;
 }
 
-+ (id)itemForNavigationToURL;
-+ (id)itemForSearchEngineSearch;
++ (id)itemForNavigationToURLWithQueryID:(long long)arg1;
++ (id)itemForSearchEngineProvider:(id)arg1 forQueryID:(long long)arg2;
 - (void).cxx_destruct;
-- (id)_initWithDomainIdentifier:(id)arg1;
+@property(nonatomic) long long parsecQueryID; // @synthesize parsecQueryID=_parsecQueryID;
+- (id)_initWithDomainIdentifier:(id)arg1 forQueryID:(long long)arg2;
+@property(readonly, nonatomic) unsigned long long engagementDestination;
+@property(readonly, nonatomic) SFSearchResult *sfSearchResultValue;
 @property(readonly, nonatomic) NSString *parsecDomainIdentifier;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly, nonatomic) unsigned long long engagementDestination;
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) NSString *lastSearchQuery;
-@property(readonly, nonatomic) SFSearchResult *sfSearchResultValue;
+@property(retain, nonatomic) WBSQuerySuggestion *siriSuggestion;
 @property(readonly) Class superclass;
 
 @end

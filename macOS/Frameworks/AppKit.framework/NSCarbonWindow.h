@@ -52,7 +52,7 @@
 - (void)resignMainWindow;
 - (void)resignKeyWindow;
 - (void)setStyleMask:(unsigned long long)arg1;
-- (void)_setEventMask:(long long)arg1;
+- (void)_setEventMask:(unsigned long long)arg1;
 - (BOOL)performKeyEquivalent:(id)arg1;
 - (void)setLevel:(long long)arg1;
 - (long long)level;
@@ -66,9 +66,10 @@
 - (void)becomeKeyWindow;
 - (struct CGRect)constrainFrameRect:(struct CGRect)arg1 toScreen:(id)arg2;
 - (void)_windowMovedToRect:(struct CGRect)arg1;
+- (void)_resetDragMargins;
 - (void)_termWindowIfOwner;
 - (void)_reallyDoOrderWindow:(long long)arg1 relativeTo:(long long)arg2 findKey:(BOOL)arg3 forCounter:(BOOL)arg4 force:(BOOL)arg5 isModal:(BOOL)arg6;
-- (void)_oldPlaceWindow:(struct CGRect)arg1;
+- (void)_oldPlaceWindow:(struct CGRect)arg1 fromServer:(BOOL)arg2;
 - (id)_destroyRealWindow:(BOOL)arg1;
 - (void)_commonAwake;
 - (void)_cancelKey:(id)arg1;

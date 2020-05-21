@@ -17,6 +17,7 @@
 + (id)personSearchCompletedWithResults:(id)arg1;
 + (id)personSearchCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)personSearchCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *results;
 - (id)initWithResults:(id)arg1;
 - (id)encodedClassName;

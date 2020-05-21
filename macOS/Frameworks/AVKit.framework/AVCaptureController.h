@@ -6,10 +6,13 @@
 
 #import "NSResponder.h"
 
-@class AVCaptureAudioPreviewOutput, AVCaptureDeviceInput, AVCaptureDeviceInputSourceItem, AVCaptureDeviceSelectionController, AVCaptureFileOutput, AVCaptureQualityItem, AVCaptureSession, NSArray, NSNumber, NSObject<OS_dispatch_source>, NSString;
+#import "AVFunctionBarRecordingControlsControllingInternal.h"
+#import "AVTouchBarRecordingControlsControllingInternal.h"
+
+@class AVCaptureAudioPreviewOutput, AVCaptureDeviceInput, AVCaptureDeviceInputSourceItem, AVCaptureDeviceSelectionController, AVCaptureFileOutput, AVCaptureQualityItem, AVCaptureSession, AVFunctionBarCaptureInputSourceItem, AVTouchBarCaptureInputSourceItem, NSArray, NSNumber, NSObject<OS_dispatch_source>, NSString;
 
 __attribute__((visibility("hidden")))
-@interface AVCaptureController : NSResponder
+@interface AVCaptureController : NSResponder <AVTouchBarRecordingControlsControllingInternal, AVFunctionBarRecordingControlsControllingInternal>
 {
     AVCaptureSession *_session;
     BOOL _sessionHasBeenSet;
@@ -23,6 +26,10 @@ __attribute__((visibility("hidden")))
     AVCaptureAudioPreviewOutput *_captureAudioPreviewOutput;
     NSArray *_captureQualityItems;
     AVCaptureQualityItem *_selectedQualityItem;
+    BOOL _shouldSelectAssociatedAudioInputSourceItems;
+    long long _discoveringWirelessCaptureDevicesCount;
+    long long _cameraAuthorizationStatus;
+    long long _microphoneAuthorizationStatus;
     BOOL _videoPreviewEnabled;
     BOOL _audioPreviewEnabled;
     BOOL _wantsDefaultConfiguration;
@@ -48,10 +55,20 @@ __attribute__((visibility("hidden")))
 + (id)keyPathsForValuesAffectingVideoInputSourceItems;
 + (id)keyPathsForValuesAffectingAudioInput;
 + (id)keyPathsForValuesAffectingVideoInput;
++ (id)keyPathsForValuesAffectingCanAssociateAudioAndVideoDevices;
 + (id)keyPathsForValuesAffectingContentDimensions;
 + (id)keyPathsForValuesAffectingPaused;
 + (id)keyPathsForValuesAffectingRecording;
 + (id)keyPathsForValuesAffectingFinishingRecording;
++ (id)keyPathsForValuesAffectingSelectedAudioTouchBarInputSourceItem;
++ (id)keyPathsForValuesAffectingAudioTouchBarInputSourceItems;
++ (id)keyPathsForValuesAffectingSelectedVideoTouchBarInputSourceItem;
++ (id)keyPathsForValuesAffectingVideoTouchBarInputSourceItems;
++ (id)keyPathsForValuesAffectingSelectedAudioFunctionBarInputSourceItem;
++ (id)keyPathsForValuesAffectingAudioFunctionBarInputSourceItems;
++ (id)keyPathsForValuesAffectingSelectedVideoFunctionBarInputSourceItem;
++ (id)keyPathsForValuesAffectingVideoFunctionBarInputSourceItems;
+- (void).cxx_destruct;
 @property(retain) AVCaptureDeviceSelectionController *captureDeviceSelectionController; // @synthesize captureDeviceSelectionController=_captureDeviceSelectionController;
 @property BOOL canStartRecording; // @synthesize canStartRecording=_canStartRecording;
 @property(nonatomic) float audioPreviewVolume; // @synthesize audioPreviewVolume=_audioPreviewVolume;
@@ -64,7 +81,6 @@ __attribute__((visibility("hidden")))
 @property BOOL wantsDefaultConfiguration; // @synthesize wantsDefaultConfiguration=_wantsDefaultConfiguration;
 @property(getter=isAudioPreviewEnabled) BOOL audioPreviewEnabled; // @synthesize audioPreviewEnabled=_audioPreviewEnabled;
 @property(getter=isVideoPreviewEnabled) BOOL videoPreviewEnabled; // @synthesize videoPreviewEnabled=_videoPreviewEnabled;
-- (void).cxx_destruct;
 - (void)stopRecording;
 - (void)resumeRecording;
 - (void)pauseRecording;
@@ -76,6 +92,8 @@ __attribute__((visibility("hidden")))
 @property(readonly) NSString *deviceErrorDescription;
 - (id)audioDeviceErrorDescription;
 - (id)videoDeviceErrorDescription;
+@property(readonly) long long microphoneAuthorizationStatus;
+@property(readonly) long long cameraAuthorizationStatus;
 @property(readonly) NSString *deviceDisabledDescription;
 @property(retain) AVCaptureQualityItem *selectedQualityItem;
 @property(copy) NSArray *captureQualityItems;
@@ -86,6 +104,10 @@ __attribute__((visibility("hidden")))
 @property(readonly) NSArray *videoInputSourceItems;
 @property(readonly) AVCaptureDeviceInput *audioInput;
 @property(readonly) AVCaptureDeviceInput *videoInput;
+@property(readonly) BOOL canAssociateAudioAndVideoDevices;
+- (void)stopDiscoveringWirelessCaptureDevices;
+- (void)startDiscoveringWirelessCaptureDevices;
+- (void)_setWirelessDeviceDiscoveryEnabled:(BOOL)arg1;
 - (void)audioLevelIndicatorTimerTask;
 - (void)stopAudioLevelIndicatorTimer;
 - (void)startAudioLevelIndicatorTimer;
@@ -114,13 +136,37 @@ __attribute__((visibility("hidden")))
 - (void)_updateVideoInputForSession:(id)arg1;
 - (void)_updateAudioInputForSession:(id)arg1;
 - (id)_firstDeviceInputWithConnectionOfMediaType:(id)arg1 fromSession:(id)arg2;
-- (id)_inputSourceItemsForCaptureDevices:(id)arg1 mediaType:(id)arg2;
+- (id)_inputSourceItemsWithoutAssociatedAudioItemsForCaptureDevices:(id)arg1 mediaType:(id)arg2;
+- (id)_inputSourceItemsForMediaType:(id)arg1;
+- (BOOL)_associateItemsWithVideoInputSourceItems:(id)arg1 audioInputSourceItems:(id)arg2 outIndexOfBuiltInVideoItem:(unsigned long long *)arg3 outIndexOfBuiltInAudioItem:(unsigned long long *)arg4 outIndexOfExternalVideoItem:(unsigned long long *)arg5 outIndexOfExternalAudioItem:(unsigned long long *)arg6;
 - (id)_defaultCaptureQualityItems;
 - (void)dealloc;
 - (id)init;
+- (void)selectTouchBarInputSourceItem:(id)arg1;
+@property(readonly) AVTouchBarCaptureInputSourceItem *selectedScreenTouchBarInputSourceItem;
+@property(readonly) NSArray *screenTouchBarInputSourceItems;
+@property(readonly) AVTouchBarCaptureInputSourceItem *selectedAudioTouchBarInputSourceItem;
+@property(readonly) NSArray *audioTouchBarInputSourceItems;
+@property(readonly) AVTouchBarCaptureInputSourceItem *selectedVideoTouchBarInputSourceItem;
+@property(readonly) NSArray *videoTouchBarInputSourceItems;
+- (id)_makeTouchBarCaptureInputSourceItem:(id)arg1;
+- (void)selectFunctionBarInputSourceItem:(id)arg1;
+@property(readonly) AVFunctionBarCaptureInputSourceItem *selectedScreenFunctionBarInputSourceItem;
+@property(readonly) NSArray *screenFunctionBarInputSourceItems;
+@property(readonly) AVFunctionBarCaptureInputSourceItem *selectedAudioFunctionBarInputSourceItem;
+@property(readonly) NSArray *audioFunctionBarInputSourceItems;
+@property(readonly) AVFunctionBarCaptureInputSourceItem *selectedVideoFunctionBarInputSourceItem;
+@property(readonly) NSArray *videoFunctionBarInputSourceItems;
+- (id)_makeFunctionBarCaptureInputSourceItem:(id)arg1;
 - (BOOL)canHandleSelector:(SEL)arg1 withEvent:(id)arg2 shouldIgnoreSpaceKey:(BOOL)arg3;
 - (void)_handleSpaceKeyWithEvent:(id)arg1;
 - (void)keyDown:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

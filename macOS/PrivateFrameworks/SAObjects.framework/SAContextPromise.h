@@ -16,6 +16,7 @@
 
 + (id)contextPromiseWithDictionary:(id)arg1 context:(id)arg2;
 + (id)contextPromise;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *promiseTypes;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -10,7 +10,7 @@
 
 @interface GKNoiseMap : NSObject
 {
-    struct NoiseMap _map;
+    float *_map;
     BOOL _seamless;
     // Error parsing type: , name: _sampleCount
     NSDictionary *_gradientColors;
@@ -20,7 +20,8 @@
 
 + (id)noiseMapWithNoise:(id)arg1 size:(BOOL)arg2 origin:sampleCount:seamless: /* Error: Ran out of types for this method. */;
 + (id)noiseMapWithNoise:(id)arg1;
-@property(readonly, copy, nonatomic) NSDictionary *gradientColors; // @synthesize gradientColors=_gradientColors;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSDictionary *gradientColors; // @synthesize gradientColors=_gradientColors;
 @property(readonly, nonatomic, getter=isSeamless) BOOL seamless; // @synthesize seamless=_seamless;
 // Error parsing type for property sampleCount:
 // Property attributes: T,R,N,V_sampleCount
@@ -31,15 +32,15 @@
 // Error parsing type for property size:
 // Property attributes: T,R,N,V_size
 
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (void)setValue:(float)arg1 atPosition: /* Error: Ran out of types for this method. */;
 - (float)interpolatedValueAtPosition: /* Error: Ran out of types for this method. */;
 - (float)valueAtPosition: /* Error: Ran out of types for this method. */;
 - (id)__colorData;
+- (void)dealloc;
 - (id)initWithNoise:(id)arg1 size:(BOOL)arg2 origin:sampleCount:seamless: /* Error: Ran out of types for this method. */;
 - (id)initWithNoise:(id)arg1;
 - (id)init;
+- (int)mapIndexX:(int)arg1 y:(int)arg2;
 
 @end
 

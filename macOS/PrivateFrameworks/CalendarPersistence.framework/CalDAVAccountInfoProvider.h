@@ -23,6 +23,7 @@
 
 + (id)searchPropertySetForAccount:(id)arg1;
 + (id)providerFromPrincipal:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) CalDAVPrincipalSearchPropertySet *accountSearchPropertySet; // @synthesize accountSearchPropertySet=_accountSearchPropertySet;
 @property(retain) NSString *accountCollectionSetName; // @synthesize accountCollectionSetName=_accountCollectionSetName;
 @property(retain) NSManagedObjectID *mainPrincipalID; // @synthesize mainPrincipalID=_mainPrincipalID;
@@ -45,7 +46,6 @@
 - (id)principalURL;
 - (id)absoluteURLForPath:(id)arg1 overrideBaseURL:(id)arg2;
 - (id)absoluteURLForPath:(id)arg1;
-- (void)dealloc;
 - (void)updateAccountPropertiesFromPrincipal:(id)arg1;
 - (BOOL)isEqualToProvider:(id)arg1;
 

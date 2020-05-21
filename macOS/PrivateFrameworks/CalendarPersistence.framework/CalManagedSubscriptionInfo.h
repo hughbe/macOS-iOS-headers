@@ -14,16 +14,19 @@
 {
 }
 
++ (id)keyPathsForValuesAffectingRefreshIntervalIfAutoRefreshed;
 + (id)entityName;
-+ (void)initialize;
 - (id)enclosingSource;
 - (id)properties;
+- (id)cloneInManagedObjectContext:(id)arg1;
+- (id)canonicalizedSubscriptionURL;
 @property(retain) NSURL *subscriptionURL;
 @property long long refreshIntervalIfAutoRefreshed;
 @property(readonly) NSString *user;
 @property(readonly) NSURL *browsableURL;
 @property(readonly) NSURL *displayableURL;
 - (void)willRefresh:(BOOL)arg1;
+- (id)keysOnlyRelevantToNetworkDetails;
 @property(readonly) BOOL isHolidayCalendar;
 - (id)_session;
 - (void)_refreshSession:(long long)arg1;

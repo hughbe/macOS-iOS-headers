@@ -20,6 +20,7 @@
 + (id)propertyWithItem:(id)arg1;
 + (id)debugStringForType:(int)arg1;
 + (void)initialize;
+- (void).cxx_destruct;
 @property(retain) CalDAVOccurrenceChange *masterChange; // @synthesize masterChange=_masterChange;
 @property(retain) NSString *attendeeAddress; // @synthesize attendeeAddress=_attendeeAddress;
 @property int actionType; // @synthesize actionType=_actionType;
@@ -32,7 +33,6 @@
 - (BOOL)isUpdate;
 - (BOOL)isReply;
 - (BOOL)isCancel;
-- (void)dealloc;
 - (id)init;
 
 @end

@@ -22,13 +22,13 @@
     struct _NSRange _paragraphRange;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) struct _NSRange paragraphRange; // @synthesize paragraphRange=_paragraphRange;
 @property(nonatomic) unsigned long long quoteLevel; // @synthesize quoteLevel=_quoteLevel;
-@property(nonatomic) BOOL addedTrailingSpaces; // @synthesize addedTrailingSpaces=_addedTrailingSpaces;
 @property(copy, nonatomic) NSString *inputString; // @synthesize inputString=_inputString;
 @property(readonly, nonatomic) unsigned long long encoding; // @synthesize encoding=_encoding;
 @property(readonly, copy, nonatomic) NSAttributedString *inputAttributedString; // @synthesize inputAttributedString=_inputAttributedString;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL addedTrailingSpaces; // @synthesize addedTrailingSpaces=_addedTrailingSpaces;
 @property(readonly, copy, nonatomic) NSString *quotedString;
 @property(readonly, copy, nonatomic) NSString *outputString;
 - (void)_outputQuotedParagraph;

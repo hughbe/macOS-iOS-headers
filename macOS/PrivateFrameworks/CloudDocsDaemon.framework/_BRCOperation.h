@@ -6,7 +6,7 @@
 
 #import "NSOperation.h"
 
-@class BRCSyncContext, BRCThrottle, NSDate, NSError, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<OS_os_activity>, NSObject<OS_os_transaction>, NSUUID, _BRCLogSection;
+@class BRCSyncContext, BRCThrottle, CKOperationGroup, NSDate, NSError, NSMutableArray, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<OS_os_activity>, NSObject<OS_os_transaction>, NSUUID;
 
 __attribute__((visibility("hidden")))
 @interface _BRCOperation : NSOperation
@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_queue> *_internalQueue;
     NSObject<OS_os_transaction> *_executionTransaction;
     NSDate *_startDate;
+    NSDate *_finishDate;
     NSDate *_lastTryDate;
     NSDate *_nextTryDate;
     NSError *_lastError;
@@ -24,23 +25,31 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_group> *_group;
     id _pmAssertionID;
     NSObject<OS_os_activity> *_Activity;
+    NSMutableArray *_associatedEventMetrics;
     BOOL _finished;
+    BOOL _nonDiscretionary;
     NSObject<OS_dispatch_queue> *_callbackQueue;
     BRCThrottle *_operationThrottle;
+    BRCThrottle *_operationFailureThrottle;
     CDUnknownBlockType _mainBlock;
     CDUnknownBlockType _finishBlock;
-    _BRCLogSection *_logSections;
+    unsigned long long _logSections;
+    CKOperationGroup *_operationGroup;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL nonDiscretionary; // @synthesize nonDiscretionary=_nonDiscretionary;
+@property(retain, nonatomic) CKOperationGroup *group; // @synthesize group=_operationGroup;
 @property(readonly, nonatomic) BRCSyncContext *syncContext; // @synthesize syncContext=_syncContext;
 @property(readonly, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;
-@property(readonly, nonatomic) _BRCLogSection *logSections; // @synthesize logSections=_logSections;
+@property(readonly, nonatomic) unsigned long long logSections; // @synthesize logSections=_logSections;
 @property(copy, nonatomic) CDUnknownBlockType finishBlock; // @synthesize finishBlock=_finishBlock;
 @property(copy, nonatomic) CDUnknownBlockType mainBlock; // @synthesize mainBlock=_mainBlock;
+@property(nonatomic) BRCThrottle *operationFailureThrottle; // @synthesize operationFailureThrottle=_operationFailureThrottle;
 @property(nonatomic) BRCThrottle *operationThrottle; // @synthesize operationThrottle=_operationThrottle;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *callbackQueue; // @synthesize callbackQueue=_callbackQueue;
 @property(nonatomic, getter=isFinished) BOOL finished; // @synthesize finished=_finished;
-- (void).cxx_destruct;
+- (void)associateCKOperationsToEventMetric:(id)arg1;
 - (void)addSubOperation:(id)arg1;
 - (void)addSubOperation:(id)arg1 overrideContext:(id)arg2 allowsCellularAccess:(id)arg3;
 - (void)completedWithResult:(id)arg1 error:(id)arg2;
@@ -50,8 +59,8 @@ __attribute__((visibility("hidden")))
 - (void)cancel;
 - (void)start;
 - (void)schedule;
-- (void)_scheduleExecutionWithPreviousError:(id)arg1 throttle:(id)arg2;
-- (void)_executeAndBumpThrottle:(id)arg1;
+- (void)_scheduleExecutionWithPreviousError:(id)arg1;
+- (void)_executeWithPreviousError:(id)arg1;
 - (void)_main;
 - (void)main;
 - (BOOL)finishIfCancelled;
@@ -66,6 +75,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL usesBackgroundSession;
 - (void)dealloc;
 - (id)createActivity;
+- (id)initWithName:(id)arg1;
 - (id)initWithName:(id)arg1 syncContext:(id)arg2;
 - (id)initWithName:(id)arg1 syncContext:(id)arg2 group:(id)arg3;
 - (id)init;

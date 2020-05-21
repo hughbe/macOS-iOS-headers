@@ -23,8 +23,9 @@
 }
 
 + (void)disableAgentLinkForTesting;
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long timeout; // @synthesize timeout=_timeout;
-@property(nonatomic) NSObject<OS_dispatch_queue> *messageQueue; // @synthesize messageQueue=_messageQueue;
+@property(nonatomic) __weak NSObject<OS_dispatch_queue> *messageQueue; // @synthesize messageQueue=_messageQueue;
 @property(retain, nonatomic) CalStopwatch *stopwatch; // @synthesize stopwatch=_stopwatch;
 @property(copy, nonatomic) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
@@ -32,7 +33,7 @@
 @property(nonatomic) BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
 @property(nonatomic) BOOL isExecuting; // @synthesize isExecuting=_isExecuting;
 @property(nonatomic) BOOL isAllowedToBeRunOnAgent; // @synthesize isAllowedToBeRunOnAgent=_isAllowedToBeRunOnAgent;
-@property(nonatomic) NSObject<OS_xpc_object> *connection; // @synthesize connection=_connection;
+@property(nonatomic) __weak NSObject<OS_xpc_object> *connection; // @synthesize connection=_connection;
 - (void)finish;
 - (void)_finishWithTimeout;
 - (void)willFinish;
@@ -41,9 +42,8 @@
 - (BOOL)eligibleForExecution;
 - (void)prepare;
 - (void)start;
-- (void)setErrorWithCode:(int)arg1;
+- (void)setErrorWithCode:(long long)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)init;
 
 @end

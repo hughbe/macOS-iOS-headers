@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableArray;
+@class NSMutableArray;
 
+__attribute__((visibility("hidden")))
 @interface AVOutputDeviceDiscoverySessionAvailableOutputDevicesInternal : NSObject
 {
-    NSArray *_figEndpoints;
+    id <AVOutputDeviceDiscoverySessionAvailableOutputDevicesImpl> impl;
     NSMutableArray *_recentlyUsedDevices;
     NSMutableArray *_otherDevices;
 }

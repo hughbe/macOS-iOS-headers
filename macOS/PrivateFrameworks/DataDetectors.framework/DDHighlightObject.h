@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DOMRange, NSString, WKDOMRange;
+@class NSString, WKDOMRange;
 
 __attribute__((visibility("hidden")))
 @interface DDHighlightObject : NSObject
@@ -15,17 +15,16 @@ __attribute__((visibility("hidden")))
     NSString *_targetURL;
     NSString *_webViewIdentifier;
     BOOL _followedByBlank;
-    DOMRange *_DOMRange;
     WKDOMRange *_WKDOMRange;
 }
 
+- (void).cxx_destruct;
 @property BOOL followedByBlank; // @synthesize followedByBlank=_followedByBlank;
-@property(retain) WKDOMRange *range2; // @synthesize range2=_WKDOMRange;
+@property(retain) WKDOMRange *range; // @synthesize range=_WKDOMRange;
 @property(retain) NSString *targetURL; // @synthesize targetURL=_targetURL;
-@property(retain) DOMRange *range; // @synthesize range=_DOMRange;
 @property(copy) NSString *webViewIdentifier; // @synthesize webViewIdentifier=_webViewIdentifier;
 - (id)localizedTypeForAccessibility;
-- (void)setResult:(struct __DDResult *)arg1 fromQuery:(struct __DDScanQuery *)arg2;
+-     // Error parsing type: v32@0:8^{__DDResult=}16^{__DDScanQuery={__CFRuntimeBase=QAQ}^{__DDQueryFragment}qq^?^v}24, name: setResult:fromQuery:
 - (void)setResult:(struct __DDResult *)arg1;
 - (struct __DDResult *)result;
 - (id)description;

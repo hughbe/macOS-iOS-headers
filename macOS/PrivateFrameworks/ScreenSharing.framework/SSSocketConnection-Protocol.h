@@ -9,6 +9,7 @@
 @class NSString;
 
 @protocol SSSocketConnection <NSObject>
+- (void)server_OKToStartQRAudioCall:(NSString *)arg1;
 - (void)server_MicrophoneMuteFlag:(NSString *)arg1 reply:(void (^)(_Bool))arg2;
 - (void)server_setMicrophoneMuteFlag:(NSString *)arg1 mute:(_Bool)arg2;
 - (void)server_audioChatEnabled:(NSString *)arg1 reply:(void (^)(_Bool))arg2;

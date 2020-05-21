@@ -12,43 +12,62 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct AVAsset {
-    Class _field1;
-    id _field2;
+struct Array {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    struct StringArray *_field5;
+    struct Dictionary *_field6;
 };
 
 struct Attachment {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
-    unsigned int _field3[1];
-    int _field4;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field5;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field6;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[2];
+    basic_string_a1f69cfb *_field4;
+    basic_string_a1f69cfb *_field5;
+    float _field6;
     float _field7;
-    float _field8;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field9;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field10;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field11;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field12;
-    struct Location *_field13;
-    struct Media *_field14;
-    struct RepeatedPtrField<topotext::PreviewImage> _field15;
+    basic_string_a1f69cfb *_field8;
+    basic_string_a1f69cfb *_field9;
+    basic_string_a1f69cfb *_field10;
+    basic_string_a1f69cfb *_field11;
+    struct Location *_field12;
+    struct Media *_field13;
+    struct RepeatedPtrField<topotext::PreviewImage> _field14;
+    float _field15;
     float _field16;
-    float _field17;
+    double _field17;
     double _field18;
-    double _field19;
-    int _field20;
-    _Bool _field21;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field22;
-    long long _field23;
-    double _field24;
+    int _field19;
+    _Bool _field20;
+    basic_string_a1f69cfb *_field21;
+    long long _field22;
+    double _field23;
+    basic_string_a1f69cfb *_field24;
+    struct RepeatedPtrField<topotext::Attachment> _field25;
+    long long _field26;
+    double _field27;
+    double _field28;
+    double _field29;
+    double _field30;
+    double _field31;
+    double _field32;
+    double _field33;
+    double _field34;
+    basic_string_a1f69cfb *_field35;
+    basic_string_a1f69cfb *_field36;
+    basic_string_a1f69cfb *_field37;
+    int _field38;
+    int _field39;
 };
 
 struct AttachmentInfo;
 
 struct AttributeRun {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
     struct ParagraphStyle *_field5;
@@ -57,7 +76,7 @@ struct AttributeRun {
     struct Font *_field8;
     unsigned int _field9;
     unsigned int _field10;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field11;
+    basic_string_a1f69cfb *_field11;
     int _field12;
     int _field13;
     struct Color *_field14;
@@ -66,12 +85,12 @@ struct AttributeRun {
 };
 
 struct CGAffineTransform {
-    double a;
-    double b;
-    double c;
-    double d;
-    double tx;
-    double ty;
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+    double _field5;
+    double _field6;
 };
 
 struct CGPoint {
@@ -93,7 +112,7 @@ struct Color;
 
 struct Command {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
     struct CommandID *_field5;
@@ -110,18 +129,63 @@ struct Command {
 
 struct CommandID;
 
-struct Document {
+struct Dictionary {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
-    struct RepeatedPtrField<versioned_document::Version> _field5;
-    unsigned int _field6;
+    struct RepeatedPtrField<CRDT::Dictionary_Element> _field5;
+};
+
+struct Dictionary_Element {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    struct ObjectID *_field5;
+    struct ObjectID *_field6;
+    struct VectorTimestamp *_field7;
+    struct RegisterLatest *_field8;
+};
+
+struct Document_CustomObject {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    struct RepeatedPtrField<CRDT::Document_CustomObject_MapEntry> _field5;
+    int _field6;
+};
+
+struct Document_DocObject {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    union ContentsUnion {
+        struct RegisterLatest *_field1;
+        struct RegisterLatest *_field2;
+        struct RegisterLatest *_field3;
+        struct Dictionary *_field4;
+        struct Dictionary *_field5;
+        struct Dictionary *_field6;
+        struct Timestamp *_field7;
+        struct VectorTimestamp *_field8;
+        struct Index *_field9;
+        struct String *_field10;
+        unsigned long long _field11;
+        struct OneOf *_field12;
+        struct Document_CustomObject *_field13;
+        struct StringArray *_field14;
+        struct Array *_field15;
+        struct OrderedSet *_field16;
+    } _field5;
+    unsigned int _field6[1];
 };
 
 struct Drawing {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
     struct VectorTimestamp *_field5;
@@ -132,20 +196,14 @@ struct Drawing {
     struct Rectangle *_field10;
 };
 
-struct Font;
-
-struct ICDrawingAzimuthFilter {
+struct Font {
     CDUnknownFunctionPointerType *_field1;
-    struct ICDrawingInputProvider<ICDrawingInputPoint> *_field2;
-    _Bool _field3;
-    double _field4;
-    long long _field5;
-    long long _field6;
-    long long _field7;
-    vector_c0e7c5b2 _field8;
-    _Bool _field9;
-    id _field10;
-    long long _field11;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    basic_string_a1f69cfb *_field5;
+    float _field6;
+    unsigned int _field7;
 };
 
 struct ICDrawingCommandID {
@@ -154,340 +212,42 @@ struct ICDrawingCommandID {
     unsigned int subclock;
 };
 
-struct ICDrawingEndCapsFilter {
-    CDUnknownFunctionPointerType *_field1;
-    ICDrawingInputProvider_d48c6870 *_field2;
-    _Bool _field3;
-    double _field4;
-    double _field5;
-    double _field6;
-    double _field7;
-};
-
-struct ICDrawingEndHookFilter {
-    CDUnknownFunctionPointerType *_field1;
-    struct ICDrawingInputProvider<ICDrawingInputPoint> *_field2;
-    _Bool _field3;
-    double _field4;
-    long long _field5;
-    _Bool _field6;
-};
-
-struct ICDrawingEstimatedAltitudeAndAzimuthFilter {
-    CDUnknownFunctionPointerType *_field1;
-    struct ICDrawingInputProvider<ICDrawingInputPoint> *_field2;
-    _Bool _field3;
-    double _field4;
-    long long _field5;
-    long long _field6;
-    long long _field7;
-    double _field8;
-    double _field9;
-    double _field10;
-    double _field11;
-    long long _field12;
-    unsigned int _field13;
-    long long _field14;
-    double _field15;
-    double _field16;
-    id _field17;
-};
-
-struct ICDrawingInputProvider<ICDrawingInputPoint>;
-
-struct ICDrawingInputProvider<ICDrawingOutputPoint> {
-    CDUnknownFunctionPointerType *_field1;
-};
-
-struct ICDrawingInputProviderInitial {
-    CDUnknownFunctionPointerType *_field1;
-    id _field2;
-};
-
-struct ICDrawingInputSmoother {
-    CDUnknownFunctionPointerType *_field1;
-    ICDrawingInputProvider_d48c6870 *_field2;
-    _Bool _field3;
-    double _field4;
-    long long _field5;
-    long long _field6;
-    long long _field7;
-    vector_82e5b66f _field8;
-    vector_82e5b66f _field9;
-    double _field10;
-    struct vector<ICSmoothingPoint, std::__1::allocator<ICSmoothingPoint>> _field11;
-    id _field12;
-};
-
-struct ICDrawingInputToOutputFilter {
-    CDUnknownFunctionPointerType *_field1;
-    struct ICDrawingInputProvider<ICDrawingInputPoint> *_field2;
-    _Bool _field3;
-    double _field4;
-    long long _field5;
-    long long _field6;
-    long long _field7;
-    vector_c0e7c5b2 _field8;
-    vector_82e5b66f _field9;
-    id _field10;
-};
-
-struct ICDrawingPixelSmoothingFilter {
-    CDUnknownFunctionPointerType *_field1;
-    struct ICDrawingInputProvider<ICDrawingInputPoint> *_field2;
-    _Bool _field3;
-    double _field4;
-    double _field5;
-    long long _field6;
-    id _field7;
-};
-
-struct ICDrawingPointReductionFilter {
-    CDUnknownFunctionPointerType *_field1;
-    struct ICDrawingInputProvider<ICDrawingInputPoint> *_field2;
-    _Bool _field3;
-    double _field4;
-    long long _field5;
-    long long _field6;
-    long long _field7;
-    vector_c0e7c5b2 _field8;
-    vector_c0e7c5b2 _field9;
-    long long _field10;
-    long long _field11;
-    long long _field12;
-    double _field13;
-    double _field14;
-    struct vector<std::__1::pair<long, double>, std::__1::allocator<std::__1::pair<long, double>>> _field15;
-    struct vector<long, std::__1::allocator<long>> _field16;
-};
-
-struct ICDrawingRulerExtremaFilter {
-    CDUnknownFunctionPointerType *_field1;
-    ICDrawingInputProvider_d48c6870 *_field2;
-    _Bool _field3;
-    double _field4;
-    long long _field5;
-    long long _field6;
-    long long _field7;
-    vector_82e5b66f _field8;
-    vector_82e5b66f _field9;
-    id _field10;
-};
-
-struct ICDrawingStartHookFilter {
-    CDUnknownFunctionPointerType *_field1;
-    struct ICDrawingInputProvider<ICDrawingInputPoint> *_field2;
-    _Bool _field3;
-    double _field4;
-    long long _field5;
-    _Bool _field6;
-};
-
-struct ICDrawingVelocityCalculationFilter {
-    CDUnknownFunctionPointerType *_field1;
-    struct ICDrawingInputProvider<ICDrawingInputPoint> *_field2;
-    _Bool _field3;
-    double _field4;
-    _Bool _field5;
-};
-
-struct ICSmoothingPoint;
+struct Index;
 
 struct Location;
 
 struct Media;
 
-struct NSColor {
-    Class _field1;
-};
-
-struct NSFont {
-    Class _field1;
-    id _field2;
-    double _field3;
-    long long _field4;
-    struct __fFlags {
-        unsigned int :1;
-        unsigned int :8;
-        unsigned int :4;
-        unsigned int :1;
-        unsigned int :3;
-        unsigned int :1;
-        unsigned int :14;
+struct ObjectID {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    union ContentsUnion {
+        long long _field1;
+        unsigned long long _field2;
+        double _field3;
+        basic_string_a1f69cfb *_field4;
+        basic_string_a1f69cfb *_field5;
+        unsigned int _field6;
     } _field5;
-    id _field6;
+    unsigned int _field6[1];
 };
 
-struct NSImage {
-    Class _field1;
-    id _field2;
-    struct CGSize _field3;
-    struct __imageFlags {
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :2;
-        unsigned int :3;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :8;
-    } _field4;
-    id _field5;
-    id _field6;
-};
+struct OneOf;
 
-struct NSManagedObjectContext {
-    Class _field1;
-};
-
-struct NSTextView {
-    Class _field1;
-    id _field2;
-    struct CGRect _field3;
-    struct CGRect _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    id _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    struct __VFlags _field13;
-    struct __VFlags2 _field14;
-    id _field15;
-};
-
-struct NSView {
-    Class _field1;
-    id _field2;
-    struct CGRect _field3;
-    struct CGRect _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    id _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    struct __VFlags _field13;
-    struct __VFlags2 _field14;
-};
-
-struct NSWindow {
-    Class _field1;
-    id _field2;
-    struct CGRect _field3;
-    id _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    id _field8;
-    id _field9;
-    id _field10;
-    int _field11;
-    long long _field12;
-    int _field13;
-    id _field14;
-    id _field15;
-    unsigned char _field16;
-    unsigned char _field17;
-    unsigned char _field18;
-    unsigned int :1;
-    unsigned int :7;
-    void *_field19;
-    void *_field20;
-    id _field21;
-    int _field22;
-    id _field23;
-    id _field24;
-    struct CGSize *_field25;
-    id _field26;
-    id _field27;
-    struct __wFlags {
-        unsigned int :2;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :4;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :2;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-    } _field28;
-    id _field29;
-    id _field30;
-    id _field31;
+struct OrderedSet {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    struct Array *_field5;
+    struct Dictionary *_field6;
 };
 
 struct ParagraphStyle {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
     unsigned int _field5;
@@ -503,7 +263,7 @@ struct Parameters;
 
 struct Point {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
     float _field5;
@@ -517,18 +277,64 @@ struct Point {
 
 struct PreviewImage {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
-    float _field5;
-    _Bool _field6;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field7;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field8;
-    int _field9;
+    basic_string_a1f69cfb *_field5;
+    float _field6;
+    _Bool _field7;
+    _Bool _field8;
+    basic_string_a1f69cfb *_field9;
     int _field10;
+    int _field11;
+    long long _field12;
 };
 
 struct Rectangle;
+
+struct RegisterLatest {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    struct Timestamp *_field5;
+    struct ObjectID *_field6;
+};
+
+struct RepeatedPtrField<CRDT::Dictionary_Element> {
+    void **_field1;
+    int _field2;
+    int _field3;
+    int _field4;
+};
+
+struct RepeatedPtrField<CRDT::Document_CustomObject_MapEntry> {
+    void **_field1;
+    int _field2;
+    int _field3;
+    int _field4;
+};
+
+struct RepeatedPtrField<CRDT::Document_DocObject> {
+    void **_field1;
+    int _field2;
+    int _field3;
+    int _field4;
+};
+
+struct RepeatedPtrField<CRDT::StringArray_ArrayAttachment> {
+    void **_field1;
+    int _field2;
+    int _field3;
+    int _field4;
+};
+
+struct RepeatedPtrField<CRDT::VectorTimestamp_Element> {
+    void **_field1;
+    int _field2;
+    int _field3;
+    int _field4;
+};
 
 struct RepeatedPtrField<drawing::Command> {
     void **_field1;
@@ -602,7 +408,7 @@ struct RepeatedPtrField<versioned_document::Version> {
 
 struct Selection {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
     struct RepeatedPtrField<std::__1::basic_string<char>> _field5;
@@ -612,22 +418,40 @@ struct Selection {
 
 struct String {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field5;
+    basic_string_a1f69cfb *_field5;
     struct RepeatedPtrField<topotext::Substring> _field6;
     struct VectorTimestamp *_field7;
     struct RepeatedPtrField<topotext::AttributeRun> _field8;
     struct RepeatedPtrField<topotext::Attachment> _field9;
 };
 
-struct Todo {
+struct StringArray {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field5;
+    struct String *_field5;
+    struct RepeatedPtrField<CRDT::StringArray_ArrayAttachment> _field6;
+};
+
+struct Timestamp {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    unsigned long long _field5;
+    long long _field6;
+};
+
+struct Todo {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    basic_string_a1f69cfb *_field5;
     _Bool _field6;
 };
 
@@ -646,68 +470,28 @@ struct TopoSubstring {
     struct TopoID _field2;
     unsigned int _field3;
     _Bool _field4;
-    vector_6c07be0f _field5;
+    vector_c5c053b6 _field5;
     unsigned int _field6;
-};
-
-struct VectorTimestamp {
-    CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
-    unsigned int _field3[1];
-    int _field4;
-    struct RepeatedPtrField<topotext::VectorTimestamp_Clock> _field5;
 };
 
 struct Version {
     CDUnknownFunctionPointerType *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     unsigned int _field3[1];
     int _field4;
     unsigned int _field5;
     unsigned int _field6;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field7;
+    basic_string_a1f69cfb *_field7;
 };
 
 struct _NSRange {
-    unsigned long long location;
-    unsigned long long length;
+    unsigned long long _field1;
+    unsigned long long _field2;
 };
 
-struct __VFlags {
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :5;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :2;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :6;
-    unsigned int :1;
-    unsigned int :1;
+struct __hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*> *_field1;
 };
-
-struct __VFlags2 {
-    unsigned int :14;
-    unsigned int :14;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-};
-
-struct __hash_node<TopoSubstring *, void *>;
 
 struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> {
     struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__rep, std::__1::allocator<char>> {
@@ -743,8 +527,6 @@ struct pair<TopoIDRange, NSAttributedString *>;
 
 struct pair<TopoIDRange, NSDictionary *>;
 
-struct pair<long, double>;
-
 struct sockaddr_in {
     unsigned char _field1;
     unsigned char _field2;
@@ -753,11 +535,11 @@ struct sockaddr_in {
     char _field5[8];
 };
 
-struct unique_ptr<std::__1::__hash_node<TopoSubstring *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<TopoSubstring *, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<TopoSubstring *, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<TopoSubstring *, void *>*>>> {
-        struct __hash_node<TopoSubstring *, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<TopoSubstring *, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<TopoSubstring *, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
@@ -766,11 +548,9 @@ struct unique_ptr<std::__1::__hash_node<TopoSubstring *, void *>*[], std::__1::_
 
 struct unordered_set<TopoSubstring *, std::__1::hash<TopoSubstring *>, std::__1::equal_to<TopoSubstring *>, std::__1::allocator<TopoSubstring *>> {
     struct __hash_table<TopoSubstring *, std::__1::hash<TopoSubstring *>, std::__1::equal_to<TopoSubstring *>, std::__1::allocator<TopoSubstring *>> {
-        struct unique_ptr<std::__1::__hash_node<TopoSubstring *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<TopoSubstring *, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>, std::__1::allocator<std::__1::__hash_node<TopoSubstring *, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*> {
-                struct __hash_node<TopoSubstring *, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::hash<TopoSubstring *>> {
             unsigned long long _field1;
@@ -781,11 +561,11 @@ struct unordered_set<TopoSubstring *, std::__1::hash<TopoSubstring *>, std::__1:
     } _field1;
 };
 
-struct vector<ICDrawingInputPoint, std::__1::allocator<ICDrawingInputPoint>> {
-    CDStruct_183601bc *__begin_;
-    CDStruct_183601bc *__end_;
-    struct __compressed_pair<ICDrawingInputPoint *, std::__1::allocator<ICDrawingInputPoint>> {
-        CDStruct_183601bc *__first_;
+struct vector<CRDT::Document_DocObject *, std::__1::allocator<CRDT::Document_DocObject *>> {
+    struct Document_DocObject **__begin_;
+    struct Document_DocObject **__end_;
+    struct __compressed_pair<CRDT::Document_DocObject **, std::__1::allocator<CRDT::Document_DocObject *>> {
+        struct Document_DocObject **__value_;
     } __end_cap_;
 };
 
@@ -793,16 +573,8 @@ struct vector<ICDrawingOutputPoint, std::__1::allocator<ICDrawingOutputPoint>> {
     CDStruct_183601bc *__begin_;
     CDStruct_183601bc *__end_;
     struct __compressed_pair<ICDrawingOutputPoint *, std::__1::allocator<ICDrawingOutputPoint>> {
-        CDStruct_183601bc *__first_;
+        CDStruct_183601bc *__value_;
     } __end_cap_;
-};
-
-struct vector<ICSmoothingPoint, std::__1::allocator<ICSmoothingPoint>> {
-    struct ICSmoothingPoint *_field1;
-    struct ICSmoothingPoint *_field2;
-    struct __compressed_pair<ICSmoothingPoint *, std::__1::allocator<ICSmoothingPoint>> {
-        struct ICSmoothingPoint *_field1;
-    } _field3;
 };
 
 struct vector<TopoIDRange, std::__1::allocator<TopoIDRange>> {
@@ -817,7 +589,7 @@ struct vector<TopoSubstring *, std::__1::allocator<TopoSubstring *>> {
     struct TopoSubstring **__begin_;
     struct TopoSubstring **__end_;
     struct __compressed_pair<TopoSubstring **, std::__1::allocator<TopoSubstring *>> {
-        struct TopoSubstring **__first_;
+        struct TopoSubstring **__value_;
     } __end_cap_;
 };
 
@@ -829,19 +601,11 @@ struct vector<_NSRange, std::__1::allocator<_NSRange>> {
     } _field3;
 };
 
-struct vector<long, std::__1::allocator<long>> {
-    long long *_field1;
-    long long *_field2;
-    struct __compressed_pair<long *, std::__1::allocator<long>> {
-        long long *_field1;
-    } _field3;
-};
-
 struct vector<std::__1::pair<TopoID, TopoID>, std::__1::allocator<std::__1::pair<TopoID, TopoID>>> {
     struct pair<TopoID, TopoID> *__begin_;
     struct pair<TopoID, TopoID> *__end_;
     struct __compressed_pair<std::__1::pair<TopoID, TopoID>*, std::__1::allocator<std::__1::pair<TopoID, TopoID>>> {
-        struct pair<TopoID, TopoID> *__first_;
+        struct pair<TopoID, TopoID> *__value_;
     } __end_cap_;
 };
 
@@ -861,22 +625,62 @@ struct vector<std::__1::pair<TopoIDRange, NSDictionary *>, std::__1::allocator<s
     } _field3;
 };
 
-struct vector<std::__1::pair<long, double>, std::__1::allocator<std::__1::pair<long, double>>> {
-    struct pair<long, double> *_field1;
-    struct pair<long, double> *_field2;
-    struct __compressed_pair<std::__1::pair<long, double>*, std::__1::allocator<std::__1::pair<long, double>>> {
-        struct pair<long, double> *_field1;
-    } _field3;
-};
+#if 0
+// Names with conflicting types:
+typedef struct {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    struct VectorTimestamp *_field5;
+    struct VectorTimestamp *_field6;
+    struct RepeatedPtrField<CRDT::Document_DocObject> _field7;
+    struct RepeatedPtrField<std::__1::basic_string<char>> _field8;
+    struct RepeatedPtrField<std::__1::basic_string<char>> _field9;
+    struct RepeatedPtrField<std::__1::basic_string<char>> _field10;
+    struct VectorTimestamp *_field11;
+} Document_a0f7d28b;
+
+typedef struct {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    struct RepeatedPtrField<CRDT::VectorTimestamp_Element> _field5;
+} VectorTimestamp_c98372c7;
+
+typedef struct {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    struct RepeatedPtrField<topotext::VectorTimestamp_Clock> _field5;
+} VectorTimestamp_cd1d3bcf;
+
+typedef struct {
+    CDUnknownFunctionPointerType *_field1;
+    basic_string_a1f69cfb _field2;
+    unsigned int _field3[1];
+    int _field4;
+    struct RepeatedPtrField<versioned_document::Version> _field5;
+    unsigned int _field6;
+} Document_0e94f2f5;
+
+#endif
 
 #pragma mark Typedef'd Structures
 
 typedef struct {
-    double _field1;
-    double _field2;
-    double _field3;
-    double _field4;
-} CDStruct_d2b197d1;
+    unsigned long long _field1;
+    id *_field2;
+    unsigned long long *_field3;
+    unsigned long long _field4[5];
+} CDStruct_70511ce9;
+
+typedef struct {
+    char *_field1;
+    char *_field2;
+} CDStruct_91a0c811;
 
 typedef struct {
     double baseAlpha;
@@ -884,27 +688,7 @@ typedef struct {
     double targetMultiple;
 } CDStruct_30364a2d;
 
-typedef struct {
-    long long _field1;
-    int _field2;
-    unsigned int _field3;
-    long long _field4;
-} CDStruct_198678f7;
-
 typedef struct CDStruct_183601bc;
-
-typedef struct {
-    struct CGPoint _field1;
-    double _field2;
-    double _field3;
-    double _field4;
-    double _field5;
-    double _field6;
-    char _field7;
-    long long _field8;
-    double _field9;
-    char _field10;
-} CDStruct_57911ed6;
 
 typedef struct {
     struct CGPoint point;
@@ -917,17 +701,35 @@ typedef struct {
 } CDStruct_4a3d0796;
 
 // Template types
-typedef struct ICDrawingInputProvider<ICDrawingOutputPoint> {
-    CDUnknownFunctionPointerType *_field1;
-} ICDrawingInputProvider_d48c6870;
+typedef struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> {
+    struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__rep, std::__1::allocator<char>> {
+        struct __rep {
+            union {
+                struct __long {
+                    unsigned long long _field1;
+                    unsigned long long _field2;
+                    char *_field3;
+                } _field1;
+                struct __short {
+                    union {
+                        unsigned char _field1;
+                        char _field2;
+                    } _field1;
+                    char _field2[23];
+                } _field2;
+                struct __raw {
+                    unsigned long long _field1[3];
+                } _field3;
+            } _field1;
+        } _field1;
+    } _field1;
+} basic_string_a1f69cfb;
 
 typedef struct unordered_set<TopoSubstring *, std::__1::hash<TopoSubstring *>, std::__1::equal_to<TopoSubstring *>, std::__1::allocator<TopoSubstring *>> {
     struct __hash_table<TopoSubstring *, std::__1::hash<TopoSubstring *>, std::__1::equal_to<TopoSubstring *>, std::__1::allocator<TopoSubstring *>> {
-        struct unique_ptr<std::__1::__hash_node<TopoSubstring *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<TopoSubstring *, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*>, std::__1::allocator<std::__1::__hash_node<TopoSubstring *, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*> {
-                struct __hash_node<TopoSubstring *, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<TopoSubstring *, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::hash<TopoSubstring *>> {
             unsigned long long _field1;
@@ -936,23 +738,15 @@ typedef struct unordered_set<TopoSubstring *, std::__1::hash<TopoSubstring *>, s
             float _field1;
         } _field4;
     } _field1;
-} unordered_set_cb0b1a0f;
-
-typedef struct vector<ICDrawingInputPoint, std::__1::allocator<ICDrawingInputPoint>> {
-    CDStruct_183601bc *__begin_;
-    CDStruct_183601bc *__end_;
-    struct __compressed_pair<ICDrawingInputPoint *, std::__1::allocator<ICDrawingInputPoint>> {
-        CDStruct_183601bc *__first_;
-    } __end_cap_;
-} vector_c0e7c5b2;
+} unordered_set_0f32d0a8;
 
 typedef struct vector<ICDrawingOutputPoint, std::__1::allocator<ICDrawingOutputPoint>> {
     CDStruct_183601bc *__begin_;
     CDStruct_183601bc *__end_;
     struct __compressed_pair<ICDrawingOutputPoint *, std::__1::allocator<ICDrawingOutputPoint>> {
-        CDStruct_183601bc *__first_;
+        CDStruct_183601bc *__value_;
     } __end_cap_;
-} vector_82e5b66f;
+} vector_352d2fdf;
 
 typedef struct vector<TopoIDRange, std::__1::allocator<TopoIDRange>> {
     struct TopoIDRange *_field1;
@@ -966,9 +760,9 @@ typedef struct vector<TopoSubstring *, std::__1::allocator<TopoSubstring *>> {
     struct TopoSubstring **__begin_;
     struct TopoSubstring **__end_;
     struct __compressed_pair<TopoSubstring **, std::__1::allocator<TopoSubstring *>> {
-        struct TopoSubstring **__first_;
+        struct TopoSubstring **__value_;
     } __end_cap_;
-} vector_6c07be0f;
+} vector_c5c053b6;
 
 typedef struct vector<_NSRange, std::__1::allocator<_NSRange>> {
     struct _NSRange *_field1;
@@ -982,9 +776,9 @@ typedef struct vector<std::__1::pair<TopoID, TopoID>, std::__1::allocator<std::_
     struct pair<TopoID, TopoID> *__begin_;
     struct pair<TopoID, TopoID> *__end_;
     struct __compressed_pair<std::__1::pair<TopoID, TopoID>*, std::__1::allocator<std::__1::pair<TopoID, TopoID>>> {
-        struct pair<TopoID, TopoID> *__first_;
+        struct pair<TopoID, TopoID> *__value_;
     } __end_cap_;
-} vector_8c432507;
+} vector_0ee2fe7a;
 
 typedef struct vector<std::__1::pair<TopoIDRange, NSAttributedString *>, std::__1::allocator<std::__1::pair<TopoIDRange, NSAttributedString *>>> {
     struct pair<TopoIDRange, NSAttributedString *> *_field1;

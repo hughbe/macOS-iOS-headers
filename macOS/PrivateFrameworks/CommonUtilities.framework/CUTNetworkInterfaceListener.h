@@ -20,8 +20,9 @@
 }
 
 + (id)sharedInstance;
-@property(readonly, retain, nonatomic) NSSet *IPv4Addresses; // @synthesize IPv4Addresses=_IPv4Addresses;
-@property(readonly, retain, nonatomic) NSSet *IPv6Addresses; // @synthesize IPv6Addresses=_IPv6Addresses;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSSet *IPv4Addresses; // @synthesize IPv4Addresses=_IPv4Addresses;
+@property(readonly, nonatomic) NSSet *IPv6Addresses; // @synthesize IPv6Addresses=_IPv6Addresses;
 @property(readonly, nonatomic) int cellState; // @synthesize cellState=_cellState;
 @property(readonly, nonatomic) int wifiState; // @synthesize wifiState=_wifiState;
 - (void)removeDelegate:(id)arg1;
@@ -30,10 +31,6 @@
 - (void)_notifyDelegatesOfCellChange:(int)arg1;
 - (void)_notifyDelegatesOfWifiChange:(int)arg1;
 - (void)_handleNetworkChange:(id)arg1;
-- (id)autorelease;
-- (oneway void)release;
-- (unsigned long long)retainCount;
-- (id)retain;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)allocWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;

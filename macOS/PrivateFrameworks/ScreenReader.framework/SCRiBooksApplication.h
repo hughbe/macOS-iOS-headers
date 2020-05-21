@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     BOOL _registeredReadAllElementDestroyedNotification;
 }
 
+- (void).cxx_destruct;
 - (void)_checkFocusedElementForReadAll;
 - (void)_safeCheckFocusedElementForReadAll;
 - (void)_safeClearCurrentReadAllElement;

@@ -22,6 +22,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)differentialStyle;
+- (void).cxx_destruct;
 @property(retain, nonatomic) EDContentFormat *contentFormat; // @synthesize contentFormat=mContentFormat;
 @property(retain, nonatomic) EDProtection *protection; // @synthesize protection=mProtection;
 @property(retain, nonatomic) EDFont *font; // @synthesize font=mFont;
@@ -30,7 +31,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) EDAlignmentInfo *alignmentInfo; // @synthesize alignmentInfo=mAlignmentInfo;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 
 @end
 

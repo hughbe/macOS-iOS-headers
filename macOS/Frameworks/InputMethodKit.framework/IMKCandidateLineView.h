@@ -6,32 +6,39 @@
 
 #import <InputMethodKit/IMKUIView.h>
 
-@class IMKCandidateController, NSArray, NSAttributedString, NSMutableDictionary, NSOrderedSet;
+@class IMKCandidateController, IMKCandidateUnitView, NSArray, NSAttributedString, NSColor, NSMutableDictionary, NSOrderedSet;
 
 @interface IMKCandidateLineView : IMKUIView
 {
     BOOL _animateChanges;
+    NSColor *_backgroundColor;
     IMKCandidateController *_candidateController;
     NSAttributedString *_groupName;
     unsigned long long _highlightStyle;
     NSArray *_layoutUnits;
+    NSColor *_lineColor;
     unsigned long long _number;
     NSMutableDictionary *_uniqueKeyToCandidateView;
     NSOrderedSet *_layoutUnitsToAnimateOut;
     BOOL _touchesWithinView;
     NSArray *_viewsToBeAnimatedOut;
+    IMKCandidateUnitView *_unitViewToBeUpdatedByPressAndHold;
 }
 
+@property(retain, nonatomic) IMKCandidateUnitView *unitViewToBeUpdatedByPressAndHold; // @synthesize unitViewToBeUpdatedByPressAndHold=_unitViewToBeUpdatedByPressAndHold;
 @property(retain, nonatomic) NSArray *viewsToBeAnimatedOut; // @synthesize viewsToBeAnimatedOut=_viewsToBeAnimatedOut;
 @property(nonatomic) BOOL touchesWithinView; // @synthesize touchesWithinView=_touchesWithinView;
 @property(retain, nonatomic) NSMutableDictionary *uniqueKeyToCandidateView; // @synthesize uniqueKeyToCandidateView=_uniqueKeyToCandidateView;
 @property(nonatomic) unsigned long long number; // @synthesize number=_number;
 @property(retain, nonatomic) NSOrderedSet *layoutUnitsToAnimateOut; // @synthesize layoutUnitsToAnimateOut=_layoutUnitsToAnimateOut;
+@property(retain, nonatomic) NSColor *lineColor; // @synthesize lineColor=_lineColor;
 @property(retain, nonatomic) NSArray *layoutUnits; // @synthesize layoutUnits=_layoutUnits;
 @property(nonatomic) unsigned long long highlightStyle; // @synthesize highlightStyle=_highlightStyle;
 @property(retain, nonatomic) NSAttributedString *groupName; // @synthesize groupName=_groupName;
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
+@property(nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
+@property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 @property(nonatomic) BOOL animateChanges; // @synthesize animateChanges=_animateChanges;
+- (void)shouldUpdateForPressAndHold:(id)arg1 position:(struct CGPoint)arg2 with:(long long)arg3;
 - (void)touchesEnded:(id)arg1 position:(struct CGPoint)arg2;
 - (void)scrubbed:(id)arg1 position:(struct CGPoint)arg2;
 - (void)animate;
@@ -40,6 +47,7 @@
 - (id)suffixOfOriginalLayoutUnits:(id)arg1 andNewLayoutUnits:(id)arg2;
 - (struct CGRect)layoutFrameForOrientation:(struct CGRect)arg1;
 - (void)drawRect:(struct CGRect)arg1;
+- (void)updateBackgroundAndLineColors;
 - (id)candidateViewForKey:(id)arg1;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 candidateController:(id)arg2 properties:(id)arg3;

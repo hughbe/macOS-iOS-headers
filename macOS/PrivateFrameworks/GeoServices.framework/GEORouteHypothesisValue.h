@@ -27,10 +27,11 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) long long rowId; // @synthesize rowId=_rowId;
 @property(nonatomic) double valueRefreshTimeStamp; // @synthesize valueRefreshTimeStamp=_valueRefreshTimeStamp;
 @property(nonatomic) int transportType; // @synthesize transportType=_transportType;
-@property(readonly, retain, nonatomic) GEOMapServiceTraits *traits; // @synthesize traits=_traits;
+@property(readonly, nonatomic) GEOMapServiceTraits *traits; // @synthesize traits=_traits;
 @property(readonly, nonatomic) NSDate *expirationDate; // @synthesize expirationDate=_expirationDate;
 @property(readonly, nonatomic) NSDate *arrivalDate; // @synthesize arrivalDate=_arrivalDate;
 @property(readonly, nonatomic) GEOComposedWaypoint *destination; // @synthesize destination=_destination;
@@ -38,17 +39,16 @@
 @property(nonatomic) double updatedTimeStamp; // @synthesize updatedTimeStamp=_updatedTimeStamp;
 @property(nonatomic) BOOL prediction; // @synthesize prediction=_prediction;
 @property(retain, nonatomic) GEORouteHypothesis *currentHypothesis; // @synthesize currentHypothesis=_currentHypothesis;
-@property(readonly, retain, nonatomic) GEORouteHypothesisMonitor *monitor; // @synthesize monitor=_monitor;
+@property(readonly, nonatomic) GEORouteHypothesisMonitor *monitor; // @synthesize monitor=_monitor;
 - (id)description;
 - (BOOL)canBePersistedToDisk;
-@property(readonly) BOOL isStaleToPurgeFromDisk;
-@property(readonly) BOOL isStaleToRefresh;
+@property(readonly, nonatomic) BOOL isStaleToPurgeFromDisk;
+@property(readonly, nonatomic) BOOL isStaleToRefresh;
 - (BOOL)aggresiveArrivalIsAfterExpiration;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (void)commonInit;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithSource:(id)arg1 toDestination:(id)arg2 transportType:(int)arg3 arrivalDate:(id)arg4 expirationDate:(id)arg5 traits:(id)arg6;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 transportType:(int)arg3 arrivalDate:(id)arg4 expirationDate:(id)arg5 traceName:(id)arg6 traits:(id)arg7;
 
 @end
 

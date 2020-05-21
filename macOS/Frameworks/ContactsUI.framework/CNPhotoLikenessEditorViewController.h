@@ -12,7 +12,6 @@
 
 @interface CNPhotoLikenessEditorViewController : CNLikenessEditorViewController <CNPhotoLikenessEditorCroppingDataSource>
 {
-    BOOL _shouldFitToViewFinder;
     BOOL _viewHasLoaded;
     BOOL _userSetup;
     MLMediaLibrary *_mediaLibrary;
@@ -29,10 +28,16 @@
     unsigned long long _numRootGroupsLoaded;
     NSArray *_defaultPhotos;
     NSMutableDictionary *_rootGroupIDToObjectMap;
+    id <CNCancelable> _imageRepresentationOfItemChangedToken;
     struct CGRect _cropRect;
 }
 
 + (struct CGRect)squareRectForCropRect:(struct CGRect)arg1;
++ (void)applyConfiguration:(unsigned long long)arg1 toEditor:(id)arg2;
++ (unsigned long long)configurationOfEditorGivenImage:(id)arg1 editorHost:(id)arg2 isMeContact:(BOOL)arg3;
++ (id)os_log;
+- (void).cxx_destruct;
+@property(retain) id <CNCancelable> imageRepresentationOfItemChangedToken; // @synthesize imageRepresentationOfItemChangedToken=_imageRepresentationOfItemChangedToken;
 @property(retain) NSMutableDictionary *rootGroupIDToObjectMap; // @synthesize rootGroupIDToObjectMap=_rootGroupIDToObjectMap;
 @property BOOL userSetup; // @synthesize userSetup=_userSetup;
 @property(retain) NSArray *defaultPhotos; // @synthesize defaultPhotos=_defaultPhotos;
@@ -46,47 +51,41 @@
 @property(retain) NSMutableArray *rootGroups; // @synthesize rootGroups=_rootGroups;
 @property(retain) NSMutableDictionary *rootGroupsByMediaSourceIdentifier; // @synthesize rootGroupsByMediaSourceIdentifier=_rootGroupsByMediaSourceIdentifier;
 @property(retain) CNPhotoLikenessEditorView *mainView; // @synthesize mainView=_mainView;
-@property BOOL shouldFitToViewFinder; // @synthesize shouldFitToViewFinder=_shouldFitToViewFinder;
 @property(retain) NSMutableArray *visibleRootGroups; // @synthesize visibleRootGroups=_visibleRootGroups;
 @property(retain) NSImage *image; // @synthesize image=_image;
 @property struct CGRect cropRect; // @synthesize cropRect=_cropRect;
-- (void).cxx_destruct;
+- (void)imageBrowser:(id)arg1 cellWasDoubleClickedAtIndex:(unsigned long long)arg2;
 - (void)loadRootGroups;
 - (void)_updateVisibleRootGroups;
 - (void)removeSourceOfClass:(Class)arg1 fromGroups:(id)arg2;
 - (void)addSourceOfClass:(Class)arg1 toGroups:(id)arg2;
 - (void)updateDefaultPhotos;
-- (void)viewDidAppear;
-- (void)viewWillAppear;
 - (void)updateRootGroup:(id)arg1 forMediaSourceIdentifier:(id)arg2;
 - (id)emptyContentStringForSelectedSource;
 - (long long)browserStateForSelectedSource;
-- (id)selectedMediaSourceIdentifier;
-- (long long)browserStateForMediaSourceIdentifier:(id)arg1;
-- (void)printBrowserStateForSourceIdentifier:(id)arg1;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 @property(retain) MLMediaLibrary *mediaLibrary; // @synthesize mediaLibrary=_mediaLibrary;
-- (void)dealloc;
 - (void)_resetMediaLibrary;
 - (id)_mediaLibraryWithOptions:(id)arg1;
 - (void)imageBrowserSelectionDidChange:(id)arg1;
 @property(readonly) double viewFinderDiameter;
 - (struct CGImage *)_staticRepresentation;
 - (id)likeness;
-- (void)savePNGImage:(struct CGImage *)arg1 path:(id)arg2;
 - (void)configureInitialDisplayForLikeness:(id)arg1 isMe:(BOOL)arg2;
-- (void)sourceTypeWasSelected:(long long)arg1;
+- (void)_configureButtonsSelectingImageForSourceType:(long long)arg1;
+- (void)_configureButtonsForSaving;
 - (void)_configureButtonsForTakingPhotoFullScreen:(BOOL)arg1;
 - (void)setNextButtonEnabled:(BOOL)arg1;
-- (id)takePhotoString;
+- (void)sourceTypeWasSelected:(long long)arg1;
 - (CDUnknownBlockType)blockForTakingPhotoWithDisplayMode:(long long)arg1;
-- (void)_configureButtonsForSaving;
-- (void)configureFullScreenCroppingMode;
-- (void)_configureButtonsSelectingImageForSourceType:(long long)arg1;
+- (CDUnknownBlockType)nextActionBlockForSourceType:(long long)arg1;
 - (void)setZoomFraction:(double)arg1;
-- (id)_thumbnail;
+- (void)paste:(id)arg1;
+- (void)imageRepresentationOfItemChanged:(id)arg1;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)viewDidAppear;
 - (void)viewDidLayout;
 - (void)viewDidLoad;
+- (void)dealloc;
 - (id)initWithUserSetup:(BOOL)arg1;
 
 // Remaining properties

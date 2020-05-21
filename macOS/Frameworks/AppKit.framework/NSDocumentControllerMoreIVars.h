@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDocument, NSDocumentControllerPersistentRestoration, NSDocumentControllerSubMenuDelegate, NSError, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSWindow;
+@class NSArray, NSDocument, NSDocumentControllerPersistentRestoration, NSDocumentControllerSubMenuDelegate, NSError, NSMenuItem, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSOperationQueue, NSSharingServicePicker, NSString, NSTouchBar, NSWindow;
 
 __attribute__((visibility("hidden")))
 @interface NSDocumentControllerMoreIVars : NSObject
@@ -14,7 +14,6 @@ __attribute__((visibility("hidden")))
     BOOL shouldCreateUI;
     double autosavingDelay;
     int cachedUTIUsage;
-    struct OpaqueLSSharedFileListRef *perAppRecentDocumentFileList;
     NSDocumentControllerSubMenuDelegate *subMenuDelegate;
     NSMutableDictionary *cachedRecentDocumentInfoPerKey;
     NSMutableDictionary *orderedPendingRecentDocumentURLsPerKey;
@@ -24,6 +23,7 @@ __attribute__((visibility("hidden")))
     struct __CFSet *javaVariantMethodsBeingInvoked;
     NSError *javaLastError;
     unsigned long long isAutoreopening;
+    NSArray *autoreopenRecordsBeingReopened;
     NSMutableArray *autoreopenRecordsForMissingDocuments;
     BOOL hasAutoreopened;
     BOOL isClosingBeforeSavingDuringTermination;
@@ -61,6 +61,10 @@ __attribute__((visibility("hidden")))
     BOOL requestingSecurityScopedURLsFromOpenPanel;
     BOOL shouldInvertImplicitTabbingBehavior;
     BOOL tabPlusButtonWasClicked;
+    NSTouchBar *newDocumentTouchBar;
+    BOOL showNewDocumentTouchBar;
+    NSSharingServicePicker *currentSharingServicePicker;
+    NSMenuItem *selectedSharingServiceMenuItem;
 }
 
 @end

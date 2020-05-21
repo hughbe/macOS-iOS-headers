@@ -8,25 +8,34 @@
 
 #import "NSCopying.h"
 
-@class CKDPRecordFieldIdentifier, CKDPRecordType, NSMutableArray;
+@class CKDPRecordFieldIdentifier, CKDPRecordType, NSData, NSMutableArray;
 
 __attribute__((visibility("hidden")))
 @interface CKDPAssetUploadTokenRetrieveRequest : PBRequest <NSCopying>
 {
     NSMutableArray *_assets;
+    NSData *_authPutRequest;
+    int _authPutType;
+    NSMutableArray *_contentRequestHeaders;
     CKDPRecordFieldIdentifier *_field;
     CKDPRecordType *_type;
     NSMutableArray *_uploads;
+    struct {
+        unsigned int authPutType:1;
+    } _has;
 }
 
++ (Class)contentRequestHeadersType;
 + (Class)uploadsType;
 + (Class)assetsType;
 + (id)options;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSData *authPutRequest; // @synthesize authPutRequest=_authPutRequest;
+@property(retain, nonatomic) NSMutableArray *contentRequestHeaders; // @synthesize contentRequestHeaders=_contentRequestHeaders;
 @property(retain, nonatomic) NSMutableArray *uploads; // @synthesize uploads=_uploads;
 @property(retain, nonatomic) NSMutableArray *assets; // @synthesize assets=_assets;
 @property(retain, nonatomic) CKDPRecordFieldIdentifier *field; // @synthesize field=_field;
 @property(retain, nonatomic) CKDPRecordType *type; // @synthesize type=_type;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -38,6 +47,15 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+- (int)StringAsAuthPutType:(id)arg1;
+- (id)authPutTypeAsString:(int)arg1;
+@property(nonatomic) BOOL hasAuthPutType;
+@property(nonatomic) int authPutType; // @synthesize authPutType=_authPutType;
+@property(readonly, nonatomic) BOOL hasAuthPutRequest;
+- (id)contentRequestHeadersAtIndex:(unsigned long long)arg1;
+- (unsigned long long)contentRequestHeadersCount;
+- (void)addContentRequestHeaders:(id)arg1;
+- (void)clearContentRequestHeaders;
 - (id)uploadsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)uploadsCount;
 - (void)addUploads:(id)arg1;

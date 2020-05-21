@@ -9,8 +9,6 @@
 __attribute__((visibility("hidden")))
 @interface NSSubrangeData : NSData
 {
-    unsigned int _reserved:3;
-    unsigned int _retainCount:29;
     struct _NSRange _range;
     NSData *_data;
 }

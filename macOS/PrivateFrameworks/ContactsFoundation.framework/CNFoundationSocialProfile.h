@@ -20,6 +20,7 @@
 }
 
 + (id)emptySocialProfile;
+- (void).cxx_destruct;
 @property(readonly, copy) NSString *displayName; // @synthesize displayName=_displayName;
 @property(readonly, copy) NSString *service; // @synthesize service=_service;
 @property(readonly, copy) NSString *userIdentifier; // @synthesize userIdentifier=_userIdentifier;
@@ -30,7 +31,6 @@
 - (id)description;
 - (BOOL)isEmpty;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithUrlString:(id)arg1 username:(id)arg2 userIdentifier:(id)arg3 service:(id)arg4 displayName:(id)arg5;
 
 @end

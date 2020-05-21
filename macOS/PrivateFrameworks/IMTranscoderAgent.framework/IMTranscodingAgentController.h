@@ -6,18 +6,26 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSObject<OS_dispatch_queue>;
+@class IMTranscoder_TextRendering, NSArray, NSObject<OS_dispatch_queue>;
 
 @interface IMTranscodingAgentController : NSObject
 {
     NSArray *_transcoders;
     NSArray *_fallbackTranscoders;
     NSObject<OS_dispatch_queue> *_queue;
+    NSObject<OS_dispatch_queue> *_textValidationQueue;
+    NSObject<OS_dispatch_queue> *_previewGenerationQueue;
+    IMTranscoder_TextRendering *_textTranscoder;
 }
 
 + (id)sharedInstance;
+- (void)sizePreview:(id)arg1 constraints:(struct IMPreviewConstraints)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)generatePreview:(id)arg1 previewURL:(id)arg2 constraints:(struct IMPreviewConstraints)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (void)generateSnapshotForMessageGUID:(id)arg1 payloadURL:(id)arg2 balloonBundleID:(id)arg3 isFromMe:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (void)validateTextRenderingForMessage:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)validateFileTransfer:(id)arg1 utiType:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)transcodeFileTransferData:(id)arg1 balloonBundleID:(id)arg2 attachments:(id)arg3 fallBack:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
-- (void)transcodeFileTransferContents:(id)arg1 utiType:(id)arg2 allowUnfilteredUTIs:(id)arg3 target:(long long)arg4 sizes:(id)arg5 maxDimension:(unsigned long long)arg6 transcoderUserInfo:(id)arg7 representations:(long long)arg8 completionBlock:(CDUnknownBlockType)arg9;
+- (void)transcodeFileTransferContents:(id)arg1 utiType:(id)arg2 allowUnfilteredUTIs:(id)arg3 target:(long long)arg4 sizes:(id)arg5 maxDimension:(unsigned long long)arg6 transcoderUserInfo:(id)arg7 fallback:(BOOL)arg8 representations:(long long)arg9 completionBlock:(CDUnknownBlockType)arg10;
 - (BOOL)shouldProcessFileTransfer:(id)arg1 utiType:(id)arg2 transcoderUserInfo:(id)arg3 target:(long long)arg4 allowUnfilteredUTIs:(id)arg5 fileSizeLimit:(unsigned long long)arg6;
 - (id)_findTranscoderForUTI:(id)arg1;
 - (void)dealloc;

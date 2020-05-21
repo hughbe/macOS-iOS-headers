@@ -19,8 +19,8 @@
 
 + (id)placeItemWithMapItem:(id)arg1 contact:(id)arg2 options:(unsigned long long)arg3;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL hasContactOnly;
 @property(readonly, nonatomic) BOOL isIntermediateMapItem;
-- (void)setIsSuggestedFavorite:(BOOL)arg1;
 @property(readonly, nonatomic) unsigned long long options;
 @property(readonly, nonatomic) BOOL isContactPersisted;
 @property(readonly, nonatomic) CNContact *contact;

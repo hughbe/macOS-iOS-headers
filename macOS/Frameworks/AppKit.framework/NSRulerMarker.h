@@ -29,7 +29,7 @@
 
 + (void)initialize;
 + (id)_numericIndicatorFormatter;
-+ (id)_numericIndicatorCell;
++ (id)_numericIndicatorField;
 + (id)tabStopContextMenuForMarker:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 + (void)_tabStopContextMenuAction:(id)arg1;
 + (id)decimalTabMarkerWithRulerView:(id)arg1 location:(double)arg2;
@@ -41,6 +41,7 @@
 + (id)firstIndentMarkerWithRulerView:(id)arg1 location:(double)arg2;
 + (id)rightMarginMarkerWithRulerView:(id)arg1 location:(double)arg2;
 + (id)leftMarginMarkerWithRulerView:(id)arg1 location:(double)arg2;
+- (void).cxx_destruct;
 - (double)_locationOfOriginPoint:(double)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -57,7 +58,7 @@
 @property struct CGPoint imageOrigin;
 @property(retain) NSImage *image;
 @property double markerLocation;
-@property(readonly) NSRulerView *ruler;
+@property(readonly) __weak NSRulerView *ruler;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 - (id)initWithRulerView:(id)arg1 markerLocation:(double)arg2 image:(id)arg3 imageOrigin:(struct CGPoint)arg4;

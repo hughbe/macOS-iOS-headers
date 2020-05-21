@@ -6,6 +6,25 @@
 
 #import "PXDisplayCollection.h"
 
+@class NSArray, NSDate, NSString;
+
 @protocol PXDisplayAssetCollection <PXDisplayCollection>
+@property(readonly, nonatomic) unsigned long long estimatedAssetCount;
+@property(readonly, nonatomic) NSDate *endDate;
+@property(readonly, nonatomic) NSDate *startDate;
+@property(readonly, nonatomic) NSString *localizedSmartDescription;
+@property(readonly, nonatomic) NSString *localizedDateDescription;
+@property(readonly, nonatomic) NSArray *localizedLocationNames;
+@property(readonly, nonatomic) NSString *localizedDebugDescription;
+@property(readonly, nonatomic) NSString *localizedSubtitle;
+@property(readonly, nonatomic) NSString *localizedTitle;
+@property(readonly, nonatomic) long long px_highlightKind;
+@property(readonly, nonatomic) unsigned short px_highlightEnrichmentState;
+@property(readonly, nonatomic) BOOL isRecent;
+@property(readonly, nonatomic) BOOL isAggregation;
+@property(readonly, nonatomic) double promotionScore;
+@property(readonly, nonatomic) BOOL isEnrichmentComplete;
+@property(readonly, nonatomic) BOOL isEnriched;
+- (NSString *)localizedDateDescriptionWithOptions:(unsigned long long)arg1;
 @end
 

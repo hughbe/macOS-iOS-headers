@@ -8,16 +8,27 @@
 
 #import "NSCopying.h"
 
-@class GEOPDPlaceRequest, NSString;
+@class GEOPDPlaceRequest, NSString, PBDataReader;
 
+__attribute__((visibility("hidden")))
 @interface GEOPlaceDataCacheFeedback : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_bundleIdentifier;
     GEOPDPlaceRequest *_request;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_bundleIdentifier:1;
+        unsigned int read_request:1;
+        unsigned int wrote_bundleIdentifier:1;
+        unsigned int wrote_request:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
-@property(retain, nonatomic) GEOPDPlaceRequest *request; // @synthesize request=_request;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +36,17 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *bundleIdentifier;
 @property(readonly, nonatomic) BOOL hasBundleIdentifier;
+- (void)_readBundleIdentifier;
+@property(retain, nonatomic) GEOPDPlaceRequest *request;
 @property(readonly, nonatomic) BOOL hasRequest;
-- (void)dealloc;
+- (void)_readRequest;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

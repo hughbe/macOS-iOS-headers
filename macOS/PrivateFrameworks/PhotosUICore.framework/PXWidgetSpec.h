@@ -8,6 +8,7 @@
 
 @interface PXWidgetSpec : PXFeatureSpec
 {
+    double _distanceBetweenMainContentBottomAndCaptionBaseline;
     unsigned long long _detailsOptions;
     double _distanceBetweenTopAndFirstHeaderBaseline;
     double _distanceBetweenTopAndHeaderlessWidgetContentTop;
@@ -41,6 +42,7 @@
 @property(nonatomic) double distanceBetweenTopAndHeaderlessWidgetContentTop; // @synthesize distanceBetweenTopAndHeaderlessWidgetContentTop=_distanceBetweenTopAndHeaderlessWidgetContentTop;
 @property(nonatomic) double distanceBetweenTopAndFirstHeaderBaseline; // @synthesize distanceBetweenTopAndFirstHeaderBaseline=_distanceBetweenTopAndFirstHeaderBaseline;
 @property(readonly, nonatomic) unsigned long long detailsOptions; // @synthesize detailsOptions=_detailsOptions;
+@property(readonly, nonatomic) double distanceBetweenMainContentBottomAndCaptionBaseline; // @synthesize distanceBetweenMainContentBottomAndCaptionBaseline=_distanceBetweenMainContentBottomAndCaptionBaseline;
 @property(nonatomic) struct NSEdgeInsets contentGuideInsets; // @synthesize contentGuideInsets=_contentGuideInsets;
 - (id)initWithExtendedTraitCollection:(id)arg1 options:(unsigned long long)arg2 detailsOptions:(unsigned long long)arg3;
 - (id)initWithExtendedTraitCollection:(id)arg1 detailsOptions:(unsigned long long)arg2;

@@ -16,7 +16,9 @@
 
 + (id)rollbackRequestWithDictionary:(id)arg1 context:(id)arg2;
 + (id)rollbackRequest;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *requestId;
+@property(copy, nonatomic) NSString *reason;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

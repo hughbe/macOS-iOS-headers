@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class BackgroundLoad, BackgroundLoadController, BrowserTabViewItem, BrowserWKView;
+@class BackgroundLoad, BackgroundLoadController, BrowserTabViewItem, BrowserViewController, WKWebView;
 
 @protocol BackgroundLoadControllerDelegate <NSObject>
 - (BrowserTabViewItem *)backgroundLoadController:(BackgroundLoadController *)arg1 destinationTabViewItemForCommittingBackgroundLoad:(BackgroundLoad *)arg2;
-- (struct BrowserContentViewController *)backgroundLoadController:(BackgroundLoadController *)arg1 contentViewControllerForSettingUpBackgroundLoad:(BackgroundLoad *)arg2;
-- (BrowserWKView *)createWKViewForBackgroundLoadController:(BackgroundLoadController *)arg1;
+- (BrowserViewController *)backgroundLoadController:(BackgroundLoadController *)arg1 browserViewControllerForSettingUpBackgroundLoad:(BackgroundLoad *)arg2;
+- (BrowserViewController *)makeBrowserViewControllerForBackgroundLoadController:(BackgroundLoadController *)arg1 relatedToWebView:(WKWebView *)arg2;
 
 @optional
 - (BOOL)backgroundLoadController:(BackgroundLoadController *)arg1 handleBackgroundLoadDidPerformFirstVisuallyNonEmptyLayout:(BackgroundLoad *)arg2;

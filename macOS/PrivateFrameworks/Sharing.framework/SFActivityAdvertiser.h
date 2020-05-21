@@ -4,31 +4,31 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Sharing/SFXPCClient.h>
 
 #import "SFActivityAdvertiserClient.h"
-#import "SFCompanionXPCManagerObserver.h"
 
-@class NSString, SFInternalAdvertisement;
+@class NSString;
 
-@interface SFActivityAdvertiser : NSObject <SFCompanionXPCManagerObserver, SFActivityAdvertiserClient>
+@interface SFActivityAdvertiser : SFXPCClient <SFActivityAdvertiserClient>
 {
     id <SFActivityAdvertiserDelegate> _delegate;
-    id <SFActivityAdvertiserProtocol> _connectionProxy;
-    SFInternalAdvertisement *_currentAdvertisement;
 }
 
 + (id)sharedAdvertiser;
-@property(retain) SFInternalAdvertisement *currentAdvertisement; // @synthesize currentAdvertisement=_currentAdvertisement;
-@property(retain) id <SFActivityAdvertiserProtocol> connectionProxy; // @synthesize connectionProxy=_connectionProxy;
 @property id <SFActivityAdvertiserDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+- (BOOL)shouldEscapeXpcTryCatch;
+- (id)remoteObjectInterface;
+- (id)exportedInterface;
+- (id)machServiceName;
+- (void)pairedDevicesChanged:(id)arg1;
 - (void)didSendPayloadForActivityIdentifier:(id)arg1 toDevice:(id)arg2 error:(id)arg3;
 - (void)activityPayloadForAdvertisementPayload:(id)arg1 command:(id)arg2 requestedByDevice:(id)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
 - (void)advertiseAdvertisementPayload:(id)arg1 options:(id)arg2;
-- (void)xpcManagerConnectionInterrupted;
-- (void)setupXPCConnection;
-- (void)dealloc;
+- (void)fetchPeerForUUID:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)fetchSFPeerDevicesWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)fetchLoginIDWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)_getRemoteObjectProxyOnQueue:(CDUnknownBlockType)arg1;
 - (id)init;
 
 // Remaining properties

@@ -10,7 +10,7 @@
 
 @interface PXEngineDrivenAssetsTilingLayout : PXAssetsTilingLayout
 {
-    struct _needsUpdateFlags;
+    CDStruct_183601bc _needsUpdateFlags;
     struct {
         char respondsToEngineDrivenLayoutReferenceSizeDidChange;
         char respondsToEngineDrivenLayoutAspectRatioForItemAtIndexPath;
@@ -23,15 +23,17 @@
     long long _contentMode;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) long long contentMode; // @synthesize contentMode=_contentMode;
 @property(retain, nonatomic) PXLayoutSnapshot *layoutSnapshot; // @synthesize layoutSnapshot=_layoutSnapshot;
 @property(nonatomic) __weak id <PXEngineDrivenAssetsTilingLayoutDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (struct CGRect)_contentsRectForItemAtIndexPath:(struct PXSimpleIndexPath)arg1 forAspectRatio:(double)arg2;
 - (double)_zPositionForItemAtIndexPath:(struct PXSimpleIndexPath)arg1;
 - (double)_aspectRatioForItemAtIndexPath:(struct PXSimpleIndexPath)arg1;
 - (struct CGSize)playButtonSizeForItemAtIndexPath:(struct PXSimpleIndexPath)arg1 contentTileSize:(struct CGSize)arg2;
 - (id)dataSource;
+- (void)adjustGeometry:(struct PXTileGeometry *)arg1 forAdditionalTileWithKind:(unsigned long long)arg2 indexPath:(struct PXSimpleIndexPath)arg3;
+- (BOOL)getAdditionalTileIdentifier:(struct PXTileIdentifier *)arg1 group:(unsigned long long *)arg2 layoutGeometryKind:(unsigned long long)arg3 indexPath:(struct PXSimpleIndexPath)arg4;
 - (struct CGRect)contentBounds;
 - (void)adjustGeometry:(struct PXTileGeometry *)arg1 forContentTileWithIndexPath:(struct PXSimpleIndexPath)arg2;
 - (BOOL)getGeometry:(struct PXTileGeometry *)arg1 group:(unsigned long long *)arg2 userData:(id *)arg3 forTileWithIdentifier:(struct PXTileIdentifier)arg4;

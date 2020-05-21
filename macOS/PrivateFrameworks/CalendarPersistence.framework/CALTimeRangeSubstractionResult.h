@@ -14,8 +14,9 @@
     CALTimeRange *_result2;
 }
 
-@property CALTimeRange *result2; // @synthesize result2=_result2;
-@property CALTimeRange *result1; // @synthesize result1=_result1;
+- (void).cxx_destruct;
+@property(retain) CALTimeRange *result2; // @synthesize result2=_result2;
+@property(retain) CALTimeRange *result1; // @synthesize result1=_result1;
 
 @end
 

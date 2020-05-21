@@ -6,24 +6,19 @@
 
 #import "IMHandle.h"
 
-#import "NSCoding.h"
-
 @class BuddyPicture;
 
-@interface Presentity : IMHandle <NSCoding>
+@interface Presentity : IMHandle
 {
     BuddyPicture *_customPicture;
     BuddyPicture *_picture;
     BOOL _isCustomPictureChecked;
 }
 
-+ (void)initialize;
 - (void).cxx_destruct;
-- (id)statusMessageAsURL;
 - (void)setPicture:(id)arg1;
 - (void)customPictureDataChanged:(id)arg1 key:(id)arg2;
 - (id)picture;
-- (id)buddyImage;
 - (void)setPictureFromImage:(id)arg1;
 - (void)_setPicture:(id)arg1;
 - (void)sendNotificationABPersonChanged;

@@ -9,22 +9,36 @@
 #import "CNCDContactPredicate.h"
 #import "CNSuggestedContactPredicate.h"
 
-@class CNPhoneNumber, NSString;
+@class CNPhoneNumber, NSArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CNPhoneNumberContactPredicate : CNPredicate <CNCDContactPredicate, CNSuggestedContactPredicate>
 {
     BOOL _returnsMultipleResults;
     CNPhoneNumber *_phoneNumber;
+    NSString *_prefixHint;
+    NSString *_digits;
+    NSString *_countryCode;
+    NSArray *_groupIdentifiers;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSArray *groupIdentifiers; // @synthesize groupIdentifiers=_groupIdentifiers;
+@property(readonly, nonatomic) NSString *countryCode; // @synthesize countryCode=_countryCode;
+@property(readonly, nonatomic) NSString *digits; // @synthesize digits=_digits;
+@property(readonly, copy, nonatomic) NSString *prefixHint; // @synthesize prefixHint=_prefixHint;
 @property(readonly, nonatomic) BOOL returnsMultipleResults; // @synthesize returnsMultipleResults=_returnsMultipleResults;
 @property(readonly, copy, nonatomic) CNPhoneNumber *phoneNumber; // @synthesize phoneNumber=_phoneNumber;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
+- (id)shortDebugDescription;
 @property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithPhoneNumber:(id)arg1 prefixHint:(id)arg2 groupIdentifiers:(id)arg3 returnMultipleResults:(BOOL)arg4;
+- (id)initWithPhoneNumber:(id)arg1 prefixHint:(id)arg2 returnMultipleResults:(BOOL)arg3;
+- (id)initWithDigits:(id)arg1 countryCode:(id)arg2 returnMultipleResults:(BOOL)arg3;
 - (id)initWithPhoneNumber:(id)arg1 returnMultipleResults:(BOOL)arg2;
 - (BOOL)includeResult:(id)arg1;
 - (id)cn_coreDataPredicate;
@@ -32,7 +46,6 @@ __attribute__((visibility("hidden")))
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

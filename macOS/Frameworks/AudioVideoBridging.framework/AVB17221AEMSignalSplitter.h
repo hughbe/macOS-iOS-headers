@@ -25,6 +25,8 @@
 @property unsigned short signalIndex; // @synthesize signalIndex;
 @property unsigned short signalType; // @synthesize signalType;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)objectLogName;
 - (void)appendVariableDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (void)appendFixedDescriptorContentToString:(id)arg1 withIndent:(id)arg2;

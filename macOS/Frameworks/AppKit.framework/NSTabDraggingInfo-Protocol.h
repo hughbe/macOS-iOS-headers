@@ -6,10 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSImage, NSWindow, NSWindowTabViewItem;
+@class NSImage, NSTabBarItem, NSWindow;
 
 @protocol NSTabDraggingInfo <NSObject>
-- (NSWindowTabViewItem *)draggingItem;
+- (NSTabBarItem *)draggingItem;
 - (id)draggingSource;
 - (NSImage *)draggedImage;
 - (struct CGPoint)draggingLocation;

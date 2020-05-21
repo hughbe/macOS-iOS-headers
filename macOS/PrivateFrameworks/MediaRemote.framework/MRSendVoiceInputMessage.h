@@ -13,13 +13,13 @@
     MRAudioDataBlock *_dataBlock;
 }
 
+- (void).cxx_destruct;
 - (void)_initializeDataIfNecessary;
 @property(readonly, nonatomic) float gain;
 @property(readonly, nonatomic) CDStruct_ace97b7a time;
 @property(readonly, nonatomic) MRAudioBuffer *buffer;
 - (unsigned long long)priority;
 - (unsigned long long)type;
-- (void)dealloc;
 - (id)initWithBuffer:(id)arg1 time:(CDStruct_ace97b7a)arg2 gain:(float)arg3;
 
 @end

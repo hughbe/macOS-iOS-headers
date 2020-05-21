@@ -20,10 +20,11 @@
     NSString *_path;
 }
 
-@property(retain, nonatomic) NSString *path; // @synthesize path=_path;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSString *path; // @synthesize path=_path;
 - (id)valuesFor:(id)arg1;
 - (void)setValue:(id)arg1 forKey:(id)arg2;
+- (int)getMode;
 - (void)setMode:(int)arg1;
 - (id)initAtPath:(id)arg1;
 - (void)_allocbuf:(int)arg1;

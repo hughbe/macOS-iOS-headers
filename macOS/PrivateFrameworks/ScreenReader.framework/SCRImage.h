@@ -14,9 +14,8 @@ __attribute__((visibility("hidden")))
     NSString *_localizedPhotoEvaluationString;
 }
 
-- (id)helpDescription;
-- (void)dealloc;
-- (unsigned long long)groupBehavior;
+- (void).cxx_destruct;
+- (long long)groupBehavior;
 - (BOOL)shouldMapElement:(id)arg1;
 - (id)typeDescription;
 - (id)persistentUserLabel;

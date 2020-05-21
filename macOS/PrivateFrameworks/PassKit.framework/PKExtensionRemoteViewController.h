@@ -12,10 +12,13 @@
 
 @interface PKExtensionRemoteViewController : NSRemoteViewController <PKPaymentAuthorizationExtensionViewHostProtocol>
 {
+    id <PKExtensionRemoteViewControllerDelegate> _delegate;
 }
 
 + (id)exportedInterface;
 + (id)serviceViewControllerInterface;
+@property(nonatomic) id <PKExtensionRemoteViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)viewServiceDidTerminateWithError:(id)arg1;
 - (id)exportedInterface;
 - (id)serviceViewControllerInterface;
 

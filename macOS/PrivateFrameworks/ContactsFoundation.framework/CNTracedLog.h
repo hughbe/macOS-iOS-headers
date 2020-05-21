@@ -31,6 +31,7 @@
 + (id)formatTimeIntervalByRoundingForPrivacy:(double)arg1;
 + (id)formatIntegerByRoundingForPrivacy:(long long)arg1;
 + (id)logWithDomain:(id)arg1;
+- (void).cxx_destruct;
 @property(copy) NSDictionary *customProperties; // @synthesize customProperties=_customProperties;
 @property long long result; // @synthesize result=_result;
 @property BOOL summarize; // @synthesize summarize=_summarize;
@@ -51,7 +52,6 @@
 - (void)enumerateStandardKeysAndValuesUsingBlock:(CDUnknownBlockType)arg1;
 - (void)enumerateStandardizedKeysAndValuesUsingBlock:(CDUnknownBlockType)arg1;
 - (void)sendTrace;
-- (void)dealloc;
 - (id)init;
 - (id)initWithDomain:(id)arg1 message:(id)arg2;
 

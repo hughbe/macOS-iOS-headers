@@ -7,6 +7,9 @@
 #import "NSObject.h"
 
 @protocol IMKExtensionDelegate <NSObject>
+
+@optional
+- (void)extensionWillTerminate;
 - (void)extensionDidLaunch;
 @end
 

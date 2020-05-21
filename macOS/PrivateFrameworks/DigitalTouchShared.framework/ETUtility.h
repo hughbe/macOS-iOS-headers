@@ -10,7 +10,6 @@
 {
 }
 
-+ (void)logPushUIMode:(id)arg1;
 + (long long)lastInteractiveZoomLevel;
 + (BOOL)shouldArchiveSentMessages;
 + (BOOL)isRetailDemo;

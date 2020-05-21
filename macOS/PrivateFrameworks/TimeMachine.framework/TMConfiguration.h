@@ -10,9 +10,11 @@
 {
 }
 
++ (BOOL)upgrade:(id *)arg1;
++ (BOOL)_repairSystemExclusions:(id *)arg1;
 + (id)_pathsForMountedDestinations;
 + (id)_pathsForLegacyAliasArrayPrefsKey:(id)arg1;
-+ (BOOL)_diskIsIncluded:(id)arg1 context:(id)arg2;
++ (BOOL)_isIncludedDisk:(id)arg1 context:(id)arg2;
 + (id)includedDisks;
 + (id)excludedDisks;
 + (BOOL)includeDisk:(id)arg1 error:(id *)arg2;

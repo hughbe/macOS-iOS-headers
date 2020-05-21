@@ -6,12 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSString, WKProcessPool;
+@class NSString, WKProcessPool, _WKAutomationSessionConfiguration;
 
 @protocol _WKAutomationDelegate <NSObject>
 
 @optional
-- (void)_processPool:(WKProcessPool *)arg1 didRequestAutomationSessionWithIdentifier:(NSString *)arg2;
+- (NSString *)_processPoolBrowserVersionForAutomation:(WKProcessPool *)arg1;
+- (NSString *)_processPoolBrowserNameForAutomation:(WKProcessPool *)arg1;
+- (void)_processPool:(WKProcessPool *)arg1 didRequestAutomationSessionWithIdentifier:(NSString *)arg2 configuration:(_WKAutomationSessionConfiguration *)arg3;
 - (BOOL)_processPoolAllowsRemoteAutomation:(WKProcessPool *)arg1;
 @end
 

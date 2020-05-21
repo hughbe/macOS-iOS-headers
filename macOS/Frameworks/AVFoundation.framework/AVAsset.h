@@ -9,26 +9,33 @@
 #import "AVAsynchronousKeyValueLoading.h"
 #import "NSCopying.h"
 
-@class AVAssetInternal, NSArray;
+@class AVAssetInternal, AVDisplayCriteria, NSArray;
 
 @interface AVAsset : NSObject <NSCopying, AVAsynchronousKeyValueLoading>
 {
     AVAssetInternal *_asset;
+    AVDisplayCriteria *_preferredDisplayCriteria;
 }
 
++ (BOOL)supportsPlayerItems;
++ (BOOL)expectsPropertyRevisedNotifications;
++ (id)assetWithData:(id)arg1 contentType:(id)arg2 options:(id)arg3;
 + (id)assetWithURL:(id)arg1 figPlaybackItem:(struct OpaqueFigPlaybackItem *)arg2 trackIDs:(id)arg3 dynamicBehavior:(BOOL)arg4;
 + (id)assetWithURL:(id)arg1;
++ (id)makeAssetLoggingIdentifier;
 + (id)assetProxyWithPropertyList:(id)arg1;
 + (id)inspectionOnlyAssetWithStreamDataParser:(id)arg1 tracks:(id)arg2;
 + (id)inspectionOnlyAssetWithFigAsset:(struct OpaqueFigAsset *)arg1;
-- (id)_URLSessionDataDelegate;
-- (id)_URLSessionOperationQueue;
-- (id)_resourceLoaderURLSession;
+@property(readonly, nonatomic) AVDisplayCriteria *preferredDisplayCriteria; // @synthesize preferredDisplayCriteria=_preferredDisplayCriteria;
+- (id)_assetAnalysisMessages;
+- (BOOL)supportsAnalysisReporting;
 - (void)_handleURLRequest:(id)arg1;
 - (BOOL)_hasResourceLoaderDelegate;
+- (CDStruct_1b6d18a9)overallDurationHint;
 - (BOOL)containsFragments;
 - (BOOL)canContainFragments;
 - (BOOL)isCompatibleWithAirPlayVideo;
+- (BOOL)isCompatibleWithPhotosTranscodingServiceWithOptions:(id)arg1;
 - (BOOL)isComposable;
 - (BOOL)isReadable;
 - (BOOL)isExportable;
@@ -41,6 +48,7 @@
 - (id)trackWithTrackID:(int)arg1;
 - (void)_tracksDidChange;
 - (id)tracks;
+- (id)_tracksWithClass:(Class)arg1;
 - (id)_ID3Metadata;
 - (id)metadata;
 - (id)metadataForFormat:(id)arg1;
@@ -49,6 +57,7 @@
 - (id)lyrics;
 - (id)creationDate;
 - (id)trackReferences;
+- (id)allMediaSelections;
 - (id)preferredMediaSelection;
 - (id)mediaSelectionGroupForPropertyList:(id)arg1 mediaSelectionOption:(id *)arg2;
 - (id)mediaSelectionGroupForMediaCharacteristic:(id)arg1;
@@ -63,6 +72,9 @@
 - (BOOL)providesPreciseDurationAndTiming;
 - (int)naturalTimeScale;
 @property(readonly, nonatomic) struct CGSize naturalSize;
+@property(readonly, nonatomic) CDStruct_1b6d18a9 minimumTimeOffsetFromLive;
+- (id)availableVideoDynamicRanges;
+- (struct CGSize)maximumVideoResolution;
 @property(readonly, nonatomic) struct CGAffineTransform preferredTransform;
 - (float)preferredSoundCheckVolumeNormalization;
 @property(readonly, nonatomic) float preferredVolume;
@@ -93,9 +105,12 @@
 - (id)_assetInspectorLoader;
 - (id)_assetInspector;
 - (id)_weakReference;
+- (id)_nameForLogging;
+- (void)_setLoggingIdentifier:(id)arg1;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
+- (id)initWithData:(id)arg1 contentType:(id)arg2 options:(id)arg3;
 - (id)initWithURL:(id)arg1 options:(id)arg2;
 - (id)chapterMetadataGroupsWithTitleLocale:(id)arg1 containingItemsWithCommonKeys:(id)arg2;
 - (id)chapterMetadataGroupsBestMatchingPreferredLanguages:(id)arg1;
@@ -112,6 +127,9 @@
 - (BOOL)_containsAtLeastOnePlayableVideoTrack;
 - (BOOL)_containsAtLeastOnePlayableAudioTrack;
 - (id)_chapterTracks;
+@property(readonly, nonatomic) long long moovAtomSize;
+@property(readonly, nonatomic) NSArray *fragments;
+@property(readonly, retain, nonatomic) id <AVLoggingIdentifier> loggingIdentifier;
 - (int)unusedTrackID;
 @property(readonly, nonatomic) BOOL isProxy;
 - (id)makePropertyListForProxyWithOptions:(id)arg1;

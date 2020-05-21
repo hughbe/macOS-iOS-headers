@@ -7,21 +7,24 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSMenuItemValidation.h"
 #import "NSValidatedUserInterfaceItem.h"
 
 @class NSImage, NSMenuItem, NSString, NSToolbar, NSView;
 
-@interface NSToolbarItem : NSObject <NSCopying, NSValidatedUserInterfaceItem>
+@interface NSToolbarItem : NSObject <NSMenuItemValidation, NSValidatedUserInterfaceItem, NSCopying>
 {
     NSToolbar *_toolbar;
     NSImage *_image;
+    NSString *_title;
     NSString *_itemIdentifier;
     NSString *_label;
-    unsigned long long _labelAlignment;
+    long long _labelAlignment;
     NSString *_paletteLabel;
     NSString *_toolTip;
     NSMenuItem *_menuItemRep;
     long long _tag;
+    BOOL _bordered;
     struct __tbiFlags {
         unsigned int viewRespondsToIsEnabled:1;
         unsigned int viewRespondsToSetEnabled:1;
@@ -48,7 +51,13 @@
         unsigned int sizeHasBeenSet:1;
         unsigned int stateWasDisabledBeforeSheet:1;
         unsigned int wantsToBeCentered:1;
-        unsigned int RESERVED:7;
+        unsigned int isMeasuring:1;
+        unsigned int ignoresEncodedMinMaxValue:1;
+        unsigned int usesStaticMinMaxValues:1;
+        unsigned int viewRespondsToTitle:1;
+        unsigned int viewRespondsToSetTitle:1;
+        unsigned int viewRespondsToBordered:1;
+        unsigned int viewRespondsToSetBordered:1;
     } _tbiFlags;
     id _tbiReserved;
     id _itemViewer;
@@ -64,6 +73,7 @@
 + (id)_imageForDrawingInRectOfSize:(struct CGSize)arg1 fromImage:(id)arg2;
 + (id)standardItemWithItemIdentifier:(id)arg1;
 + (id)newStandardItemWithItemIdentifier:(id)arg1;
++ (id)_newCloudSharingItem;
 + (id)_newToggleSidebarItem;
 + (id)_newPrintItem;
 + (id)_newCustomizeToolbarItem;
@@ -72,28 +82,36 @@
 + (id)spaceItemIdentifier;
 + (id)separatorItemIdentifier;
 + (id)newSeparatorItem;
+- (void).cxx_destruct;
 - (id)extensionService;
 @property(readonly) BOOL allowsDuplicatesInToolbar;
+- (void)_configureDefaultViewIfNecessary;
+@property(copy) NSString *title;
 @property(retain) NSImage *image;
+- (id)_imageToDisplay;
+@property(getter=isBordered) BOOL bordered;
+- (BOOL)isSpace;
+- (BOOL)isMeasuring;
+- (void)_itemViewMinSize:(struct CGSize *)arg1 maxSize:(struct CGSize *)arg2 stretchesContent:(BOOL)arg3;
+- (struct CGSize)_textOrSearchFieldAdjustedMinOrMaxSize:(BOOL)arg1 withSize:(struct CGSize)arg2;
 - (struct CGSize)_scalableMaxSize;
 - (struct CGSize)_scalableMinSize;
-- (double)_minMaxSizeScaleFactor;
-- (struct CGSize)_textOrSearchFieldAdjustedMinOrMaxSize:(BOOL)arg1;
 - (BOOL)_shouldApplyTextFieldAdjustment;
 - (BOOL)_shouldApplySearchFieldAdjustment;
 - (void)setPreferredWidthRatio:(double)arg1;
 - (double)preferredWidthRatio;
 @property struct CGSize maxSize;
 @property struct CGSize minSize;
+- (void)_setIgnoresMinMaxSizes:(BOOL)arg1;
+- (BOOL)_ignoresMinMaxSizes;
 - (BOOL)_canUserSetVisibilityPriority;
 - (double)_resizeWeight;
 - (BOOL)_resizeWeightSharedWithDuplicateItems;
 @property long long visibilityPriority;
 @property(retain) NSView *view;
 - (void)_forceSetView:(id)arg1;
+- (BOOL)_autocalculatesSize;
 - (void)_setSizesToFittingSizeIfBaseLocalized;
-- (void)_autorecalculateSizesIfNotSetExplicitly;
-- (void)_autorecalculateMinSize:(struct CGSize *)arg1 maxSize:(struct CGSize *)arg2;
 - (BOOL)_isCustomItemType;
 @property long long tag;
 - (double)_interlabelPadding;
@@ -104,6 +122,7 @@
 - (BOOL)_applicableLabelIsEnabledAtIndex:(long long)arg1 forDisplayMode:(unsigned long long)arg2 isInPalette:(BOOL)arg3;
 - (BOOL)_isEnabledAndHasEnabledSubitem;
 @property(getter=isEnabled) BOOL enabled;
+- (void)_reallySetEnabled:(BOOL)arg1;
 @property SEL action;
 @property __weak id target;
 - (void)_standardCustomMenuFormRepresentationClicked:(id)arg1;
@@ -146,9 +165,11 @@
 - (BOOL)_emptyContents;
 - (id)_allPossibleLabelsToFit;
 - (void)_setAllPossibleLabelsToFit:(id)arg1;
-@property(readonly) NSToolbar *toolbar;
+@property(readonly) __weak NSToolbar *toolbar;
 - (int)itemType;
 @property(readonly, copy) NSString *itemIdentifier;
+- (void)_restoreToolbarItemAfterConfigPanel;
+- (void)_prepareToolbarItemForConfigPanel;
 - (void)_restoreToolbarItemAfterSheet;
 - (void)_prepareToolbarItemForSheet;
 - (void)_validateInPresenceOfSheet;
@@ -158,7 +179,6 @@
 - (void)_validateMenuFormRepresentation:(id)arg1;
 - (id)_itemMenuInPaletteForEvent:(id)arg1;
 - (BOOL)_wantsCopyForInsertionIntoToolbar:(id)arg1 isPalette:(BOOL)arg2;
-- (BOOL)_wantsImageWrapperForInsertionIntoPaletteToolbar:(id)arg1;
 - (BOOL)_shouldValidateMenuFormRepresentation;
 - (void)_validateAsCommonItem:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -169,6 +189,7 @@
 - (void)_setItemIdentifier:(id)arg1;
 - (id)initWithItemIdentifier:(id)arg1;
 - (id)initWithType:(int)arg1 itemIdentifier:(id)arg2;
+@property(readonly, copy) NSString *description;
 - (void)_toolbarItemCommonInit;
 - (void)_loadViewIfNecessary;
 - (id)_allocDefaultView;
@@ -177,9 +198,11 @@
 - (id)_initialViewToSelectFromDirection:(long long)arg1;
 - (id)_buttonAtIndex:(unsigned long long)arg1;
 - (id)_button;
+- (id)_buttonIfExists;
+- (id)_labelView;
 - (void)_setItemViewer:(id)arg1;
 - (id)_itemViewer;
-- (unsigned long long)_labelAlignment;
+- (long long)_labelAlignment;
 - (BOOL)_allowToolbarToStealEvent:(id)arg1;
 - (BOOL)wantsToDrawLabelInPalette;
 - (BOOL)wantsToDrawIconIntoLabelAreaInDisplayMode:(unsigned long long)arg1;
@@ -193,6 +216,7 @@
 - (void)_setToolbar:(id)arg1;
 - (BOOL)_isUserRemovable;
 - (void)_setIsUserRemovable:(BOOL)arg1;
+- (id)_viewForPopoverAnchor;
 - (id)_menuFormRepresentation;
 - (id)_view;
 - (int)_itemType;
@@ -202,6 +226,11 @@
 - (void)_beginDrawForDragging;
 - (void)_setSizeHasBeenSet:(BOOL)arg1;
 - (BOOL)_sizeHasBeenSet;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

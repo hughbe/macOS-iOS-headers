@@ -17,15 +17,15 @@ __attribute__((visibility("hidden")))
     Matrix_8746f91e _lastTilePoint;
     GEOMapTileFinder *_currentTileFinder;
     CDUnknownBlockType _edgeHandler;
-    unordered_set_4cb294f7 _tileKeysSeen;
+    unordered_set_684af1c2 _tileKeysSeen;
     BOOL _searchDirection;
     unsigned long long _buildDirection;
 }
 
-@property(nonatomic) unsigned long long buildDirection; // @synthesize buildDirection=_buildDirection;
-@property(copy, nonatomic) CDUnknownBlockType edgeHandler; // @synthesize edgeHandler=_edgeHandler;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) unsigned long long buildDirection; // @synthesize buildDirection=_buildDirection;
+@property(copy, nonatomic) CDUnknownBlockType edgeHandler; // @synthesize edgeHandler=_edgeHandler;
 - (id)_tileFinderForMap:(id)arg1 center:(CDStruct_c3b9c2ee)arg2 radius:(double)arg3;
 - (id)_lastTile;
 - (id)_firstTile;
@@ -46,7 +46,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)_findEdgeAhead;
 @property(readonly, nonatomic) GEOMapAccess *map;
 - (void)cancel;
-- (void)dealloc;
 - (id)initWithMap:(id)arg1;
 
 @end

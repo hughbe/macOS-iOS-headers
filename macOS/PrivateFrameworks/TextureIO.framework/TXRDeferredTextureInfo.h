@@ -8,15 +8,16 @@
 
 @class NSMutableArray, TXRTextureInfo;
 
+__attribute__((visibility("hidden")))
 @interface TXRDeferredTextureInfo : NSObject
 {
     TXRTextureInfo *_info;
     NSMutableArray *_mipmaps;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSMutableArray *mipmaps; // @synthesize mipmaps=_mipmaps;
 @property(retain, nonatomic) TXRTextureInfo *info; // @synthesize info=_info;
-- (void).cxx_destruct;
 - (id)initWithMipmapLevelCount:(unsigned long long)arg1 arrayLength:(unsigned long long)arg2 cubemap:(BOOL)arg3;
 
 @end

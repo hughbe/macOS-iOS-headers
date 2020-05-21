@@ -14,13 +14,13 @@
     BOOL _processingDelayed;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSString *inboxPath; // @synthesize inboxPath=_inboxPath;
 - (id)etagObjectsForServerFilenames:(id)arg1;
 - (id)containerPath;
 - (void)setSyncToken:(id)arg1;
 - (void)setCTag:(id)arg1;
 - (void)processAddedOrModified:(id)arg1 removed:(id)arg2;
-- (void)dealloc;
 - (id)initWithPrincipal:(id)arg1 inboxPath:(id)arg2;
 
 @end

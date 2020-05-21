@@ -18,13 +18,15 @@
 + (id)labelsForKeys;
 + (id)valueFont;
 + (id)labelFont;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSTextField *value; // @synthesize value=_value;
+@property(retain, nonatomic) NSTextField *label; // @synthesize label=_label;
 - (void)dealloc;
 - (void)setValueString:(id)arg1;
 - (void)setLabelKey:(id)arg1;
 - (void)openURL:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)updatePreferredMaxLayoutWidth:(id)arg1;
 
 @end
 

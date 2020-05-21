@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class BookmarkChangeTracker, NSArray, NSData, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, WebBookmarkList, _LoadingBookmarkInfo;
+@class BookmarkChangeTracker, NSArray, NSData, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL, WebBookmarkList, _LoadingBookmarkInfo;
 
 @interface WebBookmarkGroup : NSObject
 {
@@ -27,20 +27,31 @@
     BOOL _delegateImplementsBookmarkWasRemoved;
     BOOL _delegateImplementsBookmarkDidChange;
     BOOL _syncInMergeMode;
+    BOOL _keepsRemovedBookmarkReferences;
     BOOL _allPendingChangesDiscardable;
     WebBookmarkList *_topBookmark;
     NSData *_syncServerData;
     id <BookmarkGroupDelegate> _delegate;
     NSString *_filePath;
+    NSURL *_davHomeURL;
+    NSString *_davBookmarksBarServerID;
+    NSString *_davBookmarksMenuServerID;
+    long long _cloudKitMigrationState;
+    NSData *_cloudKitAccountHash;
 }
 
-@property(nonatomic, getter=areAllPendingChangesDiscardable) BOOL allPendingChangesDiscardable; // @synthesize allPendingChangesDiscardable=_allPendingChangesDiscardable;
-@property(nonatomic, getter=isSyncInMergeMode) BOOL syncInMergeMode; // @synthesize syncInMergeMode=_syncInMergeMode;
-@property(readonly, nonatomic) NSString *filePath; // @synthesize filePath=_filePath;
-@property(nonatomic) __weak id <BookmarkGroupDelegate> delegate; // @synthesize delegate=_delegate;
-@property(copy, nonatomic) NSData *syncServerData; // @synthesize syncServerData=_syncServerData;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic, getter=areAllPendingChangesDiscardable) BOOL allPendingChangesDiscardable; // @synthesize allPendingChangesDiscardable=_allPendingChangesDiscardable;
+@property(retain, nonatomic) NSData *cloudKitAccountHash; // @synthesize cloudKitAccountHash=_cloudKitAccountHash;
+@property(nonatomic) long long cloudKitMigrationState; // @synthesize cloudKitMigrationState=_cloudKitMigrationState;
+@property(nonatomic) BOOL keepsRemovedBookmarkReferences; // @synthesize keepsRemovedBookmarkReferences=_keepsRemovedBookmarkReferences;
+@property(nonatomic, getter=isSyncInMergeMode) BOOL syncInMergeMode; // @synthesize syncInMergeMode=_syncInMergeMode;
+@property(readonly, nonatomic) NSString *davBookmarksMenuServerID; // @synthesize davBookmarksMenuServerID=_davBookmarksMenuServerID;
+@property(readonly, nonatomic) NSString *davBookmarksBarServerID; // @synthesize davBookmarksBarServerID=_davBookmarksBarServerID;
+@property(retain, nonatomic, setter=setDAVHomeURL:) NSURL *davHomeURL; // @synthesize davHomeURL=_davHomeURL;
+@property(readonly, nonatomic) NSString *filePath; // @synthesize filePath=_filePath;
+@property(nonatomic) __weak id <BookmarkGroupDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)_sendDelegateMessage:(int)arg1 withModifiedBookmark:(id)arg2 child:(id)arg3 changeWasInteractive:(BOOL)arg4;
 - (void)_releaseTouchIconsForBookmark:(id)arg1;
 - (void)_retainTouchIconsForBookmark:(id)arg1;
@@ -48,7 +59,7 @@
 - (void)_removeBookmarkFromURLStringMap:(id)arg1;
 - (void)_addChildrenOfBookmarkToURLStringMap:(id)arg1;
 - (void)_addBookmarkToURLStringMap:(id)arg1;
-- (void)bookmarkURLStringDidChange:(id)arg1;
+- (void)bookmarkURLStringDidChange:(id)arg1 changeWasInteractive:(BOOL)arg2;
 - (void)bookmarkURLStringWillChange:(id)arg1;
 - (id)bookmarksForURLString:(id)arg1;
 - (void)endMoveBookmarkBetweenParents:(id)arg1;
@@ -58,11 +69,12 @@
 - (BOOL)_shouldTrackChangeToBookmark:(id)arg1;
 - (BOOL)_shouldRecordChanges;
 - (void)_clearChangesPassingTest:(CDUnknownBlockType)arg1;
-- (void)endBatchChangeOfBookmark:(id)arg1;
-- (void)beginBatchChangeOfBookmark:(id)arg1;
+- (void)endBookmarksBatchReorderingInList:(id)arg1;
+- (void)beginBookmarksBatchReorderingInList:(id)arg1;
+- (void)endNonInteractiveBatchChangeOfReadingListBookmark:(id)arg1;
+- (void)beginNonInteractiveBatchChangeOfReadingListBookmark:(id)arg1;
 - (void)bookmark:(id)arg1 changedUUIDFrom:(id)arg2 to:(id)arg3;
-- (void)bookmarkDidChange:(id)arg1 changeWasInteractive:(BOOL)arg2;
-- (void)bookmarkDidChange:(id)arg1;
+- (void)bookmarkDidChange:(id)arg1 changedAttributes:(id)arg2 changeWasInteractive:(BOOL)arg3;
 - (void)bookmarkChild:(id)arg1 wasRemovedFromParent:(id)arg2;
 - (void)bookmarkChild:(id)arg1 wasAddedToParent:(id)arg2;
 - (void)clearAllChanges;
@@ -71,14 +83,18 @@
 - (unsigned long long)clearChangesThroughToken:(id)arg1;
 - (void)recordChange:(id)arg1;
 - (void)_bookmarksWereReloaded;
+- (void)_updateDAVAttributesFromSyncData;
 - (void)_loadSyncDataFromDictionary:(id)arg1;
-- (id)_syncDataAsDictionary;
+- (id)_syncDataAsDictionaryUsingCoalescedChanges:(id)arg1;
 - (void)bookmark:(id)arg1 changedSyncServerIDFrom:(id)arg2 to:(id)arg3;
 - (void)clearDAVSyncState;
+- (BOOL)_unsafeUseCloudKitMode;
+@property(readonly, nonatomic) BOOL useCloudKitMode;
 @property(nonatomic, getter=areFutureChangesDiscardable) BOOL futureChangesDiscardable;
 @property(nonatomic, getter=areNotificationsSuppressed) BOOL notificationsSuppressed;
 @property(nonatomic, getter=isChangeTrackingSuppressed) BOOL changeTrackingSuppressed;
 @property(readonly, copy, nonatomic) NSArray *changes;
+@property(copy, nonatomic) NSData *syncServerData; // @synthesize syncServerData=_syncServerData;
 - (void)fetchTopBookmarkWithCompletionHandler:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) WebBookmarkList *topBookmark; // @synthesize topBookmark=_topBookmark;
 - (id)_insertNewBookmarkAtIndex:(unsigned int)arg1 ofBookmark:(id)arg2 withTitle:(id)arg3 type:(long long)arg4;
@@ -90,9 +106,12 @@
 - (id)bookmarkForSyncServerID:(id)arg1;
 - (id)bookmarkForUUID:(id)arg1;
 - (void)_clearPendingChanges;
-- (void)_removeRedundantPendingChanges;
-- (int)_saveBookmarkGroupGuts;
+- (id)_mutableCoalescedChanges;
+@property(readonly, nonatomic) BOOL hasUnsavedChanges;
+- (int)_saveBookmarkGroupGutsToFilePath:(id)arg1;
+- (int)saveToFilePath:(id)arg1;
 - (int)save;
+- (void)_deduplicateAndRewriteServerIDs;
 - (void)_updateSyncDataWithLoadedBookmarks:(id)arg1;
 - (BOOL)_updateWithLoadedBookmarks:(id)arg1;
 - (void)_readBookmarkGroupGutsFromFileAtURL:(id)arg1;

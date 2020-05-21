@@ -14,11 +14,11 @@
     NSURL *_lastRedirectURL;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSURL *lastRedirectURL; // @synthesize lastRedirectURL=_lastRedirectURL;
 @property(retain) NSSet *responses; // @synthesize responses=_responses;
 - (void)executePropFindTask:(id)arg1 usingTaskManager:(id)arg2;
 - (void)_setCompletionBlockOnTask:(id)arg1;
-- (void)dealloc;
 
 @end
 

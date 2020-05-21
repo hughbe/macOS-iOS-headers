@@ -14,6 +14,8 @@ __attribute__((visibility("hidden")))
     CNCDSaveContext *_saveContext;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) CNCDSaveContext *saveContext; // @synthesize saveContext=_saveContext;
 - (void)enumerateAddedGroups:(CDUnknownBlockType)arg1;
 - (void)updateGroupSnapshots;
 - (void)deleteGroups;
@@ -21,7 +23,6 @@ __attribute__((visibility("hidden")))
 - (void)addGroups;
 - (void)saveGroups;
 - (id)allGroupIdentifiers;
-- (void)dealloc;
 - (id)initWithSaveContext:(id)arg1;
 
 @end

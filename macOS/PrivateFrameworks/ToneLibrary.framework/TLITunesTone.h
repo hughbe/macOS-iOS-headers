@@ -12,27 +12,47 @@
 {
     BOOL _purchased;
     BOOL _ringtone;
-    BOOL _protected;
-    BOOL _private;
+    BOOL _protectedContent;
+    BOOL _privateTone;
     NSString *_identifier;
     NSString *_name;
+    NSString *_albumTitle;
+    NSString *_artistName;
+    NSString *_genreName;
     NSString *_filePath;
-    NSNumber *_pid;
+    NSNumber *_syncIdentifier;
+    unsigned long long _storeItemIdentifier;
+    NSString *_storeFrontIdentifier;
     NSString *_artworkFile;
-    unsigned long long _duration;
+    double _duration;
+    NSNumber *_fadeInDurationNumber;
+    NSNumber *_fadeOutDurationNumber;
 }
 
-@property(nonatomic, getter=isPrivate, setter=_setPrivate:) BOOL private; // @synthesize private=_private;
-@property(nonatomic, getter=isProtected, setter=_setProtected:) BOOL protected; // @synthesize protected=_protected;
-@property(nonatomic, setter=_setDuration:) unsigned long long duration; // @synthesize duration=_duration;
-@property(copy, nonatomic, setter=_setArtworkFile:) NSString *artworkFile; // @synthesize artworkFile=_artworkFile;
-@property(copy, nonatomic, setter=_setPid:) NSNumber *pid; // @synthesize pid=_pid;
-@property(nonatomic, getter=isRingtone, setter=_setRingtone:) BOOL ringtone; // @synthesize ringtone=_ringtone;
-@property(nonatomic, getter=isPurchased, setter=_setPurchased:) BOOL purchased; // @synthesize purchased=_purchased;
-@property(copy, nonatomic, setter=_setFilePath:) NSString *filePath; // @synthesize filePath=_filePath;
-@property(copy, nonatomic, setter=_setName:) NSString *name; // @synthesize name=_name;
-@property(copy, nonatomic, setter=_setIdentifier:) NSString *identifier; // @synthesize identifier=_identifier;
-- (void)dealloc;
++ (id)_identifierForPropertyListRepresentation:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSNumber *fadeOutDurationNumber; // @synthesize fadeOutDurationNumber=_fadeOutDurationNumber;
+@property(readonly, nonatomic) NSNumber *fadeInDurationNumber; // @synthesize fadeInDurationNumber=_fadeInDurationNumber;
+@property(readonly, nonatomic, getter=isPrivateTone) BOOL privateTone; // @synthesize privateTone=_privateTone;
+@property(readonly, nonatomic, getter=isProtectedContent) BOOL protectedContent; // @synthesize protectedContent=_protectedContent;
+@property(readonly, nonatomic) double duration; // @synthesize duration=_duration;
+@property(readonly, nonatomic) NSString *artworkFile; // @synthesize artworkFile=_artworkFile;
+@property(readonly, nonatomic, getter=isRingtone) BOOL ringtone; // @synthesize ringtone=_ringtone;
+@property(readonly, nonatomic, getter=isPurchased) BOOL purchased; // @synthesize purchased=_purchased;
+@property(readonly, nonatomic) NSString *storeFrontIdentifier; // @synthesize storeFrontIdentifier=_storeFrontIdentifier;
+@property(readonly, nonatomic) unsigned long long storeItemIdentifier; // @synthesize storeItemIdentifier=_storeItemIdentifier;
+@property(readonly, nonatomic) NSNumber *syncIdentifier; // @synthesize syncIdentifier=_syncIdentifier;
+@property(readonly, nonatomic) NSString *filePath; // @synthesize filePath=_filePath;
+@property(readonly, nonatomic) NSString *genreName; // @synthesize genreName=_genreName;
+@property(readonly, nonatomic) NSString *artistName; // @synthesize artistName=_artistName;
+@property(readonly, nonatomic) NSString *albumTitle; // @synthesize albumTitle=_albumTitle;
+@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
+@property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+- (BOOL)isDuplicateOfTone:(id)arg1;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
+- (id)description;
+- (id)initWithToneStoreDownload:(id)arg1;
 - (id)initWithPropertyListRepresentation:(id)arg1 filePath:(id)arg2;
 
 @end

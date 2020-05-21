@@ -13,6 +13,7 @@
 + (id)convertLabeledValue:(id)arg1 withTransform:(CDUnknownBlockType)arg2;
 + (id)convertLabeledValue:(id)arg1;
 + (id)availableKeys;
++ (id)availableKeyVector;
 + (id)convertContact:(id)arg1;
 
 @end

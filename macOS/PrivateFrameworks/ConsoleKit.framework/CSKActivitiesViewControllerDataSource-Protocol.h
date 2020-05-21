@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class CKActivity, CSKActivitiesViewController, NSNumber;
+@class CSKActivitiesViewController, CSKActivity, NSNumber;
 
 @protocol CSKActivitiesViewControllerDataSource <NSObject>
-- (unsigned long long)activitiesViewController:(CSKActivitiesViewController *)arg1 numberOfActivitiesInParentActivity:(CKActivity *)arg2;
-- (CKActivity *)activitiesViewController:(CSKActivitiesViewController *)arg1 activityWithActivityIdentifier:(NSNumber *)arg2;
-- (CKActivity *)activitiesViewController:(CSKActivitiesViewController *)arg1 activityInParentActivity:(CKActivity *)arg2 atRow:(unsigned long long)arg3;
+- (BOOL)isParentActivity:(CSKActivity *)arg1;
+- (unsigned long long)activitiesViewController:(CSKActivitiesViewController *)arg1 numberOfActivitiesInParentActivity:(CSKActivity *)arg2;
+- (CSKActivity *)activitiesViewController:(CSKActivitiesViewController *)arg1 activityWithActivityIdentifier:(NSNumber *)arg2;
+- (CSKActivity *)activitiesViewController:(CSKActivitiesViewController *)arg1 activityInParentActivity:(CSKActivity *)arg2 atRow:(unsigned long long)arg3;
 @end
 

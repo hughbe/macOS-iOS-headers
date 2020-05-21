@@ -7,28 +7,30 @@
 #import <FinderKit/FI_TListBaseCellView.h>
 
 #import "TICloudBadgeButtonContainer.h"
+#import "TInlineProgressViewContainer.h"
 
 @class NSString;
 
 __attribute__((visibility("hidden")))
-@interface FI_TICloudStatusCellView : FI_TListBaseCellView <TICloudBadgeButtonContainer>
+@interface FI_TICloudStatusCellView : FI_TListBaseCellView <TICloudBadgeButtonContainer, TInlineProgressViewContainer>
 {
-    struct TNSRef<NSLayoutGuide *, void> _badgeViewLayoutGuide;
-    struct TNSRef<FI_TBadgeImageButton *, void> _iCloudBadgeImageButton;
-    struct TNSRef<FI_TInlineProgressView *, void> _progressView;
-    double _maxICloudStatusTextWidth;
+    struct TNSRef<NSLayoutGuide, void> _badgeViewLayoutGuide;
+    struct TNSRef<FI_TICloudBadgeButton, void> _iCloudBadgeImageButton;
+    struct TNSRef<FI_TInlineProgressView, void> _progressView;
+    struct TICloudStateCoordinator _iCloudStateCoordinator;
+    struct CGSize _shortTitlePreferredSize;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)setProgress:(double)arg1;
-- (void)setICloudBadgeBRBadge:(int)arg1 toolTip:(struct TString)arg2 clickHandler:(const function_f9feaa7d *)arg3;
-- (id)primaryTextColor;
-- (void)setDisabled:(_Bool)arg1;
+@property(nonatomic) struct CGSize shortTitlePreferredSize; // @synthesize shortTitlePreferredSize=_shortTitlePreferredSize;
+- (void)updateTitleTextField;
+- (void)updateProgressView;
+- (void)setProgressStatus:(const struct TNodeProgressStatus *)arg1;
+- (void)setICloudBadge:(int)arg1 toolTip:(const struct TString *)arg2 clickHandler:(const function_b1fce659 *)arg3;
+- (void)setDimmed:(_Bool)arg1;
 - (void)prepareForReuse;
-- (_Bool)shouldShowICloudSatusText;
-- (void)setFrameSize:(struct CGSize)arg1;
-- (void)setTextSize:(double)arg1;
+- (void)setTitleFont:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

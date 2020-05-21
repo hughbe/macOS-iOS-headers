@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSISEngine, NSISVariable, NSLayoutDimension, NSLayoutXAxisAnchor, NSLayoutYAxisAnchor, NSMutableArray, NSObservation;
+@class NSArray, NSISEngine, NSISVariable, NSLayoutDimension, NSLayoutGuide, NSLayoutXAxisAnchor, NSLayoutYAxisAnchor, NSMutableArray, NSNumber, NSObservation, _NSViewLayoutInvalidator;
 
 __attribute__((visibility("hidden")))
 @interface _NSViewLayoutAux : NSObject
@@ -21,10 +21,11 @@ __attribute__((visibility("hidden")))
     NSObservation *_widthVariableObservation;
     NSObservation *_heightVariableObservation;
     NSArray *_internalConstraints;
+    NSArray *_hostingPreferredSizeConstraints;
     NSArray *_constraintsExceptingSubviewAutoresizingConstraints;
     NSMutableArray *_declaredConstraints;
-    NSMutableArray *_allActiveRelationshipNodes;
-    NSMutableArray *_childRelationshipNodes;
+    NSMutableArray *_allActiveRuleNodes;
+    NSMutableArray *_childRuleNodes;
     NSMutableArray *_layoutGuides;
     struct CGSize _oldSizeDuringLayoutDescent;
     NSLayoutXAxisAnchor *_leadingAnchor;
@@ -39,10 +40,16 @@ __attribute__((visibility("hidden")))
     NSLayoutYAxisAnchor *_centerYAnchor;
     NSLayoutYAxisAnchor *_firstBaselineAnchor;
     NSLayoutYAxisAnchor *_lastBaselineAnchor;
+    NSLayoutGuide *_safeAreaLayoutGuide;
     struct CGPoint _cachedRootOffset;
     unsigned long long _cachedOffsetChangeCount;
     NSISEngine *_cachedRootOffsetEngine;
-    id _layoutInvalidator;
+    _NSViewLayoutInvalidator *_layoutInvalidator;
+    unsigned long long _piercingToken;
+    NSNumber *_layoutEngineWidth;
+    double _firstPassWidth;
+    unsigned char _updateConstraintsPassCounter;
+    unsigned char _updateConstraintsInProgressCounter;
     struct {
         unsigned int _potentiallyHasDanglyConstraints:1;
         unsigned int _mightBePiercedByConstraint:1;
@@ -54,9 +61,14 @@ __attribute__((visibility("hidden")))
         unsigned int _baselineOffsetMayBeReferenced:1;
         unsigned int _constraintsReferencingBaselineOffsetNeedUpdating:1;
         unsigned int _onlyNeedsUpdateConstraintsBecauseDeclaredConstraintRemoved:1;
+        unsigned int _preferredSizeConstraintsNeedUpdating:1;
+        unsigned int _allowsEngineHostPreferredSizeConstraints:1;
+        unsigned int _viewWasAdjustedToRetinaResolution:1;
+        unsigned int _indexOfFinishedConstraintsUpdatePass:2;
     } _flags;
 }
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (id)init;
 

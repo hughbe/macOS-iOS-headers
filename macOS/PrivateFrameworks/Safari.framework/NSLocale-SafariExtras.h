@@ -7,6 +7,8 @@
 #import "NSLocale.h"
 
 @interface NSLocale (SafariExtras)
++ (BOOL)safari_countrySetInMacBuddyIsChina;
++ (id)safari_countryCodeForCountrySetInMacBuddy;
 + (id)safari_preferredLanguageCode;
 @end
 

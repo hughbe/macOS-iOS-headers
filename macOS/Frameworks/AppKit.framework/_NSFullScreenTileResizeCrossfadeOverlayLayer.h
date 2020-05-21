@@ -6,7 +6,7 @@
 
 #import "CALayer.h"
 
-@class NSMutableArray, _NSFullScreenTileResizeCrossfadeOverlayWindow;
+@class _NSFullScreenTileResizeCrossfadeOverlayWindow;
 
 __attribute__((visibility("hidden")))
 @interface _NSFullScreenTileResizeCrossfadeOverlayLayer : CALayer
@@ -15,12 +15,16 @@ __attribute__((visibility("hidden")))
     unsigned long long _parentSpaceID;
     _NSFullScreenTileResizeCrossfadeOverlayWindow *_window;
     BOOL _active;
-    NSMutableArray *_windowLayers;
     CALayer *_windowContentLayer;
+    BOOL _includeBorder;
+    struct CGRect _tileFrame;
 }
 
+- (void)resizeForTileFrame:(struct CGRect)arg1;
+- (struct CGRect)tileFrame;
 - (unsigned long long)tileID;
-- (void)addWindowWithID:(unsigned int)arg1;
+- (void)addWindowsWithIDs:(id)arg1;
+- (void)setWindowContents:(id)arg1;
 - (id)initWithTileID:(unsigned long long)arg1 parentSpaceID:(unsigned long long)arg2 tileFrame:(struct CGRect)arg3 includeBorder:(BOOL)arg4 window:(id)arg5;
 - (void)dealloc;
 

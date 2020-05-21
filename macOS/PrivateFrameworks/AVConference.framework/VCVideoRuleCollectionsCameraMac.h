@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)useSoftFramerateSwitching;
 - (BOOL)setupRules;
 - (BOOL)setupH264Rules;
+- (BOOL)setupHEVCRules;
 - (BOOL)setupH264WifiRules;
 - (void)computeDecodingScore;
 - (void)computeEncodingScore;

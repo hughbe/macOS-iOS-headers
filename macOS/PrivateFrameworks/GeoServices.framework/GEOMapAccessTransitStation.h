@@ -17,7 +17,6 @@ __attribute__((visibility("hidden")))
 
 - (id)findAccessPoints:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)findStops:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, nonatomic) double boundingRadius;

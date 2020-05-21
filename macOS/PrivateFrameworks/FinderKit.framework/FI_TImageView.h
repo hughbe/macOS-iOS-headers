@@ -6,28 +6,29 @@
 
 #import "NSImageView.h"
 
+@class NSObject<TDraggingSource>;
+
 __attribute__((visibility("hidden")))
 @interface FI_TImageView : NSImageView
 {
-    function_f9feaa7d _clickHandler;
-    function_f9feaa7d _doubleClickHandler;
+    function_b1fce659 _clickHandler;
+    function_b1fce659 _doubleClickHandler;
     _Bool _doubleClickOnMouseUp;
     _Bool _acceptsFirstMouse;
     _Bool _delayWindowOrderingOnClickThrough;
-    id <TDraggingSource> _draggingSourceDelegate;
+    struct TNSWeakPtr<NSObject<TDraggingSource>, void> _weakDraggingSourceDelegate;
     struct CGSize _maxSize;
     struct CGSize _minSize;
     _Bool _opaqueHitTestingEnabled;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(getter=isOpaqueHitTestingEnabled) _Bool opaqueHitTestingEnabled; // @synthesize opaqueHitTestingEnabled=_opaqueHitTestingEnabled;
 @property(nonatomic) struct CGSize minSize; // @synthesize minSize=_minSize;
 @property(nonatomic) struct CGSize maxSize; // @synthesize maxSize=_maxSize;
-@property id <TDraggingSource> draggingSourceDelegate; // @synthesize draggingSourceDelegate=_draggingSourceDelegate;
 @property _Bool delayWindowOrderingOnClickThrough; // @synthesize delayWindowOrderingOnClickThrough=_delayWindowOrderingOnClickThrough;
 @property _Bool acceptsFirstMouse; // @synthesize acceptsFirstMouse=_acceptsFirstMouse;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (void)setAccessibilityElement:(BOOL)arg1;
 - (void)configureDropShadowWithOffset:(struct CGSize)arg1 size:(double)arg2 alpha:(double)arg3;
 - (void)setImage:(id)arg1;
@@ -41,8 +42,14 @@ __attribute__((visibility("hidden")))
 - (id)hitTest:(struct CGPoint)arg1;
 - (void)setBoundsSize:(struct CGSize)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
-- (void)setDoubleClickHandler:(const function_f9feaa7d *)arg1;
-- (void)setClickHandler:(const function_f9feaa7d *)arg1;
+- (void)setDoubleClickHandler:(const function_b1fce659 *)arg1;
+- (void)setClickHandler:(const function_b1fce659 *)arg1;
+- (void)viewDidChangeBackingProperties;
+- (void)viewDidMoveToSuperview;
+- (void)viewWillMoveToSuperview:(id)arg1;
+- (void)viewDidMoveToWindow;
+- (void)viewWillMoveToWindow:(id)arg1;
+@property(nonatomic) __weak NSObject<TDraggingSource> *draggingSourceDelegate; // @dynamic draggingSourceDelegate;
 - (void)awakeCommon;
 - (void)initCommon;
 - (void)awakeFromNib;

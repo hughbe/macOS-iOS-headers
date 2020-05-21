@@ -13,17 +13,19 @@
 __attribute__((visibility("hidden")))
 @interface FI_TTagOperationDelegate : NSObject <IAsyncNodeOperationDelegateProtocol>
 {
-    struct TMutex fLock;
+    struct mutex fLock;
     struct TConditionVariable fCondition;
-    _Bool fFinished;
+    _Bool tornDown;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (int)asyncNodeOperation:(id)arg1 errorNotification:(const struct OperationMonitor *)arg2 error:(const struct OperationErrorRecord *)arg3 reply:(struct NodeEventReply *)arg4;
-- (int)asyncNodeOperation:(id)arg1 statusNotification:(const struct OperationMonitor *)arg2;
+@property(getter=isTornDown) _Bool tornDown; // @synthesize tornDown;
+- (void)aboutToTearDown;
+- (int)asyncNodeOperation:(id)arg1 errorNotification:(const struct TOperationMonitor *)arg2 error:(const struct OperationErrorRecord *)arg3 reply:(struct NodeEventReply *)arg4;
+- (int)asyncNodeOperation:(id)arg1 statusNotification:(const struct TOperationMonitor *)arg2;
 - (void)waitForOperationToFinish;
-- (int)asyncNodeOperation:(id)arg1 completedNotification:(const struct OperationMonitor *)arg2;
+- (int)asyncNodeOperation:(id)arg1 completedNotification:(const struct TOperationMonitor *)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

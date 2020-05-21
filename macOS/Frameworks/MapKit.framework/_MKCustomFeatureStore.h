@@ -20,19 +20,24 @@
     NSString *_annotationLocale;
     unsigned char _sceneID;
     unsigned char _sceneState;
+    id <MKCustomFeatureStoreDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <MKCustomFeatureStoreDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) unsigned char sceneID; // @synthesize sceneID=_sceneID;
 @property(copy, nonatomic) GEOFeatureStyleAttributes *clusterStyleAttributes; // @synthesize clusterStyleAttributes=_clusterStyleAttributes;
 @property(readonly, nonatomic) BOOL isClusteringEnabled; // @synthesize isClusteringEnabled=_isClusteringEnabled;
-- (void).cxx_destruct;
 - (unsigned char)sceneState;
 - (void)getClusterAnnotationTextForClusterFeatureCount:(unsigned long long)arg1 text:(id *)arg2 locale:(id *)arg3;
+- (void)getClusterImageTextForClusterFeatureCount:(unsigned long long)arg1 text:(id *)arg2 locale:(id *)arg3;
 - (id)annotationsInMapRect:(CDStruct_02837cd9)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)_setSceneState:(unsigned char)arg1;
 - (void)_invalidateRect:(CDStruct_02837cd9)arg1;
+- (id)allAnnotations;
+- (unsigned long long)annotationCount;
 - (void)_clearAnnotations;
 - (void)removeAnnotations:(id)arg1;
 - (void)addAnnotations:(id)arg1;

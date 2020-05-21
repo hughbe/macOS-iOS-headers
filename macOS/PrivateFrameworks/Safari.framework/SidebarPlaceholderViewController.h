@@ -6,13 +6,18 @@
 
 #import "NSViewController.h"
 
+@class NSTextField;
+
 __attribute__((visibility("hidden")))
 @interface SidebarPlaceholderViewController : NSViewController
 {
+    NSTextField *_descriptionLabel;
 }
 
-+ (id)sharedLinksPlaceholderViewController;
 + (id)readingListPlaceholderViewController;
+- (void).cxx_destruct;
+@property(nonatomic) __weak NSTextField *descriptionLabel; // @synthesize descriptionLabel=_descriptionLabel;
+- (void)updateDescriptionIfNecessaryWithString:(id)arg1;
 
 @end
 

@@ -4,11 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#pragma mark Blocks
+@class NSMutableArray;
+
+#pragma mark Function Pointers and Blocks
+
+typedef void (*CDUnknownFunctionPointerType)(void); // return type and parameters are unknown
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
 #pragma mark Named Structures
+
+struct AUOutputBL {
+    struct CAStreamBasicDescription _field1;
+    char *_field2;
+    struct AudioBufferList *_field3;
+    unsigned int _field4;
+    unsigned int _field5;
+    unsigned int _field6;
+};
 
 struct AudioBuffer {
     unsigned int mNumberChannels;
@@ -43,6 +56,30 @@ struct AudioTimeStamp {
     unsigned int mReserved;
 };
 
+struct CAStreamBasicDescription {
+    double _field1;
+    unsigned int _field2;
+    unsigned int _field3;
+    unsigned int _field4;
+    unsigned int _field5;
+    unsigned int _field6;
+    unsigned int _field7;
+    unsigned int _field8;
+    unsigned int _field9;
+};
+
+struct CF<OpaqueVTPixelTransferSession *> {
+    struct OpaqueVTPixelTransferSession *value_;
+};
+
+struct CF<__CVMetalTextureCache *> {
+    struct __CVMetalTextureCache *value_;
+};
+
+struct CF<__CVPixelBufferPool *> {
+    struct __CVPixelBufferPool *value_;
+};
+
 struct CGAffineTransform {
     double a;
     double b;
@@ -51,8 +88,6 @@ struct CGAffineTransform {
     double tx;
     double ty;
 };
-
-struct CGColorSpace;
 
 struct CGPoint {
     double x;
@@ -69,21 +104,9 @@ struct CGSize {
     double height;
 };
 
-struct CNNBlock {
-    CDUnknownFunctionPointerType *_field1;
-    struct CNNSize _field2;
-    struct CNNSize _field3;
-    struct CNNData *_field4;
-    struct CNNData *_field5;
-};
-
-struct CNNData {
-    float *data_;
-    struct CNNSize size_;
-};
-
-struct CNNSize {
-    int size_[4];
+struct CGVector {
+    double dx;
+    double dy;
 };
 
 struct CameraMotionAnalysis {
@@ -91,11 +114,13 @@ struct CameraMotionAnalysis {
     struct CameraMotionSegment *_field2;
     struct __CFArray *_field3;
     CDStruct_1b6d18a9 _field4;
-    struct HinkleyDetector _field5[6];
-    int _field6;
-    struct RotationAnalysis _field7;
-    _Bool _field8;
-    _Bool _field9;
+    _Bool _field5;
+    float _field6;
+    struct HinkleyDetector _field7[6];
+    int _field8;
+    struct RotationAnalysis _field9;
+    _Bool _field10;
+    _Bool _field11;
 };
 
 struct CameraMotionSegment;
@@ -114,10 +139,15 @@ struct DescriptorAnalysis {
     struct DescriptorSegment *_field2;
     struct __CFArray *_field3;
     CDStruct_1b6d18a9 _field4;
-    struct Rotator *_field5;
+    _Bool _field5;
+    float _field6;
+    struct Rotator *_field7;
+    struct __CFArray *_field8;
 };
 
 struct DescriptorSegment;
+
+struct DspLibBiquad;
 
 struct EncodeAnalysis {
     int _field1;
@@ -136,6 +166,25 @@ struct EncodeAnalysis {
     float _field14;
     float _field15;
     struct MotionFieldAnalysis _field16;
+    float _field17[10];
+    struct {
+        int _field1;
+        int _field2;
+        int _field3;
+    } _field18;
+    CDStruct_4aceb884 _field19;
+    CDStruct_4aceb884 _field20;
+    CDStruct_1b6d18a9 _field21;
+    float _field22;
+    int _field23;
+    float *_field24;
+    float *_field25;
+    _Bool _field26;
+    _Bool _field27;
+    long long _field28;
+    float _field29;
+    float _field30;
+    float _field31;
 };
 
 struct EncodeParameters {
@@ -148,10 +197,99 @@ struct EncodeParameters {
     unsigned short _field7;
 };
 
-struct EncodeStats;
+struct EncodeStats {
+    CDUnknownFunctionPointerType *_field1;
+    _Bool *_field2;
+    _Bool *_field3;
+    struct MotionVector *_field4;
+    struct MotionVector *_field5;
+    unsigned short *_field6;
+    unsigned short *_field7;
+    unsigned int *_field8;
+    unsigned short *_field9;
+    unsigned short *_field10;
+    unsigned short *_field11;
+    unsigned short *_field12;
+    unsigned short *_field13;
+    unsigned short *_field14;
+    unsigned short *_field15;
+    unsigned short *_field16;
+    unsigned short *_field17;
+    unsigned short *_field18;
+    unsigned short *_field19;
+    unsigned int _field20;
+    _Bool _field21;
+    _Bool _field22;
+    _Bool _field23;
+    int _field24;
+    int _field25;
+};
 
-struct FaceList {
-    struct list<vision::DCN::boundingbox, std::__1::allocator<vision::DCN::boundingbox>> _field1;
+struct EncodeStatsHW {
+    CDUnknownFunctionPointerType *_field1;
+    _Bool *_field2;
+    _Bool *_field3;
+    struct MotionVector *_field4;
+    struct MotionVector *_field5;
+    unsigned short *_field6;
+    unsigned short *_field7;
+    unsigned int *_field8;
+    unsigned short *_field9;
+    unsigned short *_field10;
+    unsigned short *_field11;
+    unsigned short *_field12;
+    unsigned short *_field13;
+    unsigned short *_field14;
+    unsigned short *_field15;
+    unsigned short *_field16;
+    unsigned short *_field17;
+    unsigned short *_field18;
+    unsigned short *_field19;
+    unsigned int _field20;
+    _Bool _field21;
+    _Bool _field22;
+    _Bool _field23;
+    int _field24;
+    int _field25;
+    int _field26;
+    struct OpaqueVTCompressionSession *_field27;
+    struct __CFData *_field28;
+    CDStruct_1b6d18a9 _field29;
+    int _field30;
+    int _field31;
+    _Bool _field32;
+};
+
+struct FigLivePhotoDetectedFaceV1Struct {
+    long long _field1;
+    float _field2;
+    float _field3;
+    float _field4;
+    float _field5;
+    int _field6;
+    short _field7;
+    unsigned short _field8;
+};
+
+struct FigLivePhotoMetadata {
+    unsigned int _field1;
+    struct FigLivePhotoMetadataV1Struct _field2;
+};
+
+struct FigLivePhotoMetadataV1Struct {
+    float _field1;
+    long long _field2;
+    float _field3;
+    float _field4;
+    float _field5;
+    float _field6;
+    float _field7;
+    float _field8;
+    char _field9;
+    char _field10;
+    unsigned short _field11;
+    unsigned int _field12;
+    struct FigLivePhotoDetectedFaceV1Struct _field13[0];
 };
 
 struct FineSubjectMotionAnalysis {
@@ -159,7 +297,10 @@ struct FineSubjectMotionAnalysis {
     struct FineSubjectMotionSegment *_field2;
     struct __CFArray *_field3;
     CDStruct_1b6d18a9 _field4;
-    struct HinkleyDetector _field5;
+    _Bool _field5;
+    float _field6;
+    struct HinkleyDetector _field7;
+    _Bool _field8;
 };
 
 struct FineSubjectMotionSegment;
@@ -170,6 +311,7 @@ struct Frame {
     CDStruct_1b6d18a9 duration_;
     struct Translation ave_motion_;
     struct Translation org_motion_;
+    float quality_score_;
     unsigned long long distortion_;
     float distortion_norm_;
     struct Translation motion_change_;
@@ -179,6 +321,8 @@ struct Frame {
     float texture_;
     struct MotionResult motion_result_;
     float interestingness_;
+    float obstruction_;
+    float colorfulness_score_;
     struct Histogram histogram_;
 };
 
@@ -188,17 +332,17 @@ struct FrameBuffer {
 };
 
 struct HinkleyDetector {
-    float _field1;
-    float _field2;
-    int _field3;
-    struct HinkleyStats _field4;
+    float sensitivity_;
+    float threshold_;
+    int min_length_;
+    struct HinkleyStats stats_;
 };
 
 struct HinkleyStats {
-    float _field1;
-    float _field2;
-    float _field3;
-    float _field4;
+    float upper_;
+    float lower_;
+    float max_;
+    float min_;
 };
 
 struct Histogram {
@@ -213,7 +357,9 @@ struct InterestingnessAnalysis {
     struct InterestingnessSegment *_field2;
     struct __CFArray *_field3;
     CDStruct_1b6d18a9 _field4;
-    struct HinkleyDetector _field5;
+    _Bool _field5;
+    float _field6;
+    struct HinkleyDetector _field7;
 };
 
 struct InterestingnessSegment;
@@ -222,14 +368,57 @@ struct IrisAnalysis {
     float _field1;
     float _field2;
     int _field3;
-    _Bool _field4;
-    struct __CFArray *_field5;
+    int _field4;
+    _Bool _field5;
+    struct __CFArray *_field6;
 };
 
 struct Kernel {
     float *_field1;
     unsigned long long _field2;
     unsigned long long _field3;
+};
+
+struct LandmarkDetector {
+    int _field1;
+    int _field2;
+    int _field3;
+    int _field4;
+    int _field5;
+    int _field6;
+    int _field7;
+    _Bool _field8;
+    float *_field9;
+    float *_field10;
+    float *_field11;
+    int *_field12;
+    struct ZPoint *_field13;
+    struct RegressionTree *_field14;
+    CDUnknownFunctionPointerType _field15;
+};
+
+struct LkFsMeasure {
+    unsigned int _field1;
+    unsigned int _field2;
+    long long _field3;
+    _Bool _field4;
+    unsigned int _field5;
+    unsigned int _field6;
+    double _field7;
+    double _field8;
+    double _field9;
+    double _field10;
+    long long _field11;
+    long long _field12;
+    unsigned int _field13;
+    unsigned int _field14;
+    unsigned int _field15;
+    float _field16[30][6];
+    float *_field17;
+    float *_field18;
+    float *_field19;
+    struct DspLibBiquad *_field20;
+    struct DspLibBiquad *_field21;
 };
 
 struct MetaDataAnalysis {
@@ -239,32 +428,44 @@ struct MetaDataAnalysis {
     struct Translation _field4;
 };
 
+struct MetalBufferPool {
+    NSMutableArray *pool_;
+    id device_;
+    unsigned long long allocSize_;
+    unsigned long long storageMode_;
+};
+
 struct MotionFieldAnalysis {
-    char *_field1;
-    int *_field2[2];
-    short *_field3[2];
-    float *_field4[2];
-    float *_field5;
-    float *_field6;
-    int _field7[2];
+    struct EncodeStats *_field1;
+    float *_field2;
+    float *_field3;
+    char *_field4;
+    int _field5;
+    int _field6;
+    int _field7;
     int _field8;
-    int *_field9[2];
-    float *_field10[2];
-    float *_field11[2];
-    float _field12;
-    float _field13;
-    float _field14;
-    int _field15;
-    int _field16;
-    struct EncodeStats *_field17;
-    struct ObjectDetection _field18;
-    struct ObjectTracking _field19;
-    int _field20;
-    _Bool _field21;
+    float _field9;
+    float _field10;
+    float _field11;
+    _Bool _field12;
+    _Bool _field13;
+    int *_field14[2];
+    char *_field15[2];
+    float *_field16[2];
+    short *_field17[2];
+    float *_field18[2];
+    int _field19[2];
+    int *_field20[2];
+    float *_field21[2];
+    float *_field22[2];
+    struct ObjectDetection _field23;
+    struct ObjectTracking _field24;
 };
 
 struct MotionFilter {
     struct FrameBuffer *_field1;
+    _Bool _field2;
+    _Bool _field3;
 };
 
 struct MotionResult {
@@ -274,6 +475,7 @@ struct MotionResult {
     float action_score_;
     float track_score_;
     float rotation_angle_;
+    float subtle_motion_score_;
     int action_blocks_;
     float action_motion_;
     _Bool valid_mb_;
@@ -282,6 +484,8 @@ struct MotionResult {
     float residual_var_;
     float gmv_[2];
     CDStruct_1b6d18a9 duration_;
+    float scene_delta_;
+    float scene_delta_ratio_;
     struct Vector<ma::Object *> objects_;
     struct Vector<ma::Object *> detect_objects_;
 };
@@ -293,8 +497,11 @@ struct MovingObjectAnalysis {
     struct MovingObjectSegment *_field2;
     struct __CFArray *_field3;
     CDStruct_1b6d18a9 _field4;
-    int _field5;
-    int _field6;
+    _Bool _field5;
+    float _field6;
+    int _field7;
+    int _field8;
+    int _field9;
 };
 
 struct MovingObjectSegment;
@@ -349,23 +556,21 @@ struct ObjectTracking {
 };
 
 struct ObstructionAnalysis {
-    CDStruct_1b6d18a9 _field1;
-    struct __CFArray *_field2;
-    int _field3;
-    int _field4;
-    struct {
-        int _field1;
-        int _field2;
-        int _field3;
-    } _field5;
-    CDStruct_4aceb884 _field6;
-    CDStruct_4aceb884 _field7;
-    float _field8;
-    int _field9;
-    CDStruct_1b6d18a9 _field10;
+    struct Vector<ma::ObstructionSegment *> _field1;
+    struct ObstructionSegment *_field2;
+    struct __CFArray *_field3;
+    CDStruct_1b6d18a9 _field4;
+    _Bool _field5;
+    float _field6;
 };
 
+struct ObstructionSegment;
+
+struct OpaqueVTCompressionSession;
+
 struct OpaqueVTImageRotationSession;
+
+struct OpaqueVTPixelTransferSession;
 
 struct PreEncodeAnalysis {
     _Bool _field1;
@@ -392,32 +597,49 @@ struct PreEncodeAnalysis {
 };
 
 struct QualityAnalysis {
-    CDStruct_1b6d18a9 _field1[2];
-    float _field2[2];
-    struct FrameBuffer *_field3;
-    float _field4;
-    float _field5;
+    struct Vector<ma::QualitySegment *> _field1;
+    struct QualitySegment *_field2;
+    struct __CFArray *_field3;
+    CDStruct_1b6d18a9 _field4;
+    _Bool _field5;
     float _field6;
-    float _field7;
-    int _field8;
-    int _field9;
-    int _field10;
-    _Bool _field11;
-    _Bool _field12;
-    CDStruct_1b6d18a9 _field13;
+    struct HinkleyDetector _field7;
+    CDStruct_1b6d18a9 _field8;
+    float _field9;
+    struct FrameBuffer *_field10;
+    float _field11;
+    float _field12;
+    float _field13;
     float _field14;
-    float _field15;
-    struct __CFArray *_field16;
-    struct __CFArray *_field17;
+    int _field15;
+    int _field16;
+    int _field17;
+    _Bool _field18;
+    _Bool _field19;
+    _Bool _field20;
+    CDStruct_1b6d18a9 _field21;
+    float _field22;
+    float _field23;
+    struct __CFArray *_field24;
+    struct __CFArray *_field25;
+    struct __CFArray *_field26;
+    struct __CFArray *_field27;
 };
+
+struct QualitySegment;
+
+struct RegressionTree;
 
 struct RotationAnalysis {
     struct Vector<ma::RotationSegment *> _field1;
     struct RotationSegment *_field2;
     struct __CFArray *_field3;
     CDStruct_1b6d18a9 _field4;
-    struct HinkleyDetector _field5;
-    int _field6;
+    _Bool _field5;
+    float _field6;
+    struct HinkleyDetector _field7;
+    int _field8;
+    int _field9;
 };
 
 struct RotationSegment;
@@ -442,36 +664,83 @@ struct SMPTETime {
     short mFrames;
 };
 
+struct Scaler {
+    struct __CVPixelBufferPool *pool_;
+    int width_;
+    int height_;
+    struct CGRect crop_rect_;
+    struct OpaqueVTPixelTransferSession *sw_scaler_;
+};
+
 struct SceneAnalysis {
     struct Vector<ma::SceneSegment *> _field1;
     struct SceneSegment *_field2;
     struct __CFArray *_field3;
     CDStruct_1b6d18a9 _field4;
     _Bool _field5;
-    _Bool _field6;
-    _Bool _field7;
-    int _field8;
-    int _field9;
-    struct CameraMotionAnalysis _field10;
-    struct SubjectMotionAnalysis _field11;
-    struct FineSubjectMotionAnalysis _field12;
-    struct TrackingAnalysis _field13;
-    struct DescriptorAnalysis _field14;
-    struct MovingObjectAnalysis _field15;
-    struct InterestingnessAnalysis _field16;
+    float _field6;
+    float _field7;
+    _Bool _field8;
+    _Bool _field9;
+    _Bool _field10;
+    _Bool _field11;
+    _Bool _field12;
+    int _field13;
+    int _field14;
+    int _field15;
+    _Bool _field16;
+    struct CameraMotionAnalysis _field17;
+    struct SubjectMotionAnalysis _field18;
+    struct FineSubjectMotionAnalysis _field19;
+    struct SubtleMotionAnalysis _field20;
+    struct TrackingAnalysis _field21;
+    struct DescriptorAnalysis _field22;
+    struct MovingObjectAnalysis _field23;
+    struct InterestingnessAnalysis _field24;
+    struct QualityAnalysis _field25;
+    struct SlowMotionAnalysis _field26;
 };
 
 struct SceneSegment;
+
+struct SlowMotionAnalysis {
+    struct Vector<ma::SlowMotionSegment *> _field1;
+    struct SlowMotionSegment *_field2;
+    struct __CFArray *_field3;
+    CDStruct_1b6d18a9 _field4;
+    _Bool _field5;
+    float _field6;
+    struct FrameBuffer *_field7;
+    struct __CVBuffer *_field8;
+    struct HinkleyDetector _field9;
+};
+
+struct SlowMotionSegment;
 
 struct SubjectMotionAnalysis {
     struct Vector<ma::SubjectMotionSegment *> _field1;
     struct SubjectMotionSegment *_field2;
     struct __CFArray *_field3;
     CDStruct_1b6d18a9 _field4;
-    struct HinkleyDetector _field5;
+    _Bool _field5;
+    float _field6;
+    struct HinkleyDetector _field7;
 };
 
 struct SubjectMotionSegment;
+
+struct SubtleMotionAnalysis {
+    struct Vector<ma::SubtleMotionSegment *> _field1;
+    struct SubtleMotionSegment *_field2;
+    struct __CFArray *_field3;
+    CDStruct_1b6d18a9 _field4;
+    _Bool _field5;
+    float _field6;
+    struct HinkleyDetector _field7;
+    _Bool _field8;
+};
+
+struct SubtleMotionSegment;
 
 struct TrackSegment;
 
@@ -480,7 +749,9 @@ struct TrackingAnalysis {
     struct TrackSegment *_field2;
     struct __CFArray *_field3;
     CDStruct_1b6d18a9 _field4;
-    struct HinkleyDetector _field5;
+    _Bool _field5;
+    float _field6;
+    struct HinkleyDetector _field7;
 };
 
 struct Translation {
@@ -521,6 +792,14 @@ struct Vector<ma::ObjectTracking::Expert *> {
     struct __CFArray *_field1;
 };
 
+struct Vector<ma::ObstructionSegment *> {
+    struct __CFArray *_field1;
+};
+
+struct Vector<ma::QualitySegment *> {
+    struct __CFArray *_field1;
+};
+
 struct Vector<ma::RotationSegment *> {
     struct __CFArray *_field1;
 };
@@ -529,7 +808,15 @@ struct Vector<ma::SceneSegment *> {
     struct __CFArray *_field1;
 };
 
+struct Vector<ma::SlowMotionSegment *> {
+    struct __CFArray *_field1;
+};
+
 struct Vector<ma::SubjectMotionSegment *> {
+    struct __CFArray *_field1;
+};
+
+struct Vector<ma::SubtleMotionSegment *> {
     struct __CFArray *_field1;
 };
 
@@ -545,161 +832,128 @@ struct Vector<unsigned short> {
     struct __CFArray *_field1;
 };
 
+struct ZPoint;
+
 struct __CFArray;
 
-struct __list_node_base<vImage_Buffer, void *> {
-    struct __list_node_base<vImage_Buffer, void *> *_field1;
-    struct __list_node_base<vImage_Buffer, void *> *_field2;
+struct __CFData;
+
+struct __CVBuffer;
+
+struct __CVPixelBufferPool;
+
+struct __sFILE {
+    char *_field1;
+    int _field2;
+    int _field3;
+    short _field4;
+    short _field5;
+    struct __sbuf _field6;
+    int _field7;
+    void *_field8;
+    CDUnknownFunctionPointerType _field9;
+    CDUnknownFunctionPointerType _field10;
+    CDUnknownFunctionPointerType _field11;
+    CDUnknownFunctionPointerType _field12;
+    struct __sbuf _field13;
+    struct __sFILEX *_field14;
+    int _field15;
+    unsigned char _field16[3];
+    unsigned char _field17[1];
+    struct __sbuf _field18;
+    int _field19;
+    long long _field20;
 };
 
-struct __list_node_base<vision::DCN::boundingbox, void *> {
-    struct __list_node_base<vision::DCN::boundingbox, void *> *_field1;
-    struct __list_node_base<vision::DCN::boundingbox, void *> *_field2;
+struct __sbuf {
+    char *_field1;
+    int _field2;
 };
 
-struct __shared_weak_count;
-
-struct blob<float, 3>;
-
-struct blob<float, 4>;
-
-struct blob<unsigned char __attribute__((ext_vector_type(4))), 2>;
-
-struct fast_pyramid_resizer;
-
-struct fast_pyramid_resizer_metal {
-    struct vector<std::__1::pair<unsigned long long, unsigned long long>, std::__1::allocator<std::__1::pair<unsigned long long, unsigned long long>>> _field1;
-    struct vector<id<MTLTexture>, std::__1::allocator<id<MTLTexture>>> _field2;
-    struct vector<id<MTLTexture>, std::__1::allocator<id<MTLTexture>>> _field3;
+struct future<CF<const __CFData *>> {
+    struct __assoc_state<CF<const __CFData *>> *_field1;
 };
 
-struct list<vImage_Buffer, std::__1::allocator<vImage_Buffer>> {
-    struct __list_node_base<vImage_Buffer, void *> _field1;
-    struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<vImage_Buffer, void *>>> {
-        unsigned long long _field1;
-    } _field2;
+struct future<unsigned int> {
+    struct __assoc_state<unsigned int> *_field1;
 };
 
-struct list<vision::DCN::boundingbox, std::__1::allocator<vision::DCN::boundingbox>> {
-    struct __list_node_base<vision::DCN::boundingbox, void *> _field1;
-    struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<vision::DCN::boundingbox, void *>>> {
-        unsigned long long _field1;
-    } _field2;
+struct future<void> {
+    struct __assoc_sub_state *_field1;
 };
 
-struct net;
-
-struct net_strides_configuration {
-    int num_layer;
-    struct vector<int, std::__1::allocator<int>> kernel_size;
-    struct vector<int, std::__1::allocator<int>> stride;
-    struct vector<int, std::__1::allocator<int>> pad;
+struct mach_timebase_info {
+    unsigned int numer;
+    unsigned int denom;
 };
 
-struct pair<unsigned long long, unsigned long long> {
-    unsigned long long first;
-    unsigned long long second;
-};
+struct tplTracker_resampler_context;
 
-struct shared_ptr<Espresso::blob<float, 3>> {
-    struct blob<float, 3> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<Espresso::blob<float, 4>> {
-    struct blob<float, 4> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<Espresso::blob<unsigned char __attribute__((ext_vector_type(4))), 2>> {
-    struct blob<unsigned char __attribute__((ext_vector_type(4))), 2> *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<Espresso::fast_pyramid_resizer> {
-    struct fast_pyramid_resizer *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct shared_ptr<Espresso::net> {
-    struct net *_field1;
-    struct __shared_weak_count *_field2;
-};
-
-struct vImage_Buffer {
-    void *data;
-    unsigned long long height;
-    unsigned long long width;
-    unsigned long long rowBytes;
-};
-
-struct vImage_CGImageFormat {
-    unsigned int bitsPerComponent;
-    unsigned int bitsPerPixel;
-    struct CGColorSpace *colorSpace;
-    unsigned int bitmapInfo;
-    unsigned int version;
-    double *decode;
-    int renderingIntent;
+struct vector<__CVBuffer *, std::__1::allocator<__CVBuffer *>> {
+    struct __CVBuffer **__begin_;
+    struct __CVBuffer **__end_;
+    struct __compressed_pair<__CVBuffer **, std::__1::allocator<__CVBuffer *>> {
+        struct __CVBuffer **__value_;
+    } __end_cap_;
 };
 
 struct vector<double, std::__1::allocator<double>> {
     double *__begin_;
     double *__end_;
     struct __compressed_pair<double *, std::__1::allocator<double>> {
-        double *__first_;
+        double *__value_;
     } __end_cap_;
 };
 
-struct vector<id<MTLTexture>, std::__1::allocator<id<MTLTexture>>> {
-    id *_field1;
-    id *_field2;
-    struct __compressed_pair<__strong id<MTLTexture>*, std::__1::allocator<id<MTLTexture>>> {
-        id *_field1;
-    } _field3;
-};
-
-struct vector<int, std::__1::allocator<int>> {
-    int *__begin_;
-    int *__end_;
-    struct __compressed_pair<int *, std::__1::allocator<int>> {
-        int *__first_;
+struct vector<espresso_buffer_t, std::__1::allocator<espresso_buffer_t>> {
+    CDStruct_183601bc *__begin_;
+    CDStruct_183601bc *__end_;
+    struct __compressed_pair<espresso_buffer_t *, std::__1::allocator<espresso_buffer_t>> {
+        CDStruct_183601bc *__value_;
     } __end_cap_;
 };
 
-struct vector<std::__1::pair<unsigned long long, unsigned long long>, std::__1::allocator<std::__1::pair<unsigned long long, unsigned long long>>> {
-    struct pair<unsigned long long, unsigned long long> *__begin_;
-    struct pair<unsigned long long, unsigned long long> *__end_;
-    struct __compressed_pair<std::__1::pair<unsigned long long, unsigned long long>*, std::__1::allocator<std::__1::pair<unsigned long long, unsigned long long>>> {
-        struct pair<unsigned long long, unsigned long long> *__first_;
+struct vector<float *, std::__1::allocator<float *>> {
+    float **__begin_;
+    float **__end_;
+    struct __compressed_pair<float **, std::__1::allocator<float *>> {
+        float **__value_;
     } __end_cap_;
 };
 
-struct vector<std::__1::shared_ptr<Espresso::blob<float, 3>>, std::__1::allocator<std::__1::shared_ptr<Espresso::blob<float, 3>>>> {
-    shared_ptr_dc6ac1b7 *__begin_;
-    shared_ptr_dc6ac1b7 *__end_;
-    struct __compressed_pair<std::__1::shared_ptr<Espresso::blob<float, 3>>*, std::__1::allocator<std::__1::shared_ptr<Espresso::blob<float, 3>>>> {
-        shared_ptr_dc6ac1b7 *__first_;
-    } __end_cap_;
-};
-
-struct vector<std::__1::shared_ptr<Espresso::fast_pyramid_resizer>, std::__1::allocator<std::__1::shared_ptr<Espresso::fast_pyramid_resizer>>> {
-    shared_ptr_7fb9d9f9 *__begin_;
-    shared_ptr_7fb9d9f9 *__end_;
-    struct __compressed_pair<std::__1::shared_ptr<Espresso::fast_pyramid_resizer>*, std::__1::allocator<std::__1::shared_ptr<Espresso::fast_pyramid_resizer>>> {
-        shared_ptr_7fb9d9f9 *__first_;
-    } __end_cap_;
-};
-
-struct vector<std::__1::shared_ptr<Espresso::net>, std::__1::allocator<std::__1::shared_ptr<Espresso::net>>> {
-    shared_ptr_a302c975 *__begin_;
-    shared_ptr_a302c975 *__end_;
-    struct __compressed_pair<std::__1::shared_ptr<Espresso::net>*, std::__1::allocator<std::__1::shared_ptr<Espresso::net>>> {
-        shared_ptr_a302c975 *__first_;
+struct vector<float, std::__1::allocator<float>> {
+    float *__begin_;
+    float *__end_;
+    struct __compressed_pair<float *, std::__1::allocator<float>> {
+        float *__value_;
     } __end_cap_;
 };
 
 #pragma mark Typedef'd Structures
+
+typedef struct {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+} CDStruct_14f26992;
+
+typedef struct {
+    void *data;
+    void *reserved;
+    unsigned long long dim[4];
+    unsigned long long stride[4];
+    unsigned long long width;
+    unsigned long long height;
+    unsigned long long channels;
+    unsigned long long batch_number;
+    unsigned long long sequence_length;
+    unsigned long long stride_width;
+    unsigned long long stride_height;
+    unsigned long long stride_channels;
+    unsigned long long stride_batch_number;
+    unsigned long long stride_sequence_length;
+    int storage_type;
+} CDStruct_0a65202a;
 
 typedef struct {
     int _field1;
@@ -711,11 +965,23 @@ typedef struct {
 } CDStruct_4aceb884;
 
 typedef struct {
+    int _field1;
+    int _field2;
+} CDStruct_1ef3fb1f;
+
+typedef struct {
     long long value;
     int timescale;
     unsigned int flags;
     long long epoch;
 } CDStruct_1b6d18a9;
+
+typedef struct CDStruct_183601bc;
+
+typedef struct {
+    CDStruct_14f26992 _field1;
+    CDStruct_14f26992 _field2;
+} CDStruct_4c83c94d;
 
 typedef struct {
     CDStruct_1b6d18a9 start;
@@ -723,35 +989,31 @@ typedef struct {
 } CDStruct_e83c9415;
 
 // Template types
-typedef struct list<vImage_Buffer, std::__1::allocator<vImage_Buffer>> {
-    struct __list_node_base<vImage_Buffer, void *> _field1;
-    struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<vImage_Buffer, void *>>> {
-        unsigned long long _field1;
-    } _field2;
-} list_db827431;
+typedef struct future<CF<const __CFData *>> {
+    struct __assoc_state<CF<const __CFData *>> *_field1;
+} future_82df37ac;
 
-typedef struct shared_ptr<Espresso::blob<float, 3>> {
-    struct blob<float, 3> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_dc6ac1b7;
+typedef struct future<unsigned int> {
+    struct __assoc_state<unsigned int> *_field1;
+} future_dee8b545;
 
-typedef struct shared_ptr<Espresso::blob<float, 4>> {
-    struct blob<float, 4> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_86ba3c2c;
+typedef struct future<void> {
+    struct __assoc_sub_state *_field1;
+} future_da72c1f3;
 
-typedef struct shared_ptr<Espresso::blob<unsigned char __attribute__((ext_vector_type(4))), 2>> {
-    struct blob<unsigned char __attribute__((ext_vector_type(4))), 2> *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_5e9c0076;
+typedef struct vector<espresso_buffer_t, std::__1::allocator<espresso_buffer_t>> {
+    CDStruct_183601bc *__begin_;
+    CDStruct_183601bc *__end_;
+    struct __compressed_pair<espresso_buffer_t *, std::__1::allocator<espresso_buffer_t>> {
+        CDStruct_183601bc *__value_;
+    } __end_cap_;
+} vector_7cb31c67;
 
-typedef struct shared_ptr<Espresso::fast_pyramid_resizer> {
-    struct fast_pyramid_resizer *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_7fb9d9f9;
-
-typedef struct shared_ptr<Espresso::net> {
-    struct net *_field1;
-    struct __shared_weak_count *_field2;
-} shared_ptr_a302c975;
+typedef struct vector<float *, std::__1::allocator<float *>> {
+    float **__begin_;
+    float **__end_;
+    struct __compressed_pair<float **, std::__1::allocator<float *>> {
+        float **__value_;
+    } __end_cap_;
+} vector_f351fd4e;
 

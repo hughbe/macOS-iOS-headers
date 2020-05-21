@@ -8,17 +8,24 @@
 
 #import "NSCopying.h"
 
-@class CKDPRecordZoneIdentifier;
+@class CKDPRecordZoneIdentifier, NSData;
 
 __attribute__((visibility("hidden")))
 @interface CKDPZoneRetrieveRequest : PBRequest <NSCopying>
 {
+    NSData *_continuationMarker;
     CKDPRecordZoneIdentifier *_zoneIdentifier;
+    BOOL _onlyFetchPCSInfo;
+    struct {
+        unsigned int onlyFetchPCSInfo:1;
+    } _has;
 }
 
 + (id)options;
-@property(retain, nonatomic) CKDPRecordZoneIdentifier *zoneIdentifier; // @synthesize zoneIdentifier=_zoneIdentifier;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSData *continuationMarker; // @synthesize continuationMarker=_continuationMarker;
+@property(nonatomic) BOOL onlyFetchPCSInfo; // @synthesize onlyFetchPCSInfo=_onlyFetchPCSInfo;
+@property(retain, nonatomic) CKDPRecordZoneIdentifier *zoneIdentifier; // @synthesize zoneIdentifier=_zoneIdentifier;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -30,6 +37,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasContinuationMarker;
+@property(nonatomic) BOOL hasOnlyFetchPCSInfo;
 @property(readonly, nonatomic) BOOL hasZoneIdentifier;
 
 @end

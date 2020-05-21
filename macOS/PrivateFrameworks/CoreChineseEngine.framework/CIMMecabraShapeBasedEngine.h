@@ -6,21 +6,24 @@
 
 #import "NSObject.h"
 
+#import "CIMMecabraEngineSubstitution.h"
 #import "TIMecabraEnvironmentProvider.h"
 
 @class TIMecabraEnvironment;
 
-@interface CIMMecabraShapeBasedEngine : NSObject <TIMecabraEnvironmentProvider>
+@interface CIMMecabraShapeBasedEngine : NSObject <TIMecabraEnvironmentProvider, CIMMecabraEngineSubstitution>
 {
     int _inputMethodType;
     unsigned long long _creationOptions;
     TIMecabraEnvironment *_mecabraEnvironment;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) TIMecabraEnvironment *mecabraEnvironment; // @synthesize mecabraEnvironment=_mecabraEnvironment;
 @property(nonatomic) int inputMethodType; // @synthesize inputMethodType=_inputMethodType;
 @property(nonatomic) unsigned long long creationOptions; // @synthesize creationOptions=_creationOptions;
-- (void).cxx_destruct;
+- (id)candidatesForInputString:(id)arg1;
+- (id)inputStringForCharacters:(id)arg1;
 - (void)unlearnCandidate:(id)arg1;
 - (id)strokeCandidatesWithAnalysisString:(id)arg1 displayInputPrefix:(id)arg2 input:(id)arg3 options:(unsigned long long)arg4;
 - (id)candidatesWithAnalysisString:(id)arg1 options:(unsigned long long)arg2;

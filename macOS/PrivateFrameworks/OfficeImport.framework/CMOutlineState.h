@@ -6,18 +6,26 @@
 
 #import "NSObject.h"
 
+@class NSMutableArray, WDList, WDListDefinition;
+
+__attribute__((visibility("hidden")))
 @interface CMOutlineState : NSObject
 {
-    unsigned long long counter[10];
-    unsigned long long listId;
+    NSMutableArray *_counters;
+    WDListDefinition *_listDefinition;
+    WDList *_currentList;
 }
 
+- (void).cxx_destruct;
+@property(readonly) WDListDefinition *listDefinition; // @synthesize listDefinition=_listDefinition;
+@property(retain) WDList *currentList; // @synthesize currentList=_currentList;
 - (void)increaseCounterAtLevel:(unsigned char)arg1;
+- (id)levelDescriptionAtIndex:(unsigned char)arg1;
 - (unsigned long long)counterAtLevel:(unsigned char)arg1;
 - (void)setCounterTo:(unsigned long long)arg1 atLevel:(unsigned char)arg2;
-- (unsigned long long)listId;
 - (void)reset;
-- (id)initWithListId:(unsigned long long)arg1;
+- (unsigned long long)levelCount;
+- (id)initWithListDefinition:(id)arg1;
 - (id)init;
 
 @end

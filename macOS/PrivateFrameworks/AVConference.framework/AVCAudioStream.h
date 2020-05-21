@@ -8,15 +8,17 @@
 
 #import "VCMediaStreamDelegate.h"
 
-@class AVCMediaStreamConfig, AVConferenceXPCClient, NSDictionary, NSString, VCAudioStream;
+@class AVCMediaStreamConfig, AVConferenceXPCClient, NSDictionary, NSObject<OS_dispatch_queue>, NSString, VCAudioStream;
 
 @interface AVCAudioStream : NSObject <VCMediaStreamDelegate>
 {
     AVConferenceXPCClient *_connection;
-    id <AVCAudioStreamDelegate> _delegate;
+    id _delegate;
     VCAudioStream *_opaqueStream;
     AVCMediaStreamConfig *_configuration;
     NSDictionary *_capabilities;
+    NSObject<OS_dispatch_queue> *_callbackQueue;
+    long long _streamToken;
 }
 
 + (id)capabilities;
@@ -35,8 +37,11 @@
 - (void)vcMediaStream:(id)arg1 didStartStream:(BOOL)arg2 error:(id)arg3;
 - (void)deregisterBlocksForDelegateNotifications;
 - (void)registerBlocksForDelegateNotifications;
+- (void)didInterruptionEndHandler;
+- (void)didInterruptionBeginHandler;
 @property(nonatomic, getter=isOutputFrequencyMeteringEnabled) BOOL outputFrequencyMeteringEnabled;
 @property(nonatomic, getter=isInputFrequencyMeteringEnabled) BOOL inputFrequencyMeteringEnabled;
+@property(nonatomic) float volume;
 @property(nonatomic) double rtcpSendIntervalSec;
 @property(nonatomic) double rtcpTimeOutIntervalSec;
 @property(nonatomic) double rtpTimeOutIntervalSec;
@@ -52,11 +57,12 @@
 - (void)pause;
 - (void)stop;
 - (void)start;
-- (void)configure:(id)arg1 error:(id *)arg2;
+- (BOOL)configure:(id)arg1 error:(id *)arg2;
 @property(nonatomic) id <AVCAudioStreamDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)dealloc;
 - (void)terminateSession;
 - (void)refreshLoggingParameters;
+- (id)validateInitializeConnectionResult:(id)arg1;
 - (id)initWithLocalAddress:(id)arg1 networkSockets:(id)arg2 IDSDestination:(id)arg3 isOriginator:(BOOL)arg4 callID:(id)arg5 error:(id *)arg6;
 - (id)initWithIDSDestination:(id)arg1 isOriginator:(BOOL)arg2 callID:(id)arg3 error:(id *)arg4;
 - (id)initWithIDSDestination:(id)arg1 isOriginator:(BOOL)arg2 error:(id *)arg3;

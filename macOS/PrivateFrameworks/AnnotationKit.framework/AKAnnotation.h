@@ -9,14 +9,34 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSString;
+@class NSDate, NSString;
 
 @interface AKAnnotation : NSObject <NSSecureCoding, NSCopying>
 {
     CDUnknownBlockType _appearanceOverride;
     BOOL _shouldUseAppearanceOverride;
-    BOOL _isObserving;
+    BOOL _isObservingForAppearance;
+    struct CGPDFDocument *_appearanceOverridePDF;
+    BOOL _isObservingForIsEdited;
+    BOOL _isReallyObservingForIsEdited;
+    long long _predConformsToAKStrokedAnnotationProtocol;
+    BOOL _conformsToAKStrokedAnnotationProtocol;
+    long long _predConformsToAKFilledAnnotationProtocol;
+    BOOL _conformsToAKFilledAnnotationProtocol;
+    long long _predConformsToAKRectangularAnnotationProtocol;
+    BOOL _conformsToAKRectangularAnnotationProtocol;
+    long long _predConformsToAKFlippableAnnotationProtocol;
+    BOOL _conformsToAKFlippableAnnotationProtocol;
+    long long _predConformsToAKRotatableAnnotationProtocol;
+    BOOL _conformsToAKRotatableAnnotationProtocol;
+    long long _predConformsToAKTextAnnotationProtocol;
+    BOOL _conformsToAKTextAnnotationProtocol;
+    long long _predConformsToAKParentAnnotationProtocol;
+    BOOL _conformsToAKParentAnnotationProtocol;
+    long long _predConformsToAKChildAnnotationProtocol;
+    BOOL _conformsToAKChildAnnotationProtocol;
     BOOL _editsDisableAppearanceOverride;
+    BOOL _isEdited;
     BOOL _isTranslating;
     BOOL _isDraggingHandle;
     BOOL _isEditingText;
@@ -24,9 +44,13 @@
     BOOL _textIsFixedHeight;
     BOOL _textIsClipped;
     BOOL _shouldUsePlaceholderText;
+    BOOL _isBeingCopied;
     NSString *_UUID;
+    NSString *_customPlaceholderText;
     double _originalModelBaseScaleFactor;
     long long _originalExifOrientation;
+    NSDate *_modificationDate;
+    NSString *_author;
     long long _akSerializationVersion;
     long long _akSerializationPlatform;
     AKAnnotation *_parentAnnotation;
@@ -36,10 +60,12 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)annotationWithData:(id)arg1;
-+ (id)placeholderText;
++ (id)defaultPlaceholderText;
 + (id)displayNameForUndoablePropertyChangeWithKey:(id)arg1;
 + (id)keyPathsForValuesAffectingDrawingBounds;
 + (id)keyPathsForValuesAffectingHitTestBounds;
+- (void).cxx_destruct;
+@property BOOL isBeingCopied; // @synthesize isBeingCopied=_isBeingCopied;
 @property struct CGRect initialDrawingBoundsForAppearanceOverride; // @synthesize initialDrawingBoundsForAppearanceOverride=_initialDrawingBoundsForAppearanceOverride;
 @property __weak AKAnnotation *childAnnotation; // @synthesize childAnnotation=_childAnnotation;
 @property __weak AKAnnotation *parentAnnotation; // @synthesize parentAnnotation=_parentAnnotation;
@@ -52,17 +78,29 @@
 @property long long akSerializationVersion; // @synthesize akSerializationVersion=_akSerializationVersion;
 @property BOOL isDraggingHandle; // @synthesize isDraggingHandle=_isDraggingHandle;
 @property BOOL isTranslating; // @synthesize isTranslating=_isTranslating;
+@property(copy) NSString *author; // @synthesize author=_author;
+@property(retain) NSDate *modificationDate; // @synthesize modificationDate=_modificationDate;
+@property BOOL isEdited; // @synthesize isEdited=_isEdited;
 @property BOOL editsDisableAppearanceOverride; // @synthesize editsDisableAppearanceOverride=_editsDisableAppearanceOverride;
 @property(nonatomic) long long originalExifOrientation; // @synthesize originalExifOrientation=_originalExifOrientation;
 @property(nonatomic) double originalModelBaseScaleFactor; // @synthesize originalModelBaseScaleFactor=_originalModelBaseScaleFactor;
+@property(copy) NSString *customPlaceholderText; // @synthesize customPlaceholderText=_customPlaceholderText;
 @property(readonly) NSString *UUID; // @synthesize UUID=_UUID;
-- (void).cxx_destruct;
+- (BOOL)conformsToAKChildAnnotationProtocol;
+- (BOOL)conformsToAKParentAnnotationProtocol;
+- (BOOL)conformsToAKTextAnnotationProtocol;
+- (BOOL)conformsToAKRotatableAnnotationProtocol;
+- (BOOL)conformsToAKFlippableAnnotationProtocol;
+- (BOOL)conformsToAKRectangularAnnotationProtocol;
+- (BOOL)conformsToAKFilledAnnotationProtocol;
+- (BOOL)conformsToAKStrokedAnnotationProtocol;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 @property BOOL shouldUseAppearanceOverride;
 @property(readonly) BOOL isUsingAppearanceOverride;
 @property(copy) CDUnknownBlockType appearanceOverride;
+@property BOOL shouldObserveEdits;
 - (void)translateBy:(struct CGPoint)arg1;
 - (void)flattenModelExifOrientation:(long long)arg1 withModelSize:(struct CGSize)arg2;
 @property(readonly) struct CGRect integralDrawingBounds;
@@ -72,6 +110,7 @@
 - (id)keysForValuesToObserveForAdornments;
 - (id)keysForValuesToObserveForRedrawing;
 - (id)keysForValuesToObserveForUndo;
+@property(readonly) BOOL shouldBurnIn;
 @property(readonly) NSString *displayName;
 - (id)dataRepresentation;
 - (id)copyWithZone:(struct _NSZone *)arg1;

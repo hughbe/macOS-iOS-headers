@@ -10,13 +10,9 @@
 {
 }
 
-+ (int)populateSearchStrings:(id)arg1 url:(id)arg2 maxStringLength:(unsigned long long)arg3 isCancelledBlock:(CDUnknownBlockType)arg4;
++ (id)contentTextFromPDFAtURL:(id)arg1;
 + (id)contentInfoTextWithAttachmentCount:(unsigned long long)arg1;
-- (id)generateSearchIndexStringsOperation;
-- (int)populateSearchStrings:(id)arg1;
-- (void)generatePreviews;
-- (CDUnknownBlockType)genericBrickThumbnailCreator;
-- (CDUnknownBlockType)genericListThumbnailCreator;
+- (id)searchableTextContent;
 - (BOOL)canMarkup;
 - (BOOL)hasPreviews;
 

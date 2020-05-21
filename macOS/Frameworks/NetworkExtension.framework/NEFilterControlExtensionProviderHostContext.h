@@ -13,17 +13,15 @@
 
 @interface NEFilterControlExtensionProviderHostContext : NEFilterExtensionProviderHostContext <NEFilterControlExtensionProviderProtocol, NEFilterControlExtensionProviderHostProtocol>
 {
-    id <NEFilterControlExtensionProviderHostDelegate> _control_delegate;
 }
 
 + (id)_extensionAuxiliaryHostProtocol;
 + (id)_extensionAuxiliaryVendorProtocol;
-@property __weak id <NEFilterControlExtensionProviderHostDelegate> control_delegate; // @synthesize control_delegate=_control_delegate;
-- (void).cxx_destruct;
-- (void)startedWithError:(id)arg1;
 - (void)provideURLAppendStringMap:(id)arg1;
 - (void)provideRemediationMap:(id)arg1;
 - (void)notifyRulesChanged;
+- (void)handleReport:(id)arg1;
+- (void)handleNewFlow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

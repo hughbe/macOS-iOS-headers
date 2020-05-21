@@ -4,16 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Metal/_MTLObjectWithLabel.h>
 
 @class NSDictionary, NSError, NSMutableArray, NSMutableDictionary, NSString, _MTLCommandBuffer<MTLCommandBuffer>, _MTLCommandQueue<MTLCommandQueue>;
 
-@interface _MTLCommandBuffer : NSObject
+@interface _MTLCommandBuffer : _MTLObjectWithLabel
 {
     id <MTLCommandEncoder> _currentCommandEncoder;
     _MTLCommandQueue<MTLCommandQueue> *_queue;
     struct MTLDispatch *_scheduledDispatchList;
+    struct MTLDispatch *_scheduledDispatchListTail;
     struct MTLDispatch *_completedDispatchList;
+    struct MTLDispatch *_completedDispatchListTail;
+    struct MTLSyncDispatch *_syncDispatchList;
+    struct MTLSyncDispatch *_syncDispatchListTail;
     struct _opaque_pthread_mutex_t _mutex;
     struct _opaque_pthread_cond_t {
         long long __sig;
@@ -29,7 +33,6 @@
     unsigned long long _completionHandlerExecutionTime;
     unsigned long long _status;
     NSError *_error;
-    NSString *_label;
     _Bool _skipRender;
     _Bool _profilingEnabled;
     _Bool _scheduledCallbacksDone;
@@ -49,7 +52,10 @@
     unsigned long long _numRequestedCounters;
     unsigned long long _numInternalSampleCounters;
     _MTLCommandBuffer<MTLCommandBuffer> *_statCommandBuffer;
-    int _sampleLock;
+    struct os_unfair_lock_s _sampleLock;
+    BOOL _ownedByParallelEncoder;
+    BOOL _wakeOnCommit;
+    NSMutableArray *_retainedObjects;
     unsigned long long _globalTraceObjectID;
     unsigned long long _labelTraceID;
     BOOL _StatEnabled;
@@ -61,11 +67,15 @@
     NSMutableArray *_sampleStorage;
     struct MTLStatSampleRec *_samples;
     struct MTLStatSampleRec *_currentSample;
+    unsigned long long _internalCounterSampleSize;
+    _Bool _hasPresent;
 }
 
 + (void)initialize;
+@property(nonatomic) BOOL ownedByParallelEncoder; // @synthesize ownedByParallelEncoder=_ownedByParallelEncoder;
 @property(nonatomic) unsigned long long numEncoders; // @synthesize numEncoders=_numEncoders;
 @property(nonatomic) unsigned long long numThisCommandBuffer; // @synthesize numThisCommandBuffer=_numThisCommandBuffer;
+@property(nonatomic) unsigned long long internalCounterSampleSize; // @synthesize internalCounterSampleSize=_internalCounterSampleSize;
 @property(nonatomic, getter=getStatLocations) unsigned long long StatLocations; // @synthesize StatLocations=_StatLocations;
 @property(nonatomic, getter=getStatOptions) unsigned long long StatOptions; // @synthesize StatOptions=_StatOptions;
 @property(retain, nonatomic) _MTLCommandBuffer<MTLCommandBuffer> *statCommandBuffer; // @synthesize statCommandBuffer=_statCommandBuffer;
@@ -76,7 +86,13 @@
 @property(readonly) id <MTLCommandQueue> commandQueue; // @synthesize commandQueue=_queue;
 @property(readonly) BOOL synchronousDebugMode; // @synthesize synchronousDebugMode=_synchronousDebugMode;
 @property(readonly) BOOL retainedReferences; // @synthesize retainedReferences=_retainedReferences;
-@property(copy) NSString *label; // @synthesize label=_label;
+- (void *)debugBufferContentsWithLength:(unsigned long long *)arg1;
+- (id)computeCommandEncoderWithDispatchType:(unsigned long long)arg1;
+- (void)executeSynchronizationNotifications:(int)arg1 scope:(unsigned long long)arg2 resources:(const id *)arg3 count:(unsigned long long)arg4;
+- (void)executeSynchronizationNotifications:(int)arg1;
+- (void)addSynchronizationNotification:(CDUnknownBlockType)arg1;
+- (void)popDebugGroup;
+- (void)pushDebugGroup:(id)arg1;
 @property(readonly, nonatomic) double GPUEndTime;
 @property(readonly, nonatomic) double GPUStartTime;
 @property(readonly, nonatomic) double kernelEndTime;
@@ -91,8 +107,9 @@
 - (void)setCurrentCommandEncoder:(id)arg1;
 - (BOOL)skipRender;
 - (void)kernelSubmitTime;
+- (void)_addRetainedObject:(id)arg1;
 - (void)didCompleteWithStartTime:(unsigned long long)arg1 endTime:(unsigned long long)arg2 error:(id)arg3;
-- (void)didCompletePreDealloc:(unsigned long long)arg1 error:(id)arg2;
+- (void)runPerfCounterCallbackWithBlock:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) NSMutableDictionary *userDictionary;
 - (void)didScheduleWithStartTime:(unsigned long long)arg1 endTime:(unsigned long long)arg2 error:(id)arg3;
 - (void)didSchedule:(unsigned long long)arg1 error:(id)arg2;
@@ -101,17 +118,23 @@
 - (void)waitUntilCompleted;
 - (void)addCompletedHandler:(CDUnknownBlockType)arg1;
 - (void)waitUntilScheduled;
+- (void)presentDrawable:(id)arg1 afterMinimumDuration:(double)arg2;
 - (void)presentDrawable:(id)arg1 atTime:(double)arg2;
 - (void)presentDrawable:(id)arg1;
 - (void)addScheduledHandler:(CDUnknownBlockType)arg1;
 - (void)commitAndReset;
+- (BOOL)commitAndWaitUntilSubmitted;
 - (void)commitAndHold;
 - (void)commit;
 - (void)enqueue;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (void)dealloc;
 - (id)initWithQueue:(id)arg1 retainedReferences:(BOOL)arg2;
 - (id)initWithQueue:(id)arg1 retainedReferences:(BOOL)arg2 synchronousDebugMode:(BOOL)arg3;
+
+// Remaining properties
+@property(copy) NSString *label; // @dynamic label;
 
 @end
 

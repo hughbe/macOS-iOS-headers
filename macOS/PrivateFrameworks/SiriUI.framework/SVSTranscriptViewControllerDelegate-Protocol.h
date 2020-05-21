@@ -31,9 +31,10 @@
 - (void)transcriptViewController:(SVSTranscriptViewController *)arg1 didPresentConversationItemsWithIdentifiers:(NSArray *)arg2;
 - (void)transcriptViewControllerDidChangeContentHeight:(SVSTranscriptViewController *)arg1;
 - (void)transcriptViewController:(SVSTranscriptViewController *)arg1 didHideVibrantView:(NSView *)arg2;
-- (void)transcriptViewControllerDidShowSuggestions:(SVSTranscriptViewController *)arg1;
-- (BOOL)transcriptViewControllerWillShowSuggestions:(SVSTranscriptViewController *)arg1;
+- (void)showHelpForTranscriptViewController:(SVSTranscriptViewController *)arg1;
+- (BOOL)transcriptViewControllerCanShowHelp:(SVSTranscriptViewController *)arg1;
 - (long long)initialDisplayTypeForTranscriptViewController:(SVSTranscriptViewController *)arg1;
+- (double)windowWidthForTranscriptViewController:(SVSTranscriptViewController *)arg1;
 - (double)contentWidthForTranscriptViewController:(SVSTranscriptViewController *)arg1;
 @end
 

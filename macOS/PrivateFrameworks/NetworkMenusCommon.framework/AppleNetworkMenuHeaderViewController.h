@@ -6,15 +6,15 @@
 
 #import "NSObject.h"
 
-@class NSView;
+@class AppleNetworkMenuHeaderView;
 
 @interface AppleNetworkMenuHeaderViewController : NSObject
 {
-    NSView *o_view;
+    AppleNetworkMenuHeaderView *o_view;
 }
 
-- (void)dealloc;
 - (id)view;
+- (void)dealloc;
 - (id)initWithNibName:(id)arg1 inBundle:(id)arg2;
 
 @end

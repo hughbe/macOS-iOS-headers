@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class AVPlayerLooperInternal, NSArray;
+@class AVPlayerLooperInternal, NSArray, NSError;
 
 @interface AVPlayerLooper : NSObject
 {
@@ -16,18 +16,19 @@
 + (id)playerLooperWithPlayer:(id)arg1 templateItem:(id)arg2;
 + (id)playerLooperWithPlayer:(id)arg1 templateItem:(id)arg2 timeRange:(CDStruct_e83c9415)arg3;
 + (void)initialize;
-- (void)_loopingItemFailedToPlayToEndTime:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)_cleanupAfterPlayingLastLoopingCopy;
 - (BOOL)_isWaitingForLastCopyToFinishSet;
 - (void)_turnOffLooping;
-- (BOOL)_setupLoopingReturningExceptionReason:(id *)arg1;
+- (BOOL)_setupLoopingReturningError:(id *)arg1;
 - (int)_calculateNumberOfCopiesNeeded;
 - (void)_configureLoopingItem:(id)arg1;
 @property(readonly, nonatomic) NSArray *loopingPlayerItems;
-@property(readonly, nonatomic) long long loopCount;
-@property(readonly, nonatomic, getter=isLoopingEnabled) BOOL loopingEnabled;
+@property(readonly) long long loopCount;
 - (void)disableLooping;
+- (void)_changeStatusToFailedWithError:(id)arg1;
+@property(readonly) NSError *error;
+@property(readonly) long long status;
 - (void)dealloc;
 - (id)initWithPlayer:(id)arg1 templateItem:(id)arg2 timeRange:(CDStruct_e83c9415)arg3;
 - (id)init;

@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     BOOL _isDrawingVisibleRect;
     struct CGRect _lastValidRenderedContentRect;
     struct CGRect _documentFrame;
+    struct NSEdgeInsets _contentInsets;
     struct CGSize _clipViewSize;
     struct CGPoint _clipViewOrigin;
     double _progress;

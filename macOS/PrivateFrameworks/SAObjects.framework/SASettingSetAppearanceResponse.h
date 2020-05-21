@@ -12,6 +12,7 @@
 
 + (id)setAppearanceResponseWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setAppearanceResponse;
+- (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

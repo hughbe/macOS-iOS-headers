@@ -16,15 +16,20 @@
     NSString *_textToCommit;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *textToCommit; // @synthesize textToCommit=_textToCommit;
 @property(retain, nonatomic) TIKeyboardConfiguration *keyboardConfig; // @synthesize keyboardConfig=_keyboardConfig;
 @property(retain, nonatomic) TIKeyboardState *keyboardState; // @synthesize keyboardState=_keyboardState;
 @property(retain, nonatomic) TIKeyboardCandidate *candidate; // @synthesize candidate=_candidate;
+- (void)replaceDocumentState:(id)arg1;
+- (id)changedText;
 - (id)shortDescription;
 - (id)textSummary;
+- (void)removeContextFromKeyboardState;
+- (id)currentKeyboardState;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 - (void)applyToStatistic:(id)arg1;
 
 @end

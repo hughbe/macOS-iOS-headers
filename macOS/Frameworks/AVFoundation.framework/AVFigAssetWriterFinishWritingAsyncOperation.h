@@ -10,6 +10,7 @@
 
 @class AVAssetWriterFigAssetWriterNotificationHandler, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVFigAssetWriterFinishWritingAsyncOperation : AVOperation <AVAssetWriterFigAssetWriterNotificationHandlerDelegate>
 {
     struct OpaqueFigAssetWriter *_figAssetWriter;
@@ -21,7 +22,6 @@
 - (void)cancel;
 - (void)start;
 - (BOOL)isAsynchronous;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithFigAssetWriter:(struct OpaqueFigAssetWriter *)arg1;
 - (id)init;

@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class BRFieldCKInfo, NSData, NSNumber, NSSet, NSString;
+@class BRCUserRowID, BRFieldCKInfo, NSData, NSNumber, NSSet, NSString;
 
 @interface BRCVersion : NSObject <NSCopying, NSSecureCoding>
 {
@@ -24,14 +24,17 @@
     NSData *_quarantineInfo;
     NSSet *_conflictLoserEtags;
     NSData *_lazyXattr;
+    NSNumber *_editedSinceShared;
     NSNumber *_lastEditorDeviceOrUserRowID;
     NSString *_lastEditorDeviceName;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSData *quarantineInfo; // @synthesize quarantineInfo=_quarantineInfo;
 @property(retain, nonatomic) NSString *lastEditorDeviceName; // @synthesize lastEditorDeviceName=_lastEditorDeviceName;
 @property(retain, nonatomic) NSNumber *lastEditorDeviceOrUserRowID; // @synthesize lastEditorDeviceOrUserRowID=_lastEditorDeviceOrUserRowID;
+@property(retain, nonatomic) NSNumber *editedSinceShared; // @synthesize editedSinceShared=_editedSinceShared;
 @property(retain, nonatomic) NSData *lazyXattr; // @synthesize lazyXattr=_lazyXattr;
 @property(retain, nonatomic) NSData *xattrSignature; // @synthesize xattrSignature=_xattrSignature;
 @property(retain, nonatomic) NSSet *conflictLoserEtags; // @synthesize conflictLoserEtags=_conflictLoserEtags;
@@ -42,10 +45,10 @@
 @property(retain, nonatomic) NSString *originalPOSIXName; // @synthesize originalPOSIXName=_originalPOSIXName;
 @property(nonatomic) long long mtime; // @synthesize mtime=_mtime;
 @property(retain, nonatomic) BRFieldCKInfo *ckInfo; // @synthesize ckInfo=_ckInfo;
-- (void).cxx_destruct;
 - (BOOL)isSmallAndMostRecentClientsGenerateThumbnails;
 - (id)uti;
 - (id)additionNameForItemID:(id)arg1 zoneID:(id)arg2;
+- (BOOL)isEtagEqual:(id)arg1;
 - (unsigned long long)diffAgainst:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)check:(id)arg1 logToFile:(struct __sFILE *)arg2;
@@ -61,7 +64,7 @@
 - (id)lastEditorDisplayNameWithDB:(id)arg1;
 - (id)lastEditorUserIdentityWithDB:(id)arg1;
 - (id)lastEditorDeviceDisplayNameWithDB:(id)arg1;
-@property(retain, nonatomic) NSNumber *lastEditorRowID;
+@property(retain, nonatomic) BRCUserRowID *lastEditorRowID;
 @property(retain, nonatomic) NSNumber *lastEditorDeviceRowID;
 - (BOOL)_hasLastEditorRowID;
 - (BOOL)_hasLastEditorDeviceRowID;

@@ -26,6 +26,7 @@
 @property(readonly) MPDisplay *mainDisplay; // @synthesize mainDisplay=_mainDisplay;
 @property(readonly) BOOL hasSmallBuiltinRetina; // @synthesize hasSmallBuiltinRetina=_hasSmallBuiltinRetina;
 @property(readonly) BOOL hasBuiltinRetina; // @synthesize hasBuiltinRetina=_hasBuiltinRetina;
+@property(readonly) BOOL hasNightShiftCabableDisplays;
 - (BOOL)tryLockAccess;
 - (void)unlockAccess;
 - (void)lockAccess;
@@ -49,7 +50,6 @@
 @property(readonly) NSArray *displays;
 - (void)updateDisplaysList;
 - (void)nameDisplays:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (void)removeNotifications;
 - (id)init;

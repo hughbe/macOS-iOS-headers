@@ -6,7 +6,7 @@
 
 #import <SAObjects/SAUITemplateBaseItem.h>
 
-@class NSArray, NSString;
+@class NSArray, NSNumber, NSString;
 
 @interface SAUITemplateTabularData : SAUITemplateBaseItem
 {
@@ -15,10 +15,13 @@
 + (id)tabularDataWithDictionary:(id)arg1 context:(id)arg2;
 + (id)tabularData;
 @property(nonatomic) BOOL showHeaderDivider;
+@property(copy, nonatomic) NSArray *rowStyleRules;
+@property(copy, nonatomic) NSNumber *minimumRowHeight;
 @property(copy, nonatomic) NSString *layoutStyle;
 @property(retain, nonatomic) id <SAUITemplateItem> headerItem;
 @property(retain, nonatomic) id <SAUITemplateItem> footerItem;
 @property(copy, nonatomic) NSArray *columns;
+@property(nonatomic) BOOL allowContentScrolling;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

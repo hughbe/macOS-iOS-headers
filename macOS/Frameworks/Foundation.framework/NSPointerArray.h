@@ -6,16 +6,17 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSFastEnumeration.h"
+#import "NSSecureCoding.h"
 
 @class NSPointerFunctions;
 
-@interface NSPointerArray : NSObject <NSFastEnumeration, NSCopying, NSCoding>
+@interface NSPointerArray : NSObject <NSFastEnumeration, NSCopying, NSSecureCoding>
 {
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)pointerArrayWithPointerFunctions:(id)arg1;
 + (id)pointerArrayWithOptions:(unsigned long long)arg1;
@@ -34,6 +35,7 @@
 - (void *)pointerAtIndex:(unsigned long long)arg1;
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 @property(readonly, copy) NSPointerFunctions *pointerFunctions;
+- (Class)classForCoder;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithPointerFunctions:(id)arg1;
 - (id)initWithOptions:(unsigned long long)arg1;

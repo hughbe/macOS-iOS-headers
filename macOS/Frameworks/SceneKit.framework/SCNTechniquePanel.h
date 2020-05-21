@@ -13,13 +13,13 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)techniquePanelForView:(id)arg1;
+- (void).cxx_destruct;
 - (BOOL)canBecomeMainWindow;
 - (BOOL)canBecomeKeyWindow;
 - (void)close;
 - (void)open;
 - (id)controller;
 - (void)setController:(id)arg1;
-- (void)dealloc;
 
 @end
 

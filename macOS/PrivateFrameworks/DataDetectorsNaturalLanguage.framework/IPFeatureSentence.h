@@ -20,6 +20,7 @@
     NSString *_storedEventVocabularyIgnoreDateKeyword;
 }
 
++ (id)humanReadableFeaturePolarity:(unsigned long long)arg1;
 + (unsigned long long)numberOfMatchesForEventVocabularySubjectTitleInString:(id)arg1 languageID:(id)arg2;
 + (id)eventVocabularySubjectTitleInString:(id)arg1 languageID:(id)arg2;
 + (id)eventVocabularyIgnoreDateKeywordInString:(id)arg1 languageID:(id)arg2;
@@ -32,13 +33,13 @@
 + (id)eventVocabularyRegexForType:(id)arg1 languageID:(id)arg2;
 + (id)buildRegexForType:(id)arg1 languageID:(id)arg2;
 + (id)regexSetForType:(id)arg1 languageID:(id)arg2;
+- (void).cxx_destruct;
 @property(copy) NSString *storedEventVocabularyIgnoreDateKeyword; // @synthesize storedEventVocabularyIgnoreDateKeyword=_storedEventVocabularyIgnoreDateKeyword;
 @property(copy) NSString *storedEventVocabularyRejectionKeyword; // @synthesize storedEventVocabularyRejectionKeyword=_storedEventVocabularyRejectionKeyword;
 @property unsigned long long storedPolarity; // @synthesize storedPolarity=_storedPolarity;
 @property(copy) NSString *languageID; // @synthesize languageID=_languageID;
 @property(copy) NSArray *fragments; // @synthesize fragments=_fragments;
 @property(retain) RKText *responseKitSentence; // @synthesize responseKitSentence=_responseKitSentence;
-- (void).cxx_destruct;
 - (id)xmlElement;
 - (id)xmlElementAttributes;
 - (id)xmlElementName;

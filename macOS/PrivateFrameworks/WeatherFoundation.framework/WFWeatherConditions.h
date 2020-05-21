@@ -13,14 +13,17 @@
 
 @interface WFWeatherConditions : NSObject <NSCopying, NSSecureCoding>
 {
-    WFLocation *_location;
+    BOOL _nightForecast;
+    struct os_unfair_lock_s _componentsLock;
     NSMutableDictionary *_components;
+    WFLocation *_location;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain, nonatomic) NSMutableDictionary *components; // @synthesize components=_components;
-@property(retain) WFLocation *location; // @synthesize location=_location;
 - (void).cxx_destruct;
+@property(nonatomic) struct os_unfair_lock_s componentsLock; // @synthesize componentsLock=_componentsLock;
+@property(getter=isNightForecast) BOOL nightForecast; // @synthesize nightForecast=_nightForecast;
+@property(retain) WFLocation *location; // @synthesize location=_location;
 - (BOOL)wf_isDayIfSunrise:(id)arg1 sunset:(id)arg2;
 - (BOOL)wf_isDay;
 - (void)setValue:(id)arg1 forComponent:(id)arg2;
@@ -30,11 +33,15 @@
 - (id)objectForKeyedSubscript:(id)arg1;
 - (id)valueForComponent:(id)arg1;
 - (id)allComponents;
+- (void)setValueSync:(id)arg1 forComponent:(id)arg2;
+- (id)valueForComponentSync:(id)arg1;
+@property(retain, nonatomic) NSMutableDictionary *components; // @synthesize components=_components;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
+- (void)_commonInit;
 
 @end
 

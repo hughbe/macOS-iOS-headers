@@ -6,32 +6,33 @@
 
 #import "NSObject.h"
 
-@class NSError, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, NSXPCConnection;
+@class NSError, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection;
 
 @interface LUIAuthenticationServiceProvider : NSObject
 {
     NSObject<OS_dispatch_queue> *providerQueue;
-    NSObject<OS_dispatch_semaphore> *providerSemaphore;
-    BOOL _sessionUnlocked;
-    BOOL _serviceActive;
     NSString *_serviceName;
     NSString *_userName;
     NSXPCConnection *_serviceConnection;
-    id <AuthenticationHintsDelegate> _hintsDelegate;
     NSError *_error;
+    BOOL _sessionUnlocked;
+    BOOL _serviceActive;
+    id <AuthenticationHintsDelegate> _hintsDelegate;
+    long long _mode;
 }
 
+@property long long mode; // @synthesize mode=_mode;
+@property(copy) NSString *serviceName; // @synthesize serviceName=_serviceName;
+@property BOOL sessionUnlocked; // @synthesize sessionUnlocked=_sessionUnlocked;
 @property BOOL serviceActive; // @synthesize serviceActive=_serviceActive;
 @property(copy) NSError *error; // @synthesize error=_error;
+@property(copy) NSString *userName; // @synthesize userName=_userName;
 @property id <AuthenticationHintsDelegate> hintsDelegate; // @synthesize hintsDelegate=_hintsDelegate;
 @property(retain) NSXPCConnection *serviceConnection; // @synthesize serviceConnection=_serviceConnection;
-@property BOOL sessionUnlocked; // @synthesize sessionUnlocked=_sessionUnlocked;
-@property(copy) NSString *userName; // @synthesize userName=_userName;
-@property(copy) NSString *serviceName; // @synthesize serviceName=_serviceName;
 - (void)dealloc;
-- (void)deactivate;
-- (void)activate;
-- (void)activateWithErrorHandler:(CDUnknownBlockType)arg1;
+- (void)deactivateWithContext:(id)arg1;
+- (void)activateWithUserName:(id)arg1 mode:(long long)arg2 withOptions:(id)arg3;
+- (void)activateWithUserName:(id)arg1 sessionUnlocked:(BOOL)arg2;
 - (id)connectionWithErrorHandler:(CDUnknownBlockType)arg1;
 - (id)initWithServiceName:(id)arg1;
 

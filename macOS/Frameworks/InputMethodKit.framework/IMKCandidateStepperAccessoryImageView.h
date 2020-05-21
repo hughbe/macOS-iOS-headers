@@ -6,14 +6,16 @@
 
 #import <InputMethodKit/IMKUIView.h>
 
-@class NSImage;
+@class NSImage, NSString;
 
 @interface IMKCandidateStepperAccessoryImageView : IMKUIView
 {
     NSImage *_arrowImage;
+    NSString *_arrowImageName;
 }
 
-@property(retain, nonatomic) NSImage *arrowImage; // @synthesize arrowImage=_arrowImage;
+@property(copy, nonatomic) NSString *arrowImageName; // @synthesize arrowImageName=_arrowImageName;
+@property(readonly, retain, nonatomic) NSImage *arrowImage; // @synthesize arrowImage=_arrowImage;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)mouseUp:(id)arg1;
 - (void)dealloc;

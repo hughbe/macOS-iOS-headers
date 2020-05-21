@@ -6,27 +6,31 @@
 
 #import <FinderKit/FI_TTableViewItem.h>
 
-@class NSString;
+@class CNContact, NSImage, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FIAirDropListViewItem : FI_TTableViewItem
 {
     struct TFENode _node;
     double _percentComplete;
+    _Bool _isCancellable;
+    _Bool _isIndeterminateProgress;
 }
 
-@property(nonatomic) double percentComplete; // @synthesize percentComplete=_percentComplete;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)contact;
-- (id)icon;
+@property(readonly) struct TFENode node; // @synthesize node=_node;
+@property(nonatomic, getter=isIndeterminateProgress) _Bool indeterminateProgress; // @synthesize indeterminateProgress=_isIndeterminateProgress;
+@property(nonatomic, getter=isCancellable) _Bool cancellable; // @synthesize cancellable=_isCancellable;
+@property(nonatomic) double percentComplete; // @synthesize percentComplete=_percentComplete;
+@property(readonly) CNContact *contact; // @dynamic contact;
+@property(readonly) NSImage *icon; // @dynamic icon;
 @property(nonatomic) NSString *stateText; // @dynamic stateText;
-- (id)personName;
-- (id)machineName;
-- (const struct TFENode *)node;
+@property(readonly) NSString *personName; // @dynamic personName;
+@property(readonly) NSString *machineName; // @dynamic machineName;
 - (BOOL)isEqual:(id)arg1;
 - (void)updatePersonName;
-- (void)update:(id)arg1;
+- (void)update:(id)arg1 darkBackground:(_Bool)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithNode:(const struct TFENode *)arg1;
 

@@ -15,12 +15,14 @@
     unsigned int _trafficDistance;
 }
 
+- (void).cxx_destruct;
+- (id)trafficOffsets;
+- (id)trafficColors;
 - (void)copyTrafficToRoute:(id)arg1;
 - (void)_removeDuplicateTraffic;
 - (void)addTrafficFromETARoute:(id)arg1;
 - (void)addTrafficFromRoute:(id)arg1 from:(unsigned int)arg2 to:(unsigned int)arg3;
 - (void)addTrafficFromRoute:(id)arg1 withStepRange:(struct _NSRange)arg2;
-- (void)dealloc;
 - (id)init;
 
 @end

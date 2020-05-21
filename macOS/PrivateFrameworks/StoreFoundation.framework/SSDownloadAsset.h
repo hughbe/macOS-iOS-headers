@@ -35,10 +35,13 @@
     NSDictionary *_deltaPackage;
     NSError *_localCachingError;
     long long _localFullPackageFailureCount;
+    long long _hashAlgorithm;
 }
 
 + (id)assetWithURL:(id)arg1 type:(long long)arg2;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property long long hashAlgorithm; // @synthesize hashAlgorithm=_hashAlgorithm;
 @property long long subType; // @synthesize subType=_subType;
 @property(retain) NSError *localCachingError; // @synthesize localCachingError=_localCachingError;
 @property long long localFullPackageFailureCount; // @synthesize localFullPackageFailureCount=_localFullPackageFailureCount;
@@ -50,7 +53,6 @@
 @property BOOL skipInstallPhase; // @synthesize skipInstallPhase=_skipInstallPhase;
 @property BOOL useUniqueDownloadFolder; // @synthesize useUniqueDownloadFolder=_useUniqueDownloadFolder;
 @property(retain) NSString *customDownloadPath; // @synthesize customDownloadPath=_customDownloadPath;
-- (void).cxx_destruct;
 @property(retain) NSURLRequest *URLRequest;
 @property long long type;
 @property(retain) NSString *processedPath;

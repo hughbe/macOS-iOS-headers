@@ -6,27 +6,40 @@
 
 #import "NSObject.h"
 
-@class ABAddressBook, NSMutableDictionary, NSString;
+@class ABAddressBook, ABPersonEntry, NSMutableDictionary, NSString;
 
 @interface ABSuggestedEntriesFetcher : NSObject
 {
-    NSString *_filterTerms;
     ABAddressBook *_addressBook;
+    NSString *_filterTerms;
     NSMutableDictionary *_entries;
+    ABPersonEntry *_meEntry;
 }
 
-@property(retain) NSMutableDictionary *entries; // @synthesize entries=_entries;
-@property(retain) ABAddressBook *addressBook; // @synthesize addressBook=_addressBook;
-@property(copy) NSString *filterTerms; // @synthesize filterTerms=_filterTerms;
-- (id)resultEntriesByUID;
++ (id)abPostalAddressDictionaryFromPosstalAddress:(id)arg1;
++ (id)abSocialProfileFromSocialProfile:(id)arg1;
++ (id)abInstantMessageAddressFromInstantMessageAddress:(id)arg1;
++ (id)sanitizedLabelFromLabel:(id)arg1;
++ (id)keyDescriptor;
+- (void).cxx_destruct;
+@property(retain, nonatomic) ABPersonEntry *meEntry; // @synthesize meEntry=_meEntry;
+@property(retain, nonatomic) NSMutableDictionary *entries; // @synthesize entries=_entries;
+@property(retain, nonatomic) NSString *filterTerms; // @synthesize filterTerms=_filterTerms;
+@property(retain, nonatomic) ABAddressBook *addressBook; // @synthesize addressBook=_addressBook;
 - (id)multiValueWithLabeledValues:(id)arg1;
+- (id)multiValueWithInstantMessageAddresses:(id)arg1;
+- (id)multiValueWithSocialProfiles:(id)arg1;
+- (id)multiValueWithPostalAddresses:(id)arg1;
 - (id)multiValueWithPhoneNumbers:(id)arg1;
 - (id)personFromContact:(id)arg1;
-- (id)entriesByUIDForContacts:(id)arg1;
+- (id)entriesByUIDForContacts:(id)arg1 createMeEntry:(BOOL)arg2;
+- (id)fetchSuggestedMeContact;
 - (id)fetchSuggestedContacts;
+- (id)resultEntriesByUID;
+- (id)resultMeEntry;
+- (void)fetchMeEntry;
 - (void)fetchEntries;
-- (void)dealloc;
-- (id)init;
+- (id)initWithAddressBook:(id)arg1 filterTerms:(id)arg2;
 
 @end
 

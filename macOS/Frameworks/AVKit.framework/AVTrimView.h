@@ -6,9 +6,8 @@
 
 #import "NSView.h"
 
-@class AVTimeFormatter, AVTimeIndicatorPopover, AVTrimClipView, AVTrimDimmerView, AVTrimIndicatorFocusRingView, AVTrimIndicatorView, AVTrimSelectionEndFocusRingView, AVTrimSelectionStartFocusRingView, AVTrimSelectionView, AVTrimTracksView, CAGradientLayer, NSArray, NSTimer;
+@class AVTimeFormatter, AVTimeIndicatorPopover, AVTrimClipView, AVTrimDimmerView, AVTrimIndicatorFocusRingView, AVTrimIndicatorView, AVTrimSelectionEndFocusRingView, AVTrimSelectionStartFocusRingView, AVTrimSelectionView, AVTrimTracksView, CAGradientLayer, NSArray, NSColor, NSTimer;
 
-__attribute__((visibility("hidden")))
 @interface AVTrimView : NSView
 {
     unsigned long long _style;
@@ -31,38 +30,39 @@ __attribute__((visibility("hidden")))
     CDStruct_ef34d2b9 _zoomInfo;
     CAGradientLayer *_clipViewMaskLayer;
     CAGradientLayer *_selectionContainerViewMaskLayer;
-    struct CGColor *_opaqueColor;
-    struct CGColor *_clearColor;
+    NSColor *_opaqueColor;
+    NSColor *_semiOpaqueColor;
+    NSColor *_clearColor;
     NSArray *_trackViewControllers;
     id <AVTrimViewDelegate> _delegate;
     unsigned long long _focusedPart;
-    unsigned long long _trackedPart;
     double _offsetOnTrimHandle;
     unsigned long long _scrollDirection;
     BOOL _needsLayoutSubviews;
     BOOL _isFirstResponder;
     BOOL _isScrolling;
     BOOL _zoomOutWhenScrollFinishes;
-    NSTimer *_stopTrackingTimer;
     NSTimer *_scrollTimer;
     NSTimer *_zoomInTimer;
+    id <NSObject><NSCopying> _identityOfTrackedTouch;
     double _maximumSelectionDuration;
     double _nominalFrameRate;
     double _zoomFactor;
     double _offset;
+    unsigned long long _trackedPart;
+    NSTimer *_stopTrackingTimer;
 }
 
 + (void)initialize;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSTimer *stopTrackingTimer; // @synthesize stopTrackingTimer=_stopTrackingTimer;
+@property(nonatomic) unsigned long long trackedPart; // @synthesize trackedPart=_trackedPart;
 @property(nonatomic) double offset; // @synthesize offset=_offset;
 @property(nonatomic) double zoomFactor; // @synthesize zoomFactor=_zoomFactor;
 @property(nonatomic) double nominalFrameRate; // @synthesize nominalFrameRate=_nominalFrameRate;
 @property(nonatomic) double maximumSelectionDuration; // @synthesize maximumSelectionDuration=_maximumSelectionDuration;
-- (void).cxx_destruct;
 - (double)_trimHandleWidth;
-- (struct CGRect)timeIndicatorPopoverPositioningRectForValue:(double)arg1;
-- (void)hideTimeIndicatorPopover;
-- (void)updateTimeIndicatorPopoverWithValue:(double)arg1;
-- (void)showTimeIndicatorPopoverWithValue:(double)arg1;
+- (struct CGRect)_timeIndicatorPopoverPositioningRectForValue:(double)arg1;
 - (double)displayedMaxValue;
 - (double)displayedMinValue;
 - (double)_zoomedRange;
@@ -79,6 +79,9 @@ __attribute__((visibility("hidden")))
 - (void)_startZoomInTimerForTime:(double)arg1;
 - (void)_setZoomFactor:(unsigned long long)arg1 centerZoomAtTime:(double)arg2;
 - (BOOL)_canZoom;
+- (void)hideTimeIndicatorPopover;
+- (void)updateTimeIndicatorPopoverWithValue:(double)arg1;
+- (void)showTimeIndicatorPopoverWithValue:(double)arg1;
 @property(nonatomic) __weak id <AVTrimViewDelegate> delegate;
 @property(copy, nonatomic) NSArray *trackViewControllers;
 @property(nonatomic) double selectionEnd;
@@ -90,6 +93,7 @@ __attribute__((visibility("hidden")))
 - (void)_fireStopTrackingTimer:(id)arg1;
 - (void)_stopTrackingWithPart:(unsigned long long)arg1 afterDelay:(double)arg2;
 - (void)_stopTrackingWithPart:(unsigned long long)arg1;
+- (void)_stopTrackingImmediately;
 - (void)_startTrackingWithPart:(unsigned long long)arg1;
 - (BOOL)_canStartTracking;
 - (BOOL)_isTracking;
@@ -98,12 +102,20 @@ __attribute__((visibility("hidden")))
 - (double)_valueForLocation:(struct CGPoint)arg1;
 - (void)_zoomOutAndStopScrollingForLocation:(struct CGPoint)arg1;
 - (unsigned long long)_partForLocation:(struct CGPoint)arg1 shouldJumpToLocation:(char *)arg2;
+- (void)_touchesEndedOrCancelledWithEvent:(id)arg1;
+- (unsigned short)_keyForEvent:(id)arg1;
+- (void)touchesCancelledWithEvent:(id)arg1;
+- (void)touchesEndedWithEvent:(id)arg1;
+- (void)touchesMovedWithEvent:(id)arg1;
+- (void)touchesBeganWithEvent:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)_updateFocusRingVisibility;
 - (BOOL)resignFirstResponder;
 - (BOOL)becomeFirstResponder;
 - (BOOL)acceptsFirstResponder;
 - (void)keyDown:(id)arg1;
+- (void)handleEvent:(id)arg1;
+- (BOOL)canHandleEvent:(id)arg1;
 - (unsigned int)_CAViewFlags;
 - (BOOL)mouseDownCanMoveWindow;
 - (void)setFrameSize:(struct CGSize)arg1;

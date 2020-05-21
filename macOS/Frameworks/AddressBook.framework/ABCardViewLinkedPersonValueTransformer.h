@@ -8,7 +8,6 @@
 
 @class ABCardViewLinkedPerson;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewLinkedPersonValueTransformer : NSValueTransformer
 {
     ABCardViewLinkedPerson *_lastLinkedPerson;
@@ -16,9 +15,9 @@ __attribute__((visibility("hidden")))
 
 + (Class)transformedValueClass;
 + (BOOL)allowsReverseTransformation;
+- (void).cxx_destruct;
 @property(retain, nonatomic) ABCardViewLinkedPerson *lastLinkedPerson; // @synthesize lastLinkedPerson=_lastLinkedPerson;
 - (id)transformedValue:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

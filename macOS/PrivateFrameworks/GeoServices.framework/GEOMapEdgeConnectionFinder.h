@@ -19,11 +19,11 @@ __attribute__((visibility("hidden")))
     CDStruct_2c43369c _coordinate;
 }
 
+- (void).cxx_destruct;
 - (void)_findConnections:(CDUnknownBlockType)arg1 incoming:(BOOL)arg2;
 - (void)findConnectionsIn:(CDUnknownBlockType)arg1;
 - (void)findConnectionsOut:(CDUnknownBlockType)arg1;
 - (void)cancel;
-- (void)dealloc;
 - (id)initWithMap:(id)arg1 tile:(id)arg2 junction:(CDStruct_3b01f0aa *)arg3 coordinate:(CDStruct_c3b9c2ee)arg4;
 
 @end

@@ -13,6 +13,7 @@
 @property(readonly) NSArray *unknownProperties;
 @property(readonly) NSString *preferredApplePersonaIdentifier;
 @property(readonly) NSString *preferredLikenessSource;
+@property(readonly) int downtimeWhitelistAuthorization;
 @property(readonly) NSString *phonemeData;
 @property(readonly) NSString *uid;
 @property(readonly) NSString *cardDAVUID;
@@ -55,6 +56,5 @@
 @property(readonly) NSString *lastName;
 @property(readonly) NSString *firstName;
 - (NSData *)largeImageHashOfType:(NSString *)arg1;
-- (NSData *)jpegImageDataOfAllowableKinds:(NSArray *)arg1 maximumLength:(unsigned long long)arg2 cropRects:(id *)arg3;
 @end
 

@@ -6,39 +6,76 @@
 
 #import <MapKit/_MKUIViewController.h>
 
+#import "MKModuleViewControllerProtocol.h"
+#import "MKPlaceAttributionCellDelegate.h"
 #import "_MKInfoCardChildViewControllerAnalyticsDelegate.h"
 
-@class MKMapItem, NSArray, NSString, _MKPlaceViewController;
+@class MKMapItem, MKPhotoBigAttributionView, MKPhotoSmallAttributionView, MKPlaceAttributionCell, NSArray, NSLayoutConstraint, NSScrollView, NSString, NSView, _MKPlaceViewController;
 
-@interface MKPlacePhotosViewController : _MKUIViewController <_MKInfoCardChildViewControllerAnalyticsDelegate>
+@interface MKPlacePhotosViewController : _MKUIViewController <MKPlaceAttributionCellDelegate, _MKInfoCardChildViewControllerAnalyticsDelegate, MKModuleViewControllerProtocol>
 {
+    MKPhotoBigAttributionView *_attributionView;
     NSArray *_photoViews;
-    BOOL _constraintsAdded;
-    BOOL _canUseInlineViewer;
+    NSScrollView *_photosContainerScrollView;
+    NSView *_photosContainer;
+    MKPhotoSmallAttributionView *_photosSmallAttributionsView;
+    double _lastPhotoScrollOffset;
+    BOOL _photoScrollViewScrollingLeft;
+    BOOL _photoScrollViewScrollingRight;
+    BOOL _canUseFullscreenViewer;
+    BOOL _photoLoaded;
+    BOOL _loadAppImageCanceledOrFailed;
+    BOOL _isRTL;
     unsigned long long _photosCount;
-    unsigned long long _mode;
+    NSView *_externalView;
     MKMapItem *_mapItem;
-    id <MKPlaceCardPhotosControllerDelegate> _photosControllerDelegate;
+    NSLayoutConstraint *_heightConstraint;
+    NSLayoutConstraint *_bottomConstraint;
+    NSArray *_photos;
+    unsigned long long _mode;
+    unsigned long long _originalMode;
+    unsigned long long _options;
+    MKPlaceAttributionCell *_attributionCell;
+    NSScrollView *_parentScrollView;
     _MKPlaceViewController *_owner;
+    id <MKPlaceCardPhotosControllerDelegate><MKPlaceCardActionControllerDelegate> _photosControllerDelegate;
 }
 
-@property(nonatomic) __weak _MKPlaceViewController *owner; // @synthesize owner=_owner;
-@property(nonatomic) __weak id <MKPlaceCardPhotosControllerDelegate> photosControllerDelegate; // @synthesize photosControllerDelegate=_photosControllerDelegate;
-@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
-@property(readonly, nonatomic) unsigned long long mode; // @synthesize mode=_mode;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <MKPlaceCardPhotosControllerDelegate><MKPlaceCardActionControllerDelegate> photosControllerDelegate; // @synthesize photosControllerDelegate=_photosControllerDelegate;
+@property(nonatomic) __weak _MKPlaceViewController *owner; // @synthesize owner=_owner;
+- (void)viewDidLayout;
+- (id)infoCardChildUnactionableUIElements;
 - (id)infoCardChildPossibleActions;
-- (void)_callPhotoDelegateForPhotoAt:(unsigned long long)arg1 fromLicense:(BOOL)arg2;
+- (void)didTapAttributionViewWithPresentingViewController:(id)arg1;
 - (void)_photoTappedAtIndex:(unsigned long long)arg1;
 - (void)_photoSelected:(id)arg1;
-- (void)_reloadPhotos;
-- (void)updateViewConstraints;
-- (void)_createPhotoViews;
-- (id)photos;
+- (void)_loadPhotos;
+- (void)_cancelLoadPhotos;
+- (void)_updatePhotoBackgroundColor:(id)arg1;
+- (void)infoCardThemeChanged;
+- (void)updateAttributionPositionWithOffset:(double)arg1;
+- (void)scrollDidEndScrolling:(id)arg1;
+- (void)scrollBoundsDidChange:(id)arg1;
+- (struct CGSize)sizeForIndex:(unsigned long long)arg1;
+- (void)layoutImages;
+- (void)_applyCornerRadius;
+- (void)_createImageViews;
+- (void)openURL;
+- (id)attributionString;
+- (id)formattedAttributionString;
+- (void)updateAttributionCell;
+- (void)addAttributionCell;
+- (void)dealloc;
+- (void)viewWillDisappear:(BOOL)arg1;
+- (void)viewWillAppear:(BOOL)arg1;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;
-- (Class)classForRootView;
-- (id)initWithLayoutMode:(unsigned long long)arg1;
+- (id)initWithMapItem:(id)arg1 mode:(unsigned long long)arg2 options:(unsigned long long)arg3;
+- (BOOL)isSafariProcess;
+- (BOOL)isParsecProcess;
+- (BOOL)isSiriProcess;
+- (BOOL)_canShowWhileLocked;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

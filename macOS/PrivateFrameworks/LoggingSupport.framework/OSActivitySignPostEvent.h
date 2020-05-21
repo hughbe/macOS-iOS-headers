@@ -4,25 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <LoggingSupport/OSActivityEventMessage.h>
+#import <LoggingSupport/OSActivityLogMessageEvent.h>
 
-@class NSPointerArray, NSString;
-
-@interface OSActivitySignPostEvent : OSActivityEventMessage
+@interface OSActivitySignpostEvent : OSActivityLogMessageEvent
 {
-    NSString *_subsystem;
-    NSString *_category;
-    unsigned long long _senderProgramCounter;
-    unsigned long long _duration;
-    NSPointerArray *_callstack;
+    unsigned long long _signpostID;
 }
 
-@property(readonly) NSPointerArray *callstack; // @synthesize callstack=_callstack;
-@property(readonly) unsigned long long duration; // @synthesize duration=_duration;
-@property(readonly) unsigned long long senderProgramCounter; // @synthesize senderProgramCounter=_senderProgramCounter;
-@property(readonly, copy) NSString *category; // @synthesize category=_category;
-@property(readonly, copy) NSString *subsystem; // @synthesize subsystem=_subsystem;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long signpostID; // @synthesize signpostID=_signpostID;
 - (id)initWithEntry:(struct os_activity_stream_entry_s *)arg1;
 
 @end

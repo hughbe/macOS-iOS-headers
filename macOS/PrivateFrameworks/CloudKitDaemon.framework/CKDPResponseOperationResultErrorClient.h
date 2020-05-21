@@ -10,7 +10,6 @@
 
 @class CKDPOplockFailure, CKDPUniqueFieldFailure;
 
-__attribute__((visibility("hidden")))
 @interface CKDPResponseOperationResultErrorClient : PBCodable <NSCopying>
 {
     CKDPOplockFailure *_oplockFailure;
@@ -33,11 +32,11 @@ __attribute__((visibility("hidden")))
 - (id)typeAsString:(int)arg1;
 @property(nonatomic) BOOL hasType;
 @property(nonatomic) int type; // @synthesize type=_type;
-- (id)_typeCKLogValue;
 @property(retain, nonatomic) CKDPOplockFailure *oplockFailure;
 @property(readonly, nonatomic) BOOL hasOplockFailure;
 @property(retain, nonatomic) CKDPUniqueFieldFailure *uniqueFieldFailure;
 @property(readonly, nonatomic) BOOL hasUniqueFieldFailure;
+- (id)_typeCKLogValue;
 
 @end
 

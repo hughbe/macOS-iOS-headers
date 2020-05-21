@@ -23,12 +23,15 @@ __attribute__((visibility("hidden")))
     ReadingListSegmentedControl *_segmentedControl;
     SidebarScrollView *_scrollView;
     BOOL _shouldUpdatePlaceholderViewVisibilityAfterTableViewAnimation;
-    double _heightOfSidebarUponInstallation;
+    struct CGRect _sidebarBoundsUponInstallation;
+    BOOL _shouldHideSaveForOfflineRowAction;
+    BOOL _hasNetworkReachability;
     ReadingListContentProvider *_contentProvider;
 }
 
-@property(retain, nonatomic) ReadingListContentProvider *contentProvider; // @synthesize contentProvider=_contentProvider;
++ (BOOL)_userLikelyHasNetworkReachability;
 - (void).cxx_destruct;
+@property(retain, nonatomic) ReadingListContentProvider *contentProvider; // @synthesize contentProvider=_contentProvider;
 - (id)sideBarScrollViewAccessibilityChildren:(id)arg1;
 - (void)_thumbnailWasLoaded:(id)arg1;
 - (void)_updateSegmentedControlSelectionFromContentProvider;
@@ -37,6 +40,7 @@ __attribute__((visibility("hidden")))
 - (void)_loadReadingListItem:(id)arg1 withPolicy:(long long)arg2;
 - (void)_presentClearAllDialog;
 - (void)clearAllItems:(id)arg1;
+- (void)_updatePlaceholderDescriptionGivenUserIsUsingAutomaticArchiving:(BOOL)arg1;
 - (void)_updatePlaceholderViewVisibility;
 - (id)_contentFilter;
 - (id)_menuItemForRemovalOfReadingListItem:(id)arg1;
@@ -48,6 +52,9 @@ __attribute__((visibility("hidden")))
 - (BOOL)readingListSidebarView:(id)arg1 performDragOperation:(id)arg2;
 - (unsigned long long)readingListSidebarView:(id)arg1 draggingEntered:(id)arg2;
 - (void)readingListSegmentedControlDidBecomeFirstResponder:(id)arg1;
+- (void)_toggleSaveOfflineForReadingListItem:(id)arg1;
+- (BOOL)_shouldShowRemoveArchiveControlsForReadingListItem:(id)arg1;
+- (BOOL)_shouldHideSaveOfflineControlsForReadingListItem:(id)arg1;
 - (id)tableViewController:(id)arg1 rowActionsForRow:(long long)arg2 item:(id)arg3 edge:(long long)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)displayedItemsDidChange:(id)arg1 isAnimating:(BOOL)arg2;
 - (id)tableViewController:(id)arg1 accessibilityDescriptionForItem:(id)arg2;
@@ -60,10 +67,15 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSArray *allFilteringControls;
 @property(readonly, nonatomic) NSSearchField *searchField;
 - (void)updateCurrentBrowserURL;
+- (void)_updateViewsForNetworkReachabilityChange;
+- (void)_updateNetworkReachability;
+- (void)_didReceiveNetworkChangeNotification:(id)arg1;
+- (void)_readingListSaveArticlesOfflineAutomaticallyPreferenceDidChange:(id)arg1;
 - (void)willBeInstalledBySidebarViewController:(id)arg1;
 - (void)setWindowController:(id)arg1;
 - (void)dealloc;
 - (void)loadView;
+- (void)viewDidLoad;
 - (id)init;
 
 // Remaining properties

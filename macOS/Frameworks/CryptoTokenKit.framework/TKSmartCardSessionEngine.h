@@ -10,6 +10,7 @@
 
 @class NSXPCConnection, TKSmartCardSlotEngine;
 
+__attribute__((visibility("hidden")))
 @interface TKSmartCardSessionEngine : NSObject <TKProtocolSmartCardSession>
 {
     TKSmartCardSlotEngine *_slot;
@@ -20,11 +21,11 @@
     NSXPCConnection *_connection;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) __weak NSXPCConnection *connection; // @synthesize connection=_connection;
 @property long long endPolicy; // @synthesize endPolicy=_endPolicy;
 @property BOOL active; // @synthesize active=_active;
 @property BOOL valid; // @synthesize valid=_valid;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (void)terminateWithReply:(CDUnknownBlockType)arg1;
 - (void)setSessionEndPolicy:(long long)arg1;

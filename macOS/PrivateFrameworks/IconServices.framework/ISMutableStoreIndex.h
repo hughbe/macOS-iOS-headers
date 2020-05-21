@@ -8,24 +8,22 @@
 
 @class NSObject<OS_dispatch_queue>;
 
-__attribute__((visibility("hidden")))
 @interface ISMutableStoreIndex : ISStoreIndex
 {
     unsigned long long _initialCapacity;
     NSObject<OS_dispatch_queue> *_serialQueue;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSObject<OS_dispatch_queue> *serialQueue; // @synthesize serialQueue=_serialQueue;
 @property(readonly) unsigned long long initialCapacity; // @synthesize initialCapacity=_initialCapacity;
 - (void)_extend;
 - (void)removeAll;
 - (BOOL)removeValueForKey:(unsigned long long)arg1 passingTest:(CDUnknownBlockType)arg2;
 - (BOOL)removeValuePassingTest:(CDUnknownBlockType)arg1;
-- (BOOL)addValue:(CDStruct_76960521 *)arg1 forKey:(unsigned long long)arg2;
+- (BOOL)addValue:(CDStruct_be136439 *)arg1 forKey:(unsigned long long)arg2;
 - (void)performBlock:(CDUnknownBlockType)arg1;
 - (id)data;
-- (void)finalize;
-- (void)dealloc;
 - (id)initWithStoreFileURL:(id)arg1 capacity:(unsigned long long)arg2;
 
 @end

@@ -14,7 +14,7 @@ __attribute__((visibility("hidden")))
 @interface FI_TViewGridLayoutControllerDelegate : NSObject <TGridLayoutControllerDelegate>
 {
     struct TSpinLock _lock;
-    struct TNSRef<FI_TDesktopGridLayout *, void> _gridLayout;
+    struct TNSRef<FI_TDesktopGridLayout, void> _gridLayout;
 }
 
 - (id).cxx_construct;
@@ -26,6 +26,10 @@ __attribute__((visibility("hidden")))
 - (struct CGPoint)anchorForIndex:(unsigned long long)arg1 offset:(const struct CGPoint *)arg2;
 - (unsigned long long)totalNumberOfGridSpots;
 - (struct CGPoint)invalidAnchorPoint;
+@property(nonatomic) _Bool isLTRLayout; // @dynamic isLTRLayout;
+- (_Bool)isLTRLayoutWhileLocked;
+@property(nonatomic) _Bool layoutInRows; // @dynamic layoutInRows;
+- (_Bool)layoutInRowsWhileLocked;
 - (void)setAnchoredCellFrame:(struct CGRect)arg1;
 - (void)setLayoutBounds:(const struct CGRect *)arg1;
 - (id)init;

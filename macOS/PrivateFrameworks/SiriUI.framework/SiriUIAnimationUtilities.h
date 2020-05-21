@@ -10,7 +10,6 @@
 {
 }
 
-+ (double)animationDuration:(double)arg1;
 + (double)defaultAnimationDuration;
 + (id)defaultTimingFunction;
 

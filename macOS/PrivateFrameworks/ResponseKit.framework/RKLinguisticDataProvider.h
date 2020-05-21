@@ -15,9 +15,8 @@
     NSMutableDictionary *_polarityMapsByLanguageID;
 }
 
-@property(retain) NSMutableDictionary *polarityMapsByLanguageID; // @synthesize polarityMapsByLanguageID=_polarityMapsByLanguageID;
 - (void).cxx_destruct;
-- (struct __LSMMap *)polarityMapForLanguageID:(id)arg1;
+@property(retain) NSMutableDictionary *polarityMapsByLanguageID; // @synthesize polarityMapsByLanguageID=_polarityMapsByLanguageID;
 - (id)init;
 
 @end

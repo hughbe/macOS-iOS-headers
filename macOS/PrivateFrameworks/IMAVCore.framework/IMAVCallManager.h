@@ -21,17 +21,15 @@
     int _acToken;
     unsigned int _avCallState;
     unsigned int _acCallState;
-    unsigned int _telephonyCallState;
     unsigned int _globalCallState;
 }
 
 + (id)sharedInstance;
-@property(nonatomic, setter=_setTelephonyCallState:) unsigned int _telephonyCallState; // @synthesize _telephonyCallState;
+- (void).cxx_destruct;
 - (id)_activeAudioCall;
 - (id)_activeFaceTimeCall;
 - (BOOL)_hasActiveAudioCall;
 - (BOOL)_hasActiveFaceTimeCall;
-- (BOOL)_hasActiveTelephonyCall;
 @property(readonly, nonatomic) BOOL hasActiveCall;
 - (void)_sendProxyUpdate;
 - (void)_updateACChatProxyWithInfo:(id)arg1;
@@ -40,7 +38,6 @@
 - (void)_addAVChatProxy:(id)arg1;
 - (void)_updateOverallChatState;
 @property(readonly, nonatomic) unsigned int callState;
-- (void)__setTelephonyCallState:(unsigned int)arg1;
 - (void)_updateACCallState;
 - (void)_setACCallState:(unsigned int)arg1 quietly:(BOOL)arg2;
 - (void)_setACCallState:(unsigned int)arg1;
@@ -54,12 +51,11 @@
 - (void)_removeIMAVChatFromChatList:(id)arg1;
 - (void)_addIMAVChatToChatList:(id)arg1;
 - (id)_nonRetainingChatList;
-@property(readonly, retain, nonatomic) NSArray *_FTCalls;
+@property(readonly, nonatomic) NSArray *_FTCalls;
 - (id)_copyMutableFTCalls;
 - (id)_mutableFTCalls;
-@property(readonly, retain, nonatomic) NSArray *calls;
+@property(readonly, nonatomic) NSArray *calls;
 - (id)_calls;
-- (void)dealloc;
 - (id)init;
 
 @end

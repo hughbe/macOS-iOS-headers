@@ -16,6 +16,9 @@
 + (BOOL)_isArchiveSupported:(id)arg1;
 + (id)_payloadForPackagePath:(id)arg1;
 + (BOOL)canInitWithURL:(id)arg1;
+- (id)_staticObsoleteFilesOrRecursiveDirectories;
+- (id)_staticObsoleteDirectories;
+- (id)_staticObsoleteFiles;
 - (id)_parseHintsFile:(id)arg1;
 - (id)payloadExtractorWithDestination:(id)arg1 externalRoot:(id)arg2 error:(id *)arg3;
 - (id)BOMData;
@@ -27,6 +30,7 @@
 - (id)_scriptsDirectory;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
+- (id)initWithURL:(id)arg1 options:(id)arg2;
 - (id)initWithURL:(id)arg1;
 
 @end

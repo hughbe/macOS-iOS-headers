@@ -11,6 +11,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
+- (void)validateVisibleItems;
 - (BOOL)_allowsShowHideToolbarContextMenuItem;
 - (BOOL)_drawsBackground;
 - (BOOL)_allowsSizeMode:(unsigned long long)arg1;

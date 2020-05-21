@@ -10,6 +10,7 @@
 
 @interface TITypologyStatisticBasicCounts : TITypologyStatisticCurrentAutocorrections
 {
+    BOOL _backspacedIntoAutocorrection;
     long long _touchCount;
     long long _characterCount;
     long long _predictedCharacterCount;
@@ -18,12 +19,22 @@
     long long _rejectedCandidateCount;
     long long _backspaceIntoAutocorrectionCount;
     long long _predictiveSelectionCount;
+    long long _falseBackspaceCount;
+    long long _falseBackspaceIntoAutocorrectionCount;
     NSMutableString *_recentText;
     NSMutableArray *_recentAutocorrectionLocations;
+    NSMutableString *_recentTextBeforeBackspace;
+    NSMutableString *_recentTextAfterBackspace;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL backspacedIntoAutocorrection; // @synthesize backspacedIntoAutocorrection=_backspacedIntoAutocorrection;
+@property(readonly, nonatomic) NSMutableString *recentTextAfterBackspace; // @synthesize recentTextAfterBackspace=_recentTextAfterBackspace;
+@property(readonly, nonatomic) NSMutableString *recentTextBeforeBackspace; // @synthesize recentTextBeforeBackspace=_recentTextBeforeBackspace;
 @property(readonly, nonatomic) NSMutableArray *recentAutocorrectionLocations; // @synthesize recentAutocorrectionLocations=_recentAutocorrectionLocations;
 @property(readonly, nonatomic) NSMutableString *recentText; // @synthesize recentText=_recentText;
+@property(readonly, nonatomic) long long falseBackspaceIntoAutocorrectionCount; // @synthesize falseBackspaceIntoAutocorrectionCount=_falseBackspaceIntoAutocorrectionCount;
+@property(readonly, nonatomic) long long falseBackspaceCount; // @synthesize falseBackspaceCount=_falseBackspaceCount;
 @property(readonly, nonatomic) long long predictiveSelectionCount; // @synthesize predictiveSelectionCount=_predictiveSelectionCount;
 @property(readonly, nonatomic) long long backspaceIntoAutocorrectionCount; // @synthesize backspaceIntoAutocorrectionCount=_backspaceIntoAutocorrectionCount;
 @property(readonly, nonatomic) long long rejectedCandidateCount; // @synthesize rejectedCandidateCount=_rejectedCandidateCount;
@@ -42,7 +53,6 @@
 - (void)handleTouch:(id)arg1;
 - (id)aggregateReport;
 - (id)structuredReport;
-- (void)dealloc;
 - (id)init;
 
 @end

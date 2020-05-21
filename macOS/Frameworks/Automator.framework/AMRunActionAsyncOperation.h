@@ -11,6 +11,7 @@
     long long _state;
 }
 
+@property long long state; // @synthesize state=_state;
 - (void)didFinishRunningWithError:(id)arg1;
 - (void)finish;
 - (BOOL)isFinished;

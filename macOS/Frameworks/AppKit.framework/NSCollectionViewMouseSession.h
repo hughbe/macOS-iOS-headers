@@ -6,7 +6,7 @@
 
 #import <AppKit/NSResponder.h>
 
-@class NSCollectionView, NSEvent, NSMutableSet, NSSet, NSTimer, NSView;
+@class NSCollectionView, NSEvent, NSIndexPath, NSMutableSet, NSSet, NSTimer, NSView;
 
 __attribute__((visibility("hidden")))
 @interface NSCollectionViewMouseSession : NSResponder
@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
     NSSet *selectedIndexPathsAtStart;
     NSMutableSet *indexPathsToSelect;
     NSMutableSet *indexPathsToDeselect;
+    NSIndexPath *indexPathToDeselectOnMouseUpIfNoDrag;
     NSMutableSet *dragCandidateIndexPaths;
     NSSet *indexPathsBeingDragged;
     BOOL unmodifiedMouseDownInAlreadySelectedItem;
@@ -43,11 +44,20 @@ __attribute__((visibility("hidden")))
 - (void)draggingEnded:(id)arg1;
 - (void)clearHighlightingBeforeCompletingDrag;
 - (void)commitSelectionAndClearHighlighting;
+- (BOOL)replaceSelectedIndexPathsWith:(id)arg1;
+- (BOOL)addIndexPathsToDeselect:(id)arg1;
 - (BOOL)addIndexPathToDeselect:(id)arg1;
+- (BOOL)extendRangeSelectionToEntireSection:(unsigned long long)arg1;
+- (BOOL)extendRangeSelectionToIndexPath:(id)arg1;
+- (id)nextIndexPathAfter:(id)arg1;
+- (id)previousIndexPathBefore:(id)arg1;
+- (BOOL)addIndexPathsToSelect:(id)arg1;
 - (BOOL)addIndexPathToSelect:(id)arg1;
 - (id)setHighlightState:(long long)arg1 forItemsAtIndexPaths:(id)arg2;
 - (long long)highlightStateForIndexPath:(id)arg1;
 - (void)setState:(long long)arg1;
+- (void)detachFromCollectionView;
+- (void)clearAutoscrollTimer;
 - (id)initWithCollectionView:(id)arg1;
 
 @end

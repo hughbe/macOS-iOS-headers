@@ -13,11 +13,14 @@
 @interface PXMemoriesFeedDataSource : PXSectionedDataSource <PXSectionedLayoutEngineDataSourceSnapshot>
 {
     NSArray *_entries;
+    struct PXSimpleIndexPath _indexPathForFirstPastMemorySection;
 }
 
-@property(readonly, copy, nonatomic) NSArray *entries; // @synthesize entries=_entries;
 - (void).cxx_destruct;
+@property(nonatomic) struct PXSimpleIndexPath indexPathForFirstPastMemorySection; // @synthesize indexPathForFirstPastMemorySection=_indexPathForFirstPastMemorySection;
+@property(readonly, copy, nonatomic) NSArray *entries; // @synthesize entries=_entries;
 - (id)inputForItem:(id)arg1;
+- (id)sectionedObjectReferenceForMemoryUUID:(id)arg1;
 - (struct PXSimpleIndexPath)indexPathForObjectReference:(id)arg1;
 - (struct PXSimpleIndexPath)indexPathForObjectReference:(id)arg1 withHintIndexPath:(struct PXSimpleIndexPath)arg2;
 - (void)_enumerateItemIndexPathsWithHintIndexPath:(struct PXSimpleIndexPath)arg1 usingBlock:(CDUnknownBlockType)arg2;

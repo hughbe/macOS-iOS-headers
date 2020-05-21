@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSDictionary;
+@class NSDictionary, NSMutableArray;
 
 @interface GKNoise : NSObject
 {
-    vector_a0c1ad3f _modules;
+    NSMutableArray *_modules;
     NSDictionary *_gradientColors;
 }
 
@@ -18,9 +18,8 @@
 + (id)noiseWithComponentNoises:(id)arg1 selectionNoise:(id)arg2;
 + (id)noiseWithNoiseSource:(id)arg1 gradientColors:(id)arg2;
 + (id)noiseWithNoiseSource:(id)arg1;
-@property(copy, nonatomic) NSDictionary *gradientColors; // @synthesize gradientColors=_gradientColors;
-- (id).cxx_construct;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSDictionary *gradientColors; // @synthesize gradientColors=_gradientColors;
 - (void)__blendWithNoise:(id)arg1 selectionNoise:(id)arg2 selectionRangeLowerBound:(double)arg3 selectionRangeUpperBound:(double)arg4 selectionBoundaryBlendDistance:(double)arg5;
 - (void)displaceXWithNoise:(id)arg1 yWithNoise:(id)arg2 zWithNoise:(id)arg3;
 - (void)raiseToPowerWithNoise:(id)arg1;
@@ -38,13 +37,14 @@
 - (void)raiseToPower:(double)arg1;
 - (void)clampWithLowerBound:(double)arg1 upperBound:(double)arg2;
 - (void)applyAbsoluteValue;
-- (const struct Module *)cloneRecursive:(const struct Module *)arg1;
-- (void)cacheQuaternaryModule:(struct Module *)arg1 xDisplacementNoise:(id)arg2 yDisplacementNoise:(id)arg3 zDisplacementNoise:(id)arg4;
-- (void)cacheTernaryModule:(struct Module *)arg1 rhsNoise:(id)arg2 selectionNoise:(id)arg3;
-- (void)cacheBinaryModule:(struct Module *)arg1 rhsNoise:(id)arg2;
-- (void)cacheUnaryModule:(struct Module *)arg1;
-- (vector_a0c1ad3f *)__modules;
+- (id)cloneRecursive:(id)arg1;
+- (void)cacheQuaternaryModule:(id)arg1 xDisplacementNoise:(id)arg2 yDisplacementNoise:(id)arg3 zDisplacementNoise:(id)arg4;
+- (void)cacheTernaryModule:(id)arg1 rhsNoise:(id)arg2 selectionNoise:(id)arg3;
+- (void)cacheBinaryModule:(id)arg1 rhsNoise:(id)arg2;
+- (void)cacheUnaryModule:(id)arg1;
+- (id)__modules;
 - (void)dealloc;
+- (float)valueAtPosition: /* Error: Ran out of types for this method. */;
 - (id)initWithNoiseSource:(id)arg1 gradientColors:(id)arg2;
 - (id)initWithNoiseSource:(id)arg1;
 - (id)init;

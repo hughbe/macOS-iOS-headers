@@ -12,7 +12,6 @@
 {
 }
 
-@property(copy) NSString *subAdministrativeArea;
 - (id)freeze;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
@@ -23,6 +22,8 @@
 @property(copy) NSString *postalCode; // @dynamic postalCode;
 @property(copy) NSString *state; // @dynamic state;
 @property(copy) NSString *street; // @dynamic street;
+@property(copy) NSString *subAdministrativeArea; // @dynamic subAdministrativeArea;
+@property(copy) NSString *subLocality; // @dynamic subLocality;
 
 @end
 

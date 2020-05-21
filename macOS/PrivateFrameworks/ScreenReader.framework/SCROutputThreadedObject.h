@@ -14,12 +14,12 @@ __attribute__((visibility("hidden")))
     SCRCThreadKey *_threadKey;
 }
 
-- (id)threadKey;
+- (void).cxx_destruct;
+@property(retain, nonatomic) SCRCThreadKey *threadKey; // @synthesize threadKey=_threadKey;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)processNotification:(id)arg1;
 - (void)handleEvent:(id)arg1;
 - (void)enqueueEvent:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

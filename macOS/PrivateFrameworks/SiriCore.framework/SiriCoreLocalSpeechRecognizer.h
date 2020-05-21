@@ -8,42 +8,57 @@
 
 #import "AFSpeechServiceDelegate.h"
 
-@class NSObject<OS_dispatch_queue>, NSString, NSXPCConnection, SiriCoreLocalSpeechDESRecord;
+@class NSData, NSError, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection;
 
 @interface SiriCoreLocalSpeechRecognizer : NSObject <AFSpeechServiceDelegate>
 {
-    SiriCoreLocalSpeechDESRecord *_desRecord;
     BOOL _recognitionActive;
     NSObject<OS_dispatch_queue> *_queue;
     NSXPCConnection *_esConnection;
-    NSString *_siriLanguage;
+    BOOL _hasRecognizedAnything;
+    unsigned char _instanceUUID[16];
+    NSString *_currentLanguage;
+    NSError *_recognitionError;
+    NSString *_preheatedProfileAssetPath;
+    NSData *_preheatedProfile;
     id <SiriCoreLocalSpeechRecognizerDelegate> _delegate;
 }
 
++ (id)purgeInstalledAssetsWithError:(id *)arg1;
++ (id)installedAssetSizeWithError:(id *)arg1;
++ (id)dictionaryWithContentsProfilePathForLanguage:(id)arg1 errorOut:(id *)arg2;
++ (id)profilePathForLanguage:(id)arg1 errorOut:(id *)arg2;
 + (id)speechProfileDataLastModifiedDataForLanguage:(id)arg1;
-@property(copy, nonatomic) NSString *siriLanguage; // @synthesize siriLanguage=_siriLanguage;
-@property(readonly, nonatomic) __weak id <SiriCoreLocalSpeechRecognizerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)_readProfileAndUserDataWithLanguage:(id)arg1 allowOverride:(BOOL)arg2 tryLastDESRecipe:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
-- (oneway void)speechServiceDidFinishRecognitionWithError:(id)arg1;
-- (oneway void)speechServiceDidRecognizePhrases:(id)arg1;
+@property(readonly, nonatomic) __weak id <SiriCoreLocalSpeechRecognizerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)fetchUserDataForLanguage:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (oneway void)speechServiceDidFinishRecognitionWithStatistics:(id)arg1 error:(id)arg2;
+- (oneway void)speechServiceDidRecognizePackage:(id)arg1;
+- (oneway void)speechServiceDidRecognizeRawEagerRecognitionCandidate:(id)arg1;
 - (oneway void)speechServiceDidProcessAudioDuration:(double)arg1;
 - (oneway void)speechServiceDidRecognizeTokens:(id)arg1;
+- (void)writeDESRecord;
 - (void)invalidate;
 - (void)finishAudio;
 - (void)addAudioPacket:(id)arg1;
 - (void)fetchAssetsForLanguage:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)disableDESWithCompletion:(CDUnknownBlockType)arg1;
-- (void)runAdaptationRecipeEvaluation:(id)arg1 localSpeechDESRecord:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)resetDESWithCompletion:(CDUnknownBlockType)arg1;
+- (void)readProfileAndUserDataWithLanguage:(id)arg1 allowOverride:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)runAdaptationRecipeEvaluation:(id)arg1 recordData:(id)arg2 attachments:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)getOfflineDictationStatusWithCompletion:(CDUnknownBlockType)arg1;
-- (void)updateSpeechProfileWithLanguage:(id)arg1 userData:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)getOfflineDictationStatusIgnoringCache:(BOOL)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)updateSpeechProfileWithLanguage:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)createSpeechProfileWithLanguage:(id)arg1 JSONData:(id)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)startSpeechRecognitionWithLanguage:(id)arg1 task:(id)arg2 context:(id)arg3 narrowband:(BOOL)arg4 detectUtterances:(BOOL)arg5 maximumRecognitionDuration:(double)arg6 didStartHandler:(CDUnknownBlockType)arg7;
+- (void)sendSpeechCorrectionInfo:(id)arg1 interactionIdentifier:(id)arg2;
+- (void)startSpeechRecognitionWithLanguage:(id)arg1 interactionIdentifier:(id)arg2 task:(id)arg3 context:(id)arg4 narrowband:(BOOL)arg5 detectUtterances:(BOOL)arg6 maximumRecognitionDuration:(double)arg7 farField:(BOOL)arg8 secureOfflineOnly:(BOOL)arg9 censorSpeech:(BOOL)arg10 originalAudioFileURL:(id)arg11 overrides:(id)arg12 modelOverrideURL:(id)arg13 didStartHandler:(CDUnknownBlockType)arg14;
+- (void)preheatSpeechRecognitionWithLanguage:(id)arg1;
+- (id)_synchronousServiceWithErrorHandler:(CDUnknownBlockType)arg1;
 - (id)_serviceWithFunctionName:(id)arg1 errorHandler:(CDUnknownBlockType)arg2;
 - (id)_service;
 - (id)_connection;
+- (id)_newConnection;
 - (id)init;
-- (id)initWithDelegate:(id)arg1;
+- (id)initWithDelegate:(id)arg1 instanceUUID:(unsigned char [16])arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

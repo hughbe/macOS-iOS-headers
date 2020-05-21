@@ -6,17 +6,23 @@
 
 #import "NSObject.h"
 
-@class NSString, _WKAutomationSession;
+@class NSString, WKWebView, _WKAutomationSession;
 
 @protocol _WKAutomationSessionDelegate <NSObject>
 
 @optional
-- (void)_automationSession:(_WKAutomationSession *)arg1 setUserInput:(NSString *)arg2 forCurrentJavaScriptDialogOnPage:(struct OpaqueWKPage *)arg3;
-- (NSString *)_automationSession:(_WKAutomationSession *)arg1 messageOfCurrentJavaScriptDialogOnPage:(struct OpaqueWKPage *)arg2;
-- (void)_automationSession:(_WKAutomationSession *)arg1 acceptCurrentJavaScriptDialogOnPage:(struct OpaqueWKPage *)arg2;
-- (void)_automationSession:(_WKAutomationSession *)arg1 dismissCurrentJavaScriptDialogOnPage:(struct OpaqueWKPage *)arg2;
-- (BOOL)_automationSession:(_WKAutomationSession *)arg1 isShowingJavaScriptDialogOnPage:(struct OpaqueWKPage *)arg2;
+- (long long)_automationSession:(_WKAutomationSession *)arg1 currentPresentationForWebView:(WKWebView *)arg2;
+- (long long)_automationSession:(_WKAutomationSession *)arg1 typeOfCurrentJavaScriptDialogForWebView:(WKWebView *)arg2;
+- (void)_automationSession:(_WKAutomationSession *)arg1 setUserInput:(NSString *)arg2 forCurrentJavaScriptDialogForWebView:(WKWebView *)arg3;
+- (NSString *)_automationSession:(_WKAutomationSession *)arg1 messageOfCurrentJavaScriptDialogForWebView:(WKWebView *)arg2;
+- (void)_automationSession:(_WKAutomationSession *)arg1 acceptCurrentJavaScriptDialogForWebView:(WKWebView *)arg2;
+- (void)_automationSession:(_WKAutomationSession *)arg1 dismissCurrentJavaScriptDialogForWebView:(WKWebView *)arg2;
+- (BOOL)_automationSession:(_WKAutomationSession *)arg1 isShowingJavaScriptDialogForWebView:(WKWebView *)arg2;
+- (void)_automationSession:(_WKAutomationSession *)arg1 requestSwitchToWebView:(WKWebView *)arg2 completionHandler:(void (^)(void))arg3;
+- (void)_automationSession:(_WKAutomationSession *)arg1 requestMaximizeWindowOfWebView:(WKWebView *)arg2 completionHandler:(void (^)(void))arg3;
+- (void)_automationSession:(_WKAutomationSession *)arg1 requestRestoreWindowOfWebView:(WKWebView *)arg2 completionHandler:(void (^)(void))arg3;
+- (void)_automationSession:(_WKAutomationSession *)arg1 requestHideWindowOfWebView:(WKWebView *)arg2 completionHandler:(void (^)(void))arg3;
+- (void)_automationSession:(_WKAutomationSession *)arg1 requestNewWebViewWithOptions:(unsigned long long)arg2 completionHandler:(void (^)(WKWebView *))arg3;
 - (void)_automationSessionDidDisconnectFromRemote:(_WKAutomationSession *)arg1;
-- (struct OpaqueWKPage *)_automationSessionDidRequestNewWindow:(_WKAutomationSession *)arg1;
 @end
 

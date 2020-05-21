@@ -6,16 +6,16 @@
 
 #import <InputMethodKit/IMKUIView.h>
 
-@class IMKCandidateController, NSArray;
+@class IMKCandidateUIProperties, NSArray;
 
 @interface IMKCandidateGroupView : IMKUIView
 {
-    IMKCandidateController *_candidateController;
     NSArray *_groupsWithPositions;
+    IMKCandidateUIProperties *_UIProperties;
 }
 
+@property(retain, nonatomic) IMKCandidateUIProperties *UIProperties; // @synthesize UIProperties=_UIProperties;
 @property(retain, nonatomic) NSArray *groupsWithPositions; // @synthesize groupsWithPositions=_groupsWithPositions;
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)isFlipped;
 - (void)dealloc;

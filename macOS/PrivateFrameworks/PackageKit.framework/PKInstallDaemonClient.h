@@ -22,11 +22,11 @@
     NSObject<OS_dispatch_queue> *_clientQueue;
 }
 
-@property(readonly, retain) NSXPCConnection *connection; // @synthesize connection=_connection;
+@property(readonly) NSXPCConnection *connection; // @synthesize connection=_connection;
+- (void)installWillProceedForState:(int)arg1 withSandbox:(id)arg2 withToken:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)installDidEndForToken:(id)arg1;
 - (void)installDidBeginCommitForToken:(id)arg1;
 - (void)installDidBeginForToken:(id)arg1;
-- (void)purgeOrphanedSandboxesOnVolume:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)purgeableSpaceForOrphanedSandboxesOnVolume:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)startPurgeOfSandboxesOnVolume:(id)arg1 purgeAmountNeeded:(unsigned long long)arg2 systemSandboxes:(BOOL)arg3 reply:(CDUnknownBlockType)arg4;
 - (void)estimateOfPurgeableSpaceForSandboxesOnVolume:(id)arg1 systemSandboxes:(BOOL)arg2 reply:(CDUnknownBlockType)arg3;

@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_source>;
+@class NSTimer;
 
 @interface NSInputAlignmentFilter : NSObject
 {
     long long _reserved0;
     long long _flags;
     id _velocityFilter;
-    NSObject<OS_dispatch_source> *_periodicUpdateTimer;
+    NSTimer *_periodicUpdateTimer;
     struct CGPoint _currentLocation;
     double _currentTimestamp;
     double _lastMovementTimestamp;

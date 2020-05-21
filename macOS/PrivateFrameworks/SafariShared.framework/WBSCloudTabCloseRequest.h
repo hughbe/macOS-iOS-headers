@@ -12,8 +12,8 @@
 
 @interface WBSCloudTabCloseRequest : NSObject <NSCopying>
 {
-    NSUUID *_requestUUID;
     NSUUID *_sourceDeviceUUID;
+    NSUUID *_requestUUID;
     NSUUID *_destinationDeviceUUID;
     NSUUID *_tabUUID;
     NSURL *_url;
@@ -23,13 +23,12 @@
 + (id)destinationDeviceUUIDInDictionary:(id)arg1;
 + (BOOL)isCloudTabCloseRequestDictionary:(id)arg1;
 + (id)_dictionaryWithURL:(id)arg1 tabUUID:(id)arg2 lastModified:(id)arg3 sourceDeviceUUID:(id)arg4 destinationDeviceUUID:(id)arg5;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSDate *lastModified; // @synthesize lastModified=_lastModified;
 @property(readonly, nonatomic) NSURL *url; // @synthesize url=_url;
 @property(readonly, nonatomic) NSUUID *tabUUID; // @synthesize tabUUID=_tabUUID;
 @property(readonly, nonatomic) NSUUID *destinationDeviceUUID; // @synthesize destinationDeviceUUID=_destinationDeviceUUID;
-@property(readonly, nonatomic) NSUUID *sourceDeviceUUID; // @synthesize sourceDeviceUUID=_sourceDeviceUUID;
 @property(readonly, nonatomic) NSUUID *requestUUID; // @synthesize requestUUID=_requestUUID;
-- (void).cxx_destruct;
 - (BOOL)matchesCloudTab:(id)arg1;
 - (id)description;
 @property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;

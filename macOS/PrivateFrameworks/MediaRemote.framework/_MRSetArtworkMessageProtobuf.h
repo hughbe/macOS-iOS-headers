@@ -15,6 +15,7 @@
     NSData *_jpegData;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSData *jpegData; // @synthesize jpegData=_jpegData;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -26,7 +27,6 @@
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(readonly, nonatomic) BOOL hasJpegData;
-- (void)dealloc;
 
 @end
 

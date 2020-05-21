@@ -11,6 +11,7 @@
 @protocol CNPromise <NSObject>
 - (void (^)(NSError *))errorOnlyCompletionHandlerAdapter;
 - (void (^)(BOOL, NSError *))boolErrorCompletionHandlerAdapter;
+- (void (^)(id, NSError *))completionHandlerAdapterWithDefaultValue:(id)arg1;
 - (void (^)(id, NSError *))completionHandlerAdapter;
 - (BOOL)finishWithResult:(id)arg1 error:(NSError *)arg2;
 - (BOOL)finishWithResult:(id)arg1;

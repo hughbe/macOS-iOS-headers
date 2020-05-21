@@ -11,6 +11,7 @@
     struct unique_ptr<quasar::ResultCombiner, std::__1::default_delete<quasar::ResultCombiner>> _combiner;
 }
 
++ (void)initialize;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)combinedResultWithSystemResults:(id)arg1;

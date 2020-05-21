@@ -10,13 +10,12 @@
 {
 }
 
-+ (struct CGAffineTransform)transformTopLeft;
 + (id)faceDetector;
-- (int)analyzePixelBuffer:(struct __CVBuffer *)arg1 withTransform:(struct CGAffineTransform)arg2 flags:(unsigned long long *)arg3 results:(id *)arg4 cancel:(CDUnknownBlockType)arg5;
+- (int)analyzePixelBuffer:(struct __CVBuffer *)arg1 flags:(unsigned long long *)arg2 results:(id *)arg3 cancel:(CDUnknownBlockType)arg4;
 - (int)aggregateTileResults:(id)arg1 tileRect:(struct CGRect)arg2 imageSize:(struct CGSize)arg3 landscape:(BOOL)arg4 results:(id)arg5;
-- (int)processTile:(struct __CVBuffer *)arg1 withTransform:(struct CGAffineTransform)arg2 results:(id)arg3 cancel:(CDUnknownBlockType)arg4;
+- (int)processTile:(struct __CVBuffer *)arg1 results:(id)arg2 cancel:(CDUnknownBlockType)arg3;
 - (BOOL)isDuplicate:(struct CGRect)arg1 withRect:(struct CGRect)arg2;
-- (int)faceDetection:(struct __CVBuffer *)arg1 withTransform:(struct CGAffineTransform)arg2 faces:(id)arg3 cancel:(CDUnknownBlockType)arg4;
+- (int)faceDetection:(struct __CVBuffer *)arg1 faces:(id)arg2 cancel:(CDUnknownBlockType)arg3;
 
 @end
 

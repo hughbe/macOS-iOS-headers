@@ -6,29 +6,29 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSLock, NSString;
 
 @interface PKAssertion : NSObject
 {
+    NSLock *_invalidationLock;
     BOOL _invalidateWhenBackgrounded;
     NSString *_reason;
     unsigned long long _type;
-    long long _state;
     CDUnknownBlockType _invalidationHandler;
     NSString *_identifier;
 }
 
++ (void)isAssertionValid:(id)arg1 completion:(CDUnknownBlockType)arg2;
 + (void)acquireAssertionOfType:(unsigned long long)arg1 withReason:(id)arg2 completion:(CDUnknownBlockType)arg3;
-+ (BOOL)assertionExistsOfType:(unsigned long long)arg1;
 + (void)preheatConnection;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
 @property(nonatomic) BOOL invalidateWhenBackgrounded; // @synthesize invalidateWhenBackgrounded=_invalidateWhenBackgrounded;
-@property(nonatomic) long long state; // @synthesize state=_state;
 @property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
 @property(readonly, nonatomic) NSString *reason; // @synthesize reason=_reason;
-- (void).cxx_destruct;
 - (id)description;
+- (void)markAsInvalidatedAndNotify;
 - (void)invalidate;
 - (void)dealloc;
 - (id)initWithType:(unsigned long long)arg1 identifier:(id)arg2 reason:(id)arg3;

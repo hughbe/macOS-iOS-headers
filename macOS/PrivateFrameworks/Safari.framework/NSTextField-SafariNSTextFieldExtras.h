@@ -7,8 +7,10 @@
 #import "NSTextField.h"
 
 @interface NSTextField (SafariNSTextFieldExtras)
++ (id)safari_labelStyledTextFieldForDFR;
 + (id)safari_labelStyledTextFieldWithFrame:(struct CGRect)arg1;
 + (id)safari_labelStyledTextField;
+- (void)safari_disableDFRAccessories;
 - (id)_safari_textFieldStyledAsLabel;
 - (void)safari_styleAsLabel;
 - (double)safari_fittingHeightWithMaximumWidth:(double)arg1 maximumNumberOfLines:(unsigned long long)arg2;

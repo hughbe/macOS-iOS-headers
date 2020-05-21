@@ -24,6 +24,7 @@
     NSSound *_audioChannel;
     NSArray *_allVoicesObjects;
     NSArray *_currentlyDisplayedVoiceRows;
+    NSArray *_voiceIdentifiersNotToBeRemoved;
     NSMutableSet *_markedForUpgradeSet;
     NSMutableSet *_markedForDeletionSet;
     NSTimer *_downloadStatusUpdateTimer;
@@ -53,13 +54,14 @@
 - (void)searchFieldChanged:(id)arg1;
 - (void)startStopPlayingSelection:(id)arg1;
 - (void)_delayedPopUpUpdate;
+- (BOOL)_shouldAllowRemovalOfVoiceObject:(id)arg1;
 - (void)acceptVoiceSelection:(id)arg1;
 - (void)cancelVoiceSelection:(id)arg1;
 - (void)dealloc;
 - (void)_updateDisplayedVoicesUsingFilterString:(id)arg1;
 - (void)_rebuildVoiceList;
 - (void)close;
-- (void)showSheetForWindow:(id)arg1 showIndividualVoiceQualities:(BOOL)arg2;
+- (void)showSheetForWindow:(id)arg1 showIndividualVoiceQualities:(BOOL)arg2 voiceIdentifiersNotToBeRemoved:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

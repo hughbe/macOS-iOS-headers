@@ -8,16 +8,20 @@
 
 @interface PHSceneClassification : NSObject
 {
-    unsigned long long _sceneIdentifier;
+    unsigned int _sceneIdentifier;
     double _confidence;
 }
 
++ (id)fetchSceneClassificationsGroupedByAssetLocalIdentifierForAssets:(id)arg1;
 @property(readonly, nonatomic) double confidence; // @synthesize confidence=_confidence;
-@property(readonly, nonatomic) unsigned long long sceneIdentifier; // @synthesize sceneIdentifier=_sceneIdentifier;
+@property(readonly, nonatomic) unsigned int sceneIdentifier; // @synthesize sceneIdentifier=_sceneIdentifier;
+- (id)description;
+- (id)initWithDictionaryRepresentation:(id)arg1;
+- (id)dictionaryRepresentation;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToSceneClassification:(id)arg1;
-- (id)initWithSceneIdentifier:(unsigned long long)arg1 confidence:(double)arg2;
+- (id)initWithSceneIdentifier:(unsigned int)arg1 confidence:(double)arg2;
 
 @end
 

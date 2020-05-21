@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     unsigned int mCurrentPage;
 }
 
+- (void).cxx_destruct;
 - (void)setBoundingBox;
 - (void)mapTextBoxAt:(id)arg1 withState:(id)arg2;
 - (id)blipAtIndex:(unsigned int)arg1;

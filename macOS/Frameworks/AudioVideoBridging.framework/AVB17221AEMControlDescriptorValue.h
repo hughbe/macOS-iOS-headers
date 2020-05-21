@@ -16,6 +16,8 @@
 }
 
 @property unsigned short controlValueType; // @synthesize controlValueType;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)valuesDataWithNewNumberValue:(id)arg1 atValueIndex:(unsigned short)arg2;
 - (BOOL)validControlValueType:(unsigned short)arg1;
 - (id)objectsForSetCommandValuesData:(id)arg1;

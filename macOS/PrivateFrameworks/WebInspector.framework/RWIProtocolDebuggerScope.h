@@ -6,15 +6,18 @@
 
 #import <WebInspector/RWIProtocolJSONObject.h>
 
-@class RWIProtocolRuntimeRemoteObject;
+@class NSString, RWIProtocolDebuggerLocation, RWIProtocolRuntimeRemoteObject;
 
 @interface RWIProtocolDebuggerScope : RWIProtocolJSONObject
 {
 }
 
-@property(retain, nonatomic) RWIProtocolRuntimeRemoteObject *object;
+@property(nonatomic) BOOL empty;
+@property(retain, nonatomic) RWIProtocolDebuggerLocation *location;
+@property(copy, nonatomic) NSString *name;
 @property(nonatomic) long long type;
-- (id)initWithType:(long long)arg1 object:(id)arg2;
+@property(retain, nonatomic) RWIProtocolRuntimeRemoteObject *object;
+- (id)initWithObject:(id)arg1 type:(long long)arg2;
 
 @end
 

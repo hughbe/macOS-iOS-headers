@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSAlignmentFeedbackFilter, NSObject<OS_dispatch_source>;
+@class NSAlignmentFeedbackFilter, NSTimer;
 
 __attribute__((visibility("hidden")))
 @interface _NSAlignmentFeedbackFilterImpl : NSObject
@@ -18,7 +18,7 @@ __attribute__((visibility("hidden")))
     double _lastMovementTimestamp;
     struct CGPoint _currentLocation;
     unsigned long long _currentModifierFlags;
-    NSObject<OS_dispatch_source> *_periodicUpdateTimer;
+    NSTimer *_periodicUpdateTimer;
     double _lastAcceptVelocityTime;
     double _snapDistance;
 }

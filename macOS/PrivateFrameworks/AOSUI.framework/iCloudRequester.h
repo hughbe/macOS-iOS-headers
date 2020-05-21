@@ -6,9 +6,11 @@
 
 #import "NSOperation.h"
 
-@class AKAppleIDSession, NSHTTPURLResponse, NSMutableData, NSMutableURLRequest, NSObject<OS_dispatch_queue>, NSURLConnection;
+#import "NSURLConnectionDelegate.h"
 
-@interface iCloudRequester : NSOperation
+@class AKAppleIDSession, NSHTTPURLResponse, NSMutableData, NSMutableURLRequest, NSObject<OS_dispatch_queue>, NSString, NSURLConnection;
+
+@interface iCloudRequester : NSOperation <NSURLConnectionDelegate>
 {
     NSMutableURLRequest *_request;
     NSURLConnection *_urlConnection;
@@ -19,11 +21,13 @@
     BOOL _isFinished;
     BOOL _canceled;
     AKAppleIDSession *_appleIDSession;
+    NSString *_accountID;
     BOOL _shouldRetry;
     BOOL _isCanceled;
     NSObject<OS_dispatch_queue> *_handlerQueue;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *handlerQueue; // @synthesize handlerQueue=_handlerQueue;
 @property(nonatomic, getter=isExecuting) BOOL isExecuting; // @synthesize isExecuting=_isExecuting;
 @property(retain, nonatomic) NSHTTPURLResponse *httpResponse; // @synthesize httpResponse=_httpResponse;
@@ -33,14 +37,21 @@
 - (void)connectionDidFinishLoading:(id)arg1;
 - (void)connection:(id)arg1 didReceiveData:(id)arg2;
 - (void)connection:(id)arg1 didReceiveResponse:(id)arg2;
-- (void)connection:(id)arg1 didReceiveAuthenticationChallenge:(id)arg2;
-- (BOOL)connection:(id)arg1 canAuthenticateAgainstProtectionSpace:(id)arg2;
+- (void)connection:(id)arg1 willSendRequestForAuthenticationChallenge:(id)arg2;
 - (void)__unsafe_callHandler;
 - (void)_callHandler;
 - (void)_kickOffRequest:(id)arg1;
+- (void)generateiCloudRequestHeadersForAccountID:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)start;
 - (void)cancel;
+- (id)initWithRequest:(id)arg1 signForAccountID:(id)arg2 handler:(CDUnknownBlockType)arg3;
 - (id)initWithRequest:(id)arg1 handler:(CDUnknownBlockType)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

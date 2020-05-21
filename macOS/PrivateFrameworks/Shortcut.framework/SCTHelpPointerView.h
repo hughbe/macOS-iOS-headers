@@ -8,14 +8,12 @@
 
 #import "SCTAnimatable.h"
 
-@class CIImage, NSImage, NSShadow;
+@class NSShadow;
 
+__attribute__((visibility("hidden")))
 @interface SCTHelpPointerView : NSView <SCTAnimatable>
 {
     struct CGRect mInitialBounds;
-    NSImage *mRHSPointerImage;
-    NSImage *mLHSPointerImage;
-    CIImage *mRHSPointerCIImage;
     NSShadow *mShadow;
     struct CGRect mPreviousRect;
     BOOL mIsRightHandSide;

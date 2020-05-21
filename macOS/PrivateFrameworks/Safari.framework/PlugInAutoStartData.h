@@ -9,23 +9,24 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class NSArray, NSString;
+@class NSArray, NSString, WBSFaviconRequestsController;
 
 __attribute__((visibility("hidden")))
 @interface PlugInAutoStartData : SheetWithTableController <NSTableViewDataSource, NSTableViewDelegate>
 {
     NSArray *_plugInAutoStartOrigins;
+    WBSFaviconRequestsController *_requestsController;
 }
 
-@property(copy, nonatomic) NSArray *plugInAutoStartOrigins; // @synthesize plugInAutoStartOrigins=_plugInAutoStartOrigins;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSArray *plugInAutoStartOrigins; // @synthesize plugInAutoStartOrigins=_plugInAutoStartOrigins;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
-- (void)_refreshAllIcons:(id)arg1;
 - (void)plugInAutoStartDataUpdated;
 - (void)removeSelectedItems:(id)arg1;
 - (void)hideSheet:(id)arg1;
 - (void)showSheetInWindow:(id)arg1;
+- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

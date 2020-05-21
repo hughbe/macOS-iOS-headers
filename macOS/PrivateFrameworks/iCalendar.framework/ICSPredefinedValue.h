@@ -11,6 +11,7 @@
     long long _value;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)numberWithLong:(long long)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

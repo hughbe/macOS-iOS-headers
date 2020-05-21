@@ -18,13 +18,14 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL supportsLegacyFormats; // @synthesize supportsLegacyFormats=_supportsLegacyFormats;
 @property(readonly, copy, nonatomic) NSDictionary *dictionary; // @synthesize dictionary=_dictionary;
-- (void).cxx_destruct;
 - (id)certificateOfType:(unsigned long long)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithRSACertificate:(id)arg1 ECDSACertificate:(id)arg2;
 - (id)initWithDictionary:(id)arg1;
 - (id)init;
 

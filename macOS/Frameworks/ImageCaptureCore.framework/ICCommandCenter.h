@@ -6,11 +6,10 @@
 
 #import "NSObject.h"
 
-#import "icddProtocol.h"
-
 @class NSLock, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSXPCConnection;
 
-@interface ICCommandCenter : NSObject <icddProtocol>
+__attribute__((visibility("hidden")))
+@interface ICCommandCenter : NSObject
 {
     int _selfPID;
     NSMutableDictionary *_pendingCommands;
@@ -28,22 +27,20 @@
 - (void)lockConnection;
 - (void)releaseConnection;
 - (void)resetConnection;
-- (BOOL)sendMessageCmd:(id)arg1;
 - (void)setConnection:(id)arg1;
 - (id)getConnection;
-- (void)finalize;
 - (void)dealloc;
-- (BOOL)sendCommand:(id)arg1 from:(id)arg2;
-- (void)setReplyDict:(id)arg1;
-- (void)handleCompletionEvent:(id)arg1;
-- (void)handleNotificationEvent:(id)arg1;
-- (void)signalResponse;
-- (void)waitOnResponse;
+- (void)runBlock:(CDUnknownBlockType)arg1;
+- (void)sendCommand:(id)arg1 from:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)makeCommand:(id)arg1;
+- (void)requestScannerOpenSessionWithOptions:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)requestOpenSessionWithOptions:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)messageFromClient:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)messageFromDevice:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)messageFromICDD:(id)arg1 withReply:(CDUnknownBlockType)arg2;
-- (void)reconnectToICDD;
-- (void)setupConnectionToICDD;
+- (void)handleImageCaptureEventNotification:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)icddConnectionSetup:(id)arg1;
+- (void)addSelectorToInterface:(id)arg1 selectorString:(id)arg2 origin:(BOOL)arg3;
 - (id)init;
 
 @end

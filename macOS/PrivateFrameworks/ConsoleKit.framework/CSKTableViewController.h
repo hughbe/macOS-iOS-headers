@@ -13,9 +13,9 @@
 #import "NSTextFinderClient.h"
 #import "NSUserInterfaceValidations.h"
 
-@class CKUITableColumnLayout, CSKStringsIndexer, CSKStringsIndexerMarker, CSKTextFinder, NSArray, NSFont, NSMenu, NSNib, NSScrollView, NSString, NSTableView;
+@class CSKStringsIndexer, CSKStringsIndexerMarker, CSKTableColumnLayout, CSKTextFinder, NSArray, NSFont, NSMenu, NSScrollView, NSString, NSTableColumn, NSTableView;
 
-@interface CSKTableViewController : NSViewController <NSMenuDelegate, CSKTextFinderDelegate, NSUserInterfaceValidations, NSTextFinderClient, NSTableViewDelegate, NSOutlineViewDelegate>
+@interface CSKTableViewController : NSViewController <NSMenuDelegate, NSUserInterfaceValidations, CSKTextFinderDelegate, NSTextFinderClient, NSTableViewDelegate, NSOutlineViewDelegate>
 {
     BOOL _enableColumnSorting;
     BOOL _wantsHeaderTopBorder;
@@ -24,34 +24,34 @@
     id <CSKTableViewControllerDelegate> _delegate;
     NSScrollView *_scrollView;
     NSTableView *_tableView;
-    CKUITableColumnLayout *_columnLayout;
+    CSKTextFinder *_textFinder;
+    CSKTableColumnLayout *_columnLayout;
     NSString *_columnLayoutAutosaveName;
     NSFont *_defaultFont;
-    NSNib *_nib;
-    CSKTextFinder *_textFinder;
     NSMenu *_rowsMenu;
     NSMenu *_columnsMenu;
+    NSTableColumn *_lastVisibleColumn;
     CSKStringsIndexerMarker *_lastFocusedMarker;
     CSKStringsIndexer *_stringsIndexer;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) CSKStringsIndexer *stringsIndexer; // @synthesize stringsIndexer=_stringsIndexer;
 @property(retain, nonatomic) CSKStringsIndexerMarker *lastFocusedMarker; // @synthesize lastFocusedMarker=_lastFocusedMarker;
+@property(nonatomic) __weak NSTableColumn *lastVisibleColumn; // @synthesize lastVisibleColumn=_lastVisibleColumn;
 @property(retain, nonatomic) NSMenu *columnsMenu; // @synthesize columnsMenu=_columnsMenu;
 @property(retain, nonatomic) NSMenu *rowsMenu; // @synthesize rowsMenu=_rowsMenu;
-@property(retain, nonatomic) CSKTextFinder *textFinder; // @synthesize textFinder=_textFinder;
-@property(retain, nonatomic) NSNib *nib; // @synthesize nib=_nib;
 @property(retain, nonatomic) NSFont *defaultFont; // @synthesize defaultFont=_defaultFont;
 @property(nonatomic) BOOL locksFocusOnMostRecent; // @synthesize locksFocusOnMostRecent=_locksFocusOnMostRecent;
 @property(nonatomic) BOOL wantsHeaderTopBorder; // @synthesize wantsHeaderTopBorder=_wantsHeaderTopBorder;
 @property(nonatomic) BOOL enableColumnSorting; // @synthesize enableColumnSorting=_enableColumnSorting;
 @property(retain, nonatomic) NSString *columnLayoutAutosaveName; // @synthesize columnLayoutAutosaveName=_columnLayoutAutosaveName;
-@property(retain, nonatomic) CKUITableColumnLayout *columnLayout; // @synthesize columnLayout=_columnLayout;
+@property(retain, nonatomic) CSKTableColumnLayout *columnLayout; // @synthesize columnLayout=_columnLayout;
+@property(retain, nonatomic) CSKTextFinder *textFinder; // @synthesize textFinder=_textFinder;
 @property(retain, nonatomic) NSTableView *tableView; // @synthesize tableView=_tableView;
 @property(retain, nonatomic) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(nonatomic) __weak id <CSKTableViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <CSKTableViewControllerFindDataSource> findDataSource; // @synthesize findDataSource=_findDataSource;
-- (void).cxx_destruct;
 - (unsigned long long)_midVisibleRow;
 - (void)_updateLocksFocusStateAndNotifyDelegateIfNeeded:(BOOL)arg1;
 - (double)_contentViewTopOffset;
@@ -71,12 +71,16 @@
 - (void)performTextFinderAction:(id)arg1;
 - (void)performFindPanelAction:(id)arg1;
 - (void)copy:(id)arg1;
+- (void)outlineViewColumnDidResize:(id)arg1;
 - (void)outlineViewColumnDidMove:(id)arg1;
 - (void)outlineViewSelectionDidChange:(id)arg1;
+- (void)tableViewColumnDidResize:(id)arg1;
 - (void)tableViewColumnDidMove:(id)arg1;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (BOOL)supportsFind;
 - (id)joinedPasteboardDescriptionsForSelectedEntities;
+- (void)collapseEntitiesAtIndexes:(id)arg1;
+- (void)expandEntitiesAtIndexes:(id)arg1;
 - (id)entitiesAtIndexes:(id)arg1;
 - (id)entityAtIndex:(unsigned long long)arg1;
 - (void)selectEntityAtIndex:(unsigned long long)arg1;
@@ -84,6 +88,7 @@
 - (id)clickedEntity;
 - (id)selectedEntity;
 - (id)selectedEntities;
+- (id)selectedEntitiesIndexes;
 - (void)scrollToMostRecentRows;
 - (void)scrollRowIndexToMidView:(unsigned long long)arg1;
 - (void)scrollRowIndexToVisible:(unsigned long long)arg1;

@@ -8,12 +8,18 @@
 
 @class NSString, NSWindow;
 
+__attribute__((visibility("hidden")))
 @interface NSWindowMenuItem : NSObject
 {
     NSWindow *_window;
     NSString *_path;
     NSString *_title;
 }
+
+@property(copy) NSString *title; // @synthesize title=_title;
+@property(retain) NSString *path; // @synthesize path=_path;
+@property NSWindow *window; // @synthesize window=_window;
+- (void)dealloc;
 
 @end
 

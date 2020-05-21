@@ -6,10 +6,12 @@
 
 #import "NSOutlineView.h"
 
+#import "FieldEditorDFRAccessoryDisabling.h"
+
 @class NSTimer;
 
 __attribute__((visibility("hidden")))
-@interface OutlineViewPlus : NSOutlineView
+@interface OutlineViewPlus : NSOutlineView <FieldEditorDFRAccessoryDisabling>
 {
     BOOL _lockSelection;
     int _doubleClickTimerAction;
@@ -19,8 +21,9 @@ __attribute__((visibility("hidden")))
     BOOL _acceptsFirstMouse;
 }
 
-@property(nonatomic) BOOL acceptsFirstMouse; // @synthesize acceptsFirstMouse=_acceptsFirstMouse;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL acceptsFirstMouse; // @synthesize acceptsFirstMouse=_acceptsFirstMouse;
+@property(readonly, nonatomic) BOOL wantsDFRAccessoriesInFieldEditor;
 - (void)_cancelDoubleClickTimerAction;
 - (id)accessibilityActionNames;
 - (void)drawGridInClipRect:(struct CGRect)arg1;
@@ -38,6 +41,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)selectionShouldChangeFromMouseDownInRow:(long long)arg1 tableColumn:(id)arg2;
 - (void)selectRowIndexes:(id)arg1 byExtendingSelection:(BOOL)arg2;
 - (void)deselectRow:(long long)arg1;
+- (void)cancelOperation:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)dealloc;

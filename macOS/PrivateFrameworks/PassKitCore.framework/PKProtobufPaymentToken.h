@@ -16,15 +16,19 @@
     NSString *_network;
     NSData *_paymentData;
     PKProtobufPaymentMethod *_paymentMethod;
+    NSString *_redeemURL;
+    NSString *_retryNonce;
     NSString *_transactionIdentifier;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *retryNonce; // @synthesize retryNonce=_retryNonce;
+@property(retain, nonatomic) NSString *redeemURL; // @synthesize redeemURL=_redeemURL;
 @property(retain, nonatomic) NSData *paymentData; // @synthesize paymentData=_paymentData;
 @property(retain, nonatomic) NSString *transactionIdentifier; // @synthesize transactionIdentifier=_transactionIdentifier;
 @property(retain, nonatomic) NSString *network; // @synthesize network=_network;
 @property(retain, nonatomic) NSString *instrumentName; // @synthesize instrumentName=_instrumentName;
 @property(retain, nonatomic) PKProtobufPaymentMethod *paymentMethod; // @synthesize paymentMethod=_paymentMethod;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -34,6 +38,8 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasRetryNonce;
+@property(readonly, nonatomic) BOOL hasRedeemURL;
 @property(readonly, nonatomic) BOOL hasPaymentData;
 @property(readonly, nonatomic) BOOL hasTransactionIdentifier;
 @property(readonly, nonatomic) BOOL hasNetwork;

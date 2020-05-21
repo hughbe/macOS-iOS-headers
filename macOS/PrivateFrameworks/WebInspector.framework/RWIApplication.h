@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableDictionary, NSString, RWIDevice, RWITarget;
+@class NSArray, NSMutableDictionary, NSString, RWITarget;
 
 @interface RWIApplication : NSObject
 {
@@ -18,24 +18,24 @@
     NSMutableDictionary *_debuggables;
     NSMutableDictionary *_drivables;
     BOOL _proxy;
-    BOOL _active;
     NSString *_hostApplicationIdentifier;
-    BOOL _allowsRemoteAutomation;
     BOOL _ready;
+    long long _automationAvailability;
+    unsigned long long _debuggerAvailability;
 }
 
 + (id)identifierForPID:(int)arg1;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long debuggerAvailability; // @synthesize debuggerAvailability=_debuggerAvailability;
 @property(readonly, nonatomic, getter=isReady) BOOL ready; // @synthesize ready=_ready;
 @property(copy, nonatomic) NSString *hostApplicationIdentifier; // @synthesize hostApplicationIdentifier=_hostApplicationIdentifier;
 @property(readonly, nonatomic, getter=isProxy) BOOL proxy; // @synthesize proxy=_proxy;
-@property(readonly, nonatomic) BOOL allowsRemoteAutomation; // @synthesize allowsRemoteAutomation=_allowsRemoteAutomation;
+@property(readonly, nonatomic) long long automationAvailability; // @synthesize automationAvailability=_automationAvailability;
 @property(readonly, nonatomic) RWITarget *target; // @synthesize target=_target;
-@property(readonly, nonatomic, getter=isActive) BOOL active; // @synthesize active=_active;
 @property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, copy, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(nonatomic) __weak id <RWIApplicationDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)createDrivableForSession:(id)arg1;
 - (id)drivableWithTargetIdentifier:(id)arg1;
 - (void)removeDrivable:(id)arg1;
@@ -44,15 +44,16 @@
 - (void)removeDebuggable:(id)arg1;
 - (void)addDebuggable:(id)arg1;
 - (id)hostApplication;
-- (void)changeAllowsRemoteAutomation:(BOOL)arg1;
+- (void)setAutomationAvailability:(long long)arg1;
 - (void)changeReadyState:(BOOL)arg1;
-- (void)changeActiveState:(BOOL)arg1;
-@property(readonly, nonatomic, getter=isCurrentApplication) BOOL currentApplication; // @dynamic currentApplication;
+- (void)_notifyClientsThatApplicationStateChanged;
+- (void)setDebuggerAvailability:(unsigned long long)arg1;
+@property(readonly, nonatomic, getter=isActive) BOOL active;
+@property(readonly, nonatomic) BOOL isCurrentApplication;
+@property(readonly, nonatomic) BOOL isCurrentTarget;
 @property(readonly, nonatomic) NSArray *drivables;
 @property(readonly, nonatomic) NSArray *debuggables;
-- (id)initWithIdentifier:(id)arg1 bundleIdentifier:(id)arg2 name:(id)arg3 isProxy:(BOOL)arg4 isActive:(BOOL)arg5 isReady:(BOOL)arg6 allowsRemoteAutomation:(BOOL)arg7 target:(id)arg8;
-@property(readonly, nonatomic) NSArray *webViews; // @dynamic webViews;
-@property(readonly, nonatomic) RWIDevice *device; // @dynamic device;
+- (id)initWithIdentifier:(id)arg1 bundleIdentifier:(id)arg2 name:(id)arg3 isProxy:(BOOL)arg4 debuggerAvailability:(unsigned long long)arg5 isReady:(BOOL)arg6 target:(id)arg7;
 
 @end
 

@@ -23,6 +23,7 @@ __attribute__((visibility("hidden")))
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)reset;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (void)dealloc;
 - (id)attributes;
 - (id)layouts;

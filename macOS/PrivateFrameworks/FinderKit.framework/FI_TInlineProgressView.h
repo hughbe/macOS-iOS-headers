@@ -6,29 +6,38 @@
 
 #import <FinderKit/FI_TUpdateLayerView.h>
 
+#import "NSAccessibilityProgressIndicator.h"
+
+@class NSString;
+
 __attribute__((visibility("hidden")))
-@interface FI_TInlineProgressView : FI_TUpdateLayerView
+@interface FI_TInlineProgressView : FI_TUpdateLayerView <NSAccessibilityProgressIndicator>
 {
-    _Bool _selected;
     _Bool _dimmed;
-    _Bool _active;
-    long long _backgroundStyle;
-    struct TNSRef<FI_TPieChartProgressLayer *, void> _pieChartLayer;
-    double _progress;
+    struct TNSRef<FI_TPieChartProgressLayer, void> _pieChartLayer;
+    struct TNSRef<NSImageView, void> _templateImageView;
 }
 
-@property(nonatomic) double progress; // @synthesize progress=_progress;
-@property(nonatomic, getter=isActive) _Bool active; // @synthesize active=_active;
-@property(nonatomic, getter=isDimmed) _Bool dimmed; // @synthesize dimmed=_dimmed;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)setProgressDidCompleteHandler:(const function_f9feaa7d *)arg1;
-- (void)setSelected:(_Bool)arg1;
-- (void)setBackgroundStyle:(long long)arg1;
+@property(nonatomic, getter=isDimmed) _Bool dimmed; // @synthesize dimmed=_dimmed;
+- (id)accessibilityMaxValue;
+- (id)accessibilityMinValue;
+- (id)accessibilityValue;
+- (_Bool)isProgressAnimationCompleted;
+- (void)setProgressDidCompleteHandler:(const function_b1fce659 *)arg1;
+@property(nonatomic) double progress; // @dynamic progress;
 - (void)updateLayer;
 - (void)viewDidChangeBackingProperties;
 - (struct CGSize)intrinsicContentSize;
+- (void)layout;
 - (void)initCommon;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

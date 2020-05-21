@@ -4,21 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import "AKAnisetteProvisioningClientProtocol.h"
 
-@class AKAppleIDAuthenticationContext, AKAppleIDServerResourceLoadDelegate, NSData, NSDictionary, NSError, NSString, NSURLRequest, NSUUID;
+@class AKAccountRecoveryContext, AKAppleIDAuthenticationContext, AKServerRequestConfiguration, NSDictionary, NSError, NSString, NSUUID;
 
-@protocol AKAppleIDAuthenticationClientProtocol <NSObject>
-- (void)legacyAnisetteDataForContext:(AKAppleIDAuthenticationContext *)arg1 DSID:(NSString *)arg2 withCompletion:(void (^)(AKAnisetteData *, NSError *))arg3;
-- (void)fetchAnisetteDataForContext:(AKAppleIDAuthenticationContext *)arg1 provisionIfNecessary:(BOOL)arg2 withCompletion:(void (^)(AKAnisetteData *, NSError *))arg3;
-- (void)eraseAnisetteForContext:(AKAppleIDAuthenticationContext *)arg1 withCompletion:(void (^)(BOOL, NSError *))arg2;
-- (void)syncAnisetteForContext:(AKAppleIDAuthenticationContext *)arg1 withSIMData:(NSData *)arg2 completion:(void (^)(BOOL, NSError *))arg3;
-- (void)provisionAnisetteForContext:(AKAppleIDAuthenticationContext *)arg1 withCompletion:(void (^)(BOOL, NSError *))arg2;
+@protocol AKAppleIDAuthenticationClientProtocol <AKAnisetteProvisioningClientProtocol>
 - (void)shouldContinueWithAuthenticationResults:(NSDictionary *)arg1 error:(NSError *)arg2 forContextID:(NSUUID *)arg3 completion:(void (^)(BOOL, NSDictionary *))arg4;
-- (void)dismissICSCRecoveryUIForContext:(AKAppleIDAuthenticationContext *)arg1 completion:(void (^)(BOOL, NSError *))arg2;
-- (void)presentICSCRecoveryUIForContext:(AKAppleIDAuthenticationContext *)arg1 withInfo:(NSDictionary *)arg2 completion:(void (^)(NSDictionary *, NSError *))arg3;
+- (void)presentBiometricOrPasscodeValidationForContext:(AKAppleIDAuthenticationContext *)arg1 completion:(void (^)(unsigned long long, NSError *))arg2;
+- (void)dismissNativeRecoveryUIForContext:(AKAppleIDAuthenticationContext *)arg1 completion:(void (^)(BOOL, NSError *))arg2;
+- (void)presentNativeRecoveryUIForContext:(AKAppleIDAuthenticationContext *)arg1 recoveryContext:(AKAccountRecoveryContext *)arg2 completion:(void (^)(NSDictionary *, NSError *))arg3;
 - (void)dismissServerProvidedUIForContext:(AKAppleIDAuthenticationContext *)arg1 completion:(void (^)(BOOL, NSError *))arg2;
-- (void)presentServerProvidedUIForContext:(AKAppleIDAuthenticationContext *)arg1 URLRequest:(NSURLRequest *)arg2 delegate:(AKAppleIDServerResourceLoadDelegate *)arg3 completion:(void (^)(NSHTTPURLResponse *, NSDictionary *, NSError *))arg4;
+- (void)presentServerProvidedUIForContext:(AKAppleIDAuthenticationContext *)arg1 withConfiguration:(AKServerRequestConfiguration *)arg2 completion:(void (^)(NSHTTPURLResponse *, NSDictionary *, NSError *))arg3;
 - (void)presentSecondFactorAlertForContext:(AKAppleIDAuthenticationContext *)arg1 withError:(NSError *)arg2 title:(NSString *)arg3 message:(NSString *)arg4 completion:(void (^)(NSNumber *, NSError *))arg5;
 - (void)dismissSecondFactorUIForContext:(AKAppleIDAuthenticationContext *)arg1 completion:(void (^)(BOOL, NSError *))arg2;
 - (void)presentSecondFactorUIForContext:(AKAppleIDAuthenticationContext *)arg1 completion:(void (^)(NSNumber *, NSError *))arg2;

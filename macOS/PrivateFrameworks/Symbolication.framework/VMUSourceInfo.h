@@ -15,7 +15,7 @@
     unsigned int _lineNumber;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (unsigned int)lineNumber;
 - (id)fileName;
 - (id)path;

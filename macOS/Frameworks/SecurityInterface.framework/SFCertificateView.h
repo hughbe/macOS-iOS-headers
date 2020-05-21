@@ -4,20 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSView.h"
+#import "NSVisualEffectView.h"
 
-@interface SFCertificateView : NSView
+@interface SFCertificateView : NSVisualEffectView
 {
     id _reserved_SFCertificateView;
 }
 
++ (id)certificateNameDictionary:(id)arg1 showsIssuer:(BOOL)arg2 selected:(BOOL)arg3;
 + (id)attributedCertificateName:(id)arg1 showsIssuer:(BOOL)arg2 selected:(BOOL)arg3;
 + (id)attributedCertificateName:(id)arg1 showsIssuer:(BOOL)arg2 selected:(BOOL)arg3 prefix:(id)arg4;
 + (id)attributedCertificateName:(id)arg1 showsStatus:(BOOL)arg2 showsIssuer:(BOOL)arg3 selected:(BOOL)arg4 prefix:(id)arg5;
 + (id)cachedImageNamed:(id)arg1;
 - (id)namesOfPromisedFilesDroppedAtDestination:(id)arg1;
 - (id)filenameExtension:(unsigned int)arg1;
-- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)arg1;
+- (unsigned long long)draggingSourceOperationMaskForLocal:(BOOL)arg1;
 - (void)pasteboard:(id)arg1 provideDataForType:(id)arg2;
 - (id)exportedText:(unsigned int)arg1 forFile:(BOOL)arg2;
 - (void)mouseDown:(id)arg1;
@@ -25,16 +26,14 @@
 - (id)draggedImage;
 - (id)printJobTitle;
 - (void)drawRect:(struct CGRect)arg1;
-- (void)setFrameSize:(struct CGSize)arg1;
 - (BOOL)isOpaque;
 - (BOOL)isFlipped;
 - (long long)_minVisibleHeight;
 - (long long)_minBoundsHeight;
-- (void)_postRedoLayout;
-- (struct CGSize)_redoLayout:(struct CGRect)arg1;
-- (void)_destroyViews;
-- (void)_recalcSubviews;
+- (void)_updateEditableUIState;
 - (void)_recreateViews;
+- (void)_createDetailsView:(BOOL)arg1;
+- (void)_createTrustView:(BOOL)arg1;
 - (void)_createViews;
 - (void)certificationPathDisclosedClicked:(id)arg1;
 - (void)policiesDisclosedClicked:(id)arg1;
@@ -42,8 +41,11 @@
 - (BOOL)certificationPathDisclosed;
 - (void)setCertificationPathDisclosed:(BOOL)arg1;
 - (BOOL)policiesDisclosed;
+- (void)_sizePolicies;
 - (void)setPoliciesDisclosed:(BOOL)arg1;
 - (BOOL)detailsDisclosed;
+- (void)_updateMinVisibleHeight;
+- (void)_sizeDetails;
 - (void)setDetailsDisclosed:(BOOL)arg1;
 - (void)helpButtonClicked:(id)arg1;
 - (void)ubertrustPopupSelected:(id)arg1;
@@ -75,9 +77,11 @@
 - (void)_evaluateTrust;
 - (id)policies;
 - (void)setPolicies:(id)arg1;
-- (struct OpaqueSecCertificateRef *)certificate;
-- (void)setCertificate:(struct OpaqueSecCertificateRef *)arg1;
+- (struct __SecCertificate *)certificate;
+- (void)setCertificate:(struct __SecCertificate *)arg1;
 - (void)dealloc;
+- (void)commonInit;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

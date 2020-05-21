@@ -23,6 +23,7 @@
 - (id)stringByRemovingWhitespace;
 - (struct _NSRange)__rangeOfNewlineInRange:(struct _NSRange)arg1;
 - (id)stringByResolvingAndStandardizingPath;
+- (BOOL)_appearsToBeBusinessID;
 - (BOOL)_appearsToBeDSID;
 - (BOOL)_appearsToBePhoneNumber;
 - (id)_md5Hash;
@@ -33,10 +34,12 @@
 - (id)_URIFromCanonicalizedFZIDType:(long long)arg1;
 - (long long)_FZBestGuessFZIDType;
 - (id)_bestGuessURIFromCanicalizedID;
+- (id)_URIFromCanonicalizedBusinessID;
 - (id)_URIFromCanonicalizedDSID;
 - (id)_URIFromCanonicalizedPhoneNumber;
 - (id)_URIFromCanonicalizedEmail;
 - (id)_bestGuessURI;
+- (id)_URIFromBusinessID;
 - (id)_URIFromDSID;
 - (id)_URIFromPhoneNumber;
 - (id)_URIFromEmail;
@@ -53,5 +56,9 @@
 - (unsigned int)hexValue;
 - (BOOL)isDirectory;
 - (BOOL)isEqualToIgnoringCase:(id)arg1;
+- (id)_imInitWithFormat:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
+@property(readonly, nonatomic) NSString *stripMobileMSuffixIfPresent;
+@property(readonly, nonatomic) BOOL hasMobileMeSuffix;
+@property(readonly, nonatomic) NSString *mobileMeDomain;
 @end
 

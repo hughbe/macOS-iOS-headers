@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSDictionary, NSDistantObject<DIHLHelperSlaveProtocol>;
+@class NSDictionary;
 
 @protocol DIHLHelperMasterProtocol
-- (int)synchronousFrameworkCallbackWithDictionary:(NSDictionary *)arg1;
-- (int)frameworkCallbackWithDictionary:(NSDictionary *)arg1;
-- (void)reportResultsToFramework:(NSDictionary *)arg1;
-- (void)connectToFramework:(NSDistantObject<DIHLHelperSlaveProtocol> *)arg1;
+- (void)synchronousFrameworkCallbackWithDictionary:(NSDictionary *)arg1 withReply:(void (^)(int))arg2;
+- (void)frameworkCallbackWithDictionary:(NSDictionary *)arg1 withReply:(void (^)(int))arg2;
+- (void)reportResultsToFramework:(NSDictionary *)arg1 withReply:(void (^)(void))arg2;
+- (void)connectToFramework;
 @end
 

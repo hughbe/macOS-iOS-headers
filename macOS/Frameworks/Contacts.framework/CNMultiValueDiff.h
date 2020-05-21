@@ -16,11 +16,11 @@ __attribute__((visibility("hidden")))
 
 + (id)diffMultiValue:(id)arg1 toMultiValue:(id)arg2;
 + (id)emptyDiff;
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSArray *updates; // @synthesize updates=_updates;
 - (id)description;
 - (BOOL)isEmpty;
 - (id)multiValueByApplyToMultiValue:(id)arg1 withIdentifierMap:(id)arg2;
-- (void)dealloc;
 - (id)initWithUpdates:(id)arg1;
 - (void)applyToABCDContact:(id)arg1 propertyDescription:(id)arg2;
 

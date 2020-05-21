@@ -6,7 +6,6 @@
 
 #import <ScreenSharing/SSConnectionAuthenticationViewController.h>
 
-__attribute__((visibility("hidden")))
 @interface SSConnectionAuthenticationGuestlessViewController : SSConnectionAuthenticationViewController
 {
 }

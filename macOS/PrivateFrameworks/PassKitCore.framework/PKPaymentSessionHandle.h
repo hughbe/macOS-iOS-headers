@@ -6,12 +6,19 @@
 
 #import "NSObject.h"
 
+@class NSObject<OS_dispatch_queue>;
+
 @interface PKPaymentSessionHandle : NSObject
 {
+    NSObject<OS_dispatch_queue> *_internalSessionSerialQueue;
+    id <NFSession> _sessionHandle;
 }
 
+- (void).cxx_destruct;
+- (void)invalidateSessionWithCompletion:(CDUnknownBlockType)arg1;
 - (void)invalidateSession;
 - (BOOL)isFirstInQueue;
+- (id)initWithInternalSessionHandle:(id)arg1 targetQueue:(id)arg2;
 
 @end
 

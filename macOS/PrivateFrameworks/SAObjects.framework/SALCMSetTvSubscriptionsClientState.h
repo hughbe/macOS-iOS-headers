@@ -17,6 +17,7 @@
 
 + (id)setTvSubscriptionsClientStateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setTvSubscriptionsClientState;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SALCMTvSubscriptionsClientState *clientState;
 - (id)encodedClassName;
 - (id)groupIdentifier;

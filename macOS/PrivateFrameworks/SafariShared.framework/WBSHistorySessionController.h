@@ -6,11 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, WBSHistorySessionIntervalCache;
+#import "WBSHistorySessions.h"
 
-@interface WBSHistorySessionController : NSObject
+@class NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, WBSHistory, WBSHistorySessionIntervalCache;
+
+@interface WBSHistorySessionController : NSObject <WBSHistorySessions>
 {
     NSObject<OS_dispatch_queue> *_sessionCacheAccessQueue;
+    WBSHistory *_history;
     NSMutableDictionary *_itemsBySession;
     NSArray *_orderedSessions;
     WBSHistorySessionIntervalCache *_intervalCache;
@@ -24,20 +27,21 @@
 - (void)_dispatchHistorySessionsDidChangeNotification;
 - (void)_loadSessionCache;
 - (void)_clearSessionCache;
-- (void)_removeItemFromSessionCache:(id)arg1;
-- (void)_addItemToSessionCache:(id)arg1;
-- (void)_insertItem:(id)arg1 withSessionKey:(id)arg2;
+- (void)_removeItemsFromSessionCache:(id)arg1;
+- (void)_addItemsToSessionCache:(id)arg1 shouldPostChangeNotification:(BOOL)arg2;
+- (unsigned long long)_insertItem:(id)arg1 withSessionKey:(id)arg2;
+- (void)_requestSessionKeyForDate:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (BOOL)_getKey:(id *)arg1 forDate:(double)arg2;
 - (id)_orderedSessionKeys;
 - (id)sessionForItem:(id)arg1;
-- (id)orderedSessions;
+@property(readonly, copy, nonatomic) NSArray *orderedSessions;
 - (id)itemsLastVisitedInSession:(id)arg1;
 - (unsigned long long)numberOfItemsVisitedInSession:(id)arg1;
-- (unsigned long long)numberOfSessions;
+@property(readonly, nonatomic) unsigned long long numberOfSessions;
 - (id)itemLastVisitedInSession:(id)arg1 atIndex:(unsigned long long)arg2;
+- (void)orderedItemsNewerThanDate:(id)arg1 maxCount:(unsigned long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)enumerateOrderedItemsLastVisitedInSession:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
-- (void)dealloc;
-- (id)init;
+- (id)initWithHistory:(id)arg1;
 
 @end
 

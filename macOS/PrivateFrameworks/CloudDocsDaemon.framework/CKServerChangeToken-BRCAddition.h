@@ -6,7 +6,19 @@
 
 #import "CKServerChangeToken.h"
 
-@interface CKServerChangeToken (BRCAddition)
+#import "PQLValuable.h"
+
+@class NSString;
+
+@interface CKServerChangeToken (BRCAddition) <PQLValuable>
++ (id)newFromSqliteValue:(struct sqlite3_value *)arg1;
+- (void)sqliteBind:(struct sqlite3_stmt *)arg1 index:(int)arg2;
 - (id)descriptionWithContext:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

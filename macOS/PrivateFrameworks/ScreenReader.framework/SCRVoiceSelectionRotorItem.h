@@ -11,22 +11,20 @@
 __attribute__((visibility("hidden")))
 @interface SCRVoiceSelectionRotorItem : NSObject
 {
-    NSString *_shortVoiceName;
+    BOOL _hasBeenSelected;
     NSString *_voiceIdentifier;
-    long long _hasBeenSelected;
+    NSString *_shortVoiceName;
+    NSString *_voiceLanguage;
 }
 
-- (void)setHasBeenSelected:(BOOL)arg1;
-- (void)setShortVoiceName:(id)arg1;
-- (void)setVoiceIdentifier:(id)arg1;
-- (BOOL)hasBeenSelected;
-- (id)shortVoiceName;
-- (id)voiceIdentifier;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL hasBeenSelected; // @synthesize hasBeenSelected=_hasBeenSelected;
+@property(copy, nonatomic) NSString *voiceLanguage; // @synthesize voiceLanguage=_voiceLanguage;
+@property(copy, nonatomic) NSString *shortVoiceName; // @synthesize shortVoiceName=_shortVoiceName;
+@property(copy, nonatomic) NSString *voiceIdentifier; // @synthesize voiceIdentifier=_voiceIdentifier;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
-- (id)initWithVoiceIdentifier:(id)arg1 shortVoiceName:(id)arg2 hasBeenSelected:(BOOL)arg3;
-- (void)dealloc;
-- (id)init;
+- (id)initWithVoiceIdentifier:(id)arg1 shortVoiceName:(id)arg2 voiceLanguage:(id)arg3 hasBeenSelected:(BOOL)arg4;
 
 @end
 

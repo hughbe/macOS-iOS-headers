@@ -13,10 +13,10 @@
     NSString *_groupIdentifier;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSString *groupIdentifier; // @synthesize groupIdentifier=_groupIdentifier;
 - (id)readableDescription;
 - (void)performOperation;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 forSession:(id)arg2;
 
 @end

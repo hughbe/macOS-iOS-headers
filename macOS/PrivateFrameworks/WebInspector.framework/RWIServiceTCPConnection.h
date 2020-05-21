@@ -6,24 +6,26 @@
 
 #import <WebInspector/RWIServiceConnection.h>
 
-#import "TCPConnectionDelegate.h"
+#import "_RWITCPConnectionDelegate.h"
 
-@class NSString, TCPConnection;
+@class NSString, _RWITCPConnection;
 
 __attribute__((visibility("hidden")))
-@interface RWIServiceTCPConnection : RWIServiceConnection <TCPConnectionDelegate>
+@interface RWIServiceTCPConnection : RWIServiceConnection <_RWITCPConnectionDelegate>
 {
-    TCPConnection *_connection;
+    _RWITCPConnection *_connection;
 }
 
 - (void).cxx_destruct;
 - (void)sendMessage:(id)arg1;
 - (void)tcpConnection:(id)arg1 didReceiveMessage:(id)arg2;
 - (void)tcpConnectionDidClose:(id)arg1;
+- (void)closeInternal;
 - (BOOL)isConnected;
-- (id)initWithDevice:(id)arg1 resolvedBonjourService:(id)arg2 delegate:(id)arg3;
-- (id)initWithDevice:(id)arg1 port:(unsigned short)arg2 delegate:(id)arg3;
-- (id)_initWithDevice:(id)arg1 tcpConnection:(id)arg2 delegate:(id)arg3;
+- (id)initWithSimulator:(id)arg1 resolvedBonjourService:(id)arg2 delegate:(id)arg3;
+- (id)initWithSimulator:(id)arg1 socketPath:(id)arg2 delegate:(id)arg3;
+- (id)initWithSimulator:(id)arg1 port:(unsigned short)arg2 delegate:(id)arg3;
+- (id)_initWithSimulator:(id)arg1 tcpConnection:(id)arg2 delegate:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

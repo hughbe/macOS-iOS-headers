@@ -6,25 +6,28 @@
 
 #import "NSObject.h"
 
-@class AVOutputDeviceDiscoverySessionAvailableOutputDevices, AVOutputDeviceDiscoverySessionInternal, NSArray;
+@class AVAudioSession, AVOutputDeviceDiscoverySessionAvailableOutputDevices, AVOutputDeviceDiscoverySessionInternal, NSArray;
 
 @interface AVOutputDeviceDiscoverySession : NSObject
 {
     AVOutputDeviceDiscoverySessionInternal *_outputDeviceDiscoverySession;
 }
 
++ (id)outputDeviceDiscoverySessionFactory;
++ (void)initialize;
+- (void)outputDeviceDiscoverySessionImpl:(id)arg1 didExpireWithReplacement:(id)arg2;
+- (void)outputDeviceDiscoverySessionImplDidChangeAvailableOutputDevices:(id)arg1;
 @property(readonly, nonatomic) BOOL devicePresenceDetected;
 @property(readonly, nonatomic) AVOutputDeviceDiscoverySessionAvailableOutputDevices *availableOutputDevicesObject;
 @property(readonly, nonatomic) NSArray *availableOutputDevices;
 @property(nonatomic) long long discoveryMode;
-- (void)finalize;
+@property(retain, nonatomic) AVAudioSession *targetAudioSession;
+- (id)impl;
 - (void)dealloc;
-- (void)_handlePickerServerConnectionDiedNotification;
-- (void)_removeFigEndpointPickerNotifications;
-- (void)_addFigEndpointPickerNotifications;
-- (int)_configureFigEndpointPickerWithFeature:(unsigned long long)arg1;
+- (id)initWithOutputDeviceDiscoverySessionImpl:(id)arg1;
 - (id)initWithDeviceFeatures:(unsigned long long)arg1;
 - (id)init;
+@property(readonly) struct OpaqueFigRouteDiscoverer *routeDiscoverer;
 
 @end
 

@@ -13,7 +13,6 @@
 @optional
 - (void)automaticInspectionCandidate:(RWIDebuggable *)arg1 sessionIdentifier:(NSString *)arg2;
 - (void)requestDriver:(RWIDriver *)arg1 shouldBeActive:(BOOL)arg2 forwardIfUnhandled:(BOOL)arg3;
-- (void)receivedSetup:(NSDictionary *)arg1 forConnection:(RWIServiceConnection *)arg2;
 - (void)receivedData:(NSDictionary *)arg1 forDestination:(NSString *)arg2;
 - (void)serviceConnectionClosed:(RWIServiceConnection *)arg1;
 - (void)willRemoveDriver:(RWIDriver *)arg1;
@@ -24,7 +23,6 @@
 - (void)didAddDebuggable:(RWIDebuggable *)arg1;
 - (void)willRemoveApplication:(RWIApplication *)arg1;
 - (void)didAddApplication:(RWIApplication *)arg1;
-- (void)targetDidChangeReadyState:(RWITarget *)arg1;
 - (void)targetHasBasicInformation:(RWITarget *)arg1;
 @end
 

@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSSecureCoding.h"
+
 @class NSArray, NSData, NSDictionary, NSExpression, NSMutableArray, NSString;
 
-@interface NSEntityMapping : NSObject
+@interface NSEntityMapping : NSObject <NSSecureCoding>
 {
     void *_reserved;
     void *_reserved1;
@@ -26,11 +28,13 @@
     NSMutableArray *_relationshipMappings;
     struct __entityMappingFlags {
         unsigned int _isInUse:1;
-        unsigned int _reservedEntityMapping:31;
+        unsigned int _changeIsSchemaCompatible:1;
+        unsigned int _reservedEntityMapping:30;
     } _entityMappingFlags;
 }
 
 + (void)initialize;
++ (BOOL)supportsSecureCoding;
 @property(copy) NSString *entityMigrationPolicyClassName;
 @property(retain, nonatomic) NSDictionary *userInfo;
 @property(retain) NSExpression *sourceExpression;
@@ -45,10 +49,10 @@
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)init;
+- (void)_setChangeIsSchemaCompatible:(BOOL)arg1;
+- (BOOL)_changeIsSchemaCompatible;
 - (BOOL)_hasInferredMappingNeedingValidation;
 - (id)_mappingsByName;
 - (void)_addRelationshipMapping:(id)arg1;
@@ -59,6 +63,8 @@
 - (BOOL)isEditable;
 - (id)_initWithSourceEntityDescription:(id)arg1 destinationEntityDescription:(id)arg2;
 - (id)_migrationPolicy;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 
 @end
 

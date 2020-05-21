@@ -16,6 +16,9 @@
 
 + (id)attachmentWithURL:(id)arg1;
 + (id)attachmentFromManagedObject:(id)arg1;
+- (void).cxx_destruct;
+@property(retain) NSURL *cachedURL; // @synthesize cachedURL=_cachedURL;
+@property(retain) NSManagedObjectID *managedObjectID; // @synthesize managedObjectID=_managedObjectID;
 - (id)previewItemURL;
 - (id)icon;
 - (id)filenameParameter;
@@ -29,13 +32,8 @@
 - (id)contentType;
 - (void)setData:(id)arg1;
 - (id)data;
-- (void)setCachedURL:(id)arg1;
-- (id)cachedURL;
 - (void)setURL:(id)arg1;
 - (id)url;
-- (void)setManagedObjectID:(id)arg1;
-- (id)managedObjectID;
-- (void)dealloc;
 - (id)description;
 - (id)initWithData:(id)arg1;
 - (id)initWithURL:(id)arg1;

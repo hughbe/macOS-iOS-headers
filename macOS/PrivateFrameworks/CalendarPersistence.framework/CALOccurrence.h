@@ -19,6 +19,7 @@
     BOOL _discard;
 }
 
+- (void).cxx_destruct;
 - (BOOL)ableToMoveToCalendar:(id)arg1;
 - (BOOL)ableToMovePreservingAttendeesToCalendar:(id)arg1;
 - (BOOL)isAddressMe:(id)arg1;

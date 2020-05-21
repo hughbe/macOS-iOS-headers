@@ -31,6 +31,7 @@
     id <CoreDAVAccountInfoProvider> _backingAccountInfoProvider;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *userAgentHeader; // @synthesize userAgentHeader=_userAgentHeader;
 @property(retain, nonatomic) NSSet *serverComplianceClasses; // @synthesize serverComplianceClasses=_serverComplianceClasses;
 @property(retain, nonatomic) NSDictionary *serverHeaders; // @synthesize serverHeaders=_serverHeaders;
@@ -48,6 +49,7 @@
 @property(nonatomic) long long port; // @synthesize port=_port;
 @property(retain, nonatomic) NSString *host; // @synthesize host=_host;
 @property(retain, nonatomic) NSString *scheme; // @synthesize scheme=_scheme;
+- (id)getAppleIDSession;
 - (BOOL)shouldUseOpportunisticSockets;
 - (struct __CFURLStorageSession *)copyStorageSession;
 - (BOOL)shouldSendClientInfoHeaderForURL:(id)arg1;
@@ -55,6 +57,8 @@
 - (BOOL)handleShouldUseCredentialStorage;
 - (BOOL)handleAuthenticateAgainstProtectionSpace:(id)arg1 withConnection:(id)arg2;
 - (BOOL)handleAuthenticateAgainstProtectionSpace:(id)arg1;
+- (BOOL)renewCredential;
+- (BOOL)shouldTryRenewingCredential;
 - (BOOL)shouldRetryUnauthorizedConnection:(id)arg1;
 - (BOOL)shouldTurnModalOnBadPassword;
 - (BOOL)handleCertificateError:(id)arg1;
@@ -68,7 +72,6 @@
 - (void)promptUserForNewCoreDAVPasswordWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)url;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)initWithAccountInfoProvider:(id)arg1;
 
 // Remaining properties

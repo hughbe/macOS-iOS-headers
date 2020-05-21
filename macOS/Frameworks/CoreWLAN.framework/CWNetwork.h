@@ -39,8 +39,17 @@
 @property(readonly) NSString *ssid; // @dynamic ssid;
 @property(readonly) BOOL ibss; // @dynamic ibss;
 - (void)dealloc;
+- (long long)comparePHYMode:(id)arg1;
+- (long long)compareSecurity:(id)arg1;
+- (BOOL)supportsPSK;
+- (BOOL)supportsEAP;
+- (long long)fastestSupportedPHYMode;
+- (long long)strongestSupportedSecurity;
+- (BOOL)isWiFiNetworkMetered;
+- (BOOL)isWiFiNetworkChargeablePublicNetwork;
 - (BOOL)isAppleSWAP;
 - (id)accessoryFriendlyName;
+- (BOOL)isSecureWACDevice;
 - (BOOL)isUnconfiguredAirPrintAccessory;
 - (BOOL)isUnconfiguredAirPlayAccessory;
 - (BOOL)isUnconfiguredAccessory;

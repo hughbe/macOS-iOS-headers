@@ -6,11 +6,18 @@
 
 #import <CoreData/NSSQLColumn.h>
 
+@class NSString;
+
 __attribute__((visibility("hidden")))
 @interface NSSQLPrimaryKey : NSSQLColumn
 {
+    NSString *_name;
 }
 
+- (void)copyValuesForReadOnlyFetch:(id)arg1;
+- (void)_setName:(id)arg1;
+- (id)name;
+- (void)dealloc;
 - (id)sqlTypeString;
 - (id)initWithEntity:(id)arg1 propertyDescription:(id)arg2;
 

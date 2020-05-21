@@ -13,14 +13,16 @@
     NSString *_value;
     BOOL _isMailScheme;
     BOOL _isHttpScheme;
+    BOOL _isFileScheme;
 }
 
 + (id)URIWithString:(id)arg1;
+- (void).cxx_destruct;
 - (id)value;
+- (BOOL)isFile;
 - (BOOL)isHttp;
 - (BOOL)isPhone;
 - (BOOL)isMail;
-- (void)dealloc;
 - (id)initWithString:(id)arg1;
 
 @end

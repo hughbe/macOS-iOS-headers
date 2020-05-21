@@ -16,13 +16,13 @@
     NSURL *_containerURL;
 }
 
+- (void).cxx_destruct;
 - (id)copyContainerParserMappings;
 - (Class)containerItemClass;
 - (void)task:(id)arg1 didFinishWithError:(id)arg2;
 - (void)startTaskGroup;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
-@property(nonatomic) id <CoreDAVContainerInfoSyncProvider> delegate;
+@property(nonatomic) __weak id <CoreDAVContainerInfoSyncProvider> delegate;
 - (id)initWithContainerURL:(id)arg1 previousSyncToken:(id)arg2 accountInfoProvider:(id)arg3 taskManager:(id)arg4;
 
 // Remaining properties

@@ -21,6 +21,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSArray *multilingualLanguages; // @synthesize multilingualLanguages=_multilingualLanguages;
 @property(nonatomic) BOOL assertDefaultKeyPlane; // @synthesize assertDefaultKeyPlane=_assertDefaultKeyPlane;
 @property(copy, nonatomic) NSString *accentKeyString; // @synthesize accentKeyString=_accentKeyString;
@@ -29,7 +30,6 @@
 @property(copy, nonatomic) TIKeyboardInputManagerState *inputManagerState; // @synthesize inputManagerState=_inputManagerState;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 
 @end
 

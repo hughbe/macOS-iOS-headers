@@ -6,9 +6,11 @@
 
 #import <SystemMigration/SMCopyEngineFileCopier.h>
 
+#import "SMYaaActionDelegate.h"
+
 @class NSString, NSURL, SMNetworkSourceProxy;
 
-@interface SMCopyEngineNetworkCopier : SMCopyEngineFileCopier
+@interface SMCopyEngineNetworkCopier : SMCopyEngineFileCopier <SMYaaActionDelegate>
 {
     NSURL *absoluteBaseSourcePath;
     NSURL *absoluteDestinationBasePath;
@@ -18,14 +20,17 @@
     SMNetworkSourceProxy *_proxy;
 }
 
-@property(retain) SMNetworkSourceProxy *proxy; // @synthesize proxy=_proxy;
 - (void).cxx_destruct;
+@property(retain) SMNetworkSourceProxy *proxy; // @synthesize proxy=_proxy;
 - (int)bomCopierEncounteredFileError:(struct _BOMCopier *)arg1 atPath:(const char *)arg2 error:(int)arg3;
 - (void)bomCopierEncounteredFatalFileError:(struct _BOMCopier *)arg1 atPath:(const char *)arg2 error:(int)arg3;
 - (void)bomCopierEncounteredFatalError:(struct _BOMCopier *)arg1 message:(const char *)arg2;
+- (void)translateUID:(unsigned int *)arg1 andGID:(unsigned int *)arg2;
+- (void)yaaFileFinished:(id)arg1 filePath:(id)arg2 totalSize:(unsigned long long)arg3;
 - (void)bomCopierCopyFileFinished:(struct _BOMCopier *)arg1 filePath:(const char *)arg2 type:(int)arg3 totalSize:(long long)arg4 result:(int)arg5;
+- (void)updateCompletedFilePermissions:(id)arg1;
+- (void)fileFinishedFromArchiver:(id)arg1 totalSize:(unsigned long long)arg2;
 - (void)bomCopierCopyFileUpdate:(struct _BOMCopier *)arg1 filePath:(const char *)arg2 totalSizeCopied:(long long)arg3;
-- (id)formattedExcludedPaths;
 - (BOOL)copyFrom:(id)arg1 relativeFrom:(id)arg2 to:(id)arg3 error:(id *)arg4;
 - (BOOL)processReturningError:(id *)arg1;
 - (id)initWithProxy:(id)arg1;

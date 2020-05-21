@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <MapKit/MKPlaceSectionItemView.h>
+#import <MapKit/MKPlaceSectionRowView.h>
 
 @class NSArray, NSLayoutGuide, NSMutableArray;
 
-@interface _MKPlaceBusinessInfoRow : MKPlaceSectionItemView
+__attribute__((visibility("hidden")))
+@interface _MKPlaceBusinessInfoRow : MKPlaceSectionRowView
 {
     BOOL _needToRecalculateWidth;
     unsigned long long _numberOfColumns;
@@ -16,15 +17,17 @@
     NSArray *_constraints;
     NSLayoutGuide *_leftColumnGuide;
     NSLayoutGuide *_rightColumnGuide;
+    double _width;
     NSArray *_items;
 }
 
-@property(retain, nonatomic) NSArray *items; // @synthesize items=_items;
 - (void).cxx_destruct;
-- (void)updateConstraints;
-- (void)setBounds:(struct CGRect)arg1;
-- (void)setFrame:(struct CGRect)arg1;
-- (void)infoCardThemeChanged:(id)arg1;
+@property(retain, nonatomic) NSArray *items; // @synthesize items=_items;
+- (void)layout;
+- (void)_createConstraints;
+- (void)_updateFontAndTextColor:(id)arg1;
+- (void)infoCardThemeChanged;
+- (void)_contentSizeDidChange;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

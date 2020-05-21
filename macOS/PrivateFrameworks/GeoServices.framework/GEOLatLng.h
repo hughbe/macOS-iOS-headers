@@ -8,14 +8,25 @@
 
 #import "NSCopying.h"
 
+@class PBUnknownFields;
+
 @interface GEOLatLng : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     double _lat;
     double _lng;
+    BOOL _gtLog;
+    struct {
+        unsigned int has_gtLog:1;
+    } _flags;
 }
 
-@property(nonatomic) double lng; // @synthesize lng=_lng;
-@property(nonatomic) double lat; // @synthesize lat=_lat;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL hasGtLog;
+@property(nonatomic) BOOL gtLog;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -23,8 +34,11 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) double lng;
+@property(nonatomic) double lat;
 @property(readonly, nonatomic) CDStruct_c3b9c2ee coordinate;
 - (id)initWithCoordinate:(CDStruct_c3b9c2ee)arg1;
 - (id)initWithLatitude:(double)arg1 longitude:(double)arg2;

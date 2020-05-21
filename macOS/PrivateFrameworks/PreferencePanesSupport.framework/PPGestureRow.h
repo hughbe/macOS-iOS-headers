@@ -23,6 +23,7 @@
     PPGestureMovieView *mMovieView;
 }
 
+- (void).cxx_destruct;
 @property(retain) PPGestureMovieView *movieView; // @synthesize movieView=mMovieView;
 @property(readonly) NSPopUpButton *choicesPopUp; // @synthesize choicesPopUp=mGestureChoices;
 @property(readonly) NSTextField *groupTitle; // @synthesize groupTitle=mGroupTitle;

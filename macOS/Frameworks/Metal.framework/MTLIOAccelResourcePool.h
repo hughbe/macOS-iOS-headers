@@ -16,13 +16,17 @@
     struct IOAccelNewResourceArgs *_resourceArgs;
     unsigned int _resourceArgsSize;
     unsigned long long age_to_purge;
+    unsigned int generation;
 }
 
 @property(readonly) unsigned int resourceArgsSize; // @synthesize resourceArgsSize=_resourceArgsSize;
 @property(readonly) struct IOAccelNewResourceArgs *resourceArgs; // @synthesize resourceArgs=_resourceArgs;
+- (_Bool)updateResourcePurgeability;
 - (void)purge;
+- (void)purgeWithLock;
 - (int)availableCount;
 - (void)dealloc;
+- (void)setResourceArgs:(const struct IOAccelNewResourceArgs *)arg1 resourceArgsSize:(unsigned int)arg2;
 - (id)initWithDevice:(id)arg1 resourceClass:(Class)arg2 resourceArgs:(const struct IOAccelNewResourceArgs *)arg3 resourceArgsSize:(unsigned int)arg4 options:(id)arg5;
 
 @end

@@ -14,10 +14,11 @@
 }
 
 + (id)log;
-@property(retain) EWSExchangeServiceBinding *binding; // @synthesize binding=_binding;
 - (void).cxx_destruct;
+@property(retain) EWSExchangeServiceBinding *binding; // @synthesize binding=_binding;
 - (void)disconnectWithError:(id)arg1;
-- (id)sendMessage:(id)arg1 error:(id *)arg2;
+- (BOOL)supportsSchema:(id)arg1;
+- (id)sendMessage:(id)arg1 schemaVersion:(id)arg2 error:(id *)arg3;
 - (void)_handleServerBusyError:(id)arg1;
 - (id)sendMessage:(id)arg1 forRequest:(id)arg2;
 - (void)disconnect;

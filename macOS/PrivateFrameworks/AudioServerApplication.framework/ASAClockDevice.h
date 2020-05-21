@@ -14,6 +14,7 @@
 
 - (id)coreAudioClassName;
 - (id)diagnosticDescriptionWithIndent:(id)arg1 walkTree:(BOOL)arg2;
+@property(readonly, copy, nonatomic) NSArray *controls; // @dynamic controls;
 @property(readonly, copy, nonatomic) NSArray *controlObjectIDs; // @dynamic controlObjectIDs;
 @property(readonly, copy, nonatomic) NSArray *nominalSampleRates; // @dynamic nominalSampleRates;
 @property(readonly, nonatomic) unsigned int zeroTimestampPeriod; // @dynamic zeroTimestampPeriod;
@@ -22,7 +23,7 @@
 @property(readonly, nonatomic, getter=isHidden) BOOL hidden; // @dynamic hidden;
 @property(nonatomic) double nominalSampleRate; // @dynamic nominalSampleRate;
 @property(readonly, nonatomic, getter=isRunning) BOOL running; // @dynamic running;
-@property(readonly, nonatomic, getter=isActive) BOOL active; // @dynamic active;
+@property(readonly, nonatomic, getter=isAlive) BOOL alive; // @dynamic alive;
 @property(readonly, nonatomic) unsigned int clockDomain; // @dynamic clockDomain;
 @property(readonly, nonatomic) unsigned int transportType; // @dynamic transportType;
 @property(readonly, copy, nonatomic) NSString *deviceUID; // @dynamic deviceUID;

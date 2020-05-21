@@ -21,13 +21,14 @@ __attribute__((visibility("hidden")))
     NSMutableArray *mLevels;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *styleRefId; // @synthesize styleRefId=mStyleRefId;
 @property(readonly, nonatomic) NSString *styleId; // @synthesize styleId=mStyleId;
 @property(readonly, nonatomic) int listDefinitionId; // @synthesize listDefinitionId=mListDefinitionId;
 - (id)description;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithDocument:(id)arg1 listDefinitionId:(int)arg2 styleId:(id)arg3;
+- (void)removeLastLevel;
 - (id)addLevel;
 - (id)levelAt:(int)arg1;
 - (int)levelCount;

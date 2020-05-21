@@ -6,33 +6,74 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableURLRequest, NSURLRequest, __NSCFURLSession;
+@class NSMutableURLRequest, NSURLRequest, NSURLSessionEffectiveConfiguration, NSUUID, __CFN_TaskMetrics, __NSCFURLSession;
 
-__attribute__((visibility("hidden")))
 @interface CONNECTION_SessionTask : NSObject
 {
-    struct _CFURLRequest *_originalRequest;
-    struct _CFURLRequest *_currentRequest;
+    NSURLRequest *_originalRequest;
+    NSMutableURLRequest *_currentRequest;
+    double _startTime;
     struct __CFDictionary *_connectionProperties;
     struct __CFDictionary *_socketProperties;
     NSMutableURLRequest *_nsCurrentRequest;
     NSURLRequest *_nsOriginalRequest;
-    __NSCFURLSession *_session;
+    __NSCFURLSession *_session_ivar;
+    NSURLSessionEffectiveConfiguration *_effectiveConfiguration;
+    NSUUID *_uniqueIdentifier;
     _Bool _is_cellular;
     Class _my_protocolForTask;
-    struct __PerformanceTiming *__performanceTiming;
     BOOL __shouldSkipPreferredClientCertificateLookup;
-    struct __CFDictionary *__atsContext;
-    NSMutableArray *_transactionMetrics;
+    struct __CFDictionary *_atsStateCache;
+    BOOL _preventsAppSSO;
+    BOOL _appSSOFallback;
+    BOOL _appleIDContextRedirect;
+    __CFN_TaskMetrics *_metrics;
 }
 
-- (id)_transactionMetrics;
-- (void)_prepareNewTimingDataContainer;
+@property(retain, nonatomic) __CFN_TaskMetrics *_metrics; // @synthesize _metrics;
+- (void)set_connectionIsCompanionLink:(BOOL)arg1;
+- (BOOL)_connectionIsCompanionLink;
+- (id)_httpConnectionInfoCompletionBlock;
+- (void)set_expectedProgressTarget:(unsigned long long)arg1;
+- (unsigned long long)_expectedProgressTarget;
+- (id)_uniqueIdentifier;
+- (BOOL)_isTopLevelNavigation;
+- (id)_siteForCookies;
+- (id)_APSRelayTopic;
+- (id)_incompleteCurrentTaskTransactionMetrics;
+- (id)_incompleteTaskMetrics;
+- (BOOL)_preconnect;
+- (void)set_preconnect:(BOOL)arg1;
+- (void)_consumePendingBytesReceivedEncoded;
+- (void)_appendCountOfPendingBytesReceivedEncoded:(long long)arg1;
+- (long long)_discretionaryOverrride;
+- (void)set_discretionaryOverride:(long long)arg1;
+- (BOOL)_allowsQUIC;
+- (void)set_allowsQUIC:(BOOL)arg1;
+- (void)set_TLSNegotiatedCipherSuite:(unsigned int)arg1;
+- (unsigned short)_TLSMaximumSupportedProtocolVersion;
+- (void)set_TLSMaximumSupportedProtocolVersion:(unsigned short)arg1;
+- (unsigned short)_TLSMinimumSupportedProtocolVersion;
+- (void)set_TLSMinimumSupportedProtocolVersion:(unsigned short)arg1;
+- (void)set_TCPConnectionMetadata:(id)arg1;
 - (id)_storagePartitionIdentifier;
+- (void)set_trailers:(id)arg1;
+- (id)_trailers;
+- (unsigned int)_TLSNegotiatedCipherSuite;
+- (const struct __CFData **)_TCPConnectionMetadata;
+- (const struct __CFDictionary **)_DuetActivityProperties;
 - (struct __CFDictionary *)_dependencyInfo;
 - (struct __CFDictionary *)_copyATSState;
 - (struct __CFSet *)_getAuthenticatorStatusCodes;
-- (void)_getAuthenticationHeadersForResponse:(struct _CFURLResponse *)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_getAuthenticationHeadersForResponse:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_setAppleIDContext:(id)arg1;
+- (BOOL)_appleIDContextRedirect;
+- (void)set_appSSOFallback:(BOOL)arg1;
+- (BOOL)_appSSOFallback;
+- (void)set_preventsAppSSO:(BOOL)arg1;
+- (BOOL)_preventsAppSSO;
+- (BOOL)_requiresSecureHTTPSProxyConnection;
+- (BOOL)_preventsSystemHTTPProxyAuthentication;
 - (BOOL)_cacheOnly;
 - (BOOL)_shouldSkipPreferredClientCertificateLookup;
 - (id)_protocolForTask;
@@ -52,11 +93,14 @@ __attribute__((visibility("hidden")))
 - (long long)_requestPriority;
 - (struct __CFDictionary *)_proxySettings;
 - (unsigned char)_preventsIdleSystemSleep;
-- (int)_cachePolicy;
+- (unsigned long long)_cachePolicy;
 - (unsigned long long)_allowedProtocolTypes;
 - (id)_timeWindowDuration;
 - (id)_timeWindowDelay;
 - (id)_expectedWorkload;
+- (id)_allowsCellularOverride;
+- (id)_allowsConstrainedOverride;
+- (id)_allowsExpensiveOverride;
 - (id)_disallowCellular;
 - (id)_boundInterfaceIdentifier;
 - (id)_prohibitAuthUI;
@@ -68,40 +112,42 @@ __attribute__((visibility("hidden")))
 - (id)_cfCreds;
 - (id)_cfCache;
 - (id)_cfHSTS;
-- (id)_backgroundTaskTimingData;
+- (id)_backgroundTransactionMetrics;
 - (int)_cookieAcceptPolicy;
+- (BOOL)hasExtractor;
 - (id)_connectionPropertyDuet;
-- (struct __PerformanceTiming *)_performanceTiming;
+- (double)startTime;
 - (id)_priorityValue;
-- (id)startTime;
 - (id)error;
 - (id)state;
 - (id)countOfBytesExpectedToReceive;
 - (id)countOfBytesExpectedToSend;
 - (id)countOfBytesSent;
+- (id)_countOfBytesReceivedEncoded;
+- (id)_countOfPendingBytesReceivedEncoded;
 - (id)countOfBytesReceived;
 - (id)taskIdentifier;
 - (struct __CFURL *)currentRequest_mainDocumentURL;
 - (struct __CFURL *)currentRequest_URL;
 - (id)originalRequest;
 - (id)currentRequest;
-- (struct _CFURLRequest *)_currentCFURLRequest;
 - (id)workQueue;
 - (id)session;
 - (_Bool)shouldHandleCookiesAndSchemeIsAppropriate;
 - (void)_setSocketProperties:(struct __CFDictionary *)arg1 connectionProperties:(struct __CFDictionary *)arg2;
 - (const struct XCredentialStorage *)_createXCredentialStorage;
 - (const struct XCookieStorage *)_createXCookieStorage;
-- (const struct XURLCache *)_createXURLCache;
+- (void)_withXURLCache:(CDUnknownBlockType)arg1;
 - (struct _CFHSTSPolicy *)_copyHSTSPolicy;
 - (void)_processConnectionProperties;
-- (void)_initializeTimingDataWithSessionConfiguration:(id)arg1;
+- (id)_loggableDescription;
 - (struct __CFDictionary *)_copySocketStreamProperties;
 - (void)updateCurrentRequest:(id)arg1;
-- (struct _CFURLRequest *)_copyOriginalCFURLRequest;
-- (struct _CFURLRequest *)_copyCurrentCFURLRequest;
+- (void)_adoptEffectiveConfiguration:(id)arg1;
+- (id)_effectiveConfiguration;
+- (id)_private_nw_activity;
 - (void)dealloc;
-- (id)initWithRequest:(struct _CFURLRequest *)arg1 mutableCurrent:(struct _CFURLRequest *)arg2 connProps:(struct __CFDictionary *)arg3 sockProps:(struct __CFDictionary *)arg4 session:(id)arg5;
+- (id)initWithRequest:(id)arg1 mutableCurrent:(id)arg2 connProps:(struct __CFDictionary *)arg3 sockProps:(struct __CFDictionary *)arg4 session:(id)arg5;
 
 @end
 

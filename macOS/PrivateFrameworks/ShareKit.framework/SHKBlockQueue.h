@@ -8,6 +8,7 @@
 
 @class NSMutableArray, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface SHKBlockQueue : NSObject
 {
     NSMutableArray *_blockUUIDTuples;
@@ -15,10 +16,9 @@
     unsigned long long _maxSize;
 }
 
-@property unsigned long long maxSize; // @synthesize maxSize=_maxSize;
 - (void).cxx_destruct;
+@property unsigned long long maxSize; // @synthesize maxSize=_maxSize;
 - (id)description;
-- (void)removeAndExecuteBlockWithUUID:(id)arg1 size:(struct CGSize)arg2 useSizeParameter:(BOOL)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)removeAndExecuteBlockWithUUID:(id)arg1 size:(struct CGSize)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)removeAndExecuteBlockWithUUID:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)removeAndExecuteBlockWithCompletionBlock:(CDUnknownBlockType)arg1;

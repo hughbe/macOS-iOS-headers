@@ -14,15 +14,16 @@
     float _minimumDecibelValue;
     float _maximumDecibelValue;
     NSObject<OS_dispatch_queue> *_valueQueue;
-    BOOL _valueIsSettable;
-    unsigned int _subclassID;
+    BOOL _settable;
 }
 
 + (id)volumeControlWithDecibelValue:(float)arg1 minimumValue:(float)arg2 maximumValue:(float)arg3 isSettable:(BOOL)arg4 forElement:(unsigned int)arg5 inScope:(unsigned int)arg6 withPlugin:(id)arg7;
-@property(nonatomic) unsigned int subclassID; // @synthesize subclassID=_subclassID;
 - (void).cxx_destruct;
-- (void)changeScalarValue:(float)arg1;
-- (void)changeDecibelValue:(float)arg1;
+@property(readonly, nonatomic, getter=isSettable) BOOL settable; // @synthesize settable=_settable;
+- (id)driverClassName;
+- (id)diagnosticDescriptionWithIndent:(id)arg1 walkTree:(BOOL)arg2;
+- (BOOL)changeScalarValue:(float)arg1;
+- (BOOL)changeDecibelValue:(float)arg1;
 @property(nonatomic) float scalarValue; // @dynamic scalarValue;
 @property(nonatomic) float decibelValue; // @dynamic decibelValue;
 @property(nonatomic) float minimumDecibelValue; // @dynamic minimumDecibelValue;
@@ -33,12 +34,13 @@
 - (float)_scalarFromDecibel:(float)arg1;
 - (BOOL)setProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 qualifierData:(const void *)arg3 dataSize:(unsigned int)arg4 andData:(const void *)arg5 forClient:(int)arg6;
 - (BOOL)isPropertySettable:(const struct AudioObjectPropertyAddress *)arg1;
-- (BOOL)getProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 qualifierData:(const void *)arg3 dataSize:(unsigned int *)arg4 andData:(const void *)arg5 forClient:(int)arg6;
+- (BOOL)getProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 qualifierData:(const void *)arg3 dataSize:(unsigned int *)arg4 andData:(void *)arg5 forClient:(int)arg6;
 - (unsigned int)dataSizeForProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 andQualifierData:(const void *)arg3;
 - (BOOL)hasProperty:(const struct AudioObjectPropertyAddress *)arg1;
-- (unsigned int)objectClass;
 - (unsigned int)baseClass;
+- (id)initWithDecibelValue:(float)arg1 minimumValue:(float)arg2 maximumValue:(float)arg3 isSettable:(BOOL)arg4 forElement:(unsigned int)arg5 inScope:(unsigned int)arg6 withPlugin:(id)arg7 andObjectClassID:(unsigned int)arg8;
 - (id)initWithDecibelValue:(float)arg1 minimumValue:(float)arg2 maximumValue:(float)arg3 isSettable:(BOOL)arg4 forElement:(unsigned int)arg5 inScope:(unsigned int)arg6 withPlugin:(id)arg7;
+- (id)initWithElement:(unsigned int)arg1 inScope:(unsigned int)arg2 withPlugin:(id)arg3 andObjectClassID:(unsigned int)arg4;
 - (id)initWithElement:(unsigned int)arg1 inScope:(unsigned int)arg2 withPlugin:(id)arg3;
 - (id)initWithPlugin:(id)arg1;
 

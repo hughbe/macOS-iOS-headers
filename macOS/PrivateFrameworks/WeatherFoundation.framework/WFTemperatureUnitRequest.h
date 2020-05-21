@@ -11,8 +11,10 @@
     CDUnknownBlockType _resultHandler;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType resultHandler; // @synthesize resultHandler=_resultHandler;
 - (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType resultHandler; // @synthesize resultHandler=_resultHandler;
+- (void)cleanup;
+- (void)handleCancellation;
 - (void)handleResponse:(id)arg1;
 - (void)startWithService:(id)arg1;
 - (BOOL)requiresResponse;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CKDClientContext, CKSQLite, CKSQLitePool, NSObject<OS_dispatch_queue>;
+@class CKDClientContext, CKSQLite, CKSQLitePool, NSDate, NSObject<OS_dispatch_queue>;
 
 __attribute__((visibility("hidden")))
 @interface CKDRecordCache : NSObject
@@ -16,22 +16,30 @@ __attribute__((visibility("hidden")))
     CKDClientContext *_context;
     long long _scope;
     NSObject<OS_dispatch_queue> *_queue;
+    NSDate *_lastExpiryAttempt;
 }
 
 + (id)_expiryDateFormatter;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSDate *lastExpiryAttempt; // @synthesize lastExpiryAttempt=_lastExpiryAttempt;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(nonatomic) long long scope; // @synthesize scope=_scope;
 @property(retain, nonatomic) CKDClientContext *context; // @synthesize context=_context;
 @property(retain, nonatomic) CKSQLitePool *dbPool; // @synthesize dbPool=_dbPool;
 @property(retain, nonatomic) CKSQLite *db; // @synthesize db=_db;
-- (void).cxx_destruct;
 - (void)scheduleRecordExpirationWithExpiryDate:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (unsigned long long)recordCacheSizeLimit;
+- (void)_attemptRecordExpiryIfNeeded;
+- (unsigned long long)_lockedSizeOfAllRecordsInDb;
+- (void)clearAssetAuthTokensForRecord:(id)arg1;
 - (void)clearAssetAuthTokensForRecordWithID:(id)arg1;
 - (void)clearAllRecordsForZoneWithID:(id)arg1;
 - (void)clearAllRecords;
+- (void)clearAllRecordsInScope;
 - (void)deleteRecordWithID:(id)arg1;
 - (id)etagForRecordID:(id)arg1 requiredKeys:(id)arg2;
 - (void)addRecord:(id)arg1 knownUserKeys:(id)arg2;
+- (unsigned long long)numberOfRecordsWithID:(id)arg1;
 - (id)recordsWithIDs:(id)arg1 requiredKeys:(id)arg2;
 - (id)recordWithID:(id)arg1 requiredKeys:(id)arg2;
 - (id)_trimRecord:(id)arg1 toRequiredKeys:(id)arg2;

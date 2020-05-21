@@ -16,7 +16,7 @@
 
 - (void)parseAssociatedChatItem:(id)arg1 appendToElement:(id)arg2 withChatItemElement:(id)arg3;
 - (id)DOM;
-- (id)_acknowledgmentsStackWithChatItem:(id)arg1;
+- (id)_acknowledgmentsStackWithChatItem:(id)arg1 justTwoAcknowledgments:(BOOL)arg2;
 - (id)_acknowledgmentWithChatItem:(id)arg1;
 
 // Remaining properties

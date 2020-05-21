@@ -26,6 +26,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)supportsSecureCoding;
+@property(readonly) BOOL nullified; // @synthesize nullified=_nullified;
 @property(retain) NSXPCConnection *subarbiterConnection; // @synthesize subarbiterConnection=_subarbiterConnection;
 - (void)forwardReacquisitionForWritingClaim:(BOOL)arg1 withID:(in id)arg2 toPresenterForID:(id)arg3 usingReplySender:(CDUnknownBlockType)arg4;
 - (void)forwardRelinquishmentForWritingClaim:(BOOL)arg1 withID:(id)arg2 options:(unsigned long long)arg3 purposeID:(id)arg4 subitemURL:(id)arg5 toPresenter:(id)arg6 usingReplySender:(CDUnknownBlockType)arg7;
@@ -42,6 +43,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)evaluateSelfWithRootNode:(id)arg1 checkSubarbitrability:(BOOL)arg2;
 - (void)forwardUsingConnection:(id)arg1 withServer:(id)arg2 crashHandler:(CDUnknownBlockType)arg3;
 - (void)forwardUsingConnection:(id)arg1 crashHandler:(CDUnknownBlockType)arg2;
+- (id)descriptionWithIndenting:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;

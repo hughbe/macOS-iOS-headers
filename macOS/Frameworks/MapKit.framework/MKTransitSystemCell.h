@@ -8,19 +8,22 @@
 
 #import "MKMultiLineLabelContainer.h"
 
-@class MKImageView, NSImage, NSString, _MKUILabel;
+@class MKImageView, NSImage, NSLayoutConstraint, NSString, NSView, _MKUILabel;
 
+__attribute__((visibility("hidden")))
 @interface MKTransitSystemCell : MKCustomSeparatorTableViewCell <MKMultiLineLabelContainer>
 {
     MKImageView *_shieldImageView;
     _MKUILabel *_systemLabel;
+    NSView *_disclosureButton;
+    NSLayoutConstraint *_imageToLabelConstraint;
 }
 
 - (void).cxx_destruct;
 @property(copy, nonatomic) NSString *systemName;
 @property(retain, nonatomic) NSImage *systemArtwork;
 - (id)multilineTextFieldsWithinContainer;
-- (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
+- (id)initWithReuseIdentifier:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

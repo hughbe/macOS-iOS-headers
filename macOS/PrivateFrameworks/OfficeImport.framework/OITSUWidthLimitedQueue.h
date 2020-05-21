@@ -15,13 +15,15 @@ __attribute__((visibility("hidden")))
     int mLimit;
     NSObject<OS_dispatch_queue> *mManagerQueue;
     NSObject<OS_dispatch_queue> *mTargetQueue;
-    int mSpinLock;
+    struct os_unfair_lock_s mUnfairLock;
 }
 
+- (void)performSync:(CDUnknownBlockType)arg1;
 - (void)performAsync:(CDUnknownBlockType)arg1;
 - (void)dealloc;
 - (id)initWithLimit:(unsigned long long)arg1;
 - (id)init;
+- (id)targetDispatchQueue;
 
 @end
 

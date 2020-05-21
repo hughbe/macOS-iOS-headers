@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSSharingService;
+@class BrowserViewController, NSArray, NSDictionary, NSSharingService;
 
 __attribute__((visibility("hidden")))
 @interface BrowserSharingOperation : NSObject
@@ -14,15 +14,15 @@ __attribute__((visibility("hidden")))
     NSSharingService *_sharingService;
     NSArray *_items;
     NSDictionary *_sharingServiceParameters;
-    struct BrowserContentViewController *_contentViewController;
+    BrowserViewController *_browserViewController;
 }
 
-@property(readonly, nonatomic) struct BrowserContentViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BrowserViewController *browserViewController; // @synthesize browserViewController=_browserViewController;
 @property(readonly, nonatomic) NSDictionary *sharingServiceParameters; // @synthesize sharingServiceParameters=_sharingServiceParameters;
 @property(readonly, nonatomic) NSArray *items; // @synthesize items=_items;
 @property(readonly, nonatomic) NSSharingService *sharingService; // @synthesize sharingService=_sharingService;
-- (void).cxx_destruct;
-- (id)initWithSharingService:(id)arg1 items:(id)arg2 sharingServiceParameters:(id)arg3 contentViewController:(struct BrowserContentViewController *)arg4;
+- (id)initWithSharingService:(id)arg1 items:(id)arg2 sharingServiceParameters:(id)arg3 browserViewController:(id)arg4;
 
 @end
 

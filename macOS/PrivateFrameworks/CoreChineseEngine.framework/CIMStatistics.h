@@ -14,11 +14,10 @@
     NSMutableDictionary *_inputModeToAggregateStatistic;
 }
 
-+ (void)sendLearnedCandidateToUsageTrackingServer:(id)arg1 inputMode:(id)arg2;
 + (id)sharedStatistics;
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *inputModeToAggregateStatistic; // @synthesize inputModeToAggregateStatistic=_inputModeToAggregateStatistic;
 @property(retain) NSTimer *aggregatedStatisticsTimer; // @synthesize aggregatedStatisticsTimer=_aggregatedStatisticsTimer;
-- (void).cxx_destruct;
 - (void)applicationWillTerminate:(id)arg1;
 - (void)aggregatedStatisticsTimerFired:(id)arg1;
 - (void)flushAggregatedStatistics;
@@ -29,8 +28,8 @@
 - (void)logPreferenceChangedIntegerFrom:(unsigned long long)arg1 to:(unsigned long long)arg2 forPreferenceKey:(id)arg3;
 - (void)logPreferenceChangedBoolean:(BOOL)arg1 forPreferenceKey:(id)arg2;
 - (void)logInputMethodUsed:(id)arg1;
-- (void)logCandidateCommittedWithSurface:(id)arg1 reading:(id)arg2 partial:(BOOL)arg3 inputMode:(id)arg4;
-- (void)logCandidateCommitted:(id)arg1 partial:(BOOL)arg2 inputMode:(id)arg3;
+- (void)logCandidateCommittedWithSurface:(id)arg1 reading:(id)arg2 partial:(BOOL)arg3 inputMode:(id)arg4 selectionMethod:(id)arg5;
+- (void)logCandidateCommitted:(id)arg1 partial:(BOOL)arg2 inputMode:(id)arg3 selectionMethod:(id)arg4;
 - (void)dealloc;
 - (id)init;
 

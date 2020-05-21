@@ -8,6 +8,7 @@
 
 @class NSLayoutConstraint, NSString, _MKUILabel;
 
+__attribute__((visibility("hidden")))
 @interface MKPlaceTextCell : MKPlaceSectionRowView
 {
     _MKUILabel *_label;
@@ -15,13 +16,12 @@
     NSLayoutConstraint *_bottomConstraint;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSLayoutConstraint *bottomConstraint; // @synthesize bottomConstraint=_bottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *topConstraint; // @synthesize topConstraint=_topConstraint;
 @property(retain, nonatomic) _MKUILabel *label; // @synthesize label=_label;
-- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *text;
 - (void)_contentSizeDidChange;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

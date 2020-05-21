@@ -13,9 +13,9 @@
     NSArray *mailboxList;
 }
 
+- (void).cxx_destruct;
 @property(copy) NSArray *mailboxList; // @synthesize mailboxList;
 - (void)setInput:(id)arg1;
-- (void)dealloc;
 
 @end
 

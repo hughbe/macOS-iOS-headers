@@ -26,8 +26,10 @@
     } _flags;
 }
 
++ (BOOL)forceClickUserPreferencesEnabled;
 + (BOOL)_forceClickPossibleFromEvent:(id)arg1 respectUserPreferences:(BOOL)arg2;
 + (void)_lookupStyleSettingDidChangeNotification:(id)arg1;
+- (void).cxx_destruct;
 @property double allowableMovement; // @synthesize allowableMovement=_allowableMovement;
 @property SEL action; // @synthesize action=_action;
 @property __weak id target; // @synthesize target=_target;

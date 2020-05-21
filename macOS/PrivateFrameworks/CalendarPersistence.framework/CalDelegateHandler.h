@@ -17,6 +17,7 @@
 + (BOOL)removeGrantedDelegate:(id)arg1 toAccount:(id)arg2 withError:(id *)arg3;
 + (BOOL)addGrantedDelegate:(id)arg1 toAccount:(id)arg2 withError:(id *)arg3;
 + (id)getGrantedDelegateListForAccount:(id)arg1 withError:(id *)arg2;
++ (BOOL)removeDelegate:(id)arg1 fromAccount:(id)arg2 withError:(id *)arg3;
 + (BOOL)addDelegate:(id)arg1 toAccount:(id)arg2 withError:(id *)arg3;
 + (void)refreshDelegateListForAccount:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 

@@ -19,13 +19,12 @@
 + (id)constrainMechanismsForActionType:(id)arg1;
 + (id)advisorSettingsForIdentifyingMostRecentAction:(id)arg1 actionType:(id)arg2;
 + (id)advisorSettingsForSortingAddresses:(id)arg1 actionType:(id)arg2;
-@property(readonly, nonatomic) id <CNUIInteractionAdvisor> interactionAdvisor; // @synthesize interactionAdvisor=_interactionAdvisor;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) id <CNUIInteractionAdvisor> interactionAdvisor; // @synthesize interactionAdvisor=_interactionAdvisor;
 - (id)selectMostRecentActionFromItems:(id)arg1;
 - (id)selectRecentActionItems:(id)arg1 schedulerProvider:(id)arg2;
 - (id)sortKeysByRankingAddresses:(id)arg1 actionType:(id)arg2 scheduler:(id)arg3;
 - (id)sortActionItems:(id)arg1 schedulerProvider:(id)arg2;
-- (id)observableForRecentActionsChanged;
 - (id)initWithInteractionAdvisor:(id)arg1;
 - (id)init;
 

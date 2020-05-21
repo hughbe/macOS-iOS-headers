@@ -7,19 +7,21 @@
 #import <GameplayKit/GKComponent.h>
 
 #import "GKAgentDelegate.h"
+#import "GKSerializedNodeContaining.h"
 
 @class NSIndexPath, NSString, SKNode;
 
-@interface GKSKNodeComponent : GKComponent <GKAgentDelegate>
+@interface GKSKNodeComponent : GKComponent <GKSerializedNodeContaining, GKAgentDelegate>
 {
-    SKNode *_node;
     NSIndexPath *_serializableNodeIndexPath;
+    SKNode *_node;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)componentWithNode:(id)arg1;
-@property(retain, nonatomic) NSIndexPath *serializableNodeIndexPath; // @synthesize serializableNodeIndexPath=_serializableNodeIndexPath;
-@property(retain, nonatomic) SKNode *node; // @synthesize node=_node;
 - (void).cxx_destruct;
+@property(retain, nonatomic) SKNode *node; // @synthesize node=_node;
+@property(retain, nonatomic) NSIndexPath *serializableNodeIndexPath; // @synthesize serializableNodeIndexPath=_serializableNodeIndexPath;
 - (void)agentDidUpdate:(id)arg1;
 - (void)agentWillUpdate:(id)arg1;
 - (void)setEntity:(id)arg1;

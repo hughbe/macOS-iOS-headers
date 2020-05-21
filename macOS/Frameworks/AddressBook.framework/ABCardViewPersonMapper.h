@@ -6,32 +6,36 @@
 
 #import "NSObject.h"
 
-@class ABCNContact, ABCNContactStore, ABMultiDictionary, NSDictionary;
+@class CNContact, CNContactStore, CNMultiDictionary, NSDictionary;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewPersonMapper : NSObject
 {
-    ABCNContact *_person;
-    ABCNContactStore *_addressBook;
-    ABMultiDictionary *_multiValueIdentifierMap;
-    NSDictionary *_personIdentifierToAccountMap;
+    CNContact *_contact;
+    CNContactStore *_contactStore;
+    CNMultiDictionary *_linkedIdentifierMap;
+    NSDictionary *_containerByContactIdentifier;
 }
 
-+ (id)mapperWithPerson:(id)arg1 addressBook:(id)arg2;
-@property(readonly, retain) NSDictionary *personIdentifierToAccountMap; // @synthesize personIdentifierToAccountMap=_personIdentifierToAccountMap;
-@property(retain) ABMultiDictionary *multiValueIdentifierMap; // @synthesize multiValueIdentifierMap=_multiValueIdentifierMap;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CNMultiDictionary *linkedIdentifierMap; // @synthesize linkedIdentifierMap=_linkedIdentifierMap;
+@property(retain, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
+@property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
+@property(readonly, nonatomic) NSDictionary *containerByContactIdentifier; // @synthesize containerByContactIdentifier=_containerByContactIdentifier;
+- (id)containerForContactWithIdentifier:(id)arg1;
+- (BOOL)isDirectoryContainerForContactWithIdentifier:(id)arg1;
+- (BOOL)isExchangeContainerForContactWithIdentifier:(id)arg1;
+- (BOOL)canCreateCustomLabelsInContainerOfContactWithIdentifier:(id)arg1;
+- (BOOL)canCreateContactsInContainerOfContactWithIdentifier:(id)arg1;
+- (id)nameOfContainerForContactWithIdentifier:(id)arg1;
 - (BOOL)isUnified;
-- (id)personIdentifiers;
-- (id)personWithPersonIdentifier:(id)arg1;
-- (id)peopleWithMultiValueIdentifier:(id)arg1 forKey:(id)arg2;
-- (id)accountForPersonIdentifier:(id)arg1;
-- (id)personIdentifiersWithIdentifier:(id)arg1 key:(id)arg2;
-- (id)peopleWithIdentifier:(id)arg1 key:(id)arg2;
-- (void)buildPersonToAccountMap;
-- (id)people;
-- (void)buildIdentifierMap;
-- (void)dealloc;
-- (id)initWithPerson:(id)arg1 addressBook:(id)arg2;
+- (id)contactIdentifiers;
+- (id)searchForContactsUnifiedUnderMultiValueWithIdentifier:(id)arg1 forDisplayedKey:(id)arg2;
+- (id)contactWithIdentifier:(id)arg1;
+- (id)contactsUnifiedUnderMultiValueWithIdentifier:(id)arg1 forDisplayedKey:(id)arg2;
+- (id)identifiersOfContactsUnifiedUnderMultiValueWithIdentifier:(id)arg1 forDisplayedKey:(id)arg2;
+- (id)identifiersOfValuesUnifiedUnderMultiValueWithIdentifier:(id)arg1 forDisplayedKey:(id)arg2;
+- (id)contacts;
+- (id)initWithContact:(id)arg1 contactStore:(id)arg2;
 
 @end
 

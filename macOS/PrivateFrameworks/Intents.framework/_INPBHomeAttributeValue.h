@@ -7,41 +7,70 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBHomeAttributeValue.h"
 
-@class PBUnknownFields, _INPBDouble, _INPBString;
+@class NSString, _INPBHomeAttributeRange;
 
-@interface _INPBHomeAttributeValue : PBCodable <NSCopying>
+@interface _INPBHomeAttributeValue : PBCodable <_INPBHomeAttributeValue, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    _INPBDouble *_doubleValue;
-    _INPBString *_stringValue;
-    int _valueType;
-    BOOL _booleanValue;
     struct {
-        unsigned int valueType:1;
         unsigned int booleanValue:1;
+        unsigned int doubleValue:1;
+        unsigned int integerValue:1;
+        unsigned int limitValue:1;
+        unsigned int unit:1;
+        unsigned int valueType:1;
     } _has;
+    BOOL _booleanValue;
+    BOOL __encodeLegacyGloryData;
+    int _limitValue;
+    int _unit;
+    int _valueType;
+    double _doubleValue;
+    long long _integerValue;
+    _INPBHomeAttributeRange *_rangeValue;
+    NSString *_stringValue;
 }
 
-+ (id)options;
-@property(retain, nonatomic) _INPBString *stringValue; // @synthesize stringValue=_stringValue;
-@property(retain, nonatomic) _INPBDouble *doubleValue; // @synthesize doubleValue=_doubleValue;
-@property(nonatomic) BOOL booleanValue; // @synthesize booleanValue=_booleanValue;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(nonatomic) int valueType; // @synthesize valueType=_valueType;
+@property(nonatomic) int unit; // @synthesize unit=_unit;
+@property(copy, nonatomic) NSString *stringValue; // @synthesize stringValue=_stringValue;
+@property(retain, nonatomic) _INPBHomeAttributeRange *rangeValue; // @synthesize rangeValue=_rangeValue;
+@property(nonatomic) int limitValue; // @synthesize limitValue=_limitValue;
+@property(nonatomic) long long integerValue; // @synthesize integerValue=_integerValue;
+@property(nonatomic) double doubleValue; // @synthesize doubleValue=_doubleValue;
+@property(nonatomic) BOOL booleanValue; // @synthesize booleanValue=_booleanValue;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-@property(readonly, nonatomic) BOOL hasStringValue;
-@property(readonly, nonatomic) BOOL hasDoubleValue;
-@property(nonatomic) BOOL hasBooleanValue;
+- (int)StringAsValueType:(id)arg1;
+- (id)valueTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasValueType;
-@property(nonatomic) int valueType; // @synthesize valueType=_valueType;
+- (int)StringAsUnit:(id)arg1;
+- (id)unitAsString:(int)arg1;
+@property(nonatomic) BOOL hasUnit;
+@property(readonly, nonatomic) BOOL hasStringValue;
+@property(readonly, nonatomic) BOOL hasRangeValue;
+- (int)StringAsLimitValue:(id)arg1;
+- (id)limitValueAsString:(int)arg1;
+@property(nonatomic) BOOL hasLimitValue;
+@property(nonatomic) BOOL hasIntegerValue;
+@property(nonatomic) BOOL hasDoubleValue;
+@property(nonatomic) BOOL hasBooleanValue;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

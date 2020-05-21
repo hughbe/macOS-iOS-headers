@@ -25,6 +25,7 @@ __attribute__((visibility("hidden")))
 + (id)transitGeometryTileFinderForMap:(id)arg1 center:(CDStruct_c3b9c2ee)arg2 radius:(double)arg3;
 + (id)detailedTransitTileFinderForMap:(id)arg1 center:(CDStruct_c3b9c2ee)arg2 radius:(double)arg3;
 + (id)realisticTileFinderForMap:(id)arg1 center:(CDStruct_c3b9c2ee)arg2 radius:(double)arg3;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) int tileStyle; // @synthesize tileStyle=_tileStyle;
 @property(readonly, nonatomic) int tileScale; // @synthesize tileScale=_tileScale;
 @property(readonly, nonatomic) int tileSize; // @synthesize tileSize=_tileSize;
@@ -34,7 +35,7 @@ __attribute__((visibility("hidden")))
 - (void)findTiles:(CDUnknownBlockType)arg1;
 - (void)findTilesAdjacentToTile:(const struct _GEOTileKey *)arg1 containingPoint:(const Matrix_8746f91e *)arg2 tileHandler:(CDUnknownBlockType)arg3;
 - (void)findTiles:(CDUnknownBlockType)arg1 excludingKey:(const struct _GEOTileKey *)arg2;
-- (void)_fetchDataForKeys:(const unordered_set_4cb294f7 *)arg1;
+- (void)_fetchDataForKeys:(const unordered_set_684af1c2 *)arg1;
 @property(readonly, nonatomic) GEOMapAccess *map;
 - (void)cancel;
 - (void)dealloc;

@@ -14,16 +14,15 @@ __attribute__((visibility("hidden")))
     struct MFPColorMatrix *mColorMatrix;
     struct MFPColorMatrix *mGrayMatrix;
     int mColorMatrixFlags;
-    struct {
-        OITSUColor *mLow;
-        OITSUColor *mHigh;
-    } mTransparentRange;
+    OITSUColor *mTransparentRangeLow;
+    OITSUColor *mTransparentRangeHigh;
     float mGamma;
     NSDictionary *mRecolorMap;
     float mThreshold;
     BOOL mEnabled;
 }
 
+- (void).cxx_destruct;
 - (void)setEnabled:(BOOL)arg1;
 - (BOOL)isEnabled;
 - (void)setThreshold:(float)arg1;

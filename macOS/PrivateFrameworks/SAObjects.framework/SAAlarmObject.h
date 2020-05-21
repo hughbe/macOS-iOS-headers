@@ -19,6 +19,7 @@
 @property(copy, nonatomic) NSString *label;
 @property(copy, nonatomic) NSNumber *hour;
 @property(copy, nonatomic) NSArray *frequency;
+@property(copy, nonatomic) NSNumber *firing;
 @property(copy, nonatomic) NSNumber *enabled;
 - (id)encodedClassName;
 - (id)groupIdentifier;

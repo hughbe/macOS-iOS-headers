@@ -17,11 +17,11 @@
 + (id)searchWithEntityType:(int)arg1 withinTimeRange:(id)arg2;
 + (id)searchWithEntityType:(int)arg1;
 + (id)allEntitiesSearchElement;
+- (void).cxx_destruct;
 - (BOOL)matchesEntity:(id)arg1;
 - (void)setTimeRange:(id)arg1;
 - (id)timeRange;
 - (int)entityType;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithEntityType:(int)arg1 withinTimeRange:(id)arg2;
 

@@ -15,22 +15,25 @@ __attribute__((visibility("hidden")))
     NSString *_serverRecordType;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *serverRecordType; // @synthesize serverRecordType=_serverRecordType;
 @property(nonatomic) BOOL serverRecordHasNoProtectionData; // @synthesize serverRecordHasNoProtectionData=_serverRecordHasNoProtectionData;
-- (void).cxx_destruct;
 - (BOOL)_savePCSDataToCache;
 - (BOOL)_decryptPCS;
-- (BOOL)_fetchParentPCS;
-- (BOOL)_createParentPCS;
+- (BOOL)_decryptRecordPCSInSharedDatabase;
+- (BOOL)_decryptRecordPCSInPrivateDatabase;
+- (BOOL)_fetchDependentPCS;
+- (BOOL)_fetchDependentPCSInSharedDatabase;
+- (BOOL)_fetchPCSForPrivateZone;
+- (BOOL)_createAdditionalPCS;
 - (BOOL)_fetchPCSDataFromServer;
 - (BOOL)_fetchPCSDataFromDatabase;
 - (void)_handlePCSDataFetched:(id)arg1 withError:(id)arg2;
-- (void)dataWasFetched:(id)arg1 withError:(id)arg2 forRecordID:(id)arg3;
 - (BOOL)hasAllPCSData;
+- (BOOL)needsChainPCSCreation;
 - (id)itemTypeName;
 @property(retain, nonatomic) CKDRecordPCSData *recordPCSData;
 @property(readonly, nonatomic) CKRecordID *recordID;
-- (id)initWithRecordID:(id)arg1 parentOperation:(id)arg2 cache:(id)arg3 options:(unsigned long long)arg4;
 
 @end
 

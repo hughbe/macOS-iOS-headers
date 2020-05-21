@@ -16,7 +16,7 @@ __attribute__((visibility("hidden")))
 
 + (void)invalidate;
 + (id)defaultMappingGenerator;
-- (id)generateTableName:(id)arg1;
+- (id)generateTableName:(id)arg1 isAncillary:(BOOL)arg2;
 - (id)newGeneratedPropertyName:(id)arg1;
 - (id)newUniqueNameWithBase:(unsigned short *)arg1 withLength:(unsigned long long)arg2;
 - (id)uniqueNameWithBase:(id)arg1;

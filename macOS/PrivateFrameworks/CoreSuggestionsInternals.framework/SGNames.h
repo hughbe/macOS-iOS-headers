@@ -15,7 +15,7 @@
 + (id)cjkSpacerCharacters;
 + (id)nameStringFromEmailAddress:(id)arg1 inContext:(id)arg2;
 + (id)possibleNameStringFromEmailAddress:(id)arg1 inContext:(id)arg2;
-+ (id)sgNameFromString:(id)arg1 withOrigin:(id)arg2 andRecordId:(id)arg3;
++ (id)sgNameFromString:(id)arg1 origin:(id)arg2 recordId:(id)arg3 extractionInfo:(id)arg4;
 + (id)bestName:(id)arg1;
 + (id)surnameFromName:(id)arg1;
 + (id)sketchesForName:(id)arg1;
@@ -35,12 +35,12 @@
 + (BOOL)isCommonVietnameseSurname:(id)arg1;
 + (BOOL)isProbablyShortCJKName:(id)arg1;
 + (BOOL)isLowercaseStringCommonNameWord:(id)arg1;
++ (unsigned int)attributesForNameWord:(id)arg1;
 + (BOOL)isSalientNameByChars:(id)arg1;
 + (BOOL)isFamilyName:(id)arg1;
 + (BOOL)isSalientName:(id)arg1;
 + (BOOL)isCommonNameWord:(id)arg1;
 + (CDStruct_a2e78aaa)namePayload:(id)arg1;
-+ (void)initialize;
 
 @end
 

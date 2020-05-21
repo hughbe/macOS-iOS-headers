@@ -39,6 +39,13 @@ struct Point {
     short _field2;
 };
 
+struct RFBAssistCursorV2Info {
+    unsigned char _field1;
+    unsigned char _field2;
+    double _field3;
+    double _field4;
+};
+
 struct RFBScreenSizeInfo {
     unsigned short _field1;
     unsigned short _field2;
@@ -55,6 +62,13 @@ struct Rect {
     short _field2;
     short _field3;
     short _field4;
+};
+
+struct SSOrientationDetails {
+    unsigned long long time_received;
+    _Bool disable_J99_hack;
+    struct CGSize dimensions;
+    int orientation;
 };
 
 struct SSPoint {
@@ -134,6 +148,16 @@ typedef struct {
 } CDStruct_2ad129e7;
 
 typedef struct {
+    unsigned char _field1;
+    unsigned char _field2;
+    unsigned short _field3;
+    unsigned short _field4;
+    unsigned int _field5;
+    unsigned int _field6;
+    unsigned int _field7;
+} CDStruct_250aeff3;
+
+typedef struct {
     unsigned int _field1;
     unsigned int _field2;
     unsigned int _field3;
@@ -185,6 +209,17 @@ typedef struct {
     int _field1;
     char _field2[0];
 } CDStruct_82b15bee;
+
+typedef struct {
+    unsigned short _field1;
+    unsigned short _field2;
+    unsigned short _field3;
+    struct {
+        double _field1;
+        double _field2;
+        double _field3;
+    } _field4[0];
+} CDStruct_13724557;
 
 typedef struct {
     unsigned short _field1;

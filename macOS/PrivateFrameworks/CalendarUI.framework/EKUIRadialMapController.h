@@ -21,13 +21,13 @@
     _MKLocationShifter *_locationShifter;
 }
 
+- (void).cxx_destruct;
 @property(retain) _MKLocationShifter *locationShifter; // @synthesize locationShifter=_locationShifter;
 @property(retain) MapDragRadiusView *dragView; // @synthesize dragView=_dragView;
 @property(retain) MKMapView *mapView; // @synthesize mapView=_mapView;
 @property(retain) id <MapDragRadiusDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) long long proximity; // @synthesize proximity=_proximity;
 @property(retain, nonatomic) EKStructuredLocation *structuredLocation; // @synthesize structuredLocation=_structuredLocation;
-- (void).cxx_destruct;
 - (void)radiusDidChange:(double)arg1;
 - (id)mapView:(id)arg1 rendererForOverlay:(id)arg2;
 - (void)mapView:(id)arg1 didDeselectAnnotationView:(id)arg2;
@@ -37,6 +37,7 @@
 - (void)mapView:(id)arg1 regionDidChangeAnimated:(BOOL)arg2;
 - (void)mapView:(id)arg1 regionWillChangeAnimated:(BOOL)arg2;
 - (void)displayLocation:(id)arg1;
+- (void)systemColorsChanged;
 - (void)dealloc;
 - (void)loadView;
 

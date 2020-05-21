@@ -14,6 +14,7 @@
 
 + (id)searchWithDictionary:(id)arg1 context:(id)arg2;
 + (id)search;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(nonatomic) BOOL strict;
 @property(copy, nonatomic) NSArray *searchTypes;

@@ -9,7 +9,7 @@
 #import "SFCompanionServiceManagerClient.h"
 #import "SFCompanionXPCManagerObserver.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_semaphore>, NSString;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString;
 
 @interface SFCompanionManager : NSObject <SFCompanionServiceManagerClient, SFCompanionXPCManagerObserver>
 {
@@ -20,11 +20,14 @@
     NSString *_deviceName;
     NSMutableDictionary *_services;
     NSMutableDictionary *_streamHandlers;
+    NSObject<OS_dispatch_queue> *_serviceIdentifierQueue;
     NSObject<OS_dispatch_semaphore> *_managerSemaphore;
 }
 
 + (id)serviceManager;
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_semaphore> *managerSemaphore; // @synthesize managerSemaphore=_managerSemaphore;
+@property(retain) NSObject<OS_dispatch_queue> *serviceIdentifierQueue; // @synthesize serviceIdentifierQueue=_serviceIdentifierQueue;
 @property(retain) NSMutableDictionary *streamHandlers; // @synthesize streamHandlers=_streamHandlers;
 @property(retain) NSMutableDictionary *services; // @synthesize services=_services;
 @property(copy) NSString *deviceName; // @synthesize deviceName=_deviceName;
@@ -32,7 +35,6 @@
 @property(copy) NSString *deviceID; // @synthesize deviceID=_deviceID;
 @property(retain) id <SFCompanionServiceManagerProtocol> managerProxy; // @synthesize managerProxy=_managerProxy;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
 - (void)streamsFromFileHandle:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)disableStreamSupportForIdentifier:(id)arg1;
 - (void)supportStreamsWithIdentifier:(id)arg1 withStreamHandler:(CDUnknownBlockType)arg2;

@@ -38,6 +38,7 @@
 }
 
 + (void)initialize;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL inProgress; // @synthesize inProgress=_inProgress;
 @property(nonatomic) BOOL autodiscoverState; // @synthesize autodiscoverState=_autodiscoverState;
 @property(retain, nonatomic) NSHTTPURLResponse *rawResponse; // @synthesize rawResponse=_rawResponse;
@@ -54,9 +55,8 @@
 @property(retain, nonatomic) NSURL *autodiscoverURLUsed; // @synthesize autodiscoverURLUsed=_autodiscoverURLUsed;
 @property(copy, nonatomic) NSString *host; // @synthesize host=_host;
 @property(copy, nonatomic) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
-@property BOOL logsActivity; // @synthesize logsActivity=_logsActivity;
 @property(retain, nonatomic) EWSAutodiscoverOperation *me; // @synthesize me=_me;
-- (void).cxx_destruct;
+@property BOOL logsActivity; // @synthesize logsActivity=_logsActivity;
 - (void)cancelAuthenticationChallenge:(id)arg1;
 - (void)continueWithoutCredentialForAuthenticationChallenge:(id)arg1;
 - (void)useCredential:(id)arg1 forAuthenticationChallenge:(id)arg2;

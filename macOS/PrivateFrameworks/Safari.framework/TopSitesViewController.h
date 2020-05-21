@@ -32,18 +32,18 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)defaultPageTitle;
+- (void).cxx_destruct;
 @property(nonatomic) __weak GridView *topSitesGridView; // @synthesize topSitesGridView=_topSitesGridView;
 @property(nonatomic) __weak NSView *documentView; // @synthesize documentView=_documentView;
 @property(nonatomic) __weak NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain, nonatomic) NSView *externalCenteringView; // @synthesize externalCenteringView=_externalCenteringView;
 @property(nonatomic) __weak StartPageViewController *startPageViewController; // @synthesize startPageViewController=_startPageViewController;
-- (void).cxx_destruct;
 - (void)handleVoiceOverStateChangeNotification:(BOOL)arg1;
 - (void)_popDisappearingItemCursorIfNeeded;
 - (BOOL)_screenPointIsOverDeleteSafeZone:(struct CGPoint)arg1;
 - (BOOL)_screenPointIsValidDropLocationInGridView:(struct CGPoint)arg1;
 - (void)_rearrangeTopSitesByInsertingURL:(id)arg1 withTitle:(id)arg2 atIndex:(unsigned long long)arg3 indexExchanges:(id)arg4;
-- (void)_sortTopSites:(const Vector_eea79b75 *)arg1 inVector:(Vector_eea79b75 *)arg2 withIndexExchanges:(id)arg3;
+- (void)_sortTopSites:(const Vector_4ba0cb78 *)arg1 inVector:(Vector_4ba0cb78 *)arg2 withIndexExchanges:(id)arg3;
 - (BOOL)_pasteboardContainsExactlyOneViableTopSiteURL:(id)arg1;
 - (struct TopSite *)_topSiteAtIndex:(unsigned long long)arg1;
 - (void)_topSitePinnedStatusChanged:(id)arg1;
@@ -80,6 +80,7 @@ __attribute__((visibility("hidden")))
 - (void)gridView:(id)arg1 prepareView:(id)arg2 forCellAtIndex:(unsigned long long)arg3;
 - (unsigned long long)numberOfCellsInGridView:(id)arg1;
 - (unsigned long long)currentDraggedCellIndexForGridView:(id)arg1;
+@property(readonly, nonatomic) double topContentInset;
 @property(readonly, nonatomic) NSView *titleView;
 - (void)_scrollViewDidResize:(id)arg1;
 - (void)viewDidDisappear;

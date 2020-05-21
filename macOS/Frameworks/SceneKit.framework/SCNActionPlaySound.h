@@ -13,6 +13,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)playAudioSource:(id)arg1 waitForCompletion:(BOOL)arg2;
++ (BOOL)supportsSecureCoding;
 - (id)parameters;
 - (id)reversedAction;
 - (id)copyWithZone:(struct _NSZone *)arg1;

@@ -32,6 +32,7 @@
 
 + (id)keyPathsForValuesAffectingAllSystems;
 + (id)sharedScanner;
+- (void).cxx_destruct;
 @property(retain) NSMutableSet *observedSystems; // @synthesize observedSystems=_observedSystems;
 @property(retain) NSMutableDictionary *availabilityNotifications; // @synthesize availabilityNotifications=_availabilityNotifications;
 @property(retain) NSObject<OS_dispatch_queue> *timeCapsuleBrowserQueue; // @synthesize timeCapsuleBrowserQueue=_timeCapsuleBrowserQueue;
@@ -48,7 +49,6 @@
 @property BOOL switchingWirelessNetworks; // @synthesize switchingWirelessNetworks=_switchingWirelessNetworks;
 @property(retain) SMSystem_Daemon *currentSystem; // @synthesize currentSystem=_currentSystem;
 @property unsigned long long scannerState; // @synthesize scannerState=_scannerState;
-- (void).cxx_destruct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)notifyWhenSystemIsAvailable:(id)arg1 callbackBlock:(CDUnknownBlockType)arg2;
 - (void)stopObservingSystem:(id)arg1;
@@ -71,15 +71,13 @@
 - (void)disksDisappeared:(id)arg1;
 - (void)disksChanged:(id)arg1;
 - (void)disksAppeared:(id)arg1;
-- (id)latestBackupInFolder:(id)arg1;
 - (id)createContainingSparseBundleSystemForPath:(id)arg1;
 - (void)addArchiveAndInstallSystems:(id)arg1;
-- (int)addBackupDBTimeMachineSystems:(id)arg1 andRemoteDiskID:(id)arg2 andDADiskID:(id)arg3;
-- (id)addSparseBundleTimeMachineSystems:(id)arg1 fromSparseBundles:(id)arg2 andRemoteDiskID:(id)arg3 andDADiskID:(id)arg4;
+- (int)addSystemsFromTMDataVolume:(id)arg1 andRemoteDiskID:(id)arg2 andDADiskID:(id)arg3;
+- (id)addSystemsFromTMSparseBundles:(id)arg1 onVolume:(id)arg2 andRemoteDiskID:(id)arg3 andDADiskID:(id)arg4;
 - (id)timeCapsuleParentOfMountPoint:(id)arg1;
 - (void)scanDisk:(id)arg1;
 - (BOOL)mountDiskIfNeeded:(id)arg1;
-- (void)removeAllSystems;
 - (void)removeAllSystemsFromList:(id)arg1 onQueue:(id)arg2;
 - (void)notifyListenersOfImmediateRemovals:(id)arg1;
 - (void)stopScanning;

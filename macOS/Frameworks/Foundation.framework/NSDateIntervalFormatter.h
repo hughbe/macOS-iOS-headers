@@ -36,13 +36,14 @@
 - (id)stringForObjectValue:(id)arg1;
 - (id)stringFromDateInterval:(id)arg1;
 - (id)stringFromDate:(id)arg1 toDate:(id)arg2;
+- (void)setBoundaryStyle:(unsigned long long)arg1;
+- (unsigned long long)boundaryStyle;
 @property unsigned long long timeStyle;
 @property unsigned long long dateStyle;
 @property(copy) NSString *dateTemplate;
 @property(copy) NSTimeZone *timeZone;
 @property(copy) NSCalendar *calendar;
 @property(copy) NSLocale *locale;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

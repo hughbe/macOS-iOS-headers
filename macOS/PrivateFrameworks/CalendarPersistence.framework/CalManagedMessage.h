@@ -9,7 +9,7 @@
 #import "EKProtocolCalendarNotification.h"
 #import "ETagObject.h"
 
-@class CalManagedDiff, CalManagedEvent, CalManagedMessageContents, CalManagedPrincipal, NSData, NSDate, NSDictionary, NSManagedObjectID, NSMutableSet, NSNumber, NSString;
+@class CalManagedDiff, CalManagedEvent, CalManagedMessageContents, CalManagedPrincipal, NSData, NSDate, NSDictionary, NSManagedObjectID, NSMutableSet, NSNumber, NSString, NSURL;
 
 @interface CalManagedMessage : CalManagedObject <ETagObject, EKProtocolCalendarNotification>
 {
@@ -48,11 +48,13 @@
 + (id)fetchRequestWithPredicate:(id)arg1 inManagedObjectContext:(id)arg2;
 + (id)entityName;
 + (id)sharedCalendarInvitesForClass:(Class)arg1 principals:(id)arg2 context:(id)arg3;
+- (void).cxx_destruct;
 @property(retain) NSString *cachedClosestOccurrenceID; // @synthesize cachedClosestOccurrenceID=_cachedClosestOccurrenceID;
 @property BOOL notify; // @synthesize notify=_notify;
 @property BOOL isIntentionallyReplyToAll; // @synthesize isIntentionallyReplyToAll=_isIntentionallyReplyToAll;
 @property BOOL isIntentionallyDetached; // @synthesize isIntentionallyDetached=_isIntentionallyDetached;
 @property(retain) NSString *eventServerFilename; // @synthesize eventServerFilename=_eventServerFilename;
+@property(readonly, nonatomic) NSDate *proposedEndDateUnadjustedFromUTC;
 @property(readonly, nonatomic) NSDate *proposedStartDateUnadjustedFromUTC;
 @property(readonly, nonatomic) NSString *principalName;
 - (id)calendarTitle;
@@ -61,6 +63,10 @@
 @property(readonly, nonatomic) BOOL dateChanged;
 @property(readonly, nonatomic) BOOL titleChanged;
 @property(readonly, nonatomic) BOOL locationChanged;
+- (void)setSenderURL:(id)arg1;
+- (id)senderURL;
+@property(retain) NSURL *URL;
+@property(readonly, nonatomic) NSString *phoneNumber;
 @property(readonly, nonatomic) NSString *emailAddress;
 @property(readonly, nonatomic) NSString *lastName;
 @property(readonly, nonatomic) NSString *firstName;
@@ -69,17 +75,19 @@
 @property(readonly, nonatomic) NSString *componentType;
 @property(readonly, nonatomic) NSNumber *notificationType;
 @property(readonly, nonatomic) NSNumber *senders;
-@property(readonly, nonatomic) id <EKProtocolCalendarSource> containerSource;
-@property(readonly, nonatomic) id <EKProtocolEventOccurrence> occurrence;
+@property(readonly, nonatomic) id <CalendarSourceModelProtocol> containerSource;
+@property(readonly, nonatomic) id <EventOccurrenceModelProtocol> occurrence;
 - (BOOL)isProposedNewTime;
+- (BOOL)isSuggestion;
 - (BOOL)isResourceChange;
 - (BOOL)isSharedCalendarReply;
+- (void)setJunkStatus:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long junkStatus;
 - (BOOL)isSharedCalendarInvitation;
 - (BOOL)isInvitation;
 - (BOOL)hasOneSender;
 - (id)serverFilename;
 @property(retain) NSString *eTag; // @dynamic eTag;
-- (void)dealloc;
 - (void)awakeFromSnapshotEvents:(unsigned long long)arg1;
 - (void)awakeFromFetch;
 - (void)_resetCachedValues;
@@ -96,6 +104,7 @@
 - (BOOL)associatedWithNotificationCollection;
 - (void)updateContentsWithData:(id)arg1;
 @property(readonly, retain) NSData *contents;
+- (id)keysOnlyRelevantToNetworkDetails;
 - (void)awakeFromInsert;
 - (void)processForType:(int)arg1 inManagedObjectContext:(id)arg2;
 
@@ -119,11 +128,13 @@
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) BOOL isPartialObject;
 @property BOOL isVisible; // @dynamic isVisible;
+@property unsigned long long junkStatusEnum; // @dynamic junkStatusEnum;
 @property(readonly, nonatomic) NSManagedObjectID *managedObjectID;
 @property(retain) CalManagedMessage *masterMessage; // @dynamic masterMessage;
 @property(retain) CalManagedMessageContents *messageContents; // @dynamic messageContents;
 @property(readonly, nonatomic) NSDictionary *preFrozenRelationshipObjects;
 @property(retain) CalManagedPrincipal *principal; // @dynamic principal;
+@property(retain) NSDate *proposedEnd; // @dynamic proposedEnd;
 @property(retain) NSDate *proposedStart; // @dynamic proposedStart;
 @property BOOL responseInProgress; // @dynamic responseInProgress;
 @property(retain) NSString *sender; // @dynamic sender;

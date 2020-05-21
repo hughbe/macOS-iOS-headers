@@ -17,13 +17,14 @@
 
 + (id)imagePathKeyForApplicationWithName:(id)arg1;
 + (id)sharedApplicationRegistry;
+- (void).cxx_destruct;
 @property BOOL didLoadDeprecatedDefinitions; // @synthesize didLoadDeprecatedDefinitions=_didLoadDeprecatedDefinitions;
 @property(retain) NSMutableDictionary *typeRegistry; // @synthesize typeRegistry=_typeRegistry;
 @property(retain) NSMutableDictionary *definitionRegistry; // @synthesize definitionRegistry=_definitionRegistry;
 - (void)setName:(id)arg1 forDefinedType:(id)arg2;
 - (id)nameForDefinedType:(id)arg1;
 - (id)definitionForApplicationName:(id)arg1;
-@property(readonly) NSArray *applicationNames;
+@property(readonly, nonatomic) NSArray *applicationNames;
 - (void)loadNondeprecatedDefinitions;
 - (void)loadDeprecatedSystemDefinitionsIfNeeded;
 - (void)_loadDeprecatedSystemDefinitions;
@@ -36,9 +37,8 @@
 - (id)_systemLibraryURL;
 - (id)deprecatedSystemDefinitionLocation;
 - (id)standardNondeprecatedDefinitionLocations;
-@property(readonly) AMApplicationDefinition *definitionForMainBundle;
-@property(readonly) NSArray *applicationDefinitions;
-- (void)dealloc;
+@property(readonly, nonatomic) AMApplicationDefinition *definitionForMainBundle;
+@property(readonly, nonatomic) NSArray *applicationDefinitions;
 - (id)init;
 
 @end

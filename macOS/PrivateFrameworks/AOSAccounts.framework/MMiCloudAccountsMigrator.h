@@ -16,10 +16,11 @@
 + (BOOL)areAccountsEqual:(id)arg1 acAccount:(id)arg2 equivalent:(BOOL)arg3;
 + (id)saveMigratedACAccounts:(id)arg1 store:(id)arg2;
 + (id)migrateMobileMeAccounts:(id)arg1 toACAccounts:(id)arg2 store:(id)arg3 error:(id *)arg4;
-+ (void)migrateAccounts:(BOOL)arg1 dryRun:(BOOL)arg2;
++ (void)migrateAccounts:(BOOL)arg1;
 + (void)dedupeAppleAccounts;
 + (id)IsAccountDuplicate:(id)arg1;
 + (id)mobileMeAccounts;
++ (void)removeAccountFromDefaults:(id)arg1;
 
 @end
 

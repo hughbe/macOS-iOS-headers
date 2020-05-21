@@ -6,13 +6,20 @@
 
 #import "NSObject.h"
 
+@class IFSession;
+
 @interface IFDInstallController : NSObject
 {
-    struct IFDInstallController_Private *_private;
+    BOOL _userConsentedInstall;
+    struct IFDInstallController_Private *_privateController;
+    IFSession *_session;
 }
 
 + (void)initialize;
 + (id)timeRemainingStringWithEstimate:(double)arg1;
+@property(retain) IFSession *session; // @synthesize session=_session;
+@property struct IFDInstallController_Private *privateController; // @synthesize privateController=_privateController;
+@property BOOL userConsentedInstall; // @synthesize userConsentedInstall=_userConsentedInstall;
 - (BOOL)hasSuccessfullyAuthorized:(int)arg1;
 - (void)cancel;
 - (void)skipCurrentPhase;

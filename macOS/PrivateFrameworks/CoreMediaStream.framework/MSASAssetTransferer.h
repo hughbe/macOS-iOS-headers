@@ -28,6 +28,7 @@
     NSObject<OS_dispatch_queue> *_eventQueue;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL hasShutDown; // @synthesize hasShutDown=_hasShutDown;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *eventQueue; // @synthesize eventQueue=_eventQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
@@ -42,7 +43,6 @@
 @property(readonly, nonatomic) MMCSEngine *engine; // @synthesize engine=_engine;
 @property(copy, nonatomic) NSString *personID; // @synthesize personID=_personID;
 @property(nonatomic) __weak id delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)MMCSEngine:(id)arg1 logPerformanceMetrics:(id)arg2;
 - (void)MMCSEngine:(id)arg1 logMessage:(id)arg2 logLevel:(int)arg3;
 - (BOOL)MMCSEngine:(id)arg1 shouldLogAtLogLevel:(int)arg2;
@@ -69,7 +69,6 @@
 - (void)cancelCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)workQueueStop;
 - (void)stopCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)dealloc;
 - (id)initWithPersonID:(id)arg1 eventQueue:(id)arg2;
 - (id)initWithPersonID:(id)arg1;
 - (void)_rereadPerformanceLoggingSetting;

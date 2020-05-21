@@ -13,6 +13,7 @@
     NSString *_key;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(copy, nonatomic) NSString *key; // @synthesize key=_key;
 - (id)debugDescription;
 - (void)dealloc;

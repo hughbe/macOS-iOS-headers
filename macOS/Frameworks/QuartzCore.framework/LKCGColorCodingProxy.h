@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
     struct CGColor *_color;
 }
 
++ (BOOL)supportsSecureCoding;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

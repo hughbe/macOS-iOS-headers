@@ -43,6 +43,8 @@
 + (id)customFieldWithEvaluationBlock:(CDUnknownBlockType)arg1;
 + (id)dragField;
 + (id)field;
++ (id)SCNUID_instanciateWithOption:(id)arg1;
++ (id)SCNUID_creationOptions;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (struct SCNVector3)evalAtLocation:(struct SCNVector3)arg1;
@@ -57,6 +59,7 @@
 @property(nonatomic) struct SCNVector3 direction;
 @property(nonatomic) struct SCNVector3 offset;
 @property(nonatomic, getter=isExclusive) BOOL exclusive;
+- (BOOL)exclusive;
 @property(nonatomic) BOOL usesEllipsoidalExtent;
 @property(nonatomic) struct SCNVector3 halfExtent;
 @property(nonatomic) long long scope;

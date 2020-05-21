@@ -12,11 +12,13 @@
 {
     NSObject<PRSPreviewControllerDelegate> *_delegate;
     NSObject<PRSAssistantPreviewControllerPunchoutDelegate> *_punchoutDelegate;
+    id <PRSPreviewResultSelectionDelegate> _resultsSelectionDelegate;
 }
 
+- (void).cxx_destruct;
+@property __weak id <PRSPreviewResultSelectionDelegate> resultsSelectionDelegate; // @synthesize resultsSelectionDelegate=_resultsSelectionDelegate;
 @property __weak NSObject<PRSAssistantPreviewControllerPunchoutDelegate> *punchoutDelegate; // @synthesize punchoutDelegate=_punchoutDelegate;
 @property __weak NSObject<PRSPreviewControllerDelegate> *delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)awakeFromNib;
 - (void)mouseUp:(id)arg1;
 - (id)urlToOpen;

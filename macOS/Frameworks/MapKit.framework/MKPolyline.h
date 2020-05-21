@@ -6,20 +6,23 @@
 
 #import <MapKit/MKMultiPoint.h>
 
+#import "MKGeoJSONObject.h"
 #import "MKOverlay.h"
 
 @class NSString;
 
-@interface MKPolyline : MKMultiPoint <MKOverlay>
+@interface MKPolyline : MKMultiPoint <MKGeoJSONObject, MKOverlay>
 {
 }
 
-+ (id)polylineWithCoordinates:(struct CLLocationCoordinate2D *)arg1 count:(unsigned long long)arg2;
-+ (id)polylineWithPoints:(CDStruct_c3b9c2ee *)arg1 count:(unsigned long long)arg2;
++ (id)polylineWithCoordinates:(const struct CLLocationCoordinate2D *)arg1 count:(unsigned long long)arg2;
++ (id)polylineWithPoints:(const CDStruct_c3b9c2ee *)arg1 count:(unsigned long long)arg2;
 @property(readonly, nonatomic) CDStruct_02837cd9 boundingMapRect;
 - (BOOL)intersectsMapRect:(CDStruct_02837cd9)arg1;
 @property(readonly, nonatomic) struct CLLocationCoordinate2D coordinate;
 - (void)_calculateBounds;
+- (id)_initWithGeoJSONPoints:(id)arg1 error:(id *)arg2;
+- (id)_initWithGeoJSONObject:(id)arg1 error:(id *)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

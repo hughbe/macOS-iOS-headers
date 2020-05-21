@@ -20,11 +20,13 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)quantityWithDouble:(double)arg1 type:(id)arg2;
-+ (id)objectFromManagedObject:(id)arg1 readMetadata:(BOOL)arg2 cache:(id)arg3;
++ (id)fromPBCodable:(id)arg1;
++ (id)objectFromManagedObject:(id)arg1 readMetadata:(BOOL)arg2 excludedMetadataKeys:(id)arg3 cache:(id)arg4;
 + (id)entityName;
+- (void).cxx_destruct;
 @property(retain) _DKQuantityType *quantityType; // @synthesize quantityType=_quantityType;
 @property double doubleValue; // @synthesize doubleValue=_doubleValue;
-- (void).cxx_destruct;
+- (BOOL)isEqual:(id)arg1;
 - (id)stringValue;
 - (id)primaryValue;
 - (long long)compareValue:(id)arg1;
@@ -33,7 +35,9 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDouble:(double)arg1 type:(id)arg2;
+- (id)toPBCodable;
 - (BOOL)copyToManagedObject:(id)arg1;
+- (long long)typeCode;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

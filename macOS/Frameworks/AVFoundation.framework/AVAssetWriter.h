@@ -18,9 +18,15 @@
 
 + (id)_errorForOSStatus:(int)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
++ (id)assetWriterWithDataWritingDelegate:(id)arg1 fileType:(id)arg2;
 + (id)assetWriterWithURL:(id)arg1 fileType:(id)arg2 error:(id *)arg3;
 + (void)initialize;
+- (void)flush;
 - (void)_transitionToFailedStatusWithError:(id)arg1;
+- (void)setDataWritingDelegate:(id)arg1;
+@property(readonly, nonatomic) __weak id <AVAssetWriterDataWritingDelegate> dataWritingDelegate;
+- (void)setFinishWritingDelegate:(id)arg1;
+- (id)finishWritingDelegate;
 - (void)finishWritingWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (BOOL)finishWriting;
 - (void)cancelWriting;
@@ -35,6 +41,7 @@
 - (BOOL)canApplyOutputSettings:(id)arg1 forMediaType:(id)arg2;
 - (id)inputGroups;
 @property(readonly, nonatomic) NSArray *inputs;
+- (void)setWritesSinglePassUsingPredeterminedFileSize:(long long)arg1 mediaDataSize:(long long)arg2;
 - (void)setPreferredRate:(float)arg1;
 - (float)preferredRate;
 - (void)setPreferredVolume:(float)arg1;
@@ -49,6 +56,7 @@
 - (CDStruct_1b6d18a9)overallDurationHint;
 - (void)setMovieFragmentInterval:(CDStruct_1b6d18a9)arg1;
 - (CDStruct_1b6d18a9)movieFragmentInterval;
+@property __weak id <AVAssetWriterDelegate> delegate;
 @property(readonly) NSError *error;
 @property(readonly) long long status;
 - (void)declareKeyPathDependenciesWithRegistry:(id)arg1;
@@ -60,9 +68,11 @@
 - (BOOL)_setHelper:(id)arg1 ifCurrentHelper:(id)arg2;
 @property(readonly, retain, getter=_helper) AVAssetWriterHelper *helper;
 @property(readonly, copy) NSString *description;
-- (void)finalize;
 - (void)dealloc;
 - (void)addCallbackToCancelDuringDeallocation:(id)arg1;
+- (BOOL)_initInternalObject;
+- (id)initWithDataWritingDelegate:(id)arg1 fileType:(id)arg2;
+- (id)initWithFileType:(id)arg1 error:(id *)arg2;
 - (id)initWithURL:(id)arg1 fileType:(id)arg2 error:(id *)arg3;
 - (id)init;
 

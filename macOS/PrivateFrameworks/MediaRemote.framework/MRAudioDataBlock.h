@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     float _gain;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) float gain; // @synthesize gain=_gain;
 @property(readonly, nonatomic) CDStruct_ace97b7a time; // @synthesize time=_time;
 @property(readonly, nonatomic) MRAudioBuffer *buffer; // @synthesize buffer=_buffer;
@@ -29,7 +30,6 @@ __attribute__((visibility("hidden")))
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly, nonatomic) NSData *data;
 @property(readonly, nonatomic) _MRAudioDataBlockProtobuf *protobuf;
-- (void)dealloc;
 - (id)initWithProtobuf:(id)arg1;
 - (id)initWithData:(id)arg1;
 

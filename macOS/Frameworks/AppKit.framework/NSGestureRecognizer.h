@@ -8,7 +8,7 @@
 
 #import "NSCoding.h"
 
-@class NSEvent, NSMutableArray, NSMutableSet, NSPressureConfiguration, NSView;
+@class NSMutableArray, NSMutableSet, NSPressureConfiguration, NSTouchDevice, NSView;
 
 @interface NSGestureRecognizer : NSObject <NSCoding>
 {
@@ -17,7 +17,6 @@
     SEL _action;
     NSMutableArray *_delayedEvents;
     NSView *_view;
-    NSEvent *_updateEvent;
     id <NSGestureRecognizerDelegate> _delegate;
     NSMutableSet *_friends;
     long long _state;
@@ -28,16 +27,30 @@
     NSMutableSet *_dynamicFailureRequirements;
     NSMutableSet *_dynamicFailureDependents;
     id _failureMap;
-    id _reserved;
+    NSPressureConfiguration *_activePressureConfiguration;
+    NSTouchDevice *_touchDevice;
+    long long _touchContextId;
+    unsigned long long _allowedTouchTypes;
+    struct {
+        unsigned int sendsActionWhenPossible:1;
+        unsigned int privateDelegateShouldSendActionWhenPossibleConcurrentlyWithRecognizer:1;
+        unsigned int delegateShouldSendActionWhenPossibleConcurrentlyWithRecognizer:1;
+        unsigned int viewIsUnsafeUnretained:1;
+        unsigned int delegateIsUnsafeUnretained:1;
+        unsigned int targetIsUnsafeUnretained:1;
+        unsigned int privateDelegateShouldReceiveTouch:1;
+        unsigned int delegateShouldReceiveTouch:1;
+        unsigned int reserved:24;
+    } _additionalFlags;
 }
 
 + (id)_mostCompatibleRecognizerFromConfigured:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSMutableSet *_dynamicFailureDependents; // @synthesize _dynamicFailureDependents;
 @property(readonly, nonatomic) NSMutableSet *_dynamicFailureRequirements; // @synthesize _dynamicFailureRequirements;
 @property(readonly, nonatomic) NSMutableSet *_failureDependents; // @synthesize _failureDependents;
 @property(readonly, nonatomic) NSMutableSet *_failureRequirements; // @synthesize _failureRequirements;
 @property SEL action; // @synthesize action=_action;
-@property __weak id target; // @synthesize target=_target;
 - (struct CGPoint)locationInView:(id)arg1;
 - (BOOL)_affectedByGesture:(id)arg1;
 - (void)_invalidate;
@@ -49,7 +62,7 @@
 - (void)_willBeginAfterSatisfyingFailureRequirements;
 - (BOOL)_acceptsFailureRequirements;
 - (void)_setAcceptsFailureRequiments:(BOOL)arg1;
-- (void)_failureRequirementCompleted:(id)arg1 withEvent:(id)arg2;
+- (void)_failureRequirementCompleted:(id)arg1;
 - (void)removeFailureRequirement:(id)arg1;
 - (void)requireOtherGestureToFail:(id)arg1;
 - (void)_addDynamicFailureRequirement:(id)arg1;
@@ -67,16 +80,17 @@
 - (void)_addFriendGesture:(id)arg1;
 - (BOOL)_shouldBegin;
 - (BOOL)_delegateShouldSendActionWhenPossibleConcurrentlyWithRecognizer:(id)arg1;
+- (BOOL)_delegateShouldReceiveTouch:(id)arg1;
 - (BOOL)_delegateShouldAttemptToRecognizeWithEvent:(id)arg1;
 - (long long)_depthFirstViewCompare:(id)arg1;
 - (BOOL)_isRecognized;
 - (void)_queueForResetIfFinished;
 - (void)_resetIfFinished;
-- (void)_updateGestureStateWithEvent:(id)arg1 afterDelay:(BOOL)arg2;
+- (void)_updateGestureStateAfterDelay:(BOOL)arg1;
 - (void)_didSendActions;
 - (void)_delayedUpdateGesture;
 - (BOOL)_requiresGestureRecognizerToFail:(id)arg1;
-- (void)_updateGestureWithEvent:(id)arg1;
+- (void)_updateGesture;
 - (void)_enqueueDelayedEventsToSend;
 - (void)_clearDelayedEvents;
 - (void)_eventWasCancelled:(id)arg1;
@@ -114,6 +128,10 @@
 - (void)otherMouseDown:(id)arg1;
 - (void)rightMouseDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
+- (BOOL)_wantsFunctionRowTouches;
+- (void)_setWantsFunctionRowTouches:(BOOL)arg1;
+- (void)setAllowedTouchTypes:(unsigned long long)arg1;
+- (unsigned long long)allowedTouchTypes;
 - (unsigned long long)modifierFlags;
 - (void)setSendsActionWhenPossible:(BOOL)arg1;
 - (BOOL)sendsActionWhenPossible;
@@ -126,6 +144,8 @@
 - (void)setState:(long long)arg1;
 @property(readonly) long long state;
 @property(getter=isEnabled) BOOL enabled;
+- (void)setCancelsTouchesInView:(BOOL)arg1;
+- (BOOL)cancelsTouchesInView;
 @property BOOL delaysRotationEvents;
 @property BOOL delaysMagnificationEvents;
 @property BOOL delaysKeyEvents;
@@ -143,18 +163,20 @@
 - (void)_clearUpdateTimer;
 - (void)removeTarget:(id)arg1 action:(SEL)arg2;
 - (void)addTarget:(id)arg1 action:(SEL)arg2;
-@property __weak id <NSGestureRecognizerDelegate> delegate; // @synthesize delegate=_delegate;
+@property __weak id <NSGestureRecognizerDelegate> delegate;
+@property __weak id target;
+- (void)_setTouchContextId:(long long)arg1;
+- (long long)_touchContextId;
 - (void)_removeActiveGestureRecognizerFromTouchDevice;
 - (void)_setTouchDevice:(id)arg1;
 - (id)_touchDevice;
-- (id)_auxiliaryStorage;
-- (void)_deallocAuxiliaryStorage;
 - (void)dealloc;
 - (BOOL)shouldBeArchived;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithTarget:(id)arg1 action:(SEL)arg2;
+- (id)_descriptionForTouchBarLogging;
 
 @end
 

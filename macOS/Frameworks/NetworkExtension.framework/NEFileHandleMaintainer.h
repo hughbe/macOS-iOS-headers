@@ -6,22 +6,28 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSString;
+@class NSMutableArray, NSObject<OS_xpc_object>, NSString;
 
 @interface NEFileHandleMaintainer : NSObject
 {
     BOOL _changed;
+    BOOL _isOwnerMode;
     NSMutableArray *_fileHandles;
     CDUnknownBlockType _receivedHandlesCallback;
+    NSObject<OS_xpc_object> *_auxiliaryDataDictionary;
     NSString *_eventName;
 }
 
 + (id)sharedMaintainer;
+- (void).cxx_destruct;
 @property(retain) NSString *eventName; // @synthesize eventName=_eventName;
+@property(retain) NSObject<OS_xpc_object> *auxiliaryDataDictionary; // @synthesize auxiliaryDataDictionary=_auxiliaryDataDictionary;
+@property BOOL isOwnerMode; // @synthesize isOwnerMode=_isOwnerMode;
 @property(copy) CDUnknownBlockType receivedHandlesCallback; // @synthesize receivedHandlesCallback=_receivedHandlesCallback;
 @property BOOL changed; // @synthesize changed=_changed;
 @property(retain) NSMutableArray *fileHandles; // @synthesize fileHandles=_fileHandles;
-- (void).cxx_destruct;
+- (id)copyAuxiliaryDataForKey:(id)arg1;
+- (void)setAuxiliaryData:(id)arg1 forKey:(id)arg2;
 - (void)iterateFileHandlesWithBlock:(CDUnknownBlockType)arg1;
 - (void)setFileHandle:(id)arg1 matchingPredicate:(CDUnknownBlockType)arg2;
 - (void)removeFileHandleMatchingPredicate:(CDUnknownBlockType)arg1;

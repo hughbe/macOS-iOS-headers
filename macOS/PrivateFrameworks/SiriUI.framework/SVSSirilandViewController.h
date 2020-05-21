@@ -11,12 +11,11 @@
 #import "SVSTranscriptStackViewControllerDelegate.h"
 #import "SiriUIPresentation.h"
 
-@class AFUIStateMachine, NSString, SVSErrorMessageViewController, SVSPagerViewController, SVSSirilandView;
+@class AFUIStateMachine, NSDate, NSString, SVSErrorMessageViewController, SVSPagerViewController, SVSSirilandView;
 
 __attribute__((visibility("hidden")))
 @interface SVSSirilandViewController : NSViewController <SVSPagerViewControllerDelegate, SVSTranscriptStackViewControllerDataSource, SVSTranscriptStackViewControllerDelegate, SiriUIPresentation>
 {
-    BOOL _needsUpdatedUtterances;
     AFUIStateMachine *_stateMachine;
     BOOL _userInteractionDidOccurSinceActivation;
     long long _currentRequestSource;
@@ -27,7 +26,10 @@ __attribute__((visibility("hidden")))
     BOOL _showingError;
     BOOL _airplaneModeEnabled;
     BOOL _noMicrophone;
-    BOOL _skipCheckForGuideUpdate;
+    BOOL _noSound;
+    BOOL _speechPowerExceededMinimumThreshold;
+    BOOL _speechPowerLevelChanged;
+    NSDate *_lastRequestDate;
     id <SiriUIPresentationDataSource> _dataSource;
     id <SiriUIPresentationDelegate> _delegate;
     SVSErrorMessageViewController *_siriUnavailableViewController;
@@ -37,6 +39,7 @@ __attribute__((visibility("hidden")))
     NSViewController *_presentedViewControllerForDebugController;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak NSViewController *presentedViewControllerForDebugController; // @synthesize presentedViewControllerForDebugController=_presentedViewControllerForDebugController;
 @property(nonatomic) double lastPresentationTime; // @synthesize lastPresentationTime=_lastPresentationTime;
 @property(retain, nonatomic) id <AFUIDebugControlling> debugController; // @synthesize debugController=_debugController;
@@ -44,18 +47,17 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic, getter=_siriUnavailableViewController) SVSErrorMessageViewController *siriUnavailableViewController; // @synthesize siriUnavailableViewController=_siriUnavailableViewController;
 @property(nonatomic) __weak id <SiriUIPresentationDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <SiriUIPresentationDataSource> dataSource; // @synthesize dataSource=_dataSource;
-- (void).cxx_destruct;
 - (id)_topTranscriptViewController;
-- (id)_guideCheckSupportedFeatures;
-- (void)_checkForGuideUpdatesIfNecessary;
+- (id)_checkGuideSupportedFeatures;
+- (void)_checkGuideSupportedFeaturesAsynchronously:(BOOL)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)_checkForGuideUpdatesIfNecessaryAsynchronously:(BOOL)arg1;
 - (void)_handleWillLeaveEmergencyCallView:(id)arg1;
 - (void)_handleDidShowEmergencyCallView:(id)arg1;
 - (void)siriSessionAvailabilityStateDidChange;
 - (void)_updateSiriAvailabilityAnimated:(BOOL)arg1;
 - (void)_updateConversationAvailability;
-- (void)updateSuggestedUtterances:(id)arg1 forLanguage:(id)arg2;
-- (void)_requestUpdatedSuggestionsIfNecessary;
 - (id)requestContext;
+- (BOOL)shouldDeepFreezeSpeechForIdling;
 - (BOOL)shouldDismissForIdling;
 - (double)idleTimerInterval;
 - (void)_presentRadarComposeController;
@@ -83,15 +85,16 @@ __attribute__((visibility("hidden")))
 - (void)transcriptStackViewController:(id)arg1 setHelpButtonEmphasized:(BOOL)arg2;
 - (void)transcriptStackViewController:(id)arg1 didHideVibrantView:(id)arg2;
 - (void)transcriptStackViewControllerDidChangeContentHeight:(id)arg1;
-- (void)transcriptStackViewControllerDidShowSuggestions:(id)arg1;
-- (BOOL)transcriptStackViewControllerWillShowSuggestions:(id)arg1;
+- (void)transcriptStackViewControllerDidShowHelp:(id)arg1;
+- (BOOL)transcriptStackViewControllerCanShowHelp:(id)arg1;
+- (void)showHelpForTranscriptStackViewController:(id)arg1;
 - (long long)initialDisplayTypeForTranscriptStackViewController:(id)arg1;
 - (void)transcriptStackViewControllerDidExitSiriland:(id)arg1;
 - (void)transcriptStackViewControllerWillEnterSiriland:(id)arg1;
+- (double)windowWidthForTranscriptStackViewController:(id)arg1;
 - (double)contentWidthForTranscriptStackViewController:(id)arg1;
 - (void)minimumHeightDidChangeForSuggestionsViewController:(id)arg1;
 - (double)statusViewHeightForSuggestionsViewController:(id)arg1;
-- (void)suggestionsViewDidShowSuggestions:(id)arg1;
 - (id)domainObjectStoreForTranscriptStackViewController:(id)arg1;
 - (id)conversationForTranscriptStackViewController:(id)arg1;
 - (long long)siriStateForTranscriptStackViewController:(id)arg1;
@@ -101,14 +104,18 @@ __attribute__((visibility("hidden")))
 - (void)_hideAcousticIDSpinner;
 - (void)acousticIDRequestDidFinishWithSuccess:(BOOL)arg1;
 - (void)acousticIDRequestWillStart;
-- (void)didChangeWindowHeight;
+- (void)didChangeWindowHeight:(BOOL)arg1;
 - (double)contentHeight;
 - (void)didReceiveDismissalAction:(CDUnknownBlockType)arg1;
+- (void)checkForNoSound;
+- (void)siriDidStopSpeakingWithIdentifier:(id)arg1 speechQueueIsEmpty:(BOOL)arg2;
+- (void)siriDidStartSpeakingWithIdentifier:(id)arg1;
 - (void)speechRecordingDidDetectSpeechStartpoint;
 - (void)speechRecordingDidFailForRequest:(id)arg1 onAVRecordRoute:(id)arg2 withError:(id)arg3;
 - (void)speechRecordingDidCancelForRequest:(id)arg1 onAVRecordRoute:(id)arg2;
 - (void)speechRecordingDidEndForRequest:(id)arg1 onAVRecordRoute:(id)arg2;
 - (BOOL)_shouldEnableIdleTimerForRequestSource:(long long)arg1 andAVRecordRoute:(id)arg2;
+- (void)siriAudioRecordingDidChangePowerLevel:(float)arg1;
 - (void)didPresentCreateBugTemplateWithConfirm:(BOOL)arg1 values:(id)arg2;
 - (void)didReceiveReportBugAction;
 - (void)didReceiveHelpAction;
@@ -122,6 +129,7 @@ __attribute__((visibility("hidden")))
 - (void)reloadData;
 - (BOOL)canSaveConversations;
 - (void)startNewConversation;
+- (BOOL)shouldBlockURLOpenOnTTS:(id)arg1;
 - (void)siriDidFinishActionsForConversationItemWithIdentifier:(id)arg1 inConversation:(id)arg2;
 - (void)conversation:(id)arg1 didChangePresentationStateForItemsAtIndexPaths:(id)arg2;
 - (void)conversation:(id)arg1 didRemoveItemsWithIdentifiers:(id)arg2 atIndexPaths:(id)arg3 parentItemIdentifiers:(id)arg4;
@@ -157,7 +165,6 @@ __attribute__((visibility("hidden")))
 - (void)viewWillAppear;
 - (void)viewDidLoad;
 - (void)loadView;
-- (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 // Remaining properties

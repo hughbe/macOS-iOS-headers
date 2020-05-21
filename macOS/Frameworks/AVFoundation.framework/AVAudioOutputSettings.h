@@ -17,7 +17,7 @@
 + (id)_audioOutputSettingsWithAudioSettingsDictionary:(id)arg1 exceptionReason:(id *)arg2;
 + (id)audioOutputSettingsWithTrustedAudioSettingsDictionary:(id)arg1;
 + (id)audioOutputSettingsWithAudioSettingsDictionary:(id)arg1;
-+ (id)_outputSettingsWithOutputSettingsDictionary:(id)arg1 exceptionReason:(id *)arg2;
++ (id)_outputSettingsWithOutputSettingsDictionary:(id)arg1 mediaType:(id)arg2 exceptionReason:(id *)arg3;
 + (id)registeredOutputSettingsClasses;
 - (BOOL)validateUsingOutputSettingsValidator:(id)arg1 reason:(id *)arg2;
 @property(readonly, nonatomic) NSDictionary *audioSettingsDictionary;

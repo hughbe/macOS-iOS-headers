@@ -6,18 +6,24 @@
 
 #import "NSView.h"
 
-#import "MKAnnotationCalloutControllerDelegate.h"
+#import "VKCustomFeatureDataSource.h"
+#import "_MKPinAnnotationViewDelegate.h"
 
-@class MKAnnotationCalloutController, MKAnnotationView, MKPinAnnotationView, NSMutableArray, NSMutableSet, NSString, _MKBalloonAnnotationCalloutController;
+@class MKAnnotationView, MKPinAnnotationView, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSString;
 
-@interface MKAnnotationContainerView : NSView <MKAnnotationCalloutControllerDelegate>
+__attribute__((visibility("hidden")))
+@interface MKAnnotationContainerView : NSView <VKCustomFeatureDataSource, _MKPinAnnotationViewDelegate>
 {
-    NSMutableArray *_annotationViews;
+    NSMutableOrderedSet *_annotationViews;
+    NSMutableDictionary *_clusteringAnnotationViews;
+    NSMutableArray *_customFeatureDataSourceObservers;
     NSMutableArray *_awaitingDropPins;
     MKAnnotationView *_selectedAnnotationView;
     MKAnnotationView *_annotationViewToSelect;
     id <MKAnnotationContainerViewDelegate> _delegate;
     MKAnnotationView *_draggingAnnotationView;
+    struct CGPoint _previousMouseDragPoint;
+    double _previousMouseDragTimeStamp;
     struct CGPoint _mouseDownPoint;
     struct CGPoint _draggingAnnotationViewCenter;
     unsigned long long _mapType;
@@ -26,37 +32,48 @@
     MKAnnotationView *_userLocationView;
     double _annotationViewsRotationRadians;
     struct CGAffineTransform _mapTransform;
-    BOOL _addingSubview;
     BOOL _suppressCallout;
-    NSMutableSet *_viewsToAnimate;
-    MKAnnotationCalloutController *_calloutController;
-    _MKBalloonAnnotationCalloutController *_balloonCalloutController;
+    NSMutableArray *_pinsToAnimate;
     double _mapPitchRadians;
     CDStruct_51745937 _mapDisplayStyle;
+    BOOL _suppress;
+    BOOL _isUpdating;
+    double _lastUpdate;
+    NSMutableDictionary *_clusterableAnnotationViews;
+    NSMutableArray *_requiredPriorityAnnotationViews;
+    NSMutableSet *_collidableAnnotationViews;
+    NSMutableDictionary *_collidingAnnotationViews;
+    NSMutableDictionary *_existingClusterAnnotationViews;
 }
 
-@property(nonatomic) BOOL suppressCallout; // @synthesize suppressCallout=_suppressCallout;
-@property(readonly, nonatomic) MKAnnotationCalloutController *calloutController; // @synthesize calloutController=_calloutController;
 - (void).cxx_destruct;
-- (CDStruct_02837cd9)_mapRectWithFraction:(double)arg1 ofVisible:(CDStruct_02837cd9)arg2;
-- (void)calloutControllerDidFinishMapsTransitionExpanding:(id)arg1;
-- (void)calloutController:(id)arg1 scrollToRevealCalloutWithOffset:(struct CGPoint)arg2 annotationCoordinate:(struct CLLocationCoordinate2D)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (struct CGRect)calloutController:(id)arg1 visibleCenteringRectInAnnotationView:(id)arg2;
-- (void)transitionFrom:(long long)arg1 to:(long long)arg2 duration:(double)arg3;
+@property(nonatomic) BOOL suppressCallout; // @synthesize suppressCallout=_suppressCallout;
+- (void)updateAnnotationViewsWithDelay;
+- (void)_performStateUpdatesIfNeeded;
+- (void)_updateCollidableAnnotationViews;
+- (void)_updateClusterableAnnotationViews:(id)arg1 withID:(id)arg2;
+- (id)_existingClusterViewsForClusterID:(id)arg1;
+- (BOOL)_updateAnnotationViewPositions;
 - (void)stopSuppressingUpdates;
 - (void)suppressUpdates;
+- (BOOL)_updateAnnotationViews:(id)arg1;
+- (void)_updateAnnotationView:(id)arg1;
+- (id)menuForEvent:(id)arg1;
+- (id)hitTest:(struct CGPoint)arg1;
+- (void)setFrameSize:(struct CGSize)arg1;
+- (CDStruct_02837cd9)_mapRectWithFraction:(double)arg1 ofVisible:(CDStruct_02837cd9)arg2;
+- (void)transitionTo:(long long)arg1;
 - (void)cursorUpdate:(id)arg1;
 - (void)annotationViewDidChangeCenterOffset:(id)arg1;
+- (void)_updateZPositionForAnnotationView:(id)arg1 inBounds:(struct CGRect)arg2;
+- (void)annotationViewDidChangeHidden:(id)arg1;
 - (void)annotationViewDidChangeZIndex:(id)arg1;
-- (unsigned long long)indexForAnnotationView:(id)arg1;
 @property(readonly, nonatomic) CDStruct_8a8fc6b4 currentComparisonContext;
-- (void)selectAnnotationView:(id)arg1 animated:(BOOL)arg2 avoid:(struct CGRect)arg3;
-- (void)addSubview:(id)arg1;
+- (void)selectAnnotationView:(id)arg1 animated:(BOOL)arg2;
 - (void)dropPinsIfNeeded;
 - (void)removeAnnotationView:(id)arg1;
-- (void)finishAddingAnnotationViews;
+- (void)finishAddingAndRemovingAnnotationViews;
 - (void)addAnnotationView:(id)arg1 allowAnimation:(BOOL)arg2;
-- (void)_updateAddedAnnotationRotation:(id)arg1;
 - (void)_willRemoveInternalAnnotationView:(id)arg1;
 - (void)_dropPinsIfNeeded:(BOOL)arg1;
 - (void)setUserLocationView:(id)arg1;
@@ -68,48 +85,48 @@
 - (void)_dropDraggingAnnotationViewAnimated:(BOOL)arg1;
 - (struct CGPoint)draggingAnnotationViewDropPointForPoint:(struct CGPoint)arg1;
 - (struct CGPoint)draggingAnnotationViewDropPoint;
+- (BOOL)isShowingCallout;
+- (BOOL)isCalloutLeftAnchored;
+- (id)_standardCalloutView;
 @property(readonly, nonatomic) MKAnnotationView *draggingAnnotationView;
 - (void)draggingTouchMovedToPoint:(struct CGPoint)arg1 edgeInsets:(struct NSEdgeInsets)arg2;
+- (void)_draggingAnnotationViewDidPause:(id)arg1;
 - (void)_liftForDragging:(id)arg1 mouseDownPoint:(struct CGPoint)arg2;
 - (id)annotationViewForPoint:(struct CGPoint)arg1;
 - (id)_annotationViewForSelectionAtPoint:(struct CGPoint)arg1 avoidCurrent:(BOOL)arg2 maxDistance:(double)arg3;
-- (void)updateAnnotationLocationsDuringAnimation:(BOOL)arg1;
-- (struct CGPoint)convertCoordinate:(struct CLLocationCoordinate2D)arg1 toPointToView:(struct NSView *)arg2;
-- (void)_updateOrientationOfViews:(id)arg1;
-- (void)_updateOrientationOfViews:(id)arg1 relative:(id)arg2 projectionView:(struct NSView *)arg3;
-- (void)_updateOrientationOfViewsFast:(id)arg1 relative:(id)arg2 projectionView:(struct NSView *)arg3;
-- (void)_updateOrientationOfViewsCorrect:(id)arg1 relative:(id)arg2 projectionView:(struct NSView *)arg3;
-- (void)_findNextView:(id *)arg1 orientation:(int *)arg2 context:(id)arg3;
-@property(readonly, nonatomic) NSMutableArray *annotationViews;
+@property(readonly, nonatomic) NSMutableOrderedSet *annotationViews;
 - (void)updateUserLocationView;
 - (void)updateAnnotationView:(id)arg1;
-- (void)_updateAnnotationView:(id)arg1;
 - (struct CGPoint)pointForCoordinate:(struct CLLocationCoordinate2D)arg1;
 - (struct CLLocationCoordinate2D)coordinateForAnnotationView:(id)arg1;
-- (void)_updateAnnotationViewPerspective;
+- (void)updateAnnotationViewsForReason:(long long)arg1;
 - (void)deselectAnnotationView:(id)arg1 animated:(BOOL)arg2;
-- (void)_setSelectedAnnotationView:(id)arg1 bounce:(BOOL)arg2 pressed:(BOOL)arg3 scrollToFit:(BOOL)arg4;
-- (void)_setSelectedAnnotationView:(id)arg1 bounce:(BOOL)arg2 pressed:(BOOL)arg3 scrollToFit:(BOOL)arg4 avoid:(struct CGRect)arg5;
-- (void)_showBubbleForAnnotationView:(id)arg1 bounce:(BOOL)arg2 scrollToFit:(BOOL)arg3;
-- (void)_showBubbleForAnnotationView:(id)arg1 bounce:(BOOL)arg2 scrollToFit:(BOOL)arg3 avoid:(struct CGRect)arg4;
+- (void)updateCalloutStateForSelectedAnnotationView:(id)arg1;
 - (void)removeAnnotationViewsRotationAnimations;
 - (void)setAnnotationViewsRotationRadians:(double)arg1 animation:(id)arg2;
 @property(readonly, nonatomic) MKPinAnnotationView *bubblePin;
-@property(readonly, nonatomic) MKAnnotationView *calloutAnnotationView;
 - (struct CGRect)_visibleRect;
-- (struct CGRect)_visibleCenteringRectInView:(struct NSView *)arg1;
+- (struct CGRect)_visibleCenteringRectInView:(id)arg1;
 - (struct CGRect)_visibleCenteringRect;
-- (BOOL)isCalloutExpanded;
-- (BOOL)isShowingCallout;
 - (BOOL)calloutContainsPoint:(struct CGPoint)arg1;
 - (void)setMapDisplayStyle:(CDStruct_51745937)arg1;
 @property(nonatomic) unsigned long long mapType;
 - (void)setMapPitchRadians:(double)arg1;
 @property(nonatomic) __weak id <MKAnnotationContainerViewDelegate> delegate;
 - (BOOL)isFlipped;
-- (id)activeCalloutController;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (id)annotationsInMapRect:(CDStruct_02837cd9)arg1;
+- (unsigned char)sceneState;
+- (unsigned char)sceneID;
+- (void)getClusterImageTextForClusterFeatureCount:(unsigned long long)arg1 text:(id *)arg2 locale:(id *)arg3;
+- (void)getClusterAnnotationTextForClusterFeatureCount:(unsigned long long)arg1 text:(id *)arg2 locale:(id *)arg3;
+- (id)clusterStyleAttributes;
+- (BOOL)isClusteringEnabled;
+- (void)removeObserver:(id)arg1;
+- (void)addObserver:(id)arg1;
+- (void)invalidateCustomFeatureDataSource;
+- (void)invalidateCustomFeatureDataSourceRect:(CDStruct_02837cd9)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

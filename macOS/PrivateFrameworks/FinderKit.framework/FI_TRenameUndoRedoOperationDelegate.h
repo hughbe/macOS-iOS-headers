@@ -9,21 +9,21 @@
 __attribute__((visibility("hidden")))
 @interface FI_TRenameUndoRedoOperationDelegate : FI_TRenameOperationDelegate
 {
-    struct TRenameUndoRedoOperationHelper *_actionHelper;
+    struct unique_ptr<TRenameUndoRedoOperationHelper, std::__1::default_delete<TRenameUndoRedoOperationHelper>> _actionHelper;
     _Bool _needToReselectNode;
     int _renameOpCount;
     _Bool _isUndo;
     struct TriStateBool _pendingIsUndo;
 }
 
++ (id)makeDelegateWithRenameAction:(struct TRenameAction *)arg1;
 - (id).cxx_construct;
+- (void).cxx_destruct;
 - (int)configureNewName:(struct TString *)arg1 forNode:(const struct TFENode *)arg2 isDisplayName:(_Bool)arg3 allowInteraction:(_Bool)arg4;
 - (int)asyncNodeOperation:(id)arg1 subOperationCompleted:(unsigned int)arg2 targetNode:(const struct TFENode *)arg3;
 - (int)asyncNodeOperation:(id)arg1 subOperationStarted:(unsigned int)arg2;
 - (void)setNeedToReselectNode:(_Bool)arg1;
 - (void)setIsUndo:(_Bool)arg1;
-- (void)dealloc;
-- (id)initWithRenameAction:(struct TRenameAction *)arg1;
 
 @end
 

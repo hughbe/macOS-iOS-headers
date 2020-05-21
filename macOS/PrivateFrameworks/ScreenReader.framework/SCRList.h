@@ -6,7 +6,7 @@
 
 #import <ScreenReader/SCRElement.h>
 
-@class NSArray, SCRBrailleLineManager;
+@class NSArray;
 
 __attribute__((visibility("hidden")))
 @interface SCRList : SCRElement
@@ -19,10 +19,10 @@ __attribute__((visibility("hidden")))
         unsigned int supportsAXVisibleChildrenAttribute:1;
     } _srlFlags;
     SCRElement *_readContentsElement;
-    SCRBrailleLineManager *_brailleLineManager;
     NSArray *_previousSelectionUIElements;
 }
 
+- (void).cxx_destruct;
 - (id)gestureTrackingChildren;
 - (void)prepareGestureTrackingChildren;
 - (id)childAfterElement:(id)arg1;
@@ -33,20 +33,16 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)indexOfElement:(id)arg1 visibleOnly:(BOOL)arg2;
 - (BOOL)tabOrDrillInShouldTempDisableQuickNav;
 - (BOOL)isContainerElement;
-- (id)brailleLineElementForUIElement:(id)arg1;
-- (void)buildBrailleLineWithFocusedElement:(id)arg1;
-- (void)updateBrailleLineWithFocusedElement:(id)arg1;
-- (id)brailleLineManager;
+- (void)setBrailleLineWithFocusedElement:(id)arg1 forceRebuild:(BOOL)arg2;
 - (BOOL)isControlElement;
 - (BOOL)childrenShouldAddIndexToDescription;
 - (BOOL)addTitlePhoneticSpellingToRequest:(id)arg1;
 - (BOOL)addTitleAlphabeticSpellingToRequest:(id)arg1;
 - (BOOL)addTitleToRequest:(id)arg1;
 - (void)_executeBlockForReadVisible:(CDUnknownBlockType)arg1;
-- (BOOL)addSelectionDescriptionToRequest:(id)arg1;
 - (BOOL)addKeyboardSelectionSummaryToRequest:(id)arg1;
 - (void)addItemDescriptionToRequest:(id)arg1;
-- (id)statusDescriptionWithOptionsMask:(int)arg1;
+- (id)statusDescription;
 - (id)typeDescription;
 - (id)childrenInReadContentsOrder;
 - (id)readContentsElement;
@@ -58,7 +54,7 @@ __attribute__((visibility("hidden")))
 - (void)addDescendantsToArray:(id)arg1 additionalToRetain:(id)arg2 additionalToSkip:(id)arg3;
 - (id)firstChildForFocusing;
 - (id)focusOntoUIElement:(id)arg1 withScrolling:(BOOL)arg2 withSelection:(BOOL)arg3;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (id)onlyChild;
 - (BOOL)canFocusOutInto;
 - (BOOL)allowFocusThroughSingleChild;
@@ -66,23 +62,20 @@ __attribute__((visibility("hidden")))
 - (BOOL)allowBuildChildren;
 - (void)setKeyboardFocus:(BOOL)arg1;
 - (BOOL)_shouldUseCollectionSpecificFocusBehavior;
+- (void)_postNavigationProcessingForCommand:(id)arg1 request:(id)arg2 soundIdentifier:(id)arg3;
+- (void)_updateChildIndexFromFocusedChild;
 - (BOOL)_moveToContentSiblingBelow;
 - (BOOL)_moveToContentSiblingAbove;
 - (BOOL)_moveToPreviousContentSibling;
 - (BOOL)_moveToNextContentSibling;
 - (BOOL)isSectionView;
-- (BOOL)jumpBottomEdgeWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
-- (BOOL)jumpTopEdgeWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
 - (BOOL)_moveLastWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
 - (BOOL)_moveFirstWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
+- (id)elementToSpeakAfterMove;
 - (BOOL)_moveRightWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
 - (BOOL)_moveLeftWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
 - (BOOL)_moveDownWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
 - (BOOL)_moveUpWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
-- (BOOL)interactRightCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactLeftCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactDownCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactUpCommandShiftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)moveToLastElementWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)moveToFirstElementWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownShiftWithEvent:(id)arg1 request:(id)arg2;
@@ -93,7 +86,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)interactLeftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpWithEvent:(id)arg1 request:(id)arg2;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 - (BOOL)isInteractive;
 @property(nonatomic, getter=isVertical) BOOL vertical;
 @property(readonly, nonatomic) long long orientation;
@@ -101,14 +94,14 @@ __attribute__((visibility("hidden")))
 - (void)setPreviousSelectionUIElements:(id)arg1;
 - (id)previousSelectionUIElements;
 - (long long)focusedIndex;
+- (void)selectChildUIElement:(id)arg1;
+- (id)uiElementForAccessibilitySelectedChildren;
 - (BOOL)setFocusedIndex:(long long)arg1 withScrolling:(BOOL)arg2 withSelection:(BOOL)arg3 withMovement:(BOOL)arg4 forceFocus:(BOOL)arg5;
 - (BOOL)setFocusedIndex:(long long)arg1;
 - (BOOL)echoKeyboardEvent:(id)arg1 toRequest:(id)arg2;
 - (void)echoCurrentSelectionWithQueueID:(id)arg1 interruptsRequests:(BOOL)arg2 excludingIdentifiers:(id)arg3;
 - (id)_visibleUIChildren;
 - (id)browserContainer;
-- (void)dealloc;
-- (void)deallocChildren;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end

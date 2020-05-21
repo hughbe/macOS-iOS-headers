@@ -8,9 +8,11 @@
 
 @class CALayer, NSWindow;
 
+__attribute__((visibility("hidden")))
 @interface SHKDimAndShadowWindow : SHKBorderlessEffectWindow
 {
     BOOL animatesTransitions;
+    CALayer *groupLayer;
     CALayer *dimLayer;
     CALayer *shadowLayer;
     CALayer *shadowCenterKnockoutLayer;
@@ -18,16 +20,17 @@
     NSWindow *_sourceWindow;
 }
 
+- (void).cxx_destruct;
 @property __weak NSWindow *sourceWindow; // @synthesize sourceWindow=_sourceWindow;
 @property __weak NSWindow *remoteWindow; // @synthesize remoteWindow=_remoteWindow;
 @property BOOL animatesTransitions; // @synthesize animatesTransitions;
-- (void).cxx_destruct;
 - (void)updateShadowFrame:(struct CGRect)arg1;
 - (void)animateLayersToFrame:(struct CGRect)arg1 oldFrame:(struct CGRect)arg2;
 - (void)startTransitionOut;
 - (void)continueTransitionInWithIdentityLayerTransformAfterDelay:(double)arg1 animate:(BOOL)arg2 currentMediaTime:(double)arg3;
 - (void)continueTransitionInWithIdentityLayerTransformAfterDelay:(double)arg1 animate:(BOOL)arg2;
 - (void)startTransitionInWithDimFrame:(struct CGRect)arg1 serviceScreenFrame:(struct CGRect)arg2 initialLayerTransform:(struct CGAffineTransform)arg3;
+- (void)ensureGroupLayerInitialized;
 - (id)initWithFrame:(struct CGRect)arg1 noSourceWindow:(BOOL)arg2;
 
 @end

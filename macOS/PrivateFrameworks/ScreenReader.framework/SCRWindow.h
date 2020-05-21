@@ -20,7 +20,6 @@ __attribute__((visibility("hidden")))
     struct {
         unsigned int isNew:1;
         unsigned int ignoreSheet:1;
-        unsigned int reserved:31;
     } _srwFlags;
     BOOL _isFocusingIntoWindow;
     BOOL __registeredFocusedTabChangedNotification;
@@ -34,6 +33,7 @@ __attribute__((visibility("hidden")))
     SCRUIElement *__titleUIElement;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic, setter=_setRegisteredFocusedTabChangedNotification:) BOOL _registeredFocusedTabChangedNotification; // @synthesize _registeredFocusedTabChangedNotification=__registeredFocusedTabChangedNotification;
 @property(retain, nonatomic, setter=_setTitleUIElement:) SCRUIElement *_titleUIElement; // @synthesize _titleUIElement=__titleUIElement;
 @property(retain, nonatomic, setter=_setProxyUIElement:) SCRUIElement *_proxyUIElement; // @synthesize _proxyUIElement=__proxyUIElement;
@@ -54,14 +54,12 @@ __attribute__((visibility("hidden")))
 - (BOOL)_navigateToFirstOrLastElementWithCommandKey:(id)arg1 event:(id)arg2 request:(id)arg3 isFirstElement:(BOOL)arg4;
 - (BOOL)moveLastWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
 - (BOOL)moveFirstWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
-- (BOOL)interactLeftCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactRightCommandShiftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactRightWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpShiftWithEvent:(id)arg1 request:(id)arg2;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 - (BOOL)_canNavigateToSheet;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (BOOL)handleTaggedOperationWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)handleUntaggedOperationWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)enableRepositionModeWithRequest:(id)arg1;
@@ -80,6 +78,8 @@ __attribute__((visibility("hidden")))
 - (struct CGRect)enclosingBounds;
 - (id)stringForCommand:(id)arg1 withExtension:(id)arg2;
 - (BOOL)supportsPositionalPrecision;
+- (void)describePositionChangeFromPosition:(id)arg1;
+- (id)_descriptionFromTopLeftCornerWithOrigin:(struct CGPoint)arg1 unit:(long long)arg2;
 - (id)descriptionForOrigin;
 - (id)containerDescription;
 - (BOOL)addSelectionDescriptionToRequest:(id)arg1;
@@ -88,6 +88,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)showInGuide;
 - (id)titleDescription;
 - (id)alternateOrderedChildrenForMappedChildren:(id)arg1;
+- (void)setIsNew:(BOOL)arg1;
 - (void)setIgnoreSheet:(BOOL)arg1;
 - (id)toolbar;
 - (BOOL)zoom;
@@ -126,8 +127,9 @@ __attribute__((visibility("hidden")))
 - (void)_speakSelectionInSheet;
 - (void)_announceArrival;
 - (void)announceArrival;
+- (BOOL)_shouldAnnounceArrival;
 - (BOOL)shouldAnnounceArrival;
-- (id)addWindowChangedDescriptionToRequest:(id)arg1;
+- (void)addWindowChangedDescriptionToRequest:(id)arg1;
 - (id)tabChangedDescriptionForTab:(id)arg1;
 - (void)handleFocusedTabChanged:(id)arg1;
 - (void)_removeWindowObservers;
@@ -142,6 +144,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)isWindow;
 - (void)setIsInsideIconContainer:(BOOL)arg1;
 - (BOOL)isInsideIconContainer;
+- (BOOL)isSiriWindow;
 
 @end
 

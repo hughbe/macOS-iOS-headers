@@ -27,6 +27,7 @@
 + (void)_deactivateAllColorWells;
 + (id)_exclusiveColorPanelOwner;
 + (void)colorPanelColorChanged:(id)arg1;
++ (BOOL)automaticallyNotifiesObserversOfObjectValue;
 + (void)initialize;
 + (BOOL)accessibilityIsSingleCelled;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedHeight;
@@ -53,7 +54,6 @@
 - (BOOL)acceptsFirstResponder;
 - (void)activate:(BOOL)arg1;
 - (BOOL)_ownsColorPanelExclusively;
-- (BOOL)_shouldOrderFront;
 - (void)setContinuous:(BOOL)arg1;
 - (BOOL)isContinuous;
 @property(readonly, getter=isActive) BOOL active;
@@ -72,10 +72,13 @@
 - (void)setEnabled:(BOOL)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)_colorWellCommonAwake;
+- (id)objectValue;
+- (void)setObjectValue:(id)arg1;
 @property(getter=isBordered) BOOL bordered;
 - (id)_takeColorFromDoAction:(id)arg1;
 - (id)_takeColorFromAndSendActionIfContinuous:(id)arg1;
 - (id)_takeColorFrom:(id)arg1 andSendAction:(BOOL)arg2;
+- (BOOL)_shouldOrderFront;
 - (void)accessibilityPerformAction:(id)arg1;
 - (id)accessibilityActionDescription:(id)arg1;
 - (id)accessibilityActionNames;

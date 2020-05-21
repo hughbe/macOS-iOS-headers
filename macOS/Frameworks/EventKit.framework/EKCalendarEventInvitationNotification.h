@@ -6,18 +6,17 @@
 
 #import <EventKit/EKCalendarNotification.h>
 
-@class EKAttendee, EKConflictDetails;
-
 @interface EKCalendarEventInvitationNotification : EKCalendarNotification
 {
-    EKAttendee *_cachedAttendee;
-    EKConflictDetails *_cachedConflicts;
 }
 
 + (id)conflictsForNotifications:(id)arg1;
-@property(retain) EKConflictDetails *cachedConflicts; // @synthesize cachedConflicts=_cachedConflicts;
-@property(retain) EKAttendee *cachedAttendee; // @synthesize cachedAttendee=_cachedAttendee;
-- (void).cxx_destruct;
++ (void)clearCachedConflictsForNotifications:(id)arg1;
+- (BOOL)couldBeJunk;
+- (id)phoneNumber;
+- (id)emailAddress;
+- (id)sendersPhoneNumber;
+- (id)sendersEmail;
 - (id)conflicts;
 - (BOOL)supportsConflictScanning;
 - (unsigned long long)_attendeeResponsesOfType:(int)arg1;

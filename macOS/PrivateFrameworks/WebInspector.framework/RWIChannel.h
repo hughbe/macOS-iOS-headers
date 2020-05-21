@@ -8,36 +8,32 @@
 
 #import "RWIDebugger.h"
 
-@class NSMutableDictionary, NSString, RWIDebuggable, RWIManager;
+@class NSString, RWIDebuggable, RWIManager;
 
 @interface RWIChannel : NSObject <RWIDebugger>
 {
-    id <RWIChannelDelegate> _delegate;
     NSString *_uuid;
-    RWIDebuggable *_debuggable;
     RWIManager *_manager;
-    unsigned long long _messageId;
-    NSMutableDictionary *_callbackMap;
-    CDUnknownBlockType _timelineCallback;
+    RWIDebuggable *_debuggable;
+    id <RWIChannelDelegate> _delegate;
 }
 
-@property(retain, nonatomic) RWIManager *manager; // @synthesize manager=_manager;
-@property(readonly, nonatomic) RWIDebuggable *debuggable; // @synthesize debuggable=_debuggable;
-@property(readonly, copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
-@property(nonatomic) __weak id <RWIChannelDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)evalJavaScript:(id)arg1 callback:(CDUnknownBlockType)arg2;
-- (void)stopTimeline;
-- (void)startTimeline:(CDUnknownBlockType)arg1;
-- (void)reloadPage;
-- (void)stop;
+@property(nonatomic) __weak id <RWIChannelDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) RWIDebuggable *debuggable; // @synthesize debuggable=_debuggable;
+@property(readonly, nonatomic) RWIManager *manager; // @synthesize manager=_manager;
+@property(readonly, copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
 - (void)start;
+- (void)close;
 - (void)sendMessageToFrontend:(id)arg1;
 - (void)sendMessageToBackend:(id)arg1;
-- (void)_callCallbacks:(id)arg1;
-- (void)_sendSimpleMethod:(id)arg1;
-- (void)_sendDictionaryMessage:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)initWithManager:(id)arg1 debuggable:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -16,7 +16,8 @@
 }
 
 - (void).cxx_destruct;
-- (id)results;
+- (id)publicResults;
+- (int)finalizeAnalysis;
 - (int)processMetadataGroup:(id)arg1 flags:(unsigned long long *)arg2;
 - (struct CGAffineTransform)flipTransform:(struct CGAffineTransform)arg1;
 - (id)initWithTransform:(struct CGAffineTransform)arg1;

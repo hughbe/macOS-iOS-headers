@@ -15,6 +15,7 @@
 + (id)albumCollectionWithDictionary:(id)arg1 context:(id)arg2;
 + (id)albumCollection;
 @property(copy, nonatomic) NSString *sortArtist;
+@property(copy, nonatomic) NSString *description;
 @property(copy, nonatomic) NSString *artist;
 - (id)encodedClassName;
 - (id)groupIdentifier;

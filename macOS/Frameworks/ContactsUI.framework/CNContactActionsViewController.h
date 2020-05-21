@@ -18,10 +18,14 @@
     id <CNUIUserActionContext> _actionContext;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) id <CNUIUserActionContext> actionContext; // @synthesize actionContext=_actionContext;
 @property(retain, nonatomic) CNContactActionsView *contactActionsView; // @synthesize contactActionsView=_contactActionsView;
 @property(retain, nonatomic) CNUIUserActionListDataSource *userActionListDataSource; // @synthesize userActionListDataSource=_userActionListDataSource;
-- (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (BOOL)commitEditingAndReturnError:(id *)arg1;
+- (void)cardCommitEditing;
+- (BOOL)shouldBeIncludedInKeyViewLoop;
 - (double)customSpacingAfterWidget;
 - (double)desiredHeight;
 - (void)consumer:(id)arg1 didSelectAction:(id)arg2;

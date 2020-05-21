@@ -21,13 +21,14 @@
 
 + (id)springAnimationWithKeyPath:(id)arg1 velocity:(double)arg2;
 + (id)springAnimationWithKeyPath:(id)arg1;
++ (double)defaultDuration;
 + (id)defaultTimingFunction;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CAMediaTimingFunction *timing; // @synthesize timing=_timing;
 @property(nonatomic) double velocity; // @synthesize velocity=_velocity;
 @property(nonatomic) double damping; // @synthesize damping=_damping;
 @property(nonatomic) double stiffness; // @synthesize stiffness=_stiffness;
 @property(nonatomic) double mass; // @synthesize mass=_mass;
-- (void).cxx_destruct;
 @property(readonly, nonatomic) double duration;
 - (void)_updateDurationIfNecessary;
 - (id)_timingFunctionForAnimation;

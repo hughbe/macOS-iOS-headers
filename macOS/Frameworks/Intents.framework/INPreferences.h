@@ -14,15 +14,19 @@
     NSString *_cachedSiriLanguageCode;
 }
 
++ (void)_verifyProcessCanDonateIntentWithName:(id)arg1 completion:(CDUnknownBlockType)arg2;
 + (id)siriLanguageCode;
 + (void)requestSiriAuthorization:(CDUnknownBlockType)arg1;
 + (long long)siriAuthorizationStatus;
 + (id)sharedPreferences;
-@property(copy, setter=_setCachedSiriLanguageCode:) NSString *_cachedSiriLanguageCode; // @synthesize _cachedSiriLanguageCode;
 - (void).cxx_destruct;
+@property(copy, setter=_setCachedSiriLanguageCode:) NSString *_cachedSiriLanguageCode; // @synthesize _cachedSiriLanguageCode;
+- (void)_verifyProcessCanDonateIntentWithName:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)_siriLanguageCode;
 - (void)requestSiriAuthorization:(CDUnknownBlockType)arg1;
 - (long long)_siriAuthorizationStatus;
+- (void)_THROW_EXCEPTION_FOR_PROCESS_MISSING_ENTITLEMENT_com_apple_developer_siri;
+- (BOOL)_weAreRunningAsAnExtension;
 - (void)_updateWithExtensionContext:(id)arg1;
 - (id)_init;
 - (id)init;

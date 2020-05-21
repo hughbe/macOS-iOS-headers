@@ -16,6 +16,7 @@
     NSArray *_sourceFilters;
     EKBackingStore *_backingStore;
     NSString *_suggestedEventCalendarIdentifier;
+    NSString *_naturalLanguageSuggestedEventCalendarIdentifier;
     NSMutableDictionary *_backingCalendarItems;
     NSMutableDictionary *_backingCalendars;
     CalDefaultDictionary *_backingDetached;
@@ -33,6 +34,7 @@
 
 + (void)_addPrefetchRelationshipsForCalDAVCalendarFetch:(id)arg1;
 + (void)_addPrefetchRelationshipsForCalendarFetch:(id)arg1;
+- (void).cxx_destruct;
 @property BOOL errorsDemanded; // @synthesize errorsDemanded=_errorsDemanded;
 @property BOOL notificationsDemanded; // @synthesize notificationsDemanded=_notificationsDemanded;
 @property(retain, nonatomic) NSMutableDictionary *preFrozenCalendarDictionaries; // @synthesize preFrozenCalendarDictionaries=_preFrozenCalendarDictionaries;
@@ -48,25 +50,26 @@
 @property(retain, nonatomic) CalDefaultDictionary *backingDetached; // @synthesize backingDetached=_backingDetached;
 @property(retain, nonatomic) NSMutableDictionary *backingCalendars; // @synthesize backingCalendars=_backingCalendars;
 @property(retain, nonatomic) NSMutableDictionary *backingCalendarItems; // @synthesize backingCalendarItems=_backingCalendarItems;
+@property(retain, nonatomic) NSString *naturalLanguageSuggestedEventCalendarIdentifier; // @synthesize naturalLanguageSuggestedEventCalendarIdentifier=_naturalLanguageSuggestedEventCalendarIdentifier;
 @property(retain, nonatomic) NSString *suggestedEventCalendarIdentifier; // @synthesize suggestedEventCalendarIdentifier=_suggestedEventCalendarIdentifier;
 @property(nonatomic) __weak EKBackingStore *backingStore; // @synthesize backingStore=_backingStore;
 @property(retain, nonatomic) NSArray *sourceFilters; // @synthesize sourceFilters=_sourceFilters;
 @property(nonatomic) unsigned long long options; // @synthesize options=_options;
-- (void).cxx_destruct;
 - (id)summary;
 - (id)errorForSourceWithIdentifier:(id)arg1;
 - (id)errorForCalendarWithIdentifier:(id)arg1;
-- (id)_fetchLastErrorForEntityName:(id)arg1 predicate:(id)arg2;
+- (id)_fetchLastErrorForEntityName:(id)arg1 predicate:(id)arg2 context:(id)arg3;
 - (void)refreshBackingErrorsWithCalendarIdentifiers:(id)arg1 sourceIdentifiers:(id)arg2;
 - (void)refreshBackingErrors;
 - (id)errors;
+- (void)removeNotificationsWithManagedObjectIDs:(id)arg1;
 - (void)removeNotificationWithIdentifier:(id)arg1;
 - (id)notificationIdentifiersForSourceWithIdentifier:(id)arg1;
 - (id)notificationIdentifiersForCalendarWithIdentifier:(id)arg1;
 - (void)useBackingNotifications:(id)arg1;
 - (id)_calendarOrSourceIdentifierForNotification:(id)arg1;
-- (void)addBackingNotification:(id)arg1 forCalendarOrSourceIdentifier:(id)arg2;
-- (void)addBackingNotifications:(id)arg1;
+- (void)addOrUpdateBackingNotification:(id)arg1 forCalendarOrSourceIdentifier:(id)arg2;
+- (void)addOrUpdateBackingNotifications:(id)arg1;
 - (void)refreshBackingNotificationsWithCalendarIdentifiers:(id)arg1 sourceIdentifiers:(id)arg2;
 - (void)refreshBackingNotifications;
 - (id)fetchBackingNotificationsWithCalendarIdentifiers:(id)arg1 sourceIdentifiers:(id)arg2;
@@ -89,6 +92,7 @@
 - (void)removeCalendarSourceWithIdentifier:(id)arg1;
 - (void)trackCalendarSourceWithIdentifier:(id)arg1 source:(id)arg2;
 - (id)calendarSourceWithIdentifier:(id)arg1;
+- (BOOL)_includeNaturalLanguageSuggestedEventCalendar;
 - (BOOL)_includeSuggestedEventCalendar;
 - (id)_fetchBackingCalendarsWithSourceIdentifiers:(id)arg1 usePreFrozenSources:(BOOL)arg2;
 - (id)_preFrozenCalendarDictionaryForIdentifier:(id)arg1;
@@ -114,6 +118,8 @@
 - (id)itemIdentifiersInCalendars:(id)arg1;
 - (id)itemIdentifiers;
 - (void)removeItemsWithManagedObjectIDs:(id)arg1;
+- (id)trackedObjectIDsInManagedObjectIDs:(id)arg1;
+- (id)itemsWithManagedObjectIDs:(id)arg1;
 - (void)removeItemsWithoutIdentifiers:(id)arg1;
 - (void)_removeTrackedItemWithIdentifier:(id)arg1 removeExceptions:(BOOL)arg2 thisAndFuture:(BOOL)arg3;
 - (void)removeItemWithIdentifier:(id)arg1;

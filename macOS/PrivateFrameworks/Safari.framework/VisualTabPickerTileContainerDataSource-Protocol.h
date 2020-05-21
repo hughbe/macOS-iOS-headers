@@ -6,15 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSString, NSView, VisualTabPickerTileContainerView;
+@class NSImage, NSString, NSView, VisualTabPickerTileContainerView;
 
 @protocol VisualTabPickerTileContainerDataSource <NSObject>
-- (int)visualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1 muteButtonStateForTileAtIndex:(unsigned long long)arg2;
-- (BOOL)visualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1 shouldShowMuteButtonForTileAtIndex:(unsigned long long)arg2;
-- (struct CGRect)visualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1 visibleBoundsForTileAtIndex:(unsigned long long)arg2;
-- (NSView *)visualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1 viewForTileAtIndex:(unsigned long long)arg2;
-- (NSString *)visualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1 titleForTileAtIndex:(unsigned long long)arg2;
+- (NSImage *)siteIconForVisualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1;
+- (long long)muteButtonStateForVisualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1;
+- (BOOL)visualTabPickerTileContainerViewShouldShowMuteButton:(VisualTabPickerTileContainerView *)arg1;
+- (struct CGRect)visibleBoundsForVisualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1;
+- (NSView *)tileViewForVisualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1 lowResolution:(BOOL)arg2;
 - (NSString *)titleForVisualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1;
-- (unsigned long long)numberOfTilesInVisualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1;
 @end
 

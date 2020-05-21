@@ -14,36 +14,55 @@
 
 @interface CNPhoneNumber : NSObject <CNObjectValidation, NSCopying, NSSecureCoding>
 {
+    NSString *_initialCountryCode;
     NSString *_stringValue;
+    struct os_unfair_lock_s _stateLock;
     struct __CFPhoneNumber *_phoneNumberRef;
 }
 
++ (id)_countryCodeForNorthAmericanDialingPlanAreaCodesExcludingUS;
++ (id)_countryCodesForNorthAmericanDialingPlan;
++ (BOOL)_isCountryCodeForNorthAmericanDialingPlan:(id)arg1;
++ (id)dialingCodeForISOCountryCode:(id)arg1;
++ (id)unsupportedCountryCodes;
++ (struct __CFPhoneNumber *)createCFPhoneNumberForStringValue:(id)arg1 countryCode:(id)arg2;
 + (BOOL)supportsSecureCoding;
 + (id)defaultCountryCode;
++ (id)phoneNumberWithCopiedStringValue:(id)arg1;
 + (id)phoneNumberWithStringValue:(id)arg1;
 + (id)phoneNumberWithDigits:(id)arg1 countryCode:(id)arg2;
-+ (id)phoneNumberWithCFPhoneNumberRef:(struct __CFPhoneNumber *)arg1;
-@property(readonly, copy) NSString *stringValue;
++ (id)new;
+- (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSString *initialCountryCode; // @synthesize initialCountryCode=_initialCountryCode;
+@property(readonly, copy) NSString *stringValue; // @synthesize stringValue=_stringValue;
+- (id)_determineCorrectCountryCodeForNorthAmericanDialingPlan;
+- (id)formattedStringValueRemovingDialingCode;
+- (id)digitsRemovingDialingCode;
+- (id)fullyQualifiedDigits;
+- (BOOL)isFullyQualified;
+@property(readonly, copy) NSString *countryCode;
+- (id)_countryCodeFromPhoneNumberRef;
 @property(readonly, copy) NSString *unformattedInternationalStringValue;
 @property(readonly, copy) NSString *formattedInternationalStringValue;
 @property(readonly, copy) NSString *formattedStringValue;
-@property(readonly, copy) NSString *countryCode;
 @property(readonly, copy) NSString *digits;
+- (id)stringValueWithCFPhoneNumberOptions:(unsigned long long)arg1;
 - (BOOL)isValid:(id *)arg1;
-@property(readonly, nonatomic) struct __CFPhoneNumber *phoneNumberRef;
-@property(readonly) unsigned long long hash;
+- (struct __CFPhoneNumber *)nts_lazyPhoneNumberRef;
+- (struct __CFPhoneNumber *)phoneNumberRef;
 @property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)lastFourDigits;
 - (BOOL)isLikePhoneNumber:(id)arg1;
+- (BOOL)isLikePhoneNumberForSamePerson:(id)arg1;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithStringValue:(id)arg1 countryCode:(id)arg2;
+- (void)dealloc;
 - (id)initWithStringValue:(id)arg1;
-- (id)initWithDigits:(id)arg1 countryCode:(id)arg2;
-- (id)initWithCFPhoneNumberRef:(struct __CFPhoneNumber *)arg1;
+- (id)primitiveInitWithStringValue:(id)arg1 countryCode:(id)arg2;
+- (id)initWithStringValue:(id)arg1 countryCode:(id)arg2;
 - (id)init;
 
 // Remaining properties

@@ -8,7 +8,7 @@
 
 #import "SMNStreamMuxerDelegate.h"
 
-@class IASThreadSafeEvent, NSArray, NSData, NSFileHandle, NSNumber, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>, NSObject<SMNNetworkSecurityProvider>, NSString, SMNNetworkSession, SMNNetworkStream, SMNNetworkStreamMuxer;
+@class IASThreadSafeEvent, NSArray, NSData, NSFileHandle, NSNumber, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>, NSObject<SMNNetworkSecurityProvider>, NSSet, NSString, SMNNetworkSession, SMNNetworkStream, SMNNetworkStreamMuxer;
 
 @interface SMNConnection : NSObject <SMNStreamMuxerDelegate>
 {
@@ -25,6 +25,7 @@
     double _sample;
     NSString *_remoteInterfaceName;
     NSString *_connectionName;
+    NSSet *_supportedActionCommands;
     SMNNetworkSession *_session;
     SMNNetworkStreamMuxer *_muxer;
     NSFileHandle *_controlSocketFileHandle;
@@ -40,9 +41,14 @@
     NSObject<SMNNetworkSecurityProvider> *_payloadSecurityProvider;
     NSString *_payloadConnectionValidation;
     NSObject<OS_dispatch_semaphore> *_payloadChannelRequestSemaphore;
+    NSString *_localInterfaceName;
+    NSSet *_supportedControlCommands;
     struct timeval _lastSignOfLife;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSSet *supportedControlCommands; // @synthesize supportedControlCommands=_supportedControlCommands;
+@property(retain) NSString *localInterfaceName; // @synthesize localInterfaceName=_localInterfaceName;
 @property(retain) NSObject<OS_dispatch_semaphore> *payloadChannelRequestSemaphore; // @synthesize payloadChannelRequestSemaphore=_payloadChannelRequestSemaphore;
 @property(retain) NSString *payloadConnectionValidation; // @synthesize payloadConnectionValidation=_payloadConnectionValidation;
 @property(retain) NSObject<SMNNetworkSecurityProvider> *payloadSecurityProvider; // @synthesize payloadSecurityProvider=_payloadSecurityProvider;
@@ -61,6 +67,7 @@
 @property(retain) SMNNetworkStreamMuxer *muxer; // @synthesize muxer=_muxer;
 @property(getter=isServer) BOOL server; // @synthesize server=_server;
 @property __weak SMNNetworkSession *session; // @synthesize session=_session;
+@property(retain) NSSet *supportedActionCommands; // @synthesize supportedActionCommands=_supportedActionCommands;
 @property(retain) NSString *connectionName; // @synthesize connectionName=_connectionName;
 @property(retain) NSString *remoteInterfaceName; // @synthesize remoteInterfaceName=_remoteInterfaceName;
 @property double sample; // @synthesize sample=_sample;
@@ -72,12 +79,12 @@
 @property int localInterfaceType; // @synthesize localInterfaceType=_localInterfaceType;
 @property unsigned long long protocolVersion; // @synthesize protocolVersion=_protocolVersion;
 @property struct timeval lastSignOfLife; // @synthesize lastSignOfLife=_lastSignOfLife;
-- (void).cxx_destruct;
 - (void)muxerInterrupted:(id)arg1;
 - (void)muxer:(id)arg1 wroteDataToStream:(id)arg2;
 - (void)muxer:(id)arg1 streamClosing:(id)arg2;
 - (void)muxer:(id)arg1 newIncomingStream:(id)arg2;
 - (void)startControlWatchdog;
+- (id)validateCommandList:(id)arg1;
 - (void)startControlMonitor;
 - (BOOL)readCommandFromControl:(unsigned int *)arg1 payload:(id *)arg2;
 - (BOOL)writeCommandToControl:(unsigned int)arg1 payload:(id)arg2;

@@ -16,7 +16,7 @@
 @property(retain, nonatomic) id socketName;
 @property(copy, nonatomic) CDUnknownBlockType connectedHandler;
 @property(copy, nonatomic) CDUnknownBlockType receiveDataHandler;
-@property(nonatomic) NSObject<OS_dispatch_queue> *targetQueue;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *targetQueue;
 - (void)setSyncQueue:(id)arg1;
 - (id)syncQueue;
 - (void)sendData:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;

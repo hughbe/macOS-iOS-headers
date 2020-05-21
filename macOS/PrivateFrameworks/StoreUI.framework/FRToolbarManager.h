@@ -6,101 +6,19 @@
 
 #import "NSObject.h"
 
-#import "NSToolbarDelegate.h"
-#import "NSURLSessionDataDelegate.h"
+@class FRViewNavigationController;
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSOperationQueue, NSString, NSTimer, NSToolbar, NSToolbarItem, NSURLSession, NSView, NSWindow;
-
-@interface FRToolbarManager : NSObject <NSURLSessionDataDelegate, NSToolbarDelegate>
+@interface FRToolbarManager : NSObject
 {
-    NSToolbarItem *_leadingToolbarItem;
-    NSToolbarItem *_trailingToolbarItem;
-    BOOL _useMonobarStyle;
-    BOOL _backButtonEnabled;
-    BOOL _forwardButtonEnabled;
-    BOOL _searchEnabled;
-    NSToolbar *_toolbar;
-    id <FRToolbarManagerDelegate> _delegate;
-    NSArray *_toolbarItems;
-    NSString *_selectedToolbarItem;
-    long long _activityIndicatorStackDepth;
-    NSTimer *_activityIndicatorTimer;
-    NSView *_pages;
-    NSMutableArray *_defaultToolbarItems;
-    NSURLSession *_urlSession;
-    NSMutableDictionary *_urlTasks;
-    NSOperationQueue *_iconQueue;
-    NSString *_selectedIdentifier;
-    NSWindow *_window;
-    long long _savedWindowTitleVisibility;
+    FRViewNavigationController *_navigationController;
 }
 
-@property(nonatomic) long long savedWindowTitleVisibility; // @synthesize savedWindowTitleVisibility=_savedWindowTitleVisibility;
-@property(nonatomic) __weak NSWindow *window; // @synthesize window=_window;
-@property(retain, nonatomic) NSString *selectedIdentifier; // @synthesize selectedIdentifier=_selectedIdentifier;
-@property(retain, nonatomic) NSOperationQueue *iconQueue; // @synthesize iconQueue=_iconQueue;
-@property(retain, nonatomic) NSMutableDictionary *urlTasks; // @synthesize urlTasks=_urlTasks;
-@property(retain, nonatomic) NSURLSession *urlSession; // @synthesize urlSession=_urlSession;
-@property(retain, nonatomic) NSMutableArray *defaultToolbarItems; // @synthesize defaultToolbarItems=_defaultToolbarItems;
-@property(retain, nonatomic) NSView *pages; // @synthesize pages=_pages;
-@property(retain, nonatomic) NSTimer *activityIndicatorTimer; // @synthesize activityIndicatorTimer=_activityIndicatorTimer;
-@property(nonatomic) long long activityIndicatorStackDepth; // @synthesize activityIndicatorStackDepth=_activityIndicatorStackDepth;
-@property(nonatomic, getter=isSearchEnabled) BOOL searchEnabled; // @synthesize searchEnabled=_searchEnabled;
-@property(nonatomic, getter=isForwardButtonEnabled) BOOL forwardButtonEnabled; // @synthesize forwardButtonEnabled=_forwardButtonEnabled;
-@property(nonatomic, getter=isBackButtonEnabled) BOOL backButtonEnabled; // @synthesize backButtonEnabled=_backButtonEnabled;
-@property(retain, nonatomic) NSString *selectedToolbarItem; // @synthesize selectedToolbarItem=_selectedToolbarItem;
-@property(copy, nonatomic) NSArray *toolbarItems; // @synthesize toolbarItems=_toolbarItems;
-@property(nonatomic) BOOL useMonobarStyle; // @synthesize useMonobarStyle=_useMonobarStyle;
-@property(nonatomic) __weak id <FRToolbarManagerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) NSToolbar *toolbar; // @synthesize toolbar=_toolbar;
 - (void).cxx_destruct;
-- (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
-- (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3;
-- (void)_fetchIconAtURL:(id)arg1 withIdentifier:(id)arg2;
-- (BOOL)_loadToolbarItems;
-- (void)_saveToolbarItems:(id)arg1;
-- (id)_toolbarCacheURL;
-- (BOOL)validateMenuItem:(id)arg1;
-- (void)_updateStoreMenu;
-- (id)_tabToolbarItem;
-- (id)_newToolbarItemForIdentifier:(id)arg1;
-- (id)toolbar:(id)arg1 itemForItemIdentifier:(id)arg2 willBeInsertedIntoToolbar:(BOOL)arg3;
-- (id)toolbarAllowedItemIdentifiers:(id)arg1;
-- (id)toolbarDefaultItemIdentifiers:(id)arg1;
-- (void)reloadPage:(id)arg1;
-- (void)traverseHistory:(id)arg1;
-- (void)doSearch:(id)arg1;
+@property(nonatomic) __weak FRViewNavigationController *navigationController; // @synthesize navigationController=_navigationController;
 - (void)startSearch:(id)arg1;
-- (void)itemSelected:(id)arg1;
-@property(retain, nonatomic) NSString *searchString;
-- (BOOL)_isDuplicateToolbarItem:(id)arg1;
-- (void)_removeCustomToolbarItem:(id)arg1;
-- (void)_addCustomToolbarItem:(id)arg1 index:(long long)arg2;
 - (void)setTrailingToolbarItem:(id)arg1;
 - (void)setLeadingToolbarItem:(id)arg1;
-- (void)setToolbarItem:(id)arg1 badgeCount:(unsigned long long)arg2;
-- (void)setToolbarItem:(id)arg1 enabled:(BOOL)arg2;
-- (BOOL)isToolbarItemEnabled:(id)arg1;
-- (void)selectToolbarItem:(id)arg1;
-- (BOOL)isToolbarItemSelected:(id)arg1;
-- (id)_mergeOldToolbarItems:(id)arg1 withNewToolbarItems:(id)arg2;
-- (void)_displayToolbarItems;
-- (void)_activityIndicatorTimerFired;
-- (void)pushActivityIndicator;
-- (void)popActivityIndicator;
-- (void)_updateAppearances;
-- (void)windowKeyStatusChanged:(id)arg1;
-- (void)didRemoveToolbarFromWindow:(id)arg1;
-- (void)didAddToolbarToWindow:(id)arg1;
-- (void)dealloc;
-- (id)initWithToolbarItems:(id)arg1 prioritizeCachedItems:(BOOL)arg2;
-- (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithNavigationController:(id)arg1;
 
 @end
 

@@ -11,7 +11,6 @@
 __attribute__((visibility("hidden")))
 @interface EDSheet : OCDDelayedNode
 {
-    EDWorkbook *mWorkbook;
     EDString *mName;
     _Bool mHidden;
     _Bool mDisplayFormulas;
@@ -26,9 +25,12 @@ __attribute__((visibility("hidden")))
     EDProcessors *mProcessors;
     EDWarnings *mWarnings;
     ESDContainer *mEscherDrawing;
+    EDWorkbook *mWorkbook;
 }
 
 + (id)sheetWithWorkbook:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly) __weak EDWorkbook *workbook; // @synthesize workbook=mWorkbook;
 @property(nonatomic) _Bool isDialogSheet; // @synthesize isDialogSheet=mIsDialogSheet;
 - (id)description;
 - (id)warnings;
@@ -58,7 +60,6 @@ __attribute__((visibility("hidden")))
 - (_Bool)isHidden;
 - (void)setName:(id)arg1;
 - (id)name;
-- (id)workbook;
 - (void)doneWithNonRowContent;
 - (void)dealloc;
 - (id)initWithWorkbook:(id)arg1;

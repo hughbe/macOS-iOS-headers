@@ -5,10 +5,11 @@
 //
 
 #import "SAAceCommand.h"
+#import "SAAceReferable.h"
 
 @class NSArray, NSString;
 
-@protocol SAClientBoundCommand <SAAceCommand>
+@protocol SAClientBoundCommand <SAAceCommand, SAAceReferable>
 @property(copy, nonatomic) NSArray *callbacks;
 @property(copy, nonatomic) NSString *appId;
 - (BOOL)requiresResponse;

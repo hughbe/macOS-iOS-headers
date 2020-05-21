@@ -10,7 +10,8 @@
 
 @interface ASDBox : ASDObject
 {
-    NSMutableArray *_devices;
+    NSMutableArray *_audioDevices;
+    NSMutableArray *_clockDevices;
     NSObject<OS_dispatch_queue> *_deviceQueue;
     NSString *_boxName;
     BOOL _acquired;
@@ -23,7 +24,7 @@
     BOOL _requiresAuthentication;
     BOOL _supportsIdentify;
     BOOL _canSetIdentify;
-    BOOL _acquireable;
+    BOOL _acquirable;
     BOOL _canChangeBoxName;
     NSString *_boxUID;
     NSString *_modelUID;
@@ -33,38 +34,52 @@
     NSString *_firmwareVersion;
 }
 
-@property(nonatomic) BOOL identify; // @synthesize identify=_identify;
-@property(nonatomic) int acquisitionFailure; // @synthesize acquisitionFailure=_acquisitionFailure;
-@property(nonatomic) BOOL acquired; // @synthesize acquired=_acquired;
++ (id)keyPathsForValuesAffectingAcquireable;
+- (void).cxx_destruct;
+@property(readonly, retain, nonatomic) NSArray *clockDevices; // @synthesize clockDevices=_clockDevices;
 @property(nonatomic) BOOL canChangeBoxName; // @synthesize canChangeBoxName=_canChangeBoxName;
-@property(nonatomic, getter=isAcquireable) BOOL acquireable; // @synthesize acquireable=_acquireable;
+@property(nonatomic, getter=isAcquirable) BOOL acquirable; // @synthesize acquirable=_acquirable;
 @property(nonatomic) BOOL canSetIdentify; // @synthesize canSetIdentify=_canSetIdentify;
 @property(nonatomic) BOOL supportsIdentify; // @synthesize supportsIdentify=_supportsIdentify;
 @property(nonatomic) BOOL requiresAuthentication; // @synthesize requiresAuthentication=_requiresAuthentication;
 @property(nonatomic) BOOL hasMIDI; // @synthesize hasMIDI=_hasMIDI;
 @property(nonatomic) BOOL hasAudio; // @synthesize hasAudio=_hasAudio;
 @property(nonatomic) BOOL hasVideo; // @synthesize hasVideo=_hasVideo;
-@property(retain, nonatomic) NSString *firmwareVersion; // @synthesize firmwareVersion=_firmwareVersion;
-@property(retain, nonatomic) NSString *serialNumber; // @synthesize serialNumber=_serialNumber;
-@property(retain, nonatomic) NSString *modelName; // @synthesize modelName=_modelName;
-@property(retain, nonatomic) NSString *manufacturerName; // @synthesize manufacturerName=_manufacturerName;
-@property(retain, nonatomic) NSString *modelUID; // @synthesize modelUID=_modelUID;
-@property(retain, nonatomic) NSString *boxUID; // @synthesize boxUID=_boxUID;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *firmwareVersion; // @synthesize firmwareVersion=_firmwareVersion;
+@property(copy, nonatomic) NSString *serialNumber; // @synthesize serialNumber=_serialNumber;
+@property(copy, nonatomic) NSString *modelName; // @synthesize modelName=_modelName;
+@property(copy, nonatomic) NSString *manufacturerName; // @synthesize manufacturerName=_manufacturerName;
+@property(copy, nonatomic) NSString *modelUID; // @synthesize modelUID=_modelUID;
+@property(readonly, copy, nonatomic) NSString *boxUID; // @synthesize boxUID=_boxUID;
+- (id)driverClassName;
+- (id)diagnosticDescriptionWithIndent:(id)arg1 walkTree:(BOOL)arg2;
+@property(nonatomic, getter=isAcquireable) BOOL acquireable; // @dynamic acquireable;
+- (void)systemHasPoweredOn;
+- (void)systemWillSleep;
+@property(readonly, retain, nonatomic) NSArray *audioDevices;
 @property(readonly, retain, nonatomic) NSArray *devices; // @dynamic devices;
 @property(readonly, retain, nonatomic) NSObject<OS_dispatch_queue> *acquireQueue; // @dynamic acquireQueue;
 - (void)identifyBox:(BOOL)arg1;
-- (void)acquireBox:(BOOL)arg1 fromHAL:(BOOL)arg2;
-- (void)changeBoxName:(id)arg1;
-@property(retain, nonatomic) NSString *boxName; // @dynamic boxName;
+- (BOOL)acquireBox:(BOOL)arg1 fromHAL:(BOOL)arg2;
+@property(nonatomic) BOOL identify;
+@property(nonatomic) int acquisitionFailure;
+@property(nonatomic) BOOL acquired;
+- (BOOL)changeBoxName:(id)arg1;
+@property(copy, nonatomic) NSString *boxName; // @dynamic boxName;
 - (void)removeDevicesFromPlugin;
 - (void)addDevicesToPlugin;
+- (void)removeAllClockDevices;
+- (void)removeAllAudioDevices;
 - (void)removeAllDevices;
+- (void)removeClockDevice:(id)arg1;
+- (void)removeAudioDevice:(id)arg1;
 - (void)removeDevice:(id)arg1;
+- (void)addClockDevice:(id)arg1;
+- (void)addAudioDevice:(id)arg1;
 - (void)addDevice:(id)arg1;
 - (BOOL)setProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 qualifierData:(const void *)arg3 dataSize:(unsigned int)arg4 andData:(const void *)arg5 forClient:(int)arg6;
 - (BOOL)isPropertySettable:(const struct AudioObjectPropertyAddress *)arg1;
-- (BOOL)getProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 qualifierData:(const void *)arg3 dataSize:(unsigned int *)arg4 andData:(const void *)arg5 forClient:(int)arg6;
+- (BOOL)getProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 qualifierData:(const void *)arg3 dataSize:(unsigned int *)arg4 andData:(void *)arg5 forClient:(int)arg6;
 - (unsigned int)dataSizeForProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 andQualifierData:(const void *)arg3;
 - (BOOL)hasProperty:(const struct AudioObjectPropertyAddress *)arg1;
 @property(readonly, nonatomic) unsigned int transportType; // @dynamic transportType;

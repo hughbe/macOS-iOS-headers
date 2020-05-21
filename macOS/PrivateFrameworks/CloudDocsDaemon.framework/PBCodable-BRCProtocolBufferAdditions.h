@@ -11,7 +11,7 @@
 @class NSString;
 
 @interface PBCodable (BRCProtocolBufferAdditions) <PQLValuable>
-+ (id)newFromSqliteValue:(struct Mem *)arg1;
++ (id)newFromSqliteValue:(struct sqlite3_value *)arg1;
 - (void)sqliteBind:(struct sqlite3_stmt *)arg1 index:(int)arg2;
 
 // Remaining properties

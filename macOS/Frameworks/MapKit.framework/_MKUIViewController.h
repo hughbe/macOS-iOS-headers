@@ -39,7 +39,9 @@
 - (void)viewDidAppear;
 - (void)viewWillAppear;
 - (BOOL)_isAnimating;
-- (void)infoCardThemeChanged:(id)arg1;
+- (void)infoCardThemeChanged;
+@property(readonly, nonatomic) id <MKInfoCardTheme> mk_theme;
+@property(nonatomic) double contentAlpha;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

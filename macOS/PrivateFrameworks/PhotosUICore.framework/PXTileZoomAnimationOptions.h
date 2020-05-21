@@ -12,8 +12,10 @@
 {
     BOOL _shouldCrossfade;
     long long _transformType;
+    unsigned long long _flags;
 }
 
+@property(nonatomic) unsigned long long flags; // @synthesize flags=_flags;
 @property(nonatomic) BOOL shouldCrossfade; // @synthesize shouldCrossfade=_shouldCrossfade;
 @property(nonatomic) long long transformType; // @synthesize transformType=_transformType;
 - (id)copyWithZone:(struct _NSZone *)arg1;

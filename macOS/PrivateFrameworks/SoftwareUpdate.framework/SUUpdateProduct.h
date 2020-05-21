@@ -8,26 +8,25 @@
 
 #import "NSSecureCoding.h"
 
-@class NSArray, NSData, NSDictionary, NSString, NSURL;
+@class NSArray, NSAttributedString, NSData, NSDate, NSDictionary, NSString, NSURL, SUMajorProduct;
 
 @interface SUUpdateProduct : NSObject <NSSecureCoding>
 {
     BOOL _allowedToUseInstallLater;
     BOOL _shouldAuthenticateReboot;
     BOOL _shouldLaunchFirstLoginOptimization;
+    BOOL _isABaseSystemUpdate;
+    BOOL _isMajorOSUpdate;
+    BOOL _isMajorOSUpdateInternal;
+    BOOL _adminDeferred;
     BOOL _doItLaterUpdateAndNowIsLater;
     BOOL _isFirmwareUpdate;
+    BOOL _autoUpdateEligible;
     BOOL _showPostInstallNotification;
     int _action;
     NSString *_title;
     NSString *_versionString;
     NSString *_currentLocalization;
-    NSData *_longDescriptionData;
-    NSString *_longDescriptionMIMEType;
-    NSData *_licenseAgreementData;
-    NSString *_licenseAgreementMIMEType;
-    NSData *_firmwareWarningData;
-    NSString *_firmwareWarningMIMEType;
     NSString *_productKey;
     long long _serverState;
     long long _type;
@@ -37,20 +36,41 @@
     NSString *_identifierForProductLabel;
     NSString *_versionForProductLabel;
     NSString *_serverMetadataURL;
+    SUMajorProduct *_majorProduct;
+    NSDate *_adminDeferralDate;
     NSDictionary *_matchingDictionary;
+    NSDictionary *_extraInfo;
     NSArray *_packageIdentifiersToInstall;
     long long _downloadSize;
+    NSString *_productType;
+    NSString *_productBuildVersion;
+    NSString *_productVersion;
+    NSDate *_postDate;
+    NSDate *_deferredEnablementDate;
+    NSDictionary *_updateInfo;
     long long _shouldAutoInstallWithDelayInHours;
     NSString *_customCriticalNotificationTitle;
     NSString *_customCriticalNotificationText;
     NSString *_customTitleForPostInstallNotification;
     NSString *_customTextForPostInstallNotification;
     NSURL *_customURLForPostInstallNotification;
+    NSData *_longDescriptionRTFData;
+    NSData *_firmwareWarningRTFData;
+    NSData *_licenseAgreementRTFData;
+    NSAttributedString *_cachedLongDescription;
+    NSAttributedString *_cachedFirmwareWarning;
+    NSAttributedString *_cachedLicenseAgreement;
 }
 
 + (id)stringForUpdateType:(long long)arg1;
 + (id)stringForUpdateState:(long long)arg1;
 + (BOOL)supportsSecureCoding;
+@property(retain) NSAttributedString *cachedLicenseAgreement; // @synthesize cachedLicenseAgreement=_cachedLicenseAgreement;
+@property(retain) NSAttributedString *cachedFirmwareWarning; // @synthesize cachedFirmwareWarning=_cachedFirmwareWarning;
+@property(retain) NSAttributedString *cachedLongDescription; // @synthesize cachedLongDescription=_cachedLongDescription;
+@property(retain) NSData *licenseAgreementRTFData; // @synthesize licenseAgreementRTFData=_licenseAgreementRTFData;
+@property(retain) NSData *firmwareWarningRTFData; // @synthesize firmwareWarningRTFData=_firmwareWarningRTFData;
+@property(retain) NSData *longDescriptionRTFData; // @synthesize longDescriptionRTFData=_longDescriptionRTFData;
 @property(readonly, retain) NSURL *customURLForPostInstallNotification; // @synthesize customURLForPostInstallNotification=_customURLForPostInstallNotification;
 @property(readonly, retain) NSString *customTextForPostInstallNotification; // @synthesize customTextForPostInstallNotification=_customTextForPostInstallNotification;
 @property(readonly, retain) NSString *customTitleForPostInstallNotification; // @synthesize customTitleForPostInstallNotification=_customTitleForPostInstallNotification;
@@ -58,11 +78,25 @@
 @property(readonly, retain) NSString *customCriticalNotificationText; // @synthesize customCriticalNotificationText=_customCriticalNotificationText;
 @property(readonly, retain) NSString *customCriticalNotificationTitle; // @synthesize customCriticalNotificationTitle=_customCriticalNotificationTitle;
 @property(readonly) long long shouldAutoInstallWithDelayInHours; // @synthesize shouldAutoInstallWithDelayInHours=_shouldAutoInstallWithDelayInHours;
+@property(readonly) NSDictionary *updateInfo; // @synthesize updateInfo=_updateInfo;
+@property(readonly) NSDate *deferredEnablementDate; // @synthesize deferredEnablementDate=_deferredEnablementDate;
+@property(readonly) NSDate *postDate; // @synthesize postDate=_postDate;
+@property(readonly, getter=isAutoUpdateEligible) BOOL autoUpdateEligible; // @synthesize autoUpdateEligible=_autoUpdateEligible;
+@property(readonly) NSString *productVersion; // @synthesize productVersion=_productVersion;
+@property(readonly) NSString *productBuildVersion; // @synthesize productBuildVersion=_productBuildVersion;
+@property(readonly) NSString *productType; // @synthesize productType=_productType;
 @property BOOL isFirmwareUpdate; // @synthesize isFirmwareUpdate=_isFirmwareUpdate;
 @property BOOL doItLaterUpdateAndNowIsLater; // @synthesize doItLaterUpdateAndNowIsLater=_doItLaterUpdateAndNowIsLater;
 @property(readonly) long long downloadSize; // @synthesize downloadSize=_downloadSize;
 @property(readonly) NSArray *packageIdentifiersToInstall; // @synthesize packageIdentifiersToInstall=_packageIdentifiersToInstall;
+@property(readonly, retain) NSDictionary *extraInfo; // @synthesize extraInfo=_extraInfo;
 @property(readonly, retain) NSDictionary *matchingDictionary; // @synthesize matchingDictionary=_matchingDictionary;
+@property(readonly, retain) NSDate *adminDeferralDate; // @synthesize adminDeferralDate=_adminDeferralDate;
+@property(readonly) BOOL adminDeferred; // @synthesize adminDeferred=_adminDeferred;
+@property(readonly, retain) SUMajorProduct *majorProduct; // @synthesize majorProduct=_majorProduct;
+@property(readonly) BOOL isMajorOSUpdateInternal; // @synthesize isMajorOSUpdateInternal=_isMajorOSUpdateInternal;
+@property(readonly) BOOL isMajorOSUpdate; // @synthesize isMajorOSUpdate=_isMajorOSUpdate;
+@property BOOL isABaseSystemUpdate; // @synthesize isABaseSystemUpdate=_isABaseSystemUpdate;
 @property(readonly) BOOL shouldLaunchFirstLoginOptimization; // @synthesize shouldLaunchFirstLoginOptimization=_shouldLaunchFirstLoginOptimization;
 @property(readonly) BOOL shouldAuthenticateReboot; // @synthesize shouldAuthenticateReboot=_shouldAuthenticateReboot;
 @property(readonly) BOOL allowedToUseInstallLater; // @synthesize allowedToUseInstallLater=_allowedToUseInstallLater;
@@ -75,21 +109,16 @@
 @property(readonly) long long type; // @synthesize type=_type;
 @property(readonly) long long serverState; // @synthesize serverState=_serverState;
 @property(readonly, retain) NSString *productKey; // @synthesize productKey=_productKey;
-@property(readonly, retain) NSString *firmwareWarningMIMEType; // @synthesize firmwareWarningMIMEType=_firmwareWarningMIMEType;
-@property(readonly, retain) NSData *firmwareWarningData; // @synthesize firmwareWarningData=_firmwareWarningData;
-@property(readonly, retain) NSString *licenseAgreementMIMEType; // @synthesize licenseAgreementMIMEType=_licenseAgreementMIMEType;
-@property(readonly, retain) NSData *licenseAgreementData; // @synthesize licenseAgreementData=_licenseAgreementData;
-@property(readonly, retain) NSString *longDescriptionMIMEType; // @synthesize longDescriptionMIMEType=_longDescriptionMIMEType;
-@property(readonly, retain) NSData *longDescriptionData; // @synthesize longDescriptionData=_longDescriptionData;
 @property(readonly, retain) NSString *currentLocalization; // @synthesize currentLocalization=_currentLocalization;
 @property(readonly) int action; // @synthesize action=_action;
 @property(readonly, retain) NSString *versionString; // @synthesize versionString=_versionString;
 @property(readonly, retain) NSString *title; // @synthesize title=_title;
+- (id)initWithProductKey:(id)arg1 title:(id)arg2 versionString:(id)arg3 longDescription:(id)arg4;
+- (id)getObjectFromExtendedMetaInfoForKey:(id)arg1;
+@property(readonly, retain) NSAttributedString *licenseAgreement;
+@property(readonly, retain) NSAttributedString *firmwareWarning;
+@property(readonly, retain) NSAttributedString *longDescription;
 - (id)updateLabel;
-- (id)licenseAgreement;
-- (id)firmwareWarning;
-- (id)stringRepresentationOfLongDescription;
-- (id)longDescription;
 - (id)debugDescription;
 - (id)description;
 - (unsigned long long)hash;

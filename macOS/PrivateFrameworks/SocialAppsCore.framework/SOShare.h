@@ -17,15 +17,17 @@
     NSString *_sourceApplicationIdentifier;
 }
 
+- (void).cxx_destruct;
 @property BOOL canEditFlag; // @synthesize canEditFlag=_canEditFlag;
 @property(copy) NSString *sourceApplicationIdentifier; // @synthesize sourceApplicationIdentifier=_sourceApplicationIdentifier;
 @property(copy) NSSharingExtensionContext *sharingExtensionContext; // @synthesize sharingExtensionContext=_sharingExtensionContext;
 @property(copy) CKContainer *ckContainer; // @synthesize ckContainer=_ckContainer;
-@property(copy) CKShare *ckShare; // @synthesize ckShare=_ckShare;
-- (void).cxx_destruct;
+@property(copy, setter=setCKShare:) CKShare *ckShare; // @synthesize ckShare=_ckShare;
 - (void)_setRecipientArrays:(id)arg1 emails:(id)arg2 forRecipients:(id)arg3;
 - (void)updateCKShareViaSharingExtensionContext;
-- (void)passRecipientsToCloudKit:(id)arg1;
+- (void)removeRecipientsFromCKShare;
+- (void)passRecipientsToCloudKit:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_setUpSourceApplicationIdentifier;
 - (id)initWithCKShare:(id)arg1 containerId:(id)arg2 canEditFlag:(BOOL)arg3 sharingExtensionContext:(id)arg4 sourceApplicationIdentifier:(id)arg5;
 
 @end

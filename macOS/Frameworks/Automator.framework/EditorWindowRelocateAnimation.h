@@ -12,10 +12,8 @@
     struct CGPoint _endPoint;
 }
 
-- (void)setEndPoint:(struct CGPoint)arg1;
-- (struct CGPoint)endPoint;
-- (void)setStartPoint:(struct CGPoint)arg1;
-- (struct CGPoint)startPoint;
+@property struct CGPoint endPoint; // @synthesize endPoint=_endPoint;
+@property struct CGPoint startPoint; // @synthesize startPoint=_startPoint;
 - (void)setCurrentProgress:(float)arg1;
 - (id)init;
 

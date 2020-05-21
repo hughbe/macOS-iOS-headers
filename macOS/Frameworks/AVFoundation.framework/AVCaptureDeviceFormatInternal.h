@@ -8,10 +8,12 @@
 
 @class NSArray;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureDeviceFormatInternal : NSObject
 {
     struct opaqueCMFormatDescription *formatDescription;
     NSArray *videoSupportedFrameRateRanges;
+    long long autoFocusSystem;
 }
 
 @end

@@ -6,40 +6,38 @@
 
 #import "NSWindowController.h"
 
-#import "PKServiceClientProtocol.h"
+#import "PMXPCSupportDelegate.h"
 
-@class NSArray, NSButton, NSProgressIndicator, NSString, NSTextField, NSView, NSXPCConnection, PKPrinter;
+@class NSArray, NSButton, NSProgressIndicator, NSString, NSTextField, NSView, PK2Printer, PMXPCSupport;
 
-@interface PKQueueCreationController : NSWindowController <PKServiceClientProtocol>
+@interface PKQueueCreationController : NSWindowController <PMXPCSupportDelegate>
 {
     NSView *_progressView;
     NSButton *_cancelButton;
     NSTextField *_progressTextField;
     NSProgressIndicator *_progressIndicator;
     NSArray *_topLevelNibObjects;
-    PKPrinter *_printer;
+    PK2Printer *_printer;
     NSString *_queueID;
     id <PKServerQueueCreationDelegate> _delegate;
     BOOL _isCancelled;
-    NSXPCConnection *_xpcConnection;
+    PMXPCSupport *_xpc;
 }
 
-@property(retain) NSXPCConnection *xpcConnection; // @synthesize xpcConnection=_xpcConnection;
-@property BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
-@property id <PKServerQueueCreationDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain) NSString *queueID; // @synthesize queueID=_queueID;
-@property(retain) PKPrinter *printer; // @synthesize printer=_printer;
 @property(retain) NSArray *topLevelNibObjects; // @synthesize topLevelNibObjects=_topLevelNibObjects;
 @property NSProgressIndicator *progressIndicator; // @synthesize progressIndicator=_progressIndicator;
 @property NSTextField *progressTextField; // @synthesize progressTextField=_progressTextField;
 @property NSButton *cancelButton; // @synthesize cancelButton=_cancelButton;
 @property NSView *progressView; // @synthesize progressView=_progressView;
-- (void)queueCreated:(id)arg1 queueID:(id)arg2 error:(int)arg3;
+@property(retain) PMXPCSupport *xpc; // @synthesize xpc=_xpc;
+@property BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
+@property id <PKServerQueueCreationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain) NSString *queueID; // @synthesize queueID=_queueID;
+@property(retain) PK2Printer *printer; // @synthesize printer=_printer;
+- (void)handleEventForCommand:(int)arg1 status:(int)arg2 event:(id)arg3;
 - (void)startQueueCreation;
 - (void)presentErrorWithMessageText:(id)arg1 informativeTextWithFormat:(id)arg2;
 - (void)switchPanelTo:(id)arg1;
-- (void)tearDownXPCConnection;
-- (id)setupXPCConnection;
 - (void)notifyQueueCompleted:(long long)arg1;
 - (void)cancelErrorAlert:(id)arg1;
 - (void)cancel:(id)arg1;

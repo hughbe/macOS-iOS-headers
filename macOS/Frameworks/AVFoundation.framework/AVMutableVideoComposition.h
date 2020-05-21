@@ -13,13 +13,16 @@
     AVMutableVideoCompositionInternal *_mutableVideoComposition;
 }
 
++ (id)videoCompositionWithPropertiesOfAsset:(id)arg1 prototypeInstruction:(id)arg2;
 + (id)videoCompositionWithPropertiesOfAsset:(id)arg1 videoGravity:(id)arg2;
 + (id)videoCompositionWithPropertiesOfAsset:(id)arg1;
 + (id)videoComposition;
 + (id)videoCompositionWithAsset:(id)arg1 applyingCIFiltersWithHandler:(CDUnknownBlockType)arg2;
 @property(retain, nonatomic) AVVideoCompositionCoreAnimationTool *animationTool;
 @property(copy, nonatomic) NSArray *instructions;
+@property(nonatomic) float renderScale;
 @property(nonatomic) struct CGSize renderSize;
+@property(nonatomic) int sourceTrackIDForFrameTiming;
 @property(nonatomic) CDStruct_1b6d18a9 frameDuration;
 @property(retain, nonatomic) Class customVideoCompositorClass;
 - (void)setBuiltInCompositorName:(id)arg1;
@@ -30,7 +33,6 @@
 - (id)colorYCbCrMatrix;
 - (void)setColorPrimaries:(id)arg1;
 - (id)colorPrimaries;
-@property(nonatomic) int sourceTrackIDForFrameTiming;
 
 @end
 

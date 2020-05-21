@@ -23,6 +23,7 @@
 + (unsigned long long)typeForPredicate:(id)arg1;
 + (unsigned long long)_typeByInspectionForPredicate:(id)arg1;
 + (id)predicateUtilities;
+- (void).cxx_destruct;
 @property(retain) NSDate *currentDate; // @synthesize currentDate=_currentDate;
 @property(retain) NSCalendar *calendar; // @synthesize calendar=_calendar;
 - (id)predicateForBytesWithKeyPath:(id)arg1 type:(unsigned long long)arg2 count:(unsigned long long)arg3 unit:(unsigned long long)arg4;
@@ -41,7 +42,6 @@
 - (BOOL)_getDatesForPredicate:(id)arg1 startDate:(id *)arg2 endDate:(id *)arg3;
 - (id)_getDateAtMidnightBeginningTheDayForPredicate:(id)arg1;
 - (long long)searchComparisonForPredicate:(id)arg1;
-- (void)dealloc;
 
 @end
 

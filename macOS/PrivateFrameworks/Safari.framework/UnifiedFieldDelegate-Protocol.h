@@ -6,13 +6,18 @@
 
 #import "NSTextFieldDelegate.h"
 
-@class NSEvent, NSMenu, UnifiedField, WebBookmark;
+@class NSMenu, NSURL, UnifiedField, WebBookmark;
 
 @protocol UnifiedFieldDelegate <NSTextFieldDelegate>
+- (NSURL *)unifiedFieldFallbackURLForAboutBlank:(UnifiedField *)arg1;
+- (void)unifiedFieldPerSitePreferencesContextMenuItemWasSelected:(UnifiedField *)arg1;
+- (BOOL)unifiedFieldCanShowPerSitePreferences:(UnifiedField *)arg1;
+- (void)unifiedFieldDidChangePageTitle:(UnifiedField *)arg1;
 - (void)unifiedFieldURLDropped:(UnifiedField *)arg1;
 - (WebBookmark *)bookmarkToDragFromSiteIconInUnifiedField:(UnifiedField *)arg1;
-- (BOOL)unifiedField:(UnifiedField *)arg1 trackSearchButtonForEvent:(NSEvent *)arg2;
+- (void)unifiedFieldSearchButtonWasClicked:(UnifiedField *)arg1;
 - (NSMenu *)unifiedFieldReloadMenu:(UnifiedField *)arg1;
+- (NSMenu *)unifiedFieldReaderMenu:(UnifiedField *)arg1;
 - (NSMenu *)unifiedFieldAudioIndicatorMenu:(UnifiedField *)arg1;
 - (void)unifiedFieldPerformAudioIndicatorAction:(UnifiedField *)arg1;
 - (void)unifiedFieldPerformSecurityPillAction:(UnifiedField *)arg1;

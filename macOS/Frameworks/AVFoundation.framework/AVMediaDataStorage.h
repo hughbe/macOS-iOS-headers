@@ -13,12 +13,11 @@
     AVMediaDataStorageInternal *_mediaDataStorageInternal;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)URL;
-- (void)finalize;
-- (void)dealloc;
 - (id)initWithURL:(id)arg1 options:(id)arg2;
 - (id)init;
 

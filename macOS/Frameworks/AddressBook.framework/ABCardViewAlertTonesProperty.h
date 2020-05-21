@@ -6,7 +6,6 @@
 
 #import <AddressBook/ABCardViewProperty.h>
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewAlertTonesProperty : ABCardViewProperty
 {
 }
@@ -15,6 +14,7 @@ __attribute__((visibility("hidden")))
 - (id)defaultLabel;
 - (BOOL)isMultiValue;
 - (id)emptyValueForMultiValue:(id)arg1 label:(id)arg2;
+- (BOOL)isValueEmpty:(id)arg1;
 
 @end
 

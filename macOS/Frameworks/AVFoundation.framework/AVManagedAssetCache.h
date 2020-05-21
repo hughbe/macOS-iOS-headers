@@ -8,6 +8,7 @@
 
 @class AVManagedAssetCacheInternal;
 
+__attribute__((visibility("hidden")))
 @interface AVManagedAssetCache : AVAssetCache
 {
     AVManagedAssetCacheInternal *_priv;
@@ -26,7 +27,6 @@
 - (long long)maxEntrySize;
 - (void)setMaxSize:(long long)arg1;
 - (long long)maxSize;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithURL:(id)arg1;
 

@@ -8,30 +8,32 @@
 
 #import "SiriUIViewController.h"
 
-@class AceObject, NSString;
+@class AFAnalyticsTurnBasedInstrumentationContext, AceObject, NSString;
 
 @interface SiriUIAceObjectViewController : NSViewController <SiriUIViewController>
 {
     BOOL _virgin;
+    AFAnalyticsTurnBasedInstrumentationContext *_instrumentationTurnContext;
     AceObject *_aceObject;
     id <SiriUIAceObjectViewControllerDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <SiriUIAceObjectViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic, getter=isVirgin) BOOL virgin; // @synthesize virgin=_virgin;
 @property(retain, nonatomic) AceObject *aceObject; // @synthesize aceObject=_aceObject;
-- (void).cxx_destruct;
+@property(retain, nonatomic) AFAnalyticsTurnBasedInstrumentationContext *instrumentationTurnContext; // @synthesize instrumentationTurnContext=_instrumentationTurnContext;
 - (void)wasAddedToTranscript;
 - (void)siriDidDeactivate;
 - (void)siriWillActivateFromSource:(long long)arg1;
 - (double)desiredHeight;
 - (BOOL)removedAfterDialogProgresses;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (BOOL)_isUserUtterance;
 - (void)_aceObjectViewControllerWillBeRemoved;
 - (double)_insertionAnimatedZPosition;
 - (long long)_replacementAnimation;
 - (long long)_insertionAnimation;
+- (long long)_pinAnimationType;
 - (void)_setVirgin:(BOOL)arg1;
 - (id)_privateDelegate;
 

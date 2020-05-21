@@ -13,14 +13,19 @@
 __attribute__((visibility("hidden")))
 @interface FI_TAirDropProgressView : FI_TUpdateLayerView <CALayerDelegate>
 {
-    struct TNSRef<FI_TAirDropProgressLayer *, void> _progressLayer;
+    struct TNSRef<FI_TAirDropProgressLayer, void> _progressLayer;
+    _Bool _pressed;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) _Bool pressed; // @synthesize pressed=_pressed;
 - (BOOL)layer:(id)arg1 shouldInheritContentsScale:(double)arg2 fromWindow:(id)arg3;
+- (_Bool)shouldShowProgressLayer;
 - (void)resetProgress;
+@property(nonatomic) _Bool indeterminate; // @dynamic indeterminate;
 @property(nonatomic) double percentComplete; // @dynamic percentComplete;
+- (void)updateLayer;
 - (void)awakeFromNib;
 - (void)initCommon;
 

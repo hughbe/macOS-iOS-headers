@@ -14,17 +14,20 @@
     NSData *_archiveData;
     long long _archiveType;
     NSURL *_compressedFileURL;
+    unsigned long long _approximateSize;
     NSProgress *_overallProgress;
     NSProgress *_fileProgress;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)log;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSProgress *fileProgress; // @synthesize fileProgress=_fileProgress;
 @property(retain, nonatomic) NSProgress *overallProgress; // @synthesize overallProgress=_overallProgress;
-@property(retain, nonatomic) NSURL *compressedFileURL; // @synthesize compressedFileURL=_compressedFileURL;
-@property(nonatomic) long long archiveType; // @synthesize archiveType=_archiveType;
-@property(retain, nonatomic) NSData *archiveData; // @synthesize archiveData=_archiveData;
-- (void).cxx_destruct;
+@property(nonatomic) unsigned long long approximateSize; // @synthesize approximateSize=_approximateSize;
+@property(readonly, nonatomic) NSURL *compressedFileURL; // @synthesize compressedFileURL=_compressedFileURL;
+@property(readonly, nonatomic) long long archiveType; // @synthesize archiveType=_archiveType;
+@property(readonly, nonatomic) NSData *archiveData; // @synthesize archiveData=_archiveData;
 - (void)getCompressedData:(id *)arg1 compressedFileURL:(id *)arg2 archiveType:(long long *)arg3;
 - (id)preferredFilename;
 - (id)addRegularFileWithContents:(id)arg1 preferredFilename:(id)arg2;
@@ -36,7 +39,7 @@
 - (BOOL)isSymbolicLink;
 - (BOOL)isDirectory;
 - (BOOL)isRegularFile;
-- (unsigned long long)approximateSize;
+- (unsigned long long)approximateSizeAllowingDiskIO:(BOOL)arg1;
 - (BOOL)writeToURL:(id)arg1 options:(unsigned long long)arg2 originalContentsURL:(id)arg3 error:(id *)arg4;
 - (id)_temporaryDirectoryURL;
 - (void)encodeWithCoder:(id)arg1;

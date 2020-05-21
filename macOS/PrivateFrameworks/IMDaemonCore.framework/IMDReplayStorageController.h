@@ -6,17 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class IDSKVStore, NSString;
 
 @interface IMDReplayStorageController : NSObject
 {
     NSString *_filePath;
+    IDSKVStore *_store;
 }
 
+@property(retain, nonatomic) IDSKVStore *store; // @synthesize store=_store;
 @property(readonly, retain, nonatomic) NSString *filePath; // @synthesize filePath=_filePath;
 - (void)dealloc;
 - (void)deleteReplayDB;
-- (id)getNextDictionaryWithArray:(id)arg1;
+- (id)copyNextBatchWithSize:(unsigned long long)arg1 iterationContext:(id *)arg2;
 - (BOOL)storeDictionary:(id)arg1 error:(id *)arg2;
 - (id)initWithFilePath:(id)arg1;
 

@@ -29,7 +29,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL shouldLoop;
 - (void)stop;
 - (void)pause;
-- (void)play;
+- (_Bool)play;
 - (void)queueBuffer:(id)arg1;
 - (id)init;
 

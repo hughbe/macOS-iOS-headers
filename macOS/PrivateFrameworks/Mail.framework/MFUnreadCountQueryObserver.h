@@ -15,19 +15,19 @@
     BOOL _useTotalCount;
     BOOL _checkWhereFromsPaths;
     long long _nextIndexToProcess;
-    MFMailbox *_mailbox;
     NSMutableDictionary *_seenIDs;
     NSMutableDictionary *_messageIDsFromAttachments;
+    MFMailbox *_mailbox;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) MFMailbox *mailbox; // @synthesize mailbox=_mailbox;
 @property(readonly, nonatomic) NSMutableDictionary *messageIDsFromAttachments; // @synthesize messageIDsFromAttachments=_messageIDsFromAttachments;
 @property(readonly, nonatomic) NSMutableDictionary *seenIDs; // @synthesize seenIDs=_seenIDs;
-@property(retain, nonatomic) MFMailbox *mailbox; // @synthesize mailbox=_mailbox;
 @property(nonatomic) BOOL checkWhereFromsPaths; // @synthesize checkWhereFromsPaths=_checkWhereFromsPaths;
 @property(nonatomic) BOOL useTotalCount; // @synthesize useTotalCount=_useTotalCount;
 @property(nonatomic) long long nextIndexToProcess; // @synthesize nextIndexToProcess=_nextIndexToProcess;
 @property(nonatomic) BOOL queryIsCancelled; // @synthesize queryIsCancelled=_queryIsCancelled;
-- (void).cxx_destruct;
 - (void)clearMailbox;
 - (struct __MDQuery *)query;
 - (void)dealloc;

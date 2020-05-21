@@ -10,18 +10,15 @@
 
 @class CKDPResponseOperationResultError;
 
-__attribute__((visibility("hidden")))
 @interface CKDPResponseOperationResult : PBCodable <NSCopying>
 {
     int _code;
     CKDPResponseOperationResultError *_error;
-    struct {
-        unsigned int code:1;
-    } _has;
+    CDStruct_9ab06576 _has;
 }
 
-@property(retain, nonatomic) CKDPResponseOperationResultError *error; // @synthesize error=_error;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CKDPResponseOperationResultError *error; // @synthesize error=_error;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;

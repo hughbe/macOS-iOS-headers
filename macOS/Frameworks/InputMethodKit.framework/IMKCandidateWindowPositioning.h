@@ -13,6 +13,7 @@
     id <IMKTextInput><NSObject> _client;
     IMKCandidateController *_candidateController;
     BOOL _forceNoIncrementalSearchPositioning;
+    struct CGRect _frameOfCurrentlyVisibleScreen;
     BOOL _isRTL;
     BOOL _isUsingIncrementalSearch;
     BOOL _isVerticallyAligned;
@@ -31,7 +32,7 @@
 @property(nonatomic) BOOL isRTL; // @synthesize isRTL=_isRTL;
 @property(retain, nonatomic) id client; // @synthesize client=_client;
 @property(nonatomic) BOOL forceNoIncrementalSearchPositioning; // @synthesize forceNoIncrementalSearchPositioning=_forceNoIncrementalSearchPositioning;
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
+@property(nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
 @property(readonly, nonatomic) struct CGPoint topWindowPosition;
 - (struct CGRect)frameOfCurrentlyVisibleScreen;
 - (struct CGPoint)positionWithPreferenceArray:(id)arg1 inlineAlignment:(unsigned long long)arg2;

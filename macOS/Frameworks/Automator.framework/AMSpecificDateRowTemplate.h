@@ -6,7 +6,7 @@
 
 #import "NSPredicateEditorRowTemplate.h"
 
-@class NSDatePicker, NSPopUpButton;
+@class NSArray, NSDatePicker, NSPopUpButton;
 
 @interface AMSpecificDateRowTemplate : NSPredicateEditorRowTemplate
 {
@@ -15,9 +15,12 @@
     NSDatePicker *datePicker;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(retain) NSDatePicker *datePicker; // @synthesize datePicker;
+@property(retain) NSPopUpButton *datePopUpButton; // @synthesize datePopUpButton;
+@property BOOL hasCreatedViews; // @synthesize hasCreatedViews;
 - (double)matchForPredicate:(id)arg1;
-- (id)matchingLeftExpressions;
+@property(readonly) NSArray *matchingLeftExpressions;
 - (id)predicateWithSubpredicates:(id)arg1;
 - (void)setPredicate:(id)arg1;
 - (id)templateViews;

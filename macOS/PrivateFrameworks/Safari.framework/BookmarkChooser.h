@@ -11,7 +11,7 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class NSButton, NSOutlineView, NSSplitView, NSString, NSTableView, NSTextField;
+@class NSButton, NSOutlineView, NSSplitView, NSString, NSTableView, NSTextField, WBSFaviconRequestsController;
 
 __attribute__((visibility("hidden")))
 @interface BookmarkChooser : NSWindowController <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTableViewDataSource, NSTableViewDelegate>
@@ -22,16 +22,20 @@ __attribute__((visibility("hidden")))
     NSButton *cancelButton;
     NSButton *confirmButton;
     NSTextField *promptField;
+    WBSFaviconRequestsController *_tableRequestsController;
+    WBSFaviconRequestsController *_outlineRequestsController;
+    vector_06e666a8 _uiShownRowIndexes;
     BOOL _canChooseBookmarkLeaves;
     BOOL _canChooseBookmarkCollections;
     id <BookmarkChooserDelegate> _delegate;
 }
 
 + (id)bookmarkChooser;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <BookmarkChooserDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) BOOL canChooseBookmarkCollections; // @synthesize canChooseBookmarkCollections=_canChooseBookmarkCollections;
 @property(nonatomic) BOOL canChooseBookmarkLeaves; // @synthesize canChooseBookmarkLeaves=_canChooseBookmarkLeaves;
-- (void).cxx_destruct;
 - (BOOL)_visibleSheetIsBlockingPropertyChanges;
 - (void)_updatePrompt;
 - (void)_updateConfirmButton;
@@ -39,7 +43,6 @@ __attribute__((visibility("hidden")))
 - (void)_startObservingBookmarkAndIconChanges;
 - (id)_selectedCollection;
 - (void)_refreshContentsFromCollectionChange;
-- (void)_refreshAllIcons:(id)arg1;
 - (void)_refreshAllFromNotification:(id)arg1;
 - (void)_refreshDataPreservingSelection:(BOOL)arg1;
 - (void)_confirm:(id)arg1;

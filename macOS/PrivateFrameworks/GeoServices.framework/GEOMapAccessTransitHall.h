@@ -16,10 +16,10 @@ __attribute__((visibility("hidden")))
     id <GEOMapTransitStation> _station;
 }
 
+- (void).cxx_destruct;
 - (id)findStops:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)findStation:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) unsigned long long stationID;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, nonatomic) double boundingRadius;

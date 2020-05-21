@@ -15,11 +15,16 @@ __attribute__((visibility("hidden")))
     struct CGSize _badgeOutset;
 }
 
-@property(nonatomic) struct CGSize badgeOutset; // @synthesize badgeOutset=_badgeOutset;
 - (void).cxx_destruct;
+@property(nonatomic) struct CGSize badgeOutset; // @synthesize badgeOutset=_badgeOutset;
+- (id)accessibilityRoleDescription;
+- (id)accessibilityLabel;
+- (BOOL)isAccessibilityElement;
 - (void)viewDidMoveToSuperview;
+- (void)setTitle:(id)arg1;
 - (void)setFrame:(struct CGRect)arg1;
 @property(copy, nonatomic) NSString *badgeText;
+- (void)_updateAccessibilityLabel;
 - (void)_updateMaxWidth;
 - (void)_updateBadge;
 - (void)dealloc;

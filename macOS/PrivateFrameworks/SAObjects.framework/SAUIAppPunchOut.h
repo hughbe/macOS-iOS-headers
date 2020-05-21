@@ -6,7 +6,7 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
-@class NSDictionary, NSString, NSURL, SAUIAddViews, SAUIImageResource;
+@class NSArray, NSDictionary, NSString, NSURL, SAUIAddViews, SAUIImageResource;
 
 @interface SAUIAppPunchOut : SABaseClientBoundCommand
 {
@@ -14,13 +14,16 @@
 
 + (id)appPunchOutWithDictionary:(id)arg1 context:(id)arg2;
 + (id)appPunchOut;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
+@property(copy, nonatomic) NSArray *themeIcons;
 @property(copy, nonatomic) NSString *subtitle;
 @property(copy, nonatomic) NSURL *punchOutUri;
 @property(copy, nonatomic) NSString *punchOutName;
 @property(copy, nonatomic) NSString *providerId;
 @property(copy, nonatomic) NSString *predefinedButtonType;
 @property(nonatomic) BOOL launchOverSiri;
+@property(copy, nonatomic) NSArray *launchOptions;
 @property(copy, nonatomic) NSString *bundleId;
 @property(copy, nonatomic) NSURL *appStoreUri;
 @property(nonatomic) BOOL appInstalled;

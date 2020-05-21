@@ -6,26 +6,30 @@
 
 #import <ExchangeWebServices/EWSBaseRequestType.h>
 
-@class EWSBasePagingType, EWSItemResponseShapeType, EWSRestrictionType, NSArray;
+@class EWSBasePagingType, EWSIndexedPageViewType, EWSItemResponseShapeType, EWSRestrictionType, NSArray;
 
 @interface EWSFindItemType : EWSBaseRequestType
 {
+    BOOL _IndexedPageItemViewSpecified;
     EWSItemResponseShapeType *_ItemShape;
     EWSBasePagingType *_Paging;
     EWSRestrictionType *_Restriction;
     NSArray *_SortOrder;
     NSArray *_ParentFolderIds;
     long long _Traversal;
+    EWSIndexedPageViewType *_IndexedPageItemView;
 }
 
 + (id)definition;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL IndexedPageItemViewSpecified; // @synthesize IndexedPageItemViewSpecified=_IndexedPageItemViewSpecified;
+@property(retain, nonatomic) EWSIndexedPageViewType *IndexedPageItemView; // @synthesize IndexedPageItemView=_IndexedPageItemView;
 @property(nonatomic) long long Traversal; // @synthesize Traversal=_Traversal;
 @property(copy, nonatomic) NSArray *ParentFolderIds; // @synthesize ParentFolderIds=_ParentFolderIds;
 @property(copy, nonatomic) NSArray *SortOrder; // @synthesize SortOrder=_SortOrder;
 @property(retain, nonatomic) EWSRestrictionType *Restriction; // @synthesize Restriction=_Restriction;
 @property(retain, nonatomic) EWSBasePagingType *Paging; // @synthesize Paging=_Paging;
 @property(retain, nonatomic) EWSItemResponseShapeType *ItemShape; // @synthesize ItemShape=_ItemShape;
-- (void).cxx_destruct;
 
 @end
 

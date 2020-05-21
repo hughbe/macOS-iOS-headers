@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     NSNumber *inputShadows;
     NSNumber *inputHighlights;
     NSNumber *inputBlack;
+    NSNumber *inputRawHighlights;
     NSNumber *inputLocalLight;
     NSData *_inputLightMap;
     NSNumber *inputUseCube;
@@ -32,6 +33,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSNumber *inputUseCube; // @synthesize inputUseCube;
 @property(retain, nonatomic) NSData *inputLightMap; // @synthesize inputLightMap=_inputLightMap;
 @property(retain, nonatomic) NSNumber *inputLocalLight; // @synthesize inputLocalLight;
+@property(retain, nonatomic) NSNumber *inputRawHighlights; // @synthesize inputRawHighlights;
 @property(retain, nonatomic) NSNumber *inputBlack; // @synthesize inputBlack;
 @property(retain, nonatomic) NSNumber *inputHighlights; // @synthesize inputHighlights;
 @property(retain, nonatomic) NSNumber *inputShadows; // @synthesize inputShadows;
@@ -41,6 +43,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) CIImage *inputImage; // @synthesize inputImage;
 - (id)outputImage;
 - (void)setValue:(id)arg1 forKey:(id)arg2;
+- (id)_kernelRH;
 - (id)_kernelH;
 - (id)_kernelC;
 - (id)_kernelBpos;

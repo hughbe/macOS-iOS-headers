@@ -17,6 +17,8 @@
 + (id)recentsCategory;
 + (id)folderCategory;
 + (id)suggestionsCategory;
++ (id)topHitCategory;
+- (void).cxx_destruct;
 @property(readonly) NSArray *attributeNamesForRawSuggestion;
 - (id)displayNameForRawSuggestionInMenu:(id)arg1;
 - (BOOL)rawSuggestionShouldCreateToken;
@@ -28,7 +30,6 @@
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long position;
 @property(readonly) NSString *displayName;
-- (void)dealloc;
 - (id)initWithDisplayName:(id)arg1 position:(unsigned long long)arg2;
 
 @end

@@ -6,48 +6,61 @@
 
 #import "WBSCloudTabStore.h"
 
-@class CloudTabKeyValueStore, NSTimer;
+#import "WBSCloudTabStoreDelegate.h"
+
+@class CloudTabKeyValueStore, NSDate, NSString, NSTimer;
 
 __attribute__((visibility("hidden")))
-@interface CloudTabStore : WBSCloudTabStore
+@interface CloudTabStore : WBSCloudTabStore <WBSCloudTabStoreDelegate>
 {
     CloudTabKeyValueStore *_keyValueStore;
     NSTimer *_saveTabsTimer;
     double _lastSaveTabsTimerInterval;
-    BOOL _shouldRefreshCloudTabsSupportedAfterCloudTabKeyValueStoreDictionaryIsAvailable;
+    BOOL _shouldFinishRefreshingCloudTabsSupportedAfterCloudTabKeyValueStoreDictionaryIsAvailable;
+    BOOL _shouldFinishRefreshingCloudTabsSupportedAfterCloudKitFetchCompletes;
+    BOOL _shouldUpdateBothKVSAndCloudKitAfterFinishingRefreshOfCloudTabsSupported;
+    BOOL _didAttemptToCloseAtLeastOneTab;
     BOOL _suppressSavingTabs;
     BOOL _cloudTabsSupported;
+    NSDate *_dateOfLastCloudTabDevicesUpdate;
 }
 
 + (id)cloudTabForBrowserTab:(id)arg1;
 + (BOOL)browserTabQualifiesForUserActivityContinuation:(id)arg1;
 + (BOOL)browserTabQualifiesForCloudTabSyncing:(id)arg1;
 + (id)sharedCloudTabStore;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL cloudTabsSupported; // @synthesize cloudTabsSupported=_cloudTabsSupported;
 @property(nonatomic) BOOL suppressSavingTabs; // @synthesize suppressSavingTabs=_suppressSavingTabs;
-- (void).cxx_destruct;
+- (id)dateOfLastCloudTabDevicesUpdate;
 - (BOOL)closeAllTabsOnDevice:(id)arg1;
 - (BOOL)closeTabs:(id)arg1 onDevice:(id)arg2;
 - (BOOL)closeTab:(id)arg1 onDevice:(id)arg2;
+- (void)synchronizeCloudTabDevicesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)syncedCloudTabDevices;
 - (void)_closeRequestedTabIfPossible:(id)arg1;
 - (void)_removeObjectFromKeyValueStore:(long long)arg1 forKey:(id)arg2;
 - (void)_setDictionaryInKeyValueStore:(long long)arg1 dictionary:(id)arg2 forKey:(id)arg3;
 - (id)_keyValueStoreDictionaryRepresentation:(long long)arg1;
 - (id)_currentDeviceUUID;
+- (void)didUpdateDevicesAndCloseRequestsFromCloudKitForCloudTabStore:(id)arg1 error:(id)arg2;
+- (void)_cloudKitDataWasUpdatedOnServer:(id)arg1;
+- (BOOL)_shouldUseCloudKitForSavingCurrentDevice;
 - (void)_keyValueStoreDictionaryRepresentationDidChange:(id)arg1;
 - (void)_handleQuotaViolation;
 - (void)_refreshCloudTabsSupported;
-- (void)_refreshCloudTabsSupportedAfterCloudTabKeyValueStoreDictionaryIsAvailable;
-- (BOOL)_hasCloudTabsEntitlement;
+- (void)_finishRefreshingCloudTabsSupported;
+- (BOOL)_hasCloudTabsEntitlementForKVS;
 - (void)_clearTabsForFirstDuplicateDevice;
 - (BOOL)_atLeastOneOtherActiveDeviceIsRegistered;
+- (double)_delayForSavingCurrentCloudTabDevice;
 - (BOOL)_currentDeviceIsRegistered;
 - (void)_cancelPendingSaveTabsForCurrentDevice;
 - (id)_dictionaryForCurrentDeviceWithBrowserTabs:(id)arg1;
 - (id)_currentDeviceName;
-- (void)_iCloudLoggedInStateDidChange:(id)arg1;
-- (void)_keyValueStoreDidChange;
+- (void)_iCloudLoggedInStateMayHaveChanged:(id)arg1;
+- (void)_updateAfterCloudKitDataChangePostingChangeNotification:(BOOL)arg1;
+- (void)_updateAfterKeyValueStoreChangePostingChangeNotification:(BOOL)arg1;
 - (void)_keyValueStoreDidChangeExternally:(long long)arg1 notification:(id)arg2;
 - (void)debugClearTabsForAllDevices;
 - (void)clearTabsForCurrentDevice;
@@ -62,6 +75,12 @@ __attribute__((visibility("hidden")))
 - (void)_saveTabsForCurrentDeviceAfterDelay:(double)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

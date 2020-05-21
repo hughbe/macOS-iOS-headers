@@ -10,8 +10,8 @@
 
 @interface SiriUIKeyline : NSView
 {
-    NSView *_keyLineView;
     BOOL _veritical;
+    NSView *_keylineView;
     long long _keylineType;
     double _customLeftPadding;
     double _customRightPadding;
@@ -24,21 +24,24 @@
 + (id)keylineForSelectableRow;
 + (id)keylineWithDefaultInsets;
 + (id)keyline;
+- (void).cxx_destruct;
 @property(nonatomic, getter=_isVeritical, setter=_setVertical:) BOOL veritical; // @synthesize veritical=_veritical;
 @property(retain, nonatomic) NSColor *customBackgroundColor; // @synthesize customBackgroundColor=_customBackgroundColor;
 @property(nonatomic) double customRightPadding; // @synthesize customRightPadding=_customRightPadding;
 @property(nonatomic) double customLeftPadding; // @synthesize customLeftPadding=_customLeftPadding;
 @property(nonatomic) long long keylineType; // @synthesize keylineType=_keylineType;
-- (void).cxx_destruct;
+@property(retain) NSView *keylineView; // @synthesize keylineView=_keylineView;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
 - (BOOL)wantsLayer;
 - (BOOL)isFlipped;
-- (void)layout;
+- (void)updateConstraints;
 - (struct CGSize)_sizeThatFits:(struct CGSize)arg1 useAutolayout:(BOOL)arg2;
 - (struct CGSize)intrinsicContentSize;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (id)initWithKeylineType:(long long)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)commonInit;
 
 @end
 

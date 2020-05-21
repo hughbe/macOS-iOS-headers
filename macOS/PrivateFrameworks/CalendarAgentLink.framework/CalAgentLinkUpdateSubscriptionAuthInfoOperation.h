@@ -15,12 +15,12 @@
     NSString *_password;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *password; // @synthesize password=_password;
 @property(retain, nonatomic) NSString *user; // @synthesize user=_user;
 @property(readonly, retain, nonatomic) NSString *nodeObjectID; // @synthesize nodeObjectID=_nodeObjectID;
 - (id)inputPayload;
 - (id)description;
-- (void)dealloc;
 - (id)initWithNodeObjectID:(id)arg1;
 - (id)init;
 

@@ -6,24 +6,30 @@
 
 #import "NSButton.h"
 
-@class AVControlsViewController, NSSlider, NSTrackingArea, NSWindow;
+@class AVControlsViewController, NSSlider, NSTrackingArea, NSView, NSVisualEffectView, NSWindow;
 
 __attribute__((visibility("hidden")))
 @interface AVVolumeButton : NSButton
 {
+    BOOL _tracking;
     double _volume;
     NSTrackingArea *_trackingArea;
     NSWindow *_sliderWindow;
+    NSView *_sliderView;
+    NSVisualEffectView *_sliderViewVisualEffectView;
     NSSlider *_volumeSlider;
     AVControlsViewController *_controlsViewController;
+    id <AVVolumeButtonDelegate> _delegate;
 }
 
-@property(retain) AVControlsViewController *controlsViewController; // @synthesize controlsViewController=_controlsViewController;
 - (void).cxx_destruct;
+@property __weak id <AVVolumeButtonDelegate> delegate; // @synthesize delegate=_delegate;
+@property __weak AVControlsViewController *controlsViewController; // @synthesize controlsViewController=_controlsViewController;
 - (void)_hideVolumeSlider;
 - (void)volumeSliderChanged:(id)arg1;
 - (void)setEnabled:(BOOL)arg1;
 - (void)mouseExitedInVolumeButtonContainerView:(id)arg1;
+- (id)_makeVolumeSliderView;
 - (void)mouseEntered:(id)arg1;
 - (void)updateTrackingAreas;
 @property double volume;

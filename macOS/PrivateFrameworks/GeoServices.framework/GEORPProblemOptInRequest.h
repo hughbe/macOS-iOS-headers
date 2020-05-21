@@ -8,25 +8,36 @@
 
 #import "NSCopying.h"
 
-@class GEORPUserCredentials, NSData, NSString;
+@class GEORPUserCredentials, NSData, NSString, PBDataReader;
 
+__attribute__((visibility("hidden")))
 @interface GEORPProblemOptInRequest : PBRequest <NSCopying>
 {
+    PBDataReader *_reader;
     NSData *_devicePushToken;
     NSString *_problemId;
     GEORPUserCredentials *_userCredentials;
     NSString *_userEmail;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     BOOL _didOptIn;
     struct {
-        unsigned int didOptIn:1;
-    } _has;
+        unsigned int has_didOptIn:1;
+        unsigned int read_devicePushToken:1;
+        unsigned int read_problemId:1;
+        unsigned int read_userCredentials:1;
+        unsigned int read_userEmail:1;
+        unsigned int wrote_devicePushToken:1;
+        unsigned int wrote_problemId:1;
+        unsigned int wrote_userCredentials:1;
+        unsigned int wrote_userEmail:1;
+        unsigned int wrote_didOptIn:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *userEmail; // @synthesize userEmail=_userEmail;
-@property(retain, nonatomic) NSData *devicePushToken; // @synthesize devicePushToken=_devicePushToken;
-@property(retain, nonatomic) GEORPUserCredentials *userCredentials; // @synthesize userCredentials=_userCredentials;
-@property(nonatomic) BOOL didOptIn; // @synthesize didOptIn=_didOptIn;
-@property(retain, nonatomic) NSString *problemId; // @synthesize problemId=_problemId;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -36,14 +47,25 @@
 - (unsigned int)requestTypeCode;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *userEmail;
 @property(readonly, nonatomic) BOOL hasUserEmail;
+- (void)_readUserEmail;
+@property(retain, nonatomic) NSData *devicePushToken;
 @property(readonly, nonatomic) BOOL hasDevicePushToken;
+- (void)_readDevicePushToken;
+@property(retain, nonatomic) GEORPUserCredentials *userCredentials;
 @property(readonly, nonatomic) BOOL hasUserCredentials;
+- (void)_readUserCredentials;
 @property(nonatomic) BOOL hasDidOptIn;
+@property(nonatomic) BOOL didOptIn;
+@property(retain, nonatomic) NSString *problemId;
 @property(readonly, nonatomic) BOOL hasProblemId;
-- (void)dealloc;
+- (void)_readProblemId;
+- (id)initWithData:(id)arg1;
+- (id)init;
 - (id)initWithSubmissionID:(id)arg1 allowContactBackAtEmailAddress:(id)arg2 traits:(id)arg3;
 
 @end

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableDictionary;
+@class NSMutableArray, NSMutableDictionary, NSString;
 
 @interface NSPrefPanesCenter : NSObject
 {
@@ -34,6 +34,7 @@
 - (void)updateCacheFileWithPrefPane:(id)arg1;
 - (id)arrayOfPrefPaneIdentifiers;
 - (id)orderedPrefPanes;
+- (void)loadPreferencePanes:(CDUnknownBlockType)arg1;
 - (unsigned long long)indexOfPrefPane:(id)arg1;
 - (unsigned long long)indexOfPrefPaneWithBundlePath:(id)arg1;
 - (id)prefPaneBundleWithIdentifier:(id)arg1;
@@ -42,12 +43,16 @@
 - (unsigned long long)numberOfPrefPanes;
 - (void)dealloc;
 - (id)init;
+- (BOOL)_isBootVolumeAPFS;
 - (id)_prefPanesByIdentifier;
+- (id)_prefPaneBundlesWithHWCheckCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)_prefPaneBundles;
 - (void)_checkHWForPreferences:(id)arg1;
 - (id)_verifyAndReadCache;
 - (id)_verifyAndReadSystemCacheSynchronous:(BOOL)arg1;
-- (void)_writeCache:(id)arg1 isSystemCache:(BOOL)arg2;
+- (void)_writeCache:(id)arg1 isSystemCache:(BOOL)arg2 synchronous:(BOOL)arg3;
+- (id)_currentLanguage;
+@property(readonly) NSString *serialNumber; // @dynamic serialNumber;
 
 @end
 

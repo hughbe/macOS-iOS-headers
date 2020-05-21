@@ -11,8 +11,8 @@
 }
 
 + (id)sharedInstance;
+- (void)_collectSysdiagnoseLog:(CDUnknownBlockType)arg1;
 - (void)collectSysdiagnoseLog:(CDUnknownBlockType)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

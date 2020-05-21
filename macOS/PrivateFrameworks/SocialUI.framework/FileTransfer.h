@@ -9,7 +9,7 @@
 #import "FileTransferIconLoaderDelegate.h"
 #import "QLPreviewItem.h"
 
-@class IMHandle, NSImage, NSNumber, NSString, NSURL;
+@class IMHandle, IMServiceImpl, NSImage, NSNumber, NSString, NSURL;
 
 @interface FileTransfer : IMFileTransfer <FileTransferIconLoaderDelegate, QLPreviewItem>
 {
@@ -21,32 +21,33 @@
     NSString *_livePhotoImagePath;
     NSString *_livePhotoVideoPath;
     NSURL *_livePhotoBundleURL;
+    NSNumber *_photosAutoloopVideoValue;
+    NSNumber *_qtAutoloopVideoValue;
+    BOOL _hasGeneratedPreviewImage;
     BOOL _isCopying;
-    NSNumber *_iMessage;
+    IMServiceImpl *_service;
     NSNumber *_map;
     NSNumber *_pass;
     NSNumber *_image;
     NSNumber *_movie;
     NSNumber *_animatedEmoji;
     NSNumber *_livePhoto;
-    long long _previewImageGenerator;
 }
 
 + (id)downloadPath;
 + (BOOL)canExportToPhotos;
 + (id)archiveLocalURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-@property(nonatomic) long long previewImageGenerator; // @synthesize previewImageGenerator=_previewImageGenerator;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSNumber *livePhoto; // @synthesize livePhoto=_livePhoto;
 @property(retain, nonatomic) NSNumber *animatedEmoji; // @synthesize animatedEmoji=_animatedEmoji;
 @property(retain, nonatomic) NSNumber *movie; // @synthesize movie=_movie;
 @property(retain, nonatomic) NSNumber *image; // @synthesize image=_image;
 @property(retain, nonatomic) NSNumber *pass; // @synthesize pass=_pass;
 @property(retain, nonatomic) NSNumber *map; // @synthesize map=_map;
-@property(nonatomic) NSNumber *iMessage; // @synthesize iMessage=_iMessage;
 @property(nonatomic) BOOL isCopying; // @synthesize isCopying=_isCopying;
-- (void).cxx_destruct;
+@property(retain, nonatomic) IMServiceImpl *service; // @synthesize service=_service;
 - (id)menuItemsGivenQuickLookSelector:(SEL)arg1 target:(id)arg2;
-- (id)newSetDesktopPictureMenuItem;
+- (id)newSetDesktopPictureMenuItemForScreen:(id)arg1;
 - (id)newSaveToLibraryMenuItem;
 - (id)newOpenMenuItem;
 - (void)_cancel;
@@ -68,18 +69,21 @@
 - (BOOL)_updateWithDictionaryRepresentation:(id)arg1;
 - (id)errorString;
 - (void)openURL;
-- (void)setDesktopPicture;
+- (void)setDesktopPicture:(id)arg1;
 - (void)exportToPhotoLibraryWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)saveToLibrary:(id)arg1;
 - (void)revealInFinder;
 - (void)_revealInFinder:(id)arg1;
 - (void)createUserVisibleLocation;
+@property(readonly, getter=isQTAutoloopVideo) BOOL qtAutoloopVideo;
+@property(readonly, nonatomic, getter=isPhotosAutoloopVideo) BOOL photosAutoloopVideo;
 @property(readonly, nonatomic) BOOL isLivePhoto; // @dynamic isLivePhoto;
 @property(readonly, nonatomic) BOOL isAnimatedEmoji; // @dynamic isAnimatedEmoji;
 @property(readonly, nonatomic) BOOL isMovie; // @dynamic isMovie;
 @property(readonly, nonatomic) BOOL isImage; // @dynamic isImage;
 @property(readonly, nonatomic) BOOL isPass; // @dynamic isPass;
 @property(readonly, nonatomic) BOOL isMap; // @dynamic isMap;
+@property(readonly, nonatomic) BOOL isCKTapToDownloadImage; // @dynamic isCKTapToDownloadImage;
 @property(readonly, nonatomic) BOOL isiMessage; // @dynamic isiMessage;
 - (id)accountID;
 - (id)otherPersonName;

@@ -8,24 +8,20 @@
 
 #import "ABGroupListRowView.h"
 
-@class NSString, NSTrackingArea;
+@class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCleanGroupListRowView : NSTableRowView <ABGroupListRowView>
 {
     BOOL _highlighted;
-    NSTrackingArea *_contentTrackingArea;
 }
 
 @property(nonatomic, getter=isHighlighted) BOOL highlighted; // @synthesize highlighted=_highlighted;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
 - (void)addTrackingAreaToVisibleRect;
-- (void)x_drawSelectionInRect:(struct CGRect)arg1;
 - (void)enumerateGroupListCellViewsWithBlock:(CDUnknownBlockType)arg1;
 - (void)updateSelectionAppearanceOfCellViews;
 - (BOOL)mouseDownCanMoveWindow;
-- (void)dealloc;
 - (void)ABBookGroupListRowView_commonInit;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

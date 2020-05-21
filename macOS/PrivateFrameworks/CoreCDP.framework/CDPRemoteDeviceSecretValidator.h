@@ -14,10 +14,12 @@
 - (void).cxx_destruct;
 - (void)_executeSyncOnMainThreadIfNeeded:(CDUnknownBlockType)arg1;
 - (void)supportedEscapeOfferMaskCompletion:(CDUnknownBlockType)arg1;
+- (unsigned long long)supportedEscapeOfferMask;
 - (void)cancelValidationWithError:(id)arg1;
 - (void)resetAccountCDPState;
 - (void)cancelApproveFromAnotherDevice;
 - (void)approveFromAnotherDeviceWithCompletion:(CDUnknownBlockType)arg1;
+- (void)validateRecoveryKey:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)validateSecret:(id)arg1 devices:(id)arg2 type:(unsigned long long)arg3 withCompletion:(CDUnknownBlockType)arg4;
 - (id)initWithContext:(id)arg1 validator:(id)arg2;
 

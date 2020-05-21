@@ -9,7 +9,7 @@
 #import "SiriCoreSiriBackgroundConnectionDelegate.h"
 #import "SiriCoreSiriConnection.h"
 
-@class NSError, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString, NSURL, SAConnectionPolicy, SiriCoreSiriBackgroundConnection;
+@class NSError, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString, NSURL, NWPathEvaluator, SAConnectionPolicy, SiriCoreSiriBackgroundConnection;
 
 @interface SiriCoreSiriConnection : NSObject <SiriCoreSiriBackgroundConnectionDelegate, SiriCoreSiriConnection>
 {
@@ -24,9 +24,10 @@
     BOOL _sendPings;
     NSString *_assistantIdentifier;
     NSString *_peerAssistantIdentifier;
+    NSString *_connectionId;
     BOOL _isCanceledInternal;
     NSMutableSet *_pendingBackgroundConnections;
-    NSMutableSet *_deadBackgroundConnections;
+    NSMutableSet *_comatoseBackgroundConnections;
     NSMutableSet *_scheduledRoutes;
     SiriCoreSiriBackgroundConnection *_activeBackgroundConnection;
     NSObject<OS_dispatch_group> *_activeConnectionGroup;
@@ -36,16 +37,24 @@
     BOOL _usesProxyConnection;
     BOOL _deviceIsInWalkaboutExperimentGroup;
     BOOL _siriConnectionUsesPeerManagedSync;
-    Class _peerStreamProviderClass;
+    Class _peerProviderClass;
     NSMutableArray *_connMethodUsedHistory;
+    BOOL _imposePolicyBan;
+    NWPathEvaluator *_evaluator;
+    NSString *_savedURLHostForEvaluator;
+    NSString *_savedPortForEvaluator;
     BOOL _skipPeer;
-    BOOL _skipEdge;
+    BOOL _useWiFiHint;
+    BOOL _forceReconnect;
     NSError *_skipPeerError;
     SAConnectionPolicy *_connectionPolicy;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) SAConnectionPolicy *connectionPolicy; // @synthesize connectionPolicy=_connectionPolicy;
-@property(retain, nonatomic) Class peerStreamProviderClass; // @synthesize peerStreamProviderClass=_peerStreamProviderClass;
+@property(nonatomic) BOOL imposePolicyBan; // @synthesize imposePolicyBan=_imposePolicyBan;
+@property(copy, nonatomic) NSString *connectionId; // @synthesize connectionId=_connectionId;
+@property(retain, nonatomic) Class peerProviderClass; // @synthesize peerProviderClass=_peerProviderClass;
 @property(nonatomic) BOOL siriConnectionUsesPeerManagedSync; // @synthesize siriConnectionUsesPeerManagedSync=_siriConnectionUsesPeerManagedSync;
 @property(nonatomic) BOOL deviceIsInWalkaboutExperimentGroup; // @synthesize deviceIsInWalkaboutExperimentGroup=_deviceIsInWalkaboutExperimentGroup;
 @property(nonatomic) BOOL usesProxyConnection; // @synthesize usesProxyConnection=_usesProxyConnection;
@@ -57,14 +66,16 @@
 @property(nonatomic) double timeout; // @synthesize timeout=_timeout;
 @property(copy, nonatomic) NSString *languageCode; // @synthesize languageCode=_languageCode;
 @property(copy, nonatomic) NSString *aceHost; // @synthesize aceHost=_aceHost;
+@property(nonatomic) BOOL forceReconnect; // @synthesize forceReconnect=_forceReconnect;
 @property(nonatomic) BOOL prefersWWAN; // @synthesize prefersWWAN=_prefersWWAN;
 @property(copy, nonatomic) NSError *skipPeerError; // @synthesize skipPeerError=_skipPeerError;
-@property(nonatomic) BOOL skipEdge; // @synthesize skipEdge=_skipEdge;
+@property(nonatomic) BOOL useWiFiHint; // @synthesize useWiFiHint=_useWiFiHint;
 @property(nonatomic) BOOL skipPeer; // @synthesize skipPeer=_skipPeer;
 @property(copy, nonatomic) NSURL *url; // @synthesize url=_url;
 @property(nonatomic) __weak id <SiriCoreSiriConnectionDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)_recordConnectionMethodForMetrics:(id)arg1;
+- (void)siriBackgroundConnection:(id)arg1 willStartConnectionWithHTTPHeader:(id)arg2;
+- (void)siriBackgroundConnection:(id)arg1 didEncounterIntermediateError:(id)arg2;
 - (void)siriBackgroundConnection:(id)arg1 didEncounterError:(id)arg2 analysisInfo:(id)arg3;
 - (void)siriBackgroundConnectionDidClose:(id)arg1;
 - (void)siriBackgroundConnection:(id)arg1 didReceiveAceObject:(id)arg2;
@@ -74,17 +85,22 @@
 - (id)_activeOrAnyPendingConnection;
 - (void)_waitForActiveConnection:(CDUnknownBlockType)arg1;
 - (void)_accessPotentiallyActiveConnections:(CDUnknownBlockType)arg1;
-- (void)getConnectionMetrics:(CDUnknownBlockType)arg1;
+- (void)getConnectionMetricsSynchronously:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)getAnalysisInfo:(CDUnknownBlockType)arg1;
 - (id)analysisInfo;
-- (void)cancelSynchronously:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)cancelSynchronously:(BOOL)arg1 onQueue:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_cancelSynchronously:(CDUnknownBlockType)arg1;
+- (void)probeConnection;
 - (void)barrier:(CDUnknownBlockType)arg1;
 - (void)setSendPings:(BOOL)arg1;
+- (void)sendCommands:(id)arg1 errorHandler:(CDUnknownBlockType)arg2;
 - (void)sendCommand:(id)arg1 errorHandler:(CDUnknownBlockType)arg2;
 - (void)start;
-- (void)_scheduleBackgroundConnectionWithRoute:(id)arg1 delay:(double)arg2;
-- (void)_startBackgroundConnectionWithRoute:(id)arg1;
-- (id)_connectionInfoForRoute:(id)arg1;
+- (void)_scheduleBackgroundConnectionWithRoute:(id)arg1 delay:(double)arg2 policy:(id)arg3;
+- (void)_startBackgroundConnectionWithRoute:(id)arg1 policy:(id)arg2;
+- (id)_connectionInfoForRoute:(id)arg1 policy:(id)arg2;
+- (id)_pathEvaluator:(id)arg1 port:(id)arg2;
+- (void)dealloc;
 - (id)initWithQueue:(id)arg1;
 - (id)init;
 

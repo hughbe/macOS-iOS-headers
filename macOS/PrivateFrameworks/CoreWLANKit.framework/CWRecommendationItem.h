@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSAttributedString, NSString;
+@class NSString;
 
 @interface CWRecommendationItem : NSObject
 {
     NSString *_title;
-    NSAttributedString *_desc;
+    NSString *_desc;
     NSString *_recommendation;
     NSString *_externalLink;
     unsigned long long _issueType;
@@ -20,7 +20,7 @@
 @property unsigned long long issueType; // @synthesize issueType=_issueType;
 @property(copy) NSString *externalLink; // @synthesize externalLink=_externalLink;
 @property(copy) NSString *recommendation; // @synthesize recommendation=_recommendation;
-@property(copy) NSAttributedString *desc; // @synthesize desc=_desc;
+@property(copy) NSString *desc; // @synthesize desc=_desc;
 @property(copy) NSString *title; // @synthesize title=_title;
 - (void)dealloc;
 

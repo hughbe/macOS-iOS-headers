@@ -11,7 +11,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (float)readFloat32FromByteArray:(const char *)arg1:(int)arg2;
++ (float)readFloat32FromByteArray:(const char *)arg1 in_offset:(int)arg2;
 
 @end
 

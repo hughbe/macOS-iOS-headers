@@ -6,8 +6,6 @@
 
 #import <CoreHandwriting/CHPointFIFO.h>
 
-@class NSView;
-
 @interface CHQuadCurvePointFIFO : CHPointFIFO
 {
     BOOL _emitInterpolatedPoints;
@@ -15,34 +13,34 @@
     CDUnknownBlockType _emissionHandler;
     struct CGPath *_path;
     double _lineWidth;
-    NSView *_view;
+    id <CHPointFIFODrawingTarget> _drawingTarget;
     // Error parsing type: , name: _lastPoint
-    vector_92aa34b2 _prevPoints;
-    vector_92aa34b2 _points;
-    vector_92aa34b2 _controlPoints;
+    vector_74a7c1d0 _prevPoints;
+    vector_74a7c1d0 _points;
+    vector_74a7c1d0 _controlPoints;
 }
 
 +     // Error parsing type: 68@0:8163248f64, name: interpolateFromPoint:toPoint:controlPoint:time:
-@property(retain, nonatomic) NSView *view; // @synthesize view=_view;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(retain, nonatomic) id <CHPointFIFODrawingTarget> drawingTarget; // @synthesize drawingTarget=_drawingTarget;
 // Error parsing type for property lastPoint:
 // Property attributes: T,N,V_lastPoint
 
-@property(nonatomic) vector_37c07815 controlPoints; // @synthesize controlPoints=_controlPoints;
-@property(nonatomic) vector_37c07815 points; // @synthesize points=_points;
-@property(nonatomic) vector_37c07815 prevPoints; // @synthesize prevPoints=_prevPoints;
+@property(nonatomic) vector_027a6188 controlPoints; // @synthesize controlPoints=_controlPoints;
+@property(nonatomic) vector_027a6188 points; // @synthesize points=_points;
+@property(nonatomic) vector_027a6188 prevPoints; // @synthesize prevPoints=_prevPoints;
 @property(nonatomic) double lineWidth; // @synthesize lineWidth=_lineWidth;
 @property(nonatomic) struct CGPath *path; // @synthesize path=_path;
 @property(copy) CDUnknownBlockType emissionHandler; // @synthesize emissionHandler=_emissionHandler;
 @property(nonatomic) BOOL emitInterpolatedPoints; // @synthesize emitInterpolatedPoints=_emitInterpolatedPoints;
 @property(nonatomic) float unitScale; // @synthesize unitScale=_unitScale;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (void)clear;
 - (void)flush;
 - (void)addPoint: /* Error: Ran out of types for this method. */;
 - (void)setUnitScaleForViewSize:(struct CGSize)arg1 normalizedSize:(struct CGSize)arg2 contentScaleFactor:(double)arg3;
 - (void)dealloc;
-- (id)initWithFIFO:(id)arg1 strokeView:(id)arg2;
+- (id)initWithFIFO:(id)arg1 drawingTarget:(id)arg2;
 - (id)initWithFIFO:(id)arg1;
 
 @end

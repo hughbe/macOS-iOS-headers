@@ -23,11 +23,11 @@
     NSString *_fullName;
 }
 
-+ (id)groupWithType:(id)arg1;
-+ (id)group;
 + (id)groupFromRemoteManagedObject:(id)arg1;
 + (id)_loginFromURL:(id)arg1;
 + (id)_convertURLFromManagedServerURL:(id)arg1 withLogin:(id)arg2;
++ (id)groupWithType:(id)arg1;
++ (id)group;
 @property(copy) NSString *fullName; // @synthesize fullName=_fullName;
 @property(copy) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
 @property(copy) NSURL *externalServerURL; // @synthesize externalServerURL=_externalServerURL;
@@ -35,11 +35,11 @@
 @property(readonly) NSString *uid; // @synthesize uid=_uid;
 @property(readonly) NSString *type; // @synthesize type=_type;
 @property(copy) NSString *title; // @synthesize title=_title;
-- (BOOL)localMigrationIsInProgress;
+- (id)remoteManagedGroupFromGroup;
+@property(readonly, nonatomic) BOOL localMigrationIsInProgress;
 - (void)_setIsMarkedForDeletion:(BOOL)arg1;
 - (BOOL)_isMarkedForDeletion;
-- (void)setManagedObjectIDString:(id)arg1;
-- (id)managedObjectIDString;
+@property(retain, nonatomic) NSString *managedObjectIDString;
 - (BOOL)isValidIAGroup;
 - (void)setPassword:(id)arg1;
 - (void)_setPassword:(id)arg1;
@@ -71,7 +71,6 @@
 - (id)description;
 - (id)init;
 @property(readonly) CalStoreRemoteManagedObject *managedObject;
-- (id)remoteManagedGroupFromGroup;
 
 @end
 

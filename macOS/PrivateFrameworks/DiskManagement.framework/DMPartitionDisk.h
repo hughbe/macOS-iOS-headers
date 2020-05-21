@@ -19,6 +19,8 @@
 - (int)touchPartitionMapForWholeDisk:(struct __DADisk *)arg1;
 - (int)adjustMapToFitGrownWholeDisk:(struct __DADisk *)arg1;
 - (int)removePartition:(struct __DADisk *)arg1 wipe:(BOOL)arg2 options:(id)arg3;
+- (int)addPartitionFollowingPartition:(struct __DADisk *)arg1 newFilesystemOrContentNoFormat:(id)arg2 newName:(id)arg3 newSize:(id)arg4 options:(id)arg5;
+- (int)setLabelForPartition:(struct __DADisk *)arg1 label:(id)arg2 options:(id)arg3;
 - (int)mergePartitions:(id)arg1 filesystem:(id)arg2 name:(id)arg3 erase:(BOOL)arg4;
 - (int)mergePartitions:(id)arg1 filesystem:(id)arg2 name:(id)arg3 erase:(BOOL)arg4 options:(id)arg5;
 - (int)resizePartition:(struct __DADisk *)arg1 toBytes:(id)arg2 withNewMapEntries:(id)arg3;

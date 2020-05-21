@@ -14,6 +14,7 @@
 {
     BOOL _isVisible;
     BOOL _shouldScrollToTop;
+    BOOL _constrainedForRequiredContentHeight;
     BOOL _isScrolling;
     BOOL _scrollsOutsideMainScrollArea;
     NSView *_gadgetView;
@@ -28,10 +29,12 @@
 }
 
 + (id)interestedChangeKeys;
+- (void).cxx_destruct;
 @property BOOL scrollsOutsideMainScrollArea; // @synthesize scrollsOutsideMainScrollArea=_scrollsOutsideMainScrollArea;
 @property BOOL isScrolling; // @synthesize isScrolling=_isScrolling;
 @property(retain) NSLayoutConstraint *scrollViewMaxHeightConstraint; // @synthesize scrollViewMaxHeightConstraint=_scrollViewMaxHeightConstraint;
 @property(retain) NSLayoutConstraint *scrollContentHeightConstraint; // @synthesize scrollContentHeightConstraint=_scrollContentHeightConstraint;
+@property BOOL constrainedForRequiredContentHeight; // @synthesize constrainedForRequiredContentHeight=_constrainedForRequiredContentHeight;
 @property BOOL shouldScrollToTop; // @synthesize shouldScrollToTop=_shouldScrollToTop;
 @property BOOL isVisible; // @synthesize isVisible=_isVisible;
 @property(retain) NSString *uuid; // @synthesize uuid=_uuid;
@@ -41,7 +44,6 @@
 @property(nonatomic) __weak NSView *firstKeyView; // @synthesize firstKeyView=_firstKeyView;
 @property __weak id <EKUILayoutItem> parentItem; // @synthesize parentItem=_parentItem;
 @property(retain) NSView *gadgetView; // @synthesize gadgetView=_gadgetView;
-- (void).cxx_destruct;
 - (id)timeZoneToDisplayIn;
 - (id)calendar;
 - (id)reminder;
@@ -69,6 +71,8 @@
 - (void)saveCompleteChange;
 - (void)savePartialChange;
 - (void)savePendingChanges;
+- (void)mouseUpInGadgetView;
+- (void)mouseDownInGadgetView;
 - (void)mouseExitedGadgetView;
 - (void)mouseEnteredGadgetView;
 - (void)setNeedsUpdateConstraints:(BOOL)arg1;
@@ -83,6 +87,7 @@
 - (void)scrollToTop;
 - (void)updateScrollState;
 - (void)setGadgetScrollsOutsideMainScrollArea:(BOOL)arg1;
+- (BOOL)isInProposedEventController;
 - (id)initWithViewController:(id)arg1;
 
 // Remaining properties

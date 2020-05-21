@@ -6,25 +6,38 @@
 
 #import <NetworkExtension/NENetworkAgent.h>
 
-@class NWInterface;
+@class NSMutableArray, NSString;
 
 @interface NEPathControllerNetworkAgent : NENetworkAgent
 {
+    BOOL updateClientsImmediately;
+    BOOL _isForcedAdvisory;
     BOOL _weakAdvisory;
-    NWInterface *_advisoryInterface;
-    NWInterface *_predictedInterface;
+    BOOL _noAdvisoryTimer;
     CDUnknownBlockType _internalAssertHandler;
     CDUnknownBlockType _internalUnassertHandler;
+    NSMutableArray *_predictedInterfaceArray;
+    NSMutableArray *_advisoryInterfaceArray;
+    NSString *_advisoryAgentDomain;
+    NSString *_advisoryAgentType;
 }
 
 + (id)agentFromData:(id)arg1;
 + (id)agentType;
+- (void).cxx_destruct;
+@property BOOL noAdvisoryTimer; // @synthesize noAdvisoryTimer=_noAdvisoryTimer;
+@property BOOL weakAdvisory; // @synthesize weakAdvisory=_weakAdvisory;
+@property(retain) NSString *advisoryAgentType; // @synthesize advisoryAgentType=_advisoryAgentType;
+@property(retain) NSString *advisoryAgentDomain; // @synthesize advisoryAgentDomain=_advisoryAgentDomain;
+@property(retain) NSMutableArray *advisoryInterfaceArray; // @synthesize advisoryInterfaceArray=_advisoryInterfaceArray;
+@property(retain) NSMutableArray *predictedInterfaceArray; // @synthesize predictedInterfaceArray=_predictedInterfaceArray;
 @property(copy) CDUnknownBlockType internalUnassertHandler; // @synthesize internalUnassertHandler=_internalUnassertHandler;
 @property(copy) CDUnknownBlockType internalAssertHandler; // @synthesize internalAssertHandler=_internalAssertHandler;
-@property BOOL weakAdvisory; // @synthesize weakAdvisory=_weakAdvisory;
-@property(retain) NWInterface *predictedInterface; // @synthesize predictedInterface=_predictedInterface;
-@property(retain) NWInterface *advisoryInterface; // @synthesize advisoryInterface=_advisoryInterface;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL isForcedAdvisory; // @synthesize isForcedAdvisory=_isForcedAdvisory;
+- (void)setUpdateClientsImmediately:(BOOL)arg1;
+- (BOOL)updateClientsImmediately;
+- (id)initWithAdvisoryAgentDomain:(id)arg1 agentType:(id)arg2 advisoryMode:(unsigned long long)arg3;
+- (id)initWithAdvisoryInterface:(id)arg1 advisoryMode:(unsigned long long)arg2;
 - (void)setUnassertHandler:(CDUnknownBlockType)arg1;
 - (void)setAssertHandler:(CDUnknownBlockType)arg1;
 - (void)unassertAgentWithOptions:(id)arg1;

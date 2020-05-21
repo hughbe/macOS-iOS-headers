@@ -22,11 +22,13 @@ __attribute__((visibility("hidden")))
 + (id)kindCategory;
 + (id)tagCategory;
 + (id)applicationsCategory;
++ (id)folderCategory;
 + (id)filenameCategory;
 + (id)filenameTypingScopeCategory;
 + (id)displayNameForScope:(long long)arg1;
 + (void)initialize;
-@property(retain) NSDictionary *imagesForTags; // @synthesize imagesForTags=_imagesForTags;
+- (void).cxx_destruct;
+@property(copy) NSDictionary *imagesForTags; // @synthesize imagesForTags=_imagesForTags;
 - (id)imageForSuggestion:(id)arg1;
 - (void)suggesterBecomesIdle:(id)arg1;
 - (id)suggestionForString:(id)arg1;
@@ -39,7 +41,6 @@ __attribute__((visibility("hidden")))
 - (long long)scopeForAttributeName:(id)arg1;
 - (id)allAttributeNamesForSuggestion:(id)arg1;
 - (id)identifier;
-- (void)dealloc;
 - (id)init;
 
 @end

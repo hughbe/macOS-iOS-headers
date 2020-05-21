@@ -6,26 +6,26 @@
 
 #import "NSTableCellView.h"
 
+@class NSFont;
+
 __attribute__((visibility("hidden")))
 @interface FI_TListBaseCellView : NSTableCellView
 {
-    double _textSize;
-    _Bool _isEmphasized;
-    _Bool _isDisabled;
-    _Bool _isResizing;
+    _Bool _dimmed;
+    int _mainProperty;
+    _Bool _inBatchUpdate;
+    struct TNSRef<FI_TListTextField, void> _titleTextField;
 }
 
-@property(nonatomic, getter=isResizing) _Bool resizing; // @synthesize resizing=_isResizing;
-@property(nonatomic, getter=isDisabled) _Bool disabled; // @synthesize disabled=_isDisabled;
-@property(nonatomic, getter=isEmphasized) _Bool emphasized; // @synthesize emphasized=_isEmphasized;
-@property(nonatomic) double textSize; // @synthesize textSize=_textSize;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(nonatomic, getter=isInBatchUpdate) _Bool inBatchUpdate; // @synthesize inBatchUpdate=_inBatchUpdate;
+@property(nonatomic) int mainProperty; // @synthesize mainProperty=_mainProperty;
+@property(nonatomic, getter=isDimmed) _Bool dimmed; // @synthesize dimmed=_dimmed;
 - (struct CGSize)idealSize;
-- (_Bool)isLTRLocalization;
-@property(readonly, nonatomic) _Bool isSelected; // @dynamic isSelected;
-- (id)textColorForCurrentState;
-- (void)setTextColors;
-- (void)viewDidMoveToSuperview;
-- (void)setBackgroundStyle:(long long)arg1;
+- (void)setTitleNeedsDisplay;
+@property(copy, nonatomic) NSFont *titleFont; // @dynamic titleFont;
+- (id)init;
 
 @end
 

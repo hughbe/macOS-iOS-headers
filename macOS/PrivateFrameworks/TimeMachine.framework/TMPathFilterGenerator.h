@@ -27,6 +27,7 @@
 - (void)addStickyExclusionForPath:(id)arg1;
 - (void)addExclusionForPath:(id)arg1;
 - (void)addRulesForUserHome:(id)arg1;
+- (void)addUserLibraryMailRealm:(id)arg1;
 - (id)_copyCompiledFilterGenerator:(id)arg1;
 - (id)copyCustomExclusionsPathFilter;
 - (id)copyBasePathFilter;

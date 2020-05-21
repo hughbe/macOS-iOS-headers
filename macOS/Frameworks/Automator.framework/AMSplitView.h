@@ -6,7 +6,7 @@
 
 #import "NSSplitView.h"
 
-@class NSImage, NSLayoutConstraint;
+@class NSImage, NSLayoutConstraint, NSString;
 
 @interface AMSplitView : NSSplitView
 {
@@ -18,9 +18,10 @@
     BOOL _isCollapsing;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSLayoutConstraint *breadthConstraint; // @synthesize breadthConstraint=_breadthConstraint;
-@property(readonly) BOOL isCollapsing; // @synthesize isCollapsing=_isCollapsing;
-@property double expandedPosition; // @synthesize expandedPosition=_expandedPosition;
+@property BOOL isCollapsing; // @synthesize isCollapsing=_isCollapsing;
+@property(nonatomic) double expandedPosition; // @synthesize expandedPosition=_expandedPosition;
 @property BOOL collapsesToRightOrBottom; // @synthesize collapsesToRightOrBottom=_collapsesToRightBottom;
 - (void)collapseWithAnimation:(BOOL)arg1;
 - (void)collapse;
@@ -33,12 +34,14 @@
 - (void)drawDividerInRect:(struct CGRect)arg1;
 - (void)setPosition:(double)arg1 ofDividerAtIndex:(long long)arg2;
 - (double)positionOfDividerAtIndex:(long long)arg1;
-- (id)dividerColor;
 - (double)dividerThickness;
 - (void)setDividerStyle:(long long)arg1;
 - (BOOL)usesCustomDivider;
 - (void)dealloc;
+- (void)applyExpandedPosition;
+- (void)updateExpandedPositionWithProposedPosition:(double)arg1 ofSubViewAt:(long long)arg2;
 - (void)_autosaveSubviewLayoutIfNecessary;
+@property(readonly, nonatomic) NSString *_expandedPositionUserDefaultsName;
 - (id)initWithCoder:(id)arg1;
 
 @end

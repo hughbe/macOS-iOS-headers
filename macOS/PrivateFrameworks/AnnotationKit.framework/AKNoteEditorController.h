@@ -10,11 +10,11 @@
 #import "AKNoteMarginViewDelegate.h"
 #import "AKNoteStickyViewDelegate.h"
 
-@class AKNoteAnimationWindowController, AKNoteAnnotation, AKNoteEditorWindowController, AKNoteMarginView, AKNoteStickyView, NSString;
+@class AKNoteAnimationWindowController, AKNoteEditorWindowController, AKNoteMarginView, AKNoteStickyView, AKPopupAnnotation, NSString;
 
 @interface AKNoteEditorController : NSObject <AKNoteStickyViewDelegate, AKNoteMarginViewDelegate, AKNoteEditorWindowDelegate>
 {
-    AKNoteAnnotation *_annotation;
+    AKPopupAnnotation *_annotation;
     id <AKNoteEditorControllerDelegate> _delegate;
     AKNoteStickyView *_stickyView;
     AKNoteEditorWindowController *_controller;
@@ -25,13 +25,14 @@
 + (void)p_showCoalestedMargins;
 + (id)p_queuedAnimations;
 + (void)p_addMarginShowToCoalescedTimer:(CDUnknownBlockType)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) AKNoteMarginView *marginView; // @synthesize marginView=_marginView;
 @property(retain, nonatomic) AKNoteAnimationWindowController *animator; // @synthesize animator=_animator;
 @property(retain, nonatomic) AKNoteEditorWindowController *controller; // @synthesize controller=_controller;
 @property(retain, nonatomic) AKNoteStickyView *stickyView; // @synthesize stickyView=_stickyView;
 @property(nonatomic) __weak id <AKNoteEditorControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) AKNoteAnnotation *annotation; // @synthesize annotation=_annotation;
-- (void).cxx_destruct;
+@property(retain, nonatomic) AKPopupAnnotation *annotation; // @synthesize annotation=_annotation;
+- (int)p_annotationStyleForPopupAnnotation:(id)arg1;
 - (void)p_hideStickyView;
 - (void)p_showStickyView;
 - (void)stickyViewWasClicked:(id)arg1;

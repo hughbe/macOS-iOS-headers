@@ -11,6 +11,7 @@
     CDUnknownBlockType _block;
 }
 
++ (BOOL)supportsSecureCoding;
 - (CDUnknownBlockType)_predicateBlock;
 - (id)predicateWithSubstitutionVariables:(id)arg1;
 - (void)acceptVisitor:(id)arg1 flags:(unsigned long long)arg2;
@@ -20,7 +21,6 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (BOOL)supportsSecureCoding;
 - (id)initWithBlock:(CDUnknownBlockType)arg1;
 
 @end

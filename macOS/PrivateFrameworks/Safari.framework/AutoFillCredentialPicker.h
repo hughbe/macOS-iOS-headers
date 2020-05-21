@@ -6,48 +6,62 @@
 
 #import <Safari/SheetWithTableController.h>
 
-#import "CredentialAndProtectionSpaceCollectionDelegate.h"
+#import "AuthorizationSheetViewControllerDelegate.h"
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
+#import "SecureWindow.h"
 
-@class CredentialAndProtectionSpaceCollection, NSButton, NSCountedSet, NSSearchField, NSString, NSTextField;
+@class AuthorizationSheetViewController, NSButton, NSMutableArray, NSSearchField, NSString, NSTextField, NSView, NSWindow, SecureWindowLockPolicyEnforcer, WBSAutoFillQuirksManager, WBSFaviconRequestsController, WBSSavedPasswordStore, WBSSiteMetadataManager;
 
-__attribute__((visibility("hidden")))
-@interface AutoFillCredentialPicker : SheetWithTableController <NSTableViewDataSource, NSTableViewDelegate, CredentialAndProtectionSpaceCollectionDelegate>
+@interface AutoFillCredentialPicker : SheetWithTableController <AuthorizationSheetViewControllerDelegate, NSTableViewDataSource, NSTableViewDelegate, SecureWindow>
 {
-    CredentialAndProtectionSpaceCollection *_credentialAndProtectionSpaceCollection;
-    NSCountedSet *_credentialHosts;
+    NSMutableArray *_allPasswords;
+    WBSFaviconRequestsController *_iconRequestsController;
+    WBSSavedPasswordStore *_savedPasswordStore;
+    WBSSiteMetadataManager *_siteMetadataManager;
+    WBSAutoFillQuirksManager *_autoFillQuirksManager;
+    BOOL _isWaitingForIconRequestCancellation;
     long long _purpose;
+    NSWindow *_windowPresentingCredentialPicker;
+    NSView *_parentView;
+    SecureWindowLockPolicyEnforcer *_lockPolicyEnforcer;
+    AuthorizationSheetViewController *_authorizationSheetViewController;
     NSButton *_cancelButton;
     NSButton *_fillButton;
     NSSearchField *_searchField;
     NSTextField *_promptTextField;
+    NSView *_otherPasswordsWindowContentView;
     CDUnknownBlockType _didSelectCredentialToFillHandler;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType didSelectCredentialToFillHandler; // @synthesize didSelectCredentialToFillHandler=_didSelectCredentialToFillHandler;
+@property(retain, nonatomic) NSView *otherPasswordsWindowContentView; // @synthesize otherPasswordsWindowContentView=_otherPasswordsWindowContentView;
 @property(nonatomic) __weak NSTextField *promptTextField; // @synthesize promptTextField=_promptTextField;
 @property(nonatomic) __weak NSSearchField *searchField; // @synthesize searchField=_searchField;
 @property(nonatomic) __weak NSButton *fillButton; // @synthesize fillButton=_fillButton;
 @property(nonatomic) __weak NSButton *cancelButton; // @synthesize cancelButton=_cancelButton;
-- (void).cxx_destruct;
-- (id)passwordForSortingAndFilteringCredentialAndProtectionSpace:(id)arg1;
-- (id)userForSortingAndFilteringCredential:(id)arg1;
-- (id)addressStringForFilteringProtectionSpace:(id)arg1;
-- (long long)compareAddressFromCredentialAndProtectionSpace:(id)arg1 toAddressFromCredentialAndProtectionSpace:(id)arg2;
+- (void)_installView:(id)arg1;
+@property(readonly, nonatomic) NSWindow *windowToSecure;
+- (void)lockFromPolicyEnforcer:(id)arg1;
+- (void)authorizationSheetViewControllerDidSucceed:(id)arg1;
+- (void)authorizationSheetViewControllerWasCancelled:(id)arg1;
+@property(readonly, nonatomic) AuthorizationSheetViewController *authorizationSheetViewController; // @synthesize authorizationSheetViewController=_authorizationSheetViewController;
+@property(readonly, nonatomic) SecureWindowLockPolicyEnforcer *lockPolicyEnforcer; // @synthesize lockPolicyEnforcer=_lockPolicyEnforcer;
 - (void)controlTextDidChange:(id)arg1;
-- (id)_addressStringFromProtectionSpace:(id)arg1;
+- (id)_passwordForRowIndex:(long long)arg1;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)_updateFillAndRemoveButtons;
 - (void)_updateCredentialsToDisplay;
-- (void)reloadTableData;
+- (void)_updateDisplayedPasswords;
 - (BOOL)_confirmCredentialRemoval;
 - (void)removeSelectedItems:(id)arg1;
 - (void)focusContentSearchField:(id)arg1;
 - (void)fillSelectedItem:(id)arg1;
-- (void)showSheetInWindow:(id)arg1 forPurpose:(long long)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
+- (void)presentAsChildOfView:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)showSheetInWindow:(id)arg1 forPurpose:(long long)arg2 savedPasswordStore:(id)arg3 siteMetadataManager:(id)arg4 autoFillQuirksManager:(id)arg5 withCompletionHandler:(CDUnknownBlockType)arg6;
 - (void)hideSheet:(id)arg1;
 - (void)awakeFromNib;
 - (id)windowNibName;

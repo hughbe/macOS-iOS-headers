@@ -8,20 +8,25 @@
 
 #import "CNDataMapper.h"
 
-@class CNCDPersistenceStack, NSString;
+@class CNCDChangeHistoryStore, CNCDPersistenceStack, NSString;
 
-__attribute__((visibility("hidden")))
 @interface CNCoreDataMapperX : NSObject <CNDataMapper>
 {
     CNCDPersistenceStack *_persistenceStack;
+    CNCDChangeHistoryStore *_changeHistoryStore;
 }
 
 + (id)defaultContactsStoreDirectoryURL;
-+ (BOOL)useAddressBookStack;
-- (BOOL)clearChangeHistoryForClient:(id)arg1 toSequenceNumber:(long long)arg2 error:(id *)arg3;
+- (void).cxx_destruct;
+@property(readonly) CNCDChangeHistoryStore *changeHistoryStore; // @synthesize changeHistoryStore=_changeHistoryStore;
+- (id)authorizedKeysForContactKeys:(id)arg1 error:(id *)arg2;
+- (BOOL)hasMultipleGroupsOrAccounts;
+- (id)sectionListOffsetsForSortOrder:(long long)arg1 error:(id *)arg2;
+- (id)currentHistoryToken;
+- (BOOL)executeChangeHistoryClearRequest:(id)arg1 error:(id *)arg2;
 - (id)changeHistoryWithFetchRequest:(id)arg1 error:(id *)arg2;
-- (BOOL)unregisterClientForChangeHistory:(id)arg1 error:(id *)arg2;
-- (BOOL)registerClientForChangeHistory:(id)arg1 error:(id *)arg2;
+- (BOOL)unregisterChangeHistoryClientIdentifier:(id)arg1 forContainerIdentifier:(id)arg2 error:(id *)arg3;
+- (BOOL)registerChangeHistoryClientIdentifier:(id)arg1 forContainerIdentifier:(id)arg2 error:(id *)arg3;
 - (id)_smartGroupsMatchingPredicate:(id)arg1 contactStore:(id)arg2;
 - (id)_smartGroupsForAccountsWithIdentifiers:(id)arg1 contactStore:(id)arg2;
 - (BOOL)_saveCustomPropertyValuesForRemoteRecords:(id)arg1 error:(id *)arg2;
@@ -38,25 +43,25 @@ __attribute__((visibility("hidden")))
 - (id)policyForContainerWithIdentifier:(id)arg1 error:(id *)arg2;
 - (id)defaultContainerIdentifier;
 - (id)subgroupsOfGroupWithIdentifier:(id)arg1 error:(id *)arg2;
-- (id)membersOfGroupWithIdentifier:(id)arg1 keysToFetch:(id)arg2 error:(id *)arg3;
 - (id)groupsMatchingPredicate:(id)arg1 error:(id *)arg2;
 - (id)accountsMatchingPredicate:(id)arg1 error:(id *)arg2;
 - (id)containersMatchingPredicate:(id)arg1 error:(id *)arg2;
 - (BOOL)executeSaveRequest:(id)arg1 response:(id *)arg2 error:(id *)arg3;
+- (BOOL)executeSaveRequest:(id)arg1 response:(id *)arg2 authorizationContext:(id)arg3 error:(id *)arg4;
 - (BOOL)executeSaveRequest:(id)arg1 error:(id *)arg2;
-- (id)meContactIdentifierWithError:(id *)arg1;
-- (id)contactsForFetchRequest:(id)arg1 matchInfos:(id *)arg2 error:(id *)arg3;
-- (id)contactsForFetchRequest:(id)arg1 error:(id *)arg2;
+- (BOOL)setMeContact:(id)arg1 error:(id *)arg2;
+- (id)meContactIdentifiers:(id *)arg1;
+- (id)contactObservableForFetchRequest:(id)arg1;
 - (void)setNotificationSource:(id)arg1;
-- (void)dealloc;
-- (id)initWithPersistenceStack:(id)arg1;
-- (id)initWithContactsEnvironment:(id)arg1;
+- (id)initWithContactsEnvironment:(id)arg1 managedConfiguration:(id)arg2;
 - (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(retain, nonatomic) NSString *legacyTetheredSyncComputerAnchor;
+@property(retain, nonatomic) NSString *legacyTetheredSyncDeviceAnchor;
 @property(readonly) Class superclass;
 
 @end

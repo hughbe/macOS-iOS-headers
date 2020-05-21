@@ -12,11 +12,13 @@
 {
     BOOL _outbound;
     STContactAddress *_senderAddress;
+    NSString *_senderInternalGUID;
     NSArray *_recipientAddresses;
     NSString *_groupName;
     NSString *_groupNameId;
     NSString *_subjectText;
     NSString *_bodyText;
+    NSString *_effect;
     NSURL *_attachmentURL;
     NSDate *_sendDate;
     NSString *_chatIdentifier;
@@ -33,6 +35,8 @@
 - (id)sendDate;
 - (void)setAttachmentURL:(id)arg1;
 - (id)attachmentURL;
+- (void)setEffect:(id)arg1;
+- (id)effect;
 - (void)setBodyText:(id)arg1;
 - (id)bodyText;
 - (void)setSubjectText:(id)arg1;
@@ -43,6 +47,8 @@
 - (id)groupName;
 - (void)setRecipientAddresses:(id)arg1;
 - (id)recipientAddresses;
+- (void)_setSenderInternalGUID:(id)arg1;
+- (id)senderInternalGUID;
 - (void)setSenderAddress:(id)arg1;
 - (id)senderAddress;
 - (void)setOutbound:(BOOL)arg1;

@@ -6,7 +6,7 @@
 
 #import "NSWindowController.h"
 
-@class AMVariable, AMVariablesEditorPanel, AMVariablesEditorView, AMWorkflowView;
+@class AMVariable, AMVariablesEditorPanel, AMVariablesEditorView, AMWorkflowView, NSArray;
 
 @interface AMVariablesEditorController : NSWindowController
 {
@@ -18,24 +18,21 @@
     BOOL _variableHasUnsavedChanges;
 }
 
+- (void).cxx_destruct;
+@property __weak AMVariablesEditorPanel *_editorPanel; // @synthesize _editorPanel;
+@property(retain) AMVariablesEditorView *_variableEditorView; // @synthesize _variableEditorView;
+@property BOOL variableHasUnsavedChanges; // @synthesize variableHasUnsavedChanges=_variableHasUnsavedChanges;
+@property __weak AMWorkflowView *workflowView; // @synthesize workflowView=_workflowView;
+@property(retain, nonatomic) AMVariable *tempVariable; // @synthesize tempVariable=_tempVariable;
+@property(retain, nonatomic) AMVariable *variable; // @synthesize variable=_variable;
 - (void)ok:(id)arg1;
 - (void)cancel:(id)arg1;
 - (void)willClose;
-- (id)workflowVariableNames;
-- (void)setVariable:(id)arg1;
-- (id)variable;
-- (void)setTempVariable:(id)arg1;
-- (void)setWorkflowView:(id)arg1;
-- (id)workflowView;
-- (id)tempVariable;
-- (void)setVariablesEditorView:(id)arg1;
-- (id)variablesEditorView;
-- (BOOL)needsUserAttention;
-- (void)setVariableHasUnsavedChanges:(BOOL)arg1;
-- (BOOL)variableHasUnsavedChanges;
+@property(readonly, nonatomic) NSArray *workflowVariableNames;
+@property(readonly, nonatomic) BOOL needsUserAttention;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)dealloc;
 - (id)init;
+@property(retain, nonatomic) AMVariablesEditorView *variablesEditorView;
 - (id)windowNibName;
 - (void)awakeFromNib;
 

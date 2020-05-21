@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class ABCardCollectionRowScope, ABCardCollectionView, ABCardViewStyleProvider, ABCollectionViewItem, NSArray, NSButton, NSPopUpButton, NSStackView, NSString, NSTextField, NSView;
+@class ABCardCollectionRowScope, ABCardCollectionView, ABCardViewStyleProvider, ABCollectionViewItem, ABOverlayView, NSArray, NSButton, NSPopUpButton, NSStackView, NSString, NSTextField, NSView;
 
 @protocol ABCardCollectionRowView <NSObject>
 @property(retain, nonatomic) NSView *accessoryView;
@@ -17,10 +17,12 @@
 @property BOOL shouldHideAddButton;
 @property(readonly, getter=isFocused) BOOL focused;
 @property(getter=isLoaded) BOOL loaded;
-@property ABCollectionViewItem *collectionItem;
+@property __weak ABCollectionViewItem *collectionItem;
+@property __weak ABCardCollectionView *cardCollectionView;
 @property(retain, nonatomic) ABCardViewStyleProvider *styleProvider;
 @property(retain) NSPopUpButton *messagingServiceChooserPopup;
 @property(retain) NSView *messagingServiceLabel;
+@property(retain) ABOverlayView *focusRingView;
 @property(retain) NSStackView *stackView;
 @property(retain) NSArray *actionGlyphButtons;
 @property(retain) NSView *labelView;
@@ -34,6 +36,7 @@
 - (void)setPrivateMeEnabled:(BOOL)arg1;
 - (void)invalidateClickToEdit;
 - (void)configureClickToEdit;
+- (void)generateConstraints;
 - (void)processControlTextDidEndEditing:(NSTextField *)arg1;
 - (void)processControlTextDidChange:(NSTextField *)arg1;
 - (void)setValueSelectable:(BOOL)arg1;
@@ -43,6 +46,7 @@
 - (void)clearValue;
 - (BOOL)hasValue;
 - (void)glyphButtonPressed:(id)arg1;
+- (void)updateGlyphButtonsVisibility;
 - (BOOL)commitEditing;
 - (void)updateMultiValueControls;
 - (void)didChangeLabelForCollection:(ABCardCollectionView *)arg1;

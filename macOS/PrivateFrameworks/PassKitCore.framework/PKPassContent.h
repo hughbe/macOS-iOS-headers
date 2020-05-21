@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class NSArray, NSString, PKImage, PKPassPersonalization;
+@class NSArray, NSDictionary, NSString, PKImage, PKPassPersonalization;
 
 @interface PKPassContent : PKContent <NSSecureCoding>
 {
@@ -17,21 +17,30 @@
     NSString *_logoText;
     NSArray *_frontFieldBuckets;
     NSArray *_backFieldBuckets;
+    NSArray *_balanceFields;
     PKPassPersonalization *_personalization;
+    NSDictionary *_semantics;
+    NSDictionary *_allSemantics;
+    NSString *_businessChatIdentifier;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *businessChatIdentifier; // @synthesize businessChatIdentifier=_businessChatIdentifier;
+@property(copy, nonatomic) NSDictionary *allSemantics; // @synthesize allSemantics=_allSemantics;
+@property(copy, nonatomic) NSDictionary *semantics; // @synthesize semantics=_semantics;
 @property(copy, nonatomic) PKPassPersonalization *personalization; // @synthesize personalization=_personalization;
+@property(copy, nonatomic) NSArray *balanceFields; // @synthesize balanceFields=_balanceFields;
 @property(copy, nonatomic) NSArray *backFieldBuckets; // @synthesize backFieldBuckets=_backFieldBuckets;
 @property(copy, nonatomic) NSArray *frontFieldBuckets; // @synthesize frontFieldBuckets=_frontFieldBuckets;
 @property(copy, nonatomic) NSString *logoText; // @synthesize logoText=_logoText;
 @property(retain, nonatomic) PKImage *footerImage; // @synthesize footerImage=_footerImage;
 @property(nonatomic) long long transitType; // @synthesize transitType=_transitType;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) NSArray *primaryFields;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)flushFormattedFieldValues;
-- (id)initWithDictionary:(id)arg1 bundle:(id)arg2;
+- (id)initWithDictionary:(id)arg1 bundle:(id)arg2 privateBundle:(id)arg3;
 
 @end
 

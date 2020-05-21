@@ -8,6 +8,7 @@
 
 @class _NCMachSendRight;
 
+__attribute__((visibility("hidden")))
 @interface NCRemoteViewServiceContainerView : NSView
 {
     _Bool _inSetFrame;
@@ -16,9 +17,9 @@
     id <NCRemoteServiceContainerViewDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) _Bool sendFrameChangesToHost; // @synthesize sendFrameChangesToHost=_sendFrameChangesToHost;
 @property(nonatomic) __weak id <NCRemoteServiceContainerViewDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)setFrame:(struct CGRect)arg1;
 
 @end

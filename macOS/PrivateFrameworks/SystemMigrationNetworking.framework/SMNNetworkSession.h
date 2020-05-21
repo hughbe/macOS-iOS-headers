@@ -42,7 +42,6 @@
     NSObject<OS_dispatch_queue> *_scObservationQueue;
     NSObject<OS_dispatch_queue> *_sampleQueue;
     struct __SCDynamicStore *_dynamicStoreConnection;
-    CDUnknownBlockType _connectionComparator;
     NSNetServiceBrowser *_netServiceBrowser;
     NSObject<OS_dispatch_queue> *_currentlyConnectingConnectionQueue;
     SMNConnection *_currentConnectingConnection;
@@ -51,14 +50,18 @@
     SMNConnection *_activeConnection;
     NSMutableOrderedSet *_otherConnections;
     NSDictionary *_remoteAddressesByIFMap;
+    CDUnknownBlockType _connectionComparator;
     double _infrastructureWirelessRate;
 }
 
++ (id)keyPathsForValuesAffectingActiveInterfaceBenchmark;
 + (id)keyPathsForValuesAffectingRemoteInterfaceType;
 + (id)keyPathsForValuesAffectingLocalInterfaceType;
+- (void).cxx_destruct;
 @property double infrastructureWirelessRate; // @synthesize infrastructureWirelessRate=_infrastructureWirelessRate;
 @property int ipv6Port; // @synthesize ipv6Port=_ipv6Port;
 @property int preferredInterface; // @synthesize preferredInterface=_preferredInterface;
+@property(copy) CDUnknownBlockType connectionComparator; // @synthesize connectionComparator=_connectionComparator;
 @property BOOL hasEverBeenConnected; // @synthesize hasEverBeenConnected=_hasEverBeenConnected;
 @property int socketFd; // @synthesize socketFd=_socketFd;
 @property(getter=isServer) BOOL server; // @synthesize server=_server;
@@ -73,7 +76,6 @@
 @property(retain) NSObject<OS_dispatch_queue> *currentlyConnectingConnectionQueue; // @synthesize currentlyConnectingConnectionQueue=_currentlyConnectingConnectionQueue;
 @property int ipv6AcceptSocket; // @synthesize ipv6AcceptSocket=_ipv6AcceptSocket;
 @property(retain) NSNetServiceBrowser *netServiceBrowser; // @synthesize netServiceBrowser=_netServiceBrowser;
-@property(copy) CDUnknownBlockType connectionComparator; // @synthesize connectionComparator=_connectionComparator;
 @property struct __SCDynamicStore *dynamicStoreConnection; // @synthesize dynamicStoreConnection=_dynamicStoreConnection;
 @property(retain) NSObject<OS_dispatch_queue> *sampleQueue; // @synthesize sampleQueue=_sampleQueue;
 @property(retain) NSObject<OS_dispatch_queue> *scObservationQueue; // @synthesize scObservationQueue=_scObservationQueue;
@@ -95,7 +97,6 @@
 @property(retain) NSString *connectedServiceName; // @synthesize connectedServiceName=_connectedServiceName;
 @property(retain) NSString *name; // @synthesize name=_name;
 @property unsigned long long protocolVersion; // @synthesize protocolVersion=_protocolVersion;
-- (void).cxx_destruct;
 @property(readonly) BOOL otherConnectionsAvailable;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)closeStream:(id)arg1;
@@ -123,6 +124,7 @@
 @property(readonly) NSSet *availableConnectionTypes;
 - (void)promoteConnectionToActive:(id)arg1;
 - (id)instantiateSecurityProviderForQueueName:(id)arg1;
+@property(readonly) double activeInterfaceBenchmark;
 @property(readonly) int remoteInterfaceType;
 @property(readonly) int localInterfaceType;
 - (void)dealloc;

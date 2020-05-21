@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class CNPersistentStoreBuilderEnvironment, CNPersistentStoreDescription, NSDictionary, NSError, NSPersistentStore, NSPersistentStoreCoordinator, NSURL;
+#import "CNPersistentStoreBuilder.h"
 
-__attribute__((visibility("hidden")))
-@interface CNPersistentStoreBuilder : NSObject
+@class CNPersistentStoreBuilderEnvironment, CNPersistentStoreDescription, CNResult, NSDictionary, NSError, NSPersistentStore, NSPersistentStoreCoordinator, NSString, NSURL;
+
+@interface CNPersistentStoreBuilder : NSObject <CNPersistentStoreBuilder>
 {
     NSPersistentStoreCoordinator *_coordinator;
     CNPersistentStoreDescription *_storeDescription;
@@ -24,57 +25,38 @@ __attribute__((visibility("hidden")))
     BOOL _didMigrate;
     _Bool _addAsReadOnly;
     NSError *_error;
+    CNResult *_preparationResult;
 }
 
-+ (id)mergeDictionary:(id)arg1 withDictionary:(id)arg2;
-+ (id)proxyLockStoreOptionsForDatabaseAtUrl:(id)arg1 isReadOnly:(BOOL)arg2;
-+ (id)readOnlyStoreOptionsWithBoolValue:(BOOL)arg1;
-+ (id)tracerMessageWithMessage:(id)arg1 error:(id)arg2;
++ (id)coordinatorWithLastUnconstrainedModel;
++ (id)migration_os_log;
++ (id)os_log;
+- (void).cxx_destruct;
 @property(retain) CNPersistentStoreBuilderEnvironment *environment; // @synthesize environment=_environment;
 @property(copy) NSError *error; // @synthesize error=_error;
 @property(retain) NSPersistentStore *store; // @synthesize store=_store;
-@property(readonly, retain) NSPersistentStoreCoordinator *coordinator; // @synthesize coordinator=_coordinator;
+@property(readonly) NSPersistentStoreCoordinator *coordinator; // @synthesize coordinator=_coordinator;
+@property(readonly) CNResult *preparationResult; // @synthesize preparationResult=_preparationResult;
 - (void)logFailureMessage;
 - (void)removePersistentStoreAtURL:(id)arg1;
-- (void)emptySaveIfNeeded;
-- (void)updateMetdata;
-- (BOOL)shouldUpdateMetadata;
-- (void)updateMetdataIfNeeded;
-- (BOOL)didAddStore;
+- (void)addInMemoryPersistentStore;
 - (void)fallBackToInMemory;
 - (void)fallBackToInMemoryIfNeeded;
-- (void)moveAsideDatabaseAtURL:(id)arg1 reason:(id)arg2;
-- (void)moveAsideDatabase;
-- (void)moveAsideDatabaseIfNeeded;
-- (void)addInMemoryPersistentStore;
-- (id)extraOptionsForStoreAtUrl:(id)arg1;
-- (id)optionsWithMigrationForStoreAtUrl:(id)arg1;
-- (id)optionsWithoutMigrationForStoreAtUrl:(id)arg1;
-- (void)addSqlitePersistentStoreWithUrl:(id)arg1;
-- (void)migrateMailRecentsToInMemoryIfNeeded;
-- (void)migrateOrphanPropertiesIfNeeded;
-- (BOOL)shouldMigrateOrphanProperties;
-- (void)migratePhoneNumbersIfNeeded;
-- (BOOL)shouldMigratePhoneNumbers;
-- (void)migrateLabelsIfNeeded;
-- (BOOL)shouldMigrateLabels;
-- (void)migrateMailRecentsToInMemory;
-- (void)logPersistentStoreTracerFailureWithMessage:(id)arg1 error:(id)arg2;
-- (id)urlByCopyingToTemporaryUrl:(id)arg1;
-- (void)tryToAddPersistentStore;
-- (void)createFolderIfNeeded;
-- (void)removeDotNewPathForDatabasePath;
-- (BOOL)databaseFileIsEmpty;
-- (BOOL)databaseFileIsMissing;
-- (void)preflightDatabaseFile;
-- (void)setDatabaseURL:(id)arg1;
-- (void)setupInitialStateWithDatabaseURL:(id)arg1;
-- (void)doInitialImportsIfNeeded;
+- (void)_coreDataR10319914Hack:(id)arg1;
+- (void)addStoreWithURL:(id)arg1 options:(id)arg2;
+- (void)fallBackToUnpreparedStoreIfNeeded;
+- (void)addPreparedStore;
+- (void)prepareDatabaseFileWithURL:(id)arg1;
 - (id)addPersistentStoreAtURL:(id)arg1;
-- (void)dealloc;
 - (id)initWithStoreDescription:(id)arg1 readOnly:(BOOL)arg2 coordinator:(id)arg3 environment:(id)arg4;
 - (id)initWithStoreDescription:(id)arg1 readOnly:(BOOL)arg2 coordinator:(id)arg3;
 - (id)initWithStoreDescription:(id)arg1 readOnly:(BOOL)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

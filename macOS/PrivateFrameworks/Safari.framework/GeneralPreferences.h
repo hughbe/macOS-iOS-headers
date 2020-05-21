@@ -7,11 +7,13 @@
 #import <Safari/PreferencesModule.h>
 
 #import "BookmarkChooserDelegate.h"
+#import "HomepageHostViewControllerDelegate.h"
+#import "SandboxExtensionPresentationDelegate.h"
 
-@class NSButton, NSLayoutConstraint, NSPopUpButton, NSString, NSTextField, NSView;
+@class HomepageHostViewController, NSButton, NSLayoutConstraint, NSPopUpButton, NSString, NSTextField, NSView;
 
 __attribute__((visibility("hidden")))
-@interface GeneralPreferences : PreferencesModule <BookmarkChooserDelegate>
+@interface GeneralPreferences : PreferencesModule <BookmarkChooserDelegate, HomepageHostViewControllerDelegate, SandboxExtensionPresentationDelegate>
 {
     NSTextField *defaultBrowserMessageField;
     NSTextField *homePageField;
@@ -30,47 +32,33 @@ __attribute__((visibility("hidden")))
     BOOL _confirmingHomePageURL;
     double _forcedWindowHeight;
     BOOL _registeredForLaunchServicesDatabaseChangedNotifications;
+    HomepageHostViewController *_remoteHomepageViewController;
+    BOOL _launchBehaviorMenuItemsAreHidden;
     NSView *_mainContentView;
     NSLayoutConstraint *_downloadLocationPopUpButtonMinimizeWidthConstraint;
     NSTextField *_favoritesCollectionTextField;
     NSPopUpButton *_favoritesCollectionPopUpButton;
     NSView *_nonDefaultBrowserInformativeView;
-    NSLayoutConstraint *_launchBehaviorLabelBaselineAlignmentConstraint;
-    NSLayoutConstraint *_launchBehaviorLabelLeadingSpaceConstraint;
-    NSLayoutConstraint *_launchBehaviorLabelHorizontalSpaceConstraint;
-    NSLayoutConstraint *_launchBehaviorLabelTrailingAlignmentConstraint;
-    NSLayoutConstraint *_launchBehaviorPopupBottomSpaceConstraint;
-    NSLayoutConstraint *_launchBehaviorPopupTopSpaceToMainContentViewConstraint;
-    NSLayoutConstraint *_launchBehaviorPopupTrailingAlignmentConstraint;
-    NSLayoutConstraint *_launchBehaviorPopupLeadingAlignmentConstraint;
+    NSView *_homepageFieldContainerView;
     NSLayoutConstraint *_nonDefaultBrowserInformativeViewTopSpaceConstraint;
     NSLayoutConstraint *_nonDefaultBrowserInformativeViewTrailingSpaceConstraint;
-    NSLayoutConstraint *_nonDefaultBrowserInformativeViewBottomSpaceToLaunchBehaviorPopupConstraint;
-    NSLayoutConstraint *_nonDefaultBrowserInformativeViewBottomSpaceToNewWindowBehaviorPopupConstraint;
+    NSLayoutConstraint *_nonDefaultBrowserInformativeViewBottomSpaceToMainContentViewConstraint;
     NSLayoutConstraint *_nonDefaultBrowserInformativeViewLeadingSpaceConstraint;
     NSLayoutConstraint *_nonDefaultBrowserInformativeViewCenteringConstraint;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSLayoutConstraint *nonDefaultBrowserInformativeViewCenteringConstraint; // @synthesize nonDefaultBrowserInformativeViewCenteringConstraint=_nonDefaultBrowserInformativeViewCenteringConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *nonDefaultBrowserInformativeViewLeadingSpaceConstraint; // @synthesize nonDefaultBrowserInformativeViewLeadingSpaceConstraint=_nonDefaultBrowserInformativeViewLeadingSpaceConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *nonDefaultBrowserInformativeViewBottomSpaceToNewWindowBehaviorPopupConstraint; // @synthesize nonDefaultBrowserInformativeViewBottomSpaceToNewWindowBehaviorPopupConstraint=_nonDefaultBrowserInformativeViewBottomSpaceToNewWindowBehaviorPopupConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *nonDefaultBrowserInformativeViewBottomSpaceToLaunchBehaviorPopupConstraint; // @synthesize nonDefaultBrowserInformativeViewBottomSpaceToLaunchBehaviorPopupConstraint=_nonDefaultBrowserInformativeViewBottomSpaceToLaunchBehaviorPopupConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *nonDefaultBrowserInformativeViewBottomSpaceToMainContentViewConstraint; // @synthesize nonDefaultBrowserInformativeViewBottomSpaceToMainContentViewConstraint=_nonDefaultBrowserInformativeViewBottomSpaceToMainContentViewConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *nonDefaultBrowserInformativeViewTrailingSpaceConstraint; // @synthesize nonDefaultBrowserInformativeViewTrailingSpaceConstraint=_nonDefaultBrowserInformativeViewTrailingSpaceConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *nonDefaultBrowserInformativeViewTopSpaceConstraint; // @synthesize nonDefaultBrowserInformativeViewTopSpaceConstraint=_nonDefaultBrowserInformativeViewTopSpaceConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *launchBehaviorPopupLeadingAlignmentConstraint; // @synthesize launchBehaviorPopupLeadingAlignmentConstraint=_launchBehaviorPopupLeadingAlignmentConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *launchBehaviorPopupTrailingAlignmentConstraint; // @synthesize launchBehaviorPopupTrailingAlignmentConstraint=_launchBehaviorPopupTrailingAlignmentConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *launchBehaviorPopupTopSpaceToMainContentViewConstraint; // @synthesize launchBehaviorPopupTopSpaceToMainContentViewConstraint=_launchBehaviorPopupTopSpaceToMainContentViewConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *launchBehaviorPopupBottomSpaceConstraint; // @synthesize launchBehaviorPopupBottomSpaceConstraint=_launchBehaviorPopupBottomSpaceConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *launchBehaviorLabelTrailingAlignmentConstraint; // @synthesize launchBehaviorLabelTrailingAlignmentConstraint=_launchBehaviorLabelTrailingAlignmentConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *launchBehaviorLabelHorizontalSpaceConstraint; // @synthesize launchBehaviorLabelHorizontalSpaceConstraint=_launchBehaviorLabelHorizontalSpaceConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *launchBehaviorLabelLeadingSpaceConstraint; // @synthesize launchBehaviorLabelLeadingSpaceConstraint=_launchBehaviorLabelLeadingSpaceConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *launchBehaviorLabelBaselineAlignmentConstraint; // @synthesize launchBehaviorLabelBaselineAlignmentConstraint=_launchBehaviorLabelBaselineAlignmentConstraint;
+@property(nonatomic) __weak NSView *homepageFieldContainerView; // @synthesize homepageFieldContainerView=_homepageFieldContainerView;
 @property(retain, nonatomic) NSView *nonDefaultBrowserInformativeView; // @synthesize nonDefaultBrowserInformativeView=_nonDefaultBrowserInformativeView;
 @property(nonatomic) __weak NSPopUpButton *favoritesCollectionPopUpButton; // @synthesize favoritesCollectionPopUpButton=_favoritesCollectionPopUpButton;
 @property(nonatomic) __weak NSTextField *favoritesCollectionTextField; // @synthesize favoritesCollectionTextField=_favoritesCollectionTextField;
 @property(nonatomic) __weak NSLayoutConstraint *downloadLocationPopUpButtonMinimizeWidthConstraint; // @synthesize downloadLocationPopUpButtonMinimizeWidthConstraint=_downloadLocationPopUpButtonMinimizeWidthConstraint;
 @property(nonatomic) __weak NSView *mainContentView; // @synthesize mainContentView=_mainContentView;
-- (void).cxx_destruct;
 - (void)_updateFavoritesCollectionPopUpButton;
 - (void)_bookmarksChanged:(id)arg1;
 - (void)_stopObservingBookmarkChanges;
@@ -89,7 +77,8 @@ __attribute__((visibility("hidden")))
 - (long long)_userDefaultsTagByPersistingPopUpTagToDefaults:(long long)arg1;
 - (long long)_userDefaultsToPopUpTag:(long long)arg1;
 - (void)_updateLaunchBehaviorViews;
-- (id)constraintsForLaunchBehaviorViews;
+- (void)_removeOpensWithANewPrivateWindowSettingIfNecessary;
+- (void)_performSynchronousRemoteHomepageUpdateOnlyIfFieldIsFirstResponder:(BOOL)arg1;
 - (void)_updateHomePageViews;
 - (void)_updateHistoryAgeLimitPopUp;
 - (void)_updateNumberOfTopSitesPopUp;
@@ -98,7 +87,8 @@ __attribute__((visibility("hidden")))
 - (void)_parentalControlsDidChange;
 - (void)_insertFavoritesAndTopSitesBehaviorIntoPopUp:(id)arg1;
 - (void)_startPageModeDidChange:(id)arg1;
-- (void)_confirmSetHomePageToURLString:(id)arg1;
+- (void)_confirmSetHomePageToURLString:(id)arg1 extensionToken:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)_tryApplyingHomePage:(id)arg1 extensionToken:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_chooseMultiplePages:(id)arg1;
 - (void)_chooseDownloadFolderFromFileBrowser:(id)arg1;
 - (void)_choseDownloadFolderFromPanel:(id)arg1 returnCode:(long long)arg2;
@@ -107,7 +97,6 @@ __attribute__((visibility("hidden")))
 - (void)takeNewWindowBehaviorFrom:(id)arg1;
 - (void)takeNewTabBehaviorFrom:(id)arg1;
 - (void)takeLaunchBehaviorFrom:(id)arg1;
-- (void)takeHomePageFrom:(id)arg1;
 - (void)takeHistoryAgeLimitFrom:(id)arg1;
 - (void)takeDownloadsClearingPolicyFrom:(id)arg1;
 - (void)takeNumberOfTopSitesFrom:(id)arg1;
@@ -117,7 +106,8 @@ __attribute__((visibility("hidden")))
 - (void)windowDidResize:(id)arg1;
 - (void)windowDidResignKey:(id)arg1;
 - (void)windowDidBecomeKey:(id)arg1;
-- (id)helpAnchor;
+- (id)safariHelpAnchor;
+- (void)homepageHostViewController:(id)arg1 tryApplyingHomepageURL:(id)arg2 sandboxExtensionToken:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)moduleWillBeRemoved;
 - (void)moduleWasInstalled;
 - (void)initializeFromDefaults;

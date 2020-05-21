@@ -29,13 +29,13 @@
 + (struct CGAffineTransform)defaultSizeOrientationTransform:(long long)arg1;
 + (struct CGSize)fullSize:(struct CGSize)arg1 forOrientation:(long long)arg2;
 + (void)sortCommands:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) struct CGRect unrotatedBoundsInCommandSpace; // @synthesize unrotatedBoundsInCommandSpace=_unrotatedBoundsInCommandSpace;
 @property(retain, nonatomic) NSDate *orientationTimestamp; // @synthesize orientationTimestamp=_orientationTimestamp;
 @property(nonatomic) struct CGSize unrotatedSize; // @synthesize unrotatedSize=_unrotatedSize;
 @property(readonly, nonatomic) NSOrderedSet *commands; // @synthesize commands=_commands;
 @property(retain, nonatomic) TTVectorMultiTimestamp *timestamp; // @synthesize timestamp=_timestamp;
 @property(readonly, nonatomic) NSUUID *replicaUUID; // @synthesize replicaUUID=_replicaUUID;
-- (void).cxx_destruct;
 - (struct CGAffineTransform)orientationTransform;
 @property(readonly, nonatomic) struct CGRect fullBounds;
 - (struct CGSize)fullSize;
@@ -47,8 +47,10 @@
 - (id)insertNewTestCommand;
 - (struct ICDrawingCommandID)commandIDForNewCommand;
 - (void)sortCommands;
-- (void)setTransientOrientation:(long long)arg1;
+- (BOOL)setTransientOrientation:(long long)arg1;
+@property(readonly, nonatomic) BOOL canChangeTransientOrientation;
 @property(nonatomic) long long orientation;
+- (void)takeOrientationFrom:(id)arg1;
 - (void)invalidateBounds;
 @property(readonly, nonatomic) struct CGRect bounds;
 - (struct CGRect)commandBounds;
@@ -56,7 +58,7 @@
 @property(readonly, nonatomic) NSOrderedSet *visibleCommands;
 - (id)mutableCommands;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithCommands:(id)arg1;
+- (id)initWithCommands:(id)arg1 fromDrawing:(id)arg2;
 - (id)initWithDrawing:(id)arg1;
 - (id)initWithReplicaID:(id)arg1;
 - (id)init;

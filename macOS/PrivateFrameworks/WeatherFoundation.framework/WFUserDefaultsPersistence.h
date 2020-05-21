@@ -10,13 +10,14 @@
 
 @class NSString, NSUserDefaults;
 
+__attribute__((visibility("hidden")))
 @interface WFUserDefaultsPersistence : NSObject <WeatherPreferencesPersistence>
 {
     NSUserDefaults *_userDefaults;
 }
 
-@property(retain) NSUserDefaults *userDefaults; // @synthesize userDefaults=_userDefaults;
 - (void).cxx_destruct;
+@property(retain) NSUserDefaults *userDefaults; // @synthesize userDefaults=_userDefaults;
 - (BOOL)synchronize;
 - (void)setBool:(BOOL)arg1 forKey:(id)arg2;
 - (BOOL)boolForKey:(id)arg1;

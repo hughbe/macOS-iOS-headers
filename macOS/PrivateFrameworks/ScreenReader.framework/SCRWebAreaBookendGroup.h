@@ -8,22 +8,15 @@
 
 #import "SCRWebElementAutoDrillAndAnnounceNavigationProtocol.h"
 
-@class NSMutableArray, SCRBrailleLineManager;
-
 __attribute__((visibility("hidden")))
 @interface SCRWebAreaBookendGroup : SCRElement <SCRWebElementAutoDrillAndAnnounceNavigationProtocol>
 {
-    BOOL _justLandedOnGroup;
-    BOOL _arrivedAtStart;
-    SCRElement *_firstNavigableElement;
-    SCRElement *_lastNavigableElement;
     long long _childIndex;
-    SCRBrailleLineManager *_brailleLineManager;
-    NSMutableArray *_brailleLineChildren;
     SCRElement *_readContentsElement;
 }
 
 + (void)addStartBookendDescription:(id)arg1 toRequest:(id)arg2;
+- (void).cxx_destruct;
 - (id)childrenInReadContentsOrder;
 - (id)readContentsElement;
 - (void)forgetReadContentsElement;
@@ -32,10 +25,6 @@ __attribute__((visibility("hidden")))
 - (void)_setReadContentsElement:(id)arg1;
 - (void)addContentToRequest:(id)arg1 visibleOnly:(BOOL)arg2;
 - (void)addItemNameToRequest:(id)arg1;
-- (id)_brailleLineChildren;
-- (void)buildBrailleLineWithFocusedElement:(id)arg1;
-- (void)updateBrailleLineWithFocusedElement:(id)arg1;
-- (id)brailleLineManager;
 - (void)scrollToElement;
 - (void)_rebuildElementOnSameLevel;
 - (BOOL)moveToLastVisibleElementWithEvent:(id)arg1 request:(id)arg2;
@@ -49,18 +38,17 @@ __attribute__((visibility("hidden")))
 - (id)prepareArrayToFocusInto;
 - (BOOL)needToRebuildChildren;
 - (BOOL)shouldPromoteUIElement:(id)arg1;
+- (void)restoreStateDueToInvalidFocusedChild:(id)arg1;
 - (void)_setChildIndex:(long long)arg1;
 - (long long)_childIndex;
-- (id)childInAXOrderForward:(BOOL)arg1 horizontal:(BOOL)arg2 visibleOnly:(BOOL)arg3 wrapped:(char *)arg4 didHitBoundary:(char *)arg5;
+- (id)childInAXOrderForward:(BOOL)arg1 horizontal:(BOOL)arg2 visibleOnly:(BOOL)arg3 wrapped:(char *)arg4 didHitBoundary:(char *)arg5 startElement:(id)arg6;
 - (BOOL)canWrapWhileNavigating;
 - (BOOL)handleEvent:(id)arg1 request:(id)arg2;
-- (id)_firstNavigableElement;
-- (id)_lastNavigableElement;
+- (BOOL)_treatAsEmptyGroup;
 - (BOOL)shouldSpeakItemCountWhenFocusingIn;
 - (void)addItemDescriptionForInteractionToRequest:(id)arg1;
-- (void)addItemDescriptionForSearchToRequest:(id)arg1;
 - (void)addItemDescriptionToRequest:(id)arg1;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (id)focusOntoUIElement:(id)arg1 withScrolling:(BOOL)arg2 withSelection:(BOOL)arg3;
 - (BOOL)shouldMapElement:(id)arg1;
 - (void)setFocusedChild:(id)arg1;
@@ -69,8 +57,9 @@ __attribute__((visibility("hidden")))
 - (id)firstChildForFocusing;
 - (void)addBorderCrossedDescriptionToRequest:(id)arg1 forDirection:(long long)arg2;
 - (void)addStartBookendToRequest:(id)arg1;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 - (void)addEndBookendToRequest:(id)arg1;
+- (id)typeDescription;
 - (BOOL)isDepthLevelElement;
 - (BOOL)allowFocusThroughSingleChild;
 - (void)beginFocusFromElement:(id)arg1 withEvent:(id)arg2;
@@ -78,14 +67,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)isInteractive;
 - (void)focusOntoAutoDrillAndAnnouceWebElement:(id)arg1;
 - (BOOL)shouldNavigate;
-- (void)setFocusArrivedFromFront:(BOOL)arg1;
-- (BOOL)focusArrivedFromFront;
-- (void)setFocusIsOnElement:(BOOL)arg1;
-- (BOOL)focusIsOnElement;
 - (Class)classForChildUIElement:(id)arg1 parent:(id)arg2;
-- (id)brailleLineElementForUIElement:(id)arg1;
-- (void)deallocChildren;
-- (void)dealloc;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end

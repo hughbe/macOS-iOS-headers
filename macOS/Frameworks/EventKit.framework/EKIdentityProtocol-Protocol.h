@@ -6,18 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSPredicate, NSString, NSURL;
+@class CNContact, NSPredicate, NSString, NSURL;
 
 @protocol EKIdentityProtocol <NSObject>
+- (NSString *)phoneNumber;
 - (NSString *)emailAddress;
 - (NSString *)name;
 
 @optional
-@property(readonly) BOOL isCurrentUserForSharing;
-@property(readonly) BOOL isCurrentUserForScheduling;
+@property(readonly, nonatomic) BOOL isCurrentUserForSharing;
+@property(readonly, nonatomic) BOOL isCurrentUserForScheduling;
+- (NSURL *)URL;
 - (NSString *)lastName;
 - (NSString *)firstName;
+- (CNContact *)newContact;
+- (CNContact *)existingContact;
 - (NSPredicate *)contactPredicate;
-- (NSURL *)URL;
 @end
 

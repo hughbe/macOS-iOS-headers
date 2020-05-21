@@ -11,21 +11,25 @@
 __attribute__((visibility("hidden")))
 @interface AVCaptureDeviceInputSourceItem : NSObject
 {
+    BOOL _builtIn;
     AVCaptureDevice *_captureDevice;
     AVCaptureDeviceInputSource *_inputSource;
     NSString *_mediaType;
+    AVCaptureDeviceInputSourceItem *_associatedAudioCaptureDeviceInputSourceItem;
 }
 
+- (void).cxx_destruct;
+@property(retain) AVCaptureDeviceInputSourceItem *associatedAudioCaptureDeviceInputSourceItem; // @synthesize associatedAudioCaptureDeviceInputSourceItem=_associatedAudioCaptureDeviceInputSourceItem;
+@property(readonly, getter=isBuiltIn) BOOL builtIn; // @synthesize builtIn=_builtIn;
 @property(readonly) NSString *mediaType; // @synthesize mediaType=_mediaType;
 @property(readonly) AVCaptureDeviceInputSource *inputSource; // @synthesize inputSource=_inputSource;
 @property(readonly) AVCaptureDevice *captureDevice; // @synthesize captureDevice=_captureDevice;
-- (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 @property(readonly, copy) NSString *localizedDisplayName;
 - (id)description;
 - (id)init;
-- (id)initWithDevice:(id)arg1 inputSource:(id)arg2 mediaType:(id)arg3;
+- (id)initWithDevice:(id)arg1 inputSource:(id)arg2 mediaType:(id)arg3 builtIn:(BOOL)arg4;
 
 @end
 

@@ -8,6 +8,7 @@
 
 @interface NSFileManager (ISAdditions)
 + (BOOL)_storeMovePath:(id)arg1 toPath:(id)arg2;
++ (BOOL)ensureDirectoryExists:(id)arg1 attributes:(id)arg2;
 + (BOOL)ensureDirectoryExists:(id)arg1;
 + (id)cacheDirectoryPathWithName:(id)arg1;
 - (BOOL)writeReceiptString:(id)arg1 toPath:(id)arg2;

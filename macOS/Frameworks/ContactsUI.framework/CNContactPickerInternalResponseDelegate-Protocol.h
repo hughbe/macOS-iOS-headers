@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class ABCNContact, NSString;
+@class CNContact, NSString;
 
 @protocol CNContactPickerInternalResponseDelegate <NSObject>
 - (void)didShowSectionWithIdentifier:(NSString *)arg1;
 - (void)didSearchForString:(NSString *)arg1;
-- (void)didSelectContact:(ABCNContact *)arg1 key:(NSString *)arg2 value:(id)arg3 identifier:(NSString *)arg4;
+- (void)didSelectContact:(CNContact *)arg1 key:(NSString *)arg2 value:(id)arg3 identifier:(NSString *)arg4;
 @end
 

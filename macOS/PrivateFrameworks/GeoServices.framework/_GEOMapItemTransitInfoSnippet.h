@@ -8,7 +8,7 @@
 
 #import "GEOMapItemTransitInfo.h"
 
-@class GEOPDTransitInfoSnippet, NSArray, NSDate, NSString;
+@class GEOComposedRoute, GEOPDTransitInfoSnippet, NSArray, NSDate, NSString;
 
 __attribute__((visibility("hidden")))
 @interface _GEOMapItemTransitInfoSnippet : NSObject <GEOMapItemTransitInfo>
@@ -18,14 +18,20 @@ __attribute__((visibility("hidden")))
     NSString *_displayName;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) GEOComposedRoute *composedRoute;
+@property(readonly, nonatomic) NSString *subtitle;
+@property(readonly, nonatomic) NSString *title;
+@property(readonly, nonatomic) NSArray *transitTripStops;
+- (id)headSignsForLine:(id)arg1;
 - (id)inactiveLinesForSystem:(id)arg1 relativeToDateFromBlock:(CDUnknownBlockType)arg2 excludingIncidentEntities:(id)arg3;
 - (id)serviceResumesDateForLine:(id)arg1 excludingIncidentEntities:(id)arg2 afterDate:(id)arg3 blocked:(out char *)arg4;
 - (id)allSequencesForSystem:(id)arg1 direction:(id)arg2;
-- (id)sequencesForSystem:(id)arg1 excludingIncidentEntities:(id)arg2 direction:(id)arg3 validForDateFromBlock:(CDUnknownBlockType)arg4;
 - (id)directionsForSystem:(id)arg1 excludingIncidentEntities:(id)arg2 validForDateFromBlock:(CDUnknownBlockType)arg3 hasSequencesWithNoDirection:(out char *)arg4;
 - (id)departureSequencesForSystem:(id)arg1 excludingIncidentEntities:(id)arg2 direction:(id)arg3 validForDateFromBlock:(CDUnknownBlockType)arg4;
 - (unsigned long long)numAdditionalDeparturesForSequence:(id)arg1;
 @property(readonly, nonatomic) NSDate *lastFullScheduleValidDate;
+@property(readonly, nonatomic) double timeToLive;
 @property(readonly, nonatomic) NSArray *departureSequences;
 @property(readonly, nonatomic) BOOL isTransitIncidentsTTLExpired;
 @property(readonly, nonatomic) BOOL hasTransitIncidentComponent;
@@ -38,7 +44,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSArray *connections;
 @property(readonly, nonatomic) NSArray *labelItems;
 @property(readonly, nonatomic) NSString *displayName;
-- (void)dealloc;
 - (id)initWithTransitInfoSnippet:(id)arg1;
 
 // Remaining properties

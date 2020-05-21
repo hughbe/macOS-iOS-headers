@@ -29,7 +29,6 @@
 - (void)_waitUntilFinishedIfNeeded;
 - (void)_signalMonitoringIsFinishedIfNeeded;
 - (id)_monitoredObject;
-- (void)finalize;
 - (void)dealloc;
 - (void)_unregisterForObjectNotifications;
 - (void)_registerForObjectNotifications;

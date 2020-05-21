@@ -6,32 +6,38 @@
 
 #import "NSObject.h"
 
-@class AVAsset, NSMutableDictionary;
+@class NSDictionary, NSMutableDictionary, VCPAsset;
 
 @interface VCPMovieAnalyzer : NSObject
 {
     unsigned long long _requestedAnalyses;
-    AVAsset *_avAsset;
     NSMutableDictionary *_analysis;
-    BOOL _isSlowmo;
-    BOOL _isIris;
-    float _irisPhotoOffsetSec;
-    float _irisPhotoExposureSec;
+    NSMutableDictionary *_privateResults;
+    VCPAsset *_asset;
+    BOOL _supportConditionalAnalysis;
+    NSDictionary *_existingAnalysis;
+    BOOL _allowStreaming;
     long long _status;
 }
 
-@property(readonly) long long status; // @synthesize status=_status;
++ (id)analyzerWithVCPAsset:(id)arg1 withExistingAnalysis:(id)arg2 forAnalysisTypes:(unsigned long long)arg3;
++ (BOOL)canAnalyzeUndegraded:(id)arg1 withResources:(id)arg2;
 - (void).cxx_destruct;
-- (id)analyzeAsset:(CDUnknownBlockType)arg1 throttle:(CDUnknownBlockType)arg2;
-- (int)analyzeVideoTrack:(id)arg1 start:(CDStruct_1b6d18a9)arg2 cancel:(CDUnknownBlockType)arg3 throttle:(CDUnknownBlockType)arg4;
-- (int)analyzeVideoSegment:(id)arg1 timerange:(const CDStruct_e83c9415 *)arg2 cancel:(CDUnknownBlockType)arg3 throttle:(CDUnknownBlockType)arg4;
-- (id)createFaceDetector:(id)arg1 cancel:(CDUnknownBlockType)arg2;
-- (id)createVideoAnalyzer:(id)arg1;
+@property(readonly) long long status; // @synthesize status=_status;
+@property(nonatomic) BOOL allowStreaming; // @synthesize allowStreaming=_allowStreaming;
+- (int)generateKeyFrameResource:(id)arg1;
+- (id)analyzeAsset:(CDUnknownBlockType)arg1;
+- (int)analyzeVideoTrack:(id)arg1 start:(CDStruct_1b6d18a9)arg2 cancel:(CDUnknownBlockType)arg3;
+- (int)analyzeVideoSegment:(id)arg1 timerange:(const CDStruct_e83c9415 *)arg2 cancel:(CDUnknownBlockType)arg3;
+- (id)createVideoAnalyzer:(id)arg1 withFrameStats:(id)arg2;
 - (id)createDecoderForTrack:(id)arg1 timerange:(const CDStruct_e83c9415 *)arg2;
-- (id)initWithIrisAVAsset:(id)arg1 irisPhotoOffsetSec:(float)arg2 irisPhotoExposureSec:(float)arg3 forAnalysisTypes:(unsigned long long)arg4;
-- (id)initWithAVAsset:(id)arg1 forAnalysisTypes:(unsigned long long)arg2;
-- (id)initWithPHAsset:(id)arg1 existingAnalysis:(id)arg2 forAnalysisTypes:(unsigned long long)arg3;
-- (id)initWithPHAsset:(id)arg1 forAnalysisTypes:(unsigned long long)arg2;
+- (int)performMetadataAnalysisOnAsset:(id)arg1 withCancelBlock:(CDUnknownBlockType)arg2;
+- (id)processExistingAnalysisForTimeRange:(CDStruct_e83c9415)arg1 analysisTypes:(unsigned long long *)arg2;
+- (void)loadPropertiesForAsset:(id)arg1;
+- (id)privateResults;
+- (id)initWithPHAsset:(id)arg1 withExistingAnalysis:(id)arg2 forAnalysisTypes:(unsigned long long)arg3;
+- (id)initWithPHAsset:(id)arg1 withPausedAnalysis:(id)arg2 forAnalysisTypes:(unsigned long long)arg3;
+- (id)initWithVCPAsset:(id)arg1 withExistingAnalysis:(id)arg2 forAnalysisTypes:(unsigned long long)arg3;
 
 @end
 

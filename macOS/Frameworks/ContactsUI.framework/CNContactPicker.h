@@ -20,15 +20,14 @@
 }
 
 + (id)swapKeysAndValuesOfDictionary:(id)arg1;
-+ (id)compatibilityToPublicKeyMap;
 + (id)publicToCompatibilityKeyMap;
 + (id)supportedKeysToDisplay;
 + (BOOL)shouldUseInProcessPicker;
 + (id)makeViewController;
 + (id)makePopoverWithDelegate:(id)arg1 contentViewController:(id)arg2;
+- (void).cxx_destruct;
 @property(copy) NSArray *displayedKeys; // @synthesize displayedKeys=_displayedKeys;
 @property __weak id <CNContactPickerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)setAppearance:(id)arg1;
 - (void)setSearchFieldVisible:(BOOL)arg1;
 - (void)registerSectionsForDraggedTypes:(id)arg1;
@@ -43,8 +42,6 @@
 - (void)close;
 - (void)showRelativeToRect:(struct CGRect)arg1 ofView:(id)arg2 preferredEdge:(unsigned long long)arg3;
 - (BOOL)delegateExpectesCompatiblityContact;
-- (id)convertCompatibilityToPublicKeysIfNeeded:(id)arg1;
-- (id)convertPublicToCompatibilityKeysIfNeeded:(id)arg1;
 - (id)privateDelegate;
 - (void)dealloc;
 - (id)init;

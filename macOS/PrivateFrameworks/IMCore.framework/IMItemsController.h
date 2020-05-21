@@ -6,6 +6,8 @@
 
 #import "NSObject.h"
 
+@class NSArray;
+
 @interface IMItemsController : NSObject
 {
     struct __CFArray *_items;
@@ -22,19 +24,26 @@
 - (id)_lastFinishedMessage;
 - (id)_lastSentMessage;
 - (id)_lastMessage;
+- (id)_firstMessage;
 - (id)_typingMessage;
 - (id)_itemForGUID:(id)arg1;
 - (id)_member:(id)arg1;
 - (unsigned long long)_indexOfItem:(id)arg1;
+- (void)_setSortID:(id)arg1;
+- (void)_resortItems;
 - (void)_replaceStaleTypingMessage;
 - (void)_removeAllItems;
 - (void)_replaceItems:(id)arg1;
 - (void)_removeItem:(id)arg1;
 - (void)_handleItem:(id)arg1;
 - (void)_itemsDidChange:(id)arg1;
-- (id)_items;
+@property(readonly, copy, nonatomic) NSArray *_items;
 - (id)_initWithItems:(id)arg1;
+- (BOOL)_shouldPinUnsentMessagesToBottom;
+- (void)assignSortIDsToItems:(id)arg1 shouldRecalculateSortIDForAllMessages:(BOOL)arg2;
+- (void)assignSortIDsToItems:(id)arg1;
 @property(readonly, nonatomic) BOOL isMoreToLoad;
+- (void)dealloc;
 - (id)init;
 
 @end

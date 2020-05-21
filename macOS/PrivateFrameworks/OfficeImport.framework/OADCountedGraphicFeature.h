@@ -13,6 +13,7 @@ __attribute__((visibility("hidden")))
     unsigned long long mUsageCount;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long usageCount; // @synthesize usageCount=mUsageCount;
 - (long long)compareUsageCount:(id)arg1;
 - (void)incrementUsageCount;

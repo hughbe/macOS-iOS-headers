@@ -15,6 +15,7 @@
     NSArray *_scanningStyles;
     NSArray *_tapBehaviors;
     NSArray *_cursorSizes;
+    NSArray *_postActivationScanLocations;
     double _autoScanningInterval;
     double _autoHideTimeout;
     double _pauseOnFirstItemInterval;
@@ -27,6 +28,7 @@
     double _autoTapTimeout;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) double autoTapTimeout; // @synthesize autoTapTimeout=_autoTapTimeout;
 @property(nonatomic) double longPressDuration; // @synthesize longPressDuration=_longPressDuration;
 @property(nonatomic) BOOL speechEnabled; // @synthesize speechEnabled=_speechEnabled;
@@ -39,10 +41,10 @@
 @property(nonatomic) double pauseOnFirstItemInterval; // @synthesize pauseOnFirstItemInterval=_pauseOnFirstItemInterval;
 @property(nonatomic) double autoHideTimeout; // @synthesize autoHideTimeout=_autoHideTimeout;
 @property(nonatomic) double autoScanningInterval; // @synthesize autoScanningInterval=_autoScanningInterval;
+@property(copy, nonatomic) NSArray *postActivationScanLocations; // @synthesize postActivationScanLocations=_postActivationScanLocations;
 @property(copy, nonatomic) NSArray *cursorSizes; // @synthesize cursorSizes=_cursorSizes;
 @property(copy, nonatomic) NSArray *tapBehaviors; // @synthesize tapBehaviors=_tapBehaviors;
 @property(copy, nonatomic) NSArray *scanningStyles; // @synthesize scanningStyles=_scanningStyles;
-- (void).cxx_destruct;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionaryRepresentation:(id)arg1;

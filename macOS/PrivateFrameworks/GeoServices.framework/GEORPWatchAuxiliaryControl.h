@@ -8,18 +8,29 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader;
 
 @interface GEORPWatchAuxiliaryControl : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_hardwareIdentifier;
     NSString *_osBuild;
     NSString *_osVersion;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_hardwareIdentifier:1;
+        unsigned int read_osBuild:1;
+        unsigned int read_osVersion:1;
+        unsigned int wrote_hardwareIdentifier:1;
+        unsigned int wrote_osBuild:1;
+        unsigned int wrote_osVersion:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *osBuild; // @synthesize osBuild=_osBuild;
-@property(retain, nonatomic) NSString *osVersion; // @synthesize osVersion=_osVersion;
-@property(retain, nonatomic) NSString *hardwareIdentifier; // @synthesize hardwareIdentifier=_hardwareIdentifier;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -27,12 +38,20 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *osBuild;
 @property(readonly, nonatomic) BOOL hasOsBuild;
+- (void)_readOsBuild;
+@property(retain, nonatomic) NSString *osVersion;
 @property(readonly, nonatomic) BOOL hasOsVersion;
+- (void)_readOsVersion;
+@property(retain, nonatomic) NSString *hardwareIdentifier;
 @property(readonly, nonatomic) BOOL hasHardwareIdentifier;
-- (void)dealloc;
+- (void)_readHardwareIdentifier;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

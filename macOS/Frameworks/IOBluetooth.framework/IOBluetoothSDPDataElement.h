@@ -7,8 +7,9 @@
 #import "NSObject.h"
 
 #import "NSCoding.h"
+#import "NSSecureCoding.h"
 
-@interface IOBluetoothSDPDataElement : NSObject <NSCoding>
+@interface IOBluetoothSDPDataElement : NSObject <NSCoding, NSSecureCoding>
 {
     unsigned char mTypeDescriptor;
     unsigned char mSizeDescriptor;
@@ -20,8 +21,8 @@
 + (id)withSDPDataElementRef:(struct OpaqueIOBluetoothObjectRef *)arg1;
 + (id)withType:(unsigned char)arg1 sizeDescriptor:(unsigned char)arg2 size:(unsigned int)arg3 value:(id)arg4;
 + (id)withElementValue:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (id)withBytes:(char *)arg1 maxLength:(unsigned int)arg2;
-- (id)replacementObjectForPortCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)description;
@@ -44,6 +45,7 @@
 - (void)replaceValue:(id)arg1;
 - (id)promoteUUID:(id)arg1 length:(unsigned char)arg2;
 - (BOOL)encodeDataElement:(char *)arg1;
+- (BOOL)encodeDataElement:(char *)arg1 length:(unsigned int)arg2 offset:(unsigned short)arg3;
 - (unsigned int)getEncodedSize;
 - (unsigned char)getHeaderSize;
 - (void)updateVariableSizeDescriptor;

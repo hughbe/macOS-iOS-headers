@@ -7,10 +7,11 @@
 #import <CoreData/NSPersistentStoreRequest.h>
 
 #import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSEntityDescription, NSPredicate, NSString;
 
-@interface NSFetchRequest : NSPersistentStoreRequest <NSCoding>
+@interface NSFetchRequest : NSPersistentStoreRequest <NSSecureCoding, NSCoding>
 {
     NSArray *_groupByProperties;
     NSPredicate *_havingPredicate;
@@ -21,6 +22,7 @@
     NSArray *_sortDescriptors;
     unsigned long long _batchSize;
     unsigned long long _fetchLimit;
+    unsigned long long _allocationSize;
     NSArray *_relationshipKeyPathsForPrefetching;
     struct _fetchRequestFlags {
         unsigned int distinctValuesOnly:1;
@@ -33,12 +35,15 @@
         unsigned int entityIsName:1;
         unsigned int refreshesRefetched:1;
         unsigned int propertiesValidated:1;
+        unsigned int expressionsValidated:1;
         unsigned int disableCaching:1;
-        unsigned int _RESERVED:19;
+        unsigned int allocationType:3;
+        unsigned int _RESERVED:15;
     } _flags;
 }
 
 + (id)fetchRequestWithEntityName:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (BOOL)accessInstanceVariablesDirectly;
 + (void)initialize;
 + (id)decodeFromXPCArchive:(id)arg1 withContext:(id)arg2;
@@ -54,11 +59,16 @@
 @property(nonatomic) unsigned long long fetchBatchSize;
 @property(nonatomic) unsigned long long fetchOffset;
 @property(copy, nonatomic) NSArray *propertiesToFetch;
+- (void)_bindExpressionDescriptionProperties:(id)arg1;
 - (id)_newValidatedProperties:(id)arg1 groupBy:(BOOL)arg2 error:(id *)arg3;
 @property(nonatomic) BOOL returnsDistinctResults;
 @property(nonatomic) BOOL includesPendingChanges;
 @property(nonatomic) unsigned long long resultType;
 @property(nonatomic) BOOL includesPropertyValues;
+- (void)setAllocationSize:(unsigned long long)arg1;
+- (unsigned long long)allocationSize;
+- (void)setAllocationType:(unsigned long long)arg1;
+- (unsigned long long)allocationType;
 @property(nonatomic) BOOL includesSubentities;
 @property(nonatomic) BOOL returnsObjectsAsFaults;
 @property(copy, nonatomic) NSArray *relationshipKeyPathsForPrefetching;
@@ -90,7 +100,7 @@
 - (BOOL)_disablePersistentStoreResultCaching;
 - (id)_asyncResultHandle;
 - (void)_setAsyncResultHandle:(id)arg1;
-- (BOOL)_isCachingFetchRequest__;
+- (BOOL)_isCachingFetchRequest;
 - (void)setPrepopulateObjects:(BOOL)arg1;
 - (BOOL)prepopulateObjects;
 - (void)setResultsAsObjectIDs:(BOOL)arg1;

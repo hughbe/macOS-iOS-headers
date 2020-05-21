@@ -6,7 +6,7 @@
 
 #import <AppKit/NSObjectController.h>
 
-@class NSArray, NSIndexPath, NSString;
+@class NSArray, NSIndexPath, NSString, NSTreeNode;
 
 @interface NSTreeController : NSObjectController
 {
@@ -131,7 +131,7 @@
 - (void)_changeEditable:(BOOL)arg1;
 - (void)rearrangeObjects;
 - (void)_prepareContentWithNewObject:(id)arg1;
-@property(readonly) id arrangedObjects;
+@property(readonly) NSTreeNode *arrangedObjects;
 - (id)createChildNodeForRepresentedObject:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)_stopObservingNodeIfNecessary:(id)arg1;

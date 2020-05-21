@@ -13,10 +13,10 @@ __attribute__((visibility("hidden")))
     BOOL mInUse;
 }
 
+- (void).cxx_destruct;
 - (void)setInUse:(BOOL)arg1;
 - (BOOL)isInUse;
 - (id)key;
-- (void)dealloc;
 - (id)init;
 
 @end

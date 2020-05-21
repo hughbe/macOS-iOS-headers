@@ -8,13 +8,12 @@
 
 @interface NSData (SafariExtras)
 + (id)safari_dataWithASN1Item:(struct cssm_data)arg1;
-- (id)safari_SHA1Hash;
+- (BOOL)safari_timingSafeIsEqualToData:(id)arg1;
 - (BOOL)safari_writeToNewURL:(id)arg1;
 - (id)safari_certificateFromMultipartData;
 - (int)_safari_indexOfCString:(const char *)arg1;
 - (int)_safari_indexOfCString:(const char *)arg1 startOffset:(int)arg2;
 - (int)_safari_indexOfByteString:(const char *)arg1 length:(int)arg2 startOffset:(int)arg3;
 - (int)_safari_indexOfCharacterInCString:(const char *)arg1 startOffset:(int)arg2;
-- (id)safari_dataByAppendingData:(id)arg1;
 @end
 

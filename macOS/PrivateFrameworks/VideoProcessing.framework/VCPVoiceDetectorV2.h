@@ -4,18 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <VideoProcessing/VCPAudioAnalyzer.h>
+#import <VideoProcessing/VCPVoiceDetector.h>
 
-@interface VCPVoiceDetectorV2 : VCPAudioAnalyzer
+@interface VCPVoiceDetectorV2 : VCPVoiceDetector
 {
     BOOL _voiceActivityNew;
+    struct ComponentInstanceRecord *_audioUnit;
 }
 
-- (int)processAudioSamples;
+- (id)results;
+- (int)finalizeAnalysisAtTime:(const CDStruct_1b6d18a9 *)arg1;
+- (int)processAudioSamples:(struct AudioBufferList *)arg1 timestamp:(struct AudioTimeStamp)arg2;
 - (int)loadModel;
-- (int)initializeAudioUnit:(const struct AudioStreamBasicDescription *)arg1;
-- (int)sampleBatchSize:(double)arg1;
-- (id)audioFormatRequirements;
+- (int)setupWithAudioStream:(const struct AudioStreamBasicDescription *)arg1;
+- (void)dealloc;
+- (id)init;
 
 @end
 

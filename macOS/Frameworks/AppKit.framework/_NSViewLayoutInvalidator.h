@@ -13,11 +13,13 @@ __attribute__((visibility("hidden")))
 {
     NSView *_observedView;
     NSSet *_observedKeyPaths;
+    BOOL _handleAlignmentRectInsets;
 }
 
 + (id)newInvalidatorForView:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 @property NSView *observedView;
+- (id)keyPathsForPropertiesObservedDirectly;
 - (id)autorelease;
 - (void)dealloc;
 

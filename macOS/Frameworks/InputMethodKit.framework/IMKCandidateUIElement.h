@@ -17,7 +17,8 @@
 
 @property(retain, nonatomic) IMKCandidateDefinitionUnit *definitionUnit; // @synthesize definitionUnit=_definitionUnit;
 @property(retain, nonatomic) IMKCandidateView *candidateView; // @synthesize candidateView=_candidateView;
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
+@property(nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
+- (void)accessibilityPerformAction:(id)arg1;
 - (id)accessibilityFocusedUIElement;
 - (id)accessibilityHitTest:(struct CGPoint)arg1;
 - (id)accessibilityActionDescription:(id)arg1;

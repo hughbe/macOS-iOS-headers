@@ -6,9 +6,9 @@
 
 #import "NSObject.h"
 
-@class CNContact;
+@class CNContact, CNLikeness;
 
 @protocol CNContactLikenessMutatorFactory <NSObject>
-- (id <CNContactLikenessMutator>)likenessMutatorForContact:(CNContact *)arg1;
+- (id <CNContactLikenessMutator>)likenessMutatorForContact:(CNContact *)arg1 likeness:(CNLikeness *)arg2 mutationType:(long long)arg3;
 @end
 

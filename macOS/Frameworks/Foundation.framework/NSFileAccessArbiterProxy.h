@@ -10,19 +10,19 @@
 #import "NSXPCConnectionDelegate.h"
 #import "NSXPCListenerDelegate.h"
 
-@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection;
+@class NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, NSXPCConnection;
 
 __attribute__((visibility("hidden")))
 @interface NSFileAccessArbiterProxy : NSObject <NSFileAccessClientLocalArbiterInterface, NSXPCListenerDelegate, NSXPCConnectionDelegate>
 {
     NSXPCConnection *_server;
-    NSObject<OS_dispatch_queue> *_serverQueue;
     NSObject<OS_dispatch_queue> *_queue;
     NSMutableDictionary *_presentersByID;
     NSMutableDictionary *_presenterMessengersByID;
-    NSMutableDictionary *_providersByID;
-    NSMutableDictionary *_providerMessengersByID;
+    NSMutableSet *_providers;
+    NSMapTable *_providerMessengersByID;
     NSMutableArray *_providerListeners;
+    BOOL _disableFileProviderReregistration;
 }
 
 + (id)_fileReactorDebuggingInformation;
@@ -32,19 +32,27 @@ __attribute__((visibility("hidden")))
 + (void)_setProviderMessenger:(id)arg1 forListener:(id)arg2;
 + (id)_idForReactor:(id)arg1;
 - (void)handleCanceledServer;
+- (void)performBarrierAsync:(CDUnknownBlockType)arg1;
+- (void)performBarrier;
+- (void)setAutomaticFileProviderReregistrationDisabled:(BOOL)arg1;
+- (BOOL)itemHasPresentersAtURL:(id)arg1;
 - (void)getDebugInfoWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)idForFileReactor:(id)arg1;
 - (id)fileProviders;
+- (id)_onqueue_fileProviders;
 - (void)removeFileProvider:(id)arg1;
 - (void)addFileProvider:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (id)filePresenters;
+- (id)_onqueue_filePresenters;
 - (void)removeFilePresenter:(id)arg1;
 - (void)addFilePresenter:(id)arg1;
 - (oneway void)tiePresenterForID:(id)arg1 toItemAtURL:(id)arg2;
 - (oneway void)writerWithPurposeID:(id)arg1 didVersionChangeOfKind:(id)arg2 toItemAtURL:(id)arg3 withClientID:(id)arg4 name:(id)arg5;
 - (oneway void)writerWithPurposeID:(id)arg1 didChangeItemAtURL:(id)arg2;
 - (oneway void)writerWithPurposeID:(id)arg1 didMakeItemDisappearAtURL:(id)arg2;
+- (oneway void)writerWithPurposeID:(id)arg1 didChangeUbiquityAttributes:(id)arg2 ofItemAtURL:(id)arg3;
+- (oneway void)writerWithPurposeID:(id)arg1 didChangeSharingOfItemAtURL:(id)arg2;
 - (oneway void)writerWithPurposeID:(id)arg1 didChangeUbiquityOfItemAtURL:(id)arg2;
 - (oneway void)writerWithPurposeID:(id)arg1 didReconnectItemAtURL:(id)arg2;
 - (oneway void)writerWithPurposeID:(id)arg1 didDisconnectItemAtURL:(id)arg2;

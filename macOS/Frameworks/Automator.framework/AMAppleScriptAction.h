@@ -13,6 +13,8 @@
     OSAScript *_script;
 }
 
+- (void).cxx_destruct;
+@property(copy, nonatomic) OSAScript *script; // @synthesize script=_script;
 - (id)richTextOutput;
 - (void)_richTextOutputFromScriptOnMainThreadWithDict:(id)arg1;
 - (id)runWithInput:(id)arg1 error:(id *)arg2;
@@ -28,8 +30,6 @@
 - (void)willOpen;
 - (void)activated;
 - (void)willBecomeActive;
-@property(retain) OSAScript *script;
-- (void)dealloc;
 - (id)initWithBundle:(id)arg1;
 - (id)init;
 

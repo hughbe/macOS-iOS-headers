@@ -13,6 +13,7 @@
     unsigned int connection;
     struct IONotificationPort *notificationPort;
     NSObject<OS_dispatch_queue> *callbackQueue;
+    NSObject<OS_dispatch_queue> *callbackActionQueue;
     unsigned int localArrivalIterator;
     unsigned int localDepartureIterator;
     unsigned int remoteArrivalIterator;
@@ -38,7 +39,6 @@
 - (void)localEntityDepartedWithGUID:(unsigned long long)arg1 service:(unsigned int)arg2;
 - (void)localEntityArrivedWithGUID:(unsigned long long)arg1 service:(unsigned int)arg2;
 - (BOOL)changeEntityWithEntityID:(unsigned long long)arg1 toNewGPTPGrandmasterID:(unsigned long long)arg2 error:(id *)arg3;
-- (BOOL)changeEntityWithGUID:(unsigned long long)arg1 toNewASGrandmasterID:(unsigned long long)arg2 error:(id *)arg3;
 - (BOOL)removeLocalEntity:(unsigned long long)arg1 error:(id *)arg2;
 - (BOOL)addLocalEntity:(id)arg1 error:(id *)arg2;
 - (BOOL)discoverEntity:(unsigned long long)arg1;

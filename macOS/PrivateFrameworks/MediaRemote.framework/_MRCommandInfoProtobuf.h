@@ -8,15 +8,14 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSMutableArray, NSString;
 
 @interface _MRCommandInfoProtobuf : PBCodable <NSCopying>
 {
-    struct {
-        double *list;
-        unsigned long long count;
-        unsigned long long size;
-    } _preferredIntervals;
+    CDStruct_82f37d05 _preferredIntervals;
+    CDStruct_95bda58d _supportedInsertionPositions;
+    CDStruct_95bda58d _supportedPlaybackQueueTypes;
+    CDStruct_95bda58d _supportedQueueEndActions;
     struct {
         float *list;
         unsigned long long count;
@@ -24,34 +23,58 @@
     } _supportedRates;
     int _canScrub;
     int _command;
+    NSMutableArray *_currentPlaybackSessionTypes;
+    int _currentQueueEndAction;
     NSString *_localizedShortTitle;
     NSString *_localizedTitle;
     float _maximumRating;
     float _minimumRating;
     int _numAvailableSkips;
+    NSString *_playbackSessionIdentifier;
+    float _preferredPlaybackRate;
     int _presentationStyle;
     int _repeatMode;
     int _shuffleMode;
     int _skipFrequency;
     int _skipInterval;
+    NSMutableArray *_supportedCustomQueueIdentifiers;
+    NSMutableArray *_supportedPlaybackSessionTypes;
+    int _upNextItemCount;
     BOOL _active;
     BOOL _enabled;
+    BOOL _supportsSharedQueue;
     struct {
         unsigned int canScrub:1;
         unsigned int command:1;
+        unsigned int currentQueueEndAction:1;
         unsigned int maximumRating:1;
         unsigned int minimumRating:1;
         unsigned int numAvailableSkips:1;
+        unsigned int preferredPlaybackRate:1;
         unsigned int presentationStyle:1;
         unsigned int repeatMode:1;
         unsigned int shuffleMode:1;
         unsigned int skipFrequency:1;
         unsigned int skipInterval:1;
+        unsigned int upNextItemCount:1;
         unsigned int active:1;
         unsigned int enabled:1;
+        unsigned int supportsSharedQueue:1;
     } _has;
 }
 
++ (Class)currentPlaybackSessionTypesType;
++ (Class)supportedPlaybackSessionTypesType;
++ (Class)supportedCustomQueueIdentifierType;
+- (void).cxx_destruct;
+@property(nonatomic) int currentQueueEndAction; // @synthesize currentQueueEndAction=_currentQueueEndAction;
+@property(retain, nonatomic) NSString *playbackSessionIdentifier; // @synthesize playbackSessionIdentifier=_playbackSessionIdentifier;
+@property(retain, nonatomic) NSMutableArray *currentPlaybackSessionTypes; // @synthesize currentPlaybackSessionTypes=_currentPlaybackSessionTypes;
+@property(retain, nonatomic) NSMutableArray *supportedPlaybackSessionTypes; // @synthesize supportedPlaybackSessionTypes=_supportedPlaybackSessionTypes;
+@property(nonatomic) float preferredPlaybackRate; // @synthesize preferredPlaybackRate=_preferredPlaybackRate;
+@property(nonatomic) int upNextItemCount; // @synthesize upNextItemCount=_upNextItemCount;
+@property(nonatomic) BOOL supportsSharedQueue; // @synthesize supportsSharedQueue=_supportsSharedQueue;
+@property(retain, nonatomic) NSMutableArray *supportedCustomQueueIdentifiers; // @synthesize supportedCustomQueueIdentifiers=_supportedCustomQueueIdentifiers;
 @property(nonatomic) int canScrub; // @synthesize canScrub=_canScrub;
 @property(nonatomic) int skipFrequency; // @synthesize skipFrequency=_skipFrequency;
 @property(nonatomic) int numAvailableSkips; // @synthesize numAvailableSkips=_numAvailableSkips;
@@ -72,6 +95,41 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+- (void)setSupportedQueueEndActions:(int *)arg1 count:(unsigned long long)arg2;
+- (int)supportedQueueEndActionsAtIndex:(unsigned long long)arg1;
+- (void)addSupportedQueueEndActions:(int)arg1;
+- (void)clearSupportedQueueEndActions;
+@property(readonly, nonatomic) int *supportedQueueEndActions;
+@property(readonly, nonatomic) unsigned long long supportedQueueEndActionsCount;
+@property(nonatomic) BOOL hasCurrentQueueEndAction;
+@property(readonly, nonatomic) BOOL hasPlaybackSessionIdentifier;
+- (id)currentPlaybackSessionTypesAtIndex:(unsigned long long)arg1;
+- (unsigned long long)currentPlaybackSessionTypesCount;
+- (void)addCurrentPlaybackSessionTypes:(id)arg1;
+- (void)clearCurrentPlaybackSessionTypes;
+- (id)supportedPlaybackSessionTypesAtIndex:(unsigned long long)arg1;
+- (unsigned long long)supportedPlaybackSessionTypesCount;
+- (void)addSupportedPlaybackSessionTypes:(id)arg1;
+- (void)clearSupportedPlaybackSessionTypes;
+@property(nonatomic) BOOL hasPreferredPlaybackRate;
+@property(nonatomic) BOOL hasUpNextItemCount;
+@property(nonatomic) BOOL hasSupportsSharedQueue;
+- (void)setSupportedInsertionPositions:(int *)arg1 count:(unsigned long long)arg2;
+- (int)supportedInsertionPositionsAtIndex:(unsigned long long)arg1;
+- (void)addSupportedInsertionPositions:(int)arg1;
+- (void)clearSupportedInsertionPositions;
+@property(readonly, nonatomic) int *supportedInsertionPositions;
+@property(readonly, nonatomic) unsigned long long supportedInsertionPositionsCount;
+- (id)supportedCustomQueueIdentifierAtIndex:(unsigned long long)arg1;
+- (unsigned long long)supportedCustomQueueIdentifiersCount;
+- (void)addSupportedCustomQueueIdentifier:(id)arg1;
+- (void)clearSupportedCustomQueueIdentifiers;
+- (void)setSupportedPlaybackQueueTypes:(int *)arg1 count:(unsigned long long)arg2;
+- (int)supportedPlaybackQueueTypesAtIndex:(unsigned long long)arg1;
+- (void)addSupportedPlaybackQueueTypes:(int)arg1;
+- (void)clearSupportedPlaybackQueueTypes;
+@property(readonly, nonatomic) int *supportedPlaybackQueueTypes;
+@property(readonly, nonatomic) unsigned long long supportedPlaybackQueueTypesCount;
 @property(nonatomic) BOOL hasCanScrub;
 @property(nonatomic) BOOL hasSkipFrequency;
 @property(nonatomic) BOOL hasNumAvailableSkips;

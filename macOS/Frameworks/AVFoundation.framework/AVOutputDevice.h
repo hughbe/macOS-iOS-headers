@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class AVOutputDeviceInternal, NSDictionary, NSString;
+@class AVOutputDeviceInternal;
 
 @interface AVOutputDevice : NSObject
 {
@@ -14,25 +14,77 @@
 }
 
 + (id)sharedLocalDevice;
++ (void)initialize;
++ (id)outputDeviceWithFigEndpoint:(struct OpaqueFigEndpoint *)arg1 routingContextFactory:(id)arg2;
++ (id)outputDeviceWithFigEndpoint:(struct OpaqueFigEndpoint *)arg1 volumeController:(struct OpaqueFigVolumeControllerState *)arg2;
++ (id)outputDeviceWithFigEndpoint:(struct OpaqueFigEndpoint *)arg1;
++ (id)outputDeviceWithRouteDescriptor:(struct __CFDictionary *)arg1;
++ (id)outputDeviceWithRouteDescriptor:(struct __CFDictionary *)arg1 routingContextFactory:(id)arg2;
++ (id)outputDeviceWithRouteDescriptor:(struct __CFDictionary *)arg1 routeDiscoverer:(struct OpaqueFigRouteDiscoverer *)arg2;
++ (id)outputDeviceWithRouteDescriptor:(struct __CFDictionary *)arg1 volumeController:(struct OpaqueFigVolumeControllerState *)arg2;
++ (BOOL)prefersRouteDescriptors;
 - (double)frecencyScore;
 - (void)updateFrecencyScore;
+- (void)configureUsingBlock:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)configureUsingBlock:(CDUnknownBlockType)arg1 options:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (BOOL)setCurrentBluetoothListeningMode:(id)arg1 error:(id *)arg2;
+- (void)setCurrentBluetoothListeningMode:(id)arg1;
+- (id)currentBluetoothListeningMode;
+- (id)availableBluetoothListeningModes;
+- (long long)HAPConformance;
+- (BOOL)supportsBluetoothSharing;
+- (BOOL)presentsOptimizedUserInterfaceWhenPlayingFetchedAudioOnlyAssets;
+- (BOOL)canFetchMediaDataFromSender;
+- (BOOL)canPlayEncryptedProgressiveDownloadAssets;
+- (BOOL)canRelayCommunicationChannel;
+- (BOOL)canCommunicateWithAllLogicalDeviceMembers;
+- (BOOL)isLogicalDeviceLeader;
+- (id)logicalDeviceID;
+- (BOOL)groupContainsGroupLeader;
+- (BOOL)participatesInGroupPlayback;
+- (BOOL)isGroupLeader;
+- (BOOL)canBeGroupLeader;
+- (id)groupID;
+- (BOOL)canBeGrouped;
+- (void)setVolume:(float)arg1;
+- (void)outputDeviceImplDidChangeCanChangeVolume:(id)arg1;
+- (BOOL)canSetVolume;
+- (void)outputDeviceImplDidChangeVolume:(id)arg1;
+- (float)volume;
 - (void)setSecondDisplayEnabled:(BOOL)arg1;
-- (struct OpaqueFigEndpoint *)figEndpoint;
-@property(readonly, nonatomic) NSDictionary *modelSpecificInformation;
-@property(readonly, nonatomic) float batteryLevel;
-@property(readonly, nonatomic) BOOL hasBatteryLevel;
-@property(readonly, nonatomic) NSString *modelID;
-@property(readonly, nonatomic) long long deviceType;
-@property(readonly, nonatomic) NSString *ID;
-@property(readonly, nonatomic) NSString *name;
-- (id)_figEndpointPropertyValueForKey:(struct __CFString *)arg1;
+- (BOOL)supportsBufferedAirPlay;
+- (BOOL)canAccessiCloudMusicLibrary;
+- (BOOL)canAccessAppleMusic;
+- (BOOL)canAccessRemoteAssets;
+- (BOOL)onlyAllowsConnectionsFromPeersInHomeGroup;
+- (BOOL)automaticallyAllowsConnectionsFromPeersInHomeGroup;
+- (BOOL)requiresAuthorization;
+- (unsigned long long)deviceFeatures;
+- (id)connectedPairedDevices;
+- (BOOL)isInUseByPairedDevice;
+- (id)airPlayProperties;
+- (id)modelSpecificInformation;
+- (float)batteryLevel;
+- (BOOL)hasBatteryLevel;
+- (id)identifyingMACAddress;
+- (id)firmwareVersion;
+- (id)serialNumber;
+- (id)modelID;
+- (id)manufacturer;
+- (long long)deviceSubType;
+- (long long)deviceType;
+- (id)ID;
+- (id)deviceID;
+- (id)deviceName;
+- (id)name;
+- (id)impl;
+- (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
-- (id)_weakReference;
-- (id)initWithFigEndpoint:(struct OpaqueFigEndpoint *)arg1;
+- (id)initWithOutputDeviceImpl:(id)arg1;
 - (id)init;
+- (id)figEndpointOutputDeviceImpl;
 
 @end
 

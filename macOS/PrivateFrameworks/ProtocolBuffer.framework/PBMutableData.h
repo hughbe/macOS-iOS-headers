@@ -6,6 +6,7 @@
 
 #import "NSMutableData.h"
 
+__attribute__((visibility("hidden")))
 @interface PBMutableData : NSMutableData
 {
     char *p;

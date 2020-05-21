@@ -8,25 +8,28 @@
 
 #import "MTLCommandEncoder.h"
 
-@class NSString;
+@class MTLToolsCommandBuffer, NSString;
 
 @interface MTLToolsCommandEncoder : MTLToolsObject <MTLCommandEncoder>
 {
+    MTLToolsCommandBuffer *_commandBuffer;
 }
 
-- (id)commandBuffer;
+@property(readonly, nonatomic) MTLToolsCommandBuffer *commandBuffer; // @synthesize commandBuffer=_commandBuffer;
 - (void)popDebugGroup;
 - (void)pushDebugGroup:(id)arg1;
 - (void)insertDebugSignpost:(id)arg1;
 - (void)endEncoding;
-- (void)setGlobalTraceObjectID:(unsigned long long)arg1;
+- (unsigned long long)numThisCommand;
 - (unsigned long long)globalTraceObjectID;
 @property(copy) NSString *label;
-@property(readonly) id <MTLDevice> device;
+- (void)addRetainedObject:(id)arg1;
+- (id)initWithBaseObject:(id)arg1 parent:(id)arg2 lockingPolicy:(struct ILayerLockingPolicy *)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly) id <MTLDevice> device;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

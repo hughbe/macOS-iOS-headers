@@ -6,21 +6,24 @@
 
 #import <AssistiveControlSupport/ACSHAction.h>
 
-@class NSString;
+@class ACAPWordSuggestion, NSString;
 
 @interface ACSHActionInsertText : ACSHAction
 {
     NSString *_string;
+    ACAPWordSuggestion *_wordSuggestion;
     struct _NSRange _range;
 }
 
 + (id)actionWithString:(id)arg1;
-@property(retain, nonatomic) NSString *string; // @synthesize string=_string;
+- (void).cxx_destruct;
+@property(retain, nonatomic) ACAPWordSuggestion *wordSuggestion; // @synthesize wordSuggestion=_wordSuggestion;
+@property(copy, nonatomic) NSString *string; // @synthesize string=_string;
 @property(nonatomic) struct _NSRange range; // @synthesize range=_range;
 - (id)paramDescription;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (void)perform;
+- (void)performWithEventSourceData:(id)arg1;
 - (id)init;
 
 @end

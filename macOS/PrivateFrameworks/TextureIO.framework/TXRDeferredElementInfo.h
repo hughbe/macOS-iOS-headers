@@ -8,14 +8,15 @@
 
 @class NSMutableArray, NSObject<OS_dispatch_semaphore>;
 
+__attribute__((visibility("hidden")))
 @interface TXRDeferredElementInfo : NSObject
 {
     NSObject<OS_dispatch_semaphore> *_infoLoaded;
     NSMutableArray *_faces;
 }
 
-@property(readonly, nonatomic) NSMutableArray *faces; // @synthesize faces=_faces;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSMutableArray *faces; // @synthesize faces=_faces;
 - (id)initAsCubemap:(BOOL)arg1;
 
 @end

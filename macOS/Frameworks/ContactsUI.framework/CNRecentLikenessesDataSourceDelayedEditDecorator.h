@@ -8,52 +8,46 @@
 
 #import "CNRecentLikenessesDataSource.h"
 
-@class CNContact, CNContactLikenessesModel, CNObservable, CNReplaySubject, CNUIMeContactMonitor, NSMutableArray, NSString, PRLikeness;
+@class CNContact, CNContactLikenessesModel, CNCreateLikenessHelper, CNObservable, CNReplaySubject, CNUIMeContactMonitor, NSString;
 
 @interface CNRecentLikenessesDataSourceDelayedEditDecorator : NSObject <CNRecentLikenessesDataSource>
 {
     BOOL _forwardingLikenessesToObserverDisabled;
     id <CNRecentLikenessesDataSource> _dataSource;
     CNUIMeContactMonitor *_meMonitor;
+    CNCreateLikenessHelper *_createLikenessHelper;
     CNContact *_contact;
     CNContactLikenessesModel *_contactLikenessModelFromDataSource;
-    PRLikeness *_currentLikenessToSendToObserver;
-    NSMutableArray *_recentLikenessesToSendToObserver;
-    NSMutableArray *_likenessesToSave;
-    NSMutableArray *_likenessesToDelete;
-    PRLikeness *_likenessToSetAsCurrentLikeness;
+    CNContactLikenessesModel *_contactLikenessModelToSendToObserver;
     CNReplaySubject *_contactLikenessModelReplaySubject;
     CNObservable *_dataSourceContactLikenessModelObservable;
     id <CNCancelable> _dataSourceContactLikenessModelToken;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL forwardingLikenessesToObserverDisabled; // @synthesize forwardingLikenessesToObserverDisabled=_forwardingLikenessesToObserverDisabled;
 @property(retain, nonatomic) id <CNCancelable> dataSourceContactLikenessModelToken; // @synthesize dataSourceContactLikenessModelToken=_dataSourceContactLikenessModelToken;
 @property(retain, nonatomic) CNObservable *dataSourceContactLikenessModelObservable; // @synthesize dataSourceContactLikenessModelObservable=_dataSourceContactLikenessModelObservable;
 @property(retain, nonatomic) CNReplaySubject *contactLikenessModelReplaySubject; // @synthesize contactLikenessModelReplaySubject=_contactLikenessModelReplaySubject;
-@property(retain, nonatomic) PRLikeness *likenessToSetAsCurrentLikeness; // @synthesize likenessToSetAsCurrentLikeness=_likenessToSetAsCurrentLikeness;
-@property(retain, nonatomic) NSMutableArray *likenessesToDelete; // @synthesize likenessesToDelete=_likenessesToDelete;
-@property(retain, nonatomic) NSMutableArray *likenessesToSave; // @synthesize likenessesToSave=_likenessesToSave;
-@property(retain, nonatomic) NSMutableArray *recentLikenessesToSendToObserver; // @synthesize recentLikenessesToSendToObserver=_recentLikenessesToSendToObserver;
-@property(retain, nonatomic) PRLikeness *currentLikenessToSendToObserver; // @synthesize currentLikenessToSendToObserver=_currentLikenessToSendToObserver;
+@property(retain, nonatomic) CNContactLikenessesModel *contactLikenessModelToSendToObserver; // @synthesize contactLikenessModelToSendToObserver=_contactLikenessModelToSendToObserver;
 @property(retain, nonatomic) CNContactLikenessesModel *contactLikenessModelFromDataSource; // @synthesize contactLikenessModelFromDataSource=_contactLikenessModelFromDataSource;
 @property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
+@property(retain, nonatomic) CNCreateLikenessHelper *createLikenessHelper; // @synthesize createLikenessHelper=_createLikenessHelper;
 @property(retain, nonatomic) CNUIMeContactMonitor *meMonitor; // @synthesize meMonitor=_meMonitor;
 @property(retain, nonatomic) id <CNRecentLikenessesDataSource> dataSource; // @synthesize dataSource=_dataSource;
-- (void).cxx_destruct;
 - (void)commitEditing;
 - (void)setAsCurrentLikeness:(id)arg1;
-- (void)saveLikeness:(id)arg1;
+- (void)updateLikeness:(id)arg1;
 - (void)deleteLikeness:(id)arg1;
-- (void)sendCurrentLikenessToObserver;
+- (void)addNewLikeness:(id)arg1;
+- (void)sendCurrentLikenessToObserverIfNecessary;
 - (void)sendContactLikenessesModelToObserver;
-- (void)sortCurrentLikenessesIfNecessary;
-- (void)injectPhotoOrMonogramLikenessIntoCurrentLikenessesIfNecessary;
 - (id)contactLikenessModelObservable;
 - (void)setLikenessMutatorFactory:(id)arg1;
 - (void)didReceiveContactLikenessModelFromDataSource:(id)arg1;
 - (void)clearState;
-- (id)initWithRecentLikenessesDataSource:(id)arg1 meMonitor:(id)arg2;
+- (id)currentLikeness;
+- (id)initWithRecentLikenessesDataSource:(id)arg1 meMonitor:(id)arg2 createLikenessHelper:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

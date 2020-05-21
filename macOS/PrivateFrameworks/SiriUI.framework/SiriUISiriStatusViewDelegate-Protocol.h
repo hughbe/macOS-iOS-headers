@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class SiriUISiriStatusView;
+@class NSString, SiriUISiriStatusView;
 
 @protocol SiriUISiriStatusViewDelegate <NSObject>
+- (void)siriStatusView:(SiriUISiriStatusView *)arg1 didReceiveTextInput:(NSString *)arg2;
 - (void)siriStatusViewHoldDidEnd:(SiriUISiriStatusView *)arg1;
 - (void)siriStatusViewHoldDidBegin:(SiriUISiriStatusView *)arg1;
 - (void)siriStatusViewWasClicked:(SiriUISiriStatusView *)arg1;
-- (float)audioLevelForSiriStatusView:(SiriUISiriStatusView *)arg1;
 @end
 

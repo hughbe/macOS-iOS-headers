@@ -11,6 +11,8 @@
 }
 
 + (id)sharedPreferences;
+- (void)setupAssistantSetSiriEnabled:(BOOL)arg1;
+- (void)setLanguageCode:(id)arg1;
 - (BOOL)shouldSkipBuddy;
 - (BOOL)suitableMicrophoneExists;
 

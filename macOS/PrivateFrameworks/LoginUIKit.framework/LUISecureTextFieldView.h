@@ -8,29 +8,30 @@
 
 #import "NSTextFieldDelegate.h"
 
-@class CALayer, CATextLayer, LUIEffectsButton, LUISecureTextField, NSButton, NSImage, NSProgressIndicator, NSString;
+@class CALayer, LUIEffectsButton, LUISecureTextField, NSButton, NSImageView, NSProgressIndicator, NSStackView, NSString;
 
 @interface LUISecureTextFieldView : NSView <NSTextFieldDelegate>
 {
-    CALayer *_textFieldLayer;
-    CATextLayer *_placeholderTextLayer;
+    CALayer *_backgroundLayer;
+    NSStackView *_stackView;
     LUISecureTextField *_secureTextField;
-    NSButton *_securityFieldActionButton;
+    NSButton *_hintButton;
+    NSImageView *_errorImageView;
     NSProgressIndicator *_securityFieldProgressIndicator;
     LUIEffectsButton *_securityFieldGoButton;
-    NSImage *_goButtonImage;
-    NSImage *_passwordHintImage;
-    NSImage *_passwordErrorImage;
     id _delegate;
     id _target;
     SEL _action;
     BOOL _usesHint;
     int _currentMode;
     long long _previousLength;
-    int _keyPressCounter;
 }
 
 @property id delegate; // @synthesize delegate=_delegate;
+- (void)dealloc;
+- (id)initWithFrame:(struct CGRect)arg1;
+- (void)setFrameSize:(struct CGSize)arg1;
+@property(readonly, copy) NSString *description;
 - (id)accessibilityPlaceholderValue;
 - (void)controlTextDidChange:(id)arg1;
 - (void)forceDrawFocusRing;
@@ -42,6 +43,7 @@
 - (void)setUIEnabled:(BOOL)arg1;
 - (void)actionButtonPressed:(id)arg1;
 - (void)setPlaceholderString:(id)arg1;
+- (id)placeholderString;
 - (void)setUsesHint:(BOOL)arg1;
 - (BOOL)usesHint;
 - (struct CGPoint)pointForPopover:(int)arg1;
@@ -53,19 +55,16 @@
 - (id)target;
 - (void)setMode:(int)arg1;
 - (int)mode;
-- (void)resetButtonUIToMode:(int)arg1;
-- (void)refreshButtonsAfterKeyInput;
-- (void)setSecureTextFieldWidth:(BOOL)arg1;
-- (void)setFrameSize:(struct CGSize)arg1;
-- (void)dealloc;
-- (id)initWithFrame:(struct CGRect)arg1;
-- (void)loadImages;
-- (id)_placeholderTextColor;
-- (float)_textFieldLayerOpacity;
+- (void)_resetButtonUIToMode:(int)arg1;
+- (void)_refreshButtonsAfterKeyInput;
+- (void)_setupSubviews;
+- (id)_goButtonImage;
+- (id)_passwordHintImage;
+- (id)_passwordErrorImage;
+- (float)_backgroundLayerOpacity;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

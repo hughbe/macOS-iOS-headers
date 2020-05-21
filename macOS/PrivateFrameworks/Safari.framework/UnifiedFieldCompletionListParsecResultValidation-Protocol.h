@@ -9,6 +9,7 @@
 @class WBSParsecSearchResult;
 
 @protocol UnifiedFieldCompletionListParsecResultValidation <NSObject>
+- (void)resetValidationState;
 - (BOOL)validateParsecResult:(WBSParsecSearchResult *)arg1 withSession:(id <WBSParsecSearchSession>)arg2;
 @end
 

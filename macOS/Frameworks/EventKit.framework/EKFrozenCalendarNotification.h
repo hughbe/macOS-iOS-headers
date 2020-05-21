@@ -26,6 +26,7 @@
     NSString *firstName;
     NSString *lastName;
     NSString *attendeeComment;
+    NSString *phoneNumber;
     NSNumber *createdCount;
     NSNumber *updatedCount;
     NSNumber *deletedCount;
@@ -34,18 +35,23 @@
     NSString *filename;
     NSString *componentType;
     NSNumber *senders;
-    id <EKProtocolEventOccurrence> occurrence;
-    id <EKProtocolCalendarSource> containerSource;
+    id <EventOccurrenceModelProtocol> occurrence;
+    id <CalendarSourceModelProtocol> containerSource;
     NSDate *proposedStartDateUnadjustedFromUTC;
+    NSDate *proposedEndDateUnadjustedFromUTC;
+    unsigned long long junkStatus;
 }
 
 + (Class)meltedClass;
 + (id)frozenObjectForObject:(id)arg1 createPartialObject:(BOOL)arg2 preFrozenRelationshipObjects:(id)arg3 forceUpdate:(BOOL)arg4;
 + (Class)_realClassForNotification:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long junkStatus; // @synthesize junkStatus;
+@property(readonly, nonatomic) NSDate *proposedEndDateUnadjustedFromUTC; // @synthesize proposedEndDateUnadjustedFromUTC;
 @property(readonly, nonatomic) NSDate *proposedStartDateUnadjustedFromUTC; // @synthesize proposedStartDateUnadjustedFromUTC;
 @property(readonly) BOOL dismissed; // @synthesize dismissed;
-@property(readonly, nonatomic) id <EKProtocolCalendarSource> containerSource; // @synthesize containerSource;
-@property(readonly, nonatomic) id <EKProtocolEventOccurrence> occurrence; // @synthesize occurrence;
+@property(readonly, nonatomic) id <CalendarSourceModelProtocol> containerSource; // @synthesize containerSource;
+@property(readonly, nonatomic) id <EventOccurrenceModelProtocol> occurrence; // @synthesize occurrence;
 @property(readonly, nonatomic) NSNumber *senders; // @synthesize senders;
 @property(readonly, nonatomic) NSString *componentType; // @synthesize componentType;
 @property(readonly) NSString *filename; // @synthesize filename;
@@ -59,6 +65,7 @@
 @property(readonly) NSNumber *deletedCount; // @synthesize deletedCount;
 @property(readonly) NSNumber *updatedCount; // @synthesize updatedCount;
 @property(readonly) NSNumber *createdCount; // @synthesize createdCount;
+@property(readonly, nonatomic) NSString *phoneNumber; // @synthesize phoneNumber;
 @property(readonly) NSString *attendeeComment; // @synthesize attendeeComment;
 @property(readonly, nonatomic) NSString *lastName; // @synthesize lastName;
 @property(readonly, nonatomic) NSString *firstName; // @synthesize firstName;
@@ -67,8 +74,8 @@
 @property(readonly, nonatomic) NSString *title; // @synthesize title;
 @property(readonly) NSString *uuid; // @synthesize uuid;
 @property(readonly, nonatomic) NSNumber *notificationType; // @synthesize notificationType;
-- (void).cxx_destruct;
 - (BOOL)isProposedNewTime;
+- (BOOL)isSuggestion;
 - (BOOL)isResourceChange;
 - (BOOL)isSharedCalendarReply;
 - (BOOL)isSharedCalendarInvitation;

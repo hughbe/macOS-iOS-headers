@@ -20,6 +20,7 @@
 
 + (id)valueWithEntry:(id)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSNumber *timestamp; // @synthesize timestamp=_timestamp;
 @property(copy, nonatomic) NSString *shortcut; // @synthesize shortcut=_shortcut;
 @property(copy, nonatomic) NSString *phrase; // @synthesize phrase=_phrase;
@@ -28,7 +29,6 @@
 @property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

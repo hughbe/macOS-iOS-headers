@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)defaultProperties;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isLimitOverridden;
 - (void)setLimit:(float)arg1;

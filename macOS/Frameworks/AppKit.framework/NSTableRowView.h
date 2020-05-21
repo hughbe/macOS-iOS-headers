@@ -8,7 +8,7 @@
 
 #import "NSAccessibilityRow.h"
 
-@class NSArray, NSColor, NSString, NSTableViewActionButton;
+@class NSArray, NSColor, NSMutableDictionary, NSString, NSTableViewActionButton;
 
 @interface NSTableRowView : NSView <NSAccessibilityRow>
 {
@@ -18,7 +18,7 @@
     long long _draggingDestinationFeedbackStyle;
     double _dropOperationIndentation;
     NSColor *_backgroundColor;
-    double _selectionAlpha;
+    NSMutableDictionary *_columnConstraints;
     unsigned int _targetForDropOperation:1;
     unsigned int _groupRowStyle:2;
     unsigned int _priorRowSelected:1;
@@ -36,14 +36,20 @@
     unsigned int _isStatic:1;
     unsigned int _hasSelectedBackgroundView:1;
     unsigned int _selectionBlendingMode:1;
-    unsigned int _checkingFontRefColor:1;
     unsigned int _forDeletion:1;
     unsigned int _emphasizedForDropOperation:1;
+    unsigned int _keyViewLoopIsDirty:1;
+    unsigned int _hasSelectionAlpha:1;
+    unsigned int _hasLayoutChangedListener:1;
+    unsigned int _canUseSelectionMaterialWithRegularHighlights:1;
 }
 
 + (id)defaultAnimationForKey:(id)arg1;
 @property double indentationForDropOperation; // @synthesize indentationForDropOperation=_dropOperationIndentation;
 @property long long draggingDestinationFeedbackStyle; // @synthesize draggingDestinationFeedbackStyle=_draggingDestinationFeedbackStyle;
+- (void)nsis_valueOfVariable:(id)arg1 didChangeInEngine:(id)arg2;
+- (id)_makeEngineHostConstraints;
+@property(setter=_setKeyViewLoopIsDirty:) BOOL _keyViewLoopIsDirty;
 - (long long)accessibilityIndex;
 - (void)removeViewAtUnknownColumn:(id)arg1;
 - (id)associatedViewsForColumn:(long long)arg1;
@@ -54,10 +60,12 @@
 - (void)associateView:(id)arg1 withColumn:(long long)arg2;
 @property(setter=_setLocationNeedsUpdating:) BOOL _locationNeedsUpdating;
 - (void)setFrameSize:(struct CGSize)arg1;
-- (BOOL)_selectionNeedsRedrawingOnFrameChange;
 - (BOOL)preservesContentDuringLiveResize;
+- (id)_constraintsAtColumn:(long long)arg1;
+- (void)_setConstraints:(id)arg1 atColumn:(long long)arg2;
 - (void)removeColumnAtIndex:(long long)arg1;
 - (void)insertColumnAtIndex:(long long)arg1;
+- (void)_moveConstraintsFromColumn:(long long)arg1 toColumn:(long long)arg2;
 - (void)moveViewsFromColumn:(long long)arg1 toColumn:(long long)arg2;
 - (void)_setAssociatedViews:(id)arg1;
 - (id)_associatedViews;
@@ -77,8 +85,9 @@
 - (void)layout;
 - (BOOL)_shouldHaveDropFeedback;
 @property(retain) NSArray *editActionButtons;
-@property(retain) NSView *grayView;
 @property(retain) NSTableViewActionButton *consumingRowActionButton;
+- (void)_addRowNumberBadge;
+- (id)_badgeAttributes;
 - (void)updateLayer;
 - (void)_removeBackgroundDropAboveFeedbackLayer;
 - (void)_udpateBackgroundDropAboveFeedbackLayer;
@@ -86,27 +95,35 @@
 - (void)_updateBackgroundDropFeedbackLayer;
 - (id)_makeLayerForDropFeedbackThatIsAbove:(BOOL)arg1;
 - (id)_flashingKeyForLayerContentsProvider;
-- (void)_removeSeparatorBackgroundLayer;
-- (void)_updateSeparatorBackgroundLayer;
+- (void)_removeSeparatorBackgroundView;
+- (void)_updateSeparatorBackgroundView;
 - (void)_setDropAboveFeedbackLayer:(id)arg1;
 - (id)_dropAboveFeedbackLayer;
 - (void)_setDropFeedbackLayer:(id)arg1;
 - (id)_dropFeedbackLayer;
-- (void)_setSeparatorLayer:(id)arg1;
-- (id)_separatorLayer;
+- (void)_setSeparatorView:(id)arg1;
+- (id)_separatorView;
 - (id)_currentLayerBackgroundColor;
 - (void)_setupBackgroundLayer:(id)arg1;
 - (id)_contentsFacetForSelectedBackground;
 - (long long)_realSelectionHighlightStyle;
-- (id)_springLoadedBlendColor;
-- (BOOL)_canDisableBaseVibrancy;
 - (void)_removeSelectedBackgroundView;
 - (BOOL)_alwaysNeedsSelectedBackgroundView;
 - (void)_updateSelectedBackgroundView;
 - (BOOL)_needsSelectionBackgroundView;
 - (BOOL)_shouldRemoveSelectedBackgroundViewWhenNotSelected;
-- (id)_makeBlurBackgroundView;
+- (id)_makeSelectionBlurBackgroundView;
 - (void)_updateSelectionStateForVisualEffectView:(id)arg1;
+@property BOOL canUseSelectionMaterialWithRegularHighlights;
+- (id)_groupBackgroundView;
+- (void)_setGroupBackgroundView:(id)arg1;
+- (void)_removeGroupBackgroundView;
+- (id)_makeGroupBackgroundView;
+- (BOOL)_needsGroupBackgroundView;
+- (void)_updateGroupBackgroundView;
+- (BOOL)_drawsGroupRowBackground;
+- (unsigned long long)_dividerPosition;
+- (BOOL)_drawMethodsOverridden;
 - (id)_preferredAppearance;
 - (void)setSelectionBlendingMode:(long long)arg1;
 - (long long)selectionBlendingMode;
@@ -116,20 +133,12 @@
 - (BOOL)wantsUpdateLayer;
 - (void)drawDraggingDestinationFeedbackInRect:(struct CGRect)arg1;
 - (void)drawSelectionInRect:(struct CGRect)arg1;
-- (BOOL)drawsBackground;
 - (void)drawBackgroundInRect:(struct CGRect)arg1;
 - (id)_floatingBackgroundColor;
 - (BOOL)_shouldUseBackgroundColor;
-- (BOOL)shouldSetFontSmoothingBackgroundColor;
-- (id)_backgroundColorForFontSmoothing;
-- (id)_selectedBackgroundColorForFontSmoothing;
-- (id)fontSmoothingBackgroundColor;
-- (BOOL)_needsBlurBackgroundView;
+- (BOOL)_needsSelectionBlurBackgroundView;
 - (BOOL)_hasSourceListBackgroundColorOrNil;
 - (void)_drawSourceListBackgroundInnerEdgeInRect:(struct CGRect)arg1;
-- (void)drawGroupRowStyleGrayInverseInRect:(struct CGRect)arg1;
-- (void)drawGroupRowStyleGrayInRect:(struct CGRect)arg1;
-- (void)drawGroupRowStyleFinderInRect:(struct CGRect)arg1;
 - (id)_backgroundColorForFloatingGroupFromColor:(id)arg1;
 - (struct CGRect)_backgroundRect;
 - (struct CGRect)_backgroundRectForDirtyRect:(struct CGRect)arg1;
@@ -164,12 +173,8 @@
 @property(getter=isSelected) BOOL selected; // @dynamic selected;
 @property(getter=isEmphasized) BOOL emphasized; // @dynamic emphasized;
 - (void)_updateSelectedBackgroundViewForStateChange;
-- (id)_containingBackdropView;
+- (unsigned long long)_vibrantBlendingStyleForSubtree;
 - (void)didAddSubview:(id)arg1;
-- (void)_updateLightHighlightAttributesForView:(id)arg1;
-- (void)_updateLightHighlightColorForSelectedTextField:(id)arg1;
-- (id)_nonFirstResponderTextColor;
-- (id)selectedTextColor;
 - (void)viewDidMoveToSuperview;
 - (void)_updateManagedAttributesForSubviews;
 - (BOOL)_hasManagedAttributes;
@@ -178,12 +183,13 @@
 - (void)_updateBackgroundStyles;
 - (void)viewWillDraw;
 - (void)_updateBackgroundStylesForReals;
+- (BOOL)_userInterfaceDirectionIsLTR;
 - (void)_setBackgroundStyle:(long long)arg1 forView:(id)arg2;
 - (void)_windowChangedKeyState;
 - (long long)backgroundStyle;
 @property(readonly) long long interiorBackgroundStyle;
+- (BOOL)_hasDesktopTintedBackgroundBehavior;
 - (BOOL)_hasSourceListBackground;
-- (BOOL)_isSourceListBackgroundColor:(id)arg1;
 - (BOOL)_appearsSelected;
 - (BOOL)_shouldDrawSelection;
 - (BOOL)_isFadingSelection;
@@ -193,10 +199,14 @@
 @property(getter=isFloating) BOOL floating; // @dynamic floating;
 - (BOOL)floatingStyle;
 @property double selectionAlpha;
+- (void)_ivarSetSelectionAlpha:(double)arg1;
 @property(copy) NSColor *backgroundColor;
+- (void)_selectionHighlightColorChanged;
 @property long long selectionHighlightStyle;
 @property BOOL emphasizedForDropOperation; // @dynamic emphasizedForDropOperation;
+@property(copy, setter=_setLayoutChangedListener:) CDUnknownBlockType _layoutEngineChangedListener; // @dynamic _layoutEngineChangedListener;
 - (void)dealloc;
+- (void)_dropAllConstraints;
 - (void)encodeWithCoder:(id)arg1;
 - (void)_decodeStaticContentWithCoder:(id)arg1;
 - (void)_encodeStaticContentWithCoder:(id)arg1;

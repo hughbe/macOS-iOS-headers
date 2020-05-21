@@ -12,7 +12,7 @@
 #import "VisualTabPickerGridViewDelegate.h"
 #import "VisualTabPickerSearchFieldDelegate.h"
 
-@class NSArray, NSImage, NSMutableArray, NSOperationQueue, NSString, VisualTabPickerRootView;
+@class NSArray, NSImage, NSMutableArray, NSOperationQueue, NSString, VisualTabPickerRootView, VisualTabPickerSnapshotCache;
 
 __attribute__((visibility("hidden")))
 @interface VisualTabPickerViewController : NSViewController <VisualTabPickerSearchFieldDelegate, VisualTabPickerCloudTabsViewDataSource, VisualTabPickerCloudTabsViewDelegate, VisualTabPickerGridViewDataSource, VisualTabPickerGridViewDelegate>
@@ -27,9 +27,9 @@ __attribute__((visibility("hidden")))
     BOOL _isPostponingClosingVisualTabPickerWhenNewTabIsInserted;
     BOOL _didReportPerformSearch;
     BOOL _isClosingBySelectingOrCreatingTab;
-    BOOL _shouldStackThumbnails;
     BOOL _tabsShouldBeClosable;
     BOOL _addingNewTab;
+    VisualTabPickerSnapshotCache *_snapshotCache;
     id <VisualTabPickerDelegate> _delegate;
     NSImage *_tabBarSnapshot;
     NSImage *_sidebarSnapshot;
@@ -38,13 +38,15 @@ __attribute__((visibility("hidden")))
 + (id)springAnimationForVisualTabPicker;
 + (id)visualTabPickerActiveWindowToolbarBackgroundColor;
 + (id)visualTabPickerInactiveWindowToolbarBackgroundColor;
++ (BOOL)shouldAlwaysShowControlsInVTP;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSImage *sidebarSnapshot; // @synthesize sidebarSnapshot=_sidebarSnapshot;
 @property(retain, nonatomic) NSImage *tabBarSnapshot; // @synthesize tabBarSnapshot=_tabBarSnapshot;
 @property(readonly, nonatomic, getter=isAddingNewTab) BOOL addingNewTab; // @synthesize addingNewTab=_addingNewTab;
 @property(nonatomic) BOOL tabsShouldBeClosable; // @synthesize tabsShouldBeClosable=_tabsShouldBeClosable;
-@property(nonatomic) BOOL shouldStackThumbnails; // @synthesize shouldStackThumbnails=_shouldStackThumbnails;
 @property(nonatomic) __weak id <VisualTabPickerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) VisualTabPickerSnapshotCache *snapshotCache; // @synthesize snapshotCache=_snapshotCache;
+- (void)_browserTabViewItemDidChangeIcon:(id)arg1;
 - (id)_cloudTabAtIndex:(unsigned long long)arg1 forDeviceAtIndex:(unsigned long long)arg2;
 - (id)_dictionaryForCloudDeviceAtIndex:(unsigned long long)arg1;
 - (id)_cloudDeviceAtIndex:(unsigned long long)arg1;
@@ -59,8 +61,9 @@ __attribute__((visibility("hidden")))
 - (id)_displayedCloudTabDevices;
 - (BOOL)_doesSearchResultsContainSelectedTab;
 - (void)_performAsynchronousFilter;
-- (void)_reloadGridView;
+- (void)_reloadGridViewWhileFiltering;
 - (void)_reloadLocalTabData;
+- (void)visualTabPickerCloudTabsView:(id)arg1 didRemoveAllCloudTabsForDeviceAtIndex:(unsigned long long)arg2;
 - (void)visualTabPickerCloudTabsView:(id)arg1 didRemoveCloudTabAtIndex:(unsigned long long)arg2 forDeviceAtIndex:(unsigned long long)arg3;
 - (void)visualTabPickerCloudTabsView:(id)arg1 didSelectCloudTabAtIndex:(unsigned long long)arg2 forDeviceAtIndex:(unsigned long long)arg3;
 - (BOOL)closeRequestSupportedForVisualTabPickerCloudTabsView:(id)arg1 forDeviceAtIndex:(unsigned long long)arg2;
@@ -75,7 +78,7 @@ __attribute__((visibility("hidden")))
 - (void)visualTabPickerGridViewCloseTabViewItem:(id)arg1;
 - (void)visualTabPickerGridView:(id)arg1 selectTab:(id)arg2;
 - (void)createNewTabForVisualTabPickerGridView:(id)arg1;
-- (BOOL)canCloseTabsInVisualTabPickerGridView:(id)arg1;
+- (BOOL)visualTabPickerGridView:(id)arg1 canCloseTab:(id)arg2;
 - (double)tilesHeightToWidthRatioInVisualTabPickerGridView:(id)arg1;
 - (id)selectedTabItemInVisualTabPickerGridView:(id)arg1;
 - (id)orderedTabItemsInVisualTabPickerGridView:(id)arg1;
@@ -88,7 +91,6 @@ __attribute__((visibility("hidden")))
 - (void)willInsertBrowserTabViewItem;
 - (void)postponeClosingVisualTabPickerWhenNewTabIsInserted;
 - (unsigned long long)indexOfSelectedTab;
-- (BOOL)shouldStackMultipleThumbnailsInOneContainerIfPossible;
 - (BOOL)shouldDisplayRealWebViews;
 - (BOOL)entryOrExitAnimationInProgress;
 - (void)startEntryAnimation;
@@ -97,6 +99,8 @@ __attribute__((visibility("hidden")))
 - (double)tabPickerAnimationDuration;
 - (void)dealloc;
 - (void)loadView;
+- (id)initWithSnapshotCache:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

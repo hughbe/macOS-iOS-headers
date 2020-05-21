@@ -16,10 +16,10 @@ __attribute__((visibility("hidden")))
     WXReadState *mXmlDocumentState;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) int currentTextType; // @synthesize currentTextType=mCurrentTextType;
-@property(nonatomic) WBReader *reader; // @synthesize reader=mReader;
+@property(nonatomic) __weak WBReader *reader; // @synthesize reader=mReader;
 - (id)xmlDrawingState;
-- (void)dealloc;
 - (id)initWithClient:(Class)arg1;
 
 @end

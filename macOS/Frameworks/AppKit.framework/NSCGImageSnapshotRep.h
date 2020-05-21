@@ -8,6 +8,7 @@
 
 @class NSSnapshotContextSignature;
 
+__attribute__((visibility("hidden")))
 @interface NSCGImageSnapshotRep : NSImageRep
 {
     struct CGImage *_cgImage;
@@ -23,6 +24,7 @@
 + (BOOL)_deprecated_hasReversedFlippednessInFlippedImages;
 + (BOOL)supportsSecureCoding;
 + (id)classFallbacksForKeyedArchiver;
+@property(readonly) struct CGImage *image;
 - (BOOL)_isValid;
 - (BOOL)hasAlpha;
 - (long long)pixelsHigh;
@@ -38,7 +40,7 @@
 - (struct CGImage *)CGImageForProposedRect:(struct CGRect *)arg1 context:(id)arg2 hints:(id)arg3;
 - (struct CGImage *)_snapshotRep_CGImageForProposedRect:(struct CGRect *)arg1 context:(id)arg2 hints:(id)arg3;
 - (BOOL)isApplicableForRect:(struct CGRect)arg1 context:(id)arg2 hints:(id)arg3;
-- (id)fullDescription;
+- (id)debugDescription;
 - (id)description;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;

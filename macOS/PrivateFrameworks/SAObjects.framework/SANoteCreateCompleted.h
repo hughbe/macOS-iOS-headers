@@ -16,6 +16,7 @@
 
 + (id)createCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)createCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSURL *identifier;
 - (id)encodedClassName;
 - (id)groupIdentifier;

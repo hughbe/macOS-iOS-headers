@@ -11,14 +11,12 @@
 @interface CDPDRecoveryFlowContext : NSObject
 {
     BOOL _hasPeersForRemoteApproval;
-    BOOL _stringrayDisabled;
     CDPContext *_context;
 }
 
-@property(nonatomic) BOOL stringrayDisabled; // @synthesize stringrayDisabled=_stringrayDisabled;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL hasPeersForRemoteApproval; // @synthesize hasPeersForRemoteApproval=_hasPeersForRemoteApproval;
 @property(retain, nonatomic) CDPContext *context; // @synthesize context=_context;
-- (void).cxx_destruct;
 
 @end
 

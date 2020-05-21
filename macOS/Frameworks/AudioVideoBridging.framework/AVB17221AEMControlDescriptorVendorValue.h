@@ -17,6 +17,8 @@
 @property(copy) NSData *binaryBlob; // @synthesize binaryBlob=_binaryBlob;
 @property unsigned long long vendorEUI64; // @synthesize vendorEUI64=_vendorEUI64;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (BOOL)validControlValueType:(unsigned short)arg1;
 - (id)objectsForSetCommandValuesData:(id)arg1;
 - (id)debugLogStringWithIndentation:(id)arg1;

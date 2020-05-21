@@ -8,10 +8,14 @@
 
 @class AVCaptureSession, NSMutableArray;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureOutputInternal : NSObject
 {
     AVCaptureSession *session;
     NSMutableArray *connections;
+    struct CGAffineTransform metadataTransform;
+    double rollAdjustment;
+    struct os_unfair_lock_s internalLock;
 }
 
 @end

@@ -7,34 +7,42 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBLocationValue.h"
 
-@class GEOMapItemStorage, GEOPDPlace, PBUnknownFields, _INPBValueMetadata;
+@class GEOMapItemStorage, GEOPDPlace, NSString, _INPBValueMetadata;
 
-@interface _INPBLocationValue : PBCodable <NSCopying>
+@interface _INPBLocationValue : PBCodable <_INPBLocationValue, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
     GEOMapItemStorage *_mapItemStorage;
     GEOPDPlace *_place;
     _INPBValueMetadata *_valueMetadata;
 }
 
-+ (id)options;
-@property(retain, nonatomic) GEOPDPlace *place; // @synthesize place=_place;
-@property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(retain, nonatomic) _INPBValueMetadata *valueMetadata; // @synthesize valueMetadata=_valueMetadata;
+@property(retain, nonatomic) GEOPDPlace *place; // @synthesize place=_place;
+@property(retain, nonatomic) GEOMapItemStorage *mapItemStorage; // @synthesize mapItemStorage=_mapItemStorage;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-@property(readonly, nonatomic) BOOL hasPlace;
 @property(readonly, nonatomic) BOOL hasValueMetadata;
-@property(retain, nonatomic) GEOMapItemStorage *mapItemStorage;
+@property(readonly, nonatomic) BOOL hasPlace;
 @property(readonly, nonatomic) BOOL hasMapItemStorage;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

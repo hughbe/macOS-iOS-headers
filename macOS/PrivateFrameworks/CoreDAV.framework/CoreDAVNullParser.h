@@ -16,9 +16,9 @@
 }
 
 + (BOOL)canHandleContentType:(id)arg1;
+- (void).cxx_destruct;
 - (BOOL)processData:(id)arg1 forTask:(id)arg2;
 @property(readonly) NSError *parserError;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

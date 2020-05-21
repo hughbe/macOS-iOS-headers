@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     const void *mDataBytes;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) OCPZipPackage *zipPackage; // @synthesize zipPackage=mZipPackage;
 - (id)read;
 - (BOOL)start;
@@ -22,7 +23,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)retainDecryptorWithErrorCode:(int *)arg1;
 - (_Bool)isBinaryReader;
 - (BOOL)verifyFileFormat;
-- (void)dealloc;
 
 @end
 

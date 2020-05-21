@@ -4,35 +4,40 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <AVConference/VCVideoCapture.h>
 
 #import "VideoCaptureProtocol.h"
 
 __attribute__((visibility("hidden")))
-@interface CannedVideoCapture : NSObject <VideoCaptureProtocol>
+@interface CannedVideoCapture : VCVideoCapture <VideoCaptureProtocol>
 {
-    struct CannedVideoCapturePrivate *_pimpl;
+    // Error parsing type: ^{CannedVideoCapturePrivate={_opaque_pthread_mutex_t=q[56c]}Ai@i^{OpaqueCMClock}cc^{OpaqueFigThread}c{_opaque_pthread_mutex_t=q[56c]}{_opaque_pthread_cond_t=q[40c]}^{OpaqueFigThread}c{_opaque_pthread_mutex_t=q[56c]}{_opaque_pthread_cond_t=q[40c]}{_opaque_pthread_mutex_t=q[56c]}^{Frame}i}, name: _pimpl
     id <CannedVideoFrameFeeder> _frameFeeder;
 }
 
 + (int)createPixelBufferPool:(struct __CVPixelBufferPool **)arg1 withWidth:(int)arg2 height:(int)arg3;
 + (int)cannedVideoTypeForPath:(id)arg1;
 @property(retain, nonatomic) id <CannedVideoFrameFeeder> frameFeeder; // @synthesize frameFeeder=_frameFeeder;
-@property(readonly, nonatomic) struct CannedVideoCapturePrivate *pimpl; // @synthesize pimpl=_pimpl;
+// Error parsing type for property pimpl:
+// Property attributes: T^{CannedVideoCapturePrivate={_opaque_pthread_mutex_t=q[56c]}Ai@i^{OpaqueCMClock}cc^{OpaqueFigThread}c{_opaque_pthread_mutex_t=q[56c]}{_opaque_pthread_cond_t=q[40c]}^{OpaqueFigThread}c{_opaque_pthread_mutex_t=q[56c]}{_opaque_pthread_cond_t=q[40c]}{_opaque_pthread_mutex_t=q[56c]}^{Frame}i},R,N,V_pimpl
+
 - (void)stopThreads;
 - (int)startThreads;
+- (int)getPreviewFrameCount:(int *)arg1 captureFrameCount:(int *)arg2 reset:(BOOL)arg3;
+- (int)frameBecameAvailableCount:(int *)arg1 figBufferQueueEmptyCount:(int *)arg2 figBufferQueueErrorCount:(int *)arg3;
+- (BOOL)cameraSupportsFormatWidth:(int)arg1 height:(int)arg2;
+- (BOOL)isFrontCamera;
 - (int)stop:(BOOL)arg1;
 - (int)startCaptureWithWidth:(int)arg1 height:(int)arg2 frameRate:(int)arg3;
 - (int)startPreview;
+- (int)setFrameRate:(int)arg1;
 - (BOOL)isPreviewRunning;
-- (int)getCameraType:(int *)arg1;
-- (int)setCameraType:(int)arg1;
-- (int)getCamera:(unsigned int *)arg1;
-- (int)setCamera:(unsigned int)arg1;
+- (id)getCameraUID;
+- (int)setCameraWithUID:(id)arg1;
 - (int)copyColorInfo:(const struct __CFDictionary **)arg1;
 - (int)setWidth:(int)arg1 height:(int)arg2 frameRate:(int)arg3;
 - (void)dealloc;
-- (id)initWithOptions:(void *)arg1 callback:(CDUnknownFunctionPointerType)arg2 width:(int)arg3 height:(int)arg4 frameRate:(int)arg5 camera:(unsigned int)arg6 folder:(id)arg7 withError:(int *)arg8;
+- (id)initWithCaptureServer:(id)arg1 width:(int)arg2 height:(int)arg3 frameRate:(int)arg4 cameraUID:(id)arg5 video:(id)arg6 error:(int *)arg7;
 
 @end
 

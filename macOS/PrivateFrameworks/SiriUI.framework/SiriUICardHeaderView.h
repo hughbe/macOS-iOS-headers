@@ -6,10 +6,12 @@
 
 #import "NSView.h"
 
-__attribute__((visibility("hidden")))
 @interface SiriUICardHeaderView : NSView
 {
 }
+
+- (id)accessibilityIdentifier;
+- (id)accessibilityChildren;
 
 @end
 

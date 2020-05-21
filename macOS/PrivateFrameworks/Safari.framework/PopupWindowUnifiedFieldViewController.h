@@ -6,18 +6,21 @@
 
 #import "NSTitlebarAccessoryViewController.h"
 
-@class UnifiedField;
+@class NSLayoutConstraint, PopupWindowUnifiedField;
 
 __attribute__((visibility("hidden")))
 @interface PopupWindowUnifiedFieldViewController : NSTitlebarAccessoryViewController
 {
-    UnifiedField *_popupWindowUnifiedField;
+    NSLayoutConstraint *_unifiedFieldWindowCenteringConstraint;
+    PopupWindowUnifiedField *_popupWindowUnifiedField;
 }
 
-@property(nonatomic) __weak UnifiedField *popupWindowUnifiedField; // @synthesize popupWindowUnifiedField=_popupWindowUnifiedField;
 - (void).cxx_destruct;
-- (void)viewDidLoad;
+@property(nonatomic) __weak PopupWindowUnifiedField *popupWindowUnifiedField; // @synthesize popupWindowUnifiedField=_popupWindowUnifiedField;
+- (void)viewDidAppear;
+- (void)loadView;
 - (id)nibName;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 @end
 

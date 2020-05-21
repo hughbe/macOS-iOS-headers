@@ -8,17 +8,33 @@
 
 #import "NSCopying.h"
 
-@class GEOABDebugPanelExperimentBranch, NSMutableArray;
+@class GEOABDebugPanelExperimentBranch, NSMutableArray, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOABClientDebugPanelExperimentBranch : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_configKeyValues;
     GEOABDebugPanelExperimentBranch *_debugExperimentBranch;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_configKeyValues:1;
+        unsigned int read_debugExperimentBranch:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_configKeyValues:1;
+        unsigned int wrote_debugExperimentBranch:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)configKeyValueType;
-@property(retain, nonatomic) NSMutableArray *configKeyValues; // @synthesize configKeyValues=_configKeyValues;
-@property(retain, nonatomic) GEOABDebugPanelExperimentBranch *debugExperimentBranch; // @synthesize debugExperimentBranch=_debugExperimentBranch;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -26,14 +42,21 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)configKeyValueAtIndex:(unsigned long long)arg1;
 - (unsigned long long)configKeyValuesCount;
+- (void)_addNoFlagsConfigKeyValue:(id)arg1;
 - (void)addConfigKeyValue:(id)arg1;
 - (void)clearConfigKeyValues;
+@property(retain, nonatomic) NSMutableArray *configKeyValues;
+- (void)_readConfigKeyValues;
+@property(retain, nonatomic) GEOABDebugPanelExperimentBranch *debugExperimentBranch;
 @property(readonly, nonatomic) BOOL hasDebugExperimentBranch;
-- (void)dealloc;
+- (void)_readDebugExperimentBranch;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

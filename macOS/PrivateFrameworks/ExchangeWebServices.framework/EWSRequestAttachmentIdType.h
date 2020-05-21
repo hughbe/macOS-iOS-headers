@@ -15,9 +15,10 @@
     NSString *_Id;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)definition;
-@property(copy, nonatomic) NSString *Id; // @synthesize Id=_Id;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSString *Id; // @synthesize Id=_Id;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 

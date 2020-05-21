@@ -8,7 +8,7 @@
 
 #import "LSApplicationWorkspaceObserverProtocol.h"
 
-@class NSDictionary, NSObject<OS_dispatch_queue>, NSSet, NSString, PKDiscoveryLSWatcher;
+@class NSDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_os_activity>, NSSet, NSString, PKDiscoveryLSWatcher;
 
 @interface PKDiscoveryDriver : NSObject <LSApplicationWorkspaceObserverProtocol>
 {
@@ -16,6 +16,7 @@
     NSDictionary *_attributes;
     unsigned long long _flags;
     CDUnknownBlockType _report;
+    NSObject<OS_os_activity> *_relatedActivity;
     NSSet *_lastResults;
     id _mcNotificationToken;
     PKDiscoveryLSWatcher *_lsWatcher;
@@ -23,16 +24,17 @@
     NSObject<OS_dispatch_queue> *_sync;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_queue> *sync; // @synthesize sync=_sync;
 @property(retain) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(retain) PKDiscoveryLSWatcher *lsWatcher; // @synthesize lsWatcher=_lsWatcher;
 @property(retain) id mcNotificationToken; // @synthesize mcNotificationToken=_mcNotificationToken;
 @property int annotationNotifyToken; // @synthesize annotationNotifyToken=_annotationNotifyToken;
 @property(retain) NSSet *lastResults; // @synthesize lastResults=_lastResults;
+@property(retain) NSObject<OS_os_activity> *relatedActivity; // @synthesize relatedActivity=_relatedActivity;
 @property(copy) CDUnknownBlockType report; // @synthesize report=_report;
 @property unsigned long long flags; // @synthesize flags=_flags;
 @property(retain) NSDictionary *attributes; // @synthesize attributes=_attributes;
-- (void).cxx_destruct;
 - (void)removeWatchers;
 - (void)installWatchers;
 - (void)cancel;

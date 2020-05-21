@@ -16,6 +16,7 @@
 
 + (id)domainObjectRetrieveWithDictionary:(id)arg1 context:(id)arg2;
 + (id)domainObjectRetrieve;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *identifiers;
 - (id)encodedClassName;

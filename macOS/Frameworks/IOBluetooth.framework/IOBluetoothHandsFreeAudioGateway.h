@@ -12,16 +12,17 @@
 {
     BOOL _indicatorMode;
     BOOL _indicatorEventReporting;
-    BOOL _isSiriActive;
     IOBluetoothHandsFreeAudioGatewayExpansion *_expansion;
 }
 
 + (id)deviceUUID;
 + (id)localUUID;
-@property BOOL isSiriActive; // @synthesize isSiriActive=_isSiriActive;
 @property BOOL indicatorEventReporting; // @synthesize indicatorEventReporting=_indicatorEventReporting;
 @property BOOL indicatorMode; // @synthesize indicatorMode=_indicatorMode;
 @property(retain) IOBluetoothHandsFreeAudioGatewayExpansion *expansion; // @synthesize expansion=_expansion;
+- (void)setFCComplete:(id)arg1;
+- (BOOL)isSiriActive;
+- (void)setIsSiriActive:(BOOL)arg1;
 - (BOOL)dockState;
 - (void)setDockState:(BOOL)arg1;
 - (int)batteryLevel;
@@ -42,7 +43,9 @@
 - (void)sendCurrentStatusValues;
 - (void)sendStatusMapping;
 - (void)sendSupportedFeatures:(int)arg1;
+- (void)sendOutputVolumePrivate:(id)arg1;
 - (void)sendOutputVolume;
+- (void)sendInputVolumePrivate:(id)arg1;
 - (void)sendInputVolume;
 - (void)processIncomingData:(char *)arg1 length:(unsigned long long)arg2;
 - (id)driverID;
@@ -55,6 +58,7 @@
 - (void)handleSiriAppear;
 - (id)initWithDevice:(id)arg1 delegate:(id)arg2;
 - (void)setIndicator:(id)arg1 value:(int)arg2;
+- (void)sdpQueryComplete:(id)arg1 status:(int)arg2;
 
 @end
 

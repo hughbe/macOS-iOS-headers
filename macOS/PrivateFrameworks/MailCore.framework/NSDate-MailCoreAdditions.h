@@ -6,10 +6,7 @@
 
 #import "NSDate.h"
 
-@class NSString;
-
 @interface NSDate (MailCoreAdditions)
 - (id)replyPrefixForSender:(id)arg1 withSpacer:(BOOL)arg2;
-@property(readonly, copy, nonatomic) NSString *descriptionInBSDMailboxFormat;
 @end
 

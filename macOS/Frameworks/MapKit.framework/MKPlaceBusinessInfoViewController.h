@@ -6,11 +6,13 @@
 
 #import <MapKit/MKPlaceSectionViewController.h>
 
+#import "MKModuleViewControllerProtocol.h"
 #import "_MKInfoCardChildViewControllerAnalyticsDelegate.h"
 
 @class MKMapItem, MKPlaceSectionHeaderView, NSString, _MKPlaceBusinessInfoRow;
 
-@interface MKPlaceBusinessInfoViewController : MKPlaceSectionViewController <_MKInfoCardChildViewControllerAnalyticsDelegate>
+__attribute__((visibility("hidden")))
+@interface MKPlaceBusinessInfoViewController : MKPlaceSectionViewController <_MKInfoCardChildViewControllerAnalyticsDelegate, MKModuleViewControllerProtocol>
 {
     MKMapItem *_mapItem;
     MKPlaceSectionHeaderView *_headerView;
@@ -20,10 +22,14 @@
 + (BOOL)mapItemHasBusinessInfoToDisplay:(id)arg1;
 - (void).cxx_destruct;
 - (id)infoCardChildUnactionableUIElements;
+- (id)infoCardChildPossibleActions;
 - (void)_updateBusinessInfo;
-- (void)infoCardThemeChanged:(id)arg1;
+- (void)infoCardThemeChanged;
+- (id)_stringForAmenity:(int)arg1;
+- (id)_imageForApplePay;
 @property(retain, nonatomic) MKMapItem *mapItem;
 - (void)viewDidLoad;
+- (BOOL)_canShowWhileLocked;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

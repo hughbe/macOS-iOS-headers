@@ -10,6 +10,7 @@
 
 @class NSSound, NSString, TURepeatingActor;
 
+__attribute__((visibility("hidden")))
 @interface TUNSSoundPlayer : NSObject <NSSoundDelegate>
 {
     TURepeatingActor *_repeatingActor;
@@ -17,10 +18,10 @@
     CDUnknownBlockType _iterationComplete;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType iterationComplete; // @synthesize iterationComplete=_iterationComplete;
-@property(nonatomic) NSSound *sound; // @synthesize sound=_sound;
-@property(retain, nonatomic) TURepeatingActor *repeatingActor; // @synthesize repeatingActor=_repeatingActor;
 - (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType iterationComplete; // @synthesize iterationComplete=_iterationComplete;
+@property(retain, nonatomic) NSSound *sound; // @synthesize sound=_sound;
+@property(retain, nonatomic) TURepeatingActor *repeatingActor; // @synthesize repeatingActor=_repeatingActor;
 - (void)sound:(id)arg1 didFinishPlaying:(BOOL)arg2;
 @property(readonly, nonatomic, getter=isPlaying) BOOL playing;
 - (void)stopPlaying;

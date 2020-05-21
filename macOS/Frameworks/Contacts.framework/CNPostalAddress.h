@@ -15,9 +15,10 @@
 
 @interface CNPostalAddress : NSObject <CNObjectValidation, NSCopying, NSMutableCopying, NSSecureCoding>
 {
-    NSString *_subAdministrativeArea;
     NSString *_street;
+    NSString *_subLocality;
     NSString *_city;
+    NSString *_subAdministrativeArea;
     NSString *_state;
     NSString *_postalCode;
     NSString *_country;
@@ -28,25 +29,28 @@
 + (BOOL)supportsSecureCoding;
 + (id)postalAddressWithDictionaryRepresentation:(id)arg1;
 + (id)localizedStringForKey:(id)arg1;
++ (id)postalAddressWithAddressBookDictionaryRepresentation:(id)arg1;
+- (void).cxx_destruct;
 @property(copy) NSString *formattedAddress; // @synthesize formattedAddress=_formattedAddress;
 @property(copy) NSString *ISOCountryCode; // @synthesize ISOCountryCode=_ISOCountryCode;
 @property(copy) NSString *country; // @synthesize country=_country;
 @property(copy) NSString *postalCode; // @synthesize postalCode=_postalCode;
 @property(copy) NSString *state; // @synthesize state=_state;
+@property(copy) NSString *subAdministrativeArea; // @synthesize subAdministrativeArea=_subAdministrativeArea;
 @property(copy) NSString *city; // @synthesize city=_city;
+@property(copy) NSString *subLocality; // @synthesize subLocality=_subLocality;
 @property(copy) NSString *street; // @synthesize street=_street;
 - (BOOL)isValid:(id *)arg1;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, copy) NSString *description;
-@property(readonly, copy) NSString *subAdministrativeArea;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithPostalAddress:(id)arg1;
 - (id)dictionaryRepresentation;
+- (id)addressBookDictionaryRepresentation;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

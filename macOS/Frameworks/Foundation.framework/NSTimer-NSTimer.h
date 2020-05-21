@@ -8,6 +8,8 @@
 
 @interface NSTimer (NSTimer)
 + (id)timerWithFireDate:(id)arg1 target:(id)arg2 selector:(SEL)arg3 userInfo:(id)arg4;
++ (id)scheduledTimerWithTimeInterval:(double)arg1 repeats:(BOOL)arg2 block:(CDUnknownBlockType)arg3;
++ (id)timerWithTimeInterval:(double)arg1 repeats:(BOOL)arg2 block:(CDUnknownBlockType)arg3;
 + (id)scheduledTimerWithTimeInterval:(double)arg1 target:(id)arg2 selector:(SEL)arg3 userInfo:(id)arg4 repeats:(BOOL)arg5;
 + (id)timerWithTimeInterval:(double)arg1 target:(id)arg2 selector:(SEL)arg3 userInfo:(id)arg4 repeats:(BOOL)arg5;
 + (id)scheduledTimerWithTimeInterval:(double)arg1 invocation:(id)arg2 repeats:(BOOL)arg3;
@@ -30,5 +32,6 @@
 - (BOOL)isValid;
 - (void)invalidate;
 - (id)initWithFireDate:(id)arg1 interval:(double)arg2 target:(id)arg3 selector:(SEL)arg4 userInfo:(id)arg5 repeats:(BOOL)arg6;
+- (id)initWithFireDate:(id)arg1 interval:(double)arg2 repeats:(BOOL)arg3 block:(CDUnknownBlockType)arg4;
 @end
 

@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (void)_setUpConstraints;
 - (void)_setUpCheckmarkTextField;
+- (void)prepareForReuse;
 @property(nonatomic, getter=isChecked) BOOL checked;
 - (id)initWithFrame:(struct CGRect)arg1;
 

@@ -6,7 +6,7 @@
 
 #import <CloudKitDaemon/CKDOperation.h>
 
-@class CKShareMetadata, NSData, NSString, NSURL;
+@class CKShareMetadata, NSData, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CKDCompleteParticipantVettingOperation : CKDOperation
@@ -19,14 +19,19 @@ __attribute__((visibility("hidden")))
     NSString *_vettingPhone;
     NSString *_routingKey;
     NSData *_encryptedKey;
+    NSString *_baseToken;
+    NSString *_displayedHostname;
     struct _OpaquePCSShareProtection *_protectionInfo;
-    NSURL *_shareURL;
+    NSString *_shortToken;
     CKShareMetadata *_shareMetadata;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) CKShareMetadata *shareMetadata; // @synthesize shareMetadata=_shareMetadata;
-@property(retain, nonatomic) NSURL *shareURL; // @synthesize shareURL=_shareURL;
+@property(retain, nonatomic) NSString *shortToken; // @synthesize shortToken=_shortToken;
 @property(nonatomic) struct _OpaquePCSShareProtection *protectionInfo; // @synthesize protectionInfo=_protectionInfo;
+@property(readonly, nonatomic) NSString *displayedHostname; // @synthesize displayedHostname=_displayedHostname;
+@property(readonly, nonatomic) NSString *baseToken; // @synthesize baseToken=_baseToken;
 @property(readonly, nonatomic) NSData *encryptedKey; // @synthesize encryptedKey=_encryptedKey;
 @property(readonly, nonatomic) NSString *routingKey; // @synthesize routingKey=_routingKey;
 @property(readonly, nonatomic) NSString *vettingPhone; // @synthesize vettingPhone=_vettingPhone;
@@ -35,13 +40,13 @@ __attribute__((visibility("hidden")))
 @property(copy, nonatomic) CDUnknownBlockType verifyCompletionBlock; // @synthesize verifyCompletionBlock=_verifyCompletionBlock;
 @property(copy, nonatomic) CDUnknownBlockType verifyProgressShareMetadataFetchedBlock; // @synthesize verifyProgressShareMetadataFetchedBlock=_verifyProgressShareMetadataFetchedBlock;
 @property(copy, nonatomic) CDUnknownBlockType verifyProgressURLReconstructedBlock; // @synthesize verifyProgressURLReconstructedBlock=_verifyProgressURLReconstructedBlock;
-- (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)main;
 - (void)_verifyOONParticipant;
+- (void)_reconstructShareURL;
 - (void)_forceFetchShareMetadata;
 - (void)_performAuthKitVerification;
-- (void)_reconstructShareURL;
+- (void)_reconstructShortToken;
 - (id)shortSharingTokenFromData:(id)arg1;
 - (id)shortSharingTokenFromFullToken:(id)arg1;
 - (id)nameForState:(unsigned long long)arg1;

@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_queue> *_queue;
 }
 
+- (void).cxx_destruct;
 - (void)navdProxyReceivedHypothesis:(id)arg1 forClient:(id)arg2;
 - (void)navdProxyReceivedData:(id)arg1 ofType:(id)arg2;
 - (void)dealloc;
@@ -30,7 +31,7 @@ __attribute__((visibility("hidden")))
 - (void)startMonitoringDestination:(id)arg1 forClient:(id)arg2 uuid:(id)arg3 handler:(CDUnknownBlockType)arg4;
 - (void)shouldPostDarwinNotificationForNextUpdate:(BOOL)arg1;
 - (void)statusWithCallback:(CDUnknownBlockType)arg1;
-@property(readonly, retain, nonatomic) id <GEONavdXPCInterface> remoteObjectProxyThreadUnsafe;
+@property(readonly, nonatomic) id <GEONavdXPCInterface> remoteObjectProxyThreadUnsafe;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)_connectToDaemonIfNeededThreadUnsafe;

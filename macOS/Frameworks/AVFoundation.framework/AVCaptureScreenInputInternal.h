@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class AVCaptureInputPort, MediaIOGraphNodeDescription, NSArray, NSDictionary;
+@class MediaIOGraphNodeDescription, NSArray, NSDictionary;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureScreenInputInternal : NSObject
 {
     MediaIOGraphNodeDescription *inputUnitNodeDescription;
-    AVCaptureInputPort *videoPort;
+    NSArray *ports;
     CDStruct_1b6d18a9 minFrameDuration;
     unsigned int displayID;
     struct CGRect cropRect;
@@ -20,7 +21,6 @@
     BOOL capturesMouseClicks;
     BOOL capturesCursor;
     int captureTimeScale;
-    BOOL removesDuplicateFrames;
     int graphicsSubsystemErrorStatus;
     NSDictionary *pixelBufferAttributesFromSession;
     NSArray *outputCodecTypesFromSession;

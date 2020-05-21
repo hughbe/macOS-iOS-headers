@@ -56,6 +56,9 @@
 - (void)setPublicAccessEnabled:(BOOL)arg1 forAlbumWithGUID:(NSString *)arg2 info:(NSDictionary *)arg3 completionBlock:(void (^)(NSDictionary *, NSError *))arg4;
 - (void)removeAccessControlEntryWithGUID:(NSString *)arg1 info:(NSDictionary *)arg2;
 - (void)addAccessControlEntries:(NSArray *)arg1 toAlbumWithGUID:(NSString *)arg2 info:(NSDictionary *)arg3;
+- (void)markAsSpamInvitationWithToken:(NSString *)arg1 info:(NSDictionary *)arg2;
+- (void)markAsSpamInvitationWithGUID:(NSString *)arg1 info:(NSDictionary *)arg2;
+- (void)markAsSpamAlbumWithGUID:(NSString *)arg1 info:(NSDictionary *)arg2;
 - (void)rejectInvitationWithGUID:(NSString *)arg1 info:(NSDictionary *)arg2;
 - (void)acceptInvitationWithGUID:(NSString *)arg1 info:(NSDictionary *)arg2;
 - (void)acceptInvitationWithToken:(NSString *)arg1 info:(NSDictionary *)arg2 completionBlock:(void (^)(NSDictionary *, NSError *))arg3;

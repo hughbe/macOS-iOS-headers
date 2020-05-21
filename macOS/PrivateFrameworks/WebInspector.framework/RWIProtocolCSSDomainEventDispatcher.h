@@ -11,11 +11,6 @@
     struct AugmentableInspectorController *_controller;
 }
 
-- (void)unregisteredNamedFlowContentElementWithDocumentNodeId:(int)arg1 flowName:(id)arg2 contentNodeId:(int)arg3;
-- (void)registeredNamedFlowContentElementWithDocumentNodeId:(int)arg1 flowName:(id)arg2 contentNodeId:(int)arg3 nextContentNodeId:(int)arg4;
-- (void)regionOversetChangedWithNamedFlow:(id)arg1;
-- (void)namedFlowRemovedWithDocumentNodeId:(int)arg1 flowName:(id)arg2;
-- (void)namedFlowCreatedWithNamedFlow:(id)arg1;
 - (void)styleSheetRemovedWithStyleSheetId:(id)arg1;
 - (void)styleSheetAddedWithHeader:(id)arg1;
 - (void)styleSheetChangedWithStyleSheetId:(id)arg1;

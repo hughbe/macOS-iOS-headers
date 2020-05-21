@@ -11,15 +11,21 @@
 }
 
 + (id)entityForKey:(id)arg1;
-+ (id)predicateForKey:(id)arg1 submitted:(BOOL)arg2;
++ (id)predicateForKey:(id)arg1 beginsWith:(BOOL)arg2 matchReportVersion:(BOOL)arg3;
++ (id)predicateForKey:(id)arg1 beginsWith:(BOOL)arg2 submitted:(BOOL)arg3 matchReportVersion:(BOOL)arg4;
++ (id)predicateForKeyBeginsWith:(id)arg1;
++ (id)predicateForRecordsMatchingKey:(id)arg1;
 + (id)predicateForKey:(id)arg1;
 + (id)predicateForRecordsSubmittedForKey:(id)arg1;
 + (id)predicateForRecordsSubmitted;
++ (id)predicateForRecordsNotSubmittedForKeyBeginsWith:(id)arg1;
 + (id)predicateForRecordsNotSubmittedForKey:(id)arg1;
 + (id)predicateForRecordsNotSubmitted;
 + (id)predicateForAllRecords;
++ (id)predicateForRecordsWithVersionMismatch;
 + (id)predicateForRecordsOlderThan:(id)arg1;
 + (id)predicateForRecordsInDateRangeStart:(id)arg1 end:(id)arg2;
++ (void)initialize;
 
 @end
 

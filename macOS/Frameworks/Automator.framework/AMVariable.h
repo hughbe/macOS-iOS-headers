@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@class NSDictionary, NSImage, NSMutableArray, NSMutableSet, NSString;
+@class AMDescriptionViewItem, NSDictionary, NSImage, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 
-@interface AMVariable : NSObject <NSCoding, NSCopying>
+@interface AMVariable : NSObject <NSSecureCoding, NSCopying>
 {
     NSString *_name;
     NSString *_type;
@@ -28,73 +28,60 @@
 
 + (id)sharedRunShellScriptAction;
 + (BOOL)checkVariablesDirectoryOnDisk;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(copy) NSString *UUID; // @synthesize UUID=_UUID;
+@property(retain) NSImage *icon; // @synthesize icon=_icon;
+@property(getter=isCached, setter=setCached:) BOOL cached; // @synthesize cached=_isCached;
+@property(copy) id storedEvaluatedValue; // @synthesize storedEvaluatedValue=_storedEvaluatedValue;
+@property(copy, nonatomic) id value; // @synthesize value=_value;
+@property(copy) NSString *identifier; // @synthesize identifier=_identifier;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
+@property(copy) NSString *type; // @synthesize type=_type;
 - (id)eventDidFail:(const struct AEDesc *)arg1 withError:(id)arg2;
 - (id)menuWithRepresentedObject:(id)arg1 target:(id)arg2;
 - (long long)localizedCaseInsensitiveCompare:(id)arg1;
-- (id)dependentVariables;
+@property(readonly, nonatomic) NSMutableSet *dependentVariables;
 - (void)removeChild:(id)arg1;
 - (void)replaceChild:(id)arg1 withChild:(id)arg2;
 - (BOOL)canAddChild:(id)arg1;
 - (BOOL)addChild:(id)arg1;
-- (BOOL)hasChildren;
+@property(readonly, nonatomic) BOOL hasChildren;
 - (void)addChildren:(id)arg1;
-- (void)setChildren:(id)arg1;
-- (id)children;
-- (void)setChildrenUUIDs:(id)arg1;
-- (id)childrenUUIDs;
-- (id)propertyList;
-- (id)UUIDWithVariableForm;
-- (void)setUUID:(id)arg1;
-- (id)UUID;
-- (id)_descriptionViewItem;
-- (id)userDescription;
-- (void)setIcon:(id)arg1;
-- (id)icon;
-- (void)setCached:(BOOL)arg1;
-- (BOOL)isCached;
-- (BOOL)isStorage;
-- (BOOL)isCurrentTime;
-- (BOOL)isCurrentDate;
-- (BOOL)isShellScript;
-- (BOOL)isAppleScript;
-- (BOOL)isPath;
-- (BOOL)isText;
-- (BOOL)isChild;
-- (BOOL)isTemplate;
-- (BOOL)isBuiltIn;
-- (BOOL)isEditable;
-- (BOOL)isLeaf;
-- (void)setFormat:(id)arg1;
-- (id)format;
-- (void)setProvidesDictionary:(id)arg1;
-- (id)providesDictionary;
+@property(retain, nonatomic) NSMutableSet *children;
+@property(retain, nonatomic) NSMutableArray *childrenUUIDs;
+@property(readonly, nonatomic) NSMutableDictionary *propertyList;
+@property(readonly, nonatomic) NSString *UUIDWithVariableForm;
+@property(readonly, nonatomic) AMDescriptionViewItem *_descriptionViewItem;
+@property(readonly, nonatomic) NSString *userDescription;
+@property(readonly, nonatomic) BOOL isStorage;
+@property(readonly, nonatomic) BOOL isCurrentTime;
+@property(readonly, nonatomic) BOOL isCurrentDate;
+@property(readonly, nonatomic) BOOL isShellScript;
+@property(readonly, nonatomic) BOOL isAppleScript;
+@property(readonly, nonatomic) BOOL isPath;
+@property(readonly, nonatomic) BOOL am_isText;
+@property(readonly, nonatomic) BOOL isChild;
+@property(readonly, nonatomic) BOOL isTemplate;
+@property(readonly, nonatomic, getter=isBuiltIn) BOOL builtIn;
+@property(readonly, nonatomic, getter=isEditable) BOOL editable;
+@property(readonly, nonatomic) BOOL isLeaf;
+@property(retain, nonatomic) id format;
+@property(copy, nonatomic) NSDictionary *providesDictionary;
 - (id)shellScriptValue;
 - (id)AppleScriptValue;
 - (id)currentDateTimeValue;
-- (void)setPathValue:(id)arg1;
-- (id)pathValue;
-- (id)stringValue;
+@property(retain, nonatomic) NSString *pathValue;
+@property(readonly, nonatomic) NSString *stringValue;
 - (id)evaluatedPathValueForceEvaluation:(BOOL)arg1;
-- (id)evaluatedStringValue;
+@property(readonly, nonatomic) NSString *evaluatedStringValue;
 - (id)evaluatedStringValueForceEvaluation:(BOOL)arg1;
 - (id)evaluatedValueForceEvaluation:(BOOL)arg1;
-- (void)setStoredEvaluatedValue:(id)arg1;
-- (id)storedEvaluatedValue;
-- (void)setValue:(id)arg1;
-- (id)value;
-- (void)setIdentifier:(id)arg1;
-- (id)identifier;
-- (void)setType:(id)arg1;
-- (id)type;
-- (id)nameWithVariableForm;
-- (void)setName:(id)arg1;
-- (id)name;
+@property(readonly, nonatomic) NSString *nameWithVariableForm;
 - (id)description;
-- (id)syncChangeRecord;
 - (BOOL)removeFromDisk;
 - (BOOL)writeToDisk;
 - (void)convertTemplateIdentifier;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1 newChildren:(BOOL)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;

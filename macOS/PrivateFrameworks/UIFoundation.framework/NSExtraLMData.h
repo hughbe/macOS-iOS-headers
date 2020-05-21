@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CUIStyleEffectConfiguration, NSLayoutManagerTextBlockRowArrayCache, NSLock, NSMutableArray, NSParagraphArbitrator, NSRunStorage, NSTextContainer;
+@class CUIStyleEffectConfiguration, NSLayoutManagerTextBlockRowArrayCache, NSLock, NSMutableArray, NSMutableSet, NSParagraphArbitrator, NSRunStorage, NSTextContainer;
 
 @interface NSExtraLMData : NSObject
 {
@@ -38,6 +38,7 @@
     NSLayoutManagerTextBlockRowArrayCache *_rowArrayCache;
     NSParagraphArbitrator *_paragraphArbitrator;
     CUIStyleEffectConfiguration *_styleEffectConfig;
+    NSMutableSet *_viewProviders;
     struct __lmFlags2 {
         unsigned int glyphCause:6;
         unsigned int layoutCause:6;
@@ -49,8 +50,20 @@
         unsigned int drawsUnderlinesLikeWebKit:1;
         unsigned int drawsDebugBaselines:1;
         unsigned int mirrorsTextAlignment:1;
-        unsigned int reserved:12;
+        unsigned int forcesTrackingFloor:1;
+        unsigned int isLiveScrolling:1;
+        unsigned int hasCustomUnderlineColor:1;
+        unsigned int applicationPlatformContext:3;
+        unsigned int limitsLayoutForSuspiciousContents:1;
+        unsigned int delegateRespondsToRenderingColor:1;
+        unsigned int firstTextViewRespondsToRenderingColor:1;
+        unsigned int usesCustomBackgroundRectArray:1;
+        unsigned int usesDefaultHyphenation:1;
+        unsigned int reserved:1;
     } _lmFlags2;
+    struct _NSGlyphIndexForPointCache _glyphIndexForPointCache;
+    long long _currentChangeInLength;
+    double _timeStampForResizeInScroll;
 }
 
 @end

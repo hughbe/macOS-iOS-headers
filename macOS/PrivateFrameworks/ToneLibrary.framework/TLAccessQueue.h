@@ -10,18 +10,17 @@
 
 @interface TLAccessQueue : NSObject
 {
-    NSString *_label;
     NSString *_threadLocalStorageKey;
     NSObject<OS_dispatch_queue> *_serialQueue;
+    NSString *_label;
 }
 
-@property(nonatomic, setter=_setSerialQueue:) NSObject<OS_dispatch_queue> *_serialQueue; // @synthesize _serialQueue;
-@property(copy, nonatomic, setter=_setThreadLocalStorageKey:) NSString *_threadLocalStorageKey; // @synthesize _threadLocalStorageKey;
-@property(copy, nonatomic, setter=_setLabel:) NSString *label; // @synthesize label=_label;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSString *label; // @synthesize label=_label;
 - (void)_performSynchronousBlockInSerialQueue:(CDUnknownBlockType)arg1;
+- (void)assertNotRunningInAccessQueue;
 - (void)performAsynchronousBlock:(CDUnknownBlockType)arg1;
 - (void)performSynchronousBlock:(CDUnknownBlockType)arg1;
-- (void)dealloc;
 - (id)initWithLabel:(id)arg1 appendUUIDToLabel:(BOOL)arg2;
 
 @end

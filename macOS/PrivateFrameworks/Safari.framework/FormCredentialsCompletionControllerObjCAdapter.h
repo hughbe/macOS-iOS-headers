@@ -4,21 +4,28 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Safari/FormAutoFillCompletionControllerObjCAdapter.h>
+#import <Safari/FormCompletionControllerObjCAdapter.h>
+
+@class AutoFillLocalAuthenticationManager;
 
 __attribute__((visibility("hidden")))
-@interface FormCredentialsCompletionControllerObjCAdapter : FormAutoFillCompletionControllerObjCAdapter
+@interface FormCredentialsCompletionControllerObjCAdapter : FormCompletionControllerObjCAdapter
 {
+    AutoFillLocalAuthenticationManager *_autoFillLocalAuthenticationManager;
 }
 
-+ (id)titleForCredentialMatch:(id)arg1;
-- (void)_registerTableViewCellClasses;
-- (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
+- (void).cxx_destruct;
+-     // Error parsing type: @24@0:8r^{CompletionListItem=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}@BQ@@}16, name: _itemNameForAutoFillAuthorizationSheetWithItem:
+- (void)didRefreshCompletionListItems:(const Vector_e1d4bda3 *)arg1;
+- (id)_firstExistingCellViewPassingTest:(CDUnknownBlockType)arg1;
+- (void)_registerCredentialAutoFillTableViewCellClasses;
+- (id)_url;
+- (void)tableViewSelectionDidChange:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
-- (id)_hostDescriptionForHost:(id)arg1;
-- (struct FormCredentialsCompletionController *)_formCredentialsCompletionController;
+-     // Error parsing type: ^{FormCredentialsCompletionController=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}Bq@@@@{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@@dBBBBB{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@QB^{SafeAutoFillConfirmationController}@@{Frame={WKRetainPtr<const void *>=^v}}@@BBB@BBB@@@i@@@@}16@0:8, name: _formCredentialsCompletionController
+@property(readonly, nonatomic) BOOL abortCompletionBlocked;
 - (double)widthOfWidestCell;
-- (id)initWithCompletionController:(struct FormCompletionController *)arg1;
+-     // Error parsing type: @24@0:8^{FormCompletionController=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}Bq@@@@{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@@dBBBBB{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@QB^{SafeAutoFillConfirmationController}@@{Frame={WKRetainPtr<const void *>=^v}}@@BBB@BBB@}16, name: initWithCompletionController:
 
 @end
 

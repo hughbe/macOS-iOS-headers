@@ -13,6 +13,7 @@
 - (void)draggingEnded:(id)arg1;
 - (id)setUpTokenAttachmentCell:(id)arg1 forRepresentedObject:(id)arg2;
 - (id)acceptableDragTypes;
+- (void)dealloc;
 
 @end
 

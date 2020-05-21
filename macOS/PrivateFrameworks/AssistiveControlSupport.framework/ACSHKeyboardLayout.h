@@ -6,31 +6,41 @@
 
 #import "NSObject.h"
 
-@class NSData, NSString;
+@class NSData, NSMutableDictionary, NSString;
 
 @interface ACSHKeyboardLayout : NSObject
 {
-    unsigned long long _keyboardHWType;
+    unsigned char _keyboardHWType;
     NSString *_currentInputSourceName;
-    NSData *_ucData;
+    NSData *__ucData;
+    NSMutableDictionary *_keyCapsByModifiersAndDeadKeyState;
     struct UCKeyboardLayout *_ucKeyboardLayout;
-    unsigned long long _modifierKeyState;
-    unsigned int _deadKeyState;
-    BOOL _lastKeyWasDeadKey;
 }
 
-+ (id)keyboardLayoutForHWType:(unsigned long long)arg1;
++ (id)_allRelevantModifierMaskCombinations;
++ (unsigned long long)_functionMappedMacKeyCodeForMacKeyCode:(unsigned long long)arg1 modifiers:(unsigned int)arg2;
++ (unsigned long long)relevantModifiersFromModifiers:(unsigned long long)arg1;
++ (id)relevantModifiers;
++ (void)updateInputSourceForAllLayouts;
++ (id)keyboardLayoutForCurrentKeyboardType;
++ (id)keyboardLayoutForHWType:(unsigned char)arg1;
+- (void).cxx_destruct;
+@property struct UCKeyboardLayout *ucKeyboardLayout; // @synthesize ucKeyboardLayout=_ucKeyboardLayout;
+@property unsigned char keyboardHWType; // @synthesize keyboardHWType=_keyboardHWType;
+@property(retain) NSMutableDictionary *keyCapsByModifiersAndDeadKeyState; // @synthesize keyCapsByModifiersAndDeadKeyState=_keyCapsByModifiersAndDeadKeyState;
+@property(retain, nonatomic) NSData *_ucData; // @synthesize _ucData=__ucData;
 @property(copy, nonatomic) NSString *currentInputSourceName; // @synthesize currentInputSourceName=_currentInputSourceName;
-- (void)dealloc;
+- (BOOL)usbKeyCodeIsModifiedByCapsLock:(unsigned long long)arg1 modifiers:(unsigned long long)arg2 deadKeyState:(unsigned int)arg3;
+- (BOOL)macKeyCodeIsModifiedByCapsLock:(unsigned long long)arg1 modifiers:(unsigned long long)arg2 deadKeyState:(unsigned int)arg3;
 - (id)description;
-- (id)_fixedStringForMacKeyCode:(unsigned long long)arg1;
-- (unsigned long long)_keycodeWithFunctionKey:(unsigned long long)arg1;
-- (id)stringFromMacKeyCode:(unsigned long long)arg1 modifiers:(unsigned int)arg2;
-- (id)stringFromUSBKeyCode:(unsigned long long)arg1 modifiers:(unsigned int)arg2;
-- (unsigned int)_ucModifiersForNSModifiers:(unsigned long long)arg1;
+- (id)keyCapsByModifierMaskForUSBKeyCode:(unsigned long long)arg1 deadKeyState:(unsigned int)arg2;
+- (void)_clearKeyCapsCache;
+- (id)stringFromMacKeyCode:(unsigned long long)arg1 modifiers:(unsigned int)arg2 deadKeyState:(unsigned int)arg3 isDeadKey:(char *)arg4;
+- (id)stringFromUSBKeyCode:(unsigned long long)arg1 modifiers:(unsigned int)arg2 deadKeyState:(unsigned int)arg3 isDeadKey:(char *)arg4;
+- (unsigned int)_carbonModifiersForNSModifiers:(unsigned long long)arg1;
 - (void)updateInputSource;
-- (void)_setKeyboardHWType:(unsigned long long)arg1;
-- (id)initWithKeyboardHWType:(unsigned long long)arg1;
+- (void)_setKeyboardHWType:(unsigned char)arg1;
+- (id)initWithKeyboardHWType:(unsigned char)arg1;
 
 @end
 

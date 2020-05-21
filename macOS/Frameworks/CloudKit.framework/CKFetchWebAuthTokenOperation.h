@@ -10,15 +10,14 @@
 
 @interface CKFetchWebAuthTokenOperation : CKDatabaseOperation
 {
-    NSString *_APIToken;
     CDUnknownBlockType _fetchWebAuthTokenCompletionBlock;
+    NSString *_APIToken;
     NSString *_webAuthToken;
 }
 
-@property(copy, nonatomic) NSString *webAuthToken; // @synthesize webAuthToken=_webAuthToken;
-@property(copy, nonatomic) CDUnknownBlockType fetchWebAuthTokenCompletionBlock; // @synthesize fetchWebAuthTokenCompletionBlock=_fetchWebAuthTokenCompletionBlock;
-@property(copy, nonatomic) NSString *APIToken; // @synthesize APIToken=_APIToken;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSString *webAuthToken; // @synthesize webAuthToken=_webAuthToken;
+@property(copy, nonatomic) NSString *APIToken; // @synthesize APIToken=_APIToken;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleCompletionCallback:(id)arg1;
 - (void)fillFromOperationInfo:(id)arg1;
@@ -28,6 +27,7 @@
 - (Class)operationInfoClass;
 - (id)activityCreate;
 - (BOOL)CKOperationShouldRun:(id *)arg1;
+@property(copy, nonatomic) CDUnknownBlockType fetchWebAuthTokenCompletionBlock; // @synthesize fetchWebAuthTokenCompletionBlock=_fetchWebAuthTokenCompletionBlock;
 - (id)initWithAPIToken:(id)arg1;
 - (id)init;
 

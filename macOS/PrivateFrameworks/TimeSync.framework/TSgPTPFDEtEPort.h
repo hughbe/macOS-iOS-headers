@@ -4,16 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <TimeSync/TSgPTPPort.h>
+#import <TimeSync/TSgPTPNetworkPort.h>
 
-@class NSDictionary;
+@class TSgPTPPortStatistics;
 
-@interface TSgPTPFDEtEPort : TSgPTPPort
+@interface TSgPTPFDEtEPort : TSgPTPNetworkPort
 {
+    TSgPTPPortStatistics *_statistics;
 }
 
 + (id)diagnosticDescriptionForService:(unsigned int)arg1 withIndent:(id)arg2;
-@property(readonly, nonatomic) NSDictionary *statistics; // @dynamic statistics;
+@property(retain, nonatomic) TSgPTPPortStatistics *statistics; // @synthesize statistics=_statistics;
+- (void)dealloc;
+- (id)_statistics;
+- (void)updateProperties;
+- (BOOL)_commonInitWithService:(unsigned int)arg1;
 
 @end
 

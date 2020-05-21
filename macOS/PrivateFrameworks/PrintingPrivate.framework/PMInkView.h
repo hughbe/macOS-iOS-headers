@@ -21,8 +21,8 @@
 - (void)addLowInkBadgeAt:(struct CGPoint)arg1 withTooltip:(id)arg2;
 - (id)addAirPrintSuppliesButtonAt:(struct CGPoint)arg1 inRect:(struct CGRect)arg2;
 - (void)airprintButtonSelected:(id)arg1;
-- (id)addTextViewForString:(id)arg1 at:(struct CGPoint)arg2 withAttrs:(id)arg3 width:(double)arg4 maxLines:(int)arg5;
-- (id)addStaticText:(id)arg1 withFrame:(struct CGRect)arg2 alignment:(unsigned long long)arg3 axHelp:(id)arg4;
+- (id)addTextViewForString:(id)arg1 at:(struct CGPoint)arg2 withAttrs:(id)arg3 width:(double)arg4;
+- (id)addStaticText:(id)arg1 withAttrs:(id)arg2 frame:(struct CGRect)arg3 alignment:(long long)arg4 axHelp:(id)arg5;
 
 @end
 

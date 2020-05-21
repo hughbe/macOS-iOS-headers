@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSData, NSDictionary, NSString, NSURL;
 
-@interface NSFileWrapper : NSObject <NSCoding>
+@interface NSFileWrapper : NSObject <NSSecureCoding>
 {
     NSDictionary *_fileAttributes;
     NSString *_preferredFileName;
@@ -20,6 +20,7 @@
     id _moreVars;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)_newContentsAtURL:(id)arg1 path:(id)arg2 itemKind:(id)arg3 oldChildrenByUniqueFileName:(id)arg4 options:(unsigned long long)arg5 error:(id *)arg6;
 + (BOOL)_canSafelyMapFilesAtPath:(id)arg1;
 + (BOOL)_forPath:(id)arg1 getItemKind:(id *)arg2 modificationDate:(id *)arg3;
@@ -60,7 +61,7 @@
 - (void)_updateDescendantFileNames;
 - (id)_attributesToWrite;
 - (BOOL)_writeContentsToURL:(id)arg1 path:(id)arg2 originalContentsURL:(id)arg3 tryHardLinking:(BOOL)arg4 didHardLinking:(char *)arg5 error:(id *)arg6;
-- (void)_forWritingToURL:(id)arg1 returnContentsLazyReadingError:(id *)arg2;
+- (BOOL)_forWritingToURL:(id)arg1 returnContentsLazyReadingError:(id *)arg2;
 - (BOOL)readFromURL:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3;
 - (BOOL)_readContentsFromURL:(id)arg1 path:(id)arg2 itemKind:(id)arg3 options:(unsigned long long)arg4 error:(id *)arg5;
 - (BOOL)matchesContentsOfURL:(id)arg1;

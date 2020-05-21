@@ -13,7 +13,7 @@
 #import "SafariViewDelegate.h"
 #import "SidebarTopBarViewDelegate.h"
 
-@class AnnotatedBookmarksSidebarViewController, AutomaticReadingListSidebarViewController, BookmarkFolderPickerMenuController, BookmarksSidebarViewController, NSMenu, NSString, NSView, NSViewController<SidebarContentViewController><CustomKeyViewLoop><SidebarContentFiltering>, ReadingListSidebarViewController, SidebarContainerView, SidebarTopBarView;
+@class AnnotatedBookmarksSidebarViewController, BookmarkFolderPickerMenuController, BookmarksSidebarViewController, NSMenu, NSString, NSView, NSViewController<SidebarContentViewController><CustomKeyViewLoop><SidebarContentFiltering>, ReadingListSidebarViewController, SidebarContainerView, SidebarTopBarView;
 
 __attribute__((visibility("hidden")))
 @interface SidebarViewController : NSViewController <SidebarTopBarViewDelegate, SafariViewDelegate, AnnotatedBookmarksSidebarViewControllerDelegate, BookmarksSidebarViewControllerDelegate, BookmarkFolderPickerMenuControllerDelegate, NSMenuDelegate>
@@ -25,10 +25,11 @@ __attribute__((visibility("hidden")))
     SidebarTopBarView *_topBarView;
     BookmarkFolderPickerMenuController *_pickerController;
     NSMenu *_bookmarkPickerMenu;
+    BOOL _socialLinksSidebarIsShowing;
     AnnotatedBookmarksSidebarViewController *_annotatedBookmarksSidebarViewController;
     BookmarksSidebarViewController *_bookmarksSidebarViewController;
-    AutomaticReadingListSidebarViewController *_automaticReadingListSidebarViewController;
     ReadingListSidebarViewController *_readingListSidebarViewController;
+    id <SidebarStateRestorationContext> _stateRestorationContext;
 }
 
 + (BOOL)canShowReadingListSidebar;
@@ -36,22 +37,23 @@ __attribute__((visibility("hidden")))
 + (double)savedSidebarWidth;
 + (void)registerDefaults;
 + (void)setDefaultSidebarViewMode:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly) BOOL socialLinksSidebarIsShowing; // @synthesize socialLinksSidebarIsShowing=_socialLinksSidebarIsShowing;
+@property(nonatomic) __weak id <SidebarStateRestorationContext> stateRestorationContext; // @synthesize stateRestorationContext=_stateRestorationContext;
 @property(retain, nonatomic) ReadingListSidebarViewController *readingListSidebarViewController; // @synthesize readingListSidebarViewController=_readingListSidebarViewController;
-@property(retain, nonatomic) AutomaticReadingListSidebarViewController *automaticReadingListSidebarViewController; // @synthesize automaticReadingListSidebarViewController=_automaticReadingListSidebarViewController;
 @property(retain, nonatomic) BookmarksSidebarViewController *bookmarksSidebarViewController; // @synthesize bookmarksSidebarViewController=_bookmarksSidebarViewController;
 @property(retain, nonatomic) AnnotatedBookmarksSidebarViewController *annotatedBookmarksSidebarViewController; // @synthesize annotatedBookmarksSidebarViewController=_annotatedBookmarksSidebarViewController;
-- (void).cxx_destruct;
 - (struct CGRect)_topBarButtonFrameForTabWithIdentifier:(id)arg1;
-- (void)updateSharedLinksSidebar;
 - (void)_installViewForActiveMode;
 - (void)_activateViewControllerWithIdentifier:(id)arg1;
 @property(retain, nonatomic) id currentSidebarModeIdentifier;
+- (void)_transitionToFolderHierarchy;
 - (void)didSelectBackButtonInSidebarTopBarView:(id)arg1;
 - (void)sidebarTopBarView:(id)arg1 selectedTabIdentifierDidChange:(id)arg2;
 - (void)bookmarksSidebarViewController:(id)arg1 didNavigateIntoFolder:(id)arg2;
 - (void)_updateTopBarViewBackButton;
+- (void)displayedFolderWasRemovedForAnnotatedBookmarksSidebarViewController:(id)arg1;
 - (void)annotatedBookmarksSidebarViewController:(id)arg1 didNavigateIntoFolder:(id)arg2;
-@property(readonly) BOOL socialLinksSidebarIsShowing;
 @property(readonly) BOOL bookmarksSidebarIsShowing;
 @property(readonly) BOOL bookmarksOutlineIsShowing;
 @property(readonly) BOOL annotatedBookmarksIsShowing;

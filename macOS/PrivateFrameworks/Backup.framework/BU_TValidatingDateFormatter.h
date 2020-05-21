@@ -9,10 +9,11 @@
 __attribute__((visibility("hidden")))
 @interface BU_TValidatingDateFormatter : NSDateFormatter
 {
-    _Bool _specialTodayDateHandling;
+    struct TNSRef<BU_TValidatingDateFormatter, void> _timeOnlyFormatter;
 }
 
-@property(nonatomic) _Bool specialTodayDateHandling; // @synthesize specialTodayDateHandling=_specialTodayDateHandling;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 - (id)stringForObjectValue:(id)arg1;
 - (BOOL)_tracksCacheGenerationCount;
 

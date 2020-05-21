@@ -6,13 +6,18 @@
 
 #import <ParsecUI/PRSTableRowSliceViewController.h>
 
+@class PRSTableRowCardSection;
+
 @interface PRSTableHeaderSliceViewController : PRSTableRowSliceViewController
 {
     BOOL _isCompactTable;
     long long _firstTrailingIndex;
     long long _centerIndex;
+    PRSTableRowCardSection *_section;
 }
 
+- (void).cxx_destruct;
+@property(retain) PRSTableRowCardSection *section; // @synthesize section=_section;
 @property BOOL isCompactTable; // @synthesize isCompactTable=_isCompactTable;
 @property long long centerIndex; // @synthesize centerIndex=_centerIndex;
 @property long long firstTrailingIndex; // @synthesize firstTrailingIndex=_firstTrailingIndex;
@@ -20,8 +25,8 @@
 - (double)labelTopBaselineSpacing;
 - (double)labelBottomBaselineSpacing;
 - (BOOL)shouldAllowOtherViewsToOverlap:(id)arg1;
+- (void)addAccessibilityTableRow:(id)arg1;
 - (void)setupWithTableRowSliceControllers:(id)arg1;
-- (long long)numberOfColumns;
 - (id)initWithCardSection:(id)arg1;
 
 @end

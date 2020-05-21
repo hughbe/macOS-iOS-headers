@@ -6,16 +6,16 @@
 
 #import "_SGDSuggestManagerBaseProtocol.h"
 
-@class NSArray, NSData, NSString;
+@class NSArray, NSData, NSString, _PASDomainSelection;
 
 @protocol _SGDSuggestManagerInternalHarvestProtocol <_SGDSuggestManagerBaseProtocol>
-- (void)deleteInteractionsWithBundleId:(NSString *)arg1 groupIdentifiers:(NSArray *)arg2 completion:(void (^)(NSError *))arg3;
-- (void)deleteInteractionsWithBundleId:(NSString *)arg1 identifiers:(NSArray *)arg2 completion:(void (^)(NSError *))arg3;
-- (void)deleteInteractionsWithBundleId:(NSString *)arg1 completion:(void (^)(NSError *))arg2;
-- (void)deleteSpotlightReferencesWithBundleIdentifier:(NSString *)arg1 completion:(void (^)(NSError *))arg2;
-- (void)deleteSpotlightReferencesWithBundleIdentifier:(NSString *)arg1 domainIdentifiers:(NSArray *)arg2 completion:(void (^)(NSError *))arg3;
-- (void)deleteSpotlightReferencesWithBundleIdentifier:(NSString *)arg1 uniqueIdentifiers:(NSArray *)arg2 completion:(void (^)(NSError *))arg3;
-- (void)purgeSpotlightReferencesWithBundleIdentifier:(NSString *)arg1 uniqueIdentifiers:(NSArray *)arg2 completion:(void (^)(NSError *))arg3;
-- (void)addSearchableItemMetadata:(NSData *)arg1 htmlData:(NSData *)arg2 completion:(void (^)(NSError *))arg3;
+- (void)deleteInteractionsWithBundleId:(NSString *)arg1 groupIdentifiers:(NSArray *)arg2 completion:(void (^)(SGXPCResponse *))arg3;
+- (void)deleteInteractionsWithBundleId:(NSString *)arg1 identifiers:(NSArray *)arg2 completion:(void (^)(SGXPCResponse *))arg3;
+- (void)deleteInteractionsWithBundleId:(NSString *)arg1 completion:(void (^)(SGXPCResponse *))arg2;
+- (void)deleteSpotlightReferencesWithBundleIdentifier:(NSString *)arg1 completion:(void (^)(SGXPCResponse *))arg2;
+- (void)deleteSpotlightReferencesWithBundleIdentifier:(NSString *)arg1 domainIdentifiers:(_PASDomainSelection *)arg2 completion:(void (^)(SGXPCResponse *))arg3;
+- (void)deleteSpotlightReferencesWithBundleIdentifier:(NSString *)arg1 uniqueIdentifiers:(NSArray *)arg2 completion:(void (^)(SGXPCResponse *))arg3;
+- (void)purgeSpotlightReferencesWithBundleIdentifier:(NSString *)arg1 uniqueIdentifiers:(NSArray *)arg2 completion:(void (^)(SGXPCResponse *))arg3;
+- (void)addSearchableItemMetadata:(NSData *)arg1 htmlData:(NSData *)arg2 completion:(void (^)(SGXPCResponse *))arg3;
 @end
 

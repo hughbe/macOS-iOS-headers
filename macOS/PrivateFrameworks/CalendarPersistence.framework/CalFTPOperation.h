@@ -20,6 +20,7 @@
     BOOL _isFinished;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isFinished; // @synthesize isFinished=_isFinished;
 @property(nonatomic) BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
@@ -32,7 +33,6 @@
 - (void)cancel;
 - (void)start;
 - (id)description;
-- (void)dealloc;
 - (id)initWithURL:(id)arg1 user:(id)arg2 password:(id)arg3;
 - (id)init;
 

@@ -17,6 +17,7 @@
 + (void)_updateAlarms;
 + (void)_updatePushForObjectID:(id)arg1 isDelete:(BOOL)arg2;
 + (void)_updateSessionForObjectID:(id)arg1 isDelete:(BOOL)arg2;
++ (void)_createLocalCalendarsIfNeededWithLogTag:(id)arg1;
 + (void)processChange:(id)arg1 changes:(id)arg2;
 + (void)processRemoval:(id)arg1;
 + (void)processAddition:(id)arg1;

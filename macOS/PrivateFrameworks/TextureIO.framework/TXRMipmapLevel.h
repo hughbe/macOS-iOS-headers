@@ -14,12 +14,12 @@
 {
     NSMutableArray *_elements;
     unsigned long long _level;
-    id <TXRDataSourceProvider> _dataSourceProvider;
 }
 
 - (void).cxx_destruct;
 - (void)setImage:(id)arg1 atElement:(unsigned long long)arg2 atFace:(unsigned long long)arg3;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)initAsLevel:(unsigned long long)arg1 dimensions:(unsigned long long)arg2 pixelFormat:(unsigned long long)arg3 alphaInfo:(unsigned long long)arg4 arrayLength:(_Bool)arg5 cubemap:(id)arg6 bufferAllocator: /* Error: Ran out of types for this method. */;
 - (id)initAsLevel:(unsigned long long)arg1 arrayLength:(unsigned long long)arg2 cubemap:(BOOL)arg3 dataSourceProvider:(id)arg4;
 @property(readonly) NSArray *elements;
 

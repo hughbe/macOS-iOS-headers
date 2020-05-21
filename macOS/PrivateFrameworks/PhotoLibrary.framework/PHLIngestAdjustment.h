@@ -6,11 +6,9 @@
 
 #import "NSObject.h"
 
-#import "NSSecureCoding.h"
-
 @class NSData, NSString, PHLIngestAsset;
 
-@interface PHLIngestAdjustment : NSObject <NSSecureCoding>
+@interface PHLIngestAdjustment : NSObject
 {
     BOOL _enabled;
     NSString *_name;
@@ -20,16 +18,13 @@
     NSData *_data;
 }
 
-+ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly) NSData *data; // @synthesize data=_data;
 @property(readonly) long long dbVersion; // @synthesize dbVersion=_dbVersion;
 @property(readonly) BOOL enabled; // @synthesize enabled=_enabled;
 @property(readonly) unsigned long long adjustmentIndex; // @synthesize adjustmentIndex=_adjustmentIndex;
 @property(readonly) PHLIngestAsset *maskAsset; // @synthesize maskAsset=_maskAsset;
 @property(readonly) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 @end
 

@@ -9,14 +9,18 @@
 @class AFDictationOptions, AFSpeechCorrectionInfo, AFSpeechRequestOptions, NSData, NSDictionary, NSError, NSString, NSURL;
 
 @protocol AFDictationService <NSObject>
+- (oneway void)sendUserSelectedAlternativeDictationLanguageCode:(NSString *)arg1;
+- (oneway void)reportIssueForError:(NSError *)arg1 eventType:(long long)arg2 context:(NSDictionary *)arg3;
 - (oneway void)requestOfflineDictationSupportForLanguage:(NSString *)arg1 completion:(void (^)(BOOL, NSError *))arg2;
 - (oneway void)getInstalledOfflineLanguagesWithCompletion:(void (^)(NSArray *))arg1;
 - (oneway void)_sendEngagementFeedback:(long long)arg1 voiceQueryIdentifier:(NSString *)arg2;
 - (oneway void)_startDictationWithURL:(NSURL *)arg1 isNarrowBand:(BOOL)arg2 language:(NSString *)arg3 options:(AFDictationOptions *)arg4;
+- (oneway void)recordAWDSuccessMetrics;
 - (oneway void)recordFailureMetricsForError:(NSError *)arg1;
 - (oneway void)endSession;
 - (oneway void)preheatWithRecordDeviceIdentifier:(NSString *)arg1;
 - (oneway void)preheat;
+- (oneway void)sendSpeechCorrectionInfo:(AFSpeechCorrectionInfo *)arg1 interactionIdentifier:(NSString *)arg2;
 - (oneway void)sendSpeechCorrectionInfo:(AFSpeechCorrectionInfo *)arg1 forCorrectionContext:(NSDictionary *)arg2;
 - (oneway void)updateSpeechOptions:(AFSpeechRequestOptions *)arg1;
 - (oneway void)addRecordedSpeechSampleData:(NSData *)arg1;

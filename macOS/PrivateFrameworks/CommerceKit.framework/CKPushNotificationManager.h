@@ -4,16 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <CommerceKit/CKServiceInterface.h>
+#import "NSObject.h"
 
-@interface CKPushNotificationManager : CKServiceInterface
+@class CKStoreClient;
+
+@interface CKPushNotificationManager : NSObject
 {
     id _delegate;
+    CKStoreClient *_storeClient;
 }
 
++ (id)pushNotificationManagerForStoreClient:(id)arg1;
 + (id)sharedManager;
-@property __weak id <CKPushNotificationManagerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) CKStoreClient *storeClient; // @synthesize storeClient=_storeClient;
+@property __weak id <CKPushNotificationManagerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)_sendChangedToDelegate;
+- (void)_sendSuccessToDelegate;
+- (void)_sendErrorToDelegate:(id)arg1;
 - (BOOL)isRegisteredForAccount:(id)arg1 andMask:(long long)arg2;
 - (BOOL)isRegisteredForAccount:(id)arg1;
 - (BOOL)stopAtSignOut;
@@ -28,14 +36,7 @@
 - (void)getEnabledMedaTypesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (BOOL)registerPushToken;
 - (void)registerDeviceTokenWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)_writeAutoDownloadEnabled:(long long)arg1 forAccount:(id)arg2;
-- (BOOL)_isAutoDownloadEnabledForAccount:(id)arg1;
-- (void)_updateRegisteredDSIDsPreferences:(id)arg1 forDSID:(id)arg2;
-- (BOOL)_setRegisteredDSIDsPreferences:(id)arg1;
-- (id)_registeredDSIDsPreferences;
-- (void)_sendChangedToDelegate;
-- (void)_sendSuccessToDelegate;
-- (void)_sendErrorToDelegate:(id)arg1;
+- (id)initWithStoreClient:(id)arg1;
 
 @end
 

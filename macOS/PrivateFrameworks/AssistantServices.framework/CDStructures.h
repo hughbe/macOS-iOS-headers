@@ -43,8 +43,8 @@ struct ComponentInstanceRecord {
     long long _field1[1];
 };
 
-struct NSDictionary {
-    Class _field1;
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
 };
 
 #pragma mark Typedef'd Structures

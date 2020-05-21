@@ -11,11 +11,9 @@
 }
 
 + (id)sharedInstance;
-- (id)primaryAccountAltDSID;
-- (id)primaryAccountDSID;
-- (id)primaryAccountUsername;
 - (BOOL)isICDPEnabledForDSID:(id)arg1 checkWithServer:(BOOL)arg2;
 - (BOOL)isICDPEnabledForDSID:(id)arg1;
+@property(nonatomic) BOOL hasDisabledKeychainExplicitly;
 
 @end
 

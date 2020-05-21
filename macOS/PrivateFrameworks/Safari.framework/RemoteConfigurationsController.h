@@ -6,48 +6,37 @@
 
 #import "NSObject.h"
 
-#import "NSURLConnectionDataDelegate.h"
-#import "RemoteConfigurationConsumer.h"
-
-@class NSMutableData, NSMutableDictionary, NSString, NSTimer, NSURLConnection, NSURLResponse;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSURL, NSURLSessionDataTask;
 
 __attribute__((visibility("hidden")))
-@interface RemoteConfigurationsController : NSObject <NSURLConnectionDataDelegate, RemoteConfigurationConsumer>
+@interface RemoteConfigurationsController : NSObject
 {
-    NSMutableDictionary *_consumersByKey;
-    unsigned long long _downloadAttemptsCount;
-    NSTimer *_startDownloadTimer;
-    double _successfulDownloadInterval;
-    NSURLConnection *_connection;
-    NSURLResponse *_response;
-    NSMutableData *_data;
+    NSObject<OS_dispatch_source> *_downloadRemoteConfigurationTimer;
+    NSURLSessionDataTask *_downloadRemoteConfigurationTask;
+    NSObject<OS_dispatch_queue> *_internalQueue;
+    NSObject<OS_dispatch_queue> *_diskAccessQueue;
+    id <RemoteConfigurationsControllerDelegate> _delegate;
+    NSURL *_remoteConfigurationURL;
+    NSURL *_localConfigurationFileURL;
+    double _updateTimeInterval;
+    NSString *_lastDownloadedTimePreferenceKey;
 }
 
-+ (id)sharedController;
++ (void)removeDefaultsAndSignedRemoteConfigurationPlist;
 - (void).cxx_destruct;
-- (BOOL)remoteConfigurationsController:(id)arg1 didReceiveNewConfiguration:(id)arg2 forKey:(id)arg3;
-- (BOOL)_notifyConsumersOfNewConfigurations:(id)arg1;
-- (id)_takeDataFromLoader;
-- (void)_downloadCompleted;
-- (id)connection:(id)arg1 willSendRequestForEstablishedConnection:(id)arg2 properties:(id)arg3;
-- (void)connection:(id)arg1 didFailWithError:(id)arg2;
-- (void)connectionDidFinishLoading:(id)arg1;
-- (void)connection:(id)arg1 didReceiveData:(id)arg2;
-- (void)connection:(id)arg1 didReceiveResponse:(id)arg2;
-- (void)_scheduleNextDownload;
-- (id)_requestForDownloadingNewConfiguration;
-- (void)_getIntervalBeforeNextDownloadWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)loadConfigurationForKey:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+@property(readonly, copy, nonatomic) NSString *lastDownloadedTimePreferenceKey; // @synthesize lastDownloadedTimePreferenceKey=_lastDownloadedTimePreferenceKey;
+@property(readonly, nonatomic) double updateTimeInterval; // @synthesize updateTimeInterval=_updateTimeInterval;
+@property(readonly, nonatomic) NSURL *localConfigurationFileURL; // @synthesize localConfigurationFileURL=_localConfigurationFileURL;
+@property(readonly, nonatomic) NSURL *remoteConfigurationURL; // @synthesize remoteConfigurationURL=_remoteConfigurationURL;
+@property(nonatomic) __weak id <RemoteConfigurationsControllerDelegate> delegate; // @synthesize delegate=_delegate;
+- (BOOL)_didRemoteConfigurationRequestSucceed:(id)arg1;
+- (void)_downloadRemoteConfiguration;
+- (void)_scheduleNextDownloadAfterLastDownloadTime:(id)arg1;
+- (void)stopDownloadingRemoteConfiguration;
+- (void)loadRemoteConfigurationFromLocalFileWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)scheduleInitialDownload;
-- (void)addConsumer:(id)arg1 forKey:(id)arg2;
-- (void)dealloc;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithRemoteConfigurationURL:(id)arg1 localConfigurationFileURL:(id)arg2 updateTimeInterval:(double)arg3 lastDownloadedTimePreferenceKey:(id)arg4;
 
 @end
 

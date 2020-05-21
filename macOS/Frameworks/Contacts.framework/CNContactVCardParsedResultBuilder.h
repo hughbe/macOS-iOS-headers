@@ -19,9 +19,8 @@ __attribute__((visibility("hidden")))
 
 + (id)labeledValuesWithValues:(id)arg1 transform:(CDUnknownBlockType)arg2 labels:(id)arg3 isPrimaries:(id)arg4;
 + (CDUnknownBlockType)contactValueTransformForVCardKey:(id)arg1;
-+ (CDUnknownBlockType)instantMessageAddressFromDictionaryTransform;
-+ (CDUnknownBlockType)socialProfileFromDictionaryTransform;
 + (id)contactKeyForVCardKey:(id)arg1;
+- (void).cxx_destruct;
 - (long long)personFlags;
 - (BOOL)setPersonFlags:(long long)arg1;
 - (long long)personFlagsByAddingContactType:(long long)arg1 toFlags:(long long)arg2;
@@ -34,7 +33,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)canSetValueForProperty:(id)arg1;
 - (id)valueForProperty:(id)arg1;
 - (id)build;
-- (void)dealloc;
 - (id)init;
 
 // Remaining properties

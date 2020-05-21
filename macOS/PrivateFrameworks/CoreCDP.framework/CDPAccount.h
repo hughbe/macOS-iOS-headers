@@ -10,8 +10,20 @@
 {
 }
 
++ (id)sharedInstance;
 + (BOOL)isICDPEnabledForDSID:(id)arg1 checkWithServer:(BOOL)arg2;
 + (BOOL)isICDPEnabledForDSID:(id)arg1;
+- (id)primaryAccountStashedPRK;
+- (id)primaryAppleAccount;
+- (id)sharedAccountStore;
+- (id)contextForPrimaryAccount;
+- (id)iCloudEnv;
+- (id)escrowURL;
+- (id)authToken;
+- (unsigned long long)primaryAccountSecurityLevel;
+- (id)primaryAccountAltDSID;
+- (id)primaryAccountDSID;
+- (id)primaryAccountUsername;
 
 @end
 

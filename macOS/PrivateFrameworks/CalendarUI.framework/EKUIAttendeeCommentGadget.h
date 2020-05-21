@@ -6,15 +6,23 @@
 
 #import <CalendarUI/EKUISingleTextFieldGadget.h>
 
+@class NSArray;
+
 @interface EKUIAttendeeCommentGadget : EKUISingleTextFieldGadget
 {
+    BOOL _cachedShouldDisplay;
+    NSArray *_cachedParticipantsWithComment;
 }
 
 + (id)interestedChangeKeys;
-- (BOOL)shouldDisplay;
+- (void).cxx_destruct;
+@property(retain) NSArray *cachedParticipantsWithComment; // @synthesize cachedParticipantsWithComment=_cachedParticipantsWithComment;
+@property BOOL cachedShouldDisplay; // @synthesize cachedShouldDisplay=_cachedShouldDisplay;
 - (void)updateWithChanges:(id)arg1;
+- (void)setObject:(id)arg1;
+- (void)refreshCachedProperties;
 - (id)currentComments;
-- (id)participantsWithComment;
+- (BOOL)shouldDisplay;
 - (BOOL)isEditable;
 - (double)maxHeight;
 - (id)initWithViewController:(id)arg1;

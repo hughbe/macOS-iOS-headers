@@ -16,6 +16,7 @@
 
 + (id)serverVerifyWithDictionary:(id)arg1 context:(id)arg2;
 + (id)serverVerify;
+- (BOOL)requiresResponse;
 @property(nonatomic) BOOL performInternalVerification;
 @property(nonatomic) BOOL fetchSyncDebugInfo;
 - (id)encodedClassName;

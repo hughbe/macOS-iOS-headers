@@ -40,7 +40,7 @@
         unsigned int reserved:28;
     } _pcFlags;
     char *_cancelAnimation;
-    NSMutableDictionary *_reusueQueue;
+    NSMutableDictionary *_reuseQueue;
     NSMutableDictionary *_templateCache;
     NSView *_transitionView;
     id _animator;
@@ -50,6 +50,7 @@
 
 + (id)defaultAnimationForKey:(id)arg1;
 + (void)_performWithoutAnimation:(CDUnknownBlockType)arg1;
+- (void).cxx_destruct;
 @property(retain) NSString *currentIdentifier; // @synthesize currentIdentifier=_currentIdentifier;
 @property(retain) NSViewController *selectedViewController; // @synthesize selectedViewController=_selectedViewController;
 @property NSView *contentView; // @synthesize contentView=_contentView;
@@ -104,7 +105,7 @@
 - (void)removeForwardNavigableObjects;
 - (void)_setShouldDrawEdgeShadow:(BOOL)arg1;
 - (BOOL)_shouldDrawEdgeShadow;
-@property id <NSPageControllerDelegate> delegate;
+@property __weak id <NSPageControllerDelegate> delegate;
 @property(copy) NSArray *arrangedObjects;
 - (void)setView:(id)arg1;
 @property long long selectedIndex;
@@ -113,6 +114,7 @@
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)init;
 
 @end

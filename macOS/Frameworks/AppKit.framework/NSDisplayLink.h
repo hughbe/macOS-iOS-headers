@@ -6,19 +6,16 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface NSDisplayLink : NSObject
 {
 }
 
 + (double)currentTimestamp;
 @property(getter=isPaused) BOOL paused;
-@property(readonly) double duration;
-@property(readonly) double timestamp;
 - (void)invalidate;
-@property(readonly, getter=isValid) BOOL valid;
 - (void)removeFromRunLoop:(id)arg1 forMode:(id)arg2;
 - (void)addToRunLoop:(id)arg1 forMode:(id)arg2;
+@property BOOL executesConcurrently;
 
 @end
 

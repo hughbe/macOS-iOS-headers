@@ -6,26 +6,42 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
+#import "SFAppLink.h"
 
-@class NSString, SFImage, SFPunchout;
+@class NSData, NSDictionary, NSString, SFImage, SFPunchout;
 
-@interface SFAppLink : NSObject <NSSecureCoding>
+@interface SFAppLink : NSObject <SFAppLink, NSSecureCoding, NSCopying>
 {
+    struct {
+        unsigned int imageAlign:1;
+    } _has;
+    int _imageAlign;
     NSString *_title;
     SFPunchout *_appPunchout;
     SFImage *_image;
-    unsigned long long _imageAlign;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(nonatomic) unsigned long long imageAlign; // @synthesize imageAlign=_imageAlign;
+- (void).cxx_destruct;
+@property(nonatomic) int imageAlign; // @synthesize imageAlign=_imageAlign;
 @property(retain, nonatomic) SFImage *image; // @synthesize image=_image;
 @property(retain, nonatomic) SFPunchout *appPunchout; // @synthesize appPunchout=_appPunchout;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
-- (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) NSData *jsonData;
+@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)hasImageAlign;
+- (id)initWithProtobuf:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -15,10 +15,12 @@
     NSTimer *_timer;
     NSObject<OS_dispatch_queue> *_syncQueue;
     BOOL _enabled;
+    BOOL _duchessEnabled;
     ACAccountStore *_store;
 }
 
 + (id)accountSyncPropertiesForAccount:(id)arg1;
++ (id)duchessHostnames;
 + (id)translatedKeys;
 + (id)accountSyncSupportedTypes;
 + (id)accountSyncUnsupportedTypes;
@@ -55,7 +57,7 @@
 - (id)localAccounts;
 - (id)processHostnameAdds;
 - (id)processAdds;
-- (void)syncHostnameAccounts;
+- (BOOL)detectDuchess;
 - (void)sync;
 - (void)kvsChanges:(id)arg1;
 - (void)accountChanges:(id)arg1;

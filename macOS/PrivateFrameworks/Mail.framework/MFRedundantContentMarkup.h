@@ -6,30 +6,30 @@
 
 #import "NSObject.h"
 
-@class MCMessage, MCParsedMessage, NSString;
+@class MCMessage, MCMessageBody, NSString;
 
 @interface MFRedundantContentMarkup : NSObject
 {
     BOOL _matchedEntireAncestorContiguously;
     BOOL _messageContainsRedundantText;
     MCMessage *_message;
-    MCParsedMessage *_parsedMessage;
+    MCMessageBody *_messageBody;
     MCMessage *_ancestorUsedForComparison;
     NSString *_messageBodyWithRedundantTextMarkers;
     NSString *_redundantContentSenderName;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL messageContainsRedundantText; // @synthesize messageContainsRedundantText=_messageContainsRedundantText;
 @property(readonly, nonatomic) BOOL matchedEntireAncestorContiguously; // @synthesize matchedEntireAncestorContiguously=_matchedEntireAncestorContiguously;
 @property(readonly, copy, nonatomic) NSString *redundantContentSenderName; // @synthesize redundantContentSenderName=_redundantContentSenderName;
 @property(readonly, copy, nonatomic) NSString *messageBodyWithRedundantTextMarkers; // @synthesize messageBodyWithRedundantTextMarkers=_messageBodyWithRedundantTextMarkers;
 @property(readonly, nonatomic) MCMessage *ancestorUsedForComparison; // @synthesize ancestorUsedForComparison=_ancestorUsedForComparison;
-@property(readonly, nonatomic) MCParsedMessage *parsedMessage; // @synthesize parsedMessage=_parsedMessage;
+@property(readonly, nonatomic) MCMessageBody *messageBody; // @synthesize messageBody=_messageBody;
 @property(readonly, nonatomic) MCMessage *message; // @synthesize message=_message;
-- (void).cxx_destruct;
 - (id)description;
 - (id)init;
-- (id)initWithMessage:(id)arg1 parsedMessage:(id)arg2 ancestorUsedForComparison:(id)arg3 messageBodyWithRedundantTextMarkers:(id)arg4 messageContainsRedundantText:(BOOL)arg5 matchedEntireAncestorContiguously:(BOOL)arg6;
+- (id)initWithMessage:(id)arg1 messageBody:(id)arg2 ancestorUsedForComparison:(id)arg3 messageBodyWithRedundantTextMarkers:(id)arg4 messageContainsRedundantText:(BOOL)arg5 matchedEntireAncestorContiguously:(BOOL)arg6;
 
 @end
 

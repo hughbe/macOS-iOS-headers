@@ -10,18 +10,24 @@
 
 @interface PKPaymentPreferenceContact : PKPaymentPreference
 {
+    BOOL _showPhoneticName;
     NSOrderedSet *_contactKeys;
     NSString *_addNewTitle;
     NSString *_addExistingTitle;
+    NSString *_editExistingTitle;
     unsigned long long _type;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL showPhoneticName; // @synthesize showPhoneticName=_showPhoneticName;
 @property(nonatomic) unsigned long long type; // @synthesize type=_type;
+@property(copy, nonatomic) NSString *editExistingTitle; // @synthesize editExistingTitle=_editExistingTitle;
 @property(copy, nonatomic) NSString *addExistingTitle; // @synthesize addExistingTitle=_addExistingTitle;
 @property(copy, nonatomic) NSString *addNewTitle; // @synthesize addNewTitle=_addNewTitle;
 @property(copy, nonatomic) NSOrderedSet *contactKeys; // @synthesize contactKeys=_contactKeys;
-- (void).cxx_destruct;
 - (BOOL)preferenceObject:(id)arg1 representsContact:(id)arg2;
+- (id)errorsForPreference:(id)arg1;
+- (void)setErrors:(id)arg1 forPreference:(id)arg2;
 - (long long)indexOfContact:(id)arg1;
 - (void)mergeRecentsAndMeCard;
 - (BOOL)supportsDeletion;

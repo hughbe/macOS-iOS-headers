@@ -23,11 +23,11 @@
 + (id)displayNameForUndoablePropertyChangeWithKey:(id)arg1;
 + (id)keyPathsForValuesAffectingDrawingBounds;
 + (id)keyPathsForValuesAffectingHitTestBounds;
+- (void).cxx_destruct;
 @property double rotationAngle; // @synthesize rotationAngle=_rotationAngle;
 @property(retain) NSColor *strokeColor; // @synthesize strokeColor=_strokeColor;
 @property(retain) AKSignature *signature; // @synthesize signature=_signature;
 @property struct CGRect rectangle; // @synthesize rectangle=_rectangle;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)translateBy:(struct CGPoint)arg1;
@@ -36,6 +36,7 @@
 - (struct CGRect)hitTestBounds;
 - (id)keysForValuesToObserveForRedrawing;
 - (id)keysForValuesToObserveForUndo;
+- (BOOL)shouldBurnIn;
 - (id)displayName;
 
 // Remaining properties

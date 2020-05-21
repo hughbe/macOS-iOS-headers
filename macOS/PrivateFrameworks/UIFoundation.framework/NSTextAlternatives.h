@@ -6,15 +6,20 @@
 
 #import "NSObject.h"
 
+#import "NSSecureCoding.h"
+
 @class NSArray, NSString;
 
-@interface NSTextAlternatives : NSObject
+@interface NSTextAlternatives : NSObject <NSSecureCoding>
 {
     NSString *_primaryString;
     NSArray *_alternativeStrings;
     id _internal;
+    BOOL _isLowConfidence;
 }
 
++ (BOOL)supportsSecureCoding;
+@property BOOL isLowConfidence; // @synthesize isLowConfidence=_isLowConfidence;
 - (id)identifier;
 - (id)alternativeAtIndex:(unsigned long long)arg1;
 - (id)alternatives;
@@ -30,7 +35,9 @@
 - (void)dealloc;
 - (id)initWithOriginalText:(id)arg1 alternatives:(id)arg2 identifier:(id)arg3;
 - (id)initWithOriginalText:(id)arg1 alternatives:(id)arg2;
+- (id)initWithPrimaryString:(id)arg1 alternativeStrings:(id)arg2 identifier:(id)arg3 isLowConfidence:(BOOL)arg4;
 - (id)initWithPrimaryString:(id)arg1 alternativeStrings:(id)arg2 identifier:(id)arg3;
+- (id)initWithPrimaryString:(id)arg1 alternativeStrings:(id)arg2 isLowConfidence:(BOOL)arg3;
 - (id)initWithPrimaryString:(id)arg1 alternativeStrings:(id)arg2;
 
 @end

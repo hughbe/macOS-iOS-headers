@@ -14,24 +14,26 @@ __attribute__((visibility("hidden")))
     char *_data;
     unsigned int _nrows;
     unsigned long long _rowbytes;
+    // Error parsing type: AQ, name: _imageBytes
     char _name[128];
     unsigned char _imageBlockReleaseCount;
-    unsigned int _mmappedData:1;
     unsigned long long _sourceRowbytes;
     unsigned int _allocateMemory:1;
+    unsigned int _mmappedData:1;
 }
 
 + (id)sharedCache;
 - (void)_makeReadOnly;
 - (void)_freeImageBytes;
 - (void)_allocateImageBytes;
-- (void)expandCSIBitmapData:(struct _csibitmap *)arg1 fromSlice:(struct _slice)arg2 makeReadOnly:(BOOL)arg3;
+- (BOOL)expandCSIBitmapData:(struct _csibitmap *)arg1 fromSlice:(struct _slice)arg2 makeReadOnly:(BOOL)arg3;
 - (void)dealloc;
 - (void)tallyImageBlockRelease;
 - (BOOL)wasUsedTransiently;
 - (int)pixelFormat;
 - (const char *)bytes;
 - (unsigned int)nrows;
+- (unsigned long long)imageBytes;
 - (unsigned long long)rowbytes;
 - (void)setRowBytes:(unsigned long long)arg1;
 - (void)updateFromCSIHeader:(const struct _csiheader *)arg1;

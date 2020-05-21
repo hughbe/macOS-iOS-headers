@@ -19,6 +19,7 @@
 + (id)maxLengthFormatter:(long long)arg1;
 + (id)hexSet;
 + (id)asciiSet;
+- (void).cxx_destruct;
 - (BOOL)isPartialStringValid:(id)arg1 newEditingString:(id *)arg2 errorDescription:(id *)arg3;
 - (BOOL)getObjectValue:(id *)arg1 forString:(id)arg2 errorDescription:(id *)arg3;
 - (id)stringForObjectValue:(id)arg1;

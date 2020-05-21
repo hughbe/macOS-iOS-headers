@@ -21,6 +21,7 @@
     BOOL _homeDirToBeCopiedByMigration;
     BOOL _needsAttention;
     BOOL isAdminUser;
+    BOOL _secureTokenAuth;
     BOOL _isAutoLoginUser;
     BOOL _shouldUseAlternateFileVaultHomeDirPath;
     SMSystem_Daemon *sourceSystem;
@@ -33,19 +34,17 @@
 + (id)filevaultAlternateHomeDirPath:(id)arg1;
 + (id)pathsToPreflight;
 + (id)pathsToNeverCopy;
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_queue> *excludablePathQueue; // @synthesize excludablePathQueue=_excludablePathQueue;
 @property(retain) NSObject<OS_dispatch_queue> *sizingQueue; // @synthesize sizingQueue=_sizingQueue;
 @property(retain) NSMutableArray *allOtherFilesInDirectory; // @synthesize allOtherFilesInDirectory=_allOtherFilesInDirectory;
 @property BOOL shouldUseAlternateFileVaultHomeDirPath; // @synthesize shouldUseAlternateFileVaultHomeDirPath=_shouldUseAlternateFileVaultHomeDirPath;
 @property BOOL isAutoLoginUser; // @synthesize isAutoLoginUser=_isAutoLoginUser;
+@property(readonly, getter=isSecureTokenAuth) BOOL secureTokenAuth; // @synthesize secureTokenAuth=_secureTokenAuth;
 @property(retain) NSMutableDictionary *supportedPathListSizes; // @synthesize supportedPathListSizes=_supportedPathListSizes;
 @property(retain) SMDBEntry *backing; // @synthesize backing=_backing;
 @property(retain) SMSystem_Daemon *sourceSystem; // @synthesize sourceSystem;
 @property BOOL isAdminUser; // @synthesize isAdminUser;
-- (void).cxx_destruct;
-- (BOOL)_checkShadowHashPassword:(id)arg1;
-- (void)_binaryToHexConversion:(const char *)arg1 len:(unsigned long long)arg2 hex:(char *)arg3;
-- (BOOL)_checkCryptPassword:(id)arg1;
 - (id)_getEntry:(id)arg1 atIndex:(int)arg2;
 - (id)_fileVaultImagePath;
 - (void)setHomeDirSize:(id)arg1;
@@ -59,7 +58,6 @@
 - (id)sizeForSubPath:(id)arg1 withPather:(id)arg2;
 - (void)calculateHomeDirSizeWithPather:(id)arg1 callbackBlock:(CDUnknownBlockType)arg2;
 - (id)homeDirSize;
-- (BOOL)verifyPassword:(id)arg1;
 - (id)passwordFilePath;
 - (id)authenticationType;
 - (id)password;
@@ -83,6 +81,7 @@
 - (id)iCloudName;
 - (id)iCloudNames;
 - (id)modernICloudNames;
+- (id)iCloudIdentifiers;
 - (id)oldICloudNames;
 - (id)name;
 - (BOOL)dontNeedToCopyUserHome;
@@ -93,7 +92,6 @@
 - (void)addUserExcludedPath:(id)arg1;
 - (id)pathsExcludedByTheUser;
 - (id)pathsExcludableByTheUserWithPather:(id)arg1;
-- (BOOL)migratableUser;
 - (id)pathsExcluded;
 - (Class)clientClass;
 - (id)description;

@@ -6,8 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableDictionary, NSString, NSURL;
+@class NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface ICScannerProperties : NSObject
 {
     NSArray *_devicePreferredResolutions;
@@ -18,26 +19,28 @@
     NSURL *_downloadsDirectory;
     NSString *_documentName;
     NSString *_documentUTI;
+    NSString *_defaultUsername;
     BOOL _scanCanceled;
     BOOL _supportsICARawFileFormat;
     NSMutableDictionary *_scanContext;
-    BOOL _scanCaceledByClientSoftware;
     BOOL _requestedToCancelScan;
     BOOL _scanParamsRetained;
     unsigned int _maxMemoryBandSize;
     BOOL _numOpenSessionRetries;
     BOOL _available;
+    NSObject<OS_dispatch_queue> *_operationQueue;
 }
 
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *operationQueue; // @synthesize operationQueue=_operationQueue;
 @property BOOL available; // @synthesize available=_available;
 @property BOOL numOpenSessionRetries; // @synthesize numOpenSessionRetries=_numOpenSessionRetries;
 @property unsigned int maxMemoryBandSize; // @synthesize maxMemoryBandSize=_maxMemoryBandSize;
 @property BOOL scanParamsRetained; // @synthesize scanParamsRetained=_scanParamsRetained;
 @property BOOL requestedToCancelScan; // @synthesize requestedToCancelScan=_requestedToCancelScan;
-@property BOOL scanCaceledByClientSoftware; // @synthesize scanCaceledByClientSoftware=_scanCaceledByClientSoftware;
 @property(retain) NSMutableDictionary *scanContext; // @synthesize scanContext=_scanContext;
 @property BOOL supportsICARawFileFormat; // @synthesize supportsICARawFileFormat=_supportsICARawFileFormat;
 @property BOOL scanCanceled; // @synthesize scanCanceled=_scanCanceled;
+@property(copy) NSString *defaultUsername; // @synthesize defaultUsername=_defaultUsername;
 @property(copy) NSString *documentUTI; // @synthesize documentUTI=_documentUTI;
 @property(copy) NSString *documentName; // @synthesize documentName=_documentName;
 @property(retain) NSURL *downloadsDirectory; // @synthesize downloadsDirectory=_downloadsDirectory;
@@ -46,7 +49,6 @@
 @property(retain) id selectedFunctionalUnit; // @synthesize selectedFunctionalUnit=_selectedFunctionalUnit;
 @property(retain) NSArray *availableFunctionalUnitTypes; // @synthesize availableFunctionalUnitTypes=_availableFunctionalUnitTypes;
 @property(retain) NSArray *devicePreferredResolutions; // @synthesize devicePreferredResolutions=_devicePreferredResolutions;
-- (void)finalize;
 - (void)dealloc;
 
 @end

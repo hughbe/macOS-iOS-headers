@@ -10,7 +10,7 @@
 
 @interface _DPToolCommand : NSObject
 {
-    BOOL _readWriteDB;
+    BOOL _writeOK;
     NSString *_action;
     NSString *_arguments;
     NSString *_recordKey;
@@ -20,19 +20,21 @@
 
 + (id)command:(id)arg1 arguments:(id)arg2 recordKey:(id)arg3 databasePath:(id)arg4 writeOK:(BOOL)arg5;
 + (id)supportedCommands;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) _DPStorage *storage; // @synthesize storage=_storage;
-@property(readonly, nonatomic) BOOL readWriteDB; // @synthesize readWriteDB=_readWriteDB;
+@property(readonly, nonatomic) BOOL writeOK; // @synthesize writeOK=_writeOK;
 @property(readonly, copy, nonatomic) NSString *databasePath; // @synthesize databasePath=_databasePath;
 @property(readonly, copy, nonatomic) NSString *recordKey; // @synthesize recordKey=_recordKey;
 @property(readonly, copy, nonatomic) NSString *arguments; // @synthesize arguments=_arguments;
 @property(readonly, copy, nonatomic) NSString *action; // @synthesize action=_action;
-- (void).cxx_destruct;
 - (id)description;
-- (BOOL)ingestAppDeepLinks;
+- (BOOL)listKeys;
+- (BOOL)listReportsFor:(id)arg1;
 - (BOOL)submitRecordsForKey:(id)arg1;
 - (id)queryForKey:(id)arg1;
 - (BOOL)recordWords:(id)arg1 forKey:(id)arg2;
 - (BOOL)recordStrings:(id)arg1 forKey:(id)arg2;
+- (BOOL)recordBitValues:(id)arg1 forKey:(id)arg2;
 - (BOOL)recordNumbers:(id)arg1 forKey:(id)arg2;
 - (BOOL)executeCommand;
 - (id)initWithAction:(id)arg1 arguments:(id)arg2 recordKey:(id)arg3 databasePath:(id)arg4 writeOK:(BOOL)arg5;

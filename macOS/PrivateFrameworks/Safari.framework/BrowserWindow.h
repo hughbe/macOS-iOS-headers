@@ -13,17 +13,19 @@ __attribute__((visibility("hidden")))
 {
     NSString *_title;
     BOOL _logAfterNextRedisplay;
-    BOOL _isCapturingMiniWindowImage;
     BookmarksUndoController *_bookmarksUndoController;
     id _mouseUpEventMonitor;
     BOOL _hasMoved;
+    BOOL _isClosing;
     BOOL _ignoresOrderFront;
+    BOOL _shouldDeferSettingFirstResponderDueToScrubbing;
 }
 
 + (id)frontmostWindow;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL shouldDeferSettingFirstResponderDueToScrubbing; // @synthesize shouldDeferSettingFirstResponderDueToScrubbing=_shouldDeferSettingFirstResponderDueToScrubbing;
 @property(nonatomic) BOOL ignoresOrderFront; // @synthesize ignoresOrderFront=_ignoresOrderFront;
 @property(retain, nonatomic) BookmarksUndoController *bookmarksUndoController; // @synthesize bookmarksUndoController=_bookmarksUndoController;
-- (void).cxx_destruct;
 - (void)removeFromOrderedTabViewItemsAtIndex:(unsigned int)arg1;
 - (void)replaceInOrderedTabViewItems:(id)arg1 atIndex:(unsigned int)arg2;
 - (void)insertInOrderedTabViewItems:(id)arg1 atIndex:(unsigned int)arg2;
@@ -31,7 +33,8 @@ __attribute__((visibility("hidden")))
 - (id)orderedTabViewItems;
 - (void)setCurrentTabViewItem:(id)arg1;
 - (id)currentTabViewItem;
-- (id)accessibilityAttributeValue:(id)arg1;
+- (id)accessibilityChildren;
+- (id)accessibilityTitle;
 - (void)exitFullScreenMode:(id)arg1;
 - (void)enterFullScreenMode:(id)arg1;
 - (struct CGRect)constrainFrameRect:(struct CGRect)arg1 toScreen:(id)arg2;
@@ -43,9 +46,6 @@ __attribute__((visibility("hidden")))
 - (void)setDelegate:(id)arg1;
 - (id)delegate;
 - (void)dealloc;
-- (void)setIsCapturingMiniWindowImage:(BOOL)arg1;
-- (BOOL)isMainWindow;
-- (BOOL)isKeyWindow;
 - (id)title;
 - (void)setTitle:(id)arg1;
 - (void)close;
@@ -59,17 +59,14 @@ __attribute__((visibility("hidden")))
 - (void)logFirstWindowDrawnAfterNextRedisplay;
 - (void)logFirstPageLoadedAfterNextRedisplay;
 - (BOOL)performKeyEquivalent:(id)arg1;
-- (struct CGRect)adjustedFrameForCascade:(struct CGRect)arg1 fromWindow:(id)arg2;
-- (struct CGRect)_adjustedFrameFromDefaults:(struct CGRect)arg1;
-- (struct CGRect)_adjustedFrameForSaving:(struct CGRect)arg1;
 - (void)_commonAwake;
 - (void)updateCGSWindowTitle;
 - (void)_handleLeftMouseUp:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)_startedMoving:(id)arg1;
 - (void)setUpBrowserWindow;
-- (BOOL)_hasActiveControls;
 - (void)zoom:(id)arg1;
+- (void)orderWindow:(long long)arg1 relativeTo:(long long)arg2;
 
 @end
 

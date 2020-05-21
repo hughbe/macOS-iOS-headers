@@ -6,28 +6,30 @@
 
 #import "NSObject.h"
 
-@class ABCNContact, ABCardViewPersonMapper;
+@class ABCardViewPersonMapper, CNContact;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewMultiValueConverterBuilder : NSObject
 {
-    ABCNContact *_person;
-    ABCardViewPersonMapper *_personMapper;
-    id <ABCardViewProperty> _property;
     BOOL _shouldShowPrivateMeFields;
     BOOL _isEditing;
+    CNContact *_contact;
+    ABCardViewPersonMapper *_personMapper;
+    id <ABCardViewProperty> _property;
 }
 
-@property BOOL isEditing; // @synthesize isEditing=_isEditing;
-@property BOOL shouldShowPrivateMeFields; // @synthesize shouldShowPrivateMeFields=_shouldShowPrivateMeFields;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL isEditing; // @synthesize isEditing=_isEditing;
+@property(nonatomic) BOOL shouldShowPrivateMeFields; // @synthesize shouldShowPrivateMeFields=_shouldShowPrivateMeFields;
+@property(retain, nonatomic) id <ABCardViewProperty> property; // @synthesize property=_property;
+@property(retain, nonatomic) ABCardViewPersonMapper *personMapper; // @synthesize personMapper=_personMapper;
+@property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
 - (id)privateFieldTransformer;
 - (id)accountNameTransformer;
 - (id)readOnlyTransformer;
 - (id)transformers;
 - (id)basicConverter;
 - (id)build;
-- (void)dealloc;
-- (id)initWithPerson:(id)arg1 personMapper:(id)arg2 property:(id)arg3;
+- (id)initWithContact:(id)arg1 personMapper:(id)arg2 property:(id)arg3;
 
 @end
 

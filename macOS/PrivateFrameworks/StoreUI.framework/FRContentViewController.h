@@ -6,23 +6,22 @@
 
 #import "NSViewController.h"
 
-@class CKBag, FRViewNavigationController, NSMutableArray, NSURL;
+@class FRViewNavigationController, NSURL;
 
 @interface FRContentViewController : NSViewController
 {
     FRViewNavigationController *_navigationController;
-    CKBag *_bag;
     NSURL *_activeURL;
     double _topContentInset;
-    NSMutableArray *_pendingURLs;
 }
 
-@property(retain, nonatomic) NSMutableArray *pendingURLs; // @synthesize pendingURLs=_pendingURLs;
+- (void).cxx_destruct;
 @property(nonatomic) double topContentInset; // @synthesize topContentInset=_topContentInset;
 @property(readonly, nonatomic) NSURL *activeURL; // @synthesize activeURL=_activeURL;
-@property(readonly, nonatomic) CKBag *bag; // @synthesize bag=_bag;
 @property(nonatomic) __weak FRViewNavigationController *navigationController; // @synthesize navigationController=_navigationController;
-- (void).cxx_destruct;
+- (unsigned long long)badgeCountForTab:(id)arg1;
+- (BOOL)isTabEnabled:(id)arg1;
+- (id)navigationTabs;
 - (void)goBack;
 - (void)goForward;
 - (BOOL)canGoBack;
@@ -31,15 +30,8 @@
 - (void)reload;
 - (void)searchForString:(id)arg1;
 - (BOOL)canSearchForString;
-- (void)loadPendingURL;
-- (void)delayLoadURL:(id)arg1 referrer:(id)arg2;
 - (BOOL)loadURL:(id)arg1 referrer:(id)arg2;
 - (BOOL)canLoadURL:(id)arg1;
-- (void)_reachabilityChanged:(id)arg1;
-- (BOOL)allowUnsignedBag;
-- (void)bagUpdateFailed:(id)arg1 withError:(id)arg2;
-- (void)updateWithBag:(id)arg1;
-- (id)init;
 
 @end
 

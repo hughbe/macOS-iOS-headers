@@ -13,11 +13,11 @@ __attribute__((visibility("hidden")))
     unsigned long long _cnt;
 }
 
+- (void)dealloc;
+- (id)initWithArray:(id)arg1;
 - (void)getObjects:(id *)arg1 range:(struct _NSRange)arg2;
 - (id)objectAtIndex:(unsigned long long)arg1;
 - (unsigned long long)count;
-- (void)dealloc;
-- (id)initWithArray:(id)arg1;
 
 @end
 

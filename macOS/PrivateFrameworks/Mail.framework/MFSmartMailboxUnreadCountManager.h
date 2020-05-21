@@ -24,6 +24,9 @@
     NSConditionLock *_isDirtyStateLock;
     NSConditionLock *_obsoleteMessageKeysLock;
     NSMutableSet *_obsoleteMessageKeys;
+    NSMutableSet *_restartingUnreadCountQueryMailboxes;
+    double _lastUnreadCountQueryRestartTime;
+    double _restartDelay;
     BOOL _suspendSmartMailboxUnreadCountCalculations;
     double _lastModificationToUpdate;
     long long _unreadQueryCount;
@@ -33,11 +36,12 @@
 + (id)sharedInstance;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (void)initialize;
++ (id)log;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSOperationQueue *spotlightQueue; // @synthesize spotlightQueue=_spotlightQueue;
 @property long long unreadQueryCount; // @synthesize unreadQueryCount=_unreadQueryCount;
 @property BOOL suspendSmartMailboxUnreadCountCalculations; // @synthesize suspendSmartMailboxUnreadCountCalculations=_suspendSmartMailboxUnreadCountCalculations;
 @property double lastModificationToUpdate; // @synthesize lastModificationToUpdate=_lastModificationToUpdate;
-- (void).cxx_destruct;
 - (void)_updateObsoleteMessageKeys;
 - (void)_addObsoleteMessageKeys:(id)arg1;
 - (id)_messageKeysWaitingToBeIndexes;
@@ -75,9 +79,12 @@
 - (void)smartMailbox:(id)arg1 didInitializeWithDictionaryRepresentation:(id)arg2;
 - (void)setSmartMailboxes:(id)arg1;
 - (void)updateMailboxesUnreadCountUsingSpotlight:(id)arg1 cancelExistingQuery:(BOOL)arg2;
+- (void)updateUnreadCountsUsingSpotlightForAllSmartMailboxes;
 - (void)_libraryMessagesFlagsChanged:(id)arg1;
 - (void)_updateSmartMailboxUnreadCountUsingSpotlight:(id)arg1;
 - (BOOL)_canCreateQuery;
+- (void)_updateSmartMailboxUnreadCountUsingSearchableIndexForMailbox:(id)arg1;
+- (double)_restartQueryDelayForError:(id)arg1;
 - (void)dealloc;
 - (id)init;
 
@@ -86,7 +93,6 @@
 @property(readonly, copy) NSString *description;
 @property(readonly, copy, nonatomic) NSString *displayName;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) BOOL isSmartMailbox;
 @property(readonly) Class superclass;
 
 @end

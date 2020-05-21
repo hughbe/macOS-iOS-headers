@@ -16,6 +16,7 @@
     BOOL mEnableLogs;
 }
 
+- (void).cxx_destruct;
 @property(readonly) BOOL enableLogs; // @synthesize enableLogs=mEnableLogs;
 - (void)updateButtons;
 - (void)willSwitchOut;
@@ -34,7 +35,6 @@
 - (void)openMouseKeysPref:(id)arg1;
 @property(readonly) NSString *nibFileName; // @dynamic nibFileName;
 - (void)awakeFromNib;
-- (void)dealloc;
 
 @end
 

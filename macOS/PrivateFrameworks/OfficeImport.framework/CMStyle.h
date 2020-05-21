@@ -10,17 +10,20 @@
 
 @class NSMutableDictionary, NSMutableString;
 
+__attribute__((visibility("hidden")))
 @interface CMStyle : NSObject <NSCopying>
 {
     NSMutableDictionary *properties;
     NSMutableString *mStyleString;
 }
 
+- (void).cxx_destruct;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)appendDefaultBorderStyle;
 - (void)appendSizeInfoFromRect:(struct CGRect)arg1;
+- (void)appendOriginInfoFromPoint:(struct CGPoint)arg1;
 - (void)appendPositionInfoFromRect:(struct CGRect)arg1;
 - (void)appendPropertyString:(id)arg1;
 - (void)appendPropertyForName:(id)arg1 color:(id)arg2;
@@ -39,7 +42,6 @@
 - (id)propertyForName:(id)arg1;
 - (void)addProperty:(id)arg1 forKey:(id)arg2;
 - (id)properties;
-- (void)dealloc;
 - (id)initWithStyle:(id)arg1;
 - (id)init;
 

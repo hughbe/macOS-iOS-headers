@@ -12,6 +12,7 @@
 
 @interface FLHSA2LoginNotification : NSObject <NSSecureCoding>
 {
+    BOOL _userAllowedSignIn;
     NSString *_title;
     NSString *_informativeText;
     NSString *_codePrompt;
@@ -29,6 +30,8 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL userAllowedSignIn; // @synthesize userAllowedSignIn=_userAllowedSignIn;
 @property(copy, nonatomic) NSString *pushMessageID; // @synthesize pushMessageID=_pushMessageID;
 @property(copy, nonatomic) NSString *deviceColorString; // @synthesize deviceColorString=_deviceColorString;
 @property(copy, nonatomic) NSString *deviceModel; // @synthesize deviceModel=_deviceModel;
@@ -43,7 +46,6 @@
 @property(copy, nonatomic) NSString *codePrompt; // @synthesize codePrompt=_codePrompt;
 @property(copy, nonatomic) NSString *informativeText; // @synthesize informativeText=_informativeText;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
-- (void).cxx_destruct;
 - (id)followUpItemUserInfo;
 - (id)initWithFollowUpItemUserInfo:(id)arg1;
 - (id)initWithCoder:(id)arg1;

@@ -4,19 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSView.h"
+#import "NSTableCellView.h"
 
 @class NSArray, NSTextField;
 
-@interface CNContactListHeaderCellView : NSView
+@interface CNContactListHeaderCellView : NSTableCellView
 {
     NSTextField *_headerTextField;
     NSArray *_customConstraints;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSArray *customConstraints; // @synthesize customConstraints=_customConstraints;
 @property(retain) NSTextField *headerTextField; // @synthesize headerTextField=_headerTextField;
-- (void).cxx_destruct;
 - (id)metrics;
 - (id)views;
 - (void)updateConstraints;

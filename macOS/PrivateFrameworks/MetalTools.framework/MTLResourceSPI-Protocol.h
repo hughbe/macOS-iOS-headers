@@ -9,9 +9,17 @@
 @class MTLResourceAllocationInfo;
 
 @protocol MTLResourceSPI <MTLResource>
+@property(readonly) unsigned long long unfilteredResourceOptions;
+@property(readonly) unsigned long long protectionOptions;
+@property(readonly) unsigned long long allocationID;
 @property(readonly) MTLResourceAllocationInfo *cachedAllocationInfo;
 @property(readonly) MTLResourceAllocationInfo *sharedAllocationInfo;
 @property int responsibleProcess;
+- (BOOL)doesAliasAnyResources:(const id *)arg1 count:(unsigned long long)arg2;
+- (BOOL)doesAliasAllResources:(const id *)arg1 count:(unsigned long long)arg2;
+- (BOOL)doesAliasResource:(id <MTLResource>)arg1;
+- (void)waitUntilComplete;
+- (BOOL)isComplete;
 - (BOOL)isPurgeable;
 @end
 

@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class ManagedPlugInHostPolicy, NSArray, NSDate, NSMutableDictionary, NSString;
+@class NSArray, NSDate, NSMapTable, NSMutableDictionary, NSString, WBSPerSitePreference;
 
 __attribute__((visibility("hidden")))
 @interface ManagedPlugIn : NSObject
 {
     NSMutableDictionary *_hostnamesToPolicies;
-    struct HashMap<Safari::BrowserContentViewController *, WTF::RetainPtr<NSURL>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashTraits<Safari::BrowserContentViewController *>, WTF::HashTraits<WTF::RetainPtr<NSURL>>> _browserContentViewControllerToPageURL;
-    ManagedPlugInHostPolicy *_appleWildcardPolicyForAppleConnectPlugIn;
+    NSMapTable *_browserViewControllerToPageURL;
+    BOOL _eligibleForWhitelisting;
     BOOL _runUnsandboxedOnFirstVisit;
     BOOL _updateWasAvailableWhenUnavailableDialogWasLastShown;
     BOOL _disallowPromptBeforeUseDialog;
@@ -23,22 +23,29 @@ __attribute__((visibility("hidden")))
     BOOL _blockedForCompatibility;
     BOOL _pluginUpdateAvailable;
     BOOL _sandboxed;
+    BOOL _supported;
     BOOL _isOffByDefault;
     int _firstVisitPolicy;
-    int _firstVisitPolicyForPrivateBrowsing;
     unsigned int _loadPolicy;
     NSString *_identifier;
     NSString *_name;
+    NSString *_nameForPerSitePreferencesPopover;
     NSString *_version;
     NSString *_path;
     NSString *_urlString;
     NSString *_mimeType;
     NSString *_pluginVersionWhenUnavailableDialogWasLastShown;
+    WBSPerSitePreference *_preference;
+    id <ManagedPlugInDelegate> _delegate;
     NSDate *_lastUsedDate;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL isOffByDefault; // @synthesize isOffByDefault=_isOffByDefault;
 @property(retain, nonatomic) NSDate *lastUsedDate; // @synthesize lastUsedDate=_lastUsedDate;
+@property(readonly, nonatomic, getter=isSupported) BOOL supported; // @synthesize supported=_supported;
+@property(nonatomic) __weak id <ManagedPlugInDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) WBSPerSitePreference *preference; // @synthesize preference=_preference;
 @property(nonatomic, getter=isSandboxed) BOOL sandboxed; // @synthesize sandboxed=_sandboxed;
 @property(nonatomic, getter=isPluginUpdateAvailable) BOOL pluginUpdateAvailable; // @synthesize pluginUpdateAvailable=_pluginUpdateAvailable;
 @property(nonatomic, getter=isBlockedForCompatibility) BOOL blockedForCompatibility; // @synthesize blockedForCompatibility=_blockedForCompatibility;
@@ -50,31 +57,30 @@ __attribute__((visibility("hidden")))
 @property(copy, nonatomic) NSString *pluginVersionWhenUnavailableDialogWasLastShown; // @synthesize pluginVersionWhenUnavailableDialogWasLastShown=_pluginVersionWhenUnavailableDialogWasLastShown;
 @property(nonatomic) BOOL runUnsandboxedOnFirstVisit; // @synthesize runUnsandboxedOnFirstVisit=_runUnsandboxedOnFirstVisit;
 @property(nonatomic) unsigned int loadPolicy; // @synthesize loadPolicy=_loadPolicy;
-@property(nonatomic) int firstVisitPolicyForPrivateBrowsing; // @synthesize firstVisitPolicyForPrivateBrowsing=_firstVisitPolicyForPrivateBrowsing;
+@property(nonatomic, getter=isEligibleForWhitelisting) BOOL eligibleForWhitelisting; // @synthesize eligibleForWhitelisting=_eligibleForWhitelisting;
 @property(nonatomic) int firstVisitPolicy; // @synthesize firstVisitPolicy=_firstVisitPolicy;
 @property(copy, nonatomic) NSString *mimeType; // @synthesize mimeType=_mimeType;
 @property(copy, nonatomic) NSString *urlString; // @synthesize urlString=_urlString;
 @property(copy, nonatomic) NSString *path; // @synthesize path=_path;
 @property(copy, nonatomic) NSString *version; // @synthesize version=_version;
+@property(readonly, copy, nonatomic) NSString *nameForPerSitePreferencesPopover; // @synthesize nameForPerSitePreferencesPopover=_nameForPerSitePreferencesPopover;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-- (id).cxx_construct;
-- (void).cxx_destruct;
-- (id)appleWildcardPolicyForAppleConnectPlugIn;
-- (void)createWildcardAppleSubdomainPoliciesForAppleConnectPlugInIfNecessary;
+- (BOOL)updateHostPolicy:(id)arg1 knownToUsePlugIn:(BOOL)arg2;
+- (void)setEligibleForWhitelistedAskPolicy:(BOOL)arg1;
+@property(readonly, nonatomic) NSArray *nonBlockHostPolicies;
+- (BOOL)expirePoliciesSetBeforePlugInWasAvailable;
 - (BOOL)expirePoliciesIfNecessary;
 - (BOOL)_isHostPolicyAllowAndExpired:(id)arg1;
 - (BOOL)_isPolicyAllowAndExpired:(int)arg1 lastVisitedDate:(id)arg2;
 - (BOOL)clearBlockPolicies;
-- (BOOL)clearExpiredAllowPolicies;
 - (BOOL)clearBlockPolicyForPageURL:(id)arg1;
 - (BOOL)clearAllPolicies;
 - (void)pruneSyntheticPoliciesIfNeeded;
 - (BOOL)_clearHostPoliciesPassingTest:(CDUnknownBlockType)arg1;
-- (id)activePolicyForBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (BOOL)browserContentViewControllerWillClose:(struct BrowserContentViewController *)arg1;
-- (BOOL)browserContentViewController:(struct BrowserContentViewController *)arg1 didFinishUsingPlugInOnPageWithURL:(id)arg2;
-- (BOOL)browserContentViewController:(struct BrowserContentViewController *)arg1 didBeginUsingPlugInOnPageWithURL:(id)arg2;
+- (BOOL)browserViewControllerWillClose:(id)arg1;
+- (BOOL)browserViewController:(id)arg1 didFinishUsingPlugInOnPageWithURL:(id)arg2;
+- (BOOL)browserViewController:(id)arg1 didBeginUsingPlugInOnPageWithURL:(id)arg2;
 - (BOOL)_removeUnusedPolicyForHostnameIfNeeded:(id)arg1;
 - (BOOL)_openPageIsUsingPlugInForHostname:(id)arg1;
 @property(readonly, nonatomic) int defaultFirstVisitPolicy;
@@ -82,6 +88,7 @@ __attribute__((visibility("hidden")))
 - (id)existingPolicyForPageURL:(id)arg1;
 - (id)_hostnameForPageURL:(id)arg1;
 - (void)clearPolicy:(id)arg1;
+- (void)appendPoliciesEnabledBeforePlugInWasInstalledForURLStrings:(id)arg1;
 - (void)appendPoliciesInDictionaryRepresentation:(id)arg1 isManagedByAdmin:(BOOL)arg2;
 - (void)addPolicy:(id)arg1;
 - (id)dictionaryRepresentation;
@@ -89,7 +96,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)isUnsafe;
 - (id)blockedPluginHostPoliciesForDisplayIncludingSyntheticPoliciesForOpenURLs:(id)arg1;
 @property(readonly, nonatomic) NSArray *blockedPluginHostPolicies;
-- (id)initWithPlugInInfo:(id)arg1;
+- (id)initWithPlugInInfo:(id)arg1 isSupported:(BOOL)arg2;
 - (id)init;
 
 @end

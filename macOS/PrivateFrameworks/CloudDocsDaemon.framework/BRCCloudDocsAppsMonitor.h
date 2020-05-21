@@ -13,8 +13,8 @@
 __attribute__((visibility("hidden")))
 @interface BRCCloudDocsAppsMonitor : NSObject <BRCAppListMonitorDelegate>
 {
-    NSMutableDictionary *_cloudDocsContainersByAppID;
-    NSMutableDictionary *_appIDsByContainerID;
+    NSMutableDictionary *_cloudDocsAppLibrariesByAppID;
+    NSMutableDictionary *_appIDsByAppLibraryID;
     NSMutableSet *_observers;
     br_pacer *_refetchPacer;
     NSObject<OS_dispatch_queue> *_queue;

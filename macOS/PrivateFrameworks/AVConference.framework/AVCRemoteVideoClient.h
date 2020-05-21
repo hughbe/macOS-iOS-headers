@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class AVConferenceXPCClient, CALayer, NSDictionary, NSString, VideoAttributes;
+@class AVConferenceXPCClient, CALayer, NSDictionary, NSObject<OS_dispatch_queue>, NSString, VideoAttributes;
 
 @interface AVCRemoteVideoClient : NSObject
 {
-    id <AVCRemoteVideoClientDelegate> _delegate;
+    id _delegate;
     long long _streamToken;
     CALayer *_primaryCameraLayer;
     CALayer *_secondaryCameraLayer;
@@ -24,12 +24,14 @@
     BOOL _isVideoPaused;
     BOOL _isMediaStalled;
     BOOL _isVideoDegraded;
+    BOOL _isVideoSuspended;
     BOOL _hasReceivedLastFrame;
     BOOL _shouldDisplayVideoInfoLayer;
     VideoAttributes *_remoteScreenAttributes;
     VideoAttributes *_remoteVideoAttributes;
     NSDictionary *_slotsForModes;
     NSString *_connectionTypeString;
+    NSObject<OS_dispatch_queue> *_avcRemoteVideoQueue;
 }
 
 @property(copy, nonatomic) NSString *connectionTypeString; // @synthesize connectionTypeString=_connectionTypeString;
@@ -38,6 +40,7 @@
 @property(retain, nonatomic) VideoAttributes *remoteScreenAttributes; // @synthesize remoteScreenAttributes=_remoteScreenAttributes;
 @property(nonatomic) BOOL isVideoPaused; // @synthesize isVideoPaused=_isVideoPaused;
 @property(nonatomic) BOOL isMediaStalled; // @synthesize isMediaStalled=_isMediaStalled;
+@property(nonatomic) BOOL isVideoSuspended; // @synthesize isVideoSuspended=_isVideoSuspended;
 @property(nonatomic) BOOL isVideoDegraded; // @synthesize isVideoDegraded=_isVideoDegraded;
 @property(nonatomic) BOOL hasReceivedLastFrame; // @synthesize hasReceivedLastFrame=_hasReceivedLastFrame;
 @property(nonatomic) BOOL hasReceivedFirstFrame; // @synthesize hasReceivedFirstFrame=_hasReceivedFirstFrame;

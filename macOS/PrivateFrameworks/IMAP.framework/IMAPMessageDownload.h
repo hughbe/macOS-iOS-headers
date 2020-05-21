@@ -6,11 +6,11 @@
 
 #import <IMAP/IMAPCompoundDownload.h>
 
-@class MCMimePart;
+@class MCMessage<IMAPMessage>, MCMimePart;
 
 @interface IMAPMessageDownload : IMAPCompoundDownload
 {
-    id <IMAPMessage> _message;
+    MCMessage<IMAPMessage> *_message;
     unsigned int _usingPartialDownloads:1;
     unsigned int _startedFetch:1;
     unsigned int _fetchingBodyText:1;
@@ -21,11 +21,11 @@
     MCMimePart *_topLevelPart;
 }
 
+- (void).cxx_destruct;
 @property BOOL dataWritten; // @synthesize dataWritten=_dataWritten;
 @property BOOL writesCacheFile; // @synthesize writesCacheFile=_writesCacheFile;
 @property BOOL allowsPartialDownloads; // @synthesize allowsPartialDownloads=_allowsPartialDownloads;
 @property(retain) MCMimePart *topLevelPart; // @synthesize topLevelPart=_topLevelPart;
-- (void).cxx_destruct;
 - (void)addCommandsToPipeline:(id)arg1 withCache:(id)arg2;
 - (void)_addMimeSubdownloadsToPipeline:(id)arg1 withCache:(id)arg2;
 - (void)processResults;
@@ -34,7 +34,7 @@
 @property(readonly, nonatomic) BOOL isPartial;
 - (id)collectDataAndWriteToDisk:(BOOL)arg1;
 - (id)data;
-@property(retain) id <IMAPMessage> message;
+@property(retain) MCMessage<IMAPMessage> *message;
 - (id)createCopy;
 - (id)initWithMessage:(id)arg1;
 - (void)dealloc;

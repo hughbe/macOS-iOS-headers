@@ -17,8 +17,8 @@
 
 + (id)accountTypeString;
 + (void)saveAccountInfoToDefaults;
-@property(copy) NSString *primitiveSessionPassword; // @synthesize primitiveSessionPassword=_primitiveSessionPassword;
 - (void).cxx_destruct;
+@property(copy) NSString *primitiveSessionPassword; // @synthesize primitiveSessionPassword=_primitiveSessionPassword;
 - (BOOL)isServerReachable;
 - (BOOL)canAuthenticateWithScheme:(id)arg1;
 - (id)authenticatedConnection;
@@ -28,8 +28,8 @@
 - (BOOL)shouldRetryConnectionWithoutCertificateCheckingAfterError:(id)arg1 host:(id)arg2 didPromptUser:(char *)arg3;
 - (id)acAccount;
 @property(retain) ICNFMCAuthScheme *preferredAuthScheme;
-- (void)setTLSIdentity:(struct OpaqueSecIdentityRef *)arg1;
-- (struct OpaqueSecIdentityRef *)copyTLSIdentity;
+- (void)setTLSIdentity:(struct __SecIdentity *)arg1;
+- (struct __SecIdentity *)copyTLSIdentity;
 @property long long securityLayerType;
 @property long long portNumber;
 @property(copy) NSString *hostname;
@@ -40,6 +40,9 @@
 @property BOOL shouldUseAuthentication;
 @property(readonly, nonatomic) BOOL requiresAuthentication;
 @property(readonly, copy) NSString *oauthToken;
+@property(readonly, copy) NSString *clientInfo;
+@property(readonly, copy) NSString *oneTimePassword;
+@property(readonly, copy) NSString *machineID;
 @property(readonly, copy) NSString *appleAuthenticationToken;
 @property(readonly, copy) NSString *applePersonID;
 @property(copy) NSString *sessionPassword;

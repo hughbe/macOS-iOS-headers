@@ -18,20 +18,22 @@ __attribute__((visibility("hidden")))
     NSDictionary *_itemsByURLString;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL shouldSuppressChangeNotifications; // @synthesize shouldSuppressChangeNotifications=_shouldSuppressChangeNotifications;
 @property(copy, nonatomic) NSDictionary *itemsByURLString; // @synthesize itemsByURLString=_itemsByURLString;
 @property(copy, nonatomic) NSDictionary *itemsByUUID; // @synthesize itemsByUUID=_itemsByUUID;
 @property(copy, nonatomic) NSArray *items; // @synthesize items=_items;
-- (void).cxx_destruct;
-- (void)_postReadingListChangedNotificationWithAddedItems:(id)arg1 removedItems:(id)arg2 modifiedItems:(id)arg3;
+- (void)_postReadingListChangedNotificationWithAddedItems:(id)arg1 removedItems:(id)arg2 modifiedItems:(id)arg3 forceRebuildUnreadItems:(BOOL)arg4;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)itemsWereAdded:(id)arg1 removed:(id)arg2 modified:(id)arg3;
+- (void)itemsWereAdded:(id)arg1 removed:(id)arg2 modified:(id)arg3 forceRebuildUnreadItems:(BOOL)arg4;
 - (void)removeItemWithUndo:(id)arg1;
 - (void)insertItemWithUndo:(id)arg1 atIndex:(unsigned long long)arg2 didCheckIfBookmarkEditingIsPermitted:(BOOL)arg3;
 - (void)removeItem:(id)arg1;
 - (void)insertItem:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)clearAllItems;
-- (void)_updateItemsFromReadingListFolder;
+- (void)_updateItemsFromReadingListFolderAndForceRebuildUnreadItems:(BOOL)arg1;
+- (void)_readingListModelDataDidChange:(id)arg1;
+- (void)_readingListModelDataWasReloaded:(id)arg1;
 - (void)loadItems;
 - (unsigned long long)indexOfItem:(id)arg1;
 @property(readonly, copy, nonatomic) NSSet *itemUUIDs;

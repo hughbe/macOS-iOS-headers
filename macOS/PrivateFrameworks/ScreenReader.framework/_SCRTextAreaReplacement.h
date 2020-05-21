@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     _SCRTextAreaChangeSimple *_right;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) _SCRTextAreaChangeSimple *right; // @synthesize right=_right;
 @property(retain, nonatomic) _SCRTextAreaChangeSimple *left; // @synthesize left=_left;
 - (BOOL)isEqual:(id)arg1;
@@ -24,9 +25,8 @@ __attribute__((visibility("hidden")))
 - (id)value;
 - (long long)editType;
 - (BOOL)containedByRange:(id)arg1 forUIElement:(id)arg2;
-- (void)addValueToOutputRequest:(id)arg1 typingEchoPreference:(unsigned long long)arg2;
+- (void)addValueToOutputRequest:(id)arg1 typingEchoPreference:(long long)arg2;
 - (id)description;
-- (void)dealloc;
 
 @end
 

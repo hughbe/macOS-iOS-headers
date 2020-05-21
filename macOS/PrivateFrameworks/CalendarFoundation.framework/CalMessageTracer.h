@@ -26,6 +26,7 @@
 + (void)traceWithDomain:(id)arg1 signature:(id)arg2 result:(int)arg3;
 + (void)traceWithDomain:(id)arg1 signature:(id)arg2 signature2:(id)arg3 summarize:(BOOL)arg4;
 + (void)log:(id)arg1 domain:(id)arg2 signature:(id)arg3 signature2:(id)arg4 result:(int)arg5 value:(id)arg6 value2:(id)arg7 value3:(id)arg8 uid:(id)arg9 uid2:(id)arg10 wakeState:(id)arg11 summarize:(BOOL)arg12;
++ (void)messageTraceLogDomain:(id)arg1 withSignature:(id)arg2;
 
 @end
 

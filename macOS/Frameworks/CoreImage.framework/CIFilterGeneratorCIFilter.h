@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
 + (id)filterWithGenerator:(id)arg1;
 - (id)_provideFilterCopyWithZone:(struct _NSZone *)arg1;
 - (id)customAttributes;
+- (id)outputImage;
 - (id)outputKeys;
 - (id)inputKeys;
 - (id)valueForKey:(id)arg1;

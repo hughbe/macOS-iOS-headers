@@ -6,11 +6,13 @@
 
 #import "NSObject.h"
 
-@class AVMetadataItemValueRequest, NSError, NSMutableArray, NSObject<OS_dispatch_queue>;
+@class AVMetadataItemValueRequest, NSError, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVLazyValueLoadingMetadataItemInternal : NSObject
 {
     id <NSObject><NSCopying> value;
+    NSString *dataType;
     AVMetadataItemValueRequest *valueRequest;
     CDUnknownBlockType valueLoadingHandler;
     long long valueStatus;

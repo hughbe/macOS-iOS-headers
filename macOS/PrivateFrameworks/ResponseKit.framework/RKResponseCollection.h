@@ -18,15 +18,17 @@
 
 + (id)speechActsForCategory:(unsigned long long)arg1 platform:(id)arg2;
 + (id)responsesForFullScreenMoments:(id)arg1 withLanguage:(id)arg2;
++ (id)responsesForFullScreenMoments:(id)arg1;
 + (id)responsesForFixedPhrase:(id)arg1 withLanguage:(id)arg2;
+- (void).cxx_destruct;
 @property(readonly) id <RKDisplayStringsProvider> displayStringsProvider; // @synthesize displayStringsProvider=_displayStringsProvider;
 @property(readonly) NSURL *dynamicDataURL; // @synthesize dynamicDataURL=_dynamicDataURL;
 @property(retain) NSMutableDictionary *personalizersByLanguageID; // @synthesize personalizersByLanguageID=_personalizersByLanguageID;
 @property(retain) NSMutableDictionary *responseCatalog; // @synthesize responseCatalog=_responseCatalog;
-- (void).cxx_destruct;
 - (id)personalizerForLanguageID:(id)arg1;
 - (void)registerResponse:(id)arg1 forMessage:(id)arg2 withLanguage:(id)arg3 context:(id)arg4 effectiveDate:(id)arg5;
 - (id)responsesForCategory:(unsigned long long)arg1 gender:(unsigned long long)arg2 maximumResponses:(unsigned long long)arg3 withLanguage:(id)arg4 context:(id)arg5 options:(unsigned long long)arg6;
+- (id)cannedResponsesForCategory:(id)arg1 withLanguage:(id)arg2 options:(unsigned long long)arg3;
 - (id)standardResponsesByCategoryForLanguageIdentifier:(id)arg1 andUsage:(id)arg2;
 - (void)resetRegisteredResponses;
 - (void)flushDynamicData;

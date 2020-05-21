@@ -8,12 +8,17 @@
 
 #import "NSCopying.h"
 
+@class NSString;
+
 @interface PXLayoutMetrics : NSObject <NSCopying>
 {
     struct CGSize _referenceSize;
 }
 
 @property(nonatomic) struct CGSize referenceSize; // @synthesize referenceSize=_referenceSize;
+@property(readonly, nonatomic) NSString *diagnosticDescription;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end

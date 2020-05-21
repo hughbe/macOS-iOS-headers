@@ -17,11 +17,14 @@
     NSDictionary *selectedInfoAttrs;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSDictionary *selectedInfoAttrs; // @synthesize selectedInfoAttrs;
+@property(retain, nonatomic) NSDictionary *infoAttrs; // @synthesize infoAttrs;
+@property(retain, nonatomic) NSDictionary *selectedTitleAttrs; // @synthesize selectedTitleAttrs;
+@property(retain, nonatomic) NSDictionary *titleAttrs; // @synthesize titleAttrs;
+@property(copy, nonatomic) NSString *infoString; // @synthesize infoString=_infoString;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (void)setInfoString:(id)arg1;
-- (id)infoString;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

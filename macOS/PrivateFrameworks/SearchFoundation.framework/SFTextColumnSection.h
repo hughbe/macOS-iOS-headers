@@ -6,24 +6,42 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
+#import "SFTextColumnSection.h"
 
-@class NSArray;
+@class NSArray, NSData, NSDictionary, NSString;
 
-@interface SFTextColumnSection : NSObject <NSSecureCoding>
+@interface SFTextColumnSection : NSObject <SFTextColumnSection, NSSecureCoding, NSCopying>
 {
+    struct {
+        unsigned int textNoWrap:1;
+        unsigned int textWeight:1;
+    } _has;
     BOOL _textNoWrap;
     NSArray *_textLines;
-    long long _textWeight;
+    unsigned long long _textWeight;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(nonatomic) long long textWeight; // @synthesize textWeight=_textWeight;
+- (void).cxx_destruct;
+@property(nonatomic) unsigned long long textWeight; // @synthesize textWeight=_textWeight;
 @property(nonatomic) BOOL textNoWrap; // @synthesize textNoWrap=_textNoWrap;
 @property(copy, nonatomic) NSArray *textLines; // @synthesize textLines=_textLines;
-- (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) NSData *jsonData;
+@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)hasTextWeight;
+- (BOOL)hasTextNoWrap;
+- (id)initWithProtobuf:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

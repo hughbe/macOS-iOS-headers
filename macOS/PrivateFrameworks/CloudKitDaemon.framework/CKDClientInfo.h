@@ -6,12 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSObject<OS_dispatch_queue>, NSString;
+@class NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CKDClientInfo : NSObject
 {
-    NSArray *_enabledKeyboards;
     NSString *_cachedHostname;
     NSObject<OS_dispatch_queue> *_hostCallbackQueue;
     struct __SCDynamicStore *_scstore;
@@ -21,12 +20,8 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *hostname;
 - (void)_refreshHostname;
-@property(readonly, nonatomic) NSArray *enabledKeyboards;
-- (void)_inputModeChanged;
-- (void)_refreshEnabledKeyboards;
 - (void)dealloc;
 - (id)_init;
-@property(readonly, nonatomic) Class CKDUITextInputModeClass;
 - (id)init;
 
 @end

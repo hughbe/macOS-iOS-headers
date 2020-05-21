@@ -11,34 +11,29 @@
 @interface CIMPunctuationManager : NSObject
 {
     unsigned long long _scriptType;
-    NSArray *_facemarkCandidates;
     NSArray *_punctuationCandidates;
     NSArray *_sortedPunctuationCandidates;
     NSArray *_recentActions;
-    NSArray *_facemarkCandidateSurfaces;
     NSArray *_punctuationCandidateSurfaces;
     NSDictionary *_punctuationLookupTable;
     NSArray *_recentPunctuation;
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSArray *recentPunctuation; // @synthesize recentPunctuation=_recentPunctuation;
 @property(retain, nonatomic) NSArray *recentActions; // @synthesize recentActions=_recentActions;
 @property(retain, nonatomic) NSArray *sortedPunctuationCandidates; // @synthesize sortedPunctuationCandidates=_sortedPunctuationCandidates;
 @property(retain, nonatomic) NSArray *punctuationCandidates; // @synthesize punctuationCandidates=_punctuationCandidates;
-@property(retain, nonatomic) NSArray *facemarkCandidates; // @synthesize facemarkCandidates=_facemarkCandidates;
 @property(nonatomic) unsigned long long scriptType; // @synthesize scriptType=_scriptType;
-- (void).cxx_destruct;
 @property(readonly, retain, nonatomic) NSDictionary *punctuationLookupTable; // @synthesize punctuationLookupTable=_punctuationLookupTable;
 - (id)sortedPunctuationCandidateSurfaces;
 @property(readonly, retain, nonatomic) NSArray *punctuationCandidateSurfaces; // @synthesize punctuationCandidateSurfaces=_punctuationCandidateSurfaces;
-@property(readonly, retain, nonatomic) NSArray *facemarkCandidateSurfaces; // @synthesize facemarkCandidateSurfaces=_facemarkCandidateSurfaces;
 - (id)descriptionForPunctuationSurface:(id)arg1;
 - (void)clearRecentPunctuationCandidate;
 - (void)storeRecentPunctuationCandidate:(id)arg1;
 - (void)enumeratePunctuationCandidatesForPunctuation:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)enumeratePunctuationCandidatesUsingBlock:(CDUnknownBlockType)arg1;
-- (void)enumerateFacemarkCandidatesUsingBlock:(CDUnknownBlockType)arg1;
 - (id)init;
 
 @end

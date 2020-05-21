@@ -17,8 +17,8 @@ __attribute__((visibility("hidden")))
     BOOL _serverOnly;
     NSString *_fsUnlocalizedName;
     NSString *_fsLocalizedName;
-    NSString *_fsUnlocalizedCoreStorageEncryptionName;
-    NSString *_fsLocalizedCoreStorageEncryptionName;
+    NSString *_fsUnlocalizedEncryptionName;
+    NSString *_fsLocalizedEncryptionName;
     NSString *_bundlePath;
     NSDictionary *_fsDictionary;
     NSNumber *_minimumSize;
@@ -34,6 +34,10 @@ __attribute__((visibility("hidden")))
     BOOL _shouldBeUserFormattable;
     NSString *_formatExecutable;
     NSString *_formatArgs;
+    BOOL _volumeNameIsCasePreserving;
+    BOOL _volumeNameIsCaseSensitive;
+    BOOL _fileObjectsAreCasePreserving;
+    BOOL _fileObjectsAreCaseSensitive;
 }
 
 @end

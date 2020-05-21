@@ -13,15 +13,15 @@
 __attribute__((visibility("hidden")))
 @interface FI_TWindowHistory : NSObject <TNodeObserverProtocol>
 {
-    struct TNSRef<NSMutableArray *, void> _historyList;
+    struct TNSRef<NSMutableArray, void> _historyList;
     long long _historyPosition;
-    struct TNodeObserverCocoaBridge *_nodeObserver;
-    FI_TBrowserContainerController *_controller;
+    struct shared_ptr<TNodeObserverCocoaBridge> _nodeObserver;
+    struct TNSWeakPtr<FI_TBrowserContainerController, void> _weakController;
 }
 
-@property(nonatomic) long long historyPosition; // @synthesize historyPosition=_historyPosition;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) long long historyPosition; // @synthesize historyPosition=_historyPosition;
 - (void)nodeObserver:(struct TNodeObserver *)arg1 nodeMoved:(const struct TFENode *)arg2;
 - (void)nodeObserver:(struct TNodeObserver *)arg1 nodeDeleted:(const struct TFENode *)arg2 fromObservedNode:(const struct TFENode *)arg3;
 - (id)currentEntry;
@@ -38,6 +38,7 @@ __attribute__((visibility("hidden")))
 - (void)removeEntry:(id)arg1;
 - (id)entryAtPosition:(long long)arg1;
 @property(readonly, nonatomic) long long entryCount;
+@property __weak FI_TBrowserContainerController *controller; // @dynamic controller;
 - (void)aboutToTearDown;
 - (void)dealloc;
 - (id)initWithBrowserContainer:(id)arg1;

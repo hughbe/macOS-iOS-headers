@@ -8,14 +8,24 @@
 
 #import "CNUIPRLikenessProvider.h"
 
-@class NSString;
+@class CNCache, NSString;
 
 @interface CNUIPRLikenessLoadingPlaceholderProvider : NSObject <CNUIPRLikenessProvider>
 {
+    id <CNScheduler> _resourceLock;
+    CNCache *_cache;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) CNCache *cache; // @synthesize cache=_cache;
+@property(readonly, nonatomic) id <CNScheduler> resourceLock; // @synthesize resourceLock=_resourceLock;
 - (unsigned long long)_cnui_likenessType;
-- (id)_cnui_likeness;
+- (id)_cnui_likenessForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)_cnui_roundedRectImageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)_cnui_circularImageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)renderRoundedRectImageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)renderCircularImageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

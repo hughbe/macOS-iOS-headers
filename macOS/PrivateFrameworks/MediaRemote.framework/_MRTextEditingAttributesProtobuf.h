@@ -17,6 +17,7 @@
     NSString *_title;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) _MRTextInputTraitsProtobuf *inputTraits; // @synthesize inputTraits=_inputTraits;
 @property(retain, nonatomic) NSString *prompt; // @synthesize prompt=_prompt;
 @property(retain, nonatomic) NSString *title; // @synthesize title=_title;
@@ -32,7 +33,6 @@
 @property(readonly, nonatomic) BOOL hasInputTraits;
 @property(readonly, nonatomic) BOOL hasPrompt;
 @property(readonly, nonatomic) BOOL hasTitle;
-- (void)dealloc;
 
 @end
 

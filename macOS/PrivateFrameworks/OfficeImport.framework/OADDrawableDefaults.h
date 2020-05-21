@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     OADDrawableCategoryDefaults *mTextDefaults;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) OADDrawableCategoryDefaults *textDefaults; // @synthesize textDefaults=mTextDefaults;
 @property(retain, nonatomic) OADDrawableCategoryDefaults *lineDefaults; // @synthesize lineDefaults=mLineDefaults;
 @property(retain, nonatomic) OADDrawableCategoryDefaults *shapeDefaults; // @synthesize shapeDefaults=mShapeDefaults;
@@ -25,7 +26,6 @@ __attribute__((visibility("hidden")))
 - (id)addShapeDefaults;
 - (void)addDefaults;
 - (_Bool)isEmpty;
-- (void)dealloc;
 
 @end
 

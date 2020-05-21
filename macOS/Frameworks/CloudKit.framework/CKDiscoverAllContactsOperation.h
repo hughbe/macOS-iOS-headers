@@ -14,9 +14,8 @@
     NSMutableArray *_discoveredUserInfos;
 }
 
-@property(retain, nonatomic) NSMutableArray *discoveredUserInfos; // @synthesize discoveredUserInfos=_discoveredUserInfos;
-@property(copy, nonatomic) CDUnknownBlockType discoverAllContactsCompletionBlock; // @synthesize discoverAllContactsCompletionBlock=_discoverAllContactsCompletionBlock;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *discoveredUserInfos; // @synthesize discoveredUserInfos=_discoveredUserInfos;
 - (id)activityCreate;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
@@ -24,6 +23,7 @@
 - (BOOL)CKOperationShouldRun:(id *)arg1;
 - (BOOL)hasCKOperationCallbacksSet;
 - (Class)operationInfoClass;
+@property(copy, nonatomic) CDUnknownBlockType discoverAllContactsCompletionBlock; // @synthesize discoverAllContactsCompletionBlock=_discoverAllContactsCompletionBlock;
 - (id)init;
 
 @end

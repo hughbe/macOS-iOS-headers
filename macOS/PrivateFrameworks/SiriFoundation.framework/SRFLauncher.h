@@ -6,16 +6,27 @@
 
 #import "NSObject.h"
 
+@class NSXPCConnection;
+
 @interface SRFLauncher : NSObject
 {
+    NSXPCConnection *_connectionToSiri;
 }
 
-+ (void)_launchTimerFired:(id)arg1;
 + (void)sendSiriNotification:(id)arg1;
-+ (void)_launchSiriAppURL:(id)arg1 eventIdentifier:(id)arg2;
-+ (BOOL)_isSiriFinishedLaunching;
++ (void)dismissSiriFromSource:(long long)arg1 completionBlock:(CDUnknownBlockType)arg2;
++ (void)invokeSiriFromSource:(long long)arg1 withAction:(long long)arg2 completionBlock:(CDUnknownBlockType)arg3;
++ (BOOL)_shouldLaunchSiriForSource:(long long)arg1 action:(long long)arg2;
++ (void)_launchSiri;
 + (id)_standardSiriAppURL;
-+ (BOOL)_shouldLogInvocationEvents;
++ (BOOL)isSiriRunning;
++ (id)sharedInstance;
++ (void)initialize;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSXPCConnection *connectionToSiri; // @synthesize connectionToSiri=_connectionToSiri;
+- (void)_dismissSiriFromSource:(long long)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)_invokeSiriFromSource:(long long)arg1 withAction:(long long)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)_sendSiriNotification:(id)arg1 launchingIfNotRunning:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
 
 @end
 

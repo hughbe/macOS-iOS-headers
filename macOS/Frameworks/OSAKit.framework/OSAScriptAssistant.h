@@ -29,6 +29,7 @@
     OSAScriptAssistantDataSource *_dataSource;
     unsigned long long _lastCompletionLocation;
     NSArray *_cachedCompletionItems;
+    BOOL _autoSuggestCompletions;
 }
 
 - (void)complete:(id)arg1;
@@ -78,6 +79,8 @@
 - (void)updateList;
 - (id)prefixForCurrentLocation;
 - (unsigned long long)_startOfPrevWordFromIndex:(unsigned long long)arg1;
+- (void)setAutoSuggestCompletions:(BOOL)arg1;
+- (BOOL)autoSuggestCompletions;
 - (void)setDataSource:(id)arg1;
 - (id)dataSource;
 - (void)_createDataSource;

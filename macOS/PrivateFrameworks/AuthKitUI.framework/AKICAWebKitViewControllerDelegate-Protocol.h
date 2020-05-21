@@ -15,8 +15,7 @@
 
 @optional
 - (void)didChangePassword:(NSString *)arg1 toNewPassword:(NSString *)arg2 accountID:(NSString *)arg3;
-- (void)icaWebKitViewControllerSendFinalResponse:(NSHTTPURLResponse *)arg1;
-- (BOOL)icaWebKitViewControllerIsFinalResponse:(NSHTTPURLResponse *)arg1;
+- (void)icaWebKitViewControllerDidReceiveResponse:(NSHTTPURLResponse *)arg1;
 - (void)icaWebKitViewControllerSignRequest:(NSMutableURLRequest *)arg1;
 - (void)icaWebKitViewControllerDidFail:(AKICAWebKitViewController *)arg1 error:(NSError *)arg2;
 - (void)icaWebKitViewControllerDidFinishLoading:(AKICAWebKitViewController *)arg1;

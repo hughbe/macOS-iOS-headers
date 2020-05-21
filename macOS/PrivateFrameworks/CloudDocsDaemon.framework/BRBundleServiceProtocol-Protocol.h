@@ -10,6 +10,6 @@
 - (void)getTypeSupportForBundleID:(NSString *)arg1 typeName:(NSString *)arg2 reply:(void (^)(NSDictionary *, NSError *))arg3;
 - (void)getEntitledContainerIDsForBundleID:(NSString *)arg1 reply:(void (^)(NSArray *, NSError *))arg2;
 - (void)getEntitlementsForBundleID:(NSString *)arg1 reply:(void (^)(NSDictionary *, NSURL *, NSError *))arg2;
-- (void)extractMetadataForContainerID:(NSString *)arg1 bundleID:(NSString *)arg2 minimumBundleVersion:(NSString *)arg3 reply:(void (^)(NSDictionary *, NSArray *, NSError *))arg4;
+- (void)extractMetadataForContainerID:(NSString *)arg1 bundleID:(NSString *)arg2 minimumBundleVersion:(NSString *)arg3 reply:(void (^)(NSDictionary *, NSDictionary *, NSError *))arg4;
 @end
 

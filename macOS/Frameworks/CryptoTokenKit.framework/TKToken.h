@@ -6,24 +6,24 @@
 
 #import "NSObject.h"
 
-@class NSString, TKTokenDriver, TKTokenKeychainContents;
+@class TKTokenConfiguration, TKTokenDriver, TKTokenID, TKTokenKeychainContents;
 
 @interface TKToken : NSObject
 {
+    TKTokenConfiguration *_configuration;
     TKTokenDriver *_tokenDriver;
     id <TKTokenDelegate> _delegate;
     TKTokenKeychainContents *_keychainContents;
-    NSString *_tokenID;
+    TKTokenID *_tokenID;
 }
 
-+ (id)encodedObjectID:(id)arg1;
-@property(readonly) NSString *tokenID; // @synthesize tokenID=_tokenID;
+- (void).cxx_destruct;
+@property(readonly) TKTokenID *tokenID; // @synthesize tokenID=_tokenID;
 @property(retain) TKTokenKeychainContents *keychainContents; // @synthesize keychainContents=_keychainContents;
 @property __weak id <TKTokenDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) TKTokenDriver *tokenDriver; // @synthesize tokenDriver=_tokenDriver;
-- (void).cxx_destruct;
 - (void)terminate;
-- (id)decodedObjectID:(id)arg1 error:(id *)arg2;
+@property(readonly) TKTokenConfiguration *configuration;
 - (id)initWithTokenDriver:(id)arg1 instanceID:(id)arg2;
 - (id)description;
 

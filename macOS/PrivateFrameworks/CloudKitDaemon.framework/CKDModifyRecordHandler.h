@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CKDModifyRecordsOperation, CKDPCSCache, CKDPCSManager, CKDProgressTracker, CKDRecordPCSData, CKDSharePCSData, CKRecord, CKRecordID, NSError, NSObject<OS_dispatch_group>, NSString;
+@class CKDModifyRecordsOperation, CKDPCSCache, CKDPCSManager, CKDProgressTracker, CKDRecordPCSData, CKDSharePCSData, CKDZonePCSData, CKRecord, CKRecordID, NSDictionary, NSError, NSMutableDictionary, NSObject<OS_dispatch_group>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CKDModifyRecordHandler : NSObject
@@ -14,6 +14,8 @@ __attribute__((visibility("hidden")))
     BOOL _isDelete;
     BOOL _saveCompletionBlockCalled;
     BOOL _needsRefetch;
+    BOOL _didAttemptDugongKeyRoll;
+    BOOL _didRollRecordPCSMasterKey;
     int _saveAttempts;
     CKDModifyRecordsOperation *_operation;
     CKRecord *_record;
@@ -24,20 +26,29 @@ __attribute__((visibility("hidden")))
     NSString *_etag;
     unsigned long long _state;
     NSError *_error;
+    NSMutableDictionary *_rereferencedAssetArrayByFieldname;
     CKDProgressTracker *_progressTracker;
     long long _batchRank;
+    CKDZonePCSData *_sharedZonePCSData;
+    NSDictionary *_assetUUIDToExpectedProperties;
     CKRecordID *_recordID;
 }
 
 + (id)_stringForState:(unsigned long long)arg1;
 + (id)modifyHandlerForDeleteWithRecordID:(id)arg1 operation:(id)arg2;
 + (id)modifyHandlerWithRecord:(id)arg1 operation:(id)arg2;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL didRollRecordPCSMasterKey; // @synthesize didRollRecordPCSMasterKey=_didRollRecordPCSMasterKey;
 @property(retain, nonatomic) CKRecordID *recordID; // @synthesize recordID=_recordID;
+@property(copy, nonatomic) NSDictionary *assetUUIDToExpectedProperties; // @synthesize assetUUIDToExpectedProperties=_assetUUIDToExpectedProperties;
+@property(nonatomic) BOOL didAttemptDugongKeyRoll; // @synthesize didAttemptDugongKeyRoll=_didAttemptDugongKeyRoll;
+@property(retain, nonatomic) CKDZonePCSData *sharedZonePCSData; // @synthesize sharedZonePCSData=_sharedZonePCSData;
 @property(nonatomic) BOOL needsRefetch; // @synthesize needsRefetch=_needsRefetch;
 @property(nonatomic) BOOL saveCompletionBlockCalled; // @synthesize saveCompletionBlockCalled=_saveCompletionBlockCalled;
 @property(nonatomic) int saveAttempts; // @synthesize saveAttempts=_saveAttempts;
 @property(nonatomic) long long batchRank; // @synthesize batchRank=_batchRank;
 @property(retain, nonatomic) CKDProgressTracker *progressTracker; // @synthesize progressTracker=_progressTracker;
+@property(retain, nonatomic) NSMutableDictionary *rereferencedAssetArrayByFieldname; // @synthesize rereferencedAssetArrayByFieldname=_rereferencedAssetArrayByFieldname;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(nonatomic) unsigned long long state; // @synthesize state=_state;
 @property(retain, nonatomic) NSString *etag; // @synthesize etag=_etag;
@@ -48,22 +59,26 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSObject<OS_dispatch_group> *pcsGroup; // @synthesize pcsGroup=_pcsGroup;
 @property(retain, nonatomic) CKRecord *record; // @synthesize record=_record;
 @property(nonatomic) __weak CKDModifyRecordsOperation *operation; // @synthesize operation=_operation;
-- (void).cxx_destruct;
+- (void)_clearRecordProtectionDataForRecord;
 - (void)clearProtectionDataForRecord;
 - (void)savePCSDataToCache;
 - (BOOL)_wrapEncryptedDataOnRecord:(id)arg1;
-- (BOOL)_wrapEncryptedData:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2 forField:(id)arg3;
+- (BOOL)_wrapEncryptedDataForRecordValueStore:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2;
+- (void)_pretendToWrapEncryptedDataForRecordValueStore:(id)arg1;
+- (BOOL)_wrapEncryptedData:(id)arg1 withPCS:(struct _OpaquePCSShareProtection *)arg2 forField:(id)arg3 recordID:(id)arg4;
 - (void)prepareForSave;
-- (id)_wrapAssetKey:(id)arg1 forRecord:(id)arg2 withError:(id *)arg3;
+- (void)prepareStreamingAsset:(id)arg1 forUploadWithRecord:(id)arg2;
 - (BOOL)_prepareAsset:(id)arg1 recordKey:(id)arg2 record:(id)arg3 error:(id *)arg4;
 - (id)prepareAssetsForUploadWithError:(id *)arg1;
+- (id)assetsWhichNeedRecordFetch;
 - (void)fetchSharePCSData;
 - (void)_handlePCSData:(id)arg1 withError:(id)arg2;
 - (void)_fetchExistingPCSForProvidedPCSData:(id)arg1;
 - (void)_unwrapRecordPCSForParent;
-- (void)_unwrapRecordPCSForShare;
+- (void)_unwrapRecordPCSWithShareID:(id)arg1;
 - (void)_unwrapRecordPCSForZone;
 - (void)_continueCreateAndSavePCSWithZonePCS:(id)arg1 sharePCS:(id)arg2;
+- (BOOL)_useZoneishPCS;
 - (void)_createAndSavePCS;
 - (id)_addParentPCS:(id)arg1 toRecordPCS:(id)arg2;
 - (void)_fetchParentPCSForData:(id)arg1 withError:(id)arg2;

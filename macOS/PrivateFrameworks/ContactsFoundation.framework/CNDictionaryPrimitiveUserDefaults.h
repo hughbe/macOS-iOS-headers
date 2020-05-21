@@ -10,7 +10,6 @@
 
 @class NSMutableDictionary, NSString;
 
-__attribute__((visibility("hidden")))
 @interface CNDictionaryPrimitiveUserDefaults : NSObject <CNPrimitiveUserDefaults>
 {
     NSMutableDictionary *_preferences;
@@ -18,9 +17,9 @@ __attribute__((visibility("hidden")))
     unsigned long long _setupAutosyncCount;
 }
 
+- (void).cxx_destruct;
 @property(readonly) unsigned long long setupAutosyncCount; // @synthesize setupAutosyncCount=_setupAutosyncCount;
 @property(readonly) unsigned long long synchronizeCount; // @synthesize synchronizeCount=_synchronizeCount;
-- (void).cxx_destruct;
 - (void)setupAutosync;
 - (BOOL)synchronize;
 - (void)primitiveRemoveObjectForKey:(id)arg1;

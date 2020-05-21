@@ -14,6 +14,7 @@
     long long _count;
 }
 
+- (void).cxx_destruct;
 @property(retain) RBNode *root; // @synthesize root=_root;
 - (long long)count;
 - (id)description;
@@ -37,7 +38,6 @@
 - (void)_rebalanceFromNode:(id)arg1;
 - (id)_leftRotate:(id)arg1;
 - (id)_rightRotate:(id)arg1;
-- (void)dealloc;
 
 @end
 

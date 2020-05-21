@@ -8,15 +8,18 @@
 
 @interface SiriUIScrollView : NSScrollView
 {
-    BOOL _disableScrolls;
     BOOL _scrollEnabled;
 }
 
++ (Class)_verticalScrollerClass;
++ (Class)_horizontalScrollerClass;
 @property(getter=isScrollEnabled) BOOL scrollEnabled; // @synthesize scrollEnabled=_scrollEnabled;
+- (double)firstBaselineOffsetFromTop;
 - (void)setContentOffset:(struct CGPoint)arg1 animated:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)setContentOffset:(struct CGPoint)arg1 animated:(BOOL)arg2;
 @property struct CGPoint contentOffset;
 - (void)scrollWheel:(id)arg1;
+- (void)hideScrollBar;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

@@ -12,30 +12,34 @@
 
 @interface PKPaymentMessage : NSObject <NSSecureCoding>
 {
-    BOOL _expiresOnNextTransaction;
     BOOL _allowDeepLink;
     BOOL _hasAssociatedPaymentApplication;
+    BOOL _archived;
     NSString *_identifier;
     NSString *_serviceIdentifier;
     NSString *_content;
     NSDate *_messageDate;
     NSDate *_expirationDate;
+    unsigned long long _messageType;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)paymentMessageWithDictionary:(id)arg1;
+- (void).cxx_destruct;
+@property(nonatomic, getter=isArchived) BOOL archived; // @synthesize archived=_archived;
 @property(nonatomic) BOOL hasAssociatedPaymentApplication; // @synthesize hasAssociatedPaymentApplication=_hasAssociatedPaymentApplication;
 @property(nonatomic) BOOL allowDeepLink; // @synthesize allowDeepLink=_allowDeepLink;
-@property(nonatomic) BOOL expiresOnNextTransaction; // @synthesize expiresOnNextTransaction=_expiresOnNextTransaction;
+@property(nonatomic) unsigned long long messageType; // @synthesize messageType=_messageType;
 @property(copy, nonatomic) NSDate *expirationDate; // @synthesize expirationDate=_expirationDate;
 @property(copy, nonatomic) NSDate *messageDate; // @synthesize messageDate=_messageDate;
 @property(copy, nonatomic) NSString *content; // @synthesize content=_content;
 @property(copy, nonatomic) NSString *serviceIdentifier; // @synthesize serviceIdentifier=_serviceIdentifier;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
-- (id)description;
+@property(readonly, nonatomic) BOOL archiveOnNextTransaction;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)description;
 - (BOOL)isEqualToPaymentMessage:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;

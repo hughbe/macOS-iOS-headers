@@ -6,21 +6,27 @@
 
 #import "NSObject.h"
 
-@class CALayer, NSArray, NSMenu, NSView;
+@class CALayer, NSArray, NSDictionary, NSMenu, NSView;
 
 @interface NSSharingServicePicker : NSObject
 {
     id _reserved;
     NSMenu *rolloverMenu;
     CALayer *rolloverLayer;
+    CALayer *innerBorderLayer;
     NSView *owner;
     NSArray *shareServices;
     NSArray *mainServices;
+    NSArray *_applicationServices;
+    NSArray *_excludedSharingServiceNames;
+    NSDictionary *_shareKitInfo;
 }
 
++ (void)openAppExtensionsPrefPane;
++ (id)sharedMoreMenuImage;
 - (long long)style;
 - (void)setStyle:(long long)arg1;
-@property id <NSSharingServicePickerDelegate> delegate;
+@property __weak id <NSSharingServicePickerDelegate> delegate;
 - (id)menu;
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
 - (void)drawLayer:(id)arg1 inContext:(struct CGContext *)arg2;
@@ -33,6 +39,8 @@
 - (void)_uppercaseString:(id)arg1;
 - (void)_updateRolloverMenu:(id)arg1;
 - (id)menuItemFromService:(id)arg1;
+- (BOOL)displaysAsPopUpMenu;
+- (id)_touchBarImageFromRepresentedObject:(id)arg1;
 - (id)_alternateItemIdentifierFromRepresentedObject:(id)arg1;
 - (id)_serviceFromRepresentedObject:(id)arg1;
 - (id)_representedObjectForService:(id)arg1 alternateItemIdentifier:(id)arg2;
@@ -42,6 +50,9 @@
 - (id)_prepareSHKSharingServicePicker;
 - (void)dealloc;
 - (id)initWithItems:(id)arg1;
+@property(copy) NSDictionary *shareKitInfo;
+@property(copy) NSArray *excludedSharingServiceNames;
+@property(copy) NSArray *applicationServices;
 
 @end
 

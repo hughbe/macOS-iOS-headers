@@ -13,6 +13,7 @@
     NSArray *tlvs;
 }
 
++ (id)errorForStatusCode:(unsigned char)arg1;
 + (id)responseMessage;
 + (id)commandMessage;
 @property(copy) NSArray *tlvs; // @synthesize tlvs;

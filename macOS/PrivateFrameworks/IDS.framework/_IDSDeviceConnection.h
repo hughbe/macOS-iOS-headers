@@ -8,7 +8,7 @@
 
 #import "IDSDaemonListenerProtocol.h"
 
-@class NSInputStream, NSObject<OS_dispatch_queue>, NSOutputStream, NSString;
+@class NSDictionary, NSInputStream, NSMutableDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSOutputStream, NSString;
 
 @interface _IDSDeviceConnection : NSObject <IDSDaemonListenerProtocol>
 {
@@ -17,15 +17,21 @@
     NSString *_service;
     NSString *_streamName;
     NSString *_serviceToken;
+    NSString *_connectionUUID;
     int _socket;
+    unsigned long long _mtu;
     CDUnknownBlockType _openSocketCompletionHandler;
     NSObject<OS_dispatch_queue> *_openSocketCompletionHandlerQueue;
     NSString *_openSocketCompletionHandlerID;
     NSInputStream *_inputStreamForSocket;
     NSOutputStream *_outputStreamForSocket;
     BOOL _hasTimedOut;
+    NSNumber *_clientTimeout;
+    NSMutableDictionary *_awdMetrics;
 }
 
+- (void).cxx_destruct;
+- (id)deviceConnectionKey;
 - (void)_daemonDied:(id)arg1;
 - (void)_cleanupCompletionBlock;
 - (void)xpcObject:(id)arg1 objectContext:(id)arg2;
@@ -33,8 +39,10 @@
 - (void)close;
 - (BOOL)updateConnectionWithOptions:(id)arg1 error:(id *)arg2;
 - (void)setStreamPairWithInputStream:(id)arg1 outputStream:(id)arg2;
-@property(readonly, retain, nonatomic) NSOutputStream *outputStream;
-@property(readonly, retain, nonatomic) NSInputStream *inputStream;
+@property(readonly, nonatomic) NSDictionary *metrics;
+@property(readonly, nonatomic) unsigned long long mtu;
+@property(readonly, nonatomic) NSOutputStream *outputStream;
+@property(readonly, nonatomic) NSInputStream *inputStream;
 @property(readonly, nonatomic) int socket;
 - (void)_connect;
 - (void)dealloc;

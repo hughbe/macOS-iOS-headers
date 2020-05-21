@@ -8,7 +8,6 @@
 
 @class NSString, NSTextField;
 
-__attribute__((visibility("hidden")))
 @interface SSCurtainMessageViewController : NSViewController
 {
     NSString *_machineName;

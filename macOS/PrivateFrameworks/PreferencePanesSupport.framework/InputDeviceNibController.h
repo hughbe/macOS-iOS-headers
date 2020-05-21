@@ -16,6 +16,7 @@
     NSButton *mSetupBTBackButton;
 }
 
+- (void).cxx_destruct;
 @property(readonly) InputDeviceController *controller; // @synthesize controller=mController;
 @property(readonly) NSButton *setupBTBackButton; // @synthesize setupBTBackButton=mSetupBTBackButton;
 @property(readonly) NSButton *setupBTButton; // @synthesize setupBTButton=mSetupBTButton;

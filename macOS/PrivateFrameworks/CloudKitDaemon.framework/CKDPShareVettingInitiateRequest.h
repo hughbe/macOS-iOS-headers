@@ -13,16 +13,18 @@
 __attribute__((visibility("hidden")))
 @interface CKDPShareVettingInitiateRequest : PBRequest <NSCopying>
 {
+    NSString *_baseToken;
     NSData *_encryptedKey;
     NSString *_participantId;
     CKDPShareIdentifier *_shareId;
 }
 
 + (id)options;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *baseToken; // @synthesize baseToken=_baseToken;
 @property(retain, nonatomic) NSString *participantId; // @synthesize participantId=_participantId;
 @property(retain, nonatomic) NSData *encryptedKey; // @synthesize encryptedKey=_encryptedKey;
 @property(retain, nonatomic) CKDPShareIdentifier *shareId; // @synthesize shareId=_shareId;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -34,6 +36,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasBaseToken;
 @property(readonly, nonatomic) BOOL hasParticipantId;
 @property(readonly, nonatomic) BOOL hasEncryptedKey;
 @property(readonly, nonatomic) BOOL hasShareId;

@@ -4,18 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <OfficeImport/WDRun.h>
+#import <OfficeImport/WDRunWithCharacterProperties.h>
 
-@class NSMutableString, WDCharacterProperties;
+@class NSMutableString;
 
 __attribute__((visibility("hidden")))
-@interface WDCharacterRun : WDRun
+@interface WDCharacterRun : WDRunWithCharacterProperties
 {
-    WDCharacterProperties *mProperties;
     NSMutableString *mString;
     BOOL mBinaryWriterContentFlag;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (BOOL)isEmpty;
 - (void)copyPropertiesFrom:(id)arg1;
@@ -26,11 +26,8 @@ __attribute__((visibility("hidden")))
 - (void)appendString:(id)arg1;
 - (void)setString:(id)arg1;
 - (id)string;
-- (void)clearProperties;
 - (void)setPropertiesForDocument;
-- (id)properties;
 - (int)runType;
-- (void)dealloc;
 - (void)setBinaryWriterContentFlag:(BOOL)arg1;
 - (BOOL)binaryWriterContentFlag;
 

@@ -11,16 +11,20 @@
 @interface _DPDatabaseRecorder : _DPDataRecorder
 {
     _DPStorage *_db;
-    NSSet *_blacklist;
+    NSSet *_blacklistSet;
+    unsigned long long _puzzlePieceCount;
 }
 
-@property(readonly, nonatomic) NSSet *blacklist; // @synthesize blacklist=_blacklist;
-@property(readonly, nonatomic) _DPStorage *db; // @synthesize db=_db;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long puzzlePieceCount; // @synthesize puzzlePieceCount=_puzzlePieceCount;
+@property(readonly, nonatomic) NSSet *blacklistSet; // @synthesize blacklistSet=_blacklistSet;
+@property(readonly, nonatomic) _DPStorage *db; // @synthesize db=_db;
 - (id)description;
 - (void)recordWords:(id)arg1;
 - (void)recordStrings:(id)arg1;
+- (void)recordBitValues:(id)arg1;
 - (void)recordNumbers:(id)arg1;
+- (id)initWithKey:(id)arg1 storage:(id)arg2 systemBlacklistPath:(id)arg3 runtimeBlacklistPath:(id)arg4;
 - (id)initWithKey:(id)arg1 storage:(id)arg2;
 - (id)init;
 

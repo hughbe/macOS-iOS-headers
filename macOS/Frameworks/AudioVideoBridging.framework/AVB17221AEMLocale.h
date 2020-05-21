@@ -24,6 +24,8 @@
 @property unsigned short numberOfStrings; // @synthesize numberOfStrings;
 @property(copy) NSString *localeIdentifier; // @synthesize localeIdentifier;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (void)renumberDescriptorWithNextIndexes:(id)arg1;
 - (void)updateDependentContent;
 - (id)debugLogStringWithIndentation:(id)arg1;

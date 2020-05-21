@@ -6,24 +6,25 @@
 
 #import "NSTableCellView.h"
 
-@class NSButton, UserNotificationPolicyData;
+@class NSMenuItem, NSPopUpButton, UserNotificationPolicyData;
 
 __attribute__((visibility("hidden")))
 @interface UserNotificationPreferenceTableCellView : NSTableCellView
 {
     UserNotificationPolicyData *_data;
-    NSButton *_allowButton;
-    NSButton *_denyButton;
+    NSPopUpButton *_policyPopUpButton;
+    NSMenuItem *_allowMenuItem;
+    NSMenuItem *_denyMenuItem;
 }
 
-@property(nonatomic) __weak NSButton *denyButton; // @synthesize denyButton=_denyButton;
-@property(nonatomic) __weak NSButton *allowButton; // @synthesize allowButton=_allowButton;
-@property(retain, nonatomic) UserNotificationPolicyData *data; // @synthesize data=_data;
 - (void).cxx_destruct;
-- (void)takeUserNotificationPolicyFrom:(id)arg1;
-- (id)_permissionPolicyButtons;
-- (int)_permissionPolicyForButton:(id)arg1;
-- (id)_buttonForPermissionPolicy:(int)arg1;
+@property(nonatomic) __weak NSMenuItem *denyMenuItem; // @synthesize denyMenuItem=_denyMenuItem;
+@property(nonatomic) __weak NSMenuItem *allowMenuItem; // @synthesize allowMenuItem=_allowMenuItem;
+@property(nonatomic) __weak NSPopUpButton *policyPopUpButton; // @synthesize policyPopUpButton=_policyPopUpButton;
+@property(retain, nonatomic) UserNotificationPolicyData *data; // @synthesize data=_data;
+- (void)setUserNotificationPolicyFrom:(id)arg1;
+- (int)_permissionPolicyForMenuItem:(id)arg1;
+- (id)_menuItemForPermissionPolicy:(int)arg1;
 
 @end
 

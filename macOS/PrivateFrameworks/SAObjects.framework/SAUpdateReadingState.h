@@ -8,7 +8,7 @@
 
 #import "SAServerBoundCommand.h"
 
-@class NSString;
+@class NSArray, NSString;
 
 @interface SAUpdateReadingState : SABaseCommand <SAServerBoundCommand>
 {
@@ -16,9 +16,11 @@
 
 + (id)updateReadingStateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)updateReadingState;
+- (BOOL)requiresResponse;
 @property(nonatomic) long long updatedItemIndex;
 @property(nonatomic) long long updatedGroupIndex;
 @property(copy, nonatomic) NSString *readingStateId;
+@property(copy, nonatomic) NSArray *items;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

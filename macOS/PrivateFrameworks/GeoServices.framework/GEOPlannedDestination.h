@@ -19,12 +19,12 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDate *expirationDate; // @synthesize expirationDate=_expirationDate;
-@property(readonly, retain, nonatomic) NSData *handle; // @synthesize handle=_handle;
+@property(readonly, nonatomic) NSData *handle; // @synthesize handle=_handle;
 @property(nonatomic) int transportType; // @synthesize transportType=_transportType;
 @property(retain, nonatomic) NSDate *arrivalDate; // @synthesize arrivalDate=_arrivalDate;
 - (id)description;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithCoordinate:(CDStruct_c3b9c2ee)arg1;

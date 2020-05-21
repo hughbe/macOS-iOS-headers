@@ -10,6 +10,7 @@
 - (unsigned long long)_presentationOptionsByValidatingOptions:(unsigned long long)arg1;
 - (void)_setPresentationOptionsThatHideMenuBar;
 - (void)_setPresentationOptionsThatAutoHideMenuBar;
+- (BOOL)safari_applicationDidTerminateCleanly;
 - (long long)safari_runModalSheet:(id)arg1 presentingWindow:(id)arg2;
 - (long long)safari_runModalSheet:(id)arg1;
 - (void)safari_setFullScreenMenuHidingMode:(long long)arg1;

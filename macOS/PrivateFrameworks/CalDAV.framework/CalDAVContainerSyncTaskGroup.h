@@ -20,12 +20,9 @@
     id <CalDAVCalendar> _calendar;
     NSDateComponents *_eventFilterStartDate;
     NSDateComponents *_eventFilterEndDate;
-    NSDateComponents *_todoFilterStartDate;
-    NSDateComponents *_todoFilterEndDate;
 }
 
-@property(retain, nonatomic) NSDateComponents *todoFilterEndDate; // @synthesize todoFilterEndDate=_todoFilterEndDate;
-@property(retain, nonatomic) NSDateComponents *todoFilterStartDate; // @synthesize todoFilterStartDate=_todoFilterStartDate;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDateComponents *eventFilterEndDate; // @synthesize eventFilterEndDate=_eventFilterEndDate;
 @property(retain, nonatomic) NSDateComponents *eventFilterStartDate; // @synthesize eventFilterStartDate=_eventFilterStartDate;
 @property(nonatomic) BOOL fallbackOnMultiGetError; // @synthesize fallbackOnMultiGetError=_fallbackOnMultiGetError;
@@ -35,7 +32,6 @@
 @property(nonatomic) BOOL getScheduleChanges; // @synthesize getScheduleChanges=_getScheduleChanges;
 @property(nonatomic) BOOL getScheduleTags; // @synthesize getScheduleTags=_getScheduleTags;
 @property(retain, nonatomic) id <CalDAVCalendar> calendar; // @synthesize calendar=_calendar;
-- (void).cxx_destruct;
 - (id)initWithFolderURL:(id)arg1 previousCTag:(id)arg2 previousSyncToken:(id)arg3 getScheduleTags:(BOOL)arg4 getScheduleChanges:(BOOL)arg5 accountInfoProvider:(id)arg6 taskManager:(id)arg7;
 - (id)initWithFolderURL:(id)arg1 previousCTag:(id)arg2 previousSyncToken:(id)arg3 actions:(id)arg4 getScheduleTags:(BOOL)arg5 getScheduleChanges:(BOOL)arg6 accountInfoProvider:(id)arg7 taskManager:(id)arg8 appSpecificCalendarItemClass:(Class)arg9;
 - (id)copyAdditionalResourcePropertiesToFetch;

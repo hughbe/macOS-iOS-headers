@@ -9,13 +9,12 @@
 @class NSImage, NSString;
 
 @interface PKPass (MacSupport)
-+ (id)passWithSerializedData:(id)arg1 error:(id *)arg2;
+@property(readonly, getter=isLargeFormat) BOOL largeFormat;
 - (id)sharingItemURL;
 @property(readonly) NSString *windowTitle;
 @property(readonly) struct CGSize windowSize;
 @property(readonly) NSImage *icon;
 @property(nonatomic) BOOL ubiquitous;
 - (id)ubiquitousFilename;
-- (id)serializedData;
 @end
 

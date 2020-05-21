@@ -10,22 +10,33 @@
 
 @interface OSICleanUpElement : OSIInstallQueueElement
 {
-    SKDisk *_alternateBlessTarget;
     BOOL _done;
+    SKDisk *_alternateBlessTarget;
     NSError *_error;
 }
 
+- (void).cxx_destruct;
+@property BOOL done; // @synthesize done=_done;
+@property(retain) NSError *error; // @synthesize error=_error;
+@property(retain) SKDisk *alternateBlessTarget; // @synthesize alternateBlessTarget=_alternateBlessTarget;
+- (BOOL)_requestTRBXCompatibilityCheck;
 - (void)_cleanUpPKGDMGSItemsAtPath:(id)arg1;
-- (void)_muteBootChimeForNextReboot;
 - (void)_writeTALRestoreApps;
 - (void)_writeInstallTypeCookieForServerAndMacBuddy;
 - (void)_writeInstallResultsCookieForSpotlight;
+- (void)_writeToSeedingPlist;
+- (void)_stampSeedingProgramToSeedingCookie:(id)arg1 cookiePath:(id)arg2;
 - (void)_addRunningLanguageAndDirToGlobalPreferences;
 - (void)_writeAutoLanguageChooserCookie;
+- (void)_copyDiagnosticReportsToTarget;
+- (void)_copyFSCKLogToTarget;
+- (void)_copyAPFSConverterLogToTarget;
+- (void)_flushIALogToTarget;
+- (void)removeCleanupInstallerPlist:(id)arg1;
 - (double)estimatedTimeToComplete;
+- (BOOL)okayToSkip;
 - (id)operationName;
 - (BOOL)runReturningError:(id *)arg1;
-- (void)dealloc;
 
 @end
 

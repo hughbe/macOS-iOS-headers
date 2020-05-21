@@ -26,7 +26,7 @@
 - (void)importiCalendarProperty:(id)arg1 inComponent:(id)arg2 fromDocument:(id)arg3 inCalendar:(id)arg4;
 - (void)_importiCalendarStructuredLocation:(id)arg1;
 - (void)updateWithLocation:(id)arg1;
-- (void)setValuesFromDataString:(id)arg1;
+- (void)setValuesFromData:(id)arg1;
 - (id)dataString;
 - (id)_calLocation;
 

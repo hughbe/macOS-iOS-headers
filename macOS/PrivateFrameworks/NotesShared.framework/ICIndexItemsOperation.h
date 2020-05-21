@@ -12,19 +12,19 @@
 {
     CSSearchableIndex *_searchableIndex;
     NSArray *_dataSources;
+    unsigned long long _maxBytesPerBatch;
     NSError *_error;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
+@property(nonatomic) unsigned long long maxBytesPerBatch; // @synthesize maxBytesPerBatch=_maxBytesPerBatch;
 @property(copy, nonatomic) NSArray *dataSources; // @synthesize dataSources=_dataSources;
 @property(retain, nonatomic) CSSearchableIndex *searchableIndex; // @synthesize searchableIndex=_searchableIndex;
-- (void).cxx_destruct;
-- (BOOL)shouldDeleteAllItemsBeforeIndexing;
-- (id)searchableItemIdentifiersToDeleteFromDataSource:(id)arg1;
-- (id)searchableItemsToIndexFromDataSource:(id)arg1;
+- (id)objectIDURIsToDeleteFromDataSource:(id)arg1;
+- (id)objectIDsToIndexFromDataSource:(id)arg1;
 - (void)indexItems;
 - (void)deleteItems;
-- (void)deleteAllItems;
 - (void)main;
 - (id)initWithSearchableIndex:(id)arg1 dataSources:(id)arg2;
 - (id)init;

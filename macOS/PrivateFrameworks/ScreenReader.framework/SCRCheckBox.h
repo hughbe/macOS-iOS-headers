@@ -15,9 +15,12 @@ __attribute__((visibility("hidden")))
 - (BOOL)isControlElement;
 - (BOOL)alwaysAllowDrag;
 - (void)addActionDescription:(id)arg1 toRequest:(id)arg2;
-- (id)statusDescriptionWithOptionsMask:(int)arg1;
+- (void)addItemNameToRequest:(id)arg1;
+- (id)statusDescription;
 - (id)valueDescription;
+- (id)_theCorrectDefaultActionDescription;
 - (id)defaultActionDescription;
+- (BOOL)ignoreValueChangeAfterAction;
 - (id)roleDescription;
 - (BOOL)toggleSingleSelectionWithRequest:(id)arg1;
 - (BOOL)isSelected;

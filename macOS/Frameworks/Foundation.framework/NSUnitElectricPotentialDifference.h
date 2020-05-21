@@ -12,12 +12,14 @@
 {
 }
 
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 + (id)microvolts;
 + (id)millivolts;
 + (id)volts;
 + (id)kilovolts;
 + (id)megavolts;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

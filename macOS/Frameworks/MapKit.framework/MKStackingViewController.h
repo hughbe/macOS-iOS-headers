@@ -6,11 +6,12 @@
 
 #import <MapKit/_MKUIViewController.h>
 
+#import "_MKAnimationStackViewDelegate.h"
 #import "_MKStackViewDelegate.h"
 
-@class NSArray, NSHashTable, NSLayoutConstraint, NSMapTable, NSScrollView, NSSet, NSString, NSView, _MKStackView, _MKStackingContentView;
+@class NSArray, NSHashTable, NSLayoutConstraint, NSMapTable, NSScrollView, NSString, NSView, _MKStackView, _MKStackingContentView;
 
-@interface MKStackingViewController : _MKUIViewController <_MKStackViewDelegate>
+@interface MKStackingViewController : _MKUIViewController <_MKStackViewDelegate, _MKAnimationStackViewDelegate>
 {
     _MKStackView *_stackView;
     _MKStackingContentView *_contentView;
@@ -30,27 +31,23 @@
     BOOL _isSettingStackedViews;
     BOOL _contentViewConstraintsAdded;
     NSHashTable *_minimallyVisibleViews;
-    double _stopLoadingAtHeight;
-    BOOL _continueOnViewDidAppear;
     BOOL _needsToPerformLayout;
-    NSSet *_viewControllersLaidOut;
-    NSSet *_viewControllersRemaining;
     NSView *_overlayView;
-    _MKUIViewController *_viewControllerAboveOverlayView;
+    double _overlayViewOriginY;
     BOOL _mayWantSpearators;
     BOOL _needToCallViewControllerLayoutDelegate;
     NSView *_titleView;
     NSArray *_viewControllers;
     id <MKStackingViewControllerDelegate> _stackingDelegate;
+    double _verticalScrollerInset;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) double verticalScrollerInset; // @synthesize verticalScrollerInset=_verticalScrollerInset;
 @property(nonatomic) __weak id <MKStackingViewControllerDelegate> stackingDelegate; // @synthesize stackingDelegate=_stackingDelegate;
 @property(copy, nonatomic) NSArray *viewControllers; // @synthesize viewControllers=_viewControllers;
 @property(retain, nonatomic) NSView *titleView; // @synthesize titleView=_titleView;
-- (void).cxx_destruct;
 - (void)_preferredScrollerStyleDidChange;
-- (void)viewWillAppear:(BOOL)arg1;
-- (void)viewDidAppear:(BOOL)arg1;
 - (BOOL)isViewVisbile:(id)arg1 percentageTreshold:(double)arg2;
 - (void)_updateViewControllerVisibilityAfterPositionChange;
 - (void)_didScroll;
@@ -60,29 +57,30 @@
 - (void)_scrollViewWillStartScroll:(id)arg1;
 - (void)viewDidLayoutSubviews;
 - (void)viewWillLayoutSubviews;
+- (void)viewWillAppear:(BOOL)arg1;
+- (void)viewDidAppear:(BOOL)arg1;
 - (void)_updateScrollerInsetWithPhase:(long long)arg1;
 - (void)_updateScrollerInsetFromFrameChange;
 - (void)setVerticalScrollerInset:(double)arg1;
-@property(readonly, nonatomic) double verticalScrollerInset;
 @property(retain, nonatomic) NSLayoutConstraint *titleViewLeadingConstraint;
 - (void)updateViewConstraints;
 - (void)_removePreferredHeightConstraintFromViewController:(id)arg1;
 - (void)_addPreferredHeightConstraintForViewControllerIfNeeded:(id)arg1;
 - (void)_setOverlayViewFrame;
 - (void)removeOverlayViewAnimated:(BOOL)arg1;
-- (void)setOverlayView:(id)arg1 belowViewController:(id)arg2;
+- (void)setOverlayView:(id)arg1 withOriginY:(double)arg2;
 - (void)_tearDownExitingViewController:(id)arg1;
 - (void)_setUpEnteringViewController:(id)arg1;
 - (double)stackView:(id)arg1 distanceBetweenUpperView:(id)arg2 andLowerView:(id)arg3;
 - (void)_callViewControllersLayoutDelegateIfNeeded;
 - (void)_updateStackViewSubviewsAndChildVCsEntering:(id)arg1 exiting:(id)arg2;
+- (void)stackViewNeedsLayout:(id)arg1;
 - (void)_updateFixedHeightAwareControllers;
-- (double)heightForInitialLayoutWithWidth:(double)arg1 removeWidthConstraintWhenDone:(BOOL)arg2;
+- (void)setWidthConstraintConstant:(double)arg1;
+- (double)currentHeight;
 - (double)_fittingHeightForView:(id)arg1;
 @property(nonatomic, getter=isScrollEnabled) BOOL scrollEnabled;
 - (void)_setScrollEnabled:(BOOL)arg1 forcedUpdate:(BOOL)arg2;
-@property(nonatomic, getter=willContinueLoadOnViewDidAppear) BOOL continueLoadOnViewDidAppear;
-@property(nonatomic, getter=initiallyLoadedHeight) double initialLoadHeight;
 - (double)_titleHeight;
 - (void)_addTitleViewToHierarchyIfPossible;
 - (BOOL)_isSafeToPerformLayout;

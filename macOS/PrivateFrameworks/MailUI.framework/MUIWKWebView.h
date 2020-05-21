@@ -6,7 +6,6 @@
 
 #import "WKWebView.h"
 
-#import "NSDraggingDestination.h"
 #import "NSDraggingSource.h"
 #import "QLPreviewPanelDataSource.h"
 #import "QLPreviewPanelDelegate.h"
@@ -15,32 +14,28 @@
 
 @class MUISelectionAndClickInformation, MUIWKWebViewController, NSArray, NSDraggingSession, NSEvent, NSResponder, NSString;
 
-@interface MUIWKWebView : WKWebView <NSDraggingDestination, NSDraggingSource, QLPreviewPanelDataSource, QLPreviewPanelDelegate, QLSeamlessCloserDelegate, QLSeamlessOpenerDelegate>
+@interface MUIWKWebView : WKWebView <NSDraggingSource, QLPreviewPanelDataSource, QLPreviewPanelDelegate, QLSeamlessCloserDelegate, QLSeamlessOpenerDelegate>
 {
+    BOOL _acceptsScrollWheelChangedPhase;
     BOOL _isDragging;
     BOOL _isDraggingAttachments;
-    BOOL _hasFlockedDrag;
-    NSArray *_attachmentControllersToQuicklook;
     MUIWKWebViewController *_controller;
     NSDraggingSession *_dragSession;
-    double _draggingRestoreBoundary;
+    NSArray *_attachmentControllersToQuicklook;
     NSEvent *_attachmentMouseDownEvent;
     MUISelectionAndClickInformation *_selectionAndClickInformation;
     NSResponder *_oldFirstResponder;
 }
 
-+ (void)initialize;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSResponder *oldFirstResponder; // @synthesize oldFirstResponder=_oldFirstResponder;
 @property(retain, nonatomic) MUISelectionAndClickInformation *selectionAndClickInformation; // @synthesize selectionAndClickInformation=_selectionAndClickInformation;
 @property(retain, nonatomic) NSEvent *attachmentMouseDownEvent; // @synthesize attachmentMouseDownEvent=_attachmentMouseDownEvent;
-@property(nonatomic) double draggingRestoreBoundary; // @synthesize draggingRestoreBoundary=_draggingRestoreBoundary;
-@property(nonatomic) BOOL hasFlockedDrag; // @synthesize hasFlockedDrag=_hasFlockedDrag;
+@property(retain, nonatomic) NSArray *attachmentControllersToQuicklook; // @synthesize attachmentControllersToQuicklook=_attachmentControllersToQuicklook;
+@property(retain, nonatomic) NSDraggingSession *dragSession; // @synthesize dragSession=_dragSession;
 @property(nonatomic) BOOL isDraggingAttachments; // @synthesize isDraggingAttachments=_isDraggingAttachments;
 @property(nonatomic) BOOL isDragging; // @synthesize isDragging=_isDragging;
-@property(retain, nonatomic) NSDraggingSession *dragSession; // @synthesize dragSession=_dragSession;
 @property(nonatomic) __weak MUIWKWebViewController *controller; // @synthesize controller=_controller;
-@property(retain, nonatomic) NSArray *attachmentControllersToQuicklook; // @synthesize attachmentControllersToQuicklook=_attachmentControllersToQuicklook;
-- (void).cxx_destruct;
 - (id)seamlessCloserTransitionImageForPreviewItem:(id)arg1 contentRect:(struct CGRect *)arg2;
 - (struct CGRect)seamlessCloserSourceFrameOnScreenForPreviewItem:(id)arg1;
 - (void)seamlessOpener:(id)arg1 failedToOpenItems:(id)arg2 withError:(id)arg3;
@@ -54,25 +49,20 @@
 - (void)beginPreviewPanelControl:(id)arg1;
 - (BOOL)acceptsPreviewPanelControl:(id)arg1;
 - (void)keyDown:(id)arg1;
+- (BOOL)performKeyEquivalent:(id)arg1;
 - (void)quickLookWithEvent:(id)arg1;
 - (BOOL)quickLookAttachmentControllers:(id)arg1;
 - (void)_displayAlertForUndownloadedAttachments:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseExited:(id)arg1;
 - (void)mouseMoved:(id)arg1;
-- (void)draggingSession:(id)arg1 movedToPoint:(struct CGPoint)arg2;
 - (void)draggingSession:(id)arg1 endedAtPoint:(struct CGPoint)arg2 operation:(unsigned long long)arg3;
 - (unsigned long long)draggingSession:(id)arg1 sourceOperationMaskForDraggingContext:(long long)arg2;
-- (void)draggingEnded:(id)arg1;
-- (unsigned long long)draggingUpdated:(id)arg1;
-- (unsigned long long)draggingEntered:(id)arg1;
-- (BOOL)performDragOperation:(id)arg1;
 - (void)mouseUp:(id)arg1;
 - (BOOL)shouldDelayWindowOrderingForEvent:(id)arg1;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (BOOL)_point:(struct CGPoint)arg1 inAttachment:(id)arg2;
 - (void)mouseDown:(id)arg1;
-- (id)printOperationWithPrintInfo:(id)arg1;
 - (id)selectionAndClickInformationForClickAtPoint:(struct CGPoint)arg1;
 @property(readonly, copy, nonatomic) NSArray *selectedAttachmentControllers;
 - (id)attachmentControllerForAttachmentInfo:(id)arg1;
@@ -86,6 +76,7 @@
 - (BOOL)canBecomeKeyView;
 - (id)defaultStringForToolTip:(long long)arg1 view:(id)arg2 point:(struct CGPoint)arg3 userData:(void *)arg4;
 - (id)view:(id)arg1 stringForToolTip:(long long)arg2 point:(struct CGPoint)arg3 userData:(void *)arg4;
+- (void)unhandledScrollWheel:(id)arg1;
 - (void)scrollWheel:(id)arg1;
 - (id)supplementalTargetForAction:(SEL)arg1 sender:(id)arg2;
 - (void)awakeFromNib;

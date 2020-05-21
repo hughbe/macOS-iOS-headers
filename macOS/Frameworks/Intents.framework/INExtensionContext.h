@@ -4,46 +4,28 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSExtensionContext.h"
+#import "NSObject.h"
 
-#import "INCacheableObjectManagerObserver.h"
-#import "INExtensionContextVending.h"
+#import "NSSecureCoding.h"
 
-@class NSMutableDictionary, NSString;
+@class NSArray, NSString, NSUUID;
 
-@interface INExtensionContext : NSExtensionContext <INCacheableObjectManagerObserver, INExtensionContextVending>
+@interface INExtensionContext : NSObject <NSSecureCoding>
 {
-    NSMutableDictionary *_resolutionContexts;
+    NSString *_recordRoute;
+    NSUUID *_recordDeviceUID;
+    NSString *_recordDeviceIdentifier;
+    NSArray *_airPlayRouteIdentifiers;
 }
 
-+ (id)_extensionAuxiliaryVendorProtocol;
-+ (id)_extensionAuxiliaryHostProtocol;
-+ (void)initialize;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
-- (void)cacheableObjectManager:(id)arg1 wasToldAboutCacheableObject:(id)arg2;
-- (id)_errorHandlingHostProxy;
-- (oneway void)handleIntent:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (oneway void)handleIntent:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (oneway void)confirmationResponseForIntent:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (oneway void)cancelTransactionDueToTimeout;
-- (oneway void)completeTransaction;
-- (void)stopSendingUpdatesForIntent:(id)arg1;
-- (void)startSendingUpdatesForIntent:(id)arg1 toObserver:(id)arg2;
-- (void)_validateExtension;
-- (oneway void)getApplicationContextWithCompletion:(CDUnknownBlockType)arg1;
-- (void)_deliverIntent:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
-- (void)_generateSerializedCacheItemSetFromIntentResponse:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_processIntentResponse:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (oneway void)handleIntent:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
-- (oneway void)confirmIntent:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
-- (oneway void)resolveIntentSlot:(id)arg1 forIntent:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (id)initWithInputItems:(id)arg1 listenerEndpoint:(id)arg2 contextUUID:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+@property(copy, nonatomic, setter=_setAirPlayRouteIdentifiers:) NSArray *_airPlayRouteIdentifiers; // @synthesize _airPlayRouteIdentifiers;
+@property(copy, nonatomic, setter=_setRecordDeviceIdentifier:) NSString *_recordDeviceIdentifier; // @synthesize _recordDeviceIdentifier;
+@property(copy, nonatomic, setter=_setRecordDeviceUID:) NSUUID *_recordDeviceUID; // @synthesize _recordDeviceUID;
+@property(copy, nonatomic, setter=_setRecordRoute:) NSString *_recordRoute; // @synthesize _recordRoute;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 
 @end
 

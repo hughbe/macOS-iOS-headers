@@ -18,6 +18,7 @@
 
 + (id)newWithCoder:(id)arg1 zone:(struct _NSZone *)arg2;
 + (id)newWithColorSpace:(id)arg1 components:(const double *)arg2 count:(long long)arg3;
++ (void)load;
 - (double)whiteComponent;
 - (void)getWhite:(double *)arg1 alpha:(double *)arg2;
 - (double)blackComponent;
@@ -39,6 +40,8 @@
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
+- (id)colorUsingType:(long long)arg1;
+- (long long)type;
 - (id)colorSpaceName;
 - (id)colorUsingColorSpace:(id)arg1;
 - (id)colorUsingColorSpaceName:(id)arg1 device:(id)arg2;

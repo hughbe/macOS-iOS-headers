@@ -18,6 +18,7 @@
     CDUnknownBlockType _upsellCompletionHandler;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL didEncounterLoadError; // @synthesize didEncounterLoadError=_didEncounterLoadError;
 @property(copy, nonatomic) CDUnknownBlockType upsellCompletionHandler; // @synthesize upsellCompletionHandler=_upsellCompletionHandler;
 @property(retain, nonatomic) MMWebKitViewController *webKitViewController; // @synthesize webKitViewController=_webKitViewController;
@@ -30,7 +31,6 @@
 - (void)closeUpsellWindow;
 - (void)runUpsellWebKitViewControllerForWindow:(id)arg1 accountID:(id)arg2 librarySize:(long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)runUpsellWebKitViewControllerForWindow:(id)arg1 accountID:(id)arg2 librarySizeAsNumber:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (void)dealloc;
 - (id)init;
 
 // Remaining properties

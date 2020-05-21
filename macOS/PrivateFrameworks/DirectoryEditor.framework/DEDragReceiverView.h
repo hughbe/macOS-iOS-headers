@@ -8,6 +8,7 @@
 
 @class NSArray;
 
+__attribute__((visibility("hidden")))
 @interface DEDragReceiverView : NSView
 {
     id _dragDelegate;
@@ -16,6 +17,7 @@
 }
 
 @property(retain) NSArray *registeredDragTypes; // @synthesize registeredDragTypes=_registeredDragTypes;
+- (void)updateLayer;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)performDragOperation:(id)arg1;
 - (void)draggingEnded:(id)arg1;
@@ -23,6 +25,7 @@
 - (unsigned long long)draggingEntered:(id)arg1;
 - (void)setDragDelegate:(id)arg1;
 - (void)dealloc;
+- (BOOL)wantsUpdateLayer;
 - (void)awakeFromNib;
 - (void)registerForDragTypes;
 

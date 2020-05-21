@@ -19,7 +19,8 @@
 - (id)_changedValuesForItem:(id)arg1;
 - (id)_changedValuesForDefaultAlarmSet:(id)arg1;
 - (id)_changedValuesForCalendar:(id)arg1;
-- (id)_additionalChangedValuesForObject:(id)arg1;
+- (id)_changedValuesForObject:(id)arg1;
+- (id)_additionalRelevantChangesFromMaster:(id)arg1;
 - (id)_sessionIDForAttachment:(id)arg1;
 - (id)_sessionIDForRecurrenceException:(id)arg1;
 - (id)_sessionIDForItem:(id)arg1;

@@ -26,6 +26,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSData *storageId;
 @property(readonly, nonatomic) NSNumber *statusDumpInterval;
 @property(retain, nonatomic) NSData *platformSerial;
+@property(retain, nonatomic) NSDictionary *systemUsers;
 @property(retain, nonatomic) NSDictionary *persistentTopics;
 @property(retain, nonatomic) NSString *machineUniqueIdentifier;
 @property(readonly, nonatomic) NSNumber *logLevel;
@@ -41,7 +42,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSDictionary *allTokenTopics;
 @property(readonly, nonatomic) NSString *albertName;
 @property(retain, nonatomic) NSArray *activationRecordListeners;
-@property(retain, nonatomic) NSDictionary *acknowledgedTokenHashes;
 
 @end
 

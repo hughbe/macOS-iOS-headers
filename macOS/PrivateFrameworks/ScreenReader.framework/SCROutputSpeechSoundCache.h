@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)sharedManager;
+- (void).cxx_destruct;
 - (long long)_setCache:(id)arg1 ifMatchesHash:(long long *)arg2;
 - (long long)_setCache:(id)arg1;
 - (id)_cacheWithHash:(long long *)arg1;
@@ -43,7 +44,6 @@ __attribute__((visibility("hidden")))
 - (void)_createNewCacheForVoice:(id)arg1 volume:(float)arg2 rate:(float)arg3 intonation:(float)arg4 pitchBase:(float)arg5;
 - (id)_fileSynthesizerForVoice:(id)arg1;
 - (id)init;
-- (void)dealloc;
 
 @end
 

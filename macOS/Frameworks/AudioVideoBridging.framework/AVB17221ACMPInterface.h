@@ -11,6 +11,7 @@
 @interface AVB17221ACMPInterface : AVB1722ControlInterface
 {
     NSMutableDictionary *_commandHandlers;
+    struct os_unfair_lock_s _commandHandlersLock;
     unsigned short _nextSequenceID;
     BOOL _monitorMode;
     id <AVB17221ACMPClient> _monitorModeDelegate;
@@ -35,9 +36,7 @@
 - (void)_disableMonitorMode;
 - (void)_enableMonitorModeWithDelegate:(id)arg1;
 - (void)removeHandlerForEntityID:(unsigned long long)arg1;
-- (void)removeHandlerForGUID:(unsigned long long)arg1;
 - (BOOL)setHandler:(id)arg1 forEntityID:(unsigned long long)arg2;
-- (BOOL)setHandler:(id)arg1 forGUID:(unsigned long long)arg2;
 - (id)initWithInterfaceName:(id)arg1;
 
 @end

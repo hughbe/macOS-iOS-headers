@@ -8,8 +8,9 @@
 
 #import "MKMapServiceSearchTicket.h"
 
-@class GEOMapRegion, GEOMapServiceTraits, GEORelatedSearchSuggestion, NSArray, NSError, NSString;
+@class GEOCategorySearchResultSection, GEODirectionIntent, GEOMapRegion, GEOMapServiceTraits, GEORelatedSearchSuggestion, GEOResolvedItem, NSArray, NSError, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _MKSearchTicket : _MKTicket <MKMapServiceSearchTicket>
 {
 }
@@ -19,10 +20,16 @@
 
 // Remaining properties
 @property(readonly, nonatomic) GEOMapRegion *boundingRegion;
+@property(readonly, nonatomic) NSArray *browseCategories;
+@property(readonly, nonatomic) GEOCategorySearchResultSection *categorySearchResultSection;
 @property(readonly, nonatomic, getter=isChainResultSet) BOOL chainResultSet;
+@property(readonly, nonatomic) GEOResolvedItem *clientResolvedResult;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, nonatomic) GEORelatedSearchSuggestion *defaultRelatedSuggestion;
 @property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) GEODirectionIntent *directionIntent;
+@property(readonly, nonatomic) NSArray *displayHeaderSubstitutes;
+@property(readonly, nonatomic) unsigned int dymSuggestionVisibleTime;
 @property(readonly, nonatomic) NSError *error;
 @property(readonly, nonatomic) NSArray *exactMapItems;
 @property(readonly) unsigned long long hash;
@@ -30,9 +37,12 @@
 @property(readonly, nonatomic) NSArray *relatedSearchSuggestions;
 @property(readonly, nonatomic) double requestResponseTime;
 @property(readonly, nonatomic) NSString *resultDisplayHeader;
+@property(readonly, nonatomic) NSArray *retainedSearchMetadata;
+@property(readonly, nonatomic) NSArray *searchResultSections;
 @property(readonly, nonatomic) int searchResultType;
 @property(readonly, nonatomic) NSString *sectionHeader;
 @property(readonly, nonatomic) BOOL shouldEnableRedoSearch;
+@property(readonly, nonatomic) BOOL showDymSuggestionCloseButton;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic) GEOMapServiceTraits *traits;
 

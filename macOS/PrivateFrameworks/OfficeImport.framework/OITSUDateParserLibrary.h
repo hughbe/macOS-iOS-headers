@@ -19,8 +19,10 @@ __attribute__((visibility("hidden")))
     NSCondition *mParserLibraryConditionVariable;
 }
 
+- (void)prepareDateParserInBackground;
 - (void)returnDateParser:(id)arg1;
 - (id)checkoutDateParser;
+- (void)dealloc;
 - (id)initWithLocale:(id)arg1;
 
 @end

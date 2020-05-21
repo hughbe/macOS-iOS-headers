@@ -19,7 +19,5 @@
 - (id)propertyForKey:(NSString *)arg1;
 - (SCNScene *)sceneWithOptions:(NSDictionary *)arg1 error:(id *)arg2;
 - (SCNScene *)sceneWithOptions:(NSDictionary *)arg1 statusHandler:(void (^)(float, long long, NSError *, char *))arg2;
-- (id)initWithData:(NSData *)arg1 options:(NSDictionary *)arg2;
-- (id)initWithURL:(NSURL *)arg1 options:(NSDictionary *)arg2;
 @end
 

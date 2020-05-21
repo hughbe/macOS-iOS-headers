@@ -23,6 +23,7 @@
 + (id)willBeginPossibleDeletionOfItemAtURL:(id)arg1;
 + (id)willBeginPossibleMoveOfItemAtURL:(id)arg1 toURL:(id)arg2;
 + (Class)_stitchingClass;
+- (BOOL)_isMDQuery;
 - (void)removeObserver:(id)arg1 forKeyPath:(id)arg2;
 - (id)_pendingChangeNotificationsArrayForKey:(id)arg1 create:(BOOL)arg2;
 - (id)valueOfAttribute:(id)arg1 forResultAtIndex:(unsigned long long)arg2;

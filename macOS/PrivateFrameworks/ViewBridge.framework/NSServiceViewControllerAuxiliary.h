@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSError, NSViewServiceMarshal, NSWindow;
+@class NSError, NSProxy<NSXPCProxyCreating>, NSViewServiceMarshal, NSWindow;
 
 __attribute__((visibility("hidden")))
 @interface NSServiceViewControllerAuxiliary : NSObject
@@ -14,11 +14,16 @@ __attribute__((visibility("hidden")))
     NSWindow *serviceWindow;
     NSViewServiceMarshal *marshal;
     unsigned int invalid:1;
+    unsigned int didSetWindowContentView:1;
     unsigned int makesExplicitResizeRequests:1;
     unsigned int retainedMarshal:1;
+    unsigned int mostRecentCallToSetViewWasNonNil:1;
+    unsigned int callsToSetViewCount;
     unsigned long long adjustLayoutInProgress;
     NSError *leastRecentError;
     unsigned int hostSDKVersion;
+    NSProxy<NSXPCProxyCreating> *_remoteViewControllerProxy;
+    struct os_unfair_lock_s _retainReleaseLock;
 }
 
 - (BOOL)hasOwnWindow;

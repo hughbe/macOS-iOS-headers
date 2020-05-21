@@ -16,6 +16,8 @@
 
 + (id)cancelRequestWithDictionary:(id)arg1 context:(id)arg2;
 + (id)cancelRequest;
+- (BOOL)requiresResponse;
+@property(nonatomic) long long clientCancellationCode;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

@@ -6,21 +6,22 @@
 
 #import <Mail/MFEWSRequestOperation.h>
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class MFEWSGetFolderResponseOperation, NSArray, NSString;
 
-@interface MFEWSMoveFolderRequestOperation : MFEWSRequestOperation <NSCoding>
+@interface MFEWSMoveFolderRequestOperation : MFEWSRequestOperation <NSSecureCoding>
 {
     NSString *_destinationEWSFolderIdString;
-    MFEWSGetFolderResponseOperation *_changeKeysResponse;
     NSArray *_originEWSFolderIdStrings;
+    MFEWSGetFolderResponseOperation *_changeKeysResponse;
 }
 
-@property(readonly, copy, nonatomic) NSArray *originEWSFolderIdStrings; // @synthesize originEWSFolderIdStrings=_originEWSFolderIdStrings;
-@property(readonly, nonatomic) MFEWSGetFolderResponseOperation *changeKeysResponse; // @synthesize changeKeysResponse=_changeKeysResponse;
-@property(readonly, copy, nonatomic) NSString *destinationEWSFolderIdString; // @synthesize destinationEWSFolderIdString=_destinationEWSFolderIdString;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) MFEWSGetFolderResponseOperation *changeKeysResponse; // @synthesize changeKeysResponse=_changeKeysResponse;
+@property(readonly, copy, nonatomic) NSArray *originEWSFolderIdStrings; // @synthesize originEWSFolderIdStrings=_originEWSFolderIdStrings;
+@property(readonly, copy, nonatomic) NSString *destinationEWSFolderIdString; // @synthesize destinationEWSFolderIdString=_destinationEWSFolderIdString;
 - (void)setupOfflineResponse;
 - (id)prepareRequest;
 - (BOOL)isFolderRequest;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSBundle, NSDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL, NSUUID, NSUserDefaults, Protocol;
+@class NSArray, NSBundle, NSDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL, NSUUID, NSUserDefaults, Protocol;
 
 @protocol PKPlugIn <NSObject>
 @property(copy) CDUnknownBlockType notificationBlock;
@@ -18,6 +18,7 @@
 @property(readonly) NSUUID *multipleInstanceUUID;
 @property(readonly) id <PKPlugIn> supersededBy;
 @property long long userElection;
+@property(readonly) NSDictionary *localizedFileProviderActionNames;
 @property(readonly) NSString *localizedContainingName;
 @property(readonly) NSString *localizedShortName;
 @property(readonly) NSString *localizedName;
@@ -30,12 +31,17 @@
 @property(readonly) NSURL *url;
 @property(readonly) NSString *version;
 @property(readonly) NSString *identifier;
+- (void)localizedInfoDictionaryForKeys:(NSArray *)arg1 completion:(void (^)(NSDictionary *, NSError *))arg2;
 - (void)setReplyQueue:(NSObject<OS_dispatch_queue> *)arg1;
 - (NSUserDefaults *)defaults;
 - (id <PKPlugIn>)createInstanceWithUUID:(NSUUID *)arg1;
 - (void)setHostPrincipal:(id)arg1 withProtocol:(Protocol *)arg2;
+- (BOOL)endUsingWithError:(id *)arg1;
 - (void)endUsing:(void (^)(NSError *))arg1;
 - (BOOL)useBundle:(NSString *)arg1 error:(id *)arg2;
+- (BOOL)beginUsingWithSubsystemOptions:(NSDictionary *)arg1 error:(id *)arg2;
+- (void)beginUsingWithSubsystemOptions:(NSDictionary *)arg1 completion:(void (^)(NSError *))arg2;
+- (BOOL)beginUsingWithError:(id *)arg1;
 - (void)beginUsing:(void (^)(NSError *))arg1;
 @end
 

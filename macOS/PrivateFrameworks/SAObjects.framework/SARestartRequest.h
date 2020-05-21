@@ -16,6 +16,7 @@
 
 + (id)restartRequestWithDictionary:(id)arg1 context:(id)arg2;
 + (id)restartRequest;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *requestId;
 @property(copy, nonatomic) NSString *lastResponseId;
 - (id)encodedClassName;

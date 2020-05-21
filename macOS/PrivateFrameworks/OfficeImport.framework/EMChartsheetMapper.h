@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     struct CGRect mBox;
 }
 
+- (void).cxx_destruct;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (int)preprocessHeightWithState:(id)arg1;
 - (int)preprocessWidthWithState:(id)arg1;

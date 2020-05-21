@@ -9,7 +9,8 @@
 __attribute__((visibility("hidden")))
 @interface FI_TBrowserTableColumnViewController : _NSBrowserTableColumnViewController
 {
-    struct TNSRef<FI_TColumnViewController *, void> _columnViewController;
+    struct TNSRef<FI_TColumnViewController, void> _columnViewController;
+    struct TNotificationCenterObserver _btvWillMoveToSuperviewObserver;
 }
 
 - (id).cxx_construct;
@@ -19,6 +20,8 @@ __attribute__((visibility("hidden")))
 - (id)browserTableView;
 - (BOOL)selectionShouldChangeInTableView:(id)arg1;
 - (id)columnViewController;
+- (void)aboutToTearDown;
+- (void)loadView;
 
 @end
 

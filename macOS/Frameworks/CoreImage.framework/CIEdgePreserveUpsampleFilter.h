@@ -23,9 +23,10 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) CIImage *inputSmallImage; // @synthesize inputSmallImage;
 @property(retain, nonatomic) CIImage *inputImage; // @synthesize inputImage;
 - (id)outputImage;
-- (id)_kernelGuideCombiner;
-- (id)_kernelGrayScale;
-- (id)_kernelJointUpsampAlt;
+- (id)_kernelGuideMono;
+- (id)_kernelGuideCombine4;
+- (id)_kernelGuideCombine;
+- (id)_kernelJointUpsampRG;
 - (id)_kernelJointUpsamp;
 
 @end

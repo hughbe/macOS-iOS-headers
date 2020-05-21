@@ -8,7 +8,7 @@
 
 #import "CLLocationManagerDelegate.h"
 
-@class CLLocationManager, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSTimer, PKPaymentDeviceConfigurationData, PKPaymentDeviceProvisioningData, PKSecureElement;
+@class CLLocationManager, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSTimer, PKPaymentDeviceConfigurationData, PKSecureElement;
 
 @interface PKPaymentDevice : NSObject <CLLocationManagerDelegate>
 {
@@ -16,9 +16,8 @@
     NSTimer *_timer;
     NSObject<OS_dispatch_source> *_locationFixTimeout;
     PKSecureElement *_secureElement;
-    PKPaymentDeviceProvisioningData *_provisioningData;
     PKPaymentDeviceConfigurationData *_configurationData;
-    NSMutableArray *_provisioningCompletions;
+    NSMutableArray *_metdataFetchTasks;
     NSObject<OS_dispatch_queue> *_callbackQueue;
     NSObject<OS_dispatch_queue> *_internalQueue;
     BOOL _skipLocationCheck;
@@ -26,20 +25,26 @@
 
 + (id)clientHardwarePlatformInfoHTTPHeader;
 + (id)clientInfoHTTPHeader;
-@property(nonatomic) BOOL skipLocationCheck; // @synthesize skipLocationCheck=_skipLocationCheck;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL skipLocationCheck; // @synthesize skipLocationCheck=_skipLocationCheck;
 - (void)configurationDataWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)queueConnectionToTrustedServiceManagerWithCompletion:(CDUnknownBlockType)arg1;
-- (id)_encodedJSBLSequenceCounter;
-- (void)_executeProvisioningCompletionHandlers;
+- (void)_executeDeviceMetadataFetchTasksCompletionHandlers;
 - (void)_finishLocationFixWithLocation:(id)arg1;
 - (void)locationManager:(id)arg1 didFailWithError:(id)arg2;
 - (void)locationManager:(id)arg1 didUpdateLocations:(id)arg2;
+- (id)primarySecureElementIdentifier;
+- (void)SEPParingInformationWithCompletion:(CDUnknownBlockType)arg1;
 - (void)deleteApplicationWithAID:(id)arg1;
 - (void)setRegistrationRegionMap:(id)arg1 primaryRegionTopic:(id)arg2;
+- (BOOL)hasRegistrationRegionMap;
+- (void)_populateDeviceMetdata:(id)arg1 withFields:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)paymentDeviceMetadataFields:(unsigned long long)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)provisioningDataWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)trustedDeviceEnrollmentInfo;
 - (id)configurationData;
-- (id)rewrapDataWithDeviceIdentifier:(id)arg1 certificates:(id)arg2;
+- (void)rewrapDataWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)signatureForAuthToken:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)signData:(id)arg1 signatureEntanglementMode:(unsigned long long)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)registrationDataWithAuthToken:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)queueConnectionToTrustedServiceManagerForPushTopic:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;

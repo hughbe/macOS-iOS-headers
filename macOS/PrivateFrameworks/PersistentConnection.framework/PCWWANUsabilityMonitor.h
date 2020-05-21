@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
+#import "CoreTelephonyClientDataDelegate.h"
 #import "PCInterfaceUsabilityMonitorDelegate.h"
 #import "PCInterfaceUsabilityMonitorProtocol.h"
 
-@class CUTWeakReference, NSObject<OS_dispatch_queue>, NSString, PCInterfaceUsabilityMonitor;
+@class CTXPCServiceSubscriptionContext, CUTWeakReference, CoreTelephonyClient, NSObject<OS_dispatch_queue>, NSString, PCInterfaceUsabilityMonitor;
 
-@interface PCWWANUsabilityMonitor : NSObject <PCInterfaceUsabilityMonitorProtocol, PCInterfaceUsabilityMonitorDelegate>
+@interface PCWWANUsabilityMonitor : NSObject <CoreTelephonyClientDataDelegate, PCInterfaceUsabilityMonitorProtocol, PCInterfaceUsabilityMonitorDelegate>
 {
     NSObject<OS_dispatch_queue> *_delegateQueue;
     NSObject<OS_dispatch_queue> *_ivarQueue;
@@ -24,16 +25,20 @@
     double _trackedTimeInterval;
     NSString *_interfaceName;
     PCInterfaceUsabilityMonitor *_interfaceMonitor;
-    struct __CFString *_currentRAT;
+    int _currentRAT;
     int _powerlogCDRXToken;
+    CoreTelephonyClient *_ctClient;
     int _wwanContextID;
     NSObject<OS_dispatch_queue> *_ctServerQueue;
+    CTXPCServiceSubscriptionContext *_currentDataSimContext;
 }
 
+- (void).cxx_destruct;
 - (void)interfaceReachabilityChanged:(id)arg1;
 - (void)interfaceLinkQualityChanged:(id)arg1 previousLinkQuality:(int)arg2;
 - (void)_callDelegateOnIvarQueueWithBlock:(CDUnknownBlockType)arg1;
 @property(nonatomic) id <PCInterfaceUsabilityMonitorDelegate> delegate;
+@property(readonly, nonatomic) BOOL isNetworkingPowerExpensiveToUse;
 @property(readonly, nonatomic) BOOL isRadioHot;
 @property(readonly, nonatomic) BOOL isBadLinkQuality;
 @property(readonly, nonatomic) BOOL isPoorLinkQuality;
@@ -48,9 +53,12 @@
 - (void)setTrackUsability:(BOOL)arg1;
 - (void)_forwardConfigurationOnIvarQueue;
 @property(readonly, nonatomic) struct __CFString *wwanInterfaceName;
-@property(readonly, nonatomic) struct __CFString *currentRAT; // @synthesize currentRAT=_currentRAT;
+@property(readonly, nonatomic) int currentRAT; // @synthesize currentRAT=_currentRAT;
+- (id)_currentDataSimContext;
+@property(readonly, nonatomic) NSString *networkCode;
 @property(readonly, nonatomic) BOOL isLTEWithCDRX;
-- (void)_adjustInterfaceNameForWWANContextID:(int)arg1;
+- (BOOL)_isCurrentDataSimContextOnIvarQueue:(id)arg1;
+- (void)_adjustInterfaceNameForWWANContextID:(int)arg1 interfaceName:(id)arg2 forContext:(id)arg3;
 - (void)_setupWWANMonitor;
 - (void)dealloc;
 - (id)initWithDelegateQueue:(id)arg1;

@@ -11,7 +11,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (Class)mailWebAreaClass;
+- (BOOL)_isDeepKeyboardChildSynchronizedWithVoiceOver:(id)arg1;
 - (BOOL)isMailApplication;
 - (BOOL)handleRotorContentChooserMoveInDirection:(long long)arg1 request:(id)arg2;
 - (id)axIdentifierForSectionType:(id)arg1;

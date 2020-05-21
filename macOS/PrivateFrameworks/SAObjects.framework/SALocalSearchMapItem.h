@@ -14,6 +14,7 @@
 
 + (id)mapItemWithDictionary:(id)arg1 context:(id)arg2;
 + (id)mapItem;
+@property(copy, nonatomic) NSString *suggestionsEntryType;
 @property(copy, nonatomic) NSString *spokenName;
 @property(copy, nonatomic) NSString *spokenAddress;
 @property(copy, nonatomic) NSData *resultDetourInfoData;

@@ -27,6 +27,7 @@
 + (id)delegatesForCalManagedCalDAVPrincipal:(id)arg1;
 + (id)infoWithCalDAVDetails:(id)arg1 allowWrite:(BOOL)arg2;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property BOOL alarmsEnabled; // @synthesize alarmsEnabled=_alarmsEnabled;
 @property int tasksPermission; // @synthesize tasksPermission=_tasksPermission;
 @property int calendarsPermission; // @synthesize calendarsPermission=_calendarsPermission;
@@ -42,7 +43,6 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithURI:(id)arg1 commonName:(id)arg2 allowWrite:(BOOL)arg3;
 - (id)initWithURI:(id)arg1 commonName:(id)arg2 permission:(int)arg3;
-- (void)dealloc;
 - (id)initWithCalManagedExchangePrincipal:(id)arg1;
 - (id)initWithCalManagedCalDAVPrincipal:(id)arg1;
 - (void)_setValuesWithCalManagedPrincipal:(id)arg1;

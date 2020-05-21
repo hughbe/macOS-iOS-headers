@@ -16,12 +16,12 @@
     NSURL *_fileURL;
 }
 
-@property(retain, nonatomic) NSURL *fileURL; // @synthesize fileURL=_fileURL;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSURL *fileURL; // @synthesize fileURL=_fileURL;
 @property(readonly, nonatomic) BOOL isDirectory;
 @property(readonly, nonatomic) BOOL canResultsBeCached;
 @property(readonly, nonatomic) BOOL dataIsLocallyAvailable;
-- (id)approximateSizeForAccessLevel:(long long)arg1;
+- (unsigned long long)approximateSizeForAccessLevel:(long long)arg1;
 - (void)fileWrapperForAccessLevel:(long long)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)dataForAccessLevel:(long long)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)_backgroundFileReadingQueue;

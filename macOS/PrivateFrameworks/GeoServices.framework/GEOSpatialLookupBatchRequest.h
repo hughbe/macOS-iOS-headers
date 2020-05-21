@@ -8,15 +8,31 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray;
+@class NSMutableArray, NSString, PBDataReader;
 
+__attribute__((visibility("hidden")))
 @interface GEOSpatialLookupBatchRequest : PBRequest <NSCopying>
 {
+    PBDataReader *_reader;
+    NSString *_deviceCountryCode;
+    NSString *_deviceSku;
     NSMutableArray *_requests;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_deviceCountryCode:1;
+        unsigned int read_deviceSku:1;
+        unsigned int read_requests:1;
+        unsigned int wrote_deviceCountryCode:1;
+        unsigned int wrote_deviceSku:1;
+        unsigned int wrote_requests:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)requestType;
-@property(retain, nonatomic) NSMutableArray *requests; // @synthesize requests=_requests;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -26,13 +42,24 @@
 - (unsigned int)requestTypeCode;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *deviceSku;
+@property(readonly, nonatomic) BOOL hasDeviceSku;
+- (void)_readDeviceSku;
+@property(retain, nonatomic) NSString *deviceCountryCode;
+@property(readonly, nonatomic) BOOL hasDeviceCountryCode;
+- (void)_readDeviceCountryCode;
 - (id)requestAtIndex:(unsigned long long)arg1;
 - (unsigned long long)requestsCount;
+- (void)_addNoFlagsRequest:(id)arg1;
 - (void)addRequest:(id)arg1;
 - (void)clearRequests;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *requests;
+- (void)_readRequests;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

@@ -8,38 +8,68 @@
 
 #import "NSCopying.h"
 
-@class GEOPDPlaceResponse, NSString;
+@class GEOPDPlaceResponse, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOCachedCategorySuggestionsPlaceResponse : PBCodable <NSCopying>
 {
-    double _timestamp;
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSString *_countryCode;
     NSString *_language;
     GEOPDPlaceResponse *_response;
     NSString *_sourceURL;
-    CDStruct_b5306035 _has;
+    double _timestamp;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int has_timestamp:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_countryCode:1;
+        unsigned int read_language:1;
+        unsigned int read_response:1;
+        unsigned int read_sourceURL:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_countryCode:1;
+        unsigned int wrote_language:1;
+        unsigned int wrote_response:1;
+        unsigned int wrote_sourceURL:1;
+        unsigned int wrote_timestamp:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *language; // @synthesize language=_language;
-@property(retain, nonatomic) NSString *countryCode; // @synthesize countryCode=_countryCode;
-@property(retain, nonatomic) NSString *sourceURL; // @synthesize sourceURL=_sourceURL;
-@property(nonatomic) double timestamp; // @synthesize timestamp=_timestamp;
-@property(retain, nonatomic) GEOPDPlaceResponse *response; // @synthesize response=_response;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)copyTo:(id)arg1;
+- (void)clearSensitiveFields;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *language;
 @property(readonly, nonatomic) BOOL hasLanguage;
+- (void)_readLanguage;
+@property(retain, nonatomic) NSString *countryCode;
 @property(readonly, nonatomic) BOOL hasCountryCode;
+- (void)_readCountryCode;
+@property(retain, nonatomic) NSString *sourceURL;
 @property(readonly, nonatomic) BOOL hasSourceURL;
+- (void)_readSourceURL;
 @property(nonatomic) BOOL hasTimestamp;
+@property(nonatomic) double timestamp;
+@property(retain, nonatomic) GEOPDPlaceResponse *response;
 @property(readonly, nonatomic) BOOL hasResponse;
-- (void)dealloc;
+- (void)_readResponse;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

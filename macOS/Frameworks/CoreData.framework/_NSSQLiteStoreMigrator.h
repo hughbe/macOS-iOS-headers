@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     NSSQLiteAdapter *_adapter;
     NSMappingModel *_mappingModel;
     NSSQLiteConnection *_connection;
+    NSArray *_tableGenerationSQL;
     NSArray *_existingTableNames;
     NSMutableDictionary *_reindexedEntities;
     NSMutableDictionary *_reindexedPropertiesByEntity;
@@ -28,18 +29,41 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_tableMigrationDescriptionsByEntity;
     BOOL _hasPKTableChanges;
     NSMutableArray *_pkTableUpdateStatements;
-    NSMutableDictionary *_attributeTriggersToUpdate;
+    NSMutableDictionary *_attributeExtensionsToUpdate;
+    NSMutableArray *_indexesToCreate;
+    NSMutableArray *_indexesToDrop;
+    NSMutableArray *_defaultValueStatements;
+    NSMutableArray *_derivationsToDrop;
+    NSMutableArray *_derivationsToRun;
+    NSMutableDictionary *_historyMigrationPropertyDataForEntityCache;
+    NSMutableArray *_cloudKitUpdateStatements;
+    BOOL _hasCloudKitTables;
 }
 
 + (void)_setAnnotatesMigrationMetadata:(BOOL)arg1;
 + (BOOL)_annotatesMigrationMetadata;
-@property(readonly) NSSQLiteAdapter *adapter; // @synthesize adapter=_adapter;
+@property(nonatomic) BOOL hasCloudKitTables; // @synthesize hasCloudKitTables=_hasCloudKitTables;
+@property(retain, nonatomic) NSMutableDictionary *historyMigrationCache; // @synthesize historyMigrationCache=_historyMigrationPropertyDataForEntityCache;
+@property(readonly, nonatomic) NSSQLModel *srcModel; // @synthesize srcModel=_srcModel;
+@property(readonly, nonatomic) NSSQLModel *dstModel; // @synthesize dstModel=_dstModel;
+@property(readonly, nonatomic) NSSQLiteAdapter *adapter; // @synthesize adapter=_adapter;
+- (id)updateStatementsForHistoryChanges;
+- (BOOL)deleteStatementsForHistory;
+- (BOOL)shiftTombstones;
+- (BOOL)clearTombstoneColumnsForRange:(struct _NSRange)arg1;
 - (void)_addReindexedProperty:(id)arg1 toSetForEntity:(id)arg2;
 - (void)_addEntityMigration:(id)arg1 toTableMigrationForRootEntity:(id)arg2 tableMigrationType:(int)arg3;
 - (void)_populateTableMigrationDescriptions;
 - (void)_populateEntityMigrationDescriptionsAndEntityMap;
+- (BOOL)_sourceTableIsClean:(id)arg1;
 - (id)tableMigrationDescriptionForEntity:(id)arg1;
 - (id)entityMigrationDescriptionForEntity:(id)arg1;
+- (void)_determineAttributeTriggerToMigrateForAttributeNamed:(id)arg1 withSourceEntity:(id)arg2 andDestinationEntity:(id)arg3;
+- (void)_determineRTreeExtensionsToMigrateForAttributeNamed:(id)arg1 withSourceEntity:(id)arg2 andDestinationEntity:(id)arg3;
+- (void)_determineDerivedAttributesToMigrateForSourceEntity:(id)arg1 andDestinationEntity:(id)arg2;
+- (void)_determineUniquenessConstraintsToMigrateForSourceEntity:(id)arg1 andDestinationEntity:(id)arg2;
+- (void)_determineIndexesToMigrateForSourceEntity:(id)arg1 andDestinationEntity:(id)arg2;
+- (CDUnknownBlockType)_indexMigrationBlockForSourceEntity:(id)arg1 andDestinationEntity:(id)arg2;
 - (void)_determineReindexedEntitiesAndAffectedProperties;
 - (void)_determinePropertyDependenciesOnIDForEntity:(id)arg1;
 - (id)createStatementsForUpdatingEntityKeys;
@@ -52,6 +76,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)performMigration:(id *)arg1;
 - (void)generatePKTableUpdateStatements;
 - (id)_originalRootsForAddedEntity:(id)arg1;
+- (void)_disconnect;
+@property(readonly, nonatomic) NSSQLiteConnection *connection;
 - (void)dealloc;
 - (id)initWithStore:(id)arg1 destinationModel:(id)arg2 mappingModel:(id)arg3;
 

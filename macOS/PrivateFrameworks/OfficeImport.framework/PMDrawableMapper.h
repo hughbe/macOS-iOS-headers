@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     BOOL mTopLevelMapper;
 }
 
+- (void).cxx_destruct;
 - (void)mapBounds;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (struct CGRect)slideRect;
@@ -23,7 +24,6 @@ __attribute__((visibility("hidden")))
 - (void)setTopLevelMapper:(BOOL)arg1;
 - (id)drawingContext;
 - (void)setDrawingContext:(id)arg1;
-- (void)dealloc;
 - (struct CGRect)transformRectToPage:(struct CGRect)arg1;
 - (struct CGRect)shapeTextBoxWithState:(id)arg1;
 - (void)mapFreeForm:(id)arg1 orientedBounds:(id)arg2 transformedBounds:(struct CGRect *)arg3 state:(id)arg4;

@@ -11,14 +11,14 @@
 __attribute__((visibility("hidden")))
 @interface RWIServiceXPCConnection : RWIServiceConnection
 {
-    NSObject<OS_xpc_object> *_connection;
     BOOL _validated;
+    NSObject<OS_xpc_object> *_connection;
 }
 
 - (void).cxx_destruct;
 - (void)sendMessage:(id)arg1;
 - (void)_handleXPCEvent:(id)arg1;
-- (void)dealloc;
+- (void)closeInternal;
 - (BOOL)isConnected;
 - (id)initWithMachine:(id)arg1 xpcServiceName:(const char *)arg2 delegate:(id)arg3;
 

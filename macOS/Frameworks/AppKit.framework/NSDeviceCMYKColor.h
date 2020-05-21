@@ -6,6 +6,7 @@
 
 #import <AppKit/NSColor.h>
 
+__attribute__((visibility("hidden")))
 @interface NSDeviceCMYKColor : NSColor
 {
     double cyanComponent;
@@ -25,6 +26,8 @@
 - (id)description;
 - (id)colorSpace;
 - (id)colorUsingColorSpace:(id)arg1;
+- (id)colorUsingType:(long long)arg1;
+- (long long)type;
 - (id)colorSpaceName;
 - (id)colorUsingColorSpaceName:(id)arg1 device:(id)arg2;
 - (void)drawSwatchInRect:(struct CGRect)arg1;

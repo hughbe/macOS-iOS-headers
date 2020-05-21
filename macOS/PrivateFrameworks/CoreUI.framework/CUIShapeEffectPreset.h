@@ -11,10 +11,14 @@
     CDStruct_c57d91d4 _parameterList[125];
     unsigned int _effectIndex[26];
     double _scaleFactor;
+    float _minimumShadowSpread;
 }
 
++ (int)cgBlendModeFromCUIEffectBlendMode:(unsigned int)arg1;
 + (unsigned int)cuiEffectBlendModeFromCGBlendMode:(int)arg1;
 + (id)requiredEffectParametersForEffectType:(unsigned int)arg1;
+@property(nonatomic) double scaleFactor; // @synthesize scaleFactor=_scaleFactor;
+@property float minimumShadowSpread; // @synthesize minimumShadowSpread=_minimumShadowSpread;
 - (id)debugDescription;
 - (void)addEffectsFromPreset:(id)arg1;
 - (void)addHueSaturationWithColorRed:(unsigned int)arg1 green:(unsigned int)arg2 blue:(unsigned int)arg3 angle:(int)arg4 width:(int)arg5 tintable:(BOOL)arg6;
@@ -48,7 +52,7 @@
 - (double)effectScale;
 - (id)initWithEffectScale:(double)arg1;
 - (id)init;
-- (id)initWithConstantPreset:(const CDStruct_32d4b02d *)arg1;
+- (id)initWithConstantPreset:(const CDStruct_35a2250d *)arg1;
 - (id)layerEffectsRepresentation;
 - (id)CUIEffectDataRepresentation;
 - (unsigned long long)_parameterCount;

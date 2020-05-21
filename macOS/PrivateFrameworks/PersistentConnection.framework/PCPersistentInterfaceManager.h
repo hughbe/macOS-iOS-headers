@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "CoreTelephonyClientDataDelegate.h"
 #import "PCInterfaceMonitorDelegate.h"
 
-@class NSMapTable, NSRecursiveLock, NSString, NSTimer, PCSimpleTimer;
+@class CTXPCServiceSubscriptionContext, CoreTelephonyClient, NSMapTable, NSRecursiveLock, NSString, NSTimer, PCSimpleTimer;
 
-@interface PCPersistentInterfaceManager : NSObject <PCInterfaceMonitorDelegate>
+@interface PCPersistentInterfaceManager : NSObject <CoreTelephonyClientDataDelegate, PCInterfaceMonitorDelegate>
 {
     NSRecursiveLock *_lock;
     NSMapTable *_delegatesAndQueues;
@@ -18,32 +19,30 @@
     PCSimpleTimer *_WiFiAutoAssociationDisableTimer;
     struct __CFSet *_wakeOnWiFiDelegates;
     PCSimpleTimer *_wakeOnWiFiDisableTimer;
-    void *_ctServerConnection;
     void *_interfaceAssertion;
-    int _WWANContextIdentifier;
     NSString *_WWANInterfaceName;
     BOOL _isWWANInterfaceUp;
     NSTimer *_inCallWWANOverrideTimer;
     BOOL _isWWANInterfaceDataActive;
     BOOL _ctIsWWANInHomeCountry;
     BOOL _hasWWANStatusIndicator;
+    BOOL _isWWANInterfaceSuspended;
     BOOL _isPowerStateDetectionSupported;
     BOOL _isWWANInterfaceInProlongedHighPowerState;
     BOOL _isWWANInterfaceActivationPermitted;
     double _lastActivationTime;
-    int _wwanRSSI;
     BOOL _isInCall;
     BOOL _isWakeOnWiFiSupported;
     BOOL _isWakeOnWiFiEnabled;
-    BOOL _shouldOverrideOnCallBehavior;
+    CoreTelephonyClient *_ctClient;
+    CTXPCServiceSubscriptionContext *_currentDataSimContext;
+    void *_ctServerConnection;
 }
 
 + (id)sharedInstance;
-- (id)urlConnectionBoundToWWANInterfaceWithRequest:(id)arg1 delegate:(id)arg2 usesCache:(BOOL)arg3 maxContentLength:(long long)arg4 startImmediately:(BOOL)arg5 connectionProperties:(id)arg6;
-- (id)urlConnectionBoundToWWANInterface:(BOOL)arg1 withRequest:(id)arg2 delegate:(id)arg3 usesCache:(BOOL)arg4 maxContentLength:(long long)arg5 startImmediately:(BOOL)arg6 connectionProperties:(id)arg7;
-- (void)bindCFStreamToWWANInterface:(struct __CFReadStream *)arg1;
-- (void)bindCFStream:(struct __CFReadStream *)arg1 toWWANInterface:(BOOL)arg2;
-- (BOOL)_allowBindingToWWAN;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL hasWWANStatusIndicator; // @synthesize hasWWANStatusIndicator=_hasWWANStatusIndicator;
+@property(readonly, nonatomic) BOOL allowBindingToWWAN;
 - (void)_adjustWakeOnWiFiLocked;
 - (void)_adjustWakeOnWiFi;
 - (BOOL)_wantsWakeOnWiFiEnabled;
@@ -56,28 +55,30 @@
 - (BOOL)_wantsWWANInterfaceAssertion;
 - (void)cutWiFiManagerDeviceAttached:(id)arg1;
 @property(readonly) BOOL areAllNetworkInterfacesDisabled;
-@property(readonly) BOOL isWakeOnWiFiSupported;
+@property(readonly, nonatomic) BOOL isWakeOnWiFiSupported;
 - (BOOL)_isWiFiUsable;
-@property(readonly) BOOL isInternetReachableViaWiFi;
-@property(readonly) BOOL isInternetReachable;
+@property(readonly, nonatomic) BOOL isInternetReachableViaWiFi;
+@property(readonly, nonatomic) BOOL isInternetReachable;
 - (BOOL)_isInternetReachableLocked;
 @property(readonly) BOOL isInCall;
-@property(readonly) BOOL isWWANInHomeCountry;
+@property(readonly, nonatomic) BOOL isWWANInHomeCountry;
 - (BOOL)_isWWANInHomeCountryLocked;
 @property(readonly) BOOL isWWANInterfaceActivationPermitted;
 @property(readonly) BOOL isWWANInterfaceInProlongedHighPowerState;
 @property(readonly) BOOL isPowerStateDetectionSupported;
-@property(readonly) BOOL doesWWANInterfaceExist;
-@property(readonly) NSString *WWANInterfaceName;
-@property(readonly) BOOL isWWANInterfaceUp;
-@property(readonly) BOOL isWWANBetterThanWiFi;
+@property(readonly, nonatomic) BOOL doesWWANInterfaceExist;
+@property(readonly, nonatomic) BOOL isWWANInterfaceSuspended;
+@property(readonly, nonatomic) NSString *WWANInterfaceName;
+@property(readonly, nonatomic) BOOL isWWANInterfaceUp;
+@property(readonly, nonatomic) BOOL isWWANBetterThanWiFi;
 - (void)_scheduleCalloutsForSelector:(SEL)arg1;
 - (BOOL)_wifiIsPoorLinkQuality;
 - (BOOL)_wwanIsPoorLinkQuality;
-@property(readonly, retain, nonatomic) NSString *currentLinkQualityString;
+@property(readonly, nonatomic) NSString *currentLinkQualityString;
 - (void)_updateCTIsWWANInHomeCountry:(BOOL)arg1 isWWANInterfaceDataActive:(BOOL)arg2;
 - (void)_updateWWANInterfaceUpState;
 - (void)_updateWWANInterfaceUpStateLocked;
+- (id)_nonCellularMonitor;
 - (void)_clearInCallWWANOverrideTimerLocked;
 - (void)_inCallWWANOverrideTimerFired;
 - (void)handleMachMessage:(void *)arg1;

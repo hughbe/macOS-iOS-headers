@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
 + (unsigned short)mapCharacter:(unsigned short)arg1 withFontName:(id)arg2;
 + (unsigned short)mapZapfDingbatsCharacter:(unsigned short)arg1;
 + (unsigned short)mapWindingsCharacter:(unsigned short)arg1;
+- (void).cxx_destruct;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (id)initWithWDSymbol:(id)arg1 parent:(id)arg2;
 

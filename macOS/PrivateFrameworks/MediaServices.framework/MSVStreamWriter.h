@@ -8,10 +8,12 @@
 
 #import "NSStreamDelegate.h"
 
-@class NSInputStream, NSObject<OS_dispatch_queue>, NSOutputStream, NSString;
+@class NSInputStream, NSMutableArray, NSObject<OS_dispatch_queue>, NSOutputStream, NSString;
 
 @interface MSVStreamWriter : NSObject <NSStreamDelegate>
 {
+    NSMutableArray *_pendingWriteDataList;
+    BOOL _stopped;
     BOOL _closeOnStop;
     struct z_stream_s *_zstreamp;
     BOOL _compressed;
@@ -26,6 +28,7 @@
     NSObject<OS_dispatch_queue> *_queue;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(retain, nonatomic) NSInputStream *inputStream; // @synthesize inputStream=_inputStream;
 @property(retain, nonatomic) NSOutputStream *outputStream; // @synthesize outputStream=_outputStream;
@@ -36,15 +39,17 @@
 @property(nonatomic) double timestamp; // @synthesize timestamp=_timestamp;
 @property(nonatomic, getter=isCompressed) BOOL compressed; // @synthesize compressed=_compressed;
 @property(nonatomic) unsigned long long maximumBufferSize; // @synthesize maximumBufferSize=_maximumBufferSize;
-- (void).cxx_destruct;
-- (id)_decompressData:(id)arg1;
+- (void)_onQueue_stop;
+- (void)_writeAvailablePendingData;
+- (BOOL)_processInput:(id)arg1 generatingDecompressedData:(id *)arg2;
 - (void)stream:(id)arg1 handleEvent:(unsigned long long)arg2;
 - (void)writeStreamError:(CDStruct_87dc826d)arg1;
 - (BOOL)writeAllData:(id)arg1 error:(id *)arg2;
+- (void)writeData:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)writeAllData:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)stopWithCompletion:(CDUnknownBlockType)arg1;
 - (void)stop;
 - (void)start;
-- (void)dealloc;
 - (id)initWithOutputStream:(id)arg1 queue:(id)arg2;
 - (id)initWithQueue:(id)arg1;
 - (id)init;

@@ -16,6 +16,7 @@
 
 + (id)callStartedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)callStarted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSURL *phoneLogId;
 - (id)encodedClassName;
 - (id)groupIdentifier;

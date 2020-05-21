@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class AVCAudioStreamConfig, AVCNetworkAddress, AVCVideoStreamConfig, NSData, NSString;
+@class AVCAudioStreamConfig, AVCNetworkAddress, AVCTextStreamConfig, AVCVideoStreamConfig, NSData, NSString;
 
 @interface AVCMediaStreamConfig : NSObject
 {
@@ -15,6 +15,7 @@
     long long _direction;
     unsigned long long _txPayloadType;
     unsigned long long _rxPayloadType;
+    unsigned int _localSSRC;
     unsigned int _remoteSSRC;
     NSString *_cName;
     BOOL _rateAdaptationEnabled;
@@ -33,8 +34,15 @@
     long long _SRTCPCipherSuite;
     AVCAudioStreamConfig *_audio;
     AVCVideoStreamConfig *_video;
+    AVCTextStreamConfig *_text;
 }
 
++ (id)dictionaryForCommonStreamConfig:(id)arg1;
++ (long long)clientCipherSuiteWithCipherSuite:(long long)arg1;
++ (long long)cipherSuiteWithClientCipherSuite:(long long)arg1;
++ (long long)clientStreamDirectionWithDirection:(long long)arg1;
++ (long long)streamDirectionWithClientDirection:(long long)arg1;
+@property(retain, nonatomic) AVCTextStreamConfig *text; // @synthesize text=_text;
 @property(retain, nonatomic) AVCVideoStreamConfig *video; // @synthesize video=_video;
 @property(retain, nonatomic) AVCAudioStreamConfig *audio; // @synthesize audio=_audio;
 @property(nonatomic) long long SRTCPCipherSuite; // @synthesize SRTCPCipherSuite=_SRTCPCipherSuite;
@@ -51,6 +59,7 @@
 @property(nonatomic, getter=isRTCPXREnabled) BOOL rtcpXREnabled; // @synthesize rtcpXREnabled=_rtcpXREnabled;
 @property(nonatomic, getter=isRTCPEnabled) BOOL rtcpEnabled; // @synthesize rtcpEnabled=_rtcpEnabled;
 @property(nonatomic, getter=isRateAdaptationEnabled) BOOL rateAdaptationEnabled; // @synthesize rateAdaptationEnabled=_rateAdaptationEnabled;
+@property(nonatomic) unsigned int localSSRC; // @synthesize localSSRC=_localSSRC;
 @property(nonatomic) unsigned int remoteSSRC; // @synthesize remoteSSRC=_remoteSSRC;
 @property(nonatomic) unsigned long long rxPayloadType; // @synthesize rxPayloadType=_rxPayloadType;
 @property(nonatomic) unsigned long long txPayloadType; // @synthesize txPayloadType=_txPayloadType;
@@ -59,7 +68,10 @@
 @property(retain, nonatomic) AVCNetworkAddress *remoteAddress; // @synthesize remoteAddress=_remoteAddress;
 @property(retain, nonatomic) AVCNetworkAddress *localAddress; // @synthesize localAddress=_localAddress;
 - (BOOL)isAudioCodecValid;
+- (id)dictionary;
+- (void)setUpWithDictionary:(id)arg1;
 - (id)description;
+- (BOOL)isValidTextConfig;
 - (BOOL)isValidVideoConfig;
 - (BOOL)isValidAudioConfig;
 - (void)dealloc;

@@ -20,7 +20,7 @@ __attribute__((visibility("hidden")))
 - (void)reset;
 - (id)estimatedDateForProgress:(double)arg1;
 - (double)estimatedProgressForDate:(id)arg1;
-- (void)setProgress:(double)arg1 forDate:(id)arg2;
+- (void)setProgress:(double)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 

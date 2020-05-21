@@ -14,8 +14,8 @@
     NSCountedSet *_retainedObjects;
 }
 
-@property(nonatomic) id <MSMediaStreamDaemonDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(nonatomic) id <MSMediaStreamDaemonDelegate> delegate; // @synthesize delegate=_delegate;
 - (BOOL)mayDownloadPersonID:(id)arg1;
 - (void)didReceivePushNotificationForPersonID:(id)arg1;
 - (void)didReceiveGlobalResetSyncForPersonID:(id)arg1;
@@ -31,19 +31,6 @@
 - (void)refreshServerSideConfigurationForPersonID:(id)arg1;
 - (void)didReceiveServerSideConfigurationVersion:(id)arg1 forPersonID:(id)arg2;
 - (id)serverSideConfigurationForPersonID:(id)arg1;
-- (id)notificationStringsForShareStateTransitionOldShares:(id)arg1 newShares:(id)arg2;
-- (void)_removeShareWithPersonID:(id)arg1 inArray:(id)arg2;
-- (id)_findShareWithPersonID:(id)arg1 inArray:(id)arg2;
-- (void)refreshShareStatesForPersonID:(id)arg1;
-- (BOOL)personIDIsAcceptingInvitations:(id)arg1;
-- (void)removeShare:(id)arg1 forPersonID:(id)arg2;
-- (void)modifyShare:(id)arg1 forPersonID:(id)arg2;
-- (void)respondToInvitation:(id)arg1 forPersonID:(id)arg2 accept:(BOOL)arg3;
-- (void)sendInvitations:(id)arg1 forPersonID:(id)arg2;
-- (id)invitationStringsFromInvitation:(id)arg1 targetPersonID:(id)arg2;
-- (id)invitationFromPushNotificationUserInfo:(id)arg1 outSourcePersonID:(id *)arg2 outTargetPersonID:(id *)arg3;
-- (void)_setShares:(id)arg1 forPersonID:(id)arg2;
-- (id)sharesForPersonID:(id)arg1;
 - (id)ownSubscribedStreamForPersonID:(id)arg1;
 - (id)subscribedStreamsForPersonID:(id)arg1;
 - (void)computeHashForAsset:(id)arg1 personID:(id)arg2;
@@ -59,7 +46,6 @@
 - (void)retryOutstandingActivities;
 - (id)_boundServerSideConfigManagerForPersonID:(id)arg1;
 - (id)_boundDeleterForPersonID:(id)arg1;
-- (id)_boundSharingManagerForPersonID:(id)arg1;
 - (id)_boundSubscriberForPersonID:(id)arg1;
 - (id)_boundPublisherForPersonID:(id)arg1;
 - (void)didUnidle;

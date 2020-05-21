@@ -8,11 +8,16 @@
 
 #import "NSCopying.h"
 
+@class CKDPZoneCapabilities;
+
 __attribute__((visibility("hidden")))
 @interface CKDPZoneSaveResponse : PBCodable <NSCopying>
 {
+    CKDPZoneCapabilities *_capabilities;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) CKDPZoneCapabilities *capabilities; // @synthesize capabilities=_capabilities;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -22,6 +27,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasCapabilities;
 
 @end
 

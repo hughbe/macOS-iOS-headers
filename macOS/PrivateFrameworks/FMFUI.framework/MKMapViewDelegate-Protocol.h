@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class MKAnnotationView, MKMapView, MKOverlayRenderer, MKUserLocation, NSArray, NSError;
+@class MKAnnotationView, MKClusterAnnotation, MKMapView, MKOverlayRenderer, MKUserLocation, NSArray, NSError;
 
 @protocol MKMapViewDelegate <NSObject>
 
 @optional
+- (MKClusterAnnotation *)mapView:(MKMapView *)arg1 clusterAnnotationForMemberAnnotations:(NSArray *)arg2;
 - (void)mapView:(MKMapView *)arg1 didAddOverlayRenderers:(NSArray *)arg2;
 - (MKOverlayRenderer *)mapView:(MKMapView *)arg1 rendererForOverlay:(id <MKOverlay>)arg2;
 - (void)mapView:(MKMapView *)arg1 annotationView:(MKAnnotationView *)arg2 didChangeDragState:(unsigned long long)arg3 fromOldState:(unsigned long long)arg4;
@@ -27,6 +28,7 @@
 - (void)mapViewDidFailLoadingMap:(MKMapView *)arg1 withError:(NSError *)arg2;
 - (void)mapViewDidFinishLoadingMap:(MKMapView *)arg1;
 - (void)mapViewWillStartLoadingMap:(MKMapView *)arg1;
+- (void)mapViewDidChangeVisibleRegion:(MKMapView *)arg1;
 - (void)mapView:(MKMapView *)arg1 regionDidChangeAnimated:(BOOL)arg2;
 - (void)mapView:(MKMapView *)arg1 regionWillChangeAnimated:(BOOL)arg2;
 @end

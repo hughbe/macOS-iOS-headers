@@ -19,6 +19,7 @@
 + (id)exchangeConversionLocalizedMessage;
 + (id)todo;
 + (id)entityFromManagedObject:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) NSString *recurrenceDescription; // @synthesize recurrenceDescription=_recurrenceDescription;
 - (id)humanReadableRepeatDescription;
 - (id)expandOnTimeRange:(id)arg1;

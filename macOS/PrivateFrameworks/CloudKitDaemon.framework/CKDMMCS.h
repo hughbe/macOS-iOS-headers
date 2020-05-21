@@ -6,13 +6,16 @@
 
 #import "NSObject.h"
 
-@class CKDAssetCache, CKDMMCSEngineContext, NSString;
+@class CKDAssetCache, CKDClientContext, CKDMMCSEngineContext, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CKDMMCS : NSObject
 {
+    BOOL _didDrop;
     NSString *_path;
     CKDAssetCache *_assetCache;
+    CKDClientContext *_clientContext;
+    long long _checkoutCount;
     CKDMMCSEngineContext *_MMCSEngineContext;
 }
 
@@ -33,12 +36,16 @@ __attribute__((visibility("hidden")))
 + (long long)_errorCodeWithMMCSGetError:(id)arg1;
 + (long long)_commonErrorCodeWithMMCSError:(id)arg1;
 + (id)_userInfoFromMMCSRetryableError:(id)arg1;
++ (id)protocolHeaders;
 + (id)protocolVersion;
 + (id)zeroSizeFileSignature;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CKDMMCSEngineContext *MMCSEngineContext; // @synthesize MMCSEngineContext=_MMCSEngineContext;
+@property(nonatomic) long long checkoutCount; // @synthesize checkoutCount=_checkoutCount;
+@property(nonatomic) BOOL didDrop; // @synthesize didDrop=_didDrop;
+@property(nonatomic) __weak CKDClientContext *clientContext; // @synthesize clientContext=_clientContext;
 @property(retain, nonatomic) CKDAssetCache *assetCache; // @synthesize assetCache=_assetCache;
 @property(retain, nonatomic) NSString *path; // @synthesize path=_path;
-- (void).cxx_destruct;
 - (id)getSectionItem:(id)arg1 operation:(id)arg2 options:(id)arg3 progress:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (id)_contextToGetSectionItem:(id)arg1 operation:(id)arg2 options:(id)arg3 progress:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (id)putSectionItem:(id)arg1 operation:(id)arg2 options:(id)arg3 progress:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
@@ -51,20 +58,22 @@ __attribute__((visibility("hidden")))
 - (BOOL)registeredItemCount:(unsigned long long *)arg1 error:(id *)arg2;
 - (BOOL)_getRegisteredItemsGreaterThan:(unsigned long long)arg1 itemIds:(unsigned long long *)arg2 itemCount:(unsigned long long *)arg3 error:(id *)arg4;
 - (id)CKStatusReportArray;
+- (id)putChunkKeysItemGroupSet:(id)arg1 operation:(id)arg2 options:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)putItemGroupSet:(id)arg1 operation:(id)arg2 options:(id)arg3 progress:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (id)_contextToPutItemGroup:(id)arg1 operation:(id)arg2 options:(id)arg3 progress:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (id)getItemGroupSet:(id)arg1 operation:(id)arg2 shouldFetchAssetContentInMemory:(BOOL)arg3 options:(id)arg4 progress:(CDUnknownBlockType)arg5 command:(CDUnknownBlockType)arg6 completionHandler:(CDUnknownBlockType)arg7;
 - (id)_contextToGetItemGroup:(id)arg1 operation:(id)arg2 options:(id)arg3 progress:(CDUnknownBlockType)arg4 command:(CDUnknownBlockType)arg5 completionHandler:(CDUnknownBlockType)arg6;
-- (id)registerItemGroupSet:(id)arg1 operation:(id)arg2 shouldChunk:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (id)registerItemGroupSet:(id)arg1 operation:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (id)registerItemGroupSet:(id)arg1 operation:(id)arg2 shouldChunk:(BOOL)arg3 fetchOnly:(BOOL)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (id)_contextToRegisterItemGroup:(id)arg1 operation:(id)arg2 fetchOnly:(BOOL)arg3 options:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (id)getChunkKeysItemGroupSet:(id)arg1 operation:(id)arg2 options:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (id)_contextToGetOrPutChunkKeysItemGroup:(id)arg1 operation:(id)arg2 options:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (id)registerItemGroupSet:(id)arg1 operation:(id)arg2 options:(unsigned long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (id)_contextToRegisterItemGroup:(id)arg1 operation:(id)arg2 options:(unsigned long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)_logMMCSOptions:(id)arg1;
 - (id)_referenceIdentifierFromAssetKey:(id)arg1;
 @property(readonly, nonatomic, getter=getMaxChunkCountForSection) unsigned int maxChunkCountForSection;
 - (struct _mmcs_engine *)getMMCSEngine;
 - (void)dealloc;
 - (id)initWithMMCSEngineContext:(id)arg1 path:(id)arg2;
+- (void)drop;
 
 @end
 

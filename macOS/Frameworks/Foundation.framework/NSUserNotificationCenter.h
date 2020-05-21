@@ -18,6 +18,7 @@
 + (id)_webNotificationIdentifiers;
 + (id)_webNotificationCenterSearchPath;
 + (BOOL)_doNotDisturbEnabled;
++ (void)_registerConnectionCallback:(CDUnknownBlockType)arg1;
 + (id)_centerForBundleIdentifier:(id)arg1;
 + (void)_registerForOnDemandCallback:(CDUnknownBlockType)arg1;
 + (id)_centerForIdentifier:(id)arg1 type:(unsigned long long)arg2;

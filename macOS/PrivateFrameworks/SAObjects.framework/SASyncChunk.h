@@ -4,18 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <SAObjects/SABaseCommand.h>
+#import <SAObjects/SABaseClientBoundCommand.h>
 
 #import "SAServerBoundCommand.h"
 
 @class NSArray, NSString, SASyncAppMetaData;
 
-@interface SASyncChunk : SABaseCommand <SAServerBoundCommand>
+@interface SASyncChunk : SABaseClientBoundCommand <SAServerBoundCommand>
 {
 }
 
 + (id)chunkWithDictionary:(id)arg1 context:(id)arg2;
 + (id)chunk;
+- (BOOL)mutatingCommand;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *validity;
 @property(copy, nonatomic) NSArray *toRemove;
 @property(copy, nonatomic) NSArray *toAdd;

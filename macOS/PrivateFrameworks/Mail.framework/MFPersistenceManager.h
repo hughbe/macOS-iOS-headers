@@ -16,24 +16,9 @@
 + (id)autoDownloadDirectoryPath;
 + (id)mailDataSupportDirectoryURL;
 + (id)mailDataSupportDirectory;
-+ (id)mailDataDirectoryURL;
-+ (id)mailDataDirectory;
 + (id)legacyDefaultMailDirectory;
-+ (id)mailAccountDirectoryURL;
-+ (id)mailAccountDirectory;
-+ (id)mailDataDirectoryName;
-+ (id)supportDirectoryURL;
-+ (id)supportDirectory;
 + (void)resetPersistenceLayout;
 + (id)migrationDirectoryNameForDestinationPersistenceLayoutVersion:(long long)arg1;
-+ (id)topLevelDirectoryNameForPersistenceLayoutVersion:(long long)arg1;
-+ (long long)persistenceLayoutOfBaseMailDirectory:(id)arg1;
-+ (long long)persistenceLayout;
-+ (id)nonContainerizedMailRootDirectory;
-+ (id)baseMailDirectoryURL;
-+ (id)baseMailDirectory;
-+ (id)unresolvedBaseMailDirectory;
-+ (id)tildeUnresolvedBaseMailDirectory;
 
 @end
 

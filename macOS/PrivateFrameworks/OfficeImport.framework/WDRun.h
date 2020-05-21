@@ -14,13 +14,13 @@ __attribute__((visibility("hidden")))
     WDParagraph *mParagraph;
 }
 
+- (void).cxx_destruct;
+@property(readonly) __weak WDParagraph *paragraph; // @synthesize paragraph=mParagraph;
 - (id)description;
 - (void)clearProperties;
 - (BOOL)isEmpty;
-- (void)dealloc;
 - (id)initWithParagraph:(id)arg1;
 - (id)init;
-- (id)paragraph;
 - (int)runType;
 
 @end

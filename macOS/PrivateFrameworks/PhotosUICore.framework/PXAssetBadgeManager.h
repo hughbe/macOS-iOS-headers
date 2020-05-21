@@ -10,8 +10,9 @@
 {
 }
 
-- (unsigned long long)badgeTypesForCollection:(id)arg1;
-- (unsigned long long)badgeTypesForAsset:(id)arg1;
++ (id)defaultManager;
+- (struct PXAssetBadgeInfo)badgeInfoForCollection:(id)arg1 options:(unsigned long long)arg2;
+- (struct PXAssetBadgeInfo)badgeInfoForAsset:(id)arg1 inCollection:(id)arg2 options:(unsigned long long)arg3;
 
 @end
 

@@ -23,6 +23,8 @@
 - (id)tokensForResultValue:(id)arg1;
 - (id)tokensForResultName:(id)arg1;
 - (id)nameTokensForResult:(id)arg1;
+- (BOOL)evaluateTopLevelGroupResult:(id)arg1;
+- (BOOL)evaluateSingleResult:(id)arg1;
 - (BOOL)evaluateResult:(id)arg1;
 - (CDUnknownBlockType)filterAdapter;
 - (id)initWithSearchString:(id)arg1 countryCode:(id)arg2;

@@ -6,22 +6,27 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class NSString, WebBookmark;
 
 __attribute__((visibility("hidden")))
-@interface WrapperForBookmarkDeduplication : NSObject
+@interface WrapperForBookmarkDeduplication : NSObject <NSCopying>
 {
     int _type;
     NSString *_title;
     NSString *_urlString;
+    BOOL _hasSyncData;
     WebBookmark *_bookmark;
 }
 
-@property(readonly, nonatomic) WebBookmark *bookmark; // @synthesize bookmark=_bookmark;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL hasSyncData; // @synthesize hasSyncData=_hasSyncData;
+@property(readonly, nonatomic) WebBookmark *bookmark; // @synthesize bookmark=_bookmark;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithBookmark:(id)arg1;
 - (id)init;
 

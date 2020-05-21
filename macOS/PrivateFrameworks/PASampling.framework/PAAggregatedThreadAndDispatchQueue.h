@@ -21,8 +21,11 @@
     unsigned long long _dispatchQueueId;
     unsigned long long _threadId;
     unsigned long long _cpuTimeNsCached;
+    unsigned long long _cpuCyclesCached;
+    unsigned long long _cpuInstructionsCached;
 }
 
+- (void).cxx_destruct;
 @property int minBasePriority; // @synthesize minBasePriority=_minBasePriority;
 @property int maxBasePriority; // @synthesize maxBasePriority=_maxBasePriority;
 @property int minPriority; // @synthesize minPriority=_minPriority;
@@ -30,7 +33,9 @@
 @property unsigned long long threadId; // @synthesize threadId=_threadId;
 @property unsigned long long dispatchQueueId; // @synthesize dispatchQueueId=_dispatchQueueId;
 @property(readonly) __weak PAAggregatedProcessInstance *aggregatedTask; // @synthesize aggregatedTask=_aggregatedTask;
-- (void).cxx_destruct;
+- (void)addStack:(id)arg1;
+- (unsigned long long)cpuCycles;
+- (unsigned long long)cpuInstructions;
 - (unsigned long long)cpuTimeNs;
 @property(readonly) BOOL isIdleWorkQueueThread;
 @property(readonly) BOOL isGlobalForcedIdleThread;

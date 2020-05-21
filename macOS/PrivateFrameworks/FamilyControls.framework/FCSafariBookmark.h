@@ -6,15 +6,16 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSMutableDictionary;
 
-@interface FCSafariBookmark : NSObject <NSCoding>
+@interface FCSafariBookmark : NSObject <NSSecureCoding>
 {
     NSMutableDictionary *_dictionary;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)bookmarkWithDictionary:(id)arg1;
 - (id)description;
 - (id)uuid;

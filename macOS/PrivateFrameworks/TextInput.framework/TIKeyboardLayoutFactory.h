@@ -16,12 +16,12 @@
 
 + (id)layoutsFileName;
 + (id)sharedKeyboardFactory;
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *internalCache; // @synthesize internalCache=_internalCache;
 @property(readonly, nonatomic) void *layoutsLibraryHandle; // @synthesize layoutsLibraryHandle=_layoutsLibraryHandle;
 - (id)keyboardPrefixForWidth:(double)arg1 andEdge:(BOOL)arg2;
 - (id)keyboardWithName:(id)arg1 inCache:(id)arg2;
 - (id)init;
-- (void)dealloc;
 
 @end
 

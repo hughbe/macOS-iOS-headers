@@ -15,7 +15,7 @@
 }
 
 - (Class)valueClass;
-- (BOOL)isValue:(id)arg1 equivalentToValue:(id)arg2;
+- (BOOL)canUnifyValue:(id)arg1 withValue:(id)arg2;
 - (void)setValue:(id)arg1 onCoreDataContact:(id)arg2;
 - (id)valueFromCoreDataContact:(id)arg1;
 - (id)activity;

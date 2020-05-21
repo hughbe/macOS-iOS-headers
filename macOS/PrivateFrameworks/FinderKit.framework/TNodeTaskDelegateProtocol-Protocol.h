@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "TValidatorClientProtocol.h"
+#import "NSObject.h"
 
-@protocol TNodeTaskDelegateProtocol <TValidatorClientProtocol>
-- (void)selectNodesForTask:(const struct TFENodeVector *)arg1;
+@protocol TNodeTaskDelegateProtocol <NSObject>
+- (void)selectNodesForTask:(const struct TFENodeVector *)arg1 startEditing:(_Bool)arg2;
 @end
 

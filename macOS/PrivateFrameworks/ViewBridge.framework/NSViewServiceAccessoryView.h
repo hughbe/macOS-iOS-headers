@@ -12,13 +12,15 @@
 {
     NSViewServiceMarshal *_marshal;
     unsigned int _canBecomeKeyViewInProgress:1;
+    unsigned int _mostRecentDisclosure:1;
+    int _mostRecentAnimationState;
     double _disclosureAnimationDuration;
 }
 
 + (double)disclosureAnimationDuration;
 @property double disclosureAnimationDuration; // @synthesize disclosureAnimationDuration=_disclosureAnimationDuration;
-- (void)drawRect:(struct CGRect)arg1;
-- (struct CGPoint)originRelativeToFrame;
+- (struct NSEdgeInsets)alignmentRectInsets;
+- (struct CGRect)_frameRelativeToWindow;
 - (void)viewDidMoveToWindow;
 - (BOOL)becomeFirstResponder;
 - (BOOL)resignFirstResponder;

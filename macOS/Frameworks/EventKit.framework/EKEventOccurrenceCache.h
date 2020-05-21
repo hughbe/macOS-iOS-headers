@@ -6,28 +6,30 @@
 
 #import "NSObject.h"
 
-@class CalDefaultDictionary, EKBackingStore, NSMutableOrderedSet, NSObject<OS_dispatch_queue>;
+@class CalDefaultDictionary, EKBackingStore, NSMutableArray, NSMutableOrderedSet, NSObject<OS_dispatch_queue>;
 
 @interface EKEventOccurrenceCache : NSObject
 {
     EKBackingStore *_backingStore;
     NSMutableOrderedSet *_binnedDates;
     CalDefaultDictionary *_binnedEvents;
+    NSMutableArray *_eventsWithProposedTimes;
     NSObject<OS_dispatch_queue> *_cacheQueue;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *cacheQueue; // @synthesize cacheQueue=_cacheQueue;
+@property(retain, nonatomic) NSMutableArray *eventsWithProposedTimes; // @synthesize eventsWithProposedTimes=_eventsWithProposedTimes;
 @property(retain, nonatomic) CalDefaultDictionary *binnedEvents; // @synthesize binnedEvents=_binnedEvents;
 @property(retain, nonatomic) NSMutableOrderedSet *binnedDates; // @synthesize binnedDates=_binnedDates;
 @property(nonatomic) __weak EKBackingStore *backingStore; // @synthesize backingStore=_backingStore;
-- (void).cxx_destruct;
 - (id)_binnedOccurrences;
 - (id)_allOccurrences;
 - (id)_cachedRange;
 - (unsigned long long)_startIndexForRange:(id)arg1;
 - (unsigned long long)_insertIndexForDate:(id)arg1;
 - (void)_binDate:(id)arg1;
-- (void)prune;
+- (void)pruneWithOccurrencesToKeep:(id)arg1;
 - (void)_unbinOccurrencesHelperWithOccurrenceTestBlock:(CDUnknownBlockType)arg1;
 - (void)unbinOccurrencesWithObjectIDs:(id)arg1;
 - (void)_unbinOccurrences:(id)arg1;
@@ -47,6 +49,7 @@
 - (void)_binEvent:(id)arg1 timeZoneString:(id)arg2;
 - (void)_binEvents:(id)arg1;
 - (void)binEvents:(id)arg1;
+- (void)clearAll;
 - (id)copyForBackingStore:(id)arg1;
 - (id)initWithBackingStore:(id)arg1;
 

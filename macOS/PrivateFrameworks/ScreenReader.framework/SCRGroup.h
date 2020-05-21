@@ -15,10 +15,11 @@ __attribute__((visibility("hidden")))
     NSArray *_previousSelectionUIElements;
 }
 
+- (void).cxx_destruct;
 - (BOOL)needToRebuildChildren;
 - (BOOL)_supportsAlternateUIAction;
 - (BOOL)shouldAutoFocusOnChildren;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (void)setIsEventHandler:(BOOL)arg1 isKeyboardHandler:(BOOL)arg2;
 - (BOOL)allowFocusThroughSingleChild;
 - (BOOL)performDefaultActionWithRequest:(id)arg1 allowClick:(BOOL)arg2;
@@ -31,7 +32,6 @@ __attribute__((visibility("hidden")))
 - (void)_addItemNameToRequest:(id)arg1 forAction:(BOOL)arg2;
 - (void)setPreviousSelectionUIElements:(id)arg1;
 - (id)previousSelectionUIElements;
-- (void)dealloc;
 
 @end
 

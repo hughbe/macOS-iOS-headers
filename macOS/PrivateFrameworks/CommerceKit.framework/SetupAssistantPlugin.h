@@ -8,22 +8,19 @@
 
 #import "MBSetupAssistantDelegateConfiguration.h"
 
-@class ISStoreClient, NSString;
+@class CKStoreClient;
 
 @interface SetupAssistantPlugin : NSObject <MBSetupAssistantDelegateConfiguration>
 {
-    ISStoreClient *_storeClient;
-    NSString *_appName;
-    NSString *_appVersion;
-    NSString *_appPreferencesDomain;
-    NSString *_listenerName;
+    CKStoreClient *_storeClient;
 }
 
-@property(readonly, retain) NSString *listenerName; // @synthesize listenerName=_listenerName;
 - (void).cxx_destruct;
-- (id)storeUserAgentString;
+@property(readonly, nonatomic) CKStoreClient *storeClient; // @synthesize storeClient=_storeClient;
+- (void)_authenticateUsername:(id)arg1 password:(id)arg2 canMakeActive:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)_addUnauthenticatedAccountWithSetupResponse:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)terminateSetupCompletion;
-- (void)completeSetupWithResponse:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)completeSetupWithResponse:(id)arg1 account:(id)arg2 store:(id)arg3 context:(long long)arg4 handler:(CDUnknownBlockType)arg5;
 - (id)delegateAccountInformation;
 - (id)delegateSetupRequest;
 - (id)delegateIdentifier;

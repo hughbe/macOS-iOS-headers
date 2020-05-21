@@ -23,11 +23,13 @@
 - (id)_stylePropertiesForArchive;
 - (void)_setStylePropertiesForArchive:(id)arg1;
 - (void)_setRuby:(id)arg1 inRange:(struct _NSRange)arg2;
+- (void)_setTextCombine:(long long)arg1 inRange:(struct _NSRange)arg2;
 - (void)_setDecoration:(long long)arg1 inRange:(struct _NSRange)arg2;
 - (void)_setFontStyle:(long long)arg1 inRange:(struct _NSRange)arg2;
 - (void)_setFontWeight:(long long)arg1 inRange:(struct _NSRange)arg2;
 - (void)_setBackgroundColor:(struct CGColor *)arg1 inRange:(struct _NSRange)arg2;
 - (void)_setTextColor:(struct CGColor *)arg1 inRange:(struct _NSRange)arg2;
+- (void)_setTextAlignment:(long long)arg1;
 - (void)_setAnimation:(long long)arg1;
 - (void)_setRegion:(id)arg1;
 - (void)_setTimeRange:(CDStruct_e83c9415)arg1;
@@ -39,22 +41,22 @@
 @property(readonly, nonatomic) NSString *text;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (unsigned long long)hash;
-- (BOOL)isEqual:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithText:(id)arg1 timeRange:(CDStruct_e83c9415)arg2;
+- (id)initWithFigCaptionData:(const struct OpaqueFigCaptionData *)arg1 timeRange:(CDStruct_e83c9415)arg2;
 - (id)initWithFigMutableCaptionData:(struct OpaqueFigCaptionData *)arg1 timeRange:(CDStruct_e83c9415)arg2;
 - (id)init;
 - (id)rubyTextAtIndex:(long long)arg1 range:(struct _NSRange *)arg2;
+- (long long)textCombineAtIndex:(long long)arg1 range:(struct _NSRange *)arg2;
 - (long long)decorationAtIndex:(long long)arg1 range:(struct _NSRange *)arg2;
 - (long long)fontStyleAtIndex:(long long)arg1 range:(struct _NSRange *)arg2;
 - (long long)fontWeightAtIndex:(long long)arg1 range:(struct _NSRange *)arg2;
 - (struct CGColor *)copyBackgroundColorAtIndex:(long long)arg1 range:(struct _NSRange *)arg2;
 - (struct CGColor *)copyTextColorAtIndex:(long long)arg1 range:(struct _NSRange *)arg2;
-@property(readonly, nonatomic) long long animation;
+- (long long)textAlignment;
+- (long long)animation;
 
 @end
 

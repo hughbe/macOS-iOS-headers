@@ -6,12 +6,23 @@
 
 #import <PhotosUICore/PXSectionedObjectReference.h>
 
-@interface PXAssetReference : PXSectionedObjectReference
+#import "PXAssetReferenceProtocol.h"
+
+@class NSString;
+
+@interface PXAssetReference : PXSectionedObjectReference <PXAssetReferenceProtocol>
 {
 }
 
 @property(readonly, nonatomic) id <PXDisplayAssetCollection> assetCollection;
 @property(readonly, nonatomic) id <PXDisplayAsset> asset;
+@property(readonly, nonatomic) struct PXSimpleIndexPath simpleIndexPath;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

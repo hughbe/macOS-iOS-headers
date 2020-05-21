@@ -10,6 +10,7 @@
 - (void)_ICSEscapeParameterQuotedValue;
 - (void)_ICSEscapeParameterValue;
 - (void)_ICSEscapePropertyValue;
+- (id)controlCharacterSet;
 - (void)_ICSStripControlChracters;
 - (void)_ICSRemoveCharactersFromSet:(id)arg1;
 @end

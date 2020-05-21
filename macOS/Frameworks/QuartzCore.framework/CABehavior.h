@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSDictionary, NSString;
 
-@interface CABehavior : NSObject <NSCoding, NSCopying>
+@interface CABehavior : NSObject <NSSecureCoding, NSCopying>
 {
     void *_attr;
     unsigned int _refcount;
@@ -25,12 +25,13 @@
 + (void)CAMLParserStartElement:(id)arg1;
 + (BOOL)CA_automaticallyNotifiesObservers:(Class)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (id)CA_attributes;
 + (id)properties;
 + (id)defaultValueForKey:(id)arg1;
 + (id)behavior;
 @property(copy) NSDictionary *style;
-@property __weak id delegate;
+@property __weak id <CABehaviorDelegate> delegate;
 @property(getter=isEnabled) BOOL enabled;
 @property(copy) NSString *name;
 - (id)attributesForKeyPath:(id)arg1;
@@ -48,13 +49,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)shouldArchiveValueForKey:(id)arg1;
-- (void)_setCARenderBehavior:(struct Behavior *)arg1;
-- (void)dealloc;
-- (BOOL)allowsWeakReference;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (BOOL)retainWeakReference;
-- (id)retain;
 - (id)init;
 
 @end

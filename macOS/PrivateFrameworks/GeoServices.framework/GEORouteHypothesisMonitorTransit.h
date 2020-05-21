@@ -11,7 +11,6 @@ __attribute__((visibility("hidden")))
 {
 }
 
-- (double)_conservativeTimeBuffer;
 - (id)routeName;
 - (void)checkRouteForLocation:(id)arg1;
 - (void)_recalculateETAWithRouteMatch:(id)arg1;

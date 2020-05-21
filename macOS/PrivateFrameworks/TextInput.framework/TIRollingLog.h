@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class NSArray, NSMutableArray;
 
-@interface TIRollingLog : NSObject
+@interface TIRollingLog : NSObject <NSCopying>
 {
     NSMutableArray *_entries;
     unsigned long long _nextIndex;
@@ -16,10 +18,12 @@
     unsigned long long _maxCount;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSArray *currentEntries;
+- (void)addEntries:(id)arg1;
 - (void)addEntry:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithMaxCount:(unsigned long long)arg1;
-- (void)dealloc;
 
 @end
 

@@ -14,11 +14,13 @@ __attribute__((visibility("hidden")))
 @interface VCMediaNegotiationBlobVideoPayloadSettings : PBCodable <NSCopying>
 {
     NSString *_featureString;
+    unsigned int _parameterSet;
     unsigned int _payload;
     NSMutableArray *_videoRuleCollections;
 }
 
 + (Class)videoRuleCollectionsType;
+@property(nonatomic) unsigned int parameterSet; // @synthesize parameterSet=_parameterSet;
 @property(retain, nonatomic) NSString *featureString; // @synthesize featureString=_featureString;
 @property(retain, nonatomic) NSMutableArray *videoRuleCollections; // @synthesize videoRuleCollections=_videoRuleCollections;
 @property(nonatomic) unsigned int payload; // @synthesize payload=_payload;

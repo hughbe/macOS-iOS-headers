@@ -15,7 +15,7 @@
 - (BOOL)canBeBrokenApart;
 - (void)removeChildElement:(id)arg1;
 - (struct CGSize)minimumSize;
-- (void)resizeToRect:(struct CGRect)arg1 resizeType:(int)arg2;
+- (void)resizeToRect:(struct CGRect)arg1 resizeType:(long long)arg2;
 - (void)setRectBeingManipulated:(BOOL)arg1;
 - (id)dictionaryForSaving;
 

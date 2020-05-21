@@ -16,6 +16,7 @@
 
 + (id)multiPersonSearchCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)multiPersonSearchCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *personSearchCompleteds;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -20,9 +20,9 @@ __attribute__((visibility("hidden")))
 }
 
 - (id).cxx_construct;
+- (void).cxx_destruct;
 - (BOOL)_isLocationNearAlightNode:(id)arg1;
 - (BOOL)updateRouteMatch:(id)arg1 previousRouteMatch:(id)arg2 forLocation:(id)arg3;
-- (void)dealloc;
 - (id)initWithTransitRouteMatcher:(id)arg1 alightStep:(id)arg2;
 
 @end

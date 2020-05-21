@@ -12,17 +12,17 @@
     unsigned long long _byteCount;
     BOOL _isAnimated;
     long long _type;
-    double _density;
     unsigned long long _frameCount;
+    double _density;
     struct CGSize _size;
 }
 
 + (id)lsmMarkerForImageDensityCategory:(long long)arg1;
 + (id)lsmMarkerForImageSizeCategory:(long long)arg1;
 + (id)stringForImageType:(long long)arg1;
-@property(nonatomic) unsigned long long frameCount; // @synthesize frameCount=_frameCount;
 @property(nonatomic) BOOL isAnimated; // @synthesize isAnimated=_isAnimated;
 @property(nonatomic) double density; // @synthesize density=_density;
+@property(nonatomic) unsigned long long frameCount; // @synthesize frameCount=_frameCount;
 @property(nonatomic) struct CGSize size; // @synthesize size=_size;
 @property(nonatomic) long long type; // @synthesize type=_type;
 - (id)description;

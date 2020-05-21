@@ -15,11 +15,9 @@
     NSGridView *_owningGridView;
     NSMutableArray *_cells;
     NSLayoutYAxisAnchor *_top;
-    id _reserved;
-    id _reserved2;
-    id _reserved3;
     long long _yPlacement;
     long long _rowAlignment;
+    long long _hasContentInGeneration;
     double _height;
     double _topPadding;
     double _bottomPadding;
@@ -54,6 +52,8 @@
 @property(getter=isHidden) BOOL hidden;
 @property long long rowAlignment;
 @property long long yPlacement;
+- (void)set_hasContentInGeneration:(long long)arg1;
+- (long long)_hasContentInGeneration;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)dealloc;

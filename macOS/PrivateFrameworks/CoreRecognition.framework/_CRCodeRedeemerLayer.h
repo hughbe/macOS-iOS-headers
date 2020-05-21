@@ -9,7 +9,7 @@
 #import "AVCaptureVideoDataOutputSampleBufferDelegate.h"
 #import "CAAnimationDelegate.h"
 
-@class AVCaptureDevice, AVCaptureSession, AVCaptureVideoDataOutput, AVCaptureVideoPreviewLayer, BoxLayer, CALayer, ErrorLayer, NSDate, NSDictionary, NSObject<OS_dispatch_queue>, NSString, NSTimer;
+@class AVCaptureDevice, AVCaptureSession, AVCaptureVideoDataOutput, AVCaptureVideoPreviewLayer, BoxLayer, CALayer, ErrorLayer, NSDate, NSDictionary, NSString, NSTimer;
 
 @interface _CRCodeRedeemerLayer : CRCodeRedeemerLayer <AVCaptureVideoDataOutputSampleBufferDelegate, CAAnimationDelegate>
 {
@@ -57,7 +57,6 @@
     NSDictionary *_lastRectangleInfos;
     BOOL _foundBoundingBox;
     id <CALayerDelegate><CRCodeRedeemerLayerDelegate><CRCodeRedeemerLayerDelegatePrivate> _delegate;
-    NSObject<OS_dispatch_queue> *_videoQueue;
     BOOL _videoQueueSuspended;
 }
 
@@ -66,7 +65,6 @@
 + (id)defaultSupportedDevice;
 + (void)loadFonts;
 @property BOOL videoQueueSuspended; // @synthesize videoQueueSuspended=_videoQueueSuspended;
-@property NSObject<OS_dispatch_queue> *videoQueue; // @synthesize videoQueue=_videoQueue;
 @property(retain, nonatomic) NSDictionary *lastRectangleInfos; // @synthesize lastRectangleInfos=_lastRectangleInfos;
 @property(nonatomic) unsigned long long cameraModel; // @synthesize cameraModel=_cameraModel;
 @property(nonatomic) unsigned long long numberOfLinesInErrorText; // @synthesize numberOfLinesInErrorText=_numberOfLinesInErrorText;
@@ -118,6 +116,7 @@
 - (id)generateGradientLayer;
 - (void)showCodeRedeemStatus:(id)arg1 withColor:(struct CGColor *)arg2 forDuration:(double)arg3 style:(int)arg4;
 - (void)showCodeRedeemStatus:(id)arg1 withColor:(struct CGColor *)arg2 withGlow:(struct CGColor *)arg3 forDuration:(double)arg4 style:(int)arg5;
+- (void)shutdownCameraSession;
 - (void)stopSession;
 - (void)startSession;
 - (void)startSessionWithImage:(struct vImage_Buffer)arg1;

@@ -58,6 +58,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)sharedTextRulerOptions;
+- (void).cxx_destruct;
 - (id)displayStringForLineHeightMultiple:(double)arg1 min:(double)arg2 max:(double)arg3 lineSpacing:(double)arg4 paragraphSpacingBefore:(double)arg5 after:(double)arg6;
 - (void)sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)removeLink:(id)arg1;

@@ -11,10 +11,9 @@
     id _eventDelegate;
 }
 
+- (void).cxx_destruct;
+@property(retain) id eventDelegate; // @synthesize eventDelegate=_eventDelegate;
 - (void)sendEvent:(id)arg1;
-- (void)setEventDelegate:(id)arg1;
-- (id)eventDelegate;
-- (void)dealloc;
 
 @end
 

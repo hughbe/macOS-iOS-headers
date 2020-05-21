@@ -21,8 +21,8 @@
     BOOL _acquiredCurrentLocation;
     NSMutableDictionary *_channelHistoryMap;
     NSMutableArray *_channelList;
-    long long _prevChannelIndex;
-    long long _channelIndex;
+    unsigned long long _prevChannelIndex;
+    unsigned long long _channelIndex;
     CDUnknownBlockType _scanResultsHandler;
 }
 

@@ -15,7 +15,6 @@
 + (id)valueTransformerNames;
 + (id)valueTransformerForName:(id)arg1;
 + (void)setValueTransformer:(id)arg1 forName:(id)arg2;
-+ (id)_transformerRegistry;
 - (id)reverseTransformedValue:(id)arg1;
 - (id)transformedValue:(id)arg1;
 

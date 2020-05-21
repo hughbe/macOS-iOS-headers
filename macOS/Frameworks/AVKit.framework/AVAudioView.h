@@ -8,29 +8,48 @@
 
 #import "AVTrimControlsViewControllerDelegate.h"
 
-@class AVPlayerController, AVPlayerControlsViewController, NSMenu, NSString;
+@class AVControlsContainerViewController, AVNowPlayingInfoController, AVPlayerController, AVPlayerControlsViewController, AVTrimControlsViewController, NSMenu, NSString;
 
 @interface AVAudioView : NSView <AVTrimControlsViewControllerDelegate>
 {
     AVPlayerController *_playerController;
     BOOL _viewHasBeenSetup;
+    BOOL _viewHasWindow;
+    AVPlayerControlsViewController *_initialControlsViewController;
     AVPlayerControlsViewController *_playbackControlsViewController;
     BOOL _doNotMakePlaybackControlsViewControllerViewFirstResponder;
-    BOOL _viewNeedsResetupInViewDidMoveToWindow;
+    BOOL _showsDurationInsteadOfRemainingTime;
     BOOL _showsSharingServiceButton;
     NSMenu *_actionPopUpButtonMenu;
     CDUnknownBlockType _trimCompletionBlock;
+    AVTrimControlsViewController *_trimControlsViewController;
+    AVPlayerControlsViewController *_editControlsViewController;
+    AVNowPlayingInfoController *_nowPlayingInfoController;
+    long long _touchBarViewAppearCount;
+    BOOL _trimming;
+    BOOL _editing;
+    AVControlsContainerViewController *_controlsContainerViewController;
 }
 
 + (id)restorableStateKeyPaths;
++ (id)keyPathsForValuesAffectingPlayer;
 + (BOOL)automaticallyNotifiesObserversOfPlayerController;
 + (void)initialize;
 + (id)keyPathsForValuesAffectingCanBeginTrimming;
-+ (id)keyPathsForValuesAffectingIsTrimming;
 - (void).cxx_destruct;
+@property(nonatomic, getter=isEditing) BOOL editing; // @synthesize editing=_editing;
+@property(nonatomic, getter=isTrimming) BOOL trimming; // @synthesize trimming=_trimming;
+@property(retain, nonatomic) AVPlayerControlsViewController *editControlsViewController; // @synthesize editControlsViewController=_editControlsViewController;
+@property(retain, nonatomic) AVControlsContainerViewController *controlsContainerViewController; // @synthesize controlsContainerViewController=_controlsContainerViewController;
+- (void)_setupControlsContainerView;
+- (id)metricsDelegate;
 - (void)_restorePreviousFirstResponderOrMakeCurrentControlsViewControllersInitialFirstResponderFirstResponderIfSelfIsCurrentFirstResponder:(id)arg1;
 - (id)_makeSelfFirstResponderIfCurrentFirstResponderIsDescendantOfSelfAndReturnCurrentFirstResponderInThatCase;
 - (void)_replaceCurrentControlsViewControllerWithViewController:(id)arg1;
+- (id)_currentControlsViewController;
+- (void)setPrefersCompactTouchBarScrubber:(BOOL)arg1;
+- (BOOL)prefersCompactTouchBarScrubber;
+- (BOOL)showsControlsPane;
 - (void)touchesCancelledWithEvent:(id)arg1;
 - (void)touchesEndedWithEvent:(id)arg1;
 - (void)touchesMovedWithEvent:(id)arg1;
@@ -63,16 +82,24 @@
 - (BOOL)becomeFirstResponder;
 - (BOOL)acceptsFirstResponder;
 - (struct CGSize)intrinsicContentSize;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)viewDidMoveToWindow;
 - (void)viewWillMoveToWindow:(id)arg1;
-- (id)trimControlsViewController;
+- (id)touchBarThumbnailPlayerLayer;
+- (id)trimThumbnailPlayerLayer;
+@property(retain, nonatomic) AVTrimControlsViewController *trimControlsViewController;
 - (BOOL)showsAlternateMediaTrackPreview;
 - (BOOL)showsFrameSteppingButtons;
+@property(retain, nonatomic) AVPlayerControlsViewController *playbackControlsViewController;
+- (void)setPlayer:(id)arg1;
+- (id)player;
 @property(retain) AVPlayerController *playerController;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)setShowsDurationInsteadOfRemainingTime:(BOOL)arg1;
+- (BOOL)showsDurationInsteadOfRemainingTime;
 @property(retain) NSMenu *actionPopUpButtonMenu;
 @property BOOL showsSharingServiceButton;
 - (void)trimControlsViewControllerDidCancel:(id)arg1;
@@ -82,8 +109,18 @@
 - (void)beginTrimmingWithCompletionHandler:(CDUnknownBlockType)arg1;
 @property(readonly) BOOL canBeginTrimming;
 - (void)beginTrimmingWithMaximumDuration:(CDStruct_1b6d18a9)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (BOOL)isTrimming;
+- (void)hideEditControlsViewControllerShouldPausePlayback:(BOOL)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)showEditControlsViewController:(id)arg1 shouldPausePlayback:(BOOL)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
+- (void)hideEditControlsViewControllerWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)showEditControlsViewController:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (CDStruct_e83c9415)slowMotionTimeRange;
+- (void)touchBarControlsViewDidDisappear;
+- (void)touchBarControlsViewWillAppear;
+- (void)_updatePictureInPictureButton;
+- (id)pictureInPictureController;
+- (void)pictureInPictureButtonTapped:(id)arg1;
+- (void)setShowsTimecodes:(BOOL)arg1;
+- (BOOL)showsTimecodes;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

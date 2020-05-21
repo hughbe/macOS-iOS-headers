@@ -11,11 +11,11 @@
 @class CSSearchableItem, NSArray;
 
 @protocol SGDSuggestManagerMailProtocol <_SGDSuggestManagerBaseProtocol, _SGDSuggestManagerEventsConfirmRejectProtocol, _SGDSuggestManagerContactsConfirmRejectProtocol>
-- (void)reportMessagesFound:(NSArray *)arg1 lost:(NSArray *)arg2 withCompletion:(void (^)(NSError *))arg3;
-- (void)updateMessages:(NSArray *)arg1 state:(unsigned long long)arg2 completion:(void (^)(NSError *))arg3;
-- (void)messagesToRefreshWithCompletion:(void (^)(NSArray *, NSError *))arg1;
-- (void)harvestedSuggestionsFromSearchableItem:(CSSearchableItem *)arg1 options:(unsigned long long)arg2 withCompletion:(void (^)(NSArray *, NSError *))arg3;
-- (void)suggestionsFromSearchableItem:(CSSearchableItem *)arg1 options:(unsigned long long)arg2 withCompletion:(void (^)(NSArray *, NSError *))arg3;
-- (void)prepareForRealtimeExtraction:(void (^)(NSError *))arg1;
+- (void)reportMessagesFound:(NSArray *)arg1 lost:(NSArray *)arg2 withCompletion:(void (^)(SGXPCResponse *))arg3;
+- (void)updateMessages:(NSArray *)arg1 state:(unsigned long long)arg2 completion:(void (^)(SGXPCResponse *))arg3;
+- (void)messagesToRefreshWithCompletion:(void (^)(SGXPCResponse1 *))arg1;
+- (void)harvestedSuggestionsFromSearchableItem:(CSSearchableItem *)arg1 options:(unsigned long long)arg2 withCompletion:(void (^)(SGXPCResponse1 *))arg3;
+- (void)suggestionsFromSearchableItem:(CSSearchableItem *)arg1 options:(unsigned long long)arg2 withCompletion:(void (^)(SGXPCResponse1 *))arg3;
+- (void)prepareForRealtimeExtraction:(void (^)(SGXPCResponse *))arg1;
 @end
 

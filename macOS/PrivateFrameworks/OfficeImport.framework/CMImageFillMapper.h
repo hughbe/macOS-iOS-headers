@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     struct CGRect mBounds;
 }
 
+- (void).cxx_destruct;
 - (BOOL)isCropped;
 - (struct CGRect)uncroppedBox;
 - (void)mapNonImageFillAt:(id)arg1 toStyle:(id)arg2 withState:(id)arg3;

@@ -11,6 +11,7 @@
 @protocol _NSUserNotificationCenterDelegatePrivate <NSUserNotificationCenterDelegate>
 
 @optional
+- (void)userNotificationCenterConnectionInvalidated:(NSUserNotificationCenter *)arg1;
 - (void)userNotificationCenter:(NSUserNotificationCenter *)arg1 notificationPreferencesChanged:(unsigned long long)arg2;
 - (void)userNotificationCenter:(NSUserNotificationCenter *)arg1 notificationsDisabled:(BOOL)arg2;
 - (void)userNotificationCenter:(NSUserNotificationCenter *)arg1 summaryShown:(BOOL)arg2;

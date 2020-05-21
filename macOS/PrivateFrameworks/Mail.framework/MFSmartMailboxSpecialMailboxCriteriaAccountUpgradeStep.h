@@ -13,11 +13,10 @@
     NSDictionary *_syncableSystemAccountURLBySyncableV1V2PersistenceAccountURL;
 }
 
-+ (BOOL)requiredAfterBackbooting;
-+ (BOOL)needToPerformFromMinorVersion:(unsigned long long)arg1 initialLastWriteMinorVersion:(unsigned long long)arg2 fromBackBooting:(char *)arg3;
++ (BOOL)needToPerformFromMinorVersion:(unsigned long long)arg1 initialLastWriteMinorVersion:(unsigned long long)arg2;
 + (unsigned long long)targetVersion;
-@property(copy, nonatomic) NSDictionary *syncableSystemAccountURLBySyncableV1V2PersistenceAccountURL; // @synthesize syncableSystemAccountURLBySyncableV1V2PersistenceAccountURL=_syncableSystemAccountURLBySyncableV1V2PersistenceAccountURL;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSDictionary *syncableSystemAccountURLBySyncableV1V2PersistenceAccountURL; // @synthesize syncableSystemAccountURLBySyncableV1V2PersistenceAccountURL=_syncableSystemAccountURLBySyncableV1V2PersistenceAccountURL;
 - (id)_fixV1V2PersistenceAccountURL:(id)arg1;
 - (id)_fixCriteriaWithLegacyAccountURLs:(id)arg1;
 - (void)runWithRowIDsNeedingConversationRecalculation:(id)arg1;

@@ -7,6 +7,6 @@
 #import "NSAttributedString.h"
 
 @interface NSAttributedString (FUUppercase)
-- (id)FU_uppercaseAttributedString;
+- (id)FU_uppercaseAttributedStringCurrentLocale:(BOOL)arg1;
 @end
 

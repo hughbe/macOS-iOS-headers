@@ -15,6 +15,8 @@
 
 @property(copy) NSArray *values; // @synthesize values=_values;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)valuesDataWithNewNumberValue:(id)arg1 atValueIndex:(unsigned short)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)validControlValueType:(unsigned short)arg1;

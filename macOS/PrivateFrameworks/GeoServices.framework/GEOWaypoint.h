@@ -8,35 +8,61 @@
 
 #import "NSCopying.h"
 
-@class GEOLocation, GEOPlaceSearchRequest, NSMutableArray;
+@class GEOLocation, GEOPlaceSearchRequest, NSMutableArray, PBDataReader, PBUnknownFields;
 
 @interface GEOWaypoint : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_entryPoints;
     GEOLocation *_location;
     GEOPlaceSearchRequest *_placeSearchRequest;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_entryPoints:1;
+        unsigned int read_location:1;
+        unsigned int read_placeSearchRequest:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_entryPoints:1;
+        unsigned int wrote_location:1;
+        unsigned int wrote_placeSearchRequest:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)entryPointType;
-@property(retain, nonatomic) NSMutableArray *entryPoints; // @synthesize entryPoints=_entryPoints;
-@property(retain, nonatomic) GEOLocation *location; // @synthesize location=_location;
-@property(retain, nonatomic) GEOPlaceSearchRequest *placeSearchRequest; // @synthesize placeSearchRequest=_placeSearchRequest;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)copyTo:(id)arg1;
+- (void)clearSensitiveFields;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)entryPointAtIndex:(unsigned long long)arg1;
 - (unsigned long long)entryPointsCount;
+- (void)_addNoFlagsEntryPoint:(id)arg1;
 - (void)addEntryPoint:(id)arg1;
 - (void)clearEntryPoints;
+@property(retain, nonatomic) NSMutableArray *entryPoints;
+- (void)_readEntryPoints;
+@property(retain, nonatomic) GEOLocation *location;
 @property(readonly, nonatomic) BOOL hasLocation;
+- (void)_readLocation;
+@property(retain, nonatomic) GEOPlaceSearchRequest *placeSearchRequest;
 @property(readonly, nonatomic) BOOL hasPlaceSearchRequest;
-- (void)dealloc;
+- (void)_readPlaceSearchRequest;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

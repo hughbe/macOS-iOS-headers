@@ -6,17 +6,22 @@
 
 #import <ContactsPersistence/ABCDOwnedObject.h>
 
-@class NSString;
+@class ABCDService, NSArray, NSString;
 
 @interface ABCDMessagingAddress : ABCDOwnedObject
 {
 }
 
-- (void)setAssociatedServiceName:(id)arg1;
-- (id)associatedServiceName;
++ (id)keyPathsForValuesAffectingBundleIdentifiers;
+@property(copy, nonatomic) NSArray *bundleIdentifiers;
+@property(retain, nonatomic) NSString *associatedServiceName;
 
 // Remaining properties
 @property(retain, nonatomic) NSString *address; // @dynamic address;
+@property(copy) NSString *bundleIdentifiersString; // @dynamic bundleIdentifiersString;
+@property(retain, nonatomic) ABCDService *service; // @dynamic service;
+@property(copy, nonatomic) NSString *teamIdentifier; // @dynamic teamIdentifier;
+@property(retain, nonatomic) NSString *userIdentifier; // @dynamic userIdentifier;
 
 @end
 

@@ -10,6 +10,7 @@
 
 @class NSDate, NSString, NSTimeZone;
 
+__attribute__((visibility("hidden")))
 @interface _MKTransitInactiveLine : NSObject <MKInactiveTransitLine>
 {
     id <GEOTransitLine> _line;

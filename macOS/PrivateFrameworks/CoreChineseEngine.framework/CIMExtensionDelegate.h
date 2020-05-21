@@ -14,6 +14,7 @@
 {
 }
 
+- (void)extensionWillTerminate;
 - (void)extensionDidLaunch;
 
 // Remaining properties

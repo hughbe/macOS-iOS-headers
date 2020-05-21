@@ -6,27 +6,29 @@
 
 #import "NSViewController.h"
 
-@class CNAvatarViewController, NSProgressIndicator, NSString, NSTextField, NSView, NSWindow;
+@class CNAvatarViewController, NSImageView, NSProgressIndicator, NSString, NSTextField, NSView, NSWindow;
 
-__attribute__((visibility("hidden")))
 @interface SSConnectionProgressViewController : NSViewController
 {
-    NSProgressIndicator *mProgressIndicator;
-    NSTextField *mDisplayText;
-    NSWindow *mParentWindow;
     BOOL mIndeterminate;
     long long mPercentComplete;
     NSString *mDisplayString;
     id <SSConnectionProgressViewControllerDelegate> delegate;
+    NSProgressIndicator *_mProgressIndicator;
+    NSTextField *_mDisplayText;
     NSWindow *_parentWindow;
     CNAvatarViewController *_avatarViewController;
     NSView *_viewContainer;
+    NSImageView *_yosemiteStaticImage;
 }
 
 + (id)stubContact;
+@property(retain) NSImageView *yosemiteStaticImage; // @synthesize yosemiteStaticImage=_yosemiteStaticImage;
 @property(retain) NSView *viewContainer; // @synthesize viewContainer=_viewContainer;
 @property(retain) CNAvatarViewController *avatarViewController; // @synthesize avatarViewController=_avatarViewController;
 @property(retain) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
+@property NSTextField *mDisplayText; // @synthesize mDisplayText=_mDisplayText;
+@property NSProgressIndicator *mProgressIndicator; // @synthesize mProgressIndicator=_mProgressIndicator;
 @property id <SSConnectionProgressViewControllerDelegate> delegate; // @synthesize delegate;
 @property(retain) NSString *displayText; // @synthesize displayText=mDisplayString;
 @property BOOL indeterminateProgress; // @synthesize indeterminateProgress=mIndeterminate;

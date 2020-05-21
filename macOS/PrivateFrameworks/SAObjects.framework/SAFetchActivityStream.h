@@ -6,9 +6,11 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
-@class NSArray, NSDate, NSNumber, NSString;
+#import "SAAceSerializable.h"
 
-@interface SAFetchActivityStream : SABaseClientBoundCommand
+@class NSArray, NSDate, NSDictionary, NSNumber, NSString;
+
+@interface SAFetchActivityStream : SABaseClientBoundCommand <SAAceSerializable>
 {
 }
 
@@ -19,11 +21,21 @@
 @property(copy, nonatomic) NSDate *toDate;
 @property(copy, nonatomic) NSString *taskType;
 @property(copy, nonatomic) NSArray *streamTypes;
+@property(copy, nonatomic) NSString *sortBy;
+@property(copy, nonatomic) NSDictionary *matchingMetadataKeysAndStringValues;
+@property(copy, nonatomic) NSArray *matchingMetadataKeys;
 @property(copy, nonatomic) NSNumber *limit;
 @property(copy, nonatomic) NSDate *fromDate;
+@property(nonatomic) BOOL ascending;
 @property(copy, nonatomic) NSString *activityType;
 - (id)encodedClassName;
 - (id)groupIdentifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

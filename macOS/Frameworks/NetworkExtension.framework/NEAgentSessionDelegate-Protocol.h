@@ -4,13 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NEAgentSession, NSObject<OS_xpc_object>, NSString;
+#import "NSObject.h"
 
-@protocol NEAgentSessionDelegate
+@class NSArray, NSDictionary, NSObject<OS_dispatch_queue>, NSString, NSUUID, NSXPCInterface, NSXPCListenerEndpoint;
+
+@protocol NEAgentSessionDelegate <NSObject>
+@property(readonly, nonatomic) NSXPCInterface *managerInterface;
+@property(readonly, nonatomic) NSXPCInterface *driverInterface;
+@property(readonly, nonatomic) NSArray *uuids;
+- (void)handleAppsUpdateEnds:(NSArray *)arg1;
+- (void)handleAppsUpdateEnding:(NSArray *)arg1;
+- (void)handleAppsUpdateBegins:(NSArray *)arg1;
+- (void)handleAppsUninstalled:(NSArray *)arg1;
 - (void)handleCancel;
-- (void)handleMessage:(NSObject<OS_xpc_object> *)arg1 withOuterMessage:(NSObject<OS_xpc_object> *)arg2;
 - (void)handleDisposeWithCompletionHandler:(void (^)(void))arg1;
 - (void)handleInitWithCompletionHandler:(void (^)(BOOL))arg1;
-- (id)initWithSession:(NEAgentSession *)arg1 pluginType:(NSString *)arg2 primaryPluginType:(NSString *)arg3 pluginBundle:(struct __CFBundle *)arg4;
+- (id)initWithPluginType:(NSString *)arg1 pluginClass:(long long)arg2 pluginInfo:(NSDictionary *)arg3 queue:(NSObject<OS_dispatch_queue> *)arg4 factory:(id <NEPluginManagerObjectFactory>)arg5;
+
+@optional
+- (id)initWithPluginType:(NSString *)arg1 pluginClass:(long long)arg2 pluginEndpoint:(NSXPCListenerEndpoint *)arg3 pluginUUID:(NSUUID *)arg4 queue:(NSObject<OS_dispatch_queue> *)arg5 factory:(id <NEPluginManagerObjectFactory>)arg6;
 @end
 

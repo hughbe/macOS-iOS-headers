@@ -7,10 +7,12 @@
 #import "NSView.h"
 
 #import "ABNameView.h"
+#import "ABNameViewCompanyCheckBoxDelegate.h"
+#import "NSTextFieldDelegate.h"
 
-@class ABCardViewStyleProvider, ABOverlayView, ABShadowTextField, ABWidthLimitingStackView, NSArray, NSButton, NSDictionary, NSFont, NSFormatter, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSTextField;
+@class ABCardViewStyleProvider, ABNameViewCompanyCheckBox, ABOverlayView, ABShadowTextField, ABWidthLimitingStackView, NSArray, NSDictionary, NSFont, NSFormatter, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSTextField;
 
-@interface ABNameView : NSView <ABNameView>
+@interface ABNameView : NSView <NSTextFieldDelegate, ABNameViewCompanyCheckBoxDelegate, ABNameView>
 {
     NSMutableArray *_sortedFieldsNestedByLine;
     NSMutableSet *_dirtyFields;
@@ -22,7 +24,7 @@
     ABCardViewStyleProvider *_styleProvider;
     ABOverlayView *_overlayView;
     id <ABNameViewDelegate> _delegate;
-    NSButton *mCompanyCheckbox;
+    ABNameViewCompanyCheckBox *mCompanyCheckbox;
     NSTextField *mTitleAndDepartmentSeparator;
     ABShadowTextField *_completeNameView;
     ABShadowTextField *_suffixView;
@@ -54,9 +56,10 @@
 + (id)largeFontKeysForDisplayStyle:(unsigned long long)arg1;
 + (id)keyToPreferenceMap;
 + (id)alwaysVisibleKeys;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableSet *propetyKeysToDisplay; // @synthesize propetyKeysToDisplay=_propetyKeysToDisplay;
-@property(nonatomic) id <ABNameViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly) NSButton *companyCheckbox; // @synthesize companyCheckbox=mCompanyCheckbox;
+@property(nonatomic) __weak id <ABNameViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly) ABNameViewCompanyCheckBox *companyCheckbox; // @synthesize companyCheckbox=mCompanyCheckbox;
 @property(retain, nonatomic) ABCardViewStyleProvider *styleProvider; // @synthesize styleProvider=_styleProvider;
 @property(retain, nonatomic) id <ABCardViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (id)newKeyToFieldMap;
@@ -83,14 +86,16 @@
 - (void)focusKey:(id)arg1;
 - (BOOL)isPhoneticKey:(id)arg1;
 - (BOOL)shouldPrunePhoneticView:(id)arg1;
+- (BOOL)isKeyExplicitlyDisabled:(id)arg1;
 - (BOOL)shouldPruneView:(id)arg1;
 - (BOOL)defaultVisibilityForKey:(id)arg1;
 - (BOOL)shouldPruneKey:(id)arg1;
+- (void)checkBoxWillResignFirstResponder:(id)arg1;
+- (void)textFieldWillResignFirstResponder:(id)arg1;
 - (id)updateKeyViewLoop;
 - (void)updateCompanyCheckbox;
 - (void)updateCompanyCheckBoxState;
 - (void)updateCompanyCheckboxVisibility;
-- (void)updateCompanyCheckboxColor;
 - (void)removeFirstResponderSelection;
 - (void)updateTextColor:(id)arg1;
 - (void)updateAccessibilityForView:(id)arg1;
@@ -101,12 +106,13 @@
 - (void)updateFormatter:(id)arg1;
 - (void)layoutView:(id)arg1 inStackView:(id)arg2;
 - (void)layoutRow:(id)arg1;
+- (void)generateConstaintsIfNecessary;
 - (void)updateConstraints;
 - (void)cullEmptyRows;
 - (void)addCompanyCheckboxRow;
 - (void)layoutRows;
-- (id)lastVisibleField;
-- (void)enumerateAllTextFieldsWithBlock:(CDUnknownBlockType)arg1;
+- (id)visibleFields;
+- (id)fields;
 - (void)setupLayoutFlags;
 - (void)setupLayoutFonts;
 - (void)updateTagForTextField:(id)arg1 displayStyle:(unsigned long long)arg2;
@@ -114,9 +120,8 @@
 - (void)updateNameFieldsOrder;
 - (void)updateStackViewSpacing;
 - (void)updateViews;
-- (struct CGSize)intrinsicContentSize;
 - (void)commitEditing;
-- (BOOL)isFlipped;
+- (BOOL)shouldAttachOverlayViewToFirstResponder;
 - (void)updateBorderOverlayView;
 - (void)controlTextDidChange:(id)arg1;
 - (id)valueFromNameField:(id)arg1;

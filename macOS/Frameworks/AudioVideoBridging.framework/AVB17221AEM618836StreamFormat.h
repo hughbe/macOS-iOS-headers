@@ -17,6 +17,8 @@
 + (id)keyPathsForValuesAffectingDbs;
 + (id)keyPathsForValuesAffectingFdfSfc;
 + (id)keyPathsForValuesAffectingFdfEvt;
+- (BOOL)isPotentiallyCompatibleAsListenerForFormat:(id)arg1;
+- (BOOL)isCompatibleAsListenerForFormat:(id)arg1;
 - (unsigned short)numberOfAudioChannels;
 - (unsigned short)maximumIntervalFrames;
 - (unsigned int)maximumPayloadSize;

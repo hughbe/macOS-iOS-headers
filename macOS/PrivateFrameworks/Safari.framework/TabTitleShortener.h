@@ -13,6 +13,7 @@ __attribute__((visibility("hidden")))
 
 + (unsigned long long)_numberOfCommonLeadingWordsOfWordList:(id)arg1 andWordList:(id)arg2;
 + (id)_leadingTruncateTitleWithWords:(id)arg1 toFitInWidth:(double)arg2 withFont:(id)arg3 maximumNumberOfWordsToRemove:(unsigned long long)arg4;
++ (BOOL)_proposedTitleIsEligibleForTruncation:(id)arg1;
 + (id)titlesAfterLeadingTruncation:(id)arg1 toFitInWidth:(double)arg2 withFont:(id)arg3;
 
 @end

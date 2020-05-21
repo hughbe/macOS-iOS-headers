@@ -7,6 +7,7 @@
 #import "NSSet.h"
 
 @interface NSSet (PKSetAdditions)
-- (id)setByRemovingObject:(id)arg1;
+- (id)pk_setByApplyingBlock:(CDUnknownBlockType)arg1;
+- (id)pk_setByRemovingObject:(id)arg1;
 @end
 

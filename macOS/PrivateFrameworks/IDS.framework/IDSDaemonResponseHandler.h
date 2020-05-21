@@ -14,10 +14,10 @@
     NSObject<OS_dispatch_queue> *_queue;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(readonly, nonatomic) id block; // @synthesize block=_block;
 - (id)initWithBlock:(id)arg1 queue:(id)arg2;
-- (void)dealloc;
 
 @end
 

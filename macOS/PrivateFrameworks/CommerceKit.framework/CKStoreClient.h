@@ -6,13 +6,17 @@
 
 #import "NSObject.h"
 
-#import "ISSingleton.h"
+#import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@class ISStoreClient, NSString;
+@class CKStoreAccount, NSString;
 
-@interface CKStoreClient : NSObject <ISSingleton>
+@interface CKStoreClient : NSObject <NSCopying, NSSecureCoding>
 {
-    ISStoreClient *_storeClient;
+    NSString *_clientIdentifier;
+    long long _serverType;
+    CKStoreAccount *_account;
+    NSString *__appName;
 }
 
 + (void)setStoreFrontID:(id)arg1;
@@ -20,17 +24,50 @@
 + (BOOL)isBookStoreClient;
 + (BOOL)isAppStoreClient;
 + (void)configureClientAsType:(long long)arg1;
-+ (id)_serviceProxy;
 + (id)sharedInstance;
-@property(readonly) ISStoreClient *storeClient; // @synthesize storeClient=_storeClient;
++ (id)_serviceProxy;
++ (BOOL)supportsSecureCoding;
++ (id)_storeClientForAccountMediaType:(id)arg1;
++ (id)_storeClientFromLegacyStoreClient:(id)arg1;
++ (id)_sharedClient;
++ (void)_configureSharedClientWithIdentifier:(id)arg1 serverType:(long long)arg2;
++ (void)_configureSharedClientWithIdentifier:(id)arg1;
++ (id)storeClientForIdentifier:(id)arg1 serverType:(long long)arg2;
++ (id)storeClientForIdentifier:(id)arg1;
++ (id)storeClientForAccount:(id)arg1;
 - (void).cxx_destruct;
-- (id)primaryAccount;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+@property(readonly, nonatomic) NSString *_appName; // @synthesize _appName=__appName;
+@property(readonly, nonatomic) CKStoreAccount *account; // @synthesize account=_account;
+@property(readonly, nonatomic) long long serverType; // @synthesize serverType=_serverType;
+@property(readonly, nonatomic) NSString *clientIdentifier; // @synthesize clientIdentifier=_clientIdentifier;
+- (id)_acAccount;
+- (unsigned long long)hash;
+- (id)description;
+- (BOOL)isEqual:(id)arg1;
+- (id)_bagDictionary;
+- (id)_ams_createBagContract;
+- (void)bagValuesForKeys:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)bagValueForKey:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)bagURLForKey:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (id)bagValuesForKeys:(id)arg1 error:(id *)arg2;
+- (id)bagValueForKey:(id)arg1 error:(out id *)arg2;
+- (id)bagURLForKey:(id)arg1 error:(out id *)arg2;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)_icon;
+@property(readonly, nonatomic) NSString *_appVersion;
+@property(readonly, nonatomic) NSString *_preferencesDomain;
+@property(readonly) NSString *storeSecureURLScheme;
+@property(readonly) NSString *storeURLScheme;
+- (void)_setStoreFrontIdentifier:(id)arg1;
+@property(readonly, nonatomic) NSString *storefrontIdentifier;
+- (id)_legacyStoreClient;
+- (id)nonpersonalizedStoreClient;
+@property(readonly, nonatomic) NSString *accountMediaType;
+- (id)initWithClientIdentifier:(id)arg1 serverType:(long long)arg2;
+- (id)initWithClientIdentifier:(id)arg1;
+- (id)initWithAccount:(id)arg1;
 
 @end
 

@@ -15,7 +15,6 @@ __attribute__((visibility("hidden")))
     PFUbiquityLocation *_ubiquityRootLocation;
     NSString *_storeName;
     NSPersistentStore *_store;
-    NSSQLiteConnection *_connection;
 }
 
 @property(readonly, nonatomic) PFUbiquityLocation *ubiquityRootLocation; // @synthesize ubiquityRootLocation=_ubiquityRootLocation;

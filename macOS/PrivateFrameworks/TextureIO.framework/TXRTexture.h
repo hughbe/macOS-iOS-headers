@@ -17,25 +17,25 @@
     // Error parsing type: , name: _dimensions
     BOOL _cubemap;
     unsigned long long _pixelFormat;
+    unsigned long long _alphaInfo;
 }
 
-+ (void)newTextureWithData:(id)arg1 bufferAllocator:(id)arg2 options:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
-+ (void)newTextureWithURL:(id)arg1 bufferAllocator:(id)arg2 options:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
-+ (void)newTextureWithDataSourceProvider:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long alphaInfo; // @synthesize alphaInfo=_alphaInfo;
 @property(readonly, nonatomic) unsigned long long pixelFormat; // @synthesize pixelFormat=_pixelFormat;
 @property(readonly, nonatomic) BOOL cubemap; // @synthesize cubemap=_cubemap;
 // Error parsing type for property dimensions:
 // Property attributes: T,R,N,V_dimensions
 
 @property(readonly, nonatomic) NSArray *mipmapLevels; // @synthesize mipmapLevels=_mipmapLevels;
-- (void).cxx_destruct;
 - (id)copyWithPixelFormat:(unsigned long long)arg1 options:(id)arg2 bufferAllocator:(id)arg3;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)generateMipmapsForRange:(struct _NSRange)arg1 filter:(unsigned long long)arg2 error:(id *)arg3;
-- (void)reformat:(unsigned long long)arg1 options:(id)arg2 bufferAllocator:(id)arg3 error:(id *)arg4;
-- (void)exportToDestination:(id)arg1 error:(id *)arg2;
-- (void)exportToURL:(id)arg1 error:(id *)arg2;
+- (void)reformat:(unsigned long long)arg1 gammaDegamma:(BOOL)arg2 bufferAllocator:(id)arg3 error:(id *)arg4;
+- (BOOL)exportToURL:(id)arg1 error:(id *)arg2;
+- (id)exportToAssetCatalogWithName:(id)arg1 location:(id)arg2 error:(id *)arg3;
 - (id)initWithData:(id)arg1 bufferAllocator:(id)arg2 options:(id)arg3 error:(id *)arg4;
+- (id)initWithDimensions:(unsigned long long)arg1 pixelFormat:(unsigned long long)arg2 alphaInfo:(unsigned long long)arg3 mipmapLevelCount:(unsigned long long)arg4 arrayLength:(BOOL)arg5 cubemap:(id)arg6 bufferAllocator: /* Error: Ran out of types for this method. */;
 - (id)initWithContentsOfURL:(id)arg1 bufferAllocator:(id)arg2 options:(id)arg3 error:(id *)arg4;
 - (id)initWithDataSourceProvider:(id)arg1;
 

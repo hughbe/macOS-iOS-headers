@@ -11,7 +11,9 @@
 }
 
 + (id)messagesAddedForUpdateNotification:(id)arg1 checkWhereFromPaths:(BOOL)arg2 excludedMailboxes:(id)arg3;
++ (id)messagesAddedForUpdateNotification:(id)arg1 checkWhereFromPaths:(BOOL)arg2 excludedMailboxes:(id)arg3 itemLimit:(long long)arg4;
 + (id)messagesFoundForProgressNotification:(struct __MDQuery *)arg1 nextIndexToProcess:(long long *)arg2 checkWhereFromPaths:(BOOL)arg3 excludedMailboxes:(id)arg4;
++ (id)messagesFoundForProgressNotification:(struct __MDQuery *)arg1 nextIndexToProcess:(long long *)arg2 checkWhereFromPaths:(BOOL)arg3 excludedMailboxes:(id)arg4 itemLimit:(long long)arg5;
 
 @end
 

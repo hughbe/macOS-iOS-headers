@@ -9,8 +9,10 @@
 @interface NSString (TIExtras)
 + (id)stringWithUnichar:(unsigned int)arg1;
 + (BOOL)_string:(id)arg1 matchesString:(id)arg2;
++ (struct USet *)_fullwidthLettersAndSymbolsSet;
 + (struct USet *)_nonFullwidthLettersAndNumbersSet;
 + (struct USet *)_fullwidthLettersAndNumbersSet;
++ (struct USet *)_bopomofoWithoutToneSet;
 + (struct USet *)_bopomofoToneSet;
 + (struct USet *)_bopomofoSet;
 + (struct USet *)_ideographSet;
@@ -57,14 +59,18 @@
 - (id)_stringByConvertingFromFullWidthToHalfWidth;
 - (id)_stringByConvertingFromHalfWidthToFullWidth;
 - (BOOL)_shouldBePaddedWithSpaces;
+- (BOOL)_containsFullwidthLettersAndSymbolsOnly;
 - (BOOL)_containsFullwidthLettersAndNumbers;
 - (BOOL)_containsFullwidthLettersAndNumbersOnly;
+- (BOOL)_containsSymbolsAndPunctuationOnly;
 - (BOOL)_containsCJKSymbolsAndPunctuation;
 - (BOOL)_containsCJKScriptsOnly;
 - (BOOL)_containsCJScriptsOnly;
 - (BOOL)_containsIdeographsOrBopomofoOnly;
+- (BOOL)_containsBopomofoWithoutToneOnly;
 - (BOOL)_containsBopomofoToneOnly;
 - (BOOL)_containsBopomofoOnly;
+- (BOOL)_containsEmojiOnly;
 - (BOOL)_containsEmoji;
 - (BOOL)_containsHiraganaKatakanaOrBopomofo;
 - (BOOL)_containsKatakanaOrKanji;
@@ -76,6 +82,7 @@
 - (unsigned long long)_graphemeCount;
 - (id)_lastGrapheme;
 - (id)_firstGrapheme;
+- (BOOL)_endsWithHalfwidth;
 - (BOOL)_isOnlyIdeographs;
 - (BOOL)_isIdeographicGlyphs;
 - (BOOL)_containsCJScripts;

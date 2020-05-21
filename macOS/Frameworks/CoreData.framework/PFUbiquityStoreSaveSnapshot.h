@@ -28,7 +28,6 @@ __attribute__((visibility("hidden")))
     NSNumber *_transactionNumber;
     NSString *_exportingPeerID;
     NSString *_localPeerID;
-    NSDictionary *_storeOptions;
     NSMutableArray *_filesInsertedInTransaction;
     NSArray *_filesDeletedInTransaction;
     PFUbiquityKnowledgeVector *_storeKV;

@@ -33,6 +33,8 @@
 @property(nonatomic) long long orientationMode;
 @property(nonatomic, getter=isBlackPassEnabled) BOOL blackPassEnabled;
 @property(nonatomic) long long blendMode;
+@property(nonatomic) double particleIntensityVariation;
+@property(nonatomic) double particleIntensity;
 @property(nonatomic) double particleSizeVariation;
 @property(nonatomic) double particleSize;
 @property(nonatomic) struct SCNVector4 particleColorVariation;
@@ -58,6 +60,7 @@
 @property(nonatomic) double particleAngle;
 @property(nonatomic, getter=isLocal) BOOL local;
 @property(nonatomic) struct SCNVector3 acceleration;
+@property(nonatomic) struct SCNVector3 orientationDirection;
 @property(nonatomic) struct SCNVector3 emittingDirection;
 @property(nonatomic) double spreadingAngle;
 @property(nonatomic) long long birthDirection;

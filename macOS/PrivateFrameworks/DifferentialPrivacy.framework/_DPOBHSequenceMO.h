@@ -12,10 +12,12 @@
 {
 }
 
++ (id)fetchRequest;
 
 // Remaining properties
-@property(retain, nonatomic) NSString *sequence; // @dynamic sequence;
+@property(copy, nonatomic) NSString *plainSequence; // @dynamic plainSequence;
 @property(nonatomic) long long sequenceBitPosition; // @dynamic sequenceBitPosition;
 @property(nonatomic) BOOL sequenceBitValue; // @dynamic sequenceBitValue;
+
 @end
 

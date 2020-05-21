@@ -13,9 +13,9 @@
 
 + (void)userIgnoredResultsForRequest:(id)arg1 afterDelay:(double)arg2;
 + (void)userSelectedResult:(id)arg1 atSortedIndex:(unsigned long long)arg2 forRequest:(id)arg3 gotResultsFromDuet:(BOOL)arg4;
-@property(readonly, nonatomic) id <CNAutocompleteProbeProvider> probeProvider; // @synthesize probeProvider=_probeProvider;
 - (void).cxx_destruct;
-- (void)userSawResultsOfBatch:(unsigned long long)arg1 includingResultsConsideredSuggestion:(unsigned long long)arg2 forRequest:(id)arg3;
+@property(readonly, nonatomic) id <CNAutocompleteProbeProvider> probeProvider; // @synthesize probeProvider=_probeProvider;
+- (void)userSawNumberOfResults:(unsigned long long)arg1 forBatch:(unsigned long long)arg2 includingNumberOfSuggestions:(unsigned long long)arg3 forRequest:(id)arg4;
 - (void)userIgnoredResultsOfBatch:(unsigned long long)arg1 forRequest:(id)arg2 afterDelay:(double)arg3;
 - (void)userSelectedResult:(id)arg1 atSortedIndex:(unsigned long long)arg2 forRequest:(id)arg3 gotResultsFromDuet:(BOOL)arg4;
 - (id)initWithProbeProvider:(id)arg1;

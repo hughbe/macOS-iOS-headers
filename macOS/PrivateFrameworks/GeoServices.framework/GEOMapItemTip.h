@@ -8,12 +8,12 @@
 
 @class GEOPDTip, NSString;
 
-__attribute__((visibility("hidden")))
 @interface GEOMapItemTip : NSObject
 {
     GEOPDTip *_geoTip;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) GEOPDTip *geoTip; // @synthesize geoTip=_geoTip;
 @property(readonly, nonatomic) NSString *tipId;
 @property(readonly, nonatomic) BOOL hasTipId;
@@ -22,7 +22,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) double tipTime;
 @property(readonly, nonatomic) BOOL hasTipTime;
 @property(readonly, nonatomic) NSString *localizedSnippet;
-- (void)dealloc;
 - (id)initWithGEOPDTip:(id)arg1;
 
 @end

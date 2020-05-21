@@ -6,13 +6,25 @@
 
 #import "NSObject.h"
 
-@class GEOTileLoader, NSString;
+@class GEOApplicationAuditToken, GEOTileLoader, GEOVectorTileDecoder, NSString;
 
 __attribute__((visibility("hidden")))
 @interface AltTileFetcher : NSObject
 {
     GEOTileLoader *_geoTileLoader;
-    struct map<_GEOTileKey, std::__1::shared_ptr<altitude::GeoServicesLoadJob>, GEOTileKeyComp, std::__1::allocator<std::__1::pair<const _GEOTileKey, std::__1::shared_ptr<altitude::GeoServicesLoadJob>>>> _keyToJobMap;
+    struct _retain_ptr<GEOVectorTileDecoder *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc> {
+        CDUnknownFunctionPointerType *_vptr$_retain_ptr;
+        GEOVectorTileDecoder *_obj;
+        struct _retain_objc _retain;
+        struct _release_objc _release;
+    } _vectorTileDecoder;
+    struct _retain_ptr<GEOApplicationAuditToken *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc> {
+        CDUnknownFunctionPointerType *_vptr$_retain_ptr;
+        GEOApplicationAuditToken *_obj;
+        struct _retain_objc _retain;
+        struct _release_objc _release;
+    } _auditToken;
+    struct unordered_map<_GEOTileKey, std::__1::shared_ptr<altitude::GeoServicesLoadJob>, GEOTileKeyHashFunc, GEOTileKeyEqualsFunc, std::__1::allocator<std::__1::pair<const _GEOTileKey, std::__1::shared_ptr<altitude::GeoServicesLoadJob>>>> _keyToJobMap;
     struct Mutex _mutex;
     unsigned int _numDownloads;
     NSString *_tileLoaderClientIdentifier;
@@ -20,7 +32,6 @@ __attribute__((visibility("hidden")))
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (BOOL)isDownloading;
 - (void)purgeExpired:(double)arg1;
 - (void)reportCorruptTile:(const struct _GEOTileKey *)arg1;
 - (void)cancelRequests;
@@ -29,7 +40,7 @@ __attribute__((visibility("hidden")))
 - (void)fetchDataForJob:(shared_ptr_97fa0047 *)arg1;
 - (shared_ptr_97fa0047)getJobForKey:(const struct _GEOTileKey *)arg1;
 - (void)dealloc;
-- (id)init;
+- (id)initWithToken:(id)arg1;
 
 @end
 

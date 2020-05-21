@@ -6,15 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSCompoundPredicate, NSDate, NSObject<OS_dispatch_queue>, NSString, NSURL;
+@class NSCompoundPredicate, NSDate, NSDictionary, NSString, NSURL, _OSLogCollectionReference, _OSLogIndex, _OSLogVersioning;
 
 @interface OSLogPersistence : NSObject
 {
-    struct oslog_persistence_file_tq *_files;
-    struct rb_tree *_oversize_rbt;
-    NSObject<OS_dispatch_queue> *_queue;
-    NSString *_sourcePath;
-    struct event_indices_tq *_event_indices;
+    _OSLogCollectionReference *_oslcr;
+    _OSLogVersioning *_version;
+    _OSLogIndex *_index;
+    _Bool _verbose;
     NSURL *_logFile;
     NSURL *_logArchive;
     id <OSLogPersistenceDelegate> _delegate;
@@ -30,43 +29,36 @@
     unsigned long long _logMessageCount;
 }
 
-+ (id)logPersistenceAtPath:(id)arg1;
-@property(readonly) unsigned long long logMessageCount; // @synthesize logMessageCount=_logMessageCount;
-@property(readonly) unsigned long long messagesFiltered; // @synthesize messagesFiltered=_messagesFiltered;
-@property(readonly) unsigned long long decodeFailures; // @synthesize decodeFailures=_decodeFailures;
-@property(readonly, copy) NSDate *endDate; // @synthesize endDate=_endDate;
-@property(readonly, copy) NSDate *sparseDataStart; // @synthesize sparseDataStart=_sparseDataStart;
-@property(readonly, copy) NSDate *startDate; // @synthesize startDate=_startDate;
-@property(readonly, copy) NSString *currentFile; // @synthesize currentFile=_currentFile;
-@property unsigned long long options; // @synthesize options=_options;
-@property unsigned long long batchSize; // @synthesize batchSize=_batchSize;
-@property(copy) NSCompoundPredicate *predicate; // @synthesize predicate=_predicate;
-@property __weak id <OSLogPersistenceDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(nonatomic) _Bool verbose; // @synthesize verbose=_verbose;
+@property(readonly, nonatomic) unsigned long long logMessageCount; // @synthesize logMessageCount=_logMessageCount;
+@property(readonly, nonatomic) unsigned long long messagesFiltered; // @synthesize messagesFiltered=_messagesFiltered;
+@property(readonly, nonatomic) unsigned long long decodeFailures; // @synthesize decodeFailures=_decodeFailures;
+@property(readonly, copy, nonatomic) NSDate *endDate; // @synthesize endDate=_endDate;
+@property(readonly, copy, nonatomic) NSDate *sparseDataStart; // @synthesize sparseDataStart=_sparseDataStart;
+@property(readonly, copy, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;
+@property(readonly, copy, nonatomic) NSString *currentFile; // @synthesize currentFile=_currentFile;
+@property(nonatomic) unsigned long long options; // @synthesize options=_options;
+@property(nonatomic) unsigned long long batchSize; // @synthesize batchSize=_batchSize;
+@property(copy, nonatomic) NSCompoundPredicate *predicate; // @synthesize predicate=_predicate;
+@property(nonatomic) __weak id <OSLogPersistenceDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy, nonatomic) NSURL *logArchive; // @synthesize logArchive=_logArchive;
 @property(copy, nonatomic) NSURL *logFile; // @synthesize logFile=_logFile;
-- (void).cxx_destruct;
-- (void)enumerateFromStartDate:(id)arg1 toEndDate:(id)arg2 withBlock:(CDUnknownBlockType)arg3;
+@property(readonly, retain, nonatomic) NSDictionary *statistics;
+@property(readonly, nonatomic) struct _os_timesync_db_s *timesync;
 - (void)fetchFromStartDate:(id)arg1 toEndDate:(id)arg2;
-- (void)_enumerateFromStartDate:(id)arg1 toEndDate:(id)arg2 withBlock:(CDUnknownBlockType)arg3;
-- (void)enumerateWithIndex:(struct oslog_persistence_index *)arg1 start:(double)arg2 end:(double)arg3 withBlock:(CDUnknownBlockType)arg4;
-- (id)createOSActivityStatedumpEventDictionaryFromEvent:(struct oslog_persistence_event *)arg1;
 - (void)enumerateFromLastBootWithBlock:(CDUnknownBlockType)arg1;
-- (void)buildIndexFromTimeInterval:(double)arg1 toTimeInterval:(double)arg2;
-- (void)addOversizeChunk:(struct oslog_persistence_chunk *)arg1;
-- (void)addChunk:(struct oslog_persistence_chunk *)arg1 toHeader:(struct oslog_persistence_header *)arg2;
+- (void)enumerateFromStartDate:(id)arg1 toEndDate:(id)arg2 withBlock:(CDUnknownBlockType)arg3;
+- (BOOL)streamChunks:(CDUnknownBlockType)arg1 andEntries:(CDUnknownBlockType)arg2 flags:(unsigned int)arg3;
 - (void)resetWorkingState;
-- (void)clearOversizeRBT;
-- (void)closeFiles;
+@property(readonly, nonatomic) long long archiveState;
+@property(readonly, nonatomic) long long archiveVersion;
+- (_Bool)allowSensitive;
 - (void)dealloc;
 - (id)init;
-- (void)openFiles;
-- (void)openLogArchive;
-- (void)openPath:(id)arg1;
-- (struct oslog_persistence_file *)createFileFromRegion:(void *)arg1 size:(unsigned long long)arg2 liveData:(BOOL)arg3 path:(char *)arg4;
-- (void)parseFileMetadata:(struct oslog_persistence_file *)arg1;
-- (struct oslog_persistence_file *)createFileFromDescriptor:(int)arg1;
-- (struct oslog_persistence_header *)createHeaderForChunk:(struct tracev3_chunk_s *)arg1 andFile:(struct oslog_persistence_file *)arg2;
-- (struct oslog_persistence_chunk *)createChunk:(struct tracev3_chunk_s *)arg1 header:(struct tracev3_chunk_s *)arg2;
+- (void)_openFiles;
+- (void)_openPath:(id)arg1;
+- (void)_openLocalPersistenceDir;
 
 @end
 

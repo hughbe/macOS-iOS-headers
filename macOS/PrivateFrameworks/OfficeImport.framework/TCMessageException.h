@@ -16,15 +16,15 @@ __attribute__((visibility("hidden")))
 
 + (id)nsError:(id)arg1 domain:(id)arg2;
 + (void)raiseUntaggedMessage:(id)arg1;
-+ (void)raise:(struct TCTaggedMessageStructure *)arg1;
++ (void)raise:(id)arg1;
 + (id)exceptionWithUntaggedMessage:(id)arg1;
-+ (id)exceptionWithMessage:(struct TCTaggedMessageStructure *)arg1;
++ (id)exceptionWithMessage:(id)arg1;
 + (void)initialize;
+- (void).cxx_destruct;
 - (id)description;
 - (id)getEntry;
-- (void)dealloc;
 - (id)initWithUntaggedMessage:(id)arg1;
-- (id)initWithMessage:(struct TCTaggedMessageStructure *)arg1;
+- (id)initWithMessage:(id)arg1;
 
 @end
 

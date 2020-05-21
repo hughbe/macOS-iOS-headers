@@ -6,12 +6,11 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface _AWDMetricsReporter : NSObject
 {
 }
 
-+ (void)_reportTimingDataToAWD:(struct PerformanceTiming *)arg1 request:(id)arg2;
++ (void)_reportTimingDataToAWD:(id)arg1;
 
 @end
 

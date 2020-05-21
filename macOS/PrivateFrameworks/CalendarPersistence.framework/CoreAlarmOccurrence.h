@@ -13,7 +13,7 @@
 }
 
 + (id)occurrenceFromEntity:(id)arg1 originOccurrence:(id)arg2;
-- (void)dealloc;
+- (void).cxx_destruct;
 - (void)setOriginOccurrence:(id)arg1;
 - (id)originOccurrence;
 - (id)occurrenceID;

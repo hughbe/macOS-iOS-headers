@@ -18,6 +18,8 @@
 @property unsigned int controlLatency; // @synthesize controlLatency;
 @property unsigned int blockLatency; // @synthesize blockLatency;
 @property unsigned short controlDomain; // @synthesize controlDomain;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)_allSourceObjects;
 - (void)appendFixedDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;

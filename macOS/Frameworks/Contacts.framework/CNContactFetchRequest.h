@@ -4,35 +4,45 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Contacts/CNFetchRequest.h>
 
 #import "NSSecureCoding.h"
 
 @class NSArray, NSPredicate;
 
-@interface CNContactFetchRequest : NSObject <NSSecureCoding>
+@interface CNContactFetchRequest : CNFetchRequest <NSSecureCoding>
 {
     BOOL _rankSort;
     BOOL _mutableObjects;
     BOOL _unifyResults;
+    BOOL _disallowsEncodedFetch;
     BOOL _onlyMainStore;
+    BOOL _allowsBatching;
+    BOOL _shouldFailIfAccountNotYetSynced;
     NSPredicate *_predicate;
     NSArray *_keysToFetch;
     long long _sortOrder;
+    unsigned long long _batchSize;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL shouldFailIfAccountNotYetSynced; // @synthesize shouldFailIfAccountNotYetSynced=_shouldFailIfAccountNotYetSynced;
+@property BOOL allowsBatching; // @synthesize allowsBatching=_allowsBatching;
 @property BOOL onlyMainStore; // @synthesize onlyMainStore=_onlyMainStore;
+@property unsigned long long batchSize; // @synthesize batchSize=_batchSize;
+@property BOOL disallowsEncodedFetch; // @synthesize disallowsEncodedFetch=_disallowsEncodedFetch;
 @property long long sortOrder; // @synthesize sortOrder=_sortOrder;
 @property BOOL unifyResults; // @synthesize unifyResults=_unifyResults;
 @property BOOL mutableObjects; // @synthesize mutableObjects=_mutableObjects;
 @property(copy) NSArray *keysToFetch; // @synthesize keysToFetch=_keysToFetch;
 @property(copy) NSPredicate *predicate; // @synthesize predicate=_predicate;
 @property BOOL rankSort; // @synthesize rankSort=_rankSort;
+- (BOOL)requiresMeContactAuthorization;
 - (id)effectiveKeysToFetch;
-- (void)executeFetchWithDataMapper:(id)arg1 observer:(id)arg2;
+- (id)effectivePredicate;
+- (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithKeysToFetch:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

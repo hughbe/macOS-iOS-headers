@@ -56,6 +56,8 @@ struct GKCDecisionNode {
     id _field3;
     id _field4;
     id _field5;
+    id _field6;
+    id _field7;
 };
 
 struct GKCDecisionTree {
@@ -252,54 +254,7 @@ struct GKCRTreeNode<NSObject, float __attribute__((ext_vector_type(2)))> {
 
 struct GKConnection;
 
-struct IntersectNode;
-
-struct Join;
-
-struct LocalMinimum;
-
-struct Module {
-    CDUnknownFunctionPointerType *_field1;
-    struct Module **_field2;
-};
-
-struct NoiseMap {
-    float m_borderValue;
-    int m_height;
-    unsigned long long m_memUsed;
-    float *m_pNoiseMap;
-    int m_stride;
-    int m_width;
-};
-
-struct Obstacle {
-    CDUnknownFunctionPointerType *_field1;
-};
-
-struct OutRec;
-
-struct PolygonObstacle {
-    CDUnknownFunctionPointerType *_field1;
-    struct vector<OpenSteer::Vec3, std::__1::allocator<OpenSteer::Vec3>> _field2;
-};
-
-struct PolylinePathway {
-    CDUnknownFunctionPointerType *_vptr$PolylinePathway;
-    int pointCount;
-    struct Vec3 *points;
-    float radius;
-    _Bool cyclic;
-    float segmentLength;
-    float segmentProjection;
-    struct Vec3 local;
-    struct Vec3 chosen;
-    struct Vec3 segmentNormal;
-    float *lengths;
-    struct Vec3 *normals;
-    float totalPathLength;
-};
-
-struct SimpleVehicle {
+struct GKSimpleVehicle {
     CDUnknownFunctionPointerType *_vptr$AbstractLocalSpace;
     struct Vec3 _side;
     struct Vec3 _up;
@@ -322,6 +277,40 @@ struct SimpleVehicle {
     struct Vec3 _smoothedPosition;
     float _smoothedCurvature;
     struct Vec3 _smoothedAcceleration;
+    _Bool m_rightHanded;
+};
+
+struct IntersectNode;
+
+struct Join;
+
+struct LocalMinimum;
+
+struct Obstacle {
+    CDUnknownFunctionPointerType *_field1;
+};
+
+struct OutRec;
+
+struct PolygonObstacle {
+    CDUnknownFunctionPointerType *_field1;
+    struct vector<OpenSteer::Vec3, std::__1::allocator<OpenSteer::Vec3>> _field2;
+};
+
+struct PolylinePathway {
+    CDUnknownFunctionPointerType *_vptr$Pathway;
+    int pointCount;
+    struct Vec3 *points;
+    float radius;
+    _Bool cyclic;
+    float segmentLength;
+    float segmentProjection;
+    struct Vec3 local;
+    struct Vec3 chosen;
+    struct Vec3 segmentNormal;
+    float *lengths;
+    struct Vec3 *normals;
+    float totalPathLength;
 };
 
 struct SphericalObstacle {
@@ -339,13 +328,21 @@ struct Vec3 {
     float z;
 };
 
-struct __hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*> *_field1;
+};
 
-struct __hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*> *_field1;
+};
 
-struct __hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*> *_field1;
+};
 
-struct __hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*> *_field1;
+};
 
 struct __list_node_base<GKCMoveData, void *> {
     struct __list_node_base<GKCMoveData, void *> *_field1;
@@ -372,7 +369,7 @@ struct list<GKCMoveData, std::__1::allocator<GKCMoveData>> {
 
 struct map<GKCPolygonObstacle *, GKCPolygonObstacle *, std::__1::less<GKCPolygonObstacle *>, std::__1::allocator<std::__1::pair<GKCPolygonObstacle *const, GKCPolygonObstacle *>>> {
     struct __tree<std::__1::__value_type<GKCPolygonObstacle *, GKCPolygonObstacle *>, std::__1::__map_value_compare<GKCPolygonObstacle *, std::__1::__value_type<GKCPolygonObstacle *, GKCPolygonObstacle *>, std::__1::less<GKCPolygonObstacle *>, true>, std::__1::allocator<std::__1::__value_type<GKCPolygonObstacle *, GKCPolygonObstacle *>>> {
-        struct __tree_node<std::__1::__value_type<GKCPolygonObstacle *, GKCPolygonObstacle *>, void *> *_field1;
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
         struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<GKCPolygonObstacle *, GKCPolygonObstacle *>, void *>>> {
             struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
         } _field2;
@@ -384,7 +381,7 @@ struct map<GKCPolygonObstacle *, GKCPolygonObstacle *, std::__1::less<GKCPolygon
 
 struct map<p2t::Triangle *, GKTriangleGraphNodes, std::__1::less<p2t::Triangle *>, std::__1::allocator<std::__1::pair<p2t::Triangle *const, GKTriangleGraphNodes>>> {
     struct __tree<std::__1::__value_type<p2t::Triangle *, GKTriangleGraphNodes>, std::__1::__map_value_compare<p2t::Triangle *, std::__1::__value_type<p2t::Triangle *, GKTriangleGraphNodes>, std::__1::less<p2t::Triangle *>, true>, std::__1::allocator<std::__1::__value_type<p2t::Triangle *, GKTriangleGraphNodes>>> {
-        struct __tree_node<std::__1::__value_type<p2t::Triangle *, GKTriangleGraphNodes>, void *> *_field1;
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
         struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<p2t::Triangle *, GKTriangleGraphNodes>, void *>>> {
             struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
         } _field2;
@@ -406,44 +403,44 @@ struct priority_queue<long long, std::__1::vector<long long, std::__1::allocator
     struct less<long long> _field2;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
@@ -452,11 +449,9 @@ struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangl
 
 struct unordered_map<p2t::Edge *, GKCGraphNode2D *, std::__1::hash<p2t::Edge *>, std::__1::equal_to<p2t::Edge *>, std::__1::allocator<std::__1::pair<p2t::Edge *const, GKCGraphNode2D *>>> {
     struct __hash_table<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, std::__1::__unordered_map_hasher<p2t::Edge *, std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, std::__1::hash<p2t::Edge *>, true>, std::__1::__unordered_map_equal<p2t::Edge *, std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, std::__1::equal_to<p2t::Edge *>, true>, std::__1::allocator<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<p2t::Edge *, std::__1::__hash_value_type<p2t::Edge *, GKCGraphNode2D *>, std::__1::hash<p2t::Edge *>, true>> {
             unsigned long long _field1;
@@ -469,11 +464,9 @@ struct unordered_map<p2t::Edge *, GKCGraphNode2D *, std::__1::hash<p2t::Edge *>,
 
 struct unordered_map<p2t::Point *, GKCGraphNode2D *, std::__1::hash<p2t::Point *>, std::__1::equal_to<p2t::Point *>, std::__1::allocator<std::__1::pair<p2t::Point *const, GKCGraphNode2D *>>> {
     struct __hash_table<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, std::__1::__unordered_map_hasher<p2t::Point *, std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, std::__1::hash<p2t::Point *>, true>, std::__1::__unordered_map_equal<p2t::Point *, std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, std::__1::equal_to<p2t::Point *>, true>, std::__1::allocator<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<p2t::Point *, std::__1::__hash_value_type<p2t::Point *, GKCGraphNode2D *>, std::__1::hash<p2t::Point *>, true>> {
             unsigned long long _field1;
@@ -486,11 +479,9 @@ struct unordered_map<p2t::Point *, GKCGraphNode2D *, std::__1::hash<p2t::Point *
 
 struct unordered_map<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>, std::__1::hash<p2t::Point *>, std::__1::equal_to<p2t::Point *>, std::__1::allocator<std::__1::pair<p2t::Point *const, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>>> {
     struct __hash_table<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, std::__1::__unordered_map_hasher<p2t::Point *, std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, std::__1::hash<p2t::Point *>, true>, std::__1::__unordered_map_equal<p2t::Point *, std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, std::__1::equal_to<p2t::Point *>, true>, std::__1::allocator<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<p2t::Point *, std::__1::__hash_value_type<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::allocator<p2t::Edge *>>>, std::__1::hash<p2t::Point *>, true>> {
             unsigned long long _field1;
@@ -503,11 +494,9 @@ struct unordered_map<p2t::Point *, std::__1::vector<p2t::Edge *, std::__1::alloc
 
 struct unordered_map<p2t::Triangle *, GKCGraphNode2D *, std::__1::hash<p2t::Triangle *>, std::__1::equal_to<p2t::Triangle *>, std::__1::allocator<std::__1::pair<p2t::Triangle *const, GKCGraphNode2D *>>> {
     struct __hash_table<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, std::__1::__unordered_map_hasher<p2t::Triangle *, std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, std::__1::hash<p2t::Triangle *>, true>, std::__1::__unordered_map_equal<p2t::Triangle *, std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, std::__1::equal_to<p2t::Triangle *>, true>, std::__1::allocator<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<p2t::Triangle *, std::__1::__hash_value_type<p2t::Triangle *, GKCGraphNode2D *>, std::__1::hash<p2t::Triangle *>, true>> {
             unsigned long long _field1;
@@ -648,14 +637,6 @@ struct vector<long long, std::__1::allocator<long long>> {
 
 struct vector<long, std::__1::allocator<long>>;
 
-struct vector<noise::module::Module *, std::__1::allocator<noise::module::Module *>> {
-    struct Module **__begin_;
-    struct Module **__end_;
-    struct __compressed_pair<noise::module::Module **, std::__1::allocator<noise::module::Module *>> {
-        struct Module **__first_;
-    } __end_cap_;
-};
-
 struct vector<std::__1::pair<id, GKCDecisionNode *>, std::__1::allocator<std::__1::pair<id, GKCDecisionNode *>>> {
     struct pair<id, GKCDecisionNode *> *_field1;
     struct pair<id, GKCDecisionNode *> *_field2;
@@ -688,13 +669,4 @@ typedef struct {
     unsigned long long *_field3;
     unsigned long long _field4[5];
 } CDStruct_70511ce9;
-
-// Template types
-typedef struct vector<noise::module::Module *, std::__1::allocator<noise::module::Module *>> {
-    struct Module **__begin_;
-    struct Module **__end_;
-    struct __compressed_pair<noise::module::Module **, std::__1::allocator<noise::module::Module *>> {
-        struct Module **__first_;
-    } __end_cap_;
-} vector_a0c1ad3f;
 

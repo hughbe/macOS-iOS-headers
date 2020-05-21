@@ -10,7 +10,6 @@
 
 @class NSArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface _CNCombinedBufferingStrategy : NSObject <_CNBufferingStrategy>
 {
     NSArray *_strategies;

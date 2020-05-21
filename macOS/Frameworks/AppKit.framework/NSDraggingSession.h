@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSImage, NSPasteboard;
+@class NSArray, NSImage, NSPasteboard;
 
 @interface NSDraggingSession : NSObject
 {
@@ -18,8 +18,10 @@
     NSPasteboard *_pboard;
     NSImage *_compositeImageCache;
     BOOL _animatesOnCancelOrFail;
+    NSArray *_filePromiseProviders;
 }
 
+@property(retain) NSArray *filePromiseProviders; // @synthesize filePromiseProviders=_filePromiseProviders;
 @property(readonly) id <NSDraggingSource> filePromiseDragSource; // @synthesize filePromiseDragSource=_filePromiseDragSource;
 @property id alternateDragSource; // @synthesize alternateDragSource=_alternateDragSource;
 @property(readonly) id <NSDraggingSource> source; // @synthesize source=_source;
@@ -41,7 +43,7 @@
 - (id)_commonInitWithPasteboard:(id)arg1 source:(id)arg2;
 - (id)_compositeImage;
 - (id)_initWithPasteboard:(id)arg1 image:(id)arg2 offset:(struct CGPoint)arg3 source:(id)arg4;
-- (id)_initWithPasteboard:(id)arg1 draggingItems:(id)arg2 source:(id)arg3;
+- (id)_initWithPasteboard:(id)arg1 draggingItems:(id)arg2 clippingRect:(struct CGRect)arg3 source:(id)arg4;
 
 @end
 

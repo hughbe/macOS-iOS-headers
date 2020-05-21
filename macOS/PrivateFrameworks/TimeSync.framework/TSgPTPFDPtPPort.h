@@ -4,16 +4,33 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <TimeSync/TSgPTPPort.h>
+#import <TimeSync/TSgPTPNetworkPort.h>
 
-@class NSDictionary;
+@class TSgPTPPortStatistics;
 
-@interface TSgPTPFDPtPPort : TSgPTPPort
+@interface TSgPTPFDPtPPort : TSgPTPNetworkPort
 {
+    BOOL _localPDelayLogMeanInterval;
+    BOOL _remotePDelayLogMeanInterval;
+    BOOL _multipleRemotes;
+    BOOL _measuringPDelay;
+    TSgPTPPortStatistics *_statistics;
 }
 
 + (id)diagnosticDescriptionForService:(unsigned int)arg1 withIndent:(id)arg2;
-@property(readonly, nonatomic) NSDictionary *statistics; // @dynamic statistics;
+@property(nonatomic) BOOL measuringPDelay; // @synthesize measuringPDelay=_measuringPDelay;
+@property(nonatomic) BOOL multipleRemotes; // @synthesize multipleRemotes=_multipleRemotes;
+@property(nonatomic) BOOL remotePDelayLogMeanInterval; // @synthesize remotePDelayLogMeanInterval=_remotePDelayLogMeanInterval;
+@property(nonatomic) BOOL localPDelayLogMeanInterval; // @synthesize localPDelayLogMeanInterval=_localPDelayLogMeanInterval;
+@property(retain, nonatomic) TSgPTPPortStatistics *statistics; // @synthesize statistics=_statistics;
+- (void)dealloc;
+- (BOOL)_measuringPDelay;
+- (BOOL)_multipleRemotes;
+- (BOOL)_remotePDelayLogMeanInterval;
+- (BOOL)_localPDelayLogMeanInterval;
+- (id)_statistics;
+- (void)updateProperties;
+- (BOOL)_commonInitWithService:(unsigned int)arg1;
 
 @end
 

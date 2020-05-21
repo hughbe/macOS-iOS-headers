@@ -10,13 +10,14 @@
 #import "NSSecureCoding.h"
 #import "SCNAnimatable.h"
 
-@class NSArray, NSColor, NSDictionary, NSString, SCNGeometry, SCNOrderedDictionary;
+@class NSArray, NSColor, NSDictionary, NSMutableDictionary, NSString, SCNGeometry, SCNOrderedDictionary;
 
 @interface SCNParticleSystem : NSObject <NSCopying, NSSecureCoding, SCNAnimatable>
 {
     struct __C3DParticleSystem *_particleSystem;
     unsigned int _isPresentationInstance:1;
     SCNOrderedDictionary *_animations;
+    NSMutableDictionary *_bindings;
     NSString *_name;
     double _emissionDuration;
     double _emissionDurationVariation;
@@ -29,6 +30,7 @@
     long long _birthLocation;
     long long _birthDirection;
     struct SCNVector3 _emittingDirection;
+    struct SCNVector3 _orientationDirection;
     struct SCNVector3 _acceleration;
     double _spreadingAngle;
     BOOL _loops;
@@ -62,6 +64,8 @@
     SCNParticleSystem *_systemSpawnedOnLiving;
     double _particleSize;
     double _particleSizeVariation;
+    double _particleIntensity;
+    double _particleIntensityVariation;
     long long _seed;
     long long _blendMode;
     long long _renderingMode;
@@ -77,6 +81,7 @@
     double _speedFactor;
     double _fixedTimeStep;
     double _stretchFactor;
+    double _lightEmissionRadiusFactor;
     double _fresnelExponent;
     unsigned long long _imageSequenceColumnCount;
     unsigned long long _imageSequenceRowCount;
@@ -106,6 +111,8 @@
 @property(nonatomic) struct SCNVector3 acceleration;
 @property(nonatomic) struct SCNVector3 emittingDirection;
 @property(nonatomic) struct SCNVector4 particleColorVariation;
+@property(nonatomic) double particleIntensityVariation;
+@property(nonatomic) double particleIntensity;
 @property(retain, nonatomic) SCNParticleSystem *systemSpawnedOnLiving;
 @property(retain, nonatomic) SCNParticleSystem *systemSpawnedOnDying;
 @property(retain, nonatomic) SCNParticleSystem *systemSpawnedOnCollision;
@@ -173,8 +180,13 @@
 @property(nonatomic) long long birthDirection;
 @property(nonatomic) BOOL affectedByPhysicsFields;
 @property(nonatomic) BOOL affectedByGravity;
+- (void)setLightEmissionRadiusFactor:(double)arg1;
+- (double)lightEmissionRadiusFactor;
+@property(nonatomic) struct SCNVector3 orientationDirection;
 - (BOOL)areSoftParticlesEnabled;
+- (void)_setParticleImagePath:(id)arg1 withResolvedPath:(id)arg2;
 @property(retain, nonatomic) id particleImage;
+- (void)_updateParticleC3DImage:(id)arg1;
 @property(copy, nonatomic) NSDictionary *propertyControllers;
 @property(copy, nonatomic) NSArray *colliderNodes;
 - (void)setParticleGeometries:(id)arg1;
@@ -190,14 +202,20 @@
 - (id)initPresentationSystemWithSystemRef:(struct __C3DParticleSystem *)arg1;
 - (id)initWithParticleSystemRef:(struct __C3DParticleSystem *)arg1;
 - (id)init;
+- (void)removeAllBindings;
 - (void)unbindAnimatablePath:(id)arg1;
 - (void)bindAnimatablePath:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
+- (id)_scnBindings;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
 - (void)setSpeed:(double)arg1 forAnimationKey:(id)arg2;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
+- (void)removeAnimationForKey:(id)arg1 blendOutDuration:(double)arg2;
 - (void)resumeAnimationForKey:(id)arg1;
 - (void)pauseAnimationForKey:(id)arg1;
-- (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2;
+- (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2 pausedByNode:(BOOL)arg3;
+- (id)animationPlayerForKey:(id)arg1;
+- (void)_copyAnimationsFrom:(id)arg1;
+- (id)_scnAnimationForKey:(id)arg1;
 - (id)animationForKey:(id)arg1;
 - (void)_syncObjCAnimations;
 @property(readonly) NSArray *animationKeys;
@@ -205,6 +223,7 @@
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
+- (void)addAnimationPlayer:(id)arg1 forKey:(id)arg2;
 - (BOOL)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
 - (const void *)__CFObject;

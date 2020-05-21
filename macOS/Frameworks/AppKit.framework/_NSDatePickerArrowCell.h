@@ -6,19 +6,19 @@
 
 #import <AppKit/NSActionCell.h>
 
-@class NSDate, NSImage, NSTimer;
+@class NSDate, NSTimer;
 
 __attribute__((visibility("hidden")))
 @interface _NSDatePickerArrowCell : NSActionCell
 {
-    NSImage *_alternateImage;
     NSTimer *_timer;
     NSDate *_lastFireDateForTimer;
     double _doubleValue;
 }
 
 + (BOOL)prefersTrackingUntilMouseUp;
-@property(retain) NSImage *alternateImage; // @synthesize alternateImage=_alternateImage;
+- (void)setAlternateImage:(id)arg1;
+- (id)alternateImage;
 - (id)_pressureConfigurationIfNeeded;
 - (void)_updateMouseTracking;
 - (BOOL)_hasTrackingGesture;
@@ -37,6 +37,7 @@ __attribute__((visibility("hidden")))
 - (void)_sendAction;
 - (double)doubleValue;
 - (void)setDoubleValue:(double)arg1;
+- (id)_appearanceContentStyleInView:(id)arg1;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (id)initImageCell:(id)arg1;
 

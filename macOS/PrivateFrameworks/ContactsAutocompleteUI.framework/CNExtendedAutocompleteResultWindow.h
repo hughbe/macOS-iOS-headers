@@ -16,11 +16,12 @@
     NSArray *_mixedModelArray;
 }
 
-@property BOOL iconInColumn; // @synthesize iconInColumn=_iconInColumn;
-@property(retain) NSArray *mixedModelArray; // @synthesize mixedModelArray=_mixedModelArray;
-@property(retain) NSArray *columnNames; // @synthesize columnNames=_columnNames;
-@property(nonatomic) BOOL hideAccountColumn; // @synthesize hideAccountColumn=_hideAccountColumn;
++ (id)columnNames;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL iconInColumn; // @synthesize iconInColumn=_iconInColumn;
+@property(retain, nonatomic) NSArray *mixedModelArray; // @synthesize mixedModelArray=_mixedModelArray;
+@property(retain, nonatomic) NSArray *columnNames; // @synthesize columnNames=_columnNames;
+@property(nonatomic) BOOL hideAccountColumn; // @synthesize hideAccountColumn=_hideAccountColumn;
 - (void)updateSizes;
 - (double)windowWidthForContentWidth:(double)arg1;
 - (id)viewForResult:(id)arg1 forTableColumnIdentifier:(id)arg2;

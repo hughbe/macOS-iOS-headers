@@ -6,7 +6,6 @@
 
 #import <ContactsFoundation/CNObservable.h>
 
-__attribute__((visibility("hidden")))
 @interface _CNOnEmptyObservable : CNObservable
 {
     id <CNObservable> _observable;
@@ -15,6 +14,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (void).cxx_destruct;
+@property(retain, nonatomic) id <CNObservable> observable; // @synthesize observable=_observable;
 - (id)subscribeNextObservable:(id)arg1;
 - (BOOL)isObservableEmpty;
 - (void)observableDidSendResult;

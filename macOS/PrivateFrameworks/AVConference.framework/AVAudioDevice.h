@@ -16,6 +16,7 @@
     BOOL _inputAvailable;
     BOOL _outputAvailable;
     BOOL _preferredDevice;
+    BOOL _isBluetoothDevice;
     BOOL _isLineIn;
 }
 
@@ -28,6 +29,9 @@
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isStreamAvailableForScope:(unsigned int)arg1;
+- (unsigned int)getDataSourceControlID;
+- (unsigned int *)allocDeviceControlListAndSize:(unsigned int *)arg1;
+- (BOOL)isBuiltInDevice;
 - (BOOL)isSomethingConnectedToJack;
 - (BOOL)isValidInputDevice;
 - (BOOL)isValidDevice;
@@ -35,6 +39,7 @@
 - (void)createUID;
 - (void)createName;
 - (BOOL)isDeviceInEar:(id)arg1;
+@property(readonly, nonatomic) BOOL isBluetoothDevice;
 - (id)description;
 - (void)dealloc;
 - (id)initWithDeviceID:(id)arg1;

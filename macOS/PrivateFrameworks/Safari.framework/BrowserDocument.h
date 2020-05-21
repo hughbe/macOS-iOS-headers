@@ -8,14 +8,14 @@
 
 #import "NSOpenSavePanelDelegate.h"
 
-@class BrowserWKView, NSConditionLock, NSData, NSMutableArray, NSPopUpButton, NSSavePanel, NSString, NSTextField, NSView;
+@class BrowserViewController, NSConditionLock, NSData, NSMutableArray, NSPopUpButton, NSSavePanel, NSString, NSTextField, NSView, WebViewController;
 
 __attribute__((visibility("hidden")))
 @interface BrowserDocument : NSDocument <NSOpenSavePanelDelegate>
 {
-    BrowserWKView *_currentWKView;
-    NSMutableArray *_wkViews;
-    RefPtr_1016c1b7 _contentViewControllerToSave;
+    BrowserViewController *_currentBrowserViewController;
+    NSMutableArray *_browserViewControllers;
+    BrowserViewController *_contentViewControllerToSave;
     NSSavePanel *_activeSavePanel;
     BOOL _isSavingWithSavePanel;
     BOOL _shouldOpenWindowBehindFrontmost;
@@ -32,6 +32,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)lastDocumentCouldShowUnifiedField;
+- (void).cxx_destruct;
 @property(retain) NSData *pdfDataForExport; // @synthesize pdfDataForExport=_pdfDataForExport;
 @property(retain) NSConditionLock *waitingForPDFLock; // @synthesize waitingForPDFLock=_waitingForPDFLock;
 @property BOOL isSavingAsPDF; // @synthesize isSavingAsPDF=_isSavingAsPDF;
@@ -42,17 +43,14 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) int restorationState; // @synthesize restorationState=_restorationState;
 @property(readonly, nonatomic) unsigned long long browsingMode; // @synthesize browsingMode=_browsingMode;
 @property(readonly, nonatomic, getter=isPopupWindow) BOOL popupWindow; // @synthesize popupWindow=_popupWindow;
-- (id).cxx_construct;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL wasRestored;
 - (void)restoreDocumentWindowWithIdentifier:(id)arg1 state:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (unsigned int)wkViewCount;
-- (void)destroyWKView:(id)arg1;
-- (id)currentWKView;
-- (id)createWKViewWithWebsiteDataStore:(id)arg1;
-- (id)createWKView;
-- (void)setCurrentBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)removeBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)addBrowserContentViewController:(struct BrowserContentViewController *)arg1;
+@property(readonly, nonatomic) unsigned long long numberOfBrowserViewControllers;
+- (id)makeBrowserViewControllerWithConfiguration:(id)arg1;
+- (id)makeBrowserViewController;
+@property(retain, nonatomic) BrowserViewController *currentBrowserViewController;
+- (void)removeBrowserViewController:(id)arg1;
+- (void)addBrowserViewController:(id)arg1;
 - (id)pageName;
 - (id)handleEmailContentsCommand:(id)arg1;
 - (id)handleDoJavaScriptCommand:(id)arg1;
@@ -61,47 +59,38 @@ __attribute__((visibility("hidden")))
 - (id)source;
 - (void)setURLString:(id)arg1;
 - (id)URLString;
-- (void)createWebClip:(id)arg1;
 - (void)setShouldOpenWindowBehindFrontmost:(BOOL)arg1;
 - (BOOL)shouldOpenWindowBehindFrontmost;
-- (void)tryMultipleURLs:(unique_ptr_d9da4b2f)arg1 httpReferrer:(id)arg2;
-- (struct SearchableWebContentViewController *)currentBrowserOrOverlayContentViewController;
-- (struct BrowserContentViewController *)currentBrowserContentViewControllerIgnoringVisualTabPickerVisibility;
-- (struct BrowserContentViewController *)currentBrowserContentViewController;
+- (void)tryMultipleURLs:(unique_ptr_aba2cdfe)arg1 httpReferrer:(id)arg2;
+@property(readonly, nonatomic) WebViewController *currentBrowserOrOverlayViewController;
+@property(readonly, nonatomic) BrowserViewController *currentBrowserViewControllerIgnoringVisualTabPickerVisibility;
 - (void)_sharePageViaMail:(id)arg1;
 - (void)viewSource:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (BOOL)canSave;
-- (BOOL)canCreateWebClip;
 - (BOOL)canViewSource;
 - (BOOL)_isDocumentHTML;
 - (void)clearAllStatus;
 - (void)addBookmarksForTabs:(id)arg1;
 - (void)addBookmarkToTopLevel:(id)arg1;
 - (void)showBookmarksSidebar:(id)arg1;
-- (void)previousReadingListOrSharedLinksItem:(id)arg1;
-- (void)nextReadingListOrSharedLinksItem:(id)arg1;
+- (void)previousReadingListItem:(id)arg1;
+- (void)nextReadingListItem:(id)arg1;
 - (void)addReadingListItemsForTabs:(id)arg1;
 - (void)addReadingListItem:(id)arg1;
 - (void)addBookmark:(id)arg1;
-- (void)addWebFeed:(id)arg1;
 - (void)_proposeBookmark;
 - (long long)_numberOfTabsToPotentiallyAddToBookmarksOrReadingList;
 - (id)_createBookmark;
-- (id)_selectPreviousReadingListOrSharedLinksItemTitle;
-- (BOOL)_canSelectPreviousReadingListOrSharedLinksItem;
-- (id)_selectNextReadingListOrSharedLinksItemTitle;
-- (BOOL)_canSelectNextReadingListOrSharedLinksItem;
+- (BOOL)_canSelectPreviousReadingListItem;
+- (BOOL)_canSelectNextReadingListItem;
 - (BOOL)_canAddReadingListItem;
 - (BOOL)canAddBookmarksForTabs;
 - (BOOL)canAddBookmark;
 - (void)safari_printDocument:(id)arg1;
 - (BOOL)canPrint;
-- (void)printShowingPrintPanel:(BOOL)arg1;
-- (void)printOperationDidRun:(id)arg1 success:(BOOL)arg2 contextInfo:(void *)arg3;
-- (void)printFrame:(const struct Frame *)arg1 showingPrintPanel:(BOOL)arg2 waitUntilDone:(BOOL)arg3;
-- (void)setPrintInfo:(id)arg1;
-- (id)printInfo;
+- (void)printCurrentPage;
+- (void)printDocumentWithSettings:(id)arg1 showPrintPanel:(BOOL)arg2 delegate:(id)arg3 didPrintSelector:(SEL)arg4 contextInfo:(void *)arg5;
 - (BOOL)isShowingLoadErrorPage;
 - (void)stopLoading:(id)arg1;
 - (void)setShouldStartEmpty;
@@ -118,6 +107,7 @@ __attribute__((visibility("hidden")))
 - (id)currentURL;
 - (void)goToURL:(id)arg1;
 - (void)evaluateJavaScript:(id)arg1;
+- (void)goToRequest:(id)arg1 withTabLabel:(id)arg2 inNewProcess:(BOOL)arg3;
 - (void)goToRequest:(id)arg1 withTabLabel:(id)arg2;
 - (void)openLocation:(id)arg1;
 - (void)hideFindBanner:(id)arg1;
@@ -136,12 +126,13 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFromData:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (id)dataOfType:(id)arg1 error:(id *)arg2;
 - (id)panel:(id)arg1 userEnteredFilename:(id)arg2 confirmed:(BOOL)arg3;
+- (BOOL)panel:(id)arg1 shouldEnableURL:(id)arg2;
 - (BOOL)prepareSavePanel:(id)arg1;
 - (void)fileFormatPopUpButtonUpdated:(id)arg1;
 - (void)_updateFileFormatInformationText;
 - (id)_allowedFileTypes;
 - (void)document:(id)arg1 didSave:(BOOL)arg2 contextInfo:(void *)arg3;
-- (void)presentSavePanelForContentViewController:(struct BrowserContentViewController *)arg1;
+- (void)presentSavePanelForContentViewController:(id)arg1;
 - (void)saveDocumentTo:(id)arg1;
 - (void)_presentSavePanel;
 - (void)didGeneratePDFDataForExport:(id)arg1;
@@ -163,13 +154,29 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldClose;
 - (void)close;
 - (void)dealloc;
-- (void)_commonBrowserDocumentInitWithContentsOfRequest:(id)arg1 wkView:(id)arg2;
+- (void)_commonBrowserDocumentInitWithContentsOfRequest:(id)arg1 browserViewController:(id)arg2;
 - (id)initWithContentsOfURL:(id)arg1 ofType:(id)arg2;
-- (id)initWithBrowsingMode:(unsigned long long)arg1 websiteDataStore:(id)arg2 isPopupWindow:(BOOL)arg3;
+- (id)initWithBrowsingMode:(unsigned long long)arg1 configuration:(id)arg2 isPopupWindow:(BOOL)arg3 restoringFromLastSession:(BOOL)arg4;
 - (id)init;
 - (id)initWithContentsOfRequest:(id)arg1 browsingMode:(unsigned long long)arg2;
+- (BOOL)validate_setShowTabAncestryInTabTitle:(id)arg1;
+- (void)setShowTabAncestryInTabTitle:(id)arg1;
+- (BOOL)validate_setSuppressRelatingNewBlankTabs:(id)arg1;
+- (void)setSuppressRelatingNewBlankTabs:(id)arg1;
+- (BOOL)validate_setApplyPositionToAllBlankTabs:(id)arg1;
+- (void)setApplyPositionToAllBlankTabs:(id)arg1;
+- (BOOL)validate_setApplyPositionToSpawnedTabs:(id)arg1;
+- (void)setApplyPositionToSpawnedTabs:(id)arg1;
+- (BOOL)validate_updateNewTabPositionValue:(id)arg1;
+- (void)updateNewTabPositionValue:(id)arg1;
+- (BOOL)validate_saveSamplingProfilerOutput:(id)arg1;
+- (void)saveSamplingProfilerOutput:(id)arg1;
 - (BOOL)validate_getBytecodeProfile:(id)arg1;
 - (void)getBytecodeProfile:(id)arg1;
+- (BOOL)validate_saveMetadataJSONForActiveForm:(id)arg1;
+- (void)dumpMetadataJSONForActiveForm:(id)arg1;
+- (void)saveMetadataJSONForActiveForm:(id)arg1;
+- (void)collectDataForSavingPageInliningOrDiscardingExternalResources:(id)arg1;
 - (BOOL)validate_toggleLogJavaScriptExceptions:(id)arg1;
 - (void)toggleLogJavaScriptExceptions:(id)arg1;
 - (BOOL)validate_togglePauseWebProcessSoon:(id)arg1;
@@ -203,6 +210,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)validate_showWebInspector:(id)arg1;
 - (void)showWebInspector:(id)arg1;
 - (BOOL)validate_toggleExperimentalFeature:(id)arg1;
+- (void)resetAllExperimentalFeaturesToDefaultValues:(id)arg1;
 - (void)toggleExperimentalFeature:(id)arg1;
 - (BOOL)validate_showOtherUserAgentSheet:(id)arg1;
 - (void)showOtherUserAgentSheet:(id)arg1;

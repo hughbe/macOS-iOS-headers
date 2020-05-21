@@ -17,22 +17,20 @@
     unsigned long long _height;
     double _scale;
     VKCamera *_camera;
-    BOOL _showingNoDataPlaceholders;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(readonly, nonatomic, getter=isShowingNoDataPlaceholders) BOOL showingNoDataPlaceholders; // @synthesize showingNoDataPlaceholders=_showingNoDataPlaceholders;
 @property(readonly, nonatomic) double scale; // @synthesize scale=_scale;
 @property(readonly, nonatomic) struct CGImage *image; // @synthesize image=_image;
 - (id)imageDataInFormat:(unsigned long long)arg1;
-- (BOOL)writeImageToFile:(id)arg1 format:(unsigned long long)arg2 error:(id *)arg3;
 - (CDStruct_c3b9c2ee)coordinateForPoint:(struct CGPoint)arg1;
 - (struct CGPoint)pointForCoordinate:(CDStruct_c3b9c2ee)arg1;
 - (id)description;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
+- (id)imageSurface;
 - (id)initWithCoder:(id)arg1;
-- (id)_initWithImage:(struct CGImage *)arg1 scale:(double)arg2 camera:(id)arg3 showingNoDataPlaceholders:(BOOL)arg4;
+- (id)_initWithImage:(struct CGImage *)arg1 scale:(double)arg2 camera:(id)arg3;
 
 @end
 

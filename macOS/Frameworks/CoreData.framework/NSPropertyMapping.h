@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSSecureCoding.h"
+
 @class NSArray, NSDictionary, NSExpression, NSString;
 
-@interface NSPropertyMapping : NSObject
+@interface NSPropertyMapping : NSObject <NSSecureCoding>
 {
     void *_reserved;
     NSArray *_transformValidations;
@@ -23,14 +25,13 @@
 }
 
 + (void)initialize;
++ (BOOL)supportsSecureCoding;
 @property(retain) NSDictionary *userInfo;
 @property(retain) NSExpression *valueExpression;
 @property(copy) NSString *name;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)init;
 - (id)_transformValidations;
@@ -43,6 +44,8 @@
 - (BOOL)isEditable;
 - (id)initWithName:(id)arg1 valueExpression:(id)arg2;
 - (id)_initWithDestinationName:(id)arg1 valueExpression:(id)arg2;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 
 @end
 

@@ -8,22 +8,22 @@
 
 #import "MKArtworkImageSource.h"
 
-@class MKArtworkImageViewCache, NSString;
+@class MKArtworkDataSourceCache, NSString;
 
 @interface MKSizedTransitArtwork : NSObject <MKArtworkImageSource>
 {
     id <GEOTransitArtworkDataSource> _artwork;
     long long _shieldSize;
-    MKArtworkImageViewCache *_artworkCache;
+    MKArtworkDataSourceCache *_artworkCache;
 }
 
-@property(readonly, nonatomic) MKArtworkImageViewCache *artworkCache; // @synthesize artworkCache=_artworkCache;
+- (void).cxx_destruct;
+@property(retain, nonatomic) MKArtworkDataSourceCache *artworkCache; // @synthesize artworkCache=_artworkCache;
 @property(readonly, nonatomic) long long shieldSize; // @synthesize shieldSize=_shieldSize;
 @property(readonly, nonatomic) id <GEOTransitArtworkDataSource> artwork; // @synthesize artwork=_artwork;
-- (void).cxx_destruct;
-@property(readonly, nonatomic) BOOL shouldHighlight;
-- (id)badgeImageToDisplayInView:(id)arg1;
-- (id)imageToDisplayInView:(id)arg1;
+- (id)badgeImageToDisplayWithScreenScale:(double)arg1 nightMode:(BOOL)arg2;
+- (id)imageToDisplayWithScreenScale:(double)arg1 nightMode:(BOOL)arg2;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqualToTransitArtworkViewMode:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithArtwork:(id)arg1 shieldSize:(long long)arg2 artworkCache:(id)arg3;
@@ -32,7 +32,6 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

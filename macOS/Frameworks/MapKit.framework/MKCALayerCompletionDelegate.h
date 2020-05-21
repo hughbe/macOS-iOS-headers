@@ -10,14 +10,15 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface MKCALayerCompletionDelegate : NSObject <CAAnimationDelegate>
 {
     CDUnknownBlockType _completion;
 }
 
 + (id)delegateWithCompletion:(CDUnknownBlockType)arg1;
-@property(copy, nonatomic) CDUnknownBlockType completion; // @synthesize completion=_completion;
 - (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType completion; // @synthesize completion=_completion;
 - (void)animationDidStop:(id)arg1 finished:(BOOL)arg2;
 
 // Remaining properties

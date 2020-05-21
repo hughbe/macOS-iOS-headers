@@ -14,6 +14,7 @@
 
 + (id)startHandoffRequestWithDictionary:(id)arg1 context:(id)arg2;
 + (id)startHandoffRequest;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSData *handoffData;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -6,20 +6,19 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "CALayoutManager.h"
 
-@interface CATableLayoutManager : NSObject <NSCoding>
+@class NSString;
+
+@interface CATableLayoutManager : NSObject <CALayoutManager>
 {
 }
 
-+ (void)CAMLParserStartElement:(id)arg1;
-+ (id)layoutManager;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
-- (void)invalidateLayoutOfLayer:(id)arg1;
-- (void)layoutSublayersOfLayer:(id)arg1;
-- (struct CGSize)preferredSizeOfLayer:(id)arg1;
-- (id)init;
 
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

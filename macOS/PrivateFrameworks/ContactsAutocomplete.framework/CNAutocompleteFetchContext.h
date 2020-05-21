@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSDate, NSString;
 
-@interface CNAutocompleteFetchContext : NSObject <NSCopying>
+@interface CNAutocompleteFetchContext : NSObject <NSCopying, NSSecureCoding>
 {
     BOOL _predictsBasedOnOutgoingInteraction;
     NSString *_sendingAddress;
@@ -24,6 +25,8 @@
     NSArray *_bundleIdentifiers;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property BOOL predictsBasedOnOutgoingInteraction; // @synthesize predictsBasedOnOutgoingInteraction=_predictsBasedOnOutgoingInteraction;
 @property(copy) NSArray *bundleIdentifiers; // @synthesize bundleIdentifiers=_bundleIdentifiers;
 @property(copy) NSString *title; // @synthesize title=_title;
@@ -34,8 +37,9 @@
 @property(copy) NSString *domainIdentifier; // @synthesize domainIdentifier=_domainIdentifier;
 @property(copy) NSString *sendingAddressAccountIdentifier; // @synthesize sendingAddressAccountIdentifier=_sendingAddressAccountIdentifier;
 @property(copy) NSString *sendingAddress; // @synthesize sendingAddress=_sendingAddress;
-- (void).cxx_destruct;
 - (BOOL)isValid:(id *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;

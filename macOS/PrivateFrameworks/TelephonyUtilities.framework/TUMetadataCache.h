@@ -6,26 +6,35 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSObject<OS_dispatch_queue>;
+#import "TUMetadataCacheDataProviderDelegate.h"
 
-@interface TUMetadataCache : NSObject
+@class NSArray, NSObject<OS_dispatch_queue>, NSString;
+
+@interface TUMetadataCache : NSObject <TUMetadataCacheDataProviderDelegate>
 {
-    NSObject<OS_dispatch_queue> *_cache_queue;
     NSArray *_providers;
+    NSObject<OS_dispatch_queue> *_queue;
 }
 
-@property(retain, nonatomic) NSArray *providers; // @synthesize providers=_providers;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *cache_queue; // @synthesize cache_queue=_cache_queue;
++ (id)classIdentifier;
 - (void).cxx_destruct;
-- (id)description;
-- (BOOL)isEmpty;
-- (void)removeDestinationIDFromCache:(id)arg1;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+@property(readonly, copy, nonatomic) NSArray *providers; // @synthesize providers=_providers;
+- (void)dataProvider:(id)arg1 requestedRefreshWithDestinationIDs:(id)arg2;
+@property(readonly, copy) NSString *description;
+@property(readonly, nonatomic, getter=isEmpty) BOOL empty;
 - (void)_updateCacheWithDestinationIDs:(id)arg1 onlyEmptyProviders:(BOOL)arg2;
 - (void)updateCacheForEmptyDataProvidersWithDestinationIDs:(id)arg1;
 - (void)updateCacheWithDestinationIDs:(id)arg1;
 - (id)metadataForDestinationID:(id)arg1;
-- (id)init;
+- (id)initWithQueue:(id)arg1 dataProviders:(id)arg2;
 - (id)initWithDataProviders:(id)arg1;
+- (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

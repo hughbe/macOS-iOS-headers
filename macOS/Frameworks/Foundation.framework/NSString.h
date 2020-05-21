@@ -7,10 +7,14 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSItemProviderReading.h"
+#import "NSItemProviderWriting.h"
 #import "NSMutableCopying.h"
 #import "NSSecureCoding.h"
 
-@interface NSString : NSObject <NSCopying, NSMutableCopying, NSSecureCoding>
+@class NSArray;
+
+@interface NSString : NSObject <NSItemProviderReading, NSItemProviderWriting, NSCopying, NSMutableCopying, NSSecureCoding>
 {
 }
 
@@ -23,7 +27,9 @@
 + (id)stringWithContentsOfFile:(id)arg1;
 + (id)stringWithFormat:(id)arg1 locale:(id)arg2;
 + (id)stringWithFormat:(id)arg1;
++ (id)stringWithValidatedFormat:(id)arg1 validFormatSpecifiers:(id)arg2 error:(id *)arg3;
 + (id)localizedStringWithFormat:(id)arg1;
++ (id)localizedStringWithValidatedFormat:(id)arg1 validFormatSpecifiers:(id)arg2 error:(id *)arg3;
 + (id)stringWithBytes:(const void *)arg1 length:(unsigned long long)arg2 encoding:(unsigned long long)arg3;
 + (id)stringWithUTF8String:(const char *)arg1;
 + (id)stringWithCString:(const char *)arg1 encoding:(unsigned long long)arg2;
@@ -35,10 +41,16 @@
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (void)initialize;
 + (id)pathWithComponents:(id)arg1;
++ (id)_newZStringWithUTF8String:(const char *)arg1;
++ (id)_newZStringWithString:(id)arg1;
++ (id)_newZStringWithCharacters:(const unsigned short *)arg1 length:(unsigned long long)arg2;
 + (unsigned long long)stringEncodingForData:(id)arg1 encodingOptions:(id)arg2 convertedString:(id *)arg3 usedLossyConversion:(char *)arg4;
 + (id)_scriptingTextWithDescriptor:(id)arg1;
 + (id)_scriptStringWithTabCount:(unsigned long long)arg1;
 + (id)_scriptStringWithPropertyAccess:(unsigned long long)arg1;
++ (id)writableTypeIdentifiersForItemProvider;
++ (id)objectWithItemProviderData:(id)arg1 typeIdentifier:(id)arg2 error:(id *)arg3;
++ (id)readableTypeIdentifiersForItemProvider;
 + (id)localizedNameOfStringEncoding:(unsigned long long)arg1;
 + (const unsigned long long *)availableStringEncodings;
 + (unsigned long long)defaultCStringEncoding;
@@ -52,6 +64,7 @@
 - (id)initWithCStringNoCopy:(char *)arg1 length:(unsigned long long)arg2 freeWhenDone:(BOOL)arg3;
 - (id)initWithCharactersNoCopy:(unsigned short *)arg1 length:(unsigned long long)arg2 freeWhenDone:(BOOL)arg3;
 - (id)initWithFormat:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
+- (id)initWithValidatedFormat:(id)arg1 validFormatSpecifiers:(id)arg2 locale:(id)arg3 arguments:(struct __va_list_tag [1])arg4 error:(id *)arg5;
 - (id)initWithFormat:(id)arg1 locale:(id)arg2;
 - (id)initWithFormat:(id)arg1;
 - (id)initWithData:(id)arg1 usedEncoding:(unsigned long long *)arg2;
@@ -146,11 +159,11 @@
 - (long long)compare:(id)arg1 options:(unsigned long long)arg2 range:(struct _NSRange)arg3 locale:(id)arg4;
 - (long long)compare:(id)arg1 options:(unsigned long long)arg2 range:(struct _NSRange)arg3;
 - (BOOL)isEqualToString:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)quotedStringRepresentation;
 - (id)_stringRepresentation;
 - (BOOL)_isCString;
@@ -199,6 +212,8 @@
 - (BOOL)isNSString__;
 - (id)_scriptingTextDescriptor;
 - (int)_scriptingAlternativeValueRankWithDescriptor:(id)arg1;
+- (id)loadDataWithTypeIdentifier:(id)arg1 forItemProviderCompletionHandler:(CDUnknownBlockType)arg2;
+@property(readonly, copy) NSArray *writableTypeIdentifiersForItemProvider;
 - (BOOL)isCaseInsensitiveLike:(id)arg1;
 - (BOOL)isLike:(id)arg1;
 - (BOOL)matchesPattern:(id)arg1;
@@ -281,6 +296,10 @@
 - (struct _NSRange)significantText;
 - (id)replacementObjectForPortCoder:(id)arg1;
 - (unsigned long long)__graphemeCount;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

@@ -20,8 +20,8 @@
 
 + (void)setNeedsSilentMachineAuthorization:(BOOL)arg1;
 + (id)sharedPurchaseController;
-@property(copy) CDUnknownBlockType dialogHandler; // @synthesize dialogHandler=_dialogHandler;
 - (void).cxx_destruct;
+@property(copy) CDUnknownBlockType dialogHandler; // @synthesize dialogHandler=_dialogHandler;
 - (BOOL)adoptionCompletedForBundleID:(id)arg1;
 - (void)_performVPPReceiptRenewal;
 - (void)checkServerDownloadQueue;
@@ -30,6 +30,7 @@
 - (void)cancelPurchaseWithProductID:(id)arg1;
 - (void)resumeDownloadForPurchasedProductID:(id)arg1;
 - (void)startPurchases:(id)arg1 shouldStartDownloads:(BOOL)arg2 eventHandler:(CDUnknownBlockType)arg3;
+- (void)startPurchases:(id)arg1 withOptions:(unsigned long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)performPurchase:(id)arg1 withOptions:(unsigned long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
 
 @end

@@ -8,6 +8,7 @@
 
 @class _NCVerticalListContainer;
 
+__attribute__((visibility("hidden")))
 @interface _NCVerticalListOperation : NSObject
 {
     _Bool _remove;
@@ -15,10 +16,10 @@
     unsigned long long _animation;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long animation; // @synthesize animation=_animation;
 @property(nonatomic) _Bool remove; // @synthesize remove=_remove;
 @property(retain, nonatomic) _NCVerticalListContainer *container; // @synthesize container=_container;
-- (void).cxx_destruct;
 - (id)description;
 
 @end

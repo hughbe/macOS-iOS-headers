@@ -6,18 +6,19 @@
 
 #import <AddressBook/ABCardCollectionRowView.h>
 
-@class ABCommunicationButtonsController;
+@class ABCommunicationButtonsController, NSArray;
 
-__attribute__((visibility("hidden")))
 @interface ABCollectionFaceTimeRowView : ABCardCollectionRowView
 {
     ABCommunicationButtonsController *_buttonsController;
+    NSArray *_facetimeRowViewConstraints;
 }
 
-@property(retain) ABCommunicationButtonsController *buttonsController; // @synthesize buttonsController=_buttonsController;
-- (void)setFaceTimeEnabled:(BOOL)arg1;
-- (void)setDataSource:(id)arg1;
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *facetimeRowViewConstraints; // @synthesize facetimeRowViewConstraints=_facetimeRowViewConstraints;
+@property(retain, nonatomic) ABCommunicationButtonsController *buttonsController; // @synthesize buttonsController=_buttonsController;
+- (void)generateConstraints;
+- (void)viewWillMoveToWindow:(id)arg1;
 
 @end
 

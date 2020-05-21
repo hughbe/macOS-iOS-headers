@@ -8,6 +8,7 @@
 
 @class NSArray, NSMutableArray;
 
+__attribute__((visibility("hidden")))
 @interface AVAudioSettingsValueConstrainer : NSObject
 {
     struct AudioStreamBasicDescription _inputASBD;
@@ -38,7 +39,6 @@
 - (void)_buildApplicableDataRatesForSampleRates;
 - (void)_buildAvailableSampleRates;
 - (void)_buildAudioConverter;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

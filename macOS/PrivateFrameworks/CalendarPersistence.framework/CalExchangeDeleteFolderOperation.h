@@ -18,6 +18,7 @@
     NSString *_folderName;
 }
 
++ (BOOL)supportsSecureCoding;
 - (id)messageTracerUUID;
 - (id)messageTracerName;
 - (id)initWithCoder:(id)arg1;

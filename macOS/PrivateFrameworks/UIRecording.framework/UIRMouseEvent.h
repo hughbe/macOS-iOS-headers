@@ -6,10 +6,13 @@
 
 #import <UIRecording/UIREvent.h>
 
-@interface UIRMouseEvent : UIREvent
+#import "NSSecureCoding.h"
+
+@interface UIRMouseEvent : UIREvent <NSSecureCoding>
 {
 }
 
++ (BOOL)supportsSecureCoding;
 - (struct __CGEvent *)cgEventToPostToProcess:(id)arg1 withLastEvent:(id)arg2 withLastCGEvent:(struct __CGEvent *)arg3 error:(id *)arg4;
 - (BOOL)hasSameChildrenStackAsEvent:(id)arg1;
 - (struct CGPoint)positionWithElement:(id)arg1;
@@ -24,7 +27,6 @@
 - (id)childrenStack;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCGEvent:(struct __CGEvent *)arg1 withAccessibilityElement:(id)arg2;
 
 @end

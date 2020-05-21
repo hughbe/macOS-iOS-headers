@@ -14,8 +14,8 @@ __attribute__((visibility("hidden")))
     NSDictionary *_commandStringsToNames;
 }
 
+- (void).cxx_destruct;
 - (void)appleScriptHandlePerformCommand:(id)arg1;
-- (void)dealloc;
 - (id)objectSpecifier;
 - (id)init;
 

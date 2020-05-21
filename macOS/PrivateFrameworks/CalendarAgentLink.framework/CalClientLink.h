@@ -6,48 +6,25 @@
 
 #import "NSObject.h"
 
-#import "NSXPCListenerDelegate.h"
+@class CalXPCConnectionListenerProvider;
 
-@class NSMutableSet, NSString, NSXPCListener, Protocol;
-
-@interface CalClientLink : NSObject <NSXPCListenerDelegate>
+@interface CalClientLink : NSObject
 {
-    NSMutableSet *_clients;
-    NSXPCListener *_listener;
-    id _exportedObject;
-    Protocol *_exportedProtocol;
-    NSString *_machServiceName;
+    CalXPCConnectionListenerProvider *_connectionListenerProvider;
 }
 
-+ (void)_sendToClients:(SEL)arg1 withObjects:(id)arg2 skipCurrentConnection:(BOOL)arg3;
 + (void)tearDownAllInstances;
-+ (void)sendToOtherClients:(SEL)arg1 withObject:(id)arg2 withObject:(id)arg3;
-+ (void)sendToOtherClients:(SEL)arg1 withObject:(id)arg2;
-+ (void)sendToOtherClients:(SEL)arg1;
 + (void)sendToClients:(SEL)arg1 withObject:(id)arg2 withObject:(id)arg3;
-+ (void)sendToClients:(SEL)arg1 withObject:(id)arg2;
-+ (void)sendToClients:(SEL)arg1;
++ (void)performBlockWithAllClients:(CDUnknownBlockType)arg1;
 + (id)startWithMachServiceName:(id)arg1 exportedObject:(id)arg2;
 + (id)sharedInstanceWithMachServiceName:(id)arg1;
 + (id)sharedInstances;
 + (void)initialize;
-@property(retain) NSString *machServiceName; // @synthesize machServiceName=_machServiceName;
-@property(retain) NSXPCListener *listener; // @synthesize listener=_listener;
-@property(retain) Protocol *exportedProtocol; // @synthesize exportedProtocol=_exportedProtocol;
-@property(retain) id exportedObject; // @synthesize exportedObject=_exportedObject;
-@property(retain) NSMutableSet *clients; // @synthesize clients=_clients;
-- (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
-- (void)_sendToClients:(SEL)arg1 withObjects:(id)arg2 skipCurrentConnection:(BOOL)arg3;
-- (void)_removeClientConnection:(id)arg1;
+- (void).cxx_destruct;
+@property(retain) CalXPCConnectionListenerProvider *connectionListenerProvider; // @synthesize connectionListenerProvider=_connectionListenerProvider;
+- (void)_performBlockWithAllClients:(CDUnknownBlockType)arg1;
 - (void)tearDown;
-- (void)dealloc;
 - (id)initWithMachServiceName:(id)arg1 exportedObject:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

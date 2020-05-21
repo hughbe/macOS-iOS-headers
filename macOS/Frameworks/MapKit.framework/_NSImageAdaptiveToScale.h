@@ -8,6 +8,7 @@
 
 @class NSCache, _NSImageRepAdaptiveToScale;
 
+__attribute__((visibility("hidden")))
 @interface _NSImageAdaptiveToScale : NSImage
 {
     CDUnknownBlockType _vkImageWithScale;
@@ -22,6 +23,8 @@
 - (struct CGSize)_vkImagePtSize:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithBlockGetVKImageWithScale:(CDUnknownBlockType)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithSize:(struct CGSize)arg1;
 
 @end
 

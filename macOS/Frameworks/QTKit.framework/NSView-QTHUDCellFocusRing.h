@@ -8,5 +8,6 @@
 
 @interface NSView (QTHUDCellFocusRing)
 - (void)QTHUD_setNeedsDisplayInRect:(struct CGRect)arg1;
+- (unsigned long long)QTHUD_backgroundTintForRect:(struct CGRect)arg1;
 @end
 

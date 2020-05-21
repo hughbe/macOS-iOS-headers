@@ -10,14 +10,24 @@
 {
 }
 
-+ (BOOL)appleIDNeedsFixing:(id)arg1;
++ (id)numberOfDaysSinceIMExit;
++ (void)setIMEnabled:(BOOL)arg1;
++ (BOOL)isIMChangingEnabledState;
++ (BOOL)isIMEnabled;
++ (void)selectFile:(id)arg1 inFolder:(id)arg2;
++ (BOOL)isCertificateTrustValid:(struct __SecTrust *)arg1;
++ (BOOL)isSetupServiceHost:(id)arg1;
++ (void)postCDPRepairFollowUp;
 + (BOOL)isAppleIDLoginEnabled:(id)arg1;
 + (BOOL)isGuestUser;
 + (BOOL)screenLockIsEnabled;
 + (id)deviceUDID;
 + (int)openItemWithURL:(id)arg1;
 + (int)openApplicationWithURL:(struct __CFURL *)arg1;
-+ (int)openApplicationWithBundleID:(id)arg1;
++ (void)openPrefPane:(id)arg1 userInfo:(id)arg2;
++ (void)openApplicationWithBundleID:(id)arg1;
++ (void)openAppleIDPref;
++ (void)openNetworkPref;
 + (void)openUsersAndGroupsPref;
 + (void)openiCloudPref;
 + (void)openParentalControlPref;
@@ -27,8 +37,9 @@
 + (void)openEnergySaverPref;
 + (void)launchPhotosApplication;
 + (void)launchSoftwareUpdate;
-+ (void)launchNetworkDiagnostics;
 + (id)urlForBundleIdentifier:(id)arg1;
++ (id)currentApplicationVersion;
++ (id)currentApplicationIdentifier;
 + (id)bundleVersion;
 + (id)bundleIdentifier;
 

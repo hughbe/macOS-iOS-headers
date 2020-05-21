@@ -9,7 +9,7 @@
 #import "CNAutocompleteFetchDelegate.h"
 #import "CalDAVAutocompleOperationDelegate.h"
 
-@class ABAddressBook, ACAccount, CNAutocompleteStore, CalDAVAutocompleteOperation, NSMutableArray, NSSet, NSString;
+@class ACAccount, CNAutocompleteStore, CalDAVAutocompleteOperation, NSCache, NSMutableArray, NSSet, NSString;
 
 @interface CalAutoCompleteOperation : NSObject <CNAutocompleteFetchDelegate, CalDAVAutocompleOperationDelegate>
 {
@@ -19,12 +19,13 @@
     BOOL _doResources;
     BOOL _doGroups;
     BOOL _doRecents;
+    BOOL _excludeLocal;
     BOOL _autocompleteRunning;
     id <CalAutoCompleteDelegate> _delegate;
     NSString *_prefix;
     NSString *_lastSearchedSourceID;
     NSSet *_addressesToIgnore;
-    ABAddressBook *_addressBook;
+    NSCache *_participantAddressCache;
     NSMutableArray *_contactResults;
     id <CNCancelable> _autocompletionSearchRequest;
     CNAutocompleteStore *_autocompleteStore;
@@ -33,6 +34,7 @@
     CDUnknownBlockType _calDAVCompletionHandler;
 }
 
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType calDAVCompletionHandler; // @synthesize calDAVCompletionHandler=_calDAVCompletionHandler;
 @property(retain) CalDAVAutocompleteOperation *cdQuerySession; // @synthesize cdQuerySession=_cdQuerySession;
 @property(retain) ACAccount *account; // @synthesize account=_account;
@@ -40,17 +42,18 @@
 @property BOOL autocompleteRunning; // @synthesize autocompleteRunning=_autocompleteRunning;
 @property(retain) id <CNCancelable> autocompletionSearchRequest; // @synthesize autocompletionSearchRequest=_autocompletionSearchRequest;
 @property(retain) NSMutableArray *contactResults; // @synthesize contactResults=_contactResults;
-@property(retain) ABAddressBook *addressBook; // @synthesize addressBook=_addressBook;
+@property(retain) NSCache *participantAddressCache; // @synthesize participantAddressCache=_participantAddressCache;
 @property(retain) NSSet *addressesToIgnore; // @synthesize addressesToIgnore=_addressesToIgnore;
 @property(retain) NSString *lastSearchedSourceID; // @synthesize lastSearchedSourceID=_lastSearchedSourceID;
 @property(copy) NSString *prefix; // @synthesize prefix=_prefix;
+@property BOOL excludeLocal; // @synthesize excludeLocal=_excludeLocal;
 @property BOOL doRecents; // @synthesize doRecents=_doRecents;
 @property BOOL doGroups; // @synthesize doGroups=_doGroups;
 @property BOOL doResources; // @synthesize doResources=_doResources;
 @property BOOL doSuggestions; // @synthesize doSuggestions=_doSuggestions;
 @property BOOL doPeople; // @synthesize doPeople=_doPeople;
 @property BOOL doRooms; // @synthesize doRooms=_doRooms;
-@property id <CalAutoCompleteDelegate> delegate; // @synthesize delegate=_delegate;
+@property __weak id <CalAutoCompleteDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)autocompleteFetchDidEndNetworkActivity:(id)arg1;
 - (void)autocompleteFetchDidBeginNetworkActivity:(id)arg1;
 - (void)autocompleteFetchDidFinish:(id)arg1;
@@ -68,6 +71,7 @@
 - (id)resultsAsPrefixStringMatchesWithStringToWrapperDictionary:(id)arg1;
 - (id)resultsRemovingDuplicateDisplayNames;
 - (id)cnResults;
+- (BOOL)_isValidAutocompleteResult:(id)arg1;
 - (id)allResults;
 - (id)_emailsToResultsFromResults:(id)arg1;
 - (BOOL)isRunning;
@@ -77,7 +81,9 @@
 - (void)endCalDAVQuery;
 - (void)startTimeoutCounterForCalDAV;
 - (void)stopTimeoutCounterForCalDAV;
+- (id)searchFor:(id)arg1 onAccountID:(id)arg2 findPeople:(BOOL)arg3 groups:(BOOL)arg4 resources:(BOOL)arg5 rooms:(BOOL)arg6 recents:(BOOL)arg7 server:(BOOL)arg8 suggestions:(BOOL)arg9 excludeLocal:(BOOL)arg10 context:(id)arg11;
 - (id)searchFor:(id)arg1 onAccountID:(id)arg2 findPeople:(BOOL)arg3 groups:(BOOL)arg4 resources:(BOOL)arg5 rooms:(BOOL)arg6 recents:(BOOL)arg7 server:(BOOL)arg8 suggestions:(BOOL)arg9 context:(id)arg10;
+- (id)serverSearchFor:(id)arg1 onAccountID:(id)arg2 findPeople:(BOOL)arg3 groups:(BOOL)arg4 resources:(BOOL)arg5 rooms:(BOOL)arg6 context:(id)arg7;
 - (id)searchFor:(id)arg1 onAccountID:(id)arg2 findPeople:(BOOL)arg3 groups:(BOOL)arg4 resources:(BOOL)arg5 rooms:(BOOL)arg6 recents:(BOOL)arg7 server:(BOOL)arg8 context:(id)arg9;
 - (id)searchFor:(id)arg1 onSource:(id)arg2 findPeople:(BOOL)arg3 groups:(BOOL)arg4 resources:(BOOL)arg5 rooms:(BOOL)arg6 recents:(BOOL)arg7 server:(BOOL)arg8 context:(id)arg9;
 - (id)searchForPeopleMatchingString:(id)arg1 withContext:(id)arg2 onSource:(id)arg3;

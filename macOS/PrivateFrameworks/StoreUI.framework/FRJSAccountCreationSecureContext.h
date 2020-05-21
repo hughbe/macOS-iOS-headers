@@ -6,25 +6,19 @@
 
 #import "FRJSObject.h"
 
-@class ISServiceProxy, NSString;
+@class CKSigningSession;
 
 @interface FRJSAccountCreationSecureContext : FRJSObject
 {
-    NSString *_accountCreationSAPSessionUUID;
-    NSString *_actionSignature;
-    ISServiceProxy *_serviceProxy;
+    CKSigningSession *_session;
 }
 
-@property(readonly, nonatomic) ISServiceProxy *serviceProxy; // @synthesize serviceProxy=_serviceProxy;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) CKSigningSession *session; // @synthesize session=_session;
+- (id)_signData:(id)arg1;
+- (void)_closeSession;
 - (id)callFunction:(id)arg1 withArguments:(id)arg2;
-- (id)signData:(id)arg1;
-- (void)closeSession;
-- (void)processSAPResponse:(id)arg1;
-- (BOOL)openSession;
-@property(readonly, nonatomic) NSString *actionSignature; // @synthesize actionSignature=_actionSignature;
-@property(readonly, nonatomic) NSString *accountCreationSAPSessionUUID; // @synthesize accountCreationSAPSessionUUID=_accountCreationSAPSessionUUID;
-- (id)init;
+- (id)initWithPrimedSession:(id)arg1;
 
 @end
 

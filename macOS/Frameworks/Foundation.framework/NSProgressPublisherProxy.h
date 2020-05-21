@@ -23,7 +23,8 @@ __attribute__((visibility("hidden")))
 
 @property(readonly, copy) NSProgressValues *values; // @synthesize values=_values;
 @property(copy) NSString *category; // @synthesize category=_lowerCaseCategoryName;
-- (void)observeValue:(id)arg1 forKey:(id)arg2 inUserInfo:(BOOL)arg3;
+- (void)observeValues:(id)arg1 forKeys:(id)arg2;
+- (void)observeUserInfoValue:(id)arg1 forKey:(id)arg2;
 @property(readonly, copy) NSString *description;
 - (id)descriptionWithIndenting:(id)arg1;
 - (oneway void)appWithBundleID:(id)arg1 didAcknowledgeWithSuccess:(BOOL)arg2;

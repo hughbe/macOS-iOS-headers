@@ -6,14 +6,18 @@
 
 #import "NSObject.h"
 
-@class DDScannerResult, IMMessage, IMPluginPayload, NSArray, NSData, NSMutableSet, NSString, NSURL;
+@class DDScannerResult, IMChat, IMMessage, IMPluginPayload, LPLinkMetadata, NSArray, NSAttributedString, NSData, NSMutableSet, NSString, NSURL;
 
 @interface IMBalloonPluginDataSource : NSObject
 {
     BOOL _payloadInShelf;
     BOOL _initialMessageIsFromMe;
     BOOL _isLast;
+    BOOL _isShowingLatestMessageAsBreadcrumb;
     BOOL _hasInvalidatedSize;
+    BOOL _parentChatHasAllUnknownRecipients;
+    BOOL _showingLatestMessageAsBreadcrumb;
+    IMChat *_chat;
     IMPluginPayload *_pluginPayload;
     NSURL *_url;
     DDScannerResult *_dataDetectedResult;
@@ -21,26 +25,35 @@
     NSURL *_URLToOpenOnTapAction;
     NSArray *_pendingAttachmentData;
     NSMutableSet *_temporaryAttachmentURLs;
+    NSString *__imMessageGUID;
     NSString *_messageGUID;
+    NSString *_sessionGUID;
     NSString *_bundleID;
     NSArray *_consumedPayloads;
-    IMPluginPayload *_pluginPayloadPendingSend;
     NSString *_guidOfLastMessageInSession;
     long long _messageIDOfLastMessageInSession;
 }
 
++ (id)replaceHandleWithContactNameInString:(id)arg1 forAccount:(id)arg2 additionalHandles:(id)arg3;
 + (BOOL)supportsIndividualPreviewSummaries;
++ (id)individualPreviewSummaryForPluginPayload:(id)arg1;
 + (id)previewSummary;
 + (id)previewSummaryForPluginPayload:(id)arg1 withBundleID:(id)arg2 previewAttachmentURL:(id *)arg3 previewAttachmentUTI:(id *)arg4;
 + (id)previewSummaryForPluginBundle:(id)arg1;
++ (id)unlocalizedPreviewSummaryForPluginBundle:(id)arg1 pluginDisplayName:(id)arg2;
 + (BOOL)supportsURL:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) long long messageIDOfLastMessageInSession; // @synthesize messageIDOfLastMessageInSession=_messageIDOfLastMessageInSession;
 @property(readonly, retain, nonatomic) NSString *guidOfLastMessageInSession; // @synthesize guidOfLastMessageInSession=_guidOfLastMessageInSession;
-@property(readonly, retain, nonatomic) IMPluginPayload *pluginPayloadPendingSend; // @synthesize pluginPayloadPendingSend=_pluginPayloadPendingSend;
+@property(readonly, nonatomic, getter=isShowingLatestMessageAsBreadcrumb) BOOL showingLatestMessageAsBreadcrumb; // @synthesize showingLatestMessageAsBreadcrumb=_showingLatestMessageAsBreadcrumb;
+@property(nonatomic) BOOL parentChatHasAllUnknownRecipients; // @synthesize parentChatHasAllUnknownRecipients=_parentChatHasAllUnknownRecipients;
 @property(retain, nonatomic) NSArray *consumedPayloads; // @synthesize consumedPayloads=_consumedPayloads;
 @property(nonatomic) BOOL hasInvalidatedSize; // @synthesize hasInvalidatedSize=_hasInvalidatedSize;
 @property(readonly, retain, nonatomic) NSString *bundleID; // @synthesize bundleID=_bundleID;
+@property(retain, nonatomic) NSString *sessionGUID; // @synthesize sessionGUID=_sessionGUID;
 @property(retain, nonatomic) NSString *messageGUID; // @synthesize messageGUID=_messageGUID;
+@property(nonatomic, setter=setShowingLatestMessageAsBreadcrumb:) BOOL isShowingLatestMessageAsBreadcrumb; // @synthesize isShowingLatestMessageAsBreadcrumb=_isShowingLatestMessageAsBreadcrumb;
+@property(retain, nonatomic) NSString *_imMessageGUID; // @synthesize _imMessageGUID=__imMessageGUID;
 @property(retain, nonatomic) NSMutableSet *temporaryAttachmentURLs; // @synthesize temporaryAttachmentURLs=_temporaryAttachmentURLs;
 @property(retain, nonatomic) NSArray *pendingAttachmentData; // @synthesize pendingAttachmentData=_pendingAttachmentData;
 @property(nonatomic, setter=setLast:) BOOL isLast; // @synthesize isLast=_isLast;
@@ -51,22 +64,28 @@
 @property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
 @property(nonatomic) BOOL payloadInShelf; // @synthesize payloadInShelf=_payloadInShelf;
 @property(retain, nonatomic) IMPluginPayload *pluginPayload; // @synthesize pluginPayload=_pluginPayload;
-- (void).cxx_destruct;
+@property(retain, nonatomic) IMChat *chat; // @synthesize chat=_chat;
 - (id)description;
 - (void)_reloadLatestUnconsumedBreadcrumb;
 - (void)endShowingLastConsumedBreadcrumb;
 - (void)beginShowingLastConsumedBreadcrumbForOutgoingPayload:(id)arg1;
+- (id)_replaceHandleWithContactNameInString:(id)arg1;
+@property(readonly, nonatomic) LPLinkMetadata *richLinkMetadata;
 - (void)datasourceWasMovedToNewGuid:(id)arg1;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (id)individualPreviewAttachmentFileAndUTI:(id *)arg1;
+- (id)_summaryText;
 - (id)individualPreviewSummary;
 - (void)stopPlayback;
 - (void)playbackWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (unsigned long long)playbackType;
 - (void)markAsPlayed;
 - (void)needsResize;
+@property(readonly, nonatomic) BOOL supportsDynamicSize;
 - (void)statusStringNeedsUpdate;
 @property(readonly, nonatomic) BOOL wantsReplyFromContentView;
+- (void)didTapStatusItem;
+@property(readonly, retain, nonatomic) NSAttributedString *statusAttributedString;
 @property(readonly, retain, nonatomic) NSString *statusString;
 @property(readonly, nonatomic) BOOL wantsStatusItem;
 - (void)payloadWillSendFromShelf;

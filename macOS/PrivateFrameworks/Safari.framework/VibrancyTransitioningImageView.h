@@ -18,9 +18,9 @@ __attribute__((visibility("hidden")))
     id <VibrancyTransitioningImageViewDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <VibrancyTransitioningImageViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy, nonatomic) CDUnknownBlockType imageViewConfigurationBlock; // @synthesize imageViewConfigurationBlock=_imageViewConfigurationBlock;
-- (void).cxx_destruct;
 - (void)_performSnapshotCrossFadeWithFinalOpacity:(double)arg1 animationDuration:(double)arg2;
 - (void)_showNextImageViewWithFinalOpacity:(double)arg1 animationDuration:(double)arg2;
 - (void)_showNextImageViewWithFinalOpacity:(double)arg1;
@@ -29,6 +29,8 @@ __attribute__((visibility("hidden")))
 - (void)_setUpNextImageViewWithImage:(id)arg1 vibrancy:(BOOL)arg2;
 - (void)setImage:(id)arg1 withVibrancy:(BOOL)arg2 opacity:(double)arg3 animationDuration:(double)arg4;
 - (void)setImage:(id)arg1 withVibrancy:(BOOL)arg2 opacity:(double)arg3;
+- (void)layout;
+- (void)setAnimations:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 image:(id)arg2;
 
 @end

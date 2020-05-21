@@ -10,7 +10,6 @@
 
 @class ABCollectionViewItem, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABActionIgnoreSuggestedValue : NSObject <ABActionDelegate>
 {
     NSString *_property;
@@ -21,6 +20,7 @@ __attribute__((visibility("hidden")))
 
 - (void)performActionForPerson:(id)arg1 identifier:(id)arg2;
 - (id)titleForPerson:(id)arg1 identifier:(id)arg2;
+- (id)unlocalizedTitle;
 @property(readonly) NSString *actionProperty;
 - (void)dealloc;
 - (id)initWithProperty:(id)arg1 value:(id)arg2 delegate:(id)arg3 item:(id)arg4;

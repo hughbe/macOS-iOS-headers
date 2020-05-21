@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)isForceClickPossibleFromEvent:(id)arg1;
+- (void).cxx_destruct;
 @property __weak NSView *view; // @synthesize view=_view;
 @property __weak id <NSImmediateActionGestureRecognizerDelegate> delegate; // @synthesize delegate=_delegate;
 @property long long presentationState; // @synthesize presentationState=_presentationState;

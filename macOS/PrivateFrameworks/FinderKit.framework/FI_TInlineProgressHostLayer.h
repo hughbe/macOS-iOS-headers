@@ -9,15 +9,15 @@
 __attribute__((visibility("hidden")))
 @interface FI_TInlineProgressHostLayer : FI_TInlineProgressBaseHostLayer
 {
-    struct TNSRef<FI_TInlineCancelButtonLayer *, void> _cancelLayer;
+    struct TNSRef<FI_TInlineCancelButtonLayer, void> _cancelLayer;
     struct CGRect _iconFrame;
     double _baselineOffset;
 }
 
-@property(readonly, nonatomic) double baselineOffset; // @synthesize baselineOffset=_baselineOffset;
-@property(readonly, nonatomic) struct CGRect iconFrame; // @synthesize iconFrame=_iconFrame;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) double baselineOffset; // @synthesize baselineOffset=_baselineOffset;
+@property(readonly, nonatomic) struct CGRect iconFrame; // @synthesize iconFrame=_iconFrame;
 - (_Bool)hitTestCancelLayer:(const struct CGPoint *)arg1;
 - (void)setIconFrame:(const struct CGRect *)arg1 baselineOffset:(double)arg2;
 @property(nonatomic) _Bool cancelIsPressed; // @dynamic cancelIsPressed;

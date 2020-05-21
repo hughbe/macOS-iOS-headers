@@ -7,11 +7,12 @@
 #import "NSObject.h"
 
 #import "CIMHigherOrderIMInfoProviderProtocol.h"
+#import "CIMMecabraEngineSubstitution.h"
 #import "TIMecabraEnvironmentProvider.h"
 
 @class NSArray, NSAttributedString, NSMutableArray, NSMutableString, NSOperationQueue, NSString, TIMecabraEnvironment, _KSTextReplacementClientStore;
 
-@interface CIMMecabraZhuyinEngine : NSObject <CIMHigherOrderIMInfoProviderProtocol, TIMecabraEnvironmentProvider>
+@interface CIMMecabraZhuyinEngine : NSObject <CIMHigherOrderIMInfoProviderProtocol, TIMecabraEnvironmentProvider, CIMMecabraEngineSubstitution>
 {
     id <CIMMecabraZhuyinEngineDelegate> _delegate;
     unsigned short _syllableConsonantBuffer;
@@ -36,6 +37,7 @@
     TIMecabraEnvironment *_mecabraEnvironment;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) TIMecabraEnvironment *mecabraEnvironment; // @synthesize mecabraEnvironment=_mecabraEnvironment;
 @property(retain, nonatomic) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
 @property(retain, nonatomic) NSArray *addressBookEntries; // @synthesize addressBookEntries=_addressBookEntries;
@@ -56,9 +58,8 @@
 @property unsigned short syllableMedialBuffer; // @synthesize syllableMedialBuffer=_syllableMedialBuffer;
 @property unsigned short syllableConsonantBuffer; // @synthesize syllableConsonantBuffer=_syllableConsonantBuffer;
 @property __weak id <CIMMecabraZhuyinEngineDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
-- (void)completelyCommitInlineCandidate:(id)arg1;
-- (void)partiallyCommitInlineCandidate:(id)arg1;
+- (id)candidatesForInputString:(id)arg1;
+- (id)inputStringForCharacters:(id)arg1;
 @property(readonly) NSString *syllableBuffersAggregateString;
 @property(readonly) unsigned long long syllableBuffersAggregateLength;
 @property(readonly) BOOL syllableBuffersOccupied;
@@ -69,6 +70,8 @@
 @property(readonly) unsigned long long currentAnalysisOptions;
 @property(readonly) struct __Mecabra *zhuyinEngine;
 @property(readonly) _KSTextReplacementClientStore *textReplacementController; // @synthesize textReplacementController=_textReplacementController;
+@property(readonly, retain, nonatomic) NSArray *limitedTonelessCandidates;
+@property(readonly, nonatomic) BOOL inlineHasZhuyinSyllables;
 @property(readonly, nonatomic, getter=isInlineEmpty) BOOL inlineEmpty;
 - (void)rebuildUserWordKeyPairs;
 - (void)reset;
@@ -80,21 +83,20 @@
 - (BOOL)shouldDirectlyCommitInput:(id)arg1;
 - (id)convertToFullWidth:(id)arg1;
 - (id)readingsLengths:(id)arg1;
-- (id)candidatesForReading:(id)arg1 readingRange:(struct _NSRange)arg2 currentReading:(id)arg3 shouldIncludeCompletionCandidates:(BOOL)arg4;
-- (id)aggregateCandidatesForReadingAtRange:(struct _NSRange)arg1;
+- (id)candidatesForReading:(id)arg1 readingRange:(struct _NSRange)arg2 currentReading:(id)arg3 shouldIncludeCompletionCandidates:(BOOL)arg4 withCandidatesCapacity:(unsigned long long)arg5;
+- (id)aggregateCandidatesForReadingAtRange:(struct _NSRange)arg1 withCandidatesCapacity:(unsigned long long)arg2;
 - (id)aggregateCandidatesForPunctuationAtRange:(struct _NSRange)arg1;
-- (void)analyzeInputWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)analyzeInputWithCandidatesCapacity:(unsigned long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)updateExpertDictionary:(id)arg1;
 - (void)updateTextReplacementEntries;
 - (void)updateContacts:(id)arg1;
 - (void)commitComposedTextWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)mecabraAcceptCandidate:(void *)arg1 isPartial:(BOOL)arg2;
 - (BOOL)mecabraAnalyzeString:(id)arg1 analysisOptions:(unsigned long long)arg2 candidateContext:(id)arg3 stringContext:(id)arg4;
 - (void)refreshComposedText;
 - (void)unregisterCandidate:(id)arg1;
 - (void)confirmCandidate:(id)arg1;
 - (void)previewCandidate:(id)arg1;
-- (BOOL)loadCandidatesWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (BOOL)loadCandidatesWithCapacity:(unsigned long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)loadCompositionCandidatesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (BOOL)moveCursorToTail;
 - (BOOL)moveCursorToHead;

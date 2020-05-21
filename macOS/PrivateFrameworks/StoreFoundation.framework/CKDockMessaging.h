@@ -17,6 +17,7 @@
 + (id)sharedInstance;
 - (void).cxx_destruct;
 - (void)loadIconForProductWithInfo:(id)arg1 storeClient:(id)arg2;
+- (void)loadIconForIdentifier:(id)arg1 fromURL:(id)arg2 storeClient:(id)arg3;
 - (void)loadIconForProductID:(id)arg1 fromURL:(id)arg2 storeClient:(id)arg3;
 - (id)cachedIconPathForProductID:(id)arg1;
 - (void)sendMessageForDownload:(id)arg1 status:(id)arg2;

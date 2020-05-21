@@ -6,27 +6,23 @@
 
 #import "NSObject.h"
 
-#import "CHLoggerProtocol.h"
-#import "CHSynchronizableProtocol.h"
-
 @class CHLogger, CHSynchronizable;
 
-@interface CHSynchronizedLoggable : NSObject <CHLoggerProtocol, CHSynchronizableProtocol>
+@interface CHSynchronizedLoggable : NSObject
 {
     CHLogger *_logger;
     CHSynchronizable *_synchronizable;
 }
 
 - (void).cxx_destruct;
+- (id)logHandle;
 - (BOOL)executeSyncWithBOOL:(CDUnknownBlockType)arg1;
 - (id)executeSyncWithResult:(CDUnknownBlockType)arg1;
 - (void)executeSync:(CDUnknownBlockType)arg1;
 - (void)execute:(CDUnknownBlockType)arg1;
 - (id)queue;
-- (void)logWithLevel:(unsigned int)arg1 withFormat:(id)arg2;
-- (BOOL)shouldLogForLevel:(unsigned int)arg1;
-- (id)initWithName:(id)arg1 queue:(id)arg2;
-- (id)initWithName:(id)arg1;
+- (id)initWithName:(const char *)arg1 queue:(id)arg2;
+- (id)initWithName:(const char *)arg1;
 
 @end
 

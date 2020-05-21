@@ -14,13 +14,17 @@ __attribute__((visibility("hidden")))
     CIImage *inputImage;
     CIImage *inputGuideImage;
     NSData *inputLightMap;
+    CIImage *inputLightMapImage;
+    NSNumber *inputLightMapWidth;
+    NSNumber *inputLightMapHeight;
     NSNumber *inputLocalLight;
+    NSNumber *inputSmartShadows;
 }
 
 + (id)customAttributes;
 - (id)outputImage;
-- (id)_lightMapImageForLightMap:(id)arg1 guideImage:(id)arg2;
 - (id)_polyKernel;
+- (id)_shadowKernel;
 
 @end
 

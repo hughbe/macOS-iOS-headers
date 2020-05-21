@@ -6,27 +6,35 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class EKParticipant, NSString;
 
-@interface EKParticipantForSorting : NSObject
+@interface EKParticipantForSorting : NSObject <NSCopying>
 {
+    BOOL _isEmail;
+    BOOL _isPhone;
     EKParticipant *_participant;
     NSString *_firstName;
     NSString *_lastName;
-    BOOL _isEmail;
     NSString *_cachedDisplayName;
 }
 
-+ (id)contactStore;
++ (id)participantForSortingWithEKParticipant:(id)arg1;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL isPhone; // @synthesize isPhone=_isPhone;
+@property(nonatomic) BOOL isEmail; // @synthesize isEmail=_isEmail;
+@property(copy, nonatomic) NSString *cachedDisplayName; // @synthesize cachedDisplayName=_cachedDisplayName;
+@property(copy, nonatomic) NSString *lastName; // @synthesize lastName=_lastName;
+@property(copy, nonatomic) NSString *firstName; // @synthesize firstName=_firstName;
+@property(nonatomic) __weak EKParticipant *participant; // @synthesize participant=_participant;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (long long)compareByContactNames:(id)arg1;
+- (long long)compareByEmailThenByContactName:(id)arg1;
+- (BOOL)participantIsOptional:(id)arg1;
 - (long long)compare:(id)arg1;
-- (id)lastName;
-- (id)firstName;
 - (id)displayName;
-- (BOOL)isEmail;
-- (id)participant;
 - (id)description;
-- (id)initWithEKParticipant:(id)arg1;
 
 @end
 

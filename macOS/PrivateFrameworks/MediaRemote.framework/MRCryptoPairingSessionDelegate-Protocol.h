@@ -14,7 +14,6 @@
 @optional
 - (void)pairingSession:(MRCryptoPairingSession *)arg1 didCompleteExchangeWithError:(NSError *)arg2;
 - (void)pairingSession:(MRCryptoPairingSession *)arg1 promptForSetupCodeWithDelay:(double)arg2 completion:(void (^)(NSString *))arg3;
-- (void)pairingSession:(MRCryptoPairingSession *)arg1 promptForSetupCodeWithCompletion:(void (^)(NSString *))arg2;
 - (void)pairingSessionHideSetupCode:(MRCryptoPairingSession *)arg1;
 - (void)pairingSession:(MRCryptoPairingSession *)arg1 showSetupCode:(NSString *)arg2;
 @end

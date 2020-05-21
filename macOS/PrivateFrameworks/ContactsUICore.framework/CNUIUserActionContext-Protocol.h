@@ -6,8 +6,13 @@
 
 #import "NSObject.h"
 
+@class BSServiceConnectionEndpoint;
+
 @protocol CNUIUserActionContext <NSObject>
+@property(copy, nonatomic) BSServiceConnectionEndpoint *connectionEndpoint;
+@property(readonly, nonatomic) id <CNUIUserActionCurator> actionCurator;
 @property(readonly, nonatomic) id <CNUIUserActionRecorder> actionRecorder;
+@property(readonly, nonatomic) id <CNUIUserActionDialRequestOpener> dialRequestOpener;
 @property(readonly, nonatomic) id <CNUIUserActionUserActivityOpener> userActivityOpener;
 @property(readonly, nonatomic) id <CNUIUserActionURLOpener> urlOpener;
 @end

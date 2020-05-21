@@ -8,6 +8,7 @@
 
 @class AVAsynchronousVideoCompositionRequest, CIImage;
 
+__attribute__((visibility("hidden")))
 @interface AVAsynchronousCIImageFilteringRequestInternal : NSObject
 {
     AVAsynchronousVideoCompositionRequest *_compositingRequest;
@@ -25,7 +26,6 @@
 @property(copy, nonatomic) CDUnknownBlockType cancellationTest; // @synthesize cancellationTest=_cancellationTest;
 @property(retain, nonatomic) AVAsynchronousVideoCompositionRequest *compositingRequest; // @synthesize compositingRequest=_compositingRequest;
 - (void)dealloc;
-- (void)finalize;
 - (void)_willDeallocOrFinalize;
 
 @end

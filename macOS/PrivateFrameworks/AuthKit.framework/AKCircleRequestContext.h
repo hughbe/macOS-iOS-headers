@@ -13,6 +13,7 @@
 @interface AKCircleRequestContext : NSObject <NSSecureCoding>
 {
     BOOL _waitForReply;
+    BOOL __notifyOfTimeout;
     AKCircleRequestPayload *_payload;
     double _waitForReplyTimeout;
     NSString *_identityTokenValue;
@@ -21,13 +22,14 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL _notifyOfTimeout; // @synthesize _notifyOfTimeout=__notifyOfTimeout;
 @property(retain, nonatomic) NSString *pushToken; // @synthesize pushToken=_pushToken;
 @property(retain, nonatomic) NSString *heartbeatTokenValue; // @synthesize heartbeatTokenValue=_heartbeatTokenValue;
 @property(retain, nonatomic) NSString *identityTokenValue; // @synthesize identityTokenValue=_identityTokenValue;
 @property(nonatomic) double waitForReplyTimeout; // @synthesize waitForReplyTimeout=_waitForReplyTimeout;
 @property(nonatomic) BOOL waitForReply; // @synthesize waitForReply=_waitForReply;
 @property(retain, nonatomic) AKCircleRequestPayload *payload; // @synthesize payload=_payload;
-- (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;

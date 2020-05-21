@@ -8,13 +8,13 @@
 
 #import "AVFragmentMinding.h"
 
-@class AVFragmentedMovieInternal, NSArray;
+@class NSArray;
 
 @interface AVFragmentedMovie : AVMovie <AVFragmentMinding>
 {
-    AVFragmentedMovieInternal *_fragmentedMovie;
 }
 
++ (BOOL)expectsPropertyRevisedNotifications;
 - (void)_setIsAssociatedWithFragmentMinder:(BOOL)arg1;
 @property(readonly, nonatomic, getter=isAssociatedWithFragmentMinder) BOOL associatedWithFragmentMinder;
 - (id)tracksWithMediaCharacteristic:(id)arg1;

@@ -39,6 +39,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)fontWithResources:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (void)setDoNotModify:(_Bool)arg1;
 - (void)setWeight:(unsigned int)arg1;
@@ -74,17 +75,16 @@ __attribute__((visibility("hidden")))
 - (int)underline;
 - (void)setScript:(int)arg1;
 - (int)script;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToFont:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithResources:(id)arg1;
 - (void)setColorReference:(id)arg1;
 - (id)colorReference;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

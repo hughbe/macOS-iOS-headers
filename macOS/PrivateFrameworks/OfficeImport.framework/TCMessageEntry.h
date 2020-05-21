@@ -17,24 +17,26 @@ __attribute__((visibility("hidden")))
     NSArray *m_parameters;
     NSMutableArray *m_affectedObjects;
     int m_count;
+    NSString *additionalText;
 }
 
 + (void)initialize;
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long timeStamp; // @synthesize timeStamp=m_timeStamp;
+@property(copy, nonatomic) NSString *additionalText; // @synthesize additionalText;
 - (void)addAffectedObject:(id)arg1;
 - (void)mergeEntries:(id)arg1;
 - (id)description;
-- (void)logWithCat:(id)arg1;
 - (long long)timeStampCompare:(id)arg1;
 - (int)getCount;
 - (id)affectedObjects;
 - (id)getParameter:(unsigned int)arg1;
 - (unsigned long long)getParameterCount;
+- (id)getAdditionalText;
 - (id)getMessageText;
 - (int)getMessageTag;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 - (id)initWithTag:(int)arg1 affectedObject:(id)arg2 text:(id)arg3 parameters:(struct __va_list_tag [1])arg4;
 
 @end

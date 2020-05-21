@@ -4,108 +4,160 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <AVConference/VCMediaStream.h>
 
-#import "VCMediaStreamProtocol.h"
+#import "AVCRateControllerDelegate.h"
 #import "VCMediaStreamSyncDestination.h"
-#import "VCVideoStreamReceiverDelegate.h"
+#import "VCRedundancyControllerDelegate.h"
+#import "VCVideoCaptureClient.h"
+#import "VCVideoCaptureConverterDelegate.h"
+#import "VCVideoReceiverDelegate.h"
 
-@class AVCMediaStreamConfig, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, VCImageQueue, VCVideoStreamReceiver, VCVideoStreamTransmitter;
+@class AVCRateController, NSArray, NSNumber, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, VCImageQueue, VCRedundancyControllerVideo, VCVideoCaptureConverter, VCVideoReceiverBase, VCVideoRule, VCVideoTransmitterBase;
 
 __attribute__((visibility("hidden")))
-@interface VCVideoStream : NSObject <VCMediaStreamProtocol, VCVideoStreamReceiverDelegate, VCMediaStreamSyncDestination>
+@interface VCVideoStream : VCMediaStream <VCVideoReceiverDelegate, VCMediaStreamSyncDestination, VCVideoCaptureClient, VCVideoCaptureConverterDelegate, AVCRateControllerDelegate, VCRedundancyControllerDelegate>
 {
-    NSObject<OS_dispatch_queue> *_delegateNotificationQueue;
+    long long _type;
     NSObject<OS_dispatch_queue> *_lastDecodedFrameQueue;
-    NSObject<OS_dispatch_source> *_rtcpSendHeartBeat;
-    int _state;
-    BOOL _isSRTPInitialized;
-    NSString *_callID;
-    NSString *_idsDestination;
-    struct _opaque_pthread_mutex_t _streamLock;
     struct _opaque_pthread_mutex_t _remoteLayerLock;
     struct _opaque_pthread_mutex_t _localLayerLock;
-    struct _opaque_pthread_rwlock_t _stateLock;
-    struct tagHANDLE *_videoRTP;
-    double _rtpTimeoutEnabledTime;
-    double _rtcpTimeoutEnabledTime;
-    double _lastRTPTimeoutReportTime;
-    double _lastRTCPTimeoutReportTime;
     unsigned int _uplinkOperatingBitrate;
     struct __CVBuffer *_cachedRemoteVideoFrame;
     VCImageQueue *_remoteQueue;
-    id <VCMediaStreamDelegate> _delegate;
-    long long _streamToken;
-    BOOL _isValid;
-    AVCMediaStreamConfig *_streamConfig;
-    VCVideoStreamTransmitter *_videoTransmitter;
-    VCVideoStreamReceiver *_videoReceiver;
-    unsigned int datagramChannelToken;
-    struct opaqueRTCReporting *_reportingAgent;
+    VCVideoTransmitterBase *_videoTransmitter;
+    VCVideoReceiverBase *_videoReceiver;
+    VCVideoRule *_videoRule;
+    int _reportingModuleID;
+    unsigned int _reportingDefaultRealtimePeriod;
+    NSObject<OS_dispatch_semaphore> *_bufferQueueSemaphore;
+    struct opaqueCMBufferQueue *_bufferQueue;
+    VCVideoCaptureConverter *_captureConverter;
+    BOOL _isServerBasedBandwidthProbingEnabled;
+    unsigned char _lastMediaPriority;
+    NSNumber *_targetStreamID;
+    NSArray *_compoundStreamIDs;
+    NSNumber *_sendingStreamID;
+    BOOL _isCompoundStreamIDsIncreased;
+    BOOL _shouldEnableFaceZoom;
+    BOOL _didReceiveFirstFrame;
+    // Error parsing type: AB, name: _isVideoCaptureRegistered
+    double _fecRatio;
+    int _captureSource;
+    unsigned int _screenDisplayID;
+    unsigned int _customWidth;
+    unsigned int _customHeight;
+    unsigned int _tilesPerFrame;
+    struct OpaqueFigCFWeakReference *_weakStream;
+    AVCRateController *_vcrcRateController;
+    VCRedundancyControllerVideo *_redundancyController;
+    int _lastDisplayedFromImageQueueCount;
+    int _lastDroppedFromImageQueueCount;
+    int _networkInterfaceType;
+    int _channelSequenceCountWithInactiveSlots;
 }
 
 + (id)capabilities;
 + (id)supportedVideoPayloads;
-+ (BOOL)isSameSRTPKey:(id)arg1 newKey:(id)arg2;
-@property(nonatomic) int state; // @synthesize state=_state;
-@property BOOL isValid; // @synthesize isValid=_isValid;
-@property(readonly) long long streamToken; // @synthesize streamToken=_streamToken;
-@property(retain, nonatomic) AVCMediaStreamConfig *streamConfig; // @synthesize streamConfig=_streamConfig;
-@property(nonatomic) id <VCMediaStreamDelegate> delegate; // @synthesize delegate=_delegate;
-- (unsigned int)vcVideoStreamReceiver:(id)arg1 receivedTMMBR:(unsigned int)arg2;
-- (void)vcVideoStreamReceiver:(id)arg1 downlinkQualityDidChange:(id)arg2;
-- (void)vcVideoStreamReceiverRequestKeyFrame:(id)arg1;
-- (BOOL)vcVideoStreamReceiver:(id)arg1 didReceiveRemoteFrame:(struct __CVBuffer *)arg2 atTime:(CDStruct_1b6d18a9)arg3 newVideoAttributes:(id)arg4 isFirstFrame:(BOOL)arg5;
+@property(nonatomic) unsigned int customHeight; // @synthesize customHeight=_customHeight;
+@property(nonatomic) unsigned int customWidth; // @synthesize customWidth=_customWidth;
+@property(nonatomic) unsigned int screenDisplayID; // @synthesize screenDisplayID=_screenDisplayID;
+@property(nonatomic) double fecRatio; // @synthesize fecRatio=_fecRatio;
+@property(nonatomic) BOOL didReceiveFirstFrame; // @synthesize didReceiveFirstFrame=_didReceiveFirstFrame;
+@property(nonatomic) BOOL shouldEnableFaceZoom; // @synthesize shouldEnableFaceZoom=_shouldEnableFaceZoom;
+@property(readonly, nonatomic) BOOL isCompoundStreamIDsIncreased; // @synthesize isCompoundStreamIDsIncreased=_isCompoundStreamIDsIncreased;
+@property(readonly, nonatomic) NSNumber *sendingStreamID; // @synthesize sendingStreamID=_sendingStreamID;
+@property(readonly, nonatomic) NSArray *compoundStreamIDs; // @synthesize compoundStreamIDs=_compoundStreamIDs;
+@property(nonatomic) BOOL isServerBasedBandwidthProbingEnabled; // @synthesize isServerBasedBandwidthProbingEnabled=_isServerBasedBandwidthProbingEnabled;
+@property(retain, nonatomic) NSNumber *targetStreamID; // @synthesize targetStreamID=_targetStreamID;
+- (void)redundancyController:(id)arg1 redundancyIntervalDidChange:(double)arg2;
+- (void)redundancyController:(id)arg1 redundancyPercentageDidChange:(unsigned int)arg2;
+- (void)rateController:(void *)arg1 targetBitrateDidChange:(unsigned int)arg2 rateChangeCounter:(unsigned int)arg3;
+- (void)handleActiveConnectionChange:(id)arg1;
+- (void)collectTxChannelMetrics:(CDStruct_3ab08b48 *)arg1;
+- (void)collectRxChannelMetrics:(CDStruct_3ab08b48 *)arg1;
+- (void)collectRxChannelMetrics:(CDStruct_3ab08b48 *)arg1 interval:(float)arg2;
+- (void)converter:(id)arg1 didConvertFrame:(struct opaqueCMSampleBuffer *)arg2 frameTime:(CDStruct_1b6d18a9)arg3 droppedFrames:(int)arg4 cameraStatusBits:(unsigned char)arg5;
+- (void)sourceFrameRateDidChange:(unsigned int)arg1;
+- (void)thermalLevelDidChange:(int)arg1;
+- (id)clientCaptureRule;
+- (void)avConferencePreviewError:(id)arg1;
+- (BOOL)onCaptureFrame:(struct opaqueCMSampleBuffer *)arg1 frameTime:(CDStruct_1b6d18a9)arg2 droppedFrames:(int)arg3 cameraStatusBits:(unsigned char)arg4;
+- (void)vcVideoReceiver:(id)arg1 didSwitchFromStreamID:(unsigned short)arg2 toStreamID:(unsigned short)arg3;
+- (unsigned int)vcVideoReceiver:(id)arg1 receivedTMMBR:(unsigned int)arg2;
+- (void)vcVideoReceiver:(id)arg1 downlinkQualityDidChange:(id)arg2;
+- (void)vcVideoReceiverRequestKeyFrame:(id)arg1 rtcpPSFBType:(unsigned int)arg2;
+- (void)vcVideoReceiver:(id)arg1 requestKeyFrameGenerationWithStreamID:(unsigned short)arg2;
+- (BOOL)vcVideoReceiver:(id)arg1 didReceiveRemoteFrame:(struct __CVBuffer *)arg2 atTime:(CDStruct_1b6d18a9)arg3 newVideoAttributes:(id)arg4 isFirstFrame:(BOOL)arg5;
 - (void)stopSynchronization;
 - (BOOL)startSynchronization:(id)arg1;
+- (void)reportingVideoStreamEvent:(unsigned short)arg1 newVideoAttributes:(id)arg2 currentStreamID:(id)arg3;
+- (void)reportingVideoStreamEvent:(unsigned short)arg1 newVideoAttributes:(id)arg2;
 - (void)reportingVideoStreamEvent:(unsigned short)arg1;
 - (void)collectVideoStreamStartMetrics:(struct __CFDictionary *)arg1;
 - (void)collectVideoConfigMetrics:(struct __CFDictionary *)arg1;
+- (struct __CFDictionary *)getClientSpecificUserInfo;
+- (struct __CFString *)getReportingClientName;
+- (int)getReportingClientType;
+- (void)handleVTPSendFailedWithData:(void *)arg1;
+@property(nonatomic) unsigned int targetMediaBitrate;
+@property unsigned int lastSentAudioSampleTime;
+@property double lastSentAudioHostTime;
+- (void)setStreamIDs:(id)arg1 repairStreamIDs:(id)arg2;
+- (double)rtcpHeartbeatLeeway;
+- (void)onSendRTCPPacket;
+- (void)onRTCPTimeout;
+- (void)onRTPTimeout;
+- (void)onResumeWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)onPauseWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)onStopWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)onStartWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)reportTransportInfo;
+- (void)initializeInterfaceType;
+- (void)initializeInterfaceTypeForSocket;
+- (void)initializeInterfaceTypeForNWConnection;
+- (void)setupReportingAgent;
+- (void)collectChannelSequenceMetrics:(id)arg1;
+- (void)collectImageQueuePerformanceMetrics:(struct __CFDictionary *)arg1;
+- (void)registerForVideoCapture;
+- (void)deregisterForVideoCapture;
+- (int)operatingModeForVideoStreamType:(long long)arg1;
+- (BOOL)onConfigureStreamWithConfiguration:(id)arg1 error:(id *)arg2;
+- (void)onCallIDChanged;
+- (id)supportedPayloads;
+- (BOOL)validateStreamConfiguration:(id)arg1 error:(id *)arg2;
+@property(readonly, nonatomic) unsigned int lastDisplayedFrameRTPTimestamp;
+- (void)cleanupBeforeReconfigure:(id)arg1;
+- (BOOL)validateVideoStreamConfigurations:(id)arg1;
 - (void)sendLastRemoteVideoFrame:(struct __CVBuffer *)arg1;
 - (void)cacheRemoteVideoFrame:(struct __CVBuffer *)arg1;
+- (void)generateKeyFrame;
+- (void)updateSourcePlayoutTimestamp:(CDStruct_1b6d18a9 *)arg1;
 - (void)requestLastDecodedFrame;
-- (void)setRtcpSendInterval:(double)arg1;
-- (void)setRtcpTimeOutInterval:(double)arg1;
-- (void)setRtpTimeOutInterval:(double)arg1;
-- (void)setRtcpTimeOutEnabled:(BOOL)arg1;
-- (void)setRtpTimeOutEnabled:(BOOL)arg1;
-- (void)setRtcpEnabled:(BOOL)arg1;
-- (long long)streamDirection;
-- (void)setStreamDirection:(long long)arg1;
 - (void)updateVideoConfig:(id)arg1;
-- (void)setPause:(BOOL)arg1;
-- (void)stop;
-- (void)start;
-- (BOOL)setStreamConfig:(id)arg1 withError:(id *)arg2;
-- (id)setLocalParticipantInfo:(id)arg1 networkSockets:(id)arg2 withError:(id *)arg3;
 - (void)dealloc;
+- (void)setupVideoStream;
+- (id)initWithTransportSessionID:(unsigned int)arg1 ssrc:(unsigned int)arg2 streamToken:(long long)arg3;
 - (id)init;
-- (int)setupSRTP:(struct tagHANDLE *)arg1 forVideo:(BOOL)arg2;
-- (BOOL)isSameSRTPConfig:(id)arg1;
-- (int)getCryptoSet:(struct tagSRTPExchangeInfo *)arg1 withMasterKey:(id)arg2;
-- (int)getSRTPMasterKeyLength:(long long)arg1;
-- (int)SRTPCipherSuiteForLTECipherSuite:(long long)arg1;
-- (void)checkPacketTimeouts;
-- (void)reportRTCPPackets:(struct tagRTCPPACKET *)arg1 withCount:(int)arg2;
-- (void)setupRTPPayloads;
-- (id)setupRTPWithSockets:(id)arg1 error:(id *)arg2;
-- (id)setupRTPWithIPInfo:(id)arg1 error:(id *)arg2;
-- (id)setupRTPWithIDSDestination:(id)arg1 error:(id *)arg2;
-- (id)setupRTPWithLocalParticipantInfo:(id)arg1 error:(id *)arg2;
+- (double)lastReceivedRTCPPacketTime;
+- (double)lastReceivedRTPPacketTime;
 - (BOOL)setRTPPayloads:(int *)arg1 numPayloads:(int)arg2 withError:(id *)arg3;
-- (unsigned int)generateStreamToken;
+- (void)handleNWConnectionPacketEvent:(struct packet_id *)arg1 eventType:(int)arg2;
+- (void)handleNWConnectionNotification:(struct ifnet_interface_advisory *)arg1;
+- (void)stopVCRC;
+- (void)startVCRCWithStreamConfig:(id)arg1;
+- (void)setupCompoundStreamIDsWithStreamIDs:(id)arg1;
 - (void)destroyVideoModules;
 - (void)destroyVideoReceiver;
 - (void)updateVideoReceiver:(id)arg1;
+- (BOOL)useUEPForVideoConfig:(int)arg1;
+- (void)setupVideoReceiver:(id)arg1 withTransmitterHandle:(struct tagHANDLE *)arg2;
+- (struct tagVCVideoReceiverConfig)videoReceiverConfigWithVideoStreamConfig:(id)arg1;
+- (unsigned int)numTilesPerFrame;
 - (void)destroyVideoTransmitter;
-- (void)initVideoTransmitter:(id)arg1;
-- (void)stopRtcpSendHeartBeat;
-- (void)startRtcpSendHeartBeat;
-- (void)resetRtcpSendHeartBeatTimer:(unsigned long long)arg1;
-- (BOOL)configureVideoStreamWithConfiguration:(id)arg1 error:(id *)arg2;
+- (void)initVideoTransmitter;
+- (id)newVideoTransmitterConfigWithVideoStreamConfig:(id)arg1;
 - (void)overrideConfigWithDefaults;
-- (void)unlock;
-- (void)lock;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

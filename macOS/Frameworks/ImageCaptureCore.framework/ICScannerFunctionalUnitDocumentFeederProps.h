@@ -8,6 +8,7 @@
 
 @class NSMutableIndexSet, NSNumber;
 
+__attribute__((visibility("hidden")))
 @interface ICScannerFunctionalUnitDocumentFeederProps : NSObject
 {
     NSMutableIndexSet *_supportedDocumentTypes;
@@ -29,11 +30,10 @@
 @property BOOL documentLoaded; // @synthesize documentLoaded=_documentLoaded;
 @property BOOL canDetectDocument; // @synthesize canDetectDocument=_canDetectDocument;
 @property BOOL duplexScanningEnabled; // @synthesize duplexScanningEnabled=_duplexScanningEnabled;
-@property(retain) NSNumber *duplexSupportLevel; // @synthesize duplexSupportLevel=_duplexSupportLevel;
+@property(copy) NSNumber *duplexSupportLevel; // @synthesize duplexSupportLevel=_duplexSupportLevel;
 @property unsigned long long documentType; // @synthesize documentType=_documentType;
 @property(retain) NSMutableIndexSet *supportedDocumentTypes; // @synthesize supportedDocumentTypes=_supportedDocumentTypes;
 - (id)initWithDictionary:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 
 @end

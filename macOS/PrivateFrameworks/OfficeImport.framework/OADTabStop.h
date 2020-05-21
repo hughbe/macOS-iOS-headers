@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
 - (void)setPosition:(int)arg1;
 - (int)position;
 - (void)setAlign:(unsigned char)arg1;

@@ -17,9 +17,6 @@
 }
 
 + (id)currentFocusStack;
-+ (void)initialize;
-- (void)_setHandlesException:(BOOL)arg1;
-- (BOOL)_handlesException;
 - (void)fixInvalidatedFocusForFocusView;
 - (void)invalidateFocus:(id)arg1;
 - (BOOL)isWindowInFocusStack:(id)arg1;

@@ -6,25 +6,32 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSString;
+@class NSMutableDictionary, NSMutableSet, NSString;
 
 @interface IMBalloonPluginManager : NSObject
 {
+    Class _richLinksDataSourceClass;
     NSMutableDictionary *_pluginsMap;
     id _extensionMatchingContext;
+    id _highMemoryExtensionMatchingContext;
     NSString *_pluginMetaDataFolder;
-    NSMutableDictionary *_pluginIDtoSaltCache;
+    NSMutableDictionary *_pluginIDToMetadataCache;
+    NSMutableSet *_pluginsToRemoveAfterExtensionsUpdate;
 }
 
 + (BOOL)isRunningPPT;
 + (void)setIsRunningPPT:(BOOL)arg1;
 + (id)_extensionBlacklist;
 + (id)sharedInstance;
-@property(retain, nonatomic) NSMutableDictionary *pluginIDtoSaltCache; // @synthesize pluginIDtoSaltCache=_pluginIDtoSaltCache;
++ (void)disableExtensionDiscovery;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableSet *pluginsToRemoveAfterExtensionsUpdate; // @synthesize pluginsToRemoveAfterExtensionsUpdate=_pluginsToRemoveAfterExtensionsUpdate;
+@property(retain, nonatomic) NSMutableDictionary *pluginIDToMetadataCache; // @synthesize pluginIDToMetadataCache=_pluginIDToMetadataCache;
 @property(retain, nonatomic) NSString *pluginMetaDataFolder; // @synthesize pluginMetaDataFolder=_pluginMetaDataFolder;
+@property(retain, nonatomic) id highMemoryExtensionMatchingContext; // @synthesize highMemoryExtensionMatchingContext=_highMemoryExtensionMatchingContext;
 @property(retain, nonatomic) id extensionMatchingContext; // @synthesize extensionMatchingContext=_extensionMatchingContext;
 @property(retain, nonatomic) NSMutableDictionary *pluginsMap; // @synthesize pluginsMap=_pluginsMap;
-- (void).cxx_destruct;
+@property(readonly, retain, nonatomic) Class richLinksDataSourceClass; // @synthesize richLinksDataSourceClass=_richLinksDataSourceClass;
 - (id)balloonPluginForBundleID:(id)arg1;
 - (id)allPlugins;
 - (void)insertDataSource:(id)arg1 forGUID:(id)arg2;
@@ -36,24 +43,39 @@
 - (void)_findPluginsInPathInternal:(id)arg1;
 - (void)_findPluginsInPaths:(id)arg1;
 - (void)_moveExtensionDataSourcesFromMessagesExtensionPluginToAppExtensions;
-- (void)_updatePluginForExtensions:(id)arg1;
-- (void)_dropAppPlugins;
 - (BOOL)_isExtensionBlackListed:(id)arg1;
 - (BOOL)_isServerBlackListedBundle:(id)arg1 serverBag:(id)arg2;
+- (void)setPluginEnabled:(BOOL)arg1 identifier:(id)arg2;
+- (void)_removePluginsForIdentifiers:(id)arg1;
+- (void)_removePluginsWithDelay;
+- (void)removePluginWithBundleID:(id)arg1;
+- (id)_insertPluginForExtension:(id)arg1 balloonProviderBundle:(id)arg2 andTimingCollection:(id)arg3;
+- (id)_insertPluginForAppBundle:(id)arg1 balloonProviderBundle:(id)arg2;
+- (void)_updatePluginsForExtensions:(id)arg1 extensionPoint:(id)arg2;
+- (void)_updatePluginsForBundles:(id)arg1;
+- (void)_setPluginsToRemoveAndCallSelectorWithDelay:(id)arg1;
+- (id)_appProxyBundleIdentifiersForAppPlugins;
+- (void)_loadAppBundleDataSources;
+- (id)_loadAppExtensionDataSourcesForExtensionPoint:(id)arg1;
+- (id)_extensionWithIdentifier:(id)arg1;
+- (void)loadExtensionWithIdentifierIfNeeded:(id)arg1;
+- (id)_currentlyInstalledExtensionsExcludingExtensionPoint:(id)arg1;
 - (void)_loadAppExtensionDataSources;
 - (void)_clearPluginMetadataForUninstalledApps;
 - (void)_deleteMetaDataForPlugins:(id)arg1;
 - (id)_pluginsForWhichWeHaveMetadata;
+- (id)_proxyIdentifiersForPlugins;
 - (id)_identifiersForAppPlugins;
 - (id)conversationID:(id)arg1 appID:(id)arg2;
 - (id)recipientIDForRecipient:(id)arg1 appID:(id)arg2;
-- (id)localParticipantIdentifierForAppID:(id)arg1;
+- (id)localParticipantIdentifierForAppID:(id)arg1 conversationID:(id)arg2;
 - (void)_storeMetadata:(id)arg1 _forPlugin:(id)arg2;
 - (id)_metadataForPluginIdentifier:(id)arg1;
 - (id)_infoPlistPathForPluginCreatingFolderIfNeeded:(id)arg1;
 - (id)_pluginPlistPath:(id)arg1;
 - (void)dealloc;
-- (void)pluginChatItem:(id)arg1 didRelinquishController:(id)arg2;
+- (void)pluginChatItem:(id)arg1 didRelenquishNonResuableController:(id)arg2;
+- (void)pluginChatItem:(id)arg1 didRelinquishReusableController:(id)arg2;
 - (id)init;
 
 @end

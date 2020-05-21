@@ -8,29 +8,30 @@
 
 @class NSArray, NSLayoutGuide, NSMutableArray;
 
+__attribute__((visibility("hidden")))
 @interface MKPlaceEncyclopedicRowView : MKPlaceSectionRowView
 {
-    NSMutableArray *_labels;
-    NSMutableArray *_values;
+    NSMutableArray *_factoidViews;
     NSLayoutGuide *_insetMetricGuide;
     NSLayoutGuide *_leftMetricGuide;
     NSLayoutGuide *_rightMetricGuide;
     unsigned long long _columnCount;
+    BOOL _isStandAlone;
     NSArray *_items;
     NSMutableArray *_labelConstraints;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL isStandAlone; // @synthesize isStandAlone=_isStandAlone;
 @property(retain, nonatomic) NSMutableArray *labelConstraints; // @synthesize labelConstraints=_labelConstraints;
 @property(retain, nonatomic) NSArray *items; // @synthesize items=_items;
-- (void).cxx_destruct;
 - (void)refreshContent:(BOOL)arg1;
 - (void)addWidthAndSideSpacingConstraintsForLabels;
-- (void)addConstraintsForKeyLabel:(id)arg1 andMatchingValueLabel:(id)arg2;
-- (id)_valueLabelWithString:(id)arg1;
-- (id)_keyLabelWithString:(id)arg1;
+- (void)refreshColumnCount;
+- (void)layout;
+@property(readonly, nonatomic, getter=factoidViewsInARow) NSArray *factoidViewsInARow;
 - (void)setColumnCount:(unsigned long long)arg1;
 - (void)_contentSizeDidChange;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

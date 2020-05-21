@@ -6,16 +6,16 @@
 
 #import <AnnotationKit/AKAnnotation.h>
 
-#import "AKChildAnnotationProtocol.h"
 #import "AKFilledAnnotationProtocol.h"
+#import "AKParentAnnotationProtocol.h"
 #import "AKRectangularAnnotationProtocol.h"
 
 @class NSColor, NSString;
 
-@interface AKNoteAnnotation : AKAnnotation <AKChildAnnotationProtocol, AKRectangularAnnotationProtocol, AKFilledAnnotationProtocol>
+@interface AKNoteAnnotation : AKAnnotation <AKParentAnnotationProtocol, AKRectangularAnnotationProtocol, AKFilledAnnotationProtocol>
 {
     NSColor *_fillColor;
-    AKAnnotation *_parentAnnotation;
+    AKAnnotation *_childAnnotation;
     NSString *_contents;
     struct CGRect _rectangle;
 }
@@ -24,11 +24,11 @@
 + (id)displayNameForUndoablePropertyChangeWithKey:(id)arg1;
 + (id)keyPathsForValuesAffectingDrawingBounds;
 + (id)keyPathsForValuesAffectingHitTestBounds;
+- (void).cxx_destruct;
 @property(copy) NSString *contents; // @synthesize contents=_contents;
-@property __weak AKAnnotation *parentAnnotation; // @synthesize parentAnnotation=_parentAnnotation;
+@property __weak AKAnnotation *childAnnotation; // @synthesize childAnnotation=_childAnnotation;
 @property(retain) NSColor *fillColor; // @synthesize fillColor=_fillColor;
 @property struct CGRect rectangle; // @synthesize rectangle=_rectangle;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)translateBy:(struct CGPoint)arg1;

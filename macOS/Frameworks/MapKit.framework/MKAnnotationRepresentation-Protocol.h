@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class MKAnnotationView<MKAnnotationRepresentation>, NSString;
 
 @protocol MKAnnotationRepresentation <NSObject>
+- (BOOL)_shouldDeselectWhenDragged;
 - (BOOL)_isPendingSelectionAnimated;
 - (void)_invalidateCachedCoordinate;
 - (void)_setHiddenForOffscreen:(BOOL)arg1;
 - (BOOL)isPersistent;
 - (void)prepareForReuse;
 - (NSString *)reuseIdentifier;
+- (MKAnnotationView<MKAnnotationRepresentation> *)viewRepresentation;
 @end
 

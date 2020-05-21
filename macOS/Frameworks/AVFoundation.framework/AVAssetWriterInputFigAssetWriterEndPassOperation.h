@@ -8,6 +8,7 @@
 
 @class AVAssetWriterInputPassDescription;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterInputFigAssetWriterEndPassOperation : AVOperation
 {
     struct OpaqueFigAssetWriter *_figAssetWriter;
@@ -19,7 +20,6 @@
 - (void)_notifyWhetherMorePassesAreNeeded:(BOOL)arg1 timeRanges:(id)arg2 forTrackWithID:(int)arg3;
 - (void)start;
 - (BOOL)isAsynchronous;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithFigAssetWriter:(struct OpaqueFigAssetWriter *)arg1 trackID:(int)arg2;
 - (id)init;

@@ -14,11 +14,11 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableSet *supportedReports; // @synthesize supportedReports=_supportedReports;
 - (BOOL)supportsReportWithNameSpace:(id)arg1 andName:(id)arg2;
 - (void)addSupportedReport:(id)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)init;
 
 @end

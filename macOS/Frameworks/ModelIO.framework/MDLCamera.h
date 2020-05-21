@@ -29,6 +29,7 @@
     // Error parsing type: , name: _flash
 }
 
+- (void).cxx_destruct;
 // Error parsing type for property flash:
 // Property attributes: T,N,V_flash
 
@@ -47,7 +48,6 @@
 @property(copy, nonatomic) CAAnimation *fStopAnimation; // @synthesize fStopAnimation=_fStopAnimation;
 @property(copy, nonatomic) CAAnimation *focalDistanceAnimation; // @synthesize focalDistanceAnimation=_focalDistanceAnimation;
 @property(nonatomic) float worldToMetersConversionScale; // @synthesize worldToMetersConversionScale=_worldToMetersConversionScale;
-- (void).cxx_destruct;
 - (void)lookAt:from: /* Error: Ran out of types for this method. */;
 - (void)lookAt: /* Error: Ran out of types for this method. */;
 - (void)frameBoundingBox:(struct)arg1 setNearAndFar:(BOOL)arg2;
@@ -88,10 +88,9 @@
 // Property attributes: T{?=[4]},R,N
 
 -     // Error parsing type: {?=[4]}24@0:8d16, name: getViewMatrixAtTime:
-// Error parsing type for property rtCamera:
-// Property attributes: T^{RTCamera=^^?QQffi^f^^@{?=[4]}{?=[4]}^{RTRaySegment}ffffffffff},R,N
-
+-     // Error parsing type: ^{RTCamera=^^?QQffi^f^^@{?=[4]}{?=[4]}^{RTRaySegment}ffffffffff}16@0:8, name: rtCamera
 - (long long)version;
+- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 

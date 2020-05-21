@@ -16,13 +16,13 @@
 }
 
 + (id)actionMetadataCacheFileURL;
+- (void).cxx_destruct;
 @property BOOL cacheDataIsDirty; // @synthesize cacheDataIsDirty=_cacheDataIsDirty;
 @property(retain) NSMutableDictionary *actionMetadataByBundleIdentifier; // @synthesize actionMetadataByBundleIdentifier=_actionMetadataByBundleIdentifier;
 @property(retain) NSURL *cacheFileURL; // @synthesize cacheFileURL=_cacheFileURL;
 - (void)writeUpdatedStoreFileIfNeeded;
 - (void)setValue:(id)arg1 forKey:(id)arg2 forActionWithBundleIdentifier:(id)arg3;
 - (id)valueForKey:(id)arg1 forActionWithBundleIdentifier:(id)arg2;
-- (void)dealloc;
 - (id)initWithCacheFileURL:(id)arg1;
 - (void)_loadCacheFileData;
 - (void)_removeDeadEntries;

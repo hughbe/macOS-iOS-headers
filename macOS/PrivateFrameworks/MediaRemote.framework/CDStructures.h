@@ -10,8 +10,10 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct NSMutableDictionary {
-    Class _field1;
+struct _MRHIDButtonEvent {
+    unsigned int _field1;
+    unsigned int _field2;
+    _Bool _field3;
 };
 
 struct _MRHIDTouchEvent {
@@ -27,7 +29,10 @@ struct _MRTextInputTraits {
     unsigned int spellcheckingType;
     unsigned int keyboardType;
     unsigned int returnKeyType;
-    CDStruct_627e0f85 validTextRange;
+    struct {
+        long long location;
+        long long length;
+    } validTextRange;
     _Bool enablesReturnKeyAutomatically;
     _Bool secureTextEntry;
     long long PINEntrySeparatorIndexes[10];
@@ -41,16 +46,16 @@ typedef struct {
 } CDStruct_212a8bf9;
 
 typedef struct {
-    unsigned int *list;
+    double *list;
     unsigned long long count;
     unsigned long long size;
-} CDStruct_9f2792e4;
+} CDStruct_82f37d05;
 
 typedef struct {
-    double x;
-    double y;
-    double z;
-} CDStruct_31142d93;
+    int *list;
+    unsigned long long count;
+    unsigned long long size;
+} CDStruct_95bda58d;
 
 typedef struct {
     double timestamp;
@@ -58,59 +63,9 @@ typedef struct {
 } CDStruct_ace97b7a;
 
 typedef struct {
-    float buttonA;
-    float buttonX;
-    float buttonPause;
-} CDStruct_af4f530f;
-
-typedef struct {
     float width;
     float height;
 } CDStruct_643d22a7;
-
-typedef struct {
-    long long location;
-    long long length;
-} CDStruct_627e0f85;
-
-typedef struct {
-    CDStruct_627e0f85 _field1;
-    _Bool _field2;
-    double _field3;
-    double _field4;
-} CDStruct_c537be58;
-
-typedef struct {
-    int type;
-    union {
-        struct {
-            CDStruct_31142d93 gravity;
-            CDStruct_31142d93 userAcceleration;
-        } motion;
-        CDStruct_af4f530f buttons;
-        struct {
-            CDStruct_af4f530f buttons;
-            float dpadX;
-            float dpadY;
-            float buttonB;
-            float buttonY;
-            float leftShoulder;
-            float rightShoulder;
-            float leftThumbstickX;
-            float leftThumbstickY;
-            float rightThumbstickX;
-            float rightThumbstickY;
-            float leftTrigger;
-            float rightTrigger;
-        } extendedButtons;
-        struct {
-            float x;
-            float y;
-            _Bool touchDown;
-            unsigned long long timestamp;
-        } digitizer;
-    } ;
-} CDStruct_06eb3966;
 
 // Ambiguous groups
 typedef struct {
@@ -124,6 +79,10 @@ typedef struct {
 typedef struct {
     unsigned int state:1;
 } CDStruct_5accba53;
+
+typedef struct {
+    unsigned int volume:1;
+} CDStruct_731552e5;
 
 #pragma mark Named Unions
 

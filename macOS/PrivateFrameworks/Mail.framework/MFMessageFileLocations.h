@@ -12,15 +12,15 @@
 {
     BOOL _isPartial;
     NSURL *_primaryEmlxURL;
-    long long _libraryID;
     NSURL *_attachmentDirectory;
+    long long _libraryID;
 }
 
-@property(retain, nonatomic) NSURL *attachmentDirectory; // @synthesize attachmentDirectory=_attachmentDirectory;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) long long libraryID; // @synthesize libraryID=_libraryID;
 @property(readonly, nonatomic) BOOL isPartial; // @synthesize isPartial=_isPartial;
+@property(retain, nonatomic) NSURL *attachmentDirectory; // @synthesize attachmentDirectory=_attachmentDirectory;
 @property(readonly, nonatomic) NSURL *primaryEmlxURL; // @synthesize primaryEmlxURL=_primaryEmlxURL;
-- (void).cxx_destruct;
 - (BOOL)_transferToNewFileLocation:(id)arg1 renameOrCopyBlock:(CDUnknownBlockType)arg2 error:(id *)arg3;
 - (BOOL)moveToNewFileLocation:(id)arg1 error:(id *)arg2;
 - (BOOL)copyToNewFileLocation:(id)arg1 replaceIfExists:(BOOL)arg2 error:(id *)arg3;

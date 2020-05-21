@@ -11,8 +11,8 @@
 @interface JSManagedValue : NSObject
 {
     struct Weak<JSC::JSGlobalObject> m_globalObject;
-    struct RefPtr<JSC::JSLock> m_lock;
-    struct WeakValueRef m_weakValue;
+    struct RefPtr<JSC::JSLock, WTF::DumbPtrTraits<JSC::JSLock>> m_lock;
+    struct JSWeakValue m_weakValue;
     NSMapTable *m_owners;
 }
 

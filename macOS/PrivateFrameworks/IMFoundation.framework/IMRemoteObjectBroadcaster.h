@@ -17,6 +17,7 @@
 - (void)flushProxy:(id)arg1;
 - (void)blockUntilSendQueueIsEmpty;
 - (id)broadcastProxyForTargets:(id)arg1 messageContext:(id)arg2 protocol:(id)arg3;
+- (id)broadcastProxyForTarget:(id)arg1 messageContext:(id)arg2 protocol:(id)arg3 priority:(int)arg4 completion:(CDUnknownBlockType)arg5;
 - (id)broadcastProxyForTarget:(id)arg1 messageContext:(id)arg2 protocol:(id)arg3 priority:(int)arg4;
 - (id)broadcastProxyForTarget:(id)arg1 messageContext:(id)arg2 protocol:(id)arg3;
 - (id)_queue;

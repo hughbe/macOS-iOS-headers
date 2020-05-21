@@ -18,7 +18,8 @@
 @property(nonatomic) double lacunarity; // @synthesize lacunarity=_lacunarity;
 @property(nonatomic) long long octaveCount; // @synthesize octaveCount=_octaveCount;
 @property(nonatomic) double frequency; // @synthesize frequency=_frequency;
-- (struct Module *)__newModule;
+- (id)cloneModule;
+- (double)valueAt: /* Error: Ran out of types for this method. */;
 
 @end
 

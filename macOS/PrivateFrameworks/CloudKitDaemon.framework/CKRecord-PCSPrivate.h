@@ -7,6 +7,7 @@
 #import "CKRecord.h"
 
 @interface CKRecord (PCSPrivate)
+- (void)fillOutPCSMetadataInfo;
 @property(nonatomic) struct _OpaquePCSShareProtection *recordPCS;
 @end
 

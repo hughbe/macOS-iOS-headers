@@ -6,41 +6,38 @@
 
 #import "NSObject.h"
 
-#import "WBSHistoryClientProtocol.h"
-#import "WBSHistoryConnectionProtocol.h"
+#import "WBSHistoryConnectionProxy.h"
 
 @class NSObject<OS_dispatch_queue>, NSXPCConnection;
 
-@interface WBSHistoryConnectionProxy : NSObject <WBSHistoryClientProtocol, WBSHistoryConnectionProtocol>
+@interface WBSHistoryConnectionProxy : NSObject <WBSHistoryConnectionProxy>
 {
     NSXPCConnection *_connection;
-    BOOL _registeredForHistoryNotifications;
+    id <WBSHistoryConnectionProxyDelegate> _delegate;
     NSObject<OS_dispatch_queue> *_connectionProxyQueue;
 }
 
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *connectionProxyQueue; // @synthesize connectionProxyQueue=_connectionProxyQueue;
-@property(readonly, nonatomic, getter=isRegisteredForHistoryNotifications) BOOL registeredForHistoryNotifications; // @synthesize registeredForHistoryNotifications=_registeredForHistoryNotifications;
 - (void).cxx_destruct;
-- (void)processRemoteHistoryNotification:(id)arg1;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *connectionProxyQueue; // @synthesize connectionProxyQueue=_connectionProxyQueue;
+@property(nonatomic) __weak id <WBSHistoryConnectionProxyDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)releaseCloudHistory:(CDUnknownBlockType)arg1;
+- (void)initializeCloudHistoryWithConfiguration:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)finishClearingHistoryIfNecessaryWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)disconnectWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)connectWithOptions:(id)arg1 delegate:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (id)queryMemoryFootprintWithError:(id *)arg1;
+- (void)queryMemoryFootprint:(CDUnknownBlockType)arg1;
 - (void)killService;
-- (void)unregisterForHistoryNotifications;
-- (void)_registerForHistoryNotifications;
-- (void)registerForHistoryNotifications;
-- (void)removeAllTestDriveHistoryWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)makePermanentAllTestDriveHistoryWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)removeItemsWithURLsInResponseToUserAction:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)clearHistoryVisitsAddedAfterDate:(id)arg1 endDate:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)clearHistoryWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)updateTitle:(id)arg1 forVisitWithUUID:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)recordRedirectFromVisitWithUUID:(id)arg1 destinationURL:(id)arg2 origin:(long long)arg3 date:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (void)recordVisitToURL:(id)arg1 title:(id)arg2 wasHTTPNonGet:(BOOL)arg3 visitWasFailure:(BOOL)arg4 increaseVisitCount:(BOOL)arg5 origin:(long long)arg6 completionHandler:(CDUnknownBlockType)arg7;
 - (void)beginHistoryAccessSession:(CDUnknownBlockType)arg1;
 - (void)beginURLCompletionSession:(CDUnknownBlockType)arg1;
 - (void)debugGetDatabaseURLWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)groupVisitsIntoSessionsBetweenStartDate:(id)arg1 endDate:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)getVisitedLinksWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)getServiceInfo:(CDUnknownBlockType)arg1;
+- (void)ensureConnected:(CDUnknownBlockType)arg1;
 - (CDUnknownBlockType)_defaultProxyErrorHandlerWithSimpleReplyCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)dealloc;
+- (void)_setupConnection;
 - (id)init;
 
 @end

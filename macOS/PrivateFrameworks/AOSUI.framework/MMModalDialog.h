@@ -6,66 +6,57 @@
 
 #import "NSObject.h"
 
-@class NSButton, NSImageView, NSString, NSTextField, NSWindow;
+@class MMAlert, NSButton, NSImage, NSString, NSWindow;
 
 @interface MMModalDialog : NSObject
 {
-    id <MMModalDialogDelegate> _delegate;
-    NSWindow *_modalDialog;
-    NSImageView *_iconView;
-    NSImageView *_badgeView;
-    NSTextField *_titleField;
-    NSTextField *_messageField;
-    NSButton *_defaultButton;
-    NSButton *_alternateButton;
-    NSButton *_otherButton;
-    NSButton *_helpButton;
-    NSWindow *_parentWindow;
+    BOOL _isVisible;
     BOOL _isModal;
     CDUnknownBlockType _completionHandler;
     CDUnknownBlockType _helpHandler;
+    id <MMModalDialogDelegate> _delegate;
+    NSWindow *_parentWindow;
     NSString *defaultButtonKeyEquivalent;
     NSString *alternateButtonKeyEquivalent;
     NSString *otherButtonKeyEquivalent;
+    NSString *_title;
+    NSString *_message;
+    NSString *_defaultButtonTitle;
+    NSString *_alternateButtonTitle;
+    NSString *_otherButtonTitle;
+    NSString *_iconLabel;
+    NSString *_badgeLabel;
+    NSImage *_icon;
+    NSImage *_badge;
+    MMAlert *_alert;
 }
 
-@property NSString *otherButtonKeyEquivalent; // @synthesize otherButtonKeyEquivalent;
-@property NSString *alternateButtonKeyEquivalent; // @synthesize alternateButtonKeyEquivalent;
-@property NSString *defaultButtonKeyEquivalent; // @synthesize defaultButtonKeyEquivalent;
+- (void).cxx_destruct;
+@property BOOL isVisible; // @synthesize isVisible=_isVisible;
+@property(retain) MMAlert *alert; // @synthesize alert=_alert;
+@property NSImage *badge; // @synthesize badge=_badge;
+@property NSImage *icon; // @synthesize icon=_icon;
+@property(copy) NSString *badgeLabel; // @synthesize badgeLabel=_badgeLabel;
+@property(copy) NSString *iconLabel; // @synthesize iconLabel=_iconLabel;
+@property(copy) NSString *otherButtonTitle; // @synthesize otherButtonTitle=_otherButtonTitle;
+@property(copy) NSString *alternateButtonTitle; // @synthesize alternateButtonTitle=_alternateButtonTitle;
+@property(copy) NSString *defaultButtonTitle; // @synthesize defaultButtonTitle=_defaultButtonTitle;
+@property(copy) NSString *message; // @synthesize message=_message;
+@property(copy) NSString *title; // @synthesize title=_title;
+@property(copy) NSString *otherButtonKeyEquivalent; // @synthesize otherButtonKeyEquivalent;
+@property(copy) NSString *alternateButtonKeyEquivalent; // @synthesize alternateButtonKeyEquivalent;
+@property(copy) NSString *defaultButtonKeyEquivalent; // @synthesize defaultButtonKeyEquivalent;
 @property BOOL isModal; // @synthesize isModal=_isModal;
 @property NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
-@property(retain) NSButton *helpButton; // @synthesize helpButton=_helpButton;
-@property(retain) NSButton *otherButton; // @synthesize otherButton=_otherButton;
-@property(retain) NSButton *alternateButton; // @synthesize alternateButton=_alternateButton;
-@property(retain) NSButton *defaultButton; // @synthesize defaultButton=_defaultButton;
-@property(retain) NSTextField *messageField; // @synthesize messageField=_messageField;
-@property(retain) NSTextField *titleField; // @synthesize titleField=_titleField;
-@property(retain) NSImageView *badgeView; // @synthesize badgeView=_badgeView;
-@property(retain) NSImageView *iconView; // @synthesize iconView=_iconView;
-@property(retain) NSWindow *modalDialog; // @synthesize modalDialog=_modalDialog;
 @property(nonatomic) id <MMModalDialogDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly) BOOL isVisible;
-- (void)setShowsHelp:(BOOL)arg1;
-- (void)setDialogMessage:(id)arg1;
-- (void)setDialogTitle:(id)arg1;
-- (void)setOtherButtonAction:(SEL)arg1 withTarget:(id)arg2;
-- (void)setAlternateButtonAction:(SEL)arg1 withTarget:(id)arg2;
-- (void)setDefaultButtonAction:(SEL)arg1 withTarget:(id)arg2;
-- (void)setOtherButtonTitle:(id)arg1;
-- (void)setAlternateButtonTitle:(id)arg1;
-- (void)setDefaultButtonTitle:(id)arg1;
-- (void)setBadgeLabel:(id)arg1;
-- (void)setBadge:(id)arg1;
-- (void)setIconLabel:(id)arg1;
-- (void)setIcon:(id)arg1;
 - (void)endModalDialog:(id)arg1;
-- (void)sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-- (void)modalDialogShowHelp:(id)arg1;
+@property(readonly) NSButton *otherButton;
+@property(readonly) NSButton *alternateButton;
+@property(readonly) NSButton *defaultButton;
 - (void)stopModalDialog;
 - (void)beginSheetModalForWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)beginModalDialogWithParentWindow:(id)arg1 shouldNest:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)beginModalDialogWithParentWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)dealloc;
 - (id)initWithTitle:(id)arg1 message:(id)arg2 defaultButtonTitle:(id)arg3 alternateButtonTitle:(id)arg4 otherButtonTitle:(id)arg5 icon:(id)arg6 iconLabel:(id)arg7 badge:(id)arg8 badgeLabel:(id)arg9 helpHandler:(CDUnknownBlockType)arg10;
 
 @end

@@ -14,13 +14,13 @@ __attribute__((visibility("hidden")))
     NSDictionary *_policyDictionary;
 }
 
+- (void).cxx_destruct;
 - (BOOL)isContactPropertySupported:(id)arg1;
 - (unsigned long long)maximumCountOfValuesForContactProperty:(id)arg1 label:(id)arg2;
 - (id)supportedLabelsForContactProperty:(id)arg1;
 - (unsigned long long)maximumCountOfValuesForContactProperty:(id)arg1;
 - (id)unsupportedAttributesForLableledContactProperty:(id)arg1;
 - (id)contactRestrictionsForLabeledProperty:(id)arg1;
-- (void)dealloc;
 - (id)initWithDictionary:(id)arg1;
 
 @end

@@ -15,13 +15,17 @@
     TIAutocorrectionList *_refinements;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) TIAutocorrectionList *refinements; // @synthesize refinements=_refinements;
 @property(retain, nonatomic) TIKeyboardState *keyboardState; // @synthesize keyboardState=_keyboardState;
 @property(retain, nonatomic) TIKeyboardCandidate *candidate; // @synthesize candidate=_candidate;
+- (void)replaceDocumentState:(id)arg1;
 - (id)shortDescription;
+- (void)removeContextFromKeyboardState;
+- (id)currentKeyboardState;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 - (void)applyToStatistic:(id)arg1;
 
 @end

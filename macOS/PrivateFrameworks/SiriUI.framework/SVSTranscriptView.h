@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class SVSTranscriptContentView, SiriUIClumpView;
+@class SVSTranscriptContentView, SiriUITranscriptClumpView;
 
 __attribute__((visibility("hidden")))
 @interface SVSTranscriptView : NSView
@@ -21,11 +21,11 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) double topMargin;
 @property(readonly, nonatomic) double bottomMargin;
 @property(retain, nonatomic) NSView *suggestionsView;
-@property(readonly, nonatomic) SiriUIClumpView *clumpView;
+@property(readonly, nonatomic) SiriUITranscriptClumpView *transcriptClumpView;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)layout;
 - (void)updateConstraints;
-- (id)initWithFrame:(struct CGRect)arg1 clumpView:(id)arg2;
+- (id)initWithFrame:(struct CGRect)arg1 transcriptClumpView:(id)arg2;
 
 @end
 

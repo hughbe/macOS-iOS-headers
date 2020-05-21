@@ -10,6 +10,14 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct SGFoundInMailModelMode_ {
+    unsigned long long _field1;
+};
+
+struct SGMAppUsageLevel_ {
+    unsigned long long _field1;
+};
+
 struct SGMBannerDisplayApp_ {
     unsigned long long _field1;
 };
@@ -18,11 +26,39 @@ struct SGMBannerExtractionType_ {
     unsigned long long _field1;
 };
 
+struct SGMBoolOption_ {
+    unsigned long long _field1;
+};
+
+struct SGMContactDetailExtractionOutcome_ {
+    unsigned long long _field1;
+};
+
+struct SGMContactDetailExtractionSignatureSource_ {
+    unsigned long long _field1;
+};
+
+struct SGMContactDetailFoundIn_ {
+    unsigned long long _field1;
+};
+
+struct SGMContactDetailOwner_ {
+    unsigned long long _field1;
+};
+
 struct SGMContactDetailType_ {
     unsigned long long _field1;
 };
 
+struct SGMContactDetailUsedApp_ {
+    unsigned long long _field1;
+};
+
 struct SGMDetailExtractionType_ {
+    unsigned long long _field1;
+};
+
+struct SGMDocumentType_ {
     unsigned long long _field1;
 };
 
@@ -42,6 +78,14 @@ struct SGMEventExtractionType_ {
     unsigned long long _field1;
 };
 
+struct SGMEventICSSourceType_ {
+    unsigned long long _field1;
+};
+
+struct SGMEventLocationAdj_ {
+    unsigned long long _field1;
+};
+
 struct SGMEventState_ {
     unsigned long long _field1;
 };
@@ -50,11 +94,59 @@ struct SGMEventStringAdj_ {
     unsigned long long _field1;
 };
 
-struct SGMNLEventExtraction_ {
+struct SGMEventTitleSource_ {
     unsigned long long _field1;
 };
 
-struct SGMNLEventLinkInteractionResult_ {
+struct SGMFoundInAppsDatetimeType_ {
+    unsigned long long _field1;
+};
+
+struct SGMFoundInAppsICSTZValue_ {
+    unsigned long long _field1;
+};
+
+struct SGMFoundInMailModelType_ {
+    unsigned long long _field1;
+};
+
+struct SGMFoundInMailSupervisionType_ {
+    unsigned long long _field1;
+};
+
+struct SGMInteractionIgnoredReason_ {
+    unsigned long long _field1;
+};
+
+struct SGMLowCount_ {
+    unsigned long long _field1;
+};
+
+struct SGMNLEventActionType_ {
+    unsigned long long _field1;
+};
+
+struct SGMNLEventExtractionLevel_ {
+    unsigned long long _field1;
+};
+
+struct SGMNLEventInterface_ {
+    unsigned long long _field1;
+};
+
+struct SGMSINameClassification_ {
+    unsigned long long _field1;
+};
+
+struct SGMSIPatternType_ {
+    unsigned long long _field1;
+};
+
+struct SGMSelfIdModelType_ {
+    unsigned long long _field1;
+};
+
+struct SGMSelfIdSupervisionType_ {
     unsigned long long _field1;
 };
 
@@ -76,6 +168,11 @@ struct _opaque_pthread_mutex_t {
     char __opaque[56];
 };
 
+struct objc_method_description {
+    SEL _field1;
+    char *_field2;
+};
+
 #pragma mark Typedef'd Structures
 
 typedef struct {
@@ -84,4 +181,16 @@ typedef struct {
     unsigned long long *_field3;
     unsigned long long _field4[5];
 } CDStruct_70511ce9;
+
+// Ambiguous groups
+typedef struct {
+    unsigned int app:1;
+    unsigned int extracted:1;
+    unsigned int selfId:1;
+} CDStruct_5f298e02;
+
+typedef struct {
+    unsigned int extracted:1;
+    unsigned int type:1;
+} CDStruct_a710f5a9;
 

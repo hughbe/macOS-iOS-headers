@@ -10,20 +10,9 @@
 
 @interface GEOCacheHitLogMessage : PBCodable <NSCopying>
 {
-    unsigned int _cacheHitCount;
-    unsigned int _cacheMissCount;
-    int _cacheType;
-    int _tileSetStyle;
-    struct {
-        unsigned int cacheHitCount:1;
-        unsigned int cacheMissCount:1;
-        unsigned int cacheType:1;
-        unsigned int tileSetStyle:1;
-    } _has;
 }
 
-@property(nonatomic) unsigned int cacheMissCount; // @synthesize cacheMissCount=_cacheMissCount;
-@property(nonatomic) unsigned int cacheHitCount; // @synthesize cacheHitCount=_cacheHitCount;
++ (BOOL)isValid:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -31,18 +20,9 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-@property(nonatomic) BOOL hasCacheMissCount;
-@property(nonatomic) BOOL hasCacheHitCount;
-- (int)StringAsTileSetStyle:(id)arg1;
-- (id)tileSetStyleAsString:(int)arg1;
-@property(nonatomic) BOOL hasTileSetStyle;
-@property(nonatomic) int tileSetStyle; // @synthesize tileSetStyle=_tileSetStyle;
-- (int)StringAsCacheType:(id)arg1;
-- (id)cacheTypeAsString:(int)arg1;
-@property(nonatomic) BOOL hasCacheType;
-@property(nonatomic) int cacheType; // @synthesize cacheType=_cacheType;
 
 @end
 

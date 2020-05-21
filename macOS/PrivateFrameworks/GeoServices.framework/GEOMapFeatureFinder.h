@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     BOOL _ignoreUnnamedFeatures;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL ignoreUnnamedFeatures; // @synthesize ignoreUnnamedFeatures=_ignoreUnnamedFeatures;
 @property(copy, nonatomic) CDUnknownBlockType polygonHandler; // @synthesize polygonHandler=_polygonHandler;
 @property(copy, nonatomic) CDUnknownBlockType pointHandler; // @synthesize pointHandler=_pointHandler;
@@ -27,7 +28,6 @@ __attribute__((visibility("hidden")))
 - (void)_pickRoadInTile:(id)arg1 tileRect:(const CDStruct_90e2a262 *)arg2 localPoint:(const Matrix_8746f91e *)arg3;
 @property(readonly, nonatomic) GEOMapAccess *map;
 - (void)cancel;
-- (void)dealloc;
 - (id)initWithMap:(id)arg1 center:(CDStruct_c3b9c2ee)arg2;
 
 @end

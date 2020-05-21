@@ -17,8 +17,9 @@
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain, nonatomic) NSMutableDictionary *metadata; // @synthesize metadata=_metadata;
++ (id)supportedContextValueClasses;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableDictionary *metadata; // @synthesize metadata=_metadata;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;

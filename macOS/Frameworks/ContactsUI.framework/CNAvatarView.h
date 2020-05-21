@@ -7,10 +7,11 @@
 #import "NSView.h"
 
 #import "CNAvatarUpdating.h"
+#import "NSDraggingDestination.h"
 
 @class CNAvatarViewController, CNAvatarViewModel, CNContactIconViewModel, NSMapTable, NSMutableArray, NSString, NSTrackingArea;
 
-@interface CNAvatarView : NSView <CNAvatarUpdating>
+@interface CNAvatarView : NSView <NSDraggingDestination, CNAvatarUpdating>
 {
     CNAvatarViewController *_controller;
     CNAvatarViewModel *_viewModel;
@@ -21,6 +22,8 @@
     NSTrackingArea *_editOverlayTrackingArea;
 }
 
++ (id)log;
+- (void).cxx_destruct;
 @property(retain) NSTrackingArea *editOverlayTrackingArea; // @synthesize editOverlayTrackingArea=_editOverlayTrackingArea;
 @property(retain) NSView *editOverlayView; // @synthesize editOverlayView=_editOverlayView;
 @property(retain) NSMutableArray *iconViews; // @synthesize iconViews=_iconViews;
@@ -28,13 +31,16 @@
 @property(retain) CNContactIconViewModel *templateIconViewModel; // @synthesize templateIconViewModel=_templateIconViewModel;
 @property(retain) CNAvatarViewModel *viewModel; // @synthesize viewModel=_viewModel;
 @property __weak CNAvatarViewController *controller; // @synthesize controller=_controller;
-- (void).cxx_destruct;
+- (BOOL)performDragOperation:(id)arg1;
+- (BOOL)prepareForDragOperation:(id)arg1;
+- (unsigned long long)draggingEntered:(id)arg1;
+- (BOOL)canAcceptPasteboard:(id)arg1;
+- (BOOL)isValidDropTarget;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
 - (BOOL)shouldShowEditOverlayOnHover;
 - (void)updateTrackingAreas;
-- (void)updateEditOverlayViewHierarchyAndConstraints;
-- (void)makeEditOverlayView;
+- (void)removeEditOverlayView;
 - (void)displayEditOverlayView;
 - (void)setEditOverlayShown:(BOOL)arg1;
 - (id)firstIconView;
@@ -47,7 +53,8 @@
 - (void)updateLayer;
 - (void)setSelected:(BOOL)arg1;
 - (void)setBackgroundStyle:(long long)arg1;
-- (void)updateViewModelForIconView:(id)arg1 contact:(id)arg2 likeness:(id)arg3;
+- (void)setDefaultBackgroundStyle:(long long)arg1;
+- (void)updateViewModelForIconView:(id)arg1 contact:(id)arg2 likeness:(id)arg3 style:(unsigned long long)arg4 monogramOnly:(BOOL)arg5;
 - (void)viewModelDidUpdate:(id)arg1;
 - (void)_commonInit;
 - (id)initWithViewModel:(id)arg1;

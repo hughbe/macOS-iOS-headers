@@ -10,7 +10,7 @@
 
 @interface PRSDescriptionSliceView : NSView
 {
-    unsigned long long _textAlignment;
+    long long _textAlignment;
     unsigned long long _imageAlignment;
     NSImage *_image;
     NSTextField *_titleTextField;
@@ -28,6 +28,7 @@
     NSArray *_attributionConstraints;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSArray *attributionConstraints; // @synthesize attributionConstraints=_attributionConstraints;
 @property(retain) NSArray *imageConstraints; // @synthesize imageConstraints=_imageConstraints;
 @property(retain) NSArray *activeConstraints; // @synthesize activeConstraints=_activeConstraints;
@@ -41,7 +42,6 @@
 @property PRSImageView *embeddedImageView; // @synthesize embeddedImageView=_embeddedImageView;
 @property PRSImageView *imageView; // @synthesize imageView=_imageView;
 @property NSTextField *titleTextField; // @synthesize titleTextField=_titleTextField;
-- (void).cxx_destruct;
 @property(retain) NSImage *image;
 @property struct CGSize imageMargin;
 @property unsigned long long imageAlignment;
@@ -50,7 +50,7 @@
 @property(retain) NSAttributedString *descriptionAttributedString;
 @property(retain) NSString *descriptionText;
 @property(retain) NSString *titleText;
-@property unsigned long long textAlignment;
+@property long long textAlignment;
 @property BOOL attributionHidden;
 @property BOOL descriptionTextHidden;
 @property BOOL embeddedImageHidden;
@@ -83,6 +83,7 @@
 - (id)_constraintBetweenTitleAndImage;
 - (id)_bottomConstraintWithView:(id)arg1 constant:(unsigned long long)arg2;
 - (id)_topConstraintWithView:(id)arg1 constant:(unsigned long long)arg2;
+- (BOOL)isAccessibilityElement;
 - (void)prepareForReuse;
 
 @end

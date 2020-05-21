@@ -12,7 +12,6 @@ __attribute__((visibility("hidden")))
     BOOL _isRegisteredForNotifications;
 }
 
-+ (id)sharedListener;
 - (void)_historyItemsCleared:(id)arg1;
 - (void)_historyItemsRemoved:(id)arg1;
 - (void)registerForHistoryNotifications;

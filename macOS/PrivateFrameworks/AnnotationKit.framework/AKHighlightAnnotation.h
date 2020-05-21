@@ -14,7 +14,6 @@
 {
     unsigned long long _style;
     NSColor *_color;
-    NSString *_contents;
     NSArray *_quadPoints;
 }
 
@@ -22,11 +21,10 @@
 + (id)displayNameForUndoablePropertyChangeWithKey:(id)arg1;
 + (id)keyPathsForValuesAffectingDrawingBounds;
 + (id)keyPathsForValuesAffectingHitTestBounds;
+- (void).cxx_destruct;
 @property(retain) NSArray *quadPoints; // @synthesize quadPoints=_quadPoints;
-@property(copy) NSString *contents; // @synthesize contents=_contents;
 @property(retain) NSColor *color; // @synthesize color=_color;
 @property unsigned long long style; // @synthesize style=_style;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)translateBy:(struct CGPoint)arg1;

@@ -17,8 +17,11 @@
 @property(readonly, nonatomic, getter=isNameSettable) BOOL nameSettable; // @dynamic nameSettable;
 @property(readonly, nonatomic, getter=isIdentifySettable) BOOL identifySettable; // @dynamic identifySettable;
 @property(readonly, nonatomic, getter=isAcquireSettable) BOOL acquireSettable; // @dynamic acquireSettable;
-@property(readonly, copy, nonatomic) NSArray *clockDeviceObjectIDs;
-@property(readonly, copy, nonatomic) NSArray *deviceObjectIDs; // @dynamic deviceObjectIDs;
+@property(readonly, copy, nonatomic) NSArray *clockDevices; // @dynamic clockDevices;
+@property(readonly, copy, nonatomic) NSArray *clockDeviceObjectIDs; // @dynamic clockDeviceObjectIDs;
+@property(readonly, copy, nonatomic) NSArray *audioDevices; // @dynamic audioDevices;
+@property(readonly, copy, nonatomic) NSArray *deviceObjectIDs;
+@property(readonly, copy, nonatomic) NSArray *audioDeviceObjectIDs; // @dynamic audioDeviceObjectIDs;
 @property(nonatomic) BOOL identify; // @dynamic identify;
 @property(readonly, nonatomic) int acquisitionFailure; // @dynamic acquisitionFailure;
 @property(nonatomic, getter=isAcquired) BOOL acquired; // @dynamic acquired;

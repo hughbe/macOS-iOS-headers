@@ -8,7 +8,6 @@
 
 @class ABAccount, ABAddressBook;
 
-__attribute__((visibility("hidden")))
 @interface ABAccountBrowsingGroupEntry : ABBrowsingGroupEntry
 {
     ABAccount *_account;
@@ -16,6 +15,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)identifierForAccount:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, retain) ABAddressBook *addressBook; // @synthesize addressBook=_addressBook;
 @property(readonly, retain) ABAccount *account; // @synthesize account=_account;
 - (id)description;
@@ -29,7 +29,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)canDeletePeople;
 - (BOOL)canCreateGroup;
 - (id)actionScope;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 account:(id)arg2 addressBook:(id)arg3;
 
 @end

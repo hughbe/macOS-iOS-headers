@@ -8,22 +8,26 @@
 
 #import "SMSystem_FileManagerProtocol.h"
 
-@class NSURL;
+@class NSString, NSURL;
 
 @interface SMSystem_FileManager_DiskBased : NSObject <SMSystem_FileManagerProtocol>
 {
     NSURL *_root;
 }
 
-@property(retain) NSURL *root; // @synthesize root=_root;
++ (id)appropriateDiskFileMangerForSystemRoot:(id)arg1;
 - (void).cxx_destruct;
+@property(retain) NSURL *root; // @synthesize root=_root;
 - (id)bundleInformationAtPaths:(id)arg1;
 - (id)resourceValuesForKeys:(id)arg1 onPaths:(id)arg2 error:(id *)arg3;
 - (id)pathToRemoteFile:(id)arg1 exists:(char *)arg2 makeAvailable:(BOOL)arg3;
 - (void)cleanup;
 - (BOOL)activate;
+@property(readonly) NSURL *userHomeRoot;
+@property(readonly) NSURL *userContentRoot;
 @property(readonly) NSURL *slash;
 @property(readonly, getter=isFileSystemReady) BOOL fileSystemReady;
+@property(readonly) NSString *productVersion;
 - (id)initAtRoot:(id)arg1;
 
 @end

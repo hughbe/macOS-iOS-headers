@@ -8,21 +8,28 @@
 
 #import "CNUIPRLikenessProvider.h"
 
-@class NSData, NSString, PRLikeness;
+@class CNCache, NSData, NSString;
 
 @interface CNUIPRLikenessPhotoProvider : NSObject <CNUIPRLikenessProvider>
 {
     NSData *_originalPhotoData;
-    PRLikeness *_likeness;
+    CNCache *_cache;
+    NSString *_likenessFingerprint;
 }
 
 + (struct CGImage *)cgImageFromData:(id)arg1;
-@property(readonly, nonatomic) PRLikeness *likeness; // @synthesize likeness=_likeness;
-@property(readonly, nonatomic) NSData *originalPhotoData; // @synthesize originalPhotoData=_originalPhotoData;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSString *likenessFingerprint; // @synthesize likenessFingerprint=_likenessFingerprint;
+@property(readonly, nonatomic) CNCache *cache; // @synthesize cache=_cache;
+@property(readonly, nonatomic) NSData *originalPhotoData; // @synthesize originalPhotoData=_originalPhotoData;
+- (struct CGImage *)renderRoundedRectImageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)renderCircularImageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)_cnui_roundedRectImageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)_cnui_circularImageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)_cnui_image;
 - (unsigned long long)_cnui_likenessType;
-- (id)_cnui_likeness;
-- (id)initWithPhotoData:(id)arg1;
+- (id)_cnui_likenessForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (id)initWithPhotoData:(id)arg1 fingerprint:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

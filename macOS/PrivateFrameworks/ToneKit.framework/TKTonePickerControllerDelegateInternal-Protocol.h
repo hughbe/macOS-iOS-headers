@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSNumber, NSString, TKTonePickerController, TKTonePickerItem;
+@class NSIndexPath, NSNumber, NSString, TKTonePickerController, TKTonePickerItem;
 
 @protocol TKTonePickerControllerDelegateInternal <NSObject>
 
 @optional
+- (void)tonePickerController:(TKTonePickerController *)arg1 requestsPresentingAlertWithTitle:(NSString *)arg2 message:(NSString *)arg3;
+- (void)tonePickerController:(TKTonePickerController *)arg1 didUpdateIgnoreMute:(BOOL)arg2 forTonePickerItem:(TKTonePickerItem *)arg3 atIndexPath:(NSIndexPath *)arg4;
 - (void)tonePickerControllerRequestsPresentingVibrationPicker:(TKTonePickerController *)arg1;
-- (void)tonePickerControllerRequestsPresentingToneStore:(TKTonePickerController *)arg1;
 - (void)tonePickerController:(TKTonePickerController *)arg1 requestsPresentingToneClassicsPickerForItem:(TKTonePickerItem *)arg2;
+- (void)tonePickerController:(TKTonePickerController *)arg1 willBeginPlaybackOfToneWithIdentifier:(NSString *)arg2;
 - (void)tonePickerControllerDidStopPlaying:(TKTonePickerController *)arg1 withFadeOutDuration:(double)arg2;
 - (void)tonePickerControllerRequestsPresentingMediaItemPicker:(TKTonePickerController *)arg1;
 - (void)tonePickerController:(TKTonePickerController *)arg1 didSelectMediaItemAtIndex:(unsigned long long)arg2 selectionDidChange:(BOOL)arg3;

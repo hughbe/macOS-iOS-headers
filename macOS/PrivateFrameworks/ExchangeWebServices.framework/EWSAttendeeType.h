@@ -15,13 +15,17 @@
     EWSEmailAddressType *_Mailbox;
     long long _ResponseType;
     NSDateComponents *_LastResponseTime;
+    NSDateComponents *_ProposedStart;
+    NSDateComponents *_ProposedEnd;
 }
 
 + (id)definition;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSDateComponents *ProposedEnd; // @synthesize ProposedEnd=_ProposedEnd;
+@property(retain, nonatomic) NSDateComponents *ProposedStart; // @synthesize ProposedStart=_ProposedStart;
 @property(retain, nonatomic) NSDateComponents *LastResponseTime; // @synthesize LastResponseTime=_LastResponseTime;
 @property(nonatomic) long long ResponseType; // @synthesize ResponseType=_ResponseType;
 @property(retain, nonatomic) EWSEmailAddressType *Mailbox; // @synthesize Mailbox=_Mailbox;
-- (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 
 // Remaining properties

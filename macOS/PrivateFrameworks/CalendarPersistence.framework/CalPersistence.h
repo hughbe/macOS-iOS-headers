@@ -10,7 +10,6 @@
 {
 }
 
-+ (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)setupCalendarPersistence:(id)arg1 andCreateDefaultCalendarsIfNeeded:(BOOL)arg2 withSetupGroup:(id)arg3;
 + (BOOL)_shouldForceTruthFileMigration;
 + (void)forceTruthFileMigrationOnNextLaunch;
@@ -28,8 +27,13 @@
 + (id)_createDefaultCalendarPersistenceSingleton;
 + (id)setupCalendarPersistence:(id)arg1 andCreateDefaultCalendarsIfNeeded:(BOOL)arg2;
 + (id)setupCalendarPersistence:(id)arg1;
++ (BOOL)_saveContext:(id)arg1 error:(id *)arg2 errorDescriptionBlock:(CDUnknownBlockType)arg3 logTag:(CDUnknownBlockType)arg4;
 + (BOOL)createBirthdayCalendar:(id)arg1 error:(id *)arg2;
 + (BOOL)createDefaultLocalCalendars:(id)arg1 error:(id *)arg2;
++ (void)_createDefaultLocalCalendarsForReminders:(id)arg1;
++ (void)_createDefaultLocalCalendarsForEvents:(id)arg1;
++ (BOOL)createDefaultLocalCalendarsForRemindersIfNeeded:(id)arg1 error:(id *)arg2;
++ (BOOL)createDefaultLocalCalendarsForEventsIfNeeded:(id)arg1 error:(id *)arg2;
 + (id)userContextForLocalUID:(id)arg1;
 + (id)managedObjectContextForUser;
 + (void)reconnectToPersistence;
@@ -53,13 +57,6 @@
 - (void)managedObjectContextWillSave:(id)arg1;
 - (BOOL)isInterestedInContext:(id)arg1;
 - (void)postResetNotifications;
-- (id)autorelease;
-- (oneway void)release;
-- (unsigned long long)retainCount;
-- (id)retain;
-- (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)finalize;
-- (void)dealloc;
 - (id)init;
 - (void)_reset;
 - (id)_managedObjectContextForCurrentThread;

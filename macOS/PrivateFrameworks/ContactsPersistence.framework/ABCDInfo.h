@@ -6,13 +6,19 @@
 
 #import <ContactsPersistence/ABCDRecord.h>
 
+@class CNCDContainer, NSString;
+
 @interface ABCDInfo : ABCDRecord
 {
 }
 
++ (id)nts_firstPersistentStoreForUrls:(id)arg1 inCoordinator:(id)arg2;
++ (id)nts_persistentStoreForUrl:(id)arg1 inCoordinator:(id)arg2;
++ (id)nts_createInfoInManagedObjectContext:(id)arg1 inPersistentStoreAtURL:(id)arg2;
 + (id)_table;
 + (id)abEntityName;
 + (BOOL)_isPublicRecord;
+- (id)fetchedContainerInManagedObjectContext:(id)arg1 store:(id)arg2;
 - (id)parentGroups;
 - (void)setReadWriteSharingACL:(id)arg1;
 - (id)readWriteSharingACL;
@@ -20,10 +26,11 @@
 - (id)readSharingACL;
 - (void)setRemoteLocations:(id)arg1;
 - (id)remoteLocations;
-- (void)setSerialNumber:(id)arg1;
-- (id)serialNumber;
-- (void)setMeUniqueId:(id)arg1;
-- (id)meUniqueId;
+@property(retain, nonatomic) NSString *serialNumber;
+@property(retain, nonatomic) NSString *meUniqueId;
+
+// Remaining properties
+@property(retain, nonatomic) CNCDContainer *container; // @dynamic container;
 
 @end
 

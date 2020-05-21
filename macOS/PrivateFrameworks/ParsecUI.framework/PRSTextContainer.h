@@ -17,6 +17,7 @@
 - (struct CGRect)lineFragmentRectForProposedRect:(struct CGRect)arg1 sweepDirection:(unsigned long long)arg2 movementDirection:(unsigned long long)arg3 remainingRect:(struct CGRect *)arg4;
 - (BOOL)widthTracksTextView;
 - (BOOL)isSimpleRectangularTextContainer;
+- (id)initWithContainerSize:(struct CGSize)arg1;
 
 @end
 

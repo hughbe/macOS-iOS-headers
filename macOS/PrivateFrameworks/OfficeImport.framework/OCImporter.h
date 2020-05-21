@@ -6,7 +6,7 @@
 
 #import <OfficeImport/OCMapper.h>
 
-@class NSData, NSString, NSURL, OCDReader, OITSUProgressContext, TCImportTracing;
+@class NSData, NSString, NSURL, OCDReader, OITSUProgressContext;
 
 __attribute__((visibility("hidden")))
 @interface OCImporter : OCMapper
@@ -14,16 +14,24 @@ __attribute__((visibility("hidden")))
     NSURL *mURL;
     NSData *mData;
     OCDReader *mReader;
-    TCImportTracing *mTracing;
     BOOL mTryAlternateReader;
     OITSUProgressContext *mProgressContext;
-    NSString *_docPassphrase;
+    CDUnknownBlockType mOfficeDOMInspector;
+    NSString *_lastPasswordAttempted;
 }
 
 + (void)initialize;
-@property(retain, nonatomic) NSString *docPassphrase; // @synthesize docPassphrase=_docPassphrase;
-@property(readonly, nonatomic) TCImportTracing *tracing; // @synthesize tracing=mTracing;
++ (Class)readerClassForURL:(id)arg1;
++ (BOOL)URLIsXML:(id)arg1;
++ (Class)xmlReaderClass;
++ (Class)binaryReaderClass;
++ (id)xmlPathExtensions;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *lastPasswordAttempted; // @synthesize lastPasswordAttempted=_lastPasswordAttempted;
+@property(copy, nonatomic) CDUnknownBlockType officeDOMInspector; // @synthesize officeDOMInspector=mOfficeDOMInspector;
 @property(retain) OITSUProgressContext *progressContext; // @synthesize progressContext=mProgressContext;
+- (Class)readerClass;
+- (BOOL)isXML;
 - (void)finalizeWithDocumentState:(id)arg1;
 - (id)displayName;
 - (id)filename;
@@ -32,11 +40,11 @@ __attribute__((visibility("hidden")))
 - (BOOL)isDocumentEncryptedUnsupportedVersionHelper:(char *)arg1 errorMessage:(id *)arg2 readError:(char *)arg3;
 - (BOOL)tryAlternateReader;
 - (void)setURL:(id)arg1;
+- (id)url;
 - (void)dealloc;
 - (id)initWithData:(id)arg1;
 - (id)initWithURL:(id)arg1;
 - (BOOL)start;
-- (BOOL)isXML;
 
 @end
 

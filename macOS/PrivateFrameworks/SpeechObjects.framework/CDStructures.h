@@ -6,6 +6,18 @@
 
 #pragma mark Named Structures
 
+struct AudioStreamBasicDescription {
+    double mSampleRate;
+    unsigned int mFormatID;
+    unsigned int mFormatFlags;
+    unsigned int mBytesPerPacket;
+    unsigned int mFramesPerPacket;
+    unsigned int mBytesPerFrame;
+    unsigned int mChannelsPerFrame;
+    unsigned int mBitsPerChannel;
+    unsigned int mReserved;
+};
+
 struct SpeechChannelRecord {
     long long _field1[1];
 };

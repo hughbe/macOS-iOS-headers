@@ -6,14 +6,12 @@
 
 #import <Safari/PreferencesModule.h>
 
-@class NSButton, NSComboBox, NSPopUpButton, NSTextField, NSView, PlugInAutoStartData;
+@class EnableDevelopMenuButtonHostViewController, NSButton, NSComboBox, NSPopUpButton, NSTextField, NSView, PlugInAutoStartData;
 
 __attribute__((visibility("hidden")))
 @interface AdvancedPreferences : PreferencesModule
 {
     NSTextField *accessibilityLabel;
-    NSButton *bookmarksMenuIncludesBonjourCheckbox;
-    NSButton *favoritesBarIncludesBonjourCheckbox;
     NSPopUpButton *styleSheetPopUp;
     NSButton *minFontSizeCheckbox;
     NSComboBox *minFontSizeComboBox;
@@ -28,25 +26,22 @@ __attribute__((visibility("hidden")))
     PlugInAutoStartData *_plugInStartDataEditor;
     NSTextField *_plugInStartTallyField;
     NSButton *_plugInStartDetailsButton;
+    EnableDevelopMenuButtonHostViewController *_remoteDevelopMenuButtonViewController;
     NSView *_contentView;
     NSTextField *_smartSearchFieldSectionLabel;
     NSButton *_smartSearchFieldShowsFullURLCheckbox;
-    NSTextField *_pageZoomSectionLabel;
-    NSPopUpButton *_pageZoomPopUp;
+    NSButton *_saveReadingListItemsAutomaticallyCheckbox;
+    NSView *_includeDevelopMenuButtonContainerView;
 }
 
-+ (void)_removeBonjourFromFavoritesBar;
-+ (void)_addBonjourToFavoritesBar;
-@property(nonatomic) __weak NSPopUpButton *pageZoomPopUp; // @synthesize pageZoomPopUp=_pageZoomPopUp;
-@property(nonatomic) __weak NSTextField *pageZoomSectionLabel; // @synthesize pageZoomSectionLabel=_pageZoomSectionLabel;
++ (void)setShowDevelopMenu:(BOOL)arg1;
+- (void).cxx_destruct;
+@property(nonatomic) __weak NSView *includeDevelopMenuButtonContainerView; // @synthesize includeDevelopMenuButtonContainerView=_includeDevelopMenuButtonContainerView;
+@property(nonatomic) __weak NSButton *saveReadingListItemsAutomaticallyCheckbox; // @synthesize saveReadingListItemsAutomaticallyCheckbox=_saveReadingListItemsAutomaticallyCheckbox;
 @property(nonatomic) __weak NSButton *smartSearchFieldShowsFullURLCheckbox; // @synthesize smartSearchFieldShowsFullURLCheckbox=_smartSearchFieldShowsFullURLCheckbox;
 @property(nonatomic) __weak NSTextField *smartSearchFieldSectionLabel; // @synthesize smartSearchFieldSectionLabel=_smartSearchFieldSectionLabel;
 @property(nonatomic) __weak NSView *contentView; // @synthesize contentView=_contentView;
-- (void).cxx_destruct;
-- (void)_updateBonjourCheckboxes;
-- (void)_updateCheckbox:(id)arg1 fromPreferenceKey:(id)arg2;
-- (void)_updateCheckbox:(id)arg1 isChecked:(BOOL)arg2 determinedFromPreferenceKey:(id)arg3;
-- (id)helpAnchor;
+- (id)safariHelpAnchor;
 - (void)moduleWasInstalled;
 - (void)moduleWillBeRemoved;
 - (void)initializeFromDefaults;
@@ -60,17 +55,16 @@ __attribute__((visibility("hidden")))
 - (void)comboBoxSelectionDidChange:(id)arg1;
 - (void)takeMinimumFontSizeFrom:(id)arg1;
 - (void)toggleUseMinimumFontSize:(id)arg1;
-- (void)takeDefaultPageZoomFrom:(id)arg1;
-- (void)toggleBookmarksMenuIncludesBonjour:(id)arg1;
-- (void)toggleFavoritesBarIncludesBonjour:(id)arg1;
 - (void)toggleSmartSearchFieldShowsFullURL:(id)arg1;
 - (void)updateProxiesButton;
 - (void)keyboardUIModeDidChange:(id)arg1;
 - (void)updatePlugInSnapshottingButton;
 - (void)updateTabToAllViews;
-- (id)_menuForDefaultPageZoomFactors;
-- (void)_updateDefaultPageZoomViews;
+- (void)updateMinFontSizeViews;
+- (void)_updateReadingListSaveOfflineAutomaticallyCheckbox;
 - (void)_updateSmartSearchFieldShowsFullURLButton;
+- (long long)sanityCheckMinimumFontSize:(long long)arg1;
+- (void)toggleSavingArticlesOfflineAutomatically:(id)arg1;
 - (void)awakeFromNib;
 - (void)_setWidthConstraintForTabToAllOptionHintTextField;
 - (double)_widthOfTextField:(id)arg1 usingString:(id)arg2;
@@ -81,8 +75,8 @@ __attribute__((visibility("hidden")))
 - (void)disableUserStyleSheet:(id)arg1;
 - (void)takeStyleSheetFromMenuItem:(id)arg1;
 - (void)updateStyleSheetMenu;
-- (id)styleSheetPathPreference;
-- (void)setStyleSheetPathPreference:(id)arg1;
+- (id)_styleSheetPathPreference;
+- (void)_setStyleSheetPathPreference:(id)arg1;
 - (BOOL)userStyleSheetEnabled;
 - (void)setUserStyleSheetEnabled:(_Bool)arg1;
 - (void)openProxyPreferences:(id)arg1;

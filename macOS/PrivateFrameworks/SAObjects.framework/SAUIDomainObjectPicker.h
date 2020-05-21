@@ -6,12 +6,15 @@
 
 #import <SAObjects/SAUISnippet.h>
 
+@class NSString;
+
 @interface SAUIDomainObjectPicker : SAUISnippet
 {
 }
 
 + (id)domainObjectPickerWithDictionary:(id)arg1 context:(id)arg2;
 + (id)domainObjectPicker;
+@property(copy, nonatomic) NSString *idNodeName;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

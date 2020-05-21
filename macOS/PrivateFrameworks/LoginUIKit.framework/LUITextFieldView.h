@@ -9,41 +9,41 @@
 #import "LUITextFieldDelegate.h"
 #import "NSTextFieldDelegate.h"
 
-@class CALayer, CATextLayer, LUITextField, NSButton, NSString;
+@class CALayer, LUIEffectsButton, LUITextField, NSStackView, NSString;
 
 @interface LUITextFieldView : NSView <LUITextFieldDelegate, NSTextFieldDelegate>
 {
+    CALayer *_backgroundLayer;
+    NSStackView *_stackView;
     LUITextField *_textField;
-    NSButton *_actionButton;
-    CALayer *_textFieldLayer;
-    CATextLayer *_placeholderTextLayer;
+    LUIEffectsButton *_actionButton;
     id _delegate;
 }
 
 @property id delegate; // @synthesize delegate=_delegate;
+- (void)dealloc;
+- (id)initWithFrame:(struct CGRect)arg1;
 - (id)accessibilityPlaceholderValue;
 - (void)setUIEnabled:(BOOL)arg1;
 - (void)setPlaceholderString:(id)arg1;
+- (id)placeholderString;
 - (void)setStringValue:(id)arg1;
 - (id)stringValue;
 - (struct CGRect)focusRingMaskBounds;
 - (id)textField;
 - (void)setFrameSize:(struct CGSize)arg1;
-- (void)dealloc;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (void)_setupSubviews;
 - (void)actionButtonSetTarget:(id)arg1;
 - (void)actionButtonSetAction:(SEL)arg1;
 - (void)actionButtonSetImage:(id)arg1;
 - (void)actionButtonSetHidden:(BOOL)arg1;
 - (BOOL)actionButtonIsHidden;
-- (id)actionButton;
 - (BOOL)textField:(id)arg1 processTextMovement:(long long)arg2;
 - (void)controlTextDidEndEditing:(id)arg1;
 - (void)controlTextDidBeginEditing:(id)arg1;
 - (void)controlTextDidChange:(id)arg1;
-- (struct CGRect)_calculateTextFieldFrame;
 - (id)_placeholderTextColor;
-- (float)_textFieldLayerOpacity;
+- (float)_backgroundLayerOpacity;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

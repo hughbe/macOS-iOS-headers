@@ -24,7 +24,7 @@
 + (void)updateCachedValue:(id)arg1 forKey:(id)arg2;
 + (id)agentCache;
 + (void)_agentSideSetup;
-- (void)dealloc;
+- (void).cxx_destruct;
 - (void)_addCacheObserver:(id)arg1;
 - (void)_cacheUpdatedTo:(id)arg1;
 - (id)_cachedValueForKey:(id)arg1;

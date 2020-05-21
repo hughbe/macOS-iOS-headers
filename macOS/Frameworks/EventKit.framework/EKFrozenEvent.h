@@ -6,11 +6,11 @@
 
 #import <EventKit/EKFrozenCalendarItem.h>
 
-#import "EKProtocolEventOccurrence.h"
+#import "EKEventOccurrenceProtocol.h"
 
-@class NSDate, NSDateComponents, NSDictionary, NSManagedObjectID, NSNumber, NSString, NSTimeZone, NSURL;
+@class NSData, NSDate, NSDateComponents, NSDictionary, NSManagedObjectID, NSNumber, NSString, NSTimeZone, NSURL;
 
-@interface EKFrozenEvent : EKFrozenCalendarItem <EKProtocolEventOccurrence>
+@interface EKFrozenEvent : EKFrozenCalendarItem <EKEventOccurrenceProtocol>
 {
     BOOL dontSendNotificationForChanges;
     BOOL isDetached;
@@ -20,7 +20,6 @@
     BOOL isYearlessLeapMonthBirthday;
     BOOL suggestionInfoAcknowledged;
     int availabilityEnum;
-    NSString *birthdayTitle;
     id <EKProtocolStructuredLocation> ekStructuredStartLocation;
     id <EKProtocolStructuredLocation> ekStructuredEndLocation;
     NSDate *endDateUnadjustedFromUTC;
@@ -39,11 +38,26 @@
     NSString *suggestionInfoUniqueKey;
     double travelDuration;
     NSString *travelAdvisoryBehaviorString;
-    NSDateComponents *_cachedDuration;
+    unsigned long long junkStatus;
+    NSURL *conferenceURL;
+    NSDate *_cachedAdjustedEndDate;
+    NSDate *_cachedAdjustedProposedStartDate;
+    NSDate *_cachedAdjustedProposedEndDate;
+    long long _cachedAvailability;
+    NSDateComponents *_cachedDurationComponents;
+    long long _cachedStatus;
 }
 
 + (Class)meltedClass;
-@property(retain) NSDateComponents *cachedDuration; // @synthesize cachedDuration=_cachedDuration;
+- (void).cxx_destruct;
+@property(readonly) long long cachedStatus; // @synthesize cachedStatus=_cachedStatus;
+@property(readonly) NSDateComponents *cachedDurationComponents; // @synthesize cachedDurationComponents=_cachedDurationComponents;
+@property(readonly) long long cachedAvailability; // @synthesize cachedAvailability=_cachedAvailability;
+@property(readonly) NSDate *cachedAdjustedProposedEndDate; // @synthesize cachedAdjustedProposedEndDate=_cachedAdjustedProposedEndDate;
+@property(readonly) NSDate *cachedAdjustedProposedStartDate; // @synthesize cachedAdjustedProposedStartDate=_cachedAdjustedProposedStartDate;
+@property(readonly) NSDate *cachedAdjustedEndDate; // @synthesize cachedAdjustedEndDate=_cachedAdjustedEndDate;
+@property(readonly, nonatomic) NSURL *conferenceURL; // @synthesize conferenceURL;
+@property(readonly, nonatomic) unsigned long long junkStatus; // @synthesize junkStatus;
 @property(readonly, copy, nonatomic) NSString *travelAdvisoryBehaviorString; // @synthesize travelAdvisoryBehaviorString;
 @property(readonly, nonatomic) double travelDuration; // @synthesize travelDuration;
 @property(readonly, nonatomic) NSString *suggestionInfoUniqueKey; // @synthesize suggestionInfoUniqueKey;
@@ -57,7 +71,7 @@
 @property(readonly, copy, nonatomic) NSString *responseComment; // @synthesize responseComment;
 @property(readonly, copy, nonatomic) NSString *privacyLevelString; // @synthesize privacyLevelString;
 @property(readonly, nonatomic) unsigned long long participantsStatus; // @synthesize participantsStatus;
-@property(readonly, nonatomic) NSString *lunarCalendarString; // @synthesize lunarCalendarString;
+@property(readonly, copy, nonatomic) NSString *lunarCalendarString; // @synthesize lunarCalendarString;
 @property(readonly, nonatomic) NSString *nameForBirthday; // @synthesize nameForBirthday;
 @property(readonly, nonatomic) BOOL isYearlessLeapMonthBirthday; // @synthesize isYearlessLeapMonthBirthday;
 @property(readonly, nonatomic) BOOL isYearlessBirthday; // @synthesize isYearlessBirthday;
@@ -69,14 +83,21 @@
 @property(readonly, copy, nonatomic) id <EKProtocolStructuredLocation> ekStructuredEndLocation; // @synthesize ekStructuredEndLocation;
 @property(readonly, copy, nonatomic) id <EKProtocolStructuredLocation> ekStructuredStartLocation; // @synthesize ekStructuredStartLocation;
 @property(readonly, nonatomic) BOOL dontSendNotificationForChanges; // @synthesize dontSendNotificationForChanges;
-@property(readonly, copy, nonatomic) NSString *birthdayTitle; // @synthesize birthdayTitle;
 @property(readonly, nonatomic) int availabilityEnum; // @synthesize availabilityEnum;
-- (void).cxx_destruct;
-- (id)durationComponents;
+@property(readonly, nonatomic) long long status;
+@property(readonly, copy, nonatomic) NSDate *proposedEndDateUnadjustedFromUTCForMe;
+@property(readonly, nonatomic) NSDate *proposedEndDate;
+@property(readonly, copy, nonatomic) NSDate *proposedStartDateUnadjustedFromUTCForMe;
+@property(readonly, nonatomic) NSDate *proposedStartDate;
 - (BOOL)isEvent;
+@property(readonly, nonatomic) NSDate *endDate;
+- (id)durationComponents;
+@property(readonly, nonatomic) long long availability;
+@property(readonly, nonatomic) BOOL allowsAvailabilityModifications;
 - (id)initWithObject:(id)arg1 createPartialObject:(BOOL)arg2 preFrozenRelationshipObjects:(id)arg3;
 
 // Remaining properties
+@property(readonly, nonatomic) BOOL allowsParticipantStatusModifications;
 @property(readonly, nonatomic) BOOL cachedHasAlarm;
 @property(readonly, nonatomic) BOOL cachedHasAttachment;
 @property(readonly, nonatomic) BOOL cachedHasAttendee;
@@ -85,19 +106,23 @@
 @property(readonly, nonatomic) NSNumber *calendarItemPermissionNumber;
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;
 @property(readonly, copy, nonatomic) NSString *contactIdentifiersString;
-@property(readonly, copy, nonatomic) id <EKProtocolCalendar> container;
+@property(readonly, retain, nonatomic) id <CalendarModelProtocol> container;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, nonatomic) BOOL defaultAlarmWasDeleted;
 @property(readonly, copy) NSString *description;
 @property(readonly, copy, nonatomic) id <EKProtocolStructuredLocation> ekStructuredLocation;
+@property(readonly, nonatomic) BOOL hasAttendees;
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) BOOL isPartialObject;
-@property(readonly, copy, nonatomic) NSDate *lastModifiedDate;
+@property(readonly, nonatomic) BOOL isScheduled;
+@property(readonly, copy, nonatomic) NSData *localStructuredData;
 @property(readonly, nonatomic) NSManagedObjectID *managedObjectID;
 @property(readonly, nonatomic) BOOL organizedByMe;
+@property(readonly, retain, nonatomic) id <EKProtocolParticipant> organizer;
 @property(readonly, copy, nonatomic) NSString *organizerEmail;
 @property(readonly, copy, nonatomic) NSString *organizerEncodedLikenessData;
 @property(readonly, copy, nonatomic) NSString *organizerName;
+@property(readonly, copy, nonatomic) NSString *organizerPhoneNumber;
 @property(readonly, copy, nonatomic) NSURL *organizerURL;
 @property(readonly, copy, nonatomic) id <EKProtocolParticipant> participantForMe;
 @property(readonly, nonatomic) NSDictionary *preFrozenRelationshipObjects;
@@ -106,7 +131,9 @@
 @property(readonly, copy, nonatomic) NSString *recurrenceSetID;
 @property(readonly, copy, nonatomic) NSString *relatedExternalID;
 @property(readonly, copy, nonatomic) NSString *scheduleAgentString;
+@property(readonly, copy, nonatomic) NSDate *startDate;
 @property(readonly, copy, nonatomic) NSDate *startDateUnadjustedFromUTC;
+@property(readonly, copy, nonatomic) NSData *structuredData;
 @property(readonly) Class superclass;
 @property(readonly, copy, nonatomic) NSTimeZone *timeZoneObject;
 

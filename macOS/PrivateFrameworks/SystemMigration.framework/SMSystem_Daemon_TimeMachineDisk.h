@@ -15,11 +15,10 @@
     NSObject<OS_dispatch_queue> *backupsQueue;
 }
 
-+ (id)timemachineDiskURLForBackupURL:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_queue> *backupsQueue; // @synthesize backupsQueue;
 @property(retain) NSString *humanName; // @synthesize humanName;
 @property(retain) NSMutableArray *availableBackups; // @synthesize availableBackups;
-- (void).cxx_destruct;
 - (id)accessibilityDescription;
 - (void)addBackup:(id)arg1;
 - (double)estimatedTransferRate;
@@ -29,7 +28,7 @@
 - (id)description;
 - (id)modelIcon;
 - (id)systemName;
-- (id)initWithURL:(id)arg1;
+- (id)initWithTMDataVolumeMountPoint:(id)arg1;
 
 @end
 

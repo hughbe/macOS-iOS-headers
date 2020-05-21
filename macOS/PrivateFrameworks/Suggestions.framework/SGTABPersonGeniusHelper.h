@@ -32,6 +32,7 @@ __attribute__((visibility("hidden")))
 + (id)_userMailAccounts;
 + (BOOL)_loadAccountsFramework;
 + (id)_equivalentEmailsForEmail:(id)arg1;
+- (void).cxx_destruct;
 @property BOOL includeScreenames; // @synthesize includeScreenames;
 @property(readonly) ABAddressBook *addressBook; // @synthesize addressBook;
 - (int)recentTypeForSuggestion:(id)arg1;
@@ -56,7 +57,6 @@ __attribute__((visibility("hidden")))
 @property(copy) NSArray *attributeNames;
 - (id)inputString;
 - (void)setInputString:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

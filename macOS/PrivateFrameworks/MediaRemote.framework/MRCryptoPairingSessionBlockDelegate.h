@@ -19,6 +19,7 @@
     CDUnknownBlockType _exchangeCompleteBlock;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType exchangeCompleteBlock; // @synthesize exchangeCompleteBlock=_exchangeCompleteBlock;
 @property(copy, nonatomic) CDUnknownBlockType promptForSetupCodeBlock; // @synthesize promptForSetupCodeBlock=_promptForSetupCodeBlock;
 @property(copy, nonatomic) CDUnknownBlockType hideSetupCodeBlock; // @synthesize hideSetupCodeBlock=_hideSetupCodeBlock;
@@ -30,7 +31,6 @@
 - (void)pairingSessionHideSetupCode:(id)arg1;
 - (void)pairingSession:(id)arg1 showSetupCode:(id)arg2;
 - (void)pairingSession:(id)arg1 didPrepareExchangeData:(id)arg2;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

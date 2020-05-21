@@ -12,9 +12,7 @@
 {
 }
 
-- (void)scheduleMaintenanceWithName:(id)arg1;
-- (void)scheduleMaintenance;
-- (BOOL)budgetMaintenance;
+- (void)scheduleMaintenanceWithName:(id)arg1 database:(id)arg2;
 
 @end
 

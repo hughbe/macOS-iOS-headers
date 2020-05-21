@@ -16,16 +16,16 @@
     BOOL _ChildFolderCountSpecified;
     EWSFolderIdType *_FolderId;
     EWSFolderIdType *_ParentFolderId;
+    NSString *_FolderClass;
     NSString *_DisplayName;
     long long _TotalCount;
     long long _ChildFolderCount;
     EWSEffectiveRightsType *_EffectiveRights;
     NSArray *_ExtendedProperty;
-    NSString *_FolderClass;
 }
 
 + (id)definition;
-@property(copy, nonatomic) NSString *FolderClass; // @synthesize FolderClass=_FolderClass;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSArray *ExtendedProperty; // @synthesize ExtendedProperty=_ExtendedProperty;
 @property(retain, nonatomic) EWSEffectiveRightsType *EffectiveRights; // @synthesize EffectiveRights=_EffectiveRights;
 @property(nonatomic) BOOL ChildFolderCountSpecified; // @synthesize ChildFolderCountSpecified=_ChildFolderCountSpecified;
@@ -33,9 +33,9 @@
 @property(nonatomic) BOOL TotalCountSpecified; // @synthesize TotalCountSpecified=_TotalCountSpecified;
 @property(nonatomic) long long TotalCount; // @synthesize TotalCount=_TotalCount;
 @property(copy, nonatomic) NSString *DisplayName; // @synthesize DisplayName=_DisplayName;
+@property(copy, nonatomic) NSString *FolderClass; // @synthesize FolderClass=_FolderClass;
 @property(retain, nonatomic) EWSFolderIdType *ParentFolderId; // @synthesize ParentFolderId=_ParentFolderId;
 @property(retain, nonatomic) EWSFolderIdType *FolderId; // @synthesize FolderId=_FolderId;
-- (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 
 // Remaining properties

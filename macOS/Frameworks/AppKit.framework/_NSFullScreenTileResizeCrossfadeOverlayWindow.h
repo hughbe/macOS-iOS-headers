@@ -17,7 +17,9 @@ __attribute__((visibility("hidden")))
     unsigned long long _closingSpaceID;
     unsigned long long _openingSpaceID;
     BOOL _doResize;
+    BOOL _lockedMenuBar;
     struct CGRect _targetFrame;
+    struct CGRect _targetTileFrame;
     _NSFullScreenTileResizeCrossfadeOverlayLayer *_beforeTileLayer;
     _NSFullScreenTileResizeCrossfadeOverlayLayer *_afterTileLayer;
     _NSFullScreenTileResizeCrossfadeOverlayLayer *_closingTileLayer;
@@ -28,14 +30,19 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (void)disableAutomaticTermination;
 - (void)enableAutomaticTermination;
+- (void)close;
 - (struct CGRect)constrainFrameRect:(struct CGRect)arg1 toScreen:(id)arg2;
 - (void)_setWindowTag;
 - (BOOL)_shouldAutoFlattenLayerTree;
 - (void)animateSwapWithDuration:(double)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)configureAnimationToFinalStateWithDuration:(double)arg1;
+- (struct CGRect)closingTileTargetFrame;
 - (void)captureAfterWindowsUsingTileFrame:(struct CGRect)arg1;
 - (void)captureBeforeWindowsUsingTileFrame:(struct CGRect)arg1;
-- (id)initWithTileID:(unsigned long long)arg1 parentSpaceID:(unsigned long long)arg2 closingSpaceID:(unsigned long long)arg3 screen:(id)arg4 doResize:(BOOL)arg5;
-- (id)initWithTileID:(unsigned long long)arg1 parentSpaceID:(unsigned long long)arg2 screen:(id)arg3;
+- (void)doFinalBeforeSetupWithAfterFrame:(struct CGRect)arg1;
+- (id)windowIDsForCaptureOnSpace:(unsigned long long)arg1;
+- (id)windowIDsForCaptureOnSpace:(unsigned long long)arg1 predicate:(CDUnknownBlockType)arg2;
+- (id)initWithTileID:(unsigned long long)arg1 parentSpaceID:(unsigned long long)arg2 closingSpaceID:(unsigned long long)arg3 screen:(id)arg4 doResize:(BOOL)arg5 placeInWallSpace:(BOOL)arg6;
 
 @end
 

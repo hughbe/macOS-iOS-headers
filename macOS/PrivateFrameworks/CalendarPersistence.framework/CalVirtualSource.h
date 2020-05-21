@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "EKProtocolCalendarSource.h"
+#import "CalendarSourceModelProtocol.h"
 
 @class NSDictionary, NSManagedObjectID, NSSet, NSString, NSURL;
 
-@interface CalVirtualSource : NSObject <EKProtocolCalendarSource>
+@interface CalVirtualSource : NSObject <CalendarSourceModelProtocol>
 {
     NSString *_typeString;
     NSString *_localizedTitle;
@@ -18,18 +18,22 @@
 }
 
 + (id)propertiesUnavailableForPartialObjects;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) int displayOrder; // @synthesize displayOrder=_displayOrder;
 @property(readonly, retain, nonatomic) NSString *typeString; // @synthesize typeString=_typeString;
 @property(readonly, nonatomic) NSDictionary *preFrozenRelationshipObjects;
 - (BOOL)isPropertyUnavailable:(id)arg1;
 @property(readonly, nonatomic) BOOL isPartialObject;
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;
+@property(readonly, nonatomic) BOOL requiresOpeningAttachmentAsLink;
 - (BOOL)supportsEmailValidation;
 - (BOOL)supportsTaskCalendarCreation;
 @property(readonly, nonatomic) BOOL supportsSharingScheduling;
 @property(readonly, nonatomic) BOOL supportsPrivateEvents;
+@property(readonly, nonatomic) BOOL supportsPhoneNumbers;
 @property(readonly, nonatomic) BOOL supportsManagedAttachments;
 @property(readonly, nonatomic) BOOL supportsLikenessPropagation;
+@property(readonly, nonatomic) BOOL supportsJunkReporting;
 @property(readonly, nonatomic) BOOL supportsFreebusy;
 @property(readonly, nonatomic) BOOL supportsAttendeeComments;
 - (BOOL)supportsEventCalendarCreation;
@@ -46,7 +50,6 @@
 @property(readonly, retain, nonatomic) NSString *sourceIdentifier;
 @property(readonly, copy, nonatomic) NSString *externalSourceIdentifier;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithTypeString:(id)arg1 displayOrder:(int)arg2 localizedTitle:(id)arg3;
 @property(readonly, nonatomic) NSURL *serverURL;
 @property(readonly, nonatomic) NSString *dropBoxPathString;

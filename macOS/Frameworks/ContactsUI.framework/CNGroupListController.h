@@ -22,12 +22,12 @@
     NSString *_selectedGroupEntryIdentifier;
 }
 
+- (void).cxx_destruct;
 @property(copy) NSString *selectedGroupEntryIdentifier; // @synthesize selectedGroupEntryIdentifier=_selectedGroupEntryIdentifier;
 @property(retain, nonatomic) NSLayoutConstraint *groupListViewWidthConstraint; // @synthesize groupListViewWidthConstraint=_groupListViewWidthConstraint;
 @property(retain) id <ABGroupHelperFactory> helperFactory; // @synthesize helperFactory=_helperFactory;
 @property(nonatomic) __weak ABGroupEntriesList *groupEntriesList; // @synthesize groupEntriesList=_groupEntriesList;
 @property(retain, nonatomic) CNGroupListView *groupListView; // @synthesize groupListView=_groupListView;
-- (void).cxx_destruct;
 - (void)resetCountOfGroupsViewed;
 @property(readonly) unsigned long long countOfGroupsViewed;
 - (id)selectedGroupEntry;
@@ -57,7 +57,7 @@
 - (BOOL)isValidRow:(long long)arg1;
 - (void)programaticallyChangeSelectionWithBlock:(CDUnknownBlockType)arg1;
 - (void)reloadAndRestoreSelection;
-- (void)setInitialSelection;
+- (void)performInitialSelection;
 - (void)groupEntriesDidChange:(id)arg1;
 - (void)registerForDraggedTypes:(id)arg1;
 - (void)setupListView;

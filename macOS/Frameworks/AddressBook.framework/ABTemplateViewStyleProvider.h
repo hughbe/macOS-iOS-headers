@@ -10,6 +10,7 @@
 {
 }
 
+- (BOOL)allowsPhotoEditing;
 - (double)nameViewPhotoInsetLeading;
 - (id)displayedCollectionViewProperties;
 

@@ -28,6 +28,8 @@
 @property unsigned short mirrorIndex; // @synthesize mirrorIndex=_mirrorIndex;
 @property unsigned short descriptorIndex; // @synthesize descriptorIndex;
 @property unsigned short descriptorType; // @synthesize descriptorType;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 @property(readonly) unsigned short configurationIndex; // @dynamic configurationIndex;
 - (id)_configuration;
 @property(readonly, nonatomic) NSArray *allSourceObjectTypes; // @dynamic allSourceObjectTypes;

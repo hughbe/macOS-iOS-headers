@@ -13,20 +13,20 @@ __attribute__((visibility("hidden")))
 {
     int _type;
     OADOrientedBounds *_orientedBounds;
-    int _format;
+    unsigned long long _format;
     NSDictionary *_adjustValues;
 }
 
 + (struct CGRect)canonicalBounds;
+- (void).cxx_destruct;
 - (struct CGPath *)copyShapeWithTransform:(struct CGAffineTransform)arg1;
 - (float)maxAdjustedValue;
 - (BOOL)isOffice12;
 - (struct CGAffineTransform)affineTransform;
 - (void)setAdjustValues:(id)arg1;
-- (void)setFileFormat:(int)arg1;
+- (void)setFileFormat:(unsigned long long)arg1;
 - (void)setShapeType:(int)arg1;
 - (void)setOrientedBounds:(id)arg1;
-- (void)dealloc;
 
 @end
 

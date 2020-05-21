@@ -18,11 +18,15 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)backendWithAccountCollection:(id)arg1;
++ (id)os_log;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) id <CNAccountCollection> accountCollection; // @synthesize accountCollection=_accountCollection;
+@property(readonly, nonatomic) NSPersistentStoreCoordinator *coordinator; // @synthesize coordinator=_coordinator;
+- (void)applyDiff:(id)arg1 toContainerWithIdentifier:(id)arg2;
 - (id)defaultContainer;
 - (id)allContainers;
 - (id)makePersistenceContextWithNotificationSource:(id)arg1;
 - (id)makeManagedObjectContextWithConcurrencyType:(unsigned long long)arg1;
-- (void)dealloc;
 - (id)initWithPersistentStoreCoordinator:(id)arg1 accountCollection:(id)arg2;
 
 // Remaining properties

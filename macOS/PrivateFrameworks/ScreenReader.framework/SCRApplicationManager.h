@@ -6,41 +6,63 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, SCRApplication, SCRCThreadKey, SCRDictationApplication, SCRNotificationCenterApplication, SCRSystemUIServerApplication;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, SCRApplication, SCRCThreadKey, SCRDFRControlStripApplication, SCRDictationApplication, SCRNotificationCenterApplication, SCRSetupAssistantApplication, SCRSystemUIServerApplication;
 
 __attribute__((visibility("hidden")))
 @interface SCRApplicationManager : NSObject
 {
-    NSArray *_targetApplications;
-    NSMutableArray *_applications;
-    NSMutableArray *_busyApplications;
-    struct __CFSet *_applicationCache;
-    NSMutableDictionary *_appByURLDictionary;
-    SCRApplication *_keyboardApplication;
-    SCRApplication *_focusedApplication;
-    SCRApplication *_keyboardUserApplication;
-    SCRApplication *_focusedUserApplication;
-    SCRSystemUIServerApplication *_systemUIServerApplication;
-    SCRNotificationCenterApplication *_notificationCenterApplication;
-    SCRApplication *_finderApplication;
-    SCRApplication *_dockApplication;
-    SCRDictationApplication *_dictationApplication;
-    SCRApplication *_previousFocusedApplication;
     struct ProcessSerialNumber _applicationOnDeck;
-    NSMutableSet *_launchSet;
     double _lastLaunchTime;
     unsigned int _userApplicationCount;
-    unsigned int _dashboardApplicationCount;
     void *_lsNotificationID;
-    SCRCThreadKey *_threadKey;
     struct {
         unsigned int welcomeMessagePlayed:1;
         unsigned int creatingApplicationsAtStartup:1;
-        unsigned int reserved:30;
     } _flags;
+    SCRApplication *_keyboardApplication;
+    SCRApplication *_previousFocusedApplication;
+    SCRApplication *_mostRecentLaunchedApplication;
+    SCRApplication *_focusedUserApplication;
+    SCRApplication *_keyboardUserApplication;
+    SCRDictationApplication *_dictationApplication;
+    SCRDFRControlStripApplication *_dfrControlStripApplication;
+    SCRApplication *_dockApplication;
+    SCRApplication *_finderApplication;
+    SCRNotificationCenterApplication *_notificationCenterApplication;
+    SCRSetupAssistantApplication *_setupAssistantApplication;
+    SCRSystemUIServerApplication *_systemUIServerApplication;
+    SCRCThreadKey *_threadKey;
+    struct __CFSet *_applicationCache;
+    double _lastFocusedApplicationDidChange;
+    NSMutableArray *__applications;
+    NSMutableArray *__busyApplications;
+    NSArray *__targetApplications;
+    SCRApplication *__voFocusedApplication;
+    NSMutableDictionary *__appByURLDictionary;
+    NSMutableSet *__launchSet;
 }
 
 + (BOOL)processSerialNumber:(struct ProcessSerialNumber *)arg1 forPid:(int)arg2;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableSet *_launchSet; // @synthesize _launchSet=__launchSet;
+@property(retain, nonatomic) NSMutableDictionary *_appByURLDictionary; // @synthesize _appByURLDictionary=__appByURLDictionary;
+@property(retain, nonatomic) SCRSetupAssistantApplication *setupAssistantApplication; // @synthesize setupAssistantApplication=_setupAssistantApplication;
+@property(retain, nonatomic) SCRDFRControlStripApplication *dfrControlStripApplication; // @synthesize dfrControlStripApplication=_dfrControlStripApplication;
+@property(retain, nonatomic) SCRApplication *dictationApplication; // @synthesize dictationApplication=_dictationApplication;
+@property(retain, nonatomic) SCRApplication *finderApplication; // @synthesize finderApplication=_finderApplication;
+@property(retain, nonatomic) SCRNotificationCenterApplication *notificationCenterApplication; // @synthesize notificationCenterApplication=_notificationCenterApplication;
+@property(retain, nonatomic) SCRSystemUIServerApplication *systemUIServerApplication; // @synthesize systemUIServerApplication=_systemUIServerApplication;
+@property(retain, nonatomic) SCRApplication *dockApplication; // @synthesize dockApplication=_dockApplication;
+@property(retain, nonatomic) SCRApplication *mostRecentLaunchedApplication; // @synthesize mostRecentLaunchedApplication=_mostRecentLaunchedApplication;
+@property(retain, nonatomic) SCRApplication *previousFocusedApplication; // @synthesize previousFocusedApplication=_previousFocusedApplication;
+@property(retain, nonatomic) SCRApplication *keyboardUserApplication; // @synthesize keyboardUserApplication=_keyboardUserApplication;
+@property(retain, nonatomic) SCRApplication *focusedUserApplication; // @synthesize focusedUserApplication=_focusedUserApplication;
+@property(retain, nonatomic) SCRApplication *keyboardApplication; // @synthesize keyboardApplication=_keyboardApplication;
+@property(retain, nonatomic) SCRApplication *_voFocusedApplication; // @synthesize _voFocusedApplication=__voFocusedApplication;
+@property(retain, nonatomic) NSArray *_targetApplications; // @synthesize _targetApplications=__targetApplications;
+@property(retain, nonatomic) NSMutableArray *_busyApplications; // @synthesize _busyApplications=__busyApplications;
+@property(retain, nonatomic) NSMutableArray *_applications; // @synthesize _applications=__applications;
+@property(readonly, nonatomic) double lastFocusedApplicationDidChange; // @synthesize lastFocusedApplicationDidChange=_lastFocusedApplicationDidChange;
 - (id)firstApplicationMenuExtraItem;
 - (id)applicationMenuExtraItems;
 - (id)_applicationMenuExtraItems:(long long)arg1;
@@ -51,29 +73,22 @@ __attribute__((visibility("hidden")))
 - (id)runningApplicationBundlesIDs;
 - (void)applicationFailedToLaunch:(id)arg1;
 - (void)applicationFinishedLaunching:(id)arg1;
-- (id)finderApplication;
-- (id)notificationCenterApplication;
-- (id)systemUIServerApplication;
-- (id)dictationApplication;
-- (id)dockApplication;
-- (id)keyboardApplication;
-- (id)keyboardUserApplication;
-- (id)previousFocusedApplication;
-- (id)focusedUserApplication;
-- (id)focusedApplication;
-- (void)setFocusedApplication:(id)arg1;
+@property(readonly, nonatomic) SCRApplication *frontmostApplication;
+@property(retain, nonatomic) SCRApplication *focusedApplication;
 - (void)setFocusedAndKeyboardApplication:(id)arg1;
 - (void)virtuallyFocusOnFrontMostApplication;
 - (void)setVirtualFocusToUIElement:(id)arg1 speakCommand:(BOOL)arg2;
 - (void)setVirtualFocusToKeyboardFocus;
 - (void)setFocusedAndKeyboardApplicationToFrontMostApplication;
 - (id)applicationWithURL:(id)arg1;
+- (id)applicationWithPid:(int)arg1;
 - (id)applicationWithPSN:(struct ProcessSerialNumber)arg1;
 - (id)applicationWithUIElement:(id)arg1;
 - (id)applications;
 - (BOOL)welcomeMessagePlayed;
 - (BOOL)isCreatingApplicationsAtStartup;
 - (void)_creatingApplicationsAtStartup:(BOOL)arg1;
+- (id)init;
 - (BOOL)wst_isApplicationRunning:(id)arg1;
 - (void)_handleNotification:(int)arg1 time:(double)arg2 data:(void *)arg3 asn:(struct __LSASN *)arg4 context:(const void *)arg5 session:(int)arg6 notificationID:(void *)arg7;
 - (void)_verifyLaunchedApplication:(id)arg1;
@@ -91,8 +106,9 @@ __attribute__((visibility("hidden")))
 - (void)_setVirtualFocusToUIElementNotSpeakingCommand:(id)arg1;
 - (void)_setVirtualFocusToUIElementSpeakingCommand:(id)arg1;
 - (void)_setVirtualFocusToKeyboardFocus;
-- (unsigned int)wst_dashboardApplicationCount;
 - (unsigned int)wst_userApplicationCount;
+- (id)wst_dfrControlStripApplication;
+- (id)wst_setupAssistantApplication;
 - (id)wst_dictationApplication;
 - (id)wst_dockApplication;
 - (id)wst_finderApplication;
@@ -101,6 +117,7 @@ __attribute__((visibility("hidden")))
 - (id)wst_runningApplicationBundlesIDs;
 - (id)wst_focusedUserApplication;
 - (id)wst_keyboardUserApplication;
+- (id)wst_mostRecentLaunchedApplication;
 - (id)wst_previousFocusedApplication;
 - (id)wst_focusedApplication;
 - (id)wst_keyboardApplication;

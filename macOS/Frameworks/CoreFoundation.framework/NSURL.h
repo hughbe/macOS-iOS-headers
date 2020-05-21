@@ -8,11 +8,10 @@
 
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
-#import "NSURLHandleClient.h"
 
 @class NSData, NSNumber, NSString;
 
-@interface NSURL : NSObject <NSSecureCoding, NSCopying, NSURLHandleClient>
+@interface NSURL : NSObject <NSSecureCoding, NSCopying>
 {
     NSString *_urlString;
     NSURL *_baseURL;

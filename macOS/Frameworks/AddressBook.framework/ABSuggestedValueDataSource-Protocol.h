@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class SGLabeledObject;
+@class CNLabeledValue, NSString;
 
 @protocol ABSuggestedValueDataSource <NSObject>
 
 @optional
-- (void)rejectSuggestedValue:(SGLabeledObject *)arg1;
-- (void)confirmSuggestedValue:(SGLabeledObject *)arg1;
+- (void)rejectLabeledValue:(CNLabeledValue *)arg1 valueKeyPath:(NSString *)arg2;
+- (void)confirmLabeledValue:(CNLabeledValue *)arg1 valueKeyPath:(NSString *)arg2;
 @end
 

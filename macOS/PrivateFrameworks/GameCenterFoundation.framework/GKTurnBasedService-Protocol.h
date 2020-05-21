@@ -9,7 +9,7 @@
 @class GKMatchRequestInternal, GKPlayerInternal, GKTurnBasedMatchInternal, NSArray, NSData, NSDictionary, NSString;
 
 @protocol GKTurnBasedService <NSObject>
-- (oneway void)reserveShareParticipantSlots:(long long)arg1 andInvitePlayers:(NSArray *)arg2 withMessage:(NSString *)arg3 forMatch:(GKTurnBasedMatchInternal *)arg4 handler:(void (^)(NSError *))arg5;
+- (oneway void)reserveShareParticipantSlots:(long long)arg1 minPlayerCount:(long long)arg2 maxPlayerCount:(long long)arg3 andInvitePlayers:(NSArray *)arg4 withMessage:(NSString *)arg5 forMatch:(GKTurnBasedMatchInternal *)arg6 handler:(void (^)(NSError *))arg7;
 - (oneway void)loadURLWithTBGMatch:(GKTurnBasedMatchInternal *)arg1 player:(GKPlayerInternal *)arg2 matchRequest:(GKMatchRequestInternal *)arg3 handler:(void (^)(NSURL *, NSError *))arg4;
 - (oneway void)sendReminderToParticipants:(NSArray *)arg1 message:(NSDictionary *)arg2 match:(GKTurnBasedMatchInternal *)arg3 handler:(void (^)(NSError *))arg4;
 - (oneway void)getNextTurnBasedEventWithHandler:(void (^)(NSString *, NSString *, long long, BOOL, NSError *))arg1;

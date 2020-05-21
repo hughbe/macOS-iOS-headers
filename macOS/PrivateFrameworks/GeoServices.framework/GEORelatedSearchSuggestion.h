@@ -8,14 +8,13 @@
 
 @class GEOPDRelatedSearchSuggestion, NSString;
 
-__attribute__((visibility("hidden")))
 @interface GEORelatedSearchSuggestion : NSObject
 {
     GEOPDRelatedSearchSuggestion *_relatedSearchSuggestion;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) GEOPDRelatedSearchSuggestion *relatedSearchSuggestion; // @synthesize relatedSearchSuggestion=_relatedSearchSuggestion;
-- (void)dealloc;
 - (id)_suggestionEntryMetadata;
 @property(readonly, nonatomic) NSString *searchBarDisplayToken;
 @property(readonly, nonatomic) NSString *displayString;

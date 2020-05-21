@@ -22,6 +22,7 @@
     NSMutableArray *_currentResults;
 }
 
+- (void).cxx_destruct;
 @property BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
 @property(retain) NSMutableArray *currentResults; // @synthesize currentResults=_currentResults;
 @property(retain) NSDictionary *searchTerms; // @synthesize searchTerms=_searchTerms;
@@ -38,7 +39,6 @@
 - (id)searchFor:(id)arg1 ofTypes:(id)arg2 withAccountInfoProvider:(id)arg3;
 - (void)resetQuery;
 - (void)cancelQuery;
-- (void)dealloc;
 - (id)initWithDelegate:(id)arg1;
 
 @end

@@ -17,6 +17,7 @@
     NSString *_inboxURI;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSString *inboxURI; // @synthesize inboxURI=_inboxURI;
 @property(retain) NSString *uri; // @synthesize uri=_uri;
 - (void)taskGroup:(id)arg1 didFinishWithError:(id)arg2;
@@ -27,7 +28,6 @@
 - (void)finishOperation;
 - (void)setError:(id)arg1;
 - (void)performOperation;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 session:(id)arg2 URI:(id)arg3 inboxURI:(id)arg4;
 
 // Remaining properties

@@ -10,7 +10,7 @@ __attribute__((visibility("hidden")))
 @interface _NSIdleTimer : NSObject
 {
     unsigned long long _id;
-    int _lock;
+    struct os_unfair_lock_s _lock;
     unsigned long long _suspensionCount;
     CDUnknownBlockType _handler;
 }

@@ -10,6 +10,7 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetCollectionInspector : AVFigObjectInspector <NSCopying>
 {
     struct OpaqueFigAssetCollection *_figCollection;
@@ -22,7 +23,6 @@
 @property(readonly, nonatomic) NSString *type;
 - (void *)_valueAsCFTypeForProperty:(struct __CFString *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (void)_cleanUpUncollectables;
 - (id)initWithFigCollection:(struct OpaqueFigAssetCollection *)arg1;

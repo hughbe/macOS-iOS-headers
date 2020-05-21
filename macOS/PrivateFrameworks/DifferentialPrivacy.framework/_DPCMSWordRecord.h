@@ -16,18 +16,17 @@
     NSString *_plainFragment;
 }
 
-+ (id)recordWithKey:(id)arg1 plainSequence:(id)arg2 sequence:(id)arg3 sequenceHashIndex:(unsigned short)arg4 plainFragment:(id)arg5 fragment:(id)arg6 fragmentHashIndex:(unsigned short)arg7 fragmentPosition:(unsigned short)arg8 creationDate:(double)arg9 submitted:(BOOL)arg10 objectId:(id)arg11;
 + (id)entityName;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *plainFragment; // @synthesize plainFragment=_plainFragment;
 @property(nonatomic) short fragmentHashIndex; // @synthesize fragmentHashIndex=_fragmentHashIndex;
 @property(nonatomic) short fragmentPosition; // @synthesize fragmentPosition=_fragmentPosition;
 @property(retain, nonatomic) NSData *fragment; // @synthesize fragment=_fragment;
-- (void).cxx_destruct;
 - (id)jsonString;
-- (id)description;
-- (id)initWithKey:(id)arg1 plainSequence:(id)arg2 sequence:(id)arg3 sequenceHashIndex:(unsigned short)arg4 plainFragment:(id)arg5 fragment:(id)arg6 fragmentHashIndex:(unsigned short)arg7 fragmentPosition:(unsigned short)arg8 creationDate:(double)arg9 submitted:(BOOL)arg10 objectId:(id)arg11;
 - (BOOL)copyFromManagedObject:(id)arg1;
 - (BOOL)copyToManagedObject:(id)arg1;
+- (id)description;
+- (id)initWithKey:(id)arg1 plainSequence:(id)arg2 sequence:(id)arg3 sequenceHashIndex:(unsigned short)arg4 plainFragment:(id)arg5 fragment:(id)arg6 fragmentHashIndex:(unsigned short)arg7 fragmentPosition:(unsigned short)arg8 creationDate:(double)arg9 submitted:(BOOL)arg10 objectId:(id)arg11;
 
 @end
 

@@ -10,6 +10,7 @@
 {
 }
 
+- (struct CGPoint)_menuLocationForEvent:(id)arg1 inCellFrame:(struct CGRect)arg2 ofView:(id)arg3;
 - (void)drawBorderAndBackgroundWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (unsigned long long)controlSize;
 - (unsigned long long)arrowPosition;

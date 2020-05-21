@@ -11,23 +11,32 @@
 
 @class ABCollectionViewItem, ABSuggestedValueViewController, NSPopover, NSString;
 
-__attribute__((visibility("hidden")))
-@interface ABCollectionReviewSuggestionAction : ABCollectionAbstractAction <ABSuggestedValueViewControllerDelegate, NSPopoverDelegate>
+@interface ABCollectionReviewSuggestionAction : ABCollectionAbstractAction <NSPopoverDelegate, ABSuggestedValueViewControllerDelegate>
 {
-    NSPopover *_popover;
-    ABSuggestedValueViewController *_viewController;
     ABCollectionViewItem *_targetItem;
     id <ABCardCollectionViewDelegate> _collectionViewDelegate;
+    ABSuggestedValueViewController *_viewController;
+    NSPopover *_popover;
 }
 
-+ (id)snippetWithSuggestedValue:(id)arg1;
 + (id)sourceApplicationNameForSuggestedViewItem:(id)arg1;
-@property __weak id <ABCardCollectionViewDelegate> collectionViewDelegate; // @synthesize collectionViewDelegate=_collectionViewDelegate;
-@property __weak ABCollectionViewItem *targetItem; // @synthesize targetItem=_targetItem;
-- (void)confirmationViewController:(id)arg1 didRejectValue:(id)arg2;
-- (void)confirmationViewController:(id)arg1 didConfirmValue:(id)arg2;
++ (id)snippetWithDonatedValue:(id)arg1;
++ (id)snippetWithSuggestedLabeledValue:(id)arg1;
++ (id)snippetWithLabeledValue:(id)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSPopover *popover; // @synthesize popover=_popover;
+@property(retain, nonatomic) ABSuggestedValueViewController *viewController; // @synthesize viewController=_viewController;
+@property(nonatomic) __weak id <ABCardCollectionViewDelegate> collectionViewDelegate; // @synthesize collectionViewDelegate=_collectionViewDelegate;
+@property(nonatomic) __weak ABCollectionViewItem *targetItem; // @synthesize targetItem=_targetItem;
+- (void)confirmationViewController:(id)arg1 didRejectLabeledValue:(id)arg2;
+- (void)confirmationViewController:(id)arg1 didConfirmLabeledValue:(id)arg2;
+- (void)configureViewWithSnippet:(id)arg1 labeledValue:(id)arg2;
+- (id)labeledValueFromCollectionViewItem:(id)arg1;
+- (id)snippetFromCollectionViewItem:(id)arg1;
+- (void)displaySnippetViewControllerInPopoverRelativeToCollectionViewItem:(id)arg1;
+- (void)updateSnippetViewControllerWithValueFromCollectionViewItem:(id)arg1;
+- (void)messageTraceExecutionOfActionOnCollectionViewItem:(id)arg1;
 - (void)ensurePopoverIsCreated;
-- (void)configureViewWithSnippet:(id)arg1 suggestedValue:(id)arg2;
 - (void)executeWithSender:(id)arg1 target:(id)arg2;
 - (void)executeWithTarget:(id)arg1;
 - (BOOL)validateWithTarget:(id)arg1;

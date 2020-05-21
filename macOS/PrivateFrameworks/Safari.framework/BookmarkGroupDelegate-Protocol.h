@@ -11,6 +11,7 @@
 @protocol BookmarkGroupDelegate <NSObject>
 
 @optional
+- (void)bookmarkGroup:(WebBookmarkGroup *)arg1 bookmarksWereCleanedUpInList:(WebBookmarkList *)arg2;
 - (void)bookmarkGroup:(WebBookmarkGroup *)arg1 bookmarkDidChange:(WebBookmark *)arg2 changeWasInteractive:(BOOL)arg3;
 - (void)bookmarkGroup:(WebBookmarkGroup *)arg1 bookmarkWasRemoved:(WebBookmark *)arg2 fromParent:(WebBookmarkList *)arg3;
 - (void)bookmarkGroup:(WebBookmarkGroup *)arg1 bookmarkWasAdded:(WebBookmark *)arg2 toParent:(WebBookmarkList *)arg3;

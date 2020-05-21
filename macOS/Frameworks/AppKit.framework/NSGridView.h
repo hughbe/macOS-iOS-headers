@@ -18,14 +18,19 @@
     NSMutableArray *_columns;
     NSMutableArray *_rows;
     NSMapTable *_cellTable;
-    id _reserved;
-    id _reserved2;
-    id _reserved3;
+    long long _currentConstraintGeneration;
+    struct {
+        unsigned int isDecoding:1;
+        unsigned int _unused:31;
+    } _flags;
 }
 
 + (BOOL)requiresConstraintBasedLayout;
 + (id)gridViewWithViews:(id)arg1;
 + (id)gridViewWithNumberOfColumns:(long long)arg1 rows:(long long)arg2;
+- (BOOL)_hasBaselineOffsetsAtSize;
+- (id)_viewForLastBaselineLayout;
+- (id)_viewForFirstBaselineLayout;
 - (void)_mergeCellsInRect:(struct CGRect)arg1;
 - (struct CGRect)_expandMergeBoundsIfNeeded:(struct CGRect)arg1;
 - (BOOL)_expandMergeBounds:(struct CGRect *)arg1 ifNeededForColumnAtIndex:(long long)arg2;
@@ -72,9 +77,13 @@
 - (void)_sanityCheck;
 - (void)_verifyMergedRegionWithHead:(id)arg1;
 - (BOOL)_cellTableContainsCell:(id)arg1;
+- (struct CGSize)_defaultContentCompressionResistancePriorities;
+- (struct CGSize)_defaultContentHuggingPriorities;
+- (BOOL)_safeHasSubview:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)_commonInit;
+- (void)_commonPostInit;
+- (void)_commonPreInit;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 

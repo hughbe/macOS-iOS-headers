@@ -8,7 +8,7 @@
 
 #import "NSWindowDelegate.h"
 
-@class ILMediaBrowserView, NSPointerArray, NSSegmentedControl, NSString;
+@class ILMediaBrowserView, NSArray, NSPointerArray, NSSegmentedControl, NSString;
 
 @interface AMMediaPanel : NSWindowController <NSWindowDelegate>
 {
@@ -19,6 +19,10 @@
 
 + (BOOL)shouldDisplayMediaGroup:(id)arg1;
 + (id)sharedMediaPanel;
+- (void).cxx_destruct;
+@property(retain) NSPointerArray *observers; // @synthesize observers=_observers;
+@property __weak ILMediaBrowserView *_mediaBrowserView; // @synthesize _mediaBrowserView;
+@property __weak NSSegmentedControl *_segmentedControl; // @synthesize _segmentedControl;
 - (void)windowWillClose:(id)arg1;
 - (void)showWindow:(id)arg1;
 - (void)removeObserver:(id)arg1;
@@ -29,10 +33,9 @@
 - (void)displayAudioBrowser:(id)arg1;
 - (BOOL)mediaBrowserView:(id)arg1 shouldDisplayMediaGroup:(id)arg2;
 - (void)selectMediaType:(id)arg1;
-- (id)selectedMediaObjects;
+@property(readonly, nonatomic) NSArray *selectedMediaObjects;
 - (void)awakeFromNib;
 - (id)windowNibName;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

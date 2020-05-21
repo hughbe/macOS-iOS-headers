@@ -6,12 +6,14 @@
 
 #import "NSManagedObject.h"
 
+@class NSString;
+
 __attribute__((visibility("hidden")))
 @interface ABCDContactIndex : NSManagedObject
 {
 }
 
-- (id)stringForIndexing;
+@property(retain, nonatomic) NSString *stringForIndexing; // @dynamic stringForIndexing;
 
 @end
 

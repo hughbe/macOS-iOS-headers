@@ -10,8 +10,5 @@
 
 @optional
 - (oneway void)notifyCFPreferencesOfImpendingUserDeletion:(NSString *)arg1 authorization:(NSData *)arg2 result:(void (^)(BOOL))arg3;
-- (oneway void)FDERevertRequiresRestart:(NSString *)arg1 authorization:(NSData *)arg2 result:(void (^)(BOOL))arg3;
-- (oneway void)changeFVPassword:(NSString *)arg1 masterPassword:(NSString *)arg2 diskImagePath:(NSString *)arg3 authorization:(NSData *)arg4 result:(void (^)(int))arg5;
-- (oneway void)changeMasterPassword:(NSString *)arg1 oldPassword:(NSString *)arg2 authorization:(NSData *)arg3 result:(void (^)(int))arg4;
 @end
 

@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *__cache;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *_cache; // @synthesize _cache=__cache;
 @property(retain, nonatomic) NSMutableArray *_mutatedKeys; // @synthesize _mutatedKeys=__mutatedKeys;
 - (id)objectWithExpectedType:(Class)arg1 forKey:(id)arg2;
@@ -30,7 +31,6 @@ __attribute__((visibility("hidden")))
 - (long long)_cacheRefCount;
 - (void)endUsage;
 - (void)beginUsage;
-- (void)dealloc;
 
 @end
 

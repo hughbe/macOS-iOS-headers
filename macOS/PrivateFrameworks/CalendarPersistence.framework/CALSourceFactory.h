@@ -14,8 +14,8 @@
 }
 
 + (id)defaultFactory;
+- (void).cxx_destruct;
 - (id)sourceWithType:(id)arg1 key:(id)arg2;
-- (void)dealloc;
 - (id)init;
 - (void)setClass:(Class)arg1 forType:(id)arg2;
 

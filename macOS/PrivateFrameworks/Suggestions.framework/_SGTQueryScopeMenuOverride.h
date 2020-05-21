@@ -21,6 +21,7 @@
     BOOL _spin;
 }
 
+- (void).cxx_destruct;
 @property BOOL spin; // @synthesize spin=_spin;
 - (BOOL)searchFieldCell:(id)arg1 shouldChangeCancelButtonVisibility:(BOOL)arg2;
 - (void)completionTableView:(id)arg1 mouseUpInRow:(long long)arg2 event:(id)arg3;
@@ -33,7 +34,6 @@
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)performAction;
-- (void)dealloc;
 - (id)initWithAction:(SEL)arg1 target:(id)arg2 item:(id)arg3 title:(id)arg4 spinnerMessage:(id)arg5;
 
 // Remaining properties

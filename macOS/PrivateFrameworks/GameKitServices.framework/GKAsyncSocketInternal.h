@@ -8,6 +8,7 @@
 
 @class NSMutableData, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface GKAsyncSocketInternal : GKAsyncSocket
 {
     NSObject<OS_dispatch_source> *_receiveSource;
@@ -29,7 +30,7 @@
 - (CDUnknownBlockType)connectedHandler;
 - (void)setReceiveDataHandler:(CDUnknownBlockType)arg1;
 - (CDUnknownBlockType)receiveDataHandler;
-- (id)targetQueue;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *targetQueue; // @synthesize targetQueue=_targetQueue;
 - (void)sendData;
 - (void)receiveData;
 - (void)closeConnectionNow;
@@ -39,7 +40,6 @@
 - (void)tcpConnectSockAddr:(const struct sockaddr *)arg1 port:(unsigned short)arg2;
 - (void)tcpAttachSocketDescriptor:(int)arg1;
 - (BOOL)setupSourcesWithSocket:(int)arg1 receiveEventHandler:(CDUnknownBlockType)arg2 sendEventHandler:(CDUnknownBlockType)arg3;
-- (void)setTargetQueue:(id)arg1;
 - (id)init;
 
 @end

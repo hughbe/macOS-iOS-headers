@@ -15,6 +15,7 @@
 
 // Remaining properties
 @property(retain) NSArray *adjustments; // @dynamic adjustments;
+@property(retain) PHLIngestAsset *alternateMasterAsset; // @dynamic alternateMasterAsset;
 @property(retain) PHLIngestAsset *masterAsset; // @dynamic masterAsset;
 @property(retain) NSDictionary *metadataProperties; // @dynamic metadataProperties;
 @property long long options; // @dynamic options;

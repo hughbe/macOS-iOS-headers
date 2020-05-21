@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
 - (id)typeDescription;
 - (id)titleDescription;
 - (BOOL)showInGuide;
+- (id)scanElementForMarkerSearch;
 
 @end
 

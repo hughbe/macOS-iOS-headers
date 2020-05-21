@@ -22,11 +22,20 @@
     NSObject<OS_dispatch_queue> *avConferencePreviewQueue;
     NSObject<OS_dispatch_queue> *avConferencePreviewNotificationQueue;
     BOOL _isPreviewRunning;
+    BOOL _zoomAvailable;
+    double _currentZoomFactor;
+    double _maxZoomFactor;
     NSString *_localCameraUID;
 }
 
 + (id)AVConferencePreviewSingleton;
 @property(retain, nonatomic) NSObject<AVConferencePreviewClientDelegate> *delegate; // @synthesize delegate;
+- (void)setCameraZoomFactor:(double)arg1 withRate:(double)arg2;
+- (void)setCameraZoomFactor:(double)arg1;
+- (void)clearAllStickers:(BOOL)arg1;
+- (void)addStickerWithURL:(id)arg1 isFaceSticker:(BOOL)arg2 atPosition:(struct CGPoint)arg3 identifier:(id)arg4;
+- (void)setMemoji:(id)arg1;
+- (void)setAnimoji:(id)arg1;
 - (void)endPIPToPreviewAnimation;
 - (void)beginPIPToPreviewAnimation;
 - (void)endPreviewToPIPAnimation;
@@ -35,11 +44,17 @@
 - (void)setLocalScreenAttributes:(id)arg1;
 - (id)localVideoAttributes;
 - (void)setLocalVideoAttributes:(id)arg1;
+- (id)localCameraUID;
 - (unsigned int)localCamera;
+- (void)setLocalCameraWithUID:(id)arg1;
+- (void)resetLocalCameraAfterServerDisconnect;
 - (void)setLocalCamera:(unsigned int)arg1;
 - (id)localVideoLayer:(BOOL)arg1;
 - (void)setLocalVideoLayer:(id)arg1 front:(BOOL)arg2;
 - (void)getSnapshot;
+- (double)maxZoomFactor;
+- (double)currentZoomFactor;
+- (BOOL)isCameraZoomAvailable;
 - (BOOL)isPreviewRunning;
 - (void)stopPreview;
 - (void)pausePreview;
@@ -55,13 +70,15 @@
 - (id)init;
 - (void)registerBlocksForDelegateNotifications;
 - (void)connectLayer:(id)arg1 withSlot:(unsigned int)arg2;
-- (void)cameraDidBecomeAvailable:(unsigned int)arg1;
+- (void)cameraZoomAvailabilityDidChange:(BOOL)arg1 currentZoomFactor:(double)arg2 maxZoomFactor:(double)arg3;
+- (void)cameraDidBecomeInterruptedForForUniqueID:(id)arg1 reason:(long long)arg2;
+- (void)cameraDidBecomeAvailableForUniqueID:(id)arg1;
 - (void)didGetSnapshot:(id)arg1;
 - (void)didReceiveCommError;
-- (void)didReceiveErrorFromCamera:(unsigned int)arg1 error:(id)arg2;
+- (void)didReceiveErrorFromCameraUniqueID:(id)arg1 error:(id)arg2;
 - (void)didChangeLocalScreenAttributes:(id)arg1;
 - (void)didChangeLocalVideoAttributes:(id)arg1;
-- (void)didReceiveFirstPreviewFrameFromCamera:(unsigned int)arg1;
+- (void)didReceiveFirstPreviewFrameFromCameraUniqueID:(id)arg1;
 - (void)didStopPreview;
 - (void)didPausePreview;
 - (void)didStartPreview;

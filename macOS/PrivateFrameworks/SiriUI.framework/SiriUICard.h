@@ -7,11 +7,12 @@
 #import <SiriUI/SiriUICollectionViewItem.h>
 
 #import "NSPasteboardWriting.h"
+#import "SiriUIAccessibilityStashDelegate.h"
 #import "SiriUICardHeaderViewControllerDelegate.h"
 
-@class AFDataStore, NCCardViewController, NSImage, NSStackView, NSString, NSView, SiriUICardContentViewController, SiriUICardHeaderViewController, SiriUISnippetControllerCell, SiriUISnippetViewController, SiriUITranscriptItem;
+@class AFDataStore, NCCardViewController, NSImage, NSStackView, NSString, NSView, SiriUICardContentViewController, SiriUICardHeaderViewController, SiriUICardView, SiriUISnippetControllerCell, SiriUISnippetViewController, SiriUITranscriptItem;
 
-@interface SiriUICard : SiriUICollectionViewItem <NSPasteboardWriting, SiriUICardHeaderViewControllerDelegate>
+@interface SiriUICard : SiriUICollectionViewItem <NSPasteboardWriting, SiriUICardHeaderViewControllerDelegate, SiriUIAccessibilityStashDelegate>
 {
     BOOL _hasSash;
     NSImage *_dragOutImage;
@@ -21,23 +22,28 @@
     SiriUISnippetControllerCell *_cellView;
     id <SiriUICardDelegate> _delegate;
     AFDataStore *_dataStore;
+    SiriUICardView *_cardView;
     NSStackView *_containerView;
     NSView *_cardContent;
     NSView *_supplementaryHeaderView;
     NCCardViewController *_cardViewController;
 }
 
++ (id)mostRecentSummaryTitle;
 + (double)headerHeight;
+- (void).cxx_destruct;
 @property(retain) NCCardViewController *cardViewController; // @synthesize cardViewController=_cardViewController;
 @property __weak NSView *supplementaryHeaderView; // @synthesize supplementaryHeaderView=_supplementaryHeaderView;
 @property __weak NSView *cardContent; // @synthesize cardContent=_cardContent;
 @property BOOL hasSash; // @synthesize hasSash=_hasSash;
 @property __weak NSStackView *containerView; // @synthesize containerView=_containerView;
+@property __weak SiriUICardView *cardView; // @synthesize cardView=_cardView;
 @property(retain) AFDataStore *dataStore; // @synthesize dataStore=_dataStore;
 @property(nonatomic) __weak id <SiriUICardDelegate> delegate; // @synthesize delegate=_delegate;
 @property __weak SiriUISnippetControllerCell *cellView; // @synthesize cellView=_cellView;
 @property(retain) SiriUICardContentViewController *contentController; // @synthesize contentController=_contentController;
-- (void).cxx_destruct;
+- (void)stashCardView:(id)arg1;
+- (BOOL)allowsStashingCardView:(id)arg1;
 - (void)stash;
 - (id)pasteboardPropertyListForType:(id)arg1;
 - (unsigned long long)writingOptionsForType:(id)arg1 pasteboard:(id)arg2;

@@ -19,14 +19,17 @@
 }
 
 + (id)definition;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *faultstring; // @synthesize faultstring=_faultstring;
 @property(copy, nonatomic) NSString *faultcode; // @synthesize faultcode=_faultcode;
 @property(copy, nonatomic) NSString *faultactor; // @synthesize faultactor=_faultactor;
 @property(retain, nonatomic) SOAPFaultDetail *detail; // @synthesize detail=_detail;
-- (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
+- (id)Detail;
 - (void)setReason:(id)arg1;
+- (id)Reason;
 - (void)setCode:(id)arg1;
+- (id)Code;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

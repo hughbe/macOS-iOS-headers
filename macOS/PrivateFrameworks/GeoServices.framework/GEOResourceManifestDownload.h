@@ -8,16 +8,31 @@
 
 #import "NSCopying.h"
 
-@class GEODownloadMetadata, GEOResources;
+@class GEODownloadMetadata, GEOResources, PBDataReader, PBUnknownFields;
 
 @interface GEOResourceManifestDownload : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     GEODownloadMetadata *_metadata;
     GEOResources *_resources;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_metadata:1;
+        unsigned int read_resources:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_metadata:1;
+        unsigned int wrote_resources:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEODownloadMetadata *metadata; // @synthesize metadata=_metadata;
-@property(retain, nonatomic) GEOResources *resources; // @synthesize resources=_resources;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,10 +40,16 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEODownloadMetadata *metadata;
+- (void)_readMetadata;
+@property(retain, nonatomic) GEOResources *resources;
 @property(readonly, nonatomic) BOOL hasResources;
-- (void)dealloc;
+- (void)_readResources;
+- (id)initWithData:(id)arg1;
+- (id)init;
 - (id)initWithResourceManifestData:(id)arg1;
 
 @end

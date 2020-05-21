@@ -6,27 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSSecureCoding.h"
-
-@class NSArray;
-
-@interface CNChangeHistory : NSObject <NSSecureCoding>
+__attribute__((visibility("hidden")))
+@interface CNChangeHistory : NSObject
 {
-    BOOL _changesTruncated;
-    long long _latestSequenceNumber;
-    NSArray *_contactChanges;
-    NSArray *_groupChanges;
 }
 
-+ (BOOL)supportsSecureCoding;
-@property(retain) NSArray *groupChanges; // @synthesize groupChanges=_groupChanges;
-@property(retain) NSArray *contactChanges; // @synthesize contactChanges=_contactChanges;
-@property long long latestSequenceNumber; // @synthesize latestSequenceNumber=_latestSequenceNumber;
-@property BOOL changesTruncated; // @synthesize changesTruncated=_changesTruncated;
-- (id)description;
-- (void)dealloc;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
++ (id)os_log;
 
 @end
 

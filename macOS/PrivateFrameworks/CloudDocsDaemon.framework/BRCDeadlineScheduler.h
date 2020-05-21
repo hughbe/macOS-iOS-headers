@@ -9,7 +9,7 @@
 #import "BRCLifeCycle.h"
 #import "BRCSuspendable.h"
 
-@class BRCMinHeap, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
+@class BRCFairScheduler, BRCFairSource, BRCMinHeap, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface BRCDeadlineScheduler : NSObject <BRCLifeCycle, BRCSuspendable>
@@ -17,32 +17,34 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_queue> *_queue;
     BRCMinHeap *_minHeap;
     NSString *_name;
-    NSObject<OS_dispatch_source> *_source;
+    BRCFairSource *_source;
     NSObject<OS_dispatch_source> *_delay;
     long long _leeway;
     long long _lastSchedule;
     BOOL _isResumed;
+    BRCFairScheduler *_fairScheduler;
     BOOL _isCancelled;
     CDUnknownBlockType _computeNextAdmissibleDateForScheduling;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BRCFairScheduler *fairScheduler; // @synthesize fairScheduler=_fairScheduler;
 @property(readonly, nonatomic) BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
 @property(copy, nonatomic) CDUnknownBlockType computeNextAdmissibleDateForScheduling; // @synthesize computeNextAdmissibleDateForScheduling=_computeNextAdmissibleDateForScheduling;
 @property(nonatomic) long long coalescingLeeway; // @synthesize coalescingLeeway=_leeway;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (void)close;
 - (void)_close;
 - (void)cancel;
 - (void)resume;
 - (void)suspend;
-- (void)_addSource:(id)arg1 deadline:(long long)arg2;
+- (void)addSource:(id)arg1 deadline:(long long)arg2;
 - (void)_schedule;
+- (void)runDeadlineSource:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)signal;
-- (BOOL)_isSleepingRequiredForDeadline:(long long)arg1 now:(long long)arg2;
-- (id)initWithName:(id)arg1;
-- (id)initWithName:(id)arg1 targetQueue:(id)arg2;
+- (BOOL)_setupTimerRequiredForDeadline:(long long)arg1 now:(long long)arg2;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue;
+- (id)initWithName:(id)arg1 fairScheduler:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

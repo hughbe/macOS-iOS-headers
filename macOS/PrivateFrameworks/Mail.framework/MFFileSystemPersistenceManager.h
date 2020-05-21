@@ -14,7 +14,7 @@
 + (id)_emlxPListInFile:(id)arg1 url:(id)arg2 plistOffset:(unsigned long long *)arg3;
 + (BOOL)updatePropertyListAtURL:(id)arg1 propertyListBlock:(CDUnknownBlockType)arg2 outError:(id *)arg3;
 + (BOOL)writeAttachment:(id)arg1 toDirectory:(id)arg2 originalContentsURL:(id)arg3 outError:(id *)arg4;
-+ (BOOL)writeMimeData:(id)arg1 toURL:(id)arg2 isPart:(BOOL)arg3 propertyList:(id)arg4 outError:(id *)arg5;
++ (BOOL)writeMimeData:(id)arg1 toURL:(id)arg2 isPart:(BOOL)arg3 propertyList:(id)arg4 compress:(BOOL)arg5 outError:(id *)arg6;
 
 @end
 

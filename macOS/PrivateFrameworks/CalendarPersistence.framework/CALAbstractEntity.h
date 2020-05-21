@@ -23,6 +23,7 @@
     NSDictionary *_unrecognizedProperties;
 }
 
+- (void).cxx_destruct;
 - (BOOL)isOwnerAddress:(id)arg1 ignoreMeCard:(BOOL)arg2;
 - (BOOL)isOwnerAddress:(id)arg1;
 - (BOOL)isAddressMe:(id)arg1 ignoreMeCard:(BOOL)arg2;
@@ -42,7 +43,6 @@
 - (void)addSubComponent:(id)arg1 duplicateCheck:(BOOL)arg2;
 - (void)addSubComponent:(id)arg1;
 - (void)reset;
-- (void)dealloc;
 - (id)privateID;
 - (BOOL)hasPrivateID;
 - (void)setCommitStatus:(int)arg1;

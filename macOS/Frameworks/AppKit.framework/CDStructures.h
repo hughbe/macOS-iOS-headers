@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSAppearance, NSData;
+@class NSAppearance, NSColor, NSData;
 
 #pragma mark Function Pointers and Blocks
 
@@ -94,8 +94,6 @@ struct CGSize {
     double height;
 };
 
-struct CGSnappingInfo;
-
 struct CMNamedColorPageInfoEntryType {
     unsigned short _field1;
     unsigned short _field2;
@@ -137,10 +135,6 @@ struct EventTypeSpec {
     unsigned int _field2;
 };
 
-struct FSRef {
-    unsigned char hidden[80];
-};
-
 struct HandleTSMEventCompletionContext {
     int _field1;
     char _field2;
@@ -174,6 +168,30 @@ struct NSButtonState {
     char _field2;
     char _field3;
     char _field4;
+};
+
+struct NSDPClassInfo {
+    struct NSDPClassInfo *_field1;
+    Class _field2;
+    unsigned long long _field3;
+    struct NSDPPropertyInfo *_field4;
+    struct __CFDictionary *_field5;
+    struct __CFDictionary *_field6;
+    struct __CFDictionary *_field7;
+};
+
+struct NSDPPropertyInfo {
+    SEL _field1[3];
+    struct __CFString *_field2;
+    unsigned short _field3;
+    unsigned short _field4;
+};
+
+struct NSDirectionalEdgeInsets {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
 };
 
 struct NSEdgeInsets {
@@ -216,13 +234,6 @@ struct NSMenuUserKeyEquivalentInfo_t {
     unsigned char _field3;
 };
 
-struct NSNavSimpleButtonState {
-    long long _field1;
-    char _field2;
-    char _field3;
-    char _field4;
-};
-
 struct NSThreadPrivate {
     unsigned int _field1;
     struct __CFRunLoopObserver *_field2;
@@ -235,15 +246,13 @@ struct NSThreadPrivate {
     long long _field9;
     long long _field10;
     long long _field11;
-    id _field12;
-    long long _field13;
+    long long _field12;
+    id _field13;
     id _field14;
-    id _field15;
-    unsigned long long _field16;
-    long long _field17;
-    id _field18;
-    id _field19;
-    struct auxFlags _field20;
+    long long _field15;
+    id _field16;
+    id _field17;
+    struct auxFlags _field18;
 };
 
 struct NSToolbarFullScreenContentViewLayout_t {
@@ -255,27 +264,6 @@ struct NSToolbarFullScreenContentViewLayout_t {
     struct CGRect _field6;
     struct CGRect _field7;
     struct CGRect _field8;
-};
-
-struct NSVisualEffectViewInternal {
-    id _field1;
-    id _field2;
-    id _field3;
-    id _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    id _field8;
-    long long _field9;
-    long long _field10;
-    long long _field11;
-    long long _field12;
-    long long _field13;
-    id _field14;
-    id _field15;
-    id _field16;
-    id _field17;
-    id _field18;
 };
 
 struct NSWindowBatchOrderingTriplet {
@@ -357,6 +345,7 @@ struct OpaqueCoreDrag {
     struct __CFRunLoopTimer *_field64;
     double _field65;
     double _field66;
+    long long _field67;
 };
 
 struct OpaqueEventRef;
@@ -408,21 +397,23 @@ struct SLMPopUpMenuContext_t {
     struct CGSize _field17;
     unsigned long long _field18;
     id _field19;
-    id _field20;
-    id _field21;
-    struct OpaqueMenuRef *_field22;
-    struct Point _field23;
-    char _field24;
-    struct Rect _field25;
-    struct Rect _field26;
-    char _field27;
-    unsigned int _field28;
+    struct CGRect _field20;
+    unsigned long long _field21;
+    id _field22;
+    id _field23;
+    struct OpaqueMenuRef *_field24;
+    struct Point _field25;
+    char _field26;
+    struct Rect _field27;
+    struct Rect _field28;
     char _field29;
-    char _field30;
+    unsigned int _field30;
     char _field31;
     char _field32;
     char _field33;
     char _field34;
+    char _field35;
+    char _field36;
 };
 
 struct SpeechChannelRecord {
@@ -434,71 +425,6 @@ struct WorkspaceKVOData_t {
     CDUnknownFunctionPointerType _field2;
     CDUnknownFunctionPointerType _field3;
     char _field4;
-};
-
-struct _CGEventProcess {
-    int _field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
-};
-
-struct _CGGestureData {
-    unsigned int _field1;
-    unsigned long long _field2;
-    _Bool _field3;
-    _Bool _field4;
-    unsigned char _field5;
-    unsigned char _field6;
-    unsigned int _field7;
-    float _field8;
-    unsigned short _field9;
-    unsigned char _field10;
-    union {
-        struct {
-            float _field1;
-            float _field2;
-            float _field3;
-            int _field4[8];
-        } _field1;
-        CDStruct_6f4e2a38 _field2;
-        struct {
-            float _field1;
-            float _field2;
-            float _field3;
-            unsigned int _field4;
-            int _field5[7];
-        } _field3;
-        struct {
-            unsigned int _field1;
-            unsigned int _field2;
-            unsigned int _field3;
-            float _field4;
-            float _field5;
-            float _field6;
-            float _field7;
-            float _field8;
-            float _field9;
-            unsigned int _field10;
-            unsigned int _field11;
-        } _field4;
-        struct {
-            unsigned int _field1;
-            unsigned int _field2;
-            int _field3[9];
-        } _field5;
-        CDStruct_6f4e2a38 _field6;
-        struct {
-            unsigned int _field1;
-            int _field2[10];
-        } _field7;
-        struct {
-            float _field1;
-            float _field2;
-            int _field3[9];
-        } _field8;
-    } _field11;
 };
 
 struct _CGLContextObject {
@@ -1478,147 +1404,13 @@ struct _CGLContextObject {
         CDUnknownFunctionPointerType _field972;
         CDUnknownFunctionPointerType _field973;
         CDUnknownFunctionPointerType _field974;
+        CDUnknownFunctionPointerType _field975;
     } _field2;
     struct _CGLPrivateObject *_field3;
     void *_field4;
 };
 
 struct _CGLPrivateObject;
-
-struct _CGSEventRecord {
-    unsigned short _field1;
-    unsigned short _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    struct CGPoint _field5;
-    struct CGPoint _field6;
-    unsigned long long _field7;
-    unsigned int _field8;
-    unsigned int _field9;
-    unsigned int _field10;
-    struct __CGEventSourceData {
-        int _field1;
-        unsigned int _field2;
-        unsigned int _field3;
-        unsigned int _field4;
-        unsigned long long _field5;
-        unsigned int _field6;
-        unsigned short _field7;
-        unsigned char _field8;
-        unsigned char _field9;
-        unsigned long long _field10;
-    } _field11;
-    struct _CGEventProcess _field12;
-    union {
-        CDStruct_e29a92ac _field1;
-        CDStruct_e29a92ac _field2;
-        struct {
-            unsigned short _field1;
-            short _field2;
-            unsigned short _field3;
-            unsigned short _field4;
-            unsigned short _field5;
-            short _field6;
-            short _field7;
-            char _field8;
-            unsigned char _field9;
-            unsigned int _field10;
-            unsigned int _field11;
-            unsigned int _field12;
-            unsigned int _field13;
-            unsigned short _field14[20];
-        } _field3;
-        struct {
-            short _field1;
-            short _field2;
-            int _field3;
-            int _field4;
-            unsigned int _field5;
-            long long _field6;
-            long long _field7;
-            int _field8[8];
-        } _field4;
-        struct {
-            unsigned short _field1;
-            unsigned short _field2;
-            unsigned int _field3;
-            unsigned int _field4;
-            int _field5;
-            int _field6;
-            int _field7;
-            int _field8;
-            int _field9;
-            int _field10;
-            int _field11;
-            int _field12;
-            int _field13[5];
-        } _field5;
-        CDStruct_2e65c88c _field6;
-        CDStruct_2e65c88c _field7;
-        struct _CGSTabletPointData _field8;
-        struct _CGSTabletProximityData _field9;
-        struct {
-            short _field1;
-            short _field2;
-            union {
-                float _field1[15];
-                int _field2[15];
-                short _field3[30];
-                char _field4[60];
-            } _field3;
-        } _field10;
-        struct {
-            short _field1;
-            short _field2;
-            unsigned int _field3;
-            unsigned long long _field4;
-            unsigned short _field5;
-            short _field6;
-            int _field7[11];
-        } _field11;
-        struct _CGGestureData _field12;
-    } _field13;
-    void *_field14;
-    unsigned short _field15;
-    unsigned short _field16;
-    struct __CGSEventAppendix *_field17;
-    unsigned int _field18;
-    _Bool _field19;
-    struct __CFData *_field20;
-};
-
-struct _CGSTabletPointData {
-    int _field1;
-    int _field2;
-    int _field3;
-    unsigned short _field4;
-    unsigned short _field5;
-    struct {
-        short _field1;
-        short _field2;
-    } _field6;
-    unsigned short _field7;
-    short _field8;
-    unsigned short _field9;
-    short _field10;
-    short _field11;
-    short _field12;
-};
-
-struct _CGSTabletProximityData {
-    unsigned short _field1;
-    unsigned short _field2;
-    unsigned short _field3;
-    unsigned short _field4;
-    unsigned short _field5;
-    unsigned short _field6;
-    unsigned int _field7;
-    unsigned long long _field8;
-    unsigned int _field9;
-    unsigned char _field10;
-    unsigned char _field11;
-    short _field12;
-};
 
 struct _NSBrowserColumnResizeInfo {
     char _field1;
@@ -1655,16 +1447,18 @@ struct _NSModalSession {
     unsigned long long _field7;
     char _field8;
     char _field9;
-    short _field10;
-    long long _field11;
-    id _field12;
+    char _field10;
+    short _field11;
+    long long _field12;
     id _field13;
-    SEL _field14;
-    void *_field15;
-    long long _field16;
-    id _field17;
-    CDUnknownBlockType _field18;
-    id _field19;
+    id _field14;
+    SEL _field15;
+    void *_field16;
+    long long _field17;
+    id _field18;
+    CDUnknownBlockType _field19;
+    id _field20;
+    char _field21;
 };
 
 struct _NSNibFlags {
@@ -1784,7 +1578,7 @@ struct _TvFlags3 {
     unsigned int allowsTypeSelect:1;
     unsigned int editOnSingleClick:1;
     unsigned int delegateRespondsTo_shouldTrackCell:1;
-    unsigned int hasRowHeaderView:1;
+    unsigned int unused:1;
 };
 
 struct __CFDictionary;
@@ -1792,11 +1586,6 @@ struct __CFDictionary;
 struct __CFRunLoopTimer;
 
 struct __CFString;
-
-struct __NSBaselineOffsets {
-    double _field1;
-    double _field2;
-};
 
 struct __NSKeyValueCodingControllerModeType {
     long long mode;
@@ -1843,6 +1632,10 @@ struct __va_list_tag {
     void *_field4;
 };
 
+struct _mach_right_send {
+    unsigned int mrs_name;
+};
+
 struct _opaque_pthread_mutex_t {
     long long __sig;
     char __opaque[56];
@@ -1851,6 +1644,10 @@ struct _opaque_pthread_mutex_t {
 struct auxFlags {
     unsigned int :1;
     unsigned int :31;
+};
+
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
 };
 
 #pragma mark Typedef'd Structures
@@ -1880,19 +1677,10 @@ typedef struct {
 } CDStruct_d87b8232;
 
 typedef struct {
-    unsigned int _field1;
-    unsigned int _field2;
-    _Bool _field3;
-    _Bool _field4;
-    _Bool _field5;
-    unsigned int _field6;
-} CDStruct_79f078d6;
-
-typedef struct {
-    unsigned long long serial;
-    unsigned long long timestamp;
-    unsigned long long delta;
-} CDStruct_c75109f2;
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+} CDStruct_14f26992;
 
 typedef struct {
     unsigned long long _field1;
@@ -1902,25 +1690,38 @@ typedef struct {
 } CDStruct_70511ce9;
 
 typedef struct {
+    char _field1[248];
+} CDStruct_e834ef07;
+
+typedef struct {
+    char bytes[32];
+} CDStruct_48875a69;
+
+typedef struct {
+    unsigned int val[8];
+} CDStruct_4c969caf;
+
+typedef struct {
     char *data;
     int len;
 } CDStruct_815caf98;
 
 typedef struct {
-    char _field1;
-    char _field2;
-    unsigned long long _field3;
-    unsigned long long _field4;
-} CDStruct_5e576fff;
-
-typedef struct {
-    char _field1;
-    char _field2;
-    char _field3;
-    double _field4;
-    char _field5;
-    char _field6;
-} CDStruct_c5157782;
+    unsigned int trackingMode:3;
+    unsigned int trimmedLabels:1;
+    unsigned int drawing:1;
+    unsigned int reserved1:2;
+    unsigned int recalcToolTips:1;
+    unsigned int usesWindowsStyle:1;
+    unsigned int dontShowSelectedAndPressedAppearance:1;
+    unsigned int menuShouldBeUniquedAgainstMain:1;
+    unsigned int style:8;
+    unsigned int flatMinX:1;
+    unsigned int flatMaxX:1;
+    unsigned int segmentedSeparated:1;
+    unsigned int animateNextLayout:1;
+    unsigned int reserved:9;
+} CDStruct_bdbd3e0b;
 
 typedef struct {
     char _field1;
@@ -1948,6 +1749,16 @@ typedef struct {
 } CDStruct_8e9e3288;
 
 typedef struct {
+    double scaleFactor;
+    unsigned long long controlSize;
+    char isActive;
+    char isEnabled;
+    char isHighlighted;
+    char isOn;
+    char isRTL;
+} CDStruct_0b8ffed7;
+
+typedef struct {
     double minPossiblePosition;
     double minAllowablePosition;
     double maxAllowablePosition;
@@ -1961,17 +1772,37 @@ typedef struct {
     double _field2;
     double _field3;
     double _field4;
-} CDStruct_d2b197d1;
+    double _field5;
+    int _field6;
+    int _field7;
+    double _field8;
+    double _field9;
+    id _field10;
+    id _field11;
+    id _field12;
+    id _field13;
+    id _field14;
+    id _field15;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+} CDStruct_40e84b6d;
 
 typedef struct {
     double _field1;
     double _field2;
-} CDStruct_c3b9c2ee;
+    double _field3;
+    double _field4;
+} CDStruct_d2b197d1;
 
 typedef struct {
-    float _field1;
-    int _field2[10];
-} CDStruct_6f4e2a38;
+    double x;
+    double width;
+} CDStruct_6b6ad735;
 
 typedef struct {
     long long _field1;
@@ -1979,33 +1810,15 @@ typedef struct {
 } CDStruct_0f3e1ffa;
 
 typedef struct {
+    long long itemIndex;
+    long long alignment;
+    double offset;
+} CDStruct_3bb9c5bc;
+
+typedef struct {
     long long generationCount;
     long long changeCount;
 } CDStruct_df2dc5d0;
-
-typedef struct {
-    short _field1;
-    short _field2;
-    short _field3;
-    short _field4;
-    int _field5;
-    int _field6;
-    int _field7;
-    int _field8;
-    int _field9;
-    int _field10;
-    unsigned int _field11;
-    int _field12;
-    int _field13;
-    unsigned int _field14;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :29;
-    unsigned int _field15;
-    unsigned int _field16;
-    int _field17[1];
-} CDStruct_2e65c88c;
 
 typedef struct {
     unsigned int _field1;
@@ -2020,29 +1833,22 @@ typedef struct {
 } CDStruct_e50ab651;
 
 typedef struct {
-    double _currentDate;
-    double _birthDate;
-    double _lastDate;
+    double _field1;
+    double _field2;
+    double _field3;
     struct {
-        unsigned int _skipped:1;
-        unsigned int _reserved:31;
-    } _flags;
-} CDStruct_d41e72e8;
+        unsigned int :1;
+        unsigned int :31;
+    } _field4;
+} CDStruct_fadd2e06;
 
 typedef struct {
-    CDStruct_d2b197d1 _field1;
-    CDStruct_d2b197d1 _field2;
-    CDStruct_d2b197d1 _field3;
-    id *_field4;
-    CDStruct_d2b197d1 _field5;
-    id *_field6;
-    CDStruct_d2b197d1 _field7;
-    CDStruct_d2b197d1 _field8;
-    CDStruct_d2b197d1 _field9;
-    id *_field10;
-    id _field11;
-    id _field12;
-} CDStruct_a0cecc03;
+    struct CGSize _field1;
+    struct CGSize _field2;
+    long long _field3;
+    double _field4;
+    double _field5;
+} CDStruct_5e3db82b;
 
 typedef struct {
     struct CGSize _field1;
@@ -2051,6 +1857,11 @@ typedef struct {
     unsigned long long _field4;
     unsigned long long _field5;
 } CDStruct_22276b4c;
+
+typedef struct {
+    struct CGSize _field1;
+    struct NSDirectionalEdgeInsets _field2;
+} CDStruct_6a12c974;
 
 typedef struct {
     unsigned long long sliderType;
@@ -2067,7 +1878,16 @@ typedef struct {
     double backingScaleFactor;
     char isFlipped;
     NSAppearance *appearance;
-} CDStruct_a7350d55;
+    NSColor *trackFillColor;
+    char drawsBackground;
+    long long numberOfTickMarks;
+    char animatesCollapse;
+    double collapseAnimation_KnobClipProgress;
+    double collapseAnimation_KnobOpacityProgress;
+    double collapseAnimation_KnobCornerRadius;
+    double collapseAnimation_TrackOpacityProgress;
+    char prefersInactiveBezelArt;
+} CDStruct_c9beae75;
 
 typedef struct {
     unsigned int :4;
@@ -2079,6 +1899,14 @@ typedef struct {
         struct __CFDictionary *_field3;
     } _field1;
 } CDStruct_d48118a8;
+
+typedef struct {
+    char _field1;
+    char _field2;
+    struct CGRect _field3;
+    struct CGSize _field4;
+    struct CGSize _field5;
+} CDStruct_a26f6e08;
 
 typedef struct {
     char _field1;
@@ -2097,12 +1925,12 @@ typedef struct {
     double _field14;
     struct CGRect *_field15;
     unsigned long long _field16;
-    struct CGSnappingInfo *_field17;
+    id _field17;
     char _field18;
     unsigned long long _field19;
     unsigned long long _field20;
     unsigned long long _field21;
-} CDStruct_a42fe1e7;
+} CDStruct_222f2799;
 
 typedef struct {
     long long _field1;
@@ -2115,33 +1943,13 @@ typedef struct {
 } CDStruct_602775a4;
 
 typedef struct {
-    unsigned char _field1;
-    unsigned char _field2;
-    short _field3;
-    int _field4;
-    unsigned char _field5;
-    char _field6;
-    unsigned char _field7;
-    unsigned char _field8;
-    short _field9;
-    short _field10;
-    union {
-        struct _CGSTabletPointData _field1;
-        struct _CGSTabletProximityData _field2;
-    } _field11;
-    unsigned int :1;
-    unsigned int :31;
-    unsigned int _field12;
-    unsigned int _field13;
-    unsigned int _field14;
-} CDStruct_e29a92ac;
-
-// Ambiguous groups
-typedef struct {
-    unsigned int _reserved:32;
-} CDStruct_4a40d4f7;
-
-typedef struct {
-    unsigned int reserved:32;
-} CDStruct_9fab449c;
+    struct CGRect visibleContentRect;
+    long long selectedIndex;
+    long long secondarySelectedIndex;
+    double fractionOfSecondary;
+    long long highlightedIndex;
+    long long numberOfItems;
+    struct CGPoint contentTrackingPoint;
+    char trackingSelection;
+} CDStruct_99688279;
 

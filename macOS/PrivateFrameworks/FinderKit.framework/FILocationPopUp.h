@@ -6,75 +6,72 @@
 
 #import "NSPopUpButton.h"
 
-@class FINode, NSArray, NSString, NSURL;
+@class NSArray, NSURL;
 
 @interface FILocationPopUp : NSPopUpButton
 {
     id <FILocationPopUpDelegate> _delegate;
-    FINode *_target;
-    NSArray *_ubiquityContainerURLs;
-    id _reserved;
+    id <FILocationPopUpDelegate> _weakDelegate;
+    struct TFENode _targetNode;
+    struct TNSRef<NSArray<NSURL *>, void> _ubiquityContainerURLs;
+    CDStruct_4c969caf _audit_token;
+    struct TFENode _alternateICloudContainer;
+    struct TString _alternateICloudContainerName;
+    _Bool _nodeObserversInitialized;
+    _Bool _darkBackground;
+    double _scaleFactor;
+    struct TNotificationCenterObserver _iCloudLoginChangeObserver;
+    struct TNSRef<FILocationMenuFactory, void> _menuFactory;
     BOOL _shouldShowDevices;
     BOOL _shouldShowFavorites;
-    BOOL _shouldIncludeAncestors;
     BOOL _shouldShowCloud;
-    BOOL _shouldAllowTargetingCloud;
+    BOOL _shouldIncludeAncestors;
     BOOL _shouldShowKeyEquivalents;
-    FINode *_alternateICloudContainer;
-    NSString *_alternateICloudContainerName;
-    _Bool _nodeObserversInitialized;
+    BOOL _shouldAllowTargetingCloud;
 }
 
-+ (id)attributedMenuItemTitleForNode:(const struct TFENode *)arg1 forceSuffix:(_Bool)arg2 inCloud:(_Bool)arg3;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property BOOL shouldAllowTargetingCloud; // @synthesize shouldAllowTargetingCloud=_shouldAllowTargetingCloud;
 @property BOOL shouldShowKeyEquivalents; // @synthesize shouldShowKeyEquivalents=_shouldShowKeyEquivalents;
 @property BOOL shouldIncludeAncestors; // @synthesize shouldIncludeAncestors=_shouldIncludeAncestors;
 @property BOOL shouldShowFavorites; // @synthesize shouldShowFavorites=_shouldShowFavorites;
 @property BOOL shouldShowDevices; // @synthesize shouldShowDevices=_shouldShowDevices;
 - (BOOL)performKeyEquivalent:(id)arg1;
+- (void)buildMenuAsync;
 - (void)menuNeedsUpdate:(id)arg1;
 - (void)adjustLocationPopUpConfiguration;
-- (void)ubiquityIdentityChanged:(id)arg1;
+- (void)ubiquityIdentityChanged;
 - (void)toggleSidebar:(id)arg1;
-- (void)addShowSidebarSection;
 - (_Bool)sidebarIsHidden;
 - (_Bool)wantsShowHideSidebarSection;
-- (void)addOtherSection;
-- (void)addFavoritesItems;
-- (void)addRecentsItems:(const struct TFENodeVector *)arg1;
-- (void)addDevicesItems;
-- (void)addICloudSection;
 - (struct TFENode)iCloudContainerToUse;
-- (id)imageForCloudFolder:(const struct TFENode *)arg1;
-- (void)addTargetItems;
-- (void)_addMenuItemsForParentNode:(struct TFENode *)arg1 sectionTitleKey:(struct __CFString *)arg2;
-- (void)addMenuItemForNode:(const struct TFENode *)arg1;
-- (void)addMenuItemsForCloudMetadata:(id)arg1 targetOnly:(_Bool)arg2;
-- (void)updateAttributesForTitle:(id)arg1;
-- (void)addSeparatorAndSectionTitle:(struct __CFString *)arg1;
 - (void)finalizeObservers;
 - (void)initializeObservers;
 - (void)getRequiredICloudContainer:(struct TFENode *)arg1;
 - (void)getAlternateICloudContainer:(id *)arg1;
 - (void)setAlternateICloudContainer:(id)arg1 name:(id)arg2;
-@property(copy) NSArray *ubiquityContainerURLs; // @synthesize ubiquityContainerURLs=_ubiquityContainerURLs;
+- (void)setUbiquityContainerURLs:(id)arg1 andToken:(const CDStruct_4c969caf *)arg2;
+@property(copy) NSArray *ubiquityContainerURLs; // @dynamic ubiquityContainerURLs;
 - (_Bool)inMovePanel;
 - (id)recentPlaces;
 - (void)otherLocation:(id)arg1;
 - (void)retargetFromCloudMenuItem:(id)arg1;
 - (void)retargetFromMenuItem:(id)arg1;
-@property BOOL shouldShowCloud;
+@property BOOL shouldShowCloud; // @synthesize shouldShowCloud=_shouldShowCloud;
 @property(retain) NSURL *directoryURL;
-- (void)refreshTitle;
 - (void)setTargetNode:(const struct TFENode *)arg1;
-- (void)selectTopMenuItem;
-@property id <FILocationPopUpDelegate> delegate; // @dynamic delegate;
+@property __weak id <FILocationPopUpDelegate> delegate; // @dynamic delegate;
 - (struct TFENode)targetNode;
 - (void)didChangeTarget:(const struct TFENode *)arg1;
 - (_Bool)isSavePanel;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)viewDidChangeEffectiveAppearance;
+- (void)checkDarkBackground;
+- (void)viewDidMoveToWindow;
+- (void)awakeFromNib;
 - (void)_commonLocationPopUpInit;
 
 @end

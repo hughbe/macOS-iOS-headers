@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class CDPContext;
+@class CDPContext, NSString;
 
 @protocol CDPAuthProviderInternal <NSObject>
+- (void)cdpContext:(CDPContext *)arg1 verifyMasterKey:(NSString *)arg2 completion:(void (^)(NSDictionary *, NSError *))arg3;
 - (void)cdpContext:(CDPContext *)arg1 performSilentRecoveryTokenRenewal:(void (^)(CDPContext *, NSError *))arg2;
 @end
 

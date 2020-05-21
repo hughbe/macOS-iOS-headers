@@ -6,27 +6,36 @@
 
 #import <CoreImage/CIFeature.h>
 
-@class NSString;
+#import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@interface CIQRCodeFeature : CIFeature
+@class CIQRCodeDescriptor, NSString;
+
+@interface CIQRCodeFeature : CIFeature <NSSecureCoding, NSCopying>
 {
     struct CGRect bounds;
     struct CGPoint topLeft;
     struct CGPoint topRight;
     struct CGPoint bottomLeft;
     struct CGPoint bottomRight;
-    NSString *messageString;
+    CIQRCodeDescriptor *symbolDescriptor;
 }
 
-@property(readonly) NSString *messageString; // @synthesize messageString;
++ (id)featureWithInternalRepresentation:(CDStruct_1b0b1413 *)arg1;
++ (BOOL)supportsSecureCoding;
+@property(readonly) CIQRCodeDescriptor *symbolDescriptor; // @synthesize symbolDescriptor;
 @property(readonly) struct CGPoint bottomRight; // @synthesize bottomRight;
 @property(readonly) struct CGPoint bottomLeft; // @synthesize bottomLeft;
 @property(readonly) struct CGPoint topRight; // @synthesize topRight;
 @property(readonly) struct CGPoint topLeft; // @synthesize topLeft;
 @property(readonly) struct CGRect bounds; // @synthesize bounds;
-- (id)initWithBounds:(struct CGRect)arg1 topLeft:(struct CGPoint)arg2 topRight:(struct CGPoint)arg3 bottomLeft:(struct CGPoint)arg4 bottomRight:(struct CGPoint)arg5 messageString:(id)arg6;
+@property(readonly) NSString *messageString;
+- (id)initWithInternalRepresentation:(CDStruct_1b0b1413 *)arg1;
 - (void)dealloc;
 - (id)type;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 
 @end
 

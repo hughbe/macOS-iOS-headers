@@ -21,9 +21,9 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *relevantText; // @synthesize relevantText=_relevantText;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)CLLocation;
@@ -41,6 +41,7 @@
 @property(readonly, nonatomic) struct CLLocationCoordinate2D coordinate;
 - (void)setLongitude:(id)arg1;
 - (void)setLatitude:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
 
 @end
 

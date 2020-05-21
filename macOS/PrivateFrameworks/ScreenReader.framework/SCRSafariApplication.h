@@ -6,7 +6,7 @@
 
 #import <ScreenReader/SCRApplication.h>
 
-@class NSString, SCRCTargetSelectorTimer, SCRElement, SCRTextMarkerRange;
+@class NSString, SCRCTargetSelectorTimer, SCRElement, SCRTextMarkerRange, SCRUIElement;
 
 __attribute__((visibility("hidden")))
 @interface SCRSafariApplication : SCRApplication
@@ -21,12 +21,16 @@ __attribute__((visibility("hidden")))
     struct {
         unsigned int isDidShowModalDialogRegistered:1;
         unsigned int isDidFinishShowingModalDialogRegistered:1;
+        unsigned int isSafariReaderShowing:1;
     } _safariObserverFlags;
+    SCRUIElement *__currentFocusedTabOrWindow;
     NSString *__currentURL;
 }
 
 + (long long)nativeSafariSearchForEvent:(id)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *_currentURL; // @synthesize _currentURL=__currentURL;
+@property(copy, nonatomic) SCRUIElement *_currentFocusedTabOrWindow; // @synthesize _currentFocusedTabOrWindow=__currentFocusedTabOrWindow;
 @property(retain, nonatomic) SCRTextMarkerRange *lastSearchMarkerRangeForElement; // @synthesize lastSearchMarkerRangeForElement=_lastSearchMarkerRangeForElement;
 @property(retain, nonatomic) SCRTextMarkerRange *lastSearchSelectedMarkerRange; // @synthesize lastSearchSelectedMarkerRange=_lastSearchSelectedMarkerRange;
 - (void)_didFinishShowingModalDialog:(id)arg1;
@@ -44,14 +48,17 @@ __attribute__((visibility("hidden")))
 - (id)_retrieveLastFocusedChildForWebArea:(id)arg1;
 - (void)setLastFocusedElement:(id)arg1 forURL:(id)arg2;
 - (id)_newPersistentKeyForFocusedChildAttributesWithURL:(id)arg1;
+- (id)_currentlySelectedSafariTabOrWindow;
 - (void)_webAreaWasLoaded:(id)arg1;
 - (void)_updateVOCursorAfterReloadOfWebArea:(id)arg1;
 - (BOOL)moveToLastElementAfterPageLoadWithRequest:(id)arg1;
 - (void)addKeyboardSyncContextForElement:(id)arg1 previousKeyboardChild:(id)arg2 request:(id)arg3;
 - (void)_selectedRowsDidChange:(id)arg1;
-- (void)_moveToLastElementAfterPageLoadIfNecessary;
 - (void)_pageAddressDidChange:(id)arg1;
 - (void)_addObserverForPageAddressChange;
+- (void)_handleLayoutComplete:(id)arg1;
+- (void)_checkIfLayoutChangeWasPageChange:(struct __AXUIElement *)arg1;
+- (void)_addObserverForPageLayoutComplete;
 - (void)_safariReaderExited:(id)arg1;
 - (void)_safariReaderEntered:(id)arg1;
 - (void)_safariReaderDidToggle;
@@ -70,7 +77,8 @@ __attribute__((visibility("hidden")))
 - (void)applicationDidInitialize;
 - (id)_topLevelWebArea;
 - (void)_updateURL;
-- (BOOL)focusInto:(id)arg1;
+- (Class)classForChildUIElement:(id)arg1 parent:(id)arg2;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (void)_elementWasCreated:(id)arg1;
 - (void)dealloc;
 

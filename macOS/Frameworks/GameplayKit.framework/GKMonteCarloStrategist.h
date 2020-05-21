@@ -16,7 +16,6 @@
 }
 
 - (id)bestMoveForActivePlayer;
-- (BOOL)validateRandomSource;
 - (BOOL)validateGameModel:(id)arg1;
 - (void)dealloc;
 - (id)init;

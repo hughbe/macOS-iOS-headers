@@ -8,12 +8,12 @@
 
 #import "NSCopying.h"
 
-@class NSSet, NSString;
+@class AVDispatchOnce, NSSet, NSString;
 
 @interface AVMediaFileType : NSObject <NSCopying>
 {
     NSString *_uti;
-    long long _supportsSampleReferencesOnce;
+    AVDispatchOnce *_supportsSampleReferencesOnce;
     BOOL _supportsSampleReferences;
 }
 

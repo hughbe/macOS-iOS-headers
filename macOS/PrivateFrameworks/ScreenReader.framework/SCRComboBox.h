@@ -4,15 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <ScreenReader/SCRStandardText.h>
+#import <ScreenReader/SCRTextField.h>
 
 __attribute__((visibility("hidden")))
-@interface SCRComboBox : SCRStandardText
+@interface SCRComboBox : SCRTextField
 {
-    BOOL _isFacebookComboBox;
+    BOOL _isPasswordSuggestionComboBox;
 }
 
-- (void)addObserversToSharedFocusElementsForElement;
+- (BOOL)isPasswordSuggestionComboBox;
+- (BOOL)isComboBox;
 - (BOOL)isControlElement;
 - (id)typeDescription;
 - (BOOL)handleEvent:(id)arg1 request:(id)arg2;

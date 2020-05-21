@@ -10,8 +10,18 @@
 {
 }
 
-+ (void)deleteOfflineCacheDirectoryForIMAPAccount:(id)arg1;
-+ (id)operationsForIMAPAccount:(id)arg1;
++ (long long)_messageForTemporaryUID:(unsigned int)arg1 mailboxID:(long long)arg2 connection:(id)arg3;
++ (long long)_messageIDForUID:(unsigned int)arg1 mailboxID:(long long)arg2 connection:(id)arg3;
++ (void)_addActionMessagesForActionID:(long long)arg1 uids:(id)arg2 uidsAreReal:(BOOL)arg3 mailboxID:(long long)arg4 connection:(id)arg5;
++ (id)_convertLabelNameArrayToLabelSet:(id)arg1 account:(id)arg2;
++ (void)_convertCopyMessagesOperation:(id)arg1 mailboxID:(long long)arg2 account:(id)arg3 connection:(id)arg4;
++ (void)_convertAppendMessageOperation:(id)arg1 mailboxID:(long long)arg2 connection:(id)arg3;
++ (void)_setLabelsOnAction:(long long)arg1 labels:(id)arg2 add:(BOOL)arg3 connection:(id)arg4;
++ (void)_convertStoreLabelsOperation:(id)arg1 mailboxID:(long long)arg2 account:(id)arg3 connection:(id)arg4;
++ (void)_convertStoreFlagsOperation:(id)arg1 mailboxID:(long long)arg2 connection:(id)arg3;
++ (void)_deleteOfflineCacheDirectoryForIMAPAccount:(id)arg1;
++ (void)upgradeOperationsForIMAPAccount:(id)arg1 fetchSeparatorIfNecessary:(BOOL)arg2;
++ (BOOL)accountHasLegacyOfflineOperations:(id)arg1;
 
 @end
 

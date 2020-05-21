@@ -15,8 +15,8 @@
 }
 
 + (id)filterSubComponentsWithClasses:(id)arg1 withMode:(int)arg2;
+- (void).cxx_destruct;
 - (void)applyTo:(id)arg1;
-- (void)dealloc;
 - (id)initWithSubComponentsWithClasses:(id)arg1 withMode:(int)arg2;
 
 @end

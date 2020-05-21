@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     OADBackground *mBackground;
 }
 
+- (void).cxx_destruct;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (id)initWithOadBackground:(id)arg1 parent:(id)arg2;
 - (struct CGRect)slideRect;

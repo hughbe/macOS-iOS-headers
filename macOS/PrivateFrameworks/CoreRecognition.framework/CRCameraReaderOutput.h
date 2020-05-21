@@ -13,12 +13,13 @@
     CRCameraReaderOutputInternal *_objectInternal;
 }
 
-@property(retain) CRCameraReaderOutputInternal *objectInternal; // @synthesize objectInternal=_objectInternal;
 - (void).cxx_destruct;
+@property(retain) CRCameraReaderOutputInternal *objectInternal; // @synthesize objectInternal=_objectInternal;
 @property(readonly) NSString *formattedStringValue;
 @property(readonly) NSString *stringValue;
 @property(readonly) NSString *type;
 - (void)dealloc;
+- (id)initWithImageReaderOutput:(id)arg1;
 - (id)init;
 
 @end

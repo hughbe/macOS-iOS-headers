@@ -6,31 +6,36 @@
 
 #import "ABOnBlueButton.h"
 
-@class NSColor;
+#import "NSAccessibilityButton.h"
 
-@interface CNQuickActionButton : ABOnBlueButton
+@class NSString;
+
+@interface CNQuickActionButton : ABOnBlueButton <NSAccessibilityButton>
 {
-    BOOL _selected;
     CDUnknownBlockType _mouseDownHandler;
     CDUnknownBlockType _secondaryMouseDownHandler;
     id <CNCancelable> _performDefaultActionToken;
     id <CNCancelable> _showDisambiguationUIToken;
-    NSColor *_defaultColor;
 }
 
-@property(retain) NSColor *defaultColor; // @synthesize defaultColor=_defaultColor;
+- (void).cxx_destruct;
 @property(retain) id <CNCancelable> showDisambiguationUIToken; // @synthesize showDisambiguationUIToken=_showDisambiguationUIToken;
 @property(retain) id <CNCancelable> performDefaultActionToken; // @synthesize performDefaultActionToken=_performDefaultActionToken;
-@property(nonatomic, getter=isSelected) BOOL selected; // @synthesize selected=_selected;
 @property(copy, nonatomic) CDUnknownBlockType secondaryMouseDownHandler; // @synthesize secondaryMouseDownHandler=_secondaryMouseDownHandler;
 @property(copy, nonatomic) CDUnknownBlockType mouseDownHandler; // @synthesize mouseDownHandler=_mouseDownHandler;
-- (void).cxx_destruct;
 - (void)layout;
+- (BOOL)allowsVibrancy;
+- (BOOL)accessibilityPerformPress;
 - (void)attachShowDisambiguationUIRecognizer;
 - (void)attachPerformDefaultActionRecognizer;
 - (void)dealloc;
-- (id)initWithFrame:(struct CGRect)arg1 backgroundColor:(id)arg2;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

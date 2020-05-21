@@ -8,7 +8,6 @@
 
 @class NSObject<OS_dispatch_data>;
 
-__attribute__((visibility("hidden")))
 @interface __NSCFURLLocalStreamTaskFromDataTaskDataBlobby : NSObject
 {
     NSObject<OS_dispatch_data> *_remainingData;

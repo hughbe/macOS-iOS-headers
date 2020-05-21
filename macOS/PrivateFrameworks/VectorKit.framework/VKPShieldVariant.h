@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     unsigned long long _layersSpace;
     CDStruct_f43f0670 _textStroke;
     CDStruct_58ec0031 _fontColor;
+    CDStruct_58ec0031 _nonDigitFontColor;
     CDStruct_fae3dc92 _centerPoints;
     unsigned int _atlasIndex;
     unsigned int _backgroundColor;
@@ -42,6 +43,7 @@ __attribute__((visibility("hidden")))
         unsigned int textShadow:1;
         unsigned int textStroke:1;
         unsigned int fontColor:1;
+        unsigned int nonDigitFontColor:1;
         unsigned int atlasIndex:1;
         unsigned int backgroundColor:1;
         unsigned int borderColor:1;
@@ -61,6 +63,7 @@ __attribute__((visibility("hidden")))
     } _has;
 }
 
+@property(nonatomic) CDStruct_58ec0031 nonDigitFontColor; // @synthesize nonDigitFontColor=_nonDigitFontColor;
 @property(nonatomic) float paddingRight; // @synthesize paddingRight=_paddingRight;
 @property(nonatomic) float paddingLeft; // @synthesize paddingLeft=_paddingLeft;
 @property(nonatomic) float capWidthRight; // @synthesize capWidthRight=_capWidthRight;
@@ -89,6 +92,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasNonDigitFontColor;
 @property(nonatomic) BOOL hasLineSpacing;
 @property(nonatomic) float lineSpacing; // @synthesize lineSpacing=_lineSpacing;
 @property(nonatomic) BOOL hasTextMaskColor;
@@ -125,8 +129,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL hasQuadIndex;
 @property(nonatomic) BOOL hasAtlasIndex;
 - (void)dealloc;
-- (struct CGImage *)newImageWithTextureAtlases:(id)arg1 atlasToImageCache:(id)arg2 atlasToImageCacheLock:(id)arg3 contentScale:(double)arg4 colors:(CDStruct_87ab733e *)arg5;
-- (Matrix_5173352a)_colorForMaskColor:(int)arg1 colors:(CDStruct_87ab733e *)arg2;
 
 @end
 

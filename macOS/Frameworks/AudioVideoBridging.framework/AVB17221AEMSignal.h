@@ -18,6 +18,8 @@
 @property unsigned short signalOutput; // @synthesize signalOutput;
 @property unsigned short signalIndex; // @synthesize signalIndex;
 @property unsigned short signalType; // @synthesize signalType;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)debugLogStringWithIndentation:(id)arg1;
 - (BOOL)updateWithXML:(id)arg1;

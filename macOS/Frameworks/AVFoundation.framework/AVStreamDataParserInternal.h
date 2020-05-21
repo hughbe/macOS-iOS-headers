@@ -6,8 +6,9 @@
 
 #import "NSObject.h"
 
-@class AVAsset, AVContentKeyRequest, AVContentKeySession, AVWeakReference, NSError, NSMutableArray, NSMutableData, NSMutableDictionary, NSObject<OS_dispatch_queue>;
+@class AVAsset, AVContentKeyRequest, AVContentKeySession, AVWeakReference, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVStreamDataParserInternal : NSObject
 {
     id <AVStreamDataParserOutputHandling> _delegate;
@@ -18,12 +19,13 @@
     NSMutableArray *_trackIDsNotProvidingMedia;
     struct OpaqueFigManifold *_figManifold;
     unsigned long long _typeIdOfInitialFigManifold;
-    NSMutableData *_accumulatedInitializationData;
+    struct OpaqueCMBlockBuffer *_accumulatedInitializationData;
     BOOL _encounteredStreamDiscontinuity;
     AVWeakReference *_legacyStreamSession;
     AVContentKeySession *_defaultContentKeySession;
     AVWeakReference *_contentKeySession;
     AVContentKeyRequest *_sessionKeyRequest;
+    BOOL _startedUsingInternalContentKeySession;
     int _currentTrackID;
     NSMutableDictionary *_tracksBecomingReadyByTrackID;
     NSMutableArray *_samplesBeforeReady;

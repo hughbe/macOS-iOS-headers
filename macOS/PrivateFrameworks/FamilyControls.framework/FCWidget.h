@@ -17,10 +17,6 @@
 + (id)widgetWithDictionary:(id)arg1;
 + (id)widgetWithPath:(id)arg1;
 - (long long)compare:(id)arg1;
-- (void)setAppStoreRating:(id)arg1;
-- (id)appStoreRating;
-- (void)setIsFromAppStore:(BOOL)arg1;
-- (BOOL)isFromAppStore;
 - (void)setBundleID:(id)arg1;
 - (id)bundleID;
 - (void)setDisplayName:(id)arg1;

@@ -6,15 +6,16 @@
 
 #import <iCalendar/ICSDateValue.h>
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
-@interface ICSDateTimeValue : ICSDateValue <NSCoding>
+@interface ICSDateTimeValue : ICSDateValue <NSSecureCoding>
 {
     long long _hour;
     long long _minute;
     long long _second;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(readonly) long long second; // @synthesize second=_second;
 @property(readonly) long long minute; // @synthesize minute=_minute;
 @property(readonly) long long hour; // @synthesize hour=_hour;

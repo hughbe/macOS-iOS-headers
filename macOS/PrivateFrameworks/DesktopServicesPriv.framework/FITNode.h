@@ -9,14 +9,13 @@
 __attribute__((visibility("hidden")))
 @interface FITNode : FINode
 {
-    void *_node[10];
+    void *_node[15];
 }
 
 - (id)description;
-- (oneway void)release;
 - (oneway void)releaseUnderMonitor;
 - (void *)asTNode;
-- (struct TNode *)asTNodeObject;
+-     // Error parsing type: ^{TNode={atomic<int>={__cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> >=Ai}}^{TNode}{shared_ptr<TFSVolumeInfo>=^{TFSVolumeInfo}^{__shared_weak_count}}{shared_ptr<TFSInfo>=^{TFSInfo}^{__shared_weak_count}}^{TChildrenList}{TNodePtr=^{TNode}}^v^{TNotifierList}{shared_ptr<TOperationLock>=^{TOperationLock}^{__shared_weak_count}}CBBBBBB{TNSRef<DS_TFPItemProgressObserver, void>=@}{TNSRef<DS_TFPItemProgressObserver, void>=@}}16@0:8, name: asTNodeObject
 - (void)dealloc;
 - (void)deleteTNode;
 

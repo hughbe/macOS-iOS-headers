@@ -16,7 +16,7 @@
 
 - (void)setCNValue:(id)arg1 onContact:(id)arg2;
 - (id)CNValueForContact:(id)arg1;
-- (BOOL)isValue:(id)arg1 equivalentToValue:(id)arg2;
+- (BOOL)canUnifyValue:(id)arg1 withValue:(id)arg2;
 - (BOOL)isNonnull;
 - (void)decodeUsingCoder:(id)arg1 contact:(id)arg2;
 - (void)encodeUsingCoder:(id)arg1 contact:(id)arg2;

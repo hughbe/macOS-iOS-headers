@@ -8,15 +8,14 @@
 
 @class ABCNDDScanner;
 
-__attribute__((visibility("hidden")))
 @interface ABCNAddressDetector : NSObject
 {
     ABCNDDScanner *_scanner;
 }
 
 + (id)detector;
+- (void).cxx_destruct;
 - (id)firstAddressInString:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

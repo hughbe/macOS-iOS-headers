@@ -6,7 +6,11 @@
 
 #import "NSObject.h"
 
+@class NSArray, NSString;
+
 @protocol SCRLocaleInfoProviding <NSObject>
+@property(readonly, nonatomic) NSString *preferredLanguage;
+@property(readonly, nonatomic) NSArray *preferredLanguages;
 @property(readonly, nonatomic) BOOL isLocaleCharacterDirectionRightToLeft;
 @property(readonly, nonatomic) unsigned long long characterDirection;
 @end

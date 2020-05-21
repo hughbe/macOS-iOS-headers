@@ -15,7 +15,7 @@
     CalDAVUpdateFreeBusySetTaskGroup *_updateFreeBusySetTaskGroup;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (void)taskGroup:(id)arg1 didFinishWithError:(id)arg2;
 - (void)performOperation;
 - (id)initWithChangeRequest:(id)arg1 session:(id)arg2 URI:(id)arg3 value:(id)arg4 inboxURI:(id)arg5;

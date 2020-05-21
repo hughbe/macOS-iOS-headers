@@ -8,18 +8,35 @@
 
 #import "NSCopying.h"
 
-@class GEOPDViewportInfo, NSData;
+@class GEOPDViewportInfo, NSData, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDAddressObjectGeocodingParameters : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSData *_addressObject;
-    unsigned int _maxResults;
     GEOPDViewportInfo *_viewportInfo;
-    CDStruct_4f8569d5 _has;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    unsigned int _maxResults;
+    struct {
+        unsigned int has_maxResults:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_addressObject:1;
+        unsigned int read_viewportInfo:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_addressObject:1;
+        unsigned int wrote_viewportInfo:1;
+        unsigned int wrote_maxResults:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOPDViewportInfo *viewportInfo; // @synthesize viewportInfo=_viewportInfo;
-@property(retain, nonatomic) NSData *addressObject; // @synthesize addressObject=_addressObject;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -27,13 +44,19 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOPDViewportInfo *viewportInfo;
 @property(readonly, nonatomic) BOOL hasViewportInfo;
+- (void)_readViewportInfo;
 @property(nonatomic) BOOL hasMaxResults;
-@property(nonatomic) unsigned int maxResults; // @synthesize maxResults=_maxResults;
+@property(nonatomic) unsigned int maxResults;
+@property(retain, nonatomic) NSData *addressObject;
 @property(readonly, nonatomic) BOOL hasAddressObject;
-- (void)dealloc;
+- (void)_readAddressObject;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

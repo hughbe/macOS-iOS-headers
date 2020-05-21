@@ -6,44 +6,48 @@
 
 #import <CalendarUI/CalUIResizingTextField.h>
 
-#import "AutocompleteResultWindowDelegate.h"
+#import "CNAutocompleteResultWindowDelegate.h"
+#import "NSCandidateListTouchBarItemDelegate.h"
 #import "NSWindowDelegate.h"
 
-@class AutocompleteResultWindow, NSArray, NSLayoutConstraint, NSScrollView, NSString;
+@class CNAutocompleteResultWindowBase, CalUICandidateTouchBar, NSArray, NSLayoutConstraint, NSScrollView, NSString;
 
-@interface CalUISuggestionsField : CalUIResizingTextField <NSWindowDelegate, AutocompleteResultWindowDelegate>
+@interface CalUISuggestionsField : CalUIResizingTextField <NSWindowDelegate, CNAutocompleteResultWindowDelegate, NSCandidateListTouchBarItemDelegate>
 {
-    AutocompleteResultWindow *_suggestionWindow;
+    CNAutocompleteResultWindowBase *_suggestionWindow;
     BOOL _suggestionsAreOptional;
     BOOL _queryInBecomeFirstResponder;
     BOOL _selectAllInBecomeFirstResponder;
     BOOL _updateTextWithSelectedSuggestion;
     BOOL _autocompleteStyle;
     BOOL _shouldLogSuggestionAccuracy;
-    BOOL _shouldHideResultsWithNoText;
+    BOOL _suppressTouchBar;
+    BOOL _showStringValueInTouchBar;
+    BOOL _suggestionWindowNeedsInitialFrameUpdate;
     BOOL _isEditing;
     BOOL _isDirectRequest;
-    BOOL _pendingFinishedResults;
     BOOL _suggestionWasChosen;
     id <CalUISuggestionsFieldDelegate> _suggestionsDelegate;
     id <CalUIAutocompleteFieldDelegate> _autoCompleteDelegate;
     unsigned long long _minimumQueryLength;
-    unsigned long long _maxHeight;
+    CalUICandidateTouchBar *_candidateTouchBar;
     NSScrollView *_scrollView;
     NSLayoutConstraint *_scrollHeight;
     NSLayoutConstraint *_maxScrollHeight;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSLayoutConstraint *maxScrollHeight; // @synthesize maxScrollHeight=_maxScrollHeight;
 @property(retain) NSLayoutConstraint *scrollHeight; // @synthesize scrollHeight=_scrollHeight;
 @property(retain) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property BOOL suggestionWasChosen; // @synthesize suggestionWasChosen=_suggestionWasChosen;
-@property BOOL pendingFinishedResults; // @synthesize pendingFinishedResults=_pendingFinishedResults;
 @property BOOL isDirectRequest; // @synthesize isDirectRequest=_isDirectRequest;
 @property BOOL isEditing; // @synthesize isEditing=_isEditing;
-@property BOOL shouldHideResultsWithNoText; // @synthesize shouldHideResultsWithNoText=_shouldHideResultsWithNoText;
+@property(retain) CalUICandidateTouchBar *candidateTouchBar; // @synthesize candidateTouchBar=_candidateTouchBar;
+@property BOOL suggestionWindowNeedsInitialFrameUpdate; // @synthesize suggestionWindowNeedsInitialFrameUpdate=_suggestionWindowNeedsInitialFrameUpdate;
+@property BOOL showStringValueInTouchBar; // @synthesize showStringValueInTouchBar=_showStringValueInTouchBar;
+@property BOOL suppressTouchBar; // @synthesize suppressTouchBar=_suppressTouchBar;
 @property BOOL shouldLogSuggestionAccuracy; // @synthesize shouldLogSuggestionAccuracy=_shouldLogSuggestionAccuracy;
-@property(nonatomic) unsigned long long maxHeight; // @synthesize maxHeight=_maxHeight;
 @property unsigned long long minimumQueryLength; // @synthesize minimumQueryLength=_minimumQueryLength;
 @property BOOL autocompleteStyle; // @synthesize autocompleteStyle=_autocompleteStyle;
 @property BOOL updateTextWithSelectedSuggestion; // @synthesize updateTextWithSelectedSuggestion=_updateTextWithSelectedSuggestion;
@@ -52,19 +56,31 @@
 @property BOOL suggestionsAreOptional; // @synthesize suggestionsAreOptional=_suggestionsAreOptional;
 @property __weak id <CalUIAutocompleteFieldDelegate> autoCompleteDelegate; // @synthesize autoCompleteDelegate=_autoCompleteDelegate;
 @property __weak id <CalUISuggestionsFieldDelegate> suggestionsDelegate; // @synthesize suggestionsDelegate=_suggestionsDelegate;
-- (void).cxx_destruct;
 - (id)currentPrefix;
 - (id)accessibilitySharedFocusElements;
+- (void)_selectCandidateAtIndex:(unsigned long long)arg1 endSelecting:(BOOL)arg2;
+- (void)candidateListTouchBarItem:(id)arg1 endSelectingCandidateAtIndex:(long long)arg2;
+- (void)candidateListTouchBarItem:(id)arg1 changeSelectionFromCandidateAtIndex:(long long)arg2 toIndex:(long long)arg3;
+- (void)candidateListTouchBarItem:(id)arg1 beginSelectingCandidateAtIndex:(long long)arg2;
+- (void)updateSuggestionsTouchBarWithSuggestions:(id)arg1;
+- (id)touchBar;
+- (id)makeTouchBar;
 - (BOOL)_window:(id)arg1 shouldCloseForClosingParentPopoverWindowWithTransientContext:(BOOL)arg2;
+- (id)suggestionString:(id)arg1 preservingPrefix:(id)arg2;
 - (void)selectionDidChange:(id)arg1;
 - (void)updateSuggestionWindow;
 - (id)viewForResult:(id)arg1;
 - (void)updateSuggestionWindowWithSuggestions:(id)arg1;
-- (void)hideSuggestions;
+- (void)hideSuggestionsWindow;
+- (void)updateSuggestionWindowWidth;
 - (void)updateWindowFrameOrigin;
+- (void)updateWindowFrameOriginFromNotification:(id)arg1;
 - (void)clearSuggestions;
-- (void)queryForSuggestions;
+- (void)updateWithSuggestions:(id)arg1;
+- (void)initiateQueryIfNeeded;
 - (void)initiateQuery;
+- (BOOL)wantsZKWSuggestions;
+- (BOOL)wantsQuerySuggestions;
 @property(readonly) unsigned long long indexOfSelectedSuggestion;
 @property(readonly) NSString *selectedSuggestion;
 @property(readonly) NSArray *suggestions;
@@ -74,7 +90,9 @@
 - (void)textDidBeginEditing:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (BOOL)becomeFirstResponder;
-@property(readonly) AutocompleteResultWindow *suggestionWindow;
+- (void)updateCandidateTouchBarWithFieldStringValue;
+- (void)setStringValue:(id)arg1;
+@property(readonly) CNAutocompleteResultWindowBase *suggestionWindow;
 - (void)createSuggestionController;
 - (id)newSuggestionWindow;
 - (id)initWithResizeEnabled:(BOOL)arg1;

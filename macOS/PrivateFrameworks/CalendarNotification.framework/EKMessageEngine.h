@@ -6,38 +6,44 @@
 
 #import <CalendarNotification/EKNotificationEngine.h>
 
-@class NSArray, NSDictionary;
+@class NSArray, NSMutableDictionary;
 
 @interface EKMessageEngine : EKNotificationEngine
 {
-    NSArray *_allMessages;
-    NSDictionary *_messages;
+    NSMutableDictionary *_allMessages;
     unsigned long long _calendarBadgeCount;
     unsigned long long _reminderBadgeCount;
     unsigned long long _lastDismissedCalendarCoalesceCount;
     unsigned long long _lastDismissedReminderCoalesceCount;
+    NSArray *_coalescedSuggestionMessages;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSArray *coalescedSuggestionMessages; // @synthesize coalescedSuggestionMessages=_coalescedSuggestionMessages;
 @property unsigned long long lastDismissedReminderCoalesceCount; // @synthesize lastDismissedReminderCoalesceCount=_lastDismissedReminderCoalesceCount;
 @property unsigned long long lastDismissedCalendarCoalesceCount; // @synthesize lastDismissedCalendarCoalesceCount=_lastDismissedCalendarCoalesceCount;
 @property unsigned long long reminderBadgeCount; // @synthesize reminderBadgeCount=_reminderBadgeCount;
 @property unsigned long long calendarBadgeCount; // @synthesize calendarBadgeCount=_calendarBadgeCount;
-@property(retain) NSDictionary *messages; // @synthesize messages=_messages;
-@property(retain) NSArray *allMessages; // @synthesize allMessages=_allMessages;
-- (void).cxx_destruct;
+@property(retain) NSMutableDictionary *allMessages; // @synthesize allMessages=_allMessages;
 - (void)_performClickingActionForMessage:(id)arg1;
 - (void)_performActionForMessage:(id)arg1;
 - (void)_handleExpirationForIdentifiers:(id)arg1;
+- (void)_timerFiredWithLabel:(id)arg1 performsQuickAction:(BOOL)arg2;
 - (void)_handleActivationForCoalesced:(id)arg1;
+- (void)_dismissCoalescedSuggestions;
+- (void)_dismissCoalescedMessagesPassingTest:(CDUnknownBlockType)arg1;
 - (void)_handleDismissalForCoalesced:(id)arg1;
 - (void)_handleActivationForIdentifier:(id)arg1 userInfo:(id)arg2 clickActivation:(BOOL)arg3;
-- (void)_handleDismissalForIdentifier:(id)arg1 userInfo:(id)arg2;
+- (void)_handleDismissalForIdentifier:(id)arg1 userInfo:(id)arg2 dismissedAlert:(BOOL)arg3;
+- (void)_handleDismissalOfNotification:(id)arg1;
 - (BOOL)_shouldPerformActionOnDismiss:(unsigned long long)arg1;
 - (id)_titleForAction:(unsigned long long)arg1;
 - (unsigned long long)_actionForMessage:(id)arg1;
-- (id)_notificationInfoForCoalescedMessageForCalendar:(BOOL)arg1;
+- (id)_notificationInfoForSuggestionMessages:(id)arg1;
+- (id)_notificationInfoForCoalescedMessageWithCount:(unsigned long long)arg1 forCalendar:(BOOL)arg2;
 - (id)_notificationInfoForMessage:(id)arg1;
 - (void)_deliverCalendarMessages:(id)arg1 reminderMessages:(id)arg2;
+- (BOOL)_messageShouldCoalesceForSuggestions:(id)arg1;
 - (BOOL)_shouldCoalesceMessage:(id)arg1;
 - (void)_deliverMessages:(id)arg1;
 - (BOOL)_messageIsForReminders:(id)arg1;
@@ -50,11 +56,12 @@
 - (BOOL)_contributesToCalendarBadgeCount;
 - (unsigned long long)_computeReminderBadgeCount;
 - (unsigned long long)_computeCalendarBadgeCount;
-- (id)_messageMap;
+- (id)_mapMessages:(id)arg1 passingFilter:(CDUnknownBlockType)arg2;
 - (void)_updateBadgeCounts;
+- (void)_removeNotificationIdentifiers:(id)arg1;
 - (void)_updateMessages;
 - (void)_updateMessagesAndBadges;
-- (void)_updateMessagesFromEventStore;
+- (void)_loadMessagesFromEventStore;
 - (BOOL)_isStringForCoalesced:(id)arg1;
 - (BOOL)_handlesType:(id)arg1;
 - (BOOL)_handlesExpirationForType:(id)arg1;

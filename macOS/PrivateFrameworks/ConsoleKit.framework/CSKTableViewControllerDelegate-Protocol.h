@@ -14,6 +14,7 @@
 - (void)tableViewController:(CSKTableViewController *)arg1 entitiesDidSelect:(NSArray *)arg2;
 
 @optional
+- (void)tableViewControllerScrollingPositionDidReachTop:(CSKTableViewController *)arg1;
 - (void)tableViewController:(CSKTableViewController *)arg1 needSortingUsingSortDescriptor:(NSSortDescriptor *)arg2;
 - (void)tableViewController:(CSKTableViewController *)arg1 lockFocusStateDidChange:(BOOL)arg2;
 @end

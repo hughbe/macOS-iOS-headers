@@ -7,7 +7,7 @@
 #import "NSMutableArray.h"
 
 @interface NSMutableArray (MKLocatableAdditions)
-- (void)_mapkit_makeObjectsPerformSelector:(SEL)arg1;
+- (void)_mapkit_insertObject:(id)arg1 sortedUsingSelector:(SEL)arg2;
 - (void)_mapkit_sortUsingDistanceFromCoordinate:(struct CLLocationCoordinate2D)arg1 ascending:(BOOL)arg2;
 - (void)_mapkit_sortUsingDistanceFromCoordinate:(struct CLLocationCoordinate2D)arg1;
 - (void)_mapkit_sortUsingLongitudeAscending:(BOOL)arg1;

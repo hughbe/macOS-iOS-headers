@@ -15,6 +15,8 @@
 - (id)initWithURL:(NSURL *)arg1 eTag:(NSString *)arg2 dataPayload:(NSData *)arg3 inContainerWithURL:(NSURL *)arg4 withAccountInfoProvider:(id <CoreDAVAccountInfoProvider>)arg5;
 
 @optional
+@property(retain, nonatomic) NSURL *destinationURL;
+@property(retain, nonatomic) NSURL *sourceURL;
 @property(readonly, nonatomic) NSArray *childrenOrder;
 @end
 

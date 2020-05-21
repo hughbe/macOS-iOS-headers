@@ -15,6 +15,8 @@
 {
 }
 
++ (id)defaultOrthographyForLanguage:(id)arg1;
++ (id)_orthographyWithDominantScript:(id)arg1 languageMap:(id)arg2;
 + (id)_scriptNameForScriptIndex:(unsigned long long)arg1;
 + (BOOL)supportsSecureCoding;
 + (id)orthographyWithDominantScript:(id)arg1 languageMap:(id)arg2;

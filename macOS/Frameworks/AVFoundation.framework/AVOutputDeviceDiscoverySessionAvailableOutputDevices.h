@@ -13,14 +13,15 @@
     AVOutputDeviceDiscoverySessionAvailableOutputDevicesInternal *_availableOutputDevices;
 }
 
++ (id)outputDeviceDiscoverySessionAvailableOutputDevicesWithAvailableFigEndpoints:(id)arg1;
 @property(readonly, nonatomic) NSArray *otherDevices;
 @property(readonly, nonatomic) NSArray *recentlyUsedDevices;
 - (void)_loadOutputDevices;
+- (id)impl;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)dealloc;
-- (void)finalize;
-- (id)initWithAvailableFigEndpoints:(id)arg1;
+- (id)initWithOutputDeviceDiscoverySessionAvailableOutputDevicesImpl:(id)arg1;
 - (id)init;
 
 @end

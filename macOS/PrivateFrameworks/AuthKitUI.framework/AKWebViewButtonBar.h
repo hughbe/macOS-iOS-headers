@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSButton, NSDictionary, NSProgressIndicator, NSTextField, NSView;
+#import "NSTouchBarProvider.h"
 
-@interface AKWebViewButtonBar : NSObject
+@class AKTouchBarController, NSArray, NSButton, NSDictionary, NSProgressIndicator, NSString, NSTextField, NSTouchBar, NSView;
+
+@interface AKWebViewButtonBar : NSObject <NSTouchBarProvider>
 {
     NSView *_buttonBarView;
     NSButton *_button1;
@@ -18,11 +20,14 @@
     NSTextField *_spinnerTitle;
     NSButton *_helpButton;
     NSDictionary *_buttonBarDict;
-    id <AKWebViewButtonBarDelegate> _delegate;
     NSArray *_buttonArray;
+    id <AKWebViewButtonBarDelegate> _delegate;
+    AKTouchBarController *_touchBarController;
 }
 
-@property id <AKWebViewButtonBarDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(retain) AKTouchBarController *touchBarController; // @synthesize touchBarController=_touchBarController;
+@property __weak id <AKWebViewButtonBarDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) NSDictionary *buttonBarDict; // @synthesize buttonBarDict=_buttonBarDict;
 - (void)updateDefaultButtons;
 - (void)updateButtonBarDict:(id)arg1;
@@ -33,9 +38,15 @@
 - (void)button2Pressed:(id)arg1;
 - (void)button1Pressed:(id)arg1;
 - (id)buttonBarView;
-- (void)dealloc;
+@property(readonly) NSTouchBar *touchBar;
 - (id)initWithDict:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

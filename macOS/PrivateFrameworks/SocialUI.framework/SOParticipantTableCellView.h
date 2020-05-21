@@ -8,14 +8,15 @@
 
 #import "CNAvatarViewDelegate.h"
 
-@class CNAvatarViewController, NSArray, NSLayoutConstraint, NSStackView, NSString, NSTextField, NSView, SOAVPopUpButtonViewController;
+@class CNAvatarViewController, NSArray, NSImageView, NSStackView, NSString, NSTextField, NSTrackingArea, SOAVPopUpButtonViewController;
 
 @interface SOParticipantTableCellView : NSTableCellView <CNAvatarViewDelegate>
 {
+    NSTrackingArea *_iconsButtonTracking;
+    BOOL _hideAVButtonsOnRollover;
     NSStackView *_horizontalLayoutStackView;
-    NSView *_labelContainer;
     NSTextField *_locationLabel;
-    NSLayoutConstraint *_participantNameLabelBottomConstraint;
+    NSImageView *_verifiedBusinessImageView;
     CNAvatarViewController *_avatarViewController;
     SOAVPopUpButtonViewController *_audioPopUpButtonViewController;
     SOAVPopUpButtonViewController *_videoPopUpButtonViewController;
@@ -23,29 +24,29 @@
     NSArray *_stackedLabelsConstraints;
 }
 
-+ (id)_whiteVideoImage;
 + (id)_blueVideoImage;
-+ (id)_whiteAudioImage;
 + (id)_blueAudioImage;
-+ (id)_whiteScreenSharingImage;
 + (id)_blueScreenSharingImage;
-+ (void)setAVPopUpButtonViewControllerClass:(Class)arg1;
-+ (Class)avPopUpButtonViewControllerClass;
+- (void).cxx_destruct;
 @property(retain) NSArray *stackedLabelsConstraints; // @synthesize stackedLabelsConstraints=_stackedLabelsConstraints;
 @property(retain) SOAVPopUpButtonViewController *screenSharingPopUpButtonViewController; // @synthesize screenSharingPopUpButtonViewController=_screenSharingPopUpButtonViewController;
 @property(retain) SOAVPopUpButtonViewController *videoPopUpButtonViewController; // @synthesize videoPopUpButtonViewController=_videoPopUpButtonViewController;
 @property(retain) SOAVPopUpButtonViewController *audioPopUpButtonViewController; // @synthesize audioPopUpButtonViewController=_audioPopUpButtonViewController;
 @property(retain) CNAvatarViewController *avatarViewController; // @synthesize avatarViewController=_avatarViewController;
-@property(retain) NSLayoutConstraint *participantNameLabelBottomConstraint; // @synthesize participantNameLabelBottomConstraint=_participantNameLabelBottomConstraint;
+@property(retain) NSImageView *verifiedBusinessImageView; // @synthesize verifiedBusinessImageView=_verifiedBusinessImageView;
 @property(retain) NSTextField *locationLabel; // @synthesize locationLabel=_locationLabel;
-@property(retain) NSView *labelContainer; // @synthesize labelContainer=_labelContainer;
 @property(retain) NSStackView *horizontalLayoutStackView; // @synthesize horizontalLayoutStackView=_horizontalLayoutStackView;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL hideAVButtonsOnRollover; // @synthesize hideAVButtonsOnRollover=_hideAVButtonsOnRollover;
 - (void)dealloc;
-- (void)setBackgroundStyle:(long long)arg1;
+- (void)_setVerifiedBusinessImageView;
 - (void)setObjectValue:(id)arg1;
+- (void)mouseExited:(id)arg1;
+- (void)mouseEntered:(id)arg1;
+- (void)_hideIconSubviews:(BOOL)arg1;
 - (void)awakeFromNib;
+- (id)accessibilityLabel;
 - (id)avatarViewController:(id)arg1 requiredImageForContact:(id)arg2;
+- (void)_cnContactDidChange:(id)arg1;
 - (void)_personDidChange:(id)arg1;
 - (void)_imFMFSessionRelationshipStatusDidChange:(id)arg1;
 - (void)_imFMFSessionLocationReceived:(id)arg1;

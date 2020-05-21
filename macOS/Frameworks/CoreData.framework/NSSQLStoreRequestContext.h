@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSError, NSException, NSManagedObjectContext, NSPersistentStoreRequest, NSQueryGenerationToken, NSSQLCore, NSSQLRowCache, NSSQLiteConnection;
+@class NSError, NSException, NSManagedObjectContext, NSNumber, NSPersistentStoreRequest, NSQueryGenerationToken, NSSQLCore, NSSQLRowCache, NSSQLiteConnection;
 
 __attribute__((visibility("hidden")))
 @interface NSSQLStoreRequestContext : NSObject
@@ -18,26 +18,34 @@ __attribute__((visibility("hidden")))
     NSError *_error;
     NSException *_exception;
     id _result;
-    int _debugLogLevel;
+    NSQueryGenerationToken *_queryGeneration;
+    NSNumber *_transactionID;
     BOOL _useColoredLogging;
     BOOL _useConcurrentFetching;
+    BOOL _hasHistoryTracking;
+    BOOL _storeIsInMemory;
 }
 
+@property(readonly, nonatomic) BOOL storeIsInMemory; // @synthesize storeIsInMemory=_storeIsInMemory;
+@property(readonly, nonatomic) NSNumber *transactionID; // @synthesize transactionID=_transactionID;
 @property(retain, nonatomic) id result; // @synthesize result=_result;
 @property(retain, nonatomic) id exception; // @synthesize exception=_exception;
 @property(retain, nonatomic) NSError *localError; // @synthesize localError=_error;
 @property(readonly, nonatomic) BOOL useConcurrentFetching; // @synthesize useConcurrentFetching=_useConcurrentFetching;
-@property(readonly, nonatomic) int debugLogLevel; // @synthesize debugLogLevel=_debugLogLevel;
 @property(readonly, nonatomic) BOOL useColoredLogging; // @synthesize useColoredLogging=_useColoredLogging;
 @property(readonly, nonatomic) NSManagedObjectContext *context; // @synthesize context=_context;
 @property(retain, nonatomic) NSSQLiteConnection *connection; // @synthesize connection=_connection;
 @property(readonly, nonatomic) NSPersistentStoreRequest *persistentStoreRequest; // @synthesize persistentStoreRequest=_persistentStoreRequest;
 @property(readonly, nonatomic) BOOL shouldRegisterQueryGeneration;
 - (void)executeEpilogue;
-- (void)executeRequestUsingConnection:(id)arg1;
+- (BOOL)executeRequestUsingConnection:(id)arg1;
+- (BOOL)executeRequestCore:(id *)arg1;
 - (void)executePrologue;
-@property(readonly, nonatomic) NSQueryGenerationToken *queryGenerationToken;
+@property(retain, nonatomic) NSQueryGenerationToken *queryGenerationToken;
 @property(readonly, nonatomic) BOOL isWritingRequest;
+- (void)setTransactionID:(id)arg1;
+- (BOOL)hasHistoryTracking;
+@property(readonly, nonatomic) int debugLogLevel;
 - (BOOL)forConflictAnalysis;
 @property(readonly, nonatomic) NSSQLRowCache *rowCache;
 - (id)notificationSourceObject;

@@ -6,15 +6,16 @@
 
 #import <CoreFoundation/NSFileSecurity.h>
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 __attribute__((visibility("hidden")))
-@interface __NSFileSecurity : NSFileSecurity <NSCopying, NSCoding>
+@interface __NSFileSecurity : NSFileSecurity <NSCopying, NSSecureCoding>
 {
     struct _filesec *_filesec;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (id)__new:(struct _filesec *)arg1;

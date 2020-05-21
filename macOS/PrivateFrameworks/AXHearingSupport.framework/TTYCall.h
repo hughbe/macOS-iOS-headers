@@ -8,21 +8,24 @@
 
 #import "AVCVirtualTTYDeviceDelegate.h"
 
-@class AVCVirtualTTYDevice, NSString, TTYConversation, TUCall;
+@class AVCVirtualTTYDevice, NSDictionary, NSObject<OS_dispatch_queue>, NSString, TTYConversation, TUCall;
 
 @interface TTYCall : NSObject <AVCVirtualTTYDeviceDelegate>
 {
+    NSObject<OS_dispatch_queue> *_callQueue;
     id <TTYCallDelegate> _delegate;
+    TTYConversation *_conversation;
     TUCall *_call;
     AVCVirtualTTYDevice *_ttyDevice;
-    TTYConversation *_conversation;
+    NSDictionary *_substitutions;
 }
 
-@property(retain, nonatomic) TTYConversation *conversation; // @synthesize conversation=_conversation;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSDictionary *substitutions; // @synthesize substitutions=_substitutions;
 @property(retain, nonatomic) AVCVirtualTTYDevice *ttyDevice; // @synthesize ttyDevice=_ttyDevice;
 @property(retain, nonatomic) TUCall *call; // @synthesize call=_call;
+@property(retain, nonatomic) TTYConversation *conversation; // @synthesize conversation=_conversation;
 @property(nonatomic) id <TTYCallDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)device:(id)arg1 didReceiveCharacter:(unsigned short)arg2;
 - (void)deviceDidStop:(id)arg1;
 - (void)device:(id)arg1 didStart:(BOOL)arg2 error:(id)arg3;
@@ -30,12 +33,14 @@
 - (void)stop;
 - (void)start;
 - (void)recreateTTYDevice:(id)arg1;
+@property(readonly, copy) NSString *description;
+- (void)mediaServerDied;
+- (void)registerNotifications;
 - (void)dealloc;
 - (id)initWithCall:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class NSDictionary;
+@class NSArray, NSDictionary, NSString;
 
 @interface MTLCompileOptions : NSObject <NSCopying>
 {
@@ -19,14 +19,17 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 // Remaining properties
-@property(nonatomic) BOOL cubemapArrayEnabled; // @dynamic cubemapArrayEnabled;
+@property(nonatomic) NSString *additionalCompilerArguments; // @dynamic additionalCompilerArguments;
+@property(nonatomic) BOOL compileTimeStatisticsEnabled; // @dynamic compileTimeStatisticsEnabled;
 @property(nonatomic) BOOL debuggingEnabled; // @dynamic debuggingEnabled;
-@property(nonatomic) BOOL denormsEnabled; // @dynamic denormsEnabled;
 @property(nonatomic) BOOL fastMathEnabled; // @dynamic fastMathEnabled;
 @property(nonatomic) BOOL framebufferReadEnabled; // @dynamic framebufferReadEnabled;
 @property(nonatomic) unsigned long long languageVersion; // @dynamic languageVersion;
-@property(nonatomic) BOOL nativeDoubleEnabled; // @dynamic nativeDoubleEnabled;
+@property(copy, nonatomic) NSArray *libraries; // @dynamic libraries;
+@property(nonatomic) unsigned long long libraryType; // @dynamic libraryType;
 @property(copy, nonatomic) NSDictionary *preprocessorMacros; // @dynamic preprocessorMacros;
+@property(nonatomic) unsigned char sourceLanguage; // @dynamic sourceLanguage;
+@property(nonatomic) BOOL tracingEnabled; // @dynamic tracingEnabled;
 
 @end
 

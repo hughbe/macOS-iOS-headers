@@ -7,6 +7,6 @@
 #import "CKDatabaseOperation.h"
 
 @interface CKDatabaseOperation (IC)
-- (id)ic_loggingDescriptionStrings;
+- (id)ic_loggingValues;
 @end
 

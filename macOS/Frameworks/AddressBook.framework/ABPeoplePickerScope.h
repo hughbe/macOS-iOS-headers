@@ -8,13 +8,13 @@
 
 @class ABPeoplePickerController;
 
-__attribute__((visibility("hidden")))
 @interface ABPeoplePickerScope : NSObject
 {
     ABPeoplePickerController *_peoplePickerController;
 }
 
-@property ABPeoplePickerController *peoplePickerController; // @synthesize peoplePickerController=_peoplePickerController;
+- (void).cxx_destruct;
+@property __weak ABPeoplePickerController *peoplePickerController; // @synthesize peoplePickerController=_peoplePickerController;
 
 @end
 

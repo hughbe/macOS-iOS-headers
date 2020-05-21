@@ -8,6 +8,7 @@
 
 @class WebFrameView;
 
+__attribute__((visibility("hidden")))
 @interface LUWebFrameViewTextAccessor : LUTextAccessor
 {
     WebFrameView *_webFrameView;
@@ -23,10 +24,11 @@
 + (id)WebHTMLViewAtLocation:(struct CGPoint)arg1;
 + (BOOL)canAccessTextInView:(id)arg1;
 + (BOOL)canAccessTextAtLocation:(struct CGPoint)arg1;
-@property(retain) WebFrameView *webFrameView; // @synthesize webFrameView=_webFrameView;
-- (id)termForRange:(id)arg1 textOrigin:(struct CGPoint *)arg2 language:(id *)arg3 partOfSpeech:(id *)arg4;
-- (id)_termAndTextOrigin:(struct CGPoint *)arg1 language:(id *)arg2 partOfSpeech:(id *)arg3;
-- (id)_termAtLocation:(struct CGPoint)arg1 textOrigin:(struct CGPoint *)arg2 language:(id *)arg3 partOfSpeech:(id *)arg4;
+- (void).cxx_destruct;
+@property(retain, nonatomic) WebFrameView *webFrameView; // @synthesize webFrameView=_webFrameView;
+- (id)termForRange:(id)arg1 textOrigin:(struct CGPoint *)arg2;
+- (id)_termAndTextOrigin:(struct CGPoint *)arg1;
+- (id)_termAtLocation:(struct CGPoint)arg1 textOrigin:(struct CGPoint *)arg2;
 - (id)initWithView:(id)arg1;
 - (id)initWithLocation:(struct CGPoint)arg1;
 - (void)dealloc;

@@ -14,14 +14,14 @@
     NSString *_mimeType;
 }
 
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSString *mimeType; // @synthesize mimeType=_mimeType;
 @property(readonly, copy, nonatomic) NSData *imageData; // @synthesize imageData=_imageData;
+- (id)description;
 - (id)copyImageData;
-- (void)bindToXPCDictionary:(id)arg1;
 - (BOOL)hasArtworkData;
 - (unsigned int)type;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 - (id)initWithImageData:(id)arg1 mimeType:(id)arg2;
 
 @end

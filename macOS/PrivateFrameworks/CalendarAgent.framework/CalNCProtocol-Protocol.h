@@ -6,12 +6,15 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSArray, NSString;
 
 @protocol CalNCProtocol <NSObject>
+@property(nonatomic) BOOL hideAllNotifications;
+- (void)updateNCMessages;
 - (void)remindersBadgeCountForContactIdentifier:(NSString *)arg1 reply:(void (^)(NSNumber *))arg2;
 - (void)remindersBadgeCount:(void (^)(NSNumber *))arg1;
 - (void)calendarBadgeCount:(void (^)(NSNumber *))arg1;
+- (void)removeNotificationIDs:(NSArray *)arg1;
 - (void)start;
 @end
 

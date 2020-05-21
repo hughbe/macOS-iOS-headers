@@ -23,10 +23,12 @@
     struct {
         unsigned int _directionState:2;
         unsigned int _drawsOutside:1;
-        unsigned int _reserved:29;
+        unsigned int _standaloneAttachment:1;
+        unsigned int _reserved:28;
     } _flags;
 }
 
+@property(readonly, getter=isElasticOnly) BOOL elasticOnly;
 - (BOOL)hasElasticRange;
 - (void)justifyWithFactor:(double)arg1;
 - (void)saveWithGlyphOrigin:(double)arg1;
@@ -34,6 +36,7 @@
 - (void)getTypographicLineHeight:(double *)arg1 baselineOffset:(double *)arg2 leading:(double *)arg3;
 - (void)resolveOpticalAlignmentUpdatingMinPosition:(double *)arg1 maxPosition:(double *)arg2;
 - (double)lineWidthForType:(int)arg1;
+@property(readonly, getter=isStandaloneTextAttachment) BOOL standaloneTextAttachment;
 - (struct _NSRange)characterRange;
 - (struct _NSRange)glyphRange;
 - (void)layoutForStartingGlyphAtIndex:(unsigned long long)arg1 characterIndex:(unsigned long long)arg2 minPosition:(double)arg3 maxPosition:(double)arg4 lineFragmentRect:(struct CGRect)arg5;

@@ -14,6 +14,7 @@
 }
 
 + (id)defaultSubscriber;
+- (void).cxx_destruct;
 - (void)disableHolidayCalendars;
 - (id)backupCalendarSymbolicColor;
 - (BOOL)_alreadySubscribedToLocalHolidayCalendar;

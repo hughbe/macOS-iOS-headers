@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class CKRecordID, CKUserIdentityLookupInfo, NSData, NSPersonNameComponents, NSString;
+@class CKRecordID, CKUserIdentityLookupInfo, NSArray, NSData, NSPersonNameComponents, NSString;
 
 @interface CKUserIdentity : NSObject <NSSecureCoding, NSCopying>
 {
@@ -18,6 +18,7 @@
     CKUserIdentityLookupInfo *_lookupInfo;
     NSPersonNameComponents *_nameComponents;
     CKRecordID *_userRecordID;
+    NSArray *_contactIdentifiers;
     NSData *_publicSharingKey;
     unsigned long long _publicKeyVersion;
     NSData *_outOfNetworkPrivateKey;
@@ -27,6 +28,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSString *lastName; // @synthesize lastName=_lastName;
 @property(readonly, copy, nonatomic) NSString *firstName; // @synthesize firstName=_firstName;
 @property(retain, nonatomic) NSData *encryptedPersonalInfo; // @synthesize encryptedPersonalInfo=_encryptedPersonalInfo;
@@ -34,16 +36,16 @@
 @property(nonatomic) unsigned long long publicKeyVersion; // @synthesize publicKeyVersion=_publicKeyVersion;
 @property(retain, nonatomic) NSData *publicSharingKey; // @synthesize publicSharingKey=_publicSharingKey;
 @property(nonatomic) BOOL isCached; // @synthesize isCached=_isCached;
+@property(copy, nonatomic) NSArray *contactIdentifiers; // @synthesize contactIdentifiers=_contactIdentifiers;
 @property(nonatomic) BOOL hasiCloudAccount; // @synthesize hasiCloudAccount=_hasiCloudAccount;
 @property(copy, nonatomic) CKRecordID *userRecordID; // @synthesize userRecordID=_userRecordID;
 @property(copy, nonatomic) NSPersonNameComponents *nameComponents; // @synthesize nameComponents=_nameComponents;
 @property(copy, nonatomic) CKUserIdentityLookupInfo *lookupInfo; // @synthesize lookupInfo=_lookupInfo;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)ckShortDescription;
 - (id)description;
-- (id)CKPropertiesToDescribe:(BOOL)arg1;
+- (id)CKDescriptionPropertiesWithPublic:(BOOL)arg1 private:(BOOL)arg2 shouldExpand:(BOOL)arg3;
 - (BOOL)isEquivalentToUserIdentityOrPublicKey:(id)arg1;
 - (BOOL)isEquivalentToUserIdentity:(id)arg1;
 - (unsigned long long)hash;

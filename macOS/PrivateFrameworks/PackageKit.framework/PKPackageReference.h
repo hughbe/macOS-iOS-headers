@@ -19,13 +19,16 @@
 }
 
 + (BOOL)supportsSecureCoding;
-- (id)digest;
-- (id)MD5;
-- (unsigned long long)fileSize;
-- (id)version;
-- (id)identifier;
-- (id)URL;
-- (id)dictionaryRepresentation;
+@property(readonly) NSString *digest;
+@property(readonly) NSDictionary *additionalInfo;
+@property(readonly) long long fileDigestType;
+@property(readonly) NSString *fileDigest;
+@property(readonly) NSString *MD5;
+@property(readonly) unsigned long long fileSize;
+@property(readonly) NSString *version;
+@property(readonly) NSString *identifier;
+@property(readonly) NSURL *URL;
+@property(readonly) NSDictionary *dictionaryRepresentation;
 @property(readonly, copy) NSString *description;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
@@ -33,6 +36,8 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)dealloc;
+- (id)initWithURL:(id)arg1 identifier:(id)arg2 version:(id)arg3 fileSize:(unsigned long long)arg4 fileDigest:(id)arg5 fileDigestType:(long long)arg6;
+- (id)initWithURL:(id)arg1 identifier:(id)arg2 version:(id)arg3 fileSize:(unsigned long long)arg4 fileDigest:(id)arg5 fileDigestType:(long long)arg6 additionalInfo:(id)arg7;
 - (id)initWithURL:(id)arg1 identifier:(id)arg2 version:(id)arg3 fileSize:(unsigned long long)arg4 MD5:(id)arg5 digest:(id)arg6;
 - (id)initWithURL:(id)arg1 identifier:(id)arg2 version:(id)arg3 fileSize:(unsigned long long)arg4 MD5:(id)arg5;
 - (id)initWithDictionaryRepresentation:(id)arg1 baseURL:(id)arg2;

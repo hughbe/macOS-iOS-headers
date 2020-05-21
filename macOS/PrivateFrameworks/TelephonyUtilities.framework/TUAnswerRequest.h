@@ -10,26 +10,38 @@
 #import "TUCallRequest.h"
 #import "TUVideoRequest.h"
 
-@class NSString;
+@class IDSDestination, NSDate, NSString;
 
 @interface TUAnswerRequest : NSObject <NSSecureCoding, TUCallRequest, TUVideoRequest>
 {
     BOOL _wantsHoldMusic;
+    BOOL _pauseVideoToStart;
+    BOOL _downgradeToAudio;
     NSString *_uniqueProxyIdentifier;
     NSString *_sourceIdentifier;
+    IDSDestination *_endpointIDSDestination;
+    NSString *_endpointRapportMediaSystemIdentifier;
+    NSString *_endpointRapportEffectiveIdentifier;
     long long _behavior;
+    NSDate *_dateAnswered;
     struct CGSize _localLandscapeAspectRatio;
     struct CGSize _localPortraitAspectRatio;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSDate *dateAnswered; // @synthesize dateAnswered=_dateAnswered;
 @property(nonatomic) long long behavior; // @synthesize behavior=_behavior;
+@property(nonatomic) BOOL downgradeToAudio; // @synthesize downgradeToAudio=_downgradeToAudio;
+@property(nonatomic) BOOL pauseVideoToStart; // @synthesize pauseVideoToStart=_pauseVideoToStart;
 @property(nonatomic) BOOL wantsHoldMusic; // @synthesize wantsHoldMusic=_wantsHoldMusic;
+@property(retain, nonatomic) NSString *endpointRapportEffectiveIdentifier; // @synthesize endpointRapportEffectiveIdentifier=_endpointRapportEffectiveIdentifier;
+@property(retain, nonatomic) NSString *endpointRapportMediaSystemIdentifier; // @synthesize endpointRapportMediaSystemIdentifier=_endpointRapportMediaSystemIdentifier;
+@property(retain, nonatomic) IDSDestination *endpointIDSDestination; // @synthesize endpointIDSDestination=_endpointIDSDestination;
 @property(copy, nonatomic) NSString *sourceIdentifier; // @synthesize sourceIdentifier=_sourceIdentifier;
 @property(nonatomic) struct CGSize localPortraitAspectRatio; // @synthesize localPortraitAspectRatio=_localPortraitAspectRatio;
 @property(nonatomic) struct CGSize localLandscapeAspectRatio; // @synthesize localLandscapeAspectRatio=_localLandscapeAspectRatio;
 @property(copy, nonatomic) NSString *uniqueProxyIdentifier; // @synthesize uniqueProxyIdentifier=_uniqueProxyIdentifier;
-- (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 @property(readonly, copy) NSString *description;

@@ -14,6 +14,7 @@
 
 + (id)personSearchWithDictionary:(id)arg1 context:(id)arg2;
 + (id)personSearch;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *scope;
 @property(copy, nonatomic) NSString *relationship;

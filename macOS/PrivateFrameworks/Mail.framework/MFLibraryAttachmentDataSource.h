@@ -8,34 +8,34 @@
 
 #import "MCAttachmentDataSource.h"
 
-@class MFLibraryMessage, NSMutableSet, NSString;
+@class ECAngleBracketIDHash, NSString;
 
 @interface MFLibraryAttachmentDataSource : NSObject <MCAttachmentDataSource>
 {
     BOOL _isMailDropImageArchive;
     BOOL _isMailDropImageThumbnail;
     BOOL _isAutoArchiveAttachment;
-    MFLibraryMessage *_message;
-    NSString *_mimePartNumber;
-    NSString *_attachmentFilename;
     id <MCRemoteAttachmentDataSource> _remoteDataSource;
-    NSMutableSet *_remoteFetchOperations;
+    long long _messageID;
+    NSString *_mimePartNumber;
+    ECAngleBracketIDHash *_contentIDHash;
+    NSString *_attachmentFilename;
 }
 
-+ (id)_remoteFetchQueue;
++ (id)_asyncOperationQueue;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL isAutoArchiveAttachment; // @synthesize isAutoArchiveAttachment=_isAutoArchiveAttachment;
 @property(readonly, nonatomic) BOOL isMailDropImageThumbnail; // @synthesize isMailDropImageThumbnail=_isMailDropImageThumbnail;
 @property(readonly, nonatomic) BOOL isMailDropImageArchive; // @synthesize isMailDropImageArchive=_isMailDropImageArchive;
-@property(retain, nonatomic) NSMutableSet *remoteFetchOperations; // @synthesize remoteFetchOperations=_remoteFetchOperations;
-@property(readonly, nonatomic) id <MCRemoteAttachmentDataSource> remoteDataSource; // @synthesize remoteDataSource=_remoteDataSource;
 @property(readonly, copy, nonatomic) NSString *attachmentFilename; // @synthesize attachmentFilename=_attachmentFilename;
+@property(readonly, copy, nonatomic) ECAngleBracketIDHash *contentIDHash; // @synthesize contentIDHash=_contentIDHash;
 @property(readonly, copy, nonatomic) NSString *mimePartNumber; // @synthesize mimePartNumber=_mimePartNumber;
-@property(readonly, nonatomic) MFLibraryMessage *message; // @synthesize message=_message;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) long long messageID; // @synthesize messageID=_messageID;
+@property(readonly, nonatomic) id <MCRemoteAttachmentDataSource> remoteDataSource; // @synthesize remoteDataSource=_remoteDataSource;
 @property(readonly, nonatomic) BOOL isDirectory;
 @property(readonly, nonatomic) BOOL canResultsBeCached;
 @property(readonly, nonatomic) BOOL dataIsLocallyAvailable;
-- (id)approximateSizeForAccessLevel:(long long)arg1;
+- (unsigned long long)approximateSizeForAccessLevel:(long long)arg1;
 - (void)fileWrapperForAccessLevel:(long long)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)_dataFromRemoteDataSourceWithAccessLevel:(long long)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)_dataFromStore:(id *)arg1;
@@ -43,7 +43,6 @@
 - (void)dataForAccessLevel:(long long)arg1 completionBlock:(CDUnknownBlockType)arg2;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)init;
 - (id)initWithMessage:(id)arg1 mimePartNumber:(id)arg2 attachment:(id)arg3 remoteDataSource:(id)arg4;
 

@@ -26,11 +26,11 @@
 + (BOOL)setDomain:(int)arg1 outOldDomain:(int *)arg2;
 + (int)getPreferencesDomainForItemDomain:(long long)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly) BOOL legacy; // @synthesize legacy=_legacy;
 @property(copy) NEKeychainItem *oldItem; // @synthesize oldItem=_oldItem;
-@property(readonly) NSString *accessGroup; // @synthesize accessGroup=_accessGroup;
+@property(copy) NSString *accessGroup; // @synthesize accessGroup=_accessGroup;
 @property long long domain; // @synthesize domain=_domain;
-- (void).cxx_destruct;
 - (void)migrateFromPreferences:(struct __SCPreferences *)arg1;
 - (void)syncUsingConfiguration:(id)arg1 accountName:(id)arg2 passwordType:(long long)arg3 identifierSuffix:(id)arg4;
 - (void)remove;
@@ -38,7 +38,10 @@
 - (id)copyKindForPasswordType:(long long)arg1;
 - (id)copyPassword;
 - (BOOL)copyDataFromKeychainItem:(void *)arg1 outPassword:(id *)arg2 outIdentifier:(id *)arg3 outPersistentReference:(id *)arg4;
-- (BOOL)copyKeychainItem:(struct OpaqueSecKeychainItemRef **)arg1;
+- (void)setChangeACLList:(struct __SecAccess *)arg1;
+- (void)addPathtoTrustedApplications:(id)arg1 trustedApplications:(struct __CFArray *)arg2;
+- (void)addAppPathsToACL:(id)arg1;
+- (BOOL)copyKeychainItem:(struct __SecKeychainItem **)arg1 copyPrivateKey:(BOOL)arg2;
 - (id)copyQueryWithReturnTypes:(id)arg1;
 @property(copy) NSString *password;
 @property(copy) NSData *persistentReference;

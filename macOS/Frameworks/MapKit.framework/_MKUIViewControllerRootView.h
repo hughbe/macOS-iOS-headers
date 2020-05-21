@@ -13,13 +13,13 @@
     _MKUIViewController *_viewController;
 }
 
-@property(nonatomic) __weak _MKUIViewController *viewController; // @synthesize viewController=_viewController;
 - (void).cxx_destruct;
+@property(nonatomic) __weak _MKUIViewController *viewController; // @synthesize viewController=_viewController;
 - (void)setBounds:(struct CGRect)arg1;
 - (void)setFrame:(struct CGRect)arg1;
 - (BOOL)isFlipped;
 - (void)layout;
-- (void)commonInit;
+- (void)_commonInit;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithViewController:(id)arg1;

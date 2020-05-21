@@ -6,28 +6,35 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary;
+@class NSMutableArray, NSMutableDictionary;
 
 @interface IDDiagnosticsStore : NSObject
 {
+    NSMutableArray *_installEvents;
     NSMutableDictionary *_messages;
 }
 
 + (id)defaultStore;
-@property(retain) NSMutableDictionary *messages; // @synthesize messages=_messages;
 - (void).cxx_destruct;
+@property(retain) NSMutableDictionary *messages; // @synthesize messages=_messages;
+@property(retain) NSMutableArray *installEvents; // @synthesize installEvents=_installEvents;
 - (BOOL)startNewInstall:(id *)arg1;
 - (BOOL)clearStoredMessages:(id *)arg1;
 - (BOOL)clearSingleDiagnosticMessage:(long long)arg1 error:(id *)arg2;
-- (id)storedMessages;
+- (id)storedMessages:(id)arg1;
 - (BOOL)recordDiagnosticMessage:(long long)arg1 withData:(id)arg2 error:(id *)arg3;
-- (BOOL)_storeWithError:(id *)arg1;
+- (BOOL)_storeMessage:(long long)arg1 toV2WithError:(id *)arg2;
 - (id)init;
+- (void)_resumeInstall;
+- (BOOL)_containsUnfinishedInstall;
 - (id)_unalteredStoredMessages;
-- (id)_storedNVRAMData;
-- (BOOL)_storeDataToNVRAM:(id)arg1 error:(id *)arg2;
+- (id)_unalteredStoredInstallEvents;
+- (id)_storedNVRAMV2Data;
+- (BOOL)_storeDataToNVRAMV2:(id)arg1 error:(id *)arg2;
+- (id)_storedNVRAMV1Data;
+- (BOOL)_storeDataToNVRAMV1:(id)arg1 error:(id *)arg2;
 - (id)_decompressData:(id)arg1 error:(id *)arg2;
-- (id)_compressData:(id)arg1 error:(id *)arg2;
+- (id)_compressData:(id)arg1 forMessage:(long long)arg2 error:(id *)arg3;
 
 @end
 

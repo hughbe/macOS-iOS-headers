@@ -6,23 +6,26 @@
 
 #import <CalendarPersistence/CalManagedNode.h>
 
-#import "EKProtocolCalendarSource.h"
+#import "CalendarSourceModelProtocol.h"
 
 @class NSDictionary, NSManagedObjectID, NSSet, NSString, NSURL;
 
-@interface CalManagedGroup : CalManagedNode <EKProtocolCalendarSource>
+@interface CalManagedGroup : CalManagedNode <CalendarSourceModelProtocol>
 {
 }
 
 + (id)otherGroupLocalizedTitle;
 + (id)entityName;
 - (id)enclosingSource;
+@property(readonly, nonatomic) BOOL requiresOpeningAttachmentAsLink;
 - (BOOL)supportsEmailValidation;
 - (BOOL)supportsTaskCalendarCreation;
 @property(readonly, nonatomic) BOOL supportsSharingScheduling;
 @property(readonly, nonatomic) BOOL supportsPrivateEvents;
+@property(readonly, nonatomic) BOOL supportsPhoneNumbers;
 @property(readonly, nonatomic) BOOL supportsManagedAttachments;
 @property(readonly, nonatomic) BOOL supportsLikenessPropagation;
+@property(readonly, nonatomic) BOOL supportsJunkReporting;
 @property(readonly, nonatomic) BOOL supportsFreebusy;
 - (BOOL)supportsEventCalendarCreation;
 @property(readonly, nonatomic) BOOL supportsDropBoxAttachments;

@@ -14,7 +14,6 @@ __attribute__((visibility("hidden")))
     NSSQLForeignKey *_foreignKey;
     NSSQLForeignEntityKey *_foreignEntityKey;
     NSSQLForeignOrderKey *_foreignOrderKey;
-    unsigned int _slot;
     BOOL _isVirtual;
 }
 

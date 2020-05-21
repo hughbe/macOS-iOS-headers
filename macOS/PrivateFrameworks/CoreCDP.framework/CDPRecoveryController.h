@@ -11,7 +11,7 @@
 }
 
 - (id)_sanitizedRecoveryErrorWithError:(id)arg1;
-- (void)recoverIDMSRecoveryDictionary:(CDUnknownBlockType)arg1;
+- (void)performRecovery:(CDUnknownBlockType)arg1;
 
 @end
 

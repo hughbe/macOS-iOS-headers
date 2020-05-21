@@ -10,14 +10,14 @@
 
 @interface MCTaskOperation : NSBlockOperation
 {
-    MCActivityMonitor *_parentMonitor;
     MCActivityMonitor *_monitor;
+    MCActivityMonitor *_parentMonitor;
 }
 
 + (void)setTaskDescription:(const char *)arg1;
-@property(retain) MCActivityMonitor *monitor; // @synthesize monitor=_monitor;
-@property(retain) MCActivityMonitor *parentMonitor; // @synthesize parentMonitor=_parentMonitor;
 - (void).cxx_destruct;
+@property(retain) MCActivityMonitor *parentMonitor; // @synthesize parentMonitor=_parentMonitor;
+@property(retain) MCActivityMonitor *monitor; // @synthesize monitor=_monitor;
 - (void)cancel;
 - (void)dealloc;
 - (void)main;

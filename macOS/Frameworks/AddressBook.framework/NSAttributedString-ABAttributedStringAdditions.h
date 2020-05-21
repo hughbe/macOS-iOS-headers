@@ -8,7 +8,5 @@
 
 @interface NSAttributedString (ABAttributedStringAdditions)
 + (id)_ab_attributedStringWithString:(id)arg1;
-+ (BOOL)abIsBlank:(id)arg1;
-+ (id)abAttributedAlertStringWithString:(id)arg1;
 @end
 

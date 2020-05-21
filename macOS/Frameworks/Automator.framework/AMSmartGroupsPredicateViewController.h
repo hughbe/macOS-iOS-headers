@@ -14,8 +14,9 @@
     NSPredicateEditor *_editor;
 }
 
-@property(retain) NSPredicate *criteria; // @synthesize criteria=_criteria;
-- (void)dealloc;
+- (void).cxx_destruct;
+@property __weak NSPredicateEditor *_editor; // @synthesize _editor;
+@property(retain, nonatomic) NSPredicate *criteria; // @synthesize criteria=_criteria;
 - (void)awakeFromNib;
 
 @end

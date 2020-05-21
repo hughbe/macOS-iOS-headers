@@ -11,11 +11,10 @@
     BOOL _verticallyCentered;
 }
 
+@property BOOL verticallyCentered; // @synthesize verticallyCentered=_verticallyCentered;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)selectWithFrame:(struct CGRect)arg1 inView:(id)arg2 editor:(id)arg3 delegate:(id)arg4 start:(long long)arg5 length:(long long)arg6;
 - (struct CGRect)adjustFrameToVerticallyCenterText:(struct CGRect)arg1;
-- (void)setVerticallyCentered:(BOOL)arg1;
-- (BOOL)verticallyCentered;
 
 @end
 

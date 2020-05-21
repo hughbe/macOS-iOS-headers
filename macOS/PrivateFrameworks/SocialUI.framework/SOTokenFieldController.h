@@ -6,29 +6,28 @@
 
 #import <SocialUI/SOAddRecipientFieldViewController.h>
 
-#import "NSTokenFieldDelegate.h"
 #import "SOTokenAttachmentCellDelegate.h"
 #import "SOTokenFieldCellDragDelegate.h"
+#import "SOTokenFieldDelegate.h"
 
-@class NSHashTable, NSMutableDictionary, NSObject<OS_os_activity>, NSString, SOHandleMenuController, SOTokenField;
+@class NSHashTable, NSMutableDictionary, NSString, SOHandleMenuController, SOTokenField;
 
-@interface SOTokenFieldController : SOAddRecipientFieldViewController <SOTokenAttachmentCellDelegate, SOTokenFieldCellDragDelegate, NSTokenFieldDelegate>
+@interface SOTokenFieldController : SOAddRecipientFieldViewController <SOTokenAttachmentCellDelegate, SOTokenFieldCellDragDelegate, SOTokenFieldDelegate>
 {
     BOOL _wroteToPasteboard;
     BOOL _addTokensFromDrag;
     SOTokenField *_layoutTestTokenField;
     NSMutableDictionary *_cachedTokenFieldHeights;
     NSHashTable *_tokenAttachmentCells;
-    NSObject<OS_os_activity> *_tokenizerActivityID;
     BOOL _changingFirstResponder;
     BOOL _suppressErrorDisplay;
     SOHandleMenuController *_handleMenuController;
 }
 
+- (void).cxx_destruct;
 @property(retain) SOHandleMenuController *handleMenuController; // @synthesize handleMenuController=_handleMenuController;
 @property BOOL suppressErrorDisplay; // @synthesize suppressErrorDisplay=_suppressErrorDisplay;
 @property(getter=isChangingFirstResponder) BOOL changingFirstResponder; // @synthesize changingFirstResponder=_changingFirstResponder;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (void)viewDidLoad;
 - (void)selectedResult:(id)arg1;
@@ -37,6 +36,7 @@
 - (id)autocompleteStringForFieldEditor:(id)arg1;
 - (void)chatDisplayControllerDidChange:(id)arg1;
 - (void)chatDisplayControllerWillChange:(id)arg1;
+- (BOOL)tokenFieldShouldPreventAdditionalTyping:(id)arg1;
 - (void)controlTextDidEndEditing:(id)arg1;
 - (void)controlTextDidChange:(id)arg1;
 - (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
@@ -50,16 +50,18 @@
 - (id)tokenField:(id)arg1 setUpTokenAttachmentCell:(id)arg2 forRepresentedObject:(id)arg3;
 - (void)_registerTokenAttachmentCell:(id)arg1;
 - (void)_updateHandleTokenFromNotification:(id)arg1;
+- (id)tokenAttachmentCellEffectiveAppearance:(id)arg1;
 - (unsigned long long)tokenField:(id)arg1 styleForRepresentedObject:(id)arg2;
 - (id)tokenField:(id)arg1 displayStringForRepresentedObject:(id)arg2;
 - (id)tokenField:(id)arg1 shouldAddObjects:(id)arg2 atIndex:(unsigned long long)arg3;
 - (id)tokenField:(id)arg1 representedObjectForEditingString:(id)arg2;
 - (void)tokenFieldCellDidEndDropOperation:(id)arg1;
 - (void)tokenFieldCellDidBeginDropOperation:(id)arg1;
+- (BOOL)isNewComposeForTokenAttachmentCell:(id)arg1;
 - (BOOL)tokenAttachmentCellHasErrorState:(id)arg1;
 - (BOOL)tokenAttachmentCell:(id)arg1 doubleClickedInRect:(struct CGRect)arg2 ofView:(id)arg3;
 - (void)tokenAttachmentCell:(id)arg1 willBeDestroyedWithRepresentedObject:(id)arg2;
-- (BOOL)tokenAttachmentCellShouldShowDedicingBackground:(id)arg1;
+- (BOOL)tokenAttachmentCellShouldShowDecidingBackground:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)_showErrorMessageForHandle:(id)arg1;
 - (BOOL)_showContactCardForIMHandle:(id)arg1;
@@ -69,6 +71,7 @@
 - (void)_updatePlaceholderAttributedString;
 - (void)_newChatDisplayControllerIDSValidationDidChange:(id)arg1;
 - (void)_chatDisplayControllerRecipientsDidChange:(id)arg1;
+- (unsigned long long)_visibleTokenCountWithLineCount:(unsigned long long)arg1 tokenCount:(unsigned long long)arg2 recipients:(id)arg3 tokenFieldHeight:(double)arg4;
 - (unsigned long long)visibleTokenCountForLineCount:(unsigned long long)arg1 width:(double)arg2;
 - (void)appendIMHandles:(id)arg1;
 - (void)showContactCard:(id)arg1;

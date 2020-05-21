@@ -8,11 +8,11 @@
 
 #import "CNAutocompleteSearch.h"
 
-@class CNContactStore, NSString, _CDPeopleSuggester;
+@class CNContactStore, NSString;
 
 @interface CNAutocompleteDuetSearch : NSObject <CNAutocompleteSearch>
 {
-    _CDPeopleSuggester *_peopleSuggester;
+    CDUnknownBlockType _peopleSuggesterFactory;
     CNContactStore *_contactStore;
 }
 
@@ -20,17 +20,19 @@
 + (unsigned long long)predictedResultLimit;
 + (void)configureSettings:(id)arg1 withFetchRequest:(id)arg2;
 + (void)configureContext:(id)arg1 withFetchRequest:(id)arg2;
-@property(readonly, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
-@property(readonly, nonatomic) _CDPeopleSuggester *peopleSuggester; // @synthesize peopleSuggester=_peopleSuggester;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
+@property(readonly, nonatomic) CDUnknownBlockType peopleSuggesterFactory; // @synthesize peopleSuggesterFactory=_peopleSuggesterFactory;
 - (id)resultValueForCDContact:(id)arg1;
 - (long long)addressTypeForCDContact:(id)arg1;
 - (id)autocompleteResultsFromSuggesterResults:(id)arg1 factory:(id)arg2;
 - (id)suggesterSettingsForFetchRequest:(id)arg1;
 - (id)suggesterContextForFetchRequest:(id)arg1;
+- (id)querySuggester:(id)arg1 withContext:(id)arg2 settings:(id)arg3;
 - (id)executeRequest:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (id)initWithPeopleSuggester:(id)arg1 contactStore:(id)arg2;
-- (id)initWithPeopleSuggester:(id)arg1;
+- (id)peopleSuggester;
+- (id)initWithPeopleSuggesterFactory:(CDUnknownBlockType)arg1 contactStore:(id)arg2;
+- (id)initWithPeopleSuggesterFactory:(CDUnknownBlockType)arg1;
 - (id)init;
 
 // Remaining properties

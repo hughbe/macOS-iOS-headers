@@ -4,16 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "TValidatorClientProtocol.h"
+#import "NSObject.h"
 
 @class NSImage, NSWindow, QLPreviewView;
 
-@protocol ISpawnOriginDelegateProtocol <TValidatorClientProtocol>
+@protocol ISpawnOriginDelegateProtocol <NSObject>
 - (NSWindow *)window;
 - (NSImage *)zoomImageForNode:(const struct TFENode *)arg1 contentRect:(struct CGRect *)arg2;
 - (struct CGRect)globalZoomRectForNode:(const struct TFENode *)arg1;
 
 @optional
-- (QLPreviewView *)quickLookSharedPreviewViewForPreviewNode:(const struct TFENode *)arg1;
+- (QLPreviewView *)quickLookSharedPreviewView;
 @end
 

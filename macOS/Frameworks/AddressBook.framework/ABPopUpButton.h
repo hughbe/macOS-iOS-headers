@@ -10,13 +10,18 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABPopUpButton : NSPopUpButton <NSAccessibilityStaticText>
 {
+    id <ABPopUpButtonDelegate> _delegate;
 }
 
 + (Class)cellClass;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <ABPopUpButtonDelegate> delegate; // @synthesize delegate=_delegate;
+- (BOOL)resignFirstResponder;
+- (id)hitTest:(struct CGPoint)arg1;
 - (id)accessibilityValue;
+- (void)setEnabled:(BOOL)arg1;
 - (struct NSEdgeInsets)alignmentRectInsets;
 - (BOOL)needsCardViewBorderDrawing;
 

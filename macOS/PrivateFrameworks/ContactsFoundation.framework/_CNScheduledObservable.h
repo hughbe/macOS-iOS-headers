@@ -6,7 +6,6 @@
 
 #import <ContactsFoundation/CNObservable.h>
 
-__attribute__((visibility("hidden")))
 @interface _CNScheduledObservable : CNObservable
 {
     id <CNObservable> _observable;
@@ -14,6 +13,8 @@ __attribute__((visibility("hidden")))
 }
 
 - (void).cxx_destruct;
+@property(retain, nonatomic) id <CNScheduler> scheduler; // @synthesize scheduler=_scheduler;
+@property(retain, nonatomic) id <CNObservable> observable; // @synthesize observable=_observable;
 - (id)subscribe:(id)arg1;
 - (id)initWithObservable:(id)arg1 scheduler:(id)arg2;
 

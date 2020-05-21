@@ -10,6 +10,7 @@
 {
 }
 
++ (BOOL)fingerPrintsEnrolledForUser:(long long)arg1;
 + (id)createPasswordAssistantButtonForField:(id)arg1 target:(id)arg2 action:(SEL)arg3 useAutolayout:(BOOL)arg4;
 
 @end

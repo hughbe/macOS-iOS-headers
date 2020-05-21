@@ -25,9 +25,9 @@
     double _accuracy;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSCollectionViewLayout *nextLayout; // @synthesize nextLayout=_toLayout;
 @property(readonly) NSCollectionViewLayout *currentLayout; // @synthesize currentLayout=_fromLayout;
-- (void)dealloc;
 - (id)layoutAttributesForElementsInRect:(struct CGRect)arg1;
 - (id)layoutAttributesForDecorationViewOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (id)layoutAttributesForSupplementaryViewOfKind:(id)arg1 atIndexPath:(id)arg2;
@@ -47,6 +47,7 @@
 - (BOOL)_supportsAdvancedTransitionAnimations;
 - (void)invalidateLayout;
 - (void)_setCollectionViewCore:(id)arg1;
+- (id)init;
 - (id)initWithCurrentLayout:(id)arg1 nextLayout:(id)arg2;
 
 @end

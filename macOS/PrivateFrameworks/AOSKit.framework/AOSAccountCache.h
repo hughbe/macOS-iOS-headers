@@ -12,12 +12,16 @@
 {
     NSMutableDictionary *_dsidMappings;
     NSMutableDictionary *_accountDicts;
+    NSMutableDictionary *_appleAccountLookups;
 }
 
 + (id)sharedInstance;
 + (void)initialize;
 - (void)_changeNotificationReceived:(id)arg1;
 - (void)clearCaches;
+- (void)clearCachedAppleAccountInfo;
+- (id)cachedAppleAccountInfoForAccount:(struct AOSAccount *)arg1;
+- (void)cacheAppleAccountInfo:(id)arg1 forAccount:(struct AOSAccount *)arg2;
 - (id)_dsidForAppleID:(id)arg1;
 - (void)_setDSID:(id)arg1 forAppleID:(id)arg2;
 - (id)infoForAccount:(struct AOSAccount *)arg1 withMaxAge:(double)arg2;

@@ -31,11 +31,11 @@
     NSObject<OS_dispatch_group> *_outstandingTasksGroup;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL forceClearCalendarHomeSyncToken; // @synthesize forceClearCalendarHomeSyncToken=_forceClearCalendarHomeSyncToken;
 @property(retain, nonatomic) NSObject<OS_dispatch_group> *outstandingTasksGroup; // @synthesize outstandingTasksGroup=_outstandingTasksGroup;
 @property(retain, nonatomic) NSString *calendarHomeSyncToken; // @synthesize calendarHomeSyncToken=_calendarHomeSyncToken;
 @property(nonatomic) BOOL useCalendarHomeSyncReport; // @synthesize useCalendarHomeSyncReport=_useCalendarHomeSyncReport;
-- (void).cxx_destruct;
 - (void)containerInfoSyncTask:(id)arg1 completedWithNewSyncToken:(id)arg2 error:(id)arg3;
 - (void)containerInfoSyncTask:(id)arg1 retrievedAddedOrModifiedContainers:(id)arg2 removedContainerURLs:(id)arg3;
 - (void)containerInfoTask:(id)arg1 completedWithContainers:(id)arg2 error:(id)arg3;
@@ -44,8 +44,13 @@
 - (void)_continueHandleContainerInfoTask:(id)arg1 completedWithContainers:(id)arg2 error:(id)arg3;
 - (BOOL)_handleUpdateForCalendar:(id)arg1;
 - (void)_initializePrincipalCalendarCache;
+- (void)_retryMkCalForCalendar:(id)arg1;
+- (BOOL)_handleMkCalTaskGroupError:(id)arg1 forCalendar:(id)arg2;
 - (id)_getMkcalendarTaskGroupForCalendar:(id)arg1;
 - (id)_generateTimeZoneString:(id)arg1;
+- (id)_getSetPropertyTaskWithCoreDAVItem:(id)arg1 atURL:(id)arg2;
+- (id)_getSetIsAffectingAvailabilityTask:(BOOL)arg1 forCalendar:(id)arg2 atURL:(id)arg3;
+- (id)_getIsAffectingAvailabilityCoreDAVItem:(id)arg1;
 - (id)_getSetPropertyStringTask:(id)arg1 forName:(id)arg2 andNamespace:(id)arg3 atURL:(id)arg4;
 - (int)_sharingStatusForContainer:(id)arg1;
 - (void)refreshCalendarProperties;

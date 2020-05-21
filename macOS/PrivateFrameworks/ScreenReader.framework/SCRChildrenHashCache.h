@@ -14,11 +14,11 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_childrenHashCache;
 }
 
-@property(copy, nonatomic) NSMutableArray *childrenHashCache; // @synthesize childrenHashCache=_childrenHashCache;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *childrenHashCache; // @synthesize childrenHashCache=_childrenHashCache;
 - (BOOL)didChildrenHashChange;
 - (void)clearCache;
 - (void)addCachedElement:(id)arg1 childrenHash:(unsigned long long)arg2;
-- (void)dealloc;
 - (id)init;
 
 @end

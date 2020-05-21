@@ -27,6 +27,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property unsigned long long type; // @synthesize type=_type;
 @property(retain) id searchValue; // @synthesize searchValue=_searchValue;
 @property(retain) NSString *searchProperty; // @synthesize searchProperty=_searchProperty;
@@ -40,7 +41,6 @@
 @property long long comparison; // @synthesize comparison=_comparison;
 @property(retain) NSArray *children; // @synthesize children=_children;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

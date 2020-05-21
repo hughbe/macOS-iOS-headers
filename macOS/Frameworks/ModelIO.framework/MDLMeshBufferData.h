@@ -18,6 +18,7 @@
     unsigned long long _length;
     id <MDLMeshBufferAllocator> _allocator;
     unsigned long long _type;
+    NSString *_name;
 }
 
 - (void).cxx_destruct;
@@ -33,6 +34,8 @@
 @property(readonly, nonatomic) unsigned long long type;
 @property(readonly, retain, nonatomic) NSData *data;
 @property(readonly, retain, nonatomic) id <MDLMeshBufferAllocator> allocator;
+- (id)name;
+- (void)setName:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

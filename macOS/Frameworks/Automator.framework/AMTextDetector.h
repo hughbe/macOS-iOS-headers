@@ -14,10 +14,11 @@
 }
 
 + (id)sharedTextDetector;
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(retain) NSArray *_typeDictionaries; // @synthesize _typeDictionaries;
 - (id)init;
 - (id)matchesInString:(id)arg1 withType:(id)arg2 error:(id *)arg3;
-- (id)supportedTypeIdentifiers;
+@property(readonly, nonatomic) NSArray *supportedTypeIdentifiers;
 - (id)localizedNameForTypeIdentifier:(id)arg1;
 - (id)_typeDictionaryForIdentifier:(id)arg1;
 - (void)_buildTypeDictionaries;

@@ -34,11 +34,12 @@
 - (void)enumerateStatesUsingBlock:(CDUnknownBlockType)arg1;
 - (struct PXTileState *)_mutableStateAtIndex:(unsigned long long)arg1;
 - (struct PXProtectedTileState *)stateAtIndex:(unsigned long long)arg1;
-- (void)_clearLookupCachesForIndex:(unsigned long long)arg1;
+- (void)_cleanupStateAtIndex:(unsigned long long)arg1;
 - (void)checkInIndexes:(id)arg1;
 - (void)checkInIndex:(unsigned long long)arg1;
 - (unsigned long long)checkOutIndexWithInitialConfiguration:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) long long count;
+- (void)dealloc;
 - (id)init;
 
 @end

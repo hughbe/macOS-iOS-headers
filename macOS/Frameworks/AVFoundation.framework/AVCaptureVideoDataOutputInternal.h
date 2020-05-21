@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class AVCaptureVideoSettings, NSObject<OS_dispatch_queue>;
+@class AVCaptureVideoSettings, AVWeakReference, NSArray, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureVideoDataOutputInternal : NSObject
 {
-    id <AVCaptureVideoDataOutputSampleBufferDelegate> delegate;
+    AVWeakReference *weakReferenceDelegate;
     NSObject<OS_dispatch_queue> *clientQueue;
     struct __CFDictionary *videoDecompressorUnits;
     struct __CFDictionary *videoFrameRateGovernorUnits;
@@ -19,9 +20,12 @@
     struct __CFDictionary *callbackData;
     AVCaptureVideoSettings *videoSettings;
     BOOL alwaysDiscardsLateVideoFrames;
+    NSArray *availableVideoCVPixelFormatTypes;
+    BOOL automaticallyConfiguresOutputBufferDimensions;
+    BOOL deliversPreviewSizedOutputBuffers;
+    struct os_unfair_lock_s internalLock;
 }
 
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

@@ -10,10 +10,12 @@
 
 @interface ICCloudConfiguration : NSObject
 {
+    BOOL _shouldSyncWhenEnteringForeground;
     ICCloudThrottlingPolicy *_throttlingPolicy;
-    double _pollingInterval;
+    double _syncInterval;
     unsigned long long _maxInlineAssetSizeBytes;
     unsigned long long _maxAttachmentsPerNote;
+    unsigned long long _maxSubAttachmentsPerAttachment;
     unsigned long long _resultsLimitPerSyncOperation;
     NSNumber *_maximumAttachmentSizeMB;
     NSString *_minimumClientVersion;
@@ -26,15 +28,17 @@
 + (id)defaultConfigurationURL;
 + (BOOL)isConfigurationValid:(id)arg1;
 + (id)sharedConfiguration;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSTimer *downloadTimer; // @synthesize downloadTimer=_downloadTimer;
 @property(copy, nonatomic) NSString *minimumClientVersion; // @synthesize minimumClientVersion=_minimumClientVersion;
 @property(retain, nonatomic) NSNumber *maximumAttachmentSizeMB; // @synthesize maximumAttachmentSizeMB=_maximumAttachmentSizeMB;
 @property(nonatomic) unsigned long long resultsLimitPerSyncOperation; // @synthesize resultsLimitPerSyncOperation=_resultsLimitPerSyncOperation;
+@property(nonatomic) unsigned long long maxSubAttachmentsPerAttachment; // @synthesize maxSubAttachmentsPerAttachment=_maxSubAttachmentsPerAttachment;
 @property(nonatomic) unsigned long long maxAttachmentsPerNote; // @synthesize maxAttachmentsPerNote=_maxAttachmentsPerNote;
 @property(nonatomic) unsigned long long maxInlineAssetSizeBytes; // @synthesize maxInlineAssetSizeBytes=_maxInlineAssetSizeBytes;
-@property(nonatomic) double pollingInterval; // @synthesize pollingInterval=_pollingInterval;
+@property(nonatomic) BOOL shouldSyncWhenEnteringForeground; // @synthesize shouldSyncWhenEnteringForeground=_shouldSyncWhenEnteringForeground;
+@property(nonatomic) double syncInterval; // @synthesize syncInterval=_syncInterval;
 @property(retain, nonatomic) ICCloudThrottlingPolicy *throttlingPolicy; // @synthesize throttlingPolicy=_throttlingPolicy;
-- (void).cxx_destruct;
 - (void)setConfigurationFromDictionary:(id)arg1;
 - (void)loadConfigurationFromURL:(id)arg1;
 - (void)downloadConfigurationFromRemoteURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;

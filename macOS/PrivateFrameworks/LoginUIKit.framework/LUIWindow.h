@@ -9,17 +9,18 @@
 @interface LUIWindow : NSWindow
 {
     BOOL _canBecomeKey;
-    BOOL _companionWindowVisible;
-    NSWindow *_companionWindow;
+    id _target;
+    SEL _action;
 }
 
+@property SEL action; // @synthesize action=_action;
+@property id target; // @synthesize target=_target;
 @property BOOL canBecomeKey; // @synthesize canBecomeKey=_canBecomeKey;
 - (id)description;
 - (void)dealloc;
 - (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4;
-- (void)makeCompanionWindow;
-- (void)setUsesCompanionWindow:(BOOL)arg1;
 - (id)accessibilityTitle;
+- (void)sendEvent:(id)arg1;
 - (BOOL)performKeyEquivalent:(id)arg1;
 - (BOOL)canBecomeKeyWindow;
 - (void)orderOut:(id)arg1;

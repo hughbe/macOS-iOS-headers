@@ -16,6 +16,7 @@
 
 + (id)getDynamiteClientStateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getDynamiteClientState;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(retain, nonatomic) SADynamiteClientState *clientState;
 - (id)encodedClassName;

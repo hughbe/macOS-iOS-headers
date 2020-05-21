@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface MKAttributeUtils : NSObject
 {
 }
 
-+ (id)attributedStringWithFormat:(id)arg1 displayName:(id)arg2 logo:(id)arg3;
++ (id)attributedStringWithFormat:(id)arg1 displayName:(id)arg2 logo:(id)arg3 isSnippetLogo:(BOOL)arg4;
 
 @end
 

@@ -6,42 +6,18 @@
 
 #import <NotesShared/ICAttachmentModel.h>
 
-#import "WKNavigationDelegate.h"
-#import "WKScriptMessageHandler.h"
-
-@class NSString, WKWebView;
-
-@interface ICAttachmentWebModel : ICAttachmentModel <WKNavigationDelegate, WKScriptMessageHandler>
+@interface ICAttachmentWebModel : ICAttachmentModel
 {
-    WKWebView *_webView;
     CDUnknownBlockType _pendingFetchCompletionHandler;
 }
 
-+ (id)sharedWKProcessPool;
 + (id)contentInfoTextWithAttachmentCount:(unsigned long long)arg1;
-@property(copy) CDUnknownBlockType pendingFetchCompletionHandler; // @synthesize pendingFetchCompletionHandler=_pendingFetchCompletionHandler;
-@property(retain) WKWebView *webView; // @synthesize webView=_webView;
 - (void).cxx_destruct;
-- (void)webView:(id)arg1 didFailProvisionalNavigation:(id)arg2 withError:(id)arg3;
-- (void)userContentController:(id)arg1 didReceiveScriptMessage:(id)arg2;
-- (id)standardWebIconsForURL:(id)arg1;
-- (void)fetchMetadataFromURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (id)rootURLFromURL:(id)arg1;
-- (void)downloadWebIcons:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)saveWebIcons:(id)arg1;
-- (void)didCancelPreviewGeneratorOperation;
-- (void)generatePreviews;
-- (BOOL)generateAsynchronousPreviews;
-- (CDUnknownBlockType)genericBrickThumbnailCreator;
-- (CDUnknownBlockType)genericListThumbnailCreator;
-- (BOOL)needToGeneratePreviews;
+@property(copy) CDUnknownBlockType pendingFetchCompletionHandler; // @synthesize pendingFetchCompletionHandler=_pendingFetchCompletionHandler;
+- (BOOL)canConvertToHTMLForSharing;
+- (id)attributesForSharingHTMLWithTagName:(id *)arg1 textContent:(id *)arg2;
+- (BOOL)showThumbnailInNoteList;
 - (BOOL)hasPreviews;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

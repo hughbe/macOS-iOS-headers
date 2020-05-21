@@ -17,7 +17,6 @@
     BOOL _bezelStyle;
 }
 
-- (unsigned long long)_backgroundFillOperation;
 - (BOOL)canBecomeKeyView;
 - (struct CGRect)_getFocusRingFrame;
 - (void)_clearFocusForView;
@@ -28,7 +27,6 @@
 - (void)_drawKeyboardFocusRingWithFrame:(struct CGRect)arg1 forCell:(id)arg2;
 - (void)_drawKeyboardFocusRingWithFrame:(struct CGRect)arg1;
 - (void)_setKeyboardFocusRingNeedsDisplay;
-- (void)_setKeyboardFocusRingNeedsDisplayDuringLiveResize;
 - (BOOL)_shouldDoLayerPerformanceUpdates;
 - (BOOL)_drawRectIfEmpty;
 - (void)removeFromSuperview;

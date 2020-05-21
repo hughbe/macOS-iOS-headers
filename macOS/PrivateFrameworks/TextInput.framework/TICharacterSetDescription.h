@@ -7,26 +7,31 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSMutableCopying.h"
 #import "NSSecureCoding.h"
 
 @class NSCharacterSet, NSString;
 
-@interface TICharacterSetDescription : NSObject <NSCopying, NSSecureCoding>
+@interface TICharacterSetDescription : NSObject <NSCopying, NSMutableCopying, NSSecureCoding>
 {
     NSCharacterSet *_characterSet;
     BOOL _inverted;
     long long _baseIdentifier;
     NSString *_charactersAddedToBase;
+    NSString *_charactersRemovedFromBase;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL inverted; // @synthesize inverted=_inverted;
+@property(copy, nonatomic) NSString *charactersRemovedFromBase; // @synthesize charactersRemovedFromBase=_charactersRemovedFromBase;
 @property(copy, nonatomic) NSString *charactersAddedToBase; // @synthesize charactersAddedToBase=_charactersAddedToBase;
 @property(readonly, nonatomic) long long baseIdentifier; // @synthesize baseIdentifier=_baseIdentifier;
 - (void)clearCachedCharacterSet;
 @property(readonly, nonatomic) NSCharacterSet *characterSet;
 - (id)newCharacterSetFromDescription;
 - (id)invertedSetDescription;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (unsigned long long)hash;
@@ -34,10 +39,9 @@
 - (id)awakeAfterUsingCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithBase:(long long)arg1 additionalCharacters:(id)arg2 inverted:(BOOL)arg3;
+- (id)initWithBase:(long long)arg1 additionalCharacters:(id)arg2 removedCharacters:(id)arg3 inverted:(BOOL)arg4;
 - (id)initWithCharactersInString:(id)arg1;
 - (id)initWithBaseCharacterSet:(long long)arg1;
-- (void)dealloc;
 
 @end
 

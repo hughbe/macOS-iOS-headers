@@ -7,10 +7,11 @@
 #import <AppKit/NSControl.h>
 
 #import "NSUserInterfaceValidations.h"
+#import "NSViewToolTipOwner.h"
 
-@class NSArray, NSCell, NSColor, NSMutableArray;
+@class NSArray, NSCell, NSColor, NSMutableArray, NSString;
 
-@interface NSMatrix : NSControl <NSUserInterfaceValidations>
+@interface NSMatrix : NSControl <NSUserInterfaceValidations, NSViewToolTipOwner>
 {
     id _reserved2;
     SEL _reserved3;
@@ -25,7 +26,6 @@
     struct CGSize _cellSize;
     struct CGSize _intercell;
     id _font;
-    id _protoCell;
     id _cellClass;
     NSColor *_backgroundColor;
     id _private;
@@ -37,11 +37,9 @@
         unsigned int drawingContextMenuHighlightOnAllSelectedRows:1;
         unsigned int drawingContextMenuHighlight:1;
         unsigned int browserOptimizationsEnabled:1;
-        unsigned int needsRedrawBeforeFirstLiveResizeCache:1;
+        unsigned int reservedMatrix3:1;
         unsigned int tmpAllowNonVisibleCellsToBecomeFirstResponder:1;
-        unsigned int subclassIsSafeForLiveResize:1;
-        unsigned int hasCachedSubclassIsSafeForLiveResize:1;
-        unsigned int liveResizeImageCacheingEnabled:1;
+        unsigned int reservedMatrix2:3;
         unsigned int checkForSimpleTrackingMode:1;
         unsigned int useSimpleTrackingMode:1;
         unsigned int refusesFirstResponder:1;
@@ -63,15 +61,16 @@
         unsigned int radioMode:1;
         unsigned int highlightMode:1;
     } _mFlags;
+    id _protoCell;
 }
 
 + (BOOL)isCompatibleWithResponsiveScrolling;
 + (id)_dropHighlightColor;
-+ (BOOL)requiresConstraintBasedLayout;
++ (Class)_classToCheckForRequiresConstraintBasedLayout;
++ (BOOL)_controlClassSupportsNoCell;
 + (void)initialize;
 + (BOOL)accessibilityIsSingleCelled;
-- (void)heartBeat:(CDStruct_d41e72e8 *)arg1;
-- (BOOL)_wantsHeartBeat;
+- (void).cxx_destruct;
 - (void)_windowChangedKeyState;
 - (void)_rightMouseUpOrDown:(id)arg1;
 - (void)_resetBrowserClickedRowAndColumn;
@@ -79,6 +78,7 @@
 - (id)menuForEvent:(id)arg1;
 - (void)helpRequested:(id)arg1;
 - (void)_doResetOfCursorRects:(BOOL)arg1 revealovers:(BOOL)arg2;
+- (void)_finishedMakingConnections;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)_selectCellIfRequired;
@@ -99,7 +99,7 @@
 - (BOOL)textShouldBeginEditing:(id)arg1;
 - (BOOL)textShouldEndEditing:(id)arg1;
 - (BOOL)textView:(id)arg1 shouldChangeTextInRange:(struct _NSRange)arg2 replacementString:(id)arg3;
-@property id <NSMatrixDelegate> delegate;
+@property __weak id <NSMatrixDelegate> delegate;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)stopSpeaking:(id)arg1;
 - (void)startSpeaking:(id)arg1;
@@ -112,7 +112,6 @@
 - (BOOL)_performKeyEquivalent:(id)arg1 conditionally:(BOOL)arg2;
 - (BOOL)performKeyEquivalent:(id)arg1;
 - (BOOL)_keyEquivalentModifierMask:(unsigned long long)arg1 matchesModifierFlags:(unsigned long long)arg2;
-- (void)_allowAnimationInCells:(BOOL)arg1;
 - (void)mouseDown:(id)arg1;
 @property(readonly) long long mouseDownFlags;
 - (void)_mouseLoop:(id)arg1:(id)arg2:(long long)arg3:(long long)arg4:(struct _SelectionAnchor *)arg5:(BOOL)arg6;
@@ -196,7 +195,6 @@
 - (BOOL)_shouldShowFirstResponderForCell:(id)arg1;
 - (BOOL)_shouldShowFirstResponderAtRow:(long long)arg1 column:(long long)arg2 ignoringWindowKeyState:(BOOL)arg3;
 - (void)_deselectAllExcept:(long long)arg1:(long long)arg2 andDraw:(BOOL)arg3;
-- (id)_findFirstOne:(long long *)arg1:(long long *)arg2;
 - (BOOL)_radioHit:(struct CGPoint)arg1 row:(long long *)arg2 col:(long long *)arg3;
 - (BOOL)_loopHit:(struct CGPoint)arg1 row:(long long *)arg2 col:(long long *)arg3;
 - (BOOL)_mouseHit:(struct CGPoint)arg1 row:(long long *)arg2 col:(long long *)arg3;
@@ -209,17 +207,7 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)_drawCellAtRow:(long long)arg1 column:(long long)arg2 inFrame:(struct CGRect)arg3;
 - (void)setNeedsDisplayInRect:(struct CGRect)arg1;
-- (void)_propagateDownNeedsDisplayInRect:(struct CGRect)arg1;
-- (BOOL)_needsRedrawForMovement;
-- (void)_drawRect:(struct CGRect)arg1 liveResizeFill:(struct CGRect)arg2:(struct CGRect)arg3:(struct CGRect)arg4:(struct CGRect)arg5 cacheCoveredArea:(struct CGRect)arg6;
-- (void)_liveResizeHighlightSelectionInClipRect:(struct CGRect)arg1;
 - (void)_getRowRange:(struct _NSRange *)arg1 andColumnRange:(struct _NSRange *)arg2 intersectingRect:(struct CGRect)arg3;
-- (BOOL)_shouldAttemptIdleTimeDisposeOfLiveResizeCacheWithFrame:(struct CGRect)arg1;
-- (BOOL)_wantsLiveResizeToUseCachedImage;
-- (BOOL)_liveResizeImageCacheingEnabled;
-- (void)_setLiveResizeImageCacheingEnabled:(BOOL)arg1;
-- (BOOL)_needsRedrawBeforeFirstLiveResizeCache;
-- (void)_setNeedsRedrawBeforeFirstLiveResizeCache:(BOOL)arg1;
 - (BOOL)_selectFirstEnabledCell;
 - (long long)_firstSelectableRow;
 - (void)_removeAllCellMouseTracking;
@@ -320,11 +308,12 @@
 @property BOOL allowsEmptySelection;
 - (id)allowEmptySel:(BOOL)arg1;
 @property unsigned long long mode;
-- (BOOL)isR2L;
+- (BOOL)_isRTL;
 - (BOOL)isFlipped;
 - (BOOL)isOpaque;
 - (id)makeCellAtRow:(long long)arg1 column:(long long)arg2;
 - (BOOL)_containedInSingleColumnClipView;
+- (void)_setPrototypeNoCopy:(id)arg1;
 @property(copy) NSCell *prototype;
 @property Class cellClass;
 - (void)dealloc;
@@ -335,7 +324,6 @@
 - (void)_maintainCell;
 - (void)_setSelectedCell:(id)arg1;
 - (void)_setSelectedCell:(id)arg1 atRow:(long long)arg2 column:(long long)arg3;
-- (void)_setFont:(id)arg1 forCell:(id)arg2;
 - (void)_allocAndInitPrivateIvars;
 - (void)setErrorAction:(SEL)arg1;
 - (SEL)errorAction;
@@ -369,6 +357,12 @@
 - (id)accessibilityAttributeNames;
 - (BOOL)_accessibilityIsRadioGroup;
 - (id)accessibilityCurrentEditorForCell:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

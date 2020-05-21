@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSSQLAttributeExtension.h"
+
 @class NSArray, NSMutableArray, NSMutableString, NSPredicate, NSSQLAttribute, NSSQLEntity, NSSQLRelationship, NSString;
 
 __attribute__((visibility("hidden")))
-@interface NSSQLAttributeTrigger : NSObject
+@interface NSSQLAttributeTrigger : NSObject <NSSQLAttributeExtension>
 {
     NSPredicate *_predicate;
     NSString *_predicateString;
@@ -21,16 +23,16 @@ __attribute__((visibility("hidden")))
     NSMutableString *_mToManyInnerFetchWhereClause;
     NSMutableString *_mToManyDecrementWhenClause;
     NSMutableString *_mToManyIncrementWhenClause;
-    NSMutableString *_mSqliteOldWhenPredicate;
-    NSMutableString *_mSqliteNewWhenPredicate;
     NSMutableString *_mOfClause;
     NSMutableString *_mOldMatchingClause;
     NSMutableString *_mNewMatchingClause;
     NSMutableString *_mColumnChangedClause;
     NSMutableArray *_mSqlDropStrings;
     NSMutableArray *_mBulkChangeStrings;
+    NSArray *_insertSQLStrings;
 }
 
+@property(readonly, nonatomic) NSArray *insertSQLStrings; // @synthesize insertSQLStrings=_insertSQLStrings;
 @property(readonly) NSString *predicateString; // @synthesize predicateString=_predicateString;
 @property(readonly) NSPredicate *predicate; // @synthesize predicate=_predicate;
 @property(readonly) NSArray *destinationAttributes; // @synthesize destinationAttributes=_destinationAttributes;
@@ -39,24 +41,30 @@ __attribute__((visibility("hidden")))
 @property(readonly) NSSQLEntity *entity; // @synthesize entity=_entity;
 @property(readonly) NSSQLAttribute *attribute; // @synthesize attribute=_attribute;
 - (BOOL)validateComparisonPredicate:(id)arg1 error:(id *)arg2;
+- (id)inverseOperatorSymbolForOperator:(id)arg1;
+- (BOOL)isSupportedOperatorType:(unsigned long long)arg1;
 - (BOOL)validatePredicate:(id)arg1 error:(id *)arg2;
-- (BOOL)validateTriggerPredicateError:(id *)arg1;
 - (BOOL)parseTriggerPredicateError:(id *)arg1;
 - (id)createSQLStrings:(id *)arg1;
-- (BOOL)prepareForSQLGeneration:(id *)arg1;
-@property(readonly) NSArray *sqlDropStrings;
-@property(readonly) NSArray *bulkChangeStrings;
+- (BOOL)validate:(id *)arg1;
+@property(readonly, nonatomic) NSArray *dropSQLStrings;
+@property(readonly, nonatomic) NSArray *bulkUpdateSQLStrings;
 @property(readonly) NSString *columnChangedClause;
 @property(readonly) NSString *newMatchingClause;
 @property(readonly) NSString *oldMatchingClause;
 @property(readonly) NSString *ofClause;
-@property(readonly) NSString *sqliteOldWhenPredicate;
-@property(readonly) NSString *sqliteNewWhenPredicate;
 @property(readonly) NSString *toManyInnerFetchWhereClause;
 @property(readonly) NSString *toManyIncrementWhenClause;
 @property(readonly) NSString *toManyDecrementWhenClause;
+- (BOOL)isEqualToExtension:(id)arg1;
 - (void)dealloc;
-- (id)initWithPredicateString:(id)arg1 onAttribute:(id)arg2 onEntity:(id)arg3;
+- (id)initWithObjectFromUserInfo:(id)arg1 onAttributeNamed:(id)arg2 onEntity:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

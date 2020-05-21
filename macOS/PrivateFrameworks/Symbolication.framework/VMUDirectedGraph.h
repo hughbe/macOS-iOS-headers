@@ -12,6 +12,8 @@
 
 @interface VMUDirectedGraph : NSObject <NSCopying>
 {
+    long long _graphCompatibilityVersion;
+    long long _graphVersion;
     unsigned int _nodeCount;
     unsigned int _edgeCount;
     unsigned int _edgeCapacity;
@@ -29,10 +31,13 @@
     BOOL _graphIs64bit;
 }
 
++ (void)encapsulateData:(id)arg1 to:(id)arg2 withSupplementalDataTag:(const char *)arg3 dataGeneratorBlock:(CDUnknownBlockType)arg4;
++ (id)directedGraphWithData:(id)arg1 error:(id *)arg2;
 + (id)_unarchivedObject:(id)arg1 ofClass:(Class)arg2 options:(unsigned long long)arg3;
 + (id)_archivedObject:(id)arg1 options:(unsigned long long)arg2;
 + (void *)_copyUnarchived:(id)arg1 length:(unsigned long long *)arg2 options:(unsigned long long)arg3;
 + (id)_archivedBytes:(const void *)arg1 length:(unsigned long long)arg2 options:(unsigned long long)arg3;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL graphIs64bit; // @synthesize graphIs64bit=_graphIs64bit;
 @property(copy, nonatomic) NSDictionary *additionalProperties; // @synthesize additionalProperties=_additionalProperties;
 @property(readonly, nonatomic) unsigned int edgeNamespaceSize; // @synthesize edgeNamespaceSize=_nextEdgeName;
@@ -43,6 +48,7 @@
 - (id)subgraphWithMarkedNodes:(void *)arg1;
 - (void)invertEdges;
 - (void)_dumpAdjacencyList;
+- (void)_reorderEdgesNaturally;
 - (void)breadthFirstSearch:(unsigned int)arg1 nodeVisitBlock:(CDUnknownBlockType)arg2 edgeVisitBlock:(CDUnknownBlockType)arg3;
 - (void)depthFirstSearch:(unsigned int)arg1 nodeVisitBlock:(CDUnknownBlockType)arg2 edgeVisitBlock:(CDUnknownBlockType)arg3;
 - (void)_searchMainLoop:(unsigned int)arg1 action:(CDUnknownBlockType)arg2;
@@ -61,13 +67,14 @@
 - (void)_renameWithNodeMap:(unsigned int *)arg1 nodeNamespace:(unsigned int)arg2 edgeMap:(unsigned int *)arg3 edgeNamespace:(unsigned int)arg4;
 - (void)_renormalize;
 - (BOOL)_adjustAdjacencyMap;
+@property(readonly, nonatomic) unsigned int pointerSize;
 @property(nonatomic) BOOL inverted;
 - (void)ungroupNode:(unsigned int)arg1;
 - (unsigned int)addGroupNodeForNodes:(const unsigned int *)arg1 count:(unsigned int)arg2;
 - (BOOL)isNodePresent:(unsigned int)arg1;
 - (void)removeMarkedEdges:(void *)arg1;
 - (void)removeMarkedNodes:(void *)arg1;
-- (void *)_deadNodeMap;
+- (void *)deadNodeMap;
 - (void)_faultDeadNodeMap;
 - (void)_removeEdges:(CDUnknownBlockType)arg1;
 - (unsigned int)addEdgeFromNode:(unsigned int)arg1 toNode:(unsigned int)arg2;
@@ -77,13 +84,15 @@
 - (void)dealloc;
 - (id)plistRepresentationWithOptions:(unsigned long long)arg1;
 - (void)archiveDictionaryRepresentation:(id)arg1 options:(unsigned long long)arg2;
-- (id)initWithArchived:(id)arg1 version:(long long)arg2 options:(unsigned long long)arg3;
+- (id)initWithArchived:(id)arg1 version:(long long)arg2 options:(unsigned long long)arg3 diskLogs:(id)arg4;
+- (id)initWithPlistRepresentation:(id)arg1 error:(id *)arg2;
 - (id)initWithPlistRepresentation:(id)arg1;
+- (id)decapsulateIPSheaderInData:(id)arg1 error:(id *)arg2;
+- (id)decapsulateSupplementalData:(id)arg1 forTag:(const char *)arg2;
+- (id)decapsulatePlistData:(id)arg1 error:(id *)arg2;
+- (void)setGraphVersion:(long long)arg1;
+- (void)setGraphCompatibilityVersion:(long long)arg1;
 - (id)initWithNodes:(unsigned int)arg1;
-- (id)subgraphWithUniquePathsFromNode:(unsigned int)arg1 toNodes:(void *)arg2;
-- (id)subgraphWithShortestPathsFromNode:(unsigned int)arg1 toNodes:(void *)arg2;
-- (void)markReachableNodesFromRoots:(void *)arg1 inMap:(void *)arg2;
-- (void)stronglyConnectedComponentSearch:(unsigned int)arg1 withRecorder:(CDUnknownBlockType)arg2;
 
 @end
 

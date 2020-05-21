@@ -8,7 +8,7 @@
 
 #import "EKUILayoutItem.h"
 
-@class CalDefaultDictionary, EKUIGadget, EKUIGadgetContainerDividerView, EKUIGadgetContainerView, EKUIVibrantView, EKViewController, NSArray, NSDictionary, NSMutableDictionary, NSMutableOrderedSet, NSString;
+@class CalDefaultDictionary, CalUIDividerView, EKUIGadget, EKUIGadgetContainerView, EKUIVibrantView, EKViewController, NSArray, NSColor, NSDictionary, NSMutableDictionary, NSMutableOrderedSet, NSString;
 
 @interface EKUIGadgetContainer : NSObject <EKUILayoutItem>
 {
@@ -27,6 +27,7 @@
     EKUIGadget *_firstGadget;
     CDUnknownBlockType _shouldDisplayDividerAboveBlock;
     CDUnknownBlockType _shouldDisplayDividerBelowBlock;
+    CDUnknownBlockType _shouldDisplayDividerExpandedAboveBlock;
     EKViewController *_viewController;
     id <EKUILayoutItem> _parentItem;
     NSString *_uuid;
@@ -34,28 +35,31 @@
     NSMutableOrderedSet *_currentlyDisplayedItems;
     EKUIGadgetContainerView *_containerView;
     EKUIVibrantView *_backgroundView;
-    EKUIGadgetContainerDividerView *_topDivider;
-    EKUIGadgetContainerDividerView *_bottomDivider;
+    CalUIDividerView *_topDivider;
+    CalUIDividerView *_bottomDivider;
     NSDictionary *_metrics;
     NSMutableDictionary *_conditionalMetrics;
     NSArray *_topConstraints;
     NSArray *_bottomConstraints;
     NSArray *_subitemLabelConstraints;
     CalDefaultDictionary *_spacingOverrides;
+    NSColor *_backgroundColor;
 }
 
 + (id)enclosingGadgetContainerForLayoutItem:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL activeKeyboardHover; // @synthesize activeKeyboardHover=_activeKeyboardHover;
 @property BOOL isHovered; // @synthesize isHovered=_isHovered;
 @property BOOL isExpanded; // @synthesize isExpanded=_isExpanded;
+@property(retain) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 @property(retain) CalDefaultDictionary *spacingOverrides; // @synthesize spacingOverrides=_spacingOverrides;
 @property(retain) NSArray *subitemLabelConstraints; // @synthesize subitemLabelConstraints=_subitemLabelConstraints;
 @property(retain) NSArray *bottomConstraints; // @synthesize bottomConstraints=_bottomConstraints;
 @property(retain) NSArray *topConstraints; // @synthesize topConstraints=_topConstraints;
 @property(retain) NSMutableDictionary *conditionalMetrics; // @synthesize conditionalMetrics=_conditionalMetrics;
 @property(retain) NSDictionary *metrics; // @synthesize metrics=_metrics;
-@property(retain) EKUIGadgetContainerDividerView *bottomDivider; // @synthesize bottomDivider=_bottomDivider;
-@property(retain) EKUIGadgetContainerDividerView *topDivider; // @synthesize topDivider=_topDivider;
+@property(retain) CalUIDividerView *bottomDivider; // @synthesize bottomDivider=_bottomDivider;
+@property(retain) CalUIDividerView *topDivider; // @synthesize topDivider=_topDivider;
 @property(retain) EKUIVibrantView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(retain) EKUIGadgetContainerView *containerView; // @synthesize containerView=_containerView;
 @property(retain) NSMutableOrderedSet *currentlyDisplayedItems; // @synthesize currentlyDisplayedItems=_currentlyDisplayedItems;
@@ -63,6 +67,7 @@
 @property(retain) NSString *uuid; // @synthesize uuid=_uuid;
 @property __weak id <EKUILayoutItem> parentItem; // @synthesize parentItem=_parentItem;
 @property __weak EKViewController *viewController; // @synthesize viewController=_viewController;
+@property(copy) CDUnknownBlockType shouldDisplayDividerExpandedAboveBlock; // @synthesize shouldDisplayDividerExpandedAboveBlock=_shouldDisplayDividerExpandedAboveBlock;
 @property(copy) CDUnknownBlockType shouldDisplayDividerBelowBlock; // @synthesize shouldDisplayDividerBelowBlock=_shouldDisplayDividerBelowBlock;
 @property(copy) CDUnknownBlockType shouldDisplayDividerAboveBlock; // @synthesize shouldDisplayDividerAboveBlock=_shouldDisplayDividerAboveBlock;
 @property __weak EKUIGadget *firstGadget; // @synthesize firstGadget=_firstGadget;
@@ -75,7 +80,6 @@
 @property BOOL ignoresMouseEvents; // @synthesize ignoresMouseEvents=_ignoresMouseEvents;
 @property BOOL doNotPassdownExpandedState; // @synthesize doNotPassdownExpandedState=_doNotPassdownExpandedState;
 @property double maximumHeightBeforeScrolling; // @synthesize maximumHeightBeforeScrolling=_maximumHeightBeforeScrolling;
-- (void).cxx_destruct;
 - (void)updateDividers;
 @property(readonly) BOOL hasKeyboardFocus;
 - (BOOL)containerView:(id)arg1 didReceiveOpenEvent:(id)arg2;
@@ -95,6 +99,7 @@
 - (BOOL)isExpansionAllowed;
 @property(readonly) BOOL isAnimating;
 - (BOOL)_performExpansionAnimationIfNeeded:(BOOL)arg1;
+- (void)configureWithBackgroundColor:(id)arg1;
 - (void)setSpacing:(double)arg1 betweenTopSubitem:(id)arg2 bottomSubitem:(id)arg3 withCondition:(CDUnknownBlockType)arg4;
 - (void)setConditionalSpacing:(double)arg1 forKey:(id)arg2 withCondition:(CDUnknownBlockType)arg3;
 - (id)getSpacingForKey:(id)arg1;

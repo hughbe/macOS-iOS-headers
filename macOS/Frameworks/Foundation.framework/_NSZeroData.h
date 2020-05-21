@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)data;
+- (BOOL)_providesConcreteBacking;
 - (id)_dispatchData;
 - (id)initWithBytes:(void *)arg1 length:(unsigned long long)arg2 copy:(BOOL)arg3 deallocator:(CDUnknownBlockType)arg4;
 - (unsigned long long)retainCount;

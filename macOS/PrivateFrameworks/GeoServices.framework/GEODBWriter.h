@@ -6,11 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSLock, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
+@class GEOCountryConfiguration, GEOResourceManifestManager, NSDictionary, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface GEODBWriter : NSObject
 {
     NSString *_path;
+    NSDictionary *_pragmaOverrides;
     struct sqlite3 *_db;
     struct sqlite3_stmt *_versionQuery;
     struct sqlite3_stmt *_versionInsert;
@@ -31,7 +33,7 @@
     NSMutableArray *_writeList;
     NSMutableSet *_uncommitedWriteSet;
     unsigned long long _pendingWriteBytes;
-    NSLock *_writeListLock;
+    struct os_unfair_lock_s _writeListLock;
     NSObject<OS_dispatch_queue> *_writeQueue;
     void *_editionMap;
     long long _evictionRowsThreshold;
@@ -46,8 +48,11 @@
     NSString *_devicePostureCountry;
     NSString *_devicePostureRegion;
     BOOL _canCreateDebugTable;
+    GEOResourceManifestManager *_manifestManager;
+    GEOCountryConfiguration *_countryConfiguration;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *devicePostureRegion; // @synthesize devicePostureRegion=_devicePostureRegion;
 @property(readonly, nonatomic) NSString *devicePostureCountry; // @synthesize devicePostureCountry=_devicePostureCountry;
 @property(nonatomic) unsigned long long maxDatabaseSize; // @synthesize maxDatabaseSize=_maxDatabaseSize;
@@ -57,7 +62,7 @@
 - (void)endPreloadSession;
 - (void)beginPreloadSessionOfSize:(unsigned long long)arg1;
 - (void)setExpirationRecords:(CDStruct_e4886f83 *)arg1 count:(unsigned long long)arg2;
-- (void)evaluateDevicePostureAgainstCurrentManifest;
+- (void)evaluateDevicePostureAgainstCurrentManifest:(id)arg1;
 - (void)deleteData:(const struct _GEOTileKey *)arg1;
 - (void)_deleteKey:(struct _GEOTileKey)arg1;
 - (void)pendingWritesForKeys:(id)arg1 handler:(CDUnknownBlockType)arg2;
@@ -77,6 +82,7 @@
 - (unsigned long long)_freeableDiskSpace;
 - (void)_printDBStatus:(const char *)arg1;
 @property BOOL closed;
+- (void)waitForPendingWrites;
 - (void)_openIfNecessary;
 - (void)_openDBForceRecreate:(BOOL)arg1;
 - (void)_openDBAndPurgeContents;
@@ -90,11 +96,13 @@
 - (BOOL)prepareSingleStatement:(struct sqlite3_stmt **)arg1 forSql:(id)arg2;
 - (void)_createTables;
 - (void)_closeDB;
+- (void)_finalizeStatements;
 - (void)flushPendingWrites;
 - (void)_countryChanged:(id)arg1;
-- (void)_editionUpdate:(id)arg1;
 - (void)_deviceLocked;
 - (void)_localeChanged:(id)arg1;
+- (id)initWithPath:(id)arg1 pragmaOverrides:(id)arg2 manifestManager:(id)arg3 countryConfiguration:(id)arg4;
+- (id)initWithPath:(id)arg1 pragmaOverrides:(id)arg2;
 - (id)initWithPath:(id)arg1;
 
 @end

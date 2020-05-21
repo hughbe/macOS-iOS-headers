@@ -10,7 +10,6 @@
 
 @class NSString, NSURLAuthenticationChallenge;
 
-__attribute__((visibility("hidden")))
 @interface __NSCFURLProtocolClient_NS : NSObject <NSURLProtocolClient>
 {
     struct URLProtocolClient *_cf;
@@ -30,6 +29,7 @@ __attribute__((visibility("hidden")))
 - (struct _CFURLAuthChallenge *)cfChallenge;
 - (id)challenge;
 - (void)teardown;
+- (void)withCustomProtocolScheduling:(CDUnknownBlockType)arg1;
 - (void)dealloc;
 - (id)initWithCFClient:(struct URLProtocolClient *)arg1 prot:(struct URLProtocol *)arg2;
 

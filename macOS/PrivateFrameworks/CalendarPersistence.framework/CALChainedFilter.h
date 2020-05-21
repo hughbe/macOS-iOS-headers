@@ -14,8 +14,8 @@
 }
 
 + (id)chainedFilterWithFilters:(id)arg1;
+- (void).cxx_destruct;
 - (void)applyTo:(id)arg1;
-- (void)dealloc;
 - (id)initWithFilters:(id)arg1;
 
 @end

@@ -6,10 +6,13 @@
 
 #import <ScreenReader/SCRMapElement.h>
 
+@class SCRUIElement;
+
 __attribute__((visibility("hidden")))
 @interface SCRMenuItem : SCRMapElement
 {
     struct CGPoint _cachedMidPoint;
+    struct os_unfair_lock_s _uiElementLock;
 }
 
 - (id)shortcutSelectionElements;
@@ -23,13 +26,13 @@ __attribute__((visibility("hidden")))
 - (void)addElementSummaryToRequest:(id)arg1;
 - (void)addItemDescriptionForBrailleToRequest:(id)arg1;
 - (void)addItemDescriptionToRequest:(id)arg1;
-- (void)addItemDescriptionForCommand:(id)arg1 toRequest:(id)arg2;
+- (void)addItemDescriptionForCommand:(id)arg1 toRequest:(id)arg2 event:(id)arg3;
 - (void)_addKeyboardShortcutToRequest:(id)arg1;
 - (id)shortInstruction;
 - (id)insideOfDescriptionForContextualHelp;
 - (id)contextualHelpToSpeak;
 - (id)typeDescription;
-- (id)statusDescriptionWithOptionsMask:(int)arg1;
+- (id)statusDescription;
 - (BOOL)itemDescriptionHasChanged;
 - (BOOL)monitorItemDescriptionChanges;
 - (void)addItemNameToRequest:(id)arg1;
@@ -38,14 +41,10 @@ __attribute__((visibility("hidden")))
 - (id)valueDescription;
 - (id)titleDescription;
 - (BOOL)focusIntoMenuWithRequest:(id)arg1;
-- (BOOL)interactDownShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactRightCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactLeftCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactDownCommandShiftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactRightWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactLeftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 - (id)_containerOfInteractiveDescendants;
 - (BOOL)_hasInteractiveDescendants;
 - (BOOL)_hasInteractiveElementsInArray:(id)arg1;
@@ -56,6 +55,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)isSubMenuVisible;
 - (void)highlight;
 - (id)defaultActionName;
+@property(retain, setter=setUIElement:) SCRUIElement *uiElement;
+- (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end
 

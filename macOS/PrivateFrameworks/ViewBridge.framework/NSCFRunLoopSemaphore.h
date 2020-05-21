@@ -10,26 +10,36 @@
 
 @interface NSCFRunLoopSemaphore : NSObject
 {
-    void *_mode;
+    struct __CFString *_mode;
     NSString *_legend;
     NSString *_loggingDomain;
     unsigned int _waiting:1;
     unsigned int _waited:1;
     unsigned int _signaled:1;
+    unsigned int _stopped:1;
+    struct os_unfair_lock_s _retainReleaseLock;
     void *reserved;
 }
 
 + (struct __CFString *)mode;
-@property(readonly) NSString *mode; // @synthesize mode=_mode;
++ (void)_observe:(struct __CFString *)arg1 whilePerforming:(CDUnknownBlockType)arg2;
++ (id)invocations;
++ (struct __CFString *)currentRunLoopMode;
++ (void)initialize;
+@property(readonly) struct __CFString *mode; // @synthesize mode=_mode;
 @property(copy) NSString *loggingDomain; // @synthesize loggingDomain=_loggingDomain;
 @property(copy) NSString *legend; // @synthesize legend=_legend;
 - (void)wait;
 - (BOOL)wait:(double)arg1;
-- (void)signalOnAppKitThread;
 - (void)signal;
 - (void)_log:(id)arg1;
-- (void)deallocOnAppKitThread;
+- (void)_log:(id)arg1 force:(BOOL)arg2;
 - (void)dealloc;
+- (oneway void)release;
+- (void)__vbSuperRelease;
+- (id)retain;
+- (void)__vbWithLockPerform:(CDUnknownBlockType)arg1;
+- (struct os_unfair_lock_s *)retainReleaseLock;
 - (id)initWithMode:(struct __CFString *)arg1;
 - (id)init;
 

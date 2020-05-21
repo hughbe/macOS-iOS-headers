@@ -11,7 +11,6 @@
 @interface NSRemotePanelOrderingContext : NSObject
 {
     NSWindow *_parentWindow;
-    CDUnknownBlockType _panelInitDidCompleteHandler;
     CDUnknownBlockType _panelSetupDidCompleteHandler;
     CDUnknownBlockType _panelOrderingDidCompleteHandler;
     CDUnknownBlockType _panelDidReturnHandler;
@@ -19,12 +18,12 @@
     id _didOrderOnScreenNotificationToken;
 }
 
+- (void).cxx_destruct;
 @property id didOrderOnScreenNotificationToken; // @synthesize didOrderOnScreenNotificationToken=_didOrderOnScreenNotificationToken;
 @property(copy) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(copy) CDUnknownBlockType panelDidReturnHandler; // @synthesize panelDidReturnHandler=_panelDidReturnHandler;
 @property(copy) CDUnknownBlockType panelOrderingDidCompleteHandler; // @synthesize panelOrderingDidCompleteHandler=_panelOrderingDidCompleteHandler;
 @property(copy) CDUnknownBlockType panelSetupDidCompleteHandler; // @synthesize panelSetupDidCompleteHandler=_panelSetupDidCompleteHandler;
-@property(copy) CDUnknownBlockType panelInitDidCompleteHandler; // @synthesize panelInitDidCompleteHandler=_panelInitDidCompleteHandler;
 @property(retain) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
 - (void)cleanup;
 

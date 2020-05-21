@@ -10,6 +10,7 @@
 
 @class GEOMapServiceTraits, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _MKSearchFieldPlaceholderTicket : NSObject <MKMapServiceSearchFieldPlaceholderTicket>
 {
     id <GEOMapServiceSearchFieldPlaceholderTicket> _ticket;

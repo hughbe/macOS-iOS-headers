@@ -17,7 +17,7 @@
 }
 
 + (id)sharedManager;
-@property(retain) id delegate; // @synthesize delegate=_delegate;
+@property __weak id delegate; // @synthesize delegate=_delegate;
 - (BOOL)_clientHasRightsToCustomVoices;
 - (id)_sendMessage:(int)arg1 withData:(void *)arg2 withReply:(BOOL)arg3;
 - (struct __CFMessagePort *)_createLocalPort;
@@ -25,6 +25,7 @@
 - (BOOL)_serverIsRunning;
 - (void)showProgressWindow;
 - (BOOL)areBackgroundDownloadsAllowed;
+- (double)percentageOfBatteryCharge;
 - (BOOL)isRunningOnACPower;
 - (id)installationLogEntryForTag:(id)arg1 preferenceDomain:(id)arg2;
 - (id)installationLogEntryForTag:(id)arg1;
@@ -42,14 +43,15 @@
 - (void)cancelPurgingOfSpeechBundleIdentifiers:(id)arg1 initiator:(id)arg2;
 - (BOOL)_startDownloadingHighestQualityIfNecessaryForVoiceIdentifier:(id)arg1 requireACPower:(BOOL)arg2 initiator:(id)arg3;
 - (BOOL)doesLanguageDataNeedToBeDownloadedForLocaleIdentifier:(id)arg1;
+- (id)_voiceIdentifierForRootVoiceIdentifier:(id)arg1 startDownloading:(BOOL)arg2 requireACPower:(BOOL)arg3 initiator:(id)arg4 highestQuality:(BOOL)arg5;
 - (id)highestQualityVoiceIdentifierForRootVoiceIdentifier:(id)arg1 startDownloading:(BOOL)arg2 requireACPower:(BOOL)arg3 initiator:(id)arg4;
+- (id)lowestQualityVoiceIdentifierForRootVoiceIdentifier:(id)arg1 startDownloading:(BOOL)arg2 requireACPower:(BOOL)arg3 initiator:(id)arg4;
 - (id)_overriddenVoiceIdentifierDictionary;
 - (id)highestQualityVoiceIdentifierForRootVoiceIdentifier:(id)arg1 startDownloading:(BOOL)arg2;
-- (void)showVoiceSelectionSheetForWindow:(id)arg1 showIndividualVoiceQualities:(BOOL)arg2;
+- (void)showVoiceSelectionSheetForWindow:(id)arg1 showIndividualVoiceQualities:(BOOL)arg2 voiceIdentifiersNotToBeRemoved:(id)arg3;
 - (id)onDiskVersionForBundlePath:(id)arg1;
 - (id)bundleForRemovableVoice:(id)arg1 passingBackTagName:(id *)arg2;
 - (id)downloadableVoiceUpgradeForVoice:(id)arg1 fromDownloadableVoices:(id)arg2;
-- (id)downloadableVoicesAllowCustomVoices:(BOOL)arg1;
 - (id)downloadableVoices;
 - (BOOL)isAutoDownloadProhibitedForDownloadableVoiceObject:(id)arg1;
 - (void)markDownloadableVoiceObject:(id)arg1 withAutoDownloadProhibitFlag:(BOOL)arg2;

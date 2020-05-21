@@ -13,6 +13,7 @@
 @interface CalSession : NSObject <CalNetworkChangeNotificationListener>
 {
     double _interval;
+    BOOL _pushActive;
     int _status;
     NSError *_error;
     NSManagedObjectID *_objectID;
@@ -23,6 +24,7 @@
 + (void)setDefaultUserAgent:(id)arg1;
 + (id)knownNonNodeSessionIDs;
 + (void)persistErrorOnAccount:(id)arg1 forPrincipal:(id)arg2;
+- (void).cxx_destruct;
 @property(retain) NSString *sessionID; // @synthesize sessionID=_sessionID;
 @property double interval; // @synthesize interval=_interval;
 @property(readonly, retain) NSManagedObjectID *objectID; // @synthesize objectID=_objectID;
@@ -40,12 +42,14 @@
 - (void)synchronizeDelegatesWithCompletion:(CDUnknownBlockType)arg1;
 - (void)synchronizeWithFlags:(long long)arg1;
 - (void)synchronize;
+- (BOOL)active;
 - (void)reactivate;
 - (BOOL)activate;
 - (void)deactivate;
 - (void)broadcastStatusUpdate;
 - (void)setError:(id)arg1 status:(int)arg2;
 @property int status;
+- (void)operation:(id)arg1 didEncounterError:(id)arg2;
 - (BOOL)isOfflineOrError;
 - (BOOL)isOffline;
 - (void)goOffline;
@@ -60,7 +64,6 @@
 - (void)unschedule;
 - (void)_schedule;
 - (void)schedule;
-- (void)dealloc;
 - (id)initWithSessionID:(id)arg1;
 - (id)initWithObjectID:(id)arg1;
 

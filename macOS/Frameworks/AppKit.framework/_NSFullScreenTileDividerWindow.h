@@ -6,12 +6,12 @@
 
 #import <AppKit/NSPanel.h>
 
-@class NSToolbarFullScreenWindowManager;
+@class CALayer, _NSFullScreenSpace;
 
 __attribute__((visibility("hidden")))
 @interface _NSFullScreenTileDividerWindow : NSPanel
 {
-    NSToolbarFullScreenWindowManager *_manager;
+    _NSFullScreenSpace *_space;
     unsigned long long _tileSpace;
     unsigned long long _direction;
     unsigned long long _verticalIndex;
@@ -21,8 +21,11 @@ __attribute__((visibility("hidden")))
     BOOL _drivingLiveResize;
     BOOL _liveResizeMoved;
     BOOL _shouldAbortLiveResize;
+    struct CGSize _spacing;
+    CALayer *_grabBarLayer;
 }
 
++ (id)tileGrabBarWithSize:(struct CGSize)arg1;
 @property BOOL overrideDrivingLiveResize; // @synthesize overrideDrivingLiveResize=_overrideDrivingLiveResize;
 - (void)_endLiveResizeAtDividerLocation:(double)arg1;
 - (void)_liveResizeToDividerLocation:(double)arg1;
@@ -37,25 +40,30 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (void)disableAutomaticTermination;
 - (void)enableAutomaticTermination;
+- (void)_updateManagedDisplay;
 - (struct CGRect)constrainFrameRect:(struct CGRect)arg1 toScreen:(id)arg2;
 - (id)resizeCursor;
 - (unsigned long long)horizontalIndex;
 - (unsigned long long)verticalIndex;
 - (unsigned long long)direction;
-- (id)manager;
+- (struct CGSize)spacing;
+- (id)space;
 - (unsigned long long)tileSpaceID;
 - (unsigned long long)parentSpaceID;
 - (void)_setWindowTag;
 - (void)close;
-- (BOOL)_shouldAutoDecSubLevel;
-- (BOOL)_shouldAutoIncSubLevel;
 - (void)setAsActiveTileDividerWindow;
-- (id)initWithTileSpace:(unsigned long long)arg1 direction:(unsigned long long)arg2 manager:(id)arg3;
+- (void)reshape;
+- (id)initWithTileSpace:(unsigned long long)arg1 direction:(unsigned long long)arg2 space:(id)arg3;
 - (void)cancelOverlayAnimations;
 - (void)_removeOverlayWindow;
 - (void)_updateOverlayWindow;
 - (void)_beginOverlayPresentationIfNeeded;
 - (void)_setupOverlayWindowImmediately:(BOOL)arg1;
+- (void)hideGrabBar;
+- (void)showGrabBar;
+- (void)showRolloverState:(BOOL)arg1;
+- (id)_grabber;
 
 @end
 

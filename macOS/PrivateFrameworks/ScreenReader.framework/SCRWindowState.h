@@ -12,14 +12,10 @@ __attribute__((visibility("hidden")))
     struct CGPoint _sourceOrigin;
     struct CGPoint _destinationOrigin;
     BOOL _needToRestoreWindowPosition;
-    BOOL _captionWindowShowing;
-    BOOL _brailleWindowShowing;
     BOOL _needToRestoreDesktop;
 }
 
 @property(nonatomic) BOOL needToRestoreDesktop; // @synthesize needToRestoreDesktop=_needToRestoreDesktop;
-@property(nonatomic) BOOL brailleWindowShowing; // @synthesize brailleWindowShowing=_brailleWindowShowing;
-@property(nonatomic) BOOL captionWindowShowing; // @synthesize captionWindowShowing=_captionWindowShowing;
 @property(nonatomic) BOOL needToRestoreWindowPosition; // @synthesize needToRestoreWindowPosition=_needToRestoreWindowPosition;
 @property struct CGPoint destinationOrigin; // @synthesize destinationOrigin=_destinationOrigin;
 @property struct CGPoint sourceOrigin; // @synthesize sourceOrigin=_sourceOrigin;

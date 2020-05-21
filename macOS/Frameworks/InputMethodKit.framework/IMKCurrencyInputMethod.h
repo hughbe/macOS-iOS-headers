@@ -6,17 +6,18 @@
 
 #import <InputMethodKit/IMKAbstractInputMethod.h>
 
-@class NSNumberFormatter;
-
 @interface IMKCurrencyInputMethod : IMKAbstractInputMethod
 {
-    NSNumberFormatter *_currencyFormatter;
+    struct __CFNumberFormatter *_currencyFormatter;
 }
 
-@property(readonly, nonatomic) NSNumberFormatter *currencyFormatter; // @synthesize currencyFormatter=_currencyFormatter;
-- (void).cxx_destruct;
++ (id)inputMethodVerbatimChainWithAttachedKeyboard:(id)arg1 currencyFormatter:(struct __CFNumberFormatter *)arg2;
++ (id)inputMethodVerbatimChainWithCurrencyFormatter:(struct __CFNumberFormatter *)arg1;
+@property(readonly, nonatomic) struct __CFNumberFormatter *currencyFormatter; // @synthesize currencyFormatter=_currencyFormatter;
 - (BOOL)handleKeyPress:(id)arg1 whileInKeyboardState:(id)arg2;
 - (BOOL)tracksVerbatim;
+- (void)dealloc;
+- (id)initWithKeyboardToAttach:(id)arg1 inputMethodToChain:(id)arg2 currencyFormatter:(struct __CFNumberFormatter *)arg3;
 - (id)initWithKeyboardToAttach:(id)arg1 inputMethodToChain:(id)arg2;
 
 @end

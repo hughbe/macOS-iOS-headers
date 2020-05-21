@@ -11,7 +11,6 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (_Bool)hasCommentsInSheet:(id)arg1;
 + (struct EDCellAnchorMarker)readAnchorMarkerFromNode:(struct _xmlNode *)arg1 state:(id)arg2;
 + (void)readFromPart:(id)arg1 state:(id)arg2;
 + (id)readAnchorNode:(struct _xmlNode *)arg1 state:(id)arg2;

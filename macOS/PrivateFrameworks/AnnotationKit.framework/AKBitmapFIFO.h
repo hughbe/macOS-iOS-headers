@@ -21,11 +21,12 @@
     double _shadowRadiusInView;
     struct CGSize _bitmapSize;
     // Error parsing type: , name: _lastPoint
-    struct CGRect _dirtyRect;
+    struct CGRect _unionDirtyRect;
     struct CGAffineTransform _viewToBitmapTransform;
 }
 
-@property struct CGRect dirtyRect; // @synthesize dirtyRect=_dirtyRect;
+- (void).cxx_destruct;
+@property struct CGRect unionDirtyRect; // @synthesize unionDirtyRect=_unionDirtyRect;
 // Error parsing type for property lastPoint:
 // Property attributes: T,V_lastPoint
 
@@ -36,7 +37,6 @@
 @property(retain, nonatomic) NSView *view; // @synthesize view=_view;
 @property(nonatomic) BOOL isInLiveDraw; // @synthesize isInLiveDraw=_isInLiveDraw;
 @property double bitmapSizeMultiplier; // @synthesize bitmapSizeMultiplier=_bitmapSizeMultiplier;
-- (void).cxx_destruct;
 - (void)_applyDirtyRectToView;
 - (void)_addToDirtyRect:(struct CGRect)arg1;
 - (void)_addSinglePointToBitmap: /* Error: Ran out of types for this method. */;
@@ -50,6 +50,7 @@
 - (struct CGPath *)newPathFromCurrentBitmap;
 - (struct CGImage *)currentBitmap;
 - (struct CGRect)bitmapRectInView;
+- (void)resetDirtyRect;
 - (void)clear;
 - (void)flush;
 - (void)addPoint: /* Error: Ran out of types for this method. */;

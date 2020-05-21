@@ -20,7 +20,9 @@
     unsigned long long _payloadFormat;
     unsigned long long _payloadSize;
     NSArray *_maskPaths;
+    NSArray *_allowPaths;
     CDUnknownBlockType _itemWillCopyHandler;
+    NSObject<OS_dispatch_queue> *_itemWillCopyQueue;
     CDUnknownBlockType _itemCopiedHandler;
     NSObject<OS_dispatch_queue> *_itemCopiedQueue;
     unsigned long long _fullCompleteBytes;
@@ -49,6 +51,7 @@
 - (void)setPayloadSize:(unsigned long long)arg1;
 - (void)setPayloadFormat:(unsigned long long)arg1;
 - (void)setItemWillCopyHandlerWithBlock:(CDUnknownBlockType)arg1;
+- (void)setItemWillCopyHandlerOnQueue:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)setItemCopiedHandlerOnQueue:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)setCopiesQuarantine:(BOOL)arg1;
 - (void)setPreservesACLs:(BOOL)arg1;
@@ -57,6 +60,7 @@
 - (void)setPreservesSourceParentName:(BOOL)arg1;
 - (void)setHFSPlusCompressionEnabled:(BOOL)arg1 withBackwardsIncompatibleFormat:(BOOL)arg2;
 - (void)setIndexBomPath:(id)arg1;
+- (void)setAllowPaths:(id)arg1;
 - (void)setMaskPaths:(id)arg1;
 - (void)dealloc;
 - (id)initWithRootPath:(id)arg1 destinationArchive:(id)arg2;

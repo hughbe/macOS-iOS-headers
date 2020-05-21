@@ -10,13 +10,13 @@
 
 @interface MCDataScanner : NSObject
 {
-    NSData *_data;
     unsigned long long _scanLocation;
+    NSData *_data;
 }
 
 + (id)scannerWithData:(id)arg1;
-@property(readonly, nonatomic) NSData *data; // @synthesize data=_data;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSData *data; // @synthesize data=_data;
 - (BOOL)scanUpToBytesFromSet:(id)arg1 intoData:(id *)arg2;
 - (BOOL)_scanUpToBytes:(const void *)arg1 length:(unsigned long long)arg2 intoData:(id *)arg3;
 - (BOOL)scanUpToCString:(const char *)arg1 intoData:(id *)arg2;
@@ -28,7 +28,7 @@
 - (BOOL)scanInteger:(long long *)arg1;
 - (BOOL)scanByte:(char *)arg1;
 @property(readonly, nonatomic) BOOL isAtEnd;
-@property(nonatomic) unsigned long long scanLocation; // @synthesize scanLocation=_scanLocation;
+@property(nonatomic) unsigned long long scanLocation;
 - (id)init;
 - (id)initWithData:(id)arg1;
 

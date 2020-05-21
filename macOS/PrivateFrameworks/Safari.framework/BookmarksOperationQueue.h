@@ -8,7 +8,7 @@
 
 #import "BookmarksOperationCoalescerDelegate.h"
 
-@class NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
+@class NSMapTable, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
 
 __attribute__((visibility("hidden")))
 @interface BookmarksOperationQueue : NSObject <BookmarksOperationCoalescerDelegate>
@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_operationClassesToCaches;
     NSMutableSet *_operationClassesRequestingCacheDeletionOnBookmarksChange;
     NSMutableDictionary *_operationClassesToCoalescers;
+    NSMapTable *_overridableOperationClassesToMostRecentInstances;
 }
 
 + (id)defaultQueue;
@@ -26,6 +27,7 @@ __attribute__((visibility("hidden")))
 - (void)_setUpResultCachingOperationForOperationIfNecessary:(id)arg1;
 - (BOOL)_tryToUseCachedResultForOperation:(id)arg1;
 - (BOOL)_tryToReuseResultOfOperation:(id)arg1 forOperation:(id)arg2;
+- (void)_overrideExistingOperationsWithOperationIfNecessary:(id)arg1;
 - (void)_addOperationIgnoringCoalescing:(id)arg1;
 - (id)_initWithBookmarksController:(id)arg1;
 - (void)bookmarksOperationCoalescer:(id)arg1 didCoalesceOperationsIntoOperation:(id)arg2;

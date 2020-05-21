@@ -13,12 +13,13 @@
     SBApplication *_sbApplication;
 }
 
-@property(retain) SBApplication *sbApplication; // @synthesize sbApplication=_sbApplication;
+- (void).cxx_destruct;
+@property(retain, nonatomic) SBApplication *sbApplication; // @synthesize sbApplication=_sbApplication;
 - (id)descriptorForOutputObject:(id)arg1;
 - (id)outputObjectArrayForInput:(id)arg1;
 - (id)sbObjectForDescriptor:(id)arg1;
 - (BOOL)isTypeValidForObject:(id)arg1;
-- (id)scriptingBridgeApplication;
+@property(readonly, nonatomic) SBApplication *scriptingBridgeApplication;
 - (id)runWithInput:(id)arg1 error:(id *)arg2;
 
 @end

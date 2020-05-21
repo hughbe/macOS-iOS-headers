@@ -24,10 +24,13 @@
     BOOL _disableKeepAlive;
     int _keepAliveWifi;
     int _keepAliveCell;
+    BOOL _shouldReturnTimingData;
 }
 
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType block; // @synthesize block=_block;
 @property(retain) NSURLRequest *request; // @synthesize request=_request;
+@property BOOL shouldReturnTimingData; // @synthesize shouldReturnTimingData=_shouldReturnTimingData;
 @property int keepAliveCell; // @synthesize keepAliveCell=_keepAliveCell;
 @property int keepAliveWifi; // @synthesize keepAliveWifi=_keepAliveWifi;
 @property BOOL disableKeepAlive; // @synthesize disableKeepAlive=_disableKeepAlive;
@@ -39,6 +42,7 @@
 - (void)cancel;
 - (void)load;
 - (void)dealloc;
+- (id)initWithURLRequest:(id)arg1 completionBlockWithTimingData:(CDUnknownBlockType)arg2;
 - (id)initWithURLRequest:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (BOOL)_connect;
 - (BOOL)_disconnect;

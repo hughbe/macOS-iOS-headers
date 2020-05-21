@@ -6,23 +6,26 @@
 
 #import "NSObject.h"
 
+#import "EFLoggable.h"
 #import "MCProgressEntryDelegate.h"
 
 @class MCProgressEntry, NSArray, NSMutableArray, NSMutableDictionary, NSString;
 
-@interface MCProgressManager : NSObject <MCProgressEntryDelegate>
+@interface MCProgressManager : NSObject <EFLoggable, MCProgressEntryDelegate>
 {
     NSMutableDictionary *_entriesBySlice;
     NSMutableArray *_orderedEntries;
-    NSArray *_trackedAccountNames;
     MCProgressEntry *_activeEntry;
+    NSArray *_trackedAccountNames;
 }
 
 + (id)sharedInstance;
 + (id)allocWithZone:(struct _NSZone *)arg1;
-@property(retain, nonatomic) MCProgressEntry *activeEntry; // @synthesize activeEntry=_activeEntry;
-@property(copy, nonatomic) NSArray *trackedAccountNames; // @synthesize trackedAccountNames=_trackedAccountNames;
++ (id)log;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSArray *trackedAccountNames; // @synthesize trackedAccountNames=_trackedAccountNames;
+@property(retain, nonatomic) MCProgressEntry *activeEntry; // @synthesize activeEntry=_activeEntry;
+- (void)_diagnosticsNotificationReceived:(id)arg1;
 - (void)removeObjectFromOrderedEntriesAtIndex:(unsigned long long)arg1;
 - (void)insertObject:(id)arg1 inOrderedEntriesAtIndex:(unsigned long long)arg2;
 - (id)objectInOrderedEntriesAtIndex:(unsigned long long)arg1;

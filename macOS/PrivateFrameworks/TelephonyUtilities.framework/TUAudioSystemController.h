@@ -6,7 +6,7 @@
 
 #import <TelephonyUtilities/TUAudioController.h>
 
-@class NSArray, NSNumber, NSObject<OS_dispatch_queue>;
+@class NSArray, NSDictionary, NSNumber, NSObject<OS_dispatch_queue>;
 
 @interface TUAudioSystemController : TUAudioController
 {
@@ -23,6 +23,7 @@
     NSArray *_pickableRoutesForPlayAndRecordVoice;
     NSArray *_pickableRoutesForPlayAndRecordRemoteVoice;
     NSArray *_pickableRoutesForVoicemail;
+    NSArray *_currentPickableRoutes;
     BOOL _isRequestingUplinkMuted;
     BOOL _isRequestingDownlinkMuted;
     BOOL _isRequestingTTY;
@@ -41,27 +42,39 @@
     unsigned long long _lastPlayAndRecordVoiceRoutesScheduleTime;
     unsigned long long _lastPlayAndRecordRemoteVoiceRoutesScheduleTime;
     unsigned long long _lastVoicemailRoutesScheduleTime;
+    id <TUAudioSystemControllerDelegate> _delegate;
 }
 
++ (id)filteredPickableRoutesFromPickableRoutes:(id)arg1;
++ (id)sourceIdentifierForRouteID:(id)arg1;
 + (id)sharedAudioSystemController;
-+ (id)sharedSystemController;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <TUAudioSystemControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (BOOL)shouldSuppressCallUsingRoute:(id)arg1;
 - (id)pickableRouteWithUniqueIdentifier:(id)arg1;
+- (BOOL)pickRoute:(id)arg1 error:(id *)arg2;
+- (void)_getPickableRoutesForCategory:(id)arg1 mode:(id)arg2 onlyKnownCombinations:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)getPickableRoutesForCategory:(id)arg1 mode:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (id)pickableRoutesForCategory:(id)arg1 andMode:(id)arg2;
-- (id)bestGuessPickableRoutesForAnyCall;
+@property(readonly, copy, nonatomic) NSArray *bestGuessPickableRoutesForAnyCall;
+- (void)_loadCurrentPickableRoutesWithCompletion:(CDUnknownBlockType)arg1;
 - (id)_pickableRoutesForVoiceMailWithForceNewRequest:(BOOL)arg1;
 - (id)_pickableRoutesForPlayAndRecordRemoteVoiceWithForceNewRequest:(BOOL)arg1;
 - (id)_pickableRoutesForPlayAndRecordVideoWithForceNewRequest:(BOOL)arg1;
 - (id)_pickableRoutesForPlayAndRecordVoiceWithForceNewRequest:(BOOL)arg1;
+- (id)currentlyPickedRouteIdForCategory:(id)arg1 andMode:(id)arg2;
 - (id)_pickableRoutesForPhoneCallWithForceNewRequest:(BOOL)arg1;
-- (id)pickableRoutesForTTY;
+- (id)pickableRoutesForActiveCall;
+@property(readonly, copy, nonatomic) NSArray *pickableRoutesForTTY;
 - (id)_pickableRoutesForTTYWithForceNewRequest:(BOOL)arg1;
+@property(readonly, copy, nonatomic) NSDictionary *pickedRouteAttribute;
 @property(nonatomic, getter=isDownlinkMuted) BOOL downlinkMuted;
 @property(nonatomic, getter=isUplinkMuted) BOOL uplinkMuted;
 @property(readonly, nonatomic, getter=isTTY) BOOL tty;
-- (void)_handleServerConnectionDiedNotification:(id)arg1;
+@property(nonatomic) float activeCategoryVolume;
+- (void)_mediaServicesWereReset:(id)arg1;
 - (void)_handlePickableRoutesDidChangeNotification:(id)arg1;
+- (void)_handleVolumeDidChangeNotification:(id)arg1;
 - (void)_handleDownlinkMuteDidChangeNotification:(id)arg1;
 - (void)_handleUplinkMuteDidChangeNotification:(id)arg1;
 - (void)_updateCachedState;

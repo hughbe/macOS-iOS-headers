@@ -22,6 +22,8 @@
 + (id)keyPathsForValuesAffectingSubtype;
 + (id)keyPathsForValuesAffectingVendorFormat;
 @property unsigned long long sensorFormat; // @synthesize sensorFormat;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)debugLogStringWithIndentation:(id)arg1;
 - (BOOL)updateWithXML:(id)arg1;

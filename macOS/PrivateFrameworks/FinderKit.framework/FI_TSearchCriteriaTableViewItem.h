@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     _Bool _inMenu;
 }
 
+- (void).cxx_destruct;
 @property _Bool inMenu; // @synthesize inMenu=_inMenu;
 @property unsigned long long dataType; // @synthesize dataType=_dataType;
 @property(copy) NSString *localizedAttributeDescription; // @synthesize localizedAttributeDescription=_localizedAttributeDescription;

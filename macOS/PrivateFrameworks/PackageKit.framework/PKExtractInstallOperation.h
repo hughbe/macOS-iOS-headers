@@ -20,11 +20,13 @@
 
 - (void)cancel;
 - (void)main;
+- (BOOL)_extractAllSpecifiersOnceAndReturnFailingSpecifier:(id *)arg1 andError:(id *)arg2;
 - (BOOL)_extractPayloadForPackageSpecifier:(id)arg1 error:(id *)arg2;
 - (BOOL)_extractScriptsForPackageSpecifier:(id)arg1 error:(id *)arg2;
 - (BOOL)_extractBomForPackageSpecifier:(id)arg1 error:(id *)arg2;
 - (id)_activeExtractor;
 - (void)_setActiveExtractor:(id)arg1;
+- (void)_clearQuarantineStateForPackage:(id)arg1;
 - (id)messageTracerComment;
 - (id)messageTracerDomain;
 - (id)currentPackageSpecifier;

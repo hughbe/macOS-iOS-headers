@@ -18,23 +18,19 @@
     NSString *_processedText;
 }
 
-+ (BOOL)canClassifyPolarityForLanguageIdentifier:(id)arg1 withOptions:(unsigned long long)arg2 dataProvider:(id)arg3;
-+ (BOOL)canClassifyPolarityForLanguageIdentifier:(id)arg1 withOptions:(unsigned long long)arg2;
 + (unsigned long long)polarityTypeFromName:(id)arg1;
 + (id)polarityNameFromType:(unsigned long long)arg1;
 + (unsigned long long)annotationTypeFromName:(id)arg1;
 + (id)annotationNameFromType:(unsigned long long)arg1;
 + (void)initialize;
 + (id)defaultDataProvider;
+- (void).cxx_destruct;
 @property(retain) NSString *processedText; // @synthesize processedText=_processedText;
 @property(retain) NSMutableArray *annotations; // @synthesize annotations=_annotations;
 @property BOOL trainVerbatim; // @synthesize trainVerbatim=_trainVerbatim;
 @property double trainingWeight; // @synthesize trainingWeight=_trainingWeight;
 @property(retain) NSString *languageID; // @synthesize languageID=_languageID;
 @property(retain) NSString *string; // @synthesize string=_string;
-- (void).cxx_destruct;
-- (unsigned long long)polarityClassificationWithOptions:(unsigned long long)arg1 dataProvider:(id)arg2;
-- (unsigned long long)polarityClassificationWithOptions:(unsigned long long)arg1;
 - (id)lsmText;
 - (id)taggedText;
 - (unsigned long long)annotatedPolarity;

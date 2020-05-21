@@ -17,9 +17,10 @@ __attribute__((visibility("hidden")))
     NSView *_contentView;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSView *contentView; // @synthesize contentView=_contentView;
 @property(readonly, nonatomic) NewTabButton *createTabButton; // @synthesize createTabButton=_createTabButton;
-- (void).cxx_destruct;
+- (BOOL)_isCreateTabButtonVisible;
 - (void)hideNewTabButton;
 - (void)showNewTabButton;
 - (void)_updateKeyViewLoop;

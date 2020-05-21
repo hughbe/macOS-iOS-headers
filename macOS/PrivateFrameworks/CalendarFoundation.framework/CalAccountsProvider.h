@@ -24,15 +24,20 @@
 + (id)uniqueStringsForHostname:(id)arg1;
 + (BOOL)accountIsDuplicate:(id)arg1 inStore:(id)arg2;
 + (id)defaultProvider;
+- (void).cxx_destruct;
 @property(retain, nonatomic) ACAccountStore *accountStore; // @synthesize accountStore=_accountStore;
 @property(nonatomic) BOOL runningUnitTests; // @synthesize runningUnitTests=_runningUnitTests;
 @property(retain, nonatomic) NSMutableArray *accountsWhenRunningUnitTests; // @synthesize accountsWhenRunningUnitTests=_accountsWhenRunningUnitTests;
-- (void).cxx_destruct;
 - (id)_supportedDataclassesForMainBundleID;
+- (id)_mainBundleID;
+- (BOOL)_bundleIDSupportsDataclassReminders:(id)arg1;
+- (BOOL)_bundleIDSupportsDataclassCalendars:(id)arg1;
 - (id)_supportedDataclassesForBundleID:(id)arg1;
 - (id)_providerForCalDAVAccount:(id)arg1;
 - (id)_cachedAccountWithIdentifier:(id)arg1;
 - (id)_accountWithIdentifier:(id)arg1;
+- (id)_accountsEnabledForDataClasses:(id)arg1;
+- (id)_accountsEnabledForDataClass:(id)arg1;
 - (BOOL)saveAccount:(id)arg1 withError:(id *)arg2;
 - (BOOL)saveAccount:(id)arg1 verify:(BOOL)arg2 withError:(id *)arg3;
 - (void)saveAccount:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
@@ -56,6 +61,8 @@
 - (BOOL)accountIsDuplicate:(id)arg1;
 - (BOOL)account:(id)arg1 hasServerURL:(id)arg2;
 @property(readonly, nonatomic) NSArray *enabledAccounts;
+@property(readonly, nonatomic) NSArray *accountsEnabledForReminders;
+@property(readonly, nonatomic) NSArray *accountsEnabledForCalendar;
 @property(readonly, nonatomic) NSArray *allAccounts;
 - (id)init;
 

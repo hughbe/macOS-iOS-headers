@@ -6,11 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSMutableSet;
+@class NSMutableSet;
 
 @interface DDActionsManager : NSObject
 {
-    NSMutableDictionary *_actionsDictionary;
     NSMutableSet *_uiElementsInUse;
     BOOL _forceWindowAnimationsFromRight;
     BOOL _containsAnchoredElement;
@@ -24,13 +23,10 @@
 + (BOOL)shouldUseActionsWithContext:(id)arg1;
 + (BOOL)hitWindowIsPopover;
 + (id)sharedManager;
-@property id <DDActionsManagerDelegateProtocol> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property __weak id <DDActionsManagerDelegateProtocol> delegate; // @synthesize delegate=_delegate;
 @property BOOL forceWindowAnimationsFromRight; // @synthesize forceWindowAnimationsFromRight=_forceWindowAnimationsFromRight;
-- (id)_allowedClassNames;
-- (void)_loadAllPlugins;
-- (void)_listActionsInPlugin:(id)arg1;
-- (void)_load;
-- (void)runActionForDictionary:(id)arg1;
+- (id)runActionForDictionary:(id)arg1;
 - (void)requestBubbleClosureUnanchorOnFailure:(BOOL)arg1;
 - (void)unanchorBubbles;
 - (BOOL)hasUIElementInUse;
@@ -42,22 +38,22 @@
 - (id)defaultActionForType:(id)arg1;
 - (id)actionsForType:(id)arg1;
 - (id)actionsForType:(id)arg1 actionContext:(id)arg2;
-- (BOOL)hasActionsForResult:(struct __DDResult *)arg1 actionContext:(id)arg2;
-- (id)actionsForResult:(struct __DDResult *)arg1;
-- (id)menuItemsForRootType:(id)arg1 result:(struct __DDResult *)arg2 textCheckingResult:(id)arg3 URL:(id)arg4 context:(id)arg5;
+-     // Error parsing type: @32@0:8^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}16@24, name: prependActionsForResult:actions:
+-     // Error parsing type: c32@0:8^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}16@24, name: hasActionsForResult:actionContext:
+-     // Error parsing type: @24@0:8^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}16, name: actionsForResult:
+-     // Error parsing type: @56@0:8@16^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}24@32@40@48, name: menuItemsForRootType:result:textCheckingResult:URL:context:
 - (id)menuItemsForTextCheckingResult:(id)arg1 string:(id)arg2 context:(id)arg3 screenLocation:(struct CGPoint)arg4;
 - (BOOL)runActionFromRect:(struct CGRect)arg1 forTextCheckingResult:(id)arg2 context:(id)arg3;
 - (id)menuItemsForTextCheckingResult:(id)arg1 actionContext:(id)arg2;
 - (id)actionTypeForTextCheckingResult:(id)arg1 actionContext:(id)arg2;
 - (id)menuItemsForTargetURL:(id)arg1 actionContext:(id)arg2;
-- (id)menuItemsForResult:(struct __DDResult *)arg1 actionContext:(id)arg2;
+-     // Error parsing type: @32@0:8^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}16@24, name: menuItemsForResult:actionContext:
 - (id)menuItemsForValue:(id)arg1 type:(struct __CFString *)arg2 service:(id)arg3 context:(id)arg4;
-- (id)menuItemsForResult:(struct __DDResult *)arg1 context:(id)arg2 screenLocation:(struct CGPoint)arg3;
-- (id)menuItemsForResult:(struct __DDResult *)arg1 context:(id)arg2;
+-     // Error parsing type: @48@0:8^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}16@24{CGPoint=dd}32, name: menuItemsForResult:context:screenLocation:
+-     // Error parsing type: @32@0:8^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}16@24, name: menuItemsForResult:context:
 - (void)notifyClientActionWillStart;
 - (void)notifyClientActionDidEnd;
 - (void)_someWindowDidClose:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

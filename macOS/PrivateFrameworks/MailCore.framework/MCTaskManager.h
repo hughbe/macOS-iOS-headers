@@ -20,25 +20,26 @@
     NSMutableSet *_activities;
     NSMutableSet *_bodyTrackers;
     NSMutableArray *_terminationBlocks;
-    BOOL _reassignTasksWillRun;
     BOOL _hasActivity;
+    BOOL _reassignTasksWillRun;
     NSOperationQueue *_serializationQueue;
-    MCTaskList *_taskList;
-    unsigned long long _maximumPersistenceHandlers;
     unsigned long long _maximumNetworkHandlers;
+    unsigned long long _maximumPersistenceHandlers;
+    MCTaskList *_taskList;
 }
 
-@property BOOL hasActivity; // @synthesize hasActivity=_hasActivity;
-@property BOOL reassignTasksWillRun; // @synthesize reassignTasksWillRun=_reassignTasksWillRun;
-@property unsigned long long maximumNetworkHandlers; // @synthesize maximumNetworkHandlers=_maximumNetworkHandlers;
-@property unsigned long long maximumPersistenceHandlers; // @synthesize maximumPersistenceHandlers=_maximumPersistenceHandlers;
-@property(readonly, nonatomic) MCTaskList *taskList; // @synthesize taskList=_taskList;
-@property(readonly, nonatomic) NSOperationQueue *serializationQueue; // @synthesize serializationQueue=_serializationQueue;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) MCTaskList *taskList; // @synthesize taskList=_taskList;
+@property BOOL reassignTasksWillRun; // @synthesize reassignTasksWillRun=_reassignTasksWillRun;
+@property BOOL hasActivity; // @synthesize hasActivity=_hasActivity;
+@property unsigned long long maximumPersistenceHandlers; // @synthesize maximumPersistenceHandlers=_maximumPersistenceHandlers;
+@property unsigned long long maximumNetworkHandlers; // @synthesize maximumNetworkHandlers=_maximumNetworkHandlers;
+@property(readonly, nonatomic) NSOperationQueue *serializationQueue; // @synthesize serializationQueue=_serializationQueue;
 @property(readonly, nonatomic) BOOL networkIsLimited;
 - (void)bodyTracker:(id)arg1 didCacheBodiesForMessages:(id)arg2;
 - (void)handlerDidCleanUp:(id)arg1;
 - (void)handler:(id)arg1 didFinishOperation:(id)arg2;
+- (void)resetNetworkHandlers;
 - (void)cleanUp;
 - (void)terminate:(CDUnknownBlockType)arg1;
 - (id)newBodyFetchContext;

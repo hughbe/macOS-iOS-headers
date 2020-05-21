@@ -6,18 +6,14 @@
 
 #import "NSObject.h"
 
-@class VCPCNNModel;
-
 @interface VCPCNNPoseEstimator : NSObject
 {
-    VCPCNNModel *_model;
-    struct CNNData _input;
 }
 
-- (id).cxx_construct;
-- (void).cxx_destruct;
++ (id)estimator;
 - (int)detectPoseForFace:(struct CGRect)arg1 inBuffer:(struct __CVBuffer *)arg2 yaw:(long long *)arg3;
-- (id)init;
+- (int)computePoseScore:(float *)arg1;
+- (float *)getInputBuffer;
 
 @end
 

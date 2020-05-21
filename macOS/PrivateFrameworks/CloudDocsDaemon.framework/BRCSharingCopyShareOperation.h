@@ -8,20 +8,24 @@
 
 #import "BRCOperationSubclass.h"
 
-@class CKRecordID, NSString;
+@class BRCClientZone, BRCItemID, CKRecordID, NSString;
 
 __attribute__((visibility("hidden")))
 @interface BRCSharingCopyShareOperation : _BRCFrameworkOperation <BRCOperationSubclass>
 {
     CKRecordID *_shareID;
     CKRecordID *_recordIDNeedingFetch;
+    BRCItemID *_rootItemIDToLookup;
+    BRCClientZone *_clientZone;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) BRCClientZone *clientZone; // @synthesize clientZone=_clientZone;
+@property(retain, nonatomic) BRCItemID *rootItemIDToLookup; // @synthesize rootItemIDToLookup=_rootItemIDToLookup;
 @property(retain, nonatomic) CKRecordID *recordIDNeedingFetch; // @synthesize recordIDNeedingFetch=_recordIDNeedingFetch;
 @property(retain, nonatomic) CKRecordID *shareID; // @synthesize shareID=_shareID;
-- (void).cxx_destruct;
 - (void)main;
-- (BOOL)shouldRetryForError:(id)arg1;
+- (void)fetchRootURLIfNecessaryAndFinishWithShare:(id)arg1;
 - (id)createActivity;
 - (id)initWithItem:(id)arg1;
 

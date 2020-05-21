@@ -7,6 +7,7 @@
 @class NSString;
 
 @protocol TILexiconRequestHandler
+- (void)addEntryString:(NSString *)arg1 forRecentInputIdentifier:(NSString *)arg2;
 - (void)requestRemovalOfLexiconForRecentInputIdentifier:(NSString *)arg1;
 - (void)requestLexiconForRecentInputIdentifier:(NSString *)arg1 completionHandler:(void (^)(TIRecentInputs *))arg2;
 - (void)requestLexiconFromBundlePath:(NSString *)arg1 completionHandler:(void (^)(TILexicon *))arg2;

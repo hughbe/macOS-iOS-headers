@@ -14,8 +14,8 @@
 
 @property(retain, nonatomic) RWIProtocolNetworkHeaders *headers;
 @property(copy, nonatomic) NSString *statusText;
-@property(nonatomic) double status;
-- (id)initWithStatus:(double)arg1 statusText:(id)arg2 headers:(id)arg3;
+@property(nonatomic) int status;
+- (id)initWithStatus:(int)arg1 statusText:(id)arg2 headers:(id)arg3;
 
 @end
 

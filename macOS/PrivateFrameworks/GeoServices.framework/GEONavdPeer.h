@@ -16,11 +16,13 @@
     BOOL _expectingUpdates;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL expectingUpdates; // @synthesize expectingUpdates=_expectingUpdates;
 @property(readonly, nonatomic) GEONavdClientInfo *clientInfo; // @synthesize clientInfo=_clientInfo;
 @property(readonly, nonatomic) NSXPCConnection *connection; // @synthesize connection=_connection;
 - (void)dealloc;
 - (BOOL)hasEntitlement:(id)arg1;
+- (void)updateConnection:(id)arg1;
 - (id)initWithXPCConnection:(id)arg1;
 
 @end

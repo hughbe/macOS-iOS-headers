@@ -16,6 +16,7 @@
 }
 
 + (id)secureCodedPropertyKeys;
++ (BOOL)supportsSecureCoding;
 - (void)setCompositeName:(id)arg1;
 - (id)compositeName;
 - (void)setLastName:(id)arg1;

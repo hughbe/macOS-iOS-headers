@@ -18,6 +18,8 @@
 @property unsigned short clusterOffset; // @synthesize clusterOffset;
 @property unsigned short streamSignal; // @synthesize streamSignal;
 @property unsigned short streamIndex; // @synthesize streamIndex;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)debugLogStringWithIndentation:(id)arg1;
 - (BOOL)updateWithXML:(id)arg1;

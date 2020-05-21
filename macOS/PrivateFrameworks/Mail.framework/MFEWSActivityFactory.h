@@ -10,12 +10,11 @@
 {
 }
 
-+ (id)newRetrievePersistedFolderDataTaskWithMailboxDataCache:(id)arg1;
-+ (id)newFolderHierarchyReconcileTaskWithInitialSyncState:(id)arg1;
-+ (id)newMailboxSyncTaskWithURL:(id)arg1;
-+ (id)newVisibleBodyFetchTask;
-+ (id)newBackgroundBodyFetchTask;
-+ (id)newAccountSyncActivity;
++ (id)newRetrievePersistedFolderDataTaskWithMailboxDataCache:(id)arg1 accountName:(id)arg2;
++ (id)newFolderHierarchyReconcileTaskWithInitialSyncState:(id)arg1 accountName:(id)arg2;
++ (id)newMailboxSyncTaskForMailbox:(id)arg1;
++ (id)newVisibleBodyFetchTaskWithAccountName:(id)arg1;
++ (id)newBackgroundBodyFetchTaskWithAccountName:(id)arg1;
 
 @end
 

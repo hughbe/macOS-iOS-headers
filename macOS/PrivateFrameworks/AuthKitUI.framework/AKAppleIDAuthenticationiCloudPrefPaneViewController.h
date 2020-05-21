@@ -6,52 +6,78 @@
 
 #import "NSViewController.h"
 
-@class NSButton, NSProgressIndicator, NSString, NSTextField;
+#import "AKAppleIDAuthenticationInAppContextPasswordDelegate.h"
 
-@interface AKAppleIDAuthenticationiCloudPrefPaneViewController : NSViewController
+@class AKPaddedTextFieldCell, NSButton, NSLayoutConstraint, NSProgressIndicator, NSString, NSTextField, NSView, OBPrivacyLinkController;
+
+@interface AKAppleIDAuthenticationiCloudPrefPaneViewController : NSViewController <AKAppleIDAuthenticationInAppContextPasswordDelegate>
 {
     BOOL _isUsernameEditable;
     NSButton *_loginButton;
     NSButton *_forgotButton;
     NSButton *_createButton;
-    NSButton *_learnMoreButton;
     NSTextField *_usernameField;
+    AKPaddedTextFieldCell *_paddedUserNameCell;
     NSTextField *_passwordField;
+    NSView *_privacyView;
+    NSTextField *_usernameTitle;
+    NSTextField *_passwordTitle;
+    NSLayoutConstraint *_loginViewHeight;
     NSString *_initialUsername;
     NSString *_loginButtonString;
     long long _selectedButton;
+    NSString *_privacyBundleIdentifier;
     CDUnknownBlockType _loginButtonAction;
     CDUnknownBlockType _forgotButtonAction;
     CDUnknownBlockType _createButtonAction;
     NSProgressIndicator *_progressIndicator;
+    CDUnknownBlockType _passwordHandler;
+    OBPrivacyLinkController *_privacyController;
 }
 
+- (void).cxx_destruct;
+@property(retain) OBPrivacyLinkController *privacyController; // @synthesize privacyController=_privacyController;
+@property(copy) CDUnknownBlockType passwordHandler; // @synthesize passwordHandler=_passwordHandler;
 @property(retain) NSProgressIndicator *progressIndicator; // @synthesize progressIndicator=_progressIndicator;
 @property(copy) CDUnknownBlockType createButtonAction; // @synthesize createButtonAction=_createButtonAction;
 @property(copy) CDUnknownBlockType forgotButtonAction; // @synthesize forgotButtonAction=_forgotButtonAction;
 @property(copy) CDUnknownBlockType loginButtonAction; // @synthesize loginButtonAction=_loginButtonAction;
+@property(retain) NSString *privacyBundleIdentifier; // @synthesize privacyBundleIdentifier=_privacyBundleIdentifier;
 @property long long selectedButton; // @synthesize selectedButton=_selectedButton;
 @property(retain) NSString *loginButtonString; // @synthesize loginButtonString=_loginButtonString;
 @property(retain) NSString *initialUsername; // @synthesize initialUsername=_initialUsername;
 @property(setter=setUsernameEditable:) BOOL isUsernameEditable; // @synthesize isUsernameEditable=_isUsernameEditable;
+@property(retain) NSLayoutConstraint *loginViewHeight; // @synthesize loginViewHeight=_loginViewHeight;
+@property(retain) NSTextField *passwordTitle; // @synthesize passwordTitle=_passwordTitle;
+@property(retain) NSTextField *usernameTitle; // @synthesize usernameTitle=_usernameTitle;
+@property(retain) NSView *privacyView; // @synthesize privacyView=_privacyView;
 @property(retain) NSTextField *passwordField; // @synthesize passwordField=_passwordField;
+@property(retain) AKPaddedTextFieldCell *paddedUserNameCell; // @synthesize paddedUserNameCell=_paddedUserNameCell;
 @property(retain) NSTextField *usernameField; // @synthesize usernameField=_usernameField;
-@property(retain) NSButton *learnMoreButton; // @synthesize learnMoreButton=_learnMoreButton;
 @property(retain) NSButton *createButton; // @synthesize createButton=_createButton;
 @property(retain) NSButton *forgotButton; // @synthesize forgotButton=_forgotButton;
 @property(retain) NSButton *loginButton; // @synthesize loginButton=_loginButton;
-- (void).cxx_destruct;
-- (void)learnMorePressed:(id)arg1;
+- (void)_addPrivacyView:(id)arg1;
+- (void)context:(id)arg1 needsPasswordWithCompletion:(CDUnknownBlockType)arg2;
+- (void)setPasswordFieldHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)createPasswordPressed:(id)arg1;
 - (void)forgotPasswordPressed:(id)arg1;
 - (void)defaultButtonPressed:(id)arg1;
-- (void)disableUserInteractionAndStartSpinner;
+- (void)_stopSpinner;
+- (void)_startSpinner;
 - (void)_disableUserInteraction;
+- (void)disableUserInteractionAndStartSpinner;
 - (void)allowUserInteraction;
 - (void)showError:(id)arg1;
 - (void)controlTextDidChange:(id)arg1;
 - (void)awakeFromNib;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

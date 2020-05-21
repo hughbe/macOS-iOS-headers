@@ -6,7 +6,7 @@
 
 #import <SAObjects/SADomainObject.h>
 
-@class NSArray, NSString;
+@class NSArray, NSData, NSString;
 
 @interface SALocalSearchGeoServicesData : SADomainObject
 {
@@ -15,6 +15,7 @@
 + (id)geoServicesDataWithDictionary:(id)arg1 context:(id)arg2;
 + (id)geoServicesData;
 @property(copy, nonatomic) NSString *environment;
+@property(copy, nonatomic) NSData *clientMetadata;
 @property(copy, nonatomic) NSArray *additionalEnabledTransitMarkets;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -10,10 +10,12 @@
 #import "NSTableViewDelegate.h"
 #import "PRSPreviewControllerDelegate.h"
 #import "PRSSliceViewControllerDelegate.h"
+#import "PRSTableRowDelegate.h"
+#import "PRSTableViewDelegate.h"
 
 @class NSArray, NSString, PRSTableView;
 
-@interface PRSAssistantPreviewController : PRSPreviewController <PRSPreviewControllerDelegate, PRSSliceViewControllerDelegate, NSTableViewDelegate, NSTableViewDataSource>
+@interface PRSAssistantPreviewController : PRSPreviewController <PRSPreviewControllerDelegate, PRSSliceViewControllerDelegate, PRSTableRowDelegate, PRSTableViewDelegate, NSTableViewDelegate, NSTableViewDataSource>
 {
     PRSTableView *_sliceTable;
     NSArray *_slices;
@@ -21,10 +23,13 @@
 }
 
 + (id)sharedPreviewController;
+- (void).cxx_destruct;
 @property double extraSpace; // @synthesize extraSpace=_extraSpace;
 @property(retain) NSArray *slices; // @synthesize slices=_slices;
 @property __weak PRSTableView *sliceTable; // @synthesize sliceTable=_sliceTable;
-- (void).cxx_destruct;
+- (void)updateAccessibleChildren;
+- (BOOL)performAccessbilityPressWithRowView:(id)arg1;
+- (void)tableDidMoveToSuperView;
 - (void)sliceViewController:(id)arg1 didOpenPunchout:(id)arg2;
 - (void)previewController:(id)arg1 didEngage:(id)arg2;
 - (id)currentInputAndTimeStamp:(long long *)arg1;
@@ -33,7 +38,9 @@
 - (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
 - (long long)numberOfRowsInTableView:(id)arg1;
+- (void)clickedInTableView:(id)arg1 slice:(id)arg2 event:(id)arg3;
 - (void)clickedInTableView:(id)arg1;
+@property(readonly, nonatomic) BOOL containsHidableRows;
 - (void)setRepresentedObject:(id)arg1 unHideResults:(BOOL)arg2;
 - (void)setRepresentedObject:(id)arg1;
 - (void)resultDidUpdate:(id)arg1;
@@ -48,14 +55,12 @@
 - (void)_addSlicesForCardSections:(id)arg1 toSliceArray:(id)arg2;
 - (void)_addSlicesForTableRowCardSection:(id)arg1 toSliceArray:(id)arg2 hideSlices:(BOOL)arg3;
 - (void)_addSlicesForAppLinkCardSection:(id)arg1 toSliceArray:(id)arg2;
+- (void)_addSlicesForHTMLSection:(id)arg1 toSliceArray:(id)arg2;
 - (void)_addSlicesForWebCardSection:(id)arg1 toSliceArray:(id)arg2;
 - (void)_addSlicesForStockChartCardSection:(id)arg1 toSliceArray:(id)arg2;
-- (void)_addSlicesForTwitterUserCardSection:(id)arg1 toSliceArray:(id)arg2;
 - (void)_addSlicesForMovieListCardSection:(id)arg1 toSliceArray:(id)arg2;
 - (void)_addSlicesForMovies:(id)arg1 toSliceArray:(id)arg2 forSection:(id)arg3;
 - (void)_addSlicesForLinkTableCardSection:(id)arg1 toSliceArray:(id)arg2;
-- (void)_addSlicesForFUSEAlbumListCardSection:(id)arg1 toSliceArray:(id)arg2;
-- (void)_addSlicesForFUSETrackListCardSection:(id)arg1 toSliceArray:(id)arg2;
 - (void)_addSlicesForTrackListCardSection:(id)arg1 toSliceArray:(id)arg2;
 - (void)_addSlicesForTrailersCardSection:(id)arg1 toSliceArray:(id)arg2;
 - (void)_addSlicesForSportsSummaryScoreCardSection:(id)arg1 toSliceArray:(id)arg2;
@@ -68,14 +73,13 @@
 - (void)_addSlicesForGenericDescriptionCardSection:(id)arg1 toSliceArray:(id)arg2;
 - (unsigned long long)normalizeImageAlignment:(unsigned long long)arg1;
 - (void)_addSlicesForTitleCardSection:(id)arg1 toSliceArray:(id)arg2;
-- (void)_addSliceForTextString:(id)arg1 font:(id)arg2 color:(id)arg3 alignment:(unsigned long long)arg4 gapAbove:(double)arg5 toSliceArray:(id)arg6;
+- (void)_addSliceForTextString:(id)arg1 font:(id)arg2 color:(id)arg3 alignment:(long long)arg4 gapAbove:(double)arg5 toSliceArray:(id)arg6;
 - (void)_addSliceForTextString:(id)arg1 font:(id)arg2 color:(id)arg3 toSliceArray:(id)arg4;
 - (void)replaceSlice:(id)arg1 withSlice:(id)arg2;
 - (id)getTableView;
 - (void)updateSliceTable;
 - (void)updateSlices:(id)arg1;
 - (void)awakeFromNib;
-- (void)appearanceChanged:(id)arg1;
 - (void)dealloc;
 - (void)viewClosed:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

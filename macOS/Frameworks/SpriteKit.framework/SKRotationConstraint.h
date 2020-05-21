@@ -15,8 +15,10 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)constraintWithZRotationRange:(id)arg1;
-@property(copy) SKRange *zRotationRange; // @synthesize zRotationRange=_zRotationRange;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
+@property(copy) SKRange *zRotationRange; // @synthesize zRotationRange=_zRotationRange;
+- (BOOL)isEqualToRotationConstraint:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

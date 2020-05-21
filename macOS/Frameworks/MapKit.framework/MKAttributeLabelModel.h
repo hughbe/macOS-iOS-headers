@@ -8,6 +8,7 @@
 
 @class NSImage, NSString;
 
+__attribute__((visibility("hidden")))
 @interface MKAttributeLabelModel : NSObject
 {
     NSImage *logo;
@@ -16,11 +17,11 @@
     NSString *providerName;
 }
 
-@property(retain) NSString *providerName; // @synthesize providerName;
-@property double logoVerticalOffset; // @synthesize logoVerticalOffset;
-@property(retain) NSString *text; // @synthesize text;
-@property(retain) NSImage *logo; // @synthesize logo;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSString *providerName; // @synthesize providerName;
+@property(nonatomic) double logoVerticalOffset; // @synthesize logoVerticalOffset;
+@property(retain, nonatomic) NSString *text; // @synthesize text;
+@property(retain, nonatomic) NSImage *logo; // @synthesize logo;
 - (id)attributedString;
 
 @end

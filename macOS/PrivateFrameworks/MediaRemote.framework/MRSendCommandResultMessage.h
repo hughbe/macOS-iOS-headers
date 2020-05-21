@@ -13,11 +13,11 @@
     NSArray *_results;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSArray *results;
 @property(readonly, nonatomic) unsigned int sendError;
 - (unsigned long long)type;
-- (void)dealloc;
-- (id)initWithSendError:(unsigned int)arg1 results:(id)arg2;
+- (id)initWithCommandID:(id)arg1 sendError:(unsigned int)arg2 results:(id)arg3;
 
 @end
 

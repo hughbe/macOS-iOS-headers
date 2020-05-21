@@ -13,7 +13,6 @@
 @interface GEOTileLoaderConfiguration : NSObject <NSCopying>
 {
     Class _serverProxyClass;
-    BOOL _trackUsage;
     unsigned long long _memoryCacheCountLimit;
     unsigned long long _memoryCacheCostLimit;
     NSString *_diskCacheLocation;
@@ -21,14 +20,13 @@
     NSLocale *_locale;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSLocale *locale; // @synthesize locale=_locale;
 @property(retain, nonatomic) GEOResourceManifestConfiguration *manifestConfiguration; // @synthesize manifestConfiguration=_manifestConfiguration;
 @property(copy, nonatomic) NSString *diskCacheLocation; // @synthesize diskCacheLocation=_diskCacheLocation;
 @property(nonatomic) unsigned long long memoryCacheCostLimit; // @synthesize memoryCacheCostLimit=_memoryCacheCostLimit;
 @property(nonatomic) unsigned long long memoryCacheCountLimit; // @synthesize memoryCacheCountLimit=_memoryCacheCountLimit;
-@property(nonatomic) BOOL trackUsage; // @synthesize trackUsage=_trackUsage;
 @property(nonatomic) Class serverProxyClass; // @synthesize serverProxyClass=_serverProxyClass;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 

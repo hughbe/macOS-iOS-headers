@@ -10,6 +10,7 @@
 {
 }
 
++ (id)findAllDbsInDirectory:(id)arg1;
 + (id)unitTestDirectoryPath;
 + (id)userDefaultsSuiteName;
 + (void)createFileIfDoesNotExist:(id)arg1;

@@ -14,11 +14,17 @@
     CNUIUserActionListModel *_model;
     CNUIUserActionItem *_defaultAction;
     NSString *_actionType;
+    id <CNLSApplicationWorkspace> _applicationWorkspace;
     CDUnknownBlockType _menuItemForActionItem;
 }
 
 + (id)menuItemLabelWithActionLabel:(id)arg1 secondaryLabel:(id)arg2;
-+ (id)labelForActionItem:(id)arg1;
++ (id)TTYPostfixFormatStringForActionItem:(id)arg1;
++ (id)TTYPostfixedLabelFromLabel:(id)arg1 forActionItem:(id)arg2;
++ (id)trademarkLabelByLowercaseTrademarkLabel;
++ (id)capitalizedDisplayLabelFromLabel:(id)arg1;
++ (id)unlocalizedLabelFromActionItem:(id)arg1;
++ (id)labelForActionItem:(id)arg1 usingApplicationWorkspace:(id)arg2 capitalize:(BOOL)arg3;
 + (id)actionTitleAttributes;
 + (id)secondaryLabelAttributes;
 + (id)labelAttributes;
@@ -26,13 +32,13 @@
 + (double)widthOfSpace;
 + (double)maxWidthOfMenuItemList:(id)arg1;
 + (id)adjustTabOfAttributedString:(id)arg1 withTabOffset:(double)arg2;
-+ (unsigned long long)groupIndexForGroup:(long long)arg1;
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) CDUnknownBlockType menuItemForActionItem; // @synthesize menuItemForActionItem=_menuItemForActionItem;
+@property(readonly, nonatomic) id <CNLSApplicationWorkspace> applicationWorkspace; // @synthesize applicationWorkspace=_applicationWorkspace;
 @property(readonly, nonatomic) NSString *actionType; // @synthesize actionType=_actionType;
 @property(readonly, nonatomic) CNUIUserActionItem *defaultAction; // @synthesize defaultAction=_defaultAction;
 @property(readonly, nonatomic) CNUIUserActionListModel *model; // @synthesize model=_model;
 @property(readonly, nonatomic) id target; // @synthesize target=_target;
-- (void).cxx_destruct;
 - (void)adjustTabStopForMaximumWidth:(id)arg1;
 - (void)markTheDefaultItem:(id)arg1;
 - (id)menuItemForActionItem:(id)arg1;
@@ -41,7 +47,7 @@
 - (id)menuItemsForActions;
 - (id)titleMenuItem;
 - (id)makeMenu;
-- (id)initWithTarget:(id)arg1 model:(id)arg2 actionType:(id)arg3;
+- (id)initWithTarget:(id)arg1 model:(id)arg2 actionType:(id)arg3 applicationWorkspace:(id)arg4;
 
 @end
 

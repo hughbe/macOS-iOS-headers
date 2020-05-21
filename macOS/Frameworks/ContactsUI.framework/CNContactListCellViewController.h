@@ -9,38 +9,39 @@
 #import "ABCardCollectionViewDataSource.h"
 #import "ABCardCollectionViewDelegate.h"
 
-@class ABAddressBook, ABCNContact, ABCNContactStore, ABCollectionViewItemFactory, AKCardViewDataSource, CNContactListCellView, CNContactPickerCardViewStyleProvider, NSArray, NSString;
+@class ABAddressBook, ABCollectionViewItemFactory, AKCardViewDataSource, CNContact, CNContactListCellView, CNContactPickerCardViewStyleProvider, CNContactStore, NSArray, NSString;
 
 @interface CNContactListCellViewController : NSObject <ABCardCollectionViewDataSource, ABCardCollectionViewDelegate>
 {
     ABCollectionViewItemFactory *_itemFactory;
     AKCardViewDataSource *_dataSource;
     AKCardViewDataSource *_suggestionDataSource;
-    ABCNContactStore *_contactStore;
-    ABCNContactStore *_suggestionContactStore;
+    CNContactStore *_contactStore;
     ABAddressBook *_addressBook;
     ABAddressBook *_suggestionAddressBook;
     CNContactPickerCardViewStyleProvider *_styleProvider;
     NSString *_contactIdentifier;
     NSString *_linkIdentifier;
     BOOL _expanded;
+    BOOL _canExpandCell;
     CNContactListCellView *_cellView;
     id <CNContactListCellViewControllerDelegate> _delegate;
     NSArray *_displayedKeys;
 }
 
++ (id)keysToFetch;
+- (void).cxx_destruct;
 @property(copy) NSArray *displayedKeys; // @synthesize displayedKeys=_displayedKeys;
+@property(nonatomic) BOOL canExpandCell; // @synthesize canExpandCell=_canExpandCell;
 @property(nonatomic, getter=isExpanded) BOOL expanded; // @synthesize expanded=_expanded;
 @property __weak id <CNContactListCellViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property __weak CNContactListCellView *cellView; // @synthesize cellView=_cellView;
-- (void).cxx_destruct;
 - (id)scopeForItem:(id)arg1;
 - (void)itemWasClicked:(id)arg1;
 - (id)dataSource;
 - (id)colorForProperty:(id)arg1 identifier:(id)arg2;
 - (void)editExistingKey:(id)arg1 identifier:(id)arg2 yOffset:(double)arg3;
 - (void)cardViewNoteDidChange;
-- (double)firstColumnWidth;
 - (BOOL)isPrivateMeEnabled;
 - (id)superview;
 - (BOOL)isSelectable;
@@ -51,18 +52,19 @@
 - (BOOL)importMode;
 - (BOOL)editMode;
 - (BOOL)isEditing;
+- (void)buildActionGlyphsForItem:(id)arg1;
+- (void)buildVisibleViewForItem:(id)arg1;
 - (id)collectionItems;
 - (BOOL)isMe;
 - (BOOL)hasValuesForDisplayedKeys;
 - (BOOL)hasDisplayedKeys;
 - (BOOL)shouldEnableCell;
 - (id)fetchContact;
-- (id)makeSuggestionDataSource;
 - (id)makeDataSource;
 - (void)refreshCollectionView;
 - (void)setEntry:(id)arg1;
-@property(readonly) ABCNContact *contact;
-- (void)setSuggestionAddressBook:(id)arg1;
+@property(readonly) CNContact *contact;
+- (void)setContactStore:(id)arg1;
 - (void)setAddressBook:(id)arg1;
 - (void)awakeFromNib;
 - (id)init;

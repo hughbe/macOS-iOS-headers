@@ -13,9 +13,8 @@
     TranscriptDOMController *_controller;
 }
 
-@property(readonly, nonatomic) __weak TranscriptDOMController *controller; // @synthesize controller=_controller;
 - (void).cxx_destruct;
-- (void)cacheImages;
+@property(readonly, nonatomic) __weak TranscriptDOMController *controller; // @synthesize controller=_controller;
 - (id)initWithController:(id)arg1;
 
 @end

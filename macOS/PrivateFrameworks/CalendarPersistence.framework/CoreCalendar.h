@@ -21,13 +21,13 @@
 + (id)calendarWithEntitiesIncludingChildren:(id)arg1;
 + (id)calendar;
 + (id)calendarFromDictionary:(id)arg1;
+- (void).cxx_destruct;
 - (id)topLevelEntities;
 - (id)entitiesStartingBefore:(id)arg1 includingRecurringEvents:(BOOL)arg2;
 - (BOOL)containsEntityWithPrivateID:(id)arg1;
 - (BOOL)containsEntity:(id)arg1 withRecurrenceID:(id)arg2;
 - (id)entityForPrivateID:(id)arg1;
 - (void)removeEntityByPrivateID:(id)arg1;
-- (unsigned int)countEntities;
 - (void)removeEntity:(id)arg1;
 - (void)removeEntities:(id)arg1;
 - (void)replaceEntity:(id)arg1 withEntity:(id)arg2;
@@ -70,7 +70,6 @@
 - (void)generateIDsWithSuffix:(id)arg1;
 - (void)forceToGMT;
 - (void)markAsClean;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCalendar:(id)arg1;
 - (id)initWithSingleEntity:(id)arg1;

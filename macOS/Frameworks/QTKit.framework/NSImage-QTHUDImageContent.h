@@ -8,5 +8,6 @@
 
 @interface NSImage (QTHUDImageContent)
 - (void *)QTHUD_contentForProposedRect:(struct CGRect *)arg1 context:(id)arg2 hints:(id)arg3;
+- (struct CGLayer *)QTHUD_CGLayerForProposedRect:(struct CGRect *)arg1 context:(id)arg2 hints:(id)arg3;
 @end
 

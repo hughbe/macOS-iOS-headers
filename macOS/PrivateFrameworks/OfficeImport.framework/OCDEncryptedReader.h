@@ -14,10 +14,10 @@ __attribute__((visibility("hidden")))
     OCCDecryptor *mDecryptor;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) OCCDecryptor *decryptor; // @synthesize decryptor=mDecryptor;
 - (BOOL)retainDecryptorWithErrorCode:(int *)arg1;
 - (void)useUnencryptedDocument;
-- (void)dealloc;
 - (id)defaultPassphrase;
 - (void)restartReaderToUseDecryptedDocument;
 

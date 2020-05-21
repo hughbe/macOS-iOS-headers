@@ -26,6 +26,7 @@
 - (double)height;
 - (BOOL)handleMouseUp:(id)arg1 alternatePunchout:(id)arg2;
 - (void)_sendAction:(SEL)arg1 to:(id)arg2 from:(id)arg3;
+- (BOOL)isAccessibilityElement;
 - (void)viewDidLoad;
 - (void)awakeFromNib;
 @property(retain, nonatomic) PRSTrailersCardSection *trailersCardSection;

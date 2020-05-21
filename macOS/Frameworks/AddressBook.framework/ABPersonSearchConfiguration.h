@@ -14,6 +14,7 @@
     BOOL _shouldSelectBestEntry;
 }
 
+- (void).cxx_destruct;
 @property BOOL shouldSelectBestEntry; // @synthesize shouldSelectBestEntry=_shouldSelectBestEntry;
 - (void)incrementSearchCount;
 - (void)searchForString:(id)arg1;

@@ -6,34 +6,43 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class NSData, NSObject<SGEntityKey>;
 
-@interface SGDuplicateKey : NSObject
+@interface SGDuplicateKey : NSObject <NSCopying>
 {
     long long _entityType;
     NSObject<SGEntityKey> *_entityKey;
     SGDuplicateKey *_parentKey;
 }
 
++ (id)duplicateKeyForWebPageFromSource:(id)arg1;
 + (id)duplicateKeyForSchemaOrg;
 + (id)duplicateKeyForSearchableItem:(id)arg1;
 + (id)duplicateKeyForUnrecognizedContactWithIdentity:(id)arg1;
-+ (id)duplicateKeyForNaturalLanguageEventWithStartDate:(id)arg1 endDate:(id)arg2 title:(id)arg3 parentKey:(id)arg4;
++ (id)duplicateKeyForNaturalLanguageEventWithStartDate:(id)arg1 endDate:(id)arg2 title:(id)arg3 participants:(id)arg4 parentKey:(id)arg5;
++ (id)duplicateKeyForPseudoReminderWithGroupId:(id)arg1 parentKey:(id)arg2;
 + (id)duplicateKeyForPseudoEventWithGroupId:(id)arg1 parentKey:(id)arg2;
 + (id)duplicateKeyForCuratedEventWithExternalID:(id)arg1;
 + (id)duplicateKeyForPseudoContactWithIdentity:(id)arg1 parentKey:(id)arg2;
 + (id)duplicateKeyForCuratedContactWithExternalId:(int)arg1;
++ (id)duplicateKeyForInteractionIdentifier:(id)arg1 fromBundleIdentifier:(id)arg2;
++ (id)duplicateKeyForInteraction:(id)arg1 fromBundleIdentifier:(id)arg2;
 + (id)duplicateKeyForInteractionWithBundleId:(id)arg1 personHandle:(id)arg2;
 + (id)duplicateKeyForTextMessageWithSource:(id)arg1 uniqueIdentifier:(id)arg2;
 + (id)duplicateKeyForEmailWithSource:(id)arg1 messageId:(id)arg2;
 + (id)duplicateKeyForMessage:(id)arg1 fromSource:(id)arg2;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) SGDuplicateKey *parentKey; // @synthesize parentKey=_parentKey;
 @property(readonly, nonatomic) NSObject<SGEntityKey> *entityKey; // @synthesize entityKey=_entityKey;
 @property(readonly, nonatomic) long long entityType; // @synthesize entityType=_entityType;
-- (void).cxx_destruct;
+- (id)bundleId;
 @property(readonly, nonatomic) NSData *compositeHash;
+- (id)pseudoReminderKey;
 - (id)pseudoEventKey;
 - (id)interactionKey;
+- (id)webPageKey;
 - (id)textMessageKey;
 - (id)emailKey;
 - (id)messageKey;

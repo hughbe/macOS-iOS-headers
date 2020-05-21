@@ -24,6 +24,7 @@
     NSMutableDictionary *_hrefToStatus;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSDictionary *hrefToStatus; // @synthesize hrefToStatus=_hrefToStatus;
 @property(readonly, nonatomic) NSDictionary *uuidToStatus; // @synthesize uuidToStatus=_uuidToStatus;
 @property(readonly, nonatomic) NSDictionary *hrefToErrorItems; // @synthesize hrefToErrorItems=_hrefToErrorItems;
@@ -37,7 +38,6 @@
 - (id)requestBody;
 - (id)httpMethod;
 - (id)additionalHeaderValues;
-- (void)dealloc;
 - (id)initWithURL:(id)arg1 checkCTag:(id)arg2 uuidsToAddActions:(id)arg3 hrefsToModDeleteActions:(id)arg4;
 
 @end

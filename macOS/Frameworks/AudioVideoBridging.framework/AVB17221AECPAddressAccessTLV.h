@@ -19,6 +19,7 @@
 @property unsigned long long address; // @synthesize address;
 @property unsigned char mode; // @synthesize mode;
 - (void)dealloc;
+- (id)description;
 
 @end
 

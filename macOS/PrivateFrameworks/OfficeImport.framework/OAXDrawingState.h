@@ -17,7 +17,6 @@ __attribute__((visibility("hidden")))
     OAXTableStyleCache *mTableStyleCache;
     NSMutableDictionary *mShapeIdMap;
     NSMutableDictionary *mDrawableIdToVmlShapeIdMap;
-    id mDocumentState;
     OADBlipCollection *mTgtBlipCollection;
     NSMutableDictionary *mSrcURLToTgtBlipIndexMap;
     NSMutableArray *mTgtBulletBlips;
@@ -37,12 +36,16 @@ __attribute__((visibility("hidden")))
     CXNamespace *mOAXWordProcessingMLNamespace;
     CXNamespace *mOAXDrawing2010Namespace;
     CXNamespace *mOAXChart2012Namespace;
+    CXNamespace *mOAXMathNamespace;
+    id mDocumentState;
     CDUnknownBlockType _clientChartGraphicPropertyDefaultsBlock;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType clientChartGraphicPropertyDefaultsBlock; // @synthesize clientChartGraphicPropertyDefaultsBlock=_clientChartGraphicPropertyDefaultsBlock;
 @property(retain, nonatomic) NSMutableDictionary *sourceURLToTargetBulletBlipIndexMap; // @synthesize sourceURLToTargetBulletBlipIndexMap=mSrcURLToTgtBulletBlipIndexMap;
 @property(retain, nonatomic) NSMutableDictionary *sourceURLToTargetBlipIndexMap; // @synthesize sourceURLToTargetBlipIndexMap=mSrcURLToTgtBlipIndexMap;
+@property(retain, nonatomic) CXNamespace *OAXMathNamespace; // @synthesize OAXMathNamespace=mOAXMathNamespace;
 @property(retain, nonatomic) CXNamespace *OAXChart2012Namespace; // @synthesize OAXChart2012Namespace=mOAXChart2012Namespace;
 @property(retain, nonatomic) CXNamespace *OAXDrawing2010Namespace; // @synthesize OAXDrawing2010Namespace=mOAXDrawing2010Namespace;
 @property(retain, nonatomic) CXNamespace *OAXWordProcessingMLNamespace; // @synthesize OAXWordProcessingMLNamespace=mOAXWordProcessingMLNamespace;
@@ -74,8 +77,7 @@ __attribute__((visibility("hidden")))
 - (id)colorScheme;
 - (void)setOavState:(id)arg1;
 - (id)oavState;
-- (void)setDocumentState:(id)arg1;
-- (id)documentState;
+@property __weak id documentState; // @synthesize documentState=mDocumentState;
 - (void)resetForNewDrawing;
 - (void)setVmlShapeId:(id)arg1 forDrawableId:(unsigned int)arg2;
 - (id)vmlShapeIdForDrawableId:(unsigned int)arg1;
@@ -85,10 +87,10 @@ __attribute__((visibility("hidden")))
 - (id)tableStyleCache;
 - (void)setStyleMatrix:(id)arg1;
 - (id)styleMatrix;
+- (id)appVersion;
 - (void)setPackagePart:(id)arg1;
 - (id)packagePart;
 - (id)client;
-- (void)dealloc;
 - (id)init;
 - (id)initWithClient:(id)arg1;
 

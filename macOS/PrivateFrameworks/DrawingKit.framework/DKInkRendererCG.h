@@ -24,6 +24,7 @@ __attribute__((visibility("hidden")))
     struct CGRect _invalidRect;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableArray *currentInterpolatedBrushStroke; // @synthesize currentInterpolatedBrushStroke=_currentInterpolatedBrushStroke;
 @property(retain, nonatomic) NSMutableArray *cachedInterpolatedBrushStrokes; // @synthesize cachedInterpolatedBrushStrokes=_cachedInterpolatedBrushStrokes;
 @property(nonatomic) struct CGRect invalidRect; // @synthesize invalidRect=_invalidRect;
@@ -33,14 +34,14 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL scaleDrawingToFitCanvas; // @synthesize scaleDrawingToFitCanvas;
 @property(nonatomic) __weak id <DKInkRendererDelegate> delegate; // @synthesize delegate;
 @property(retain, nonatomic) NSColor *inkColor; // @synthesize inkColor;
-- (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)display;
 @property(readonly, nonatomic) BOOL initialized;
 - (void)teardown;
 @property(readonly, nonatomic) unsigned long long maximumPointsForBleedAnimation;
 @property(readonly, nonatomic) BOOL supportsBleedAnimation;
-- (id)snapshot;
+- (id)snapshotImage;
+- (void)flush;
 - (void)force;
 - (void)removeLastStroke;
 - (void)completeAnimationsImmediately;
@@ -51,6 +52,8 @@ __attribute__((visibility("hidden")))
 - (void)beginStroke;
 - (void)dealloc;
 - (void)_commonInit;
+- (void)_updateAppearance;
+- (void)viewDidChangeEffectiveAppearance;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 

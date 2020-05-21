@@ -7,6 +7,6 @@
 #import "NSObject.h"
 
 @protocol SCNBufferStream <NSObject>
-- (void)writeBytes:(void *)arg1 length:(unsigned long long)arg2;
+- (void)writeBytes:(const void *)arg1 length:(unsigned long long)arg2;
 @end
 

@@ -8,32 +8,40 @@
 
 #import "GEOAddressObjectProtocol.h"
 
-@class NSString;
+@class NSString, _GEOAddressObject;
 
 @interface GEOAddressObject : NSObject <GEOAddressObjectProtocol>
 {
-    id <GEOAddressObjectProtocol> _implementations[2];
+    _GEOAddressObject *_pimpl;
+    int *_knownAccuracy;
 }
 
-+ (id)libraryVersion;
-+ (unsigned char)_implementionType;
 + (id)addressObjectWithPlaceDataAddressObject:(id)arg1 placeDataAddress:(id)arg2 placeDataInfo:(id)arg3 placeDataEntity:(id)arg4;
 + (BOOL)isMarkingMMStrings;
 + (void)markMMStrings:(BOOL)arg1;
-+ (BOOL)isUsingV1Behavior;
-+ (void)useV1Behavior:(BOOL)arg1;
-+ (BOOL)isUsingMM;
-+ (void)useMM:(BOOL)arg1;
++ (id)libraryVersion;
++ (BOOL)isLoggingDebug;
++ (void)setLoggingDebug:(BOOL)arg1;
 + (id)addressObjectForPlaceData:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
 - (id)rawBytes;
 - (id)phoneticLocaleIdentifier;
+@property(readonly, nonatomic) NSString *displayLanguage;
 @property(readonly, nonatomic) int knownAccuracy;
 @property(readonly, nonatomic) BOOL hasKnownAccuracy;
 - (id)titlesForMapRect:(CDStruct_90e2a262)arg1;
+- (id)venueShortAddress;
+- (id)venueLevel;
+- (id)venueLabel;
+- (id)venueLabel:(long long)arg1;
 - (id)parkingDisplayName;
 - (id)weatherDisplayName;
 - (id)cityDisplayNameWithFallback:(BOOL)arg1;
 - (id)shortAddress;
+- (id)fullAddressNoCurrentCountryWithMultiline:(BOOL)arg1;
+- (id)fullAddressWithMultiline:(BOOL)arg1 relative:(id)arg2;
 - (id)fullAddressWithMultiline:(BOOL)arg1;
 - (id)phoneticAddress;
 - (id)phoneticName;
@@ -41,16 +49,19 @@
 - (id)spokenAddressForLocale:(id)arg1;
 - (id)spokenAddress;
 - (id)spokenName;
+- (id)cnPostalAddress;
+- (id)addressDictionary;
 - (id)address;
 - (id)name;
 - (void)dealloc;
+- (id)initWithCurrentCountry;
+- (id)initWithCNPostalAddress:(id)arg1 langauge:(id)arg2 country:(id)arg3 phoneticLocale:(id)arg4;
+- (id)initWithContactAddressDictionary:(id)arg1 langauge:(id)arg2 country:(id)arg3 phoneticLocale:(id)arg4;
 - (id)initWithPlaceDataAddressObject:(id)arg1 placeDataAddress:(id)arg2 placeDataInfo:(id)arg3 placeDataEntity:(id)arg4 language:(id)arg5 country:(id)arg6 phoneticLocale:(id)arg7;
-- (id)_implemention;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

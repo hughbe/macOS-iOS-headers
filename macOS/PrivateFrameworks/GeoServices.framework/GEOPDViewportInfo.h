@@ -8,22 +8,26 @@
 
 #import "NSCopying.h"
 
-@class GEOMapRegion;
+@class GEOMapRegion, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDViewportInfo : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     GEOMapRegion *_mapRegion;
     int _mapType;
     unsigned int _timeSinceMapViewportChanged;
     struct {
-        unsigned int mapType:1;
-        unsigned int timeSinceMapViewportChanged:1;
-    } _has;
+        unsigned int has_mapType:1;
+        unsigned int has_timeSinceMapViewportChanged:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (id)viewportInfoForTraits:(id)arg1;
-@property(nonatomic) unsigned int timeSinceMapViewportChanged; // @synthesize timeSinceMapViewportChanged=_timeSinceMapViewportChanged;
-@property(retain, nonatomic) GEOMapRegion *mapRegion; // @synthesize mapRegion=_mapRegion;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -31,15 +35,17 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (int)StringAsMapType:(id)arg1;
 - (id)mapTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasMapType;
-@property(nonatomic) int mapType; // @synthesize mapType=_mapType;
+@property(nonatomic) int mapType;
 @property(nonatomic) BOOL hasTimeSinceMapViewportChanged;
+@property(nonatomic) unsigned int timeSinceMapViewportChanged;
+@property(retain, nonatomic) GEOMapRegion *mapRegion;
 @property(readonly, nonatomic) BOOL hasMapRegion;
-- (void)dealloc;
 - (id)initWithTraits:(id)arg1;
 
 @end

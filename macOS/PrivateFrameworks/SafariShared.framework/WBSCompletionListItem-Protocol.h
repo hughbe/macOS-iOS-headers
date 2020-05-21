@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSString, SFSearchResult;
+@class NSString, SFSearchResult, WBSQuerySuggestion;
 
 @protocol WBSCompletionListItem <NSObject>
+@property(nonatomic) long long parsecQueryID;
+@property(readonly, nonatomic) unsigned long long engagementDestination;
+@property(readonly, nonatomic) SFSearchResult *sfSearchResultValue;
 @property(readonly, nonatomic) NSString *parsecDomainIdentifier;
 
 @optional
-@property(readonly, nonatomic) unsigned long long engagementDestination;
-@property(readonly, nonatomic) SFSearchResult *sfSearchResultValue;
+@property(retain, nonatomic) WBSQuerySuggestion *siriSuggestion;
 @property(readonly, nonatomic) NSString *lastSearchQuery;
 @end
 

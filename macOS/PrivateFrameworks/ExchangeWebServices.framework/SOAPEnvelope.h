@@ -12,14 +12,14 @@
 
 @interface SOAPEnvelope : NSObject <XSDefinitionProvider>
 {
-    NSArray *_header;
-    NSArray *_body;
+    NSArray *_Header;
+    NSArray *_Body;
 }
 
 + (id)definition;
-@property(copy, nonatomic) NSArray *Body; // @synthesize Body=_body;
-@property(copy, nonatomic) NSArray *Header; // @synthesize Header=_header;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSArray *Body; // @synthesize Body=_Body;
+@property(copy, nonatomic) NSArray *Header; // @synthesize Header=_Header;
 @property(readonly, copy) NSString *description;
 
 // Remaining properties

@@ -12,7 +12,6 @@
 
 + (id)generateMetadataDescriptionForPredicate:(id)arg1;
 + (id)_spotlightFriendlyPredicate:(id)arg1;
-+ (id)sharedInstance;
 - (id)ratingRowTemplatesWithName:(id)arg1 andKeyPath:(id)arg2;
 - (id)pastOrFutureDatesRowTemplatesWithName:(id)arg1 andKeyPath:(id)arg2;
 - (id)pastDatesRowTemplatesWithName:(id)arg1 andKeyPath:(id)arg2;

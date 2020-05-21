@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class NSError, NSFileAccessProcessManager, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, NSXPCConnection;
+@class NSArray, NSCountedSet, NSError, NSFileAccessProcessManager, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, NSXPCConnection;
 
 __attribute__((visibility("hidden")))
 @interface NSFileAccessClaim : NSObject <NSSecureCoding>
@@ -24,7 +24,7 @@ __attribute__((visibility("hidden")))
     NSError *_claimerError;
     NSMutableOrderedSet *_pendingClaims;
     NSMutableSet *_blockingClaims;
-    NSMutableSet *_blockingReactorIDs;
+    NSCountedSet *_blockingReactorIDs;
     NSMutableArray *_providerCancellationProcedures;
     NSMutableDictionary *_reacquisitionProceduresByPresenterID;
     NSMutableArray *_revocationProcedures;
@@ -33,17 +33,21 @@ __attribute__((visibility("hidden")))
     NSFileAccessProcessManager *_processManager;
     NSObject<OS_dispatch_semaphore> *_claimerWaiter;
     BOOL _hasInvokedClaimer;
+    BOOL _shouldEnableMaterializationDuringAccessorBlock;
     id _claimerOrNil;
     CDUnknownBlockType _serverClaimerOrNil;
     NSMutableArray *_sandboxTokens;
     NSObject<OS_dispatch_queue> *_arbiterQueue;
+    id _originatingReactorQueueID;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (BOOL)canWritingItemAtLocation:(id)arg1 options:(unsigned long long)arg2 safelyOverlapWritingItemAtLocation:(id)arg3 options:(unsigned long long)arg4;
-+ (BOOL)canReadingItemAtLocation:(id)arg1 options:(unsigned long long)arg2 safelyOverlapWritingItemAtLocation:(id)arg3 options:(unsigned long long)arg4;
++ (BOOL)canNewWriteOfItemAtLocation:(id)arg1 options:(unsigned long long)arg2 safelyOverlapExistingWriteOfItemAtLocation:(id)arg3 options:(unsigned long long)arg4;
++ (BOOL)canReadingItemAtLocation:(id)arg1 options:(unsigned long long)arg2 safelyOverlapNewWriting:(BOOL)arg3 ofItemAtLocation:(id)arg4 options:(unsigned long long)arg5;
+@property BOOL shouldEnableMaterializationDuringAccessorBlock; // @synthesize shouldEnableMaterializationDuringAccessorBlock=_shouldEnableMaterializationDuringAccessorBlock;
 @property(readonly) NSObject<OS_dispatch_semaphore> *claimerWaiter; // @synthesize claimerWaiter=_claimerWaiter;
-- (id)allURLs;
+- (BOOL)shouldCancelInsteadOfWaiting;
+@property(readonly, copy) NSArray *allURLs;
 - (void)disavowed;
 - (void)finished;
 - (BOOL)shouldBeRevokedPriorToInvokingAccessor;
@@ -66,7 +70,11 @@ __attribute__((visibility("hidden")))
 - (void)makeProviderOfItemAtLocation:(id)arg1 provideOrAttachPhysicalURLIfNecessaryForPurposeID:(id)arg2 writingOptions:(unsigned long long)arg3 thenContinue:(CDUnknownBlockType)arg4;
 - (void)makeProviderOfItemAtLocation:(id)arg1 provideOrAttachPhysicalURLIfNecessaryForPurposeID:(id)arg2 readingOptions:(unsigned long long)arg3 thenContinue:(CDUnknownBlockType)arg4;
 - (void)makeProviderOfItemAtLocation:(id)arg1 providePhysicalURLThenContinue:(CDUnknownBlockType)arg2;
+- (void)makeProvidersProvideItemsForReadingLocations:(id)arg1 options:(unsigned long long *)arg2 andWritingLocationsIfNecessary:(id)arg3 options:(unsigned long long *)arg4 thenContinue:(CDUnknownBlockType)arg5;
+- (void)_checkIfMovingRequiresProvidingAmongWritingLocations:(id)arg1 options:(unsigned long long *)arg2 thenContinue:(CDUnknownBlockType)arg3;
 - (void)makeProviderOfItemAtLocation:(id)arg1 provideIfNecessaryWithOptions:(unsigned long long)arg2 thenContinue:(CDUnknownBlockType)arg3;
+- (BOOL)shouldMakeProviderProvideItemAtLocation:(id)arg1 withOptions:(unsigned long long)arg2;
+- (void)ensureProvidersOfItemsAtReadingLocations:(id)arg1 writingLocations:(id)arg2 thenContinue:(CDUnknownBlockType)arg3;
 - (void)granted;
 - (BOOL)isBlockedByWritingItemAtLocation:(id)arg1 options:(unsigned long long)arg2;
 - (BOOL)isBlockedByReadingItemAtLocation:(id)arg1 options:(unsigned long long)arg2;
@@ -75,8 +83,11 @@ __attribute__((visibility("hidden")))
 - (void)addPendingClaim:(id)arg1;
 - (void)evaluateNewClaim:(id)arg1;
 - (void)scheduleBlockedClaim:(id)arg1;
+- (void)givePriorityToClaim:(id)arg1;
 - (BOOL)isBlockedByClaimWithPurposeID:(id)arg1;
 - (BOOL)claimerInvokingIsBlockedByReactorWithID:(id)arg1;
+- (void)removeBlockingReactorID:(id)arg1;
+- (void)addBlockingReactorID:(id)arg1;
 - (void)whenFinishedPerformProcedure:(CDUnknownBlockType)arg1;
 - (void)whenDevaluedPerformProcedure:(CDUnknownBlockType)arg1;
 - (void)whenRevokedPerformProcedure:(CDUnknownBlockType)arg1;
@@ -92,6 +103,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)cameFromSuperarbiter;
 - (void)setCameFromSuperarbiter;
 - (void)acceptClaimFromClient:(id)arg1 arbiterQueue:(id)arg2 grantHandler:(CDUnknownBlockType)arg3;
+- (void)prepareClaimForGrantingWithArbiterQueue:(id)arg1;
 - (void)forwardUsingConnection:(id)arg1 crashHandler:(CDUnknownBlockType)arg2;
 - (int)clientProcessIdentifier;
 - (id)purposeID;
@@ -101,7 +113,9 @@ __attribute__((visibility("hidden")))
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)initWithClient:(id)arg1 claimID:(id)arg2 purposeID:(id)arg3;
-- (void)_setupWithClaimID:(id)arg1 purposeID:(id)arg2;
+- (void)_setupWithClaimID:(id)arg1 purposeID:(id)arg2 originatingReactorQueueID:(id)arg3;
+- (BOOL)shouldInformProvidersAboutEndOfWriteWithOptions:(unsigned long long)arg1;
+- (BOOL)shouldWritingWithOptions:(unsigned long long)arg1 causePresenterToRelinquish:(id)arg2;
 - (BOOL)shouldReadingWithOptions:(unsigned long long)arg1 causePresenterToRelinquish:(id)arg2;
 
 @end

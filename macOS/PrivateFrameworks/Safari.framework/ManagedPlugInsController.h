@@ -6,63 +6,104 @@
 
 #import "NSObject.h"
 
-@class ManagedPlugIn, NSMutableDictionary;
+#import "ManagedPlugInDelegate.h"
+#import "PlugInAvailabilityManagerDelegate.h"
+#import "WebsitesKnownToUsePlugInsControllerDelegate.h"
+
+@class ManagedPlugIn, NSMutableDictionary, NSString, PlugInAvailabilityManager, WebsitesKnownToUsePlugInsController;
 
 __attribute__((visibility("hidden")))
-@interface ManagedPlugInsController : NSObject
+@interface ManagedPlugInsController : NSObject <WebsitesKnownToUsePlugInsControllerDelegate, ManagedPlugInDelegate, PlugInAvailabilityManagerDelegate>
 {
     BOOL _didGetManagedPlugIns;
     NSMutableDictionary *_plugIns;
     ManagedPlugIn *_javaPlugIn;
+    NSMutableDictionary *_plugInIdentifierToURLsToEnableForNotInstalledPlugIns;
+    WebsitesKnownToUsePlugInsController *_websitesKnownToUsePlugInsController;
+    PlugInAvailabilityManager *_plugInAvailabilityManager;
+    NSString *_preferencesPersistenceBundleIdentifier;
+    BOOL _needsTurnOffOffByDefaultPlugIns;
+    id <ManagedPlugInsControllerDelegate> _delegate;
 }
 
++ (id)plugInNameForPerSitePreferencesPopoverForBundleIdentifier:(id)arg1;
 + (id)plugInNameForBundleIdentifier:(id)arg1;
-+ (BOOL)isPlugInHidden:(id)arg1;
-+ (BOOL)isAppleConnectPlugIn:(id)arg1;
-+ (BOOL)_plugInAtURL:(id)arg1 meetsCodeSigningRequirement:(id)arg2 andMatchesIdentifier:(id)arg3;
++ (id)supportedPlugInList;
++ (BOOL)isPlugInSupported:(id)arg1;
 + (BOOL)isJavaPlugIn:(id)arg1;
 + (BOOL)isFlashPlugInBundleIdentifier:(id)arg1;
-+ (id)sharedInstance;
 - (void).cxx_destruct;
-- (void)sendPoliciesToWebKit;
+@property(nonatomic) __weak id <ManagedPlugInsControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) BOOL needsTurnOffOffByDefaultPlugIns; // @synthesize needsTurnOffOffByDefaultPlugIns=_needsTurnOffOffByDefaultPlugIns;
+- (void)_determineFlashAvailabilityRefreshingPlugInsStateIfNeeded:(CDUnknownBlockType)arg1;
+- (void)_refreshPagesRequiringFlashIfFlashBecameAvailable;
+- (BOOL)isPlugInEnabled:(id)arg1;
+- (BOOL)_plugInWithIdentifierIsInstalled:(id)arg1;
+- (BOOL)_plugInWithIdentifierIsInstalledAndNotBlocked:(id)arg1;
+- (void)_addPolicyToContextForBothWwwAndNonWwwPrefixedHostname:(id)arg1 policy:(int)arg2 hostname:(id)arg3 plugInIdentifier:(id)arg4 plugInVersion:(id)arg5;
+- (void)_sendPoliciesToWebKitWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)_addPlugInLoadClientPolicyToDictionary:(id)arg1 policy:(int)arg2 host:(id)arg3 identifier:(id)arg4 version:(id)arg5;
+- (void)_sendPoliciesToWebKit;
+- (void)plugInAvailabilityManagerDidDetectFlashInstallerDidTerminate:(id)arg1;
+- (BOOL)plugInAvailabilityManager:(id)arg1 shouldPromptToManagePlugIn:(id)arg2;
+- (void)plugInAvailabilityManagerDidUpdatePlugInsState:(id)arg1;
+- (void)managedPlugIn:(id)arg1 didUpdateHostPolicy:(id)arg2;
+- (void)managedPlugIn:(id)arg1 didCreateHostPolicy:(id)arg2;
+- (BOOL)userHasFlashInstalledForWebsitesKnownToUsePlugInsController:(id)arg1;
 - (id)_hostPolicyForPlugInWithInfo:(id)arg1;
-- (id)_blockedPlugInWithInfo:(id)arg1 plugInWasCreated:(char *)arg2;
+- (void)_asyncUpdatePlugInEligibleForWhitelistedAskPolicy:(id)arg1;
+- (void)_getHostPolicy:(id)arg1 knownToUsePlugInWithBlock:(CDUnknownBlockType)arg2;
+- (id)_plugInWithInfo:(id)arg1 plugInWasCreated:(char *)arg2;
 - (void)_loadLegacyUserDefaultsPoliciesForJavaPlugIn:(id)arg1;
 - (void)_setUpPlugIn:(id)arg1 withUserDefaults:(id)arg2 isManagedByAdmin:(BOOL)arg3;
 - (void)_loadUserDefaultsPoliciesForPlugIn:(id)arg1;
-- (void)reloadPlugInPoliciesFromUserDefaults;
 - (void)savePlugInPoliciesToUserDefaults;
 - (void)_removeDataForExpiredPlugIns;
 - (void)removePlugInDataRelatedToPageWithURL:(id)arg1;
 - (void)clearPlugInVersionWhenUnavailableDialogWasLastShownForPlugIns;
 - (void)clearAllPoliciesForPlugInWithBundleIdentifier:(id)arg1;
-- (void)turnOnPlugInWithBundleIdentifier:(id)arg1;
+- (void)turnOffPlugInWithBundleIdentifier:(id)arg1 versionString:(id)arg2;
+- (void)_turnOffPlugInsIfNeeded:(id)arg1;
+- (void)turnOnPlugInWithBundleIdentifier:(id)arg1 version:(id)arg2;
 - (void)clearAllBlockPolicies;
-- (void)clearAllPlugInPolicies;
-- (void)_updateBlockedPlugInsUsingBlock:(CDUnknownBlockType)arg1;
+- (void)_updatePlugInsUsingBlock:(CDUnknownBlockType)arg1;
 - (void)_enumeratePlugInsUsingBlock:(CDUnknownBlockType)arg1;
-- (void)_handleResultOfPromptWithUpdatedHostPolicy:(id)arg1 forPlugIn:(id)arg2 previousPolicy:(int)arg3 inBrowserContentViewController:(RefPtr_1016c1b7 *)arg4;
-- (void)_handleResultOfPromptBeforeUseSheetWithUpdatedHostPolicy:(id)arg1 forPlugIn:(id)arg2 previousPolicy:(int)arg3 inBrowserContentViewController:(RefPtr_1016c1b7 *)arg4;
-- (void)_showPromptBeforeUseSheetForPlugInHostPolicy:(id)arg1 inBrowserContentViewController:(struct BrowserContentViewController *)arg2 forVisiblePlugInPlaceholder:(BOOL)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
+- (void)_savePendingPoliciesToUserDefaults;
+- (void)_loadPoliciesPendingEnabledFromUserDefaultsForPlugIn:(id)arg1;
+- (void)addURLToBeEnabledForPlugInWithBundleIdentifier:(id)arg1 URLString:(id)arg2;
+- (void)_handleResultOfPromptWithUpdatedHostPolicy:(id)arg1 forPlugIn:(id)arg2 previousPolicy:(int)arg3 inBrowserViewController:(id)arg4 shouldReloadPage:(BOOL)arg5;
+- (void)_showPromptBeforeUseSheetForPlugInHostPolicy:(id)arg1 inBrowserViewController:(id)arg2 forVisiblePlugInPlaceholder:(BOOL)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
+- (void)_showTabDialogBeforeUseForPlugInHostPolicy:(id)arg1 inBrowserViewController:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)_setDidShowUnavailableDialogForManagedPlugIn:(id)arg1;
-- (BOOL)_didShowInitializationErrorDialogForManagedPlugInWithInfo:(id)arg1 inBrowserContentViewController:(struct BrowserContentViewController *)arg2;
-- (void)showInitializationErrorDialogIfNecessaryForManagedPlugInWithInfo:(id)arg1 inBrowserContentViewController:(struct BrowserContentViewController *)arg2;
-- (void)showDialogIfNecessaryForManagedPlugInWithInfo:(id)arg1 inBrowserContentViewController:(struct BrowserContentViewController *)arg2;
-- (void)showPromptWhenClickingToUsePlugInWithPolicy:(id)arg1 inBrowserContentViewControllerObjCAdapter:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
+- (BOOL)_didShowInitializationErrorDialogForManagedPlugInWithInfo:(id)arg1 inBrowserViewController:(id)arg2;
+- (void)showInitializationErrorDialogIfNecessaryForManagedPlugInWithInfo:(id)arg1 inBrowserViewController:(id)arg2;
+- (BOOL)_shouldPromptToUsePlugInWithHostPolicy:(id)arg1;
+- (void)showDialogIfNecessaryForManagedPlugInWithInfo:(id)arg1 inBrowserViewController:(id)arg2;
+- (id)_plugIns;
+- (void)_showPromptWhenClickingToUsePlugInWithPolicy:(id)arg1 inBrowserViewController:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
+- (BOOL)showPromptWhenClickingToUsePlugInForBrowserViewControllerIfNecessary:(id)arg1 navigatingToURL:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (BOOL)shouldDropPromptToManagePlugInSheetForPlugIn:(id)arg1;
 - (id)blockedManagedPlugInWithBundleIdentifier:(id)arg1;
-- (void)enablePlugInForHostPolicy:(id)arg1 inBrowserContentViewControllerObjCAdapter:(id)arg2 onlyEnabledForThisVisit:(BOOL)arg3;
-- (void)disablePlugInForHostPolicy:(id)arg1 inBrowserContentViewControllerObjCAdapter:(id)arg2;
-- (id)managedPlugInHostPoliciesForBrowserContentViewControllerObjCAdapter:(id)arg1;
+- (void)enablePlugInForHostPolicy:(id)arg1 inBrowserViewController:(id)arg2 onlyEnabledForThisVisit:(BOOL)arg3;
+- (id)managedPlugInHostPoliciesForBrowserViewController:(id)arg1;
 - (BOOL)hasPlugInsInstalled;
-- (id)activeManagedPlugInHostPoliciesForBrowserContentViewControllerObjCAdapter:(id)arg1;
-- (void)browserContentViewControllerWillClose:(struct BrowserContentViewController *)arg1;
-- (void)browserContentViewController:(struct BrowserContentViewController *)arg1 didFinishUsingPlugInOnPageWithURL:(id)arg2;
-- (unsigned int)loadPolicyForPlugInInfo:(id)arg1 inBrowserContentViewController:(struct BrowserContentViewController *)arg2 unavailabilityDescription:(id *)arg3;
+- (void)browserViewControllerWillClose:(id)arg1;
+- (void)browserViewController:(id)arg1 didFinishUsingPlugInOnPageWithURL:(id)arg2;
+- (unsigned int)loadPolicyForPlugInInfo:(id)arg1 inBrowserViewController:(id)arg2 unavailabilityDescription:(id *)arg3;
+- (BOOL)plugInIsWhitelistedWithPlugInIdentifier:(id)arg1;
+- (void)savePendingConfigurationChangesBeforeTerminationIfNecessary;
+- (void)_getManagedPlugInsIncludingUnsupportedPlugIns:(BOOL)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)getManagedPlugInsUsingBlock:(CDUnknownBlockType)arg1;
 - (void)populateManagedPlugInsIfNecessaryUsingCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)setUpPlugInsAvailability;
 - (void)dealloc;
-- (id)init;
+- (id)initWithWebsitesKnownToUsePlugInsController:(id)arg1 preferencesPersistenceBundleIdentifier:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

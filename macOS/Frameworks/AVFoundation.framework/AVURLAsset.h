@@ -6,14 +6,16 @@
 
 #import <AVFoundation/AVAsset.h>
 
+#import "AVContentKeyRecipient.h"
+
 @class AVAssetResourceLoader, AVURLAssetInternal, NSString, NSURL;
 
-@interface AVURLAsset : AVAsset
+@interface AVURLAsset : AVAsset <AVContentKeyRecipient>
 {
     AVURLAssetInternal *_URLAsset;
 }
 
-+ (id)_getFigAssetCreationOptionsFromURLAssetInitializationOptions:(id)arg1 figAssetCreationFlags:(unsigned long long *)arg2 error:(id *)arg3;
++ (id)_getFigAssetCreationOptionsFromURLAssetInitializationOptions:(id)arg1 assetLoggingIdentifier:(id)arg2 figAssetCreationFlags:(unsigned long long *)arg3 error:(id *)arg4;
 + (id)URLAssetWithURL:(id)arg1 options:(id)arg2;
 + (BOOL)isPlayableExtendedMIMEType:(id)arg1;
 + (id)audiovisualMIMETypes;
@@ -41,7 +43,6 @@
 - (id)_absoluteURL;
 - (void)_tracksDidChange;
 - (id)tracks;
-- (id)_tracks;
 - (Class)_classForTrackInspectors;
 - (Class)_classForAssetTracks;
 - (Class)_classForFigAssetInspectorLoader;
@@ -51,7 +52,6 @@
 - (void)_setAssetInspectorLoader:(id)arg1;
 - (id)_assetInspectorLoader;
 - (id)description;
-- (void)finalize;
 - (void)dealloc;
 - (void)_removeFigAssetNotifications;
 - (void)_addFigAssetNotifications;
@@ -60,6 +60,7 @@
 - (id)initWithURL:(id)arg1 options:(id)arg2;
 - (id)init;
 - (id)assetCache;
+- (id)_managedAssetCache;
 - (BOOL)_shouldPrepareToOptimizeForExclusivePlayback;
 - (BOOL)_shouldOptimizeAccessForLinearMoviePlayback;
 - (id)SHA1Digest;
@@ -68,16 +69,22 @@
 - (id)originalNetworkContentURL;
 - (id)resolvedURL;
 - (id)_instanceIdentifier;
+- (id)identifyingTag;
 - (id)identifyingTagClass;
 @property(readonly, nonatomic) NSString *cacheKey;
 @property(readonly, nonatomic) BOOL shouldMatchDataInCacheByURLWithoutQueryComponent;
 @property(readonly, nonatomic) BOOL shouldMatchDataInCacheByURLPathComponentOnly;
-- (id)_resourceLoaderURLSession;
+- (id)_resourceLoaderWithRemoteHandlerContext:(id)arg1;
 - (BOOL)_hasResourceLoaderDelegate;
 @property(readonly, nonatomic) AVAssetResourceLoader *resourceLoader;
-- (void)_handleURLRequest:(id)arg1;
 - (void)_setUserInfoObject:(id)arg1;
 - (void)_removeUserInfoObject;
+- (void)expire;
+- (BOOL)_attachedToExternalContentKeySession;
+- (id)contentKeySession;
+- (int)_attachToContentKeySession:(id)arg1 failedSinceAlreadyAttachedToAnotherSession:(char *)arg2;
+@property(readonly, nonatomic) BOOL mayRequireContentKeysForMediaDataProcessing;
+- (id)_installHandlerForNSURLSessionConfiguration:(id)arg1 queue:(id)arg2;
 
 @end
 

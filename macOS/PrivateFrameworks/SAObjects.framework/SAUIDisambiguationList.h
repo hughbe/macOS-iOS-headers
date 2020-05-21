@@ -21,8 +21,11 @@
 @property(copy, nonatomic) NSString *speakableDelimiter;
 @property(copy, nonatomic) NSString *selectionResponse;
 @property(copy, nonatomic) NSArray *items;
+@property(copy, nonatomic) NSString *groupTitle;
+@property(copy, nonatomic) NSArray *fallbackCommands;
 @property(retain, nonatomic) SAUIDomainObjectPicker *domainObjectPicker;
 @property(copy, nonatomic) NSString *disambiguationKey;
+@property(nonatomic) BOOL autoDisambiguationDisabled;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

@@ -18,8 +18,8 @@
 + (id)arcSeconds;
 + (id)arcMinutes;
 + (id)degrees;
-+ (id)degree;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

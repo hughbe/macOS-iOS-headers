@@ -17,6 +17,7 @@
 + (id)_IIDCStandardSizes1G;
 + (id)keyPathsForValuesAffectingFrameHeight;
 + (id)keyPathsForValuesAffectingFrameWidth;
++ (id)videoSizeForIIDCFrameFormat:(unsigned short)arg1;
 @property unsigned int videoSize; // @synthesize videoSize;
 - (unsigned long long)iidcBytesPerPDUWithColorSpace:(unsigned short)arg1;
 - (unsigned long long)bytesPerFrameWithColorSpace:(unsigned short)arg1;

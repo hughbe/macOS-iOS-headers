@@ -8,12 +8,16 @@
 
 @class NSSortDescriptor, NSString, _NSBindingAdaptor;
 
+__attribute__((visibility("hidden")))
 @interface _NSTableColumnAuxiliary : NSObject
 {
     NSSortDescriptor *_sortDescriptorPrototype;
     _NSBindingAdaptor *_bindingAdaptor;
     NSString *_headerToolTip;
+    CDStruct_6b6ad735 _cachedPosition;
 }
+
+- (void).cxx_destruct;
 
 @end
 

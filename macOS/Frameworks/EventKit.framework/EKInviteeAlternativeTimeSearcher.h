@@ -18,6 +18,7 @@
     NSObject<OS_dispatch_queue> *_processingQueue;
     NSDate *_internalOriginalStartDate;
     NSDate *_internalOriginalEndDate;
+    NSDate *_originalRangeStartDate;
     NSMutableArray *_internalProposedStarts;
     EKSource *_source;
     NSString *_ignoredEventID;
@@ -48,6 +49,7 @@
 + (id)_addressesForParticipants:(id)arg1;
 + (id)_findLeftoverSpans:(id)arg1 usingFreeTimes:(id)arg2 andNonOptimalTimes:(id)arg3;
 + (id)stateAsString:(long long)arg1;
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType stateChanged; // @synthesize stateChanged=_stateChanged;
 @property(nonatomic) BOOL internalSearchingForMoreTimesWhenSomeAttendeesCanAttend; // @synthesize internalSearchingForMoreTimesWhenSomeAttendeesCanAttend=_internalSearchingForMoreTimesWhenSomeAttendeesCanAttend;
 @property(nonatomic) BOOL internalSearchingForMoreTimesWhenAllAttendeesCanAttend; // @synthesize internalSearchingForMoreTimesWhenAllAttendeesCanAttend=_internalSearchingForMoreTimesWhenAllAttendeesCanAttend;
@@ -66,18 +68,19 @@
 @property(retain, nonatomic) NSString *ignoredEventID; // @synthesize ignoredEventID=_ignoredEventID;
 @property(retain, nonatomic) EKSource *source; // @synthesize source=_source;
 @property(retain, nonatomic) NSMutableArray *internalProposedStarts; // @synthesize internalProposedStarts=_internalProposedStarts;
+@property(retain, nonatomic) NSDate *originalRangeStartDate; // @synthesize originalRangeStartDate=_originalRangeStartDate;
 @property(retain, nonatomic) NSDate *internalOriginalEndDate; // @synthesize internalOriginalEndDate=_internalOriginalEndDate;
 @property(retain, nonatomic) NSDate *internalOriginalStartDate; // @synthesize internalOriginalStartDate=_internalOriginalStartDate;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *processingQueue; // @synthesize processingQueue=_processingQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *callbackQueue; // @synthesize callbackQueue=_callbackQueue;
 @property(nonatomic) BOOL noConflictRequired; // @synthesize noConflictRequired=_noConflictRequired;
-- (void).cxx_destruct;
 - (id)_generateTimeSpansForResults:(id)arg1 betweenStartDate:(id)arg2 endDate:(id)arg3;
 - (id)_filterOutUnreasonableTimeSlots:(id)arg1;
 - (id)_generateNonOptimalTimesFromTimeSpans:(id)arg1;
 - (id)_generateOpenFreeTimesFromTimeSpans:(id)arg1;
 - (id)_mergeAdjacentSpansWithSameConflictedParticipants:(id)arg1;
 - (id)_spliceLeftTimeSpans:(id)arg1 andNewTimeSpans:(id)arg2;
+- (void)_haltSearchWithError:(BOOL)arg1;
 - (void)_processResults:(id)arg1 betweenStartDate:(id)arg2 endDate:(id)arg3;
 - (id)_participantforParticipantAddress:(id)arg1;
 - (void)_transitionToConflictFoundStateAndSearch;

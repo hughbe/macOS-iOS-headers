@@ -9,10 +9,14 @@
 @class AVControlsContainerViewController, NSImage, NSString, NSView;
 
 @protocol AVControlsContainerViewControllerContent <NSObject>
+@property(readonly) double layoutWidth;
+@property(readonly) double minimumWidth;
 @property(readonly) BOOL movableControlsContentView;
 @property(readonly) CDStruct_83cd8af5 controlsContentViewMargin;
 @property(readonly) struct CGSize intrinsicControlsContentViewSize;
 @property(readonly) long long layoutStyle;
+@property(readonly) long long preferredEffectMaterial;
+@property(readonly) long long preferredBlendingMode;
 @property(readonly) NSImage *backgroundBackdropViewMaskImage;
 @property(readonly) NSString *controlsStyleIdentifier;
 - (NSView *)initialFirstResponder;

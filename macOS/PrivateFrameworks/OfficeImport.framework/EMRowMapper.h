@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (void)mapEmptyRowAt:(id)arg1 colspan:(unsigned long long)arg2 height:(double)arg3;
+- (void).cxx_destruct;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (void)mapEmptyCellsAt:(id)arg1 withState:(id)arg2 firstColumn:(unsigned long long)arg3 lastColumn:(unsigned long long)arg4;
 - (BOOL)isColumnHidden:(unsigned long long)arg1;

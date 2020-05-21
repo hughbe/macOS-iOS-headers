@@ -6,14 +6,15 @@
 
 #import "NSView.h"
 
-@class ABCardViewStyleProvider, ABOverlayView, NSArray, NSMutableArray, NSStackView;
+#import "ABCardCollectionViewPresentationDelegate.h"
 
-@interface ABCardCollectionView : NSView
+@class ABCardViewStyleProvider, NSArray, NSMutableArray, NSString;
+
+@interface ABCardCollectionView : NSView <ABCardCollectionViewPresentationDelegate>
 {
     NSMutableArray *_collectionViewItems;
     NSMutableArray *_noteCollectionItems;
-    NSStackView *_rowStackView;
-    ABOverlayView *_overlayView;
+    id <ABCardCollectionViewPresentation> _itemPresentor;
     BOOL mInReflow;
     BOOL loaded;
     NSArray *_constraints;
@@ -23,17 +24,21 @@
     BOOL _reloadEnabled;
     long long _noteResponderIndexAtLastTeardown;
     double _labelColumnWidth;
+    id <CNCancelable> _frameDidChangeToken;
 }
 
 + (id)sortedCollectionViewProperties;
-+ (id)propertyToVisiblePreferenceKeyMap;
 + (id)relationships;
+- (void).cxx_destruct;
 @property(retain, nonatomic) ABCardViewStyleProvider *styleProvider; // @synthesize styleProvider=_styleProvider;
 @property(nonatomic) BOOL reloadEnabled; // @synthesize reloadEnabled=_reloadEnabled;
 @property(nonatomic) __weak id <ABCardCollectionViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic) id <ABCardCollectionViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
+@property(nonatomic) __weak id <ABCardCollectionViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
 @property(getter=isLoaded) BOOL loaded; // @synthesize loaded;
+- (id)instantMessageServiceKeys;
+- (id)labelsByProperty;
 - (void)saveTemplatePreferences;
+- (void)frameDidChange:(id)arg1;
 - (void)windowWillClose:(id)arg1;
 - (void)updateFaceTimeAvailability:(BOOL)arg1;
 - (void)setNotesEditable:(BOOL)arg1;
@@ -47,37 +52,33 @@
 @property(readonly, nonatomic) BOOL isEditable;
 @property(readonly, nonatomic) BOOL isEditing;
 - (void)resetStackView;
-- (void)removeSubViews;
 - (void)removeCollectionViewItems;
-- (id)alignLeadingEdgeOfValues;
-- (id)minusButtonAlignmentConstraints;
-- (id)rowWidthConstraints;
-- (void)updateConstraints;
 - (void)sortCollectionViewItems;
+- (void)insertItemsAsBatch:(id)arg1;
 - (void)addCollectionViewItems;
 - (double)desiredHeight;
 - (void)reloadData;
 - (id)updateKeyViewLoop;
-- (void)ab_layout;
-- (BOOL)isFlipped;
 - (void)applyDisplayAttributes;
-- (void)forceFullLayout;
-- (void)queueFullLayout;
-- (id)instantMessageServiceKeys;
-- (id)labelsByProperty;
 - (BOOL)allowMultipleValuesForItem:(id)arg1;
 - (void)collectionItemWantsEditMode:(id)arg1;
+- (BOOL)tabbingOutOfPagedOutViewOfItem:(id)arg1;
+- (void)collectionItemWillChangeFocus:(id)arg1;
+- (void)collectionItemDidChangeHeight:(id)arg1 shouldAnimate:(BOOL)arg2;
 - (void)collectionItemDidRemoveLastCharacter:(id)arg1;
 - (void)collectionItemDidAddFirstCharacter:(id)arg1;
+- (void)collectionItemWantsActionGlyps:(id)arg1;
 - (void)collectionItem:(id)arg1 didChangeService:(id)arg2;
 - (void)collectionItem:(id)arg1 didChangeLabel:(id)arg2;
+- (void)showLastItem;
+- (void)showFirstItem;
 - (id)collectionItems;
 - (id)collectionItemsWithValueKey:(id)arg1;
 - (id)collectionItemsWithProperty:(id)arg1;
 - (id)collectionItemsWithCoreDataProperty:(id)arg1;
 - (id)_collectionItemsWithValue:(id)arg1 forKey:(id)arg2;
 - (id)colorForProperty:(id)arg1 identifier:(id)arg2;
-- (void)updateBorderOverlayView;
+- (void)scrollEnclosingScrollViewToFocusedEditingRow;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)preferencesChanged:(id)arg1;
 - (void)addSeparatorItemAtIndex:(unsigned long long)arg1;
@@ -85,7 +86,7 @@
 - (void)insertItemWithSeparatorFollowing:(id)arg1;
 - (unsigned long long)stackViewIndexOfLastItemWithValueKeypath:(id)arg1;
 - (void)adjustStackViewSpacingAfterItem:(id)arg1;
-- (void)addItem:(id)arg1 sort:(BOOL)arg2;
+- (void)addItem:(id)arg1 sort:(BOOL)arg2 animated:(BOOL)arg3;
 - (void)addNewItem:(id)arg1 giveFocus:(BOOL)arg2;
 - (id)addNewItemForKey:(id)arg1 giveFocus:(BOOL)arg2;
 - (void)editCollectionItemWithKey:(id)arg1 label:(id)arg2;
@@ -100,15 +101,24 @@
 - (id)_privateMeFieldForCollectionViewItem:(id)arg1;
 @property(readonly, nonatomic) double leftMargin;
 - (void)viewWillMoveToWindow:(id)arg1;
-- (double)labelColumnWidth;
-- (void)setupStackView;
-- (void)ABCardCollectionView_commonInit;
+- (void)cardCollectionViewPresentation:(id)arg1 didDisplayViewOfItem:(id)arg2;
+- (BOOL)shouldUseFittingSizeToCalculateHeight:(id)arg1;
+- (double)separatorTrailingMarginForCardCollectionViewPresentation:(id)arg1;
+- (double)separatorLeadingMarginForCardCollectionViewPresentation:(id)arg1;
+- (id)cardCollectionViewPresentation:(id)arg1 viewForItem:(id)arg2;
 - (void)dealloc;
+- (void)setupItemPresentorWithAllowsScrolling:(BOOL)arg1;
+- (void)commonInitAllowingScrolling:(BOOL)arg1;
+- (id)initWithFrame:(struct CGRect)arg1 allowsScrolling:(BOOL)arg2;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
 
 // Remaining properties
-@property id <ABCardCollectionViewSupport> cardView; // @dynamic cardView;
+@property __weak id <ABCardCollectionViewSupport> cardView; // @dynamic cardView;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

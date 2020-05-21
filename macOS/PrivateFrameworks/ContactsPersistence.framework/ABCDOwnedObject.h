@@ -6,6 +6,8 @@
 
 #import "NSManagedObject.h"
 
+@class ABCDRecord, NSNumber, NSString;
+
 @interface ABCDOwnedObject : NSManagedObject
 {
 }
@@ -16,7 +18,13 @@
 - (void)prepareForDeletion;
 - (void)didChangeValueForKey:(id)arg1;
 - (void)willChangeValueForKey:(id)arg1;
-- (void)setUniqueId:(id)arg1;
+@property(retain, nonatomic) NSString *uniqueId; // @dynamic uniqueId;
+
+// Remaining properties
+@property(retain, nonatomic) NSNumber *isPrimary; // @dynamic isPrimary;
+@property(retain, nonatomic) NSString *label; // @dynamic label;
+@property(retain, nonatomic) NSNumber *orderingIndex; // @dynamic orderingIndex;
+@property(retain, nonatomic) ABCDRecord *owner; // @dynamic owner;
 
 @end
 

@@ -11,9 +11,9 @@
     id _record;
 }
 
+- (void).cxx_destruct;
 @property(retain) id record; // @synthesize record=_record;
 - (id)completionForSubstring:(id)arg1;
-- (void)dealloc;
 - (id)initWithRecord:(id)arg1 address:(id)arg2;
 
 @end

@@ -17,6 +17,7 @@
 
 + (id)setCurrentDisplayRouteClientStateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setCurrentDisplayRouteClientState;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SACurrentDisplayRouteClientState *clientState;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -8,23 +8,24 @@
 
 #import "CNContactLikenessMutatorFactory.h"
 
-@class CNContact, CNUIMeContactMonitor, NSString, PRPersonaStore;
+@class CNSchedulerProvider, CNUIMeContactMonitor, NSString, PRPersonaStore;
 
 @interface CNContactLikenessCardMutatorFactory : NSObject <CNContactLikenessMutatorFactory>
 {
     id <ABCardViewImageDataSource> _dataSource;
     PRPersonaStore *_personaStore;
     CNUIMeContactMonitor *_meMonitor;
-    CNContact *_contact;
+    CNSchedulerProvider *_schedulerProvider;
 }
 
-@property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
++ (id)personaAndCardViewMutatorForPersonaStore:(id)arg1 dataSource:(id)arg2 contact:(id)arg3 meMonitor:(id)arg4 scheduler:(id)arg5;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CNSchedulerProvider *schedulerProvider; // @synthesize schedulerProvider=_schedulerProvider;
 @property(retain, nonatomic) CNUIMeContactMonitor *meMonitor; // @synthesize meMonitor=_meMonitor;
 @property(retain, nonatomic) PRPersonaStore *personaStore; // @synthesize personaStore=_personaStore;
 @property(retain, nonatomic) id <ABCardViewImageDataSource> dataSource; // @synthesize dataSource=_dataSource;
-- (void).cxx_destruct;
-- (id)likenessMutatorForContact:(id)arg1;
-- (id)initWithDataSource:(id)arg1 personaStore:(id)arg2 meMonitor:(id)arg3;
+- (id)likenessMutatorForContact:(id)arg1 likeness:(id)arg2 mutationType:(long long)arg3;
+- (id)initWithDataSource:(id)arg1 personaStore:(id)arg2 meMonitor:(id)arg3 schedulerProvider:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

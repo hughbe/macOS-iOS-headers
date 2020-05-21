@@ -13,12 +13,13 @@
     NSMutableArray *_matches;
     long long _lastAddressIndex;
     long long _lastAddressEndPos;
-    struct __DDResult *_lastResult;
+    // Error parsing type: ^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}, name: _lastResult
 }
 
-@property(retain) NSArray *matches; // @synthesize matches=_matches;
 - (void).cxx_destruct;
-- (void)coalesceAddress:(struct __DDResult *)arg1 orAppendMatch:(id)arg2;
+@property(retain, nonatomic) NSArray *matches; // @synthesize matches=_matches;
+-     // Error parsing type: v32@0:8^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}16@24, name: coalesceAddress:orAppendMatch:
+- (void)dealloc;
 - (id)init;
 
 @end

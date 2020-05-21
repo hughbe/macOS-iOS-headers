@@ -8,7 +8,6 @@
 
 @class NSArray, NSError, NSURLCredential, NSURLProtectionSpace, NSURLResponse;
 
-__attribute__((visibility("hidden")))
 @interface NSURLAuthenticationChallengeInternal : NSObject
 {
     NSURLProtectionSpace *space;

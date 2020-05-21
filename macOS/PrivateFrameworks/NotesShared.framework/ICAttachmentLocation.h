@@ -6,26 +6,16 @@
 
 #import <NotesShared/ICLocation.h>
 
-#import "ICSearchIndexable.h"
+#import "ICSearchIndexableTarget.h"
 
 @class ICAttachment, NSString;
 
-@interface ICAttachmentLocation : ICLocation <ICSearchIndexable>
+@interface ICAttachmentLocation : ICLocation <ICSearchIndexableTarget>
 {
 }
 
++ (id)newAttachmentLocationForAttachment:(id)arg1;
 @property(readonly, nonatomic) NSString *formattedAddressWithoutAttachmentTitle;
-- (BOOL)shouldUpdateIndexForChangedValues:(id)arg1;
-- (id)searchIndexStringsOutHasAdditionalStrings:(char *)arg1;
-- (BOOL)isHiddenFromSearch;
-- (BOOL)searchResultCanBeDeletedFromNoteContext;
-- (unsigned long long)searchResultsSection;
-- (id)modificationDate;
-- (id)searchIndexableTitleUsingContentTextIfNecessary:(id)arg1;
-- (id)objectIdentifier;
-- (long long)visibilityTestingType;
-- (id)identifier;
-- (id)authorsExcludingCurrentUser;
 - (id)targetSearchIndexable;
 
 // Remaining properties

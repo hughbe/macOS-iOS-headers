@@ -6,26 +6,31 @@
 
 #import "NSObject.h"
 
-@class GEOComposedRoute, GEORouteMatcher, NSArray, NSHashTable;
+@class GEOComposedRoute, GEORouteMatch, NSArray, NSHashTable;
 
 @interface VKNavContext : NSObject
 {
     GEOComposedRoute *_route;
-    GEORouteMatcher *_routeMatcher;
+    GEORouteMatch *_routeMatch;
     unsigned long long _currentStepIndex;
     struct vector<GEOLocationCoordinate2D, std::__1::allocator<GEOLocationCoordinate2D>> _pointsToFrame;
     NSHashTable *_observers;
     NSArray *_groupedManeuverCounts;
-    GEOComposedRoute *_alternateRoute;
+    unsigned long long _navCameraHeadingOverride;
+    struct vector<AdditionalRouteInfo, std::__1::allocator<AdditionalRouteInfo>> _additionalRoutesToFrame;
+    unsigned long long _navigationCameraHeadingOverride;
 }
 
-@property(copy, nonatomic) NSArray *groupedManeuverCounts; // @synthesize groupedManeuverCounts=_groupedManeuverCounts;
-@property(retain, nonatomic) GEOComposedRoute *alternateRoute; // @synthesize alternateRoute=_alternateRoute;
-@property(nonatomic) unsigned long long currentStepIndex; // @synthesize currentStepIndex=_currentStepIndex;
-@property(readonly, nonatomic) GEORouteMatcher *routeMatcher; // @synthesize routeMatcher=_routeMatcher;
-@property(readonly, nonatomic) GEOComposedRoute *route; // @synthesize route=_route;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(retain, nonatomic) GEORouteMatch *routeMatch; // @synthesize routeMatch=_routeMatch;
+@property(copy, nonatomic) NSArray *groupedManeuverCounts; // @synthesize groupedManeuverCounts=_groupedManeuverCounts;
+@property(nonatomic) unsigned long long currentStepIndex; // @synthesize currentStepIndex=_currentStepIndex;
+@property(readonly, nonatomic) GEOComposedRoute *route; // @synthesize route=_route;
+- (void)enumerateAdditionalRoutesToFrameUsingBlock:(CDUnknownBlockType)arg1;
+- (void)addRouteToFrame:(id)arg1 divergenceCoord:(struct PolylineCoordinate)arg2 convergenceCoord:(struct PolylineCoordinate)arg3;
+- (void)clearAdditionalRoutesToFrame;
+@property(nonatomic) unsigned long long navigationCameraHeadingOverride; // @synthesize navigationCameraHeadingOverride=_navigationCameraHeadingOverride;
 - (void)removeObserver:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (void)_notifyObserversStateChanged;

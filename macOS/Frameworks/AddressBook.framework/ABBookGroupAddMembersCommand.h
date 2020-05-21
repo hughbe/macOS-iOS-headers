@@ -4,19 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABBookUndoableCommand.h>
+#import "ABBookUndoableCommand.h"
 
 @class ABAddressBook, ABLazyGroup, NSMutableDictionary, NSSet;
 
-__attribute__((visibility("hidden")))
 @interface ABBookGroupAddMembersCommand : ABBookUndoableCommand
 {
     ABAddressBook *_addressBook;
     ABLazyGroup *_lazyGroup;
     NSSet *_newMemberUids;
     NSMutableDictionary *_memberUidToLazyParentGroupUids;
+    BOOL ignoresGuardianRestrictions;
 }
 
+- (void)setIgnoresGuardianRestrictions:(BOOL)arg1;
+- (BOOL)ignoresGuardianRestrictions;
 - (id)newMembers;
 - (void)addMemberToPreviousGroup:(id)arg1;
 - (void)addMembersToPreviousGroups;

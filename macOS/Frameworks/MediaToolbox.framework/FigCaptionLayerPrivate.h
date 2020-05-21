@@ -14,6 +14,9 @@
     NSMutableArray *captionElementLayers;
     struct OpaqueFigSimpleMutex *renderMutex;
     struct OpaqueFigReentrantMutex *layoutSublayersMutex;
+    unsigned char shouldDrawGrid;
+    NSMutableArray *captionBackdropLayers;
+    unsigned char enableBackdrop;
 }
 
 @end

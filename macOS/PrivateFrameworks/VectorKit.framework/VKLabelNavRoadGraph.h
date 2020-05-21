@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableDictionary, NSMutableSet;
+@class NSMutableArray, NSMutableDictionary;
 
 __attribute__((visibility("hidden")))
 @interface VKLabelNavRoadGraph : NSObject
 {
-    NSMutableSet *_tiles;
-    NSMutableSet *_duplicateTiles;
+    unordered_set_975bb0ed _tiles;
+    unordered_set_975bb0ed _duplicateTiles;
     NSMutableDictionary *_tileDatasByIndex;
     NSMutableArray *_junctions;
     NSMutableArray *_intersections;
@@ -24,30 +24,30 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_offRouteJunctions;
     struct PolylineCoordinate _routeUserOffset;
     BOOL _routeFeatureMapValid;
-    unordered_map_aa048f4b _routeFeatureMap;
+    unordered_map_0cbeac3c _routeFeatureMap;
     BOOL _simplifiedRouteValid;
-    vector_e20517dc _simplifiedRoutePoints;
+    vector_8c4749e3 _simplifiedRoutePoints;
     unsigned long long _currentRoadStartSimplifiedPointIndex;
     BOOL _screenRouteValid;
-    struct vector<RouteSegment, std::__1::allocator<RouteSegment>> _screenRouteSegments;
+    struct vector<RouteSegment, geo::StdAllocator<RouteSegment, mdm::Allocator>> _screenRouteSegments;
     unsigned long long _firstPOIAligningRouteSegment;
 }
 
-@property(retain, nonatomic) NSMutableArray *junctions; // @synthesize junctions=_junctions;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *junctions; // @synthesize junctions=_junctions;
 - (id)_nextIntersectionForRoad:(id)arg1;
 - (id)nextRoadSegmentForRoad:(id)arg1;
 - (id)_findInterTileJunctionForJunction:(id)arg1;
-- (id)_junctionForRoadEdge:(const CDStruct_91f75a7f *)arg1 atA:(BOOL)arg2 routeOffset:(struct PolylineCoordinate)arg3 tile:(id)arg4;
+- (id)_junctionForRoadEdge:(const CDStruct_91f75a7f *)arg1 atA:(BOOL)arg2 routeOffset:(struct PolylineCoordinate)arg3 tile:(const shared_ptr_702c344d *)arg4;
+- (Matrix_8746f91e)unitHeading;
 - (id)junctionForRoad:(id)arg1 nearJunction:(BOOL)arg2 crossTileEdge:(BOOL)arg3;
-- (void)setTiles:(id)arg1;
+- (void)setTiles:(const unordered_set_975bb0ed *)arg1;
 - (void)startingLabelLayoutWithContext:(struct NavContext *)arg1 routeUserOffset:(struct PolylineCoordinate)arg2;
 - (void)routeJunctionsHaveChanged;
 - (void)reset;
 - (void)dealloc;
 - (id)initWithJunctions:(id)arg1;
-- (BOOL)isOnScreenRouteBackwardsAtJunction:(id)arg1 navContext:(struct NavContext *)arg2;
 - (BOOL)prepareOppositeCarriagewayJunctions;
 - (id)oppositeCarriagewayJunctions;
 - (unsigned char)computeRoutePositionForPOIAtPixel:(const Matrix_8746f91e *)arg1 currentPosition:(unsigned char)arg2 context:(struct NavContext *)arg3;
@@ -58,12 +58,13 @@ __attribute__((visibility("hidden")))
 - (void)_findOffRouteJunctions;
 - (id)offRouteGraphJunctionsWithNavContext:(struct NavContext *)arg1 maxJunctions:(unsigned long long)arg2 isOnRoute:(BOOL)arg3;
 - (void)_updateIntersectionsForDepth:(unsigned long long)arg1;
+- (id)offRouteJunctionList;
 - (id)junctionListForDepth:(unsigned long long)arg1;
 - (unsigned long long)countReadyJunctionLists;
 - (void)evaluateDualCarriagewayForJunction:(id)arg1 outputJunctionList:(id)arg2;
 - (BOOL)_checkIfDualCarriageWayConnectorRoad:(id)arg1 fromJunction:(id)arg2 toJunction:(id)arg3 checkShields:(BOOL)arg4;
 - (id)overpassJunctionForJunction:(id)arg1;
-- (void)addRouteRoadEdge:(const struct VKLabelNavRouteRoadEdge *)arg1 atA:(BOOL)arg2 isRouteRefineJunction:(BOOL)arg3 tile:(id)arg4 junctionList:(id)arg5;
+- (void)addRouteRoadEdge:(const struct VKLabelNavRouteRoadEdge *)arg1 atA:(BOOL)arg2 isRouteRefineJunction:(BOOL)arg3 tile:(const shared_ptr_702c344d *)arg4 junctionList:(id)arg5;
 
 @end
 

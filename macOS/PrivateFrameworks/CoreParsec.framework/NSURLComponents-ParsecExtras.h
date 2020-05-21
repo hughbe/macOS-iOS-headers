@@ -7,6 +7,13 @@
 #import "NSURLComponents.h"
 
 @interface NSURLComponents (ParsecExtras)
++ (id)parsec_componentsWithString:(id)arg1;
++ (id)parsec_componentsWithURL:(id)arg1 resolvingAgainstBaseURL:(BOOL)arg2;
+- (id)parsec_componentsAfterRemovingSubdomains;
+- (id)parsec_componentsForEmbeddedAMPURLFromRange:(struct _NSRange)arg1;
+- (struct _NSRange)embeddedAMPURLRange;
+- (id)parsec_normalizedURLStringForDeepLinkWhitelist;
+- (id)parsec_normalizedURLStringForDeepLinkIngest;
 - (id)parsec_normalizedURLStringForLDAModel;
 - (id)parsec_normalizedURLStringForTLDFeatures;
 - (id)parsec_normalizedURLStringWithOptions:(unsigned long long)arg1;

@@ -10,7 +10,6 @@
 
 @interface AKSignatureView : NSView
 {
-    struct CGColor *_cgColor;
     struct CGPoint _lastPoint;
     id _trackingTouchID;
     double _lastSetNeedsDisplayCallToSuperTime;
@@ -30,12 +29,15 @@
     CHQuadCurvePointFIFO *_interpolatingFIFO;
     AKBitmapFIFO *_bitmapFifo;
     NSTrackingArea *_trackingArea;
+    id <AKSignatureViewLiveDelegate> _liveDelegate;
     struct CGPoint _strokeStartLocation;
     struct CGPoint _strokeLastLocation;
     struct CGRect _aggregateInvalid;
     struct CGRect _unionDrawingRect;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <AKSignatureViewLiveDelegate> liveDelegate; // @synthesize liveDelegate=_liveDelegate;
 @property BOOL startedTouchDrawing; // @synthesize startedTouchDrawing=_startedTouchDrawing;
 @property(retain) NSTrackingArea *trackingArea; // @synthesize trackingArea=_trackingArea;
 @property(nonatomic) struct CGRect unionDrawingRect; // @synthesize unionDrawingRect=_unionDrawingRect;
@@ -55,7 +57,6 @@
 @property(nonatomic) double maxPressure; // @synthesize maxPressure=_maxPressure;
 @property(nonatomic) double minPressure; // @synthesize minPressure=_minPressure;
 @property(retain, nonatomic) NSColor *strokeColor; // @synthesize strokeColor=_strokeColor;
-- (void).cxx_destruct;
 - (BOOL)mouseDownCanMoveWindow;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (BOOL)acceptsFirstResponder;

@@ -6,120 +6,87 @@
 
 #import <MapKit/MKPlaceSectionViewController.h>
 
-#import "MKLocationManagerObserver.h"
-#import "MKQuickRouteConfigurableView.h"
-#import "MKQuickRouteManagerDelegate.h"
-#import "MKStackingViewControllerFixedHeightAware.h"
-#import "_MKInfoCardChildViewControllerAnalyticsDelegate.h"
+#import "MKETAProviderObserver.h"
+#import "MKModuleViewControllerProtocol.h"
+#import "_MKStackViewDelegate.h"
 
-@class MKMapItem, MKPlaceSectionRowView, MKTransitInfoLabelView, NSAttributedString, NSButton, NSLayoutConstraint, NSMutableArray, NSString, _MKPlaceCardHeaderMiddleSectionView, _MKQuickRouteManager, _MKUILabel;
+@class MKImageView, MKPlaceSectionRowView, MKVibrancyAwareLabelView, NSArray, NSLayoutConstraint, NSLayoutGuide, NSString, NSURL, NSView, _MKDataHeaderModel, _MKLocalizedHoursBuilder, _MKTokenAttributedString, _MKUILabel;
 
-@interface MKPlaceCardHeaderViewController : MKPlaceSectionViewController <MKQuickRouteManagerDelegate, MKQuickRouteConfigurableView, MKLocationManagerObserver, MKStackingViewControllerFixedHeightAware, _MKInfoCardChildViewControllerAnalyticsDelegate>
+@interface MKPlaceCardHeaderViewController : MKPlaceSectionViewController <_MKStackViewDelegate, MKModuleViewControllerProtocol, MKETAProviderObserver>
 {
-    unsigned long long _options;
-    NSMutableArray *_firstLineRichTextArray;
-    NSMutableArray *_secondLineRichTextArray;
-    NSMutableArray *_thirdLineRichTextArray;
-    _MKQuickRouteManager *_quickRouteAmazingNess;
-    MKPlaceSectionRowView *_topContainerView;
-    MKPlaceSectionRowView *_middleContainerView;
-    MKPlaceSectionRowView *_bottomContainerView;
-    NSMutableArray *_topContainerConstraints;
-    NSMutableArray *_middleContainerConstraints;
-    NSMutableArray *_bottomContainerConstraints;
-    _MKPlaceCardHeaderMiddleSectionView *_firstLineForMidContainerView;
-    _MKPlaceCardHeaderMiddleSectionView *_secondLineForMidContainerView;
-    _MKPlaceCardHeaderMiddleSectionView *_thirdLineForMidContainerView;
-    NSLayoutConstraint *_firstLineToTopConstraint;
-    NSLayoutConstraint *_secondLineToFirstLineConstraint;
-    NSLayoutConstraint *_thirdLineToSecondLineConstraint;
-    NSLayoutConstraint *_bottomToThirdLineConstraint;
-    NSAttributedString *_distanceTextItem;
-    BOOL _distanceOrETAWasFound;
-    CDUnknownBlockType _etaStringFormatterBlock;
-    NSButton *_primaryButton;
-    NSButton *_actionButton;
-    NSLayoutConstraint *_primaryButtonHeightConstraint;
-    NSLayoutConstraint *_actionButtonHeightConstraint;
-    _MKUILabel *_titleLabel;
-    _MKUILabel *_distanceLabel;
-    _MKUILabel *_categoryLabel;
-    _MKUILabel *_priceLabel;
-    _MKUILabel *_openNowLabel;
-    _MKUILabel *_reviewLabel;
-    _MKUILabel *_hoursLabel;
-    MKTransitInfoLabelView *_transitLabel;
-    MKMapItem *_nearbyItem;
-    BOOL optionTitleHasOwnSection;
-    BOOL optionSmallerScreen;
-    NSString *_actionButtonText;
-    CDUnknownBlockType _actionButtonResponseBlock;
-    BOOL _resizableViewsDisabled;
+    unsigned long long _layout;
+    MKPlaceSectionRowView *_titleSectionView;
+    MKPlaceSectionRowView *_labelsSectionView;
+    MKImageView *_logoImageView;
+    _MKUILabel *_titleOnlyLabel;
+    _MKUILabel *_firstLabel;
+    _MKUILabel *_secondLabel;
+    _MKUILabel *_secondaryNameLabel;
+    MKVibrancyAwareLabelView *_thirdLabel;
+    NSView *_thirdDisplayedLabel;
+    NSArray *_constraints;
+    NSLayoutGuide *_leadingGuide;
+    NSURL *_logoURL;
+    _MKDataHeaderModel *_dataModel;
+    _MKTokenAttributedString *_titleToken;
+    _MKTokenAttributedString *_secondaryNameToken;
+    _MKTokenAttributedString *_distanceToken;
+    _MKTokenAttributedString *_ratingsToken;
+    _MKTokenAttributedString *_priceToken;
+    _MKTokenAttributedString *_categoryToken;
+    _MKTokenAttributedString *_openStateToken;
+    _MKTokenAttributedString *_userLocationToken;
+    _MKTokenAttributedString *_venueToken;
+    _MKTokenAttributedString *_verifiedToken;
+    NSLayoutConstraint *_secondLabelToFirstLabelConstraint;
+    double _secondLabelToFirstLabelConstraintConstantMax;
+    double _secondLabelToFirstLabelConstraintConstantMin;
+    BOOL _isUserLocation;
+    BOOL _optionSmallScreen;
+    BOOL _constraintsCreated;
+    BOOL _notVerified;
     id <_MKPlaceItem> _placeItem;
     id <GEOTransitLineItem> _lineItem;
-    unsigned long long _primaryButtonType;
     id <MKPlaceCardHeaderViewControllerDelegate> _delegate;
+    _MKLocalizedHoursBuilder *_localizedHoursBuilder;
 }
 
 + (double)minimalModeHeight;
-@property(nonatomic) BOOL resizableViewsDisabled; // @synthesize resizableViewsDisabled=_resizableViewsDisabled;
+- (void).cxx_destruct;
+@property(retain, nonatomic) _MKLocalizedHoursBuilder *localizedHoursBuilder; // @synthesize localizedHoursBuilder=_localizedHoursBuilder;
 @property(nonatomic) __weak id <MKPlaceCardHeaderViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic) unsigned long long primaryButtonType; // @synthesize primaryButtonType=_primaryButtonType;
 @property(readonly, nonatomic) id <GEOTransitLineItem> lineItem; // @synthesize lineItem=_lineItem;
 @property(readonly, nonatomic) id <_MKPlaceItem> placeItem; // @synthesize placeItem=_placeItem;
-- (void).cxx_destruct;
-- (id)infoCardChildUnactionableUIElements;
-- (id)infoCardChildPossibleActions;
-- (BOOL)quickRouteShouldOnlyUseAutomobile;
-- (BOOL)quickRouteShouldIncludeTransit;
-- (void)quickRouteManager:(id)arg1 didUpdateETA:(id)arg2 error:(id)arg3 animated:(BOOL)arg4;
-- (void)locationManager:(id)arg1 didUpdateVehicleHeading:(double)arg2 timestamp:(id)arg3;
-- (void)locationManager:(id)arg1 didUpdateVehicleSpeed:(double)arg2 timestamp:(id)arg3;
-- (void)locationManagerDidResumeLocationUpdates:(id)arg1;
-- (void)locationManagerDidPauseLocationUpdates:(id)arg1;
-- (BOOL)locationManagerShouldPauseLocationUpdates:(id)arg1;
-- (void)locationManagerDidReset:(id)arg1;
-- (void)locationManagerFailedToUpdateLocation:(id)arg1 withError:(id)arg2;
-- (void)locationManagerUpdatedLocation:(id)arg1;
-- (void)_primaryButtonSelected:(id)arg1;
-- (void)_actionSelected:(id)arg1;
-- (void)setActionButtonText:(id)arg1 responseBlock:(CDUnknownBlockType)arg2;
-- (void)_updateActionButton;
-- (void)setUpBottomContainerConstraints;
-- (id)_reviewLabelText;
-- (void)infoCardThemeChanged:(id)arg1;
-- (void)setUpMiddleContainerConstaints;
+- (void)infoCardThemeChanged;
+- (void)updateContent;
 - (void)_contentSizeDidChange;
-- (void)_updateBaselineConstraints;
-- (void)setUpTopContainerConstraints;
-- (id)labelForAttributedString:(id)arg1;
-- (BOOL)_areDistanceAndETAInformationAvailable;
-- (id)_applyButtonDefaultConfiguration:(id)arg1 selector:(SEL)arg2 solid:(BOOL)arg3;
-- (id)_buttonFont;
-- (id)_primaryButtonTextColor;
-- (void)_setUpComponents;
-- (void)_updateShareLocationButton;
-- (void)_updateRerouteButton;
-- (void)_updateDirectionsButton;
-- (void)_updatePrimaryButton;
-- (void)_setUpPrimaryButton;
-- (BOOL)_primaryButtonIsFullWidth;
-- (BOOL)_isSmallerScreen;
-- (double)extraHeightToReserveInLayout;
-- (void)viewWillAppear:(BOOL)arg1;
-- (void)updateViewConstraints;
-- (void)viewWillLayoutSubviews;
+- (void)_contentSizeDidChangeNotificationHandler;
+- (void)setConstraints;
+- (void)updateViews;
+- (void)_createViews;
+- (id)newLabel;
+- (BOOL)_mapItemShouldDisplayDistance:(id)arg1;
+- (void)ETAProviderUpdated:(id)arg1;
+- (void)_loadLogo;
+- (BOOL)_isLikelyToShowDistance;
+- (void)_setupDatas;
+- (id)_openStateString;
+- (id)_reviewLabelText;
+- (id)_verifiedText;
+- (id)_secondaryNameTitle;
+- (BOOL)_hasSecondaryName;
+- (id)_currentTitle;
+- (double)secondaryNameLabelPadding;
+- (void)animateSecondLabelWithPercentage:(double)arg1;
+@property(nonatomic) double contentAlpha;
+- (void)updateHeaderTitle;
 - (void)viewDidLoad;
-- (void)dealloc;
-@property(nonatomic) double currentMinimalModeInterpolationFactor;
-- (void)_configureETADisplayWithTransportType:(unsigned long long)arg1 travelTime:(double)arg2 distance:(double)arg3;
-- (id)_formattedStringForTimeInterval:(double)arg1;
-- (void)_configureETAForMapItem:(id)arg1;
-- (void)configureWithNearbyMapItem:(id)arg1;
-@property(readonly, nonatomic) NSButton *primaryButton;
 - (void)_commonInit;
-- (id)initWithLineItem:(id)arg1 options:(unsigned long long)arg2;
-- (id)initWithPlaceItem:(id)arg1 placeHeaderOptions:(unsigned long long)arg2;
+- (id)initWithLineItem:(id)arg1 layout:(unsigned long long)arg2;
+- (id)initWithPlaceItem:(id)arg1 layout:(unsigned long long)arg2;
+- (id)secondaryNameTimingFunction;
+- (id)titleFont;
+- (BOOL)_canShowWhileLocked;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

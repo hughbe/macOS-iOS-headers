@@ -14,8 +14,8 @@ __attribute__((visibility("hidden")))
     GEOSearchAttributionManifest *_attributionManifest;
 }
 
-- (void)loadAttributionInfoForIdentifier:(id)arg1 version:(unsigned int)arg2 allowNetwork:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (void)dealloc;
+- (void).cxx_destruct;
+- (void)loadAttributionInfoForIdentifier:(id)arg1 allowNetwork:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)initWithAttributionManifest:(id)arg1;
 
 @end

@@ -8,14 +8,14 @@
 
 #import "CBCentralManagerDelegate.h"
 #import "CBPeripheralDelegate.h"
-#import "CBPeripheralPairingDelegate.h"
 #import "IOBluetoothDevicePairDelegate.h"
 #import "NSMenuDelegate.h"
 #import "NSTableViewDelegate.h"
+#import "NSWindowDelegate.h"
 
-@class BluetoothHIDDeviceController, CBCentralManager, CBPeripheral, IOBluetoothDevice, IOBluetoothDeviceInquiry, IOBluetoothDevicePairViewController, IOBluetoothUISortedArrayController, NSAlert, NSArray, NSButton, NSImage, NSImageView, NSMutableArray, NSMutableDictionary, NSPanel, NSProgressIndicator, NSString, NSTableView, NSTextField, NSTimer, NSTrackingArea, NSView;
+@class BluetoothHIDDeviceController, CBCentralManager, CBPeripheral, IOBluetoothDevice, IOBluetoothDeviceInquiry, IOBluetoothDevicePairViewController, IOBluetoothUISortedArrayController, NSAlert, NSArray, NSButton, NSImage, NSImageView, NSMutableArray, NSMutableDictionary, NSPanel, NSProgressIndicator, NSString, NSTableView, NSTextField, NSTimer, NSTrackingArea, NSView, NSWindowController;
 
-@interface IOBluetoothUICollectionView : NSViewController <NSMenuDelegate, NSTableViewDelegate, IOBluetoothDevicePairDelegate, CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralPairingDelegate>
+@interface IOBluetoothUICollectionView : NSViewController <NSMenuDelegate, NSTableViewDelegate, IOBluetoothDevicePairDelegate, CBCentralManagerDelegate, CBPeripheralDelegate, NSWindowDelegate>
 {
     BOOL mAutoAdjustButtonSize;
     BOOL mUserPasscode;
@@ -80,12 +80,16 @@
     BOOL mUpdateBattery;
     BOOL mSafeToEnumerate;
     NSMutableArray *mDeviceArrayTmp;
-    const char *mLEDeviceAddress;
+    BOOL windowLoaded;
+    NSWindowController *audioOptionsController;
     BOOL _mShowPairButton;
     NSTimer *_mLETimer;
     IOBluetoothDevice *_mAppleDevice;
 }
 
++ (void)updateDict:(id)arg1 removeKey:(id)arg2;
++ (void)updateDict:(id)arg1 withValue:(id)arg2 forKey:(id)arg3;
++ (BOOL)updateDictWasNeeded:(id)arg1 withValue:(id)arg2 forKey:(id)arg3;
 + (id)selectorViewForDevicesOfAttributes:(struct IOBluetoothDeviceSearchAttributes *)arg1;
 + (id)listViewForDevicesOfAttributes:(struct IOBluetoothDeviceSearchAttributes *)arg1;
 + (id)selectorViewForDevicesOfClass:(unsigned int)arg1 subclass:(unsigned int)arg2;
@@ -114,6 +118,8 @@
 @property int inquiryCacheTimeout; // @synthesize inquiryCacheTimeout=mInquiryCacheTimeout;
 @property BOOL noInquiryCache; // @synthesize noInquiryCache=mNoInquiryCache;
 @property(retain) IOBluetoothDeviceInquiry *inquiry; // @synthesize inquiry=mInquiry;
+- (void)disableLEScans:(BOOL)arg1;
+- (void)setAppleAudioDeviceName:(id)arg1;
 - (id)setAppleDeviceName:(id)arg1;
 - (void)powerStateChangeStarted;
 - (BOOL)isPairingInProgress;
@@ -134,6 +140,7 @@
 - (void)changeDeviceName:(id)arg1 newName:(id)arg2;
 - (BOOL)tempDeviceHasServiceRecordWithUUID:(id)arg1 device:(id)arg2;
 - (BOOL)isTrackpad:(id)arg1;
+- (void)batteryDidUpdate:(id)arg1;
 - (void)batteryNotification:(id)arg1;
 - (void)deviceSimplePairingComplete:(id)arg1 status:(unsigned char)arg2;
 - (void)devicePairingFinished:(id)arg1 error:(int)arg2;
@@ -142,6 +149,8 @@
 - (void)devicePairingPINCodeRequest:(id)arg1;
 - (void)devicePairingConnecting:(id)arg1;
 - (void)devicePairingStarted:(id)arg1;
+- (void)proximityPair:(id)arg1 withData:(id)arg2;
+- (void)updateDict:(id)arg1 withDevice:(id)arg2;
 - (void)peripheral:(id)arg1 didDiscoverServices:(id)arg2;
 - (void)peripheral:(id)arg1 didFinishPairingWithResult:(id)arg2;
 - (void)peripheral:(id)arg1 didReceivePairingRequestOfType:(id)arg2 withPasskey:(id)arg3;
@@ -149,7 +158,6 @@
 - (void)centralManager:(id)arg1 didConnectPeripheral:(id)arg2;
 - (void)centralManager:(id)arg1 didDiscoverPeripheral:(id)arg2 advertisementData:(id)arg3 RSSI:(id)arg4;
 - (void)centralManagerDidUpdateState:(id)arg1;
-- (void)setLEAddr:(id)arg1;
 - (void)continueInquiryUpdate;
 - (void)deviceInquiryComplete:(id)arg1 error:(int)arg2 aborted:(BOOL)arg3;
 - (void)deviceInquiryDeviceNameUpdated:(id)arg1 device:(id)arg2 devicesRemaining:(int)arg3;
@@ -180,6 +188,7 @@
 - (void)connectionComplete:(id)arg1 status:(int)arg2;
 - (void)_menuConnect:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
+- (id)_addMenuItemToMenu:(id)arg1 withTitle:(id)arg2 representedObject:(id)arg3 action:(SEL)arg4;
 - (void)_restartInquiry:(id)arg1;
 - (void)_resumeInquiry;
 - (void)_pauseInquiry;
@@ -206,6 +215,8 @@
 - (void)cancelGoBack:(id)arg1;
 - (void)continueUnpairing:(id)arg1;
 - (void)pairUsingOptions:(id)arg1;
+- (void)cancelAppleOptions:(id)arg1;
+- (void)appleOptions:(id)arg1;
 - (void)pairingOptions:(id)arg1;
 - (void)returnToTable:(id)arg1;
 - (void)cancelUnpairing:(id)arg1;
@@ -217,9 +228,11 @@
 - (void)_pairDeviceInDictionary:(id)arg1;
 - (void)lePairingComplete:(id)arg1;
 - (void)leTimeout:(id)arg1;
+- (void)_batteryDidUpdate:(id)arg1;
 - (void)_updateBatteryNotification:(id)arg1;
 - (void)_updatePairedDeviceCount;
 - (void)_updatePairedDevices:(id)arg1;
+- (void)deviceWasUpdated:(id)arg1;
 - (void)chargingSourceChanged:(id)arg1;
 - (void)bluetoothDeviceNameChanged:(id)arg1;
 - (void)handlePairedDevicesChanged:(id)arg1;

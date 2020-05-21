@@ -10,7 +10,7 @@
 
 @interface NSColorScaleSliderCell : NSSliderCell
 {
-    int _scaleType;
+    long long _scaleType;
     NSBitmapImageRep *_scaleBitmap;
     BOOL _scaleBitmapValid;
     NSColor *_scaleColor;
@@ -18,7 +18,7 @@
 }
 
 - (void)setColor:(id)arg1;
-- (void)setDrawsTrackAsColorScaleType:(int)arg1;
+- (void)setDrawsTrackAsColorScaleType:(long long)arg1;
 - (BOOL)isOpaque;
 - (void)drawBarInside:(struct CGRect)arg1 flipped:(BOOL)arg2;
 - (struct CGRect)knobRectFlipped:(BOOL)arg1;

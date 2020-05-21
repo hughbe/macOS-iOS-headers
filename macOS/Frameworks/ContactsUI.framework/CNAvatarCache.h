@@ -6,26 +6,51 @@
 
 #import "NSObject.h"
 
-@class CNCache, CNQueue, CNUIPRLikenessResolver;
+#import "CNAvatarCacheChangeListenerDelegate.h"
 
-@interface CNAvatarCache : NSObject
+@class CNAvatarCacheChangeListener, CNCache, CNContactStore, CNObservable, NSString;
+
+@interface CNAvatarCache : NSObject <CNAvatarCacheChangeListenerDelegate>
 {
-    CNUIPRLikenessResolver *_likenessResolver;
+    BOOL _liveUpdating;
+    CNObservable *_contactStoreChangeNotificationWatcher;
+    id <CNUIPRLikenessResolver> _likenessResolver;
+    CNContactStore *_contactStore;
     CNCache *_likenessCache;
-    CNQueue *_evictionQueue;
+    id <CNSchedulerProvider> _schedulerProvider;
+    CNAvatarCacheChangeListener *_changeHistoryListener;
 }
 
-+ (id)_cacheKeyForContact:(id)arg1;
-@property(retain) CNQueue *evictionQueue; // @synthesize evictionQueue=_evictionQueue;
-@property(retain) CNCache *likenessCache; // @synthesize likenessCache=_likenessCache;
-@property(retain, nonatomic) CNUIPRLikenessResolver *likenessResolver; // @synthesize likenessResolver=_likenessResolver;
++ (long long)photoAndDefaultProhibitedSources;
++ (long long)defaultProhibitedSources;
++ (id)os_log;
 - (void).cxx_destruct;
-- (void)refreshCacheKey:(id)arg1;
+@property(nonatomic) BOOL liveUpdating; // @synthesize liveUpdating=_liveUpdating;
+@property(readonly, nonatomic) CNAvatarCacheChangeListener *changeHistoryListener; // @synthesize changeHistoryListener=_changeHistoryListener;
+@property(readonly, nonatomic) id <CNSchedulerProvider> schedulerProvider; // @synthesize schedulerProvider=_schedulerProvider;
+@property(readonly, nonatomic) CNCache *likenessCache; // @synthesize likenessCache=_likenessCache;
+@property(readonly, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
+@property(readonly, nonatomic) id <CNUIPRLikenessResolver> likenessResolver; // @synthesize likenessResolver=_likenessResolver;
+@property(readonly, nonatomic) CNObservable *contactStoreChangeNotificationWatcher; // @synthesize contactStoreChangeNotificationWatcher=_contactStoreChangeNotificationWatcher;
+- (void)updateContactsWithIdentifiers:(id)arg1;
+- (id)oneShotQueryForLikenessOfContact:(id)arg1;
+- (id)refetchContact:(id)arg1;
+- (void)updateLikenessForEntry:(id)arg1;
+- (void)performFirstResolutionForEntry:(id)arg1;
 - (id)likenessHandlerForContact:(id)arg1;
-- (void)emptyCache:(id)arg1;
-- (void)dealloc;
+- (void)invalidateObservables:(id)arg1;
+- (id)lastKnownLikenessForContact:(id)arg1;
+- (void)invalidate;
+- (id)initWithLikenessResolver:(id)arg1 contactStore:(id)arg2;
 - (id)initWithLikenessResolver:(id)arg1;
+- (id)initWithProhibitedSources:(long long)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

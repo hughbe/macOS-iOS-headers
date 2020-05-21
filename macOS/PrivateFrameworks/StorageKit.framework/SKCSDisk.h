@@ -6,31 +6,38 @@
 
 #import <StorageKit/SKDisk.h>
 
+#import "SKEncryptedDiskProtocol.h"
+
 @class NSString;
 
-@interface SKCSDisk : SKDisk
+@interface SKCSDisk : SKDisk <SKEncryptedDiskProtocol>
 {
     BOOL _isEncrypted;
     BOOL _isConverting;
+    BOOL _isDisallowedForCSOperations;
     NSString *_csDiskUUID;
     NSString *_csLVGUUID;
     NSString *_csFamilyUUID;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSString *csFamilyUUID; // @synthesize csFamilyUUID=_csFamilyUUID;
+@property BOOL isDisallowedForCSOperations; // @synthesize isDisallowedForCSOperations=_isDisallowedForCSOperations;
 @property BOOL isConverting; // @synthesize isConverting=_isConverting;
 @property BOOL isEncrypted; // @synthesize isEncrypted=_isEncrypted;
 @property(retain) NSString *csLVGUUID; // @synthesize csLVGUUID=_csLVGUUID;
 @property(retain) NSString *csDiskUUID; // @synthesize csDiskUUID=_csDiskUUID;
-- (void).cxx_destruct;
 - (id)copyRootEncyrptionContext;
 - (BOOL)changeDiskOldPassword:(id)arg1 toNewPassword:(id)arg2 withHint:(id)arg3;
 - (BOOL)establishReserveKEK:(id)arg1;
+- (id)decryptWithPassword:(id)arg1 forUser:(id)arg2;
 - (id)decryptWithPassword:(id)arg1;
 - (BOOL)_unlockWithiCloudRecovery:(struct _PCSIdentityData *)arg1 withPCSIdentitySet:(struct _PCSIdentitySetData *)arg2;
 - (BOOL)unlockWithiCloudRecoveryPCSSet:(struct _PCSIdentitySetData *)arg1;
 - (BOOL)unlockWithiCloudRecovery:(struct _PCSIdentityData *)arg1;
+- (id)unlockWithPassword:(id)arg1 forUser:(id)arg2;
 - (BOOL)unlockWithPassword:(id)arg1;
+- (id)validateEncryptionPassword:(id)arg1 forUser:(id)arg2;
 - (BOOL)validateEncryptionPassword:(id)arg1;
 - (BOOL)_iCloudRecoveryManageFDEUsers:(struct _PCSIdentityData *)arg1 withPCSIdentitySet:(struct _PCSIdentitySetData *)arg2 addingUsers:(id)arg3 removingUsers:(id)arg4 resettingUserPasswords:(id)arg5 handlingProgress:(CDUnknownBlockType)arg6 withCompletionBlock:(CDUnknownBlockType)arg7;
 - (BOOL)iCloudRecoveryManageFDEUsersWithPCSIdentitySet:(struct _PCSIdentitySetData *)arg1 addingUsers:(id)arg2 removingUsers:(id)arg3 resettingUserPasswords:(id)arg4 handlingProgress:(CDUnknownBlockType)arg5 withCompletionBlock:(CDUnknownBlockType)arg6;
@@ -42,15 +49,19 @@
 - (BOOL)manageFDEUsersWithPassword:(id)arg1 addingUsers:(id)arg2 removingUsers:(id)arg3 handlingProgress:(CDUnknownBlockType)arg4 withCompletionBlock:(CDUnknownBlockType)arg5;
 - (id)getFDEUserDictionaries;
 - (id)getFDEUsers;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)_invalidate;
 - (BOOL)canResize;
 - (id)supportedFilesystems;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)updateWithDictionary:(id)arg1;
 - (BOOL)matchesDictionary:(id)arg1;
 - (id)minimalDictionaryRepresentation;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

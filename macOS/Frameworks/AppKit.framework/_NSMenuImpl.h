@@ -8,10 +8,11 @@
 
 @class NSFont, NSStoryboard, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _NSMenuImpl : NSObject
 {
     id _impl;
-    id _delegateWrapper;
+    id _delegate;
     id _menuOwner;
     NSFont *_font;
     NSString *_name;
@@ -20,10 +21,12 @@
     struct NSMenuUpdaterInfo_t *sidebandUpdaters;
     const void *_contextMenuPluginAEDesc;
     NSStoryboard *_storyboard;
+    NSString *_lastShortcutInputSourceIdentifier;
     unsigned long long _indentationWidth;
-    NSString *_delegateClass;
+    BOOL _disablesKeyboardAdjustedShortcuts;
 }
 
+- (void).cxx_destruct;
 - (void)dealloc;
 
 @end

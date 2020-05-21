@@ -7,6 +7,7 @@
 #import "SASyncFinished.h"
 
 @interface SASyncFinished (SiriCoreSessionObject)
+- (BOOL)siriCore_isRetryable;
 - (BOOL)siriCore_bufferingAllowedDuringActiveSession;
 @end
 

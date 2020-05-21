@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class CKRecord, CKRecordID, CKShare, CKShareParticipant, CKUserIdentity, NSArray, NSData, NSString;
+@class CKDeviceToDeviceShareInvitationToken, CKRecord, CKRecordID, CKRecordZone, CKShare, CKShareParticipant, CKUserIdentity, NSArray, NSData, NSString;
 
 @interface CKShareMetadata : NSObject <NSCopying, NSSecureCoding>
 {
@@ -17,7 +17,7 @@
     NSString *_containerIdentifier;
     CKShare *_share;
     CKRecordID *_rootRecordID;
-    long long _participantType;
+    long long _participantRole;
     long long _participantStatus;
     long long _participantPermission;
     CKUserIdentity *_ownerIdentity;
@@ -26,20 +26,25 @@
     NSData *_protectedFullToken;
     NSData *_publicToken;
     NSData *_privateToken;
+    CKRecordZone *_sharedZone;
     CKShareParticipant *_callingParticipant;
-    NSString *_iWorkDocumentName;
     NSArray *_outOfNetworkMatches;
+    NSArray *_sharedItemHierarchyIDs;
     NSString *_rootRecordType;
     NSData *_encryptedData;
+    CKDeviceToDeviceShareInvitationToken *_invitationToken;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(copy, nonatomic) CKDeviceToDeviceShareInvitationToken *invitationToken; // @synthesize invitationToken=_invitationToken;
 @property(retain, nonatomic) NSData *encryptedData; // @synthesize encryptedData=_encryptedData;
 @property(nonatomic) BOOL acceptedInProcess; // @synthesize acceptedInProcess=_acceptedInProcess;
 @property(retain, nonatomic) NSString *rootRecordType; // @synthesize rootRecordType=_rootRecordType;
+@property(copy, nonatomic) NSArray *sharedItemHierarchyIDs; // @synthesize sharedItemHierarchyIDs=_sharedItemHierarchyIDs;
 @property(retain, nonatomic) NSArray *outOfNetworkMatches; // @synthesize outOfNetworkMatches=_outOfNetworkMatches;
-@property(copy, nonatomic) NSString *iWorkDocumentName; // @synthesize iWorkDocumentName=_iWorkDocumentName;
 @property(copy, nonatomic) CKShareParticipant *callingParticipant; // @synthesize callingParticipant=_callingParticipant;
+@property(retain, nonatomic) CKRecordZone *sharedZone; // @synthesize sharedZone=_sharedZone;
 @property(copy, nonatomic) NSData *privateToken; // @synthesize privateToken=_privateToken;
 @property(copy, nonatomic) NSData *publicToken; // @synthesize publicToken=_publicToken;
 @property(copy, nonatomic) NSData *protectedFullToken; // @synthesize protectedFullToken=_protectedFullToken;
@@ -48,20 +53,21 @@
 @property(retain, nonatomic) CKUserIdentity *ownerIdentity; // @synthesize ownerIdentity=_ownerIdentity;
 @property(nonatomic) long long participantPermission; // @synthesize participantPermission=_participantPermission;
 @property(nonatomic) long long participantStatus; // @synthesize participantStatus=_participantStatus;
-@property(nonatomic) long long participantType; // @synthesize participantType=_participantType;
+@property(nonatomic) long long participantRole; // @synthesize participantRole=_participantRole;
 @property(copy, nonatomic) CKRecordID *rootRecordID; // @synthesize rootRecordID=_rootRecordID;
 @property(retain, nonatomic) CKShare *share; // @synthesize share=_share;
 @property(copy, nonatomic) NSString *containerIdentifier; // @synthesize containerIdentifier=_containerIdentifier;
-- (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) long long participantType;
 - (void)CKAssignToContainerWithID:(id)arg1;
 - (id)ckShortDescription;
 - (id)description;
-- (id)CKPropertiesToDescribe:(BOOL)arg1;
+- (id)CKDescriptionPropertiesWithPublic:(BOOL)arg1 private:(BOOL)arg2 shouldExpand:(BOOL)arg3;
+@property(readonly, nonatomic, getter=baseToken) NSString *baseToken;
 - (id)init;
 
 @end

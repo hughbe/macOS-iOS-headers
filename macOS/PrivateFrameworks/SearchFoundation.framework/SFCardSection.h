@@ -6,36 +6,62 @@
 
 #import "NSObject.h"
 
-#import "NSSecureCoding.h"
+#import "NSCopying.h"
+#import "SFCardSection.h"
+#import "SFJSONSerializable.h"
 
-@class NSArray, NSString, SFCard;
+@class NSArray, NSData, NSDictionary, NSString, SFCard, SFColor, SFUserReportRequest;
 
-@interface SFCardSection : NSObject <NSSecureCoding>
+@interface SFCardSection : NSObject <SFJSONSerializable, SFCardSection, NSCopying>
 {
-    BOOL _hideDivider;
+    BOOL _hasBottomPadding;
     BOOL _canBeHidden;
     BOOL _hasTopPadding;
-    BOOL _hasBottomPadding;
-    NSArray *_punchoutOptions;
-    NSString *_punchoutPickerTitle;
-    NSString *_punchoutPickerDismissText;
+    BOOL _hideDivider;
+    int _separatorStyle;
     NSString *_type;
     SFCard *_nextCard;
+    NSArray *_commands;
+    NSString *_punchoutPickerTitle;
+    NSArray *_punchoutOptions;
+    NSString *_punchoutPickerDismissText;
+    NSArray *_parameterKeyPaths;
+    NSString *_cardSectionId;
+    SFColor *_backgroundColor;
+    NSString *_resultIdentifier;
+    SFUserReportRequest *_userReportRequest;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain, nonatomic) SFCard *nextCard; // @synthesize nextCard=_nextCard;
-@property(copy, nonatomic) NSString *type; // @synthesize type=_type;
-@property(nonatomic) BOOL hasBottomPadding; // @synthesize hasBottomPadding=_hasBottomPadding;
+- (void).cxx_destruct;
+@property(retain, nonatomic) SFUserReportRequest *userReportRequest; // @synthesize userReportRequest=_userReportRequest;
+@property(copy, nonatomic) NSString *resultIdentifier; // @synthesize resultIdentifier=_resultIdentifier;
+@property(retain, nonatomic) SFColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(copy, nonatomic) NSString *cardSectionId; // @synthesize cardSectionId=_cardSectionId;
+@property(copy, nonatomic) NSArray *parameterKeyPaths; // @synthesize parameterKeyPaths=_parameterKeyPaths;
+@property(nonatomic) int separatorStyle; // @synthesize separatorStyle=_separatorStyle;
 @property(nonatomic) BOOL hasTopPadding; // @synthesize hasTopPadding=_hasTopPadding;
 @property(nonatomic) BOOL canBeHidden; // @synthesize canBeHidden=_canBeHidden;
-@property(nonatomic) BOOL hideDivider; // @synthesize hideDivider=_hideDivider;
 @property(copy, nonatomic) NSString *punchoutPickerDismissText; // @synthesize punchoutPickerDismissText=_punchoutPickerDismissText;
-@property(copy, nonatomic) NSString *punchoutPickerTitle; // @synthesize punchoutPickerTitle=_punchoutPickerTitle;
 @property(copy, nonatomic) NSArray *punchoutOptions; // @synthesize punchoutOptions=_punchoutOptions;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *punchoutPickerTitle; // @synthesize punchoutPickerTitle=_punchoutPickerTitle;
+@property(copy, nonatomic) NSArray *commands; // @synthesize commands=_commands;
+@property(nonatomic) BOOL hasBottomPadding; // @synthesize hasBottomPadding=_hasBottomPadding;
+@property(retain, nonatomic) SFCard *nextCard; // @synthesize nextCard=_nextCard;
+@property(copy, nonatomic) NSString *type; // @synthesize type=_type;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+@property(nonatomic) BOOL hideDivider; // @synthesize hideDivider=_hideDivider;
+@property(readonly, nonatomic) NSData *jsonData;
+@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

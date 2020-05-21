@@ -38,6 +38,8 @@
 - (id)stringForState:(unsigned short)arg1;
 - (id)typeLocalizedString;
 - (id)description;
+- (unsigned short)localization;
+- (unsigned short)appearance;
 - (unsigned short)layer;
 - (unsigned short)identifier;
 - (unsigned short)keyScale;

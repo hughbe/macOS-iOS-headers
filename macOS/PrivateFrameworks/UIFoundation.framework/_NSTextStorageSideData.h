@@ -12,5 +12,8 @@
     struct _NSRange _lazyFixRange;
 }
 
+- (void)dealloc;
+@property __weak id delegate;
+
 @end
 

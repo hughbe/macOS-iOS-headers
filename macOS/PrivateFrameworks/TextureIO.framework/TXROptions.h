@@ -13,8 +13,10 @@
     BOOL _cubemapFromVerticallyStackedImage;
     unsigned long long _originOperation;
     unsigned long long _colorSpaceHandling;
+    BOOL _multiplyAlpha;
 }
 
+@property(nonatomic) BOOL multiplyAlpha; // @synthesize multiplyAlpha=_multiplyAlpha;
 @property(nonatomic) unsigned long long colorSpaceHandling; // @synthesize colorSpaceHandling=_colorSpaceHandling;
 @property(nonatomic) unsigned long long originOperation; // @synthesize originOperation=_originOperation;
 @property(nonatomic) BOOL cubemapFromVerticallyStackedImage; // @synthesize cubemapFromVerticallyStackedImage=_cubemapFromVerticallyStackedImage;

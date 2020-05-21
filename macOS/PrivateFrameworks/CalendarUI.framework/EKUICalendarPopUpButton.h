@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSPopUpButton.h"
+#import <CalendarUI/CalUICustomAppearancePopUpButton.h>
 
 @class EKCalendar, EKCalendarItem, EKUIGadget, EKViewController, NSEvent, NSMutableArray;
 
-@interface EKUICalendarPopUpButton : NSPopUpButton
+@interface EKUICalendarPopUpButton : CalUICustomAppearancePopUpButton
 {
     BOOL _showCalendarName;
     BOOL _showCalendarSwatch;
@@ -26,7 +26,9 @@
     unsigned long long _entityType;
 }
 
++ (id)_calendarForItem:(id)arg1;
 + (Class)cellClass;
+- (void).cxx_destruct;
 @property unsigned long long entityType; // @synthesize entityType=_entityType;
 @property __weak EKViewController *viewController; // @synthesize viewController=_viewController;
 @property(retain) NSEvent *delayedEvent; // @synthesize delayedEvent=_delayedEvent;
@@ -41,7 +43,6 @@
 @property BOOL showCalendarSwatch; // @synthesize showCalendarSwatch=_showCalendarSwatch;
 @property BOOL showCalendarName; // @synthesize showCalendarName=_showCalendarName;
 @property(nonatomic) __weak EKCalendarItem *item; // @synthesize item=_item;
-- (void).cxx_destruct;
 - (void)updateIcon;
 - (BOOL)isTruncated;
 - (void)mouseDown:(id)arg1;
@@ -50,6 +51,7 @@
 - (void)_populatePopUpFromCache;
 - (void)_populatePopUp;
 - (void)reloadPopup;
+- (BOOL)_calendarMatchesCurrentItemCalendar:(id)arg1;
 - (void)_cacheValidCalendars;
 - (void)_cacheCalendar:(id)arg1;
 - (void)_cacheSource:(id)arg1 withCalendars:(id)arg2;

@@ -8,7 +8,7 @@
 
 #import "PKPackageSource.h"
 
-@class NSArray;
+@class NSArray, NSDictionary, NSString, NSURL, PKDistribution, PKDistributionContainer;
 
 @interface PKProduct : NSObject <PKPackageSource>
 {
@@ -16,6 +16,8 @@
     int _evaluatedTrustLevel;
     NSArray *_certificateChain;
     struct __SecTrust *_trustRef;
+    BOOL _allowExpiredCerts;
+    BOOL _allowExpiredRoots;
 }
 
 + (BOOL)canInitWithURL:(id)arg1;
@@ -23,20 +25,22 @@
 + (id)_allProductClasses;
 + (void)_setAllowsFolderArchives:(BOOL)arg1;
 + (BOOL)_allowsFolderArchives;
-- (id)allPackageReferences;
+@property(readonly) NSArray *allPackageReferences;
 - (id)resourceDataForKey:(id)arg1 returningMIMEType:(id *)arg2 returningUTI:(id *)arg3;
 - (id)localizedStringForKey:(id)arg1 value:(id)arg2;
-- (id)stringsDictionary;
-- (id)distributionContainer;
-- (id)distribution;
+@property(readonly) NSDictionary *stringsDictionary;
+@property(readonly) PKDistributionContainer *distributionContainer;
+@property(readonly) PKDistribution *distribution;
+- (void)setAllowExpiredRoots:(BOOL)arg1;
+- (void)setAllowExpiredCertificates:(BOOL)arg1;
 - (int)trustLevelReturningTrustRef:(struct __SecTrust **)arg1;
 - (int)trustLevelReturningCertificateChain:(id *)arg1;
 - (BOOL)evaluateTrustReturningError:(id *)arg1;
 - (void)setMinimumRequiredTrustLevel:(int)arg1;
-- (id)productVersion;
-- (id)productIdentifier;
-- (id)productType;
-- (id)URL;
+@property(readonly) NSString *productVersion;
+@property(readonly) NSString *productIdentifier;
+@property(readonly) NSString *productType;
+@property(readonly) NSURL *URL;
 - (void)dealloc;
 - (id)_archiveForTrustEvaluation;
 - (id)initByLoadingProductAtURL:(id)arg1 error:(id *)arg2;

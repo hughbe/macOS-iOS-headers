@@ -32,9 +32,8 @@
 - (void)stopRecording;
 - (void)startRecordingToOutputFileURL:(id)arg1 recordingDelegate:(id)arg2;
 @property(readonly, nonatomic) NSURL *outputFileURL;
-- (void)finalize;
 - (void)dealloc;
-- (id)init;
+- (id)initSubclass;
 
 @end
 

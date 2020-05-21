@@ -8,10 +8,17 @@
 
 @interface ACSHActionAdjust : ACSHAction
 {
-    int _adjustOption;
+    unsigned long long _adjustOption;
+    double _adjustValue;
 }
 
-@property(nonatomic) int adjustOption; // @synthesize adjustOption=_adjustOption;
+@property(nonatomic) double adjustValue; // @synthesize adjustValue=_adjustValue;
+@property(nonatomic) unsigned long long adjustOption; // @synthesize adjustOption=_adjustOption;
+- (id)paramDictionaryForSaving;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
+- (void)_configureWithPlistDictionary:(id)arg1;
+- (id)init;
 
 @end
 

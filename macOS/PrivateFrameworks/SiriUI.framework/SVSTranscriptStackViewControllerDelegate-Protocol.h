@@ -31,11 +31,13 @@
 - (void)transcriptStackViewController:(SVSTranscriptStackViewController *)arg1 didPresentConversationItemsWithIdentifiers:(NSArray *)arg2;
 - (void)transcriptStackViewControllerDidChangeContentHeight:(SVSTranscriptStackViewController *)arg1;
 - (void)transcriptStackViewController:(SVSTranscriptStackViewController *)arg1 didHideVibrantView:(NSView *)arg2;
-- (void)transcriptStackViewControllerDidShowSuggestions:(SVSTranscriptStackViewController *)arg1;
-- (BOOL)transcriptStackViewControllerWillShowSuggestions:(SVSTranscriptStackViewController *)arg1;
+- (void)transcriptStackViewControllerDidShowHelp:(SVSTranscriptStackViewController *)arg1;
+- (BOOL)transcriptStackViewControllerCanShowHelp:(SVSTranscriptStackViewController *)arg1;
+- (void)showHelpForTranscriptStackViewController:(SVSTranscriptStackViewController *)arg1;
 - (long long)initialDisplayTypeForTranscriptStackViewController:(SVSTranscriptStackViewController *)arg1;
 - (void)transcriptStackViewControllerDidExitSiriland:(SVSTranscriptStackViewController *)arg1;
 - (void)transcriptStackViewControllerWillEnterSiriland:(SVSTranscriptStackViewController *)arg1;
+- (double)windowWidthForTranscriptStackViewController:(SVSTranscriptStackViewController *)arg1;
 - (double)contentWidthForTranscriptStackViewController:(SVSTranscriptStackViewController *)arg1;
 @end
 

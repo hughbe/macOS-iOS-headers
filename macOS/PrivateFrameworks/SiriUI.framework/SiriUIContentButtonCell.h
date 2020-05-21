@@ -9,8 +9,11 @@
 __attribute__((visibility("hidden")))
 @interface SiriUIContentButtonCell : NSButtonCell
 {
+    struct NSEdgeInsets _contentEdgeInsets;
 }
 
+@property struct NSEdgeInsets contentEdgeInsets; // @synthesize contentEdgeInsets=_contentEdgeInsets;
+- (void)layoutLayerWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (BOOL)_allowsVibrancyForTitleInView:(id)arg1;
 
 @end

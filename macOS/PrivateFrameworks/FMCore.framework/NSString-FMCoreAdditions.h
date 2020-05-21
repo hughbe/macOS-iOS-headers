@@ -12,6 +12,7 @@
 - (id)decodeFromPercentEscape;
 - (id)encodeToPercentEscape;
 - (id)legacyAllowedCharacterSet;
+- (id)fm_stringByReplacingNonBreakingSpaces;
 - (id)fm_decodeHexString;
 - (BOOL)fm_isNumeric;
 - (id)fm_decodeFromPercentEscape;

@@ -6,7 +6,7 @@
 
 #import "BRQueryItem.h"
 
-@class BRCAppLibrary, BRCItemID, BRFileObjectID, NSMutableSet, NSSet, NSString, NSURL;
+@class BRCAppLibrary, BRCItemGlobalID, BRFileObjectID, NSMutableSet, NSSet, NSString, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface BRCNotification : BRQueryItem
@@ -14,33 +14,35 @@ __attribute__((visibility("hidden")))
     BOOL _isInDocumentScope;
     BOOL _isInDataScope;
     BOOL _isInTrashScope;
-    BRCItemID *_itemID;
-    BRCItemID *_parentID;
+    BRCItemGlobalID *_itemGlobalID;
+    BRCItemGlobalID *_parentGlobalID;
     unsigned long long _oldParentFileID;
-    unsigned long long _parentFileID;
-    NSSet *_parentIDs;
+    NSSet *_parentGlobalIDs;
     NSMutableSet *_appLibraryIDsWithReverseAliases;
     BRCAppLibrary *_appLibrary;
+    NSString *_oldAppLibraryID;
     NSString *_aliasSourceAppLibraryID;
     NSString *_unsaltedBookmarkData;
 }
 
 + (id)notificationWithAliasItem:(id)arg1 targetItemNotification:(id)arg2;
++ (id)notificationFromItem:(id)arg1 relpath:(id)arg2;
 + (id)notificationGatheredFromItem:(id)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL isInTrashScope; // @synthesize isInTrashScope=_isInTrashScope;
 @property(readonly, nonatomic) BOOL isInDataScope; // @synthesize isInDataScope=_isInDataScope;
 @property(readonly, nonatomic) BOOL isInDocumentScope; // @synthesize isInDocumentScope=_isInDocumentScope;
 @property(retain, nonatomic) NSString *unsaltedBookmarkData; // @synthesize unsaltedBookmarkData=_unsaltedBookmarkData;
 @property(readonly, nonatomic) NSString *aliasSourceAppLibraryID; // @synthesize aliasSourceAppLibraryID=_aliasSourceAppLibraryID;
+@property(readonly, nonatomic) NSString *oldAppLibraryID; // @synthesize oldAppLibraryID=_oldAppLibraryID;
 @property(readonly, nonatomic) BRCAppLibrary *appLibrary; // @synthesize appLibrary=_appLibrary;
 @property(retain, nonatomic) NSMutableSet *appLibraryIDsWithReverseAliases; // @synthesize appLibraryIDsWithReverseAliases=_appLibraryIDsWithReverseAliases;
-@property(retain, nonatomic) NSSet *parentIDs; // @synthesize parentIDs=_parentIDs;
-@property(readonly, nonatomic) unsigned long long parentFileID; // @synthesize parentFileID=_parentFileID;
+@property(retain, nonatomic) NSSet *parentGlobalIDs; // @synthesize parentGlobalIDs=_parentGlobalIDs;
 @property(readonly, nonatomic) unsigned long long oldParentFileID; // @synthesize oldParentFileID=_oldParentFileID;
-@property(readonly, nonatomic) BRCItemID *parentID; // @synthesize parentID=_parentID;
-@property(readonly, nonatomic) BRCItemID *itemID; // @synthesize itemID=_itemID;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) BRCItemGlobalID *parentGlobalID; // @synthesize parentGlobalID=_parentGlobalID;
+@property(readonly, nonatomic) BRCItemGlobalID *itemGlobalID; // @synthesize itemGlobalID=_itemGlobalID;
+@property(readonly, nonatomic) BOOL isDocumentsFolder;
 - (void)generateLogicalExtension:(id)arg1 physicalExtension:(id)arg2;
 - (void)merge:(id)arg1;
 - (BOOL)canMerge:(id)arg1;

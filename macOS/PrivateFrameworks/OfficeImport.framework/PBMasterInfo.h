@@ -16,18 +16,19 @@ __attribute__((visibility("hidden")))
     unsigned int mMainPbRef;
     unsigned int mTitlePbRef;
     NSDictionary *mLayoutMap;
-    ChVector_b45fc7a7 *mSrcTextStyling;
+    ChVector_7fbb5a88 *mSrcTextStyling;
     unsigned int mXmlMainMasterId;
     NSMutableDictionary *mXmlLayoutMap;
     BOOL mUseXmlBlobs;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL useXmlBlobs; // @synthesize useXmlBlobs=mUseXmlBlobs;
 @property(nonatomic) unsigned int xmlMainMasterId; // @synthesize xmlMainMasterId=mXmlMainMasterId;
 - (id)uniqueXmlSlideLayout;
 - (id)slideLayoutForXmlLayoutId:(unsigned short)arg1;
 - (void)setSlideLayout:(id)arg1 forXmlLayoutId:(unsigned short)arg2;
-- (ChVector_b45fc7a7 *)sourceTextStyling;
+- (ChVector_7fbb5a88 *)sourceTextStyling;
 - (id)slideLayoutForSlideHolder:(id)arg1;
 - (void)cacheSlideLayouts;
 - (id)allTargetLayoutTypes;

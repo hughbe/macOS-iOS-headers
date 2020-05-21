@@ -6,26 +6,27 @@
 
 #import <Safari/VisualTabPickerShadowTileView.h>
 
-@class NSImageView, NSView;
+@class BackgroundColorView, ConfigurableVibrancyImageView;
 
 __attribute__((visibility("hidden")))
 @interface VisualTabPickerNewTabView : VisualTabPickerShadowTileView
 {
-    NSView *_contentView;
-    NSImageView *_imageView;
+    BackgroundColorView *_contentView;
+    ConfigurableVibrancyImageView *_imageView;
     id <VisualTabPickerNewTabViewDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <VisualTabPickerNewTabViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)accessibilityPerformAction:(id)arg1;
-- (id)accessibilityActionNames;
-- (id)accessibilityAttributeValue:(id)arg1;
+@property(nonatomic) __weak id <VisualTabPickerNewTabViewDelegate> delegate; // @synthesize delegate=_delegate;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityIdentifier;
+- (id)accessibilityLabel;
+- (id)accessibilityRole;
 - (void)_setUpSubviews;
 - (void)animateToolbarImage:(id)arg1 height:(double)arg2 gridAnimation:(long long)arg3;
 - (void)animateSidebarImage:(id)arg1 width:(double)arg2 gridAnimation:(long long)arg3;
 - (void)magnifyWithEvent:(id)arg1;
-- (void)mouseDown:(id)arg1;
+- (void)mouseUp:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

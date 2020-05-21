@@ -7,6 +7,6 @@
 #import "NSMutableURLRequest.h"
 
 @interface NSMutableURLRequest (CaptiveNetworkPlugin)
-- (void)bindToCommand:(struct __CNPluginCommand *)arg1;
+-     // Error parsing type: v24@0:8^{__CNPluginCommand={__CFRuntimeBase=QAQ}^{__CFDictionary}I}16, name: bindToCommand:
 @end
 

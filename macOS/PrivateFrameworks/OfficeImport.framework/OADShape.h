@@ -6,15 +6,18 @@
 
 #import <OfficeImport/OADGraphic.h>
 
-@class OADShapeGeometry, OADTextBody;
+@class OADOrientedBounds, OADShapeGeometry, OADTextBody;
 
 __attribute__((visibility("hidden")))
 @interface OADShape : OADGraphic
 {
     OADShapeGeometry *mGeometry;
     OADTextBody *mTextBody;
+    OADOrientedBounds *mTextOrientedBounds;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) OADOrientedBounds *textOrientedBounds; // @synthesize textOrientedBounds=mTextOrientedBounds;
 - (id)description;
 - (BOOL)isTextBox;
 - (void)createPresetGeometryWithShapeType:(int)arg1;
@@ -29,7 +32,6 @@ __attribute__((visibility("hidden")))
 - (int)type;
 - (id)geometry;
 - (void)setGeometry:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

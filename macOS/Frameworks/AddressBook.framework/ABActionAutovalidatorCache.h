@@ -8,12 +8,13 @@
 
 @class NSMapTable;
 
-__attribute__((visibility("hidden")))
 @interface ABActionAutovalidatorCache : NSObject
 {
     NSMapTable *_entries;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMapTable *entries; // @synthesize entries=_entries;
 - (id)description;
 - (void)setEntry:(id)arg1 forAction:(SEL)arg2;
 - (id)entryForAction:(SEL)arg1;
@@ -21,7 +22,6 @@ __attribute__((visibility("hidden")))
 - (id)setAlwaysValidlEntryForAction:(SEL)arg1;
 - (id)setMenuEntryWithSelector:(SEL)arg1 forAction:(SEL)arg2;
 - (id)setSimpleSelector:(SEL)arg1 forAction:(SEL)arg2;
-- (void)dealloc;
 - (id)init;
 
 @end

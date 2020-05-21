@@ -7,6 +7,8 @@
 #import "NSColor.h"
 
 @interface NSColor (CalendarDrawAdditions)
++ (id)calColorFromString:(id)arg1;
++ (id)_adjustColor:(id)arg1 withCurrentLuminance:(double)arg2 toLuminance:(double)arg3 blendFraction:(double)arg4;
 - (id)standardRGBColor;
 - (BOOL)cd_isGreenOrYellow;
 - (id)cd_overlayWithColor:(id)arg1;
@@ -14,6 +16,13 @@
 - (id)cd_soverWithColor:(id)arg1;
 - (double)cd_differenceFromColor:(id)arg1;
 - (double)cd_luminance;
+- (id)calendarForegroundColorForDarkBackground;
 - (id)calendarForegroundColor;
+- (id)calStringRepresentation;
+@property(readonly) double cal_luminance;
+@property(readonly) BOOL cal_isLightColor;
+@property(readonly) BOOL cal_isDarkColor;
+- (id)cal_adjustedToAtMostLuminance:(double)arg1;
+- (id)cal_adjustedToAtLeastLuminance:(double)arg1;
 @end
 

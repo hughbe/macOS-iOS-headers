@@ -22,6 +22,7 @@ __attribute__((visibility("hidden")))
     int mInheritedTextStylePlaceholderType;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) int inheritedTextStylePlaceholderType; // @synthesize inheritedTextStylePlaceholderType=mInheritedTextStylePlaceholderType;
 @property(readonly, copy) NSString *description;
 - (void)setHasOleChart:(BOOL)arg1;
@@ -38,7 +39,6 @@ __attribute__((visibility("hidden")))
 - (id)imageRecolorInfo;
 - (struct CGRect)bounds;
 - (BOOL)hasBounds;
-- (void)dealloc;
 - (id)init;
 
 // Remaining properties

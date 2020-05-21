@@ -14,18 +14,15 @@
     NSString *_pluginType;
 }
 
++ (id)copyIdentifiersOfInstalledVPNApps;
 + (void)removePreferencesForPluginType:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly) NSString *pluginType; // @synthesize pluginType=_pluginType;
 @property struct __SCPreferences *prefs; // @synthesize prefs=_prefs;
-- (void).cxx_destruct;
 - (struct __CFDictionary *)copyPersistentDataOfType:(long long)arg1 configurationIdentifier:(id)arg2;
 - (BOOL)setPreferences:(struct __CFDictionary *)arg1 ofType:(long long)arg2 configurationIdentifier:(id)arg3;
-- (BOOL)isFlagSet:(struct __CFString *)arg1;
 - (id)copyAppURL;
-- (void)setPluginTypeEnabled:(BOOL)arg1 appURLData:(id)arg2;
-- (BOOL)isPluginTypeEnabled;
 - (void)dealloc;
-- (void)setAuthorization:(struct AuthorizationOpaqueRef *)arg1;
 - (id)initWithPluginType:(id)arg1;
 
 @end

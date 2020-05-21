@@ -13,18 +13,16 @@
 @interface SMMigrateSystemInfo : SMMigrationEngineStep <SMCopyEngineDelegate>
 {
     BOOL _onlyUpdateSystemSettings;
-    BOOL _migratedKeychain;
     SMConfMigrator *_confMigrator;
     NSArray *_settingsCopiers;
     SMCopyEngine *_fileCopyEngine;
 }
 
+- (void).cxx_destruct;
 @property(retain) SMCopyEngine *fileCopyEngine; // @synthesize fileCopyEngine=_fileCopyEngine;
 @property(retain) NSArray *settingsCopiers; // @synthesize settingsCopiers=_settingsCopiers;
-@property BOOL migratedKeychain; // @synthesize migratedKeychain=_migratedKeychain;
 @property(retain) SMConfMigrator *confMigrator; // @synthesize confMigrator=_confMigrator;
 @property BOOL onlyUpdateSystemSettings; // @synthesize onlyUpdateSystemSettings=_onlyUpdateSystemSettings;
-- (void).cxx_destruct;
 - (void)estimatedTimeRemainingChanged:(double)arg1;
 - (void)transferRateChanged:(double)arg1;
 - (void)copierFailed:(id)arg1 error:(id)arg2;
@@ -32,8 +30,6 @@
 - (void)prepareForServerMigration;
 - (void)finishKerberosSetup;
 - (void)setupKerberos;
-- (BOOL)processKeyChainMigration;
-- (BOOL)copySystemKeychain;
 - (BOOL)migrateNetworkSettings;
 - (void)migrateGlobalPreferences;
 - (BOOL)copySystemSettings;
@@ -44,6 +40,7 @@
 - (BOOL)copyRemoteManagementSettings;
 - (BOOL)isHostconfigServiceEnabledOnSourceSystem:(id)arg1;
 - (BOOL)copyTimeZone;
+- (void)repairDatavaultPermissions;
 - (void)copyNetworkSettings;
 - (void)copyMachineSettings;
 - (id)postProcess;

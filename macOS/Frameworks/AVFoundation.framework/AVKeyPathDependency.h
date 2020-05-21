@@ -8,6 +8,7 @@
 
 @class AVKVODispatcher, AVTwoPartKeyPath, AVWeakReference, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVKeyPathDependency : NSObject
 {
     NSObject<OS_dispatch_queue> *_subObjectRegistrationQueue;
@@ -24,7 +25,6 @@
 - (void)_startObservingSecondLevelPropertyOnNewCurrentValueForTopLevelDependencyProperty:(id)arg1;
 - (void)initializationIsCompleteForObject:(id)arg1;
 - (id)description;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithObject:(id)arg1 thatHasPropertyWithKey:(id)arg2 whoseValueDependsOnValueAtKeyPath:(id)arg3;
 

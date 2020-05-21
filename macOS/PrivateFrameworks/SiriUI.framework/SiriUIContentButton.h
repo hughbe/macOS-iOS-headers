@@ -13,6 +13,7 @@
     BOOL _isRenderingImageTemplate;
     NSColor *_defaultColorForTemplate;
     NSColor *_highlightColorForTemplate;
+    NSColor *_textColor;
 }
 
 + (Class)cellClass;
@@ -22,7 +23,9 @@
 + (id)buttonWithLightWeightFont;
 + (id)button;
 - (void).cxx_destruct;
-- (void)updateLayer;
+@property(retain, nonatomic) NSColor *textColor; // @synthesize textColor=_textColor;
+- (id)_siriUIContentButtonCell;
+- (void)setContentInsets:(struct NSEdgeInsets)arg1;
 - (BOOL)wantsUpdateLayer;
 - (void)_updateTintColor;
 - (void)setHighlightColorForTemplate:(id)arg1;

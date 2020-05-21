@@ -11,17 +11,27 @@
 }
 
 + (id)contentInfoTextWithAttachmentCount:(unsigned long long)arg1;
+- (BOOL)canConvertToHTMLForSharing;
+- (id)attributesForSharingHTMLWithTagName:(id *)arg1 textContent:(id *)arg2;
+- (struct CGAffineTransform)previewImageOrientationTransform;
+- (BOOL)supportsQuickLook;
+- (struct CGSize)sizeByCroppingSize:(struct CGSize)arg1;
 - (void)updateAttachmentSize;
+- (void)addLocation;
 - (void)updateFileBasedAttributes;
-- (void)generatePreviews;
-- (BOOL)needToGeneratePreviews;
-- (CDUnknownBlockType)genericBrickThumbnailCreator;
-- (CDUnknownBlockType)genericListThumbnailCreator;
+- (BOOL)shouldCropImage;
+- (BOOL)supportsImageClassification;
+- (BOOL)supportsOCR;
+- (BOOL)needsFullSizePreview;
+- (id)generateHardLinkURLIfNecessaryForURL:(id)arg1;
+- (BOOL)canSaveURL;
+- (id)saveURL;
 - (BOOL)canMarkup;
 - (BOOL)showThumbnailInNoteList;
 - (BOOL)hasThumbnailImage;
 - (BOOL)hasPreviews;
-- (id)activityItems;
+- (id)previewItemTitle;
+- (id)previewImageTypeUTI;
 
 @end
 

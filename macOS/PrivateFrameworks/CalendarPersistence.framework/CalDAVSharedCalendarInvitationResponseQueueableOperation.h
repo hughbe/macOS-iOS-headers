@@ -18,6 +18,7 @@
     NSURL *_calendarHomeURL;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSURL *calendarHomeURL; // @synthesize calendarHomeURL=_calendarHomeURL;
 @property(retain) NSData *invitation; // @synthesize invitation=_invitation;
 @property(retain) CalDAVReplyToSharedCalendarInvitationTaskGroup *taskGroup; // @synthesize taskGroup=_taskGroup;
@@ -25,7 +26,6 @@
 - (id)_originalManagedMessageInNewContext;
 - (void)useCoreDAV;
 - (void)performOperation;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 forSession:(id)arg2;
 
 // Remaining properties

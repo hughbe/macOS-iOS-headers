@@ -8,29 +8,32 @@
 
 #import "NSAnimationDelegate.h"
 
-@class Animation, Banner, NSMapTable, NSStackView, NSString;
+@class Animation, Banner, NSLayoutConstraint, NSMapTable, NSStackView, NSString;
 
 __attribute__((visibility("hidden")))
 @interface BannerContainerView : NSView <NSAnimationDelegate>
 {
+    NSLayoutConstraint *_topAnchorContentLayoutGuideConstraint;
     NSStackView *_bannerStackView;
     NSMapTable *_clipViewsToConstraints;
     Animation *_animation;
     BOOL _animatingIntoPlace;
     Banner *_bannerBeingAnimated;
-    struct SearchableWebContentViewController *_contentViewController;
+    id <BannerContainerViewDelegate> _delegate;
 }
 
-@property(readonly, nonatomic) struct SearchableWebContentViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <BannerContainerViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)_moveBannerIntoPlace:(id)arg1 bannerIsAppearing:(BOOL)arg2 withAnimation:(BOOL)arg3;
+@property(readonly, nonatomic, getter=isAnimating) BOOL animating;
 - (void)uninstallBanner:(id)arg1 withAnimation:(BOOL)arg2;
 - (void)installBanner:(id)arg1 withAnimation:(BOOL)arg2;
 - (void)animationDidStop:(id)arg1;
 - (void)animationDidEnd:(id)arg1;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (void)updateConstraints;
+- (void)viewWillMoveToWindow:(id)arg1;
 - (void)invalidate;
-- (id)initWithFrame:(struct CGRect)arg1 contentViewController:(struct SearchableWebContentViewController *)arg2;
+- (id)initWithFrame:(struct CGRect)arg1;
 - (void)removeFromSuperview;
 
 // Remaining properties

@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
     NSPressGestureRecognizer *_longMousePressRecognizer;
     NSMenu *_menu;
     id _editingTerminationEventMonitor;
+    BOOL _redrawsTextContentOnlyOnNeedsDisplay;
     BOOL _allowsEditing;
     id <GridCellViewDelegate> _delegate;
     GridViewImageView *_imageView;
@@ -34,13 +35,15 @@ __attribute__((visibility("hidden")))
 + (double)heightExceedingWidth;
 + (struct CGSize)minimumCellViewSize;
 + (struct CGSize)maximumCellViewSize;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL allowsEditing; // @synthesize allowsEditing=_allowsEditing;
 @property(retain, nonatomic) NSView *accessoryView; // @synthesize accessoryView=_accessoryView;
+@property(nonatomic) BOOL redrawsTextContentOnlyOnNeedsDisplay; // @synthesize redrawsTextContentOnlyOnNeedsDisplay=_redrawsTextContentOnlyOnNeedsDisplay;
 @property(readonly, nonatomic) NSTextField *textField; // @synthesize textField=_textField;
 @property(readonly, nonatomic) GridViewImageView *imageView; // @synthesize imageView=_imageView;
 @property(nonatomic) __weak id <GridCellViewDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)_didRecognizeImmediateAction:(id)arg1;
+- (BOOL)accessibilityPerformShowMenu;
 - (BOOL)accessibilityPerformPress;
 - (id)accessibilityRoleDescription;
 - (id)accessibilityChildren;
@@ -55,7 +58,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL drawsImageBorder;
 @property(nonatomic) long long highlightState;
 - (void)controlTextDidEndEditing:(id)arg1;
-- (void)_hideMenus;
 - (void)_endEditing;
 - (void)_unregisterForEditingTermination;
 - (void)_registerForEditingTermination;
@@ -68,6 +70,7 @@ __attribute__((visibility("hidden")))
 - (id)_gridView;
 - (void)_activate;
 - (void)keyDown:(id)arg1;
+- (void)_hideMenus;
 - (id)menuForEvent:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)setHidden:(BOOL)arg1;

@@ -6,32 +6,56 @@
 
 #import <WebInspector/RWITarget.h>
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
+@class NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
 @interface RWIDevice : RWITarget
 {
-    id <RWIDeviceDelegate> _deviceDelegate;
+    NSMutableArray *_mobileDeviceConnections;
+    NSObject<OS_dispatch_queue> *_deviceAccessQueue;
+    NSObject<OS_dispatch_source> *_deviceAccessQueuePairingTimer;
+    NSString *_loggingIdentifier;
     BOOL _hasBuildVersion;
     BOOL _attemptedPair;
     BOOL _supportsAutoAttach;
+    BOOL _supportsWirelessConnections;
+    BOOL _wirelessEnabled;
+    BOOL _passcodeLocked;
+    long long _deviceClass;
+    id <RWIDeviceDelegate> _deviceDelegate;
     long long _pairingProgress;
-    struct _AMDevice *_device;
-    NSObject<OS_dispatch_queue> *_deviceAccessQueue;
-    NSObject<OS_dispatch_source> *_deviceAccessQueuePairingTimer;
 }
 
++ (void)initialize;
+- (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSArray *mobileDeviceConnections; // @synthesize mobileDeviceConnections=_mobileDeviceConnections;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *deviceAccessQueue; // @synthesize deviceAccessQueue=_deviceAccessQueue;
-@property(readonly, nonatomic) struct _AMDevice *device; // @synthesize device=_device;
+@property(readonly, nonatomic, getter=isPasscodeLocked) BOOL passcodeLocked; // @synthesize passcodeLocked=_passcodeLocked;
+@property(readonly, nonatomic, getter=isWirelessEnabled) BOOL wirelessEnabled; // @synthesize wirelessEnabled=_wirelessEnabled;
+@property(readonly, nonatomic) BOOL supportsWirelessConnections; // @synthesize supportsWirelessConnections=_supportsWirelessConnections;
 @property(readonly, nonatomic) long long pairingProgress; // @synthesize pairingProgress=_pairingProgress;
 @property(nonatomic) __weak id <RWIDeviceDelegate> deviceDelegate; // @synthesize deviceDelegate=_deviceDelegate;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) long long deviceClass; // @synthesize deviceClass=_deviceClass;
 - (void)_queueAttemptingPairWithProgressCallback:(CDUnknownBlockType)arg1;
-- (void)_fetchMobileDeviceInformationFromDevice;
-- (void)connectionChangedConnectivity;
-- (void)setSimulatorBuildVersion:(id)arg1 productVersion:(id)arg2 name:(id)arg3;
-- (void)setDeviceName:(id)arg1 udid:(id)arg2 buildVersion:(id)arg3 productVersion:(id)arg4 paired:(long long)arg5 supported:(BOOL)arg6 supportsAutoAttach:(BOOL)arg7;
+- (void)_fetchDeviceInformationFromMobileDeviceConnection:(id)arg1;
+- (void)setPasscodeLocked:(BOOL)arg1;
+- (void)webInspectorServiceEnabled;
+- (void)wirelessCapabilitiesChanged;
+- (void)lockStatusChanged;
+- (void)deviceNameChanged;
+- (void)disableWireless;
+- (void)enableWireless;
+@property(readonly, nonatomic) BOOL hasWirelessConnection;
+@property(readonly, nonatomic) BOOL hasWiredConnection;
+@property(readonly, nonatomic, getter=isConnected) BOOL connected;
+- (void)connectionLost;
+- (void)connectionEstablished;
+- (void)removeMobileDeviceConnection:(id)arg1;
+- (void)addMobileDeviceConnection:(id)arg1;
+- (void)setDeviceName:(id)arg1 udid:(id)arg2 buildVersion:(id)arg3 productVersion:(id)arg4 deviceClass:(long long)arg5 paired:(long long)arg6 wirelessEnabled:(BOOL)arg7 supported:(BOOL)arg8 supportsAutoAttach:(BOOL)arg9;
 - (void)markAsHavingBuildVersion;
-- (BOOL)_paired;
+- (BOOL)paired;
+- (id)loggingIdentifier;
+- (BOOL)supportsWebDriver;
 - (BOOL)supportsAutomaticInspection;
 - (BOOL)isSimulator;
 - (BOOL)isDevice;
@@ -39,9 +63,9 @@
 - (BOOL)isReady;
 - (BOOL)hadConnectionError;
 - (void)pair;
-- (void)dealloc;
-- (id)initWithUDID:(id)arg1 name:(id)arg2 manager:(id)arg3;
-- (id)initWithDevice:(struct _AMDevice *)arg1 manager:(id)arg2;
+@property(readonly, nonatomic, getter=isPaired) BOOL paired;
+- (id)description;
+- (id)initWithMobileDeviceConnection:(id)arg1 manager:(id)arg2;
 
 @end
 

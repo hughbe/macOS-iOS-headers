@@ -18,6 +18,7 @@
     NSError *_error;
 }
 
+- (void).cxx_destruct;
 - (void)abortOperation;
 - (id)error;
 - (void)setError:(id)arg1;
@@ -32,7 +33,6 @@
 - (long long)operationProgress;
 - (id)publisher;
 - (void)setDelegate:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (void)setEtag:(id)arg1;
 - (void)setFirstPublish:(BOOL)arg1;

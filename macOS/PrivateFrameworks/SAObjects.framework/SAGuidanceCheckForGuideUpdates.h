@@ -16,6 +16,7 @@
 
 + (id)checkForGuideUpdatesWithDictionary:(id)arg1 context:(id)arg2;
 + (id)checkForGuideUpdates;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *supportedFeatures;
 @property(copy, nonatomic) NSNumber *currentGuideTag;
 - (id)encodedClassName;

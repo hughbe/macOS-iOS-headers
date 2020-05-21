@@ -13,8 +13,10 @@
     unsigned int _version;
     int _batteryLevel;
     BOOL _dockState;
+    BOOL _isSiriActive;
 }
 
+@property BOOL isSiriActive; // @synthesize isSiriActive=_isSiriActive;
 @property BOOL dockState; // @synthesize dockState=_dockState;
 @property int batteryLevel; // @synthesize batteryLevel=_batteryLevel;
 @property unsigned int version; // @synthesize version=_version;

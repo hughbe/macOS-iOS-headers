@@ -12,6 +12,9 @@
 {
     SCNNode *_target;
     BOOL _gimbalLockEnabled;
+    struct SCNVector3 _targetOffset;
+    struct SCNVector3 _upVector;
+    struct SCNVector3 _localFront;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -21,6 +24,11 @@
 - (void)_customDecodingOfSCNLookAtConstraint:(id)arg1;
 - (void)_customEncodingOfSCNLookAtConstraint:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+@property(nonatomic) struct SCNVector3 localFront;
+- (void)setUpVector:(struct SCNVector3)arg1;
+- (struct SCNVector3)upVector;
+@property(nonatomic) struct SCNVector3 worldUp;
+@property(nonatomic) struct SCNVector3 targetOffset;
 @property(retain, nonatomic) SCNNode *target;
 @property(nonatomic) BOOL gimbalLockEnabled;
 - (void)dealloc;

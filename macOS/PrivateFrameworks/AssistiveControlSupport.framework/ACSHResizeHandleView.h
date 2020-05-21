@@ -8,18 +8,18 @@
 
 @interface ACSHResizeHandleView : ACSHView
 {
-    int _resizeType;
+    long long _resizeType;
 }
 
 + (void)initialize;
 + (double)handleSize;
-@property(readonly, nonatomic) int resizeType; // @synthesize resizeType=_resizeType;
+@property(readonly, nonatomic) long long resizeType; // @synthesize resizeType=_resizeType;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
 - (int)_cursor;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)updateTrackingAreas;
-- (id)initWithSuperFrame:(struct CGRect)arg1 resizeType:(int)arg2;
+- (id)initWithSuperFrame:(struct CGRect)arg1 resizeType:(long long)arg2;
 - (BOOL)isFlipped;
 
 @end

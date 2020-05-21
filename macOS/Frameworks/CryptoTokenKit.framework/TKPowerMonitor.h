@@ -8,6 +8,7 @@
 
 @class NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface TKPowerMonitor : NSObject
 {
     struct IONotificationPort *_portRef;
@@ -18,9 +19,9 @@
 }
 
 + (id)defaultMonitor;
+- (void).cxx_destruct;
 @property BOOL awaken; // @synthesize awaken=_awaken;
 @property unsigned int kernelPort; // @synthesize kernelPort=_kernelPort;
-- (void).cxx_destruct;
 - (id)init;
 
 @end

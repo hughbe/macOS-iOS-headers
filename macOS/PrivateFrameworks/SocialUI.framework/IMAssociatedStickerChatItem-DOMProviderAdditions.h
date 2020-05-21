@@ -9,8 +9,7 @@
 @interface IMAssociatedStickerChatItem (DOMProviderAdditions)
 + (BOOL)hasStickersToPlaceOnVideoElements;
 + (void)videoElementLoadedForGUID:(id)arg1;
-+ (void)transcriptDidLayOut;
-+ (void)stickerFileTransferDidUpdate:(id)arg1;
++ (void)transcriptDidLayOut:(id)arg1;
 + (id)DOMProviderWithController:(id)arg1;
 @end
 

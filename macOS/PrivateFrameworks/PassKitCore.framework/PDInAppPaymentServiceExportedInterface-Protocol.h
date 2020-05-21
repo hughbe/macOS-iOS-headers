@@ -6,13 +6,18 @@
 
 #import "PDXPCServiceExportedInterface.h"
 
-@class NSNumber, NSString, NSXPCListenerEndpoint, PKPaymentRequest;
+@class NSNumber, NSString, NSXPCListenerEndpoint, PKPaymentMerchantSession, PKPaymentRequest;
 
 @protocol PDInAppPaymentServiceExportedInterface <PDXPCServiceExportedInterface>
-- (void)paymentServicesMerchantURL:(void (^)(BOOL, NSURL *))arg1;
-- (void)URLRequestForMerchantStatusCheck:(NSString *)arg1 merchantDomain:(NSString *)arg2 handler:(void (^)(BOOL, NSURLRequest *))arg3;
+- (void)enrollPaymentPassWithUniqueIdentifier:(NSString *)arg1 merchantSession:(PKPaymentMerchantSession *)arg2 completion:(void (^)(BOOL, PKPayment *))arg3;
+- (void)cardDataForMerchantIdentifier:(NSString *)arg1 countryCode:(NSString *)arg2 completion:(void (^)(PKAMPCardRegistrationResponse *))arg3;
+- (void)cardsAvailableForAMPWithCountryCode:(NSString *)arg1 completion:(void (^)(long long))arg2;
+- (void)paymentHardwareStatusWithCompletion:(void (^)(PKPaymentHardwareStatus *))arg1;
+- (void)secureElementStatusWithCompletion:(void (^)(BOOL, unsigned long long))arg1;
+- (void)paymentServicesMerchantURLForAPIType:(unsigned long long)arg1 handler:(void (^)(BOOL, NSURL *))arg2;
+- (void)merchantStatusCheck:(NSString *)arg1 merchantDomain:(NSString *)arg2 sourceApplicationSecondaryIdentifier:(NSString *)arg3 handler:(void (^)(BOOL, NSError *))arg4;
 - (void)retrievePaymentListenerEndpointForHostIdentifier:(NSString *)arg1 handler:(void (^)(BOOL, NSXPCListenerEndpoint *))arg2;
 - (void)registerPaymentListenerEndpoint:(NSXPCListenerEndpoint *)arg1 forHostIdentifier:(NSString *)arg2 handler:(void (^)(BOOL))arg3;
-- (void)presentInAppPaymentInterfaceWithPaymentRequest:(PKPaymentRequest *)arg1 forHostIdentifier:(NSString *)arg2 orientation:(NSNumber *)arg3 handler:(void (^)(BOOL))arg4;
+- (void)presentInAppPaymentInterfaceWithPaymentRequest:(PKPaymentRequest *)arg1 forHostIdentifier:(NSString *)arg2 orientation:(NSNumber *)arg3 handler:(void (^)(BOOL, NSError *))arg4;
 @end
 

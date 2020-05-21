@@ -6,22 +6,23 @@
 
 #import "NSObject.h"
 
-@class AXHAAccessQueue, NSArray;
+#import "AXIDCManagerSecurityDelegate.h"
 
-@interface AXHASecurityHelper : NSObject
+@class NSArray, NSObject<OS_dispatch_queue>, NSString;
+
+@interface AXHASecurityHelper : NSObject <AXIDCManagerSecurityDelegate>
 {
-    struct OpaqueSecIdentityRef *_appleIDIdentity;
+    struct __SecIdentity *_appleIDIdentity;
+    NSObject<OS_dispatch_queue> *_securityQueue;
     NSArray *_certificateDescription;
-    AXHAAccessQueue *_securityQueue;
 }
 
 + (id)sharedHelper;
-@property(retain, nonatomic) AXHAAccessQueue *securityQueue; // @synthesize securityQueue=_securityQueue;
-@property(retain, nonatomic) NSArray *certificateDescription; // @synthesize certificateDescription=_certificateDescription;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *certificateDescription; // @synthesize certificateDescription=_certificateDescription;
 - (BOOL)shouldTrustStream:(id)arg1;
 - (id)certificateChainFromTrust:(struct __SecTrust *)arg1;
-- (id)certificateChainForIdentity:(struct OpaqueSecIdentityRef *)arg1;
+- (id)certificateChainForIdentity:(struct __SecIdentity *)arg1;
 - (id)trustChain;
 - (id)securityTrustChainForStream:(id)arg1;
 - (BOOL)trustChainAvailable;
@@ -29,6 +30,12 @@
 - (void)appleIDDidChange:(id)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

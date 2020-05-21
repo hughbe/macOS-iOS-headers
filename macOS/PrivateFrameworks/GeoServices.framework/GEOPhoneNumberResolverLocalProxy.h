@@ -8,26 +8,20 @@
 
 #import "GEOPhoneNumberResolving.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class GEOPNRReadersCache, NSString;
 
+__attribute__((visibility("hidden")))
 @interface GEOPhoneNumberResolverLocalProxy : NSObject <GEOPhoneNumberResolving>
 {
-    struct _GEOGenericContainer<unsigned short, (anonymous namespace)::PackReader, std::__1::hash<unsigned short>, std::__1::equal_to<unsigned short>, geo::GEOGenericContainerStrongReferenceTag, 64, 2097152, geo::GEOGenericContainerLockingTag, detail::_default_pointer_type> _packReaders;
-    NSMutableDictionary *_mostPreferredLangauges;
-    NSObject<OS_dispatch_queue> *_workQueue;
+    GEOPNRReadersCache *_readersCache;
 }
 
-- (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)stringForLocationNameStrings:(const struct LocationNameStrings *)arg1 countryName:(id)arg2;
+@property(readonly, retain, nonatomic) GEOPNRReadersCache *readersCache; // @synthesize readersCache=_readersCache;
 - (void)resolvePhoneNumbers:(id)arg1 handler:(CDUnknownBlockType)arg2 queue:(id)arg3;
-- (id)_localizedCountryNameForCountryCode:(id)arg1 languageCode:(id)arg2;
-- (id)_localizedCountryNameForCountryCode:(id)arg1;
-- (BOOL)decomposePhoneNumber:(id)arg1 country:(id)arg2 components:(struct PhoneNumberComponents *)arg3;
-- (id)_internationalCodeForCountryCode:(id)arg1;
-- (shared_ptr_ef0c1bec)readerForCountryCode:(unsigned short)arg1;
-- (void)_localeChanged:(id)arg1;
-- (void)dealloc;
+- (id)resolveFullyQualifiedPhoneNumber:(id)arg1 inCountry:(id)arg2 withError:(id *)arg3;
+- (id)resolveUnknownFormatPhoneNumber:(id)arg1 inCountry:(id)arg2 withError:(id *)arg3;
+- (id)resolvedStringForCC:(id)arg1 inCountry:(id)arg2 locationIndex:(unsigned int)arg3 error:(id *)arg4;
 - (id)init;
 
 // Remaining properties

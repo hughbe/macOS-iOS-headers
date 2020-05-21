@@ -6,14 +6,15 @@
 
 #import <Mail/MFAccount.h>
 
+#import "EDReceivingAccount.h"
 #import "MCActivityTarget.h"
 #import "MCMailAccount.h"
 #import "MFMessageDelivererDelegate.h"
 #import "NSFileManagerDelegate.h"
 
-@class MCAuthScheme, MCTaskManager, MFDeliveryAccount, MFMailbox, NSArray, NSError, NSNumber, NSOperationQueue, NSString, NSTimer, NSURL;
+@class ACAccount, ECAuthScheme, MCTaskManager, MFDeliveryAccount, MFMailbox, NSArray, NSDate, NSError, NSNumber, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSOperationQueue, NSString, NSURL;
 
-@interface MFMailAccount : MFAccount <MCActivityTarget, MCMailAccount, MFMessageDelivererDelegate, NSFileManagerDelegate>
+@interface MFMailAccount : MFAccount <EDReceivingAccount, MCActivityTarget, MCMailAccount, MFMessageDelivererDelegate, NSFileManagerDelegate>
 {
     id _mailAccountLock;
     id _mailboxLock;
@@ -29,16 +30,20 @@
     MFMailbox *_archiveMailbox;
     NSError *_connectionError;
     id _cacheChangeLock;
-    NSTimer *_cacheWriteTimer;
+    NSObject<OS_dispatch_queue> *_cacheWriteQueue;
+    NSObject<OS_dispatch_source> *_cacheWriteTimer;
     id _backgroundActivityFlagsLock;
     BOOL _cacheHasBeenRead;
     BOOL _mailboxListInitializationInProgress;
     BOOL _needsChecking;
+    BOOL _isInitializingmailboxList;
+    BOOL _usesMailboxCache;
+    NSURL *_accountDirectory;
     MCTaskManager *_taskManager;
     NSOperationQueue *_backgroundWorkQueue;
-    NSURL *_accountDirectory;
 }
 
++ (id)csAccountTypeString;
 + (id)keyPathsForValuesAffectingURLPersistenceHostname;
 + (id)_mailboxNameForPathComponent:(id)arg1;
 + (id)_pathComponentForMailboxName:(id)arg1;
@@ -47,7 +52,6 @@
 + (void)_enableMailboxListingNotifications:(BOOL)arg1;
 + (void)_disableMailboxListingNotifications;
 + (BOOL)_mailboxListingNotificationAreEnabled;
-+ (void)setAllEmailAddresses:(id)arg1 withFullUserNames:(id)arg2;
 + (BOOL)_mailAccountsAreInitialized;
 + (void)_normalizePathComponentsInMailboxesDictionary:(id)arg1 accountClass:(Class)arg2;
 + (void)normalizeMailboxPathComponentsInAllAccounts;
@@ -94,13 +98,11 @@
 + (id)accountThatReceivedMessage:(id)arg1 matchingEmailAddress:(id *)arg2 fullUserName:(id *)arg3;
 + (id)preferredEmailAddressToReplyToMessage:(id)arg1;
 + (id)addressesThatReceivedMessage:(id)arg1;
-+ (id)accountThatMessageIsFrom:(id)arg1;
-+ (id)accountUsingHeadersFromMessage:(id)arg1;
 + (id)accountForHeaders:(id)arg1 message:(id)arg2;
 + (id)accountContainingEmailAddress:(id)arg1;
 + (id)_accountContainingEmailAddress:(id)arg1 matchingAddress:(id *)arg2 fullUserName:(id *)arg3;
 + (BOOL)isEmailAddressInAnyAccount:(id)arg1;
-+ (id)allEmailAddressesIncludingFullUserName:(BOOL)arg1;
++ (id)allEmailAddressesIncludingDisplayName:(BOOL)arg1;
 + (id)accountWithParentIdentifier:(id)arg1;
 + (id)_accountFromArray:(id)arg1 withIdentifier:(id)arg2;
 + (id)accountWithIdentifier:(id)arg1;
@@ -116,6 +118,7 @@
 + (id)mailAccounts;
 + (id)_systemAccountsWithTypeIdentifiers:(id)arg1 accountStore:(id)arg2;
 + (id)_newAccountsAndExistingAccounts:(id *)arg1 forAccountTypeIdentifiers:(id)arg2;
++ (void)reloadMailAccountsUsesMailboxCache:(BOOL)arg1;
 + (void)reloadMailAccounts;
 + (BOOL)discoverSettingsForIncompleteAccounts;
 + (void)_setupSortedPathsForAccounts:(id)arg1;
@@ -125,10 +128,16 @@
 + (BOOL)accountsHaveBeenInitialized;
 + (void)initialize;
 + (id)accountFetchLog;
-@property(readonly, nonatomic) NSURL *accountDirectory; // @synthesize accountDirectory=_accountDirectory;
-@property(readonly, nonatomic) NSOperationQueue *backgroundWorkQueue; // @synthesize backgroundWorkQueue=_backgroundWorkQueue;
-@property(readonly, nonatomic) MCTaskManager *taskManager; // @synthesize taskManager=_taskManager;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSOperationQueue *backgroundWorkQueue; // @synthesize backgroundWorkQueue=_backgroundWorkQueue;
+@property(nonatomic) BOOL usesMailboxCache; // @synthesize usesMailboxCache=_usesMailboxCache;
+@property(readonly, nonatomic) MCTaskManager *taskManager; // @synthesize taskManager=_taskManager;
+@property(readonly) BOOL isInitializingmailboxList; // @synthesize isInitializingmailboxList=_isInitializingmailboxList;
+@property(readonly, nonatomic) NSURL *accountDirectory; // @synthesize accountDirectory=_accountDirectory;
+@property(readonly) BOOL sourceIsManaged;
+@property(readonly, nonatomic, getter=isManaged) BOOL managed;
+@property(readonly) NSArray *emailAddresses;
+- (id)uniqueID;
 - (id)rootMailboxEvenIfInactive:(BOOL)arg1;
 - (id)_mailboxPathPrefix:(BOOL)arg1;
 - (id)_URLForInfo:(id)arg1;
@@ -138,7 +147,6 @@
 @property(readonly, nonatomic) BOOL shouldLogDeleteActivity;
 - (BOOL)_canEmptyMessagesFromMailbox:(id)arg1;
 - (id)_specialMailboxWithType:(int)arg1 create:(BOOL)arg2;
-- (id)_mailDataclassPropertyForSpecialMailboxType:(int)arg1;
 - (void)_setSpecialMailboxRelativePath:(id)arg1 forType:(int)arg2;
 - (id)_specialMailboxRelativePathForType:(int)arg1;
 - (void)_setSpecialMailbox:(id)arg1 forType:(int)arg2;
@@ -152,20 +160,21 @@
 - (BOOL)_setChildren:(id)arg1 forMailbox:(id)arg2;
 - (id)_insertMailbox:(id)arg1 intoParent:(id)arg2 withDisplayName:(id)arg3;
 - (void)_writeMailboxCache;
+- (id)_dictionaryForMailbox:(id)arg1;
 - (void)_loadEntriesFromFileSystemPath:(id)arg1 parent:(id)arg2;
 - (void)_synchronizeMailboxListWithFileSystemBeforeImport;
 - (void)_synchronizeMailboxListWithFileSystem;
 - (void)_synchronizeMailboxListWithFileSystemBeforeImport:(BOOL)arg1;
 - (BOOL)_readMailboxCache;
-@property(readonly, nonatomic) BOOL usesMailboxCache;
-- (void)_mailboxesWereRemovedFromTree:(id)arg1 withFileSystemPaths:(id)arg2;
+- (void)_mailboxesWereRemovedFromTree:(id)arg1 withFileSystemPaths:(id)arg2 names:(id)arg3;
 - (void)_loadMailboxListingIntoCache:(id)arg1 parent:(id)arg2 addedMailboxes:(id)arg3 removedMailboxes:(id)arg4 hasAllMailMailbox:(char *)arg5;
 - (void)_synchronouslyLoadListingForParent:(id)arg1;
 - (id)_copyMailboxWithParent:(id)arg1 name:(id)arg2 pathComponent:(id)arg3 attributes:(unsigned long long)arg4 existingMailbox:(id)arg5;
 - (void)_writeCustomInfoToMailboxCache:(id)arg1;
 - (void)_readCustomInfoFromMailboxCache:(id)arg1;
 - (void)_postMailAccountsHaveChangedIfNeeded;
-- (void)setIsActive:(BOOL)arg1;
+- (void)setisEnabled:(BOOL)arg1;
+- (void)_configureMailboxCacheEvenIfInactive:(BOOL)arg1;
 - (void)messageDeliveryDidFinish:(id)arg1;
 - (BOOL)discoverSettings;
 @property(readonly) BOOL needsToDiscoverSettings;
@@ -173,7 +182,6 @@
 @property(readonly, nonatomic) BOOL storesUnseenCount;
 @property(readonly, nonatomic) BOOL supportsAppleScript;
 @property(readonly, nonatomic) BOOL hasTrashMailbox;
-@property(readonly, nonatomic) BOOL isGmailAccount;
 @property(readonly, nonatomic) BOOL isRemoteAccount;
 @property(readonly, nonatomic) BOOL isZeroConfiguration;
 @property(readonly, nonatomic) BOOL providesAccountInformation;
@@ -193,10 +201,9 @@
 - (void)accountInfoDidChange;
 @property long long portNumber;
 @property(copy) NSString *hostname;
-@property(copy) NSString *username;
+- (void)setUsername:(id)arg1;
 - (void)_resetAllMailboxURLs;
 - (void)invalidateChildrenOfMailbox:(id)arg1;
-- (void)_deleteMailboxIfEmpty:(id)arg1;
 - (BOOL)deleteMailbox:(id)arg1 reflectToServer:(BOOL)arg2;
 - (BOOL)renameMailbox:(id)arg1 newDisplayName:(id)arg2 parent:(id)arg3;
 - (id)createMailboxWithParent:(id)arg1 displayName:(id)arg2 localizedDisplayName:(id)arg3;
@@ -218,8 +225,8 @@
 @property BOOL shouldMoveDeletedMessagesToTrash;
 @property(nonatomic) long long emptyTrashFrequency;
 @property(nonatomic) long long emptyJunkFrequency;
-@property(nonatomic) long long emptySentMessagesFrequency;
-- (void)_setEmptyFrequency:(long long)arg1 forMailDataclassProperty:(id)arg2;
+- (void)setEmptySentMessagesFrequency:(long long)arg1;
+- (long long)emptySentMessagesFrequency;
 - (long long)_emptyFrequencyForMailDataclassProperty:(id)arg1 defaultValue:(long long)arg2;
 - (void)deleteMessagesFromMailbox:(id)arg1 olderThanNumberOfDays:(long long)arg2;
 - (void)setToDosMailbox:(id)arg1;
@@ -231,6 +238,8 @@
 - (void)setDraftsMailbox:(id)arg1;
 - (id)allMailboxesEvenIfInactive:(BOOL)arg1;
 @property(readonly, copy, nonatomic) NSArray *allMailboxes;
+- (BOOL)containsMailboxWithURL:(id)arg1;
+- (id)mailboxForType:(long long)arg1;
 - (id)_outboxMailboxCreateIfNeeded:(BOOL)arg1;
 - (id)archiveMailboxCreateIfNeeded:(BOOL)arg1;
 - (id)trashMailboxCreateIfNeeded:(BOOL)arg1;
@@ -238,6 +247,8 @@
 - (id)junkMailboxCreateIfNeeded:(BOOL)arg1;
 - (id)draftsMailboxCreateIfNeeded:(BOOL)arg1;
 - (id)inboxMailboxCreateIfNeeded:(BOOL)arg1;
+@property(readonly) BOOL shouldArchiveByDefault;
+@property(readonly) BOOL isLocalAccount;
 @property(readonly, nonatomic) BOOL rootChildrenCanBePromoted;
 @property(readonly) BOOL rootMailboxExists;
 - (BOOL)mailboxIsRootMailbox:(id)arg1;
@@ -245,12 +256,13 @@
 @property(readonly) MFMailbox *primaryMailbox;
 @property(readonly, nonatomic) BOOL hasSyncActivity;
 @property(readonly, nonatomic) BOOL isFetching;
+- (void)stopAccountActivity;
 - (void)fetchAsynchronouslyIsAuto:(BOOL)arg1;
 - (BOOL)shouldFetchIsAuto:(BOOL)arg1;
 @property BOOL needsChecking;
 - (void)didInitializeMailboxList;
 - (void)willInitializeMailboxList;
-@property(readonly) BOOL isInitializingMailboxList;
+- (BOOL)isInitializingMailboxList;
 - (BOOL)_supportsMailboxListInitialization;
 @property(readonly, nonatomic) BOOL canBeSynchronized;
 @property(readonly, nonatomic) BOOL canAppendMessages;
@@ -261,11 +273,10 @@
 - (void)setIsWillingToGoOnline:(BOOL)arg1;
 - (void)setIsOffline:(BOOL)arg1;
 - (void)invalidateAllStores;
-- (void)setCacheIsDirty:(BOOL)arg1;
 - (void)doRoutineCleanup;
-- (void)saveCache;
-- (void)_saveCacheInBackground:(id)arg1;
-- (void)_setCacheWriteTimer:(id)arg1;
+- (void)_scheduleCacheWriteIfNeeded;
+- (void)_cancelCacheWriteTimer;
+- (void)saveCacheImmediately:(BOOL)arg1;
 - (void)deleteAccount;
 - (void)_synchronouslyInvalidateAndDelete:(BOOL)arg1;
 - (BOOL)fileManager:(id)arg1 shouldProceedAfterError:(id)arg2 removingItemAtURL:(id)arg3;
@@ -276,11 +287,10 @@
 - (void)setParentAccountDefaultAlias:(id)arg1;
 - (BOOL)getDefaultEmailAliasDisplayName:(id *)arg1 emailAddress:(id *)arg2;
 @property(readonly) NSURL *emailAliasesEditingURL;
-@property(readonly) BOOL emailAliasesOriginateFromParentAccount;
 @property(copy) NSArray *emailAliases;
 - (void)setApplescriptEmailAddresses:(id)arg1;
 - (id)applescriptEmailAddresses;
-@property(copy) NSArray *emailAddresses;
+@property(copy) NSArray *emailAddressStrings;
 @property(readonly, copy) NSArray *rawEmailAddresses;
 @property(readonly, copy) NSString *firstEmailAddress;
 @property BOOL deliveryAccountIsLocked;
@@ -293,7 +303,8 @@
 @property(copy) NSString *fullUserName;
 - (void)setApplescriptFullUserName:(id)arg1;
 - (id)applescriptFullUserName;
-@property(readonly, copy) NSString *tildeAbbreviatedPath;
+- (id)path;
+@property(readonly, copy, nonatomic) NSString *statisticsKind;
 - (BOOL)_performBlock:(CDUnknownBlockType)arg1 forMessagesFetchedWithBlock:(CDUnknownBlockType)arg2 withBatchSize:(unsigned long long)arg3;
 - (void)completeDeferredInitialization;
 - (void)dealloc;
@@ -312,7 +323,6 @@
 - (BOOL)emptyTrashOnQuit;
 - (void)insertInMailboxes:(id)arg1;
 - (void)insertInMailboxes:(id)arg1 atIndex:(unsigned long long)arg2;
-- (void)replaceInMailboxes:(id)arg1 atIndex:(unsigned long long)arg2;
 @property(readonly, copy, nonatomic) NSArray *mailboxes;
 - (id)indicesOfObjectsByEvaluatingObjectSpecifier:(id)arg1;
 
@@ -323,16 +333,23 @@
 @property(readonly, copy) NSString *applePersonID;
 @property(copy) NSString *authenticationScheme;
 @property(copy) NSString *canonicalEmailAddress;
+@property(readonly, copy) NSString *clientInfo;
 @property BOOL configureDynamically;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, copy, nonatomic) NSDate *expiryDate;
 @property(copy) NSString *externalHostname;
 @property(readonly) unsigned long long hash;
 @property(readonly, copy) NSString *identifier;
-@property(readonly, nonatomic) BOOL isSmartMailbox;
+@property(readonly, nonatomic) BOOL isGmailAccount;
+@property(readonly) BOOL isManaged;
+@property(readonly) BOOL isYahooAccount;
+@property(readonly, copy) NSString *machineID;
 @property(readonly, copy) NSString *oauthToken;
+@property(readonly, copy) NSString *oneTimePassword;
 @property(copy) NSString *password;
-@property(retain) MCAuthScheme *preferredAuthScheme;
+@property(retain) ECAuthScheme *preferredAuthScheme;
+@property(readonly) BOOL primaryiCloudAccount;
 @property(readonly, nonatomic) BOOL requiresAuthentication;
 @property(readonly, copy, nonatomic) NSString *saslProfileName;
 @property long long securityLayerType;
@@ -340,6 +357,8 @@
 @property(readonly, copy, nonatomic) NSArray *standardPorts;
 @property(readonly, copy, nonatomic) NSArray *standardSSLPorts;
 @property(readonly) Class superclass;
+@property(readonly, copy) ACAccount *systemAccount;
+@property(readonly, copy) NSString *username;
 @property BOOL usesSSL;
 
 @end

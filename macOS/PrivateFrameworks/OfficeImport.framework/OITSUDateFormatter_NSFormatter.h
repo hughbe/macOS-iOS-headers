@@ -11,19 +11,19 @@
 __attribute__((visibility("hidden")))
 @interface OITSUDateFormatter_NSFormatter : NSFormatter
 {
-    NSString *mPreferredFormat;
+    NSString *_preferredFormat;
     BOOL isDateOnly;
     BOOL isTimeOnly;
-    OITSULocale *locale;
+    OITSULocale *_locale;
 }
 
-@property(retain, nonatomic) OITSULocale *locale; // @synthesize locale;
+- (void).cxx_destruct;
+@property(retain, nonatomic) OITSULocale *locale; // @synthesize locale=_locale;
 @property(nonatomic) BOOL isTimeOnly; // @synthesize isTimeOnly;
 @property(nonatomic) BOOL isDateOnly; // @synthesize isDateOnly;
-@property(retain, nonatomic) NSString *preferredFormat; // @synthesize preferredFormat=mPreferredFormat;
+@property(retain, nonatomic) NSString *preferredFormat; // @synthesize preferredFormat=_preferredFormat;
 - (id)stringForObjectValue:(id)arg1;
 - (BOOL)getObjectValue:(out id *)arg1 forString:(id)arg2 errorDescription:(out id *)arg3;
-- (void)dealloc;
 - (id)init;
 
 @end

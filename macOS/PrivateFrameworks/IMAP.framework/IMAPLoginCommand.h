@@ -11,14 +11,14 @@
 @interface IMAPLoginCommand : IMAPSingleCommand
 {
     NSString *_username;
-    NSString *_quotedUsername;
     NSString *_password;
+    NSString *_quotedUsername;
 }
 
-@property(readonly, copy, nonatomic) NSString *password; // @synthesize password=_password;
-@property(readonly, copy, nonatomic) NSString *quotedUsername; // @synthesize quotedUsername=_quotedUsername;
-@property(readonly, copy, nonatomic) NSString *username; // @synthesize username=_username;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSString *quotedUsername; // @synthesize quotedUsername=_quotedUsername;
+@property(readonly, copy, nonatomic) NSString *password; // @synthesize password=_password;
+@property(readonly, copy, nonatomic) NSString *username; // @synthesize username=_username;
 - (long long)maxAllowedConnectionState;
 - (long long)minRequiredConnectionState;
 - (BOOL)executeOnConnection:(id)arg1;

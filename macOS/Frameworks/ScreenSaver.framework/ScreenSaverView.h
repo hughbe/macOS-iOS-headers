@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class NSTimer;
+@class NSTimer, NSWindow;
 
 @interface ScreenSaverView : NSView
 {
@@ -22,31 +22,30 @@
 + (BOOL)performGammaFade;
 + (BOOL)performGammaFadeForModuleWithPath:(id)arg1;
 + (unsigned long long)backingStoreType;
-- (BOOL)accessibilityIsAttributeSettable:(id)arg1;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (id)accessibilityAttributeNames;
-- (BOOL)accessibilityIsIgnored;
+- (id)accessibilityTitle;
+- (id)accessibilityRole;
+- (BOOL)isAccessibilityElement;
 - (BOOL)hidEvent:(id)arg1;
 - (BOOL)isMouseInteractive;
 - (BOOL)isKeyboardInteractive;
+- (void)setPreview:(BOOL)arg1;
 - (void)setScreenSaverModule:(id)arg1;
 - (id)screenSaverModule;
 @property(readonly, getter=isPreview) BOOL preview;
-- (id)configureSheet;
-- (BOOL)hasConfigureSheet;
+@property(readonly) NSWindow *configureSheet;
+@property(readonly) BOOL hasConfigureSheet;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)displayMessage:(id)arg1;
 - (void)animateOneFrame;
+- (void)prepareToAnimate;
 - (void)_oneStep:(id)arg1;
-- (BOOL)windowFlushEnabled;
-- (struct CGRect)boundsInPixels;
-- (double)_scaleFactor;
+- (void)setIsAnimating:(BOOL)arg1;
 @property(readonly, getter=isAnimating) BOOL animating;
 - (void)_resetTimer;
+- (BOOL)_needsAnimationTimer;
 - (void)stopAnimation;
 - (void)startAnimation;
 @property double animationTimeInterval;
-- (void)finalize;
 - (void)dealloc;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 isPreview:(BOOL)arg2;

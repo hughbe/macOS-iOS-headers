@@ -18,9 +18,9 @@ __attribute__((visibility("hidden")))
     unsigned long long _progressionCount;
 }
 
+- (void).cxx_destruct;
 - (unsigned long long)priority;
 - (BOOL)updateRouteMatch:(id)arg1 previousRouteMatch:(id)arg2 forLocation:(id)arg3;
-- (void)dealloc;
 - (id)initWithRoute:(id)arg1 tripLeg:(id)arg2;
 
 @end

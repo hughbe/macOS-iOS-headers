@@ -6,38 +6,47 @@
 
 #import <WebInspector/RWIServiceConnection.h>
 
-@class NSMutableData, NSThread, RWIDevice;
+@class NSMutableData, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>, RWIDevice, RWIMobileDeviceConnection;
 
 __attribute__((visibility("hidden")))
 @interface RWIServiceLockdownConnection : RWIServiceConnection
 {
-    NSThread *_readThread;
+    NSObject<OS_dispatch_queue> *_lockdownQueue;
+    NSObject<OS_dispatch_source> *_lockdownSource;
+    NSObject<OS_dispatch_semaphore> *_lockdownSemaphore;
     NSMutableData *_incomingData;
-    BOOL _startingWebinspectord;
     struct _AMDServiceConnection *_webinspectordService;
     struct _AMDServiceConnection *_notificationProxyService;
+    BOOL _disconnectRequested;
+    RWIMobileDeviceConnection *_mobileDeviceConnection;
 }
 
++ (id)connectionWithDevice:(id)arg1 mobileDeviceConnection:(id)arg2 delegate:(id)arg3;
 @property struct _AMDServiceConnection *webinspectordService; // @synthesize webinspectordService=_webinspectordService;
+@property(readonly) RWIMobileDeviceConnection *mobileDeviceConnection; // @synthesize mobileDeviceConnection=_mobileDeviceConnection;
+- (void)_processIncomingBytes:(const char *)arg1 length:(long long)arg2;
+- (void)readFromLockdownSocket;
+- (void)stopReadingFromLockdown;
+- (void)startReadingFromLockdown;
 - (void)sendMessage:(id)arg1;
-- (void)readFromService;
 - (void)_disconnect;
 - (void)notificationFromDevice:(id)arg1;
-- (void)_reconnectToWebinspectord;
-- (void)startMobileDeviceServiceConnections;
+- (void)_startMobileDeviceServiceConnections;
 - (struct _AMDServiceConnection *)_queueStartNotificationProxyService:(struct _AMDevice *)arg1 wasPasswordProtected:(char *)arg2;
 - (struct _AMDServiceConnection *)_queueStartWebInspectordService:(struct _AMDevice *)arg1 wasPasswordProtected:(char *)arg2;
 - (BOOL)_stopSession:(struct _AMDevice *)arg1;
 - (BOOL)_startSession:(struct _AMDevice *)arg1;
 - (void)_didStartNotificationProxyServiceConnection:(struct _AMDServiceConnection *)arg1;
 - (void)_didStartWebinspectordServiceConnection:(struct _AMDServiceConnection *)arg1;
-@property(readonly) RWIDevice *device; // @dynamic device;
+- (void)closeInternal;
 - (BOOL)isConnected;
+@property(readonly) RWIDevice *device; // @dynamic device;
 - (void)dealloc;
-- (void)_closeNotificationProxyServiceConnection;
+- (void)_closeNotificationProxyServiceConnectionFromFaceplant;
+- (void)_closeNotificationProxyServiceConnectionFromEnabledNotification;
 - (void)_closeWebinspectordServiceConnection;
-- (void)_cancelReadThread;
-- (id)initWithDevice:(id)arg1 delegate:(id)arg2;
+- (id)description;
+- (id)initWithDevice:(id)arg1 mobileDeviceConnection:(id)arg2 delegate:(id)arg3;
 
 @end
 

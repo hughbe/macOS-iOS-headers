@@ -14,8 +14,8 @@ __attribute__((visibility("hidden")))
 }
 
 - (int)invert:(id)arg1;
-- (int)frame:(id)arg1:(id)arg2;
-- (int)fill:(id)arg1:(id)arg2;
+- (int)frame:(id)arg1 in_brush:(id)arg2;
+- (int)fill:(id)arg1 in_brush:(id)arg2;
 - (id)pathForClippingWithDeviceContext:(id)arg1;
 - (int)selectInto:(id)arg1;
 

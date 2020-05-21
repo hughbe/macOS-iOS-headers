@@ -12,12 +12,13 @@
 {
 }
 
+@property(nonatomic) BOOL isTailDeleted;
 @property(retain, nonatomic) RWIProtocolRuntimeRemoteObject *thisObject;
 @property(copy, nonatomic) NSArray *scopeChain;
 @property(retain, nonatomic) RWIProtocolDebuggerLocation *location;
 @property(copy, nonatomic) NSString *functionName;
 @property(copy, nonatomic) NSString *callFrameId;
-- (id)initWithCallFrameId:(id)arg1 functionName:(id)arg2 location:(id)arg3 scopeChain:(id)arg4 thisObject:(id)arg5;
+- (id)initWithCallFrameId:(id)arg1 functionName:(id)arg2 location:(id)arg3 scopeChain:(id)arg4 thisObject:(id)arg5 isTailDeleted:(BOOL)arg6;
 
 @end
 

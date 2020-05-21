@@ -10,13 +10,13 @@
 
 @interface WFTagFactory : NSObject
 {
-    NSMutableDictionary *sharedTags;
+    NSMutableDictionary *_sharedTags;
 }
 
-+ (id)defaultFactory;
 + (id)tagsForWebpage:(id)arg1;
-- (void)dealloc;
++ (id)defaultFactory;
 - (id)tagWithClass:(Class)arg1 webpage:(id)arg2;
+- (void)dealloc;
 - (id)init;
 
 @end

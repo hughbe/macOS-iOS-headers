@@ -10,6 +10,9 @@
 {
 }
 
+@property(nonatomic) BOOL shouldNotLockModifierKey;
+- (id)paramDictionaryForSaving;
+- (void)_configureWithPlistDictionary:(id)arg1;
 - (id)init;
 
 @end

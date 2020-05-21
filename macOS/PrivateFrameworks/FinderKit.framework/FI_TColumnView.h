@@ -6,6 +6,8 @@
 
 #import "NSBrowser.h"
 
+@class NSObject<TColumnViewDelegate>;
+
 __attribute__((visibility("hidden")))
 @interface FI_TColumnView : NSBrowser
 {
@@ -40,7 +42,10 @@ __attribute__((visibility("hidden")))
 - (void)doClick:(id)arg1;
 - (void)_ensureValidSelection;
 - (void)addColumnForItem:(id)arg1;
+- (void)addColumn;
+- (void)loadColumnZero;
 - (void)setLastColumn:(long long)arg1;
+- (void)viewDidChangeBackingProperties;
 - (void)viewDidMoveToSuperview;
 - (void)viewWillMoveToSuperview:(id)arg1;
 - (void)viewDidMoveToWindow;
@@ -49,8 +54,9 @@ __attribute__((visibility("hidden")))
 - (BOOL)acceptsFirstResponder;
 - (void)setFocusOnColumn:(long long)arg1;
 - (id)browserTableViewAtIndex:(long long)arg1;
+- (long long)indexForBrowserTableView:(id)arg1;
 - (BOOL)wantsUpdateLayer;
-@property id <TColumnViewDelegate> delegate;
+@property __weak NSObject<TColumnViewDelegate> *delegate;
 - (id)controller;
 - (void)setFrame:(struct CGRect)arg1;
 

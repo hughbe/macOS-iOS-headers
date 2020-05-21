@@ -9,21 +9,19 @@
 __attribute__((visibility("hidden")))
 @interface FI_TIconCollectionViewKeepArrangedLayout : NSCollectionViewFlowLayout
 {
-    struct unordered_map<TNSRef<NSIndexPath *, void>, double, std::__1::hash<TNSRef<NSIndexPath *, void>>, std::__1::equal_to<TNSRef<NSIndexPath *, void>>, std::__1::allocator<std::__1::pair<const TNSRef<NSIndexPath *, void>, double>>> _indexPathToXOffsetCache;
-    _Bool _justifiedLayout;
-    struct NSEdgeInsets _originalSectionInset;
-    _Bool _grouping;
+    vector_b67dfe3a _columnOffsets;
+    _Bool _isJustifiedLayout;
 }
 
-@property(nonatomic, getter=isGrouping) _Bool grouping; // @synthesize grouping=_grouping;
-@property _Bool justifiedLayout; // @synthesize justifiedLayout=_justifiedLayout;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(getter=isJustifiedLayout) _Bool justifiedLayout; // @synthesize justifiedLayout=_isJustifiedLayout;
 - (id)layoutAttributesForElementsInRect:(struct CGRect)arg1;
 - (id)layoutAttributesForItemAtIndexPath:(id)arg1;
-- (void)_adjustItemLayoutAttributes:(id)arg1 byXOffset:(double)arg2;
+- (void)prepareLayout;
+- (id)_adjustItemLayoutAttributes:(id)arg1 byXOffset:(double)arg2;
 - (void)invalidateLayoutWithContext:(id)arg1;
-- (id)init;
+- (void)setInterItemSpacingForIconSize:(const struct CGSize *)arg1 titleOnBottom:(_Bool)arg2;
 
 @end
 

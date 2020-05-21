@@ -17,6 +17,7 @@
 - (BOOL)isInternalBuild;
 - (id)btMacAddress;
 - (id)wifiMacAddress;
+- (id)chipId;
 - (id)ecid;
 - (id)meid;
 - (id)imei;

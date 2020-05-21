@@ -20,7 +20,7 @@ __attribute__((visibility("hidden")))
     struct CGColorSpace *_colorSpace;
     struct CGColorSpace *_workingColorSpace;
     unsigned int _opaque:1;
-    unsigned int _keepsExcessAllocation;
+    unsigned int _keepsExcessAllocation:1;
     unsigned int _attached:1;
     struct _opaque_pthread_mutex_t _backBufferMutex;
     NSCGSWindowBuffer *_backBuffer;
@@ -35,8 +35,11 @@ __attribute__((visibility("hidden")))
     struct CGSRegionObject *_backBufferFlushShape;
 }
 
+- (void)flushBackBufferInRect:(struct CGRect)arg1;
 - (void)flushBackBufferInRegion:(struct CGSRegionObject *)arg1;
+- (void)dirtyBackBufferInRect:(struct CGRect)arg1;
 - (void)dirtyBackBufferInRegion:(struct CGSRegionObject *)arg1;
+- (void)defineBackBufferInRect:(struct CGRect)arg1;
 - (void)defineBackBufferInRegion:(struct CGSRegionObject *)arg1;
 - (void)unlockBackBuffer;
 - (void)lockBackBuffer;

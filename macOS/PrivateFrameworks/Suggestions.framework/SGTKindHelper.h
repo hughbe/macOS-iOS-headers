@@ -17,8 +17,8 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)sharedKindHelper;
+- (void).cxx_destruct;
 - (id)normalizedValueForContentType:(id)arg1 kindProposition:(id)arg2 values:(id *)arg3 excludeDynamic:(BOOL)arg4;
-- (void)dealloc;
 - (id)init;
 
 @end

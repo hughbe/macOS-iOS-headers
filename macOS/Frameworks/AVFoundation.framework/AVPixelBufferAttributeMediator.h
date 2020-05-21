@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface AVPixelBufferAttributeMediator : NSObject
 {
     struct OpaqueVTPixelBufferAttributesMediator *_mediator;
@@ -16,7 +17,6 @@
 - (void)removeRequestedPixelBufferAttributesAttributesForKey:(id)arg1;
 - (void)setRequestedPixelBufferAttributes:(id)arg1 forKey:(id)arg2;
 - (void)dealloc;
-- (void)finalize;
 - (id)init;
 
 @end

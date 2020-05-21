@@ -13,13 +13,12 @@
 @interface SGBloomFilterChunkInMemory : NSObject <SGBloomFilterChunk>
 {
     unsigned int _count;
-    char *_buf;
+    unsigned char _buf[49200];
 }
 
 - (BOOL)exists:(CDUnion_e7c9147b)arg1;
 - (void)add:(CDUnion_e7c9147b)arg1;
 @property(readonly, nonatomic) unsigned int count;
-- (void)dealloc;
 - (id)init;
 
 // Remaining properties

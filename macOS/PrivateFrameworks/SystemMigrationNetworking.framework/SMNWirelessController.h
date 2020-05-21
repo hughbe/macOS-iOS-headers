@@ -13,6 +13,7 @@
     BOOL _hostingAP;
     BOOL _connectedToAP;
     BOOL _attemptingWirelessSwitch;
+    BOOL _ipv4ConfigStarted;
     NSString *_accessPointSSID;
     NSString *_accessPointPassword;
     NSString *_currentWirelessSSID;
@@ -20,6 +21,7 @@
     NSString *_previousWirelessConfigurationUUID;
     NSMutableArray *_delegates;
     NSObject<OS_dispatch_queue> *_delegateQueue;
+    struct __IPConfigurationService *_ipConfigService;
 }
 
 + (id)wirelessErrorWithCode:(unsigned long long)arg1 userInfo:(id)arg2;
@@ -29,6 +31,9 @@
 + (id)stringForOPMode:(long long)arg1;
 + (id)stringForSecurityType:(unsigned long long)arg1;
 + (id)sharedController;
+- (void).cxx_destruct;
+@property BOOL ipv4ConfigStarted; // @synthesize ipv4ConfigStarted=_ipv4ConfigStarted;
+@property struct __IPConfigurationService *ipConfigService; // @synthesize ipConfigService=_ipConfigService;
 @property(retain) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property(retain) NSMutableArray *delegates; // @synthesize delegates=_delegates;
 @property(retain) NSString *previousWirelessConfigurationUUID; // @synthesize previousWirelessConfigurationUUID=_previousWirelessConfigurationUUID;
@@ -39,7 +44,6 @@
 @property BOOL attemptingWirelessSwitch; // @synthesize attemptingWirelessSwitch=_attemptingWirelessSwitch;
 @property BOOL connectedToAP; // @synthesize connectedToAP=_connectedToAP;
 @property BOOL hostingAP; // @synthesize hostingAP=_hostingAP;
-- (void).cxx_destruct;
 - (id)wirelessInformation;
 - (void)printWirelessInformation;
 - (void)restoreWirelessConfiguration;
@@ -47,8 +51,9 @@
 - (void)updateCurrentWirelessSSID;
 - (id)wirelessChannelInterface:(id)arg1 channelNumber:(int)arg2 frequencyBand:(long long)arg3 channelWidth:(long long)arg4;
 - (id)appropriateChannelForInterface:(id)arg1 supportedChannels:(id)arg2;
-- (id)supportedChannels;
-- (id)appropriateWirelessInterface;
+- (id)supportedChannelsForInterface:(id)arg1;
+- (id)appropriateWirelessSoftAPInterface;
+- (id)appropriateWirelessClientInterface;
 - (void)notifyDelegatesDidAttemptNetworkSwitch:(BOOL)arg1;
 - (void)notifyDelegatesWillAttemptNetworkSwitch:(long long)arg1;
 - (void)removeDelegate:(id)arg1;
@@ -59,8 +64,10 @@
 - (BOOL)attemptToAssociateWithNetwork:(id)arg1 password:(id)arg2 timeout:(unsigned long long)arg3 retryDelay:(unsigned long long)arg4 error:(id *)arg5;
 - (BOOL)attemptToAssociateWithNetwork:(id)arg1 password:(id)arg2 error:(id *)arg3;
 - (void)stopAccessPoint;
-- (BOOL)startAccessPointWithName:(id)arg1 password:(id)arg2 supportedChannels:(id)arg3 error:(id *)arg4;
-- (BOOL)startAccessPointWithName:(id)arg1 password:(id)arg2 error:(id *)arg3;
+- (BOOL)startAccessPointWithName:(id)arg1 password:(id)arg2 forIPV4:(BOOL)arg3 supportedChannels:(id)arg4 error:(id *)arg5;
+- (BOOL)startAccessPointWithName:(id)arg1 password:(id)arg2 forIPV4:(BOOL)arg3 error:(id *)arg4;
+- (BOOL)stopIPService;
+- (BOOL)startIPServicesForIPV4:(BOOL)arg1;
 - (id)randomAcessPointPassword;
 - (id)randomAcessPointSSID;
 - (void)disassociate;

@@ -6,16 +6,16 @@
 
 #import "NSObject.h"
 
-@class AceObject<SAAceCommand>, NSError, NSString, NSURL, SAGuidanceGuideUpdate, SAPhonePlayVoiceMail, SASSpeechPartialResult, SASSpeechRecognized, SASmsPlayAudio, SAUIAddViews, SAUIAppPunchOut, SAUIClearScreen, SAUICloseAssistant, SAUIHideSiriOverlay, SAUIListenForPronunciation, SAUIOpenLink, SAUIRepeatIt, SAUISayIt, SAUISetSuggestedUtterances, SAUIShowHelp, SAUIUpdateViews, SiriUIRequestOptions;
+@class AceObject<SAAceCommand>, NSError, NSString, NSURL, SACardShowNextCard, SAGuidanceGuideUpdate, SAPhonePlayVoiceMail, SASSpeechPartialResult, SASSpeechRecognized, SASmsPlayAudio, SAUIAddViews, SAUIAppPunchOut, SAUIClearScreen, SAUICloseAssistant, SAUIHideSiriOverlay, SAUIListenForPronunciation, SAUIOpenLink, SAUIRepeatIt, SAUISayIt, SAUIShowHelp, SAUIUpdateViews, SiriUIRequestOptions;
 
 @protocol AFUISiriSessionDelegate <NSObject>
+- (void)siriSessionDidReceiveShowNextCardCommand:(SACardShowNextCard *)arg1 completion:(id)arg2;
 - (void)siriSessionSpeechRecordingDidFailWithError:(NSError *)arg1;
 - (void)siriSessionSpeechRecordingDidCancel;
 - (void)siriSessionSpeechRecordingDidEnd;
 - (void)siriSessionSpeechRecordingDidChangeAVRecordRoute:(NSString *)arg1;
 - (void)siriSessionDidReceiveGuideUpdateCommand:(SAGuidanceGuideUpdate *)arg1;
 - (void)siriSessionDidReceiveHideSiriOverlayCommand:(SAUIHideSiriOverlay *)arg1;
-- (void)siriSessionDidReceiveSetSuggestedUtterancesCommand:(SAUISetSuggestedUtterances *)arg1;
 - (void)siriSessionDidReceiveListenForPronunciationCommand:(SAUIListenForPronunciation *)arg1;
 - (void)siriSessionDidReceiveCloseAssistantCommand:(SAUICloseAssistant *)arg1;
 - (void)siriSessionDidReceiveAppPunchOutCommand:(SAUIAppPunchOut *)arg1;
@@ -35,6 +35,7 @@
 - (void)siriSessionGetRequestContextWithCompletionHandler:(void (^)(NSArray *))arg1;
 - (void)siriSessionSupportsSpeechSynthesis:(BOOL)arg1;
 - (void)siriSessionRequestsDismissal;
+- (void)siriSessionOpenApplicationWithBundleID:(NSString *)arg1 URL:(NSURL *)arg2 completion:(void (^)(BOOL))arg3;
 - (void)siriSessionOpenURL:(NSURL *)arg1 completionHandler:(void (^)(BOOL))arg2;
 - (void)siriSessionDidChangeLockState:(unsigned long long)arg1;
 - (void)siriSessionDidChangeNetworkAvailability;

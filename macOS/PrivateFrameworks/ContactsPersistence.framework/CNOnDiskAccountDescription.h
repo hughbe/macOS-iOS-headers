@@ -8,7 +8,7 @@
 
 #import "CNAccountDescription.h"
 
-@class ABCDContainer, NSString, NSURL;
+@class ABCDContainer, NSArray, NSNumber, NSString, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface CNOnDiskAccountDescription : NSObject <CNAccountDescription>
@@ -17,8 +17,15 @@ __attribute__((visibility("hidden")))
     NSString *_identifier;
     BOOL _isPersistent;
     long long _type;
+    BOOL _isChildAccount;
+    NSArray *_childAccounts;
+    NSNumber *_dsid;
 }
 
+- (void).cxx_destruct;
+@property(readonly) BOOL isChildAccount; // @synthesize isChildAccount=_isChildAccount;
+@property(readonly) NSNumber *dsid; // @synthesize dsid=_dsid;
+@property(readonly, copy) NSArray *childAccounts; // @synthesize childAccounts=_childAccounts;
 @property long long type; // @synthesize type=_type;
 @property BOOL isPersistent; // @synthesize isPersistent=_isPersistent;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
@@ -27,7 +34,6 @@ __attribute__((visibility("hidden")))
 @property(readonly) ABCDContainer *containerRepresentation;
 @property(readonly) NSURL *persistentStoreURL;
 @property(readonly) BOOL isEnabled;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

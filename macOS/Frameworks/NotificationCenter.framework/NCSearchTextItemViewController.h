@@ -8,15 +8,16 @@
 
 @class NSLayoutConstraint, NSTextField;
 
+__attribute__((visibility("hidden")))
 @interface NCSearchTextItemViewController : NSViewController
 {
     NSTextField *_textField;
     NSLayoutConstraint *_textFieldLeadingConstraint;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak NSLayoutConstraint *textFieldLeadingConstraint; // @synthesize textFieldLeadingConstraint=_textFieldLeadingConstraint;
 @property(nonatomic) __weak NSTextField *textField; // @synthesize textField=_textField;
-- (void).cxx_destruct;
 - (id)nibBundle;
 
 @end

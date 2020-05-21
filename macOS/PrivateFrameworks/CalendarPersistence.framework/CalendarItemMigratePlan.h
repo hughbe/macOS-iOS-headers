@@ -18,6 +18,7 @@
     NSString *_updatedFilename;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSString *updatedFilename; // @synthesize updatedFilename=_updatedFilename;
 @property(retain) NSString *updatedETag; // @synthesize updatedETag=_updatedETag;
 @property(retain) CalManagedCalDAVCalendar *remoteCalendar; // @synthesize remoteCalendar=_remoteCalendar;
@@ -25,7 +26,6 @@
 @property(retain) CalManagedCalendarItem *localItem; // @synthesize localItem=_localItem;
 @property int type; // @synthesize type=_type;
 - (void)faultOutItemsInContext:(id)arg1;
-- (void)dealloc;
 
 @end
 

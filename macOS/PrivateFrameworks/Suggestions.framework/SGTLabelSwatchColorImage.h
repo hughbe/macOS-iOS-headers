@@ -14,9 +14,9 @@ __attribute__((visibility("hidden")))
     NSColor *color;
 }
 
+- (void).cxx_destruct;
 - (void)drawInRect:(struct CGRect)arg1 fromRect:(struct CGRect)arg2 operation:(unsigned long long)arg3 fraction:(double)arg4 respectFlipped:(BOOL)arg5 hints:(id)arg6;
 - (struct CGSize)size;
-- (void)dealloc;
 - (id)initWithColor:(id)arg1;
 
 @end

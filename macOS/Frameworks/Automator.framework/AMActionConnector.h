@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class AMConnectionPoint, AMConversion, NSArray, NSError, NSString;
+@class AMConnectionPoint, AMConversion, NSArray, NSDictionary, NSError, NSString;
 
 @interface AMActionConnector : NSObject <NSCopying>
 {
@@ -21,29 +21,22 @@
     NSError *_conversionError;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSError *conversionError; // @synthesize conversionError=_conversionError;
+@property(retain, nonatomic) NSArray *conversions; // @synthesize conversions=_conversions;
+@property(retain) AMConversion *selectedConversion; // @synthesize selectedConversion=_selectedConversion;
+@property(retain, nonatomic) AMConnectionPoint *_runtimePointB; // @synthesize _runtimePointB;
+@property(retain, nonatomic) AMConnectionPoint *pointB; // @synthesize pointB=_pointB;
+@property(retain, nonatomic) AMConnectionPoint *pointA; // @synthesize pointA=_pointA;
+@property(copy) NSString *UUID; // @synthesize UUID=_uuid;
 - (id)description;
 - (id)runWithInput:(id)arg1 error:(id *)arg2;
 - (void)disconnect;
-- (BOOL)isValid;
-- (BOOL)isDisabled;
-- (id)propertyList;
-- (void)setConversionError:(id)arg1;
-- (id)conversionError;
-- (void)setConversions:(id)arg1;
-- (id)conversions;
-- (void)setSelectedConversion:(id)arg1;
-- (id)selectedConversion;
-- (void)setRuntimePointB:(id)arg1;
-- (id)runtimePointB;
-- (id)_runtimePointB;
-- (void)setPointB:(id)arg1;
-- (id)pointB;
-- (void)setPointA:(id)arg1;
-- (id)pointA;
-- (void)setUUID:(id)arg1;
-- (id)UUID;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
+@property(readonly, nonatomic, getter=isDisabled) BOOL disabled;
+@property(readonly, nonatomic) NSDictionary *propertyList;
+@property(retain, nonatomic) AMConnectionPoint *runtimePointB;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

@@ -16,7 +16,10 @@
     BOOL _enablePFS;
     BOOL _enableRevocationCheck;
     BOOL _strictRevocationCheck;
+    BOOL _enableFallback;
     BOOL _wakeForRekey;
+    BOOL _opportunisticPFS;
+    BOOL _disableInitialContact;
     int _natKeepAliveOffloadEnable;
     int _natKeepAliveOffloadInterval;
     int _disableMOBIKERetryOnWake;
@@ -26,13 +29,20 @@
     long long _certificateType;
     NEVPNIKEv2SecurityAssociationParameters *_IKESecurityAssociationParameters;
     NEVPNIKEv2SecurityAssociationParameters *_childSecurityAssociationParameters;
+    long long _minimumTLSVersion;
+    long long _maximumTLSVersion;
     NSString *_pluginType;
     NSArray *_IKESecurityAssociationParametersArray;
     NSArray *_childSecurityAssociationParametersArray;
     NSString *_providerBundleIdentifier;
+    long long _tunnelKind;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property BOOL disableInitialContact; // @synthesize disableInitialContact=_disableInitialContact;
+@property long long tunnelKind; // @synthesize tunnelKind=_tunnelKind;
+@property BOOL opportunisticPFS; // @synthesize opportunisticPFS=_opportunisticPFS;
 @property int disableMOBIKERetryOnWake; // @synthesize disableMOBIKERetryOnWake=_disableMOBIKERetryOnWake;
 @property int natKeepAliveOffloadInterval; // @synthesize natKeepAliveOffloadInterval=_natKeepAliveOffloadInterval;
 @property int natKeepAliveOffloadEnable; // @synthesize natKeepAliveOffloadEnable=_natKeepAliveOffloadEnable;
@@ -41,6 +51,9 @@
 @property(retain) NSArray *IKESecurityAssociationParametersArray; // @synthesize IKESecurityAssociationParametersArray=_IKESecurityAssociationParametersArray;
 @property(readonly) NSString *pluginType; // @synthesize pluginType=_pluginType;
 @property BOOL wakeForRekey; // @synthesize wakeForRekey=_wakeForRekey;
+@property BOOL enableFallback; // @synthesize enableFallback=_enableFallback;
+@property long long maximumTLSVersion; // @synthesize maximumTLSVersion=_maximumTLSVersion;
+@property long long minimumTLSVersion; // @synthesize minimumTLSVersion=_minimumTLSVersion;
 @property BOOL strictRevocationCheck; // @synthesize strictRevocationCheck=_strictRevocationCheck;
 @property BOOL enableRevocationCheck; // @synthesize enableRevocationCheck=_enableRevocationCheck;
 @property BOOL enablePFS; // @synthesize enablePFS=_enablePFS;
@@ -53,7 +66,6 @@
 @property(copy) NSString *serverCertificateCommonName; // @synthesize serverCertificateCommonName=_serverCertificateCommonName;
 @property(copy) NSString *serverCertificateIssuerCommonName; // @synthesize serverCertificateIssuerCommonName=_serverCertificateIssuerCommonName;
 @property long long deadPeerDetectionRate; // @synthesize deadPeerDetectionRate=_deadPeerDetectionRate;
-- (void).cxx_destruct;
 - (id)copyLegacyDictionary;
 - (id)descriptionWithIndent:(int)arg1 options:(unsigned long long)arg2;
 - (BOOL)checkValidityAndCollectErrors:(id)arg1;

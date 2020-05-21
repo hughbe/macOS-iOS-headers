@@ -20,6 +20,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSURL *serverURL; // @synthesize serverURL=_serverURL;
 @property(retain, nonatomic) NSString *login; // @synthesize login=_login;
 @property(nonatomic) BOOL isMarkedForDeletion; // @synthesize isMarkedForDeletion=_isMarkedForDeletion;
@@ -29,7 +30,6 @@
 @property(retain, nonatomic) NSString *acAccountID; // @synthesize acAccountID=_acAccountID;
 - (void)encodeWithCoder:(id)arg1;
 @property(readonly, nonatomic) CalStoreRemoteManagedPrincipal *mainPrincipal;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

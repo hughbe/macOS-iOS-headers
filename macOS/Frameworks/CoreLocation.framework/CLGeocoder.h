@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class CLGeocoderInternal;
+@class CLGeocoderInternal, CLSilo;
 
 @interface CLGeocoder : NSObject
 {
     CLGeocoderInternal *_internal;
 }
 
++ (id)_timeZoneAtLocation:(id)arg1;
 - (void)_notifyError:(id)arg1;
 - (void)_notifyCancel;
 - (void)_notifyNoResult;
@@ -24,16 +25,23 @@
 - (void)_ticket:(id)arg1 didReturnError:(id)arg2 partialResultForLocation:(id)arg3;
 - (void)_ticket:(id)arg1 didReturnGeoMapItems:(id)arg2;
 - (void)cancelGeocode;
+- (void)geocodeAddressString:(id)arg1 inRegion:(id)arg2 preferredLocale:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)geocodeAddressString:(id)arg1 inRegion:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)geocodeAddressString:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)geocodeAddressDictionary:(id)arg1 preferredLocale:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)geocodeAddressDictionary:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)reverseGeocodeLocation:(id)arg1 preferredLocale:(id)arg2 heading:(double)arg3 localResultsOnly:(BOOL)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)reverseGeocodeLocation:(id)arg1 heading:(double)arg2 localResultsOnly:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)reverseGeocodeLocation:(id)arg1 heading:(double)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)reverseGeocodeLocation:(id)arg1 preferredLocale:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)reverseGeocodeLocation:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)reverseGeocodeLocation:(id)arg1 localResultsOnly:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 @property(readonly, nonatomic, getter=isGeocoding) BOOL geocoding;
+@property(setter=_setResponseSilo:) CLSilo *_responseSilo;
 - (void)dealloc;
 - (id)init;
+- (void)geocodePostalAddress:(id)arg1 preferredLocale:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)geocodePostalAddress:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 
 @end
 

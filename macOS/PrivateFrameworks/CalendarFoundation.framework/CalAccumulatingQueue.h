@@ -15,12 +15,15 @@
     NSMutableDictionary *_context;
     CDUnknownBlockType _block;
     float _delay;
+    BOOL _executionPending;
 }
 
 - (void).cxx_destruct;
 - (void)updateTagsAndExecuteBlock:(id)arg1 withContext:(id)arg2;
 - (void)updateTagsAndExecuteBlock:(id)arg1;
-- (BOOL)_hasQueuedUpBlock;
+- (void)updateTags:(id)arg1 withContext:(id)arg2;
+- (void)updateTags:(id)arg1;
+- (void)executeBlock;
 - (id)initWithQueue:(id)arg1 andBlock:(CDUnknownBlockType)arg2 delay:(float)arg3;
 - (id)initWithQueue:(id)arg1 andBlock:(CDUnknownBlockType)arg2;
 

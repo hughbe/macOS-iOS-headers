@@ -22,6 +22,7 @@
 }
 
 + (id)sharedReport;
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_source> *progressTimer; // @synthesize progressTimer=_progressTimer;
 @property(retain) SMProgressEntry *lastProgressEntry; // @synthesize lastProgressEntry=_lastProgressEntry;
 @property(retain) NSObject<OS_dispatch_queue> *progressQueue; // @synthesize progressQueue=_progressQueue;
@@ -31,7 +32,6 @@
 @property(retain) NSMutableDictionary *notes; // @synthesize notes=_notes;
 @property(retain) NSMutableOrderedSet *activities; // @synthesize activities=_activities;
 @property(retain) SMMigrationRequest *migrationRequest; // @synthesize migrationRequest=_migrationRequest;
-- (void).cxx_destruct;
 - (BOOL)saveProgressReport:(id *)arg1;
 - (void)recordProgressPercentComplete:(double)arg1 timeRemaining:(double)arg2 transferRate:(double)arg3;
 - (void)addActivity:(id)arg1;

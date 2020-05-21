@@ -54,6 +54,7 @@ __attribute__((visibility("hidden")))
 - (id)_sendSyncMessage:(int)arg1 result:(CDUnknownBlockType)arg2;
 - (id)_retrieveServerArrayForMessageType:(int)arg1 timedOut:(char *)arg2;
 - (void)_setProgress:(double)arg1 forNotificationWithIdentifier:(id)arg2;
+- (void)_clearCenterCache;
 - (void)_invalidateAndUnregister;
 - (void)_unRegisterForRemotePushNotifications;
 - (void)_registerForRemotePushNotificationTypes:(unsigned long long)arg1;

@@ -17,19 +17,24 @@
     NSMutableDictionary *_secondaryCharactersMapping;
 }
 
++ (unsigned long long)modifiersWith:(unsigned long long)arg1 removedFrom:(unsigned long long)arg2;
++ (BOOL)modifiers:(unsigned long long)arg1 containsAny:(unsigned long long)arg2;
++ (BOOL)modifiers:(unsigned long long)arg1 containsAll:(unsigned long long)arg2;
 + (id)keyWithKeyCode:(unsigned short)arg1 primaryCharactersMapping:(id)arg2;
-+ (id)keyWithKeyCode:(unsigned short)arg1 primaryCharacters:(id)arg2 atModifiers:(unsigned long long)arg3;
++ (id)keyWithKeyCode:(unsigned short)arg1 primaryCharacters:(id)arg2 at:(unsigned long long)arg3;
 + (id)keyWithKeyCode:(unsigned short)arg1;
 + (id)keyTab;
++ (id)keySpace;
 + (id)keyEnter;
 + (id)keyDelete;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSMutableDictionary *secondaryCharactersMapping; // @synthesize secondaryCharactersMapping=_secondaryCharactersMapping;
 @property(readonly, nonatomic) NSMutableDictionary *primaryCharactersMapping; // @synthesize primaryCharactersMapping=_primaryCharactersMapping;
 @property(readonly, nonatomic) unsigned short code; // @synthesize code=_code;
-- (void).cxx_destruct;
-- (unsigned long long)primaryComposedCharactersCountAtModifiers:(unsigned long long)arg1;
-- (id)primaryCharactersAtModifiers:(unsigned long long)arg1;
+- (unsigned long long)primaryComposedCharactersCountAt:(unsigned long long)arg1;
+- (id)primaryCharactersAt:(unsigned long long)arg1;
 - (id)keyWithForwardRotatedPrimaryAlphaComposedCharacters;
+- (BOOL)isShortcutWhenModifiedWith:(unsigned long long)arg1;
 - (void)_forwardRotatePrimaryComposedCharactersAtModifiers:(unsigned long long)arg1;
 @property(readonly, nonatomic) BOOL isTab;
 @property(readonly, nonatomic) BOOL isSpace;
@@ -37,14 +42,19 @@
 @property(readonly, nonatomic) BOOL isEscape;
 @property(readonly, nonatomic) BOOL isEnter;
 @property(readonly, nonatomic) BOOL isDelete;
+@property(readonly, nonatomic) BOOL isArrow;
 @property(readonly, nonatomic) BOOL isCharacterKey;
 @property(readonly, nonatomic) BOOL isNumericKey;
 @property(readonly, nonatomic) BOOL isAlphabeticKey;
-- (unsigned int)characterAtModifiers:(unsigned long long)arg1;
-- (id)characters:(long long)arg1 atModifiers:(unsigned long long)arg2;
+- (BOOL)containsPrimaryCharacterIn:(id)arg1 at:(unsigned long long)arg2;
+- (unsigned long long)numberAt:(unsigned long long)arg1;
+- (unsigned int)characterAt:(unsigned long long)arg1;
+- (id)charactersAt:(unsigned long long)arg1;
+- (id)characters:(long long)arg1 at:(unsigned long long)arg2;
+- (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithKeyCode:(unsigned short)arg1 primaryCharactersMapping:(id)arg2;
-- (id)initWithKeyCode:(unsigned short)arg1 primaryCharacters:(id)arg2 mappedAtModifiers:(unsigned long long)arg3;
+- (id)initWithKeyCode:(unsigned short)arg1 primaryCharacters:(id)arg2 at:(unsigned long long)arg3;
 - (id)init;
 
 @end

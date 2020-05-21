@@ -6,7 +6,7 @@
 
 #import <SceneKit/SCNExportOperation.h>
 
-@class NSDictionary, NSError, NSURL, SCNNode, SCNScene;
+@class NSDictionary, NSError, NSURL, SCNNode, SCNRenderer, SCNScene;
 
 __attribute__((visibility("hidden")))
 @interface _SCNExportOperation : SCNExportOperation
@@ -26,6 +26,8 @@ __attribute__((visibility("hidden")))
     id _delegate;
     NSDictionary *_attributes;
     NSURL *_outputURL;
+    SCNRenderer *_renderer;
+    unsigned long long _antialiasingMode;
 }
 
 @property(nonatomic) BOOL succeded; // @synthesize succeded=_succeded;
@@ -38,10 +40,12 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) double endTime; // @synthesize endTime=_endTime;
 @property(nonatomic) double startTime; // @synthesize startTime=_startTime;
 @property(nonatomic) struct CGSize size; // @synthesize size=_size;
+@property(retain, nonatomic) SCNScene *scene; // @synthesize scene=_scene;
 @property(nonatomic) SEL didEndSelector; // @synthesize didEndSelector=_didEndSelector;
 @property(nonatomic) void *userInfo; // @synthesize userInfo=_userInfo;
+@property(retain, nonatomic) SCNRenderer *renderer; // @synthesize renderer=_renderer;
+@property(nonatomic) unsigned long long antialiasingMode; // @synthesize antialiasingMode=_antialiasingMode;
 @property(retain, nonatomic) SCNNode *pointOfView; // @synthesize pointOfView=_pointOfView;
-@property(retain, nonatomic) SCNScene *scene; // @synthesize scene=_scene;
 - (void)cancel;
 - (void)dealloc;
 

@@ -6,18 +6,19 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSString;
 
-@interface CAStateTransition : NSObject <NSCopying, NSCoding>
+@interface CAStateTransition : NSObject <NSCopying, NSSecureCoding>
 {
     NSString *_fromState;
     NSString *_toState;
     NSArray *_elements;
 }
 
++ (BOOL)supportsSecureCoding;
 + (void)CAMLParserStartElement:(id)arg1;
 @property(copy, nonatomic) NSArray *elements; // @synthesize elements=_elements;
 @property(copy, nonatomic) NSString *toState; // @synthesize toState=_toState;

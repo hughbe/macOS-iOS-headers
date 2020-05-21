@@ -8,7 +8,7 @@
 
 #import "UAUserActivityClientResponseProtocol.h"
 
-@class NSMapTable, NSObject<OS_dispatch_queue>, NSString, NSUUID, NSXPCConnection;
+@class NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID, NSXPCConnection;
 
 @interface UAUserActivityManager : NSObject <UAUserActivityClientResponseProtocol>
 {
@@ -18,6 +18,8 @@
     NSMapTable *_userActivitiesByUUID;
     BOOL _supportsActivityContinuation;
     BOOL _activityContinuationIsEnabled;
+    NSMutableSet *_userActivityUUIDsSendToServer;
+    BOOL _registeredForAppResignationMessages;
     BOOL _needToSendInitialMessage;
     NSUUID *_activeUserActivityUUID;
     NSMapTable *_activeUserActivitiesByUUID;
@@ -28,16 +30,22 @@
 + (id)defaultManager;
 + (BOOL)userActivityContinuationSupported;
 + (BOOL)shouldSupportActivityContinuation;
+- (void).cxx_destruct;
 @property BOOL needToSendInitialMessage; // @synthesize needToSendInitialMessage=_needToSendInitialMessage;
 @property(retain) NSMapTable *activeUserActivitiesByUUID; // @synthesize activeUserActivitiesByUUID=_activeUserActivitiesByUUID;
 @property(retain) NSMapTable *userActivitiesByUUID; // @synthesize userActivitiesByUUID=_userActivitiesByUUID;
 @property(readonly) NSObject<OS_dispatch_queue> *serverQ; // @synthesize serverQ=_serverQ;
 @property(copy) NSUUID *activeUserActivityUUID; // @synthesize activeUserActivityUUID=_activeUserActivityUUID;
 @property(readonly) BOOL supportsActivityContinuation; // @synthesize supportsActivityContinuation=_supportsActivityContinuation;
-- (void).cxx_destruct;
+@property BOOL registeredForAppResignationMessages; // @synthesize registeredForAppResignationMessages=_registeredForAppResignationMessages;
+- (BOOL)registerAsProxyForApplication:(int)arg1 options:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)registerForApplicationDeactivateIfNecessary;
+- (void)sendCurrentActivityToIndexer:(id)arg1;
+- (void)sendToIndexerIfAppropriate:(id)arg1 force:(BOOL)arg2;
 - (id)activities;
 - (BOOL)hasUserActivityWithUUID:(id)arg1;
 - (void)pinUserActivity:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (BOOL)determineIfUserActivityIsCurrent:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)currentUserActivityUUIDWithOptions:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)markUserActivityAsDirty:(id)arg1 forceImmediate:(BOOL)arg2;
 - (void)sendUserActivityInfoToLSUserActivityd:(id)arg1 makeCurrent:(BOOL)arg2;
@@ -50,7 +58,7 @@
 - (void)askClientUserActivityToSave:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)askClientUserActivityToSave:(id)arg1;
 - (id)activeActivitiesByPriority;
-- (id)_findUserActivityForUUID:(id)arg1;
+- (id)userActivityForUUID:(id)arg1;
 - (BOOL)userActivityIsActive:(id)arg1;
 - (void)makeInactive:(id)arg1;
 - (void)makeActive:(id)arg1;
@@ -58,8 +66,10 @@
 - (void)addDynamicUserActivity:(id)arg1 matching:(id)arg2;
 - (void)removeUserActivity:(id)arg1;
 - (void)addUserActivity:(id)arg1;
+@property(readonly, copy) NSSet *userActivityUUIDsSendToServer;
 - (id)fetchUUID:(id)arg1 intervalToWaitForDocumentSynchonization:(double)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 @property(readonly) BOOL activityContinuationIsEnabled;
+- (void)connectionInterrupted;
 @property(readonly) NSXPCConnection *connection;
 - (void)dealloc;
 - (id)initWithConnection:(id)arg1;

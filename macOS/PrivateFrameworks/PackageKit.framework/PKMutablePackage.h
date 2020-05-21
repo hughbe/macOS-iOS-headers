@@ -29,6 +29,9 @@
 - (id)_componentMap;
 - (void)dealloc;
 - (id)initWithPackageInfo:(id)arg1 ofType:(id)arg2;
+- (void)_staticObsoleteFilesOrRecursiveDirectories:(id)arg1;
+- (void)_setStaticObsoleteDirectories:(id)arg1;
+- (void)_setStaticObsoleteFiles:(id)arg1;
 - (void)setMapBaselineNamesUsingBlock:(CDUnknownBlockType)arg1;
 - (void)setBaselinePayloadRoot:(id)arg1;
 - (BOOL)_writeToArchive:(id)arg1 atPath:(id)arg2 options:(id)arg3 error:(id *)arg4;

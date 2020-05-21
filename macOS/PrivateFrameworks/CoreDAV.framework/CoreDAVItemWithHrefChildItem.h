@@ -14,10 +14,10 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVHrefItem *href; // @synthesize href=_href;
 - (void)write:(id)arg1;
 - (id)description;
-- (void)dealloc;
 
 @end
 

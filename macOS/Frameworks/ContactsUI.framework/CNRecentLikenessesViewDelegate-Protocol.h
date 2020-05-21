@@ -6,12 +6,10 @@
 
 #import "NSObject.h"
 
-@class PRLikeness;
+@class CNLikeness, CNRecentLikenessesViewController;
 
 @protocol CNRecentLikenessesViewDelegate <NSObject>
-- (void)beginEditingLikeness:(PRLikeness *)arg1 isMe:(BOOL)arg2;
-
-@optional
-- (void)didSelectLikeness:(PRLikeness *)arg1;
+- (void)addNewLikenessRecentLikenessesViewController:(CNRecentLikenessesViewController *)arg1;
+- (void)recentLikenessesViewController:(CNRecentLikenessesViewController *)arg1 beginEditingLikeness:(CNLikeness *)arg2;
 @end
 

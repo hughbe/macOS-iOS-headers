@@ -6,25 +6,29 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_source>, NSString, NSTask, PKInstallRequest;
+@class NSObject<OS_dispatch_source>, NSString, NSTask, PKInstallAnalyzer, PKInstallRequest;
 
 @interface PKInstallCommitManager : NSObject
 {
     PKInstallRequest *_installRequest;
+    PKInstallAnalyzer *_analyzer;
     NSString *_pidPath;
     BOOL _suspendedSpotlight;
     NSObject<OS_dispatch_source> *_backupTimerSource;
     unsigned int _assertionID;
     NSTask *_monitorTask;
+    BOOL _didArmSharedCacheRebuildScript;
 }
 
+- (void)_removeSharedCacheRebuildScript;
+- (void)_writeSharedCacheRebuildScript;
 - (void)_waitUntilMonitorDone;
 - (void)_startMonitor;
 - (id)_commitCookiePath;
 - (void)endCommit;
 - (void)beginCommit;
 - (void)dealloc;
-- (id)initWithRequest:(id)arg1;
+- (id)initWithRequest:(id)arg1 analyzer:(id)arg2;
 
 @end
 

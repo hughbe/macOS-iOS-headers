@@ -14,14 +14,14 @@ __attribute__((visibility("hidden")))
     SCRElement *_lastMessageElement;
 }
 
-- (BOOL)chainEvent:(id)arg1 request:(id)arg2;
+- (void).cxx_destruct;
 - (void)layoutCoalescor:(id)arg1;
 - (void)registerForLayoutCompleteNotification;
 - (void)setLastMessageElement:(id)arg1;
 - (id)lastMessageElement;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
+- (id)roleDescription;
 - (void)setFocusedChild:(id)arg1;
-- (void)dealloc;
 
 @end
 

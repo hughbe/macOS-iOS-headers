@@ -19,7 +19,9 @@
 + (id)movieWithData:(id)arg1 options:(id)arg2;
 + (id)movieWithURL:(id)arg1 options:(id)arg2;
 + (id)movieTypes;
++ (BOOL)expectsPropertyRevisedNotifications;
 + (void)initialize;
+- (void).cxx_destruct;
 - (id)description;
 - (BOOL)hasProtectedContent;
 @property(readonly, nonatomic) BOOL containsMovieFragments;
@@ -43,13 +45,13 @@
 - (Class)_classForTrackInspectors;
 - (id)_assetInspector;
 - (id)_assetInspectorLoader;
-- (void)finalize;
 - (void)dealloc;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)_initWithFigError:(int)arg1 userInfo:(id)arg2;
 - (id)_initWithFormatReader:(struct OpaqueFigFormatReader *)arg1 URL:(id)arg2 data:(id)arg3 options:(id)arg4;
 - (id)_initWithFigAsset:(struct OpaqueFigAsset *)arg1;
+- (id)initWithData:(id)arg1 contentType:(id)arg2 options:(id)arg3;
 - (id)initWithData:(id)arg1 options:(id)arg2;
 - (id)initWithURL:(id)arg1 options:(id)arg2;
 - (id)init;
@@ -58,6 +60,7 @@
 - (BOOL)isCompatibleWithFileType:(id)arg1;
 - (BOOL)writeMovieHeaderToURL:(id)arg1 fileType:(id)arg2 options:(unsigned long long)arg3 error:(id *)arg4;
 - (id)movieHeaderWithFileType:(id)arg1 error:(id *)arg2;
+- (struct OpaqueFigMutableMovie *)_mutableMovieForFileType:(id)arg1;
 
 @end
 

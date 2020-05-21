@@ -13,8 +13,8 @@
     AMWorkflow *_workflow;
 }
 
-@property(retain) AMWorkflow *workflow;
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(nonatomic) __weak AMWorkflow *workflow; // @synthesize workflow=_workflow;
 
 @end
 

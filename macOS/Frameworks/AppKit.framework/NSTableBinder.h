@@ -6,6 +6,7 @@
 
 #import <AppKit/NSBinder.h>
 
+__attribute__((visibility("hidden")))
 @interface NSTableBinder : NSBinder
 {
     struct __tableBinderFlags {
@@ -25,6 +26,7 @@
 + (id)bindingCategory;
 + (BOOL)isUsableWithObject:(id)arg1;
 + (BOOL)_autoCreateBinderForObject:(id)arg1 withController:(id)arg2;
+- (Class)valueClassForBinding:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)_visibleColumnIndexesForKeyPath:(id)arg1;
 - (id)_visibleRowIndexesForObject:(id)arg1;

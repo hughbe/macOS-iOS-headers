@@ -6,16 +6,25 @@
 
 #import <FinderKit/FI_TPropertyTaggingTokenFieldController.h>
 
-@class FI_TTitleField;
+@class NSString;
 
 __attribute__((visibility("hidden")))
 @interface FI_TColumnPreviewPropertyTaggingTokenFieldController : FI_TPropertyTaggingTokenFieldController
 {
-    FI_TTitleField *_taggingTitleField;
+    struct TNSRef<NSString, void> _previewOptionKey;
+    _Bool _userDisabled;
 }
 
-- (void)adjustWidths:(double)arg1 textWidth:(double)arg2;
++ (id)keyPathsForValuesAffectingShouldBeVisible;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(nonatomic, getter=isUserDisabled) _Bool userDisabled; // @synthesize userDisabled=_userDisabled;
+- (void)updateDisabledStateForKeys:(id)arg1;
+- (_Bool)shouldBeVisible;
+- (_Bool)isApplicableToNodes:(const struct TFENodeVector *)arg1;
+@property(readonly, retain, nonatomic) NSString *previewOptionKey; // @dynamic previewOptionKey;
 - (void)viewLoaded;
+- (void)initCommon;
 
 @end
 

@@ -6,33 +6,57 @@
 
 #import <IMAP/IMAPTask.h>
 
-@class IMAPTaskManager, NSMutableArray, NSMutableDictionary, NSString;
+#import "EFSignpostable.h"
+#import "IMAPGetNewLocalActionsOperationDelegate.h"
+#import "IMAPMessageActionPersistResultsOperationDelegate.h"
+#import "IMAPMessageActionSyncOperationDelegate.h"
 
-@interface IMAPLocalActionSyncTask : IMAPTask
+@class ECLocalMessageActionResults, IMAPTaskManager, NSMutableArray, NSMutableDictionary, NSString, NSURL;
+
+@interface IMAPLocalActionSyncTask : IMAPTask <EFSignpostable, IMAPMessageActionSyncOperationDelegate, IMAPMessageActionPersistResultsOperationDelegate, IMAPGetNewLocalActionsOperationDelegate>
 {
     NSMutableArray *_messageActions;
     NSMutableDictionary *_progressesByActionIDs;
-    BOOL _hasNextLocalAction;
-    BOOL _operationRunning;
+    BOOL _actionOperationRunning;
+    BOOL _needToCheckForActions;
+    BOOL _needToPersistResults;
     IMAPTaskManager *_taskManager;
-    id <IMAPMessageDataSource> _dataSource;
-    NSString *_logPrefix;
+    NSURL *_currentMailboxURL;
+    id <IMAPMessageDataSource> _currentDataSource;
+    ECLocalMessageActionResults *_resultsToPersist;
 }
 
-@property(copy, nonatomic) NSString *logPrefix; // @synthesize logPrefix=_logPrefix;
-@property(nonatomic) BOOL operationRunning; // @synthesize operationRunning=_operationRunning;
-@property(readonly, nonatomic) id <IMAPMessageDataSource> dataSource; // @synthesize dataSource=_dataSource;
-@property(retain, nonatomic) IMAPTaskManager *taskManager; // @synthesize taskManager=_taskManager;
++ (id)signpostLog;
 - (void).cxx_destruct;
-- (void)end;
+@property(retain, nonatomic) ECLocalMessageActionResults *resultsToPersist; // @synthesize resultsToPersist=_resultsToPersist;
+@property(nonatomic) BOOL needToPersistResults; // @synthesize needToPersistResults=_needToPersistResults;
+@property(nonatomic) BOOL needToCheckForActions; // @synthesize needToCheckForActions=_needToCheckForActions;
+@property(nonatomic) BOOL actionOperationRunning; // @synthesize actionOperationRunning=_actionOperationRunning;
+@property(retain, nonatomic) id <IMAPMessageDataSource> currentDataSource; // @synthesize currentDataSource=_currentDataSource;
+@property(retain, nonatomic) NSURL *currentMailboxURL; // @synthesize currentMailboxURL=_currentMailboxURL;
+@property(retain, nonatomic) IMAPTaskManager *taskManager; // @synthesize taskManager=_taskManager;
 - (void)_createProgressForAction:(id)arg1;
-- (void)operationFinished:(id)arg1;
+- (void)persistActionResultsOperationCompleted:(id)arg1 needToReplayAction:(BOOL)arg2 messagesNeedingBodies:(id)arg3;
+- (void)messageActionSyncOperationCompleted:(id)arg1 results:(id)arg2;
+- (void)getNewMessageActionsOperation:(id)arg1 didGetActions:(id)arg2;
+- (void)end;
+- (id)nextPersistenceOperation;
 - (id)nextNetworkOperation;
+- (void)operationFinished:(id)arg1;
+- (void)_updateMailboxIfNeeded;
 - (void)recalculatePriorities;
-- (void)addMessageAction:(id)arg1;
-@property(nonatomic) BOOL hasNextLocalAction;
+- (void)addLocalAction:(id)arg1;
+- (void)checkForNewMessageActions;
+- (id)mailboxNameWithoutPII;
 - (id)initWithMailboxName:(id)arg1;
-- (id)initWithDataSource:(id)arg1 taskManager:(id)arg2;
+- (id)initWithTaskManager:(id)arg1;
+@property(readonly) unsigned long long signpostID;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,35 +8,37 @@
 
 #import "MFEWSMailboxDataCache.h"
 
-@class MFEWSBackgroundBodyFetchTask, MFEWSFolderHierarchyReconcileTask, MFEWSRetrievePersistedFolderDataTask, NSMutableDictionary, NSString;
+@class MFEWSAccount, MFEWSBackgroundBodyFetchTask, MFEWSFolderHierarchyReconcileTask, MFEWSRetrievePersistedFolderDataTask, NSMutableDictionary, NSString;
 
 @interface MFEWSAccountSyncActivity : MCAggregateActivity <MFEWSMailboxDataCache>
 {
-    NSMutableDictionary *_mailboxSyncTasksByMailboxURL;
+    NSMutableDictionary *_mailboxSyncTasksByMailboxURLString;
     BOOL _userInitiated;
+    id <MFEWSMailboxDataCache> _mailboxDataCache;
     MFEWSFolderHierarchyReconcileTask *_folderHierarchyReconcileTask;
     MFEWSRetrievePersistedFolderDataTask *_retrievePersistedFolderDataTask;
     MFEWSBackgroundBodyFetchTask *_backgroundBodyFetchTask;
-    id <MFEWSAccountSyncActivityDelegate> _mailboxDelegate;
-    id <MFEWSMailboxDataCache> _mailboxDataCache;
+    MFEWSAccount *_account;
 }
 
-@property(nonatomic) __weak id <MFEWSMailboxDataCache> mailboxDataCache; // @synthesize mailboxDataCache=_mailboxDataCache;
-@property(nonatomic) __weak id <MFEWSAccountSyncActivityDelegate> mailboxDelegate; // @synthesize mailboxDelegate=_mailboxDelegate;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) __weak MFEWSAccount *account; // @synthesize account=_account;
 @property(retain, nonatomic) MFEWSBackgroundBodyFetchTask *backgroundBodyFetchTask; // @synthesize backgroundBodyFetchTask=_backgroundBodyFetchTask;
 @property(retain, nonatomic) MFEWSRetrievePersistedFolderDataTask *retrievePersistedFolderDataTask; // @synthesize retrievePersistedFolderDataTask=_retrievePersistedFolderDataTask;
 @property(retain, nonatomic) MFEWSFolderHierarchyReconcileTask *folderHierarchyReconcileTask; // @synthesize folderHierarchyReconcileTask=_folderHierarchyReconcileTask;
-- (void).cxx_destruct;
+@property(nonatomic) __weak id <MFEWSMailboxDataCache> mailboxDataCache; // @synthesize mailboxDataCache=_mailboxDataCache;
 - (void)dataNotFoundForURL:(id)arg1;
 - (void)updateCachedFolderID:(id)arg1 andSyncState:(id)arg2 forMailboxURL:(id)arg3;
 - (id)cachedSyncStateForMailboxURL:(id)arg1;
 - (id)cachedFolderIDForMailboxURL:(id)arg1;
 - (void)childActivityFinished:(id)arg1;
-- (void)addMailboxURLsToReconcile:(id)arg1;
+- (void)recalculatePriorityForMailboxURLString:(id)arg1;
+- (void)addMailboxesToReconcile:(id)arg1;
 - (void)reconcileFolderHierarchyWithSyncState:(id)arg1;
 @property(nonatomic) BOOL userInitiated;
 @property(readonly, nonatomic) BOOL currentlySynchronizingMailboxContents;
 - (id)init;
+- (id)initWithAccount:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

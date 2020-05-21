@@ -12,6 +12,7 @@
 
 + (id)getDoNotDisturbWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getDoNotDisturb;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;

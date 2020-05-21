@@ -10,9 +10,13 @@
 {
 }
 
++ (id)isAirPlayVideo;
++ (id)outputDeviceIDs;
++ (id)mediaType;
 + (id)identifier;
 + (id)title;
 + (id)genre;
++ (id)elapsed;
 + (id)duration;
 + (id)artist;
 + (id)album;

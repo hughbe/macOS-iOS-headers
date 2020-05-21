@@ -9,15 +9,15 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 
-@class NSArray, NSDisplayLink, NSMutableArray, NSRunLoop;
+@class NSArray, NSDisplayLink1, NSMutableArray, NSRunLoop;
 
 @interface NSAnimation : NSObject <NSCopying, NSCoding>
 {
     double _duration;
     float _currentProgress;
     float _framesPerSecond;
-    id _delegate;
-    NSDisplayLink *_displayLink;
+    id <NSAnimationDelegate> _delegate;
+    NSDisplayLink1 *_displayLink;
     double _startTime;
     NSMutableArray *_progressMarks;
     NSAnimation *_startAnimation;
@@ -44,6 +44,7 @@
 }
 
 + (void)initialize;
+- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 @property(readonly, copy) NSArray *runLoopModesForAnimating;
@@ -54,7 +55,7 @@
 - (void)removeProgressMark:(float)arg1;
 - (void)addProgressMark:(float)arg1;
 @property(copy) NSArray *progressMarks;
-@property id <NSAnimationDelegate> delegate;
+@property __weak id <NSAnimationDelegate> delegate;
 @property(readonly) float currentValue;
 @property unsigned long long animationCurve;
 @property float frameRate;
@@ -77,7 +78,6 @@
 - (void)_stopAnimation:(int)arg1 withDisplayLink:(id)arg2;
 - (void)_stopAnimation:(int)arg1;
 - (void)_startAnimation;
-- (void)_animationThread;
 - (void)_advanceTimeWithDisplayLink:(id)arg1;
 - (double)_instantProgress;
 - (void)_runInNewThread;

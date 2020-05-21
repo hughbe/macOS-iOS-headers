@@ -20,10 +20,10 @@ __attribute__((visibility("hidden")))
     GEOComposedRouteStep *_boardStep;
 }
 
+- (void).cxx_destruct;
 - (BOOL)_isLocation:(id)arg1 nearStop:(id)arg2;
 - (BOOL)_isLocation:(id)arg1 nearStation:(id)arg2;
 - (BOOL)updateRouteMatch:(id)arg1 previousRouteMatch:(id)arg2 forLocation:(id)arg3;
-- (void)dealloc;
 - (id)initWithTransitRouteMatcher:(id)arg1 alightStep:(id)arg2 transferStep:(id)arg3 boardStep:(id)arg4;
 
 @end

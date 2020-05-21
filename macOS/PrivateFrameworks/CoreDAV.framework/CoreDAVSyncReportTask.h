@@ -16,6 +16,7 @@
     BOOL _wasInvalidSyncToken;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL wasInvalidSyncToken; // @synthesize wasInvalidSyncToken=_wasInvalidSyncToken;
 @property(readonly, nonatomic) BOOL moreToSync; // @synthesize moreToSync=_moreToSync;
 @property(readonly, nonatomic) NSString *nextSyncToken; // @synthesize nextSyncToken=_nextSyncToken;
@@ -25,7 +26,6 @@
 - (id)requestBody;
 - (id)httpMethod;
 - (id)description;
-- (void)dealloc;
 - (id)initWithPropertiesToFind:(id)arg1 atURL:(id)arg2 withDepth:(int)arg3 previousSyncToken:(id)arg4;
 
 @end

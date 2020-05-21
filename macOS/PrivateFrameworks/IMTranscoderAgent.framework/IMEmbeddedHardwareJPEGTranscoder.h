@@ -8,8 +8,12 @@
 
 @interface IMEmbeddedHardwareJPEGTranscoder : NSObject
 {
+    BOOL _stripImageMetadata;
+    double _targetJPEGCompressionValue;
 }
 
+@property(nonatomic) BOOL stripImageMetadata; // @synthesize stripImageMetadata=_stripImageMetadata;
+@property(nonatomic) double targetJPEGCompressionValue; // @synthesize targetJPEGCompressionValue=_targetJPEGCompressionValue;
 - (BOOL)scaleImageToFitLargestDimension:(id)arg1 outputData:(id *)arg2;
 - (id)initWithImageData:(id)arg1 imageSource:(struct CGImageSource *)arg2;
 

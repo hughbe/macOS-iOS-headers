@@ -15,10 +15,10 @@ __attribute__((visibility("hidden")))
     OAXDrawingState *mOfficeArtState;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) CXNamespace *ODXDiagramNamespace; // @synthesize ODXDiagramNamespace=mODXDiagramNamespace;
 - (void)setupNSForXMLFormat:(int)arg1;
 - (id)officeArtState;
-- (void)dealloc;
 - (id)initWithOfficeArtState:(id)arg1;
 
 @end

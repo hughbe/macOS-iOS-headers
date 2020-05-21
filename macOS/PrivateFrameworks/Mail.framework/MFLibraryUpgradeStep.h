@@ -6,26 +6,26 @@
 
 #import "NSObject.h"
 
-@class MFSqliteHandle, NSProgress;
+@class EDPersistenceDatabaseConnection, NSProgress;
 
 @interface MFLibraryUpgradeStep : NSObject
 {
     NSProgress *_progress;
-    MFSqliteHandle *_handle;
+    EDPersistenceDatabaseConnection *_connection;
 }
 
-+ (BOOL)needToPerformFromMinorVersion:(unsigned long long)arg1 initialLastWriteMinorVersion:(unsigned long long)arg2 fromBackBooting:(char *)arg3;
-+ (BOOL)requiredAfterBackbooting;
-@property(readonly, nonatomic) MFSqliteHandle *handle; // @synthesize handle=_handle;
-@property(readonly, nonatomic) NSProgress *progress; // @synthesize progress=_progress;
++ (BOOL)needToPerformFromMinorVersion:(unsigned long long)arg1 initialLastWriteMinorVersion:(unsigned long long)arg2;
++ (BOOL)recalculateAllConversations;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) EDPersistenceDatabaseConnection *connection; // @synthesize connection=_connection;
+@property(readonly, nonatomic) NSProgress *progress; // @synthesize progress=_progress;
 - (id)adjustSmartMailboxCriterion:(id)arg1 adjustmentBlock:(CDUnknownBlockType)arg2;
 - (id)_urlStringForMailboxDirectory:(id)arg1 account:(id)arg2 levelFromAccountDirectory:(unsigned long long)arg3;
 - (id)mailboxFileSystemPathsByDatabaseURLForAccounts:(id)arg1;
 @property(readonly, nonatomic) BOOL shouldRecalculateMessageCounts;
 - (void)dealloc;
 - (id)init;
-- (id)initWithSQLHandle:(id)arg1;
+- (id)initWithDatabaseConnection:(id)arg1;
 
 @end
 

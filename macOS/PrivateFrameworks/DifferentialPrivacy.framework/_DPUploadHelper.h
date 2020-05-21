@@ -10,9 +10,10 @@
 {
 }
 
-- (id)timestampWithDate:(id)arg1 format:(id)arg2;
-- (id)writeUploadFile:(id)arg1;
-- (id)init;
++ (id)submissionFilePathInDirectory:(id)arg1 forDate:(id)arg2 useGMT:(BOOL)arg3 suffix:(id)arg4;
++ (id)writeFileForParsec:(id)arg1;
++ (id)writeFileForParsec:(id)arg1 inDirectory:(id)arg2;
++ (id)writeFileForDA:(id)arg1;
 
 @end
 

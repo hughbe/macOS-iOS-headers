@@ -7,10 +7,12 @@
 @class NSAttributedString;
 
 @protocol PXMutableLabelTypesetter
+@property(nonatomic) double minimumTruncatedScaleFactor;
 @property(nonatomic) BOOL allowTruncation;
 @property(nonatomic) double minimumScaleFactor;
 @property(nonatomic) BOOL adjustsFontSizeToFitWidth;
 @property(nonatomic) unsigned long long maximumNumberOfLines;
+@property(nonatomic) long long typesettingMode;
 @property(nonatomic) struct CGRect bounds;
 @property(copy, nonatomic) NSAttributedString *attributedString;
 @end

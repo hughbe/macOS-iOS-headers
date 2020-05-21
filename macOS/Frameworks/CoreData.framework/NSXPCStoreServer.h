@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSXPCListenerDelegate.h"
 #import "NSXPCServerProtocol.h"
 
-@class NSArray, NSDictionary, NSManagedObjectModel, NSMapTable, NSObject<OS_dispatch_queue>, NSString, NSURL, NSXPCListener, NSXPCStoreServerNotificationManager, NSXPCStoreServerRequestHandlingPolicy;
+@class NSArray, NSDictionary, NSManagedObjectModel, NSMapTable, NSObject<OS_dispatch_queue>, NSString, NSURL, NSXPCListener, NSXPCStoreServerRequestHandlingPolicy;
 
-@interface NSXPCStoreServer : NSObject <NSXPCServerProtocol>
+@interface NSXPCStoreServer : NSObject <NSXPCServerProtocol, NSXPCListenerDelegate>
 {
     id _delegate;
     NSURL *_modelURL;
@@ -22,14 +23,15 @@
     NSXPCListener *_listener;
     NSXPCStoreServerRequestHandlingPolicy *_policy;
     NSMapTable *_connectionToCoordinatorMap;
-    NSXPCStoreServerNotificationManager *_observer;
+    BOOL _postRemoteChangeNotifications;
 }
 
 + (void)initialize;
 + (unsigned long long)debugDefault;
 - (oneway void)handleRequest:(id)arg1 reply:(CDUnknownBlockType)arg2;
+- (void)postRemoteChangeNotificationForContext:(id)arg1;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
-- (id)retainedCoordinatorForConnection:(id)arg1;
+- (id)retainedCacheForConnection:(id)arg1;
 - (void)removeCachesForConnection:(id)arg1;
 - (id)_createCoordinator;
 - (BOOL)setupRecoveryForConnectionContext:(id)arg1 ifNecessary:(id)arg2;
@@ -38,11 +40,20 @@
 - (id)requestHandlingPolicy;
 - (id)delegate;
 - (void)dealloc;
+- (void)stopListening;
 - (void)startListening;
 - (void)setErrorHandlingDelegate:(id)arg1;
 - (id)errorHandlingDelegate;
 - (id)initForStoreWithURL:(id)arg1 usingModelAtURL:(id)arg2 options:(id)arg3 policy:(id)arg4;
-- (id)handlePullChangesRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)initForStoreWithURL:(id)arg1 usingModel:(id)arg2 options:(id)arg3 policy:(id)arg4;
+- (id)handlePersistentHistoryTokenRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)handlePersistentHistoryRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)handleBatchDeleteRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)handleBatchUpdateRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)handleBatchInsertRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)handleQueryGenerationReleaseRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)handleQueryGenerationReopenRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)handleQueryGenerationRequestInContext:(id)arg1 error:(id *)arg2;
 - (id)handleNotificationNameRequestInContext:(id)arg1 error:(id *)arg2;
 - (id)handleMetadataRequestInContext:(id)arg1;
 - (id)handleFetchRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
@@ -51,6 +62,9 @@
 - (id)handleSaveRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
 - (void)_populateObject:(id)arg1 withValuesFromClient:(id)arg2;
 - (id)handleObtainRequest:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
+- (id)unpackQueryGeneration:(id)arg1 withContext:(id)arg2;
+- (id)localGenerationForXPCToken:(id)arg1 withContext:(id)arg2;
+- (id)retainedXPCEncodableGenerationTokenForOriginal:(id)arg1 inContext:(id)arg2;
 - (id)replacementObjectForXPCConnection:(id)arg1 encoder:(id)arg2 object:(id)arg3;
 
 // Remaining properties

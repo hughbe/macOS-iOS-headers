@@ -6,7 +6,7 @@
 
 #import "NSViewController.h"
 
-@class NSArray, NSButton, NSPopUpButton, NSTrackingArea;
+@class NSArray, NSButton, NSPopUpButton;
 
 @interface SHKShareLocationController : NSViewController
 {
@@ -15,17 +15,16 @@
     long long _currentLocationIndex;
     CDUnknownBlockType _updateLocationsBlock;
     id <SHKShareLocationControllerDelegate> _delegate;
-    NSTrackingArea *_buttonTrackingArea;
     NSButton *locationButton;
     NSPopUpButton *locationsPopupButton;
 }
 
 + (id)keyPathsForValuesAffectingCurrentLocationDisplayName;
 + (id)keyPathsForValuesAffectingCurrentLocation;
+- (void).cxx_destruct;
 @property __weak id <SHKShareLocationControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy) CDUnknownBlockType updateLocationsBlock; // @synthesize updateLocationsBlock=_updateLocationsBlock;
 @property long long currentLocationIndex; // @synthesize currentLocationIndex=_currentLocationIndex;
-- (void).cxx_destruct;
 - (void)locationPopupChanged:(id)arg1;
 - (void)locationClicked:(id)arg1;
 - (id)currentLocationDisplayName;

@@ -10,8 +10,8 @@
 {
 }
 
-- (void)setupUsingModel:(id)arg1;
-- (id)initWithModel:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)setModel:(id)arg1;
+- (void)updatePreferences;
 
 @end
 

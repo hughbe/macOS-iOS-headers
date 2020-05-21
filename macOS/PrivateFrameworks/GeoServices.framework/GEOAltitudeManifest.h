@@ -17,6 +17,7 @@
 }
 
 + (id)sharedManager;
+- (void).cxx_destruct;
 - (void)parser:(id)arg1 didStartElement:(id)arg2 namespaceURI:(id)arg3 qualifiedName:(id)arg4 attributes:(id)arg5;
 - (void)parseManifest:(id)arg1;
 - (id)availableRegions;

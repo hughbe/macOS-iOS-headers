@@ -10,7 +10,6 @@
 
 @class ABAddressBook, ABPersonPicker, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABContactPickerDelegateWrapper : NSObject <CNPrivateContactPickerDelegate>
 {
     id <ABPersonPickerDelegate> _delegate;
@@ -18,6 +17,7 @@ __attribute__((visibility("hidden")))
     ABAddressBook *_addressBook;
 }
 
++ (id)addressBookPropertyByContactsProperty;
 - (id)backingContactsForContact:(id)arg1;
 - (id)contactWithLabeledValueIdentifier:(id)arg1 forKey:(id)arg2 inContacts:(id)arg3;
 - (id)contactWithValue:(id)arg1 forKey:(id)arg2 inContacts:(id)arg3;

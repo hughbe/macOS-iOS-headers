@@ -10,7 +10,6 @@
 
 @interface IMKCandidateController : NSObject
 {
-    long long _alignment;
     IMKCandidateCanvas *_canvas;
     IMKCandidateData *_currentlyShownCandidates;
     BOOL _deferredWindowVisibility;
@@ -23,7 +22,6 @@
     BOOL _expandedInternal;
     double _fontSize;
     BOOL _forceNoIncrementalSearchPositioning;
-    NSArray *_functionViews;
     BOOL _grouping;
     NSView *_informationView;
     double _informationViewMinimumSize;
@@ -31,6 +29,7 @@
     IMKLayoutToViewController *_layoutToViewController;
     double _maxCandidateLineSize;
     IMKCandidateNavigationController *_navigationController;
+    unsigned long long _numberOfSimilarWidthCandidates;
     BOOL _optimizeLayoutForFixedSize;
     IMKCandidatePopoverController *_popoverController;
     struct CGSize _positionalGridSize;
@@ -42,10 +41,9 @@
     struct CGPoint _previousPosition;
     BOOL _resetCandidatesOnRelayout;
     BOOL _resizeOnSelectionChanged;
+    BOOL _secondaryCandidatesShowChevron;
     NSString *_selectedCandidateKey;
     NSArray *_selectionKeyTitles;
-    unsigned long long _selectionKeyPosition;
-    unsigned long long _selectionTabStyle;
     NSArray *_sortingMethods;
     double _totalCandidateLineSize;
     id _textClient;
@@ -60,8 +58,13 @@
     BOOL _windowVisibilityDidChange;
 }
 
++ (BOOL)isAppleInternal;
 + (id)defaultSelectionKeyTitles;
++ (BOOL)touchBarAvailable;
++ (id)sharedFunctionRowCandidateController;
 + (id)sharedCandidateController;
++ (id)mutableCandidateWindowIDs;
++ (id)candidateWindowIDs;
 @property(nonatomic) BOOL windowVisibilityDidChange; // @synthesize windowVisibilityDidChange=_windowVisibilityDidChange;
 @property(nonatomic) BOOL windowVisibleWithDeferral; // @synthesize windowVisibleWithDeferral=_windowVisibleWithDeferral;
 @property(nonatomic) long long windowType; // @synthesize windowType=_windowType;
@@ -73,10 +76,9 @@
 @property(nonatomic) double totalCandidateLineSize; // @synthesize totalCandidateLineSize=_totalCandidateLineSize;
 @property(nonatomic) id textClient; // @synthesize textClient=_textClient;
 @property(retain, nonatomic) NSArray *sortingMethods; // @synthesize sortingMethods=_sortingMethods;
-@property(nonatomic) unsigned long long selectionTabStyle; // @synthesize selectionTabStyle=_selectionTabStyle;
 @property(retain, nonatomic) NSArray *selectionKeyTitles; // @synthesize selectionKeyTitles=_selectionKeyTitles;
-@property(nonatomic) unsigned long long selectionKeyPosition; // @synthesize selectionKeyPosition=_selectionKeyPosition;
 @property(copy, nonatomic) NSString *selectedCandidateKey; // @synthesize selectedCandidateKey=_selectedCandidateKey;
+@property(nonatomic) BOOL secondaryCandidatesShowChevron; // @synthesize secondaryCandidatesShowChevron=_secondaryCandidatesShowChevron;
 @property(nonatomic) BOOL resizeOnSelectionChanged; // @synthesize resizeOnSelectionChanged=_resizeOnSelectionChanged;
 @property(nonatomic) BOOL resetCandidatesOnRelayout; // @synthesize resetCandidatesOnRelayout=_resetCandidatesOnRelayout;
 @property(retain, nonatomic) IMKUIProperties *properties; // @synthesize properties=_properties;
@@ -85,6 +87,7 @@
 @property(nonatomic) struct CGSize positionalGridSize; // @synthesize positionalGridSize=_positionalGridSize;
 @property(retain, nonatomic) IMKCandidatePopoverController *popoverController; // @synthesize popoverController=_popoverController;
 @property(nonatomic) BOOL optimizeLayoutForFixedSize; // @synthesize optimizeLayoutForFixedSize=_optimizeLayoutForFixedSize;
+@property(nonatomic) unsigned long long numberOfSimilarWidthCandidates; // @synthesize numberOfSimilarWidthCandidates=_numberOfSimilarWidthCandidates;
 @property(nonatomic) double numberOfRows; // @synthesize numberOfRows=_numberOfRows;
 @property(nonatomic) double numberOfColumns; // @synthesize numberOfColumns=_numberOfColumns;
 @property(copy, nonatomic) NSString *noCandidatesMessage; // @synthesize noCandidatesMessage=_noCandidatesMessage;
@@ -95,7 +98,6 @@
 @property(nonatomic) double informationViewMinimumSize; // @synthesize informationViewMinimumSize=_informationViewMinimumSize;
 @property(retain, nonatomic) NSView *informationView; // @synthesize informationView=_informationView;
 @property(nonatomic, getter=isGrouping) BOOL grouping; // @synthesize grouping=_grouping;
-@property(retain, nonatomic) NSArray *functionViews; // @synthesize functionViews=_functionViews;
 @property(nonatomic) BOOL forceNoIncrementalSearchPositioning; // @synthesize forceNoIncrementalSearchPositioning=_forceNoIncrementalSearchPositioning;
 @property(nonatomic) double fontSize; // @synthesize fontSize=_fontSize;
 @property(nonatomic) BOOL expandedInternal; // @synthesize expandedInternal=_expandedInternal;
@@ -107,7 +109,7 @@
 @property(nonatomic) BOOL deferredWindowVisibility; // @synthesize deferredWindowVisibility=_deferredWindowVisibility;
 @property(retain, nonatomic) IMKCandidateData *currentlyShownCandidates; // @synthesize currentlyShownCandidates=_currentlyShownCandidates;
 @property(retain, nonatomic) IMKCandidateCanvas *canvas; // @synthesize canvas=_canvas;
-@property(nonatomic) long long alignment; // @synthesize alignment=_alignment;
+@property(readonly, nonatomic) BOOL showsAnnotations;
 - (id)restrictedLayoutForCandidates:(id)arg1;
 - (id)topVisibleCandidates;
 - (BOOL)candidateIsVisible:(id)arg1;
@@ -130,14 +132,20 @@
 @property(nonatomic) long long layoutDirection;
 @property(nonatomic) double candidateThickness;
 @property(readonly, nonatomic) BOOL isUsingIncrementalSearch;
+- (void)updateIncrementalSearchStateWithClient:(id)arg1;
 @property(readonly, nonatomic) BOOL hasCandidates;
+- (void)stepperViewDownArrowPressed;
+- (void)stepperViewUpArrowPressed;
+- (void)requestRadar;
+- (BOOL)shouldShowRadarButton;
+- (void)didSelectSortingMode:(id)arg1;
 - (void)selectCurrentlyFocusedItem;
 - (BOOL)windowTypeIsSortable;
 - (void)endGrouping;
 - (void)beginGrouping;
 @property(readonly, nonatomic) IMKCandidateDefinitionUnit *currentlySelectedCandidate;
 - (void)forceCollapse;
-- (void)arrowPressed;
+- (void)arrowViewPressed:(id)arg1;
 - (void)setCurrentlySelectedIndex:(unsigned long long)arg1;
 - (unsigned long long)currentlySelectedIndex;
 - (void)selectDefaultSortingMethod;
@@ -169,10 +177,13 @@
 - (void)updateSelectionKeys;
 - (void)updateHighlights;
 - (void)updateGroupNames;
+- (void)performVisualLineUpdates;
 - (void)updateStepper;
 - (void)updateAuxilliaryViews;
 - (void)touchesEndedOutsideView;
 - (void)touchesEnded;
+- (void)showPrimaryCandidateWindowAndSelectCandidate:(id)arg1;
+- (void)shouldUpdateForPressAndHold:(id)arg1;
 - (void)scrubbedCandidate:(id)arg1;
 - (void)selectCandidate:(id)arg1 confirm:(BOOL)arg2;
 @property(nonatomic) unsigned long long topVisibleLine;
@@ -181,13 +192,19 @@
 - (void)setSelectedCandidateKey:(id)arg1 clickCount:(unsigned long long)arg2;
 - (void)setSelectedCandidateKey:(id)arg1 clickCount:(unsigned long long)arg2 sendMessageToDelegate:(BOOL)arg3;
 - (void)updateSelectionForKey:(id)arg1;
+- (BOOL)shouldShowSelectionUpdateInTouchBar;
+- (BOOL)layoutUnitsContainIdentifier:(id)arg1;
 - (void)setupProperties;
 - (void)setupUISettings;
 - (void)unselectCandidates;
 - (void)selectFirstCandidate;
 - (void)changeGroupViewVisibility;
 - (void)animateChanges;
+- (void)reloadWithUpdatingFirstCandidate:(BOOL)arg1;
 - (void)reload;
+- (void)addCandidatesToPasteboard;
+- (void)clearPasteboard;
+- (void)updateWindowLevelWithClient:(id)arg1;
 - (void)updateUIType;
 - (void)updateWindowType;
 - (void)resizeWindow:(struct CGRect)arg1;
@@ -218,6 +235,7 @@
 - (void)collapseWindowWithoutAnimation;
 - (void)collapseWindowWithAnimation;
 - (void)expandWindowWithAnimation;
+- (void)updateArrowView;
 - (void)setWindowFrameWithAnimation:(BOOL)arg1;
 - (void)calibrateLayoutForCollapsedHorizontalView;
 - (void)calibrateLayoutForExpandedHorizontalView;
@@ -225,7 +243,9 @@
 - (void)updatePreviousPosition;
 - (void)resetPreviousPosition;
 - (void)dealloc;
+- (void)nilOutConnectionsToCandidateController;
 - (id)init;
+- (double)widthOfStandardRow;
 
 @end
 

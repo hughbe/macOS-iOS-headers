@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
 + (id)sharedInstance;
 - (BOOL)setupMacDecodingOnlyRules;
 - (BOOL)setupH264Rules;
+- (void)selectPreferredRule:(id)arg1 screenSize:(struct CGSize)arg2;
 - (void)initSupportedPayloads;
 - (id)initForMacDecodingOnly;
 - (id)initWithHardwareSettings:(id)arg1;

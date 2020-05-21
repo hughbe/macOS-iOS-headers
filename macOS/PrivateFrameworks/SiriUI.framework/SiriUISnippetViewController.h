@@ -6,9 +6,11 @@
 
 #import <SiriUI/SiriUIBaseSnippetViewController.h>
 
+#import "NSCollectionViewDelegate.h"
+
 @class NSArray, NSAttributedString, NSString, NSView<SiriUIReusableView>, NSViewController, SAUIAppPunchOut, SAUIConfirmationOptions;
 
-@interface SiriUISnippetViewController : SiriUIBaseSnippetViewController
+@interface SiriUISnippetViewController : SiriUIBaseSnippetViewController <NSCollectionViewDelegate>
 {
     NSView<SiriUIReusableView> *_headerView;
     NSView<SiriUIReusableView> *_footerView;
@@ -20,7 +22,6 @@
     BOOL _stashed;
     BOOL _topKeylineHidden;
     BOOL _wantsConfirmationInsets;
-    BOOL _isFullPadWidth;
     BOOL _isTransparent;
     BOOL _loading;
     BOOL _confirmed;
@@ -34,6 +35,7 @@
     NSString *_summaryTitle;
     NSString *_summaryImagePath;
     unsigned long long _minimumVisibleRowCount;
+    NSAttributedString *_attributedTitle;
     NSAttributedString *_attributedSubtitle;
     NSString *_navigationTitle;
     NSArray *_requestContext;
@@ -43,6 +45,8 @@
     struct NSEdgeInsets _defaultViewInsets;
 }
 
++ (BOOL)isDragInProgress;
+- (void).cxx_destruct;
 @property(nonatomic, getter=_isProvisional, setter=_setProvisional:) BOOL provisional; // @synthesize provisional=_provisional;
 @property(nonatomic) BOOL showHeaderChevron; // @synthesize showHeaderChevron=_showHeaderChevron;
 @property(retain, nonatomic, getter=_previousConfirmationOptions, setter=_setPreviousConfirmationOptions:) SAUIConfirmationOptions *previousConfirmationOptions; // @synthesize previousConfirmationOptions=_previousConfirmationOptions;
@@ -53,7 +57,6 @@
 @property(nonatomic, getter=isConfirmed) BOOL confirmed; // @synthesize confirmed=_confirmed;
 @property(nonatomic, getter=isLoading) BOOL loading; // @synthesize loading=_loading;
 @property(nonatomic) BOOL isTransparent; // @synthesize isTransparent=_isTransparent;
-@property(nonatomic) BOOL isFullPadWidth; // @synthesize isFullPadWidth=_isFullPadWidth;
 @property(nonatomic) BOOL wantsConfirmationInsets; // @synthesize wantsConfirmationInsets=_wantsConfirmationInsets;
 @property(nonatomic) struct NSEdgeInsets defaultViewInsets; // @synthesize defaultViewInsets=_defaultViewInsets;
 @property(retain, nonatomic) SAUIAppPunchOut *snippetPunchOut; // @synthesize snippetPunchOut=_snippetPunchOut;
@@ -62,6 +65,7 @@
 @property(copy, nonatomic) NSString *navigationTitle; // @synthesize navigationTitle=_navigationTitle;
 @property(nonatomic) BOOL topKeylineHidden; // @synthesize topKeylineHidden=_topKeylineHidden;
 @property(copy, nonatomic) NSAttributedString *attributedSubtitle; // @synthesize attributedSubtitle=_attributedSubtitle;
+@property(copy, nonatomic) NSAttributedString *attributedTitle; // @synthesize attributedTitle=_attributedTitle;
 @property(nonatomic, getter=isStashed) BOOL stashed; // @synthesize stashed=_stashed;
 @property(nonatomic) unsigned long long minimumVisibleRowCount; // @synthesize minimumVisibleRowCount=_minimumVisibleRowCount;
 @property(nonatomic) BOOL hasSash; // @synthesize hasSash=_hasSash;
@@ -69,7 +73,8 @@
 @property(copy, nonatomic) NSString *summaryImagePath; // @synthesize summaryImagePath=_summaryImagePath;
 @property(copy, nonatomic) NSString *summaryTitle; // @synthesize summaryTitle=_summaryTitle;
 @property(copy, nonatomic) NSViewController *supplementaryHeaderViewController; // @synthesize supplementaryHeaderViewController=_supplementaryHeaderViewController;
-- (void).cxx_destruct;
+- (void)collectionView:(id)arg1 draggingSession:(id)arg2 endedAtPoint:(struct CGPoint)arg3 dragOperation:(unsigned long long)arg4;
+- (void)collectionView:(id)arg1 draggingSession:(id)arg2 willBeginAtPoint:(struct CGPoint)arg3 forItemsAtIndexPaths:(id)arg4;
 - (void)prepareForReuse;
 - (unsigned long long)snippetDragSourceTypes;
 - (void)confirmButtonTapped:(id)arg1;
@@ -110,13 +115,19 @@
 - (BOOL)_hasConfirmationOrCancelledInsets;
 - (long long)_replacementAnimation;
 - (long long)_insertionAnimation;
+- (long long)_pinAnimationType;
 - (void)_setVirgin:(BOOL)arg1;
+@property(readonly, nonatomic) BOOL isFullWindowWidth;
 - (BOOL)isMemoryIntensive;
 - (BOOL)removedAfterDialogProgresses;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
 @property(nonatomic) __weak id <SiriUISnippetViewControllerDelegate> delegate; // @dynamic delegate;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface MKThreadContext : NSObject
 {
     long long _CA_disableActionsCounter;

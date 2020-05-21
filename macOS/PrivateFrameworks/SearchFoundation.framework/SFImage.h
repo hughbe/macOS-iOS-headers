@@ -6,37 +6,68 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
+#import "SFImage.h"
 
-@class NSData, NSString;
+@class NSData, NSDictionary, NSString;
 
-@interface SFImage : NSObject <NSSecureCoding>
+@interface SFImage : NSObject <SFImage, NSSecureCoding, NSCopying>
 {
+    struct {
+        unsigned int isTemplate:1;
+        unsigned int shouldCropToCircle:1;
+        unsigned int cornerRadius:1;
+        unsigned int scale:1;
+        unsigned int size:1;
+        unsigned int source:1;
+    } _has;
     BOOL _isTemplate;
     BOOL _shouldCropToCircle;
+    int _source;
     NSData *_imageData;
     double _cornerRadius;
     double _scale;
     NSString *_contentType;
     NSString *_keyColor;
+    NSString *_identifier;
     struct CGSize _size;
 }
 
-+ (id)imageWithData:(id)arg1;
 + (BOOL)supportsSecureCoding;
-@property(retain, nonatomic) NSString *keyColor; // @synthesize keyColor=_keyColor;
-@property(retain, nonatomic) NSString *contentType; // @synthesize contentType=_contentType;
++ (id)imageWithData:(id)arg1;
+- (void).cxx_destruct;
+@property(nonatomic) int source; // @synthesize source=_source;
+@property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+@property(copy, nonatomic) NSString *keyColor; // @synthesize keyColor=_keyColor;
+@property(copy, nonatomic) NSString *contentType; // @synthesize contentType=_contentType;
 @property(nonatomic) struct CGSize size; // @synthesize size=_size;
 @property(nonatomic) double scale; // @synthesize scale=_scale;
 @property(nonatomic) double cornerRadius; // @synthesize cornerRadius=_cornerRadius;
 @property(nonatomic) BOOL shouldCropToCircle; // @synthesize shouldCropToCircle=_shouldCropToCircle;
 @property(nonatomic) BOOL isTemplate; // @synthesize isTemplate=_isTemplate;
-@property(retain) NSData *imageData; // @synthesize imageData=_imageData;
-- (void).cxx_destruct;
-- (void)loadImageDataWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)loadImageDataWithCompletionAndErrorHandler:(CDUnknownBlockType)arg1;
+@property(copy) NSData *imageData; // @synthesize imageData=_imageData;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) NSData *jsonData;
+@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)hasSource;
+- (BOOL)hasSize;
+- (BOOL)hasScale;
+- (BOOL)hasCornerRadius;
+- (BOOL)hasShouldCropToCircle;
+- (BOOL)hasIsTemplate;
+- (void)loadImageDataWithCompletionAndErrorHandler:(CDUnknownBlockType)arg1;
+- (void)loadImageDataWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)initWithProtobuf:(id)arg1;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

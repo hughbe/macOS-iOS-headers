@@ -12,23 +12,21 @@
 
 @interface SFActivityScanner : NSObject <SFContinuityScanManagerObserver>
 {
-    BOOL _receiving;
     id <SFActivityScannerDelegate> _delegate;
     NSUUID *_identifier;
 }
 
-@property(retain) NSUUID *identifier; // @synthesize identifier=_identifier;
-@property BOOL receiving; // @synthesize receiving=_receiving;
 - (void).cxx_destruct;
+@property(retain) NSUUID *identifier; // @synthesize identifier=_identifier;
+- (void)scanManager:(id)arg1 pairedDevicesChanged:(id)arg2;
 - (void)scanManager:(id)arg1 lostDeviceWithDevice:(id)arg2;
 - (void)scanManager:(id)arg1 foundDeviceWithDevice:(id)arg2;
 - (void)scanManager:(id)arg1 receivedAdvertisement:(id)arg2;
-- (void)activityPayloadFromDevice:(id)arg1 forAdvertisementPayload:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
-- (void)activityPayloadFromDevice:(id)arg1 forAdvertisementPayload:(id)arg2 command:(id)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
-- (void)setForceScanningEnabled:(BOOL)arg1;
-- (void)stop;
-- (void)start;
-@property id <SFActivityScannerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)activityPayloadFromDevice:(id)arg1 forAdvertisementPayload:(id)arg2 command:(id)arg3 timeout:(long long)arg4 withCompletionHandler:(CDUnknownBlockType)arg5;
+- (void)scanForTypes:(unsigned long long)arg1;
+@property(readonly) id <SFActivityScannerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)dealloc;
+- (id)initWithDelegate:(id)arg1;
 - (id)init;
 
 // Remaining properties

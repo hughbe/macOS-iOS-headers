@@ -29,11 +29,16 @@
     NSMutableArray *_packageSources;
     NSError *_error;
     BOOL _didLoadAllResourcesSuccessfully;
+    unsigned short scanTimeout;
     NSDictionary *_distributionEvaluationMetainfo;
+    NSArray *_filteredProductTypes;
 }
 
 + (long long)_resultCodeFromScan:(id)arg1;
++ (BOOL)_rangeCheckForMacBuddyEligibleUpdate:(id)arg1 maxVersion:(id)arg2 currentVersion:(id)arg3;
+@property(retain) NSArray *filteredProductTypes; // @synthesize filteredProductTypes=_filteredProductTypes;
 @property(retain) NSDictionary *distributionEvaluationMetainfo; // @synthesize distributionEvaluationMetainfo=_distributionEvaluationMetainfo;
+@property unsigned short scanTimeout; // @synthesize scanTimeout;
 @property BOOL isBackgroundScan; // @synthesize isBackgroundScan;
 @property(retain) NSDictionary *distributionEnvironment; // @synthesize distributionEnvironment;
 @property BOOL ignorePPDVersionCache; // @synthesize ignorePPDVersionCache;
@@ -56,7 +61,6 @@
 - (void)_updatePackageSourcesWithCatalog:(id)arg1;
 - (void)_scanMain:(id)arg1;
 - (id)_clientDescription;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

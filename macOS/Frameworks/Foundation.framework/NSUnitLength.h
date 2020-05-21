@@ -12,8 +12,7 @@
 {
 }
 
-+ (id)foot;
-+ (id)meter;
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 + (id)parsecs;
 + (id)astronomicalUnits;
 + (id)furlongs;
@@ -37,6 +36,7 @@
 + (id)kilometers;
 + (id)megameters;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

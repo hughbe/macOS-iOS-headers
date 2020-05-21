@@ -6,23 +6,29 @@
 
 #import "NSObject.h"
 
-#import "CKBXPCClient.h"
+#import "CKXPCClient.h"
+#import "CKXPCDiscretionaryClient.h"
 
 @class CKContainer, NSString;
 
 __attribute__((visibility("hidden")))
-@interface CKContainerXPCProxy : NSObject <CKBXPCClient>
+@interface CKContainerXPCProxy : NSObject <CKXPCClient, CKXPCDiscretionaryClient>
 {
     CKContainer *_container;
 }
 
-@property(nonatomic) __weak CKContainer *container; // @synthesize container=_container;
 - (void).cxx_destruct;
+@property(nonatomic) __weak CKContainer *container; // @synthesize container=_container;
+- (void)consumeSandboxExtensions:(id)arg1 reply:(CDUnknownBlockType)arg2;
+- (void)readBytesOfInMemoryAssetContentWithUUID:(id)arg1 offset:(unsigned long long)arg2 length:(unsigned long long)arg3 reply:(CDUnknownBlockType)arg4;
+- (void)getFileMetadataWithFileHandle:(id)arg1 openInfo:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)openFileWithOpenInfo:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)handleOperationCheckpoint:(id)arg1 forOperationWithID:(id)arg2;
 - (void)handleOperationCompletion:(id)arg1 forOperationWithID:(id)arg2;
+- (void)handleOperationStatistics:(id)arg1 forOperationWithID:(id)arg2;
 - (void)handleOperationProgress:(id)arg1 forOperationWithID:(id)arg2 reply:(CDUnknownBlockType)arg3;
 - (void)handleOperationProgress:(id)arg1 forOperationWithID:(id)arg2;
+- (void)discretionarySuspensionForOperationID:(id)arg1;
 - (id)initWithContainer:(id)arg1;
 
 // Remaining properties

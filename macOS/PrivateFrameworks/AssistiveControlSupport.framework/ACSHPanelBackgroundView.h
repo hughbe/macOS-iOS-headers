@@ -6,19 +6,24 @@
 
 #import <AssistiveControlSupport/ACSHView.h>
 
-@class NSView;
+@class NSColor;
 
 @interface ACSHPanelBackgroundView : ACSHView
 {
-    struct CGImage *_cachedImage;
-    struct CGSize _cachedImageSize;
-    NSView *_background;
+    NSColor *_backgroundColor;
+    NSColor *_borderColor;
+    struct CGImage *__cachedImage;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) struct CGImage *_cachedImage; // @synthesize _cachedImage=__cachedImage;
+@property(retain, nonatomic) NSColor *borderColor; // @synthesize borderColor=_borderColor;
+@property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 - (void)dealloc;
-- (void)updateLayer;
 - (void)drawRect:(struct CGRect)arg1;
-- (struct CGImage *)_image;
+- (void)updateLayer;
+- (void)viewDidMoveToWindow;
+@property(readonly, nonatomic) struct CGImage *_image;
 - (BOOL)wantsUpdateLayer;
 - (void)awakeFromNib;
 

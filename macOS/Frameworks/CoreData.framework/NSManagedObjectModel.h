@@ -9,14 +9,15 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSFastEnumeration.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSDictionary, NSMutableDictionary, NSSet;
 
-@interface NSManagedObjectModel : NSObject <NSCoding, NSCopying, NSFastEnumeration>
+@interface NSManagedObjectModel : NSObject <NSSecureCoding, NSCoding, NSCopying, NSFastEnumeration>
 {
     id _dataForOptimization;
     id *_optimizationHints;
-    id _localizationPolicy;
+    id *_additionalPrivateIvars;
     NSMutableDictionary *_entities;
     NSMutableDictionary *_configurations;
     NSMutableDictionary *_fetchRequestTemplates;
@@ -26,18 +27,22 @@
         unsigned int _isImmutable:1;
         unsigned int _isOptimizedForEncoding:1;
         unsigned int _hasEntityWithConstraints:1;
-        unsigned int _reservedEntityDescription:28;
+        unsigned int _skipUserInfoTombstones:1;
+        unsigned int _reservedEntityDescription:27;
     } _managedObjectModelFlags;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)modelByMergingModels:(id)arg1 forStoreMetadata:(id)arg2;
 + (id)mergedModelFromBundles:(id)arg1 forStoreMetadata:(id)arg2;
 + (id)modelByMergingModels:(id)arg1;
 + (id)mergedModelFromBundles:(id)arg1;
-+ (void)initialize;
-+ (id)_newModelFromOptimizedEncoding:(id)arg1 error:(id *)arg2;
++ (BOOL)versionHashes:(id)arg1 compatibleWithStoreMetadata:(id)arg2;
++ (id)versionsHashesForModelAtURL:(id)arg1 error:(id *)arg2;
 + (id)_modelPathsFromBundles:(id)arg1;
 + (void)_deepCollectEntitiesInArray:(id)arg1 entity:(id)arg2;
++ (long long)_debugOptimizedModelLayout;
++ (id)_newModelFromOptimizedEncoding:(id)arg1 error:(id *)arg2;
 - (BOOL)isConfiguration:(id)arg1 compatibleWithStoreMetadata:(id)arg2;
 @property(readonly, copy) NSDictionary *entityVersionHashesByName;
 @property(copy) NSSet *versionIdentifiers;
@@ -58,16 +63,16 @@
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)_finalizeIndexes;
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)initWithContentsOfURL:(id)arg1;
 - (id)init;
-- (id)_modelForVersionHashes:(id)arg1;
 - (id)versionHash;
 - (void)_addEntity:(id)arg1;
 - (id)initWithContentsOfURL:(id)arg1 forStoreMetadata:(id)arg2;
 - (id)_optimizedEncoding:(id *)arg1;
-- (id)initWithContentsOfOptimizedURL:(id)arg1;
+@property(nonatomic, setter=_setModelsReferenceIDOffset:) long long _modelsReferenceIDOffset;
 - (id)_versionIdentifiersAsArray;
 - (void)_restoreValidation;
 - (void)_stripForMigration;
@@ -85,6 +90,11 @@
 - (void)_throwIfNotEditable;
 - (void)_setIsEditable:(BOOL)arg1;
 - (void)_setIsEditable:(BOOL)arg1 optimizationStyle:(unsigned long long)arg2;
+- (void)_unmarkTombstones;
+- (void)_markTombstones;
+- (void)_traverseTombstonesAndMark:(BOOL)arg1;
+- (BOOL)_isSkippingUserInfoTombstones;
+- (void)_skipUserInfoTombstones:(BOOL)arg1;
 - (id)_precomputedKeysForEntity:(id)arg1;
 - (BOOL)_hasPrecomputedKeyOrder;
 - (BOOL)_hasEntityWithUniquenessConstraints;
@@ -93,8 +103,14 @@
 - (void)_flattenProperties;
 - (BOOL)isEditable;
 - (id)_initWithEntities:(id)arg1;
+- (id)_entityVersionHashesDigest;
+- (id)_entityVersionHashesDigestFrom:(id)arg1;
 - (id)_entityVersionHashesByNameInStyle:(unsigned long long)arg1;
 - (BOOL)_isConfiguration:(id)arg1 inStyle:(unsigned long long)arg2 compatibleWithStoreMetadata:(id)arg3;
+- (id)immutableCopy;
+- (id)_initWithContentsOfURL:(id)arg1 options:(unsigned long long)arg2;
+- (id)_modelForVersionHashes:(id)arg1;
+- (id)initWithContentsOfOptimizedURL:(id)arg1;
 
 @end
 

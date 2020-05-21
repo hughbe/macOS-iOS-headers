@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class SiriUIClumpView, SiriUIKeyline;
+@class SiriUIKeyline, SiriUITranscriptClumpView;
 
 __attribute__((visibility("hidden")))
 @interface SVSTranscriptContentView : NSView
@@ -15,22 +15,22 @@ __attribute__((visibility("hidden")))
     SiriUIKeyline *_topKeyline;
     BOOL _bottomKeylineHidden;
     BOOL _topKeylineHidden;
-    SiriUIClumpView *_clumpView;
+    SiriUITranscriptClumpView *_transcriptClumpView;
     NSView *_suggestionsView;
     double _topMargin;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL topKeylineHidden; // @synthesize topKeylineHidden=_topKeylineHidden;
 @property(nonatomic) BOOL bottomKeylineHidden; // @synthesize bottomKeylineHidden=_bottomKeylineHidden;
 @property(nonatomic) double topMargin; // @synthesize topMargin=_topMargin;
 @property(retain, nonatomic) NSView *suggestionsView; // @synthesize suggestionsView=_suggestionsView;
-@property(readonly, nonatomic) SiriUIClumpView *clumpView; // @synthesize clumpView=_clumpView;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) SiriUITranscriptClumpView *transcriptClumpView; // @synthesize transcriptClumpView=_transcriptClumpView;
 - (BOOL)isFlipped;
 @property(readonly, nonatomic) double bottomMargin;
 - (void)layout;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (id)initWithFrame:(struct CGRect)arg1 clumpView:(id)arg2;
+- (id)initWithFrame:(struct CGRect)arg1 transcriptClumpView:(id)arg2;
 
 @end
 

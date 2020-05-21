@@ -9,8 +9,9 @@
 #import "CLLocationManagerDelegate.h"
 #import "MKLocationProvider.h"
 
-@class CLLocation, CLLocationManager, NSBundle, NSLock, NSString;
+@class CLLocation, CLLocationManager, NSBundle, NSObject<OS_dispatch_queue>, NSString, geo_isolater;
 
+__attribute__((visibility("hidden")))
 @interface MKCoreLocationProvider : NSObject <CLLocationManagerDelegate, MKLocationProvider>
 {
     CLLocationManager *_clLocationManager;
@@ -22,15 +23,21 @@
     CDUnknownBlockType _authorizationRequestBlock;
     BOOL _waitingForAuthorization;
     BOOL _hasQueriedAuthorization;
-    NSLock *_authorizationLock;
-    BOOL _alternate;
+    double _expectedGpsUpdateInterval;
+    geo_isolater *_isolation;
+    NSObject<OS_dispatch_queue> *_coreLocationQueue;
+    double _desiredAccuracy;
+    double _distanceFilter;
 }
 
-@property(nonatomic) __weak id <MKLocationProviderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) double expectedGpsUpdateInterval; // @synthesize expectedGpsUpdateInterval=_expectedGpsUpdateInterval;
+@property(nonatomic) __weak id <MKLocationProviderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)locationManagerDidResumeLocationUpdates:(id)arg1;
 - (void)locationManagerDidPauseLocationUpdates:(id)arg1;
 - (void)locationManager:(id)arg1 didChangeAuthorizationStatus:(int)arg2;
+- (CDUnknownBlockType)authorizationRequestBlock;
+- (void)setAuthorizationRequestBlock:(CDUnknownBlockType)arg1;
 - (void)locationManager:(id)arg1 didFailWithError:(id)arg2;
 - (void)locationManager:(id)arg1 didUpdateHeading:(id)arg2;
 - (void)locationManager:(id)arg1 didUpdateToLocation:(id)arg2 fromLocation:(id)arg3;
@@ -39,10 +46,15 @@
 @property(readonly, nonatomic) double timeScale;
 @property(readonly, nonatomic) BOOL isTracePlayer;
 @property(readonly, nonatomic) BOOL shouldShiftIfNecessary;
+- (void)authorizationStatusOnQueue:(id)arg1 result:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) int authorizationStatus;
-@property(readonly, nonatomic) double expectedGpsUpdateInterval;
+- (int)_authorizationStatusOnQueue;
+- (void)setHeadingOrientation:(int)arg1;
+- (int)headingOrientation;
 @property(nonatomic) BOOL matchInfoEnabled;
 @property(nonatomic) double distanceFilter;
+- (void)setActivityType:(long long)arg1;
+- (long long)activityType;
 @property(nonatomic, getter=isLocationServicesPreferencesDialogEnabled) BOOL locationServicesPreferencesDialogEnabled;
 @property(nonatomic) double desiredAccuracy;
 @property(copy, nonatomic) NSString *effectiveBundleIdentifier;

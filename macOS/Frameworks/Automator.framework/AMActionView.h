@@ -6,11 +6,12 @@
 
 #import "NSView.h"
 
+#import "NSDraggingSource.h"
 #import "NSTextFieldDelegate.h"
 
-@class AMAction, AMActionTextField, AMResultsViewController, AMResultsViewOverlayView, AMShowWhenRunController, AMWorkflowView, NSArray, NSBezierPath, NSButton, NSImageView, NSLayoutConstraint, NSMenu, NSMutableArray, NSProgressIndicator, NSString;
+@class AMAction, AMActionTextField, AMResultsViewController, AMResultsViewOverlayView, AMShowWhenRunController, AMWorkflowView, NSAppearance, NSArray, NSBezierPath, NSButton, NSImageView, NSLayoutConstraint, NSMenu, NSMutableArray, NSProgressIndicator, NSString;
 
-@interface AMActionView : NSView <NSTextFieldDelegate>
+@interface AMActionView : NSView <NSDraggingSource, NSTextFieldDelegate>
 {
     AMActionTextField *_titleField;
     NSButton *_closeButton;
@@ -35,13 +36,14 @@
     AMResultsViewOverlayView *_resultsOverlayView;
     NSLayoutConstraint *_collapseConstraint;
     unsigned long long _displayState;
-    unsigned long long _visibleFooterViewType;
+    long long _visibleFooterViewType;
     BOOL _isSelected;
     BOOL _isCollapsed;
     BOOL _isEditingShowWhenRunItems;
     BOOL _clickIsInHeader;
     BOOL _clickIsInResize;
     struct CGLayer *_drawCachingLayer;
+    NSAppearance *_drawCachingLayerEffectiveAppearance;
 }
 
 + (id)generateFooterPathWithBounds:(struct CGRect)arg1 showingOutputConnection:(BOOL)arg2 footerHeight:(double)arg3;
@@ -50,18 +52,37 @@
 + (struct CGRect)actionFrameForBounds:(struct CGRect)arg1;
 + (void)drawInContext:(id)arg1 bounds:(struct CGRect)arg2 outlinePath:(id)arg3 headerPath:(id)arg4 footerPath:(id)arg5 headerHeight:(double)arg6 footerHeight:(double)arg7 collapsed:(BOOL)arg8 selected:(BOOL)arg9 disabled:(BOOL)arg10 placeholder:(BOOL)arg11;
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSAppearance *_drawCachingLayerEffectiveAppearance; // @synthesize _drawCachingLayerEffectiveAppearance;
+@property(nonatomic) __weak NSButton *_showWhenRunButton; // @synthesize _showWhenRunButton;
+@property(nonatomic) __weak NSButton *_resultsButton; // @synthesize _resultsButton;
+@property(nonatomic) __weak NSImageView *_statusImageView; // @synthesize _statusImageView;
+@property(nonatomic) __weak NSProgressIndicator *_progressIndicator; // @synthesize _progressIndicator;
+@property(nonatomic) __weak NSView *_footerView; // @synthesize _footerView;
+@property(nonatomic) __weak NSView *_headerView; // @synthesize _headerView;
+@property(nonatomic) __weak NSMenu *_optionsMenu; // @synthesize _optionsMenu;
+@property(nonatomic) __weak NSImageView *_iconView; // @synthesize _iconView;
+@property(nonatomic) __weak NSButton *_collapseButton; // @synthesize _collapseButton;
+@property(nonatomic) __weak NSButton *_closeButton; // @synthesize _closeButton;
+@property(nonatomic) __weak AMActionTextField *_titleField; // @synthesize _titleField;
+@property(retain, nonatomic) struct CGLayer *drawCachingLayer; // @synthesize drawCachingLayer=_drawCachingLayer;
+@property(nonatomic) BOOL clickIsInResize; // @synthesize clickIsInResize=_clickIsInResize;
+@property(nonatomic) BOOL clickIsInHeader; // @synthesize clickIsInHeader=_clickIsInHeader;
+@property(nonatomic) long long visibleFooterViewType; // @synthesize visibleFooterViewType=_visibleFooterViewType;
+@property(retain, nonatomic) AMResultsViewOverlayView *resultsOverlayView; // @synthesize resultsOverlayView=_resultsOverlayView;
 @property(retain) NSLayoutConstraint *collapseConstraint; // @synthesize collapseConstraint=_collapseConstraint;
-@property(getter=isCollapsed, setter=setCollapsed:) BOOL isCollapsed; // @synthesize isCollapsed=_isCollapsed;
+@property(nonatomic, getter=isCollapsed, setter=setCollapsed:) BOOL isCollapsed; // @synthesize isCollapsed=_isCollapsed;
 @property(retain) NSArray *showWhenRunItems; // @synthesize showWhenRunItems=_showWhenRunItems;
-@property unsigned long long displayState; // @synthesize displayState=_displayState;
-@property(getter=isEditingShowWhenRunItems, setter=setEditingShowWhenRunItems:) BOOL isEditingShowWhenRunItems; // @synthesize isEditingShowWhenRunItems=_isEditingShowWhenRunItems;
-@property(getter=isSelected, setter=setSelected:) BOOL isSelected; // @synthesize isSelected=_isSelected;
-@property AMWorkflowView *workflowView; // @synthesize workflowView=_workflowView;
-@property(retain) AMAction *action; // @synthesize action=_action;
+@property(nonatomic) unsigned long long displayState; // @synthesize displayState=_displayState;
+@property(nonatomic, getter=isEditingShowWhenRunItems, setter=setEditingShowWhenRunItems:) BOOL isEditingShowWhenRunItems; // @synthesize isEditingShowWhenRunItems=_isEditingShowWhenRunItems;
+@property(nonatomic, getter=isSelected, setter=setSelected:) BOOL isSelected; // @synthesize isSelected=_isSelected;
+@property __weak AMWorkflowView *workflowView; // @synthesize workflowView=_workflowView;
+@property(retain, nonatomic) AMAction *action; // @synthesize action=_action;
+- (void)_updateAppearance;
+- (void)viewDidChangeEffectiveAppearance;
 - (void)updateProgressIndicator;
+- (void)updateProgressIndicatorOnMainThreadIfNeeded;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (id)parameterValueWithName:(id)arg1;
-- (void)setParameterValue:(id)arg1 forName:(id)arg2;
 - (void)toggleResults:(id)arg1;
 - (void)hideResults:(id)arg1;
 - (void)showResults:(id)arg1;
@@ -80,14 +101,12 @@
 - (void)rename:(id)arg1;
 - (void)hideFooterViews;
 - (void)displayFooterView:(id)arg1;
-@property(readonly) BOOL isShowingResultsView;
+@property(readonly, nonatomic) BOOL isShowingResultsView;
 - (double)defaultHeightForFooterView:(id)arg1;
-@property(readonly, retain) NSView *currentFooterView;
+@property(readonly, nonatomic) NSView *currentFooterView;
 - (void)endEditingShowWhenRunItems;
 - (void)beginEditingShowWhenRunItems;
 - (void)toggleShowWhenRun:(id)arg1;
-- (BOOL)lowerHalfContainsPoint:(struct CGPoint)arg1;
-- (BOOL)upperHalfContainsPoint:(struct CGPoint)arg1;
 - (BOOL)footerContainsPoint:(struct CGPoint)arg1;
 - (BOOL)headerContainsPoint:(struct CGPoint)arg1;
 - (BOOL)isAbovePoint:(struct CGPoint)arg1;
@@ -106,14 +125,15 @@
 - (id)minimumHeightConstraintForView:(id)arg1;
 - (id)multiSelectionDragImageWithCount:(unsigned long long)arg1 offset:(struct CGPoint *)arg2;
 - (id)imageWithAlpha:(double)arg1;
-- (BOOL)containsPoint:(struct CGPoint)arg1;
-@property(readonly, retain) NSBezierPath *footerPath;
-@property(readonly, retain) NSBezierPath *headerPath;
-@property(readonly, retain) NSBezierPath *outlinePath;
+- (BOOL)am_containsPoint:(struct CGPoint)arg1;
+@property(readonly, nonatomic) NSBezierPath *footerPath;
+@property(readonly, nonatomic) NSBezierPath *headerPath;
+@property(readonly, nonatomic) NSBezierPath *outlinePath;
 - (void)drawRect:(struct CGRect)arg1;
-- (void)_generateDrawCachingLayerIfNotPresent;
-- (void)_regenerateDrawCachingLayerIfPresent;
-- (struct CGLayer *)_newDrawCachingLayer;
+- (BOOL)_generateDrawCachingLayerIfNotPresentReturningGenerated;
+- (void)_regenerateDrawCachingLayerIfPresentAndRedisplay:(BOOL)arg1;
+- (void)_generateDrawCachingLayer;
+- (struct CGLayer *)_autoreleasedDrawCachingLayer;
 - (double)footerHeight;
 - (double)headerHeight;
 - (void)refresh;
@@ -122,15 +142,15 @@
 - (void)setResultsOverlayViewString;
 - (void)_removeResultsOverlayView;
 - (void)_addResultsOverlayView;
-@property(retain) NSString *title;
-@property(readonly) BOOL shouldShowOutputConnection;
-@property(readonly) BOOL shouldShowInputConnection;
+@property(retain, nonatomic) NSString *title;
+@property(readonly, nonatomic) BOOL shouldShowOutputConnection;
+@property(readonly, nonatomic) BOOL shouldShowInputConnection;
 - (struct CGRect)outlineFrame;
-- (id)showWhenRunOverlayViews;
-- (id)showWhenRunController;
-- (id)resultsViewController;
-@property(getter=isEnabled, setter=setEnabled:) BOOL isEnabled;
-@property(readonly) BOOL isRunning;
+@property(readonly, nonatomic) NSMutableArray *showWhenRunOverlayViews; // @synthesize showWhenRunOverlayViews=_showWhenRunOverlayViews;
+@property(readonly, nonatomic) AMShowWhenRunController *showWhenRunController; // @synthesize showWhenRunController=_showWhenRunController;
+@property(readonly, nonatomic) AMResultsViewController *resultsViewController; // @synthesize resultsViewController=_resultsViewController;
+@property(nonatomic, getter=isEnabled, setter=setEnabled:) BOOL isEnabled;
+@property(readonly, nonatomic) BOOL isRunning;
 - (BOOL)acceptsFirstResponder;
 - (void)updateParameters;
 - (void)dealloc;
@@ -139,6 +159,7 @@
 - (void)_removeFromMaps_ask;
 - (void)_removeViewsFromMaps:(id)arg1;
 - (id)propertyList;
+- (unsigned long long)draggingSession:(id)arg1 sourceOperationMaskForDraggingContext:(long long)arg2;
 - (void)_setup;
 - (void)awakeFromNib;
 - (void)accessibilitySetValue:(id)arg1 forAttribute:(id)arg2;

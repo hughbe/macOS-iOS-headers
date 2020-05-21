@@ -12,16 +12,23 @@
 {
     unsigned long long _resultType;
     NSFetchRequest *_deleteTarget;
-    void *_reserved;
+    long long _flags;
 }
 
++ (id)decodeFromXPCArchive:(id)arg1 withContext:(id)arg2;
 @property unsigned long long resultType; // @synthesize resultType=_resultType;
+- (void)_resolveEntityWithContext:(id)arg1;
+- (BOOL)_secureOperation;
+- (void)_setSecureOperation:(BOOL)arg1;
 - (id)description;
 @property(readonly, copy) NSFetchRequest *fetchRequest;
 - (unsigned long long)requestType;
 - (void)dealloc;
 - (id)initWithFetchRequest:(id)arg1;
 - (id)initWithObjectIDs:(id)arg1;
+- (BOOL)shouldPerformSecureOperation;
+- (void)setShouldPerformSecureOperation:(BOOL)arg1;
+- (id)encodeForXPC;
 
 @end
 

@@ -7,35 +7,47 @@
 #import "NSObject.h"
 
 #import "NSSecureCoding.h"
+#import "_DKProtobufConverting.h"
 
-@class NSDictionary, NSUUID;
+@class NSDate, NSString, NSUUID, _DKSource;
 
-@interface _DKObject : NSObject <NSSecureCoding>
+@interface _DKObject : NSObject <_DKProtobufConverting, NSSecureCoding>
 {
     NSUUID *_UUID;
-    NSDictionary *_metadata;
+    _DKSource *_source;
+    NSDate *_creationDate;
+    NSDate *_localCreationDate;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)objectFromManagedObject:(id)arg1 readMetadata:(BOOL)arg2 cache:(id)arg3;
++ (id)fromPBCodable:(id)arg1;
++ (id)objectFromManagedObject:(id)arg1 readMetadata:(BOOL)arg2 excludedMetadataKeys:(id)arg3 cache:(id)arg4;
 + (id)fetchObjectWithUUID:(id)arg1 context:(id)arg2;
 + (id)entityName;
-@property(copy) NSDictionary *metadata; // @synthesize metadata=_metadata;
-@property(retain) NSUUID *UUID; // @synthesize UUID=_UUID;
 - (void).cxx_destruct;
+@property(retain) NSDate *localCreationDate; // @synthesize localCreationDate=_localCreationDate;
+@property(retain) NSDate *creationDate; // @synthesize creationDate=_creationDate;
+@property(retain) _DKSource *source; // @synthesize source=_source;
+@property(retain) NSUUID *UUID; // @synthesize UUID=_UUID;
+- (BOOL)isEqual:(id)arg1;
 - (id)stringValue;
 - (double)doubleValue;
 - (long long)integerValue;
 - (BOOL)boolValue;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
-- (id)metadataFromData:(id)arg1 cache:(id)arg2;
-- (id)metadataFromData:(id)arg1;
-- (BOOL)copyBaseObjectInfoFromManagedObject:(id)arg1 readMetadata:(BOOL)arg2 cache:(id)arg3;
+- (id)toPBCodable;
+- (BOOL)copyBaseObjectInfoFromManagedObject:(id)arg1 cache:(id)arg2;
 - (BOOL)copyToManagedObject:(id)arg1;
+- (long long)typeCode;
 - (id)entityName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

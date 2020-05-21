@@ -8,10 +8,11 @@
 
 @class MKMapItem, MKTransitSectionPagingFilter, NSDate, NSSet;
 
+__attribute__((visibility("hidden")))
 @interface MKTransitSectionController : NSObject
 {
     MKMapItem *_mapItem;
-    MKTransitSectionPagingFilter *_pagingFilter;
+    MKTransitSectionPagingFilter *__pagingFilter;
     NSSet *_linesToShow;
     unsigned long long _numberOfRows;
     unsigned long long _numberOfFilteredRows;
@@ -23,12 +24,13 @@
     NSSet *_incidentEntitiesToExclude;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) MKTransitSectionPagingFilter *_pagingFilter; // @synthesize _pagingFilter=__pagingFilter;
 @property(readonly, nonatomic) unsigned long long numberOfFilteredLines; // @synthesize numberOfFilteredLines=_numberOfFilteredLines;
 @property(retain, nonatomic) NSSet *incidentEntitiesToExclude; // @synthesize incidentEntitiesToExclude=_incidentEntitiesToExclude;
 @property(retain, nonatomic) NSDate *expiredHighFrequencyCutoffDate; // @synthesize expiredHighFrequencyCutoffDate=_expiredHighFrequencyCutoffDate;
 @property(retain, nonatomic) NSDate *departureCutoffDate; // @synthesize departureCutoffDate=_departureCutoffDate;
 @property(readonly, nonatomic) id <GEOTransitSystem> system; // @synthesize system=_system;
-- (void).cxx_destruct;
 - (void)_buildRows;
 - (void)_setNeedsBuildRows;
 - (BOOL)_needsBuildRows;

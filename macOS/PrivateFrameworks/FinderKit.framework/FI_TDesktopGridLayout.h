@@ -21,6 +21,8 @@ __attribute__((visibility("hidden")))
     struct TIconLayoutBitmap _bitmap;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(nonatomic) double rightMargin; // @synthesize rightMargin=_rightMargin;
 @property(nonatomic) double leftMargin; // @synthesize leftMargin=_leftMargin;
 @property(nonatomic) double bottomMargin; // @synthesize bottomMargin=_bottomMargin;
@@ -28,8 +30,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) struct CGRect frame; // @synthesize frame=_frame;
 @property(nonatomic) _Bool justifiedLayout; // @synthesize justifiedLayout=_justifiedLayout;
 @property(nonatomic) int layoutStyle; // @synthesize layoutStyle=_layoutStyle;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (_Bool)nextOpenLocation:(struct CGPoint *)arg1;
 - (void)clearAllItemLocations;
 - (void)occupyGridSpotsForRect:(const struct CGRect *)arg1;
@@ -38,6 +38,7 @@ __attribute__((visibility("hidden")))
 - (vector_e1abc270)occupyGridSpots:(unsigned long long)arg1;
 - (struct CGPoint)gridLocationInDirection:(int)arg1 fromAnchor:(const struct CGPoint *)arg2;
 - (struct CGPoint)nearestGridLocation:(struct CGPoint)arg1;
+- (unsigned long long)nextMajorIndexFromIndex:(unsigned long long)arg1;
 - (struct CGPoint)anchorForIndex:(unsigned long long)arg1;
 - (struct CGPoint)anchorAtGridLocation:(struct CGPoint)arg1;
 - (unsigned long long)numberOfGridSpots;
@@ -50,6 +51,8 @@ __attribute__((visibility("hidden")))
 - (double)heightForRows:(unsigned long long)arg1;
 - (struct CGSize)calculateGridDimensions;
 @property(readonly, nonatomic) struct CGRect layoutFrame;
+- (_Bool)isLTRLayout;
+- (_Bool)isVerticalLayout;
 - (void)initCommon;
 - (id)initWithFrame:(struct CGRect)arg1 anchoredCellFrame:(struct CGRect)arg2 layoutStyle:(int)arg3 justifiedLayout:(_Bool)arg4;
 - (id)init;

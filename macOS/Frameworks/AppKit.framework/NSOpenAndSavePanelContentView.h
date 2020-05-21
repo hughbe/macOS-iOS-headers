@@ -13,6 +13,7 @@ __attribute__((visibility("hidden")))
 }
 
 @property BOOL handleClientSideWindowDragEvents; // @synthesize handleClientSideWindowDragEvents=_handleClientSideWindowDragEvents;
+- (void)setFrameSize:(struct CGSize)arg1;
 - (void)mouseDown:(id)arg1;
 
 @end

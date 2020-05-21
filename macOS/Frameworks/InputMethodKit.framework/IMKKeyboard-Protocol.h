@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @protocol IMKKeyboard <NSObject>
+@property(readonly, nonatomic) id <IMKCandidateMenu> candidateMenu;
 @property(retain, nonatomic) id <IMKTextDocument> attachedTextDocument;
 @end
 

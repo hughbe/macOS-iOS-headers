@@ -12,9 +12,6 @@
 - (oneway void)loadTellAFriendMessageForGameWithAdamID:(NSNumber *)arg1 handler:(void (^)(NSString *, NSString *, NSString *, NSError *))arg2;
 - (oneway void)submitRating:(float)arg1 forGame:(GKGameInternal *)arg2 handler:(void (^)(void))arg3;
 - (oneway void)getRatingForGameDescriptor:(NSDictionary *)arg1 handler:(void (^)(float, NSError *))arg2;
-- (oneway void)markGameRecommendations:(NSArray *)arg1 viewed:(BOOL)arg2 handler:(void (^)(void))arg3;
-- (oneway void)dismissGameRecommendations:(NSArray *)arg1 handler:(void (^)(void))arg2;
-- (oneway void)getGameRecommendationsWithHandler:(void (^)(NSArray *, NSString *, NSError *))arg1;
 - (oneway void)getGameMetadataForBundleIDs:(NSArray *)arg1 handler:(void (^)(NSArray *, NSError *))arg2;
 - (oneway void)getGamesWithAchievementStatsForPlayer:(GKPlayerInternal *)arg1 handler:(void (^)(NSArray *, NSString *, NSError *))arg2;
 - (oneway void)getGameStatsForPlayer:(GKPlayerInternal *)arg1 bundleIDs:(NSArray *)arg2 handler:(void (^)(NSArray *, NSError *))arg3;

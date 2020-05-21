@@ -6,18 +6,19 @@
 
 #import "NSObject.h"
 
-@class GEOActiveResourceFilters, GEOResourceManifestConfiguration, NSLock, NSSet;
+@class GEOActiveResourceFilters, GEOResourceManifestConfiguration, NSSet;
 
 __attribute__((visibility("hidden")))
 @interface GEOResourceFiltersManager : NSObject
 {
     GEOResourceManifestConfiguration *_configuration;
     GEOActiveResourceFilters *_activeFilters;
-    NSLock *_lock;
+    struct os_unfair_lock_s _lock;
     id <GEOResourceFiltersManagerDelegate> _delegate;
 }
 
-@property(nonatomic) id <GEOResourceFiltersManagerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <GEOResourceFiltersManagerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)deactivateScenario:(int)arg1;
 - (void)activateScenario:(int)arg1;
 - (void)deactivateScale:(int)arg1;
@@ -27,8 +28,8 @@ __attribute__((visibility("hidden")))
 - (void)_writeToDisk;
 @property(readonly, nonatomic) NSSet *activeScenarios;
 @property(readonly, nonatomic) NSSet *activeScales;
-- (void)dealloc;
 - (id)initWithConfiguration:(id)arg1;
+- (id)init;
 
 @end
 

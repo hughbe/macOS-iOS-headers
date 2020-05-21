@@ -6,22 +6,22 @@
 
 #import "NSObject.h"
 
-@class AVConferenceXPCClient, CALayer, NSDictionary, NSMutableDictionary, NSObject<AVConferenceDelegate>, NSTimer;
+@class AVConferenceXPCClient, CALayer, NSDictionary, NSMutableDictionary, NSObject<AVConferenceDelegate>, NSObject<OS_dispatch_queue>, NSTimer;
 
 @interface AVConference : NSObject
 {
     AVConferenceXPCClient *connection;
     id opaqueConf;
     BOOL useServer;
-    NSObject<AVConferenceDelegate> *_delegate;
+    id _delegate;
     NSDictionary *serverBag;
-    CALayer *remoteLayerFront;
-    CALayer *remoteLayerBack;
-    CALayer *remoteSubLayerFront;
-    CALayer *remoteSubLayerBack;
     BOOL _isUsingFrontCamera;
     BOOL _microphoneMuted;
     NSMutableDictionary *_stateCacheForCallID;
+    NSObject<OS_dispatch_queue> *_stateQueue;
+    NSObject<OS_dispatch_queue> *_callbackQueue;
+    long long _inputAudioPowerSpectrumToken;
+    long long _outputAudioPowerSpectrumToken;
     BOOL shouldDisplayNetworkQualityGraph_;
     NSTimer *networkQualityUpdateTimer_;
     CALayer *networkQualityGraphLayer_;
@@ -37,7 +37,8 @@
 + (id)externalAddressForSelfConnectionBlob:(id)arg1;
 + (short)addressPointerFromBlob:(id)arg1;
 + (void)refreshLoggingParameters;
-@property(readonly) NSMutableDictionary *stateCacheForCallID; // @synthesize stateCacheForCallID=_stateCacheForCallID;
+@property(readonly) long long outputAudioPowerSpectrumToken; // @synthesize outputAudioPowerSpectrumToken=_outputAudioPowerSpectrumToken;
+@property(readonly) long long inputAudioPowerSpectrumToken; // @synthesize inputAudioPowerSpectrumToken=_inputAudioPowerSpectrumToken;
 @property(nonatomic, getter=isMicrophoneMuted) BOOL microphoneMuted; // @synthesize microphoneMuted=_microphoneMuted;
 @property(retain) CALayer *networkQualityGraphLayer; // @synthesize networkQualityGraphLayer=networkQualityGraphLayer_;
 @property(retain) NSTimer *networkQualityUpdateTimer; // @synthesize networkQualityUpdateTimer=networkQualityUpdateTimer_;
@@ -77,6 +78,7 @@
 - (void)videoConference:(id)arg1 didStopWithCallID:(unsigned int)arg2 error:(id)arg3 callMetadata:(id)arg4;
 - (void)videoConference:(id)arg1 withCallID:(long long)arg2 didPauseVideo:(BOOL)arg3 error:(id)arg4;
 - (void)videoConference:(id)arg1 withCallID:(long long)arg2 didPauseAudio:(BOOL)arg3 error:(id)arg4;
+- (void)videoConference:(id)arg1 withCallID:(long long)arg2 isSendingAudio:(BOOL)arg3 error:(id)arg4;
 - (void)videoConference:(id)arg1 didStopWithCallID:(unsigned int)arg2 error:(id)arg3;
 - (void)videoConference:(id)arg1 didStartSession:(BOOL)arg2 withCallID:(unsigned int)arg3 withUserInfo:(id)arg4 error:(id)arg5;
 - (void)videoConference:(id)arg1 didStartSession:(BOOL)arg2 withCallID:(unsigned int)arg3 error:(id)arg4;
@@ -88,6 +90,7 @@
 - (void)updateCapabilities:(id)arg1 forCallID:(long long)arg2;
 - (BOOL)setPauseVideo:(BOOL)arg1 callID:(long long)arg2 error:(id *)arg3;
 - (BOOL)setPauseAudio:(BOOL)arg1 callID:(long long)arg2 error:(id *)arg3;
+- (BOOL)setSendingAudio:(BOOL)arg1 callID:(long long)arg2 error:(id *)arg3;
 @property(readonly) unsigned int natType;
 @property(getter=isSpeakerPhoneEnabled) BOOL enableSpeakerPhone;
 - (id)statsForCallID:(long long)arg1;
@@ -105,11 +108,8 @@
 - (long long)videoStreamTokenForCallID:(long long)arg1;
 - (void)setRemoteVideoBackLayer:(void *)arg1;
 - (void)setRemoteVideoLayer:(void *)arg1;
-- (void)insertSubLayerFrontInLayer:(id)arg1 videoSlot:(id)arg2;
-- (void)cleanupSubLayerFront;
 - (void *)remoteVideoBackLayer;
 - (void *)remoteVideoLayer;
-- (void)setActiveRemoteVideoLayerFront:(BOOL)arg1;
 - (void)stopNetworkQualityUpdateTimer;
 - (void)startNetworkQualityUpdateTimer;
 - (BOOL)updateNetworkQualityGraph;
@@ -121,19 +121,20 @@
 @property(readonly) float inputMeterLevel;
 - (BOOL)getIsVideoPaused:(char *)arg1 callID:(long long)arg2 error:(id *)arg3;
 - (BOOL)getIsAudioPaused:(char *)arg1 callID:(long long)arg2 error:(id *)arg3;
+- (BOOL)getIsSendingAudio:(char *)arg1 callID:(long long)arg2 error:(id *)arg3;
 @property(readonly) float outputMeterLevel;
 @property(nonatomic, getter=isOutputFrequencyMeteringEnabled) BOOL outputFrequencyMeteringEnabled;
 @property(nonatomic, getter=isInputFrequencyMeteringEnabled) BOOL inputFrequencyMeteringEnabled;
 @property(nonatomic, getter=isInputMeteringEnabled) BOOL inputMeteringEnabled;
 @property(nonatomic, getter=isOutputMeteringEnabled) BOOL outputMeteringEnabled;
 - (void)processRemoteIPChange:(id)arg1 callID:(long long)arg2;
-- (void)receivedRealTimeData:(id)arg1 fromParticipantID:(id)arg2;
 - (void)setLastActiveCallID:(long long)arg1;
 - (long long)lastActiveCallID;
 - (BOOL)setActive:(BOOL)arg1;
 - (void)setCallReport:(long long)arg1 withReport:(id)arg2;
 - (void)sendProtobuf:(id)arg1 withType:(long long)arg2 forCallID:(long long)arg3;
 - (void)remoteCancelledCallID:(long long)arg1;
+- (void)cancelCallID:(long long)arg1;
 - (void)stopCallID:(long long)arg1;
 - (BOOL)startConnectionWithCallID:(long long)arg1 usingInviteData:(id)arg2 isCaller:(BOOL)arg3 relayResponseDict:(id)arg4 didOriginateRelayRequest:(BOOL)arg5 capabilities:(id)arg6 error:(id *)arg7;
 - (BOOL)startConnectionWithCallID:(long long)arg1 oldCallID:(long long)arg2 usingInviteData:(id)arg3 isCaller:(BOOL)arg4 relayResponseDict:(id)arg5 didOriginateRelayRequest:(BOOL)arg6 capabilities:(id)arg7 error:(id *)arg8;
@@ -146,14 +147,11 @@
 @property(nonatomic) BOOL requiresWifi;
 - (double)networkQualityForCallID:(long long)arg1;
 - (void)setSessionID:(id)arg1 callID:(long long)arg2;
+- (void)setPeerReportingIdentifier:(id)arg1 sessionIdentifier:(id)arg2 forCallID:(long long)arg3;
 - (void)setPeerCN:(id)arg1 callID:(long long)arg2;
 - (id)callMetadataForCallID:(long long)arg1;
 - (void)inviteDictionaryForCallID:(long long)arg1 remoteInviteDictionary:(id)arg2 nonCellularCandidateTimeout:(double)arg3 block:(CDUnknownBlockType)arg4 queue:(id)arg5;
 - (id)newRandomParticipantID;
-- (void)configureCaptions:(id)arg1;
-- (void)enableCaptions:(BOOL)arg1;
-@property(readonly) BOOL captionsEnabled;
-@property(readonly) BOOL captionsSupported;
 - (void)sendData:(id)arg1 forCallID:(long long)arg2 encrypted:(BOOL)arg3;
 - (void)sendARPLData:(id)arg1 toCallID:(long long)arg2;
 - (void)addGKSCallEvent:(id)arg1 sessionID:(id)arg2;
@@ -161,6 +159,7 @@
 @property(getter=isUsingViceroyBlobFormat) BOOL useViceroyBlobFormat;
 - (void)dealloc;
 - (void)warmupForCall;
+- (long long)initializeNewCallWithDeviceRole:(int)arg1 reportingHierarchyToken:(id)arg2;
 - (long long)initializeNewCallWithDeviceRole:(int)arg1;
 - (long long)initializeNewCall;
 @property(nonatomic) NSObject<AVConferenceDelegate> *delegate;
@@ -171,6 +170,8 @@
 - (void)updateGKSConnectivitySettings;
 - (void)stopListeningForNotifications;
 - (void)listenForNotifications;
+- (void)setCallState:(id)arg1 forCallID:(id)arg2;
+- (id)callStateForCallID:(id)arg1;
 - (void)serverDied;
 - (void)serverReconnected;
 - (void)deregisterBlocksForVCNotifications;

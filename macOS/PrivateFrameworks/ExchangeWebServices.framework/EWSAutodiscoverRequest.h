@@ -10,19 +10,19 @@
 
 @interface EWSAutodiscoverRequest : NSObject
 {
+    NSString *_emailAddress;
+    NSString *_user;
     NSURL *_preferredAutodiscoverURL;
     NSString *_ewsInternalHostname;
     NSString *_ewsExternalHostname;
-    NSString *_emailAddress;
-    NSString *_user;
 }
 
-@property(readonly, copy, nonatomic) NSString *user; // @synthesize user=_user;
-@property(readonly, copy, nonatomic) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSString *ewsExternalHostname; // @synthesize ewsExternalHostname=_ewsExternalHostname;
 @property(readonly, copy, nonatomic) NSString *ewsInternalHostname; // @synthesize ewsInternalHostname=_ewsInternalHostname;
 @property(readonly, nonatomic) NSURL *preferredAutodiscoverURL; // @synthesize preferredAutodiscoverURL=_preferredAutodiscoverURL;
-- (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSString *user; // @synthesize user=_user;
+@property(readonly, copy, nonatomic) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
 - (id)description;
 - (id)init;
 - (id)initWithEmailAddress:(id)arg1 user:(id)arg2 preferredAutodiscoverURL:(id)arg3 ewsInternalHostname:(id)arg4 ewsExternalHostname:(id)arg5;

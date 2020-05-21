@@ -11,6 +11,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
+- (BOOL)allowsVibrancy;
 - (void)drawRect:(struct CGRect)arg1;
 
 @end

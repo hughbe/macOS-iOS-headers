@@ -12,12 +12,12 @@
 {
     unsigned long long _draggingSourceOperationMaskForLocal;
     unsigned long long _draggingSourceOperationMaskForNonLocal;
-    long long _reserved;
     id _delegate;
     id _pathAux;
 }
 
 + (Class)cellClass;
+- (CDStruct_6b6ad735)_baselineOffsetsAtSize:(struct CGSize)arg1;
 - (double)baselineOffsetFromBottom;
 - (struct NSEdgeInsets)alignmentRectInsets;
 @property(retain) NSMenu *menu;
@@ -26,6 +26,7 @@
 - (void)draggingExited:(id)arg1;
 - (unsigned long long)draggingUpdated:(id)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
+- (void)_cleanUpTransientDragState;
 - (void)_updateDropTargetForDraggingInfo:(id)arg1;
 - (void)_updateDropTargetToCell:(id)arg1;
 - (void)_ensureDragContext;
@@ -68,6 +69,7 @@
 - (BOOL)_isFirstResponder;
 - (void)updateTrackingAreas;
 - (void)_removeTrackingRects;
+- (id)_preferredAppearance;
 @property(copy) NSAttributedString *placeholderAttributedString;
 @property(copy) NSString *placeholderString;
 @property(copy) NSArray *allowedTypes;

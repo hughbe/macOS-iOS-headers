@@ -38,6 +38,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)fullComponentsAreValid:(id)arg1;
 @property(readonly) NSArray *orderedKeysOfInterest;
 @property(readonly) BOOL isEnabled;
+@property(readonly) BOOL shouldIgnoreComponentsContainingSpecialCharacters;
 @property(readonly) BOOL shouldFallBack;
 @property(readonly) NSSet *keysOfInterest;
 @property(readonly) NSSet *abbreviatedKeys;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CWEAPOLClient, CWIPMonitor, NSArray, NSObject<OS_dispatch_queue>, NSSet, NSString, NSXPCConnection;
+@class CWBTCStatus, CWEAPOLClient, CWIPMonitor, NSArray, NSObject<OS_dispatch_queue>, NSSet, NSString, NSXPCConnection;
 
 @interface CWInterface : NSObject
 {
@@ -22,7 +22,9 @@
     void *_serviceStore;
     void *_interfaceStore;
     BOOL _lastPowerState;
+    NSObject<OS_dispatch_queue> *_eventQueue;
     NSXPCConnection *_xpcConnection;
+    BOOL _ownsXPCConnection;
 }
 
 + (id)interfaceWithName:(id)arg1;
@@ -30,6 +32,7 @@
 + (id)interfaceNames;
 + (id)supportedInterfaces;
 @property BOOL deviceAttached; // @synthesize deviceAttached=_deviceAttached;
+@property(retain) NSObject<OS_dispatch_queue> *eventQueue; // @synthesize eventQueue=_eventQueue;
 @property BOOL lastPowerState; // @synthesize lastPowerState=_lastPowerState;
 @property(copy) NSArray *capabilities; // @synthesize capabilities=_capabilities;
 @property(copy) NSString *interfaceName; // @synthesize interfaceName=_interfaceName;
@@ -59,10 +62,12 @@
 - (BOOL)startIBSSModeWithSSID:(id)arg1 security:(long long)arg2 channel:(unsigned long long)arg3 password:(id)arg4 error:(out id *)arg5;
 - (id)__supportedWLANChannelForChannelNumber:(unsigned long long)arg1;
 - (void)disassociate;
-- (BOOL)associateToEnterpriseNetwork:(id)arg1 identity:(struct OpaqueSecIdentityRef *)arg2 username:(id)arg3 password:(id)arg4 error:(out id *)arg5;
+- (BOOL)associateToEnterpriseNetwork:(id)arg1 identity:(struct __SecIdentity *)arg2 username:(id)arg3 password:(id)arg4 error:(out id *)arg5;
 - (BOOL)associateToNetwork:(id)arg1 password:(id)arg2 error:(out id *)arg3;
 - (id)scanForNetworksWithName:(id)arg1 error:(out id *)arg2;
+- (id)scanForNetworksWithName:(id)arg1 includeHidden:(BOOL)arg2 error:(out id *)arg3;
 - (id)scanForNetworksWithSSID:(id)arg1 error:(out id *)arg2;
+- (id)scanForNetworksWithSSID:(id)arg1 includeHidden:(BOOL)arg2 error:(out id *)arg3;
 - (BOOL)setWEPKey:(id)arg1 flags:(unsigned long long)arg2 index:(long long)arg3 error:(out id *)arg4;
 - (BOOL)setPairwiseMasterKey:(id)arg1 error:(out id *)arg2;
 - (BOOL)setWLANChannel:(id)arg1 error:(out id *)arg2;
@@ -70,7 +75,28 @@
 - (id)initWithInterfaceName:(id)arg1;
 - (BOOL)__startEventMonitoring;
 - (void)dealloc;
-- (void)finalize;
+- (id)sidecarDiagnostics;
+- (id)countryCodeInternal;
+- (BOOL)twoGHzChainDisabledAndReturnReassocRequired:(char *)arg1 error:(id *)arg2;
+- (BOOL)set2GHzChainDisabled:(BOOL)arg1 andReassocRequired:(BOOL)arg2 error:(id *)arg3;
+- (BOOL)setPeerTrafficRegistrationWithConfiguration:(id)arg1 error:(id *)arg2;
+- (id)joinHistory;
+- (id)autoJoinHistory;
+- (id)roamHistory;
+- (BOOL)__powerOfAllRadiosMatches:(int)arg1;
+@property(readonly, nonatomic) CWBTCStatus *btcStatus;
+@property(readonly, nonatomic) long long maxNSSSupportedForAP;
+@property(readonly) BOOL powerTX;
+@property(readonly) BOOL powerRX;
+@property(readonly, nonatomic) long long numTXStreams;
+- (BOOL)setActiveUCMProfileIndexFor2g:(long long)arg1 and5g:(long long)arg2 error:(id *)arg3;
+- (long long)activeUCMProfileIndexForBand:(long long)arg1 error:(id *)arg2;
+- (id)ucmProfileAtIndex:(long long)arg1 error:(id *)arg2;
+- (BOOL)setUCMProfile:(id)arg1 atIndex:(long long)arg2 error:(id *)arg3;
+- (long long)maximumUCMProfileCount;
+- (id)availableWLANChannels;
+- (id)hwSupportedWLANChannels;
+- (BOOL)setCachedLocaleTimeout:(double)arg1 error:(out id *)arg2;
 - (id)stateInfo;
 - (void)joinNetwork:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (BOOL)isAWDLRealTimeModeInProgress;
@@ -88,6 +114,8 @@
 - (id)queryANQPCacheWithElements:(unsigned long long)arg1 network:(id)arg2 maxAge:(double)arg3;
 - (id)queryANQPElements:(unsigned long long)arg1 network:(id)arg2 maxAge:(double)arg3 waitForWiFi:(BOOL)arg4 waitForBluetooth:(BOOL)arg5 priority:(long long)arg6 error:(out id *)arg7;
 - (id)name;
+- (id)powerDebugInfo;
+- (id)IO80211ControllerInfo;
 - (BOOL)causedLastWake;
 - (id)lastPreferredNetworkJoined;
 - (id)lastNetworkJoined;
@@ -99,13 +127,18 @@
 - (BOOL)startWPSForNetwork:(id)arg1 pin:(id)arg2 remember:(BOOL)arg3 error:(out id *)arg4;
 @property(readonly) unsigned long long interfaceCapabilities;
 - (void)stopIBSSMode;
+- (id)cachedTrimmedScanResultsWithProperties:(id)arg1;
 - (id)queryScanCacheWithChannels:(id)arg1 ssidList:(id)arg2 maxAge:(double)arg3 maxMissCount:(long long)arg4 maxWakeCount:(long long)arg5 maxAutoJoinCount:(long long)arg6 error:(out id *)arg7;
+- (id)queryScanCacheWithChannels:(id)arg1 ssidList:(id)arg2 maxAge:(double)arg3 maxMissCount:(long long)arg4 maxWakeCount:(long long)arg5 maxAutoJoinCount:(long long)arg6 trimmedScanResultProperties:(id)arg7 error:(out id *)arg8;
 - (id)scanForNetworksWithChannels:(id)arg1 ssid:(id)arg2 bssid:(id)arg3 restTime:(unsigned long long)arg4 dwellTime:(unsigned long long)arg5 ssidList:(id)arg6 error:(out id *)arg7;
 - (id)scanForNetworksWithChannels:(id)arg1 ssidList:(id)arg2 legacyScanSSID:(id)arg3 includeHiddenNetworks:(BOOL)arg4 mergedScanResults:(BOOL)arg5 maxAge:(double)arg6 maxMissCount:(long long)arg7 maxWakeCount:(long long)arg8 maxAutoJoinCount:(long long)arg9 waitForWiFi:(BOOL)arg10 waitForBluetooth:(BOOL)arg11 priority:(long long)arg12 error:(out id *)arg13;
+- (id)scanForNetworksWithChannels:(id)arg1 ssidList:(id)arg2 legacyScanSSID:(id)arg3 includeHiddenNetworks:(BOOL)arg4 mergedScanResults:(BOOL)arg5 maxAge:(double)arg6 maxMissCount:(long long)arg7 maxWakeCount:(long long)arg8 maxAutoJoinCount:(long long)arg9 waitForWiFi:(BOOL)arg10 waitForBluetooth:(BOOL)arg11 trimmedScanResultProperties:(id)arg12 priority:(long long)arg13 error:(out id *)arg14;
 - (id)scanForNetworksWithChannels:(id)arg1 ssid:(id)arg2 bssid:(id)arg3 error:(out id *)arg4;
-- (BOOL)associateToEnterpriseNetwork:(id)arg1 clientItemID:(struct __EAPOLClientItemID *)arg2 username:(id)arg3 password:(id)arg4 identity:(struct OpaqueSecIdentityRef *)arg5 forceBSSID:(BOOL)arg6 remember:(BOOL)arg7 error:(out id *)arg8;
-- (BOOL)associateToEnterpriseNetwork:(id)arg1 clientItemID:(struct __EAPOLClientItemID *)arg2 username:(id)arg3 password:(id)arg4 identity:(struct OpaqueSecIdentityRef *)arg5 error:(out id *)arg6;
-- (BOOL)associateToEnterpriseNetwork:(id)arg1 identity:(struct OpaqueSecIdentityRef *)arg2 username:(id)arg3 password:(id)arg4 forceBSSID:(BOOL)arg5 remember:(BOOL)arg6 error:(out id *)arg7;
+- (BOOL)associateToEnterpriseNetwork:(id)arg1 clientItemID:(struct __EAPOLClientItemID *)arg2 username:(id)arg3 password:(id)arg4 identity:(struct __SecIdentity *)arg5 forceBSSID:(BOOL)arg6 remember:(BOOL)arg7 error:(out id *)arg8;
+- (BOOL)associateToEnterpriseNetwork:(id)arg1 clientItemID:(struct __EAPOLClientItemID *)arg2 username:(id)arg3 password:(id)arg4 identity:(struct __SecIdentity *)arg5 forceBSSID:(BOOL)arg6 remember:(BOOL)arg7 possiblyHidden:(BOOL)arg8 error:(out id *)arg9;
+- (BOOL)associateToEnterpriseNetwork:(id)arg1 clientItemID:(struct __EAPOLClientItemID *)arg2 username:(id)arg3 password:(id)arg4 identity:(struct __SecIdentity *)arg5 error:(out id *)arg6;
+- (BOOL)associateToEnterpriseNetwork:(id)arg1 identity:(struct __SecIdentity *)arg2 username:(id)arg3 password:(id)arg4 forceBSSID:(BOOL)arg5 remember:(BOOL)arg6 error:(out id *)arg7;
+- (BOOL)associateToEnterpriseNetwork:(id)arg1 identity:(struct __SecIdentity *)arg2 username:(id)arg3 password:(id)arg4 forceBSSID:(BOOL)arg5 remember:(BOOL)arg6 possiblyHidden:(BOOL)arg7 error:(out id *)arg8;
 - (BOOL)associateToPasspointNetwork:(id)arg1 usingDomainName:(id)arg2 error:(out id *)arg3;
 - (BOOL)associateToSystemModeEnterpriseNetwork:(id)arg1 error:(out id *)arg2;
 - (BOOL)associateToLoginWindowModeEnterpriseNetworkWithEAPProfile:(struct __EAPOLClientProfile *)arg1 username:(id)arg2 password:(id)arg3 error:(out id *)arg4;
@@ -113,6 +146,7 @@
 - (BOOL)associateTo8021XNetwork:(id)arg1 error:(out id *)arg2;
 - (id)__scanForLoginWindowModeEnterpriseNetworkWithEAPProfile:(struct __EAPOLClientProfile *)arg1 error:(out id *)arg2;
 - (BOOL)associateToNetwork:(id)arg1 password:(id)arg2 forceBSSID:(BOOL)arg3 remember:(BOOL)arg4 error:(out id *)arg5;
+- (BOOL)associateToNetwork:(id)arg1 password:(id)arg2 forceBSSID:(BOOL)arg3 remember:(BOOL)arg4 possiblyHidden:(BOOL)arg5 error:(out id *)arg6;
 - (BOOL)setRangeable:(BOOL)arg1 peers:(id)arg2 error:(out id *)arg3;
 - (BOOL)startRanging:(id)arg1 timeout:(double)arg2 error:(out id *)arg3;
 - (void)stopAWDL;
@@ -120,13 +154,15 @@
 - (void)stopHostAPMode;
 - (BOOL)startHostAPMode:(out id *)arg1;
 - (BOOL)startHostAPModeWithSSID:(id)arg1 securityType:(unsigned long long)arg2 channel:(id)arg3 password:(id)arg4 error:(out id *)arg5;
-- (BOOL)setWakeOnWirelessEnabled:(BOOL)arg1 error:(out id *)arg2;
 - (BOOL)wakeOnWirelessEnabled;
 - (BOOL)networkInterfaceAvailable;
 - (long long)interfaceControlState;
+- (unsigned long long)numberOfSpatialStreams;
+- (unsigned long long)__vhtNumberOfSpatialStreams;
+- (unsigned long long)__numberOfSpatialStreams;
 - (unsigned long long)mcsIndex;
 - (unsigned long long)__mcsIndex;
-- (long long)__vhtMCSIndex;
+- (unsigned long long)__vhtMCSIndex;
 - (id)__vhtMCSInfo;
 - (unsigned long long)maximumLinkSpeed;
 - (unsigned long long)supportedPhysicalLayerModes;

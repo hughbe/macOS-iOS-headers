@@ -6,14 +6,20 @@
 
 #import "NSObject.h"
 
-@class GEOPhoto, NSString, NSURL;
+@class NSString, NSURL;
 
 @protocol GEOMapItemPhoto <NSObject>
-@property(readonly, nonatomic) GEOPhoto *geoPhoto;
-@property(readonly, nonatomic) BOOL displayFullPhotoInline;
+@property(readonly, nonatomic) BOOL businessProvided;
+@property(readonly, nonatomic) BOOL highQuality;
+@property(readonly, nonatomic) double sizeRatio;
+@property(readonly, nonatomic) NSString *uid;
+@property(readonly, nonatomic) BOOL useGallery;
+@property(readonly, nonatomic) BOOL displayFullScreenPhotoGallery;
 @property(readonly, nonatomic) NSURL *licenseURL;
 @property(readonly, nonatomic) NSString *licenseDescription;
 @property(readonly, nonatomic) NSString *caption;
 @property(readonly, nonatomic) NSString *author;
+- (id <GEOMapItemPhotoInfo>)bestPhotoForSize:(struct CGSize)arg1 allowSmaller:(BOOL)arg2;
+- (id <GEOMapItemPhotoInfo>)largestPhoto;
 @end
 

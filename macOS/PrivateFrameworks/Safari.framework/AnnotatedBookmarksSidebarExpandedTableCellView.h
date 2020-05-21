@@ -6,10 +6,12 @@
 
 #import <Safari/AnnotatedBookmarksSidebarTableCellView.h>
 
-@class NSLayoutConstraint, NSTextField;
+#import "NSControlTextEditingDelegate.h"
+
+@class NSLayoutConstraint, NSString, NSTextField;
 
 __attribute__((visibility("hidden")))
-@interface AnnotatedBookmarksSidebarExpandedTableCellView : AnnotatedBookmarksSidebarTableCellView
+@interface AnnotatedBookmarksSidebarExpandedTableCellView : AnnotatedBookmarksSidebarTableCellView <NSControlTextEditingDelegate>
 {
     NSLayoutConstraint *_editingTitleHeightConstraint;
     NSLayoutConstraint *_editingDescriptionHeightConstraint;
@@ -20,8 +22,13 @@ __attribute__((visibility("hidden")))
     NSLayoutConstraint *_leadingPaddingConstraint;
     NSLayoutConstraint *_trailingPaddingConstraint;
     NSLayoutConstraint *_spaceBetweenImageAndTextConstraint;
+    NSLayoutConstraint *_spaceBetweenDescriptionTextAndBottomConstraint;
+    NSLayoutConstraint *_spaceBetweenImageAndBottomConstraint;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak NSLayoutConstraint *spaceBetweenImageAndBottomConstraint; // @synthesize spaceBetweenImageAndBottomConstraint=_spaceBetweenImageAndBottomConstraint;
+@property(nonatomic) __weak NSLayoutConstraint *spaceBetweenDescriptionTextAndBottomConstraint; // @synthesize spaceBetweenDescriptionTextAndBottomConstraint=_spaceBetweenDescriptionTextAndBottomConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *spaceBetweenImageAndTextConstraint; // @synthesize spaceBetweenImageAndTextConstraint=_spaceBetweenImageAndTextConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *trailingPaddingConstraint; // @synthesize trailingPaddingConstraint=_trailingPaddingConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *leadingPaddingConstraint; // @synthesize leadingPaddingConstraint=_leadingPaddingConstraint;
@@ -29,15 +36,19 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) __weak id <AnnotatedBookmarksSidebarExpandedTableCellViewDelegate> expandedCellViewDelegate; // @synthesize expandedCellViewDelegate=_expandedCellViewDelegate;
 @property(nonatomic) __weak NSTextField *addressTextField; // @synthesize addressTextField=_addressTextField;
 @property(nonatomic) __weak NSTextField *descriptionTextField; // @synthesize descriptionTextField=_descriptionTextField;
-- (void).cxx_destruct;
 @property(readonly, nonatomic) double fittingHeight;
 - (void)updateTextFieldMaxLayoutWidths;
 - (void)controlTextDidEndEditing:(id)arg1;
 - (void)editPreviewText;
 - (void)editTitle;
-- (void)setBackgroundStyle:(long long)arg1;
 - (void)didRecognizeLongPress:(id)arg1;
 - (void)awakeFromNib;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

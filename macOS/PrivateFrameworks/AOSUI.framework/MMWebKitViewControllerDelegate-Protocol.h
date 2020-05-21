@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class MMWebKitViewController, NSError;
+@class MMWebKitViewController, NSError, NSURLResponse;
 
 @protocol MMWebKitViewControllerDelegate <NSObject>
 
 @optional
+- (void)mmWebKitViewControllerDidReceiveResponse:(MMWebKitViewController *)arg1 didReceiveResponse:(NSURLResponse *)arg2;
 - (void)mmWebKitViewControllerDidDismiss:(MMWebKitViewController *)arg1;
 - (void)mmWebKitViewControllerDidFinishLoading:(MMWebKitViewController *)arg1;
 - (void)mmWebKitViewControllerDidFailLoading:(MMWebKitViewController *)arg1 error:(NSError *)arg2;

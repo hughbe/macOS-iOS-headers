@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSError, NSMutableArray, NSString, NSURL;
+@class CKAssetDownloadPreauthorization, NSArray, NSData, NSError, NSMutableArray, NSString, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface CKDMMCSItemGroup : NSObject
@@ -15,18 +15,20 @@ __attribute__((visibility("hidden")))
     BOOL _complete;
     NSError *_error;
     id <MMCSOperationMetric> _metrics;
+    NSData *_authPutRequest;
     NSArray *_tuple;
 }
 
 + (id)tupleForItem:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL complete; // @synthesize complete=_complete;
 @property(retain, nonatomic) NSArray *tuple; // @synthesize tuple=_tuple;
+@property(retain, nonatomic) NSData *authPutRequest; // @synthesize authPutRequest=_authPutRequest;
 @property(retain, nonatomic) id <MMCSOperationMetric> metrics; // @synthesize metrics=_metrics;
 @property(readonly, nonatomic) NSArray *items; // @synthesize items=_items;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
-- (void).cxx_destruct;
 - (void)addItem:(id)arg1;
-@property(readonly, nonatomic) BOOL useAuthRequests;
+@property(readonly, nonatomic) CKAssetDownloadPreauthorization *downloadPreauthorization;
 @property(readonly, nonatomic) NSString *requestor;
 @property(readonly, nonatomic) NSString *owner;
 @property(readonly, nonatomic) NSURL *contentBaseURL;

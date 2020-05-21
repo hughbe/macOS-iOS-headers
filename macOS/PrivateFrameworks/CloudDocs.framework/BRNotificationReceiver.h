@@ -31,12 +31,13 @@ __attribute__((visibility("hidden")))
     int _networkReachabilityToken;
     BOOL _isNetworkReachable;
     BOOL _isInvalidated;
+    id <NSObject> _accountTokenDidChangeNotificationObserver;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) id <BRNotificationReceiverDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) double batchingDelay; // @synthesize batchingDelay=_batchingDelay;
 @property(nonatomic) unsigned long long batchingChanges; // @synthesize batchingChanges=_batchingChanges;
-- (void).cxx_destruct;
 - (void)enableUpdatesFromIPCAfterStitching;
 - (void)disableUpdatesFromIPCBeforeStitching;
 - (void)receiveStitchingUpdates:(id)arg1;

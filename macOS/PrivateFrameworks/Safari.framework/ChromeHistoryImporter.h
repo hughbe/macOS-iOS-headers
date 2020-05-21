@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Safari/ChromeImportEngine.h>
 
 #import "BrowserHistoryImporter.h"
 
 @class NSString;
 
 __attribute__((visibility("hidden")))
-@interface ChromeHistoryImporter : NSObject <BrowserHistoryImporter>
+@interface ChromeHistoryImporter : ChromeImportEngine <BrowserHistoryImporter>
 {
 }
 

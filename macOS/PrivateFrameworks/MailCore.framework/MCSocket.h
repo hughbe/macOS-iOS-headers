@@ -28,6 +28,7 @@
 }
 
 + (id)log;
+- (void).cxx_destruct;
 @property BOOL scheduledForBytesToArrive; // @synthesize scheduledForBytesToArrive=_scheduledForBytesToArrive;
 @property(copy) CDUnknownBlockType bytesAvailableHandler; // @synthesize bytesAvailableHandler=_bytesAvailableHandler;
 @property(retain) NSOutputStream *outputStream; // @synthesize outputStream=_outputStream;
@@ -39,7 +40,6 @@
 @property(nonatomic) double connectTimeout; // @synthesize connectTimeout=_connectTimeout;
 @property long long activityType; // @synthesize activityType=_activityType;
 @property(readonly) unsigned long long identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
 - (void)stream:(id)arg1 handleEvent:(unsigned long long)arg2;
 @property(readonly, nonatomic) BOOL isExpensive;
 - (void)_cancelLookupForHost:(struct __CFHost *)arg1 infoType:(int)arg2;
@@ -65,7 +65,7 @@
 - (BOOL)_setSSLStreamProperties:(BOOL)arg1;
 - (BOOL)_setupStreamsWithHostname:(id)arg1 port:(long long)arg2 needToEstablishInternetConnection:(char *)arg3 useSSL:(char *)arg4 isBackground:(BOOL)arg5 error:(id *)arg6;
 - (BOOL)connectToHost:(id)arg1 withPort:(long long)arg2 isBackground:(BOOL)arg3;
-- (void)setClientIdentity:(struct OpaqueSecIdentityRef *)arg1;
+- (void)setClientIdentity:(struct __SecIdentity *)arg1;
 - (BOOL)setUsesSSL:(BOOL)arg1;
 - (void)dealloc;
 - (id)init;

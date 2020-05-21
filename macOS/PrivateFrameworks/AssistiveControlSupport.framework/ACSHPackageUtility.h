@@ -10,10 +10,12 @@
 {
 }
 
-+ (void)convertPanelInfo:(id)arg1 fromVersion:(unsigned long long)arg2 toVersion:(unsigned long long)arg3;
-+ (void)convertPanelsInfo:(id)arg1 fromVersion:(unsigned long long)arg2 toVersion:(unsigned long long)arg3;
++ (void)convertPanelElementInfo:(id)arg1 atURL:(id)arg2 fromVersion:(unsigned long long)arg3;
++ (void)convertPanelInfo:(id)arg1 atURL:(id)arg2 packageInfo:(id)arg3 fromVersion:(unsigned long long)arg4;
++ (void)convertPanelsInfo:(id)arg1 atURL:(id)arg2 packageInfo:(id)arg3 fromVersion:(unsigned long long)arg4;
++ (id)convertPackageInfo:(id)arg1 atURL:(id)arg2 fromVersion:(unsigned long long)arg3;
 + (id)fileWrapperForPackageWithPanelCollection:(id)arg1 resourceCollection:(id)arg2 packageInfo:(id)arg3 error:(id *)arg4;
-+ (BOOL)loadPackageWithFilewrapper:(id)arg1 panelCollection:(id *)arg2 resourceCollection:(id *)arg3 packageInfo:(id *)arg4 error:(id *)arg5 undoManager:(id)arg6;
++ (BOOL)loadPackageWithFileWrapper:(id)arg1 atURL:(id)arg2 panelCollection:(id *)arg3 resourceCollection:(id *)arg4 packageInfo:(id *)arg5 error:(id *)arg6 undoManager:(id)arg7;
 
 @end
 

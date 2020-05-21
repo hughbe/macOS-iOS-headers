@@ -8,7 +8,7 @@
 
 #import "SAAceSerializable.h"
 
-@class NSNumber, NSString;
+@class NSDictionary, NSNumber, NSString;
 
 @interface SAAceView : SABaseAceObject <SAAceSerializable>
 {
@@ -18,9 +18,12 @@
 + (id)aceView;
 @property(copy, nonatomic) NSString *viewId;
 @property(copy, nonatomic) NSString *speakableText;
+@property(copy, nonatomic) NSDictionary *speakableContextInfo;
 @property(copy, nonatomic) NSNumber *listenAfterSpeaking;
+@property(nonatomic) BOOL isTransient;
 @property(copy, nonatomic) NSNumber *deferredRendering;
 @property(retain, nonatomic) id <SAAceSerializable> context;
+@property(nonatomic) BOOL canUseServerTTS;
 @property(nonatomic) BOOL canBeRefreshed;
 - (id)encodedClassName;
 - (id)groupIdentifier;

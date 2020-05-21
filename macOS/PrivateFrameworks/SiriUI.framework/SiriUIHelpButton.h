@@ -6,7 +6,6 @@
 
 #import <SiriUI/SiriUIButton.h>
 
-__attribute__((visibility("hidden")))
 @interface SiriUIHelpButton : SiriUIButton
 {
     BOOL _animatingEmphasis;
@@ -15,10 +14,8 @@ __attribute__((visibility("hidden")))
 
 - (double)_targetAlpha;
 - (double)_alphaForColor:(id)arg1;
-- (void)animateHide:(BOOL)arg1 duration:(double)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)pulse;
 - (void)setEmphasized:(BOOL)arg1;
-- (BOOL)wantsUpdateLayer;
 - (void)awakeFromNib;
 
 @end

@@ -6,32 +6,22 @@
 
 #import "NSViewController.h"
 
-#import "AFUtteranceSuggestionsDelegate.h"
 #import "SiriUISuggestionsViewDelegate.h"
 
-@class AFUtteranceSuggestions, NSString, SiriUISuggestionsView;
+@class NSString, SiriUISuggestionsView;
 
 __attribute__((visibility("hidden")))
-@interface SVSSuggestionsViewController : NSViewController <SiriUISuggestionsViewDelegate, AFUtteranceSuggestionsDelegate>
+@interface SVSSuggestionsViewController : NSViewController <SiriUISuggestionsViewDelegate>
 {
-    AFUtteranceSuggestions *_suggestions;
     id <SVSSuggestionsViewControllerDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <SVSSuggestionsViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) AFUtteranceSuggestions *suggestions; // @synthesize suggestions=_suggestions;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <SVSSuggestionsViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (double)textContentHeight;
-- (double)suggestionsContentHeight;
-- (void)suggestionsDidChange:(id)arg1;
 - (void)suggestionsView:(id)arg1 didHideVibrantView:(id)arg2;
 - (double)statusViewHeightForSuggestionsView:(id)arg1;
-- (void)didShowSuggestionsForSuggestionsView:(id)arg1;
-- (void)getNextSuggestionsForSuggestionsView:(id)arg1 maxSuggestions:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)animateOut;
-- (BOOL)shouldShowBorealisEducation;
-- (BOOL)isShowingSuggestions;
-- (void)showSuggestions;
 - (void)viewWillDisappear;
 - (void)viewWillAppear;
 - (void)hideAcousticIDSpinner;
@@ -42,10 +32,7 @@ __attribute__((visibility("hidden")))
 - (void)showGreeting;
 - (void)showMicrophoneUnavailable;
 - (void)showNetworkUnavailable;
-- (id)_suggestingHeaderText;
 - (id)_nudgeHeaderText;
-- (id)_borealisSubheaderText;
-- (id)_borealisHeaderText;
 - (id)_initialHeaderText;
 - (void)loadView;
 

@@ -18,7 +18,7 @@
     NSBundle *_bundle;
     struct _NSNibFlags _flags;
     NSString *_path;
-    id reserved2;
+    id _reusableDecoder;
 }
 
 + (id)_NSNibBindingHelpStringForUIItem:(id)arg1 binding:(id)arg2;
@@ -37,6 +37,10 @@
 - (BOOL)instantiateWithOwner:(id)arg1 topLevelObjects:(id *)arg2;
 - (BOOL)instantiateNibWithExternalNameTable:(id)arg1;
 - (BOOL)_instantiateNibWithExternalNameTable:(id)arg1 options:(id)arg2;
+- (id)_decoderWithZone:(struct _NSZone *)arg1;
+- (id)_makeDecoderWithZone:(struct _NSZone *)arg1;
+- (void)_setReusableDecoder:(id)arg1;
+- (id)_reusableDecoder;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)dealloc;

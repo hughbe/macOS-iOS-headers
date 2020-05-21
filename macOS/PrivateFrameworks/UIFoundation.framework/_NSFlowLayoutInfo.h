@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSCollectionViewFlowLayout, NSDictionary, NSMutableArray;
+@class NSCollectionViewFlowLayout, NSMutableArray;
 
 @interface _NSFlowLayoutInfo : NSObject
 {
@@ -18,17 +18,22 @@
     struct CGSize _layoutSize;
     double _dimension;
     BOOL _isValid;
-    NSDictionary *_rowAlignmentOptions;
+    CDStruct_2f5e8405 _rowAlignmentOptions;
     NSCollectionViewFlowLayout *_layout;
+    struct CGSize _computedEstimatedSum;
+    long long _computedEstimatedCount;
     BOOL _usesFloatingHeaderFooter;
     struct CGSize _contentSize;
     BOOL _estimatesSizes;
+    struct CGSize _dropTargetGapSize;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) struct CGSize dropTargetGapSize; // @synthesize dropTargetGapSize=_dropTargetGapSize;
 @property(nonatomic) BOOL estimatesSizes; // @synthesize estimatesSizes=_estimatesSizes;
-@property(nonatomic) NSCollectionViewFlowLayout *layout; // @synthesize layout=_layout;
+@property(nonatomic) __weak NSCollectionViewFlowLayout *layout; // @synthesize layout=_layout;
 @property(readonly, nonatomic) NSMutableArray *sections; // @synthesize sections=_sections;
-@property(retain, nonatomic) NSDictionary *rowAlignmentOptions; // @synthesize rowAlignmentOptions=_rowAlignmentOptions;
+@property(nonatomic) CDStruct_2f5e8405 rowAlignmentOptions; // @synthesize rowAlignmentOptions=_rowAlignmentOptions;
 @property(nonatomic) struct CGSize contentSize; // @synthesize contentSize=_contentSize;
 @property(nonatomic) BOOL leftToRight; // @synthesize leftToRight=_leftToRight;
 @property(nonatomic) BOOL horizontal; // @synthesize horizontal=_horizontal;
@@ -36,15 +41,16 @@
 @property(nonatomic) BOOL usesFloatingHeaderFooter; // @synthesize usesFloatingHeaderFooter=_usesFloatingHeaderFooter;
 - (BOOL)section:(id)arg1 shouldShowCollapseButton:(BOOL)arg2;
 @property(readonly) BOOL _collapsesSectionsToFirstItem;
-@property(readonly, nonatomic) NSArray *invalidatedIndexPaths;
-- (void)setSize:(struct CGSize)arg1 forItemAtIndexPath:(id)arg2;
+- (id)invalidatedIndexPaths;
+@property(readonly, nonatomic) struct CGSize computedEstimatedSize;
+- (id)specifiedItemSizes;
+- (id)setSize:(struct CGSize)arg1 forItemAtIndexPath:(id)arg2;
 - (void)didUpdateSizeForSection:(long long)arg1 withDelta:(double)arg2;
 - (id)copy;
 - (id)snapshot;
 - (struct CGRect)frameForItemAtIndexPath:(id)arg1;
 - (id)addSection;
 - (void)invalidate:(BOOL)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

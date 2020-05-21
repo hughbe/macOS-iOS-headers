@@ -15,9 +15,11 @@
     NSString *_effectiveModifier;
     NSString *_message;
     unsigned long long _type;
+    long long _line;
 }
 
-+ (id)issueWithShadable:(id)arg1 entryPoint:(id)arg2 effectiveModifier:(id)arg3 message:(id)arg4 type:(unsigned long long)arg5;
++ (id)issueWithShadable:(id)arg1 entryPoint:(id)arg2 effectiveModifier:(id)arg3 message:(id)arg4 line:(long long)arg5 type:(unsigned long long)arg6;
+@property(readonly, nonatomic) long long line; // @synthesize line=_line;
 @property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
 @property(readonly, nonatomic) NSString *message; // @synthesize message=_message;
 @property(readonly, nonatomic) NSString *effectiveModifier; // @synthesize effectiveModifier=_effectiveModifier;

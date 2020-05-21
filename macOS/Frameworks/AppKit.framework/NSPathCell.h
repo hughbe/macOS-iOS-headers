@@ -6,11 +6,12 @@
 
 #import <AppKit/NSActionCell.h>
 
+#import "NSMenuItemValidation.h"
 #import "NSOpenSavePanelDelegate.h"
 
 @class NSAnimation, NSArray, NSAttributedString, NSColor, NSMutableArray, NSPathComponentCell, NSPopUpButtonCell, NSString, NSURL;
 
-@interface NSPathCell : NSActionCell <NSOpenSavePanelDelegate>
+@interface NSPathCell : NSActionCell <NSMenuItemValidation, NSOpenSavePanelDelegate>
 {
     NSColor *_backgroundColor;
     NSMutableArray *_borderColors;
@@ -22,7 +23,7 @@
     NSAnimation *_animation;
     NSArray *_allowedTypes;
     SEL _doubleAction;
-    id _delegate;
+    id <NSPathCellDelegate> _delegate;
     struct {
         unsigned int cbs:4;
         unsigned int reserved:28;
@@ -33,10 +34,12 @@
 
 + (BOOL)prefersTrackingUntilMouseUp;
 + (Class)pathComponentCellClass;
+- (void).cxx_destruct;
 - (void)_menuDidEndTracking:(id)arg1;
 - (id)menuForEvent:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3;
 - (void)_resetClickedCell;
 - (struct CGSize)cellSizeForBounds:(struct CGRect)arg1;
+- (BOOL)_needRedrawOnWindowChangedKeyState;
 - (void)resetCursorRect:(struct CGRect)arg1 inView:(id)arg2;
 - (void)selectWithFrame:(struct CGRect)arg1 inView:(id)arg2 editor:(id)arg3 delegate:(id)arg4 start:(long long)arg5 length:(long long)arg6;
 - (void)editWithFrame:(struct CGRect)arg1 inView:(id)arg2 editor:(id)arg3 delegate:(id)arg4 event:(id)arg5;
@@ -73,6 +76,10 @@
 - (void)_updateCell;
 - (void)drawWithExpansionFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (struct CGRect)expansionFrameWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (void)drawFocusRingMaskWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (struct CGRect)focusRingMaskBoundsForFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (void)_legacyDrawFocusRingInCellFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (BOOL)_wantsToUseFocusRingMask;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (BOOL)_shouldDrawRTL;
 - (struct CGRect)_insetFrameForBorder:(struct CGRect)arg1;
@@ -98,8 +105,6 @@
 - (void)setFont:(id)arg1;
 - (void)setControlSize:(unsigned long long)arg1;
 - (id)_titleAttributes;
-- (id)_inActiveBackgroundColor;
-- (id)_activeBackgroundColor;
 - (void)_updateSizesForInteriorFrame:(struct CGRect)arg1;
 @property(copy) NSURL *URL;
 - (void)setObjectValue:(id)arg1;
@@ -108,8 +113,9 @@
 - (void)_stopAnimation;
 - (id)_valueAsFilePath;
 - (void)_setNeedsSizeUpdate;
-@property id <NSPathCellDelegate> delegate;
+@property __weak id <NSPathCellDelegate> delegate;
 @property(copy) NSArray *allowedTypes;
+- (void)setAlignment:(long long)arg1;
 - (void)setBaseWritingDirection:(long long)arg1;
 - (void)setUserInterfaceLayoutDirection:(long long)arg1;
 - (id)initWithCoder:(id)arg1;

@@ -36,6 +36,9 @@
 @property NSImageView *posterImageView3; // @synthesize posterImageView3=_posterImageView3;
 @property NSImageView *posterImageView2; // @synthesize posterImageView2=_posterImageView2;
 @property NSImageView *posterImageView1; // @synthesize posterImageView1=_posterImageView1;
+- (id)accessibilityChildren;
+- (BOOL)exposesAccessibilityChildren;
+- (BOOL)isAccessibilityElement;
 - (void)mouseUp:(id)arg1;
 - (void)_sendAction:(SEL)arg1 to:(id)arg2 from:(id)arg3;
 - (id)subtitleTextViewMinHeightConstraintAtIndex:(unsigned long long)arg1;

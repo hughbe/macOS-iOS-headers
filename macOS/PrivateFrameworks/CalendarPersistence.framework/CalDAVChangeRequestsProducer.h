@@ -19,6 +19,7 @@
 + (void)registerObserver:(id)arg1;
 + (void)registerForContextNotifications;
 + (id)sharedInstance;
+- (void).cxx_destruct;
 - (void)postProcessInsertedChangeRequests:(id)arg1 inManagedObjectContext:(id)arg2;
 - (void)processDeletedManagedObjects:(id)arg1 inManagedObjectContext:(id)arg2;
 - (void)processUpdatedManagedObjects:(id)arg1 inManagedObjectContext:(id)arg2;
@@ -27,7 +28,6 @@
 - (void)addCreatedScheduleChangeRequest:(id)arg1;
 - (void)managedObjectContextWillSave:(id)arg1;
 - (void)managedObjectContextDidSave:(id)arg1;
-- (void)dealloc;
 - (id)init;
 - (void)registerObserver:(id)arg1;
 

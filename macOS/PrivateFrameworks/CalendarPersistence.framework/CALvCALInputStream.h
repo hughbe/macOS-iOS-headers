@@ -17,12 +17,12 @@
     NSData *_dataStream;
 }
 
+- (void).cxx_destruct;
 - (int)load_line_buffer;
 - (id)errorStr:(int)arg1;
 - (int)lineNum;
 - (BOOL)isContinued;
 - (int)getLine:(char *)arg1 withSize:(unsigned long long *)arg2;
-- (void)dealloc;
 - (id)initWithData:(id)arg1;
 - (id)init;
 

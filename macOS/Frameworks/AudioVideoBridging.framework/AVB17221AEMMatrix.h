@@ -33,6 +33,8 @@
 @property unsigned short width; // @synthesize width;
 @property unsigned long long controlType; // @synthesize controlType;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 @property(getter=isUnknownValue) BOOL unknownValue; // @dynamic unknownValue;
 @property(getter=isReadOnly) BOOL readOnly; // @dynamic readOnly;
 @property unsigned short controlValueType; // @dynamic controlValueType;

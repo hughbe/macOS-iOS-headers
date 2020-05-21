@@ -19,13 +19,19 @@
 }
 
 + (id)templateWithName:(id)arg1 withKeyPath:(id)arg2;
+- (void).cxx_destruct;
+@property(retain) NSLevelIndicator *ratingIndicator; // @synthesize ratingIndicator=_ratingIndicator;
+@property(retain) NSPopUpButton *operatorTypePopup; // @synthesize operatorTypePopup=_operatorTypePopup;
+@property(retain) NSPopUpButton *leftExpressionPopup; // @synthesize leftExpressionPopup=_leftExpressionPopup;
+@property BOOL hasCreatedViews; // @synthesize hasCreatedViews=_hasCreatedViews;
+@property(copy) NSString *keyPath; // @synthesize keyPath=_keyPath;
+@property(copy) NSString *name; // @synthesize name=_name;
 - (id)predicateWithSubpredicates:(id)arg1;
 - (void)setPredicate:(id)arg1;
 - (double)matchForPredicate:(id)arg1;
 - (id)templateViews;
 - (void)createViewsIfNecessary;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 withKeyPath:(id)arg2;
 
 @end

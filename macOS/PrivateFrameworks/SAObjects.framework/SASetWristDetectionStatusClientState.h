@@ -17,6 +17,7 @@
 
 + (id)setWristDetectionStatusClientStateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setWristDetectionStatusClientState;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SAWristDetectionStatusClientState *clientState;
 - (id)encodedClassName;
 - (id)groupIdentifier;

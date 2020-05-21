@@ -6,9 +6,11 @@
 
 #import "NSViewController.h"
 
-@class NSButton, NSButtonCell, NSImageView, NSMatrix, NSTextField;
+#import "NSTouchBarProvider.h"
 
-@interface MMCSCOptionsSetupViewController : NSViewController
+@class NSButton, NSButtonCell, NSImageView, NSMatrix, NSString, NSTextField, NSTouchBar, iCloudTouchBarController;
+
+@interface MMCSCOptionsSetupViewController : NSViewController <NSTouchBarProvider>
 {
     id <MMCSCOptionsSetupViewControllerDelegate> _delegate;
     NSImageView *_optionsViewImageView;
@@ -23,26 +25,36 @@
     NSButton *_optionsViewCancelButton;
     NSButton *_optionsViewAlternateButton;
     NSButton *_optionsViewConfirmButton;
+    iCloudTouchBarController *_touchBarController;
 }
 
-@property NSButton *optionsViewConfirmButton; // @synthesize optionsViewConfirmButton=_optionsViewConfirmButton;
-@property NSButton *optionsViewAlternateButton; // @synthesize optionsViewAlternateButton=_optionsViewAlternateButton;
-@property NSButton *optionsViewCancelButton; // @synthesize optionsViewCancelButton=_optionsViewCancelButton;
-@property NSButton *optionsViewHelpButton; // @synthesize optionsViewHelpButton=_optionsViewHelpButton;
-@property NSTextField *optionsViewOptOutInfoLabel; // @synthesize optionsViewOptOutInfoLabel=_optionsViewOptOutInfoLabel;
-@property NSButtonCell *optionsViewOptOutRadionButton; // @synthesize optionsViewOptOutRadionButton=_optionsViewOptOutRadionButton;
-@property NSButtonCell *optionsViewRandomRadioButton; // @synthesize optionsViewRandomRadioButton=_optionsViewRandomRadioButton;
-@property NSButtonCell *optionsViewComplexRadioButton; // @synthesize optionsViewComplexRadioButton=_optionsViewComplexRadioButton;
-@property NSMatrix *optionsViewRadioMatrix; // @synthesize optionsViewRadioMatrix=_optionsViewRadioMatrix;
-@property NSTextField *optionsViewMessage; // @synthesize optionsViewMessage=_optionsViewMessage;
-@property NSTextField *optionsViewTitle; // @synthesize optionsViewTitle=_optionsViewTitle;
-@property NSImageView *optionsViewImageView; // @synthesize optionsViewImageView=_optionsViewImageView;
+- (void).cxx_destruct;
+@property(retain) iCloudTouchBarController *touchBarController; // @synthesize touchBarController=_touchBarController;
+@property __weak NSButton *optionsViewConfirmButton; // @synthesize optionsViewConfirmButton=_optionsViewConfirmButton;
+@property __weak NSButton *optionsViewAlternateButton; // @synthesize optionsViewAlternateButton=_optionsViewAlternateButton;
+@property __weak NSButton *optionsViewCancelButton; // @synthesize optionsViewCancelButton=_optionsViewCancelButton;
+@property __weak NSButton *optionsViewHelpButton; // @synthesize optionsViewHelpButton=_optionsViewHelpButton;
+@property __weak NSTextField *optionsViewOptOutInfoLabel; // @synthesize optionsViewOptOutInfoLabel=_optionsViewOptOutInfoLabel;
+@property __weak NSButtonCell *optionsViewOptOutRadionButton; // @synthesize optionsViewOptOutRadionButton=_optionsViewOptOutRadionButton;
+@property __weak NSButtonCell *optionsViewRandomRadioButton; // @synthesize optionsViewRandomRadioButton=_optionsViewRandomRadioButton;
+@property __weak NSButtonCell *optionsViewComplexRadioButton; // @synthesize optionsViewComplexRadioButton=_optionsViewComplexRadioButton;
+@property __weak NSMatrix *optionsViewRadioMatrix; // @synthesize optionsViewRadioMatrix=_optionsViewRadioMatrix;
+@property __weak NSTextField *optionsViewMessage; // @synthesize optionsViewMessage=_optionsViewMessage;
+@property __weak NSTextField *optionsViewTitle; // @synthesize optionsViewTitle=_optionsViewTitle;
+@property __weak NSImageView *optionsViewImageView; // @synthesize optionsViewImageView=_optionsViewImageView;
 @property id <MMCSCOptionsSetupViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)otherButtonClicked:(id)arg1;
 - (void)alternateButtonClicked:(id)arg1;
 - (void)defaultButtonClicked:(id)arg1;
 @property(readonly) long long advancedOption;
 - (void)setup:(BOOL)arg1;
+@property(readonly) NSTouchBar *touchBar;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

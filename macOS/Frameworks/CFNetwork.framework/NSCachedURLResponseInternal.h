@@ -8,14 +8,13 @@
 
 @class NSData, NSDictionary, NSURLResponse;
 
-__attribute__((visibility("hidden")))
 @interface NSCachedURLResponseInternal : NSObject
 {
     NSURLResponse *response;
     NSData *data;
     NSDictionary *userInfo;
     unsigned long long storagePolicy;
-    struct _CFCachedURLResponse *_cachedURLResponse;
+    // Error parsing type: ^{_CFCachedURLResponse={__CFRuntimeBase=QAQ}^{__CFCachedURLResponse}}, name: _cachedURLResponse
 }
 
 - (void)dealloc;

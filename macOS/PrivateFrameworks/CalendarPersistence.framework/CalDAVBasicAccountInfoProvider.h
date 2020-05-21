@@ -11,39 +11,41 @@
 #import "CoreDAVLogDelegate.h"
 #import "CoreDAVOAuthInfoProvider.h"
 
-@class ACAccount, NSData, NSManagedObjectID, NSSet, NSString, NSURL;
+@class ACAccount, AKAppleIDSession, NSData, NSManagedObjectID, NSSet, NSString, NSURL;
 
 @interface CalDAVBasicAccountInfoProvider : NSObject <CoreDAVAccountInfoProvider, CoreDAVClientCertificateInfoProvider, CoreDAVOAuthInfoProvider, CoreDAVLogDelegate>
 {
+    NSString *_accountID;
+    ACAccount *_acAccount;
+    BOOL _shouldFailAllTasks;
     NSString *_scheme;
     NSString *_host;
+    NSString *_principalPath;
+    NSURL *_principalURL;
     long long _port;
     NSString *_serverRoot;
     NSString *_user;
-    NSString *_principalPath;
     NSString *_password;
     NSData *_identityPersist;
-    NSURL *_principalURL;
-    NSString *_accountID;
     NSSet *_serverComplianceClasses;
     NSManagedObjectID *_objectID;
-    BOOL _shouldFailAllTasks;
-    ACAccount *acAccount;
-    ACAccount *_acAccount;
+    AKAppleIDSession *_appleIDSession;
 }
 
++ (BOOL)_accountIsPartOfAppleAccount:(id)arg1;
 + (void)initialize;
-@property(retain) ACAccount *acAccount; // @synthesize acAccount=_acAccount;
-@property(retain) NSManagedObjectID *objectID; // @synthesize objectID=_objectID;
+- (void).cxx_destruct;
+@property(retain) AKAppleIDSession *appleIDSession; // @synthesize appleIDSession=_appleIDSession;
 @property BOOL shouldFailAllTasks; // @synthesize shouldFailAllTasks=_shouldFailAllTasks;
+@property(retain) NSManagedObjectID *objectID; // @synthesize objectID=_objectID;
 @property(retain) NSSet *serverComplianceClasses; // @synthesize serverComplianceClasses=_serverComplianceClasses;
-@property(retain) NSURL *principalURL; // @synthesize principalURL=_principalURL;
 @property(retain) NSData *identityPersist; // @synthesize identityPersist=_identityPersist;
 @property(retain) NSString *password; // @synthesize password=_password;
-@property(retain) NSString *principalPath; // @synthesize principalPath=_principalPath;
 @property(retain) NSString *user; // @synthesize user=_user;
 @property(retain) NSString *serverRoot; // @synthesize serverRoot=_serverRoot;
 @property long long port; // @synthesize port=_port;
+@property(retain) NSURL *principalURL; // @synthesize principalURL=_principalURL;
+@property(retain) NSString *principalPath; // @synthesize principalPath=_principalPath;
 @property(retain) NSString *host; // @synthesize host=_host;
 @property(retain) NSString *scheme; // @synthesize scheme=_scheme;
 - (void)coreDAVTransmittedDataFinished;
@@ -51,11 +53,10 @@
 - (void)coreDAVLogRequestBody:(id)arg1;
 - (void)coreDAVLogTransmittedDataPartial:(id)arg1;
 - (BOOL)shouldLogTransmittedData;
-- (void)coreDAVLogDiagnosticMessage:(id)arg1 atLevel:(long long)arg2;
-- (long long)coreDAVOutputLevel;
-- (long long)coreDAVLogLevel;
+- (id)logHandle;
 - (id)secCertificates;
-- (struct OpaqueSecIdentityRef *)copySecIdentity;
+- (struct __SecIdentity *)copySecIdentity;
+- (id)getAppleIDSession;
 - (id)userAgentHeader;
 - (BOOL)renewCredential;
 - (BOOL)shouldTryRenewingCredential;
@@ -75,6 +76,7 @@
 - (void)promptUserForNewCoreDAVPasswordWithCompletionBlock:(CDUnknownBlockType)arg1;
 @property(retain) NSString *accountID;
 - (void)setFullPrincipalAddress:(id)arg1;
+@property(retain) ACAccount *acAccount;
 - (id)initWithUser:(id)arg1 password:(id)arg2 principalURL:(id)arg3 accountID:(id)arg4 acAccount:(id)arg5 objectID:(id)arg6;
 - (id)initWithUser:(id)arg1 password:(id)arg2 principalURL:(id)arg3 objectID:(id)arg4;
 - (id)init;

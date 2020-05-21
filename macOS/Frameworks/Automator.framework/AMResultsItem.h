@@ -18,16 +18,19 @@
 }
 
 + (id)resultsItemWithObject:(id)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *UUID; // @synthesize UUID=_UUID;
+@property(retain, nonatomic) id object; // @synthesize object=_object;
 - (id)imageSubtitle;
 - (id)imageTitle;
-- (id)imageUID;
-- (id)imageRepresentationType;
-- (id)imageRepresentation;
-@property(readonly, retain) NSString *iconPath;
-@property(readonly, retain) NSImage *icon;
-@property(readonly, retain) NSString *humanReadableName;
+@property(readonly, nonatomic) NSString *imageUID;
+@property(readonly, nonatomic) NSString *imageRepresentationType;
+@property(readonly, nonatomic) NSImage *imageRepresentation;
+@property(readonly, nonatomic) NSString *iconPath;
+@property(readonly, nonatomic) NSImage *icon;
+@property(readonly, nonatomic) id result;
+@property(readonly, nonatomic) NSString *humanReadableName;
 - (id)description;
-- (void)dealloc;
 - (id)initWithObject:(id)arg1;
 
 @end

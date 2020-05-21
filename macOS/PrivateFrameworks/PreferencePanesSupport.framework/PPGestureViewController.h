@@ -30,6 +30,7 @@
     CDUnknownBlockType mUserDidSelectGestureBlock;
 }
 
+- (void).cxx_destruct;
 @property(readonly) PPGestureView *gestureTableView; // @synthesize gestureTableView=mGestureTableView;
 @property(readonly) NSArray *gestureRowsArray; // @synthesize gestureRowsArray=mGesturesArray;
 @property BOOL useNewUI; // @synthesize useNewUI=mUseNewUI;

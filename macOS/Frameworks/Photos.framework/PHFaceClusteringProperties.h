@@ -6,24 +6,23 @@
 
 #import <Photos/PHFacePropertySet.h>
 
-#import "PHFacePropertySet.h"
+@class NSString, PHFaceprint;
 
-@class PHFace, PHFaceprint;
-
-@interface PHFaceClusteringProperties : PHFacePropertySet <PHFacePropertySet>
+@interface PHFaceClusteringProperties : PHFacePropertySet
 {
     PHFaceprint *_faceprint;
+    NSString *_groupingIdentifier;
 }
 
-+ (void)fetchPropertiesForObjects:(id)arg1 photoLibrary:(id)arg2;
-@property(readonly, nonatomic) PHFaceprint *faceprint; // @synthesize faceprint=_faceprint;
++ (id)propertiesToFetch;
++ (id)entityName;
++ (id)keyPathToPrimaryObject;
++ (id)keyPathFromPrimaryObject;
++ (id)propertySetName;
 - (void).cxx_destruct;
-- (void)setFaceprint:(id)arg1;
-- (id)initWithFace:(id)arg1 faceprint:(id)arg2;
-- (id)initWithFace:(id)arg1;
-
-// Remaining properties
-@property(readonly, nonatomic) __weak PHFace *face;
+@property(readonly, nonatomic) NSString *groupingIdentifier; // @synthesize groupingIdentifier=_groupingIdentifier;
+@property(readonly, nonatomic) PHFaceprint *faceprint; // @synthesize faceprint=_faceprint;
+- (id)initWithFetchDictionary:(id)arg1 face:(id)arg2 prefetched:(BOOL)arg3;
 
 @end
 

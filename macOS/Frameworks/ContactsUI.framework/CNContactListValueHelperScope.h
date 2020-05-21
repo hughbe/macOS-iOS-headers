@@ -6,19 +6,19 @@
 
 #import "NSObject.h"
 
-@class ABCNContact, NSString;
+@class CNContact, NSString;
 
 @interface CNContactListValueHelperScope : NSObject
 {
-    ABCNContact *_contact;
+    CNContact *_contact;
     NSString *_key;
     NSString *_identifier;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly) NSString *key; // @synthesize key=_key;
-@property(readonly) ABCNContact *contact; // @synthesize contact=_contact;
-- (void).cxx_destruct;
+@property(readonly) CNContact *contact; // @synthesize contact=_contact;
 - (id)initWithContact:(id)arg1 key:(id)arg2 identifier:(id)arg3;
 
 @end

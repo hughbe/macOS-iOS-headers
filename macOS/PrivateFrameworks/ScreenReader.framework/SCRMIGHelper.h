@@ -6,27 +6,26 @@
 
 #import "NSObject.h"
 
-@class NSCondition, NSThread;
+@class NSThread;
 
 __attribute__((visibility("hidden")))
 @interface SCRMIGHelper : NSObject
 {
-    NSThread *_migMessageHandlingThread;
-    struct _opaque_pthread_t {
-        long long _field1;
-        struct __darwin_pthread_handler_rec *_field2;
-        char _field3[8176];
-    } *_migMessageHandlingPThread;
     struct __CFRunLoop *_migMessageHandlingRunLoop;
-    NSCondition *_migMessageHandlingThreadCondition;
-    unsigned int _startupPort;
-    unsigned int _runningPort;
+    struct __CFRunLoopSource *_SCRQuitDefsServerSource;
+    struct __CFRunLoopSource *_SCRStartDefsServerSource;
+    unsigned int __startupPort;
+    unsigned int __runningPort;
+    NSThread *__migMessageHandlingThread;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic, setter=_setRunningPort:) unsigned int _runningPort; // @synthesize _runningPort=__runningPort;
+@property(nonatomic, setter=_setStartupPort:) unsigned int _startupPort; // @synthesize _startupPort=__startupPort;
+@property(retain, nonatomic, setter=_setMIGMessageHandlingThread:) NSThread *_migMessageHandlingThread; // @synthesize _migMessageHandlingThread=__migMessageHandlingThread;
+- (void)_mht_stop;
 - (void)_mht_main;
 - (void)stop;
-- (void)start;
-- (void)dealloc;
 - (id)initWithStartupPort:(unsigned int)arg1 runningPort:(unsigned int)arg2;
 
 @end

@@ -12,6 +12,7 @@
 
 + (id)getStateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getState;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;

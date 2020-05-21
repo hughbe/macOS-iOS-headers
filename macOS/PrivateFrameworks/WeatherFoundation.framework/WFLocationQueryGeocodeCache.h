@@ -8,23 +8,23 @@
 
 @class NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface WFLocationQueryGeocodeCache : NSObject
 {
     NSMutableDictionary *_cache;
     NSMutableDictionary *_cacheAge;
     NSObject<OS_dispatch_queue> *_cacheQueue;
-    unsigned long long _capacity;
     double _expirationInterval;
 }
 
-@property(nonatomic) double expirationInterval; // @synthesize expirationInterval=_expirationInterval;
-@property(nonatomic) unsigned long long capacity; // @synthesize capacity=_capacity;
 - (void).cxx_destruct;
+@property(nonatomic) double expirationInterval; // @synthesize expirationInterval=_expirationInterval;
 - (BOOL)_shouldEvictObjectWithDate:(id)arg1;
 - (void)_setObject:(id)arg1 forKey:(id)arg2 withDate:(id)arg3;
 - (void)removeObjectForKey:(id)arg1;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
 - (id)objectForKey:(id)arg1;
+- (void)removeAllObjects;
 - (id)init;
 
 @end

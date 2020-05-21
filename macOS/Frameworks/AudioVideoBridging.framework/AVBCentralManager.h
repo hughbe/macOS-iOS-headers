@@ -13,9 +13,9 @@
 @interface AVBCentralManager : NSObject <AVBInterfaceDelegate>
 {
     NSMutableDictionary *_interfaces;
-    NSObject<OS_dispatch_queue> *_controllerQueue;
+    NSObject<OS_dispatch_queue> *_interfaceQueue;
     struct IONotificationPort *_notificationPort;
-    unsigned int _controllerMatchIterator;
+    unsigned int _interfaceMatchIterator;
 }
 
 + (void)releaseDynamicEntityModelID:(unsigned long long)arg1;
@@ -24,11 +24,14 @@
 + (unsigned long long)nextAvailableDynamicEntityID;
 - (void)dealloc;
 - (id)interfaceWithName:(id)arg1;
+- (id)_interfaceWithName:(id)arg1;
 - (BOOL)streamingEnabledInterfacesOnly;
-- (void)didMatchNetworkController:(unsigned int)arg1;
+- (void)didMatchNetworkInterface:(unsigned int)arg1;
+- (void)didTerminateInterface:(id)arg1;
 - (void)didTerminateControllerForInterface:(id)arg1;
 - (void)didRemoveInterface:(id)arg1;
 - (void)didAddInterface:(id)arg1;
+- (void)startInterfaceMatching;
 - (void)startControllerMatching;
 - (id)init;
 

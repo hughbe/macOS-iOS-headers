@@ -6,11 +6,10 @@
 
 #import "NSObject.h"
 
-@class ABCardViewNotificationHandler, NSMutableArray;
+@class ABCardViewNotificationHandler;
 
 @interface ABPersonViewNotificationWatcher : NSObject
 {
-    NSMutableArray *_observers;
     ABCardViewNotificationHandler *_cardViewNotificationHandler;
 }
 

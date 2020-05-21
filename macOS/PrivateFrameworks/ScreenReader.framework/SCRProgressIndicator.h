@@ -12,12 +12,15 @@ __attribute__((visibility("hidden")))
     double _lastValueChangedTime;
 }
 
-- (id)statusDescriptionWithOptionsMask:(int)arg1;
+- (BOOL)_isBusyIndicator;
+- (id)typeDescription;
+- (id)statusDescription;
 - (id)maxValue;
 - (id)minValue;
 - (double)_percentValue;
 - (void)echoValueChangeToRequest:(id)arg1;
 - (BOOL)canHandleValueChange;
+- (BOOL)listenForValueChangeWithoutKeyboardFocus;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end

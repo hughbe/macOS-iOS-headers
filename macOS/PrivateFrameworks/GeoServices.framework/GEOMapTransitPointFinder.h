@@ -18,11 +18,11 @@ __attribute__((visibility("hidden")))
     unsigned long long _parentID;
 }
 
-- (void)_validatePoint:(CDStruct_3dff2f81 *)arg1 rect:(CDStruct_90e2a262)arg2 localSearch:(Box_3fb92e00)arg3 validPointHandler:(CDUnknownBlockType)arg4;
+- (void).cxx_destruct;
+- (void)_validatePoint:(CDStruct_d1b63816 *)arg1 rect:(CDStruct_90e2a262)arg2 localSearch:(Box_3fb92e00)arg3 validPointHandler:(CDUnknownBlockType)arg4;
 - (void)findTransitPointsOfType:(unsigned long long)arg1 nodeHandler:(CDUnknownBlockType)arg2 accessPointHandler:(CDUnknownBlockType)arg3;
 @property(readonly, nonatomic) GEOMapAccess *map;
 - (void)cancel;
-- (void)dealloc;
 - (id)initWithMap:(id)arg1 approxLocation:(CDStruct_c3b9c2ee)arg2 parentID:(unsigned long long)arg3;
 - (id)initWithMap:(id)arg1 approxLocation:(CDStruct_c3b9c2ee)arg2 pointID:(unsigned long long)arg3;
 - (id)initWithMap:(id)arg1 center:(CDStruct_c3b9c2ee)arg2 radius:(double)arg3;

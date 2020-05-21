@@ -16,11 +16,13 @@ __attribute__((visibility("hidden")))
 
 - (int)_trackingAreasDirty;
 - (void)_setTrackingAreasDirty:(int)arg1;
+- (id)_preferredAppearance;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)dealloc;
 @property(copy) NSColor *backgroundColor;
+- (BOOL)isFlipped;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

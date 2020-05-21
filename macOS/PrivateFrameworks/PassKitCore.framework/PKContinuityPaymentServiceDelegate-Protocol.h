@@ -6,18 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSArray, PKPayment, PKPaymentClientUpdate, PKPaymentHostUpdate, PKRemoteDevice, PKRemotePaymentRequest;
+@class NSArray, PKPayment, PKPaymentAuthorizationResult, PKPaymentClientUpdate, PKPaymentHostUpdate, PKRemotePaymentRequest;
 
 @protocol PKContinuityPaymentServiceDelegate <NSObject>
 
 @optional
 - (void)didReceiveCancellationForRemotePaymentRequest:(PKRemotePaymentRequest *)arg1;
-- (void)didReceivePaymentStatus:(long long)arg1 forRemotePaymentRequest:(PKRemotePaymentRequest *)arg2;
+- (void)didReceivePaymentResult:(PKPaymentAuthorizationResult *)arg1 forRemotePaymentRequest:(PKRemotePaymentRequest *)arg2;
 - (void)didReceivePayment:(PKPayment *)arg1 forRemotePaymentRequest:(PKRemotePaymentRequest *)arg2;
 - (void)didReceivePaymentClientUpdate:(PKPaymentClientUpdate *)arg1 forRemotePaymentRequest:(PKRemotePaymentRequest *)arg2;
 - (void)didReceivePaymentHostUpdate:(PKPaymentHostUpdate *)arg1 forRemotePaymentRequest:(PKRemotePaymentRequest *)arg2;
-- (void)didLosePaymentDeviceNearby:(PKRemoteDevice *)arg1;
-- (void)didFindPaymentDeviceNearby:(PKRemoteDevice *)arg1;
 - (void)didReceiveUpdatedPaymentDevices:(NSArray *)arg1;
 @end
 

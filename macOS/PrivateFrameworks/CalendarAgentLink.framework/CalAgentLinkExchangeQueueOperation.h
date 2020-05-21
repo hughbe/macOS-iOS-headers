@@ -15,12 +15,12 @@
     NSString *_principalManagedObjectID;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *principalManagedObjectID; // @synthesize principalManagedObjectID=_principalManagedObjectID;
 @property(retain, nonatomic) NSString *persistentOperationManagedObjectID; // @synthesize persistentOperationManagedObjectID=_persistentOperationManagedObjectID;
 @property(retain, nonatomic) NSString *queueAction; // @synthesize queueAction=_queueAction;
 - (id)inputPayload;
 - (id)description;
-- (void)dealloc;
 - (id)initWithAction:(id)arg1 principalManagedObjectID:(id)arg2 persistentOperationManagedObjectID:(id)arg3;
 - (id)init;
 

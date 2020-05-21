@@ -6,28 +6,23 @@
 
 #import "NSObject.h"
 
-@class AVAssetResourceLoader, AVCMNotificationDispatcher, AVWeakReference;
+@class AVAssetResourceLoader, AVWeakReference;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetClientURLRequestHelper : NSObject
 {
     AVWeakReference *_weakReferenceToSelf;
-    AVCMNotificationDispatcher *_figNotificationDispatcher;
-    void *_URLRequestOriginator;
+    AVWeakReference *_weakReferenceToAsset;
     CDUnknownBlockType _figAssetProvider;
     AVWeakReference *_weakReferenceToResourceLoader;
 }
 
 @property(copy, nonatomic) CDUnknownBlockType figAssetProvider; // @synthesize figAssetProvider=_figAssetProvider;
-- (void)handleURLRequest:(id)arg1;
-- (void)_finishLoadingCustomURLProviderRequestWithResponseProperties:(id)arg1 context:(id)arg2;
 @property(nonatomic) __weak AVAssetResourceLoader *resourceLoader;
-@property(retain, nonatomic) const void *URLRequestOriginator;
 @property(readonly, nonatomic) const struct OpaqueFigAsset *figAsset;
-- (void)_stopHandlingURLRequestsFromRequestOriginator:(void *)arg1;
-- (void)_startHandlingURLRequestsFromRequestOriginator:(void *)arg1;
-- (void)finalize;
+- (id)URLAsset;
 - (void)dealloc;
-- (id)init;
+- (id)initWithAsset:(id)arg1;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "PCInterfaceUsabilityMonitorDelegate.h"
 #import "PCInterfaceUsabilityMonitorProtocol.h"
 
-@class CUTWeakReference, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class CUTWeakReference, NSObject<OS_dispatch_queue>, NSString, PCInterfaceUsabilityMonitor;
 
 @interface PCNonCellularUsabilityMonitor : NSObject <PCInterfaceUsabilityMonitorProtocol, PCInterfaceUsabilityMonitorDelegate>
 {
@@ -22,13 +22,15 @@
     BOOL _trackUsability;
     unsigned long long _thresholdOffTransitionCount;
     double _trackedTimeInterval;
-    NSMutableArray *_interfaceMonitors;
+    PCInterfaceUsabilityMonitor *_monitor;
 }
 
+- (void).cxx_destruct;
 - (void)interfaceReachabilityChanged:(id)arg1;
 - (void)interfaceLinkQualityChanged:(id)arg1 previousLinkQuality:(int)arg2;
 - (void)_callDelegateOnIvarQueueWithBlock:(CDUnknownBlockType)arg1;
 @property(nonatomic) id <PCInterfaceUsabilityMonitorDelegate> delegate;
+@property(readonly, nonatomic) BOOL isNetworkingPowerExpensiveToUse;
 @property(readonly, nonatomic) BOOL isRadioHot;
 @property(readonly, nonatomic) BOOL isBadLinkQuality;
 @property(readonly, nonatomic) BOOL isPoorLinkQuality;
@@ -43,16 +45,17 @@
 - (void)setThresholdOffTransitionCount:(unsigned long long)arg1;
 - (void)setTrackUsability:(BOOL)arg1;
 - (void)_forwardConfigurationOnIvarQueue;
-- (void)_addMonitorWithInterfaceName:(id)arg1;
+- (void)_addMonitor;
 - (void)dealloc;
 - (id)initWithDelegateQueue:(id)arg1;
 
 // Remaining properties
-@property(readonly, nonatomic) struct __CFString *currentRAT;
+@property(readonly, nonatomic) int currentRAT;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) BOOL isLTEWithCDRX;
+@property(readonly, nonatomic) NSString *networkCode;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic) struct __CFString *wwanInterfaceName;
 

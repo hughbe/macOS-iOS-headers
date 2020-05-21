@@ -14,6 +14,8 @@
 }
 
 - (void).cxx_destruct;
+- (void)_setProducts:(id)arg1;
+- (void)_setInvalidIdentifiers:(id)arg1;
 @property(readonly, nonatomic) NSArray *products;
 @property(readonly, nonatomic) NSArray *invalidProductIdentifiers;
 - (id)init;

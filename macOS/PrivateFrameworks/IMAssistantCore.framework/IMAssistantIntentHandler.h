@@ -4,12 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "INExtension.h"
+#import "_INExtension.h"
 
-@interface IMAssistantIntentHandler : INExtension
+@class NSMutableArray;
+
+@interface IMAssistantIntentHandler : _INExtension
 {
+    NSMutableArray *_recentIntentHandlers;
 }
 
+- (void).cxx_destruct;
+- (void)updateRecentlyUsedHandlersWithHandler:(id)arg1;
+- (id)existingHandlerForIntentIdentifier:(id)arg1;
 - (id)handlerForIntent:(id)arg1;
 - (id)init;
 

@@ -18,9 +18,8 @@
     NSButton *minimizeButton;
     BOOL resizeByIncrement;
     BOOL ___available_for_whatever;
-    unsigned char tabViewCount;
+    unsigned char __unused_wasTabViewCount;
     struct CGSize resizeParameter;
-    int __unusedShadowState;
     NSMutableArray *edgeResizingTrackingAreas;
 }
 
@@ -32,9 +31,6 @@
 + (struct CGRect)frameRectForContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2;
 + (id)_defaultTitleFontForWindowWithStyleMask:(unsigned long long)arg1;
 + (void)initTitleCell:(id)arg1 styleMask:(unsigned long long)arg2;
-+ (void)initialize;
-- (BOOL)shouldUseStyledTextInTitleCell:(id)arg1;
-- (struct __CFString *)customizedBackgroundTypeForTitleCell:(id)arg1;
 - (id)_edgeResizingTrackingAreas;
 - (void)updateTrackingAreas;
 - (struct CGSize)minFrameSize;
@@ -78,15 +74,11 @@
 - (void)tabViewRemoved;
 - (void)tabViewAdded;
 - (id)contentFill;
-- (id)frameColor;
-- (void)systemColorsDidChange:(id)arg1;
 - (void)adjustHalftonePhase;
 - (void)setUpGState;
 - (void)_drawFrameShadowAndFlushContext:(id)arg1;
 - (void)_setShadowParameters;
-- (struct CGSize)_shadowOffsetForActiveAppearance:(BOOL)arg1;
 - (unsigned long long)_shadowFlags;
-- (long long)_shadowTypeForActiveAppearance:(BOOL)arg1;
 - (long long)_shadowType;
 - (double)_distanceFromToolbarBaseToTitlebar;
 - (void)_hideToolbarWithAnimation:(BOOL)arg1;

@@ -4,11 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#pragma mark Blocks
+#pragma mark Function Pointers and Blocks
+
+typedef void (*CDUnknownFunctionPointerType)(void); // return type and parameters are unknown
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
 #pragma mark Named Structures
+
+struct CGImage;
 
 struct CGPoint {
     double _field1;
@@ -25,34 +29,91 @@ struct CGSize {
     double _field2;
 };
 
+struct OpaqueFigCDSCALayerInternal {
+    id _field1;
+    struct CGRect _field2;
+    unsigned char _field3;
+    void *_field4;
+    CDUnknownFunctionPointerType _field5;
+    CDUnknownFunctionPointerType _field6;
+    CDUnknownFunctionPointerType _field7;
+    id _field8;
+};
+
+struct OpaqueFigCDSCALayerOutputNodeContentLayerInternal {
+    id _field1;
+};
+
+struct OpaqueFigCDSCALayerOutputNodeLayerInternal {
+    id _field1;
+    id _field2;
+    id _field3;
+};
+
+struct OpaqueFigCaptionRendererCALayerInternal {
+    id _field1;
+    struct CGRect _field2;
+    void *_field3;
+    CDUnknownFunctionPointerType _field4;
+    CDUnknownFunctionPointerType _field5;
+    CDUnknownFunctionPointerType _field6;
+    id _field7;
+};
+
+struct OpaqueFigCaptionRendererCALayerOutputNodeContentLayerInternal {
+    id _field1;
+    struct CGImage *_field2;
+};
+
+struct OpaqueFigCaptionRendererCALayerOutputNodeLayerInternal {
+    id _field1;
+    struct CGImage *_field2;
+    id _field3;
+    id _field4;
+    _Bool _field5;
+};
+
+struct OpaqueFigCaptionRendererSession;
+
 struct OpaqueFigPlayer;
+
+struct OpaqueFigSubtitleBackdropCALayerContentLayerInternal {
+    id _field1;
+};
+
+struct OpaqueFigSubtitleBackdropCALayerInternal {
+    id _field1;
+    id _field2;
+    char _field3;
+    char _field4;
+    double _field5;
+    id _field6;
+    id _field7;
+    id _field8;
+};
 
 struct OpaqueFigSubtitleCALayerInternal {
     struct OpaqueFigPlayer *_field1;
     id _field2;
-    unsigned char _field3;
-    unsigned char _field4;
-    struct CGRect _field5;
+    struct CGRect _field3;
+    struct CGSize _field4;
+    unsigned char _field5;
     unsigned char _field6;
-    struct CGSize _field7;
+    char _field7;
     unsigned char _field8;
     unsigned char _field9;
-    struct CGRect _field10;
-    struct CGSize _field11;
-    unsigned char _field12;
-    id _field13;
+    id _field10;
+    unsigned int _field11;
+    struct __CFString *_field12;
+    struct OpaqueFigCaptionRendererSession *_field13;
     struct OpaqueFigSubtitleRenderer *_field14;
     struct __CFDictionary *_field15;
     unsigned char _field16;
-    unsigned char _field17;
-    struct __CFDictionary *_field18;
+    struct __CFDictionary *_field17;
+    struct __CFArray *_field18;
     struct __CFArray *_field19;
-    struct __CFArray *_field20;
+    struct CGRect _field20;
     struct CGRect _field21;
-    struct CGRect _field22;
-    unsigned char _field23;
-    char _field24;
-    unsigned char _field25;
 };
 
 struct OpaqueFigSubtitleRenderer;
@@ -79,4 +140,15 @@ struct OpaqueFigSubtitleWebVTTRegionCALayerInternal {
 struct __CFArray;
 
 struct __CFDictionary;
+
+struct __CFString;
+
+#pragma mark Typedef'd Structures
+
+typedef struct {
+    id _field1;
+    struct __CFString *_field2;
+    id _field3;
+    CDUnknownBlockType _field4;
+} CDStruct_82af879e;
 

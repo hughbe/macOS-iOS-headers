@@ -14,6 +14,7 @@
     NSSet *_directoryGatewayURLs;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSSet *directoryGatewayURLs; // @synthesize directoryGatewayURLs=_directoryGatewayURLs;
 @property(readonly, nonatomic) NSSet *addressBookHomes; // @synthesize addressBookHomes=_addressBookHomes;
 - (id)directoryGatewayURL;
@@ -21,7 +22,6 @@
 - (id)homeSet;
 - (id)_copyAccountPropertiesPropFindElements;
 - (id)description;
-- (void)dealloc;
 
 @end
 

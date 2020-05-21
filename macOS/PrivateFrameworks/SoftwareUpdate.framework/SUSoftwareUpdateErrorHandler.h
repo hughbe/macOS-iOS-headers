@@ -14,7 +14,6 @@
 
 - (void)attemptRecoveryFromError:(id)arg1 optionIndex:(unsigned long long)arg2 delegate:(id)arg3 didRecoverSelector:(SEL)arg4 contextInfo:(void *)arg5;
 - (BOOL)attemptRecoveryFromError:(id)arg1 optionIndex:(unsigned long long)arg2;
-- (void)_launchNetworkDiagnosticsForError:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (void)dealloc;
 - (id)initWithErrorCode:(long long)arg1 action:(CDUnknownBlockType)arg2;

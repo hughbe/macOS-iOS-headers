@@ -16,6 +16,7 @@
 
 + (id)setNavigationVoiceVolumeCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setNavigationVoiceVolumeCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *volume;
 - (id)encodedClassName;
 - (id)groupIdentifier;

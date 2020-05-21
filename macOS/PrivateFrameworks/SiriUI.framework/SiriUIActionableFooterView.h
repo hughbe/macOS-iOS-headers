@@ -8,7 +8,6 @@
 
 @class NSButton, NSString, SiriUIKeyline, SiriUISnippetViewController;
 
-__attribute__((visibility("hidden")))
 @interface SiriUIActionableFooterView : SiriUIReusableFooterView
 {
     NSButton *_button;
@@ -19,10 +18,10 @@ __attribute__((visibility("hidden")))
 }
 
 + (double)defaultHeight;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL hasKeyline; // @synthesize hasKeyline=_hasKeyline;
 @property(nonatomic) __weak id <SiriUIActionableFooterViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (id)snippetViewController;
-- (void).cxx_destruct;
 - (struct NSEdgeInsets)edgeInsets;
 - (void)_buttonTapped:(id)arg1;
 - (void)setSnippetViewController:(id)arg1;

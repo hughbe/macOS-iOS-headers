@@ -6,14 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSCGSWindowLegacySurface, NSGraphicsContext, NSView, NSWindow;
+@class NSGraphicsContext, NSView, NSWindow;
 
 @interface NSSurface : NSObject
 {
     NSView *_view;
     NSWindow *_window;
     struct CGRect _frame;
-    NSCGSWindowLegacySurface *_surface;
     unsigned int _surfaceID;
     unsigned int _backingStore;
     int _saveWeighting;
@@ -30,7 +29,6 @@
     int _lastScreenNumber;
     double _lastResolution;
     double _alphaValue;
-    double _backgroundBlurRadius;
 }
 
 - (void)displayIfNeeded;
@@ -46,8 +44,6 @@
 - (void)setSaveWeighting:(int)arg1;
 - (BOOL)isVisible;
 - (BOOL)isOrderedIn;
-- (void)setBackgroundBlurRadius:(double)arg1;
-- (double)backgroundBlurRadius;
 - (double)alphaValue;
 - (void)setAlphaValue:(double)arg1;
 - (void)setOrdersOutWhileAlphaValueIsZero:(BOOL)arg1;
@@ -79,7 +75,6 @@
 - (void)orderOut;
 - (void)orderBack;
 - (void)orderFront;
-- (void)_configureAutoFlattening;
 - (void)updateColorSpace;
 - (void)syncToView:(BOOL)arg1;
 - (void)syncToViewUnconditionally;

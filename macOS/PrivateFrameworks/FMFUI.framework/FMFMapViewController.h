@@ -6,6 +6,7 @@
 
 #import "NSViewController.h"
 
+#import "FMFAppearanceDelegate.h"
 #import "FMFMapOptionsViewControllerDelegate.h"
 #import "FMFMapViewDelegateInternalDelegate.h"
 #import "FMFNoLocationViewDelegate.h"
@@ -13,19 +14,19 @@
 
 @class FMFMapViewDelegateInternal, FMFNoLocationView, FMFSession, FMFTitleViewMac, MKMapView, NSColor, NSSet, NSString;
 
-@interface FMFMapViewController : NSViewController <FMFSessionDelegateInternal, FMFMapViewDelegateInternalDelegate, FMFNoLocationViewDelegate, FMFMapOptionsViewControllerDelegate>
+@interface FMFMapViewController : NSViewController <FMFSessionDelegateInternal, FMFMapViewDelegateInternalDelegate, FMFNoLocationViewDelegate, FMFMapOptionsViewControllerDelegate, FMFAppearanceDelegate>
 {
     BOOL _shouldZoomToFitNewLocations;
     BOOL _shouldZoomToFitMeAndLocations;
     BOOL _showFloatingMapLocationButton;
     BOOL _isMapCenteringDisabled;
     BOOL _isSimpleMap;
-    BOOL _canShowNoLocation;
     BOOL __refreshingIsPaused;
     BOOL __blockDidReceiveAnimation;
     BOOL __isRenderingInitialMap;
     BOOL _viewWillAppearCalled;
     BOOL _alwaysShowAccuracy;
+    BOOL _wasToolbarPreviouslyHidden;
     id <FMFMapViewControllerDelegate> _delegate;
     MKMapView *_mapView;
     NSColor *_annotationTintColor;
@@ -39,7 +40,9 @@
 }
 
 + (struct CGSize)annotationImageSize;
+- (void).cxx_destruct;
 @property(retain, nonatomic) FMFTitleViewMac *titleView; // @synthesize titleView=_titleView;
+@property(nonatomic) BOOL wasToolbarPreviouslyHidden; // @synthesize wasToolbarPreviouslyHidden=_wasToolbarPreviouslyHidden;
 @property(nonatomic) BOOL alwaysShowAccuracy; // @synthesize alwaysShowAccuracy=_alwaysShowAccuracy;
 @property(nonatomic) BOOL viewWillAppearCalled; // @synthesize viewWillAppearCalled=_viewWillAppearCalled;
 @property(nonatomic) BOOL _isRenderingInitialMap; // @synthesize _isRenderingInitialMap=__isRenderingInitialMap;
@@ -47,7 +50,6 @@
 @property(nonatomic) BOOL _refreshingIsPaused; // @synthesize _refreshingIsPaused=__refreshingIsPaused;
 @property(retain, nonatomic) NSSet *_internalHandlesShowingLocations; // @synthesize _internalHandlesShowingLocations=__internalHandlesShowingLocations;
 @property(retain, nonatomic) FMFNoLocationView *noLocationView; // @synthesize noLocationView=_noLocationView;
-@property(nonatomic) BOOL canShowNoLocation; // @synthesize canShowNoLocation=_canShowNoLocation;
 @property(nonatomic) BOOL isSimpleMap; // @synthesize isSimpleMap=_isSimpleMap;
 @property(retain, nonatomic) NSSet *_preloadedHandles; // @synthesize _preloadedHandles=__preloadedHandles;
 @property(retain, nonatomic) FMFMapViewDelegateInternal *mapViewDelegate; // @synthesize mapViewDelegate=_mapViewDelegate;
@@ -60,14 +62,13 @@
 @property BOOL shouldZoomToFitMeAndLocations; // @synthesize shouldZoomToFitMeAndLocations=_shouldZoomToFitMeAndLocations;
 @property BOOL shouldZoomToFitNewLocations; // @synthesize shouldZoomToFitNewLocations=_shouldZoomToFitNewLocations;
 @property __weak id <FMFMapViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+- (void)fmfAppearanceChanged:(id)arg1;
 - (void)updateAllAnnotationsDueToAddressBookUpdate;
 - (id)_internalAnnotationTintColor;
 - (id)_selectedHandleAnnotation;
 - (void)_updateTitleViewLocation:(id)arg1;
 - (id)titleViewForSelectedHandle;
 - (id)annotationImageForAnnotation:(id)arg1 andHandle:(id)arg2 large:(BOOL)arg3;
-- (id)annotationImageForHandle:(id)arg1;
 - (void)mapViewDidFinishRenderingMap;
 - (void)didReceiveLocationForDelegateCallback:(id)arg1;
 - (void)didUpdateUserLocation:(id)arg1;
@@ -102,7 +103,9 @@
 - (void)updateMapWithNewLocation:(id)arg1 animated:(BOOL)arg2;
 - (BOOL)mapHasUserLocations;
 - (void)updateNoLocationView:(BOOL)arg1;
+- (BOOL)canShowNoLocation;
 - (void)loadCachedLocationsForHandles;
+- (void)_enablePreloadedHandles:(id)arg1;
 - (void)enablePreloadedHandles;
 - (void)loadDelegate;
 - (void)destroySession;

@@ -9,6 +9,7 @@
 @class NSArray, PHAAssetResourceDataLoadingOptions, PHAssetResource;
 
 @protocol PHAAssetResourceDataLoading <NSObject>
+- (void)cancelAllDownloads;
 - (void)requestDataForAssetResource:(PHAssetResource *)arg1 options:(PHAAssetResourceDataLoadingOptions *)arg2 completion:(void (^)(NSURL *, NSData *, NSError *))arg3;
 - (PHAssetResource *)assetResourceFromAcceptableAssetResources:(NSArray *)arg1 options:(PHAAssetResourceDataLoadingOptions *)arg2;
 @end

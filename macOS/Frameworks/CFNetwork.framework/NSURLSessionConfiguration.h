@@ -9,26 +9,40 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSData, NSDictionary, NSHTTPCookieStorage, NSSet, NSString, NSURL, NSURLCache, NSURLCredentialStorage;
+@class NSArray, NSData, NSDictionary, NSHTTPCookieStorage, NSNumber, NSSet, NSString, NSURL, NSURLCache, NSURLCredentialStorage;
 
 @interface NSURLSessionConfiguration : NSObject <NSSecureCoding, NSCopying>
 {
+    BOOL __collectsTimingData;
+    BOOL __allowsWCA;
+    long long _multipathServiceType;
+    long long __companionProxyPreference;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)backgroundSessionConfiguration:(id)arg1;
++ (id)AVBackgroundSessionConfigurationWithIdentifier:(id)arg1;
++ (id)_AVBackgroundSessionConfigurationWithIdentifier:(id)arg1;
 + (id)backgroundSessionConfigurationWithIdentifier:(id)arg1;
 + (id)ephemeralSessionConfiguration;
 + (id)sessionConfigurationForSharedSession;
 + (id)defaultSessionConfiguration;
 + (id)_defaultProtocolClasses;
++ (id)new;
+@property long long _companionProxyPreference; // @synthesize _companionProxyPreference=__companionProxyPreference;
+@property BOOL _allowsWCA; // @synthesize _allowsWCA=__allowsWCA;
+@property BOOL _collectsTimingData; // @synthesize _collectsTimingData=__collectsTimingData;
+@property long long multipathServiceType; // @synthesize multipathServiceType=_multipathServiceType;
+- (BOOL)isEqual:(id)arg1;
 - (struct _CFHSTSPolicy *)copyHSTSPolicy;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (struct OpaqueCFHTTPCookieStorage *)_copyCFCookieStorage;
 - (struct HTTPConnectionCacheLimits)getConnectionCacheLimits;
 - (void *)_copyAttribute:(struct __CFString *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (id)copyImmutableVariant:(CDUnknownBlockType)arg1;
+- (id)init;
 - (id)initWithDisposition:(id)arg1;
 
 // Remaining properties
@@ -39,38 +53,56 @@
 @property BOOL HTTPShouldSetCookies; // @dynamic HTTPShouldSetCookies;
 @property BOOL HTTPShouldUsePipelining; // @dynamic HTTPShouldUsePipelining;
 @property int TLSMaximumSupportedProtocol; // @dynamic TLSMaximumSupportedProtocol;
+@property unsigned short TLSMaximumSupportedProtocolVersion; // @dynamic TLSMaximumSupportedProtocolVersion;
 @property int TLSMinimumSupportedProtocol; // @dynamic TLSMinimumSupportedProtocol;
+@property unsigned short TLSMinimumSupportedProtocolVersion; // @dynamic TLSMinimumSupportedProtocolVersion;
 @property(retain) NSURLCache *URLCache; // @dynamic URLCache;
 @property(retain) NSURLCredentialStorage *URLCredentialStorage; // @dynamic URLCredentialStorage;
 @property(copy) NSString *_CTDataConnectionServiceType; // @dynamic _CTDataConnectionServiceType;
+@property long long _IDSMessageTimeout; // @dynamic _IDSMessageTimeout;
 @property unsigned long long _TCPAdaptiveReadTimeout; // @dynamic _TCPAdaptiveReadTimeout;
 @property unsigned long long _TCPAdaptiveWriteTimeout; // @dynamic _TCPAdaptiveWriteTimeout;
 @property BOOL _allowTCPIOConnectionStreamTask; // @dynamic _allowTCPIOConnectionStreamTask;
+@property BOOL _allowsConstrainedNetworkAccess; // @dynamic _allowsConstrainedNetworkAccess;
 @property BOOL _allowsExpensiveAccess; // @dynamic _allowsExpensiveAccess;
 @property BOOL _allowsIndefiniteConnections; // @dynamic _allowsIndefiniteConnections;
 @property BOOL _allowsMultipathTCP; // @dynamic _allowsMultipathTCP;
 @property BOOL _allowsPowerNapScheduling; // @dynamic _allowsPowerNapScheduling;
 @property BOOL _allowsResponseMonitoringDuringBodyTranmission; // @dynamic _allowsResponseMonitoringDuringBodyTranmission;
 @property BOOL _allowsRetryForBackgroundDataTasks; // @dynamic _allowsRetryForBackgroundDataTasks;
+@property BOOL _allowsSensitiveLogging; // @dynamic _allowsSensitiveLogging;
 @property BOOL _allowsTCPFastOpen; // @dynamic _allowsTCPFastOpen;
+@property BOOL _allowsTLSFallback; // @dynamic _allowsTLSFallback;
+@property BOOL _allowsTLSFalseStart; // @dynamic _allowsTLSFalseStart;
+@property BOOL _allowsTLSSessionResumption; // @dynamic _allowsTLSSessionResumption;
 @property BOOL _allowsTLSSessionTickets; // @dynamic _allowsTLSSessionTickets;
+@property BOOL _alwaysPerformDefaultTrustEvaluation; // @dynamic _alwaysPerformDefaultTrustEvaluation;
 @property(copy) id <NSURLSessionAppleIDContext> _appleIDContext; // @dynamic _appleIDContext;
 @property(copy) NSData *_atsContext; // @dynamic _atsContext;
 @property(copy) NSSet *_authenticatorStatusCodes; // @dynamic _authenticatorStatusCodes;
-@property BOOL _collectsTimingData; // @dynamic _collectsTimingData;
+@property BOOL _clientIsNotExplicitlyDiscretionary; // @dynamic _clientIsNotExplicitlyDiscretionary;
 @property(copy) NSString *_companionAppBundleIdentifier; // @dynamic _companionAppBundleIdentifier;
 @property double _connectionCacheCellPurgeTimeout; // @dynamic _connectionCacheCellPurgeTimeout;
 @property double _connectionCachePurgeTimeout; // @dynamic _connectionCachePurgeTimeout;
 @property(copy) NSString *_connectionPoolName; // @dynamic _connectionPoolName;
 @property(copy) NSArray *_contentDispHeadEncFallback; // @dynamic _contentDispHeadEncFallback;
+@property unsigned long long _customReadBufferSize; // @dynamic _customReadBufferSize;
+@property double _customReadBufferTimeout; // @dynamic _customReadBufferTimeout;
 @property(copy) NSURL *_directoryForDownloadedFiles; // @dynamic _directoryForDownloadedFiles;
 @property BOOL _disablesOutOfProcessDirectWiFiUsage; // @dynamic _disablesOutOfProcessDirectWiFiUsage;
 @property BOOL _disablesUseOfProxySession; // @dynamic _disablesUseOfProxySession;
-@property BOOL _disallowsSPDY; // @dynamic _disallowsSPDY;
+@property long long _duetPreClearedMode; // @dynamic _duetPreClearedMode;
+@property BOOL _duetPreauthorized; // @dynamic _duetPreauthorized;
+@property long long _expiredDNSBehavior; // @dynamic _expiredDNSBehavior;
 @property unsigned long long _forcedNetworkServiceType; // @dynamic _forcedNetworkServiceType;
 @property BOOL _forcesNewConnections; // @dynamic _forcesNewConnections;
+@property BOOL _ignoreDidReceiveResponseDisposition; // @dynamic _ignoreDidReceiveResponseDisposition;
 @property BOOL _infersDiscretionaryFromOriginatingClient; // @dynamic _infersDiscretionaryFromOriginatingClient;
-@property(copy) NSString *_ledBellyServiceIdentifier; // @dynamic _ledBellyServiceIdentifier;
+@property double _longLivedConnectionCacheCellPurgeTimeout; // @dynamic _longLivedConnectionCacheCellPurgeTimeout;
+@property double _longLivedConnectionCachePurgeTimeout; // @dynamic _longLivedConnectionCachePurgeTimeout;
+@property(copy) NSNumber *_maximumWatchCellularTransferSize; // @dynamic _maximumWatchCellularTransferSize;
+@property unsigned long long _multipathAlternatePort; // @dynamic _multipathAlternatePort;
+@property BOOL _onBehalfOfPairedDevice; // @dynamic _onBehalfOfPairedDevice;
 @property(copy) NSDictionary *_overriddenDelegateOptions; // @dynamic _overriddenDelegateOptions;
 @property BOOL _overridesBackgroundSessionAutoRedirect; // @dynamic _overridesBackgroundSessionAutoRedirect;
 @property BOOL _performsEVCertCheck; // @dynamic _performsEVCertCheck;
@@ -83,12 +115,17 @@
 @property(retain) NSURLCache *_phskip_urlCache; // @dynamic _phskip_urlCache;
 @property BOOL _phskip_urlCacheSet; // @dynamic _phskip_urlCacheSet;
 @property BOOL _prefersInfraWiFi; // @dynamic _prefersInfraWiFi;
+@property BOOL _preventsAppSSO; // @dynamic _preventsAppSSO;
 @property BOOL _preventsDirectWiFiAccess; // @dynamic _preventsDirectWiFiAccess;
 @property BOOL _preventsIdleSleep; // @dynamic _preventsIdleSleep;
 @property BOOL _preventsIdleSleepOnceConnected; // @dynamic _preventsIdleSleepOnceConnected;
+@property BOOL _preventsSystemHTTPProxyAuthentication; // @dynamic _preventsSystemHTTPProxyAuthentication;
 @property(getter=_isProxySession) BOOL _proxySession; // @dynamic _proxySession;
+@property BOOL _reportsDataStalls; // @dynamic _reportsDataStalls;
 @property BOOL _requiresClientToOpenFiles; // @dynamic _requiresClientToOpenFiles;
 @property BOOL _requiresPowerPluggedIn; // @dynamic _requiresPowerPluggedIn;
+@property BOOL _requiresSecureHTTPSProxyConnection; // @dynamic _requiresSecureHTTPSProxyConnection;
+@property BOOL _requiresSustainedDataDelivery; // @dynamic _requiresSustainedDataDelivery;
 @property BOOL _respectsAllowsCellularAccessForDiscretionaryTasks; // @dynamic _respectsAllowsCellularAccessForDiscretionaryTasks;
 @property BOOL _sessionSendsLaunchOnDemandEvents; // @dynamic _sessionSendsLaunchOnDemandEvents;
 @property BOOL _shouldPreserveBackgroundSessionDisposition; // @dynamic _shouldPreserveBackgroundSessionDisposition;
@@ -98,12 +135,16 @@
 @property(copy) NSString *_sourceApplicationBundleIdentifier; // @dynamic _sourceApplicationBundleIdentifier;
 @property(copy) NSString *_sourceApplicationSecondaryIdentifier; // @dynamic _sourceApplicationSecondaryIdentifier;
 @property BOOL _supportsAVAssetDownloads; // @dynamic _supportsAVAssetDownloads;
+@property(copy) NSSet *_suppressedAutoAddedHTTPHeaders; // @dynamic _suppressedAutoAddedHTTPHeaders;
 @property(copy) NSString *_tcpConnectionPoolName; // @dynamic _tcpConnectionPoolName;
 @property long long _timingDataOptions; // @dynamic _timingDataOptions;
+@property(copy) NSString *_tlsTrustPinningPolicyName; // @dynamic _tlsTrustPinningPolicyName;
 @property BOOL _usePipeliningHeuristics; // @dynamic _usePipeliningHeuristics;
 @property(copy) NSString *_watchAppBundleIdentifier; // @dynamic _watchAppBundleIdentifier;
 @property(copy) NSString *_watchExtensionBundleIdentifier; // @dynamic _watchExtensionBundleIdentifier;
 @property BOOL allowsCellularAccess; // @dynamic allowsCellularAccess;
+@property BOOL allowsConstrainedNetworkAccess; // @dynamic allowsConstrainedNetworkAccess;
+@property BOOL allowsExpensiveNetworkAccess; // @dynamic allowsExpensiveNetworkAccess;
 @property(getter=isBackgroundSession) BOOL backgroundSession; // @dynamic backgroundSession;
 @property(copy) NSDictionary *connectionProxyDictionary; // @dynamic connectionProxyDictionary;
 @property(getter=isDiscretionary) BOOL discretionary; // @dynamic discretionary;
@@ -123,6 +164,7 @@
 @property BOOL skip_download_unlink; // @dynamic skip_download_unlink;
 @property double timeoutIntervalForRequest; // @dynamic timeoutIntervalForRequest;
 @property double timeoutIntervalForResource; // @dynamic timeoutIntervalForResource;
+@property BOOL waitsForConnectivity; // @dynamic waitsForConnectivity;
 
 @end
 

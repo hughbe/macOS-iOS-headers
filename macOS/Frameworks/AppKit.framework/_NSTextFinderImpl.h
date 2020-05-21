@@ -26,6 +26,7 @@ __attribute__((visibility("hidden")))
     struct _NSRange _matchRange;
     BOOL _incremental;
     NSTextFinderAsyncSearch *_asyncSearch;
+    NSMutableArray *_retiredAsyncSearches;
     NSMutableRangeArray *_incrementalMatchRanges;
     NSMapTable *_webViewsToDOMRanges;
     DOMRange *_matchDOMRange;
@@ -85,13 +86,14 @@ __attribute__((visibility("hidden")))
 - (void)_changeIncrementalMatches:(unsigned long long)arg1 indexes:(id)arg2 block:(CDUnknownBlockType)arg3;
 - (void)_startIncrementalSearchShowingFirstMatch:(BOOL)arg1;
 - (void)_disableDelay;
-- (void)_asyncSearchCompleted;
+- (void)_asyncSearchCompleted:(id)arg1;
 - (void)_foundFirstMatchInRange:(struct _NSRange)arg1 show:(BOOL)arg2 disableDelay:(BOOL)arg3;
 - (id)_incrementalMatchRanges;
 - (void)_updateIndicator;
 - (void)_resetIncrementalSearch;
 - (void)_setIncremental:(BOOL)arg1 animate:(BOOL)arg2;
 - (BOOL)_incremental;
+- (void)_retireAsyncSearch:(id)arg1;
 - (void)_delayFeedbackWithScrolling:(BOOL)arg1 updateBlock:(CDUnknownBlockType)arg2;
 - (void)_cancelIndicatorDelay;
 - (BOOL)_selectionIsMatch;

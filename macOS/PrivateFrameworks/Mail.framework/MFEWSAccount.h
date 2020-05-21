@@ -6,7 +6,7 @@
 
 #import <Mail/MFRemoteStoreAccount.h>
 
-@class MFEWSAccountTaskManager, MFEWSConnection, MFEWSDeliveryAccount, MFEWSGateway, NSDictionary, NSMutableDictionary, NSOperationQueue, NSString, NSTimer, NSURL, NSUUID;
+@class ECExchangeAccount, MFEWSAccountTaskManager, MFEWSConnection, MFEWSDeliveryAccount, MFEWSGateway, NSDate, NSDictionary, NSMutableDictionary, NSOperationQueue, NSString, NSTimer, NSURL, NSUUID;
 
 @interface MFEWSAccount : MFRemoteStoreAccount
 {
@@ -14,46 +14,50 @@
     NSMutableDictionary *_folderIdsToMailboxes;
     id _connectionLock;
     id _folderHierarchySyncLock;
+    NSOperationQueue *_remoteTaskQueue;
+    NSOperationQueue *_remoteFetchQueue;
     MFEWSGateway *_gateway;
     NSDictionary *_distinguishedFolderIdsAndMailboxTypes;
+    NSString *_lastOpenedFolderID;
+    long long _externalAudienceType;
+    NSUUID *_messageTracerUUID;
+    NSOperationQueue *_requestResponseQueue;
+    NSOperationQueue *_bodyFetchQueue;
     double _lastFullFetchDuration;
     double _lastFullFetchTime;
-    NSUUID *_messageTracerUUID;
     NSString *_syncIssuesEntryID;
-    long long _externalAudienceType;
     NSTimer *_autodiscoveryTimer;
     NSOperationQueue *_autodiscoverQueue;
     MFEWSDeliveryAccount *_ewsDeliveryAccount;
-    NSOperationQueue *_remoteTaskQueue;
-    NSOperationQueue *_remoteFetchQueue;
-    NSOperationQueue *_requestResponseQueue;
-    NSOperationQueue *_bodyFetchQueue;
 }
 
 + (void)resetAllFolderHierarchySyncStates;
 + (id)standardSSLPorts;
 + (id)standardPorts;
++ (id)csAccountTypeString;
 + (id)accountTypeString;
-@property(readonly, nonatomic) NSOperationQueue *bodyFetchQueue; // @synthesize bodyFetchQueue=_bodyFetchQueue;
-@property(readonly, nonatomic) NSOperationQueue *requestResponseQueue; // @synthesize requestResponseQueue=_requestResponseQueue;
-@property(readonly, nonatomic) NSOperationQueue *remoteFetchQueue; // @synthesize remoteFetchQueue=_remoteFetchQueue;
-@property(readonly, nonatomic) NSOperationQueue *remoteTaskQueue; // @synthesize remoteTaskQueue=_remoteTaskQueue;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) MFEWSDeliveryAccount *ewsDeliveryAccount; // @synthesize ewsDeliveryAccount=_ewsDeliveryAccount;
 @property(readonly, nonatomic) NSOperationQueue *autodiscoverQueue; // @synthesize autodiscoverQueue=_autodiscoverQueue;
 @property(readonly, nonatomic) NSTimer *autodiscoveryTimer; // @synthesize autodiscoveryTimer=_autodiscoveryTimer;
-@property long long externalAudienceType; // @synthesize externalAudienceType=_externalAudienceType;
 @property(retain) NSString *syncIssuesEntryID; // @synthesize syncIssuesEntryID=_syncIssuesEntryID;
-@property(retain) NSUUID *messageTracerUUID; // @synthesize messageTracerUUID=_messageTracerUUID;
 @property double lastFullFetchTime; // @synthesize lastFullFetchTime=_lastFullFetchTime;
 @property double lastFullFetchDuration; // @synthesize lastFullFetchDuration=_lastFullFetchDuration;
-@property(retain) NSDictionary *distinguishedFolderIdsAndMailboxTypes; // @synthesize distinguishedFolderIdsAndMailboxTypes=_distinguishedFolderIdsAndMailboxTypes;
 @property(retain) MFEWSConnection *connection; // @synthesize connection=_connection;
+@property(readonly, nonatomic) NSOperationQueue *bodyFetchQueue; // @synthesize bodyFetchQueue=_bodyFetchQueue;
+@property(readonly, nonatomic) NSOperationQueue *requestResponseQueue; // @synthesize requestResponseQueue=_requestResponseQueue;
+@property(retain) NSUUID *messageTracerUUID; // @synthesize messageTracerUUID=_messageTracerUUID;
+@property long long externalAudienceType; // @synthesize externalAudienceType=_externalAudienceType;
+@property(retain) NSString *lastOpenedFolderID; // @synthesize lastOpenedFolderID=_lastOpenedFolderID;
+@property(retain) NSDictionary *distinguishedFolderIdsAndMailboxTypes; // @synthesize distinguishedFolderIdsAndMailboxTypes=_distinguishedFolderIdsAndMailboxTypes;
 @property(retain, nonatomic) MFEWSGateway *gateway; // @synthesize gateway=_gateway;
-- (void).cxx_destruct;
+- (id)remoteFetchQueue;
+- (id)remoteTaskQueue;
 - (void)syncMailbox:(id)arg1;
 - (void)messageTraceEWSParameters;
 - (BOOL)_setEWSError:(id)arg1;
-- (id)_loadFolderIdForMailbox:(id)arg1;
+- (void)mailboxWasOpened:(id)arg1;
+- (id)loadFolderIdForMailbox:(id)arg1;
 - (void)_clearFolderId:(id)arg1 forMailbox:(id)arg2;
 - (void)_saveFolderId:(id)arg1 forMailbox:(id)arg2;
 - (void)_setMailbox:(id)arg1 forFolderId:(id)arg2;
@@ -69,6 +73,7 @@
 - (void)createMailboxFromEWSFolder:(id)arg1;
 - (id)mailboxNameForFolderIdString:(id)arg1;
 - (void)messageDeliveryDidFinish:(id)arg1;
+@property(retain) NSDate *lastSyncDate;
 - (BOOL)_shouldHideMailbox:(id)arg1 withType:(int)arg2;
 - (void)setUserOofSettingsState:(long long)arg1 internalReply:(id)arg2 externalReply:(id)arg3 startTime:(id)arg4 endTime:(id)arg5;
 - (void)getUserOofSettings;
@@ -104,9 +109,10 @@
 - (BOOL)canMailboxBeRenamed:(id)arg1;
 - (id)_createMailboxWithParent:(id)arg1 displayName:(id)arg2 localizedDisplayName:(id)arg3 type:(int)arg4;
 - (id)createMailboxWithParent:(id)arg1 displayName:(id)arg2 localizedDisplayName:(id)arg3;
-- (void)setEmailAddresses:(id)arg1;
+- (void)setEmailAddressStrings:(id)arg1;
 - (BOOL)_readMailboxCache;
-- (id)_mailDataclassPropertyForSpecialMailboxType:(int)arg1;
+- (void)_setSpecialMailboxRelativePath:(id)arg1 forType:(int)arg2;
+- (id)_specialMailboxRelativePathForType:(int)arg1;
 - (id)_defaultSpecialMailboxRelativePathForType:(int)arg1;
 - (BOOL)_setChildren:(id)arg1 forMailbox:(id)arg2;
 - (void)_synchronouslyLoadListingForParent:(id)arg1;
@@ -114,6 +120,7 @@
 @property(readonly) long long maximumConcurrentSyncFolderOperationCount;
 - (void)_synchronizeMailboxesSynchronously;
 - (BOOL)_shouldSynchronizeMailbox:(id)arg1;
+- (void)stopAccountActivity;
 - (void)fetchAsynchronouslyIsAuto:(BOOL)arg1;
 - (void)respondToHostBecomingReachable;
 - (id)primaryMailbox;
@@ -144,14 +151,13 @@
 - (void)setSecurityLayerType:(long long)arg1;
 - (long long)securityLayerType;
 - (BOOL)requiresAuthentication;
-- (long long)defaultSecurePortNumber;
-- (long long)defaultPortNumber;
 - (void)dealloc;
 - (id)_newTaskManager;
 - (id)init;
 - (id)initWithSystemAccount:(id)arg1;
 
 // Remaining properties
+@property(readonly) ECExchangeAccount *baseAccount; // @dynamic baseAccount;
 @property(readonly, nonatomic) MFEWSAccountTaskManager *taskManager; // @dynamic taskManager;
 
 @end

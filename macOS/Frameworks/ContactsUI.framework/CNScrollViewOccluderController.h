@@ -6,26 +6,29 @@
 
 #import "NSObject.h"
 
-@class NSScrollView, NSView;
+@class CNUIViewRevealer, NSScrollView, NSView;
 
 @interface CNScrollViewOccluderController : NSObject
 {
+    BOOL _animateOccluderVisibility;
     NSScrollView *_scrollView;
     NSView *_topOccluder;
     NSView *_bottomOccluder;
-    id <CNCancelable> _scrollCancelable;
-    id <CNCancelable> _resizeCancelable;
+    CNUIViewRevealer *_viewRevealer;
+    id <CNCancelable> _occlusionDidChangeToken;
 }
 
-@property(retain, nonatomic) id <CNCancelable> resizeCancelable; // @synthesize resizeCancelable=_resizeCancelable;
-@property(retain, nonatomic) id <CNCancelable> scrollCancelable; // @synthesize scrollCancelable=_scrollCancelable;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL animateOccluderVisibility; // @synthesize animateOccluderVisibility=_animateOccluderVisibility;
+@property(retain, nonatomic) id <CNCancelable> occlusionDidChangeToken; // @synthesize occlusionDidChangeToken=_occlusionDidChangeToken;
+@property(retain, nonatomic) CNUIViewRevealer *viewRevealer; // @synthesize viewRevealer=_viewRevealer;
 @property(nonatomic) __weak NSView *bottomOccluder; // @synthesize bottomOccluder=_bottomOccluder;
 @property(nonatomic) __weak NSView *topOccluder; // @synthesize topOccluder=_topOccluder;
 @property(nonatomic) __weak NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
-- (void).cxx_destruct;
 - (void)adjustOccluders:(id)arg1;
 - (void)dealloc;
-- (id)initWithScrollView:(id)arg1 topOccluder:(id)arg2 bottomOccluder:(id)arg3;
+- (id)makeOcclusionDidChangeObservable;
+- (id)initWithScrollView:(id)arg1 topOccluder:(id)arg2 bottomOccluder:(id)arg3 viewRevealer:(id)arg4;
 
 @end
 

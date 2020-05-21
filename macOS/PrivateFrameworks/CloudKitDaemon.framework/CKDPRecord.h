@@ -31,6 +31,7 @@
     CKDPDateStatistics *_timeStatistics;
     NSMutableArray *_tombstonedPublicKeyIDs;
     CKDPRecordType *_type;
+    NSData *_zoneishMasterKeyId;
     struct {
         unsigned int permission:1;
     } _has;
@@ -41,6 +42,8 @@
 + (Class)conflictLoserEtagsType;
 + (Class)fieldsType;
 + (id)recordFromData:(id)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSData *zoneishMasterKeyId; // @synthesize zoneishMasterKeyId=_zoneishMasterKeyId;
 @property(retain, nonatomic) NSMutableArray *tombstonedPublicKeyIDs; // @synthesize tombstonedPublicKeyIDs=_tombstonedPublicKeyIDs;
 @property(retain, nonatomic) CKDPRecordStableUrl *stableUrl; // @synthesize stableUrl=_stableUrl;
 @property(retain, nonatomic) CKDPRecordChainParent *chainParent; // @synthesize chainParent=_chainParent;
@@ -59,7 +62,6 @@
 @property(retain, nonatomic) CKDPRecordType *type; // @synthesize type=_type;
 @property(retain, nonatomic) CKDPRecordIdentifier *recordIdentifier; // @synthesize recordIdentifier=_recordIdentifier;
 @property(retain, nonatomic) NSString *etag; // @synthesize etag=_etag;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -69,6 +71,7 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasZoneishMasterKeyId;
 - (id)tombstonedPublicKeyIDsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)tombstonedPublicKeyIDsCount;
 - (void)addTombstonedPublicKeyIDs:(id)arg1;
@@ -103,11 +106,11 @@
 @property(readonly, nonatomic) BOOL hasType;
 @property(readonly, nonatomic) BOOL hasRecordIdentifier;
 @property(readonly, nonatomic) BOOL hasEtag;
-- (id)_permissionAsString;
 - (id)dataRepresentation;
 - (id)fieldForKey:(id)arg1;
 - (id)fieldData;
 - (void)_inflateFieldsFromData:(id)arg1;
+- (id)_permissionAsString;
 
 @end
 

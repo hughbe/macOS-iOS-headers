@@ -8,6 +8,7 @@
 
 @class AVAssetWriterInputPassDescription, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterInputPassDescriptionResponder : NSObject
 {
     NSObject<OS_dispatch_queue> *_callbackQueue;
@@ -22,7 +23,6 @@
 - (void)stopRespondingToPassDescriptions;
 - (void)_releaseAndClearCallbackBlock_invokeOnSerializationQueue;
 - (void)respondToNewPassDescription:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithCallbackQueue:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (id)init;

@@ -8,20 +8,34 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader, PBUnknownFields;
 
 @interface GEOMatchedToken : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     CDStruct_62a50c50 _geoIds;
-    int _geoType;
     NSString *_matchedToken;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    int _geoType;
     struct {
-        unsigned int geoType:1;
-    } _has;
+        unsigned int has_geoType:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_geoIds:1;
+        unsigned int read_matchedToken:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_geoIds:1;
+        unsigned int wrote_matchedToken:1;
+        unsigned int wrote_geoType:1;
+    } _flags;
 }
 
-@property(nonatomic) int geoType; // @synthesize geoType=_geoType;
-@property(retain, nonatomic) NSString *matchedToken; // @synthesize matchedToken=_matchedToken;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -29,16 +43,24 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (void)setGeoIds:(unsigned long long *)arg1 count:(unsigned long long)arg2;
 - (unsigned long long)geoIdAtIndex:(unsigned long long)arg1;
+- (void)_addNoFlagsGeoId:(unsigned long long)arg1;
 - (void)addGeoId:(unsigned long long)arg1;
 - (void)clearGeoIds;
 @property(readonly, nonatomic) unsigned long long *geoIds;
 @property(readonly, nonatomic) unsigned long long geoIdsCount;
+- (void)_readGeoIds;
 @property(nonatomic) BOOL hasGeoType;
+@property(nonatomic) int geoType;
+@property(retain, nonatomic) NSString *matchedToken;
+- (void)_readMatchedToken;
 - (void)dealloc;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

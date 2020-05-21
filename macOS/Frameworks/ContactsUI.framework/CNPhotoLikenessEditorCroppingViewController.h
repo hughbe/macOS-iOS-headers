@@ -6,27 +6,29 @@
 
 #import "NSViewController.h"
 
-@class CNPhotoLikenessEditorCroppingView, NSScrollView, NSView;
+@class CNPhotoLikenessEditorCroppingView, NSView;
 
 @interface CNPhotoLikenessEditorCroppingViewController : NSViewController
 {
     CNPhotoLikenessEditorCroppingView *_croppingView;
-    NSScrollView *_scrollView;
-    double _zoom;
     NSView *_hostView;
+    double _zoom;
     struct CGPoint _center;
 }
 
-@property(retain) NSView *hostView; // @synthesize hostView=_hostView;
-@property struct CGPoint center; // @synthesize center=_center;
-@property double zoom; // @synthesize zoom=_zoom;
-@property(retain) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
-@property(retain) CNPhotoLikenessEditorCroppingView *croppingView; // @synthesize croppingView=_croppingView;
 - (void).cxx_destruct;
+@property(nonatomic) struct CGPoint center; // @synthesize center=_center;
+@property(nonatomic) double zoom; // @synthesize zoom=_zoom;
+@property(retain, nonatomic) NSView *hostView; // @synthesize hostView=_hostView;
+@property(retain, nonatomic) CNPhotoLikenessEditorCroppingView *croppingView; // @synthesize croppingView=_croppingView;
+- (void)reloadData;
 - (void)setCornerRadius:(double)arg1;
 - (void)setZoomPosition:(double)arg1;
 - (void)viewWillAppear;
 - (void)setCroppingDataSource:(id)arg1;
+- (void)setupConstraints;
+- (void)setupCroppingView;
+- (void)setupHostView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 @end

@@ -27,7 +27,6 @@
 - (void)setServers:(id)arg1;
 - (void)stopWithAuthorization:(struct AuthorizationOpaqueRef *)arg1;
 - (void)startWithAuthorization:(struct AuthorizationOpaqueRef *)arg1;
-- (void)_ntpSetEnabled:(unsigned char)arg1;
 - (BOOL)isRunning;
 
 @end

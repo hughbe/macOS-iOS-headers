@@ -8,23 +8,25 @@
 
 @class CNChangesNotifierProxy;
 
-__attribute__((visibility("hidden")))
 @interface CNChangesNotifier : NSObject
 {
     CNChangesNotifierProxy *_notifierProxy;
 }
 
 + (void)flushSharedNotifier;
-+ (id)sharedNotifierWithDarwinNotificationWrapper:(id)arg1;
++ (id)sharedNotifierWithNotificationWrapper:(id)arg1 schedulerProvider:(id)arg2 loggerProvider:(id)arg3;
 + (id)sharedNotifier;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CNChangesNotifierProxy *notifierProxy; // @synthesize notifierProxy=_notifierProxy;
+- (void)setExternalNotificationCoalescingDelay:(double)arg1;
+- (void)setForwardsSelfGeneratedDistributedSaveNotifications:(BOOL)arg1;
+- (BOOL)forwardsSelfGeneratedDistributedSaveNotifications;
 - (void)waitForCurrentTasksToFinish;
-- (void)didChangeMeContactSuccessfully:(BOOL)arg1 fromContactStore:(id)arg2;
-- (void)didSaveChangesSuccessfully:(BOOL)arg1 fromContactStore:(id)arg2;
+- (void)didChangeMeContactSuccessfully:(BOOL)arg1 fromContactStore:(id)arg2 requestIdentifier:(id)arg3;
+- (void)didSaveChangesSuccessfully:(BOOL)arg1 fromContactStore:(id)arg2 requestIdentifier:(id)arg3;
 - (void)willSaveChanges;
 - (void)dealloc;
-- (id)initWithDarwinNotificationWrapper:(id)arg1;
-- (id)init;
+- (id)initWithNotificationWrapper:(id)arg1 schedulerProvider:(id)arg2 loggerProvider:(id)arg3;
 
 @end
 

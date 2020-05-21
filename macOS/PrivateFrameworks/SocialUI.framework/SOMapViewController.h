@@ -16,9 +16,9 @@
     FMFMapViewController *_fmfViewController;
 }
 
+- (void).cxx_destruct;
 @property(retain) FMFMapViewController *fmfViewController; // @synthesize fmfViewController=_fmfViewController;
 @property(copy) NSArray *trackedIMHandles; // @synthesize trackedIMHandles=_trackedIMHandles;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (void)viewWillDisappear;
 - (void)viewDidAppear;
@@ -33,6 +33,8 @@
 - (void)updateRefreshState;
 - (void)recenterLocation;
 - (void)selectHandle:(id)arg1;
+- (void)_cleanFMFMapViewController;
+- (void)_setupFMFMapViewController;
 - (void)loadView;
 
 // Remaining properties

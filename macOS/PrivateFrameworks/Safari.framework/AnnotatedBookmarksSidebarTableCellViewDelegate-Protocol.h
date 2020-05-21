@@ -11,6 +11,7 @@
 @protocol AnnotatedBookmarksSidebarTableCellViewDelegate <NSObject>
 
 @optional
+- (void)annotatedBookmarksSidebarTableCellViewShouldReleaseMetadataRequest:(AnnotatedBookmarksSidebarTableCellView *)arg1;
 - (BOOL)accessibilityShowMenuForAnnotatedBookmarksSidebarTableCellView:(AnnotatedBookmarksSidebarTableCellView *)arg1;
 - (void)didLongPressAnnotatedBookmarksSidebarTableCellView:(AnnotatedBookmarksSidebarTableCellView *)arg1;
 - (void)annotatedBookmarksSidebarTableCellView:(AnnotatedBookmarksSidebarTableCellView *)arg1 didUpdateTitle:(NSString *)arg2;

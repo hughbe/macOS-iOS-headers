@@ -4,9 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class CALayer, NSScrollerImp;
+#import "NSObject.h"
 
-@protocol NSScrollerImpDelegate
+@class CALayer, NSAppearance, NSScrollerImp;
+
+@protocol NSScrollerImpDelegate <NSObject>
 - (void)scrollerImp:(NSScrollerImp *)arg1 overlayScrollerStateChangedTo:(unsigned long long)arg2;
 - (void)scrollerImp:(NSScrollerImp *)arg1 animateTrackAlphaTo:(double)arg2 duration:(double)arg3;
 - (void)scrollerImp:(NSScrollerImp *)arg1 animateKnobAlphaTo:(double)arg2 duration:(double)arg3;
@@ -15,6 +17,7 @@
 - (struct CGRect)convertRectToBacking:(struct CGRect)arg1;
 
 @optional
+- (NSAppearance *)effectiveAppearanceForScrollerImp:(NSScrollerImp *)arg1;
 - (BOOL)shouldUseLayerPerPartForScrollerImp:(NSScrollerImp *)arg1;
 - (struct CGRect)convertRectToLayer:(struct CGRect)arg1;
 - (struct CGPoint)mouseLocationInScrollerForScrollerImp:(NSScrollerImp *)arg1;

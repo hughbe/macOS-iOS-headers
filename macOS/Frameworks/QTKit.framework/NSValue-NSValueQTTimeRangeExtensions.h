@@ -7,7 +7,7 @@
 #import "NSValue.h"
 
 @interface NSValue (NSValueQTTimeRangeExtensions)
-+ (id)valueWithQTTimeRange:(CDStruct_977f9211)arg1;
-- (CDStruct_977f9211)QTTimeRangeValue;
++ (id)valueWithQTTimeRange:(CDStruct_7cbd8c8b)arg1;
+- (CDStruct_7cbd8c8b)QTTimeRangeValue;
 @end
 

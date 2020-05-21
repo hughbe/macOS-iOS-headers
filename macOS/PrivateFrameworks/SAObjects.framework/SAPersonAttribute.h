@@ -19,6 +19,7 @@
 @property(retain, nonatomic) id <SAAceComparable> typedData;
 @property(retain, nonatomic) SAPerson *object;
 @property(copy, nonatomic) NSString *displayText;
+@property(copy, nonatomic) NSString *dataType;
 @property(copy, nonatomic) NSString *data;
 - (id)encodedClassName;
 - (id)groupIdentifier;

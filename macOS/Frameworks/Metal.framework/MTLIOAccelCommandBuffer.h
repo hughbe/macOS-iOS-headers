@@ -6,26 +6,47 @@
 
 #import <Metal/_MTLCommandBuffer.h>
 
-@class MTLIOAccelDevice<MTLDevice>, NSObject<OS_dispatch_semaphore>;
+@class MTLIOAccelDevice<MTLDevice>, NSMutableSet, NSObject<OS_dispatch_semaphore>;
 
 @interface MTLIOAccelCommandBuffer : _MTLCommandBuffer
 {
     MTLIOAccelDevice<MTLDevice> *_device;
     struct MTLIOAccelCommandBufferStorage *_storage;
     unsigned long long *_submitToHardwareTimeStampPointer;
+    unsigned long long _protectionOptions;
     void *_scheduledCallbackBlockPtr;
     void *_completedCallbackBlockPtr;
     NSObject<OS_dispatch_semaphore> *_commitAndResetSem;
+    NSMutableSet *_purgedResources;
 }
 
 @property(readonly) id <MTLDevice> device; // @synthesize device=_device;
 @property(readonly) struct MTLIOAccelCommandBufferStorage *commandBufferStorage; // @synthesize commandBufferStorage=_storage;
+- (void)doCorruptCBSPI:(int)arg1;
+- (void)_encodePurgedResources;
+- (void)addPurgedHeap:(id)arg1;
+- (void)addPurgedResource:(id)arg1;
+- (void)setProtectionOptions:(unsigned long long)arg1;
+- (unsigned long long)protectionOptions;
+- (void)setSegmentListLockedPeerIndex:(unsigned int)arg1;
+- (BOOL)getSegmentListLockedPeerIndex:(unsigned int *)arg1;
+- (void)encodeWaitForEvent:(id)arg1 value:(unsigned long long)arg2 timeout:(unsigned int)arg3;
+- (void)encodeWaitForEvent:(id)arg1 value:(unsigned long long)arg2;
+- (void)encodeSignalEvent:(id)arg1 value:(unsigned long long)arg2;
+- (void)encodeSubmitSleepMS:(unsigned int)arg1;
+- (void)kprintfBytes:(const char *)arg1 length:(unsigned long long)arg2;
+- (void)commitEncoder;
+- (void)_debugBytes:(const char *)arg1 length:(unsigned long long)arg2 output_type:(unsigned int)arg3;
+- (void *)_reserveKernelCommandBufferSpace:(unsigned long long)arg1;
+- (void)popDebugGroup;
+- (void)pushDebugGroup:(id)arg1;
 - (void)setCurrentCommandEncoder:(id)arg1;
 - (void)kernelCommandCollectTimeStamp;
 - (id)akPrivateResourceList;
 - (id)akResourceList;
 - (void)commitAndReset;
 - (void)commit;
+- (void)validate;
 - (void)endCurrentSegment;
 - (void)beginSegment:(void *)arg1;
 - (void)growSegmentList;

@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface QTHUDTimerNonRetainedTarget : NSObject
 {
     id _target;
     SEL _selector;
 }
 
+- (void).cxx_destruct;
 - (void)invoke:(id)arg1;
 - (id)initWithTarget:(id)arg1 selector:(SEL)arg2;
 

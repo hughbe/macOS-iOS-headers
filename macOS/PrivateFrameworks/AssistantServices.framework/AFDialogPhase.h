@@ -33,6 +33,7 @@
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
+- (BOOL)isPossiblyPartOfMultiTurnRequest;
 @property(readonly, nonatomic, getter=isSummaryDialogPhase) BOOL summaryDialogPhase;
 @property(readonly, nonatomic, getter=isCompletionDialogPhase) BOOL completionDialogPhase;
 @property(readonly, nonatomic, getter=isErrorDialogPhase) BOOL errorDialogPhase;

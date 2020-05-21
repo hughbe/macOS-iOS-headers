@@ -12,8 +12,12 @@ __attribute__((visibility("hidden")))
     BOOL _forcingToolbarVisible;
     BOOL _hotKeyNavigationForcingToolbarAndAuxViewVisible;
     long long _childWindowOrderingPriority;
+    long long _menubarAutohidingCount;
 }
 
+- (void)_enableFullScreenMenubarAutohiding;
+- (void)_disableFullScreenMenubarAutohiding;
+- (id)appearance;
 - (void)setAppearance:(id)arg1;
 - (float)_backdropBleedAmount;
 - (id)accessibilityParameterizedAttributeNames;
@@ -30,10 +34,11 @@ __attribute__((visibility("hidden")))
 - (struct CGRect)startRectForSheet:(id)arg1;
 - (struct CGRect)constrainFrameRect:(struct CGRect)arg1 toScreen:(id)arg2;
 - (struct CGRect)_tileFrameForFullScreen;
+- (void)_stopClientSideMove;
+- (void)_startClientSideMove;
 - (void)_adjustWindowToScreen;
 - (id)_findKeyLoopGroupingViewFollowingKeyLoopGroupingView:(id)arg1 direction:(unsigned long long)arg2;
 - (id)_orderedDrawerAndWindowKeyLoopGroupingViews;
-- (BOOL)_attachToParentBeforeOrderingWindow;
 - (id)_parentWindowForAddingToMovementGroupWithProposedParent:(id)arg1;
 - (void)_setFirstResponder:(id)arg1;
 - (BOOL)_newFirstResponderIsInToolbar:(id)arg1;
@@ -42,27 +47,31 @@ __attribute__((visibility("hidden")))
 - (void)becomeKeyWindow;
 - (void)updateForceToolbarVisible;
 - (id)_windowForToolbar;
+- (id)description;
 - (id)_originalWindow;
 - (BOOL)_shouldUseTexturedAppearanceForSegmentedCellInView:(id)arg1;
 - (BOOL)_ignoreForFullScreenTransition;
 - (BOOL)isMainWindow;
 - (BOOL)hasKeyAppearanceIncludingSheets:(BOOL)arg1;
-- (BOOL)_shouldAutoIncSubLevel;
 - (void)_setChildWindowOrderingPriority:(long long)arg1;
 - (long long)_childWindowOrderingPriority;
 - (void)_setWindowTag;
+- (BOOL)_isRunningADocModalAttachedSheet;
 - (BOOL)_keyViewLoopsMayCrossWindows;
 - (BOOL)_hasActiveAppearanceIgnoringKeyFocus;
 - (BOOL)canBecomeMainWindow;
 - (BOOL)canBecomeKeyWindow;
 - (BOOL)_shouldDoLayerPerformanceUpdates;
+- (BOOL)_canMiniaturize;
 - (BOOL)isMovable;
 - (BOOL)_hostsLayersInWindowServer;
 - (BOOL)_allowsExteriorResizing;
 - (void)_updateManagedDisplay;
+- (BOOL)_wantsFullScreenTileDropTargets;
+- (BOOL)_canBeSnappingTarget;
 - (BOOL)_allowsSnapping;
 - (BOOL)_shouldSnapWindowsClientSide;
-- (BOOL)_shouldAutoDecSubLevel;
+- (void)_cgsMoveWindow:(struct CGRect)arg1 moveGroup:(BOOL)arg2;
 
 @end
 

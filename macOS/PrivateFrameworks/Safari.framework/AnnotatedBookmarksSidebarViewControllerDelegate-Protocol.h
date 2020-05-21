@@ -11,6 +11,7 @@
 @protocol AnnotatedBookmarksSidebarViewControllerDelegate <NSObject>
 
 @optional
+- (void)displayedFolderWasRemovedForAnnotatedBookmarksSidebarViewController:(AnnotatedBookmarksSidebarViewController *)arg1;
 - (void)annotatedBookmarksSidebarViewController:(AnnotatedBookmarksSidebarViewController *)arg1 didNavigateIntoFolder:(WebBookmarkList *)arg2;
 @end
 

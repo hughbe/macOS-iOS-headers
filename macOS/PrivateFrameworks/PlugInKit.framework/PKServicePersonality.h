@@ -20,17 +20,18 @@
     NSUserDefaults *_preferences;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSUserDefaults *preferences; // @synthesize preferences=_preferences;
 @property(retain) NSXPCConnection *connection; // @synthesize connection=_connection;
 @property(retain) id embeddedPrincipal; // @synthesize embeddedPrincipal=_embeddedPrincipal;
 @property(retain) id hostPrincipal; // @synthesize hostPrincipal=_hostPrincipal;
 @property(retain) id plugInPrincipal; // @synthesize plugInPrincipal=_plugInPrincipal;
-- (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (void)prefsSetObject:(id)arg1 forKey:(id)arg2 inPlugIn:(id)arg3 result:(CDUnknownBlockType)arg4;
 - (void)prefsObjectForKey:(id)arg1 inPlugIn:(id)arg2 result:(CDUnknownBlockType)arg3;
 - (void)shutdownPlugIn;
 - (id)defaultPrincipalObject;
+- (void)hostHasControl;
 - (void)setEmbeddedContext:(id)arg1;
 - (id)findProtocol:(id)arg1;
 - (void)beginUsingPlugIn:(id)arg1 ready:(CDUnknownBlockType)arg2;
@@ -40,6 +41,7 @@
 - (id)initWithConnection:(id)arg1;
 
 // Remaining properties
+@property(copy) NSDictionary *_userInfo; // @dynamic _userInfo;
 @property(readonly) NSDictionary *bundleInfoDictionary;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;

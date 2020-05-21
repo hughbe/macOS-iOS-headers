@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSPopUpButton.h"
+#import <CalendarUI/CalUICustomAppearancePopUpButton.h>
 
 @class EKViewController, NSFont, NSMutableDictionary, NSString;
 
-@interface EKUIPopUpButton : NSPopUpButton
+@interface EKUIPopUpButton : CalUICustomAppearancePopUpButton
 {
     NSString *_deemphasizedString;
     NSMutableDictionary *_abbreviatedTitles;
@@ -19,12 +19,12 @@
 
 + (void)setupAppearanceForPopUpButton:(id)arg1 withViewController:(id)arg2;
 + (Class)cellClass;
+- (void).cxx_destruct;
 @property __weak EKViewController *viewController; // @synthesize viewController=_viewController;
 @property(retain) NSFont *titleFont; // @synthesize titleFont=_titleFont;
 @property double targetWidth; // @synthesize targetWidth=_targetWidth;
 @property(retain) NSMutableDictionary *abbreviatedTitles; // @synthesize abbreviatedTitles=_abbreviatedTitles;
 @property(retain) NSString *deemphasizedString; // @synthesize deemphasizedString=_deemphasizedString;
-- (void).cxx_destruct;
 - (BOOL)selectItemWithTag:(long long)arg1;
 - (BOOL)canBecomeKeyView;
 - (id)hitTest:(struct CGPoint)arg1;

@@ -16,22 +16,27 @@ __attribute__((visibility("hidden")))
     NSOperationQueue *_queue;
     NSMutableArray *_queuedFetches;
     NSMutableArray *_runningFetches;
+    NSObject<OS_dispatch_source> *_fetchSource;
     NSObject<OS_dispatch_source> *_timerSource;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSObject<OS_dispatch_source> *timerSource; // @synthesize timerSource=_timerSource;
+@property(retain, nonatomic) NSObject<OS_dispatch_source> *fetchSource; // @synthesize fetchSource=_fetchSource;
 @property(retain, nonatomic) NSMutableArray *runningFetches; // @synthesize runningFetches=_runningFetches;
 @property(retain, nonatomic) NSMutableArray *queuedFetches; // @synthesize queuedFetches=_queuedFetches;
 @property(retain, nonatomic) NSOperationQueue *queue; // @synthesize queue=_queue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *opQueue; // @synthesize opQueue=_opQueue;
 @property(nonatomic) __weak CKDClientContext *context; // @synthesize context=_context;
-- (void).cxx_destruct;
+- (void)cancelAllOperations;
 - (void)requestFetchOfZoneWithID:(id)arg1 forOperation:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)requestFetchOfShareWithID:(id)arg1 forOperation:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)requestFetchOfRecordWithID:(id)arg1 forOperation:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
+- (BOOL)fetchRequestForExistingOperation:(id)arg1 isDependentOnOperation:(id)arg2;
 - (id)_lockedGetQueuedFetchForOperation:(id)arg1 ofClass:(Class)arg2;
-- (void)_lockedFireReadyQueuedFetches;
-- (void)_lockedRescheduleQueuedFetchesTimer;
+- (void)_lockedRescheduleFetchTimer;
+- (void)_lockedTearDownFetchTimer;
+- (void)_lockedFetchesAreReady;
 - (void)dealloc;
 - (id)initWithContext:(id)arg1;
 - (id)init;

@@ -22,8 +22,8 @@
 @property BOOL enableFreeCamera;
 @property(readonly) SCNNode *freeCamera;
 - (BOOL)wantsRedraw;
-- (void)viewDidDraw;
-- (void)viewWillDraw;
+- (void)viewDidDrawAtTime:(double)arg1;
+- (void)viewWillDrawAtTime:(double)arg1;
 - (void)cameraDidChange;
 - (void)sceneDidChange;
 - (void)cameraWillChange;
@@ -36,6 +36,7 @@
 - (BOOL)scrollWheel:(id)arg1;
 - (void)resignFirstResponder;
 - (void)becomeFirstResponder;
+- (void)setDelegate:(id)arg1;
 - (void)setView:(id)arg1;
 @property(readonly) SCNView *view;
 - (void)dealloc;

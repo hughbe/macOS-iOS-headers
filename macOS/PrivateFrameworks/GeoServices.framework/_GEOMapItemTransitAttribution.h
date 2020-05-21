@@ -16,8 +16,8 @@ __attribute__((visibility("hidden")))
     GEOPDTransitAttribution *_transitAttribution;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic, getter=_providerNames) NSArray *providerNames;
-- (void)dealloc;
 - (id)initWithTransitAttribution:(id)arg1;
 
 // Remaining properties

@@ -16,11 +16,11 @@ __attribute__((visibility("hidden")))
     NSString *_defaultTableStyleId;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *defaultTableStyleId; // @synthesize defaultTableStyleId=_defaultTableStyleId;
 - (id)tableStyleWithId:(id)arg1;
 - (id)tableStyles;
 - (void)addTableStyle:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

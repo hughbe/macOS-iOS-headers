@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)strokeInformationCandidateWithDisplayReading:(id)arg1;
++ (id)strokeInformationCandidateWithTriggerKey:(id)arg1 displayReading:(id)arg2;
 
 @end
 

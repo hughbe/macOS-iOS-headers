@@ -42,13 +42,13 @@
 
 + (id)logStringForPutItemState:(int)arg1;
 + (id)logStringForGetItemState:(int)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isDone; // @synthesize isDone=_isDone;
 @property(retain, nonatomic) NSTimer *threadKeepAliveTimer; // @synthesize threadKeepAliveTimer=_threadKeepAliveTimer;
 @property(retain, nonatomic) NSThread *workThread; // @synthesize workThread=_workThread;
 @property(nonatomic) BOOL isMetricsGatheringEnabled; // @synthesize isMetricsGatheringEnabled=_isMetricsGatheringEnabled;
 @property(nonatomic) BOOL autoGenerateItemID; // @synthesize autoGenerateItemID=_autoGenerateItemID;
 @property(nonatomic) __weak id <MMCSEngineDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (unsigned long long)_nextItemID;
 - (void)_initItemIDPersistence;
 - (void)_removeRequestorContext:(id)arg1;
@@ -56,7 +56,6 @@
 - (void)_removeAssetForItemID:(unsigned long long)arg1;
 - (id)_assetWithItemID:(unsigned long long)arg1;
 - (void)_registerAsset:(id)arg1;
-- (void)_logLevel:(int)arg1 message:(id)arg2;
 - (void)putAssets:(id)arg1 requestURL:(id)arg2 DSID:(id)arg3 options:(id)arg4;
 - (void)getAssets:(id)arg1 requestURL:(id)arg2 DSID:(id)arg3 options:(id)arg4;
 - (void)unregisterAssets:(id)arg1;

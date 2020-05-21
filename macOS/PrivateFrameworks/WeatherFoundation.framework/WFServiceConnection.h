@@ -25,6 +25,7 @@
 + (id)weatherServiceClientInterface;
 + (id)weatherServiceInterface;
 + (id)allAllowedClasses;
+- (void).cxx_destruct;
 @property(readonly) NSMutableDictionary *executionStartTimeForTaskIdentifier; // @synthesize executionStartTimeForTaskIdentifier=_executionStartTimeForTaskIdentifier;
 @property(readonly) NSMutableDictionary *dispatchGroupForTaskIdentifier; // @synthesize dispatchGroupForTaskIdentifier=_dispatchGroupForTaskIdentifier;
 @property(readonly) NSMutableDictionary *tasksPendingResponseForTaskIdentifier; // @synthesize tasksPendingResponseForTaskIdentifier=_tasksPendingResponseForTaskIdentifier;
@@ -33,15 +34,16 @@
 @property(retain, nonatomic) NSXPCConnection *xpcConnection; // @synthesize xpcConnection=_xpcConnection;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *internalStateQueue; // @synthesize internalStateQueue=_internalStateQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *callbackQueue; // @synthesize callbackQueue=_callbackQueue;
-- (void).cxx_destruct;
 - (void)serviceDidReceiveResponse:(id)arg1;
 - (void)taskIdentifier:(CDUnknownBlockType)arg1;
 - (void)_onQueueInvalidateConnection:(id)arg1;
 - (void)_onQueueOpenConnection;
 - (void)_handleRemoteObjectProxyError:(id)arg1;
+- (void)invalidateCache;
 - (void)invalidate;
 - (void)enqueueRequest:(id)arg1 waitUntilDone:(BOOL)arg2;
 - (void)enqueueRequest:(id)arg1;
+- (void)cancelRequestWithIdentifier:(id)arg1;
 - (void)accessServiceWithBlock:(CDUnknownBlockType)arg1;
 - (void)dealloc;
 - (id)init;

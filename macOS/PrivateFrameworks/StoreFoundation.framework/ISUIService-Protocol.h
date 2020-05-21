@@ -4,11 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "ASDNotificationCenterDialogObserver.h"
 #import "ISServiceRemoteObject.h"
 
 @class ISDialog, NSData, NSString;
 
-@protocol ISUIService <ISServiceRemoteObject>
+@protocol ISUIService <ISServiceRemoteObject, ASDNotificationCenterDialogObserver>
+- (void)fetchReceiptForApplicationAtPath:(NSString *)arg1 launchOnSuccess:(BOOL)arg2 withReply:(void (^)(BOOL, NSError *))arg3;
 - (void)dismissGatekeeperProgressWindowForPath:(NSString *)arg1 replyBlock:(void (^)(BOOL))arg2;
 - (void)updateGatekeeperProgressWindowForPath:(NSString *)arg1 percentComplete:(float)arg2 replyBlock:(void (^)(BOOL))arg3;
 - (void)displayGatekeeperProgressWindowForPath:(NSString *)arg1 replyBlock:(void (^)(BOOL))arg2;

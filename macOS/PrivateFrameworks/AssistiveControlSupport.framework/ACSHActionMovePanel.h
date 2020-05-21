@@ -8,15 +8,15 @@
 
 @interface ACSHActionMovePanel : ACSHAction
 {
-    int _moveToPosition;
+    unsigned long long _moveToPosition;
 }
 
-@property(nonatomic) int moveToPosition; // @synthesize moveToPosition=_moveToPosition;
+@property(nonatomic) unsigned long long moveToPosition; // @synthesize moveToPosition=_moveToPosition;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)paramDescription;
 - (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
+- (void)_configureWithPlistDictionary:(id)arg1;
 
 @end
 

@@ -10,30 +10,23 @@
 
 @interface TKPickerTableCellView : NSView
 {
-    BOOL _textCentered;
-    BOOL _showsCheckmark;
     NSTextField *_textField;
     NSTextField *_detailTextField;
     NSView *_textContainerView;
     NSImageView *_checkmarkView;
     NSLayoutConstraint *_textContainerViewRightConstraint;
+    BOOL _showsCheckmark;
 }
 
 + (double)intrinsicHeight;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL showsCheckmark; // @synthesize showsCheckmark=_showsCheckmark;
-@property(nonatomic, getter=isTextCentered) BOOL textCentered; // @synthesize textCentered=_textCentered;
-@property(retain, nonatomic, setter=_setTextContainerViewRightConstraint:) NSLayoutConstraint *_textContainerViewRightConstraint; // @synthesize _textContainerViewRightConstraint;
-@property(retain, nonatomic, setter=_setCheckmarkView:) NSImageView *_checkmarkView; // @synthesize _checkmarkView;
-@property(retain, nonatomic, setter=_setTextContainerView:) NSView *_textContainerView; // @synthesize _textContainerView;
-@property(retain, nonatomic, setter=_setDetailTextField:) NSTextField *_detailTextField; // @synthesize _detailTextField;
-@property(retain, nonatomic, setter=_setTextField:) NSTextField *_textField; // @synthesize _textField;
 - (struct CGSize)intrinsicContentSize;
 @property(copy, nonatomic) NSString *detailText;
 @property(copy, nonatomic) NSString *text;
 - (void)_removeCheckmark;
 - (void)_addCheckmark;
 - (void)_configureTextFieldAsWideButShrinkable:(id)arg1 withOtherTextField:(id)arg2;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

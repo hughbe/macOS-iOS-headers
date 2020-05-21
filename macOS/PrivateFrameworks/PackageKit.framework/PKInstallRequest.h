@@ -31,28 +31,40 @@
     int _restartAction;
     NSString *_appPlaceholderPath;
     NSArray *_lockApplicationsDuringInstall;
+    NSString *_blacklistPropertyListPath;
     NSFileHandle *_translocationFileHandle;
+    BOOL _bypassSystemVolumeEnforcementChecker;
     BOOL _isOSInstall;
+    BOOL _isSoftwareUpdateOSInstall;
+    BOOL _isOSInstaller;
     NSString *_masterBOMPath;
     unsigned long long _packageExtractorSpeed;
+    BOOL _disableAFSC;
+    BOOL _isMDMManagedAppInstall;
     NSDictionary *_untrustedEnvironment;
     NSMachPort *_clientBootstrapPort;
     NSMachPort *_clientSecuritySessionPort;
     int _clientUID;
     int _clientGID;
+    CDStruct_4c969caf _clientAuditToken;
     CDStruct_166d2db6 *_authorizationEnvironment;
     struct AuthorizationOpaqueRef *_defaultAuthorization;
     struct AuthorizationOpaqueRef *_overrideAuthorization;
     int _minTrustLevel;
+    BOOL _allowExpiredCertificates;
+    BOOL _allowExpiredRoots;
     BOOL _didPassPreflight;
     BOOL _hasValidTrustLevel;
     int _evaluatedTrustLevel;
     NSArray *_certificateChain;
     struct __SecTrust *_trustRef;
+    BOOL _userConsentedInstall;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)requestWithPackages:(id)arg1 destination:(id)arg2;
+@property BOOL userConsentedInstall; // @synthesize userConsentedInstall=_userConsentedInstall;
+@property(readonly) CDStruct_4c969caf clientAuditToken; // @synthesize clientAuditToken=_clientAuditToken;
 @property long long installPhases; // @synthesize installPhases=_installPhases;
 @property(retain) NSString *destinationPath; // @synthesize destinationPath=_destinationPath;
 - (BOOL)_restrictedRootEnabled;
@@ -67,7 +79,11 @@
 - (int)_restartAction;
 - (void)_setAppStoreReceiptData:(id)arg1;
 - (id)_appStoreReceiptData;
+- (BOOL)_bypassReadOnlyEnforcementChecker;
+- (void)_setBypassReadOnlyEnforcementChecker:(BOOL)arg1;
 - (void)_setTranslocationFileHandle:(id)arg1;
+- (void)_setInstallBlacklistPlistPath:(id)arg1;
+- (id)_installBlacklistPlistPath;
 - (void)_setLockApplicationsDuringInstall:(id)arg1;
 - (id)_lockApplicationsDuringInstall;
 - (void)_setIsRecursive:(BOOL)arg1;
@@ -76,6 +92,8 @@
 - (BOOL)_internalBundleVersionChecking;
 - (void)_setUseHFSPlusCompressionByDefault:(BOOL)arg1;
 - (BOOL)_useHFSPlusCompressionByDefault;
+- (BOOL)_disableAFSC;
+- (void)_setDisableAFSC:(BOOL)arg1;
 - (unsigned long long)_extractionSpeed;
 - (void)_setExtractionSpeed:(unsigned long long)arg1;
 - (void)_setIgnoreIndexBom:(BOOL)arg1;
@@ -98,10 +116,13 @@
 - (id)_untrustedEnvironment;
 - (id)_installSandboxName;
 - (void)_setInstallSandboxName:(id)arg1;
+- (BOOL)_isOSInstaller;
+- (void)_setIsOSInstaller:(BOOL)arg1;
+- (void)_setIsSoftwareUpdateOSInstall:(BOOL)arg1;
+- (BOOL)_isSoftwareUpdateOSInstall;
 - (BOOL)_isOSInstall;
 - (void)_setIsOSInstall:(BOOL)arg1;
 - (id)_clientProcessName;
-- (BOOL)requiresNetworkConnectivityForInstallPhases:(long long)arg1;
 - (BOOL)_useForegroundPriorityForStaging;
 - (void)_setUseForegroundPriorityForStaging:(BOOL)arg1;
 - (BOOL)_isStageRequest;
@@ -110,16 +131,15 @@
 - (id)_loggingIdentifier;
 - (id)_installItems;
 - (void)removePackageSpecifiers:(id)arg1;
-- (id)firmwareComponentsOfType:(long long)arg1;
-- (id)packageSpecifiers;
-- (id)packages;
+@property(readonly) NSArray *packageSpecifiers;
+@property(readonly) NSArray *packages;
 - (id)description;
 - (BOOL)_isDeeplyEqualToRequest:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)_initWithPackages:(id)arg1 destination:(id)arg2;
+- (id)_initWithPackages:(id)arg1 destination:(id)arg2 withOutError:(id *)arg3;
 - (id)init;
 - (id)initWithPackages:(id)arg1 destination:(id)arg2;
 - (BOOL)_isRequestCompatibleWithRights:(id)arg1;
@@ -128,7 +148,7 @@
 - (BOOL)preauthorizeAllowingInteraction:(BOOL)arg1;
 - (BOOL)requiresAuthorization;
 - (int)_authLevel;
-- (struct AuthorizationOpaqueRef *)authorization;
+- (const struct AuthorizationOpaqueRef *)authorization;
 - (void)setAuthorizationEnvironment:(CDStruct_166d2db6 *)arg1;
 - (void)setAuthorization:(struct AuthorizationOpaqueRef *)arg1;
 - (struct AuthorizationOpaqueRef *)_createAuthorizationRefWithExternalFormData:(id)arg1;
@@ -138,6 +158,8 @@
 - (int)trustLevelReturningCertificateChain:(id *)arg1;
 - (BOOL)evaluateTrustReturningError:(id *)arg1;
 - (BOOL)_evaluateTrustForPackage:(id)arg1 verifyingPayload:(BOOL)arg2 returningError:(id *)arg3;
+- (void)setAllowExpiredRoots:(BOOL)arg1;
+- (void)setAllowExpiredCertificates:(BOOL)arg1;
 - (void)setMinimumRequiredTrustLevel:(int)arg1;
 - (void)_updateWithSingleTrustLevel:(int)arg1 certificateChain:(id)arg2 trust:(struct __SecTrust *)arg3;
 - (void)_clearTrustEvaluation;
@@ -153,6 +175,8 @@
 - (unsigned long long)totalSizeRequired;
 - (void)_resolveInstallPathsReplacingPriorResults:(BOOL)arg1;
 - (BOOL)checkLocalPackagesReturningError:(id *)arg1;
+- (BOOL)_isMDMManagedAppInstall;
+- (void)_setIsMDMManagedAppInstall:(BOOL)arg1;
 
 @end
 

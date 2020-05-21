@@ -11,8 +11,17 @@
     long long _style;
 }
 
++ (id)supportedCountries;
++ (id)localizedStringForPostalAddressString:(id)arg1;
++ (id)fieldLabelMapWithPlist:(id)arg1;
++ (id)fieldArrangementWithString:(id)arg1;
++ (id)specificationWithAddressFormatPlist:(id)arg1;
++ (id)localizedCountryNameForISOCountryCode:(id)arg1;
++ (id)specificationForCountry:(id)arg1;
 + (id)singleLineStringFromPostalAddress:(id)arg1 addCountryName:(BOOL)arg2;
 + (id)addressValueForFormatKey:(id)arg1 postalAddress:(id)arg2;
++ (id)_postalToFormatMap;
++ (id)formatPropertyKeyForPostalAddressPropertyKey:(id)arg1;
 + (id)postalAddressPropertyKeyForFormatPropertyKey:(id)arg1;
 + (id)getCountryCodeFromPostalAddress:(id)arg1;
 + (id)attributedStringFromPostalAddress:(id)arg1 style:(long long)arg2 withDefaultAttributes:(id)arg3;

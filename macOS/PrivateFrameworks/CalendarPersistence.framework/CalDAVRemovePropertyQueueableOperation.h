@@ -16,10 +16,10 @@
 }
 
 + (void)initialize;
+- (void).cxx_destruct;
 @property(retain) CoreDAVItem *propertyToRemove; // @synthesize propertyToRemove=_propertyToRemove;
 @property(retain) NSURL *url; // @synthesize url=_url;
 - (void)performOperation;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 session:(id)arg2 URI:(id)arg3 property:(id)arg4;
 
 @end

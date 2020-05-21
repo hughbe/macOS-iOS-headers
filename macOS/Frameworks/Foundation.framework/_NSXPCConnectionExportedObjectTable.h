@@ -6,20 +6,25 @@
 
 #import "NSObject.h"
 
-@class NSLock;
+@class NSObject<OS_dispatch_group>, _NSXPCConnectionExportInfo;
 
 __attribute__((visibility("hidden")))
 @interface _NSXPCConnectionExportedObjectTable : NSObject
 {
-    NSLock *_lock;
+    struct _opaque_pthread_mutex_t _lock;
+    _NSXPCConnectionExportInfo *_proxy1;
     struct __CFDictionary *_proxyNumberToObject;
     struct __CFDictionary *_objectToProxyNumber;
     unsigned long long _next;
     BOOL _valid;
+    NSObject<OS_dispatch_group> *_replyGroup;
 }
 
 - (id)description;
 - (void)invalidate;
+- (void)receivedReleaseForProxyNumber:(unsigned long long)arg1 userQueue:(id)arg2;
+- (void)decrementOutstandingReplyCount;
+- (void)incrementOutstandingReplyCount;
 - (void)releaseExportedObject:(unsigned long long)arg1;
 - (unsigned long long)proxyNumberForExportedObject:(id)arg1 interface:(id)arg2;
 - (id)interfaceForProxyNumber:(unsigned long long)arg1;

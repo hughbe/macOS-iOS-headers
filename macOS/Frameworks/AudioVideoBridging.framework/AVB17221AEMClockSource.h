@@ -24,6 +24,8 @@
 @property unsigned long long clockSourceIdentifier; // @synthesize clockSourceIdentifier;
 @property unsigned short clockSourceType; // @synthesize clockSourceType;
 @property unsigned short clockSourceFlags; // @synthesize clockSourceFlags;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 @property(getter=isLocalID) BOOL localID; // @dynamic localID;
 @property(getter=isStreamID) BOOL streamID; // @dynamic streamID;
 - (id)objectLogName;

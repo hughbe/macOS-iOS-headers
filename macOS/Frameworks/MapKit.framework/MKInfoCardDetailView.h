@@ -8,13 +8,14 @@
 
 @class _MKPlaceViewController;
 
+__attribute__((visibility("hidden")))
 @interface MKInfoCardDetailView : NSView
 {
     _MKPlaceViewController *infoCardController;
 }
 
-@property __weak _MKPlaceViewController *infoCardController; // @synthesize infoCardController;
 - (void).cxx_destruct;
+@property(nonatomic) __weak _MKPlaceViewController *infoCardController; // @synthesize infoCardController;
 - (void)reset;
 - (void)refreshContent;
 

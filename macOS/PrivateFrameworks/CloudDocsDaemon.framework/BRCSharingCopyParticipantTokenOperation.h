@@ -16,15 +16,16 @@ __attribute__((visibility("hidden")))
     CKRecordID *_shareID;
     CKRecordID *_contentRecordID;
     NSString *_participantKey;
+    NSString *_baseToken;
     NSError *_error;
-    BOOL _iworkShareable;
+    BOOL _iWorkShareable;
+    BOOL _isChildOfShare;
 }
 
 - (void).cxx_destruct;
 - (void)main;
 - (void)_fetchBaseTokenWithCompletion:(CDUnknownBlockType)arg1;
 - (id)createActivity;
-- (BOOL)shouldRetryForError:(id)arg1;
 - (id)initWithItem:(id)arg1;
 
 // Remaining properties

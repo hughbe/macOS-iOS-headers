@@ -16,6 +16,7 @@
 }
 
 + (id)helperForPayload:(id)arg1 forProfile:(id)arg2 intoResults:(id)arg3;
+- (void)setTopPrompt:(id)arg1;
 - (void)addMissingField:(id)arg1 forKey:(id)arg2 isRequired:(BOOL)arg3 useSecureEntry:(BOOL)arg4 options:(id)arg5;
 - (void)addMissingField:(id)arg1 forKey:(id)arg2 isRequired:(BOOL)arg3 useSecureEntry:(BOOL)arg4;
 - (void)startSection:(id)arg1;

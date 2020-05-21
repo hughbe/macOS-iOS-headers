@@ -23,18 +23,18 @@
     NSMutableData *_amShellScriptActionResultData;
 }
 
-@property NSMutableData *amShellScriptActionResultData; // @synthesize amShellScriptActionResultData=_amShellScriptActionResultData;
-@property double progressValue; // @synthesize progressValue=_progressValue;
-@property(retain) NSString *selectedOutputType; // @synthesize selectedOutputType=_selectedOutputType;
-@property(retain) NSString *selectedInputType; // @synthesize selectedInputType=_selectedInputType;
-@property(retain) NSAttributedString *richTextOutput; // @synthesize richTextOutput=_richTextOutput;
-@property BOOL isDeprecated; // @synthesize isDeprecated=_isDeprecated;
-@property(retain) NSMutableArray *outputAsArrayOfResultsItems; // @synthesize outputAsArrayOfResultsItems=_outputAsArrayOfResultsItems;
-@property(retain) NSMutableArray *bindings; // @synthesize bindings=_bindings;
-@property(retain) id outputOfPreviousAction; // @synthesize outputOfPreviousAction=_outputOfPreviousAction;
-@property(retain) NSMutableArray *outputConnectionPoints; // @synthesize outputConnectionPoints=_outputConnectionPoints;
-@property(retain) NSMutableArray *inputConnectionPoints; // @synthesize inputConnectionPoints=_inputConnectionPoints;
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableData *amShellScriptActionResultData; // @synthesize amShellScriptActionResultData=_amShellScriptActionResultData;
+@property(nonatomic) double progressValue; // @synthesize progressValue=_progressValue;
+@property(copy, nonatomic) NSString *selectedOutputType; // @synthesize selectedOutputType=_selectedOutputType;
+@property(copy, nonatomic) NSString *selectedInputType; // @synthesize selectedInputType=_selectedInputType;
+@property(copy, nonatomic) NSAttributedString *richTextOutput; // @synthesize richTextOutput=_richTextOutput;
+@property(nonatomic) BOOL isDeprecated; // @synthesize isDeprecated=_isDeprecated;
+@property(retain, nonatomic) NSMutableArray *outputAsArrayOfResultsItems; // @synthesize outputAsArrayOfResultsItems=_outputAsArrayOfResultsItems;
+@property(retain, nonatomic) NSMutableArray *bindings; // @synthesize bindings=_bindings;
+@property(retain, nonatomic) id outputOfPreviousAction; // @synthesize outputOfPreviousAction=_outputOfPreviousAction;
+@property(retain, nonatomic) NSMutableArray *outputConnectionPoints; // @synthesize outputConnectionPoints=_outputConnectionPoints;
+@property(retain, nonatomic) NSMutableArray *inputConnectionPoints; // @synthesize inputConnectionPoints=_inputConnectionPoints;
 - (id)init;
 
 @end

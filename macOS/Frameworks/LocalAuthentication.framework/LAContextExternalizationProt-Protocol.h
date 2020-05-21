@@ -4,7 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@protocol LAContextExternalizationProt
+#import "NSObject.h"
+
+@class NSData;
+
+@protocol LAContextExternalizationProt <NSObject>
+- (void)authMethodWithReply:(void (^)(NSData *, NSError *))arg1;
 - (void)externalizedContextWithReply:(void (^)(NSData *, NSError *))arg1;
+
+@optional
+- (NSData *)synchronousExternalizedContextWithError:(id *)arg1;
 @end
 

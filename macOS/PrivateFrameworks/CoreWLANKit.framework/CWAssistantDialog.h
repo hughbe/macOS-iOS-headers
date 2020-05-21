@@ -14,8 +14,7 @@
 @interface CWAssistantDialog : NSWindowController <NSWindowDelegate, NSTextViewDelegate>
 {
     NSTextField *_titleTF;
-    NSTextView *_descriptionTF;
-    NSTextField *_recommendationTF;
+    NSTextView *_descriptionTV;
     NSTextField *_indexTF;
     NSTextField *_ofTF;
     NSTextField *_totalTF;
@@ -28,14 +27,16 @@
 }
 
 @property id <CWAssistantDialogDelegate> delegate; // @synthesize delegate=_delegate;
+- (BOOL)textView:(id)arg1 clickedOnLink:(id)arg2 atIndex:(unsigned long long)arg3;
 - (void)windowDidLoad;
+- (void)updateHealthUIWithItem:(id)arg1 initial:(BOOL)arg2;
 - (id)localizedStringForKey:(id)arg1;
 - (void)awakeFromNib;
 - (void)dealloc;
 - (id)initWithRecommendationItems:(id)arg1;
 - (void)onPreviousButton:(id)arg1;
 - (void)onNextButton:(id)arg1;
-- (BOOL)textView:(id)arg1 clickedOnLink:(id)arg2 atIndex:(unsigned long long)arg3;
+- (void)learnMoreButtonClicked:(id)arg1;
 - (void)onCancelButton:(id)arg1;
 
 // Remaining properties

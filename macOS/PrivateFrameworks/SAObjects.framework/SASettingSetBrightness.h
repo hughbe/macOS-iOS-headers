@@ -12,6 +12,7 @@
 
 + (id)setBrightnessWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setBrightness;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;

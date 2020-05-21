@@ -6,14 +6,15 @@
 
 #import "NSButton.h"
 
+__attribute__((visibility("hidden")))
 @interface MKButtonWithTargetArgument : NSButton
 {
     id _targetArgument;
 }
 
-+ (id)roundedRectButton;
-@property(retain, nonatomic) id targetArgument; // @synthesize targetArgument=_targetArgument;
++ (id)button;
 - (void).cxx_destruct;
+@property(retain, nonatomic) id targetArgument; // @synthesize targetArgument=_targetArgument;
 
 @end
 

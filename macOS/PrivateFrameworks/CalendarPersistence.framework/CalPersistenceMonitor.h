@@ -13,8 +13,6 @@
 - (void)_managedObjectContextWillSave:(id)arg1;
 - (void)_managedObjectContextDidSave:(id)arg1;
 - (BOOL)isInterestedInContext:(id)arg1;
-- (void)finalize;
-- (void)dealloc;
 - (id)init;
 - (void)unregisterListeners;
 - (void)registerListeners;

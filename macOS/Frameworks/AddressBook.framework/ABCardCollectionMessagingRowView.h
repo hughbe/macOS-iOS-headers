@@ -8,13 +8,13 @@
 
 @class NSPopUpButton, NSTextField;
 
-__attribute__((visibility("hidden")))
 @interface ABCardCollectionMessagingRowView : ABCardCollectionRowView
 {
     NSPopUpButton *_messagingServiceChooserPopup;
     NSTextField *_messagingServiceLabel;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSPopUpButton *messagingServiceChooserPopup; // @synthesize messagingServiceChooserPopup=_messagingServiceChooserPopup;
 @property(retain) NSTextField *messagingServiceLabel; // @synthesize messagingServiceLabel=_messagingServiceLabel;
 - (void)updateValueFontWithFont:(id)arg1;
@@ -22,7 +22,6 @@ __attribute__((visibility("hidden")))
 - (void)setServicePopUpEnabled:(BOOL)arg1;
 - (void)setService:(id)arg1;
 - (void)setServiceMenu:(id)arg1;
-- (void)dealloc;
 
 @end
 

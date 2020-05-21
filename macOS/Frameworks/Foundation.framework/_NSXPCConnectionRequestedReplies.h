@@ -9,14 +9,17 @@
 __attribute__((visibility("hidden")))
 @interface _NSXPCConnectionRequestedReplies : NSObject
 {
-    struct __CFDictionary *_replyTable;
-    int _lock;
+    struct __CFDictionary *_replyDictionaryTable;
+    struct __CFDictionary *_progressTable;
+    unsigned long long _requestedReplyCount;
+    unsigned char _invalid;
+    struct _opaque_pthread_mutex_t _lock;
 }
 
 - (id)progressForSequence:(unsigned long long)arg1;
-- (void)addSequence:(unsigned long long)arg1 withProgress:(id)arg2 cleanupBlock:(CDUnknownBlockType)arg3;
-- (BOOL)removeSequence:(unsigned long long)arg1;
-- (void)cleanup;
+- (void)beginTransactionForSequence:(unsigned long long)arg1 reply:(id)arg2 withProgress:(id)arg3;
+- (void)endTransactionForSequence:(unsigned long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)invalidate;
 - (void)dealloc;
 - (id)init;
 

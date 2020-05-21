@@ -8,11 +8,12 @@
 
 #import "BRCForegroundClient.h"
 #import "BRCOperationSubclass.h"
+#import "LSOpenResourceOperationDelegate.h"
 
-@class BRCAccountSession, BRCClientZone, BRCItemID, BRCPrivateClientZone, BRCXPCClient, CKAcceptSharesOperation, CKRecordID, CKShare, CKShareMetadata, NSArray, NSObject<OS_dispatch_queue>, NSString, NSURL;
+@class BRCAccountSession, BRCAppLibrary, BRCClientZone, BRCItemID, BRCXPCClient, CKRecordID, CKShareMetadata, NSArray, NSObject<OS_dispatch_queue>, NSString, NSURL;
 
 __attribute__((visibility("hidden")))
-@interface BRCSharingAcceptFlowOperation : _BRCOperation <BRCForegroundClient, BRCOperationSubclass>
+@interface BRCSharingAcceptFlowOperation : _BRCOperation <LSOpenResourceOperationDelegate, BRCForegroundClient, BRCOperationSubclass>
 {
     id <BRCUserNotifier> _userNotification;
     BRCAccountSession *_session;
@@ -21,16 +22,17 @@ __attribute__((visibility("hidden")))
     NSURL *_shareURL;
     CKRecordID *_shareID;
     CKShareMetadata *_shareMetadata;
-    CKShare *_share;
-    BRCItemID *_sharedItemID;
+    BRCItemID *_linkItemID;
+    BRCItemID *_rootItemID;
     NSString *_unsaltedBookmarkData;
-    BRCClientZone *_localClientZone;
-    BRCPrivateClientZone *_aliasClientZone;
-    NSURL *_shareDocumentURL;
-    NSURL *_aliasURL;
+    BRCClientZone *_clientZone;
+    BRCAppLibrary *_appLibrary;
+    BOOL _needsZoneAndAppLibraryActivation;
+    NSURL *_liveFileURL;
+    NSString *_rootFilename;
+    NSString *_linkFilename;
     NSURL *_appBundleURL;
     BRCXPCClient *_xpcClient;
-    CKAcceptSharesOperation *_acceptShareOpBlockingSyncDown;
     BOOL _shouldWaitUntilDownloadCompletion;
     BOOL _hasAlreadyDocumentOpened;
     NSObject<OS_dispatch_queue> *_queue;
@@ -41,27 +43,34 @@ __attribute__((visibility("hidden")))
 + (Class)userNotificationClass;
 - (void).cxx_destruct;
 - (void)_endAcceptationFlow;
-- (void)_openSharedDownloadedDocumentIfStillNeeded;
+- (void)_openSharedItemIfStillNeeded;
 - (void)_prepareToDownloadSharedDocument;
-- (void)_waitForFaultToBeOnDisk;
-- (void)_waitForSharedItemToSyncDown;
+- (void)_locateSharedItemOnDisk;
+- (void)_waitForSharedItemToBeOnDiskOnRecipient;
+- (void)_waitForSharedItemToSyncDownOnRecipient;
 - (void)_acceptShareURL;
 - (void)_openSharedSideFaultFile;
 - (void)_checkIfShouldWaitUntilDownloadCompletion;
 - (void)_createSideFaultOnDisk;
-- (void)_showSharingOpenDialog;
-- (void)_fetchShareMetadata;
-- (void)_isAppProfileEnabled;
+- (void)_waitForSharedItemToBeOnDiskOnOwner;
+- (void)_waitForSharedItemToSyncDownOnOwner;
+- (void)_openiWorkAppPreemptively;
+- (void)_parseShareMetadata;
+- (void)_showSharingJoinDialog;
+- (void)_isAccountRestricted;
 - (void)_isUserSignedInToiCloudDrive;
 - (void)_isAppInstalled;
-- (void)_isURLWellFormed;
-- (void)_isDocumentSharingSupported;
-- (id)createAcceptShareOperation;
-- (BOOL)_openDocumentAtURL:(id)arg1 error:(id *)arg2;
-- (void)_createAliasInZone:(id)arg1 target:(id)arg2;
+- (void)_isFolderSharingSupported;
+- (void)openResourceOperation:(id)arg1 didFailWithError:(id)arg2;
+- (void)openResourceOperationDidComplete:(id)arg1;
+- (void)_activateSharedZoneIfNeeded;
+- (BOOL)_openSharedItemAtURL:(id)arg1 error:(id *)arg2;
 - (void)_captureOpenInfoFromDocument:(id)arg1;
-- (BOOL)_openiWorkAppPreemptively;
 - (BOOL)_isiWorkShare;
+- (BOOL)_isDirectoryLinkInsideFolderShare;
+- (BOOL)_isDocumentLinkInsideFolderShare;
+- (BOOL)_isLinkInsideFolderShare;
+- (BOOL)_isFolderShare;
 - (BOOL)_isOwnerOrShareAlreadyAccepted;
 - (BOOL)_isOwner;
 - (void)_showGenericErrorAndFinish:(id)arg1;
@@ -78,7 +87,6 @@ __attribute__((visibility("hidden")))
 - (id)createActivity;
 - (void)moveDialogToFront;
 - (id)initWithShareMetadata:(id)arg1 client:(id)arg2 session:(id)arg3;
-- (id)initWithShareURL:(id)arg1 client:(id)arg2 session:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

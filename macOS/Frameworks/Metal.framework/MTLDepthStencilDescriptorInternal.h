@@ -23,6 +23,7 @@ __attribute__((visibility("hidden")))
 - (void)setDepthCompareFunction:(unsigned long long)arg1;
 - (unsigned long long)depthCompareFunction;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 @property(readonly) const struct MTLDepthStencilDescriptorPrivate *depthStencilPrivate;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;

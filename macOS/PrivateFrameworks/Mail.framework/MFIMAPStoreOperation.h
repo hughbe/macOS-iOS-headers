@@ -10,19 +10,19 @@
 
 @interface MFIMAPStoreOperation : MFIMAPOperation
 {
+    NSPointerArray *_uids;
     NSArray *_objectsToSet;
     NSArray *_objectsToClear;
-    NSPointerArray *_uids;
 }
 
-@property(retain, nonatomic) NSPointerArray *uids; // @synthesize uids=_uids;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSArray *objectsToClear; // @synthesize objectsToClear=_objectsToClear;
 @property(copy, nonatomic) NSArray *objectsToSet; // @synthesize objectsToSet=_objectsToSet;
-- (void).cxx_destruct;
+@property(retain, nonatomic) NSPointerArray *uids; // @synthesize uids=_uids;
 - (void)serializeIntoData:(id)arg1;
 - (void)_deserializeOpSpecificValuesFromData:(id)arg1 cursor:(unsigned long long *)arg2;
 @property(readonly, copy, nonatomic) NSIndexSet *uidIndexSet;
-- (id)_initWithObjectsToSet:(id)arg1 objectsToClear:(id)arg2 forUids:(id)arg3 inMailbox:(id)arg4;
+- (id)_initWithObjectsToSet:(id)arg1 objectsToClear:(id)arg2 forUIDs:(id)arg3 inMailbox:(id)arg4;
 
 // Remaining properties
 @property(nonatomic) BOOL usesRealUids; // @dynamic usesRealUids;

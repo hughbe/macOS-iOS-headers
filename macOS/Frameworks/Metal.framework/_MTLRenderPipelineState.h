@@ -8,16 +8,31 @@
 
 #import "MTLRenderPipelineState.h"
 
-@class NSString;
+@class MTLDebugInstrumentationData, MTLIndirectArgumentBufferEmulationData, NSString;
 
 @interface _MTLRenderPipelineState : NSObject <MTLRenderPipelineState>
 {
     NSString *_label;
     id <MTLDevice> _device;
+    MTLIndirectArgumentBufferEmulationData *_vertexIABEmulationData;
+    MTLIndirectArgumentBufferEmulationData *_fragmentIABEmulationData;
+    MTLDebugInstrumentationData *_vertexDebugInstrumentationData;
+    MTLDebugInstrumentationData *_fragmentDebugInstrumentationData;
+    BOOL _supportIndirectCommandBuffers;
+    unsigned long long _resourceIndex;
 }
 
+@property(nonatomic) unsigned long long resourceIndex; // @synthesize resourceIndex=_resourceIndex;
+@property(retain, nonatomic) MTLDebugInstrumentationData *fragmentDebugInstrumentationData; // @synthesize fragmentDebugInstrumentationData=_fragmentDebugInstrumentationData;
+@property(retain, nonatomic) MTLDebugInstrumentationData *vertexDebugInstrumentationData; // @synthesize vertexDebugInstrumentationData=_vertexDebugInstrumentationData;
+@property(retain, nonatomic) MTLIndirectArgumentBufferEmulationData *fragmentIABEmulationData; // @synthesize fragmentIABEmulationData=_fragmentIABEmulationData;
+@property(retain, nonatomic) MTLIndirectArgumentBufferEmulationData *vertexIABEmulationData; // @synthesize vertexIABEmulationData=_vertexIABEmulationData;
 @property(readonly) id <MTLDevice> device; // @synthesize device=_device;
 @property(readonly) NSString *label; // @synthesize label=_label;
+@property(readonly) unsigned long long uniqueIdentifier;
+@property(readonly) BOOL supportIndirectCommandBuffers;
+- (unsigned int)getFragmentShaderTelemetryID;
+- (unsigned int)getVertexShaderTelemetryID;
 - (void)dealloc;
 - (id)initWithDevice:(id)arg1 pipelineStateDescriptor:(id)arg2;
 

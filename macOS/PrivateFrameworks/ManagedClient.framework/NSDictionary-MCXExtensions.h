@@ -7,6 +7,7 @@
 #import "NSDictionary.h"
 
 @interface NSDictionary (MCXExtensions)
++ (id)dictionaryWithPseudoXMLStringNoEncoding:(id)arg1;
 + (id)dictionaryWithPseudoXMLString:(id)arg1;
 + (id)dictionaryWithManagedPrefsFromDomain:(id)arg1 forUser:(id)arg2;
 + (id)dictionaryWithManagedPrefsFromDomain:(id)arg1;

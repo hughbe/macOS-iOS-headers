@@ -23,6 +23,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) TIKeyboardSecureCandidateTextTraits *inputTraitsInSecondLine; // @synthesize inputTraitsInSecondLine=_inputTraitsInSecondLine;
 @property(retain, nonatomic) TIKeyboardSecureCandidateTextTraits *inputTraitsInFirstAndSecondLines; // @synthesize inputTraitsInFirstAndSecondLines=_inputTraitsInFirstAndSecondLines;
 @property(retain, nonatomic) TIKeyboardSecureCandidateTextTraits *inputTraitsInOnlyLine; // @synthesize inputTraitsInOnlyLine=_inputTraitsInOnlyLine;
@@ -35,7 +36,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 
 @end
 

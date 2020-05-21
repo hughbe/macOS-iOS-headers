@@ -16,6 +16,8 @@
 
 @property unsigned short count; // @synthesize count;
 @property unsigned short descriptorType; // @synthesize descriptorType;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)debugLogStringWithIndentation:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;

@@ -6,8 +6,9 @@
 
 #import "NSViewController.h"
 
-@class NCLineView, NCListViewDeleteButton, NSButton, NSLayoutConstraint, NSView, _NCShieldView;
+@class NCListViewDeleteButton, NSBox, NSButton, NSLayoutConstraint, NSView, _NCShieldView;
 
+__attribute__((visibility("hidden")))
 @interface NCListItemViewController : NSViewController
 {
     NSViewController *_contentViewController;
@@ -41,10 +42,11 @@
     _NCShieldView *_shieldView;
     NSLayoutConstraint *_leftRemoveConstraint;
     NSLayoutConstraint *_deleteButtonWidthConstraint;
-    NCLineView *_dividerLine;
+    NSBox *_dividerLine;
 }
 
-@property(nonatomic) __weak NCLineView *dividerLine; // @synthesize dividerLine=_dividerLine;
+- (void).cxx_destruct;
+@property(nonatomic) __weak NSBox *dividerLine; // @synthesize dividerLine=_dividerLine;
 @property(nonatomic) __weak NSLayoutConstraint *deleteButtonWidthConstraint; // @synthesize deleteButtonWidthConstraint=_deleteButtonWidthConstraint;
 @property(nonatomic) __weak NSLayoutConstraint *leftRemoveConstraint; // @synthesize leftRemoveConstraint=_leftRemoveConstraint;
 @property(nonatomic) __weak _NCShieldView *shieldView; // @synthesize shieldView=_shieldView;
@@ -75,7 +77,6 @@
 @property(nonatomic) _Bool deleting; // @synthesize deleting=_deleting;
 @property(nonatomic) __weak id <NCWidgetListItemDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
-- (void).cxx_destruct;
 - (void)deleteAction:(id)arg1;
 - (void)removeAction:(id)arg1;
 - (void)mouseUp:(id)arg1;

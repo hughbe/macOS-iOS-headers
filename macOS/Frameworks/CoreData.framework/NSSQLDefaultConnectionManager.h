@@ -16,16 +16,15 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_semaphore> *_poolCounter;
     int _connectionLock;
     NSObject<OS_dispatch_queue> *_processingQueue;
-    BOOL _connectionsAreLocal;
 }
 
+- (void)disconnectAllConnections;
+- (void)scheduleConnectionsBarrier:(CDUnknownBlockType)arg1;
 - (void)scheduleBarrierBlock:(CDUnknownBlockType)arg1;
 - (BOOL)handleStoreRequest:(id)arg1;
 - (void)_checkinConnection:(id)arg1;
 - (id)_checkoutConnectionOfType:(unsigned long long)arg1;
-- (void)clearCachedInformationForRequestWithIdentifier:(id)arg1;
 - (void)setExclusiveLockingMode:(BOOL)arg1;
-- (void)disconnectAllConnections;
 - (void)dealloc;
 - (id)initWithSQLCore:(id)arg1 priority:(unsigned long long)arg2 seedConnection:(id)arg3;
 - (void)_initializeConnectionsWithSeed:(id)arg1;

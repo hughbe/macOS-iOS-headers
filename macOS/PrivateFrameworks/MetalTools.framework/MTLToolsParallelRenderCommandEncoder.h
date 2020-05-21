@@ -16,13 +16,17 @@
 }
 
 @property(readonly, nonatomic) MTLToolsPointerArray *renderCommandEncoders; // @synthesize renderCommandEncoders=_renderCommandEncoders;
-- (void).cxx_destruct;
+- (void)setStencilStoreActionOptions:(unsigned long long)arg1;
+- (void)setDepthStoreActionOptions:(unsigned long long)arg1;
+- (void)setColorStoreActionOptions:(unsigned long long)arg1 atIndex:(unsigned long long)arg2;
 - (void)setStencilStoreAction:(unsigned long long)arg1;
 - (void)setDepthStoreAction:(unsigned long long)arg1;
 - (void)setColorStoreAction:(unsigned long long)arg1 atIndex:(unsigned long long)arg2;
 - (id)renderCommandEncoder;
+- (void)endEncoding;
 - (id)initWithBaseObject:(id)arg1 parent:(id)arg2;
 - (void)acceptVisitor:(id)arg1;
+- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

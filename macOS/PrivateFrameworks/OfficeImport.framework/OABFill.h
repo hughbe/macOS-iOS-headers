@@ -11,6 +11,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
++ (id)patternFromBlipId:(unsigned int)arg1 blipName:(id)arg2 blipDataReference:(struct EshBlip *)arg3 state:(id)arg4;
 + (id)readFillFromFillPropertiesManager:(id)arg1 state:(id)arg2;
 + (void)readImageFill:(id)arg1 fromFillPropertiesManager:(id)arg2 state:(id)arg3;
 + (void)readGradientFill:(id)arg1 fromFillPropertiesManager:(id)arg2 state:(id)arg3;

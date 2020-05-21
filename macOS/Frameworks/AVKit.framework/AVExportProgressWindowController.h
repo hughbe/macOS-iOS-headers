@@ -20,24 +20,18 @@ __attribute__((visibility("hidden")))
     AVProgressEstimator *_progressEstimator;
     BOOL _finished;
     BOOL _cancelled;
-    float _progress;
     NSWindow *_presentingWindow;
     double _estimatedTimeRemaining;
     NSError *_error;
 }
 
 + (id)keyPathsForValuesAffectingStatusString;
-@property(readonly) float progress; // @synthesize progress=_progress;
+- (void).cxx_destruct;
 @property(readonly, nonatomic, getter=isCancelled) BOOL cancelled; // @synthesize cancelled=_cancelled;
 @property(readonly, nonatomic, getter=isFinished) BOOL finished; // @synthesize finished=_finished;
 @property(retain) NSError *error; // @synthesize error=_error;
 @property(readonly) double estimatedTimeRemaining; // @synthesize estimatedTimeRemaining=_estimatedTimeRemaining;
 @property __weak NSWindow *presentingWindow; // @synthesize presentingWindow=_presentingWindow;
-- (void).cxx_destruct;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)_beginObservingProgress;
-- (void)_periodicUpdateEstimatedTimeRemaining:(id)arg1;
-- (void)_updateEstimatedTimeRemaining;
 @property(readonly, copy, nonatomic) NSString *statusString;
 - (void)cancel:(id)arg1;
 - (void)stopModalWithCode:(long long)arg1;

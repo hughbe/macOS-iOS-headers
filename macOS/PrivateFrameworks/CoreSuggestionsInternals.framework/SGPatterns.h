@@ -41,7 +41,7 @@
 - (id)rawValueOrDataForKey:(id)arg1;
 - (id)rawValueForKey:(id)arg1;
 - (id)rawValuesForKey:(id)arg1;
-- (void)reset;
+- (void)resetIfNeeded;
 - (void)dealloc;
 - (id)init;
 

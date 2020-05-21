@@ -15,8 +15,8 @@ __attribute__((visibility("hidden")))
     NSMutableSet *mExitDrawables;
 }
 
+- (void).cxx_destruct;
 - (BOOL)isValid:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

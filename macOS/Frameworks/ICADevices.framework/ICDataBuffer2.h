@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface ICDataBuffer2 : NSObject
 {
     unsigned long long _type;

@@ -14,6 +14,10 @@
     JSContext *_context;
 }
 
++ (id)valueWithNewPromiseRejectedWithReason:(id)arg1 inContext:(id)arg2;
++ (id)valueWithNewPromiseResolvedWithResult:(id)arg1 inContext:(id)arg2;
++ (id)valueWithNewPromiseInContext:(id)arg1 fromExecutor:(CDUnknownBlockType)arg2;
++ (id)valueWithNewSymbolFromDescription:(id)arg1 inContext:(id)arg2;
 + (id)valueWithUndefinedInContext:(id)arg1;
 + (id)valueWithNullInContext:(id)arg1;
 + (id)valueWithNewErrorFromMessage:(id)arg1 inContext:(id)arg2;
@@ -41,6 +45,7 @@
 - (BOOL)isEqualToObject:(id)arg1;
 @property(readonly) BOOL isDate;
 @property(readonly) BOOL isArray;
+@property(readonly) BOOL isSymbol;
 @property(readonly) BOOL isObject;
 @property(readonly) BOOL isString;
 @property(readonly) BOOL isNumber;
@@ -66,6 +71,8 @@
 - (id)toObjectOfClass:(Class)arg1;
 - (id)toObject;
 - (struct OpaqueJSValue *)JSValueRef;
+- (id)description;
+- (void)dealloc;
 - (struct CGSize)toSize;
 - (struct CGRect)toRect;
 - (struct _NSRange)toRange;
@@ -74,8 +81,6 @@
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 - (id)objectAtIndexedSubscript:(unsigned long long)arg1;
 - (id)objectForKeyedSubscript:(id)arg1;
-- (id)description;
-- (void)dealloc;
 - (id)initWithValue:(struct OpaqueJSValue *)arg1 inContext:(id)arg2;
 - (id)init;
 

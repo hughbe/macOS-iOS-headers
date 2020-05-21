@@ -6,27 +6,29 @@
 
 #import <CloudKitDaemon/CKDURLRequest.h>
 
-@class NSArray, NSMutableDictionary;
+@class NSArray, NSDate, NSMutableDictionary;
 
 __attribute__((visibility("hidden")))
 @interface CKDModifyRecordZonesURLRequest : CKDURLRequest
 {
     BOOL _markZonesAsUserPurged;
+    NSDate *_lastMissingManateeIdentityErrorDate;
     CDUnknownBlockType _recordZoneModifiedBlock;
     NSArray *_recordZonesToSave;
     NSArray *_recordZoneIDsToDelete;
     NSMutableDictionary *_recordZoneIDByRequestID;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *recordZoneIDByRequestID; // @synthesize recordZoneIDByRequestID=_recordZoneIDByRequestID;
 @property(retain, nonatomic) NSArray *recordZoneIDsToDelete; // @synthesize recordZoneIDsToDelete=_recordZoneIDsToDelete;
 @property(retain, nonatomic) NSArray *recordZonesToSave; // @synthesize recordZonesToSave=_recordZonesToSave;
 @property(copy, nonatomic) CDUnknownBlockType recordZoneModifiedBlock; // @synthesize recordZoneModifiedBlock=_recordZoneModifiedBlock;
+@property(retain, nonatomic) NSDate *lastMissingManateeIdentityErrorDate; // @synthesize lastMissingManateeIdentityErrorDate=_lastMissingManateeIdentityErrorDate;
 @property(nonatomic) BOOL markZonesAsUserPurged; // @synthesize markZonesAsUserPurged=_markZonesAsUserPurged;
-- (void).cxx_destruct;
 - (void)requestDidParseNodeFailure:(id)arg1;
 - (id)requestDidParseProtobufObject:(id)arg1;
-- (id)requestOperations;
+- (id)generateRequestOperations;
 - (id)requestOperationClasses;
 - (id)zoneIDsToLock;
 - (int)operationType;

@@ -10,9 +10,10 @@
 {
 }
 
-+ (BOOL)_launchiCloudPrefPaneWithParameters:(id)arg1;
++ (BOOL)_launchAppleIDPrefPaneWithParameters:(id)arg1;
 + (BOOL)launchPasswordChangeForAppleID:(id)arg1;
 + (BOOL)launchPasswordResetForAppleID:(id)arg1;
++ (void)tapToRadarWithTitle:(id)arg1 initialMessage:(id)arg2;
 
 @end
 

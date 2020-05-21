@@ -10,8 +10,8 @@
 {
 }
 
+- (id)debugDescription;
 - (id)copyStringForMissingSamplesBeforeContiguousStackIndex:(unsigned long long)arg1;
-- (void)addStack:(id)arg1;
 - (id)initWithAggregatedTask:(id)arg1 andDispatchQueueId:(unsigned long long)arg2;
 
 @end

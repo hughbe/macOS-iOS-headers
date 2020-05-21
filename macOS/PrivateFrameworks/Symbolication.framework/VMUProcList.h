@@ -6,20 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSLock, NSMapTable;
+@class NSLock, NSMutableDictionary;
 
 @interface VMUProcList : NSObject
 {
     NSLock *procLock;
-    NSMapTable *allProcs;
-    NSMapTable *filteredProcs;
+    NSMutableDictionary *allProcs;
+    NSMutableDictionary *filteredProcs;
     BOOL appsOnly;
     BOOL ownedOnly;
 }
 
+- (void).cxx_destruct;
 - (id)procInfoWithPID:(int)arg1;
-- (id)newestProcInfoSatisfyingCondition:(SEL)arg1 forTarget:(id)arg2;
-- (id)newestProcInfoSatisfyingCondition:(SEL)arg1 forTarget:(id)arg2 withContext:(void *)arg3;
 - (id)newestProcInfoWithName:(id)arg1;
 - (id)newestProcInfo;
 - (id)allPathNames;
@@ -37,8 +36,6 @@
 - (void)removeProcInfo:(id)arg1;
 - (void)addProcInfo:(id)arg1;
 - (void)setProcInfos:(id)arg1;
-- (void)finalize;
-- (void)dealloc;
 - (id)init;
 
 @end

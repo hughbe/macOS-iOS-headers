@@ -18,12 +18,13 @@
     CNMutableContact *_editorContact;
 }
 
+- (void).cxx_destruct;
 @property(retain) CNMutableContact *editorContact; // @synthesize editorContact=_editorContact;
 @property(retain) CNPhotoLikenessEditorViewController *photoLikenessEditor; // @synthesize photoLikenessEditor=_photoLikenessEditor;
 @property __weak NSViewController *activeViewController; // @synthesize activeViewController=_activeViewController;
 @property __weak id <CNAvatarEditorDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (BOOL)isBuddy;
+- (void)close;
 - (void)save;
 - (void)setReadyToSave;
 - (void)updateNavigationForReturn;

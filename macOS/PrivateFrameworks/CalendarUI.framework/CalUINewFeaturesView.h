@@ -4,18 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSView.h"
+#import "NSVisualEffectView.h"
 
 @class CalUINewFeaturesContinueButton;
 
-@interface CalUINewFeaturesView : NSView
+@interface CalUINewFeaturesView : NSVisualEffectView
 {
     CalUINewFeaturesContinueButton *_continueButton;
 }
 
-@property(retain) CalUINewFeaturesContinueButton *continueButton; // @synthesize continueButton=_continueButton;
 - (void).cxx_destruct;
-- (BOOL)validateMenuItem:(id)arg1;
+@property(retain) CalUINewFeaturesContinueButton *continueButton; // @synthesize continueButton=_continueButton;
 @property(copy, nonatomic) CDUnknownBlockType removalBlock;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)_viewForIconWithName:(id)arg1;

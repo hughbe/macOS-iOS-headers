@@ -6,11 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSData, NSString, NSURL;
+@class NSArray, NSData, NSString;
 
 @protocol GKGameSessionService <NSObject>
-- (oneway void)sendMessageForSessionWithID:(NSString *)arg1 withLocalizedFormatKey:(NSString *)arg2 arguments:(NSArray *)arg3 userMessage:(NSString *)arg4 data:(NSData *)arg5 recipientIDs:(NSArray *)arg6 badgePlayers:(BOOL)arg7 handler:(void (^)(NSError *))arg8;
-- (oneway void)acceptShareURL:(NSURL *)arg1 handler:(void (^)(NSError *))arg2;
+- (oneway void)sendMessageForSessionWithID:(NSString *)arg1 withLocalizedFormatKey:(NSString *)arg2 arguments:(NSArray *)arg3 userMessage:(NSString *)arg4 data:(NSData *)arg5 recipientIDs:(NSArray *)arg6 badgePlayers:(BOOL)arg7 handler:(void (^)(GKGameSession *, NSError *))arg8;
 - (oneway void)setBadged:(BOOL)arg1 forPlayerIDs:(NSArray *)arg2 forSessionWithIdentifier:(NSString *)arg3 handler:(void (^)(GKGameSession *, NSError *))arg4;
 - (oneway void)fetchShareURLForSessionWithIdentifier:(NSString *)arg1 handler:(void (^)(NSURL *, NSError *))arg2;
 - (oneway void)sendData:(NSData *)arg1 reliably:(BOOL)arg2 forSessionWithIdentifier:(NSString *)arg3 handler:(void (^)(NSError *))arg4;
@@ -22,6 +21,6 @@
 - (oneway void)loadSessionWithIdentifier:(NSString *)arg1 handler:(void (^)(GKGameSession *, NSError *))arg2;
 - (oneway void)loadSessionsInContainer:(NSString *)arg1 handler:(void (^)(NSArray *, NSError *))arg2;
 - (oneway void)createSessionInContainer:(NSString *)arg1 withTitle:(NSString *)arg2 maxConnectedPlayers:(long long)arg3 handler:(void (^)(GKGameSession *, NSError *))arg4;
-- (oneway void)primaryPlayerWithHandler:(void (^)(GKCloudPlayer *, NSError *))arg1;
+- (oneway void)primaryPlayerInContainer:(NSString *)arg1 handler:(void (^)(GKCloudPlayer *, NSError *))arg2;
 @end
 

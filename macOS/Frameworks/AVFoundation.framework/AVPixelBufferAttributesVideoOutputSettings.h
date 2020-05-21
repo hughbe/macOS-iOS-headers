@@ -8,8 +8,9 @@
 
 #import "AVDecodedVideoSettingsForFig.h"
 
-@class NSDictionary;
+@class NSDictionary, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVPixelBufferAttributesVideoOutputSettings : AVVideoOutputSettings <AVDecodedVideoSettingsForFig>
 {
     NSDictionary *_VTPixelAspectRatioDictionary;
@@ -18,6 +19,7 @@
 
 + (id)_videoOutputSettingsWithVideoSettingsDictionary:(id)arg1 exceptionReason:(id *)arg2;
 + (id)eligibleOutputSettingsDictionaryKeys;
+@property(readonly, nonatomic) NSString *fieldMode;
 @property(readonly, nonatomic) NSDictionary *pixelBufferAttributes;
 - (BOOL)canFullySpecifyOutputFormatReturningReason:(id *)arg1;
 - (BOOL)encoderIsAvailableOnCurrentSystemReturningError:(id *)arg1;

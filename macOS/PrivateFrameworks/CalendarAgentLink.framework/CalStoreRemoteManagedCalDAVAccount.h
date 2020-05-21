@@ -16,7 +16,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)setPassword:(id)arg1;
 - (id)password;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

@@ -8,19 +8,21 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray;
+@class _MRNowPlayingPlayerPathProtobuf, _MRTransactionPacketsProtobuf;
 
 @interface _MRTransactionMessageProtobuf : PBCodable <NSCopying>
 {
     unsigned long long _name;
-    NSMutableArray *_packets;
+    _MRTransactionPacketsProtobuf *_packets;
+    _MRNowPlayingPlayerPathProtobuf *_playerPath;
     struct {
         unsigned int name:1;
     } _has;
 }
 
-+ (Class)packetsType;
-@property(retain, nonatomic) NSMutableArray *packets; // @synthesize packets=_packets;
+- (void).cxx_destruct;
+@property(retain, nonatomic) _MRNowPlayingPlayerPathProtobuf *playerPath; // @synthesize playerPath=_playerPath;
+@property(retain, nonatomic) _MRTransactionPacketsProtobuf *packets; // @synthesize packets=_packets;
 @property(nonatomic) unsigned long long name; // @synthesize name=_name;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -31,12 +33,9 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-- (id)packetsAtIndex:(unsigned long long)arg1;
-- (unsigned long long)packetsCount;
-- (void)addPackets:(id)arg1;
-- (void)clearPackets;
+@property(readonly, nonatomic) BOOL hasPlayerPath;
+@property(readonly, nonatomic) BOOL hasPackets;
 @property(nonatomic) BOOL hasName;
-- (void)dealloc;
 
 @end
 

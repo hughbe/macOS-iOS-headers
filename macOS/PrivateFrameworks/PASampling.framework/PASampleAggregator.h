@@ -15,12 +15,14 @@
     NSMutableSet *_tasks;
     NSMutableArray *_wallTimestamps;
     NSMutableArray *_machTimestamps;
+    double _sampleIntervalLimit;
 }
 
+- (void).cxx_destruct;
+@property(readonly) double sampleIntervalLimit; // @synthesize sampleIntervalLimit=_sampleIntervalLimit;
 @property(retain) NSMutableSet *tasks; // @synthesize tasks=_tasks;
 @property(readonly) PASampleTimeSeriesDataStore *sampleStore; // @synthesize sampleStore=_sampleStore;
-@property(retain) PASampleAggregatorOptions *options; // @synthesize options=_options;
-- (void).cxx_destruct;
+@property(copy) PASampleAggregatorOptions *options; // @synthesize options=_options;
 - (void)setSamples:(id)arg1;
 - (void)addSampleTask:(id)arg1 atTimestampIndex:(unsigned long long)arg2;
 - (id)newAggregatedTaskForIdentificationPurposesWithSampleTask:(id)arg1;
@@ -37,6 +39,13 @@
 - (double)machTimeAtTimestampIndex:(unsigned long long)arg1;
 - (double)wallTimeAtTimestampIndex:(unsigned long long)arg1;
 @property BOOL verbose;
+@property BOOL aggregateStacksByProcess;
+@property BOOL aggregateStacksByThread;
+@property BOOL displayAllHIDEvents;
+@property BOOL displayEmptyBootArgs;
+@property BOOL displayAddressesInBlockedReasons;
+@property BOOL displayBlockedReasonsLackingProcessOwners;
+@property BOOL displayBlockedReasons;
 @property BOOL displayAllBinaries;
 @property BOOL displayIdleWorkQueueThreads;
 @property BOOL displayBlockedThreads;

@@ -6,9 +6,11 @@
 
 #import <StoreFoundation/ISDataProvider.h>
 
-@class ISServiceProxy, NSArray, NSMutableArray;
+#import "ISOperationDelegate.h"
 
-@interface ISPropertyListProvider : ISDataProvider
+@class ISServiceProxy, NSArray, NSMutableArray, NSString;
+
+@interface ISPropertyListProvider : ISDataProvider <ISOperationDelegate>
 {
     BOOL _shouldProcessAccount;
     BOOL _shouldProcessDialogs;
@@ -20,10 +22,15 @@
     NSMutableArray *_upToDateDownloadItemIDs;
     BOOL _didProcessDialog;
     CDUnknownBlockType _actionHandler;
+    CDUnknownBlockType _gotoActionHandler;
+    NSString *_touchIDChallenge;
     ISServiceProxy *_serviceProxy;
 }
 
+- (void).cxx_destruct;
 @property(readonly) ISServiceProxy *serviceProxy; // @synthesize serviceProxy=_serviceProxy;
+@property(retain) NSString *touchIDChallenge; // @synthesize touchIDChallenge=_touchIDChallenge;
+@property(copy) CDUnknownBlockType gotoActionHandler; // @synthesize gotoActionHandler=_gotoActionHandler;
 @property(copy) CDUnknownBlockType actionHandler; // @synthesize actionHandler=_actionHandler;
 @property BOOL shouldTriggerDownloads; // @synthesize shouldTriggerDownloads=_shouldTriggerDownloads;
 @property(readonly) NSArray *upToDateDownloadItemIDs; // @synthesize upToDateDownloadItemIDs=_upToDateDownloadItemIDs;
@@ -33,18 +40,22 @@
 @property(readonly) BOOL didProcessDialog; // @synthesize didProcessDialog=_didProcessDialog;
 @property BOOL shouldProcessDialogs; // @synthesize shouldProcessDialogs=_shouldProcessDialogs;
 @property BOOL shouldProcessAccount; // @synthesize shouldProcessAccount=_shouldProcessAccount;
-- (void).cxx_destruct;
+- (void)operation:(id)arg1 selectedButton:(id)arg2;
 - (void)_processDownloads:(id)arg1 fallback:(id)arg2;
 - (void)_processTriggerDownload:(id)arg1 fallback:(id)arg2;
 - (BOOL)_processStoreVersion:(id)arg1 returningError:(id *)arg2;
-- (void)_processStoreCredits:(id)arg1 fallback:(id)arg2;
 - (void)_processPingsInDictionary:(id)arg1;
 - (void)_processActions:(id)arg1 fallback:(id)arg2;
-- (void)_processAccount:(id)arg1 fallback:(id)arg2;
 - (BOOL)parseData:(id)arg1 returningError:(id *)arg2;
 - (BOOL)processPropertyList:(id)arg1 returningError:(id *)arg2;
 - (BOOL)processDialogFromPropertyList:(id)arg1 returningError:(id *)arg2;
 - (id)initWithStoreClient:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

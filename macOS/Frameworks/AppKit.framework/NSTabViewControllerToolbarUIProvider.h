@@ -19,7 +19,7 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_toolbarItems;
 }
 
-@property __weak NSTabViewController *tabViewController; // @synthesize tabViewController=_tabViewController;
+@property NSTabViewController *tabViewController; // @synthesize tabViewController=_tabViewController;
 - (void)toolbarDidRemoveItem:(id)arg1;
 - (void)toolbarWillAddItem:(id)arg1;
 - (id)toolbarSelectableItemIdentifiers:(id)arg1;

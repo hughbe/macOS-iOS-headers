@@ -6,9 +6,12 @@
 
 #import "NSObject.h"
 
+@class NSArray;
+
 @protocol CNAutocompleteSearchProvider <NSObject>
 - (id <CNAutocompleteSearch>)calendarServerSearch;
 - (id <CNAutocompleteSearch>)directoryServerSearch;
+- (NSArray *)localExtensionSearches;
 - (id <CNAutocompleteSearch>)duetSearch;
 - (id <CNAutocompleteSearch>)suggestionsSearch;
 - (id <CNAutocompleteSearch>)recentsSearch;

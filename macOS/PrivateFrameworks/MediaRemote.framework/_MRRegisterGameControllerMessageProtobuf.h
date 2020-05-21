@@ -15,6 +15,7 @@
     _MRGameControllerPropertiesProtobuf *_properties;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) _MRGameControllerPropertiesProtobuf *properties; // @synthesize properties=_properties;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -26,7 +27,6 @@
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(readonly, nonatomic) BOOL hasProperties;
-- (void)dealloc;
 
 @end
 

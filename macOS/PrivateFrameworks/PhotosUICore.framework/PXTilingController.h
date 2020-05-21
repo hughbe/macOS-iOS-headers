@@ -73,6 +73,7 @@
     struct NSEdgeInsets __maxPreheatPadding;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <PXTilingDebugDelegate> debugDelegate; // @synthesize debugDelegate=_debugDelegate;
 @property(copy, nonatomic) NSArray *compositionInvalidationContexts; // @synthesize compositionInvalidationContexts=_compositionInvalidationContexts;
 @property(nonatomic) __weak id <PXTilingControllerObserver> observer; // @synthesize observer=_observer;
@@ -102,7 +103,6 @@
 @property(nonatomic) __weak id <PXTilingScrollController> scrollController; // @synthesize scrollController=_scrollController;
 @property(retain, nonatomic, setter=_setCurrentLayout:) PXTilingLayout *currentLayout; // @synthesize currentLayout=_currentLayout;
 @property(retain, nonatomic, setter=_setTargetLayout:) PXTilingLayout *targetLayout; // @synthesize targetLayout=_targetLayout;
-- (void).cxx_destruct;
 - (void)tilingLayout:(id)arg1 invalidatedWithContext:(id)arg2;
 - (void)_updateDebugDelegateIfNeeded;
 - (void)_updateScrollInfoIfNeeded;
@@ -113,6 +113,7 @@
 - (void)_invalidatePreheating;
 - (void)_updateTilesIfNeeded;
 - (void)_invalidateTiles;
+- (void)_invalidateCachesOutsideRect:(struct CGRect)arg1;
 - (void)_invalidateAllCachedRects;
 - (void)_invalidateRect:(struct CGRect)arg1;
 - (void)_updatePagedRectIfNeeded;
@@ -149,6 +150,7 @@
 @property(readonly, nonatomic) struct CGRect layoutScrollBounds;
 @property(readonly, nonatomic) struct CGRect layoutContentBounds;
 - (void)setReferenceSize:(struct CGSize)arg1 contentInset:(struct NSEdgeInsets)arg2;
+- (void)invalidateLayoutPreferredVisibleOrigin;
 - (void)invalidateScrollControllerMetrics;
 - (void)_markRectAsCached:(struct CGRect)arg1;
 - (void)_fillBuffersWithTileStatesAtIndexes:(id)arg1;

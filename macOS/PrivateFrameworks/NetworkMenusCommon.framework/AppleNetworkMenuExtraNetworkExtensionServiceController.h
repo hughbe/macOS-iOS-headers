@@ -6,23 +6,17 @@
 
 #import <NetworkMenusCommon/AppleNetworkMenuExtraServiceController.h>
 
-@class NEConfiguration, NSNumber, NSObject<OS_dispatch_queue>;
+@class NEConfiguration, NSNumber;
 
 @interface AppleNetworkMenuExtraNetworkExtensionServiceController : AppleNetworkMenuExtraServiceController
 {
-    int _sessionStatus;
     NEConfiguration *_configuration;
     void *_session;
-    NSObject<OS_dispatch_queue> *_serviceQueue;
-    NSObject<OS_dispatch_queue> *_eventQueue;
     NSNumber *_startTime;
 }
 
-@property NSNumber *startTime; // @synthesize startTime=_startTime;
-@property NSObject<OS_dispatch_queue> *eventQueue; // @synthesize eventQueue=_eventQueue;
-@property NSObject<OS_dispatch_queue> *serviceQueue; // @synthesize serviceQueue=_serviceQueue;
+@property(retain) NSNumber *startTime; // @synthesize startTime=_startTime;
 @property void *session; // @synthesize session=_session;
-@property int sessionStatus; // @synthesize sessionStatus=_sessionStatus;
 @property(retain) NEConfiguration *configuration; // @synthesize configuration=_configuration;
 - (void)a_connectOrDisconnect:(id)arg1;
 - (void)prepareToUnload;
@@ -33,14 +27,16 @@
 - (void)refreshMenuItems;
 - (void)refreshHeaderView;
 - (id)connectionStartTime;
-- (int)status;
-- (void)p_performStatusCheck;
+- (void)handleStateChanged:(int)arg1;
+- (int)getStateForSessionStatus:(int)arg1;
 - (void)refreshConnectionState;
 - (void)refreshStatus;
+- (int)connectionState;
 - (int)connectionType;
 - (id)serviceName;
 - (id)serviceID;
 - (void)setupEventCallbackWithBlock:(CDUnknownBlockType)arg1;
+- (void)dealloc;
 - (id)initWithConfiguration:(id)arg1 andBundle:(id)arg2;
 
 @end

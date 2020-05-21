@@ -8,7 +8,9 @@
 
 @interface NSMutableString (IMKStringAdditions)
 - (unsigned long long)_insertCodePoint:(unsigned int)arg1 atIndex:(unsigned long long)arg2;
+- (void)_deleteCodeUnits:(unsigned long long)arg1 with:(unsigned long long)arg2 beforeIndex:(unsigned long long)arg3;
 - (unsigned long long)_deleteCodePoints:(unsigned long long)arg1 fromIndex:(unsigned long long)arg2;
 - (unsigned long long)_deleteCodePoints:(unsigned long long)arg1 beforeIndex:(unsigned long long)arg2;
+- (unsigned long long)_appendCodePoint:(unsigned int)arg1;
 @end
 

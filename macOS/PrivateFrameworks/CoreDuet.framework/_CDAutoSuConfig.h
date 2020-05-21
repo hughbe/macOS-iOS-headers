@@ -21,6 +21,7 @@
     double _endThreshold;
 }
 
++ (id)config;
 @property(nonatomic) int unlockMarginInSlot; // @synthesize unlockMarginInSlot=_unlockMarginInSlot;
 @property(nonatomic) double endThreshold; // @synthesize endThreshold=_endThreshold;
 @property(nonatomic) double startThreshold; // @synthesize startThreshold=_startThreshold;

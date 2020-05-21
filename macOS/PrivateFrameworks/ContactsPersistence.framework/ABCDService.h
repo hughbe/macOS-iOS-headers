@@ -6,12 +6,17 @@
 
 #import "NSManagedObject.h"
 
+@class NSString;
+
 @interface ABCDService : NSManagedObject
 {
 }
 
 + (id)serviceWithName:(id)arg1 inManagedObjectContext:(id)arg2 inPersistentStore:(id)arg3;
 - (id)correspondingObjectForRelationshipFromObject:(id)arg1;
+
+// Remaining properties
+@property(retain, nonatomic) NSString *serviceName; // @dynamic serviceName;
 
 @end
 

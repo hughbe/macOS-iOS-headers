@@ -16,6 +16,7 @@
 
 + (id)searchCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)searchCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *notes;
 - (id)encodedClassName;
 - (id)groupIdentifier;

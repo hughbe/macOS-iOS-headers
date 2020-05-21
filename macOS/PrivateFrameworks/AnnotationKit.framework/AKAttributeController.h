@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class AKController, AKPageModelController, NSColor, NSDictionary, NSFont;
+@class AKController, AKPageModelController, NSColor, NSDictionary, NSFont, PKInk;
 
 @interface AKAttributeController : NSObject
 {
@@ -15,6 +15,7 @@
     AKPageModelController *modelControllerToObserveForSelections;
     NSColor *_strokeColor;
     NSColor *_fillColor;
+    PKInk *_ink;
     double _strokeWidth;
     long long _brushStyle;
     unsigned long long _arrowHeadStyle;
@@ -27,8 +28,9 @@
 + (void)initialize;
 + (id)defaultTextAttributes;
 + (id)defaultFont;
+- (void).cxx_destruct;
 @property __weak AKController *controller; // @synthesize controller=_controller;
-@property long long highlightStyle; // @synthesize highlightStyle=_highlightStyle;
+@property(nonatomic) long long highlightStyle; // @synthesize highlightStyle=_highlightStyle;
 @property(retain) NSDictionary *textAttributes; // @synthesize textAttributes=_textAttributes;
 @property(retain) NSFont *font; // @synthesize font=_font;
 @property unsigned long long arrowHeadStyle; // @synthesize arrowHeadStyle=_arrowHeadStyle;
@@ -36,13 +38,14 @@
 @property BOOL hasShadow; // @synthesize hasShadow=_hasShadow;
 @property BOOL strokeIsDashed; // @synthesize strokeIsDashed=_strokeIsDashed;
 @property double strokeWidth; // @synthesize strokeWidth=_strokeWidth;
+@property(retain, nonatomic) PKInk *ink; // @synthesize ink=_ink;
 @property(retain) NSColor *fillColor; // @synthesize fillColor=_fillColor;
-@property(retain) NSColor *strokeColor; // @synthesize strokeColor=_strokeColor;
+@property(retain, nonatomic) NSColor *strokeColor; // @synthesize strokeColor=_strokeColor;
 @property(retain, nonatomic) AKPageModelController *modelControllerToObserveForSelections; // @synthesize modelControllerToObserveForSelections;
-- (void).cxx_destruct;
 - (void)_updateStateOnSenderFromSelf:(id)arg1 segment:(long long)arg2;
 - (BOOL)_updateStateOnSender:(id)arg1 segment:(long long)arg2 fromSelectedAnnotations:(id)arg3;
 - (long long)_allAnnotations:(id)arg1 shareAttributeFromTag:(long long)arg2;
+- (void)_allAnnotations:(id)arg1 all:(char *)arg2 atLeastOneShare:(char *)arg3 attributeFromTag:(long long)arg4;
 - (void)_updateStateOnSender:(id)arg1 segment:(long long)arg2;
 - (BOOL)_isEnabledForSender:(id)arg1 segment:(long long)arg2 withSelectedAnnotations:(id)arg3;
 - (void)syncStrokeColorOnSelectionToUI;
@@ -51,11 +54,21 @@
 - (void)_syncAttributesFromSenderToSelfAndSelectedAnnotations:(id)arg1 segment:(long long)arg2;
 - (void)_restorePersistedAttributes;
 - (void)_persistCurrentAttributes;
+- (void)_updateInk;
+- (void)_disableInkPicker:(BOOL)arg1;
+- (void)didEndOrCancelStroke;
+- (void)beganDrawingStroke;
+- (void)updateInkIfNeeded:(id)arg1;
+- (void)resetToLastDrawingInk;
+- (void)setDefaultInk;
 - (void)restoreStrokeColorToSystemDefault;
 - (BOOL)strokeColorIsEqualTo:(id)arg1;
 - (void)updateAttributeSenderState:(id)arg1 segment:(long long)arg2 enabled:(BOOL)arg3;
 - (BOOL)isAttributeSenderEnabled:(id)arg1 segment:(long long)arg2;
 - (void)performAttributeActionForSender:(id)arg1 segment:(long long)arg2;
+- (void)annotationEditingDidEndWithCompletion:(CDUnknownBlockType)arg1;
+- (void)toggleRuler;
+- (void)forceHideRuler;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)initWithController:(id)arg1;
 

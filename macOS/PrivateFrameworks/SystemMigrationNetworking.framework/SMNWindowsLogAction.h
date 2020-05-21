@@ -13,10 +13,10 @@
     NSString *tempDirectory;
 }
 
-+ (BOOL)needsDirectAccessToSendOrReceiveResult;
++ (BOOL)streamsResults;
 + (int)actionID;
-@property(retain) NSString *tempDirectory; // @synthesize tempDirectory;
 - (void).cxx_destruct;
+@property(retain) NSString *tempDirectory; // @synthesize tempDirectory;
 - (BOOL)expectsAResult;
 - (id)requestPayload;
 - (void)finishedFile:(id)arg1 length:(unsigned long long)arg2;

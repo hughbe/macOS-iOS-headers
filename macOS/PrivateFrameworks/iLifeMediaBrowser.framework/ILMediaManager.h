@@ -105,6 +105,10 @@
 - (void)setModificationDate:(id)arg1;
 - (id)pluginIdentifier;
 - (id)pluginBundle;
+- (void)cacheDeletePeriodic:(id)arg1 urgency:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)cacheDeleteCancel;
+- (void)cacheDeletePurge:(id)arg1 urgency:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)cacheDeletePurgeable:(id)arg1 urgency:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)volumeDidMount:(id)arg1;
 - (void)volumeWillUnmount:(id)arg1;
 - (void)watchedQueryChanged:(id)arg1 queryScope:(id)arg2;

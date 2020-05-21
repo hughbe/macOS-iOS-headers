@@ -13,7 +13,11 @@
 
 @property(readonly) unsigned long long flowIdentifier; // @synthesize flowIdentifier=_flowIdentifier;
 - (void)fetchConnectionInfoWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)initFromNWConnection:(id)arg1;
+- (id)initFromConnection:(id)arg1;
+- (id)initFromTask:(id)arg1;
 - (id)initFromStream:(id)arg1;
+- (id)initFromMetadata:(id)arg1;
 
 @end
 

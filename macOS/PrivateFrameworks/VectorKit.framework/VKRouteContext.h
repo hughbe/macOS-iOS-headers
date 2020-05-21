@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class GEOComposedRoute, NSHashTable, NSString;
+@class NSArray, NSHashTable, NSString, VKRouteInfo;
 
 @interface VKRouteContext : NSObject
 {
-    GEOComposedRoute *_route;
-    unsigned char useType;
+    VKRouteInfo *_routeInfo;
+    unsigned char _useType;
     long long _inspectedLegIndex;
     long long _inspectedStepIndex;
     struct PolylineCoordinate _routeOffset;
@@ -28,9 +28,15 @@
     NSHashTable *_labelObservers;
     BOOL _hasContextChangedForRouteLine;
     NSHashTable *_routeLineObservers;
-    unsigned char _useType;
+    BOOL _hasContextChangedForAlternateRouteLines;
+    NSHashTable *_alternateRouteLineObservers;
+    NSArray *_alternateRoutes;
+    struct multimap<unsigned int, std::__1::vector<RouteSection, std::__1::allocator<RouteSection>>, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, std::__1::vector<RouteSection, std::__1::allocator<RouteSection>>>>> _shareSections;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *alternateRoutes; // @synthesize alternateRoutes=_alternateRoutes;
 @property(retain, nonatomic) NSString *accessPointExitName; // @synthesize accessPointExitName=_accessPointExitName;
 @property(retain, nonatomic) NSString *accessPointEntryName; // @synthesize accessPointEntryName=_accessPointEntryName;
 @property(retain, nonatomic) NSString *locale; // @synthesize locale=_locale;
@@ -44,15 +50,18 @@
 @property(nonatomic) long long currentLegIndex; // @synthesize currentLegIndex=_currentLegIndex;
 @property(nonatomic) struct PolylineCoordinate routeOffset; // @synthesize routeOffset=_routeOffset;
 @property(readonly, nonatomic) unsigned char useType; // @synthesize useType=_useType;
-@property(readonly, nonatomic) GEOComposedRoute *route; // @synthesize route=_route;
-- (id).cxx_construct;
-- (void)_setContextChangedForRouteLine;
-- (void)_setContextChangedForLabels;
+@property(readonly, nonatomic) VKRouteInfo *routeInfo; // @synthesize routeInfo=_routeInfo;
+- (void)forEachSectionWithShareCount:(unsigned int)arg1 dothis:(CDUnknownBlockType)arg2;
+- (void)addShareSections:(const CDStruct_2c837fe9 *)arg1 shareCount:(unsigned int)arg2;
 - (void)resetNotificationsForObserverType:(unsigned char)arg1;
 - (void)removeObserver:(id)arg1 withType:(unsigned char)arg2;
 - (void)addObserver:(id)arg1 withType:(unsigned char)arg2;
+- (void)_setHasContextChangedForObserverType:(unsigned char)arg1 withValue:(BOOL)arg2;
+- (id)_hashTableForObserverType:(unsigned char)arg1;
 - (void)dealloc;
-- (id)initWithComposedRoute:(id)arg1;
+- (id)initWithRouteInfo:(id)arg1 useType:(unsigned char)arg2;
+- (id)initWithComposedRoute:(id)arg1 useType:(unsigned char)arg2;
+@property(readonly, nonatomic) unsigned long long totalRouteCount;
 
 @end
 

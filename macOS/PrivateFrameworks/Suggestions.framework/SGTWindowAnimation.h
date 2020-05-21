@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     SGTAnimationWindowEffect *_windowEffect;
 }
 
+- (void).cxx_destruct;
 - (float)currentValue;
 - (void)setCurrentProgress:(float)arg1;
 @property(readonly) SGTAnimationWindowEffect *windowEffect;

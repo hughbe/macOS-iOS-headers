@@ -6,23 +6,23 @@
 
 #import "NSObject.h"
 
-@class IMPerson, NSString;
+@class ABPerson, IMPerson, NSString;
 
 @interface SOBlockListItem : NSObject
 {
-    IMPerson *_person;
     NSString *_address;
     void *_cmfItem;
+    IMPerson *_person;
     NSString *_cachedFormattedHandle;
     NSString *_cachedFormattedPersonName;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *cachedFormattedPersonName; // @synthesize cachedFormattedPersonName=_cachedFormattedPersonName;
 @property(retain, nonatomic) NSString *cachedFormattedHandle; // @synthesize cachedFormattedHandle=_cachedFormattedHandle;
+@property(retain, nonatomic) IMPerson *person; // @synthesize person=_person;
 @property(nonatomic) void *cmfItem; // @synthesize cmfItem=_cmfItem;
 @property(retain, nonatomic) NSString *address; // @synthesize address=_address;
-@property(retain, nonatomic) IMPerson *person; // @synthesize person=_person;
-- (void).cxx_destruct;
 - (id)description;
 - (BOOL)isEqualToBlockListItem:(id)arg1;
 - (id)formattedPersonNameWithAddress:(BOOL)arg1;
@@ -33,6 +33,8 @@
 - (id)fullName;
 - (void)lookupPerson;
 - (void)dealloc;
+@property(readonly, nonatomic) ABPerson *abPerson;
+- (id)initWithABPerson:(id)arg1 address:(id)arg2 cmfItemRef:(void *)arg3;
 - (id)initWithPerson:(id)arg1 address:(id)arg2 cmfItemRef:(void *)arg3;
 
 @end

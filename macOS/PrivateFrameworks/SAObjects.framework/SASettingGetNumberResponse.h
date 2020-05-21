@@ -12,6 +12,7 @@
 
 + (id)getNumberResponseWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getNumberResponse;
+- (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

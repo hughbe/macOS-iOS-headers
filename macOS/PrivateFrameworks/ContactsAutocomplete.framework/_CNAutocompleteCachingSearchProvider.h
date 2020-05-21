@@ -16,6 +16,7 @@
     id <CNFuture> _recentsSearchFuture;
     id <CNFuture> _suggestionsSearchFuture;
     id <CNFuture> _duetSearchFuture;
+    id <CNFuture> _localExtensionSearchesFuture;
     id <CNFuture> _directoryServerSearchFuture;
     id <CNFuture> _calendarServerSearchFuture;
 }
@@ -23,6 +24,7 @@
 - (void).cxx_destruct;
 - (id)calendarServerSearch;
 - (id)directoryServerSearch;
+- (id)localExtensionSearches;
 - (id)duetSearch;
 - (id)suggestionsSearch;
 - (id)recentsSearch;

@@ -14,10 +14,9 @@
 @interface BRCStageRegistry : NSObject <BRCModule, BRCLowDiskDelegate>
 {
     BRCAccountSession *_session;
-    NSString *_stageDirectoryPath[6];
-    unsigned long long _stageDirectoryFileID[6];
+    NSString *_stageDirectoryPath[7];
+    unsigned long long _stageDirectoryFileID[7];
     NSMutableSet *_unflushedStagedFileIDs;
-    NSMutableSet *_appLibrariesWithUnflushedFileIDs;
     NSMutableSet *_activeUploadStageIDs;
     NSMutableSet *_activeDownloadStageIDs;
     NSMutableDictionary *_watchedLockedFileIDs;
@@ -31,15 +30,18 @@
     int _deviceID;
 }
 
++ (unsigned short)computeItemModeFromStatInfo:(id)arg1 isPackage:(BOOL)arg2;
 + (void)migrateStageToVersion2_0WithSession:(id)arg1;
++ (BOOL)applySharingReadonlyACLsToFD:(int)arg1 statInfo:(id)arg2 version:(id)arg3 clientZone:(id)arg4 sharingOptions:(unsigned long long)arg5;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
 @property(readonly, nonatomic) int deviceID; // @synthesize deviceID=_deviceID;
-- (void).cxx_destruct;
 - (void)cancel;
 - (void)resume;
 - (void)disarmLockedTestTimer;
 - (void)close;
-- (long long)garbageCollectSpace:(long long)arg1 withUrgency:(int)arg2;
+- (void)_updatePersistedStateWithLatestGCStartTime:(long long)arg1;
+- (long long)garbageCollectSpace:(long long)arg1;
 - (void)garbageCollectPackages;
 - (long long)purgeGraveyardSpace:(long long)arg1 withUrgency:(int)arg2;
 - (long long)purgableSpace;
@@ -47,7 +49,7 @@
 - (long long)purgeSpace:(long long)arg1 withUrgency:(int)arg2;
 - (long long)_purgeSpaceUnderQueue:(long long)arg1 withUrgency:(int)arg2;
 - (BOOL)transferDocumentID:(unsigned int)arg1 fromOldVersionStage:(unsigned long long)arg2 toStage:(unsigned long long)arg3;
-- (BOOL)existsInOldVersionStage:(unsigned long long)arg1 generationID:(unsigned int *)arg2;
+- (BOOL)existsInOldVersionStageOrGraveyard:(unsigned long long)arg1;
 - (BOOL)existsInStage:(unsigned long long)arg1 generationID:(unsigned int *)arg2;
 - (BOOL)moveToGraveyardFromPath:(id)arg1 forItemID:(id)arg2 error:(id *)arg3;
 - (BOOL)moveOldVersionFromPath:(id)arg1 error:(id *)arg2;
@@ -59,14 +61,19 @@
 - (void)associateDownloadStageID:(id)arg1 withOperation:(id)arg2;
 - (void)cleanupStagedUploadWithID:(id)arg1;
 - (void)cleanupStagedSyncUpWithID:(id)arg1;
+- (BOOL)pendingFetchRecordDirExistsInStageWithStartingChangeToken:(id)arg1 recordZoneID:(id)arg2;
 - (id)createURLForUploadWithStageID:(id)arg1 name:(id)arg2;
+- (id)makePendingFetchRecordDirWithStartingChangeToken:(id)arg1 recordZoneID:(id)arg2;
+- (id)_anchorNameForChangeToken:(id)arg1 recordZoneID:(id)arg2;
 - (void)associateSyncUpStageID:(id)arg1 withOperation:(id)arg2;
-- (void)applyMetadataOnFileDescriptor:(int)arg1 liveFileDescriptor:(int)arg2 appLibrary:(id)arg3 statInfo:(id)arg4 version:(id)arg5;
+- (void)applyMetadataOnFileDescriptor:(int)arg1 liveFileDescriptor:(int)arg2 itemID:(id)arg3 clientZone:(id)arg4 statInfo:(id)arg5 version:(id)arg6 sharingOptions:(unsigned long long)arg7;
 - (BOOL)moveFromStage:(unsigned long long)arg1 toPath:(id)arg2 fileName:(id)arg3 error:(id *)arg4;
+- (BOOL)makeItemLive:(id)arg1 fromStage:(unsigned long long)arg2 bySwappingWith:(id)arg3 fileName:(id)arg4 error:(id *)arg5;
+- (BOOL)_flockToMakeLiveAtPath:(id)arg1 error:(id *)arg2;
 - (id)_pathInStage:(unsigned long long)arg1 index:(unsigned char *)arg2 generationID:(unsigned int *)arg3;
 - (BOOL)copyPackageFileWithPackageFd:(int)arg1 toStageFd:(int)arg2 relpath:(id)arg3;
 - (BOOL)makeSideFaultInStageGatherFileID:(unsigned long long *)arg1 generationID:(unsigned int *)arg2 documentID:(unsigned int *)arg3 properties:(id)arg4 inAppLibrary:(id)arg5 forCreation:(BOOL)arg6 error:(id *)arg7;
-- (id)makeNonLocalVersionSideFaultWithAdditionName:(id)arg1 appLibrary:(id)arg2 statInfo:(id)arg3 version:(id)arg4 error:(id *)arg5;
+- (id)makeNonLocalVersionSideFaultWithAdditionName:(id)arg1 clientZone:(id)arg2 statInfo:(id)arg3 version:(id)arg4 sharingOptions:(unsigned long long)arg5 error:(id *)arg6;
 - (id)nonLocalFaultURLForAdditionName:(id)arg1;
 - (BOOL)makeSymlinkWithTarget:(id)arg1 inStageGatherFileID:(unsigned long long *)arg2 generationID:(unsigned int *)arg3 error:(id *)arg4;
 - (BOOL)makeDirectoryInStageGatherFileID:(unsigned long long *)arg1 generationID:(unsigned int *)arg2 error:(id *)arg3;

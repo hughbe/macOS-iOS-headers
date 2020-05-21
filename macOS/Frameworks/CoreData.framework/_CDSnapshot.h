@@ -19,9 +19,9 @@ __attribute__((visibility("hidden")))
     NSManagedObjectID *_cd_objectID;
     struct _snapshotFlags_st {
         unsigned int _readOnly:1;
-        unsigned int _reservedFlags:31;
+        unsigned int _reservedFlags:7;
     } _cd_flags;
-    unsigned int _cd_nullFlags_;
+    unsigned char _cd_nullFlags_;
 }
 
 + (unsigned int)newBatchAllocation:(id *)arg1 count:(unsigned int)arg2 withOwnedObjectIDs:(id *)arg3;
@@ -30,6 +30,7 @@ __attribute__((visibility("hidden")))
 + (id)alloc;
 + (Class)classForEntity:(id)arg1;
 + (void)initialize;
++ (void)resetGeneratedClasses;
 - (id)_snapshot_;
 @property(readonly, nonatomic) NSManagedObjectID *objectID;
 @property(readonly, nonatomic) NSEntityDescription *entity;

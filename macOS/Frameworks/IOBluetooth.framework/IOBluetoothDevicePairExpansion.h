@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class BluetoothHIDDeviceController, IOBluetoothHostController, IOBluetoothL2CAPChannel;
+@class BluetoothHIDDeviceController, IOBluetoothHostController, IOBluetoothL2CAPChannel, NSXPCConnection;
 
 @interface IOBluetoothDevicePairExpansion : NSObject
 {
@@ -21,6 +21,7 @@
     BOOL _isWiiUProController;
     BluetoothHIDDeviceController *bluetoothHIDDeviceController;
     BOOL isPolyVision;
+    NSXPCConnection *xpcConnection;
 }
 
 @property BOOL isPolyVision; // @synthesize isPolyVision;
@@ -34,6 +35,7 @@
 @property BOOL supportsAuthentication; // @synthesize supportsAuthentication;
 @property(retain) IOBluetoothHostController *hostController; // @synthesize hostController;
 @property unsigned short pageTimeout; // @synthesize pageTimeout;
+@property(retain) NSXPCConnection *xpcConnection; // @synthesize xpcConnection;
 
 @end
 

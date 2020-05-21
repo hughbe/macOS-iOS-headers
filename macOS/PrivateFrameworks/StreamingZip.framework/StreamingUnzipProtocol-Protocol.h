@@ -7,7 +7,8 @@
 @class NSData, NSDictionary, NSString;
 
 @protocol StreamingUnzipProtocol
-- (void)setActiveCallbacks:(int)arg1;
+- (void)setActiveDelegateMethods:(int)arg1;
+- (void)terminateStreamWithReply:(void (^)(NSError *))arg1;
 - (void)finishStreamWithReply:(void (^)(NSError *))arg1;
 - (void)suspendStreamWithReply:(void (^)(unsigned long long, NSError *))arg1;
 - (void)supplyBytes:(NSData *)arg1 withReply:(void (^)(NSError *, BOOL))arg2;

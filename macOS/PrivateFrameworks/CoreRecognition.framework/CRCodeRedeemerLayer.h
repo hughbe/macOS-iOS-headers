@@ -13,8 +13,9 @@
 }
 
 + (BOOL)isCRCodeRedeemerAvailable;
-+ (id)allocWithZone:(struct _NSZone *)arg1;
++ (id)alloc;
 - (void)showCodeRedeemStatus:(id)arg1 withColor:(struct CGColor *)arg2 forDuration:(double)arg3 style:(int)arg4;
+- (void)shutdownCameraSession;
 - (void)stopSession;
 - (void)startSession;
 - (id)generateStringFromDate:(id)arg1;

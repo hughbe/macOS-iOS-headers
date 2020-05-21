@@ -8,6 +8,7 @@
 
 @class AVWeakReference;
 
+__attribute__((visibility("hidden")))
 @interface AVPlaybackItemTrackInspector : AVAssetTrackInspector
 {
     struct OpaqueFigPlaybackItem *_playbackItem;
@@ -22,6 +23,7 @@
 - (struct CGAffineTransform)preferredTransform;
 - (struct CGSize)dimensions;
 - (struct CGSize)naturalSize;
+- (float)peakDataRate;
 - (float)estimatedDataRate;
 - (CDStruct_e83c9415)timeRange;
 - (BOOL)isEnabled;
@@ -32,7 +34,6 @@
 - (unsigned int)_figMediaType;
 - (int)trackID;
 - (id)asset;
-- (void)finalize;
 - (void)dealloc;
 - (id)_initWithAsset:(id)arg1 trackID:(int)arg2 trackIndex:(long long)arg3;
 

@@ -10,21 +10,30 @@
 #import "SMPathsPreliminaryPathGroupSizeCallback.h"
 #import "SMPathsPreliminaryUserSizeCallback.h"
 #import "SMPathsProgressInfoDelegateProtocol.h"
+#import "SMWindowsAnalyzerPreliminaryComponentSizeCallback.h"
+#import "SMWindowsAnalyzerPreliminaryCustomPathSizeCallback.h"
 
-@class SMPaths;
+@class SMPaths, SMWindowsAnalyzer;
 
-@interface SMDCustomize_XPCClientConnection : SMDXPCClientConnection <SMDPCustomizeProtocol, SMPathsPreliminaryUserSizeCallback, SMPathsPreliminaryPathGroupSizeCallback, SMPathsProgressInfoDelegateProtocol>
+@interface SMDCustomize_XPCClientConnection : SMDXPCClientConnection <SMDPCustomizeProtocol, SMPathsPreliminaryUserSizeCallback, SMPathsPreliminaryPathGroupSizeCallback, SMPathsProgressInfoDelegateProtocol, SMWindowsAnalyzerPreliminaryComponentSizeCallback, SMWindowsAnalyzerPreliminaryCustomPathSizeCallback>
 {
     SMPaths *_pather;
+    SMWindowsAnalyzer *_windowsAnalyzer;
 }
 
 + (id)daemonProtocolInterface;
 + (id)daemonProtocolInterfaceInstance;
-@property(retain) SMPaths *pather; // @synthesize pather=_pather;
 - (void).cxx_destruct;
+@property(retain) SMWindowsAnalyzer *windowsAnalyzer; // @synthesize windowsAnalyzer=_windowsAnalyzer;
+@property(retain) SMPaths *pather; // @synthesize pather=_pather;
 - (void)submitMigrationRequest:(id)arg1;
 - (void)cancelSizingForSystemID:(id)arg1;
+- (void)hasCustomPathsForSourceSystem:(id)arg1 andDestinationSystem:(id)arg2 reply:(CDUnknownBlockType)arg3;
+- (void)informationForBundlesAtPaths:(id)arg1 onSourceSystem:(id)arg2 andDestinationSystem:(id)arg3 reply:(CDUnknownBlockType)arg4;
+- (void)sizeForCustomPathType:(unsigned long long)arg1 user:(id)arg2 onSourceSystem:(id)arg3 andDestinationSystem:(id)arg4 reply:(CDUnknownBlockType)arg5;
+- (void)preliminarySizeForCustomPaths:(unsigned long long)arg1 type:(unsigned long long)arg2 user:(id)arg3;
 - (void)sizeForComponent:(id)arg1 onSourceSystem:(id)arg2 andDestinationSystem:(id)arg3 reply:(CDUnknownBlockType)arg4;
+- (void)preliminarySize:(unsigned long long)arg1 forComponent:(id)arg2;
 - (void)sizeForPathGroup:(unsigned long long)arg1 onSourceSystem:(id)arg2 andDestinationSystem:(id)arg3 reply:(CDUnknownBlockType)arg4;
 - (void)initiateCustomizationOfSystem:(id)arg1;
 - (void)pathingProgressFormatKey:(id)arg1 arguments:(id)arg2;

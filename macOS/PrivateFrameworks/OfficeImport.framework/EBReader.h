@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     const void *mBuffer;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isFileStructuredStorage; // @synthesize isFileStructuredStorage=mIsFileStructuredStorage;
 @property(nonatomic) BOOL useStringOptimization; // @synthesize useStringOptimization=mUseStringOptimization;
 @property(retain, nonatomic) NSString *temporaryDirectory; // @synthesize temporaryDirectory=mTemporaryDirectory;
@@ -27,7 +28,7 @@ __attribute__((visibility("hidden")))
 - (id)read;
 - (BOOL)start;
 - (void)dealloc;
-- (id)initWithCancelDelegate:(id)arg1 tracing:(id)arg2;
+- (id)initWithCancelDelegate:(id)arg1;
 
 @end
 

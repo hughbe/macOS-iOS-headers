@@ -6,24 +6,30 @@
 
 #import "NSView.h"
 
+#import "AVPictureInPictureContentSource.h"
+#import "AVPictureInPictureControllerDelegate.h"
 #import "AVTrimControlsViewControllerDelegate.h"
+#import "AVVolumeButtonDelegate.h"
 #import "CALayerDelegate.h"
 #import "NSSharingServiceDelegate.h"
 #import "NSSharingServicePickerDelegate.h"
 
-@class AVAnimator, AVAudioOnlyIndicatorView, AVControlsContainerViewController, AVExternalPlaybackIndicatorView, AVLoadingIndicatorView, AVPlayer, AVPlayerController, AVPlayerControlsViewController, AVPlayerLayer, AVShareController, AVStatusOverlayView, AVTrimControlsViewController, AVUnsupportedContentIndicatorView, NSArray, NSMenu, NSMutableArray, NSString, NSTimer, NSTrackingArea, NSWindow;
+@class AVAnimator, AVAudioOnlyIndicatorView, AVBehaviorStorage, AVControlsContainerViewController, AVExternalPlaybackIndicatorView, AVLoadingIndicatorView, AVNowPlayingInfoController, AVObservationController, AVPictureInPictureController, AVPlayer, AVPlayerController, AVPlayerControlsViewController, AVPlayerLayer, AVShareController, AVStatusOverlayView, AVTrimControlsViewController, AVUnsupportedContentIndicatorView, NSArray, NSLayoutConstraint, NSLayoutGuide, NSMenu, NSObject<OS_dispatch_queue>, NSString, NSTimer, NSTrackingArea, NSWindow;
 
-@interface AVPlayerView : NSView <NSSharingServicePickerDelegate, NSSharingServiceDelegate, AVTrimControlsViewControllerDelegate, CALayerDelegate>
+@interface AVPlayerView : NSView <NSSharingServicePickerDelegate, NSSharingServiceDelegate, AVTrimControlsViewControllerDelegate, CALayerDelegate, AVPictureInPictureContentSource, AVPictureInPictureControllerDelegate, AVVolumeButtonDelegate>
 {
+    NSObject<OS_dispatch_queue> *_dummyImageQueue;
+    long long _actualControlsStyle;
     BOOL _playerShouldAutoplay;
     NSString *_videoGravity;
-    AVPlayerLayer *_playerLayer;
     AVUnsupportedContentIndicatorView *_unsupportedContentIndicatorView;
     AVAudioOnlyIndicatorView *_audioOnlyIndicatorView;
     AVExternalPlaybackIndicatorView *_externalPlaybackIndicatorView;
     NSView *_contentOverlayView;
     AVStatusOverlayView *_statusOverlayView;
-    NSMutableArray *_statusOverlayViewLayoutConstraints;
+    NSArray *_statusOverlayViewLayoutConstraints;
+    NSLayoutConstraint *_statusOverlayViewLeftAnchor;
+    NSLayoutConstraint *_statusOverlayViewTopAnchor;
     AVLoadingIndicatorView *_loadingIndicatorView;
     NSTimer *_loadingIndicatorTimer;
     AVControlsContainerViewController *_controlsContainerViewController;
@@ -35,9 +41,13 @@
     long long _showControlsCount;
     NSTimer *_controlsTimer;
     NSTimer *_temporaryControlsTimer;
+    NSTimer *_dimTouchBarTimer;
     BOOL _viewHasBeenSetup;
+    BOOL _viewHasWindow;
     BOOL _showsControlsPane;
+    BOOL _showsTimecodes;
     BOOL _canHideControls;
+    BOOL _canRequestBecomingFirstResponder;
     BOOL _isShowingPlaybackControlsForMouseMovingInsideView;
     BOOL _isShowingPlaybackControlsViewForUnsupportedContent;
     BOOL _isShowingPlaybackControlsViewForAudioOnlyContent;
@@ -45,11 +55,12 @@
     BOOL _didPausePlaybackForSheet;
     BOOL _hideControlsOnMouseUp;
     BOOL _doNotMakeCurrentControlsViewControllerViewFirstResponder;
-    BOOL _viewNeedsResetupInViewDidMoveToWindow;
     BOOL _showsFrameSteppingButtons;
     BOOL _showsSharingServiceButton;
     NSMenu *_actionPopUpButtonMenu;
     BOOL _showsFullScreenToggleButton;
+    BOOL _allowsPictureInPicturePlayback;
+    AVPictureInPictureController *_pictureInPictureController;
     CDUnknownBlockType _trimCompletionBlock;
     AVPlayerController *_playerController;
     BOOL _isFullScreen;
@@ -76,10 +87,41 @@
     BOOL _isZoomed;
     BOOL _showsAlternateMediaTrackPreview;
     BOOL _prefersReducedUserInterface;
+    BOOL _showsDurationInsteadOfRemainingTime;
     AVShareController *_shareController;
+    NSObject<OS_dispatch_queue> *_nowPlayingInfoCenterInitQueue;
+    BOOL _updatesNowPlayingInfoCenter;
+    long long _touchBarViewAppearCount;
+    BOOL _needsTransportControlsHeightLayoutGuideConstraints;
+    NSLayoutGuide *_transportControlsHeightLayoutGuide;
+    BOOL _showsAudioOnlyIndicatorView;
+    BOOL _includesTrimAndCancelButtons;
+    BOOL _prefersCompactTouchBarScrubber;
+    BOOL _flashesControlsWhenChangingStyle;
+    BOOL _shouldInsetControlsFromVideoRect;
+    NSLayoutConstraint *_controlsContainerWidthConstraint;
+    NSLayoutConstraint *_controlsContainerCenterXConstraint;
+    NSLayoutConstraint *_controlsContainerLeftConstraint;
+    NSLayoutConstraint *_controlsContainerRightConstraint;
+    CDUnknownBlockType _playButtonHandlerForLazyPlayerLoading;
+    id <AVPlayerViewDelegate_AppStoreOnly> _metricsDelegate;
+    BOOL _inlineControlsShowMinimalControlsWhenPaused;
+    AVObservationController *_observationController;
+    BOOL _trimming;
+    BOOL _editing;
+    BOOL _pictureInPictureActive;
+    BOOL _shouldUnhideOnPictureInPictureStop;
     long long _controlsStyle;
+    AVPlayerLayer *_playerLayer;
+    AVPlayerLayer *_trimThumbnailPlayerLayer;
+    AVPlayerLayer *_touchBarThumbnailPlayerLayer;
+    AVNowPlayingInfoController *_nowPlayingInfoController;
+    AVBehaviorStorage *__behaviorStorage;
+    id <AVPlayerViewPictureInPictureDelegate> _pictureInPictureDelegate;
+    NSString *_overrideParentApplicationDisplayIdentifier;
 }
 
++ (id)keyPathsForValuesAffectingTouchBar;
 + (id)restorableStateKeyPaths;
 + (id)keyPathsForValuesAffectingVideoBounds;
 + (id)keyPathsForValuesAffectingReadyForDisplay;
@@ -88,19 +130,39 @@
 + (void)initialize;
 + (id)keyPathsForValuesAffectingCanBeginTrimming;
 + (BOOL)automaticallyNotifiesObserversOfPlayerController;
-+ (id)keyPathsForValuesAffectingIsTrimming;
 + (BOOL)wantsPlayerLayerLayout;
 + (id)keyPathsForValuesAffectingPlayerLayerFrame;
 + (id)keyPathsForValuesAffectingPrefersUnobscuredContent;
 + (id)keyPathsForValuesAffectingCanShowSharingServiceButton;
++ (id)keyPathsForValuesAffectingControlsHidden;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *overrideParentApplicationDisplayIdentifier; // @synthesize overrideParentApplicationDisplayIdentifier=_overrideParentApplicationDisplayIdentifier;
+@property(nonatomic) BOOL shouldUnhideOnPictureInPictureStop; // @synthesize shouldUnhideOnPictureInPictureStop=_shouldUnhideOnPictureInPictureStop;
+@property(nonatomic) __weak id <AVPlayerViewPictureInPictureDelegate> pictureInPictureDelegate; // @synthesize pictureInPictureDelegate=_pictureInPictureDelegate;
+@property(nonatomic, getter=isPictureInPictureActive) BOOL pictureInPictureActive; // @synthesize pictureInPictureActive=_pictureInPictureActive;
+@property(readonly, nonatomic) AVBehaviorStorage *_behaviorStorage; // @synthesize _behaviorStorage=__behaviorStorage;
+@property(retain, nonatomic) AVNowPlayingInfoController *nowPlayingInfoController; // @synthesize nowPlayingInfoController=_nowPlayingInfoController;
+@property(retain) AVPlayerLayer *touchBarThumbnailPlayerLayer; // @synthesize touchBarThumbnailPlayerLayer=_touchBarThumbnailPlayerLayer;
+@property(retain) AVPlayerLayer *trimThumbnailPlayerLayer; // @synthesize trimThumbnailPlayerLayer=_trimThumbnailPlayerLayer;
+@property(retain) AVPlayerLayer *playerLayer; // @synthesize playerLayer=_playerLayer;
+@property(nonatomic, getter=isEditing) BOOL editing; // @synthesize editing=_editing;
+@property(nonatomic, getter=isTrimming) BOOL trimming; // @synthesize trimming=_trimming;
 @property(retain) AVControlsContainerViewController *controlsContainerViewController; // @synthesize controlsContainerViewController=_controlsContainerViewController;
 @property long long controlsStyle; // @synthesize controlsStyle=_controlsStyle;
-- (void).cxx_destruct;
+@property(readonly) BOOL avkit_isVisible;
+@property(readonly) NSWindow *avkit_window;
+@property(readonly) struct CGRect avkit_videoRectInWindow;
+- (void)avkit_stopRoutingVideoToPictureInPictureViewController:(id)arg1;
+- (void)avkit_startRoutingVideoToPictureInPictureViewController:(id)arg1;
+- (id)avkit_makePlayerControllerIfNeeded:(id)arg1;
+- (id)avkit_pictureInPictureViewController;
 - (void)windowDidEndSheet:(id)arg1;
 - (void)windowWillBeginSheet:(id)arg1;
 - (void)playerControllerDidChangePlaybackStateByHandlingEvent:(id)arg1;
 - (void)playerControllerDidSeekChapter:(id)arg1;
+- (void)updateConstraints;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (id)touchBar;
 - (void)_fireControlsTimer:(id)arg1;
 - (void)touchesCancelledWithEvent:(id)arg1;
 - (void)touchesEndedWithEvent:(id)arg1;
@@ -133,6 +195,7 @@
 - (id)supplementalTargetForAction:(SEL)arg1 sender:(id)arg2;
 - (BOOL)becomeFirstResponder;
 - (BOOL)acceptsFirstResponder;
+- (BOOL)volumeButton:(id)arg1 shouldShowVolumeSlider:(id)arg2;
 - (void)_fireLoadingIndicatorTimer:(id)arg1;
 - (void)_restorePreviousFirstResponderOrMakeCurrentControlsViewControllersInitialFirstResponderFirstResponderIfSelfIsCurrentFirstResponder:(id)arg1;
 - (id)_makeSelfFirstResponderIfCurrentFirstResponderIsDescendantOfSelfAndReturnCurrentFirstResponderInThatCase;
@@ -140,36 +203,39 @@
 - (id)_currentControlsViewController;
 - (void)_setupTrackingAreas;
 - (void)_showOrHideControls;
+- (void)_updateControlsTimeDisplayStyleIfPossible;
 - (BOOL)_mouseInNoHideArea;
 - (id)_noHideAreaViews;
 - (void)_updatePlaybackControlsViewVisibilityForPlayingOnExternalScreen;
 - (void)_updatePlaybackControlsViewVisibilityForAudioOnlyContent;
 - (void)_updatePlaybackControlsViewVisibilityForUnsupportedContent;
+- (void)_dimTouchBarIfNeededAfterDelay;
+- (void)_dimTouchBarIfNeeded;
+- (BOOL)_shouldDimTouchBar;
 - (void)_fireTemporaryControlsTimer:(id)arg1;
 - (void)_showControlsTemporarily;
 - (void)_hideControlsIfPossibleAfterDelay;
 - (void)_hideControlsIfPossible;
 - (void)_showControlsIfNeeded;
+- (void)_setupLoadingIndicatorView;
 - (void)_updateExternalPlaybackIndicatorView;
+- (void)_setupExternalPlaybackIndicatorView;
 - (void)_updateAudioOnlyIndicatorView;
 - (BOOL)_isAudioOnlyContent;
 - (void)_updateUnsupportedContentIndicatorView;
 - (BOOL)_isUnsupportedContent;
-- (void)_setupPreferredIndicatorAreas;
 - (void)_setupControlsContainerView;
 - (void)_setupContentOverlayView;
 - (void)_layoutStatusOverlayView;
 - (void)_setupStatusOverlayView;
-- (void)_setupLoadingIndicatorView;
-- (void)_setupExternalPlaybackIndicatorView;
-- (void)_setupAudioOnlyIndicatorView;
-- (void)_setupUnsupportedContentIndicatorView;
 - (void)_setupPlayerLayer;
 - (void)viewDidMoveToWindow;
 - (void)viewWillMoveToWindow:(id)arg1;
+- (void)_ensureBehaviorStorage;
 @property(retain) AVPlayerControlsViewController *editControlsViewController;
 @property(retain) AVTrimControlsViewController *trimControlsViewController;
 @property(retain) AVPlayerControlsViewController *playbackControlsViewController;
+@property BOOL updatesNowPlayingInfoCenter;
 @property(readonly) NSView *contentOverlayView;
 @property(readonly) struct CGRect videoBounds;
 @property(readonly, getter=isReadyForDisplay) BOOL readyForDisplay;
@@ -209,9 +275,9 @@
 - (void)enterFullScreen:(id)arg1;
 - (void)setIsFullScreen:(BOOL)arg1;
 @property(readonly) BOOL isFullScreen;
+@property BOOL canRequestBecomingFirstResponder;
 @property BOOL canHideControls;
 - (void)beginTrimmingWithMaximumDuration:(CDStruct_1b6d18a9)arg1 completionHandler:(CDUnknownBlockType)arg2;
-@property(readonly) BOOL isTrimming;
 @property __weak id <AVPlayerViewSlowMotionDelegate> slowMotionDelegate;
 @property CDStruct_e83c9415 slowMotionTimeRange;
 - (id)animator;
@@ -231,13 +297,49 @@
 @property(retain) NSArray *noHideAreaViews;
 @property(readonly) BOOL prefersUnobscuredContent;
 @property(readonly) BOOL showsControlsPane;
+- (void)hideEditControlsViewControllerShouldPausePlayback:(BOOL)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)showEditControlsViewController:(id)arg1 shouldPausePlayback:(BOOL)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 @property(readonly) AVShareController *shareController;
+- (void)touchBarControlsViewDidDisappear;
+- (void)touchBarControlsViewWillAppear;
 - (void)hideControlsForAuxiliaryControl;
 - (void)showControlsForAuxiliaryControl;
+@property BOOL showsTimecodes;
+@property BOOL showsDurationInsteadOfRemainingTime;
 @property BOOL prefersReducedUserInterface;
 - (struct CGRect)videoRect;
 - (void)showSharingServicePickerRelativeToRect:(struct CGRect)arg1 ofView:(id)arg2 preferredEdge:(unsigned long long)arg3;
 @property(readonly) BOOL canShowSharingServiceButton;
+- (BOOL)inlineControlsShowMinimalControlsWhenPaused;
+- (void)setInlineControlsShowMinimalControlsWhenPaused:(BOOL)arg1;
+- (id)metricsDelegate;
+- (void)setMetricsDelegate:(id)arg1;
+- (CDUnknownBlockType)playButtonHandlerForLazyPlayerLoading;
+- (void)setPlayButtonHandlerForLazyPlayerLoading:(CDUnknownBlockType)arg1;
+- (void)cancelTrim:(id)arg1;
+- (void)commitTrim:(id)arg1;
+@property(nonatomic) BOOL prefersCompactTouchBarScrubber;
+@property(nonatomic) BOOL includesTrimAndCancelButtons;
+@property(nonatomic) BOOL flashesControlsWhenChangingStyle;
+@property(nonatomic) BOOL showsAudioOnlyIndicatorView;
+@property(readonly, nonatomic) NSLayoutGuide *transportControlsHeightLayoutGuide;
+@property(readonly, nonatomic) BOOL controlsHidden;
+@property(nonatomic) BOOL shouldInsetControlsFromVideoRect;
+- (void)_updatePictureInPictureButton;
+- (void)pictureInPictureController:(id)arg1 restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)pictureInPictureController:(id)arg1 failedToStartPictureInPictureWithError:(id)arg2;
+- (void)pictureInPictureControllerDidStopPictureInPicture:(id)arg1;
+- (void)pictureInPictureControllerWillStopPictureInPicture:(id)arg1;
+- (void)pictureInPictureControllerDidStartPictureInPicture:(id)arg1;
+- (void)pictureInPictureControllerWillStartPictureInPicture:(id)arg1;
+- (void)setAllowsPictureInPicturePlayback:(BOOL)arg1;
+- (BOOL)allowsPictureInPicturePlayback;
+- (id)pictureInPictureController;
+- (void)pictureInPictureButtonTapped:(id)arg1;
+- (id)_pictureInPictureDelegateIfRespondsToSelector:(SEL)arg1;
+@property(readonly, nonatomic) NSArray *behaviors;
+- (void)removeBehavior:(id)arg1;
+- (void)addBehavior:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

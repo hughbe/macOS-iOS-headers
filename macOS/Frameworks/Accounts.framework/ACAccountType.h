@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "ACProtobufCoding.h"
 #import "NSSecureCoding.h"
 
 @class ACAccountStore, NSSet, NSString, NSURL;
 
-@interface ACAccountType : NSObject <NSSecureCoding>
+@interface ACAccountType : NSObject <ACProtobufCoding, NSSecureCoding>
 {
     NSString *_accountTypeDescription;
     NSString *_identifier;
@@ -21,6 +22,7 @@
     ACAccountStore *_accountStore;
     int _supportsAuthentication;
     BOOL _supportsMultipleAccounts;
+    BOOL _obsolete;
     NSSet *_supportedDataclasses;
     NSSet *_syncableDataclasses;
     NSSet *_accessKeys;
@@ -28,12 +30,14 @@
     NSString *_owningBundleID;
 }
 
++ (id)allIdentifiers;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *owningBundleID; // @synthesize owningBundleID=_owningBundleID;
+@property(nonatomic, getter=isObsolete) BOOL obsolete; // @synthesize obsolete=_obsolete;
 @property(nonatomic) BOOL supportsMultipleAccounts; // @synthesize supportsMultipleAccounts=_supportsMultipleAccounts;
 @property(nonatomic) __weak ACAccountStore *accountStore; // @synthesize accountStore=_accountStore;
-- (void).cxx_destruct;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, nonatomic) BOOL encryptAccountProperties; // @synthesize encryptAccountProperties=_encryptAccountProperties;
 @property(readonly, nonatomic) NSSet *accessKeys; // @synthesize accessKeys=_accessKeys;
@@ -51,12 +55,20 @@
 @property(readonly, nonatomic) NSSet *supportedDataclasses; // @synthesize supportedDataclasses=_supportedDataclasses;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly, nonatomic) NSString *fullDescription;
-- (id)description;
+@property(readonly, copy) NSString *description;
+- (id)_encodeProtobufData;
+- (id)_encodeProtobuf;
+- (id)_initWithProtobufData:(id)arg1;
+- (id)_initWithProtobuf:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithManagedAccountType:(id)arg1;
 - (id)initWithManagedAccountType:(id)arg1 accountStore:(id)arg2;
 - (id)initWithIdentifier:(id)arg1 description:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

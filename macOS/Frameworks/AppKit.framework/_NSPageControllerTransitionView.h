@@ -15,7 +15,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (id)_nextResponderForEvent:(id)arg1;
-- (void)_updateTrackingAreas;
+- (void)_updateTrackingAreasWithInvalidCursorRects:(BOOL)arg1;
 
 @end
 

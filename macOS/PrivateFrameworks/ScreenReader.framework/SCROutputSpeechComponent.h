@@ -6,27 +6,35 @@
 
 #import <ScreenReader/SCROutputComponent.h>
 
-@class NSArray, NSDictionary, NSLock, NSMutableArray, NSMutableDictionary, NSString;
+@class NSArray, NSDictionary, NSLock, NSMutableArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface SCROutputSpeechComponent : SCROutputComponent
 {
+    int _characterTypeLookupArray[512];
     NSMutableArray *_synthesizers;
     NSLock *_synthesizersArrayLock;
     NSLock *_speechPausedLock;
-    struct _NSRange _lastSpokenWordRange;
     NSLock *_sanitizedAvailableVoicesLock;
     NSArray *_sanitizedAvailableVoices;
-    NSDictionary *_defaultLanguageTextProcessingProperties;
-    NSMutableDictionary *_mergedPunctuationLevelTables;
-    int _characterTypeLookupArray[512];
     BOOL _speechIsPaused;
+    BOOL _needToRebuildDefaultLanguageTextProcessingProperties;
+    NSDictionary *_defaultLanguageTextProcessingProperties;
     NSString *_lastSpokenString;
-    BOOL needToRebuildMergedPunctuationLevelTables;
-    BOOL needToRebuildDefaultLanguageTextProcessingProperties;
+    NSDictionary *_customPunctuationTableRules;
+    NSDictionary *_customPunctuationTableReplacements;
+    struct _NSRange __lastSpokenWordRange;
 }
 
 + (id)_createSanitizedAvailableVoices;
+- (void).cxx_destruct;
+@property(nonatomic, setter=_setLastSpokenWordRange:) struct _NSRange _lastSpokenWordRange; // @synthesize _lastSpokenWordRange=__lastSpokenWordRange;
+@property(retain, nonatomic) NSDictionary *customPunctuationTableReplacements; // @synthesize customPunctuationTableReplacements=_customPunctuationTableReplacements;
+@property(retain, nonatomic) NSDictionary *customPunctuationTableRules; // @synthesize customPunctuationTableRules=_customPunctuationTableRules;
+@property(copy, nonatomic) NSString *lastSpokenString; // @synthesize lastSpokenString=_lastSpokenString;
+@property(retain, nonatomic) NSDictionary *defaultLanguageTextProcessingProperties; // @synthesize defaultLanguageTextProcessingProperties=_defaultLanguageTextProcessingProperties;
+@property(nonatomic) BOOL needToRebuildDefaultLanguageTextProcessingProperties; // @synthesize needToRebuildDefaultLanguageTextProcessingProperties=_needToRebuildDefaultLanguageTextProcessingProperties;
+- (void)_updateCustomPunctuationTables;
 - (id)_replaceEmbeddedTTSCommandsAttributedString:(id)arg1;
 - (id)_replaceEmbeddedTTSCommands:(id)arg1;
 - (void)_replaceEmbeddedTTSCommandsMutableString:(id)arg1;
@@ -51,15 +59,14 @@ __attribute__((visibility("hidden")))
 - (BOOL)isAnySynthesizerSpeaking;
 - (id)categoryBeingSpoken;
 - (BOOL)_preflightOnTheFlySynthesizerAdjustmentAction:(id)arg1 adjustRate:(BOOL)arg2 adjustPitch:(BOOL)arg3 adjustVolume:(BOOL)arg4 adjustIntonation:(BOOL)arg5 adjustVoice:(BOOL)arg6 speakResults:(BOOL)arg7;
-- (BOOL)spliceIntoCurrentOutput:(id)arg1 category:(id)arg2;
 - (void)setAudioDevice:(unsigned int)arg1;
 - (void)_optimizeSequentialSteps:(id)arg1;
 - (void)_preflightActionForContextInformation:(id)arg1;
 - (id)_preflightIndividualAction:(id)arg1;
 - (void)_stopSynthesizerOnSpeechComponentThread:(id)arg1;
-- (BOOL)initializeSynthesizer:(id)arg1 forAction:(id)arg2 withOptions:(id)arg3;
+- (BOOL)_initializeSynthesizer:(id)arg1 forAction:(id)arg2 withOptions:(id)arg3;
 - (BOOL)initializeSynthesizer:(id)arg1 forAction:(id)arg2;
-- (id)_synthesizerOptionsForAction:(id)arg1;
+- (id)_synthesizerOptionsForAction:(id)arg1 voiceIdenifier:(id)arg2;
 - (id)_speechSynthesizerForAction:(id)arg1 owner:(id)arg2;
 - (id)_soundCacheSynthesizerForAction:(id)arg1 owner:(id)arg2;
 - (id)_findSynthesizerForAction:(id)arg1 owner:(id)arg2;
@@ -71,16 +78,17 @@ __attribute__((visibility("hidden")))
 - (int)preflightSequentialSteps:(id)arg1 runnerName:(id)arg2;
 - (id)objectForAttribute:(id)arg1;
 - (void)_handleVoicesChangedNotification:(id)arg1;
+- (void)_punctuationGroupsChanged:(id)arg1;
 - (void)handleEvent:(id)arg1;
-- (id)lastSpokenString;
 - (void)dealloc;
+- (void)setupObservers;
 - (id)init;
-- (BOOL)_makeSubstitutionsInAction:(id)arg1 stringsFileName:(id)arg2;
+- (BOOL)_makeSubstitutionsInAction:(id)arg1 stringsFileName:(id)arg2 ranges:(id)arg3 verbosityLevel:(long long)arg4;
 - (int)typeForCharacter:(int)arg1;
-- (int)typeForComposedCharacter:(id)arg1;
-- (id)_createSubstitutionStringForPunctuationString:(id)arg1 punctuationTable:(id)arg2 stringsFileName:(id)arg3;
+- (long long)typeForComposedCharacter:(id)arg1;
+- (id)_createSubstitutionStringForPunctuationString:(id)arg1 punctuationTable:(id)arg2 stringsFileName:(id)arg3 verbosityLevel:(long long)arg4;
 - (int)_substitutionActionForPunctuationString:(id)arg1 punctuationTable:(id)arg2;
-- (id)mergedPunctuationTableForVerboseness:(id)arg1;
+- (id)mergedPunctuationTableForVerboseness:(long long)arg1;
 - (id)_textProcessingProperties;
 
 @end

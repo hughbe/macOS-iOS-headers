@@ -16,6 +16,7 @@
 
 + (id)getAudioTracksAndSubtitleOptionsCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getAudioTracksAndSubtitleOptionsCompleted;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SANPVideoAudioAndSubtitleLanguageOptions *languageOptions;
 - (id)encodedClassName;
 - (id)groupIdentifier;

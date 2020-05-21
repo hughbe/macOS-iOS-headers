@@ -13,11 +13,13 @@
     _DPDaemonConnection *_connection;
 }
 
-@property(readonly, nonatomic) _DPDaemonConnection *connection; // @synthesize connection=_connection;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) _DPDaemonConnection *connection; // @synthesize connection=_connection;
 - (void)recordWords:(id)arg1;
 - (void)recordStrings:(id)arg1;
+- (void)recordBitValues:(id)arg1;
 - (void)recordNumbers:(id)arg1;
+- (void)handleReturn:(BOOL)arg1 forSelector:(id)arg2 key:(id)arg3 values:(id)arg4 error:(id)arg5;
 - (id)initWithKey:(id)arg1;
 - (id)init;
 

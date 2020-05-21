@@ -19,10 +19,25 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_localizedArguments;
     NSString *_localizedKey;
     NSString *_soundName;
+    NSString *_subtitle;
+    NSMutableArray *_subtitleLocalizedArguments;
+    NSString *_subtitleLocalizedKey;
     NSString *_text;
+    NSString *_title;
+    NSMutableArray *_titleLocalizedArguments;
+    NSString *_titleLocalizedKey;
 }
 
++ (Class)subtitleLocalizedArgumentsType;
++ (Class)titleLocalizedArgumentsType;
 + (Class)localizedArgumentsType;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *subtitleLocalizedArguments; // @synthesize subtitleLocalizedArguments=_subtitleLocalizedArguments;
+@property(retain, nonatomic) NSString *subtitleLocalizedKey; // @synthesize subtitleLocalizedKey=_subtitleLocalizedKey;
+@property(retain, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
+@property(retain, nonatomic) NSMutableArray *titleLocalizedArguments; // @synthesize titleLocalizedArguments=_titleLocalizedArguments;
+@property(retain, nonatomic) NSString *titleLocalizedKey; // @synthesize titleLocalizedKey=_titleLocalizedKey;
+@property(retain, nonatomic) NSString *title; // @synthesize title=_title;
 @property(retain, nonatomic) NSString *category; // @synthesize category=_category;
 @property(retain, nonatomic) NSString *soundName; // @synthesize soundName=_soundName;
 @property(retain, nonatomic) NSString *launchImage; // @synthesize launchImage=_launchImage;
@@ -30,7 +45,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSMutableArray *localizedArguments; // @synthesize localizedArguments=_localizedArguments;
 @property(retain, nonatomic) NSString *localizedKey; // @synthesize localizedKey=_localizedKey;
 @property(retain, nonatomic) NSString *text; // @synthesize text=_text;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -40,6 +54,18 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+- (id)subtitleLocalizedArgumentsAtIndex:(unsigned long long)arg1;
+- (unsigned long long)subtitleLocalizedArgumentsCount;
+- (void)addSubtitleLocalizedArguments:(id)arg1;
+- (void)clearSubtitleLocalizedArguments;
+@property(readonly, nonatomic) BOOL hasSubtitleLocalizedKey;
+@property(readonly, nonatomic) BOOL hasSubtitle;
+- (id)titleLocalizedArgumentsAtIndex:(unsigned long long)arg1;
+- (unsigned long long)titleLocalizedArgumentsCount;
+- (void)addTitleLocalizedArguments:(id)arg1;
+- (void)clearTitleLocalizedArguments;
+@property(readonly, nonatomic) BOOL hasTitleLocalizedKey;
+@property(readonly, nonatomic) BOOL hasTitle;
 @property(readonly, nonatomic) BOOL hasCategory;
 @property(readonly, nonatomic) BOOL hasSoundName;
 @property(readonly, nonatomic) BOOL hasLaunchImage;

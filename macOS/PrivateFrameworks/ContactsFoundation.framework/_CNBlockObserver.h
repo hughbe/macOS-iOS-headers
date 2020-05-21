@@ -8,14 +8,14 @@
 
 #import "CNObserver.h"
 
-@class NSString;
+@class CNObservableContractEnforcement, NSString;
 
-__attribute__((visibility("hidden")))
 @interface _CNBlockObserver : NSObject <CNObserver>
 {
     CDUnknownBlockType _resultBlock;
     CDUnknownBlockType _completionBlock;
     CDUnknownBlockType _failureBlock;
+    CNObservableContractEnforcement *_enforcement;
 }
 
 - (void).cxx_destruct;

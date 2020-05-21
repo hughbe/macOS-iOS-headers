@@ -6,11 +6,13 @@
 
 #import <MapKit/MKPlaceSectionViewController.h>
 
+#import "MKModuleViewControllerProtocol.h"
 #import "_MKInfoCardChildViewControllerAnalyticsDelegate.h"
 
 @class MKPlaceTextBlockCell, NSMutableArray, NSString;
 
-@interface MKPlaceEncyclopedicViewController : MKPlaceSectionViewController <_MKInfoCardChildViewControllerAnalyticsDelegate>
+__attribute__((visibility("hidden")))
+@interface MKPlaceEncyclopedicViewController : MKPlaceSectionViewController <_MKInfoCardChildViewControllerAnalyticsDelegate, MKModuleViewControllerProtocol>
 {
     BOOL _textBlockExpanded;
     MKPlaceTextBlockCell *_textCell;
@@ -19,9 +21,10 @@
     id <MKPlaceCardEncyclopedicControllerDelegate> _encyclopedicControllerDelegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <MKPlaceCardEncyclopedicControllerDelegate> encyclopedicControllerDelegate; // @synthesize encyclopedicControllerDelegate=_encyclopedicControllerDelegate;
 @property(retain, nonatomic) id <GEOEncyclopedicInfo> encyclopedicInfo; // @synthesize encyclopedicInfo=_encyclopedicInfo;
-- (void).cxx_destruct;
+- (id)infoCardChildUnactionableUIElements;
 - (id)infoCardChildPossibleActions;
 - (id)_textBlockText;
 - (id)_textBlockTitle;
@@ -29,6 +32,7 @@
 - (void)_viewEncyclopedicContent;
 - (void)_updateViews;
 - (void)viewDidLoad;
+- (BOOL)_canShowWhileLocked;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

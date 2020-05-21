@@ -7,6 +7,6 @@
 @class AVOutputContext, NSString;
 
 @protocol AVOutputDeviceMenuServiceInterface
-- (void)showMenuForOutputContext:(AVOutputContext *)arg1 outputDeviceFeature:(unsigned long long)arg2 screenRect:(struct CGRect)arg3 showDetails:(BOOL)arg4 appearanceName:(NSString *)arg5 allowReselectionOfSelectedOutputDevice:(BOOL)arg6 userInterfaceLayoutDirection:(long long)arg7 customMenuItemTitle:(NSString *)arg8 customMenuItemEnabled:(BOOL)arg9 completionHandler:(void (^)(long long))arg10;
+- (void)showMenuForOutputContext:(AVOutputContext *)arg1 outputDeviceFeature:(unsigned long long)arg2 screenRect:(struct CGRect)arg3 showDetails:(BOOL)arg4 appearanceName:(NSString *)arg5 allowReselectionOfSelectedOutputDevice:(BOOL)arg6 userInterfaceLayoutDirection:(long long)arg7 completionHandler:(void (^)(BOOL))arg8;
 @end
 

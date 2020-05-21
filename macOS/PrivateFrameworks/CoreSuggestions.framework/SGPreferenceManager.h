@@ -12,11 +12,14 @@
 {
     NSUserDefaults *_suggestionsDefaults;
     NSObject<OS_dispatch_queue> *_settingsUpdateQueue;
+    BOOL _isQueueSuspended;
 }
 
 + (id)defaultManager;
 - (void).cxx_destruct;
-- (void)registerBlock:(CDUnknownBlockType)arg1;
+- (void)_resumeNotificationQueue;
+- (void)_suspendNotificationQueue;
+- (int)registerBlock:(CDUnknownBlockType)arg1;
 - (id)init;
 
 @end

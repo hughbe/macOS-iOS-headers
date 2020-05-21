@@ -14,12 +14,14 @@
     NSUUID *_parentItemIdentifier;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic, getter=_parentItemIdentifier) NSUUID *parentItemIdentifier; // @synthesize parentItemIdentifier=_parentItemIdentifier;
 @property(readonly, nonatomic, getter=_conversation) AFConversation *conversation; // @synthesize conversation=_conversation;
-- (void).cxx_destruct;
 - (void)_addItemsForAceObjects:(id)arg1 type:(long long)arg2 dialogPhase:(id)arg3 asChildrenOfItemWithIdentifier:(id)arg4;
+- (id)_indexPathForLastRestoredItem;
 - (id)_indexPathForItemAtIndex:(long long)arg1;
 - (id)_identifierOfItemAtIndex:(long long)arg1;
+- (BOOL)itemIsRestoredAtIndex:(long long)arg1;
 - (void)removeItemsWithIdentifiers:(id)arg1;
 - (void)removeItemsAtIndexes:(id)arg1;
 - (id)identifiersForItemsAtIndexes:(id)arg1;

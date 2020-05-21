@@ -6,28 +6,32 @@
 
 #import <CoreBluetooth/CBCharacteristic.h>
 
-@class CBUUID, NSArray, NSData, NSMutableArray, NSNumber;
+@class NSArray, NSData, NSMutableArray, NSNumber;
 
 @interface CBMutableCharacteristic : CBCharacteristic
 {
-    NSNumber *_ID;
-    long long _permissions;
     NSMutableArray *_subscribedCentrals;
+    unsigned long long _permissions;
+    NSNumber *_ID;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSNumber *ID; // @synthesize ID=_ID;
+@property(nonatomic) unsigned long long permissions; // @synthesize permissions=_permissions;
 @property(readonly, retain) NSArray *subscribedCentrals; // @synthesize subscribedCentrals=_subscribedCentrals;
-@property(nonatomic) long long permissions; // @synthesize permissions=_permissions;
-@property(retain) NSArray *descriptors;
-@property(nonatomic) long long properties;
 - (id)description;
+- (void)handlePowerNotOn;
 - (BOOL)handleCentralUnsubscribed:(id)arg1;
 - (BOOL)handleCentralSubscribed:(id)arg1;
-@property(retain) NSData *value;
-@property(retain, nonatomic) CBUUID *UUID;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)dealloc;
 - (id)initWithService:(id)arg1 dictionary:(id)arg2;
-- (id)initWithType:(id)arg1 properties:(long long)arg2 value:(id)arg3 permissions:(long long)arg4;
+- (id)initWithType:(id)arg1 properties:(unsigned long long)arg2 value:(id)arg3 permissions:(unsigned long long)arg4;
+
+// Remaining properties
+@property(retain) NSArray *descriptors; // @dynamic descriptors;
+@property(nonatomic) unsigned long long properties; // @dynamic properties;
+@property(retain) NSData *value; // @dynamic value;
 
 @end
 

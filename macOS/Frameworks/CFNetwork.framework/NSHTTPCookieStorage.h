@@ -11,23 +11,27 @@
 @interface NSHTTPCookieStorage : NSObject
 {
     NSHTTPCookieStorageInternal *_internal;
+    BOOL __overrideSessionCookieAcceptPolicy;
 }
 
++ (id)_csfi:(id)arg1;
 + (id)_csff:(id)arg1;
 + (id)sharedCookieStorageForGroupContainerIdentifier:(id)arg1;
 + (id)sharedHTTPCookieStorage;
 + (void)_setSharedHTTPCookieStorage:(id)arg1;
-+ (id)_sharedCookieStorageLock;
 + (id)_groupContainerCookieStorages;
-+ (id)_groupContainerStoragesLock;
+@property(nonatomic) BOOL _overrideSessionCookieAcceptPolicy; // @synthesize _overrideSessionCookieAcceptPolicy=__overrideSessionCookieAcceptPolicy;
+- (void)_testingOfStoringOfCookie:(id)arg1;
 - (void)_getCookiesForPartition:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_getCookieStoragePartitionsCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)_getCookiesForURL:(id)arg1 mainDocumentURL:(id)arg2 partition:(id)arg3 policyProperties:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)_getCookiesForURL:(id)arg1 mainDocumentURL:(id)arg2 partition:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)getCookiesForTask:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)storeCookies:(id)arg1 forTask:(id)arg2;
 - (id)sortedCookiesUsingDescriptors:(id)arg1;
 - (id)description;
 @property unsigned long long cookieAcceptPolicy;
+- (void)_setCookies:(id)arg1 forURL:(id)arg2 mainDocumentURL:(id)arg3 policyProperties:(id)arg4;
 - (void)setCookies:(id)arg1 forURL:(id)arg2 mainDocumentURL:(id)arg3;
 - (id)_cookiesForURL:(id)arg1 mainDocumentURL:(id)arg2;
 - (id)cookiesForURL:(id)arg1;
@@ -41,6 +45,7 @@
 - (void)dealloc;
 - (id)init;
 - (id)_initWithCFHTTPCookieStorage:(struct OpaqueCFHTTPCookieStorage *)arg1;
+- (void)_saveCookies:(CDUnknownBlockType)arg1;
 - (void)_saveCookies;
 - (struct OpaqueCFHTTPCookieStorage *)_cookieStorage;
 - (void)_setPrivateBrowsingEnabled:(BOOL)arg1;

@@ -28,6 +28,7 @@
 }
 
 + (id)storageEventFromEntity:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL curated; // @synthesize curated=_curated;
 @property(readonly, nonatomic) unsigned int state; // @synthesize state=_state;
 @property(readonly, nonatomic) NSData *structuredData; // @synthesize structuredData=_structuredData;
@@ -41,7 +42,8 @@
 @property(readonly, nonatomic) NSString *sourceKey; // @synthesize sourceKey=_sourceKey;
 @property(readonly, nonatomic) SGDuplicateKey *duplicateKey; // @synthesize duplicateKey=_duplicateKey;
 @property(readonly, nonatomic) SGRecordId *recordId; // @synthesize recordId=_recordId;
-- (void).cxx_destruct;
+- (id)poiFilters;
+- (unsigned long long)geocodingMode;
 - (id)geocodedEventWithStartDate:(id)arg1 startTimeZone:(id)arg2 endDate:(id)arg3 endTimeZone:(id)arg4 locations:(id)arg5;
 - (id)geocodeLocations;
 - (id)geocodeEndTimeZone;
@@ -61,6 +63,7 @@
 - (BOOL)isFromDataDetectors;
 - (id)initWithRecordId:(id)arg1 duplicateKey:(id)arg2 sourceKey:(id)arg3 content:(id)arg4 title:(id)arg5 creationTimestamp:(struct SGUnixTimestamp_)arg6 lastModifiedTimestamp:(struct SGUnixTimestamp_)arg7 tags:(id)arg8 when:(id)arg9 locations:(id)arg10 structuredData:(id)arg11 state:(unsigned int)arg12 curated:(BOOL)arg13;
 - (id)convertToEvent:(id)arg1;
+- (id)convertToEventWithOrigin:(id)arg1;
 - (id)urlFromTags;
 
 // Remaining properties

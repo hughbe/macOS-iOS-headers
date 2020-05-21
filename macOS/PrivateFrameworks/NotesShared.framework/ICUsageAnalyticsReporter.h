@@ -10,6 +10,7 @@
 {
 }
 
++ (double)percentileOfValue:(double)arg1 givenMaximum:(double)arg2;
 + (void)clearSharedCollector;
 + (id)sharedReporter;
 - (void)logChecklistLengthFromTrackedToDoParagraphs:(id)arg1;

@@ -19,13 +19,13 @@ __attribute__((visibility("hidden")))
     long long statusType;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSString *spotlightAttribute; // @synthesize spotlightAttribute;
 @property(readonly) NSString *menuName; // @synthesize menuName;
 @property(readonly) long long statusType; // @synthesize statusType;
 - (BOOL)matchesInput:(id)arg1;
 @property(readonly) NSImage *statusImage;
 @property(readonly) NSString *displayName;
-- (void)dealloc;
 - (id)initWithStatusType:(long long)arg1 names:(id)arg2 menuName:(id)arg3 imageName:(id)arg4 spotlightAttribute:(id)arg5;
 
 @end

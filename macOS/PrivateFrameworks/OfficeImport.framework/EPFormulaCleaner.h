@@ -6,7 +6,7 @@
 
 #import <OfficeImport/EDProcessor.h>
 
-@class EDFormula, EDName, EDRowBlocks, EDSheet, OITSUIntDictionary, OITSUPointerKeyDictionary;
+@class EDFormula, EDName, EDRowBlocks, EDSheet, NSMutableDictionary, OITSUPointerKeyDictionary;
 
 __attribute__((visibility("hidden")))
 @interface EPFormulaCleaner : EDProcessor
@@ -18,23 +18,23 @@ __attribute__((visibility("hidden")))
     int mRowOffset;
     int mColumnOffset;
     EDRowBlocks *mBaseFormulaRowBlocks;
-    OITSUIntDictionary *mNameArrayedTestCache;
-    OITSUIntDictionary *mNameCircularReferenceTestCache;
+    NSMutableDictionary *mNameArrayedTestCache;
+    NSMutableDictionary *mNameCircularReferenceTestCache;
     OITSUPointerKeyDictionary *mContentOutOfLassoBoundsCache;
 }
 
+- (void).cxx_destruct;
 - (void)cleanFormula:(id)arg1 name:(id)arg2;
 - (void)cleanFormula:(id)arg1 sheet:(id)arg2;
 - (void)applyProcessorToObject:(id)arg1 sheet:(id)arg2;
 - (_Bool)isObjectSupported:(id)arg1;
-- (void)dealloc;
 - (void)prepareToProcessFormula:(id)arg1 sheet:(id)arg2 name:(id)arg3;
 - (void)reset;
 - (void)reportWarning:(int)arg1 parameter:(id)arg2;
 - (void)reportWarning:(int)arg1;
 - (id)newFormulaToCleanFromSharedFormula:(id)arg1;
-- (BOOL)doesNameIndexContainCircularReferences:(unsigned int)arg1 sheetIndex:(unsigned long long)arg2 previousNameIndexes:(set_55031187 *)arg3;
-- (BOOL)isArrayedFormulaSupported:(id)arg1 allowSimpleRanges:(BOOL)arg2;
+- (BOOL)doesNameIndexContainCircularReferences:(unsigned int)arg1 sheetIndex:(unsigned long long)arg2 previousNameIndexes:(set_531c353a *)arg3;
+- (BOOL)isArrayedFormulaSupported:(id)arg1 allowSimpleRanges:(BOOL)arg2 formulasBeingEvaluated:(id)arg3;
 - (id)useEvaluationStackToGetParameter:(unsigned int)arg1 tokenIndex:(unsigned int)arg2 allReferencesAllowed:(_Bool)arg3 success:(_Bool *)arg4;
 - (unsigned int)useEvaluationStackToGetParameter:(unsigned int)arg1 tokenIndex:(unsigned int)arg2;
 - (int)useEvaluationStackToGetParameterTokenType:(unsigned int)arg1 tokenIndex:(unsigned int)arg2 success:(_Bool *)arg3;

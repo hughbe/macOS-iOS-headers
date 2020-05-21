@@ -15,12 +15,12 @@ __attribute__((visibility("hidden")))
 }
 
 - (void).cxx_destruct;
+- (id)_realReadingList;
+- (BOOL)_removeRedundantReadingLists;
 - (void)_collectVisibleBookmarksBars:(id *)arg1 menus:(id *)arg2;
-- (void)_getNumberOfVisibleDuplicateBookmarkBars:(unsigned long long *)arg1 menus:(unsigned long long *)arg2 visibleBookmarksBars:(id)arg3 visibleBookmarksMenus:(id)arg4;
 - (void)_getNumberOfVisibleDuplicateBookmarkBars:(unsigned long long *)arg1 menus:(unsigned long long *)arg2;
-- (void)_reportNumberOfUserVisibleDuplicateBookmarkBars:(unsigned long long)arg1 duplicateBookmarkMenus:(unsigned long long)arg2;
-- (BOOL)mergeUserVisibleTopLevelDuplicates;
-- (void)reportUserVisibleTopLevelDuplicates;
+- (void)_reportNumberOfUserVisibleDuplicateBookmarkBarsAndMenus;
+- (BOOL)mergeTopLevelDuplicates;
 - (id)initWithRootBookmark:(id)arg1;
 - (id)init;
 

@@ -6,24 +6,26 @@
 
 #import "NSObject.h"
 
-@class ISCrossfadeItem, ISWrappedAVPlayer;
+@class ISWrappedAVPlayer;
 
 @interface ISPlayerOutputContent : NSObject
 {
+    BOOL _photoIsOriginal;
     int _photoEXIFOrientation;
     struct CGImage *_photo;
     ISWrappedAVPlayer *_videoPlayer;
-    ISCrossfadeItem *_crossfadeItem;
+    struct CGSize _videoSize;
 }
 
-@property(readonly, nonatomic) ISCrossfadeItem *crossfadeItem; // @synthesize crossfadeItem=_crossfadeItem;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) struct CGSize videoSize; // @synthesize videoSize=_videoSize;
 @property(readonly, nonatomic) ISWrappedAVPlayer *videoPlayer; // @synthesize videoPlayer=_videoPlayer;
 @property(readonly, nonatomic) int photoEXIFOrientation; // @synthesize photoEXIFOrientation=_photoEXIFOrientation;
+@property(readonly, nonatomic) BOOL photoIsOriginal; // @synthesize photoIsOriginal=_photoIsOriginal;
 @property(readonly, nonatomic) struct CGImage *photo; // @synthesize photo=_photo;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithPhoto:(struct CGImage *)arg1 photoEXIFOrientation:(int)arg2 videoPlayer:(id)arg3 crossfadeItem:(id)arg4;
+- (id)initWithPhoto:(struct CGImage *)arg1 photoIsOriginal:(BOOL)arg2 photoEXIFOrientation:(int)arg3 videoPlayer:(id)arg4 videoSize:(struct CGSize)arg5;
 
 @end
 

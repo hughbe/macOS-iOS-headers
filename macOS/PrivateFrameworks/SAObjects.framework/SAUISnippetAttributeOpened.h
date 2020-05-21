@@ -14,6 +14,7 @@
 
 + (id)snippetAttributeOpenedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)snippetAttributeOpened;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *attributeValue;
 @property(copy, nonatomic) NSString *attributeName;
 - (id)encodedClassName;

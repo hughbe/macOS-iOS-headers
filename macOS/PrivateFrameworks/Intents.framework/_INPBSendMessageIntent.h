@@ -7,47 +7,81 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBSendMessageIntent.h"
 
-@class NSMutableArray, NSString, PBUnknownFields, _INPBContact, _INPBIntentMetadata, _INPBString;
+@class NSArray, NSString, _INPBContact, _INPBDataString, _INPBIntentMetadata, _INPBString;
 
-@interface _INPBSendMessageIntent : PBCodable <NSCopying>
+@interface _INPBSendMessageIntent : PBCodable <_INPBSendMessageIntent, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
+    struct {
+        unsigned int effect:1;
+        unsigned int messageType:1;
+    } _has;
+    BOOL __encodeLegacyGloryData;
+    int _effect;
+    int _messageType;
+    NSArray *_attachments;
     _INPBString *_content;
+    NSString *_conversationIdentifier;
     _INPBString *_groupName;
     _INPBIntentMetadata *_intentMetadata;
-    NSMutableArray *_recipients;
+    NSArray *_recipients;
     _INPBContact *_sender;
     NSString *_serviceName;
+    _INPBDataString *_speakableGroupName;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)recipientType;
-+ (id)options;
-@property(retain, nonatomic) _INPBString *groupName; // @synthesize groupName=_groupName;
-@property(retain, nonatomic) _INPBString *content; // @synthesize content=_content;
-@property(retain, nonatomic) NSMutableArray *recipients; // @synthesize recipients=_recipients;
-@property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
++ (Class)attachmentsType;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(retain, nonatomic) _INPBDataString *speakableGroupName; // @synthesize speakableGroupName=_speakableGroupName;
+@property(copy, nonatomic) NSString *serviceName; // @synthesize serviceName=_serviceName;
+@property(retain, nonatomic) _INPBContact *sender; // @synthesize sender=_sender;
+@property(copy, nonatomic) NSArray *recipients; // @synthesize recipients=_recipients;
+@property(nonatomic) int messageType; // @synthesize messageType=_messageType;
+@property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
+@property(retain, nonatomic) _INPBString *groupName; // @synthesize groupName=_groupName;
+@property(nonatomic) int effect; // @synthesize effect=_effect;
+@property(copy, nonatomic) NSString *conversationIdentifier; // @synthesize conversationIdentifier=_conversationIdentifier;
+@property(retain, nonatomic) _INPBString *content; // @synthesize content=_content;
+@property(copy, nonatomic) NSArray *attachments; // @synthesize attachments=_attachments;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-@property(readonly, nonatomic) BOOL hasGroupName;
-@property(readonly, nonatomic) BOOL hasContent;
+@property(readonly, nonatomic) BOOL hasSpeakableGroupName;
+@property(readonly, nonatomic) BOOL hasServiceName;
+@property(readonly, nonatomic) BOOL hasSender;
 - (id)recipientAtIndex:(unsigned long long)arg1;
-- (unsigned long long)recipientsCount;
+@property(readonly, nonatomic) unsigned long long recipientsCount;
 - (void)addRecipient:(id)arg1;
 - (void)clearRecipients;
+- (int)StringAsMessageType:(id)arg1;
+- (id)messageTypeAsString:(int)arg1;
+@property(nonatomic) BOOL hasMessageType;
 @property(readonly, nonatomic) BOOL hasIntentMetadata;
-@property(retain, nonatomic) _INPBContact *sender;
-@property(readonly, nonatomic) BOOL hasSender;
-@property(retain, nonatomic) NSString *serviceName;
-@property(readonly, nonatomic) BOOL hasServiceName;
+@property(readonly, nonatomic) BOOL hasGroupName;
+- (int)StringAsEffect:(id)arg1;
+- (id)effectAsString:(int)arg1;
+@property(nonatomic) BOOL hasEffect;
+@property(readonly, nonatomic) BOOL hasConversationIdentifier;
+@property(readonly, nonatomic) BOOL hasContent;
+- (id)attachmentsAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long attachmentsCount;
+- (void)addAttachments:(id)arg1;
+- (void)clearAttachments;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

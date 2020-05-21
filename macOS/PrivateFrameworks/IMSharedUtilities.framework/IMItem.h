@@ -7,12 +7,12 @@
 #import "NSObject.h"
 
 #import "IMRemoteObjectCoding.h"
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@class NSDate, NSDictionary, NSString;
+@class NSData, NSDate, NSDictionary, NSString;
 
-@interface IMItem : NSObject <NSCoding, NSCopying, IMRemoteObjectCoding>
+@interface IMItem : NSObject <NSSecureCoding, NSCopying, IMRemoteObjectCoding>
 {
     NSString *_handle;
     NSString *_service;
@@ -28,10 +28,38 @@
     id _context;
     long long _type;
     NSString *_balloonBundleID;
+    unsigned long long _sortID;
+    NSString *_destinationCallerID;
+    NSDate *_clientSendTime;
+    NSString *_replyToGUID;
+    NSString *_personCentric;
+    long long _cloudKitSyncState;
+    NSString *_cloudKitRecordID;
+    NSData *_cloudKitServerChangeTokenBlob;
+    NSString *_cloudKitRecordChangeTag;
+    NSString *_parentChatID;
+    long long _srCloudKitSyncState;
+    NSString *_srCloudKitRecordID;
+    NSString *_srCloudKitRecordChangeTag;
 }
 
++ (BOOL)supportsSecureCoding;
++ (id)stringGUID;
 + (Class)classForMessageItemDictionary:(id)arg1;
 + (Class)classForIMItemType:(long long)arg1;
+@property(copy, nonatomic) NSString *srCloudKitRecordChangeTag; // @synthesize srCloudKitRecordChangeTag=_srCloudKitRecordChangeTag;
+@property(copy, nonatomic) NSString *srCloudKitRecordID; // @synthesize srCloudKitRecordID=_srCloudKitRecordID;
+@property(nonatomic) long long srCloudKitSyncState; // @synthesize srCloudKitSyncState=_srCloudKitSyncState;
+@property(copy, nonatomic) NSString *parentChatID; // @synthesize parentChatID=_parentChatID;
+@property(copy, nonatomic) NSString *cloudKitRecordChangeTag; // @synthesize cloudKitRecordChangeTag=_cloudKitRecordChangeTag;
+@property(copy, nonatomic) NSData *cloudKitServerChangeTokenBlob; // @synthesize cloudKitServerChangeTokenBlob=_cloudKitServerChangeTokenBlob;
+@property(copy, nonatomic) NSString *cloudKitRecordID; // @synthesize cloudKitRecordID=_cloudKitRecordID;
+@property(nonatomic) long long cloudKitSyncState; // @synthesize cloudKitSyncState=_cloudKitSyncState;
+@property(retain, nonatomic) NSString *personCentric; // @synthesize personCentric=_personCentric;
+@property(copy, nonatomic) NSString *replyToGUID; // @synthesize replyToGUID=_replyToGUID;
+@property(retain, nonatomic) NSDate *clientSendTime; // @synthesize clientSendTime=_clientSendTime;
+@property(retain, nonatomic) NSString *destinationCallerID; // @synthesize destinationCallerID=_destinationCallerID;
+@property(nonatomic) unsigned long long sortID; // @synthesize sortID=_sortID;
 @property(retain, nonatomic) NSString *balloonBundleID; // @synthesize balloonBundleID=_balloonBundleID;
 @property(nonatomic) long long type; // @synthesize type=_type;
 @property(retain, nonatomic) id context; // @synthesize context=_context;
@@ -47,8 +75,12 @@
 @property(retain, nonatomic) NSString *service; // @synthesize service=_service;
 @property(retain, nonatomic) NSString *handle; // @synthesize handle=_handle;
 @property(readonly, nonatomic) BOOL isLastMessageCandidate;
+@property(readonly, nonatomic) BOOL isFirstMessageCandidate;
 - (unsigned long long)hash;
+- (BOOL)unsentIsFromMeItem;
+- (BOOL)isOlderThanItem:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+@property(retain, nonatomic) NSString *personCentricID;
 @property(retain, nonatomic) NSString *sender;
 @property(readonly, nonatomic) BOOL isFromMe;
 - (id)dictionaryRepresentation;

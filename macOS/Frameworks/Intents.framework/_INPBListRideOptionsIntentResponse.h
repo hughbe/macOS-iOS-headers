@@ -7,48 +7,55 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBListRideOptionsIntentResponse.h"
 
-@class NSMutableArray, PBUnknownFields, _INPBTimestamp;
+@class NSArray, NSString, _INPBTimestamp;
 
-@interface _INPBListRideOptionsIntentResponse : PBCodable <NSCopying>
+@interface _INPBListRideOptionsIntentResponse : PBCodable <_INPBListRideOptionsIntentResponse, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    _INPBTimestamp *_expirationDate;
-    NSMutableArray *_paymentMethods;
-    NSMutableArray *_rideOptions;
-    BOOL _supportsApplePayForPayment;
     struct {
         unsigned int supportsApplePayForPayment:1;
     } _has;
+    BOOL _supportsApplePayForPayment;
+    BOOL __encodeLegacyGloryData;
+    _INPBTimestamp *_expirationDate;
+    NSArray *_paymentMethods;
+    NSArray *_rideOptions;
 }
 
-+ (Class)paymentMethodsType;
++ (BOOL)supportsSecureCoding;
 + (Class)rideOptionsType;
-+ (id)options;
-@property(retain, nonatomic) _INPBTimestamp *expirationDate; // @synthesize expirationDate=_expirationDate;
-@property(nonatomic) BOOL supportsApplePayForPayment; // @synthesize supportsApplePayForPayment=_supportsApplePayForPayment;
-@property(retain, nonatomic) NSMutableArray *paymentMethods; // @synthesize paymentMethods=_paymentMethods;
-@property(retain, nonatomic) NSMutableArray *rideOptions; // @synthesize rideOptions=_rideOptions;
++ (Class)paymentMethodsType;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(nonatomic) BOOL supportsApplePayForPayment; // @synthesize supportsApplePayForPayment=_supportsApplePayForPayment;
+@property(copy, nonatomic) NSArray *rideOptions; // @synthesize rideOptions=_rideOptions;
+@property(copy, nonatomic) NSArray *paymentMethods; // @synthesize paymentMethods=_paymentMethods;
+@property(retain, nonatomic) _INPBTimestamp *expirationDate; // @synthesize expirationDate=_expirationDate;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-@property(readonly, nonatomic) BOOL hasExpirationDate;
 @property(nonatomic) BOOL hasSupportsApplePayForPayment;
-- (id)paymentMethodsAtIndex:(unsigned long long)arg1;
-- (unsigned long long)paymentMethodsCount;
-- (void)addPaymentMethods:(id)arg1;
-- (void)clearPaymentMethods;
 - (id)rideOptionsAtIndex:(unsigned long long)arg1;
-- (unsigned long long)rideOptionsCount;
+@property(readonly, nonatomic) unsigned long long rideOptionsCount;
 - (void)addRideOptions:(id)arg1;
 - (void)clearRideOptions;
+- (id)paymentMethodsAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long paymentMethodsCount;
+- (void)addPaymentMethods:(id)arg1;
+- (void)clearPaymentMethods;
+@property(readonly, nonatomic) BOOL hasExpirationDate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

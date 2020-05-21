@@ -8,17 +8,20 @@
 
 #import "CNVCardPerson.h"
 
-@class NSArray, NSData, NSDateComponents, NSDictionary, NSSet, NSString;
+@class CNVCardFilteredPersonScope, NSArray, NSData, NSDateComponents, NSDictionary, NSString;
 
 @interface CNVCardFilteredPerson : NSObject <CNVCardPerson>
 {
     id <CNVCardPerson> _person;
-    NSSet *_blacklist;
+    CNVCardFilteredPersonScope *_scope;
 }
 
-+ (id)filteredPersonWithPerson:(id)arg1 blacklistedFields:(id)arg2;
++ (id)filteredPersonWithPerson:(id)arg1 scope:(id)arg2;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) CNVCardFilteredPersonScope *scope; // @synthesize scope=_scope;
+@property(readonly, nonatomic) id <CNVCardPerson> person; // @synthesize person=_person;
 @property(readonly) NSArray *unknownProperties;
+@property(readonly) int downtimeWhitelistAuthorization;
 @property(readonly) NSString *preferredApplePersonaIdentifier;
 @property(readonly) NSString *preferredLikenessSource;
 @property(readonly) NSString *phonemeData;
@@ -36,7 +39,6 @@
 @property(readonly) NSDictionary *largeImageCropRects;
 @property(readonly) NSDictionary *imageCropRects;
 @property(readonly) NSArray *imageReferences;
-- (id)jpegImageDataOfAllowableKinds:(id)arg1 maximumLength:(unsigned long long)arg2 cropRects:(id *)arg3;
 - (id)filterItems:(id)arg1 property:(id)arg2;
 @property(readonly) NSDictionary *activityAlerts;
 @property(readonly) NSArray *calendarURIs;
@@ -66,7 +68,7 @@
 @property(readonly) NSString *middleName;
 @property(readonly) NSString *lastName;
 @property(readonly) NSString *firstName;
-- (id)initWithPerson:(id)arg1 blacklistedFields:(id)arg2;
+- (id)initWithPerson:(id)arg1 scope:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

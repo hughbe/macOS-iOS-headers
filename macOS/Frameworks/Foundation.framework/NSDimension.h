@@ -18,6 +18,7 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)baseUnit;
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)isEqual:(id)arg1;

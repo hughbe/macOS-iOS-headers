@@ -28,11 +28,10 @@
 + (id)timeRangeForDayEnglobing:(id)arg1;
 + (BOOL)supportsSecureCoding;
 + (id)timeRangeForRecurrencesFromDate:(id)arg1;
-+ (id)timeRangeWithStartNSCalendarDate:(id)arg1 withEndNSCalendarDate:(id)arg2;
+- (void).cxx_destruct;
 - (id)minus:(id)arg1;
 - (id)intersection:(id)arg1;
 - (id)union:(id)arg1;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (long long)compareStartDate:(id)arg1;
 - (BOOL)isEqualTo:(id)arg1;

@@ -8,25 +8,29 @@
 
 #import "WBSCloudHistoryDataStore.h"
 
-@class CKDatabase, CKRecordZone, CKRecordZoneID, NSObject<OS_dispatch_queue>, WBSCloudHistoryConfiguration;
+@class CKDatabase, CKRecordZone, CKRecordZoneID, NSObject<OS_dispatch_queue>, NSOperationQueue, WBSCloudHistoryConfiguration;
 
 @interface WBSCloudHistoryStore : NSObject <WBSCloudHistoryDataStore>
 {
     NSObject<OS_dispatch_queue> *_databaseQueue;
+    NSOperationQueue *_cloudKitOperationQueue;
     CKDatabase *_database;
     CKRecordZoneID *_recordZoneID;
     CKRecordZone *_recordZone;
     WBSCloudHistoryConfiguration *_configuration;
+    BOOL _useManateeContainer;
 }
 
 - (void).cxx_destruct;
 - (void)fetchNumberOfDevicesInSyncCircleWithCompletion:(CDUnknownBlockType)arg1;
+- (void)deleteHistoryZoneWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_resetRecordZone;
 - (void)_prepareRecordZoneWithCompletion:(CDUnknownBlockType)arg1;
 - (id)_dictionaryForRecordData:(id)arg1;
 - (id)_recordDataForDictionary:(id)arg1;
 - (id)_recordWithType:(id)arg1 version:(unsigned long long)arg2 dataDictionary:(id)arg3;
 - (void)_appendRecord:(id)arg1 toResult:(id)arg2;
+- (void)_scheduleOperation:(id)arg1;
 - (void)_fetchRecordsWithServerChangeToken:(id)arg1 numberOfFetchRecordsOperationsPerformedSoFar:(unsigned long long)arg2 result:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_configureFetchChangesOperation:(id)arg1;
 - (void)fetchRecordsWithServerChangeTokenData:(id)arg1 completion:(CDUnknownBlockType)arg2;
@@ -40,7 +44,7 @@
 - (void)saveCloudHistoryVisits:(id)arg1 tombstones:(id)arg2 longLivedOperationPersistenceCompletion:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
 - (BOOL)_shouldTryToResetRecordZoneForError:(id)arg1;
 - (void)initializePushNotifications:(CDUnknownBlockType)arg1;
-- (id)initWithConfiguration:(id)arg1;
+- (id)initWithConfiguration:(id)arg1 useManateeContainer:(BOOL)arg2;
 
 @end
 

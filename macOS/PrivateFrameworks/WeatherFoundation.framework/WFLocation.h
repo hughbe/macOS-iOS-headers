@@ -34,6 +34,7 @@
 + (BOOL)supportsSecureCoding;
 + (id)knownKeys;
 + (long long)currentArchiveVersion;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSDate *creationDate; // @synthesize creationDate=_creationDate;
 @property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(copy, nonatomic) NSString *weatherDisplayName; // @synthesize weatherDisplayName=_weatherDisplayName;
@@ -47,11 +48,11 @@
 @property(copy, nonatomic) NSString *state; // @synthesize state=_state;
 @property(copy, nonatomic) NSString *county; // @synthesize county=_county;
 @property(copy, nonatomic) NSString *city; // @synthesize city=_city;
-- (void).cxx_destruct;
 - (id)initWithCloudDictionaryRepresentation:(id)arg1;
 - (id)cloudDictionaryRepresentation;
 - (id)initWithLocalDataRepresentation:(id)arg1;
 - (id)localDataRepresentation;
+- (id)countriesSupportAQI;
 @property(readonly, nonatomic) BOOL shouldQueryForAirQualityData;
 - (id)sunsetForDate:(id)arg1;
 - (id)sunriseForDate:(id)arg1;
@@ -66,9 +67,10 @@
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithPlacemark:(id)arg1;
+- (id)initWithMapItem:(id)arg1 isCurrentLocation:(BOOL)arg2;
 - (id)initWithMapItem:(id)arg1;
 - (id)initWithSearchResponse:(id)arg1;
-- (id)init;
+@property(readonly, nonatomic) NSString *wf_weatherChannelGeocodeValue;
 
 @end
 

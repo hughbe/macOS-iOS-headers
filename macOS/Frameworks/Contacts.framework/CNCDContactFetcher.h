@@ -6,15 +6,20 @@
 
 #import "NSObject.h"
 
-@class CNCDContactFetchRequestDescription, CNCDPersistenceContext;
+@class CNCDContactFetchRequestDescription, CNCDMeContactFetcher, CNCDPersistenceContext;
 
 @interface CNCDContactFetcher : NSObject
 {
     CNCDContactFetchRequestDescription *_fetchRequestDescription;
     CNCDPersistenceContext *_persistenceContext;
+    CNCDMeContactFetcher *_meContactFetcher;
 }
 
 + (id)contactsForFetchRequest:(id)arg1 inPersistenceStack:(id)arg2 error:(id *)arg3;
++ (id)os_log;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) CNCDPersistenceContext *persistenceContext; // @synthesize persistenceContext=_persistenceContext;
+@property(readonly, nonatomic) CNCDContactFetchRequestDescription *fetchRequestDescription; // @synthesize fetchRequestDescription=_fetchRequestDescription;
 - (id)_fetchContactsFutureWithPredicate:(id)arg1;
 - (unsigned long long)_countForContactsWithPredicate:(id)arg1;
 - (id)_contactsWithPredicate:(id)arg1 inRange:(id)arg2 error:(id *)arg3;
@@ -28,8 +33,8 @@
 - (id)fetchRequestWithPredicate:(id)arg1;
 - (id)fetchExchangeContactsMatchingPredicate:(id)arg1 error:(id *)arg2;
 - (id)fetchContainerScopedContactsMatchingPredicate:(id)arg1 error:(id *)arg2;
+- (id)fetchUnscopedContactsMatchingPredicate:(id)arg1 error:(id *)arg2;
 - (id)fetchContacts:(id *)arg1;
-- (void)dealloc;
 - (id)initWithFetchRequestDescription:(id)arg1 persistenceContext:(id)arg2;
 - (id)init;
 

@@ -10,23 +10,23 @@
 
 @class NSString, TKTonePickerViewController;
 
-__attribute__((visibility("hidden")))
 @interface ABAlertToneCollectionViewItem : ABCollectionViewItem <TKTonePickerViewControllerDelegate>
 {
     TKTonePickerViewController *_tonePickerViewController;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) TKTonePickerViewController *tonePickerViewController; // @synthesize tonePickerViewController=_tonePickerViewController;
 - (BOOL)supportsClickToEdit;
 - (void)tonePickerViewController:(id)arg1 selectedToneWithIdentifier:(id)arg2;
+- (BOOL)shouldEnableEditPopupButton;
 - (id)_labelMenuItems;
 - (id)_localizedLabel;
 - (BOOL)_shouldShowRemoveItemButton;
 - (BOOL)_shouldShowAddItemButton;
 - (id)toneNameForIdentifier:(id)arg1;
-- (id)toneIdentifierForAlertDictionary:(id)arg1;
+- (id)toneIdentifierFromAlert:(id)arg1;
 - (void)_updateViewValue;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

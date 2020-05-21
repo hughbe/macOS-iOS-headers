@@ -8,6 +8,7 @@
 
 @class NSImage;
 
+__attribute__((visibility("hidden")))
 @interface NSPatternColor : NSColor
 {
     NSImage *_patternImage;
@@ -21,6 +22,8 @@
 - (BOOL)isEqual:(id)arg1;
 - (id)patternImage;
 - (id)description;
+- (id)colorUsingType:(long long)arg1;
+- (long long)type;
 - (id)colorSpaceName;
 - (id)colorUsingColorSpaceName:(id)arg1 device:(id)arg2;
 - (struct CGColor *)CGColor;

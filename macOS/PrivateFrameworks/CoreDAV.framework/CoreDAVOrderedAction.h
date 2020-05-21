@@ -14,10 +14,10 @@
     NSURL *_priorURL;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSURL *priorURL; // @synthesize priorURL=_priorURL;
 @property(readonly, nonatomic) int absoluteOrder; // @synthesize absoluteOrder=_absoluteOrder;
 - (id)description;
-- (void)dealloc;
 - (id)initWithAction:(int)arg1 context:(id)arg2 absoluteOrder:(int)arg3;
 
 @end

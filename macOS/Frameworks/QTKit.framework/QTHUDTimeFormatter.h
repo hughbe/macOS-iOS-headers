@@ -53,11 +53,11 @@
 - (void)setLocale:(id)arg1;
 - (id)locale;
 - (double)timeIntervalFromString:(id)arg1;
-- (CDStruct_900afa40)QTTimeFromString:(id)arg1;
-- (CDStruct_1b6d18a9)CMTimeFromString:(id)arg1;
+- (CDStruct_2ec95fd7)QTTimeFromString:(id)arg1;
+- (CDStruct_198678f7)CMTimeFromString:(id)arg1;
 - (id)stringFromTimeInterval:(double)arg1;
-- (id)stringFromQTTime:(CDStruct_900afa40)arg1;
-- (id)stringFromCMTime:(CDStruct_1b6d18a9)arg1;
+- (id)stringFromQTTime:(CDStruct_2ec95fd7)arg1;
+- (id)stringFromCMTime:(CDStruct_198678f7)arg1;
 - (BOOL)isPartialStringValid:(id *)arg1 proposedSelectedRange:(struct _NSRange *)arg2 originalString:(id)arg3 originalSelectedRange:(struct _NSRange)arg4 errorDescription:(id *)arg5;
 - (BOOL)getObjectValue:(out id *)arg1 forString:(id)arg2 errorDescription:(out id *)arg3;
 - (id)editingStringForObjectValue:(id)arg1;

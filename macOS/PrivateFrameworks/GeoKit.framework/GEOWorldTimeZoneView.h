@@ -26,16 +26,20 @@
     BOOL pulseSelectedCity;
     CALayer *_pinLayer;
     CALayer *_pinShadowLayer;
+    struct CGPoint _pinPoint;
 }
 
 + (struct CGImage *)_tentativeSelectedCityImage:(double)arg1;
 + (struct CGImage *)_selectedCityImage:(double)arg1;
 + (struct CGImage *)_smallDotCityImage:(double)arg1;
+@property struct CGPoint pinPoint; // @synthesize pinPoint=_pinPoint;
 @property(retain) NSString *nameToSearch; // @synthesize nameToSearch;
 @property BOOL isBusy; // @synthesize isBusy;
 - (void)viewDidMoveToWindow;
 - (void)removePin;
 - (void)dropPinToCity:(id)arg1;
+- (void)updateSelectedCityLayer;
+- (void)updatePinLayer;
 - (void)dropPinToPoint:(struct CGPoint)arg1;
 - (id)pinShadowLayer;
 - (id)pinLayer;
@@ -50,6 +54,7 @@
 - (BOOL)resignFirstResponder;
 - (BOOL)becomeFirstResponder;
 - (BOOL)acceptsFirstResponder;
+- (void)effectiveAppearanceDidChange;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)_setIsBusyToNO;
 - (void)_startBusyTimer;
@@ -67,6 +72,7 @@
 - (void)_seachForCityAtLongitude:(double)arg1 latitude:(double)arg2 longitudeSpan:(double)arg3 latitudeSpan:(double)arg4 timeZoneNamesScope:(id)arg5;
 - (void)_findCityAtLongLatOpererationFinished:(id)arg1;
 @property BOOL isSearchingByName;
+- (void)setSelectedMaskForTimeZone:(id)arg1;
 @property(retain, nonatomic) GEOCity *selectedCity;
 - (void)_setSelectedCityWithManagedObjectID:(id)arg1;
 @property(readonly) NSOperationQueue *operationQueue;
@@ -87,6 +93,7 @@
 @property BOOL pulseSelectedCity;
 - (id)pulseLayer;
 - (void)dealloc;
+- (void)awakeFromNib;
 
 @end
 

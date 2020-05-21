@@ -6,86 +6,77 @@
 
 #import "NSView.h"
 
+#import "VisualTabPickerLayoutEngineInputProvider.h"
 #import "VisualTabPickerTileContainerDataSource.h"
 #import "VisualTabPickerTileContainerDelegate.h"
 
-@class FlippedView, NSMutableArray, NSMutableDictionary, NSString, VisualTabPickerViewController;
+@class FlippedView, NSMapTable, NSMutableArray, NSString, VisualTabPickerLayoutEngine, VisualTabPickerViewController;
 
 __attribute__((visibility("hidden")))
-@interface VisualTabPickerGridView : NSView <VisualTabPickerTileContainerDataSource, VisualTabPickerTileContainerDelegate>
+@interface VisualTabPickerGridView : NSView <VisualTabPickerTileContainerDataSource, VisualTabPickerTileContainerDelegate, VisualTabPickerLayoutEngineInputProvider>
 {
     FlippedView *_gridContainerView;
     NSMutableArray *_tileContainerViews;
-    NSMutableArray *_arrayOfTabItemsPerContainer;
-    NSMutableArray *_additionalVerticalOffsetForTilesAtRow;
-    NSMutableDictionary *_cachedSnapshots;
-    unsigned long long _currentMaximumNumberOfContainersPerRow;
-    double _leftGridOffset;
-    double _tileWidth;
-    double _tileHeight;
+    NSMutableArray *_tabViewItems;
+    VisualTabPickerLayoutEngine *_layoutEngine;
     BOOL _didStartEntryAnimation;
-    BOOL _shouldDisplayHostnameForThumbnailContainers;
+    NSMapTable *_webViewThumbnailViewReuseDictionary;
     BOOL _gridAnimationInProgress;
     id <VisualTabPickerGridViewDataSource> _dataSource;
     id <VisualTabPickerGridViewDelegate> _delegate;
     VisualTabPickerViewController *_visualTabPickerViewController;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL gridAnimationInProgress; // @synthesize gridAnimationInProgress=_gridAnimationInProgress;
-@property(readonly, nonatomic) BOOL shouldDisplayHostnameForThumbnailContainers; // @synthesize shouldDisplayHostnameForThumbnailContainers=_shouldDisplayHostnameForThumbnailContainers;
 @property(nonatomic) __weak VisualTabPickerViewController *visualTabPickerViewController; // @synthesize visualTabPickerViewController=_visualTabPickerViewController;
 @property(nonatomic) __weak id <VisualTabPickerGridViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <VisualTabPickerGridViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
-- (void).cxx_destruct;
-- (id)_snapshotOfView:(id)arg1;
-- (id)_snapshotOfView:(id)arg1 ofType:(long long)arg2 viewWasShownInWindow:(BOOL)arg3;
-- (id)_snapshotViewForView:(id)arg1 ofType:(long long)arg2 viewWasShownInWindow:(BOOL)arg3;
-- (void)_cacheSelectedTabSnapshotIfPossible;
-- (double)_additionalHeightTakenByStackedTilesForRow:(unsigned long long)arg1;
-- (void)_getHorizontalLeftOffset:(double *)arg1 rightOffset:(double *)arg2;
+- (void)_updateVisibilityOfTileContainerViews;
+- (void)visibleBoundsDidChange;
 - (void)_computeArrayOfTabItemsPerContainer;
 - (void)_addCreateNewTabContainerView;
-- (void)_addContainerViewAtIndex:(unsigned long long)arg1 isVisible:(BOOL)arg2;
+- (void)_addContainerViewAtIndex:(unsigned long long)arg1 isVisible:(BOOL)arg2 isFocused:(BOOL)arg3;
 - (void)_setUpContainerViews;
-- (double)_horizontalMargin;
 - (void)_setUpGridContainer;
-- (void)_containerViewForTabItem:(id)arg1 containerView:(id *)arg2 indexInContainerView:(unsigned long long *)arg3;
-- (unsigned long long)_maximumNumberOfContainersPerRow;
+- (id)_containerViewForTabItem:(id)arg1;
 - (unsigned long long)_indexOfContainerForTabViewItem:(id)arg1;
-- (id)_tabViewItemAtIndex:(unsigned long long)arg1 inContainerView:(id)arg2;
-- (id)_tabViewItemAtIndex:(unsigned long long)arg1 inContainerAtIndex:(unsigned long long)arg2;
+- (id)_tabViewItemForContainerView:(id)arg1;
 - (unsigned long long)_indexForContainerView:(id)arg1;
 - (BOOL)_shouldDisplayNewTabContainer;
-- (unsigned long long)_numberOfRows;
 - (unsigned long long)_numberOfTilesInGridView;
-- (struct CGRect)_frameForTileAtIndex:(unsigned long long)arg1;
-- (void)_computeLayoutConstants;
 - (void)_hideTilesNotVisibleDuringExitAnimation;
 - (void)_willStartExitAnimation;
-- (void)_entryAnimationHasFinished;
 - (void)_unhideAllTiles;
 - (struct _NSRange)_rangeOfVisibleTiles;
 - (void)_resetGridView;
 - (double)_toolbarHeight;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (id)accessibilityAttributeNames;
-- (BOOL)accessibilityIsIgnored;
+- (id)accessibilityIdentifier;
+- (id)accessibilityLabel;
+- (id)accessibilityRole;
+- (BOOL)isAccessibilityElement;
 - (void)_dispatchMouseEventToTileContainers:(id)arg1;
 - (void)mouseMoved:(id)arg1;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
-- (void)visualTabPickerTileContainerView:(id)arg1 didToggleMuteButtonOnTileAtIndex:(unsigned long long)arg2;
-- (void)didRequestNewTabForVisualTabPickerTileContainerView:(id)arg1;
-- (void)visualTabPickerTileContainerView:(id)arg1 didSelectTileAtIndex:(unsigned long long)arg2;
-- (void)visualTabPickerTileContainerView:(id)arg1 closeTileAtIndex:(unsigned long long)arg2;
-- (BOOL)canCloseVisualTabPickerTileContainerView:(id)arg1;
-- (int)visualTabPickerTileContainerView:(id)arg1 muteButtonStateForTileAtIndex:(unsigned long long)arg2;
-- (BOOL)visualTabPickerTileContainerView:(id)arg1 shouldShowMuteButtonForTileAtIndex:(unsigned long long)arg2;
-- (struct CGRect)visualTabPickerTileContainerView:(id)arg1 visibleBoundsForTileAtIndex:(unsigned long long)arg2;
-- (id)visualTabPickerTileContainerView:(id)arg1 viewForTileAtIndex:(unsigned long long)arg2;
-- (id)visualTabPickerTileContainerView:(id)arg1 titleForTileAtIndex:(unsigned long long)arg2;
+- (BOOL)layoutEngineShouldLayOutRightToLeft:(id)arg1;
+- (double)tileHeightToWidthRatioForLayoutEngine:(id)arg1;
+- (struct CGRect)boundsForLayoutEngine:(id)arg1;
+- (unsigned long long)numberOfTilesForLayoutEngine:(id)arg1;
+- (void)visualTabPickerTileContainerViewDidToggleMuteButton:(id)arg1;
+- (void)visualTabPickerTileContainerViewDidRequestNewTab:(id)arg1;
+- (void)visualTabPickerTileContainerViewDidSelect:(id)arg1;
+- (void)visualTabPickerTileContainerViewDidClose:(id)arg1;
+- (BOOL)visualTabPickerTileContainerViewCanClose:(id)arg1;
+- (id)_destinationTileContainerView;
+- (long long)_muteButtonStateForMutableMediaState:(unsigned long long)arg1 audioMuted:(BOOL)arg2 mediaCaptureMuted:(BOOL)arg3;
+- (long long)muteButtonStateForVisualTabPickerTileContainerView:(id)arg1;
+- (BOOL)visualTabPickerTileContainerViewShouldShowMuteButton:(id)arg1;
+- (struct CGRect)visibleBoundsForVisualTabPickerTileContainerView:(id)arg1;
+- (id)tileViewForVisualTabPickerTileContainerView:(id)arg1 lowResolution:(BOOL)arg2;
+- (id)siteIconForVisualTabPickerTileContainerView:(id)arg1;
 - (id)titleForVisualTabPickerTileContainerView:(id)arg1;
-- (unsigned long long)numberOfTilesInVisualTabPickerTileContainerView:(id)arg1;
+- (void)updateIconForTab:(id)arg1;
 - (void)updateMuteButtonForTab:(id)arg1;
 - (void)_startGridAnimation:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)startGridAnimation:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -96,7 +87,9 @@ __attribute__((visibility("hidden")))
 - (void)removeTabViewItem:(id)arg1;
 - (void)addTabViewItem:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)hideCloseButtons;
+- (void)reloadGridViewClearingReuseCache:(BOOL)arg1;
 - (void)reloadGridView;
+- (void)_reloadGridView;
 - (id)initWithFrame:(struct CGRect)arg1 visualTabPickerViewController:(id)arg2;
 
 // Remaining properties

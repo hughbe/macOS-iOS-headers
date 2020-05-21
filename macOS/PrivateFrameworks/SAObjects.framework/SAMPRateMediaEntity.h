@@ -6,6 +6,8 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
+@class NSString;
+
 @interface SAMPRateMediaEntity : SABaseClientBoundCommand
 {
 }
@@ -14,6 +16,7 @@
 + (id)rateMediaEntity;
 - (BOOL)requiresResponse;
 @property(nonatomic) long long rating;
+@property(copy, nonatomic) NSString *hashedRouteUID;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

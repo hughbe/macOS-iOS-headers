@@ -11,19 +11,22 @@
 @interface AVCVirtualTTYDevice : NSObject
 {
     AVConferenceXPCClient *_connection;
-    id <AVCVirtualTTYDeviceDelegate> _delegate;
+    id _delegate;
     BOOL _isStarted;
 }
 
-@property(nonatomic) id <AVCVirtualTTYDeviceDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)terminateSession;
 - (void)deregisterBlocksForDelegateNotifications;
 - (void)registerBlocksForDelegateNotifications;
+- (BOOL)sendText:(id)arg1;
 - (id)sendCharacter:(unsigned short)arg1;
 - (void)stop;
 - (void)start;
+@property(nonatomic) id <AVCVirtualTTYDeviceDelegate> delegate;
 - (void)dealloc;
+- (id)initWithMode:(long long)arg1 error:(id *)arg2 streamToken:(long long)arg3;
 - (id)initWithMode:(long long)arg1 error:(id *)arg2;
+- (id)initWithStreamToken:(long long)arg1 error:(id *)arg2;
 
 @end
 

@@ -6,17 +6,19 @@
 
 #import "NSObject.h"
 
-@class AVWeakReference, NSArray, NSString;
+@class AVDispatchOnce, AVWeakReference, NSArray, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetInternal : NSObject
 {
     AVWeakReference *weakReference;
-    long long loadChapterInfoOnce;
+    AVDispatchOnce *loadChapterInfoOnce;
     NSArray *chapterGroupInfo;
     NSString *anchorChapterType;
     NSArray *availableChapterLanguages;
     NSArray *availableCanonicalizedChapterLanguages;
     NSArray *availableChapterLocales;
+    id <AVLoggingIdentifier> loggingIdentifier;
 }
 
 @end

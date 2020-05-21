@@ -8,13 +8,14 @@
 
 @class NCVerticalListController;
 
+__attribute__((visibility("hidden")))
 @interface _NCVerticalListRoot : _NCFlippedView
 {
     NCVerticalListController *_owner;
 }
 
-@property(nonatomic) __weak NCVerticalListController *owner; // @synthesize owner=_owner;
 - (void).cxx_destruct;
+@property(nonatomic) __weak NCVerticalListController *owner; // @synthesize owner=_owner;
 
 @end
 

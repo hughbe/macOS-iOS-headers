@@ -19,6 +19,7 @@
     unsigned int _uid;
     unsigned int _trafficClassStart;
     unsigned int _trafficClassEnd;
+    unsigned int _clientFlags;
     long long _conditionType;
     NSUUID *_applicationUUID;
     NSString *_accountIdentifier;
@@ -27,14 +28,33 @@
     NWAddressEndpoint *_startAddress;
     NWAddressEndpoint *_endAddress;
     NSString *_customEntitlement;
+    NSString *_agentDomain;
+    NSString *_agentType;
 }
 
++ (id)flowRemoteAddressEmpty;
++ (id)flowLocalAddressEmpty;
++ (id)usesModernNetworkAPI;
++ (id)isListener;
++ (id)isInbound;
++ (id)clientProhibitsExpensive;
++ (id)clientProhibitsContrained;
++ (id)fallbackTraffic;
++ (id)clientFlags:(unsigned int)arg1;
++ (id)requiredAgentDomain:(id)arg1 agentType:(id)arg2;
++ (id)platformBinary;
 + (id)customEntitlement:(id)arg1;
 + (id)entitlement;
++ (id)flowRemoteAddressStart:(id)arg1 end:(id)arg2;
++ (id)localNetworks;
 + (id)remoteAddressStart:(id)arg1 end:(id)arg2;
++ (id)flowLocalAddressStart:(id)arg1 end:(id)arg2;
 + (id)localAddressStart:(id)arg1 end:(id)arg2;
++ (id)flowRemoteAddress:(id)arg1 prefix:(unsigned char)arg2;
 + (id)remoteAddress:(id)arg1 prefix:(unsigned char)arg2;
++ (id)flowLocalAddress:(id)arg1 prefix:(unsigned char)arg2;
 + (id)localAddress:(id)arg1 prefix:(unsigned char)arg2;
++ (id)flowIPProtocol:(unsigned short)arg1;
 + (id)ipProtocol:(unsigned short)arg1;
 + (id)trafficClassStart:(unsigned int)arg1 end:(unsigned int)arg2;
 + (id)scopedInterface:(id)arg1;
@@ -45,9 +65,13 @@
 + (id)effectivePID:(int)arg1;
 + (id)realApplication:(id)arg1;
 + (id)effectiveApplication:(id)arg1;
-@property(retain) NSString *customEntitlement; // @synthesize customEntitlement=_customEntitlement;
-@property(retain) NWAddressEndpoint *endAddress; // @synthesize endAddress=_endAddress;
-@property(retain) NWAddressEndpoint *startAddress; // @synthesize startAddress=_startAddress;
+- (void).cxx_destruct;
+@property(copy) NSString *agentType; // @synthesize agentType=_agentType;
+@property(copy) NSString *agentDomain; // @synthesize agentDomain=_agentDomain;
+@property(copy) NSString *customEntitlement; // @synthesize customEntitlement=_customEntitlement;
+@property(copy) NWAddressEndpoint *endAddress; // @synthesize endAddress=_endAddress;
+@property(copy) NWAddressEndpoint *startAddress; // @synthesize startAddress=_startAddress;
+@property unsigned int clientFlags; // @synthesize clientFlags=_clientFlags;
 @property unsigned char prefix; // @synthesize prefix=_prefix;
 @property unsigned short ipProtocol; // @synthesize ipProtocol=_ipProtocol;
 @property unsigned int trafficClassEnd; // @synthesize trafficClassEnd=_trafficClassEnd;
@@ -60,7 +84,6 @@
 @property(copy) NSUUID *applicationUUID; // @synthesize applicationUUID=_applicationUUID;
 @property(getter=isNegative) BOOL negative; // @synthesize negative=_negative;
 @property long long conditionType; // @synthesize conditionType=_conditionType;
-- (void).cxx_destruct;
 - (BOOL)addTLVsToMessage:(id)arg1;
 - (unsigned char)conditionTypeValue;
 - (id)conditionTypeString;

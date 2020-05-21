@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class PXPlacesMapController;
+@class PKExtendedTraitCollection, PXPlacesMapController;
 
 @protocol PXPlacesMapControllerAccess <NSObject>
+@property(readonly, nonatomic) PKExtendedTraitCollection *pk_extendedTraitCollection;
 @property(readonly, nonatomic) PXPlacesMapController *mapController;
 @end
 

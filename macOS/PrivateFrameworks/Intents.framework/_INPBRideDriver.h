@@ -7,34 +7,45 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBRideDriver.h"
 
-@class NSString, PBUnknownFields, _INPBContactValue;
+@class NSString, _INPBContactValue, _INPBImageValue;
 
-@interface _INPBRideDriver : PBCodable <NSCopying>
+@interface _INPBRideDriver : PBCodable <_INPBRideDriver, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
+    _INPBImageValue *_image;
     _INPBContactValue *_person;
     NSString *_phoneNumber;
     NSString *_rating;
 }
 
-+ (id)options;
-@property(retain, nonatomic) NSString *phoneNumber; // @synthesize phoneNumber=_phoneNumber;
-@property(retain, nonatomic) NSString *rating; // @synthesize rating=_rating;
-@property(retain, nonatomic) _INPBContactValue *person; // @synthesize person=_person;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(copy, nonatomic) NSString *rating; // @synthesize rating=_rating;
+@property(copy, nonatomic) NSString *phoneNumber; // @synthesize phoneNumber=_phoneNumber;
+@property(retain, nonatomic) _INPBContactValue *person; // @synthesize person=_person;
+@property(retain, nonatomic) _INPBImageValue *image; // @synthesize image=_image;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-@property(readonly, nonatomic) BOOL hasPhoneNumber;
 @property(readonly, nonatomic) BOOL hasRating;
+@property(readonly, nonatomic) BOOL hasPhoneNumber;
 @property(readonly, nonatomic) BOOL hasPerson;
+@property(readonly, nonatomic) BOOL hasImage;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

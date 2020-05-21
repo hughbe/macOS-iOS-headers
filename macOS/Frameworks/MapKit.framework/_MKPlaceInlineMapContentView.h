@@ -6,21 +6,30 @@
 
 #import <MapKit/_MKUIViewControllerClickableRootView.h>
 
-@class MKImageView, MKPlaceInlineMapViewController, MKViewWithHairline, NSImage;
+@class MKImageView, MKViewWithHairline, NSImage, NSLayoutConstraint, NSView, _MKUILabel;
 
+__attribute__((visibility("hidden")))
 @interface _MKPlaceInlineMapContentView : _MKUIViewControllerClickableRootView
 {
     MKViewWithHairline *_hairlineView;
-    MKImageView *_mapView;
-    MKPlaceInlineMapViewController *_viewController;
+    NSLayoutConstraint *_topToTitleConstraint;
+    NSLayoutConstraint *_titleToBottomConstraint;
+    NSView *_mapView;
+    MKImageView *_mapImageView;
+    _MKUILabel *_titleLabel;
 }
 
-@property(nonatomic) __weak MKPlaceInlineMapViewController *viewController; // @synthesize viewController=_viewController;
 - (void).cxx_destruct;
 - (struct CGSize)intrinsicContentSize;
+- (double)mapViewHeight;
 @property(retain, nonatomic) NSImage *map;
-- (void)infoCardThemeChanged:(id)arg1;
+- (void)infoCardThemeChanged;
+@property(nonatomic, getter=isBottomHairlineHidden) BOOL bottomHairlineHidden;
+- (void)_contentSizeDidChange;
+- (double)titleHeight;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (BOOL)useImageView;
+- (BOOL)hasTitle;
 
 @end
 

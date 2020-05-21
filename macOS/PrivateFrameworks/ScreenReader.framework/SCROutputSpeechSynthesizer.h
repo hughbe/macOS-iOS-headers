@@ -13,9 +13,6 @@
 __attribute__((visibility("hidden")))
 @interface SCROutputSpeechSynthesizer : SCRSpeechSynthesizer <SCROutputSpeechSynthesizerProtocol>
 {
-    id _owner;
-    SCROutputAction *_action;
-    NSString *_category;
     float _customizedNormalRate;
     float _customizedMinRate;
     float _customizedMaxRate;
@@ -27,60 +24,44 @@ __attribute__((visibility("hidden")))
     float _customizedNormalIntonation;
     float _customizedMinIntonation;
     float _customizedMaxIntonation;
-    SCRSpeechSynthesizerOptions *_synthOptions;
-    NSLock *_synthesizerLock;
+    id _owner;
+    SCROutputAction *_action;
+    NSString *_category;
+    SCRSpeechSynthesizerOptions *_synthesizerOptions;
+    NSLock *__synthesizerLock;
 }
 
-- (BOOL)canBePaused;
-- (void)adjustOnTheFlyChangesForAction:(id)arg1 adjustRate:(BOOL)arg2 adjustPitch:(BOOL)arg3 adjustVolume:(BOOL)arg4 adjustIntonation:(BOOL)arg5 adjustVoice:(BOOL)arg6 adjustingCurrentSpeech:(BOOL)arg7 lastSpokenWordRange:(struct _NSRange)arg8 speakResults:(BOOL)arg9;
-- (BOOL)spliceIntoCurrentOutput:(id)arg1 lastSpokenWordRange:(struct _NSRange)arg2 category:(id)arg3;
-- (void)startAction;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSLock *_synthesizerLock; // @synthesize _synthesizerLock=__synthesizerLock;
+@property(nonatomic) float customizedMaxIntonation; // @synthesize customizedMaxIntonation=_customizedMaxIntonation;
+@property(nonatomic) float customizedMinIntonation; // @synthesize customizedMinIntonation=_customizedMinIntonation;
+@property(nonatomic) float customizedNormalIntonation; // @synthesize customizedNormalIntonation=_customizedNormalIntonation;
+@property(nonatomic) float customizedMaxVolume; // @synthesize customizedMaxVolume=_customizedMaxVolume;
+@property(nonatomic) float customizedNormalVolume; // @synthesize customizedNormalVolume=_customizedNormalVolume;
+@property(nonatomic) float customizedMaxPitch; // @synthesize customizedMaxPitch=_customizedMaxPitch;
+@property(nonatomic) float customizedMinPitch; // @synthesize customizedMinPitch=_customizedMinPitch;
+@property(nonatomic) float customizedNormalPitch; // @synthesize customizedNormalPitch=_customizedNormalPitch;
+@property(nonatomic) float customizedMaxRate; // @synthesize customizedMaxRate=_customizedMaxRate;
+@property(nonatomic) float customizedMinRate; // @synthesize customizedMinRate=_customizedMinRate;
+@property(nonatomic) float customizedNormalRate; // @synthesize customizedNormalRate=_customizedNormalRate;
+@property(retain, nonatomic) SCRSpeechSynthesizerOptions *synthesizerOptions; // @synthesize synthesizerOptions=_synthesizerOptions;
+@property(copy, nonatomic) NSString *category; // @synthesize category=_category;
+@property(retain, nonatomic) SCROutputAction *action; // @synthesize action=_action;
+@property(retain, nonatomic) id owner; // @synthesize owner=_owner;
 - (void)_outputTestingLogging:(id)arg1;
-- (float)customizedMaxIntonation;
-- (void)setCustomizedMaxIntonation:(float)arg1;
-- (float)customizedMinIntonation;
-- (void)setCustomizedMinIntonation:(float)arg1;
-- (float)customizedNormalIntonation;
-- (void)setCustomizedNormalIntonation:(float)arg1;
-- (float)customizedMaxVolume;
-- (void)setCustomizedMaxVolume:(float)arg1;
-- (float)customizedNormalVolume;
-- (void)setCustomizedNormalVolume:(float)arg1;
-- (float)volume;
-- (void)setVolume:(float)arg1;
-- (float)customizedMaxPitch;
-- (void)setCustomizedMaxPitch:(float)arg1;
-- (float)customizedMinPitch;
-- (void)setCustomizedMinPitch:(float)arg1;
-- (float)customizedNormalPitch;
-- (void)setCustomizedNormalPitch:(float)arg1;
-- (float)pitchMod;
-- (void)setPitchMod:(float)arg1;
-- (float)customizedMaxRate;
-- (void)setCustomizedMaxRate:(float)arg1;
-- (float)customizedMinRate;
-- (void)setCustomizedMinRate:(float)arg1;
-- (float)customizedNormalRate;
-- (void)setCustomizedNormalRate:(float)arg1;
-- (float)rate;
-- (void)setRate:(float)arg1;
-- (float)pitchBase;
-- (void)setPitchBase:(float)arg1;
-- (BOOL)setVoice:(id)arg1;
-- (id)category;
-- (void)setCategory:(id)arg1;
 - (BOOL)_setObject:(id)arg1 forProperty:(struct __CFString *)arg2;
 - (void)_clearOptions;
-- (void)_setPitchMod:(float)arg1;
-- (void)setSynthesizerOptions:(id)arg1;
-- (id)synthesizerOptions;
-- (id)action;
-- (void)setAction:(id)arg1;
-- (id)owner;
-- (void)setOwner:(id)arg1;
 - (void)unlockSynthesizer;
 - (void)lockSynthesizer;
-- (void)dealloc;
+- (void)setVoice:(id)arg1;
+- (BOOL)canBePaused;
+- (void)adjustOnTheFlyChangesForAction:(id)arg1 adjustRate:(BOOL)arg2 adjustPitch:(BOOL)arg3 adjustVolume:(BOOL)arg4 adjustIntonation:(BOOL)arg5 adjustVoice:(BOOL)arg6 adjustingCurrentSpeech:(BOOL)arg7 lastSpokenWordRange:(struct _NSRange)arg8 speakResults:(BOOL)arg9;
+- (void)startAction;
+- (BOOL)shouldPostWhenSpeechCompletes;
+@property(nonatomic) float volume;
+@property(nonatomic) float pitchBase;
+@property(nonatomic) float pitchMod;
+@property(nonatomic) float rate;
 - (id)initWithVoice:(id)arg1;
 
 // Remaining properties
@@ -88,7 +69,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
-@property(retain, nonatomic) SCRSpeechSynthesizerOptions *synthOptions; // @dynamic synthOptions;
 
 @end
 

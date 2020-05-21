@@ -10,7 +10,7 @@
 #import "NSDraggingSource.h"
 #import "ViewReuseManagerDelegate.h"
 
-@class GridCellView, NSDictionary, NSEvent, NSIndexSet, NSLayoutConstraint, NSMutableArray, NSString, NSTextField, NSTimer, SeparatorView, ViewReuseManager, _GridViewDropInfo;
+@class GridCellView, NSBox, NSDictionary, NSEvent, NSIndexSet, NSLayoutConstraint, NSMutableArray, NSString, NSTextField, NSTimer, ViewReuseManager, _GridViewDropInfo;
 
 __attribute__((visibility("hidden")))
 @interface GridView : KeyLoopSplicingContainerView <NSDraggingSource, NSDraggingDestination, ViewReuseManagerDelegate>
@@ -18,7 +18,7 @@ __attribute__((visibility("hidden")))
     ViewReuseManager *_viewReuseManager;
     NSMutableArray *_cellViews;
     NSLayoutConstraint *_titleVerticalConstraint;
-    SeparatorView *_separator;
+    NSBox *_separator;
     NSLayoutConstraint *_separatorWidthConstraint;
     BOOL _needsReload;
     BOOL _needsLayoutOnAppear;
@@ -26,8 +26,8 @@ __attribute__((visibility("hidden")))
     unsigned long long _numberOfColumns;
     struct CGSize _cellSize;
     struct CGSize _cellMargin;
-    struct NSEdgeInsets _contentInsets;
     BOOL _isLTR;
+    struct NSEdgeInsets _contentInsets;
     NSEvent *_initialMouseDownEvent;
     unsigned long long _selectedCellIndex;
     GridCellView *_selectedCell;
@@ -51,6 +51,7 @@ __attribute__((visibility("hidden")))
     long long _deferCellUpdatesCounter;
     NSMutableArray *_deferredCellUpdates;
     BOOL _didPerformDragOperationForCurrentDrag;
+    struct unordered_map<GridViewDisplayMode, Class, std::__1::hash<GridViewDisplayMode>, std::__1::equal_to<GridViewDisplayMode>, std::__1::allocator<std::__1::pair<const GridViewDisplayMode, Class>>> _displayModeToCellClasses;
     BOOL _defersLayoutOnDrag;
     BOOL _forceTitleVisible;
     int _presentationMode;
@@ -78,6 +79,8 @@ __attribute__((visibility("hidden")))
 + (void)_removeHoleInIndexMap:(id)arg1 betweenRangesOfOccupiedIndexes:(id)arg2;
 + (id)indexExchangesWithDraggedIndex:(unsigned long long)arg1 dropIndex:(unsigned long long)arg2 replaceableIndex:(unsigned long long)arg3 numberOfIndexes:(unsigned long long)arg4 maximumNumberOfIndexes:(unsigned long long)arg5 fixedIndexes:(id)arg6;
 + (BOOL)requiresConstraintBasedLayout;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
 @property(readonly, nonatomic) double maximumWidth; // @synthesize maximumWidth=_maximumWidth;
 @property(nonatomic) double maximumCellHeightToWidthRatio; // @synthesize maximumCellHeightToWidthRatio=_maximumCellHeightToWidthRatio;
@@ -97,7 +100,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) __weak id <GridViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <GridViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
 @property(nonatomic) int presentationMode; // @synthesize presentationMode=_presentationMode;
-- (void).cxx_destruct;
 - (void)updateGridCellAccessoryViewVisibility:(BOOL)arg1;
 @property(readonly, nonatomic, getter=isEditingCellView) BOOL editingCellView;
 - (void)_cellViewDidBecomeFirstResponder:(id)arg1;
@@ -107,7 +109,7 @@ __attribute__((visibility("hidden")))
 - (struct _NSRange)_rangeOfCellViewsAssumingAllRowsAreFilledInRect:(struct CGRect)arg1;
 - (struct _NSRange)_cellRangeInRect:(struct CGRect)arg1;
 - (void)_updateDrawnCellViews;
-- (void)_updateDrawnCellViewsWithoutTriggeringLayout;
+- (void)updateDrawnCellViewsWithoutTriggeringLayout;
 - (void)prepareContentInRect:(struct CGRect)arg1;
 - (void)_scrollViewDidScroll:(id)arg1;
 - (void)_createViewReuseManagerIfNeeded;
@@ -162,6 +164,7 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)_draggedCellIndex;
 - (void)_setLegacyDraggedCellIndex:(unsigned long long)arg1;
 - (unsigned long long)_indexOfCellFromEvent:(id)arg1;
+- (id)menuForEvent:(id)arg1;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;
@@ -175,6 +178,7 @@ __attribute__((visibility("hidden")))
 - (void)_unregisterForScrollViewNotificationsIfNeeded;
 - (void)_registerForScrollViewNotificationsIfNeeded;
 - (void)_recalculateKeyLoop;
+- (double)_calculatedMinimumGridViewHeight;
 - (double)_calculatedMaximumGridViewHeight;
 - (double)_calculatedMinimumGridViewWidth;
 - (unsigned long long)_numberOfRowsForNumberOfCells:(unsigned long long)arg1 dividedAmongNumberOfColumns:(unsigned long long)arg2;
@@ -193,8 +197,11 @@ __attribute__((visibility("hidden")))
 - (struct CGRect)_availableBounds;
 - (void)_layOutSubviewsAnimated:(BOOL)arg1;
 - (void)_updateGridViewWidths;
+@property(readonly, nonatomic) unsigned long long currentNumberOfColumns;
+- (void)_layoutSublayersOfLayer:(id)arg1;
 - (void)layout;
 - (void)setNeedsLayout:(BOOL)arg1;
+- (void)_updateConstraintConstants;
 - (void)updateConstraints;
 - (void)viewDidUnhide;
 - (void)viewDidHide;
@@ -216,12 +223,14 @@ __attribute__((visibility("hidden")))
 - (void)removeCellAtIndex:(unsigned long long)arg1;
 - (void)insertCellAtIndex:(unsigned long long)arg1;
 - (void)reloadData;
+- (void)reloadDataOnNextLayout;
 - (void)setDraggingSourceOperationMask:(unsigned long long)arg1 ifWithinApplication:(BOOL)arg2;
 - (unsigned long long)draggingSourceOperationMaskIfWithinApplication:(BOOL)arg1;
 - (void)setNextKeyView:(id)arg1;
 - (BOOL)becomeFirstResponder;
 - (BOOL)acceptsFirstResponder;
 - (BOOL)isFlipped;
+- (void)registerCellClass:(Class)arg1 forDisplayMode:(long long)arg2;
 - (void)dealloc;
 - (void)_commonGridViewInit;
 - (id)initWithCoder:(id)arg1;

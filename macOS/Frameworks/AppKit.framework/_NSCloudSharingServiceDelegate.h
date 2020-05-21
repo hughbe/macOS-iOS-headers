@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (void)dealloc;
+@property(readonly) BOOL preShareFailureMeansStopSharing;
 - (void)sharingService:(id)arg1 didFailToShareItems:(id)arg2 error:(id)arg3;
 - (void)sharingService:(id)arg1 didShareItems:(id)arg2;
 - (void)sharingService:(id)arg1 willShareItems:(id)arg2;

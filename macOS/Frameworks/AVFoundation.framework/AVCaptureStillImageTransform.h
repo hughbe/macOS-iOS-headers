@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureStillImageTransform : NSObject
 {
     struct opaqueCMSampleBuffer *_sourceBuffer;
@@ -15,7 +16,6 @@
 
 + (id)transform;
 @property int status; // @synthesize status=_status;
-- (void)finalize;
 - (void)dealloc;
 - (struct opaqueCMSampleBuffer *)resultBuffer;
 - (void)setResultBuffer:(struct opaqueCMSampleBuffer *)arg1;

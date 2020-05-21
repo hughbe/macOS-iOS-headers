@@ -17,6 +17,7 @@
     BOOL _resourceSizeChecked;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL resourceSizeChecked; // @synthesize resourceSizeChecked=_resourceSizeChecked;
 @property(nonatomic) BOOL resourceSizeIsKnown; // @synthesize resourceSizeIsKnown=_resourceSizeIsKnown;
 @property(nonatomic) unsigned long long resourceSize; // @synthesize resourceSize=_resourceSize;

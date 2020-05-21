@@ -16,21 +16,22 @@
     NSPredicate *_filterPredicate;
     unsigned long long _defaultNameOrder;
     ABCDRecordNameFormatter *_recordNameFormatter;
+    BOOL _isMe;
 }
 
+- (void).cxx_destruct;
 @property unsigned long long resultType; // @synthesize resultType=_resultType;
 - (id)pickerPropertyObjectsForAllRecords:(id)arg1;
 - (id)searchStringForAllRecords:(id)arg1;
 - (id)peoplePickerSubrowObjectBuilderForRecords:(id)arg1;
 - (id)personEntryForLinkedContacts:(id)arg1;
-- (id)personEntryForRecord:(id)arg1 suggestionIdentifier:(id)arg2;
+- (id)personEntryForRecord:(id)arg1 suggestionIdentifier:(id)arg2 isMe:(BOOL)arg3;
 - (id)personEntryForRecord:(id)arg1;
 - (id)linkIdentifierForRecord:(id)arg1;
 - (unsigned long long)nameOrderForRecord:(id)arg1;
 - (unsigned long long)iconTypeForRecord:(id)arg1;
 - (id)sectionKeyForRecord:(id)arg1;
 - (id)nameForRecord:(id)arg1 rangeOfSortingSubstring:(struct _NSRange *)arg2;
-- (void)dealloc;
 - (id)initWithProperty:(id)arg1 propertyFilterPredicate:(id)arg2 propertyType:(long long)arg3 resultType:(unsigned long long)arg4 userDefaults:(id)arg5;
 - (id)initWithProperty:(id)arg1 propertyFilterPredicate:(id)arg2 propertyType:(long long)arg3 resultType:(unsigned long long)arg4;
 - (id)initWithUserDefaults:(id)arg1;

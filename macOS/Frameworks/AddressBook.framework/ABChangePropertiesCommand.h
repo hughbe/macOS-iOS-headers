@@ -4,11 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABCommand.h>
+#import "ABCommand.h"
 
 @class ABGroup, ABPerson, NSArray, NSDictionary;
 
-__attribute__((visibility("hidden")))
 @interface ABChangePropertiesCommand : ABCommand
 {
     NSDictionary *_properties;
@@ -21,7 +20,6 @@ __attribute__((visibility("hidden")))
 - (void)redoIt;
 - (void)undoIt;
 - (void)_undoRedoChangeProperties;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithGroup:(id)arg1 person:(id)arg2 properties:(id)arg3 addressBook:(id)arg4;
 

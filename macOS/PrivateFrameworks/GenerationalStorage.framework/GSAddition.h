@@ -21,6 +21,7 @@
 }
 
 + (id)makeNameForUser:(unsigned int)arg1 name:(id)arg2;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSObject<GSAdditionStoring> *storage; // @synthesize storage=_storage;
 @property(readonly, nonatomic) NSString *nameSpace; // @synthesize nameSpace=_namespace;
 @property(readonly, nonatomic) unsigned long long options; // @synthesize options=_options;
@@ -32,7 +33,6 @@
 - (BOOL)setNameSpace:(id)arg1 error:(id *)arg2;
 - (BOOL)setDisplayName:(id)arg1 error:(id *)arg2;
 - (BOOL)setOptions:(unsigned long long)arg1 error:(id *)arg2;
-- (void)dealloc;
 - (id)_initWithStorage:(id)arg1 andDictionary:(id)arg2;
 - (void)_refreshWithDictionary:(id)arg1;
 - (id)init;

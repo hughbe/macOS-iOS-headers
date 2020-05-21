@@ -6,7 +6,7 @@
 
 #import <SAObjects/SADomainCommand.h>
 
-@class NSString, SAMPPodcastCollection;
+@class NSArray, NSString, SAMPPodcastCollection;
 
 @interface SAMPPlayPodcastCollection : SADomainCommand
 {
@@ -14,9 +14,15 @@
 
 + (id)playPodcastCollectionWithDictionary:(id)arg1 context:(id)arg2;
 + (id)playPodcastCollection;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
+@property(nonatomic) BOOL startPlaying;
+@property(copy, nonatomic) NSString *sharedUserIdFromPlayableITunesAccount;
+@property(copy, nonatomic) NSString *requesterSharedUserId;
 @property(retain, nonatomic) SAMPPodcastCollection *podcastCollection;
+@property(copy, nonatomic) NSArray *hashedRouteUIDs;
 @property(copy, nonatomic) NSString *episodePlaybackOrder;
+@property(copy, nonatomic) NSString *assetInfo;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

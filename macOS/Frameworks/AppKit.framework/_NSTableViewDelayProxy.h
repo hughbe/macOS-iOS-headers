@@ -17,8 +17,8 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)proxy;
+- (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 
 @end
 

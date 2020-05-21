@@ -23,6 +23,7 @@
 - (void)addWordsFromString:(id)arg1 data:(id)arg2;
 - (void)addString:(id)arg1 withData:(id)arg2;
 - (void)addString:(id)arg1;
+- (int)getMode;
 - (void)setMode:(int)arg1;
 - (id)initAtPath:(id)arg1;
 - (id)init;

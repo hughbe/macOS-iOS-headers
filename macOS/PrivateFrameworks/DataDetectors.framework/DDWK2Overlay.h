@@ -29,12 +29,13 @@ __attribute__((visibility("hidden")))
     BOOL _needsLayout;
 }
 
+- (void).cxx_destruct;
 @property(retain) DDBasicHighlightsView *clickedView; // @synthesize clickedView=_clickedView;
 @property(retain) NSMutableSet *enteredTrackingAreas; // @synthesize enteredTrackingAreas=_enteredTrackingAreas;
 @property(retain) NSMutableSet *trackingAreas; // @synthesize trackingAreas=_trackingAreas;
 @property(retain) NSMutableArray *subviews; // @synthesize subviews=_subviews;
-@property id <DDHighlightsDataSource> dataSource; // @synthesize dataSource=_dataSource;
-@property id <DDHighlightsDelegate> delegate; // @synthesize delegate=_delegate;
+@property __weak id <DDHighlightsDataSource> dataSource; // @synthesize dataSource=_dataSource;
+@property __weak id <DDHighlightsDelegate> delegate; // @synthesize delegate=_delegate;
 - (BOOL)accessibilityShowDataDetectorMenuAtPoint:(struct CGPoint)arg1;
 - (id)accessibilityDataDetectorTypeAtPoint:(struct CGPoint)arg1;
 - (BOOL)accessibilityDataDetectorExistsAtPoint:(struct CGPoint)arg1;

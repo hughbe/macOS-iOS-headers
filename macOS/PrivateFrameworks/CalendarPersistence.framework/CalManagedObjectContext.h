@@ -21,10 +21,13 @@
     NSCountedSet *_childContextReferences;
     NSMutableDictionary *_associatedUIDs;
     NSString *_originatorID;
+    BOOL _trackChangesToExchangeServer;
 }
 
 + (void)logDetailedValidationError:(id)arg1;
 + (id)_userInfoForLog:(id)arg1;
++ (void)performBlockWithManagedObjectContext:(CDUnknownBlockType)arg1;
++ (void)warnIfManagedObjectContextIsNil:(id)arg1;
 + (void)quickFetchWithBlock:(CDUnknownBlockType)arg1 allowedStaleness:(double)arg2;
 + (void)quickFetchWithBlock:(CDUnknownBlockType)arg1;
 + (void)addPrefetchRelationshipKeyPaths:(id)arg1 toFetch:(id)arg2;
@@ -33,7 +36,9 @@
 + (BOOL)isCalendarAgent;
 + (id)managedObjectContextWithOriginatorId:(id)arg1;
 + (id)managedObjectContext;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL notifyCalendarAgent; // @synthesize notifyCalendarAgent=_notifyCalendarAgent;
+@property(nonatomic) BOOL trackChangesToExchangeServer; // @synthesize trackChangesToExchangeServer=_trackChangesToExchangeServer;
 @property(nonatomic) BOOL trackChangesForCalDAVServer; // @synthesize trackChangesForCalDAVServer=_trackChangesForCalDAVServer;
 @property(nonatomic) BOOL writeChangesToTruthFileStore; // @synthesize writeChangesToTruthFileStore=_writeChangesToTruthFileStore;
 @property(nonatomic) BOOL writeChangesToCalDAVServer; // @synthesize writeChangesToCalDAVServer=_writeChangesToCalDAVServer;
@@ -43,7 +48,6 @@
 - (void)logDetailedValidationError:(id)arg1;
 - (BOOL)saveIfContextHasChanges;
 - (BOOL)hasPersistentChanges;
-- (void)dealloc;
 @property(readonly) NSSet *deletedObjectIDsFromMerge;
 - (void)addDeletedObjectIDsFromMerge:(id)arg1;
 - (void)deleteObject:(id)arg1;
@@ -81,6 +85,7 @@
 - (id)existingObjectWithIDString:(id)arg1;
 - (id)objectIDsFromStrings:(id)arg1;
 - (id)objectIDFromString:(id)arg1;
+- (id)createChildContext;
 - (id)initWithConcurrencyType:(unsigned long long)arg1 persistentStoreCoordinator:(id)arg2;
 - (id)initWithPersistentStoreCoordinator:(id)arg1;
 - (id)initWithConcurrencyType:(unsigned long long)arg1;

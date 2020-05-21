@@ -8,7 +8,6 @@
 
 @class MTLResourceListPool;
 
-__attribute__((visibility("hidden")))
 @interface MTLResourceList : NSObject
 {
     struct {

@@ -11,7 +11,7 @@
 @protocol TKProtocolSmartCardSlot <TKProtocolSlot>
 - (void)runUserInteraction:(TKSmartCardUserInteraction<NSSecureCoding> *)arg1 reply:(void (^)(NSData *, NSError *))arg2;
 - (void)setAttrib:(unsigned int)arg1 data:(NSData *)arg2 reply:(void (^)(BOOL, BOOL))arg3;
-- (void)getAttrib:(unsigned int)arg1 expectedLength:(unsigned int)arg2 reply:(void (^)(NSData *, int))arg3;
+- (void)getAttrib:(unsigned int)arg1 reply:(void (^)(NSData *, long long))arg2;
 - (void)sendControl:(id)arg1 data:(NSData *)arg2 expectedLength:(unsigned int)arg3 reply:(void (^)(NSData *))arg4;
 - (void)sessionWithParameters:(NSDictionary *)arg1 reply:(void (^)(id <TKProtocolSmartCardSession>, NSDictionary *, NSError *))arg2;
 - (void)reserveProtocols:(NSNumber *)arg1 reservationId:(NSNumber *)arg2 exclusive:(BOOL)arg3 reply:(void (^)(NSNumber *, NSNumber *, long long))arg4;

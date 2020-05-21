@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     WDText *wdText;
 }
 
+- (void).cxx_destruct;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (id)initWithWDText:(id)arg1 parent:(id)arg2;
 - (void)mapTextFrameStyleTo:(id)arg1 withState:(id)arg2;

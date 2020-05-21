@@ -6,46 +6,32 @@
 
 #import "NSObject.h"
 
-#import "IDSDaemonListenerProtocol.h"
+@class CUTWeakReference, NSArray, NSData, NSDate, NSDictionary, NSString, NSUUID;
 
-@class CUTWeakReference, NSArray, NSData, NSDate, NSDictionary, NSInputStream, NSObject<OS_dispatch_queue>, NSOutputStream, NSString, NSUUID;
-
-@interface _IDSDevice : NSObject <IDSDaemonListenerProtocol>
+@interface _IDSDevice : NSObject
 {
     NSDictionary *_info;
-    NSString *_serviceToken;
     CUTWeakReference *_account;
-    int _socket;
+    CUTWeakReference *_serviceReference;
     int _nearbyToken;
-    int _lastActivityToken;
     BOOL _nearby;
     BOOL _connected;
     BOOL _immutableCloudConnected;
     BOOL _cloudConnected;
-    CDUnknownBlockType _openSocketCompletionHandler;
-    NSObject<OS_dispatch_queue> *_openSocketCompletionHandlerQueue;
-    NSString *_openSocketCompletionHandlerID;
-    NSInputStream *_inputStreamForSocket;
-    NSOutputStream *_outputStreamForSocket;
 }
 
-- (void)closeSocketForDomain:(id)arg1;
-- (void)xpcObject:(id)arg1 objectContext:(id)arg2;
-- (void)closeStreamPairWithInputStream:(id)arg1 outputStream:(id)arg2;
-- (void)setStreamPairWithInputStream:(id)arg1 outputStream:(id)arg2;
-- (void)closeSocket:(int)arg1;
-- (void)openSocketWithOptions:(id)arg1 completionHandler:(CDUnknownBlockType)arg2 onQueue:(id)arg3;
-- (int)socketForDomain:(id)arg1;
+- (void).cxx_destruct;
+- (void)_setService:(id)arg1;
 - (void)_setAccount:(id)arg1;
 - (void)_cloudConnectedStateChanged;
 - (void)_connectedStateChanged;
 - (void)_nearbyStateChanged;
 - (void)_addIdentity:(id)arg1;
-@property(readonly, retain, nonatomic) NSArray *identities;
-@property(readonly, retain, nonatomic) NSData *pushToken;
+@property(readonly, nonatomic) NSArray *identities;
+@property(readonly, nonatomic) NSData *pushToken;
 @property(readonly, nonatomic) BOOL isHSATrusted;
-@property(readonly, retain, nonatomic) NSString *enclosureColor;
-@property(readonly, retain, nonatomic) NSString *deviceColor;
+@property(readonly, nonatomic) NSString *enclosureColor;
+@property(readonly, nonatomic) NSString *deviceColor;
 @property(readonly, nonatomic) BOOL supportsPhoneCalls;
 @property(readonly, nonatomic) BOOL supportsMMSRelay;
 @property(readonly, nonatomic) BOOL supportsSMSRelay;
@@ -53,14 +39,13 @@
 @property(readonly, nonatomic) BOOL supportsHandoff;
 @property(readonly, nonatomic) BOOL supportsTethering;
 @property(readonly, nonatomic) BOOL supportsiCloudPairing;
-- (void)_updateNSUUID:(id)arg1;
 @property(retain, nonatomic, setter=setNSUUID:) NSUUID *nsuuid;
-@property(readonly, retain, nonatomic) NSArray *linkedUserURIs;
+@property(readonly, nonatomic) NSArray *linkedUserURIs;
 @property(readonly, nonatomic) unsigned long long serviceMinCompatibilityVersion;
 @property(readonly, nonatomic) unsigned long long maxCompatibilityVersion;
 @property(readonly, nonatomic) unsigned long long minCompatibilityVersion;
 @property(readonly, nonatomic) unsigned long long pairingProtocolVersion;
-@property(readonly, retain, nonatomic) NSDate *lastActivityDate;
+@property(readonly, nonatomic) NSDate *lastActivityDate;
 @property(readonly, nonatomic) BOOL isActive;
 @property(readonly, nonatomic) BOOL isLocallyPaired;
 @property(readonly, nonatomic) BOOL isDefaultPairedDevice;
@@ -68,24 +53,18 @@
 @property(readonly, nonatomic, getter=isCloudConnected) BOOL cloudConnected;
 @property(readonly, nonatomic, getter=isConnected) BOOL connected;
 @property(readonly, nonatomic, getter=isNearby) BOOL nearby;
-@property(readonly, copy) NSString *description;
+- (id)description;
 - (id)fullDescription;
-@property(readonly, retain, nonatomic) NSString *service;
-@property(readonly, retain, nonatomic) NSString *name;
-@property(readonly, retain, nonatomic) NSString *modelIdentifier;
+@property(readonly, nonatomic) NSString *service;
+@property(readonly, nonatomic) NSString *name;
+@property(readonly, nonatomic) NSString *modelIdentifier;
 @property(readonly, nonatomic) NSString *productVersion;
 @property(readonly, nonatomic) NSString *productName;
 @property(readonly, nonatomic) NSString *productBuildVersion;
-@property(readonly, retain, nonatomic) NSString *uniqueIDOverride;
-@property(readonly, retain, nonatomic) NSString *uniqueID;
-- (void)_connect;
+@property(readonly, nonatomic) NSString *uniqueIDOverride;
+@property(readonly, nonatomic) NSString *uniqueID;
 - (void)dealloc;
 - (id)initWithDictionary:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

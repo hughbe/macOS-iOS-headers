@@ -6,26 +6,32 @@
 
 #import <AddressBook/ABCardCollectionRowView.h>
 
-@class ABCNPostalAddress, ABWidthLimitingStackView, NSArray;
+@class CNPostalAddress, NSNumber, NSStackView;
 
-__attribute__((visibility("hidden")))
 @interface ABCardCollectionPostalAddressRowView : ABCardCollectionRowView
 {
-    ABCNPostalAddress *_postalAddress;
-    ABWidthLimitingStackView *_addressFieldsContainer;
+    CNPostalAddress *_postalAddress;
+    NSStackView *_addressFieldsContainer;
     BOOL _isEditing;
-    NSArray *_postalConstraints;
+    NSNumber *_cachedIntrinsicHeight;
 }
 
-@property(readonly) BOOL isEditing; // @synthesize isEditing=_isEditing;
-@property(retain) ABWidthLimitingStackView *addressFieldsContainer; // @synthesize addressFieldsContainer=_addressFieldsContainer;
-@property(retain, nonatomic) ABCNPostalAddress *postalAddress; // @synthesize postalAddress=_postalAddress;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSNumber *cachedIntrinsicHeight; // @synthesize cachedIntrinsicHeight=_cachedIntrinsicHeight;
+@property(readonly, nonatomic) BOOL isEditing; // @synthesize isEditing=_isEditing;
+@property(retain, nonatomic) NSStackView *addressFieldsContainer; // @synthesize addressFieldsContainer=_addressFieldsContainer;
+@property(retain, nonatomic) CNPostalAddress *postalAddress; // @synthesize postalAddress=_postalAddress;
 - (void)processControlTextDidChange:(id)arg1;
+- (id)calcuatedHeightGivenIntrinsicHeight:(double)arg1;
+- (struct CGSize)intrinsicContentSize;
+- (void)invalidatePostalAddressRowLayout;
 - (void)controlTextDidChange:(id)arg1;
 - (void)textFieldWillResignFirstResponder:(id)arg1;
 - (void)textFieldWillBecomeFirstResponder:(id)arg1;
 - (BOOL)isEmptyAndNotFirstResponder;
 - (BOOL)hasValue;
+- (void)focus;
+- (id)makeTouchBar;
 - (void)highlightSearchTerms:(id)arg1;
 - (id)updateKeyViewLoop;
 - (void)updateValueView;
@@ -34,13 +40,7 @@ __attribute__((visibility("hidden")))
 - (id)firstTextField;
 - (void)setValueSelectable:(BOOL)arg1;
 - (void)setAddressFieldsEnabled:(BOOL)arg1;
-- (id)labelTopInsetConstraint;
-- (id)trailingEdgePin;
-- (id)baselineAlignmentConstraint;
-- (id)actionGlyphButton;
-- (void)updateConstraints;
 - (id)valueView;
-- (void)dealloc;
 
 @end
 

@@ -9,7 +9,6 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-__attribute__((visibility("hidden")))
 @interface CWANQPProtoPortTuple : NSObject <NSSecureCoding, NSCopying>
 {
     long long _ipProtocol;

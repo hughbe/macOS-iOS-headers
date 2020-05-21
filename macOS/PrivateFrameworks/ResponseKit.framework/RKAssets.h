@@ -13,6 +13,7 @@
 + (id)appreciationKeywords;
 + (id)localizedStrings;
 + (id)alternativeInversions;
++ (id)contractedResponses;
 + (id)polarTagKeywords;
 + (id)sensitiveSubjectRegularExpressionPatterns;
 + (id)synonyms;
@@ -20,6 +21,8 @@
 + (id)fixedPhrases;
 + (id)categoryKeywordMap;
 + (id)constantClasses;
+- (id)initWithPlistURL:(id)arg1;
+- (id)init;
 
 @end
 

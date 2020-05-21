@@ -15,12 +15,13 @@
     NSArray *_peopleNames;
 }
 
-@property(retain, nonatomic) NSArray *peopleNames; // @synthesize peopleNames=_peopleNames;
 - (void).cxx_destruct;
-- (void)requestPeopleNamesUpdateWithCompletionHandler:(CDUnknownBlockType)arg1;
+@property(retain, nonatomic) NSArray *peopleNames; // @synthesize peopleNames=_peopleNames;
+- (void)requestPeopleNamesUpdateSinceDate:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)resetToDefault;
 @property(readonly, nonatomic) NSString *title;
 @property(readonly, nonatomic) NSString *headerTitle;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,7 +6,7 @@
 
 #import "JSExport.h"
 
-@class SCNNode, SCNScene;
+@class SCNCameraController, SCNNode, SCNScene;
 
 @protocol SCNViewJSExport <JSExport>
 @property(nonatomic) BOOL showsStatistics;
@@ -17,8 +17,11 @@
 @property(nonatomic) double currentTime;
 @property(nonatomic) unsigned long long antialiasingMode;
 @property(nonatomic) long long preferredFramesPerSecond;
+@property(readonly, nonatomic) SCNCameraController *defaultCameraController;
+@property(readonly, nonatomic) id <SCNCameraControlConfiguration> cameraControlConfiguration;
 @property(nonatomic) BOOL allowsCameraControl;
 @property(copy, nonatomic) id backgroundColor;
+@property(nonatomic) BOOL rendersContinuously;
 @property(retain, nonatomic) SCNScene *scene;
 - (void)stop:(id)arg1;
 - (void)pause:(id)arg1;

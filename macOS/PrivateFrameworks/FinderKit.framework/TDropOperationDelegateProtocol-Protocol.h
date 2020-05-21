@@ -9,12 +9,13 @@
 @class NSDraggingItem, NSView;
 
 @protocol TDropOperationDelegateProtocol <TNodeTaskDelegateProtocol>
-- (void)offsetSpatialData:(struct DataBrowserItemSpatialData *)arg1;
+- (_Bool)useSpecialInFlightAnimation;
+- (void)offsetSpatialData:(struct IconSpatialData *)arg1;
 
 @optional
 - (NSView *)dropTargetViewForDraggingInfo:(id <NSDraggingInfo>)arg1;
-- (void)receivePromiseDragNode:(const struct TFENode *)arg1 spatialData:(const struct DataBrowserItemSpatialData *)arg2;
-- (void)calculateSpatialData:(struct DataBrowserItemSpatialData *)arg1 draggingItem:(NSDraggingItem *)arg2 forcePlace:(_Bool)arg3;
+- (void)receivePromiseDragNode:(const struct TFENode *)arg1 spatialData:(const struct IconSpatialData *)arg2;
+- (void)calculateSpatialData:(struct IconSpatialData *)arg1 draggingItem:(NSDraggingItem *)arg2 forcePlace:(_Bool)arg3;
 - (void)calculatePropertiesWithDrop:(struct TDropOperation *)arg1 forNode:(const struct TFENode *)arg2 withPasteboardItem:(void *)arg3 pbItemIndex:(unsigned long long)arg4 inPropertyList:(struct TFENodePropertyList *)arg5 forcePlace:(_Bool)arg6 applyNow:(_Bool)arg7;
 @end
 

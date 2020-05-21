@@ -31,6 +31,11 @@
 
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (id)accessibilityValueDescription;
+- (id)accessibilityValueAttribute;
+- (id)accessibilityValue;
+- (id)accessibilityRole;
+- (BOOL)accessibilityIsIgnored;
 - (void)sizeToFit;
 - (struct CGSize)intrinsicContentSize;
 - (void)drawRect:(struct CGRect)arg1;
@@ -48,6 +53,7 @@
 - (float)minValue;
 - (void)setValue:(float)arg1;
 - (float)value;
+@property(readonly, getter=isIndeterminate) BOOL indeterminate;
 - (void)_updateCurrentValue:(id)arg1;
 - (void)_commonInit;
 

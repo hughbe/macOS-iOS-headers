@@ -16,6 +16,7 @@
 
 + (id)setMultipleClientStatesWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setMultipleClientStates;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *failedGetters;
 @property(copy, nonatomic) NSArray *clientStateSetters;
 - (id)encodedClassName;

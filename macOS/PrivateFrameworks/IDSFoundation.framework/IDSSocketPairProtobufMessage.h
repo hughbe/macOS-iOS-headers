@@ -6,9 +6,11 @@
 
 #import <IDSFoundation/IDSSocketPairMessage.h>
 
+#import "IDSSocketPairMessage.h"
+
 @class NSData, NSDate, NSString;
 
-@interface IDSSocketPairProtobufMessage : IDSSocketPairMessage
+@interface IDSSocketPairProtobufMessage : IDSSocketPairMessage <IDSSocketPairMessage>
 {
     unsigned long long _payloadOffset;
     unsigned long long _payloadLength;
@@ -25,20 +27,20 @@
     NSDate *_expiryDate;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDate *expiryDate; // @synthesize expiryDate=_expiryDate;
 @property(nonatomic) BOOL compressed; // @synthesize compressed=_compressed;
 @property(nonatomic) unsigned int sequenceNumber; // @synthesize sequenceNumber=_sequenceNumber;
 @property(nonatomic) unsigned short streamID; // @synthesize streamID=_streamID;
 @property(readonly, nonatomic) unsigned short type; // @synthesize type=_type;
 @property(readonly, nonatomic) unsigned short isResponse; // @synthesize isResponse=_isResponse;
-@property(readonly, retain, nonatomic) NSString *peerResponseIdentifier; // @synthesize peerResponseIdentifier=_peerResponseIdentifier;
+@property(readonly, nonatomic) NSString *peerResponseIdentifier; // @synthesize peerResponseIdentifier=_peerResponseIdentifier;
 @property(readonly, nonatomic) BOOL wantsAppAck; // @synthesize wantsAppAck=_wantsAppAck;
-@property(readonly, retain, nonatomic) NSString *messageUUID; // @synthesize messageUUID=_messageUUID;
+@property(readonly, nonatomic) NSString *messageUUID; // @synthesize messageUUID=_messageUUID;
 @property(readonly, nonatomic) BOOL expectsPeerResponse; // @synthesize expectsPeerResponse=_expectsPeerResponse;
 - (id)_nonHeaderData;
-@property(readonly, retain, nonatomic) NSData *data; // @synthesize data=_data;
+@property(readonly, nonatomic) NSData *data; // @synthesize data=_data;
 - (unsigned char)command;
-- (void)dealloc;
 - (id)initWithSequenceNumber:(unsigned int)arg1 streamID:(unsigned short)arg2 expectsPeerResponse:(BOOL)arg3 wantsAppAck:(BOOL)arg4 compressed:(BOOL)arg5 peerResponseIdentifier:(id)arg6 messageUUID:(id)arg7 expiryDate:(id)arg8 protobuf:(id)arg9;
 - (id)initWithCommand:(unsigned char)arg1 underlyingData:(id)arg2;
 

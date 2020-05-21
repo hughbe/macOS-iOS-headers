@@ -20,6 +20,7 @@
 @property(nonatomic) long long plays;
 @property(nonatomic) long long playbackPositionMillis;
 @property(retain, nonatomic) SACalendar *lastPlayedDate;
+@property(nonatomic) long long durationMillis;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

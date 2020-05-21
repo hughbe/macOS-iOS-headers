@@ -12,18 +12,21 @@ __attribute__((visibility("hidden")))
 @interface NSSQLBindVariable : NSObject
 {
     int _cd_rc;
-    id _value;
-    unsigned int _sqlType;
+    unsigned char _sqlType;
     unsigned int _index;
-    long long _int64;
+    unsigned int _flags;
+    id _value;
     NSAttributeDescription *_attributeDescription;
+    long long _int64;
 }
 
 - (id)attributeDescription;
+- (BOOL)allowsCoercion;
 - (BOOL)hasObjectValue;
 - (void)setIndex:(unsigned int)arg1;
 - (unsigned int)index;
-- (unsigned int)sqlType;
+- (void)setSQLType:(unsigned char)arg1;
+- (unsigned char)sqlType;
 - (id)value;
 - (void)setValue:(id)arg1;
 - (void)setUnsignedInt:(unsigned int)arg1;
@@ -36,9 +39,10 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)retainCount;
 - (oneway void)release;
 - (id)retain;
-- (id)initWithUnsignedInt:(unsigned int)arg1 sqlType:(unsigned int)arg2;
-- (id)initWithInt64:(long long)arg1 sqlType:(unsigned int)arg2;
-- (id)initWithValue:(id)arg1 sqlType:(unsigned int)arg2 attributeDescription:(id)arg3;
+- (id)initWithUnsignedInt:(unsigned int)arg1 sqlType:(unsigned char)arg2;
+- (id)initWithInt64:(long long)arg1 sqlType:(unsigned char)arg2;
+- (id)initWithValue:(id)arg1 sqlType:(unsigned char)arg2 attributeDescription:(id)arg3 allowCoercion:(BOOL)arg4;
+- (id)initWithValue:(id)arg1 sqlType:(unsigned char)arg2 attributeDescription:(id)arg3;
 
 @end
 

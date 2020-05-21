@@ -8,10 +8,11 @@
 
 #import "NSSecureCoding.h"
 
-@class NSDate, NSUUID;
+@class NSDate, NSUUID, PKDrawing;
 
 @interface AKSignature : NSObject <NSSecureCoding>
 {
+    PKDrawing *_drawing;
     struct CGPath *_path;
     struct CGRect _strokesBounds;
     BOOL _shouldPersist;
@@ -21,21 +22,24 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain) NSDate *creationDate; // @synthesize creationDate=_creationDate;
 @property double baselineOffset; // @synthesize baselineOffset=_baselineOffset;
 @property(retain) NSUUID *uniqueID; // @synthesize uniqueID=_uniqueID;
 @property BOOL shouldPersist; // @synthesize shouldPersist=_shouldPersist;
-- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 @property(readonly) struct CGPath *path;
 - (void)setPath:(struct CGPath *)arg1;
 @property(readonly) struct CGRect pathBounds;
+@property(readonly) PKDrawing *drawing;
 - (void)dealloc;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithPath:(struct CGPath *)arg1 baselineOffset:(double)arg2;
-- (id)initWithPath:(struct CGPath *)arg1 baselineOffset:(double)arg2 creationDate:(id)arg3;
+- (id)init;
+- (id)initForTesting;
+- (id)initWithDrawing:(id)arg1 path:(struct CGPath *)arg2 baselineOffset:(double)arg3;
+- (id)initWithDrawing:(id)arg1 path:(struct CGPath *)arg2 baselineOffset:(double)arg3 creationDate:(id)arg4;
 
 @end
 

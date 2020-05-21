@@ -6,45 +6,55 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSString, NSURL;
+#import "NSSecureCoding.h"
 
-@interface WBSFormMetadata : NSObject
+@class NSArray, NSDictionary, NSNumber, NSString, NSURL;
+
+@interface WBSFormMetadata : NSObject <NSSecureCoding>
 {
+    NSNumber *_containsAtLeastOneSecureTextField;
+    NSArray *_controls;
     BOOL _allowsAutocomplete;
     BOOL _containsActiveElement;
     BOOL _bestForCredentialPreFill;
     BOOL _bestForPageLevelAutoFill;
+    BOOL _bestForStreamlinedLogin;
+    BOOL _eligibleForAutomaticLogin;
     BOOL _visible;
     BOOL _usesRelAsync;
     BOOL _usesGeneratedPassword;
+    BOOL _isSearchForm;
     NSDictionary *_annotations;
     unsigned long long _type;
     NSString *_confirmPasswordElementUniqueID;
     NSString *_firstCreditCardCardholderFieldOrCreditCardNumberFieldUniqueID;
     NSURL *_action;
-    NSArray *_controls;
     long long _uniqueID;
     NSString *_oldPasswordElementUniqueID;
     NSString *_passwordElementUniqueID;
-    NSDictionary *_radioButtonInfo;
     NSString *_textSample;
     NSString *_userNameElementUniqueID;
     unsigned long long _requestType;
+    NSDictionary *_passwordRequirements;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSDictionary *passwordRequirements; // @synthesize passwordRequirements=_passwordRequirements;
+@property(readonly, nonatomic) BOOL isSearchForm; // @synthesize isSearchForm=_isSearchForm;
 @property(readonly, nonatomic) unsigned long long requestType; // @synthesize requestType=_requestType;
 @property(readonly, nonatomic) BOOL usesGeneratedPassword; // @synthesize usesGeneratedPassword=_usesGeneratedPassword;
 @property(readonly, copy, nonatomic) NSString *userNameElementUniqueID; // @synthesize userNameElementUniqueID=_userNameElementUniqueID;
 @property(readonly, copy, nonatomic) NSString *textSample; // @synthesize textSample=_textSample;
-@property(readonly, copy, nonatomic) NSDictionary *radioButtonInfo; // @synthesize radioButtonInfo=_radioButtonInfo;
 @property(readonly, copy, nonatomic) NSString *passwordElementUniqueID; // @synthesize passwordElementUniqueID=_passwordElementUniqueID;
 @property(readonly, copy, nonatomic) NSString *oldPasswordElementUniqueID; // @synthesize oldPasswordElementUniqueID=_oldPasswordElementUniqueID;
 @property(readonly, nonatomic) BOOL usesRelAsync; // @synthesize usesRelAsync=_usesRelAsync;
 @property(readonly, nonatomic, getter=isVisible) BOOL visible; // @synthesize visible=_visible;
+@property(readonly, nonatomic, getter=isEligibleForAutomaticLogin) BOOL eligibleForAutomaticLogin; // @synthesize eligibleForAutomaticLogin=_eligibleForAutomaticLogin;
+@property(readonly, nonatomic, getter=isBestForStreamlinedLogin) BOOL bestForStreamlinedLogin; // @synthesize bestForStreamlinedLogin=_bestForStreamlinedLogin;
 @property(readonly, nonatomic, getter=isBestForPageLevelAutoFill) BOOL bestForPageLevelAutoFill; // @synthesize bestForPageLevelAutoFill=_bestForPageLevelAutoFill;
 @property(readonly, nonatomic, getter=isBestForCredentialPreFill) BOOL bestForCredentialPreFill; // @synthesize bestForCredentialPreFill=_bestForCredentialPreFill;
 @property(readonly, nonatomic) long long uniqueID; // @synthesize uniqueID=_uniqueID;
-@property(readonly, copy, nonatomic) NSArray *controls; // @synthesize controls=_controls;
 @property(readonly, nonatomic) NSURL *action; // @synthesize action=_action;
 @property(readonly, copy, nonatomic) NSString *firstCreditCardCardholderFieldOrCreditCardNumberFieldUniqueID; // @synthesize firstCreditCardCardholderFieldOrCreditCardNumberFieldUniqueID=_firstCreditCardCardholderFieldOrCreditCardNumberFieldUniqueID;
 @property(readonly, nonatomic) BOOL containsActiveElement; // @synthesize containsActiveElement=_containsActiveElement;
@@ -52,9 +62,16 @@
 @property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
 @property(readonly, copy, nonatomic) NSDictionary *annotations; // @synthesize annotations=_annotations;
 @property(readonly, nonatomic) BOOL allowsAutocomplete; // @synthesize allowsAutocomplete=_allowsAutocomplete;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL containsAtLeastOneSecureTextField;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 @property(readonly, copy, nonatomic) NSDictionary *dictionaryRepresentation;
+- (id)formMetadataByReplacingControlsWith:(id)arg1;
+- (id)_init;
 - (id)initWithJSValue:(id)arg1;
+- (unsigned long long)hash;
+@property(readonly, copy, nonatomic) NSArray *controls;
+- (BOOL)isEqual:(id)arg1;
 
 @end
 

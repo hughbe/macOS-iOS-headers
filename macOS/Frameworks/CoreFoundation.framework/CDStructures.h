@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class _CFXNotificationRegistrationBase;
+@class NSMutableArray, _CFXNotificationRegistrationBase;
 
 #pragma mark Function Pointers and Blocks
 
@@ -50,14 +50,23 @@ struct NSMethodFrameArgInfo {
     char _field10[0];
 };
 
-struct _CFPrefsShmemEntry {
-    int owner;
-    unsigned int generation;
+struct NSMethodFrameDescriptor {
+    struct NSMethodFrameArgInfo *_field1;
+    struct NSMethodFrameArgInfo *_field2;
+    unsigned int _field3;
+    unsigned int _field4;
 };
 
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
+};
+
+struct __CFArray;
+
+struct __cfobservers_t {
+    id slot;
+    struct __cfobservers_t *next;
 };
 
 struct __va_list_tag {
@@ -78,11 +87,6 @@ struct edge {
     unsigned long long _field3;
 };
 
-struct os_lock_handoff_s {
-    struct _os_lock_type_handoff_s *osl_type;
-    unsigned long long _osl_handoff_opaque[1];
-};
-
 struct os_unfair_lock_s {
     unsigned int _os_unfair_lock_opaque;
 };
@@ -96,11 +100,11 @@ struct vertex {
 #pragma mark Typedef'd Structures
 
 typedef struct {
-    unsigned long long _field1;
-    id *_field2;
-    unsigned long long *_field3;
-    unsigned long long _field4[5];
-} CDStruct_70511ce9;
+    unsigned long long state;
+    id *itemsPtr;
+    unsigned long long *mutationsPtr;
+    unsigned long long extra[5];
+} CDStruct_58648341;
 
 typedef struct {
     id *_field1;
@@ -108,6 +112,12 @@ typedef struct {
     unsigned long long _field3;
     char _field4;
 } CDStruct_f9f8a847;
+
+typedef struct {
+    int _field1;
+    long long _field2;
+    long long _field3;
+} CDStruct_b6748e3c;
 
 typedef struct {
     long long _field1;
@@ -132,11 +142,22 @@ typedef struct {
 } CDStruct_912cb5d2;
 
 typedef struct {
-    struct NSMethodFrameArgInfo *_field1;
-    struct NSMethodFrameArgInfo *_field2;
-    unsigned int _field3;
-    unsigned int _field4;
-} CDStruct_52991635;
+    struct __CFBasicHash *set;
+    NSMutableArray *array;
+} CDStruct_2595eaee;
+
+typedef struct {
+    int _field1;
+    long long _field2;
+    struct __CFArray *_field3;
+    struct __CFArray *_field4;
+} CDStruct_9e943ef1;
+
+typedef struct {
+    int _field1;
+    long long _field2;
+    struct __CFArray *_field3;
+} CDStruct_6ea78fe2;
 
 typedef struct {
     CDStruct_f9f8a847 _field1;
@@ -153,10 +174,48 @@ typedef struct {
     struct *callbacks;
 } CDStruct_a86bd46d;
 
-#pragma mark Typedef'd Unions
+typedef struct {
+    id *objs;
+    union {
+        unsigned long long mutations;
+        struct {
+            unsigned int muts;
+            unsigned int used:26;
+            unsigned int szidx:6;
+        } ;
+    } state;
+} CDStruct_af6d7307;
 
-typedef union {
-    struct _CFPrefsShmemEntry entry;
-    unsigned long long value;
-} CDUnion_9adbcd3f;
+typedef struct {
+    id *buffer;
+    union {
+        struct {
+            unsigned long long mutations;
+        } ;
+        struct {
+            unsigned int muts;
+            unsigned int other;
+        } ;
+        struct {
+            unsigned int mutbits:31;
+            unsigned int copyKeys:1;
+            unsigned int used:25;
+            unsigned int kvo:1;
+            unsigned int szidx:6;
+        } ;
+    } state;
+} CDStruct_bc24fd1e;
+
+typedef struct {
+    id *list;
+    unsigned int offset;
+    unsigned int size;
+    union {
+        unsigned long long mutations;
+        struct {
+            unsigned int muts;
+            unsigned int used;
+        } ;
+    } state;
+} CDStruct_a6934631;
 

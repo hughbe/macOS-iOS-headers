@@ -14,12 +14,12 @@
 }
 
 + (BOOL)canHandleURL:(id)arg1;
+- (void).cxx_destruct;
 - (void)abortOperation;
 - (void)unpublishWithAutomatic:(BOOL)arg1;
 - (void)unpublishDataWithAutomatic:(BOOL)arg1;
 - (void)publish:(id)arg1 automatic:(BOOL)arg2;
 - (void)publishData:(id)arg1 automatic:(BOOL)arg2;
-- (void)dealloc;
 - (id)initWithPublisher:(id)arg1 withURL:(id)arg2;
 
 @end

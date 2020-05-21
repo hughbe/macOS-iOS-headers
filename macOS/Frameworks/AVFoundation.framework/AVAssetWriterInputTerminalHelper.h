@@ -10,6 +10,7 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterInputTerminalHelper : AVAssetWriterInputHelper <AVAssetWriterInputMediaDataRequesterDelegate>
 {
     long long _terminalStatus;
@@ -24,7 +25,8 @@
 - (long long)appendSampleBuffer:(struct opaqueCMSampleBuffer *)arg1 error:(id *)arg2;
 - (BOOL)canStartRespondingToEachPassDescriptionReturningReason:(id *)arg1;
 - (void)requestMediaDataOnceIfNecessaryWithMediaDataRequester:(id)arg1;
-- (BOOL)mediaDataRequesterShouldRequestMediaData:(id)arg1;
+- (BOOL)mediaDataRequesterShouldRequestMediaData;
+- (void)stopRequestingMediaData;
 - (void)requestMediaDataWhenReadyOnQueue:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (BOOL)isReadyForMoreMediaData;
 - (id)transitionToAndReturnTerminalHelperWithTerminalStatus:(long long)arg1;

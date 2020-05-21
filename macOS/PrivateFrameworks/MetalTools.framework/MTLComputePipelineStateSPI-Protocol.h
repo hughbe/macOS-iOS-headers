@@ -6,7 +6,15 @@
 
 #import "MTLComputePipelineState.h"
 
+@class MTLDebugInstrumentationData;
+
 @protocol MTLComputePipelineStateSPI <MTLComputePipelineState>
+@property(readonly, retain, nonatomic) MTLDebugInstrumentationData *debugInstrumentationData;
+@property(readonly) unsigned long long uniqueIdentifier;
 @property(readonly) unsigned long long staticThreadgroupMemoryLength;
+- (unsigned int)getComputeKernelTelemetryID;
+
+@optional
+@property(nonatomic) unsigned long long resourceIndex;
 @end
 

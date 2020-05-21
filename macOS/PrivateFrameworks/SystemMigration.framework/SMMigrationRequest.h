@@ -16,7 +16,7 @@
     BOOL _disableSaving;
     BOOL _rebootOccurred;
     BOOL _systemDefenseTriggered;
-    BOOL _activateFDE;
+    BOOL _activateFilevault;
     BOOL _shouldEnableFastUserSwitching;
     BOOL _copiesNetworkSettings;
     BOOL _copiesTimeZoneSettings;
@@ -37,8 +37,8 @@
     NSDictionary *_targetSystemLongTermIdentifier;
     NSMutableArray *_messages;
     SMUIDGIDTranslator *_uidgidTranslator;
-    NSString *_fdeUser;
-    NSString *_fdePass;
+    NSString *_secureTokenUser;
+    NSString *_secureTokenPassword;
     NSDictionary *_iCloudBag;
     NSMutableArray *_usersToTransfer;
     NSMutableArray *_fileGroupingPaths;
@@ -58,6 +58,7 @@
 + (void)saveSecurityState:(id)arg1;
 + (void)performSecurityOperation:(CDUnknownBlockType)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *stepProgress; // @synthesize stepProgress=_stepProgress;
 @property struct timeval bootTime; // @synthesize bootTime=_bootTime;
 @property(retain) NSMutableSet *completedPaths; // @synthesize completedPaths=_completedPaths;
@@ -79,9 +80,9 @@
 @property BOOL shouldEnableFastUserSwitching; // @synthesize shouldEnableFastUserSwitching=_shouldEnableFastUserSwitching;
 @property(retain) NSMutableArray *usersToTransfer; // @synthesize usersToTransfer=_usersToTransfer;
 @property(retain) NSDictionary *iCloudBag; // @synthesize iCloudBag=_iCloudBag;
-@property BOOL activateFDE; // @synthesize activateFDE=_activateFDE;
-@property(retain) NSString *fdePass; // @synthesize fdePass=_fdePass;
-@property(retain) NSString *fdeUser; // @synthesize fdeUser=_fdeUser;
+@property BOOL activateFilevault; // @synthesize activateFilevault=_activateFilevault;
+@property(retain) NSString *secureTokenPassword; // @synthesize secureTokenPassword=_secureTokenPassword;
+@property(retain) NSString *secureTokenUser; // @synthesize secureTokenUser=_secureTokenUser;
 @property(retain) SMUIDGIDTranslator *uidgidTranslator; // @synthesize uidgidTranslator=_uidgidTranslator;
 @property BOOL systemDefenseTriggered; // @synthesize systemDefenseTriggered=_systemDefenseTriggered;
 @property(retain) NSMutableArray *messages; // @synthesize messages=_messages;
@@ -94,7 +95,6 @@
 @property(retain) NSString *uuid; // @synthesize uuid=_uuid;
 @property unsigned long long type; // @synthesize type=_type;
 @property unsigned long long state; // @synthesize state=_state;
-- (void).cxx_destruct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 @property(readonly) BOOL shouldPersistNetworkKeys;
 @property(readonly) BOOL currentlyBackgrounded;
@@ -120,12 +120,11 @@
 - (BOOL)copyWasCompletedForPath:(id)arg1;
 - (void)copyCompletedForPaths:(id)arg1;
 - (void)copyCompletedForPath:(id)arg1;
-- (id)usersToDeleteOnDestinationSystem:(id)arg1;
+- (id)usersToReplaceOnDestinationSystem:(id)arg1;
 - (id)description;
-- (id)replacementObjectForPortCoder:(id)arg1;
 - (void)addFileGroupingPath:(unsigned long long)arg1;
 - (void)removeUserToTransferWithOldShortName:(id)arg1;
-- (void)addUserToTransfer:(id)arg1 excludedPaths:(id)arg2 overwriteTargetName:(id)arg3;
+- (void)addUserToTransfer:(id)arg1 excludedPaths:(id)arg2 overwriteTargetName:(id)arg3 additionalKeyValues:(id)arg4;
 - (void)addMessages:(id)arg1;
 - (void)addMessage:(id)arg1;
 - (id)dictionaryDescription;

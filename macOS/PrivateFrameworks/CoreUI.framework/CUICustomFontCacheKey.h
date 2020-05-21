@@ -6,19 +6,24 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class NSString;
 
 __attribute__((visibility("hidden")))
-@interface CUICustomFontCacheKey : NSObject
+@interface CUICustomFontCacheKey : NSObject <NSCopying>
 {
     NSString *_name;
     double _pointSize;
+    unsigned long long _hash;
+    BOOL _hasHash;
 }
 
-@property(nonatomic) double pointSize; // @synthesize pointSize=_pointSize;
-@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
+@property(nonatomic) double pointSize;
+@property(copy, nonatomic) NSString *name;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 
 @end

@@ -9,11 +9,13 @@
 @class NSString, SiriUISiriView;
 
 @protocol SiriUISiriViewDelegate <NSObject>
+- (void)releaseKeySiriView:(SiriUISiriView *)arg1;
+- (void)siriView:(SiriUISiriView *)arg1 makeKeyWithCompletion:(void (^)(void))arg2;
 - (void)siriView:(SiriUISiriView *)arg1 didReceiveSiriActivationMessageWithSource:(long long)arg2;
 - (BOOL)siriView:(SiriUISiriView *)arg1 attemptUnlockWithPassword:(NSString *)arg2;
+- (void)siriView:(SiriUISiriView *)arg1 didReceiveTextInput:(NSString *)arg2;
 - (void)siriViewDidReceiveCloseAction:(SiriUISiriView *)arg1;
 - (void)siriViewDidReceiveHelpAction:(SiriUISiriView *)arg1;
-- (void)siriViewDidReceiveBugButtonLongPress:(SiriUISiriView *)arg1;
 - (void)siriViewDidReceiveReportBugAction:(SiriUISiriView *)arg1;
 - (void)siriViewDidRecieveStatusViewHoldDidEndAction:(SiriUISiriView *)arg1;
 - (void)siriViewDidRecieveStatusViewHoldDidBeginAction:(SiriUISiriView *)arg1;

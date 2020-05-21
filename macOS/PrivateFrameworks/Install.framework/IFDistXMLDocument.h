@@ -33,6 +33,7 @@
     NSNumber *_requiredGigaBytesOfRAM;
     NSPredicate *_requiredGLRenderer;
     NSPredicate *_requiredCLDevice;
+    NSPredicate *_requiredMetalDevice;
     NSString *_descriptionOfGraphicsHardware;
     BOOL _singleGraphicsDevice;
     NSString *_requiredHardwareProperties;
@@ -48,11 +49,12 @@
 
 + (int)_errorCodeForTypeString:(id)arg1;
 + (id)_arrayOfSafeSubPathsToIgnoreAtPath:(id)arg1;
+- (BOOL)isBackgroundImageResourceName:(id)arg1;
 - (id)preinstallActions;
 - (id)postinstallActions;
 - (id)packagesForLocation:(id)arg1 fromSet:(id)arg2;
 - (id)objectForOptionNamed:(id)arg1;
-- (BOOL)getData:(id *)arg1 andMIMEType:(id *)arg2 forResourceNamed:(id)arg3 forLanguage:(id)arg4;
+- (BOOL)getData:(id *)arg1 andMIMEType:(id *)arg2 forResourceNamed:(id)arg3 forLanguage:(id)arg4 error:(id *)arg5;
 - (id)getPathWithFallbackLoc:(id)arg1 forFile:(id)arg2;
 - (id)installerSectionPaths;
 - (id)installerSectionOrder;
@@ -89,6 +91,7 @@
 - (int)trustLevelReturningTrustRef:(struct __SecTrust **)arg1;
 - (int)trustLevelReturningCertificateChain:(id *)arg1;
 - (BOOL)evaluateTrust;
+- (id)_allPkgRefsForChoice:(id)arg1;
 - (id)_allPkgRefIdentifiersForChoice:(id)arg1;
 - (void)setMinimumRequiredTrustLevel:(int)arg1;
 - (int)minimumRequiredTrustLevel;

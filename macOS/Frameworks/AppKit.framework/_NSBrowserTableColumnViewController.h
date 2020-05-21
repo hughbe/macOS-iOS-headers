@@ -11,7 +11,7 @@
 
 @class NSIndexSet, NSMutableArray, NSString;
 
-@interface _NSBrowserTableColumnViewController : NSBrowserColumnViewController <NSTableViewDelegate, NSTableViewDataSource>
+@interface _NSBrowserTableColumnViewController : NSBrowserColumnViewController <NSTableViewDataSource, NSTableViewDelegate>
 {
     NSMutableArray *_selectedItems;
     NSIndexSet *_selectedIndexes;
@@ -68,6 +68,7 @@
 - (void)setBackgroundColor:(id)arg1;
 - (void)setDrawsBackground:(BOOL)arg1;
 - (BOOL)drawsBackground;
+- (BOOL)shouldAddColumnForSelection;
 - (void)setAllowsEmptySelection:(BOOL)arg1;
 - (BOOL)allowsEmptySelection;
 - (void)setAllowsMultipleSelection:(BOOL)arg1;

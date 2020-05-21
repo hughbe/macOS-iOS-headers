@@ -8,15 +8,26 @@
 
 #import "_GEOLocationShifterProxy.h"
 
-@class NSString, _GEOLocationShiftRequester;
+@class GEOLocationShifterPersistence, NSObject<OS_dispatch_queue>, NSString, _GEOLocationShiftRequester;
 
 __attribute__((visibility("hidden")))
 @interface _GEOLocationShifterLocalProxy : NSObject <_GEOLocationShifterProxy>
 {
     _GEOLocationShiftRequester *_requester;
+    int _resetPrivacyToken;
+    NSObject<OS_dispatch_queue> *_queue;
 }
 
-- (void)shiftCoordinate:(CDStruct_c3b9c2ee)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void).cxx_destruct;
+- (void)flushDiskCache;
+- (void)_prunePersistentCache;
+- (void)_doNetworkRequestForLatLng:(id)arg1 traits:(id)arg2 auditToken:(id)arg3 shouldCache:(BOOL)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)shiftLatLng:(id)arg1 auditToken:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (BOOL)isLocationShiftRequiredForCoordinate:(CDStruct_c3b9c2ee)arg1;
+- (unsigned int)locationShiftFunctionVersion;
+- (BOOL)isLocationShiftEnabled;
+@property(readonly, nonatomic) GEOLocationShifterPersistence *persistentCache;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue;
 - (void)dealloc;
 - (id)init;
 

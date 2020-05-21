@@ -49,6 +49,7 @@
     CDUnknownBlockType _postCommandCompletionBlock;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType postCommandCompletionBlock; // @synthesize postCommandCompletionBlock=_postCommandCompletionBlock;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *memberQueue; // @synthesize memberQueue=_memberQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *serverSideConfigQueue; // @synthesize serverSideConfigQueue=_serverSideConfigQueue;
@@ -71,7 +72,6 @@
 @property(nonatomic) __weak id delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSString *personID; // @synthesize personID=_personID;
 @property(nonatomic) __weak MSAlbumSharingDaemon *daemon; // @synthesize daemon=_daemon;
-- (void).cxx_destruct;
 - (void)MSASAssetDownloaderDidFinishBatch:(id)arg1;
 - (void)_sendReauthorizeAssetsForDownloadDisposition:(int)arg1 params:(id)arg2;
 - (void)workQueueScheduleReauthForAssets:(id)arg1 inAlbum:(id)arg2;
@@ -100,7 +100,7 @@
 - (void)continueAddingAssetCollections:(id)arg1 skipAssetCollections:(id)arg2 toAlbum:(id)arg3 info:(id)arg4;
 - (void)_addAssetCollectionsDisposition:(int)arg1 params:(id)arg2;
 - (void)addAssetCollections:(id)arg1 toAlbum:(id)arg2 info:(id)arg3;
-- (id)_createHardlinkedOrCopiedAssetsInAssetCollections:(id)arg1;
+- (id)_createCopiedAssetsInAssetCollections:(id)arg1;
 - (void)_updateAlbumDisposition:(int)arg1 params:(id)arg2;
 - (void)updateAlbum:(id)arg1 updateAlbumFlags:(int)arg2 info:(id)arg3;
 - (void)_createAlbumDisposition:(int)arg1 params:(id)arg2;
@@ -122,6 +122,10 @@
 - (void)_checkForAssetCollectionUpdatesDisposition:(int)arg1 params:(id)arg2;
 - (void)checkForAssetCollectionUpdates:(id)arg1 inAlbum:(id)arg2 info:(id)arg3;
 - (void)acceptInvitationWithToken:(id)arg1 info:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)_markAsSpamInvitationForTokenDisposition:(int)arg1 params:(id)arg2;
+- (void)markAsSpamInvitationForToken:(id)arg1 info:(id)arg2;
+- (void)_markAsSpamInvitationForAlbumDisposition:(int)arg1 params:(id)arg2;
+- (void)markAsSpamInvitationForAlbum:(id)arg1 invitationGUID:(id)arg2 info:(id)arg3;
 - (void)_unsubscribeFromAlbumDisposition:(int)arg1 params:(id)arg2;
 - (void)unsubscribeFromAlbum:(id)arg1 info:(id)arg2;
 - (void)_subscribeToAlbumDisposition:(int)arg1 params:(id)arg2;
@@ -182,7 +186,6 @@
 - (void)start;
 - (void)workQueueApplyServerSideConfiguration;
 - (int)assetsInDownloadQueueCount;
-- (void)dealloc;
 - (id)initWithPersonID:(id)arg1 eventQueue:(id)arg2;
 - (id)initWithPersonID:(id)arg1;
 - (id)init;

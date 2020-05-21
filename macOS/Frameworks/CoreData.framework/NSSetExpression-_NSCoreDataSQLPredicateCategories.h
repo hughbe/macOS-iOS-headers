@@ -7,6 +7,7 @@
 #import "NSSetExpression.h"
 
 @interface NSSetExpression (_NSCoreDataSQLPredicateCategories)
+- (id)_keypathsForDerivedPropertyValidation:(id *)arg1;
 - (id)minimalFormInContext:(id)arg1;
 @end
 

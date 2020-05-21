@@ -8,25 +8,39 @@
 
 #import "NSCopying.h"
 
-@class GEOPDViewportInfo, NSMutableArray;
+@class GEOPDViewportInfo, NSMutableArray, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDBatchPopularNearbySearchParameters : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     double _requestLocalTimestamp;
-    unsigned int _maxResults;
     NSMutableArray *_suggestionEntryMetadatas;
     GEOPDViewportInfo *_viewportInfo;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    unsigned int _maxResults;
     struct {
-        unsigned int requestLocalTimestamp:1;
-        unsigned int maxResults:1;
-    } _has;
+        unsigned int has_requestLocalTimestamp:1;
+        unsigned int has_maxResults:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_suggestionEntryMetadatas:1;
+        unsigned int read_viewportInfo:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_requestLocalTimestamp:1;
+        unsigned int wrote_suggestionEntryMetadatas:1;
+        unsigned int wrote_viewportInfo:1;
+        unsigned int wrote_maxResults:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)suggestionEntryMetadataType;
-@property(retain, nonatomic) NSMutableArray *suggestionEntryMetadatas; // @synthesize suggestionEntryMetadatas=_suggestionEntryMetadatas;
-@property(nonatomic) double requestLocalTimestamp; // @synthesize requestLocalTimestamp=_requestLocalTimestamp;
-@property(retain, nonatomic) GEOPDViewportInfo *viewportInfo; // @synthesize viewportInfo=_viewportInfo;
-@property(nonatomic) unsigned int maxResults; // @synthesize maxResults=_maxResults;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -34,16 +48,25 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)suggestionEntryMetadataAtIndex:(unsigned long long)arg1;
 - (unsigned long long)suggestionEntryMetadatasCount;
+- (void)_addNoFlagsSuggestionEntryMetadata:(id)arg1;
 - (void)addSuggestionEntryMetadata:(id)arg1;
 - (void)clearSuggestionEntryMetadatas;
+@property(retain, nonatomic) NSMutableArray *suggestionEntryMetadatas;
+- (void)_readSuggestionEntryMetadatas;
 @property(nonatomic) BOOL hasRequestLocalTimestamp;
+@property(nonatomic) double requestLocalTimestamp;
+@property(retain, nonatomic) GEOPDViewportInfo *viewportInfo;
 @property(readonly, nonatomic) BOOL hasViewportInfo;
+- (void)_readViewportInfo;
 @property(nonatomic) BOOL hasMaxResults;
-- (void)dealloc;
+@property(nonatomic) unsigned int maxResults;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

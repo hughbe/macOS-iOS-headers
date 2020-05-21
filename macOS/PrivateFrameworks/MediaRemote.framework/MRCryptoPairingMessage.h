@@ -14,8 +14,12 @@
 
 - (unsigned long long)type;
 - (unsigned long long)encryptionType;
+@property(readonly, nonatomic) unsigned long long state;
+@property(readonly, nonatomic, getter=isUsingSystemPairing) BOOL usingSystemPairing;
+@property(readonly, nonatomic, getter=isRetrying) BOOL retrying;
 @property(readonly, nonatomic) int status;
 @property(readonly, nonatomic) NSData *pairingData;
+- (id)initWithPairingData:(id)arg1 status:(int)arg2 isRetrying:(BOOL)arg3 isUsingSystemPairing:(BOOL)arg4 state:(unsigned long long)arg5;
 - (id)initWithPairingData:(id)arg1 status:(int)arg2;
 
 @end

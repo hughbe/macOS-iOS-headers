@@ -6,6 +6,7 @@
 
 #import "NSTableView.h"
 
+__attribute__((visibility("hidden")))
 @interface SCTTableView : NSTableView
 {
 }

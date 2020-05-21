@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "PQLValuable.h"
 
 @class NSData, NSString;
 
 __attribute__((visibility("hidden")))
-@interface CKDPCSData : NSObject <PQLValuable, NSSecureCoding>
+@interface CKDPCSData : NSObject <PQLValuable, NSSecureCoding, NSCopying>
 {
     struct _OpaquePCSShareProtection *_pcs;
     NSString *_etag;
@@ -21,17 +22,19 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)newFromSqliteValue:(struct Mem *)arg1;
++ (id)newFromSqliteStatement:(struct sqlite3_stmt *)arg1 atIndex:(int)arg2;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *pcsKeyID; // @synthesize pcsKeyID=_pcsKeyID;
 @property(copy, nonatomic) NSData *pcsData; // @synthesize pcsData=_pcsData;
 @property(copy, nonatomic) NSString *etag; // @synthesize etag=_etag;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly, copy) NSString *description;
 - (id)CKPropertiesDescription;
 @property(readonly, nonatomic) id <NSSecureCoding> itemID;
 @property(nonatomic) struct _OpaquePCSShareProtection *pcs; // @synthesize pcs=_pcs;
+- (BOOL)shouldEncodePCSData;
 - (void)dealloc;
 - (id)initWithPCSData:(id)arg1;
 - (void)sqliteBind:(struct sqlite3_stmt *)arg1 index:(int)arg2;

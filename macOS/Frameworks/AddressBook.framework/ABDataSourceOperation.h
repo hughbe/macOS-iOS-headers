@@ -8,14 +8,13 @@
 
 @class PHXSource;
 
-__attribute__((visibility("hidden")))
 @interface ABDataSourceOperation : NSOperation
 {
     PHXSource *_source;
 }
 
+- (void).cxx_destruct;
 @property(retain) PHXSource *source; // @synthesize source=_source;
-- (void)dealloc;
 
 @end
 

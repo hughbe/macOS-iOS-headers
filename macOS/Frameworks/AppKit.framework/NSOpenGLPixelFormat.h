@@ -11,10 +11,6 @@
 @interface NSOpenGLPixelFormat : NSObject <NSCoding>
 {
     struct _CGLPixelFormatObject *_CGLPixelFormat;
-    void *_reserved1;
-    void *_reserved2;
-    void *_reserved3;
-    void *_reserved4;
 }
 
 + (void)initialize;
@@ -31,9 +27,7 @@
 - (id)initWithCGLPixelFormatObj:(struct _CGLPixelFormatObject *)arg1;
 - (id)initWithAttributes:(const unsigned int *)arg1;
 - (id)init;
-- (BOOL)isSharableWithPixelFormat:(id)arg1;
-- (id)_initWithCGLPixelFormatObj:(void *)arg1;
-- (void *)_pixelFormatAuxiliary;
+- (id)_fallbackInitializer;
 
 @end
 

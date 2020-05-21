@@ -16,6 +16,7 @@
 
 + (id)showWeatherLocationsCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)showWeatherLocationsCompleted;
+- (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

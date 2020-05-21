@@ -4,9 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "NSObject.h"
+
 @class NSImage, WBSFluidProgressController, WBSFluidProgressState;
 
-@protocol WBSFluidProgressControllerDelegate
+@protocol WBSFluidProgressControllerDelegate <NSObject>
 - (NSImage *)fluidProgressController:(WBSFluidProgressController *)arg1 windowImageForRect:(struct CGRect)arg2;
 - (void)fluidProgressController:(WBSFluidProgressController *)arg1 setProgressToCurrentPosition:(WBSFluidProgressState *)arg2;
 - (void)fluidProgressControllerFinishProgressBar:(WBSFluidProgressController *)arg1 animateFillFade:(BOOL)arg2;

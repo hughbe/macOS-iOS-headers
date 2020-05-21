@@ -6,35 +6,43 @@
 
 #import <Safari/SearchableWKView.h>
 
-@class BrowserDocument, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSUUID;
+#import "_WKIconLoadingDelegate.h"
+
+@class BrowserViewController, NSArray, NSMutableDictionary, NSMutableSet, NSString, NSUUID;
 
 __attribute__((visibility("hidden")))
-@interface BrowserWKView : SearchableWKView
+@interface BrowserWKView : SearchableWKView <_WKIconLoadingDelegate>
 {
-    BrowserDocument *_document;
     NSMutableDictionary *_renderTreeCreationHandlerMap;
     NSMutableSet *_WKViewMouseTrackingBlockerSet;
-    BOOL _webPageIsUnresponsive;
-    NSMutableArray *_previewWKViews;
     BOOL _shouldBlockAllMouseEvents;
     BOOL _shouldBlockAllKeyEvents;
+    BOOL _shouldBlockFirstResponder;
+    BOOL _isVisible;
+    BOOL _forPagePreviews;
     BOOL _overrideMaintainsInactiveSelectionForVoiceOver;
+    id <BrowserViewIconLoadingDelegate> _iconDelegate;
     NSUUID *_uuid;
+    NSArray *_previewWKViews;
+    id <NSTouchBarProvider> _alternateFunctionBarProvider;
 }
 
-+ (void)closeWKViews:(id)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) id <NSTouchBarProvider> alternateFunctionBarProvider; // @synthesize alternateFunctionBarProvider=_alternateFunctionBarProvider;
 @property(nonatomic) BOOL overrideMaintainsInactiveSelectionForVoiceOver; // @synthesize overrideMaintainsInactiveSelectionForVoiceOver=_overrideMaintainsInactiveSelectionForVoiceOver;
+@property(readonly, copy, nonatomic) NSArray *previewWKViews; // @synthesize previewWKViews=_previewWKViews;
+@property(nonatomic, getter=isForPagePreviews) BOOL forPagePreviews; // @synthesize forPagePreviews=_forPagePreviews;
+@property(readonly, nonatomic) BOOL isVisible; // @synthesize isVisible=_isVisible;
 @property(readonly, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
+@property(nonatomic) BOOL shouldBlockFirstResponder; // @synthesize shouldBlockFirstResponder=_shouldBlockFirstResponder;
 @property(nonatomic) BOOL shouldBlockAllKeyEvents; // @synthesize shouldBlockAllKeyEvents=_shouldBlockAllKeyEvents;
 @property(nonatomic) BOOL shouldBlockAllMouseEvents; // @synthesize shouldBlockAllMouseEvents=_shouldBlockAllMouseEvents;
-@property(nonatomic) BOOL webPageIsUnresponsive; // @synthesize webPageIsUnresponsive=_webPageIsUnresponsive;
-- (void).cxx_destruct;
+@property(nonatomic) __weak id <BrowserViewIconLoadingDelegate> iconDelegate; // @synthesize iconDelegate=_iconDelegate;
+- (void)webView:(id)arg1 shouldLoadIconWithParameters:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (id)touchBar;
 - (BOOL)resignFirstResponder;
 - (BOOL)_isBlockingWKViewMouseTracking;
-- (void)_handleClickInPreviewView:(id)arg1 URL:(id)arg2;
-- (void)_finishPreviewingURL:(id)arg1 withPagePreviewViewController:(id)arg2;
-- (id)_viewForPreviewingURL:(id)arg1 initialFrameSize:(struct CGSize)arg2;
-- (struct BrowserContentViewController *)presentingBrowserContentViewController;
+- (id)presentingBrowserViewController;
 - (id)createFullScreenWindow;
 - (void)didCreateRenderLayerTree:(const struct RenderLayer *)arg1 forRequestWithIdentifier:(unsigned long long)arg2;
 - (void)createRenderLayerTreeWithCompletionHandler:(CDUnknownBlockType)arg1;
@@ -50,6 +58,7 @@ __attribute__((visibility("hidden")))
 - (void)_didChangeContentSize:(struct CGSize)arg1;
 - (void)unblockWKViewMouseTrackingWithObject:(id)arg1;
 - (void)blockWKViewMouseTrackingWithObject:(id)arg1;
+- (BOOL)mouseDownCanMoveWindow;
 - (void)keyDown:(id)arg1;
 - (void)keyUp:(id)arg1;
 - (void)mouseDragged:(id)arg1;
@@ -58,23 +67,30 @@ __attribute__((visibility("hidden")))
 - (void)mouseEntered:(id)arg1;
 - (void)mouseMoved:(id)arg1;
 - (void)mouseDown:(id)arg1;
+- (BOOL)becomeFirstResponder;
+- (BOOL)acceptsFirstResponder;
+- (void)viewDidChangeEffectiveAppearance;
 - (void)viewDidMoveToWindow;
 - (void)viewWillMoveToWindow:(id)arg1;
+- (void)startObserving:(id)arg1;
+- (void)stopObserving:(id)arg1;
+- (void)_windowDidChangeOcclusionState:(id)arg1;
+- (void)_updateVisibility;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (void)scrollWheel:(id)arg1;
 - (id)tabContentView;
 - (void)pageDidClose;
-- (void)didMoveToDocument:(id)arg1;
-- (void)setPreviewParentView:(id)arg1;
-@property(readonly, copy, nonatomic) NSArray *previewWKViews;
-- (id)browserWindowController;
-- (struct BrowserContentViewController *)browserContentViewController;
-- (PassRefPtr_6e6851a6)createContentViewController;
+- (id)playbackControlsPresenter;
+@property(readonly, nonatomic) BrowserViewController *browserViewController;
 - (void)dealloc;
-- (void)_gestureEventWasNotHandledByWebCore:(id)arg1;
-- (void)_commonBrowserWKViewInit;
-- (id)initWithDocument:(id)arg1 frame:(struct CGRect)arg2 context:(const struct Context *)arg3 pageGroup:(const struct PageGroup *)arg4 browsingMode:(unsigned long long)arg5 websiteDataStore:(id)arg6;
-- (id)initWithDocument:(id)arg1 frame:(struct CGRect)arg2 context:(const struct Context *)arg3 pageGroup:(const struct PageGroup *)arg4 browsingMode:(unsigned long long)arg5;
+- (id)initWithBrowserViewController:(id)arg1 configuration:(id)arg2;
+- (id)initWithWebViewController:(id)arg1 configuration:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

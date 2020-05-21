@@ -8,32 +8,34 @@
 
 @class NSNumber, NSString, RWIApplication;
 
-__attribute__((visibility("hidden")))
 @interface RWIDrivable : NSObject
 {
-    BOOL _paired;
     NSNumber *_targetIdentifier;
     NSString *_sessionIdentifier;
     RWIApplication *_owningApplication;
     long long _state;
+    NSString *_name;
+    NSString *_version;
     id <RWIDrivableDelegate> _delegate;
     id <RWIDriverSession> _pairedSession;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) id <RWIDriverSession> pairedSession; // @synthesize pairedSession=_pairedSession;
 @property(nonatomic) __weak id <RWIDrivableDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic, getter=isPaired) BOOL paired; // @synthesize paired=_paired;
+@property(readonly, copy, nonatomic) NSString *version; // @synthesize version=_version;
+@property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic) long long state; // @synthesize state=_state;
 @property(readonly, nonatomic) RWIApplication *owningApplication; // @synthesize owningApplication=_owningApplication;
 @property(readonly, copy, nonatomic) NSString *sessionIdentifier; // @synthesize sessionIdentifier=_sessionIdentifier;
 @property(readonly, copy, nonatomic) NSNumber *targetIdentifier; // @synthesize targetIdentifier=_targetIdentifier;
-- (void).cxx_destruct;
 - (void)sendMessageToFrontend:(id)arg1;
 - (void)sendMessageToBackend:(id)arg1;
+@property(readonly, nonatomic, getter=isPaired) BOOL paired;
 - (void)unpairWithSession:(id)arg1;
 - (void)pairWithSession:(id)arg1;
-- (void)updateState:(long long)arg1 isPaired:(BOOL)arg2 toSession:(id)arg3;
-- (id)initWithApplication:(id)arg1 sessionIdentifier:(id)arg2 targetIdentifier:(id)arg3 state:(long long)arg4 isPaired:(BOOL)arg5;
+- (void)updateState:(long long)arg1 pairedSession:(id)arg2;
+- (id)initWithApplication:(id)arg1 sessionIdentifier:(id)arg2 targetIdentifier:(id)arg3 state:(long long)arg4 name:(id)arg5 version:(id)arg6;
 
 @end
 

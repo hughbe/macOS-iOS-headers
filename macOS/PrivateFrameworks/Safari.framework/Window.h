@@ -27,7 +27,6 @@ __attribute__((visibility("hidden")))
 - (void)setResizable:(BOOL)arg1;
 - (BOOL)isResizable;
 - (struct CGPoint)cascadeTopLeftFromPoint:(struct CGPoint)arg1;
-- (struct CGRect)adjustedFrameForCascade:(struct CGRect)arg1 fromWindow:(id)arg2;
 - (id)findFrontmostOtherWindowOfWidth:(float)arg1;
 - (void)_setFrameAfterMove:(struct CGRect)arg1;
 - (void)sendEvent:(id)arg1;

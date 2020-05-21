@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
 @interface AVInternalDeviceList : NSObject
 {
     CDUnknownBlockType propertyListener;
+    CDUnknownBlockType hardwareListener;
     CDUnknownBlockType changeListener;
     NSMutableArray *deviceList;
     struct _opaque_pthread_mutex_t listLock;
@@ -21,9 +22,11 @@ __attribute__((visibility("hidden")))
 + (id)newDeviceList;
 @property(copy, nonatomic) CDUnknownBlockType changeListener;
 - (id)deviceList;
+- (void)notifyDeviceListChanged;
 - (void)dealloc;
 - (void)cleanup;
 - (id)init;
+- (unsigned int)dataSourceControlID;
 
 @end
 

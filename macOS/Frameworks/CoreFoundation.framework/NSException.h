@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSDictionary, NSString;
 
-@interface NSException : NSObject <NSCopying, NSCoding>
+@interface NSException : NSObject <NSCopying, NSSecureCoding>
 {
     NSString *name;
     NSString *reason;
@@ -19,6 +19,7 @@
     id reserved;
 }
 
++ (BOOL)supportsSecureCoding;
 + (void)raise:(id)arg1 format:(id)arg2;
 + (void)raise:(id)arg1 format:(id)arg2 arguments:(struct __va_list_tag [1])arg3;
 + (id)exceptionWithName:(id)arg1 reason:(id)arg2 userInfo:(id)arg3;
@@ -29,10 +30,13 @@
 - (id)initWithName:(id)arg1 reason:(id)arg2 userInfo:(id)arg3;
 - (id)init;
 - (void)raise;
+- (id)redactedDescription;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)_installStackTraceKeyIfNeeded;
+- (void)_markAsUnarchived;
+- (BOOL)_isUnarchived;
 @property(readonly, copy) NSArray *callStackSymbols;
 @property(readonly, copy) NSArray *callStackReturnAddresses;
 @property(readonly, copy) NSDictionary *userInfo;

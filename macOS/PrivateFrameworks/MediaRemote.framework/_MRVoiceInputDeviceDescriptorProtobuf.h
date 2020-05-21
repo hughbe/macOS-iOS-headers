@@ -17,6 +17,7 @@
 }
 
 + (Class)supportedFormatsType;
+- (void).cxx_destruct;
 @property(retain, nonatomic) _MRAudioFormatSettingsProtobuf *defaultFormat; // @synthesize defaultFormat=_defaultFormat;
 @property(retain, nonatomic) NSMutableArray *supportedFormats; // @synthesize supportedFormats=_supportedFormats;
 - (void)mergeFrom:(id)arg1;
@@ -33,7 +34,6 @@
 - (unsigned long long)supportedFormatsCount;
 - (void)addSupportedFormats:(id)arg1;
 - (void)clearSupportedFormats;
-- (void)dealloc;
 
 @end
 

@@ -8,6 +8,6 @@
 
 @protocol WBSFormsMetadataProvider <NSObject>
 @property(readonly, nonatomic) unsigned long long formCount;
-- (void)enumerateFormsUsingBlock:(void (^)(struct OpaqueFormAutoFillFrame *, NSDictionary *, char *))arg1;
+- (void)enumerateFormsUsingBlock:(void (^)(struct OpaqueFormAutoFillFrame *, WBSFormMetadata *, char *))arg1;
 @end
 

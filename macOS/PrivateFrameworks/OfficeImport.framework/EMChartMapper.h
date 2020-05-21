@@ -35,6 +35,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (struct CGColor *)newColorWithCalibratedRed:(float)arg1 green:(float)arg2 blue:(float)arg3 alpha:(float)arg4;
+- (void).cxx_destruct;
 - (void)addSeries:(id)arg1 toDescription:(id)arg2 withState:(id)arg3;
 - (void)_addStandardSeries:(id)arg1 toDescription:(id)arg2 withState:(id)arg3;
 - (void)_addGraphicProperties:(id)arg1 toDescription:(id)arg2 withState:(id)arg3;
@@ -48,7 +49,7 @@ __attribute__((visibility("hidden")))
 - (id)dateFromXlDateTimeNumber:(double)arg1;
 
 // Remaining properties
-@property(readonly) CMDrawableMapper *parent; // @dynamic parent;
+@property(readonly) __weak CMDrawableMapper *parent; // @dynamic parent;
 
 @end
 

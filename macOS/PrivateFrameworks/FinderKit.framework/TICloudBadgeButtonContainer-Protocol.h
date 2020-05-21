@@ -7,6 +7,6 @@
 #import "NSObject.h"
 
 @protocol TICloudBadgeButtonContainer <NSObject>
-- (void)setICloudBadgeBRBadge:(int)arg1 toolTip:(struct TString)arg2 clickHandler:(const function_f9feaa7d *)arg3;
+- (void)setICloudBadge:(int)arg1 toolTip:(const struct TString *)arg2 clickHandler:(const function_b1fce659 *)arg3;
 @end
 

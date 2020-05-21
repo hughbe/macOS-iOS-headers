@@ -20,9 +20,9 @@
 + (void)_updateAddressDisplayNames:(id)arg1;
 + (id)messagesInConversationCriterionWithConversationIDs:(id)arg1;
 + (void)initialize;
+- (void).cxx_destruct;
 @property(copy) NSString *groupUniqueID; // @synthesize groupUniqueID=_groupUniqueID;
 @property long long specialMailboxTypeCode; // @synthesize specialMailboxTypeCode=_specialMailboxTypeCode;
-- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL containsAddressBookCriteria;
 @property(readonly, nonatomic) BOOL containsRelativeDateCriteria;
 @property(readonly, nonatomic) BOOL containsMessageIsNotInATrashMailboxCriterion;
@@ -40,8 +40,8 @@
 - (BOOL)hasExpression;
 - (BOOL)isSatisfiedByMailboxURL:(id)arg1;
 - (BOOL)evaluateMessage:(id)arg1;
-- (BOOL)_evaluateMessage:(id)arg1 fetchBody:(BOOL)arg2 needsBody:(char *)arg3;
-- (BOOL)doesMessageSatisfyRuleEvaluationCriterion:(id)arg1 fetchBody:(BOOL)arg2 needsBody:(char *)arg3;
+- (BOOL)_evaluateMessage:(id)arg1 fetchBody:(BOOL)arg2 needsBody:(char *)arg3 successfullyEvaluated:(char *)arg4;
+- (BOOL)doesMessageSatisfyRuleEvaluationCriterion:(id)arg1 fetchBody:(BOOL)arg2 needsBody:(char *)arg3 successfullyEvaluated:(char *)arg4;
 - (BOOL)_evaluateFlaggedStatusCriterion:(id)arg1;
 - (BOOL)_evaluateSpecialMailboxCriterion:(id)arg1;
 - (BOOL)_mailboxURLString:(id)arg1 satisfiesQualifier:(long long)arg2 forExpression:(id)arg3;
@@ -63,7 +63,7 @@
 - (BOOL)_evaluateIsEncryptedCriterion:(id)arg1;
 - (BOOL)_evaluateIsDigitallySignedCriterion:(id)arg1;
 - (BOOL)_evaluateFullNameCriterion:(id)arg1;
-- (BOOL)_evaluateAddressHistoryCriterion:(id)arg1;
+- (BOOL)_evaluateAddressHistoryCriterion:(id)arg1 successfullyEvaluated:(char *)arg2;
 - (BOOL)_evaluateAccountCriterion:(id)arg1;
 - (BOOL)_evaluateMemberOfVIPSendersCriterion:(id)arg1;
 - (BOOL)_evaluateMemberOfGroupCriterion:(id)arg1;

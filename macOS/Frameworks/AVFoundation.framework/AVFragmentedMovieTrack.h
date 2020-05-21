@@ -13,5 +13,7 @@
     AVFragmentedMovieTrackInternal *_fragmentedMovieTrack;
 }
 
+- (void).cxx_destruct;
+
 @end
 

@@ -16,12 +16,12 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_cancelTokens;
 }
 
-@property(retain, nonatomic) NSMutableArray *cancelTokens; // @synthesize cancelTokens=_cancelTokens;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *cancelTokens; // @synthesize cancelTokens=_cancelTokens;
 - (void)cancel;
 - (void)removeAllCancelTokens;
 - (void)removeCancelToken:(id)arg1;
-- (void)addCancelToken:(id)arg1;
+- (void)addCancelToken:(id)arg1 withOperation:(id)arg2;
 - (id)init;
 
 @end

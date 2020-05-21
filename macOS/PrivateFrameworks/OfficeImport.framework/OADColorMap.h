@@ -14,13 +14,14 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *mMappings;
 }
 
+- (void).cxx_destruct;
 - (void)addDefaultMappings:(BOOL)arg1;
 - (id)description;
 - (_Bool)isEmpty;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)addMapping:(int)arg1 index:(int)arg2;
 - (int)mappingForIndex:(int)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

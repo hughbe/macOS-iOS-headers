@@ -16,12 +16,10 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)customAttributes;
-+ (id)_kernel;
 @property(retain, nonatomic) CIImage *inputBackgroundImage; // @synthesize inputBackgroundImage;
 @property(retain, nonatomic) CIImage *inputImage; // @synthesize inputImage;
 - (id)outputImage;
-- (BOOL)_needUnpremuls;
-- (struct CGRect)_extent;
+- (id)_kernel;
 
 @end
 

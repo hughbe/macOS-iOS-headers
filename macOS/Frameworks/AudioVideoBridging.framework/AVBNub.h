@@ -6,16 +6,21 @@
 
 #import "NSObject.h"
 
+@class NSObject<OS_dispatch_queue>, TSgPTPClock;
+
 @interface AVBNub : NSObject
 {
     unsigned int connection;
+    NSObject<OS_dispatch_queue> *_domainQueue;
+    TSgPTPClock *_avbDomain;
 }
 
 + (id)diagnosticDescriptionForService:(unsigned int)arg1 withIndent:(id)arg2;
 + (id)avbNub;
 + (id)sharedNub;
-+ (void)loadAVBNub;
++ (void)notifyWhenNubIsAvailable:(CDUnknownBlockType)arg1;
 - (void)dealloc;
+@property(readonly) TSgPTPClock *avbDomain;
 - (void)finalize;
 - (id)description;
 - (BOOL)deactivateAVBOnInterfaceNamed:(id)arg1 error:(id *)arg2;
@@ -45,6 +50,7 @@
 - (BOOL)addMSRPClientToInterfaceNamed:(id)arg1 error:(id *)arg2;
 - (BOOL)removeAVBClientFromInterfaceNamed:(id)arg1 error:(id *)arg2;
 - (BOOL)addAVBClientToInterfaceNamed:(id)arg1 error:(id *)arg2;
+- (BOOL)callClientCommand:(int)arg1 withName:(id)arg2 withInterfaceNamed:(id)arg3 error:(id *)arg4;
 - (BOOL)removeTimeSyncFromInterfaceNamed:(id)arg1 error:(id *)arg2;
 - (BOOL)addTimeSyncToInterfaceNamed:(id)arg1 error:(id *)arg2;
 - (id)init;

@@ -36,6 +36,7 @@
 }
 
 + (BOOL)requiresConstraintBasedLayout;
+- (void).cxx_destruct;
 @property(retain, nonatomic) MKImageView *imageView; // @synthesize imageView=_imageView;
 @property(retain, nonatomic) NSColor *secondaryTextColor; // @synthesize secondaryTextColor=_secondaryTextColor;
 @property(retain, nonatomic) NSColor *primaryTextColor; // @synthesize primaryTextColor=_primaryTextColor;
@@ -45,7 +46,6 @@
 @property(retain, nonatomic) _MKUILabel *tertiaryLabel; // @synthesize tertiaryLabel=_tertiaryLabel;
 @property(retain, nonatomic) _MKUILabel *secondaryLabel; // @synthesize secondaryLabel=_secondaryLabel;
 @property(retain, nonatomic) _MKUILabel *nameLabel; // @synthesize nameLabel=_nameLabel;
-- (void).cxx_destruct;
 - (void)locationManagerDidResumeLocationUpdates:(id)arg1;
 - (void)locationManagerDidPauseLocationUpdates:(id)arg1;
 - (BOOL)locationManagerShouldPauseLocationUpdates:(id)arg1;
@@ -85,7 +85,7 @@
 @property(nonatomic) BOOL showsDistance;
 @property(nonatomic) BOOL selected;
 - (id)_labelWithFontSize:(double)arg1;
-- (void)commonInit;
+- (void)_commonInit;
 - (id)initWithFrame:(struct CGRect)arg1 highlightsOnTouch:(BOOL)arg2;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithMapItems:(id)arg1 primaryLabelText:(id)arg2;

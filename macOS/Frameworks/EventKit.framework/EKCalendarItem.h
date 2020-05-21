@@ -6,11 +6,11 @@
 
 #import <EventKit/EKObject.h>
 
-#import "EKProtocolMutableOccurrence.h"
+#import "MutableOccurrenceModelProtocol.h"
 
-@class EKCalendar, EKRecurrenceIdentifier, NSArray, NSDate, NSDictionary, NSManagedObjectID, NSNumber, NSString, NSTimeZone, NSURL;
+@class EKCalendar, EKRecurrenceIdentifier, NSArray, NSData, NSDate, NSDictionary, NSManagedObjectID, NSNumber, NSString, NSTimeZone, NSURL;
 
-@interface EKCalendarItem : EKObject <EKProtocolMutableOccurrence>
+@interface EKCalendarItem : EKObject <MutableOccurrenceModelProtocol>
 {
     BOOL cachedHasAttachment;
     BOOL cachedHasAttendee;
@@ -22,6 +22,7 @@
     NSDate *recurrenceDateUnadjustedFromUTC;
     NSString *_localUID;
     NSString *_sharedUID;
+    NSString *_itemID;
     EKRecurrenceIdentifier *_recurrenceIdentifier;
 }
 
@@ -57,7 +58,9 @@
 + (id)itemWithOccurrence:(id)arg1 createPartialBackingObject:(BOOL)arg2 eventStore:(id)arg3 preFrozenRelationshipObjects:(id)arg4;
 + (id)itemWithOccurrence:(id)arg1 createPartialBackingObject:(BOOL)arg2 eventStore:(id)arg3;
 + (Class)_classForOccurrence:(id)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) EKRecurrenceIdentifier *recurrenceIdentifier; // @synthesize recurrenceIdentifier=_recurrenceIdentifier;
+@property(retain, nonatomic) NSString *itemID; // @synthesize itemID=_itemID;
 @property(retain, nonatomic) NSString *sharedUID; // @synthesize sharedUID=_sharedUID;
 @property(retain, nonatomic) NSString *localUID; // @synthesize localUID=_localUID;
 - (void)setRecurrenceDateUnadjustedFromUTC:(id)arg1;
@@ -69,7 +72,6 @@
 @property(readonly, nonatomic) BOOL cachedHasAttendee; // @synthesize cachedHasAttendee;
 @property(readonly, nonatomic) BOOL cachedHasAttachment; // @synthesize cachedHasAttachment;
 @property(readonly, nonatomic) NSNumber *calendarItemPermissionNumber; // @synthesize calendarItemPermissionNumber;
-- (void).cxx_destruct;
 - (BOOL)_validateDeletable:(id *)arg1;
 - (BOOL)_validateDeletableInCalendarWithError:(id *)arg1;
 - (BOOL)_validateDeletableBySharedCalendarShareeWithError:(id *)arg1;
@@ -104,6 +106,8 @@
 - (id)roomAttendeeForLocationString:(id)arg1;
 - (id)roomAttendees;
 - (id)_pathToTruthFile;
+- (id)exportToICSWithOptions:(long long)arg1;
+- (unsigned long long)_ekToICalendarExportOptions:(long long)arg1;
 - (id)_nsCalendar;
 - (void)_clearRecurrenceDate;
 - (void)_changeRecurrenceDate:(id)arg1;
@@ -134,6 +138,9 @@
 - (void)_updateRecurrenceIdentifier;
 - (void)changeIdentifiersFromOriginal:(id)arg1;
 - (id)_chosenLocalUIDForDuplicate;
+- (int)sequenceNumber;
+- (void)setSequence:(id)arg1;
+- (id)sequence;
 - (id)_duplicateWithChangedKeys:(id)arg1;
 - (id)_keysToChangeForDuplicateWithOptions:(long long)arg1;
 - (id)duplicate;
@@ -151,12 +158,13 @@
 - (void)setTimeZoneObject:(id)arg1;
 - (id)datePreservingDateComponentsForDate:(id)arg1 inCurrentTimeZone:(id)arg2 movingToTimeZone:(id)arg3;
 @property(readonly, copy, nonatomic) NSTimeZone *timeZoneObject;
-- (void)_decodeValueForKey:(id)arg1 withCoder:(id)arg2;
 - (void)setLastModifiedDate:(id)arg1;
 @property(readonly, nonatomic) NSDate *lastModifiedDate;
 - (void)clearCachedTimeValues;
 - (void)setOrganizer:(id)arg1;
 - (id)organizer;
+- (void)setOrganizerPhoneNumber:(id)arg1;
+@property(readonly, copy, nonatomic) NSString *organizerPhoneNumber;
 - (void)setOrganizerEncodedLikenessData:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *organizerEncodedLikenessData;
 - (void)setOrganizerEmail:(id)arg1;
@@ -181,6 +189,7 @@
 - (id)nonNoneAlarms;
 - (id)alarmSet;
 @property(copy, nonatomic) NSArray *alarms;
+- (id)allAlarms;
 - (void)updateWithAppLink:(id)arg1 usedSelectedText:(char *)arg2;
 - (id)commitedItemIgnoringPotentialSlice:(BOOL)arg1;
 - (id)commitedItem;
@@ -225,11 +234,14 @@
 @property(copy, nonatomic) NSString *notes;
 @property(readonly, copy, nonatomic) NSString *scheduleAgentString;
 - (id)preferredLocation;
+- (void)setStructuredLocationWithoutPrediction:(id)arg1;
+- (id)structuredLocationWithoutPrediction;
 - (void)setStructuredLocation:(id)arg1;
 - (id)structuredLocation;
 - (void)setEkStructuredLocation:(id)arg1;
 @property(readonly, copy, nonatomic) id <EKProtocolStructuredLocation> ekStructuredLocation;
 @property(copy, nonatomic) NSString *location;
+- (id)rawTitle;
 @property(readonly, nonatomic) BOOL organizedByMe;
 - (void)setAttendeeSet:(id)arg1;
 - (id)attendeeSet;
@@ -254,22 +266,18 @@
 - (id)participantMatchingContact:(id)arg1;
 @property(readonly, copy, nonatomic) id <EKProtocolParticipant> participantForMe;
 - (BOOL)isScheduled;
-- (BOOL)_isOrganizedBySomeoneElseForCalendar:(id)arg1;
 - (BOOL)isOrganizedBySomeoneElse;
-- (BOOL)_isOrganizedBySharedCalendarOwnerForCalendar:(id)arg1;
 - (BOOL)isOrganizedBySharedCalendarOwner;
-- (BOOL)_isOrganizedByCurrentUserForCalendar:(id)arg1;
+- (BOOL)isSelfOrganized;
 - (BOOL)isOrganizedByCurrentUser;
-- (BOOL)_isCurrentUserInvitedAttendeeForCalendar:(id)arg1;
 - (BOOL)isCurrentUserInvitedAttendee;
-- (BOOL)_isCalendarOwnerInvitedAttendeeForCalendar:(id)arg1;
 - (BOOL)isCalendarOwnerInvitedAttendee;
 - (unsigned long long)entityType;
 - (BOOL)_currentUserMayActAsOrganizerForCalendar:(id)arg1;
 - (BOOL)currentUserMayActAsOrganizer;
 - (long long)currentUserGeneralizedParticipantRole;
 - (long long)calendarItemPermission;
-@property(readonly, copy, nonatomic) id <EKProtocolCalendar> container;
+@property(readonly, retain, nonatomic) id <CalendarModelProtocol> container;
 - (id)backingOccurrence;
 @property(readonly, nonatomic) NSArray *attendees;
 - (void)setSelfAttendee:(id)arg1;
@@ -278,8 +286,49 @@
 - (id)attendeeForCurrentUser;
 - (BOOL)allowsLikenessDataModifications;
 - (BOOL)allowsParticipantStatusModifications;
+- (id)uniqueId;
 - (id)specificIdentifier;
 - (id)initWithObject:(id)arg1 createPartialBackingObject:(BOOL)arg2 keepBackingObject:(BOOL)arg3 preFrozenRelationshipObjects:(id)arg4 additionalFrozenProperties:(id)arg5;
+- (BOOL)allowsSpansOtherThanThisEvent;
+- (long long)indexForAlarm:(id)arg1;
+@property(readonly, nonatomic) BOOL requiresDetach;
+@property(readonly, nonatomic) NSString *uniqueID;
+@property(readonly, nonatomic) BOOL _hadAttendees;
+@property(readonly, nonatomic) BOOL isExternallyOrganizedInvitation;
+- (BOOL)_isExternallyOrganizedInvitationWithAttendees:(BOOL)arg1;
+@property(retain, nonatomic) NSTimeZone *startTimeZone;
+@property(readonly, nonatomic) long long selfParticipantStatus;
+@property(readonly, nonatomic) BOOL allowsRecurrenceModifications;
+@property(readonly, nonatomic) BOOL isFloating;
+- (id)startDateForRecurrence;
+@property(readonly, nonatomic) BOOL isSelfOrganizedInvitation;
+@property(readonly, nonatomic) NSDate *sharedItemModifiedDate;
+@property(readonly, nonatomic) NSDate *sharedItemCreatedDate;
+- (id)sortedAlarms;
+- (id)exportToICS;
+@property(readonly, nonatomic) unsigned long long actionsState;
+@property(readonly, nonatomic) NSTimeZone *sharedItemModifiedTimeZone;
+@property(readonly, nonatomic) NSTimeZone *sharedItemCreatedTimeZone;
+@property(readonly, nonatomic) NSString *externalID;
+@property(readonly, nonatomic) NSURL *sharedItemModifiedByAddress;
+@property(readonly, nonatomic) NSURL *sharedItemCreatedByAddress;
+@property(readonly, nonatomic) NSString *sharedItemModifiedByLastName;
+@property(readonly, nonatomic) NSString *sharedItemModifiedByFirstName;
+@property(readonly, nonatomic) NSString *sharedItemModifiedByDisplayName;
+@property(readonly, nonatomic) NSString *sharedItemCreatedByLastName;
+@property(readonly, nonatomic) NSString *sharedItemCreatedByFirstName;
+@property(readonly, nonatomic) NSString *sharedItemCreatedByDisplayName;
+- (void)willSave;
+- (void)setLocalCustomObject:(id)arg1 forKey:(id)arg2;
+- (id)localCustomObjectForKey:(id)arg1;
+- (void)setCustomObject:(id)arg1 forKey:(id)arg2;
+- (id)customObjectForKey:(id)arg1;
+- (void)_setCustomObject:(id)arg1 forKey:(id)arg2 local:(BOOL)arg3;
+- (id)_customObjectForKey:(id)arg1 local:(BOOL)arg2;
+- (id)_dataFromStructuredDataDictionary:(id)arg1;
+- (id)_structuredDataDictionaryFromData:(id)arg1;
+@property(copy, nonatomic) NSData *localStructuredData;
+@property(copy, nonatomic) NSData *structuredData;
 
 // Remaining properties
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;

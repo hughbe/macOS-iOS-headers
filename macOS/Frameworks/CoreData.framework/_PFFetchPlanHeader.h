@@ -6,13 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSFetchRequest, NSManagedObjectContext, NSPersistentStore, NSSQLEntity, NSSQLModel, NSSQLRowCache, NSSQLiteStatement;
+@class NSFetchRequest, NSManagedObjectContext, NSPersistentStore, NSSQLEntity, NSSQLModel, NSSQLRowCache;
 
 __attribute__((visibility("hidden")))
 @interface _PFFetchPlanHeader : NSObject
 {
     NSFetchRequest *fetch_request;
-    NSSQLiteStatement *cached_sql_statement;
     unsigned int requested_batch_size;
     NSPersistentStore *sql_core;
     NSSQLModel *sql_model;

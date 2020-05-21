@@ -12,11 +12,11 @@
 
 + (id)ASCIIFromCangjie:(id)arg1;
 + (id)cangjieToASCIIMap;
+- (BOOL)shouldGroupWindowMovement;
 - (BOOL)shouldOptimizeLayoutForFixedSize;
 - (BOOL)handlePunctuationAndSymbolsAndUppercaseLetters:(unsigned short)arg1;
 - (id)shownInlineText;
 - (id)enumeratedCandidates;
-- (BOOL)handleReturn;
 - (id)getCharacterCodeForCharacter:(id)arg1;
 - (BOOL)updateMarkedTextOnSelectionChange;
 - (BOOL)inlineBeginsWithWildcard;

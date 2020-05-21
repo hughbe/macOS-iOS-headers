@@ -8,15 +8,20 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray;
+@class NSMutableArray, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDMultiLocalizedString : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_localizedStrings;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)localizedStringType;
-@property(retain, nonatomic) NSMutableArray *localizedStrings; // @synthesize localizedStrings=_localizedStrings;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -24,13 +29,14 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)localizedStringAtIndex:(unsigned long long)arg1;
 - (unsigned long long)localizedStringsCount;
 - (void)addLocalizedString:(id)arg1;
 - (void)clearLocalizedStrings;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *localizedStrings;
 - (id)bestLocalizedName;
 
 @end

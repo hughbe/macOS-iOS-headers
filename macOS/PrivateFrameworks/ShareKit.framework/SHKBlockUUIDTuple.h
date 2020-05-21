@@ -8,15 +8,16 @@
 
 @class NSUUID;
 
+__attribute__((visibility("hidden")))
 @interface SHKBlockUUIDTuple : NSObject
 {
     CDUnknownBlockType _block;
     NSUUID *_uuid;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSUUID *uuid; // @synthesize uuid=_uuid;
 @property(readonly, copy) CDUnknownBlockType block; // @synthesize block=_block;
-- (void).cxx_destruct;
 - (id)description;
 - (id)initWithBlock:(CDUnknownBlockType)arg1 UUID:(id)arg2;
 

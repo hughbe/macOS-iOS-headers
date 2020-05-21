@@ -13,17 +13,16 @@
 }
 
 @property(copy, nonatomic) NSString *contentSecurityPolicyHash;
-@property(copy, nonatomic) NSString *role;
 @property(copy, nonatomic) NSArray *pseudoElements;
 @property(retain, nonatomic) RWIProtocolDOMNode *templateContent;
 @property(copy, nonatomic) NSArray *shadowRoots;
 @property(retain, nonatomic) RWIProtocolDOMNode *contentDocument;
-@property(copy, nonatomic) NSString *frameId;
+@property(nonatomic) long long customElementState;
+@property(nonatomic) long long shadowRootType;
 @property(nonatomic) long long pseudoType;
 @property(copy, nonatomic) NSString *value;
 @property(copy, nonatomic) NSString *name;
 @property(copy, nonatomic) NSString *xmlVersion;
-@property(copy, nonatomic) NSString *internalSubset;
 @property(copy, nonatomic) NSString *systemId;
 @property(copy, nonatomic) NSString *publicId;
 @property(copy, nonatomic) NSString *baseURL;
@@ -31,6 +30,7 @@
 @property(copy, nonatomic) NSArray *attributes;
 @property(copy, nonatomic) NSArray *children;
 @property(nonatomic) int childNodeCount;
+@property(copy, nonatomic) NSString *frameId;
 @property(copy, nonatomic) NSString *nodeValue;
 @property(copy, nonatomic) NSString *localName;
 @property(copy, nonatomic) NSString *nodeName;

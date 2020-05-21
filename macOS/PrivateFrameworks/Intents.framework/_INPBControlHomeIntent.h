@@ -7,38 +7,56 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBControlHomeIntent.h"
 
-@class NSMutableArray, PBUnknownFields, _INPBHomeAttribute, _INPBIntentMetadata;
+@class NSArray, NSString, _INPBDateTimeRange, _INPBHomeUserTask, _INPBIntentMetadata;
 
-@interface _INPBControlHomeIntent : PBCodable <NSCopying>
+@interface _INPBControlHomeIntent : PBCodable <_INPBControlHomeIntent, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    _INPBHomeAttribute *_attribute;
-    NSMutableArray *_entities;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
+    NSArray *_contents;
+    NSArray *_filters;
     _INPBIntentMetadata *_intentMetadata;
+    _INPBDateTimeRange *_time;
+    _INPBHomeUserTask *_userTask;
 }
 
-+ (Class)entitiesType;
-+ (id)options;
-@property(retain, nonatomic) _INPBHomeAttribute *attribute; // @synthesize attribute=_attribute;
-@property(retain, nonatomic) NSMutableArray *entities; // @synthesize entities=_entities;
-@property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
++ (BOOL)supportsSecureCoding;
++ (Class)filtersType;
++ (Class)contentsType;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(retain, nonatomic) _INPBHomeUserTask *userTask; // @synthesize userTask=_userTask;
+@property(retain, nonatomic) _INPBDateTimeRange *time; // @synthesize time=_time;
+@property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
+@property(copy, nonatomic) NSArray *filters; // @synthesize filters=_filters;
+@property(copy, nonatomic) NSArray *contents; // @synthesize contents=_contents;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-@property(readonly, nonatomic) BOOL hasAttribute;
-- (id)entitiesAtIndex:(unsigned long long)arg1;
-- (unsigned long long)entitiesCount;
-- (void)addEntities:(id)arg1;
-- (void)clearEntities;
+@property(readonly, nonatomic) BOOL hasUserTask;
+@property(readonly, nonatomic) BOOL hasTime;
 @property(readonly, nonatomic) BOOL hasIntentMetadata;
+- (id)filtersAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long filtersCount;
+- (void)addFilters:(id)arg1;
+- (void)clearFilters;
+- (id)contentsAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long contentsCount;
+- (void)addContents:(id)arg1;
+- (void)clearContents;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

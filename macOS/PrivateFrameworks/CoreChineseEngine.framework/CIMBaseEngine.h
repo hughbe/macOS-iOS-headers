@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-#import "IMKCandidateControllerDelegate.h"
+#import "CIMMecabraEngineProvider.h"
 #import "IMKCandidateSelectionViewDelegate.h"
 #import "TIMecabraEnvironmentProvider.h"
 
-@class CIMCandidate, CIMCandidateSorter, CIMDebugLogger, CIMInputController, CIMMecabraContext, CIMPreferences, IMKCandidateController, NSArray, NSEvent, NSString, TIMecabraEnvironment;
+@class CIMCandidate, CIMCandidateSorter, CIMDebugLogger, CIMInputController, CIMMecabraContext, CIMPreferences, IMKCandidates, NSArray, NSAttributedString, NSEvent, NSString, NSView, TIMecabraEnvironment;
 
-@interface CIMBaseEngine : NSObject <IMKCandidateControllerDelegate, IMKCandidateSelectionViewDelegate, TIMecabraEnvironmentProvider>
+@interface CIMBaseEngine : NSObject <CIMMecabraEngineProvider, IMKCandidateSelectionViewDelegate, TIMecabraEnvironmentProvider>
 {
     BOOL _currentCandidatesHaveExtendedEmoji;
     BOOL _facemarksCandidateWindowTriggered;
@@ -23,21 +23,23 @@
     BOOL _inlineEmpty;
     BOOL _showsPunctuationDescriptions;
     BOOL _usesDynamicPunctuation;
-    BOOL _isUsingIncrementalSearch;
     BOOL _sortingMethodChangedBeforeCandidateCommitted;
+    BOOL _shouldShowInlineTextAsSecondaryCandidate;
+    BOOL _showingSubstitutionCandidatesInTouchBar;
+    BOOL _shouldOptimizeLayoutForFixedSize;
     unsigned short _charCode;
     unsigned short _keyCode;
     TIMecabraEnvironment *_mecabraEnvironment;
     NSArray *_candidates;
-    id _client;
+    NSString *_displayMethod;
     CIMInputController *_inputController;
     NSString *_inputModeName;
     CIMCandidate *_savedCandidate;
     CIMCandidate *_previousCandidate;
     unsigned long long _scriptType;
-    NSString *_currentSortingMethod;
     CIMCandidateSorter *_candidateSorter;
     NSString *_characters;
+    NSString *_currentSortingMethod;
     NSEvent *_event;
     unsigned long long _modifierFlags;
     NSArray *_punctuationCandidates;
@@ -45,8 +47,12 @@
     struct _NSRange _trackingRange;
 }
 
++ (id)fullwidthToHalfwidthPunctuationMapping;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL shouldOptimizeLayoutForFixedSize; // @synthesize shouldOptimizeLayoutForFixedSize=_shouldOptimizeLayoutForFixedSize;
+@property(nonatomic, getter=isShowingSubstitutionCandidatesInTouchBar) BOOL showingSubstitutionCandidatesInTouchBar; // @synthesize showingSubstitutionCandidatesInTouchBar=_showingSubstitutionCandidatesInTouchBar;
+@property(nonatomic) BOOL shouldShowInlineTextAsSecondaryCandidate; // @synthesize shouldShowInlineTextAsSecondaryCandidate=_shouldShowInlineTextAsSecondaryCandidate;
 @property(nonatomic) BOOL sortingMethodChangedBeforeCandidateCommitted; // @synthesize sortingMethodChangedBeforeCandidateCommitted=_sortingMethodChangedBeforeCandidateCommitted;
-@property(readonly, nonatomic) BOOL isUsingIncrementalSearch; // @synthesize isUsingIncrementalSearch=_isUsingIncrementalSearch;
 @property(retain, nonatomic) CIMMecabraContext *mecabraContext; // @synthesize mecabraContext=_mecabraContext;
 @property(nonatomic) BOOL usesDynamicPunctuation; // @synthesize usesDynamicPunctuation=_usesDynamicPunctuation;
 @property(nonatomic) BOOL showsPunctuationDescriptions; // @synthesize showsPunctuationDescriptions=_showsPunctuationDescriptions;
@@ -54,10 +60,10 @@
 @property(nonatomic) unsigned long long modifierFlags; // @synthesize modifierFlags=_modifierFlags;
 @property(nonatomic) unsigned short keyCode; // @synthesize keyCode=_keyCode;
 @property(retain, nonatomic) NSEvent *event; // @synthesize event=_event;
+@property(copy, nonatomic) NSString *currentSortingMethod; // @synthesize currentSortingMethod=_currentSortingMethod;
 @property(nonatomic) unsigned short charCode; // @synthesize charCode=_charCode;
 @property(copy, nonatomic) NSString *characters; // @synthesize characters=_characters;
 @property(retain, nonatomic) CIMCandidateSorter *candidateSorter; // @synthesize candidateSorter=_candidateSorter;
-@property(copy, nonatomic) NSString *currentSortingMethod; // @synthesize currentSortingMethod=_currentSortingMethod;
 @property(readonly, nonatomic, getter=isInlineEmpty) BOOL inlineEmpty; // @synthesize inlineEmpty=_inlineEmpty;
 @property(nonatomic) struct _NSRange trackingRange; // @synthesize trackingRange=_trackingRange;
 @property BOOL punctuationWindowTriggeredViaFacemarkInput; // @synthesize punctuationWindowTriggeredViaFacemarkInput=_punctuationWindowTriggeredViaFacemarkInput;
@@ -68,16 +74,24 @@
 @property(retain, nonatomic) CIMCandidate *savedCandidate; // @synthesize savedCandidate=_savedCandidate;
 @property(copy) NSString *inputModeName; // @synthesize inputModeName=_inputModeName;
 @property(nonatomic) BOOL isShowingCandidates; // @synthesize isShowingCandidates=_isShowingCandidates;
-@property CIMInputController *inputController; // @synthesize inputController=_inputController;
+@property(nonatomic) __weak CIMInputController *inputController; // @synthesize inputController=_inputController;
 @property(nonatomic) BOOL facemarksCandidateWindowTriggered; // @synthesize facemarksCandidateWindowTriggered=_facemarksCandidateWindowTriggered;
+@property(copy, nonatomic) NSString *displayMethod; // @synthesize displayMethod=_displayMethod;
 @property BOOL currentCandidatesHaveExtendedEmoji; // @synthesize currentCandidatesHaveExtendedEmoji=_currentCandidatesHaveExtendedEmoji;
-@property __weak id client; // @synthesize client=_client;
 @property(retain, nonatomic) NSArray *candidates; // @synthesize candidates=_candidates;
 @property(readonly, nonatomic) TIMecabraEnvironment *mecabraEnvironment; // @synthesize mecabraEnvironment=_mecabraEnvironment;
-- (void).cxx_destruct;
-- (void)didHandleCandidateSelectionChanged:(id)arg1;
 - (id)environmentDebuggingInformation;
+@property(readonly, nonatomic) BOOL shouldShowSubstitutionCandidatesInTouchBar;
+@property(readonly, nonatomic) BOOL selectionShouldBeReflectedInTouchBar;
+- (void)didHandleSecondaryCandidateSelected:(id)arg1;
+- (void)didHandleSecondaryCandidateSelectionChanged:(id)arg1;
+- (void)didHandleCandidateSelected:(id)arg1 candidateController:(id)arg2;
+- (void)didHandleCandidateSelectionChanged:(id)arg1 candidateController:(id)arg2;
 - (id)predictionCandidatesWithOptions:(unsigned long long)arg1 maxNumberOfCandidates:(unsigned long long)arg2;
+- (id)candidatesForInputString:(id)arg1;
+- (id)inputStringForCharacters:(id)arg1;
+- (BOOL)supportsSubstitutionCandidates;
+- (id)mecabraEngine;
 - (void)declareEndOfSentence;
 - (void)addPunctuationSurface:(id)arg1;
 - (BOOL)keyCodeIsNavigation:(unsigned short)arg1;
@@ -85,23 +99,27 @@
 - (void)updatePredictionCandidatesOnNextRunLoop;
 - (void)updatePredictionCandidates;
 - (void)updateDocumentContext;
-@property(readonly, nonatomic) NSString *rightContext;
-@property(readonly, nonatomic) NSString *leftContext;
-- (id)textFromCursorPosition:(long long)arg1;
-- (id)currentInlineText;
+- (id)rightContextWithSelectedRange:(struct _NSRange)arg1;
+- (id)leftContextWithSelectedRange:(struct _NSRange)arg1;
+- (id)textFromCursorPosition:(long long)arg1 selectedRange:(struct _NSRange)arg2;
+@property(readonly, nonatomic) NSAttributedString *currentInlineText;
 - (id)localizedSortingMethods;
+- (id)internalNameForLocalizedSortingMethod:(id)arg1;
+- (id)localizedTitleForSortingMethod:(id)arg1;
+- (id)dictionaryForScriptType:(unsigned long long)arg1;
 - (id)defaultDisplayMethod;
-- (id)informationView;
+@property(readonly, nonatomic) NSView *informationView;
 - (BOOL)shouldUpdateExistingCandidates;
+- (void)updateCandidateController:(id)arg1;
+- (id)makeScrubbingCandidateController;
+- (id)makeCandidateController;
+- (unsigned long long)panelType;
 - (id)textClient;
-- (long long)windowType;
-- (id)displayMethod;
 - (id)sortingMethods;
-- (id)candidatesForSortingMethod:(id)arg1;
-- (id)candidateDataForDisplayMethod:(id)arg1 candidateController:(id)arg2;
+- (id)candidateListDictionaryWithSortingMethod:(id)arg1;
+- (id)candidateListDictionaryWithCandidates:(id)arg1;
 - (void)didSelectSortingMode:(id)arg1;
 @property(readonly, nonatomic) BOOL forceNoIncrementalSearchPositioning;
-@property(readonly, nonatomic) BOOL shouldOptimizeLayoutForFixedSize;
 - (double)numberOfColumns;
 - (double)numberOfRows;
 - (BOOL)candidateWindowCanBePositionedAboveTextFrame:(struct CGRect)arg1 windowHeight:(double)arg2 screen:(id)arg3;
@@ -116,6 +134,9 @@
 - (id)candidateStringsMatchingInline;
 - (void *)mecabraCandidateFromCandidate:(id)arg1;
 @property(readonly, nonatomic) NSString *inputString;
+- (BOOL)isUsingSortingBar;
+- (Class)onscreenCandidateWindowClass;
+- (Class)auxiliaryCandidateWindowClass;
 @property(readonly, nonatomic) unsigned long long candidateWindowOrientation;
 @property(readonly, nonatomic) BOOL showsHorizontalWindowInIncrementalSearchMode;
 - (BOOL)incrementalSearchClientShouldHandleEvent:(id)arg1;
@@ -128,11 +149,10 @@
 - (void)reset;
 - (void)commitInline;
 - (void)updateInline;
+- (void)mouseClicked;
 - (void)endSession;
 - (BOOL)handleKeyEvent;
-- (void)annotationSelected:(id)arg1 forCandidate:(id)arg2;
-- (id)originalString:(id)arg1;
-- (id)composedString:(id)arg1;
+- (id)selectionKeyValueForKeyCode:(short)arg1;
 - (void)commitCurrentlySelectedCandidateOrInline;
 - (void)commitComposition:(id)arg1;
 - (void)checkSettings:(id)arg1 withClient:(id)arg2;
@@ -154,12 +174,17 @@
 - (BOOL)isNavigationCharacter:(unsigned short)arg1;
 - (BOOL)isSelectionKey;
 - (BOOL)isSelectionCharacter:(unsigned short)arg1;
-@property(readonly, nonatomic) CIMPreferences *preferences;
 - (void)setKeyboardLayout:(id)arg1;
-- (void)checkUbiquity;
 - (void)checkPreferenceGlobalSettings;
+- (void)checkUbiquity;
+@property(readonly, nonatomic) CIMPreferences *preferences;
+@property(readonly, nonatomic) NSString *selectedText;
+- (void)convertByApplyingTransform:(id)arg1;
+- (void)showSubstitutionCandidatesForSelectedTextWithOnScreenWindow;
 - (void)showPunctationCandidates;
-@property(readonly, nonatomic) IMKCandidateController *candidateController;
+- (void)doCommandBySelector:(SEL)arg1 withUserInfo:(id)arg2;
+@property(readonly, nonatomic) IMKCandidates *candidateController;
+@property(readonly) id client;
 - (void)dealloc;
 - (id)initWithScriptType:(unsigned long long)arg1 withInputController:(id)arg2;
 

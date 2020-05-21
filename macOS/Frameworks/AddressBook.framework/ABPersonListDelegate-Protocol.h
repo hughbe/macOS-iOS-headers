@@ -23,6 +23,7 @@
 - (void)personListDidChangeAddressBook:(ABPersonListController *)arg1;
 - (void)entriesChangedInPersonList:(ABPersonListController *)arg1;
 - (BOOL)personList:(ABPersonListController *)arg1 deleteContactsWithoutConfirmationWithSender:(id)arg2;
+- (BOOL)personList:(ABPersonListController *)arg1 ignoreContactsWithSender:(id)arg2;
 - (BOOL)personList:(ABPersonListController *)arg1 rejectContactsWithSender:(id)arg2;
 - (BOOL)personList:(ABPersonListController *)arg1 deleteContactsWithSender:(id)arg2;
 - (BOOL)personList:(ABPersonListController *)arg1 canDeleteContactsWithSender:(id)arg2;

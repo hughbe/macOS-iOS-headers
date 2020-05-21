@@ -15,9 +15,9 @@ __attribute__((visibility("hidden")))
     unsigned long long _transitID;
 }
 
+- (void).cxx_destruct;
 - (void)findTransitGeometryWithHandler:(CDUnknownBlockType)arg1;
 - (void)cancel;
-- (void)dealloc;
 - (id)initWithMap:(id)arg1 transitID:(unsigned long long)arg2 coordinate:(CDStruct_c3b9c2ee)arg3;
 
 @end

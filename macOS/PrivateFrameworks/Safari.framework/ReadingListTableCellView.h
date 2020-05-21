@@ -6,35 +6,35 @@
 
 #import <Safari/SidebarTableCellView.h>
 
-@class NSAttributedString, NSTextField, NSView;
+@class NSAttributedString, ReadingListItemView;
 
 __attribute__((visibility("hidden")))
 @interface ReadingListTableCellView : SidebarTableCellView
 {
-    NSTextField *_titleTextField;
-    NSTextField *_previewTextField;
-    NSTextField *_domainTextField;
-    NSView *_accessoryView;
+    ReadingListItemView *_readingListItemView;
+    BOOL _showAsOffline;
 }
 
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
 + (BOOL)hasVariableHeight;
 - (void).cxx_destruct;
-- (id)_labelTextFieldOfClass:(Class)arg1;
+@property(nonatomic) BOOL showAsOffline; // @synthesize showAsOffline=_showAsOffline;
 - (id)_readingListItem;
-- (void)_setUpConstraints;
 - (void)_setUpBindings;
 - (void)_setUpSubviews;
 - (void)_updateCloseButtonImages;
-- (void)_setAccessoryView:(id)arg1 sideLength:(double)arg2 centeredVertically:(BOOL)arg3 leadingMargin:(double)arg4 trailingMargin:(double)arg5;
-- (void)_removeAccessoryView;
-- (void)_updateAccessoryView;
+- (void)_updateThumbnailImageViewWithImage:(id)arg1;
+- (void)_updateThumbnailView;
+- (id)_savingForOfflinePreviewTextForItemIfApplicable:(id)arg1;
 @property(readonly, nonatomic) NSAttributedString *itemPreviewTextString;
 @property(readonly, nonatomic) NSAttributedString *itemDomainString;
 @property(readonly, nonatomic) NSAttributedString *itemTitleString;
 - (void)setObjectValue:(id)arg1;
 - (double)calculatedHeightOfRow;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(nonatomic) __weak id <ReadingListTableCellViewDelegate> delegate; // @dynamic delegate;
 
 @end
 

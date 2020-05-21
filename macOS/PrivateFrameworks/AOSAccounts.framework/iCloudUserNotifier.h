@@ -21,6 +21,7 @@
     id <iCloudUserNotificationDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(retain) id <iCloudUserNotificationDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) NSString *serviceName; // @synthesize serviceName=_serviceName;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;

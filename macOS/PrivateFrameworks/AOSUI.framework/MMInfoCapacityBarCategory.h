@@ -6,40 +6,44 @@
 
 #import "NSObject.h"
 
-@class CALayer, NSArray, NSByteCountFormatter, NSColor, NSString, NSTextField;
+@class CALayer, NSArray, NSByteCountFormatter, NSColor, NSLayoutConstraint, NSString, NSTextField;
 
 @interface MMInfoCapacityBarCategory : NSObject
 {
     BOOL _showsSizeInLabel;
     unsigned long long _sizeInBytes;
-    unsigned long long _categoryIndex;
     NSString *_displayName;
+    NSString *_categoryIdentifier;
     NSString *_accessibilityDescription;
     NSArray *_alternateDisplayNames;
+    NSString *_toolTipLabel;
     CALayer *_layer;
     NSTextField *_label;
     NSColor *_color;
-    NSString *_toolTipLabel;
     NSString *_sizeDescription;
     NSByteCountFormatter *_byteCountFormatter;
+    NSLayoutConstraint *_widthLayoutConstraint;
+    NSLayoutConstraint *_leadingLayoutConstraint;
 }
 
-@property(retain) NSByteCountFormatter *byteCountFormatter; // @synthesize byteCountFormatter=_byteCountFormatter;
-@property(retain) NSString *sizeDescription; // @synthesize sizeDescription=_sizeDescription;
-@property(retain) NSString *toolTipLabel; // @synthesize toolTipLabel=_toolTipLabel;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSLayoutConstraint *leadingLayoutConstraint; // @synthesize leadingLayoutConstraint=_leadingLayoutConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *widthLayoutConstraint; // @synthesize widthLayoutConstraint=_widthLayoutConstraint;
+@property(retain, nonatomic) NSByteCountFormatter *byteCountFormatter; // @synthesize byteCountFormatter=_byteCountFormatter;
+@property(retain, nonatomic) NSString *sizeDescription; // @synthesize sizeDescription=_sizeDescription;
 @property(readonly) NSColor *color; // @synthesize color=_color;
 @property(readonly, nonatomic) NSTextField *label; // @synthesize label=_label;
 @property(readonly, nonatomic) CALayer *layer; // @synthesize layer=_layer;
 @property(nonatomic) BOOL showsSizeInLabel; // @synthesize showsSizeInLabel=_showsSizeInLabel;
+@property(retain, nonatomic) NSString *toolTipLabel; // @synthesize toolTipLabel=_toolTipLabel;
 @property(copy) NSArray *alternateDisplayNames; // @synthesize alternateDisplayNames=_alternateDisplayNames;
 @property(copy) NSString *accessibilityDescription; // @synthesize accessibilityDescription=_accessibilityDescription;
+@property(copy) NSString *categoryIdentifier; // @synthesize categoryIdentifier=_categoryIdentifier;
 @property(copy) NSString *displayName; // @synthesize displayName=_displayName;
-@property(readonly) unsigned long long categoryIndex; // @synthesize categoryIndex=_categoryIndex;
 @property unsigned long long sizeInBytes; // @synthesize sizeInBytes=_sizeInBytes;
-@property(nonatomic) unsigned long long textAlignment;
+@property(nonatomic) long long textAlignment;
 - (id)allDisplayNames;
-- (void)dealloc;
-- (id)initWithCategoryIndex:(unsigned long long)arg1;
+- (id)init;
 
 @end
 

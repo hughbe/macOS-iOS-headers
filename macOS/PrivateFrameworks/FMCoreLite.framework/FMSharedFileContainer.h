@@ -15,10 +15,11 @@
     NSURL *_url;
 }
 
-@property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
 - (id)groupContainerURLWithIdentifier:(id)arg1;
 - (id)initWithIdentifier:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

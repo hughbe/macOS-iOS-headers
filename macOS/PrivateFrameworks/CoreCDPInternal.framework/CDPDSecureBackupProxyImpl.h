@@ -8,21 +8,27 @@
 
 #import "CDPDSecureBackupProxy.h"
 
-@class NSString;
+@class CDPContext, NSString;
 
 @interface CDPDSecureBackupProxyImpl : NSObject <CDPDSecureBackupProxy>
 {
+    CDPContext *_cdpContext;
 }
 
-- (void)setBackOffDateWithInfo:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (void)backOffDateWithInfo:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CDPContext *cdpContext; // @synthesize cdpContext=_cdpContext;
+- (void)uncacheAllSecrets;
+- (void)cacheRecoveryKey:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (BOOL)disableWithInfo:(id)arg1 error:(id *)arg2;
 - (void)disableWithInfo:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)recoverWithInfo:(id)arg1 error:(id *)arg2;
 - (void)recoverWithInfo:(id)arg1 completionBlockWithResults:(CDUnknownBlockType)arg2;
+- (BOOL)enableWithInfo:(id)arg1 error:(id *)arg2;
 - (void)enableWithInfo:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (void)uncachePassphraseWithInfo:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)accountInfoWithInfo:(id)arg1 error:(id *)arg2;
 - (void)getAccountInfoWithInfo:(id)arg1 completionBlockWithResults:(CDUnknownBlockType)arg2;
 - (id)_secureBackup;
+- (id)initWithContext:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

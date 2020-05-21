@@ -14,16 +14,33 @@
     BOOL _extensionCandidate;
     BOOL _isForShortcutConversion;
     BOOL _isAutocorrection;
+    BOOL _OTAWordListCandidate;
+    BOOL _regionalCandidate;
+    BOOL _responseKitCandidate;
+    BOOL _bilingualCandidate;
+    BOOL _asIsCandidate;
+    BOOL _continuousPathConversion;
+    BOOL _partialCandidate;
     NSString *_candidate;
     NSString *_input;
     NSNumber *_mecabraCandidatePointerValue;
     unsigned long long _deleteCount;
     long long _cursorMovement;
+    NSString *_responseKitCategory;
 }
 
 + (int)type;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+- (BOOL)isPartialCandidate;
+@property(nonatomic, getter=isContinuousPathConversion) BOOL continuousPathConversion; // @synthesize continuousPathConversion=_continuousPathConversion;
+- (BOOL)isAsIsCandidate;
+- (BOOL)isBilingualCandidate;
+- (id)responseKitCategory;
+- (BOOL)isResponseKitCandidate;
 - (long long)cursorMovement;
+- (BOOL)isRegionalCandidate;
+- (BOOL)isOTAWordListCandidate;
 - (BOOL)isAutocorrection;
 - (BOOL)isForShortcutConversion;
 - (BOOL)isExtensionCandidate;
@@ -33,17 +50,16 @@
 - (id)candidate;
 - (void)encodeWithCandidateResultSetCoder:(id)arg1;
 - (id)initWithCandidateResultSetCoder:(id)arg1;
+- (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)deleteCount;
 - (BOOL)isFullwidthCandidate;
 - (id)label;
-- (void)dealloc;
-- (id)initWithCandidate:(id)arg1 forInput:(id)arg2 mecabraCandidatePointerValue:(id)arg3 isExtension:(BOOL)arg4 isEmoji:(BOOL)arg5 isShortcut:(BOOL)arg6 isAutocorrection:(BOOL)arg7 deleteCount:(unsigned long long)arg8 cursorMovement:(long long)arg9;
-- (id)initWithCandidate:(id)arg1 forInput:(id)arg2 mecabraCandidatePointerValue:(id)arg3 isExtension:(BOOL)arg4 isEmoji:(BOOL)arg5 isShortcut:(BOOL)arg6 isAutocorrection:(BOOL)arg7 deleteCount:(unsigned long long)arg8;
-- (id)initWithCandidate:(id)arg1 forInput:(id)arg2 mecabraCandidatePointerValue:(id)arg3 isExtension:(BOOL)arg4 isEmoji:(BOOL)arg5 isShortcut:(BOOL)arg6 isAutocorrection:(BOOL)arg7;
-- (id)initWithSurface:(id)arg1 input:(id)arg2 mecabraCandidatePointerValue:(id)arg3 isExtension:(BOOL)arg4;
+- (id)initWithCandidate:(id)arg1 forInput:(id)arg2 mecabraCandidatePointerValue:(id)arg3 withFlags:(int)arg4 deleteCount:(unsigned long long)arg5 cursorMovement:(long long)arg6;
+- (id)initWithCandidate:(id)arg1 forInput:(id)arg2 mecabraCandidatePointerValue:(id)arg3 withFlags:(int)arg4;
+- (id)initWithResponseKitString:(id)arg1 responseKitCategory:(id)arg2 mecabraCandidatePointerValue:(id)arg3;
 - (id)initWithSurface:(id)arg1 input:(id)arg2 mecabraCandidatePointerValue:(id)arg3;
 
 @end

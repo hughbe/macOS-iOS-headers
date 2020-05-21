@@ -12,16 +12,19 @@
 
 @interface CNUIPRLikenessPlaceholderProvider : NSObject <CNUIPRLikenessProvider>
 {
-    id <CNScheduler> _resourceLock;
     CNCache *_cache;
 }
 
-@property(readonly, nonatomic) CNCache *cache; // @synthesize cache=_cache;
-@property(readonly, nonatomic) id <CNScheduler> resourceLock; // @synthesize resourceLock=_resourceLock;
++ (id)companyImageNameForDiameter:(double)arg1;
++ (id)imageNameForDiameter:(double)arg1;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) CNCache *cache; // @synthesize cache=_cache;
 - (unsigned long long)_cnui_likenessType;
-- (id)_cnui_likenessForSize:(struct CGSize)arg1;
-- (struct CGImage *)renderImageForSilhouetteImage:(struct CGImage *)arg1 size:(struct CGSize)arg2 scale:(double)arg3;
+- (id)_cnui_likenessForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)_cnui_roundedRectImageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)_cnui_circularImageForSize:(struct CGSize)arg1 scale:(double)arg2;
+- (struct CGImage *)renderRoundedRectImageForSilhouetteImage:(struct CGImage *)arg1 size:(struct CGSize)arg2 scale:(double)arg3;
+- (struct CGImage *)renderCircularImageForSilhouetteImage:(struct CGImage *)arg1 size:(struct CGSize)arg2 scale:(double)arg3;
 - (id)init;
 
 // Remaining properties

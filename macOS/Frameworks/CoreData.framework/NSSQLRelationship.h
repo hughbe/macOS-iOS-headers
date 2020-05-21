@@ -6,11 +6,12 @@
 
 #import <CoreData/NSSQLProperty.h>
 
-@class NSSQLEntity;
+@class NSSQLEntity, NSString;
 
 __attribute__((visibility("hidden")))
 @interface NSSQLRelationship : NSSQLProperty
 {
+    NSString *_name;
     NSSQLEntity *_destinationEntity;
     NSSQLRelationship *_inverse;
 }
@@ -18,6 +19,8 @@ __attribute__((visibility("hidden")))
 - (void)copyValuesForReadOnlyFetch:(id)arg1;
 - (BOOL)isOrdered;
 - (void)_setInverseRelationship:(id)arg1;
+- (void)_setName:(id)arg1;
+- (id)name;
 - (id)inverseRelationship;
 - (void)_setForeignOrderKey:(id)arg1;
 - (id)correlationTableName;

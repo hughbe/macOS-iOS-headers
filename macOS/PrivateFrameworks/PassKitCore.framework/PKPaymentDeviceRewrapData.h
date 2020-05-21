@@ -8,18 +8,18 @@
 
 #import "NSSecureCoding.h"
 
-@class NSString, PKSecureElementCertificateSet;
+@class NSData;
 
 @interface PKPaymentDeviceRewrapData : NSObject <NSSecureCoding>
 {
-    NSString *_deviceIdentifier;
-    PKSecureElementCertificateSet *_certificates;
+    NSData *_platformData;
+    NSData *_platformDataSignature;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy, nonatomic) PKSecureElementCertificateSet *certificates; // @synthesize certificates=_certificates;
-@property(copy, nonatomic) NSString *deviceIdentifier; // @synthesize deviceIdentifier=_deviceIdentifier;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSData *platformDataSignature; // @synthesize platformDataSignature=_platformDataSignature;
+@property(copy, nonatomic) NSData *platformData; // @synthesize platformData=_platformData;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

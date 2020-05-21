@@ -6,13 +6,17 @@
 
 #import "NSObject.h"
 
-@class IMKKey, IMKKeyboardState;
+@class IMKCandidate, IMKKey, IMKKeyboardState;
 
 @protocol IMKInputMethod <NSObject>
+@property(retain, nonatomic) id <IMKCandidateEngine> candidateEngine;
 @property(retain, nonatomic) id <IMKTextDocument> attachedTextDocument;
 @property(readonly, nonatomic) __weak id <IMKKeyboard> attachedKeyboard;
+- (BOOL)keyboard:(id <IMKKeyboard>)arg1 didChange:(IMKKeyboardState *)arg2 to:(IMKKeyboardState *)arg3;
+- (BOOL)didAcceptCandidate:(IMKCandidate *)arg1;
 - (BOOL)didReleaseKey:(IMKKey *)arg1 whileInKeyboardState:(IMKKeyboardState *)arg2;
 - (BOOL)didPressKey:(IMKKey *)arg1 whileInKeyboardState:(IMKKeyboardState *)arg2;
-- (void)composeText:(id <IMKTextDocument>)arg1 onCompletion:(void (^)(void))arg2;
+- (void)commitComposition;
+- (void)composeText:(id <IMKTextDocument>)arg1 onCompletion:(void (^)(IMKCompositionResult *))arg2;
 @end
 

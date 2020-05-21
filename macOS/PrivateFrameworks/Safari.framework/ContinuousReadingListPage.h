@@ -15,16 +15,11 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
-@property(readonly, nonatomic) ReadingListItem *readingListItem; // @synthesize readingListItem=_readingListItem;
 - (void).cxx_destruct;
-- (id)reposterScreenName;
-- (id)reposterDisplayName;
-- (BOOL)isRepostedByAuthenticatedUser;
-- (BOOL)isSocial;
+@property(readonly, nonatomic) ReadingListItem *readingListItem; // @synthesize readingListItem=_readingListItem;
 - (BOOL)hasDefaultSiteIcon;
 - (id)secondaryIcon;
 - (id)icon;
-- (id)screenName;
 - (id)itemDescription;
 - (id)title;
 - (id)urlString;

@@ -12,6 +12,7 @@
 }
 
 + (id)sharedCertificateTrustPanel;
+- (void)setTrustButtonState:(long long)arg1;
 - (BOOL)showsTrustButton;
 - (void)setShowsTrustButton:(BOOL)arg1;
 - (BOOL)showsCertButton;
@@ -30,6 +31,7 @@
 - (id)_defaultHelpAnchor;
 - (void)setDefaultInformation:(id)arg1;
 - (void)setDefaultMessage:(id)arg1;
+- (void)set_discloseContentHeightConstraint:(id)arg1;
 - (void)set_belowContentBox:(id)arg1;
 - (void)set_discloseContentBox:(id)arg1;
 - (void)set_aboveContentBox:(id)arg1;
@@ -38,8 +40,10 @@
 - (void)set_informationField:(id)arg1;
 - (void)set_messageField:(id)arg1;
 - (void)set_splitView:(id)arg1;
+- (void)set_stackView:(id)arg1;
 - (void)set_iconView:(id)arg1;
 - (void)setRef:(id *)arg1 toObj:(id)arg2;
+- (id)_discloseContentHeightConstraint;
 - (id)_defaultInformation;
 - (id)_defaultMessage;
 - (id)_belowContentBox;
@@ -50,15 +54,11 @@
 - (id)_informationField;
 - (id)_messageField;
 - (id)_splitView;
+- (id)_stackView;
 - (id)_iconView;
 - (void)windowDidResize:(id)arg1;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (id)_truncatedAlwaysTrustCertString:(id)arg1 forHostOrEmail:(id)arg2;
-- (void)_sizeToFitTextFields:(BOOL)arg1;
-- (BOOL)_willAllowSpace:(int)arg1;
-- (void)_resizeTopView:(int)arg1;
-- (void)_adjustSplitView;
-- (void)_adjustHelpDependentButtons;
 - (void)_certTrustSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (long long)_prepPanel:(struct __SecTrust *)arg1 message:(id)arg2 showGroup:(BOOL)arg3;
 - (id)loadTrustNibFile;

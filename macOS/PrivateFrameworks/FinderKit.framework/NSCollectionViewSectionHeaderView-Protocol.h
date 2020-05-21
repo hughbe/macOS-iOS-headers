@@ -11,6 +11,6 @@
 @protocol NSCollectionViewSectionHeaderView <NSCollectionViewElement>
 
 @optional
-@property NSButton *sectionCollapseButton;
+@property __weak NSButton *sectionCollapseButton;
 @end
 

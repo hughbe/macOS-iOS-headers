@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class ImportedBrowserCredential;
+@class WBSPasswordImportedCredential;
 
 @protocol BrowserCredentialImporterDelegate <NSObject>
 - (void)importerDidFailToImportCredentials;
 - (void)importerDidFinishImportingCredentials;
-- (void)importerDidImportCredential:(ImportedBrowserCredential *)arg1;
+- (void)importerDidImportCredential:(WBSPasswordImportedCredential *)arg1;
 - (void)importerRequiresMasterPassword;
 @end
 

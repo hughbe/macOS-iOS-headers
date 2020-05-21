@@ -17,7 +17,7 @@
 - (CDUnknownBlockType)fromPlistTransform;
 - (CDUnknownBlockType)plistTransform;
 - (Class)labeledValueClass;
-- (BOOL)isValue:(id)arg1 equivalentToValue:(id)arg2;
+- (BOOL)canUnifyValue:(id)arg1 withValue:(id)arg2;
 - (id)stringForIndexingForContact:(id)arg1;
 - (id)standardLabels;
 - (id)equivalentLabelSets;

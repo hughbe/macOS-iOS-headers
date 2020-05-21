@@ -10,6 +10,7 @@
 
 @interface NSFontPanel : NSPanel
 {
+    id _familyToFaceConstraint;
     NSFontManager *_manager;
     NSArray *_collectionNames;
     id _selection;
@@ -80,6 +81,7 @@
 + (void)restoreWindowWithIdentifier:(id)arg1 state:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 + (id)sharedFontPanel;
 + (BOOL)sharedFontPanelExists;
+- (id)_fontPanelDescriptorsDictionaryFromFromPasteboard:(id)arg1;
 - (BOOL)removeItemForTableView:(id)arg1 pasteboard:(id)arg2 operation:(unsigned long long)arg3;
 - (unsigned long long)draggingSourceOperationMaskForTableView:(id)arg1;
 - (BOOL)tableView:(id)arg1 writeRowsWithIndexes:(id)arg2 toPasteboard:(id)arg3;
@@ -129,6 +131,7 @@
 - (BOOL)_inMiniMode;
 - (void)_chooseSizeFromList:(id)arg1;
 - (void)_changeSizeStyle:(id)arg1;
+- (void)_changeSizeStyle:(id)arg1 animated:(BOOL)arg2;
 - (void)_resetSizeList:(id)arg1;
 - (void)_removeSizeFromList:(id)arg1;
 - (void)_addSizeToList:(id)arg1;
@@ -155,6 +158,7 @@
 - (void)_setRecents:(id)arg1;
 - (id)_createFontPanelSizeRep;
 - (void)_sortCollections;
+- (void)_installAccessoryView:(id)arg1;
 - (void)setDelegate:(id)arg1;
 @property(retain) NSView *accessoryView;
 - (void)reloadDefaultFontFamilies;

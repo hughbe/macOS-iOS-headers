@@ -6,24 +6,29 @@
 
 #import "NSObject.h"
 
-#import "ClientToDaemonMessageProxy.h"
+#import "_RWIClientToRelayMessageProxy.h"
 
 @class RWITarget;
 
 __attribute__((visibility("hidden")))
-@interface RWIServiceConnection : NSObject <ClientToDaemonMessageProxy>
+@interface RWIServiceConnection : NSObject <_RWIClientToRelayMessageProxy>
 {
     RWITarget *_target;
     id <RWIServiceConnectionDelegate> _delegate;
+    BOOL _closed;
 }
 
-@property(readonly, nonatomic) id <RWIServiceConnectionDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <RWIServiceConnectionDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) RWITarget *target; // @synthesize target=_target;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (void)forwardInvocation:(id)arg1;
-- (void)_dispatchMessage:(id)arg1;
+- (void)dispatchRelayMessage:(id)arg1;
 - (void)sendMessage:(id)arg1;
+- (void)closeInternal;
 - (BOOL)isConnected;
+- (void)closeFromConnection;
+- (void)close;
+- (void)_closeAndNotifyDelegate:(BOOL)arg1;
 - (void)dealloc;
 - (id)initWithTarget:(id)arg1 delegate:(id)arg2;
 

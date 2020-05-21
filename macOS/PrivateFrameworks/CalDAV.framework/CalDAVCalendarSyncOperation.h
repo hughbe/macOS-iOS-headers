@@ -14,13 +14,17 @@
     NSString *_nextCtag;
     NSString *_nextSyncToken;
     id <CalDAVCalendar> _calendar;
+    NSError *_reportJunkError;
+    unsigned long long _currentStage;
     BOOL _getScheduleTags;
     BOOL _getScheduleChanges;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL getScheduleChanges; // @synthesize getScheduleChanges=_getScheduleChanges;
 @property(nonatomic) BOOL getScheduleTags; // @synthesize getScheduleTags=_getScheduleTags;
-- (void).cxx_destruct;
+- (void)recurrenceSplitAction:(id)arg1 failedWithError:(id)arg2;
+- (void)recurrenceSplitAction:(id)arg1 completedWithUpdatedETag:(id)arg2 updatedScheduleTag:(id)arg3 createdURL:(id)arg4 createdETag:(id)arg5 createdScheduleTag:(id)arg6;
 - (void)containerSyncTask:(id)arg1 completedWithNewCTag:(id)arg2 newSyncToken:(id)arg3 addedOrModified:(id)arg4 removed:(id)arg5 error:(id)arg6;
 - (void)containerSyncTask:(id)arg1 retrievedAddedOrModifiedActions:(id)arg2 removed:(id)arg3;
 - (BOOL)syncDeleteTask:(id)arg1 error:(id)arg2;
@@ -31,6 +35,11 @@
 - (id)copyLocalETagsForURLs:(id)arg1 inFolderWithURL:(id)arg2;
 - (void)_syncEventsForMerge;
 - (void)_processAddedOrModified:(id)arg1 removed:(id)arg2;
+- (void)_syncCalendar;
+- (void)_splitRecurrences;
+- (void)_reportJunk;
+- (void)_performNextStage;
+- (void)_advanceStage;
 - (void)syncCalendar;
 - (id)_distantFutureEndDate;
 - (void)_finishWithError:(id)arg1;

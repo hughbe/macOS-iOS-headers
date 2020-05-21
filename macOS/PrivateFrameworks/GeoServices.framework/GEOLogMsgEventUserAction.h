@@ -8,20 +8,32 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader;
 
 @interface GEOLogMsgEventUserAction : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_userActionEventKey;
-    int _userActionEventTarget;
     NSString *_userActionEventValue;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    int _userActionEventAction;
+    int _userActionEventTarget;
     struct {
-        unsigned int userActionEventTarget:1;
-    } _has;
+        unsigned int has_userActionEventAction:1;
+        unsigned int has_userActionEventTarget:1;
+        unsigned int read_userActionEventKey:1;
+        unsigned int read_userActionEventValue:1;
+        unsigned int wrote_userActionEventKey:1;
+        unsigned int wrote_userActionEventValue:1;
+        unsigned int wrote_userActionEventAction:1;
+        unsigned int wrote_userActionEventTarget:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *userActionEventValue; // @synthesize userActionEventValue=_userActionEventValue;
-@property(retain, nonatomic) NSString *userActionEventKey; // @synthesize userActionEventKey=_userActionEventKey;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -29,15 +41,25 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+- (int)StringAsUserActionEventAction:(id)arg1;
+- (id)userActionEventActionAsString:(int)arg1;
+@property(nonatomic) BOOL hasUserActionEventAction;
+@property(nonatomic) int userActionEventAction;
 - (int)StringAsUserActionEventTarget:(id)arg1;
 - (id)userActionEventTargetAsString:(int)arg1;
 @property(nonatomic) BOOL hasUserActionEventTarget;
-@property(nonatomic) int userActionEventTarget; // @synthesize userActionEventTarget=_userActionEventTarget;
+@property(nonatomic) int userActionEventTarget;
+@property(retain, nonatomic) NSString *userActionEventValue;
 @property(readonly, nonatomic) BOOL hasUserActionEventValue;
+- (void)_readUserActionEventValue;
+@property(retain, nonatomic) NSString *userActionEventKey;
 @property(readonly, nonatomic) BOOL hasUserActionEventKey;
-- (void)dealloc;
+- (void)_readUserActionEventKey;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

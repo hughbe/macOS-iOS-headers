@@ -25,6 +25,7 @@
     NSMutableArray *_removedURLs;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableArray *removedURLs; // @synthesize removedURLs=_removedURLs;
 @property(retain, nonatomic) NSMutableArray *addedOrModifiedContainers; // @synthesize addedOrModifiedContainers=_addedOrModifiedContainers;
 @property BOOL usingFilterQuery; // @synthesize usingFilterQuery=_usingFilterQuery;
@@ -59,7 +60,6 @@
 - (id)copyCalDAVResourcesToCalCalDAVResources:(id)arg1;
 @property(nonatomic) BOOL hasChanges; // @dynamic hasChanges;
 - (id)context;
-- (void)dealloc;
 - (id)initWithPrincipal:(id)arg1 calendar:(id)arg2 calendarSource:(id)arg3;
 
 // Remaining properties

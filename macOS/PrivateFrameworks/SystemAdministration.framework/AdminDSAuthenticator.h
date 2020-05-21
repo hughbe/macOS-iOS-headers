@@ -8,11 +8,16 @@
 
 @interface AdminDSAuthenticator : AdminAuthenticator
 {
+    BOOL _didClearTextAuthentication;
 }
 
++ (id)sharedDSClearTextAuthenticator;
 + (id)sharedDSAuthenticator;
+@property(readonly) BOOL didClearTextAuthentication; // @synthesize didClearTextAuthentication=_didClearTextAuthentication;
 - (BOOL)authenticateUsingAuthorizationSync:(id)arg1;
 - (void)deauthenticate;
+- (void)authenticateUsingAuthorizationSync:(id)arg1 userName:(id)arg2 password:(id)arg3;
+- (void)authenticateUsingAuthorization:(id)arg1 userName:(id)arg2 password:(id)arg3;
 - (void)authenticateUsingAuthorization:(id)arg1;
 - (void)finalize;
 - (void)dealloc;

@@ -14,6 +14,7 @@
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 - (long long)availabilityForListenerID:(id)arg1 forService:(id)arg2;
 - (BOOL)removeListenerID:(id)arg1 forService:(id)arg2;
 - (BOOL)addListenerID:(id)arg1 forService:(id)arg2;

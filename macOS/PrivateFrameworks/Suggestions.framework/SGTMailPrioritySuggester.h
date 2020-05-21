@@ -20,9 +20,9 @@
 + (id)mailPriorityRepresentedObjectForRepresentedObject:(id)arg1;
 + (BOOL)isMailPriorityRepresentedObject:(id)arg1;
 + (id)prioritiesCategory;
+- (void).cxx_destruct;
 @property(copy) NSArray *mailPriorities; // @synthesize mailPriorities;
 - (void)setInput:(id)arg1;
-- (void)dealloc;
 
 @end
 

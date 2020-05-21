@@ -6,23 +6,21 @@
 
 #import "NSObject.h"
 
-@class VCPCNNModel;
+@class VCPCNNModelEspresso;
 
 @interface VCPCNNGazeAnalysis : NSObject
 {
-    VCPCNNModel *_modelLandmarks;
-    VCPCNNModel *_modelEyeOpenness;
-    struct CNNData _faceInput;
-    struct CNNData _eyeInput;
+    float *_inputData;
+    VCPCNNModelEspresso *_modelEspresso;
 }
 
-- (id).cxx_construct;
++ (id)sharedModel:(id)arg1;
 - (void).cxx_destruct;
-- (int)cropAndRotateEyeImage:(struct __CVBuffer *)arg1 leftCornerX:(int)arg2 leftCornerY:(int)arg3 rightCornerX:(int)arg4 rightCornerY:(int)arg5;
 - (int)detectEyeOpennessForFace:(struct CGRect)arg1 inBuffer:(struct __CVBuffer *)arg2 eyeOpenness:(char *)arg3;
+- (int)createInput:(float *)arg1 withBuffer:(struct __CVBuffer *)arg2 cnnInputHeight:(int)arg3 cnnInputWidth:(int)arg4 faceBounds:(struct CGRect)arg5;
+- (int)copyImage:(struct __CVBuffer *)arg1 toData:(float *)arg2;
+- (void)dealloc;
 - (id)init;
-- (int)initEyeOpennessModel;
-- (int)initLandmarkModel;
 
 @end
 

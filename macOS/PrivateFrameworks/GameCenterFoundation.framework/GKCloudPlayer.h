@@ -6,27 +6,28 @@
 
 #import <GameCenterFoundation/GKBasePlayer.h>
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class NSString;
 
-@interface GKCloudPlayer : GKBasePlayer <NSSecureCoding>
+@interface GKCloudPlayer : GKBasePlayer <NSSecureCoding, NSCopying>
 {
     NSString *_identifier;
     NSString *_name;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)playersForTesting;
-+ (void)getCurrentSignedInPlayer:(CDUnknownBlockType)arg1;
++ (void)getCurrentSignedInPlayerForContainer:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
 - (id)displayName;
 - (id)playerID;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 

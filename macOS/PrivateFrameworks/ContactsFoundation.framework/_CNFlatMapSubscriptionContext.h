@@ -8,23 +8,23 @@
 
 @class CNQueue, NSMutableArray;
 
-__attribute__((visibility("hidden")))
 @interface _CNFlatMapSubscriptionContext : NSObject
 {
     CNQueue *_decorators;
     NSMutableArray *_tokens;
     id <CNScheduler> _downstream;
     id <CNScheduler> _resourceLock;
-    BOOL _isOuterSequenceComplete;
-    BOOL _outerSequenceComplete;
+    BOOL _operatorReceiving;
+    BOOL _observerReceiving;
 }
 
-@property(getter=isOuterSequenceComplete) BOOL outerSequenceComplete; // @synthesize outerSequenceComplete=_outerSequenceComplete;
+- (void).cxx_destruct;
 @property(readonly) id <CNScheduler> resourceLock; // @synthesize resourceLock=_resourceLock;
 @property(readonly) id <CNScheduler> downstream; // @synthesize downstream=_downstream;
 @property(readonly) NSMutableArray *tokens; // @synthesize tokens=_tokens;
 @property(readonly) CNQueue *decorators; // @synthesize decorators=_decorators;
-- (void).cxx_destruct;
+@property(getter=isObserverReceiving) BOOL observerReceiving; // @synthesize observerReceiving=_observerReceiving;
+@property(getter=isOperatorReceiving) BOOL operatorReceiving; // @synthesize operatorReceiving=_operatorReceiving;
 - (id)initWithSchedulerProvider:(id)arg1;
 
 @end

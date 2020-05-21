@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSWindow, _NSScrollingPredominantAxisFilter;
+@class _NSScrollingPredominantAxisFilter;
 
 __attribute__((visibility("hidden")))
 @interface _NSScrollingConcurrentEventMonitor : NSObject
@@ -20,11 +20,11 @@ __attribute__((visibility("hidden")))
         unsigned int didProcessMomentumEnd:1;
         unsigned int didPostPhysicalBegan:1;
         unsigned int didPostMomentumBegan:1;
-        unsigned int reserved:24;
+        unsigned int deltaIsAccelerated:1;
+        unsigned int reserved:23;
     } _flags;
     id _monitorID;
     char *_isCancelledPtr;
-    NSWindow *_window;
     unsigned long long _originalGestureMask;
     CDUnknownBlockType _eventProcessingHandler;
     id <_NSScrollStateEventListener> _scrollStateDelegate;
@@ -33,9 +33,11 @@ __attribute__((visibility("hidden")))
     struct CGPoint _delta;
     struct CGPoint _velocity;
     struct CGPoint _backupVelocity;
+    int _deviceType;
 }
 
 + (void)initialize;
+@property(readonly, nonatomic) int deviceType; // @synthesize deviceType=_deviceType;
 @property(nonatomic) id <_NSScrollStateEventListener> scrollStateDelegate; // @synthesize scrollStateDelegate=_scrollStateDelegate;
 @property(copy, nonatomic) CDUnknownBlockType eventProcessingHandler; // @synthesize eventProcessingHandler=_eventProcessingHandler;
 - (void)_monitorEvent:(id)arg1;
@@ -44,6 +46,7 @@ __attribute__((visibility("hidden")))
 - (void)stopMonitoring;
 - (void)startMonitoring;
 @property(nonatomic) long long predominantAxisMode;
+@property(readonly, nonatomic) BOOL deltaIsAccelerated;
 @property(nonatomic) BOOL shouldStopMonitoringOnMomentumEnd;
 @property(nonatomic) BOOL wantsGestureEvents;
 @property(nonatomic) BOOL shouldIgnoreConsumption;

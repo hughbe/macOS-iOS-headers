@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     unsigned int _version;
 }
 
++ (BOOL)supportsSecureCoding;
 + (void)initialize;
 - (id)_snapshot_;
 - (const id *)knownKeyValuesPointer;

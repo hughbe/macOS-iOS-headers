@@ -14,20 +14,17 @@
     _MXExtensionProvider *_provider;
 }
 
-+ (id)_serialQueue;
+- (void).cxx_destruct;
 @property(nonatomic) __weak _MXExtensionProvider *provider; // @synthesize provider=_provider;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
 - (id)_containingAppIdentifer;
 - (id)siblingExtensions;
 - (BOOL)_isIntentExtension;
 - (BOOL)_isMapsExtension;
 - (BOOL)_setEnabled:(BOOL)arg1 error:(id *)arg2;
-- (void)startRemoteViewControllerExtensionServiceWithInputItems:(id)arg1 begin:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)startExtensionServiceWithInputItems:(id)arg1 begin:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)startExtensionServiceWithVendorContextConnectionDidStart:(CDUnknownBlockType)arg1 vendorContextConnectionDidComplete:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) NSExtension *extension;
-@property(readonly, nonatomic) NSString *displayName;
+@property(readonly, copy, nonatomic) NSString *containingAppDisplayName;
+@property(readonly, copy, nonatomic) NSString *displayName;
 - (id)description;
 @property(readonly, copy, nonatomic) NSSet *capabilities;
 @property(readonly, nonatomic) unsigned long long type;
@@ -36,9 +33,9 @@
 @property(readonly, copy, nonatomic) NSDictionary *infoDictionary;
 @property(readonly, copy, nonatomic) NSString *extensionPointIdentifier;
 - (id)initWithExtensionIdentifier:(id)arg1 extensionProvider:(id)arg2;
-- (void)startRideSharingSearchRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (BOOL)supportsRequest:(id)arg1;
-- (void)startExtensionServiceWithRequest:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (id)handleRequest:(id)arg1 requestDispatcher:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)startSendingUpdatesForRequest:(id)arg1 requestDispatcher:(id)arg2 toObserver:(id)arg3;
+- (void)startExtensionServiceWithInputItems:(id)arg1 begin:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;
 
 @end
 

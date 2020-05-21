@@ -22,6 +22,7 @@
 - (id)description;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (unsigned short)glyph;
 - (unsigned int)_glyph;
 - (id)_font;
 - (unsigned int)_glyphForFont:(id)arg1 baseString:(id)arg2;

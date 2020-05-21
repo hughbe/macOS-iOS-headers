@@ -6,33 +6,25 @@
 
 #import <ScreenReader/SCROutputThreadedObject.h>
 
-@class NSLock, NSMutableArray, NSMutableDictionary, NSString, SCRGCDQueue, SCROutputRequest;
+@class AXFDispatchQueue, NSLock, NSMutableArray, NSMutableDictionary, NSString, SCRCUserDefaults, SCROutputRequest;
 
 @interface SCROutputManager : SCROutputThreadedObject
 {
-    struct __CFDictionary *_requestRunners;
-    struct __CFDictionary *_components;
-    NSLock *_componentsLock;
-    unsigned long long _nextRequestUniqueID;
-    NSLock *_requestUniqueIDLock;
-    NSString *_lastSpeechAttribute;
     NSMutableDictionary *_categoryPrefsCache;
     NSMutableDictionary *_categoryConfigOverrides;
     NSLock *_prefCacheLock;
+    unsigned long long _nextRequestUniqueID;
+    NSLock *_requestUniqueIDLock;
+    NSString *_lastSpeechAttribute;
     NSString *_clientIdentifier;
     struct __CFArray *_queuedOutputRequests;
-    struct __CFDictionary *_queuedObjectsByQueueID;
     struct __CFDictionary *_queuedObjectsByOutputID;
     NSLock *_queuedObjectsLock;
-    struct __CFArray *_savedOutputRequests;
-    BOOL _savedOutputIsRunning;
-    long long _savedOutputLeftInQueue;
-    SCRGCDQueue *_savedOutputDispatchQueue;
+    NSMutableArray *_announcementHistory;
+    AXFDispatchQueue *_savedOutputDispatchQueue;
     unsigned long long _blockingRequestUniqueID;
     SCROutputRequest *_synchronousOutputRequest;
     BOOL _allowAirPlay;
-    id _prefsChangedNotificationTarget;
-    SEL _prefsChangedNotificationSelector;
     NSLock *_generalLock;
     BOOL _isAudioGraphInitialized;
     struct OpaqueAUGraph *_audioGraph;
@@ -41,17 +33,44 @@
     NSMutableArray *_allAudioSoundUnits;
     NSMutableArray *_standardAudioSoundUnits;
     NSMutableArray *_stereoAudioSoundUnits;
-    SCRGCDQueue *_audioGraphDispatchQueue;
+    AXFDispatchQueue *_audioGraphDispatchQueue;
     BOOL _isUsingPositionalAudio;
     BOOL _isDuckingOn;
     BOOL _isAudioRunning;
-    double _lastTimeStopped;
+    // Error parsing type: Ad, name: _lastTimeStopped
     BOOL _ignoringRequests;
+    BOOL __savedOutputIsRunning;
+    unsigned char __initializationState;
+    NSMutableDictionary *__components;
+    NSLock *__componentsLock;
+    NSMutableDictionary *__requestRunners;
+    NSMutableDictionary *__queuedObjectsByQueueID;
+    NSMutableArray *__savedOutputRequests;
+    long long __savedOutputLeftInQueue;
+    SCRCUserDefaults *__userDefaults;
 }
 
++ (id)voiceConfigurableCategories;
++ (void)matchLanguageToSystemLanguageAllowBounce:(BOOL)arg1;
++ (BOOL)_loadVoiceDataFromPath:(id)arg1 forDeviceID:(id)arg2;
++ (BOOL)_loadSynthesizersFromPath:(id)arg1 forDeviceID:(id)arg2;
++ (id)_systemLanguage;
++ (void)_matchVoiceOverLanguageToLanguage:(id)arg1;
++ (BOOL)_allVoicesMatchLanguage:(id)arg1;
 + (id)availableVoices;
-+ (void)initialize;
-+ (id)defaultManager;
++ (id)_supportedSynthesizerCharactersForVoice:(id)arg1;
++ (void)_setCachedSupportedSynthesizerCharacters:(id)arg1 forVoice:(id)arg2;
++ (id)_getCachedSupportedSynthesizerCharactersForVoice:(id)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic, setter=_setUserDefaults:) SCRCUserDefaults *_userDefaults; // @synthesize _userDefaults=__userDefaults;
+@property(nonatomic, setter=_setInitializationState:) unsigned char _initializationState; // @synthesize _initializationState=__initializationState;
+@property(nonatomic, setter=_setSavedOutputLeftInQueue:) long long _savedOutputLeftInQueue; // @synthesize _savedOutputLeftInQueue=__savedOutputLeftInQueue;
+@property(nonatomic, setter=_setSavedOutputIsRunning:) BOOL _savedOutputIsRunning; // @synthesize _savedOutputIsRunning=__savedOutputIsRunning;
+@property(retain, nonatomic, setter=_setSavedOutputRequests:) NSMutableArray *_savedOutputRequests; // @synthesize _savedOutputRequests=__savedOutputRequests;
+@property(retain, nonatomic, setter=_setQueuedObjectsByQueueID:) NSMutableDictionary *_queuedObjectsByQueueID; // @synthesize _queuedObjectsByQueueID=__queuedObjectsByQueueID;
+@property(retain, nonatomic, setter=_setRequestRunners:) NSMutableDictionary *_requestRunners; // @synthesize _requestRunners=__requestRunners;
+@property(retain, nonatomic, setter=_setComponentsLock:) NSLock *_componentsLock; // @synthesize _componentsLock=__componentsLock;
+@property(retain, nonatomic, setter=_setComponents:) NSMutableDictionary *_components; // @synthesize _components=__components;
 - (void)_logRecentOutputRequestFailed;
 - (void)_compressAndMoveLogOutput;
 - (void)_logRecentOutputRequestsFinished;
@@ -79,9 +98,6 @@
 - (id)localizedOutputStringForKey:(id)arg1;
 - (id)clientIdentifier;
 - (void)setClientIdentifier:(id)arg1;
-- (void)setPreferencesChangedObserver:(id)arg1 selector:(SEL)arg2;
-- (id)voiceConfigurableCategories;
-- (id)configurableCategories;
 - (void)handleEvent:(id)arg1;
 - (void)_processRequestForLogging:(id)arg1;
 - (void)_addQueuedObject:(id)arg1;
@@ -91,6 +107,8 @@
 - (void)_removeQueueObjectForQueueID:(struct __CFString *)arg1;
 - (id)_popQueuedObjectForOutputID:(struct __CFString *)arg1;
 - (void)_cancelQueuedRequestsForOutputIdentifier:(id)arg1 queueIdentifier:(id)arg2;
+- (id)announcementStrings;
+- (void)_addAnnouncementRequestToHistory:(id)arg1;
 - (id)soundPathWithIdentifier:(id)arg1;
 - (void)playSoundWithIdentifier:(id)arg1;
 - (id)componentWithName:(id)arg1;
@@ -115,25 +133,13 @@
 - (void)stopSpeechAndSound:(BOOL)arg1 exclusions:(id)arg2;
 - (void)stopSpeechAndSound:(BOOL)arg1;
 - (void)pauseOrContinueSpeech;
-- (void)spliceIntoCurrentOutput:(id)arg1 forCategory:(id)arg2;
-- (void)speakUpdatedSpeechAttributeValue:(float)arg1 attribute:(int)arg2 category:(id)arg3 spliceIntoCurrentOutput:(BOOL)arg4;
-- (void)_sendBrailleLineForSpeechAttribute:(int)arg1 withValue:(float)arg2 asAlert:(BOOL)arg3;
-- (void)_setSpeechAttributeValueWithNotification:(id)arg1;
-- (float)lastSpeechAttributeValue:(int)arg1 category:(id)arg2;
+- (float)lastSpeechAttributeValue:(long long)arg1 category:(id)arg2;
 - (id)customizedCategoryForCategory:(id)arg1;
 - (id)synthesizerLocaleStringForCategory:(id)arg1;
 - (id)synthesizerLocaleForCategory:(id)arg1;
-- (void)matchLanguageToSystemLanguageAllowBounce:(BOOL)arg1;
 - (void)loadSynthesizersFromPortablePrefs:(id)arg1;
 - (void)unloadSynthesizersFromDevice:(id)arg1;
-- (BOOL)_loadVoiceDataFromPath:(id)arg1 forDeviceID:(id)arg2;
-- (BOOL)_loadSynthesizersFromPath:(id)arg1 forDeviceID:(id)arg2;
-- (id)_systemLanguage;
-- (void)matchVoiceOverLanguageToLanguage:(id)arg1;
-- (BOOL)allVoicesMatchLanguage:(id)arg1;
 - (BOOL)shouldUseRomanTextProcessingForCategory:(id)arg1;
-- (id)titleForUserCustomizableCategory:(id)arg1;
-- (id)buildSpeechAttributeChangeStringForAttribute:(int)arg1 value:(float)arg2;
 - (void)setLastSpeechAttribute:(id)arg1;
 - (id)lastSpeechAttribute;
 - (void)setObject:(id)arg1 forAttribute:(id)arg2 component:(id)arg3;
@@ -147,6 +153,9 @@
 - (unsigned int)_defaultOutputDeviceIDIncludingAirPlay;
 - (float)systemVolume;
 - (void)setSystemVolume:(float)arg1;
+- (BOOL)_adjustSystemVolumeUp:(BOOL)arg1;
+- (BOOL)decreaseSystemVolume;
+- (BOOL)increaseSystemVolume;
 - (void)updateAudioOutputDevice;
 - (void)_setAllowAirPlay:(BOOL)arg1;
 - (BOOL)_airplayOutputIsDesired;
@@ -155,7 +164,6 @@
 - (unsigned int)_audioOutputDeviceIDIncludingAirPlay;
 - (id)availableOutputAudioDevices;
 - (void)updateAudioQualityLevel:(id)arg1;
-- (void)displayConfigurationDidChange;
 - (void)setAudioPositionForAudioUnitId:(unsigned int)arg1 forAzimuth:(float)arg2 andElevation:(float)arg3 andDistance:(float)arg4;
 - (double)screenPixelsHigh;
 - (double)screenPixelsWide;
@@ -167,6 +175,7 @@
 - (int)obtainSoundBus;
 - (int)obtainStereoSoundBus;
 - (void)updateAudioGraph;
+- (BOOL)soundsUseMultiChannelMixer;
 - (BOOL)isPositionalAudioEnabled;
 - (void)setIsPositionalAudioEnabled:(BOOL)arg1;
 - (void)_configureAudioGraphForChannelLayout;
@@ -180,8 +189,12 @@
 - (void)_turnOnDucking;
 - (BOOL)startAudioGraph;
 - (void)dealloc;
-- (id)init;
-- (void)_adjustSpeechAttributeForCategory:(id)arg1 speakAttributeChange:(BOOL)arg2 continueSpeech:(BOOL)arg3 responseAction:(int)arg4;
+- (void)completeInitialization;
+- (id)initWithUserDefaults:(id)arg1;
+- (long long)punctuationRepeatLimitForCategory:(id)arg1;
+- (long long)punctuationRepeateModeForCategory:(id)arg1;
+- (long long)punctuationVerbosityLevelForCategory:(id)arg1;
+- (void)_adjustSpeechAttributeForCategory:(id)arg1 speakAttributeChange:(BOOL)arg2 continueSpeech:(BOOL)arg3 responseAction:(long long)arg4;
 - (void)updateSpeechRateWithoutPause;
 - (void)updateSpeechVoiceIdentifierForCategory:(id)arg1 shouldSpeakResult:(BOOL)arg2;
 - (void)updateSpeechVolumeForCategory:(id)arg1 shouldSpeakResult:(BOOL)arg2;
@@ -194,7 +207,7 @@
 - (void)clearConfigurationCache;
 - (id)_keysToObserve;
 - (void)removeConfigurationObservers;
-- (void)initializeOutputeManagerConfiguration;
+- (void)initializeOutputManagerConfiguration;
 
 @end
 

@@ -7,6 +7,9 @@
 @class NSString;
 
 @protocol VKLabelNavFeature
+@property(nonatomic) BOOL isPicked;
+@property(readonly, nonatomic) BOOL isTrafficCameraFeature;
+@property(readonly, nonatomic) BOOL isEtaFeature;
 @property(readonly, nonatomic) BOOL isGuidanceStepStart;
 @property(readonly, nonatomic) long long intraRoadPriority;
 @property(readonly, nonatomic) BOOL isInGuidance;
@@ -17,6 +20,6 @@
 @property(readonly, nonatomic) struct PolylineCoordinate routeOffset;
 @property(readonly, nonatomic) BOOL isAwayFromRoute;
 @property(readonly, nonatomic) BOOL isOnRoute;
-- (void)prepareStyleVarsWithContext:(struct NavContext *)arg1;
+- (void)layoutWithNavContext:(struct NavContext *)arg1;
 @end
 

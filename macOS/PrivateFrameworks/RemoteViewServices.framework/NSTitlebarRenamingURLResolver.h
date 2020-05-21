@@ -33,6 +33,7 @@
 + (BOOL)logSomethingAboutTheUsageOfPeriodsInTheseFileNames:(id)arg1 lastPathComponent:(id)arg2;
 + (id)_pathToDocumentsDirectory;
 + (BOOL)_path:(id)arg1 pointsToSameInodeAsPath:(id)arg2;
+- (void).cxx_destruct;
 @property BOOL titleWasChosenAutomatically; // @synthesize titleWasChosenAutomatically=_titleWasChosenAutomatically;
 @property BOOL isDuplicate; // @synthesize isDuplicate=_isDuplicate;
 @property BOOL extensionHiddenEnd; // @synthesize extensionHiddenEnd=_extensionHiddenEnd;
@@ -51,6 +52,7 @@
 - (id)description;
 - (BOOL)resolveFinalURLInPBOXOverwriteOK:(BOOL)arg1 forClientPID:(int)arg2 andEUID:(unsigned int)arg3 usingFinalTitle:(id)arg4;
 - (id)findAvailableURLForFinalDisplayName:(id)arg1 withFileSystemUniquing:(BOOL)arg2;
+- (id)localizedStringForDocumentFromUnlocalizedString:(id)arg1;
 @property(readonly) NSURL *finalDirectory; // @dynamic finalDirectory;
 @property(readonly) NSString *finalExtension; // @dynamic finalExtension;
 - (void)serializeToRequest:(id)arg1;
@@ -63,7 +65,6 @@
 @property(readonly) NSURL *finalURL;
 - (void)_setFinalURL:(id)arg1;
 @property struct _NSRange editingRange; // @dynamic editingRange;
-- (void)dealloc;
 - (id)initWithRemoteServiceRequest:(id)arg1;
 - (id)init;
 

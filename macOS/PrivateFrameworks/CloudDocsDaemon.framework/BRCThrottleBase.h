@@ -14,14 +14,15 @@ __attribute__((visibility("hidden")))
     NSString *_name;
     unsigned int _initialRetryCount;
     unsigned int _finalRetryCount;
+    unsigned int _maximumElementCount;
     long long _minimumNsecsBetweenRetries;
     long long _maximumNsecsBetweenRetries;
     long long _nsecsBeforeForgettingCounter;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) long long nsecsBeforeForgettingCounter; // @synthesize nsecsBeforeForgettingCounter=_nsecsBeforeForgettingCounter;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (BOOL)isBlocking;
 - (long long)nsecsToNextRetry:(long long)arg1 retryCount:(unsigned int *)arg2 now:(long long)arg3;
 - (long long)retryBackoff:(unsigned int)arg1;

@@ -13,7 +13,7 @@
     NSManagedObjectID *_managedObjectID;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)setManagedObjectID:(id)arg1;
 - (id)managedObjectID;

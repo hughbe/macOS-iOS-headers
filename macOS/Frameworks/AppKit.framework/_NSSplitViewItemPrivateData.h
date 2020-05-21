@@ -31,6 +31,7 @@ __attribute__((visibility("hidden")))
     unsigned int _reserved:28;
 }
 
+- (void).cxx_destruct;
 - (void)dealloc;
 
 @end

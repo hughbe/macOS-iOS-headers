@@ -22,6 +22,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) double relativeTrigger; // @synthesize relativeTrigger=_relativeTrigger;
 @property(retain, nonatomic) NSString *relatedTo; // @synthesize relatedTo=_relatedTo;
 @property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
@@ -34,7 +35,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)triggerDateRelativeTo:(id)arg1;
 - (long long)compareAlarmOrder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

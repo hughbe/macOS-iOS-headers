@@ -17,7 +17,7 @@ __attribute__((visibility("hidden")))
     _NSCloudSharingPostShareViewController *_contentViewController;
     NSWindow *_parentWindow;
     NSPopover *_popover;
-    NSWindow *_sheet;
+    NSWindow *_window;
     NSObject<OS_dispatch_group> *_participantListWaiterGroup;
     id _item;
     NSURL *_ubiquitousURL;
@@ -26,10 +26,12 @@ __attribute__((visibility("hidden")))
     CKShare *_resultingShare;
     BOOL _serviceIsBusy;
     BOOL _stoppedSharing;
+    BOOL _isShared;
 }
 
 + (id)_matchingItemsFromItems:(id)arg1;
 @property(retain) id item; // @synthesize item=_item;
+- (id)_touchBarImage;
 - (void)setEnabled:(BOOL)arg1;
 - (BOOL)isEnabled;
 - (id)name;
@@ -45,6 +47,7 @@ __attribute__((visibility("hidden")))
 - (void)_participantListReceivedAddPeople;
 - (void)_showAddPeopleServiceForItem:(id)arg1 relativeToWindow:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_receivedError:(id)arg1;
+- (void)_participantListReceivedShowSharedFolder;
 - (void)_participantListReceivedStopSharing;
 - (void)_participantListReceivedCancel;
 - (void)_dismissParticipantList;
@@ -53,7 +56,7 @@ __attribute__((visibility("hidden")))
 - (void)_startObservingViewBridgeChangesForViewController:(id)arg1;
 - (BOOL)canPerformWithItems:(id)arg1;
 - (void)dealloc;
-- (id)init;
+- (id)initAsShared:(BOOL)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

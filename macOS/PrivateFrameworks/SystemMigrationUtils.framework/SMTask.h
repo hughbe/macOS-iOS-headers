@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSFileHandle, NSString, NSTask;
+@class NSFileHandle, NSObject<OS_dispatch_queue>, NSProgress, NSString, NSTask;
 
 @interface SMTask : NSObject
 {
@@ -14,15 +14,21 @@
     NSTask *_task;
     NSString *_logPrefix;
     double _estimatedTimeToComplete;
+    NSProgress *_parentProgress;
+    double _parentProgressPendingUnits;
+    NSObject<OS_dispatch_queue> *_parentProgressQueue;
     NSFileHandle *_outputFileHandle;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSFileHandle *outputFileHandle; // @synthesize outputFileHandle=_outputFileHandle;
+@property(retain) NSObject<OS_dispatch_queue> *parentProgressQueue; // @synthesize parentProgressQueue=_parentProgressQueue;
+@property double parentProgressPendingUnits; // @synthesize parentProgressPendingUnits=_parentProgressPendingUnits;
+@property(retain) NSProgress *parentProgress; // @synthesize parentProgress=_parentProgress;
 @property double estimatedTimeToComplete; // @synthesize estimatedTimeToComplete=_estimatedTimeToComplete;
 @property int terminationStatus; // @synthesize terminationStatus=_terminationStatus;
 @property(retain) NSString *logPrefix; // @synthesize logPrefix=_logPrefix;
 @property(retain) NSTask *task; // @synthesize task=_task;
-- (void).cxx_destruct;
 - (void)fileHandleReadCompleted:(id)arg1;
 - (void)processOutput:(id)arg1;
 - (void)processRemainingData;

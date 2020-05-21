@@ -14,9 +14,9 @@ __attribute__((visibility("hidden")))
     OITSUNoCopyDictionary *mMediaNodeMap;
 }
 
+- (void).cxx_destruct;
 - (id)mediaNodeMap;
 - (BOOL)isValid:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

@@ -8,15 +8,20 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray;
+@class NSMutableArray, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDRawAttributeFilter : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_keys;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)keyType;
-@property(retain, nonatomic) NSMutableArray *keys; // @synthesize keys=_keys;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -24,13 +29,14 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)keyAtIndex:(unsigned long long)arg1;
 - (unsigned long long)keysCount;
 - (void)addKey:(id)arg1;
 - (void)clearKeys;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *keys;
 
 @end
 

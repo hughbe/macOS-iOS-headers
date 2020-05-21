@@ -13,6 +13,8 @@
     AVMovieTrackInternal *_movieTrackInternal;
 }
 
++ (BOOL)expectsPropertyRevisedNotifications;
+- (void).cxx_destruct;
 - (id)description;
 @property(readonly, nonatomic) long long alternateGroupID;
 @property(readonly, nonatomic) CDStruct_e83c9415 mediaDecodeTimeRange;

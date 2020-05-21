@@ -6,24 +6,46 @@
 
 #import "NSObject.h"
 
-@class CNContactStore;
+#import "IMAssistantINMessageConverterPersonProvider.h"
+#import "IMAssistantIdentifiableIntentHandler.h"
 
-@interface IMAssistantMessageHandler : NSObject
+@class NSArray, NSString;
+
+@interface IMAssistantMessageHandler : NSObject <IMAssistantINMessageConverterPersonProvider, IMAssistantIdentifiableIntentHandler>
 {
-    CNContactStore *_contactStore;
+    id <IMAssistantMessageHandlerDataSource> _messageHandlerDataSource;
+    NSArray *_keysToFetch;
+    NSString *_intentIdentifier;
 }
 
++ (id)connectToIMDaemonController;
 - (void).cxx_destruct;
-- (id)INPersonsToDictionary:(id)arg1;
-- (id)INPersonToDictionary:(id)arg1;
-- (id)INPersonsArrayForCNContactsArray:(id)arg1;
-- (void)_INPersonsArrayForCNContactsArray:(id)arg1 remain:(id)arg2 branch:(id)arg3 results:(id)arg4;
-- (id)INPersonsForCNContactsArray:(id)arg1;
-- (id)INPersonsForCNContacts:(id)arg1;
-- (id)INPersonForCNContact:(id)arg1;
-- (id)IMPersonForCNContact:(id)arg1;
-- (id)fetchContactMatchingIntentPerson:(id)arg1;
-@property(readonly, nonatomic) CNContactStore *contactStore;
+@property(copy, nonatomic) NSString *intentIdentifier; // @synthesize intentIdentifier=_intentIdentifier;
+@property(retain, nonatomic) NSArray *keysToFetch; // @synthesize keysToFetch=_keysToFetch;
+@property(retain, nonatomic) id <IMAssistantMessageHandlerDataSource> messageHandlerDataSource; // @synthesize messageHandlerDataSource=_messageHandlerDataSource;
+- (void)forceTriggerResumeNotification;
+- (id)personFromSPIHandle:(id)arg1 contact:(id)arg2;
+- (id)personFromSPIHandle:(id)arg1;
+- (id)contactIdentifiersForParticipantsInChat:(id)arg1;
+- (id)meContactIdentifier;
+- (id)contactIdentifiersMatchingSPIHandle:(id)arg1;
+- (id)contactIdentifiersMatchingHandle:(id)arg1;
+- (id)contactIdentifiersMatchingINPersonHandle:(id)arg1;
+- (id)contactIdentifiersMatchingHandleID:(id)arg1;
+- (id)contactsMatchingPredicate:(id)arg1 forPerson:(id)arg2;
+- (id)contactWithIdentifier:(id)arg1;
+- (id)unifiedContactIdentifierForContactIdentifier:(id)arg1;
+- (id)contactsMatchingINPerson:(id)arg1;
+- (id)_initWithDataSource:(id)arg1 contactKeysToFetch:(id)arg2 intentIdentifier:(id)arg3;
+- (id)initWithDataSource:(id)arg1 keysToFetch:(id)arg2 intentIdentifier:(id)arg3;
+- (id)initWithDataSource:(id)arg1 intentIdentifier:(id)arg2;
+- (id)initWithIntentIdentifier:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

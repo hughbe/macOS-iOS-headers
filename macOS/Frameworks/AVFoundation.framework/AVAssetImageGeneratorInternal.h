@@ -8,6 +8,7 @@
 
 @class AVAsset, AVCustomVideoCompositorSession, AVVideoComposition, AVWeakReference, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetImageGeneratorInternal : NSObject
 {
     AVWeakReference *weakReference;
@@ -25,6 +26,7 @@
     AVCustomVideoCompositorSession *customVideoCompositorSession;
     NSObject<OS_dispatch_queue> *imageRequestQueue;
     int cancelledRequestIDThreshold;
+    NSObject<OS_dispatch_queue> *generateImagesAsyncQueue;
 }
 
 @end

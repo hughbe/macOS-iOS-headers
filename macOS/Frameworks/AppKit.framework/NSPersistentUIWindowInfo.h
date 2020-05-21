@@ -6,23 +6,18 @@
 
 #import "NSObject.h"
 
-#import "NSKeyedUnarchiverDelegate.h"
-
-@class NSDictionary, NSMutableSet, NSSet, NSString;
+@class NSDictionary;
 
 __attribute__((visibility("hidden")))
-@interface NSPersistentUIWindowInfo : NSObject <NSKeyedUnarchiverDelegate>
+@interface NSPersistentUIWindowInfo : NSObject
 {
     unsigned int windowID;
     int currentStatus;
     unsigned int currentGeneration;
     unsigned char recordEncryptionKey[16];
-    NSMutableSet *urlsToStashInLS;
     NSDictionary *externalPublicProperties;
 }
 
-@property(readonly) NSSet *urlsToStashInLS; // @synthesize urlsToStashInLS;
-- (void)addURLsToStashInLS:(id)arg1;
 - (const char *)recordEncryptionKey;
 - (void)dealloc;
 - (id)init;
@@ -30,12 +25,6 @@ __attribute__((visibility("hidden")))
 - (void)setExternalPublicProperties:(id)arg1;
 - (BOOL)isGlobal;
 @property unsigned int windowID;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

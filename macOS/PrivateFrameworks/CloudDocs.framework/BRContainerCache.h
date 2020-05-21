@@ -6,23 +6,28 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_source>, br_pacer;
+@class NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, br_pacer;
 
 __attribute__((visibility("hidden")))
 @interface BRContainerCache : NSObject
 {
     id <BRContainerHelper> _helper;
     NSMutableDictionary *_containersByID;
-    BOOL _didFetchAllContainers;
+    NSMutableSet *_fetchedContainerIDs;
+    BOOL _containerCacheUptodate;
+    NSObject<OS_dispatch_queue> *_queue;
     br_pacer *_invalidationPacer;
     NSObject<OS_dispatch_source> *_memoryPressureSource;
     id <NSObject> _containerStatusObserver;
 }
 
++ (BOOL)hasDaemonicParts;
 + (id)containerCache;
++ (id)containerHelper;
 - (void).cxx_destruct;
-- (id)_allContainersByIDNoCopy;
-- (void)_invalidate;
+- (id)_allContainersByIDNoCopyBlocking:(BOOL)arg1;
+- (BOOL)_updateContainersCache;
+- (void)invalidateAndClearCache:(BOOL)arg1;
 - (void)_containerListDidChange;
 - (void)unsubscribeToContainerStatusUpdate;
 - (void)subscribeToContainerStatusUpdate;
@@ -30,7 +35,7 @@ __attribute__((visibility("hidden")))
 - (id)allContainersByID;
 - (void)_accountWillChange;
 - (id)documentContainers;
-- (id)allContainers;
+- (id)allContainersBlockIfNeeded:(BOOL)arg1;
 - (void)dealloc;
 - (id)initWithHelper:(id)arg1;
 

@@ -10,6 +10,7 @@
 
 @class MKCompassView, MKMapView, MKRotationFilter, MKScaleView, NSClickGestureRecognizer, NSObject<OS_dispatch_source>, NSPanGestureRecognizer, NSString, VKCompoundAnimation, VKTimedAnimation, _MKDirectionalArrowRecognizer, _MKDirectionalPanGestureRecognizer, _MKMagnificationGestureRecognizer, _MKMouseDownGestureRecognizer, _MKRotationGestureRecognizer;
 
+__attribute__((visibility("hidden")))
 @interface MKMapGestureController : NSObject <NSGestureRecognizerDelegate>
 {
     MKMapView *_mapView;
@@ -30,6 +31,7 @@
     _MKDirectionalPanGestureRecognizer *_compassDragRotationGestureRecognizer;
     _MKDirectionalPanGestureRecognizer *_compassDragTiltGestureRecognizer;
     _MKDirectionalPanGestureRecognizer *_compassDragSimultaneousRotationGestureRecognizer;
+    BOOL _compassRotateBeganInPositiveDirection;
     _MKDirectionalArrowRecognizer *_arrowPanGestureRecognizer;
     _MKDirectionalArrowRecognizer *_arrowRotateGestureRecognizer;
     _MKDirectionalArrowRecognizer *_arrowZoomGestureRecognizer;
@@ -77,6 +79,7 @@
     BOOL _handlingTrackpadScroll;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) MKCompassView *compassView; // @synthesize compassView=_compassView;
 @property(retain, nonatomic) MKScaleView *scaleView; // @synthesize scaleView=_scaleView;
 @property(nonatomic, getter=isRotationSnappingEnabled) BOOL rotationSnappingEnabled; // @synthesize rotationSnappingEnabled=_rotationSnappingEnabled;
@@ -87,7 +90,6 @@
 @property(readonly, nonatomic) NSClickGestureRecognizer *doubleClickGestureRecognizer; // @synthesize doubleClickGestureRecognizer=_doubleClickGestureRecognizer;
 @property(retain, nonatomic) MKRotationFilter *rotationFilter; // @synthesize rotationFilter=_rotationFilter;
 @property(nonatomic) __weak id <MKMapGestureControllerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (BOOL)gestureRecognizer:(id)arg1 shouldRequireFailureOfGestureRecognizer:(id)arg2;
 - (BOOL)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
 - (BOOL)gestureRecognizerShouldBegin:(id)arg1;

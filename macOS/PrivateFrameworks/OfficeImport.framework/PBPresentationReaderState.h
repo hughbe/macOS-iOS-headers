@@ -15,7 +15,7 @@ __attribute__((visibility("hidden")))
     PDPresentation *mTgtPresentation;
     ESDRoot *mDocumentRoot;
     ESDContainer *mSrcSlideListHolder;
-    ChVector_fe49fc78 *mCurrentSlideTextBlockStartIndexVector;
+    ChVector_811a7989 *mCurrentSlideTextBlockRecordIndexRangeVector;
     unsigned int mSrcSlideId;
     NSMutableArray *mSlideIndexes;
     OITSUNoCopyDictionary *mSlideMasterToMasterStyles;
@@ -29,26 +29,27 @@ __attribute__((visibility("hidden")))
     PBOutlineBulletDictionary *mPlaceholderMacCharStyles;
     ESDObject *mCurrentBulletStyle;
     ESDObject *mCurrentMacCharStyle;
-    ChVector_b45fc7a7 *mSrcDocMasterStyleInfoVector;
-    ChVector_b45fc7a7 *mSrcCurrentMasterStyleInfoVector;
+    ChVector_7fbb5a88 *mSrcDocMasterStyleInfoVector;
+    ChVector_7fbb5a88 *mSrcCurrentMasterStyleInfoVector;
     PBSlideState *mSlideState;
     id <TCCancelDelegate> mCancel;
     BOOL mHasSlideNumberPlaceholder;
     NSMutableDictionary *mTargetShapeToSourceTextBoxContainerHolderMap;
 }
 
+- (void).cxx_destruct;
 @property BOOL hasSlideNumberPlaceholder; // @synthesize hasSlideNumberPlaceholder=mHasSlideNumberPlaceholder;
 @property(retain, nonatomic) id <TCCancelDelegate> cancelDelegate; // @synthesize cancelDelegate=mCancel;
-@property ESDContainer *sourceSlideListHolder; // @synthesize sourceSlideListHolder=mSrcSlideListHolder;
+@property(retain) ESDContainer *sourceSlideListHolder; // @synthesize sourceSlideListHolder=mSrcSlideListHolder;
 - (void)setSourceTextBoxContainerHolder:(id)arg1 forTargetShape:(id)arg2;
 - (id)sourceTextBoxContainerHolderForTargetShape:(id)arg1;
 - (id)hyperlinkInfoWithId:(unsigned int)arg1 createIfAbsent:(BOOL)arg2;
 - (BOOL)isCancelled;
 - (void)setSourceSlideId:(unsigned int)arg1;
-- (ChVector_fe49fc78 *)currentSlideTextBlockStartIndexVector;
+- (ChVector_811a7989 *)currentSlideTextBlockRecordIndexRangeVector;
 - (struct PBReaderMasterStyleInfo *)currentSourceMasterStyleInfoOfType:(int)arg1;
 - (struct PBReaderMasterStyleInfo *)docSourceMasterStyleInfoOfType:(int)arg1;
-- (void)setCurrentSourceMasterStyleInfoVector:(ChVector_b45fc7a7 *)arg1;
+- (void)setCurrentSourceMasterStyleInfoVector:(ChVector_7fbb5a88 *)arg1;
 - (BOOL)hasCurrentSourceMasterStyleInfoVector;
 - (void)resetSlideState;
 - (id)slideState;

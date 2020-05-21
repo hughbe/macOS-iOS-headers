@@ -61,6 +61,8 @@
 @property(copy) NSArray *audioUnits; // @synthesize audioUnits;
 @property(copy) NSArray *descriptorCounts; // @synthesize descriptorCounts;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)allObjectsOfType:(unsigned short)arg1;
 - (void)renumberDescriptorWithNextIndexes:(id)arg1;
 - (void)updateDependentContent;

@@ -7,11 +7,12 @@
 #import "NSObject.h"
 
 #import "NSCoding.h"
+#import "NSMenuItemValidation.h"
 #import "NSUserInterfaceValidations.h"
 
 @class NSArray, NSDocument, NSMutableDictionary, NSString;
 
-@interface NSDocumentController : NSObject <NSCoding, NSUserInterfaceValidations>
+@interface NSDocumentController : NSObject <NSCoding, NSMenuItemValidation, NSUserInterfaceValidations>
 {
     id _documents;
     id _moreVars;
@@ -34,6 +35,7 @@
 + (id)_recentMenuItemTitlesFromRecentDocumentInfos:(id)arg1 includingIcons:(BOOL)arg2;
 + (BOOL)_isJavaSubclass;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+- (BOOL)validateMenuItem:(id)arg1;
 - (id)displayNameForType:(id)arg1;
 - (Class)documentClassForType:(id)arg1;
 @property(readonly, copy) NSArray *documentClassNames;
@@ -58,13 +60,16 @@
 - (BOOL)presentError:(id)arg1;
 - (void)presentError:(id)arg1 modalForWindow:(id)arg2 delegate:(id)arg3 didPresentSelector:(SEL)arg4 contextInfo:(void *)arg5;
 - (void)_restorePersistentDocumentWithState:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (BOOL)_persistenceCanRecreateEmptyUntitledDocumentOfType:(id)arg1;
 - (BOOL)_persistenceMustOpenDocumentsThroughApplicationDelegate;
+- (id)standardShareMenuItem;
+@property(readonly) BOOL allowsAutomaticShareMenu;
+- (void)_recursivelyEnumerateMenuItemsStartingFromMenu:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (id)duplicateDocumentWithContentsOfURL:(id)arg1 copying:(BOOL)arg2 displayName:(id)arg3 error:(id *)arg4;
 - (id)_oldMakeDuplicateDocumentWithContentsOfURL:(id)arg1 copying:(BOOL)arg2 displayName:(id)arg3 error:(id *)arg4;
 - (void)_finishOpeningDocument:(id)arg1 andShowWindows:(BOOL)arg2;
 - (void)closeAllDocumentsWithDelegate:(id)arg1 didCloseAllSelector:(SEL)arg2 contextInfo:(void *)arg3;
 - (void)reviewUnsavedDocumentsWithAlertTitle:(id)arg1 cancellable:(BOOL)arg2 delegate:(id)arg3 didReviewAllSelector:(SEL)arg4 contextInfo:(void *)arg5;
+- (long long)_runAlertPanel:(id)arg1 msg:(id)arg2 first:(id)arg3 second:(id)arg4 guardSecond:(BOOL)arg5 third:(id)arg6;
 - (long long)_editedDocumentCount;
 @property(readonly) BOOL hasEditedDocuments;
 - (void)saveAllDocuments:(id)arg1;
@@ -148,6 +153,7 @@
 - (id)_typeDescriptions;
 - (id)_typeDescriptionForName:(id)arg1;
 - (int)_utiUsage;
+- (void)_getAutoreopenRecordForDocument:(id)arg1 withoutException:(BOOL)arg2 queue:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)_createAutoreopenRecordForDocument:(id)arg1 withoutException:(BOOL)arg2;
 - (id)_customizationOfError:(id)arg1 withDescription:(id)arg2 recoverySuggestion:(id)arg3 recoveryOptions:(id)arg4 recoveryAttempter:(id)arg5;
 - (id)_fixedFailureReasonFromError:(id)arg1;
@@ -181,9 +187,13 @@
 - (void)_autoreopenDocumentsIgnoringExpendable:(BOOL)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)_autoreopenDocumentsFromRecords:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)_permitAutoreopeningOfDocuments;
+- (void)_finishedWithAutoreopenRecords;
+- (id)_autoreopenRecordsBeingReopened;
 - (id)_autosaveRecordPathCreateIfNecessary:(BOOL)arg1;
-- (BOOL)_appPersistenceIsJustOff;
 - (void)_notePendingRecentDocumentURLsIfNecessary;
+- (void)_shareMenuDidClose:(id)arg1;
+- (void)_share:(id)arg1;
+- (void)_populateShareMenu:(id)arg1;
 - (void)_setRevertToMenuHidden:(BOOL)arg1;
 - (void)_populateRevertToMenu:(id)arg1;
 - (void)_updateTitleForMenuItem:(id)arg1 originalTitle:(id)arg2;
@@ -196,16 +206,17 @@
 - (void)_updateMenu:(id)arg1 withRecentDocumentInfos:(id)arg2 includingIcons:(BOOL)arg3;
 - (id)_recentDocumentInfoForKey:(id)arg1;
 - (void)_depopulateOpenRecentMenu:(id)arg1;
+- (id)_touchBar;
 - (void)_updateSuddenTermination;
 - (BOOL)_tabPlusButtonWasClicked;
 - (void)_setTabPlusButtonWasClicked:(BOOL)arg1;
+- (void)_setShouldInvertImplicitBehaviorToYesForCurrentRunLoop;
 - (void)_setShouldInvertImplicitTabbingBehavior:(BOOL)arg1;
 - (BOOL)_shouldInvertImplicitTabbingBehavior;
 - (void)_invalidateTypeDescriptionCache;
 - (id)_types;
 - (id)_typesForDocumentClass:(Class)arg1 includeEditors:(BOOL)arg2 includeViewers:(BOOL)arg3 includeExportable:(BOOL)arg4;
 - (id)_resolveTypeAlias:(id)arg1;
-- (BOOL)validateMenuItem:(id)arg1;
 - (id)typeFromFileExtension:(id)arg1;
 - (BOOL)shouldCreateUI;
 - (void)setShouldCreateUI:(BOOL)arg1;
@@ -229,6 +240,12 @@
 - (id)_invokeJavaOverrideForSelector:(SEL)arg1 withErrorAndOtherArguments:(id *)arg2;
 - (id)initJava2;
 - (id)initJava1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,19 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSColor;
+@class NSControl;
 
 @protocol _MKCalloutAccessoryView <NSObject>
 
 @optional
 - (double)_mapkit_minimumCalloutWidthMultiplier;
-- (double)_mapkit_calloutCustomRightMargin;
-- (double)_mapkit_calloutCustomLeftMargin;
-- (BOOL)_mapkit_calloutShouldAlignToDetailBaseline;
-- (BOOL)_mapkit_calloutShouldUseIntrinsicContentSize;
-- (BOOL)_mapkit_shouldFillCalloutHeight;
-- (void)_mapkit_setCalloutAlignedToDetailView:(BOOL)arg1;
-- (void)_mapkit_setCalloutTextColor:(NSColor *)arg1;
-- (void)_mapkit_setCalloutBackgroundColor:(NSColor *)arg1;
+- (NSControl *)_mapkit_accessoryControlToExtendWithCallout;
 @end
 

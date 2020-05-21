@@ -17,9 +17,11 @@
     double _hyphenationFactor;
     long long _typesetterBehavior;
     struct _NSRange _paragraphRange;
+    struct _NSRange _previousLineRange;
 }
 
 + (id)paragraphArbitratorWithAttributedString:(id)arg1 range:(struct _NSRange)arg2;
+@property struct _NSRange previousLineRange; // @synthesize previousLineRange=_previousLineRange;
 @property long long typesetterBehavior; // @synthesize typesetterBehavior=_typesetterBehavior;
 @property double hyphenationFactor; // @synthesize hyphenationFactor=_hyphenationFactor;
 @property unsigned long long lineBreakStrategy; // @synthesize lineBreakStrategy=_lineBreakStrategy;

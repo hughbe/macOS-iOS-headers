@@ -16,10 +16,15 @@ __attribute__((visibility("hidden")))
     id <TableViewPlusScrollDelegate> _scrollDelegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <TableViewPlusScrollDelegate> scrollDelegate; // @synthesize scrollDelegate=_scrollDelegate;
 @property BOOL preservesSelectionWhenDisplayingContextMenu; // @synthesize preservesSelectionWhenDisplayingContextMenu=_preservesSelectionWhenDisplayingContextMenu;
-- (void).cxx_destruct;
 - (id)accessibilityActionNames;
+- (void)_notifyDelegateAboutSelectionChangeIfNeeded:(id)arg1;
+- (void)selectAll:(id)arg1;
+- (void)selectRowIndexes:(id)arg1 byExtendingSelection:(BOOL)arg2;
+- (void)deselectRow:(long long)arg1;
+- (void)deselectAll:(id)arg1;
 - (BOOL)resignFirstResponder;
 - (struct CGRect)adjustScroll:(struct CGRect)arg1;
 - (void)draggedImage:(id)arg1 endedAt:(struct CGPoint)arg2 operation:(unsigned long long)arg3;
@@ -34,6 +39,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldEditOnSingleClick:(id)arg1 inRow:(long long)arg2 tableColumn:(id)arg3;
 - (BOOL)shouldEditOnDoubleClick:(id)arg1 inRow:(long long)arg2 tableColumn:(id)arg3;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+- (void)cancelOperation:(id)arg1;
 - (void)copy:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)viewDidEndLiveResize;

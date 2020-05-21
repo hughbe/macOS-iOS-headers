@@ -34,6 +34,7 @@
 }
 
 + (id)interestedDragTypes;
+- (void).cxx_destruct;
 @property(retain) NSArray *weekDayTitles; // @synthesize weekDayTitles=_weekDayTitles;
 @property long long widthPerDay; // @synthesize widthPerDay=_widthPerDay;
 @property(retain) NSCalendar *calendar; // @synthesize calendar=_calendar;
@@ -51,7 +52,6 @@
 @property(retain) CalUIMiniMonthViewFormatter *formatter; // @synthesize formatter=_formatter;
 @property __weak id <CalUIMiniMonthViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) NSDate *month; // @synthesize month=_month;
-- (void).cxx_destruct;
 - (id)axColumnCount;
 - (id)axRowCount;
 - (struct CGRect)axFrame;
@@ -81,6 +81,7 @@
 - (unsigned long long)_weekRowForDayNumber:(long long)arg1 firstWeekdayOfMonth:(long long)arg2 firstDayOfWeek:(long long)arg3 daysInAWeek:(unsigned long long)arg4;
 @property(retain) NSDate *date;
 - (void)drawRect:(struct CGRect)arg1;
+- (void)layout;
 - (void)configureDayCells;
 - (void)updateWithDate:(id)arg1 force:(BOOL)arg2;
 - (void)updateWithDate:(id)arg1;
@@ -96,8 +97,10 @@
 - (BOOL)performDragOperation:(id)arg1;
 - (void)draggingEnded:(id)arg1;
 - (void)draggingExited:(id)arg1;
+- (id)_eventFromDragSource:(id)arg1;
 - (unsigned long long)draggingUpdated:(id)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
+- (id)effectiveAppearance;
 - (BOOL)allowsVibrancy;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 formatter:(id)arg2;

@@ -6,14 +6,13 @@
 
 #import <SystemMigrationNetworking/SMNAction.h>
 
-@class NSDate, NSDictionary, NSObject, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>, NSSet, NSString;
+@class NSDate, NSDictionary, NSObject, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSSet, NSString;
 
 @interface SMNBomAction : SMNAction
 {
-    int _bomReturnCode;
+    int returnCode;
     NSString *_compressionLevel;
     NSObject *_bomCallbacksDelegate;
-    CDUnknownBlockType _shouldContinueBlock;
     NSString *_sourcePath;
     NSString *_destinationPath;
     NSString *_restartPoint;
@@ -28,19 +27,19 @@
     struct BOMSys *_skipUbiquityBomSys;
     NSDictionary *_bomCopyOptions;
     NSObject<OS_dispatch_queue> *_atomicQueue;
-    NSObject<OS_dispatch_semaphore> *_intraFileSemaphore;
     NSObject<OS_dispatch_source> *_watchdogSource;
     NSObject<OS_dispatch_queue> *_resumeQueue;
 }
 
 + (id)actionWithPayload:(id)arg1;
++ (id)formattedExcludedPathsFromRaw:(id)arg1;
 + (BOOL)shouldCloseInboundStreamWhenDone;
 + (BOOL)shouldCloseOutboundStreamWhenDone;
-+ (BOOL)needsDirectAccessToSendOrReceiveResult;
++ (BOOL)streamsResults;
 + (int)actionID;
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_queue> *resumeQueue; // @synthesize resumeQueue=_resumeQueue;
 @property(retain) NSObject<OS_dispatch_source> *watchdogSource; // @synthesize watchdogSource=_watchdogSource;
-@property(retain) NSObject<OS_dispatch_semaphore> *intraFileSemaphore; // @synthesize intraFileSemaphore=_intraFileSemaphore;
 @property(retain) NSObject<OS_dispatch_queue> *atomicQueue; // @synthesize atomicQueue=_atomicQueue;
 @property(retain) NSDictionary *bomCopyOptions; // @synthesize bomCopyOptions=_bomCopyOptions;
 @property struct BOMSys *skipUbiquityBomSys; // @synthesize skipUbiquityBomSys=_skipUbiquityBomSys;
@@ -55,15 +54,9 @@
 @property(retain) NSString *restartPoint; // @synthesize restartPoint=_restartPoint;
 @property(retain) NSString *destinationPath; // @synthesize destinationPath=_destinationPath;
 @property(retain) NSString *sourcePath; // @synthesize sourcePath=_sourcePath;
-@property int bomReturnCode; // @synthesize bomReturnCode=_bomReturnCode;
-@property(copy) CDUnknownBlockType shouldContinueBlock; // @synthesize shouldContinueBlock=_shouldContinueBlock;
 @property __weak NSObject *bomCallbacksDelegate; // @synthesize bomCallbacksDelegate=_bomCallbacksDelegate;
 @property(retain) NSString *compressionLevel; // @synthesize compressionLevel=_compressionLevel;
-- (void).cxx_destruct;
-- (void)_addTotalBytesCompletedThisInterval:(unsigned long long)arg1;
-- (void)_setIntraFileBytesCompletedThisInterval:(unsigned long long)arg1;
-- (void)_releaseAtomicQueue;
-- (void)_retainAtomicQueue;
+@property int returnCode; // @synthesize returnCode;
 - (BOOL)_writeCompletelyToFd:(int)arg1 buffer:(const void *)arg2 length:(unsigned long long)arg3;
 - (BOOL)_readCompletelyFromFd:(int)arg1 buffer:(void *)arg2 length:(unsigned long long)arg3;
 - (id)_indexBomPathForRegularFile:(id)arg1;
@@ -71,6 +64,7 @@
 - (BOOL)receiveResultOnFd:(int)arg1 errorIsFatal:(char *)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)shouldSkip:(const char *)arg1 ofType:(int)arg2 andSize:(long long)arg3;
+- (id)description;
 - (id)requestPayload;
 - (id)initWithSource:(id)arg1 andDestination:(id)arg2 andRestartPoint:(id)arg3 andExcludedPaths:(id)arg4 andOptions:(id)arg5;
 

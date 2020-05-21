@@ -8,15 +8,19 @@
 
 @interface NSDictionary (FezAdditions)
 + (id)dictionaryWithKeyArray:(id)arg1 defaultValue:(id)arg2;
-+ (id)dictionaryWithArchiveData:(id)arg1;
-+ (id)dictionaryWithArchiveData:(id)arg1 allowedClasses:(id)arg2;
 + (id)dictionaryWithPlistData:(id)arg1;
-+ (id)_dictionaryWithData:(id)arg1 isPlist:(BOOL)arg2 allowedClasses:(id)arg3;
+- (id)__imDictionaryByFilteringWithBlock:(CDUnknownBlockType)arg1;
 - (id)__imDeepCopy;
 - (id)dictionaryFromChanges:(id)arg1;
-- (id)archiveData;
 - (id)plistData;
 - (id)keysOfChangedEntriesComparedTo:(id)arg1;
 - (BOOL)__imIsMutable;
+- (id)_dataForKey:(id)arg1;
+- (id)_stringForKey:(id)arg1;
+- (id)_numberForKey:(id)arg1;
+- (id)_arrayForKey:(id)arg1;
+- (id)_dictionaryForKey:(id)arg1;
+@property(readonly, nonatomic) unsigned long long fileHFSResourceForkSize;
+@property(readonly, nonatomic) unsigned short fileHFSFlags;
 @end
 

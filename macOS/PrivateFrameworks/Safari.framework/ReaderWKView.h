@@ -6,26 +6,46 @@
 
 #import <Safari/SearchableWKView.h>
 
+#import "ReaderControllerMessageReceiver.h"
+
+@class NSMutableDictionary, NSString, ReaderViewController, _WKRemoteObjectInterface;
+
 __attribute__((visibility("hidden")))
-@interface ReaderWKView : SearchableWKView
+@interface ReaderWKView : SearchableWKView <ReaderControllerMessageReceiver>
 {
-    struct ReaderController *_readerController;
+    id <ReaderBundlePageMessageReceiver> _readerBundlePageMessageReceiverProxy;
+    _WKRemoteObjectInterface *_readerControllerMessageReceiverInterface;
+    unsigned long long _nextSnapshotRequestIdentifier;
+    NSMutableDictionary *_snapshotRequestCompletionHandlers;
 }
 
-- (struct BrowserContentViewController *)presentingBrowserContentViewController;
-- (void)viewDidMoveToWindow;
+- (void).cxx_destruct;
+- (void)createVisibleContentsSnapshotWithMaximumSize:(struct CGSize)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)didCreateSnapshot:(id)arg1 forRequestIdentifier:(unsigned long long)arg2;
+- (void)didGetPrintingFrame:(id)arg1;
+- (void)articleScrolled:(id)arg1;
+- (void)contentIsReadyForDisplayWithScrollOffset:(double)arg1 languageTag:(id)arg2;
+- (void)didChangeNextPageLoadingState;
+- (void)viewDidChangeEffectiveAppearance;
+@property(readonly, nonatomic) id <ReaderBundlePageMessageReceiver> readerBundlePageMessageReceiver;
+- (id)presentingBrowserViewController;
 - (id)tabContentView;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (void)smartMagnifyWithEvent:(id)arg1;
-- (void)magnifyWithEvent:(id)arg1;
-- (void)swipeWithEvent:(id)arg1;
+- (id)accessibilityWindow;
+- (id)accessibilityParent;
 - (void)scrollWheel:(id)arg1;
 - (BOOL)handleScrollEventAsSwipeGesture:(id)arg1;
-- (struct ReaderViewController *)contentViewController;
-- (struct ReaderController *)readerController;
-- (PassRefPtr_6e6851a6)createContentViewController;
+@property(readonly, nonatomic) ReaderViewController *readerViewController;
+- (struct ReaderController *)_readerController;
 - (void)dealloc;
-- (id)initWithFrame:(struct CGRect)arg1 context:(const struct Context *)arg2 pageGroup:(const struct PageGroup *)arg3 readerController:(struct ReaderController *)arg4 browsingMode:(unsigned long long)arg5;
+- (void)invalidate;
+- (id)initWithReaderViewController:(id)arg1 configuration:(id)arg2;
+- (id)initWithWebViewController:(id)arg1 configuration:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

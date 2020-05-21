@@ -13,11 +13,9 @@
     int _second;
 }
 
-+ (id)nowTime;
 + (id)midnight;
 + (id)timeWithString:(id)arg1;
 - (id)description;
-- (int)timeIntervalSinceTime:(id)arg1;
 - (id)justAfter;
 - (id)justBefore;
 - (int)seconds;

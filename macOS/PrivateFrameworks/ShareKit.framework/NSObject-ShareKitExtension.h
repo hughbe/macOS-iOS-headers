@@ -9,6 +9,7 @@
 @interface NSObject (ShareKitExtension)
 - (id)shareItemString;
 - (id)shareItemURL;
+- (void)_addPhysicalProperty:(id)arg1;
 - (id)shareItemImage;
 - (id)shareItemData;
 - (id)shareItemType;

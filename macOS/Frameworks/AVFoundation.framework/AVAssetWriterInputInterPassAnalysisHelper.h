@@ -8,6 +8,7 @@
 
 @class AVAssetWriterInputPassDescription, AVAssetWriterInputWritingHelper;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterInputInterPassAnalysisHelper : AVAssetWriterInputHelper
 {
     AVAssetWriterInputWritingHelper *_writingHelper;
@@ -21,6 +22,7 @@
 - (long long)appendCaption:(id)arg1 error:(id *)arg2;
 - (BOOL)appendPixelBuffer:(struct __CVBuffer *)arg1 withPresentationTime:(CDStruct_1b6d18a9)arg2;
 - (long long)appendSampleBuffer:(struct opaqueCMSampleBuffer *)arg1 error:(id *)arg2;
+- (void)stopRequestingMediaData;
 - (void)requestMediaDataWhenReadyOnQueue:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (BOOL)shouldRespondToInitialPassDescription;
 - (BOOL)isReadyForMoreMediaData;

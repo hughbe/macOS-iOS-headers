@@ -6,6 +6,8 @@
 
 #import <SAObjects/SADomainCommand.h>
 
+@class NSArray;
+
 @interface SANPSkipToNextItem : SADomainCommand
 {
 }
@@ -13,6 +15,7 @@
 + (id)skipToNextItemWithDictionary:(id)arg1 context:(id)arg2;
 + (id)skipToNextItem;
 - (BOOL)requiresResponse;
+@property(copy, nonatomic) NSArray *hashedRouteUIDs;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

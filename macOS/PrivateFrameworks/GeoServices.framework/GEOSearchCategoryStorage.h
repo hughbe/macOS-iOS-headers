@@ -8,28 +8,50 @@
 
 #import "NSCopying.h"
 
-@class GEOPDAutocompleteEntry, GEOPDBrowseCategory;
+@class GEOPDAutocompleteEntry, GEOPDBrowseCategory, PBDataReader, PBUnknownFields;
 
 @interface GEOSearchCategoryStorage : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     GEOPDAutocompleteEntry *_autocompleteEntry;
     GEOPDBrowseCategory *_browseCategory;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_autocompleteEntry:1;
+        unsigned int read_browseCategory:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_autocompleteEntry:1;
+        unsigned int wrote_browseCategory:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOPDAutocompleteEntry *autocompleteEntry; // @synthesize autocompleteEntry=_autocompleteEntry;
-@property(retain, nonatomic) GEOPDBrowseCategory *browseCategory; // @synthesize browseCategory=_browseCategory;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)copyTo:(id)arg1;
+- (void)clearSensitiveFields;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOPDAutocompleteEntry *autocompleteEntry;
 @property(readonly, nonatomic) BOOL hasAutocompleteEntry;
+- (void)_readAutocompleteEntry;
+@property(retain, nonatomic) GEOPDBrowseCategory *browseCategory;
 @property(readonly, nonatomic) BOOL hasBrowseCategory;
-- (void)dealloc;
+- (void)_readBrowseCategory;
+- (id)initWithData:(id)arg1;
+- (id)init;
 - (id)initWithSearchCategory:(id)arg1;
 
 @end

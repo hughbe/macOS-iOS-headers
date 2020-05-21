@@ -19,6 +19,7 @@
     NSURL *_priorOrderedURL;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSURL *priorOrderedURL; // @synthesize priorOrderedURL=_priorOrderedURL;
 @property(nonatomic) int absoluteOrder; // @synthesize absoluteOrder=_absoluteOrder;
 @property(retain, nonatomic) NSData *requestDataPayload; // @synthesize requestDataPayload=_requestDataPayload;
@@ -28,7 +29,6 @@
 - (id)requestBody;
 - (id)additionalHeaderValues;
 - (id)description;
-- (void)dealloc;
 - (id)initWithDataPayload:(id)arg1 dataContentType:(id)arg2 atURL:(id)arg3 previousETag:(id)arg4;
 - (id)initWithURL:(id)arg1;
 

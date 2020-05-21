@@ -36,6 +36,8 @@
 - (void)MSASStateMachine:(MSASStateMachine *)arg1 willCheckForAlbumSyncedStateChangesInAlbum:(MSASAlbum *)arg2 info:(NSDictionary *)arg3;
 - (void)MSASStateMachine:(MSASStateMachine *)arg1 didFinishCheckingForCommentChangesInAssetCollectionWithGUID:(NSString *)arg2 largestCommentID:(int)arg3 info:(NSDictionary *)arg4 error:(NSError *)arg5;
 - (void)MSASStateMachine:(MSASStateMachine *)arg1 didFindCommentChanges:(NSArray *)arg2 inAssetCollectionWithGUID:(NSString *)arg3 inAlbumWithGUID:(NSString *)arg4 info:(NSDictionary *)arg5;
+- (void)MSASStateMachine:(MSASStateMachine *)arg1 didFinishMarkingAsSpamInvitationForToken:(NSString *)arg2 info:(NSDictionary *)arg3 error:(NSError *)arg4;
+- (void)MSASStateMachine:(MSASStateMachine *)arg1 didFinishMarkingAsSpamInvitationForAlbum:(MSASAlbum *)arg2 invitationGUID:(NSString *)arg3 info:(NSDictionary *)arg4 error:(NSError *)arg5;
 - (void)MSASStateMachine:(MSASStateMachine *)arg1 didFinishUnsubscribingFromAlbum:(MSASAlbum *)arg2 info:(NSDictionary *)arg3 error:(NSError *)arg4;
 - (void)MSASStateMachine:(MSASStateMachine *)arg1 didFinishSubscribingToAlbum:(MSASAlbum *)arg2 info:(NSDictionary *)arg3 error:(NSError *)arg4;
 - (void)MSASStateMachine:(MSASStateMachine *)arg1 didFinishUpdatingAssetCollections:(NSArray *)arg2 inAlbum:(MSASAlbum *)arg3 info:(NSDictionary *)arg4 error:(NSError *)arg5;

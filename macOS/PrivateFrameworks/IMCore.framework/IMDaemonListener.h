@@ -30,6 +30,7 @@
     BOOL _hasPendingProcessChange;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSDictionary *persistentProperties; // @synthesize persistentProperties=_persistentProperties;
 @property(readonly, nonatomic) NSDictionary *properties; // @synthesize properties=_properties;
 @property(readonly, nonatomic) BOOL hasPostedSetupComplete; // @synthesize hasPostedSetupComplete=_postedSetupComplete;
@@ -40,11 +41,28 @@
 @property(readonly, nonatomic) NSArray *handlers; // @synthesize handlers=_handlers;
 @property(nonatomic, setter=_setHidingDisconnect:) BOOL _hidingDisconnect; // @synthesize _hidingDisconnect;
 @property(readonly, nonatomic) NSMutableDictionary *_contexts; // @synthesize _contexts;
-- (void).cxx_destruct;
+- (void)oneTimeCodesDidChange:(id)arg1;
+- (void)pendingNicknamesOrHandledNicknamesDidChange;
+- (void)updatePersonalNickname:(id)arg1;
+- (void)updateNicknameHandlesSharing:(id)arg1 handlesBlocked:(id)arg2;
+- (void)handlesSharingNicknamesDidChange;
+- (void)updatePendingNicknameUpdates:(id)arg1 handledNicknameUpdates:(id)arg2;
+- (void)updateNicknameData:(id)arg1;
+- (void)nicknameRequestResponse:(id)arg1 encodedNicknameData:(id)arg2;
+- (void)receivedUrgentRequestForMessages:(id)arg1;
+- (void)updateCloudKitStateWithDictionary:(id)arg1;
+- (void)updateCloudKitState;
+- (void)didAttemptToDisableAllDevicesResult:(BOOL)arg1;
+- (void)didPerformAdditionalStorageRequiredCheckWithSuccess:(BOOL)arg1 additionalStorageRequired:(unsigned long long)arg2 forAccountId:(id)arg3 error:(id)arg4;
+- (void)didAttemptToSetEnabledTo:(BOOL)arg1 result:(BOOL)arg2;
+- (void)qosClassWhileServicingRequestsResponse:(unsigned int)arg1 identifier:(id)arg2;
 - (void)forwardInvocation:(id)arg1;
 - (id)methodSignatureForSelector:(SEL)arg1;
-- (void)databaseNoLongerFull;
-- (void)databaseFull;
+- (void)didFetchCloudKitSyncDebuggingInfo:(id)arg1;
+- (void)didAttemptToDisableiCloudBackups:(long long)arg1 error:(id)arg2;
+- (void)didFetchRampState:(id)arg1;
+- (void)didFetchSyncStateStats:(id)arg1;
+- (void)databaseChatSpamUpdated:(id)arg1;
 - (void)databaseUpdated:(id)arg1;
 - (void)_deferredSetup:(id)arg1;
 - (void)setupComplete:(BOOL)arg1 info:(id)arg2;
@@ -67,11 +85,12 @@
 - (void)account:(id)arg1 blockListChanged:(id)arg2;
 - (void)account:(id)arg1 handleSubscriptionRequestFrom:(id)arg2 withMessage:(id)arg3;
 - (void)account:(id)arg1 groupsChanged:(id)arg2 error:(id)arg3;
+- (void)fileTransferHighQualityDownloadFailed:(id)arg1;
+- (void)fileTransfer:(id)arg1 highQualityDownloadSucceededWithPath:(id)arg2;
 - (void)fileTransfer:(id)arg1 updatedWithCurrentBytes:(unsigned long long)arg2 totalBytes:(unsigned long long)arg3 averageTransferRate:(unsigned long long)arg4;
 - (void)fileTransfer:(id)arg1 updatedWithProperties:(id)arg2;
 - (void)fileTransfers:(id)arg1 createdWithLocalPaths:(id)arg2;
 - (void)fileTransfer:(id)arg1 createdWithProperties:(id)arg2;
-- (void)standaloneFileTransferRegistered:(id)arg1;
 - (void)account:(id)arg1 chat:(id)arg2 style:(unsigned char)arg3 chatProperties:(id)arg4 messagesReceived:(id)arg5;
 - (void)account:(id)arg1 chat:(id)arg2 style:(unsigned char)arg3 chatProperties:(id)arg4 messageReceived:(id)arg5;
 - (void)account:(id)arg1 chat:(id)arg2 style:(unsigned char)arg3 chatProperties:(id)arg4 invitationReceived:(id)arg5;
@@ -82,6 +101,7 @@
 - (void)displayPinCodeForAccount:(id)arg1 pinCode:(id)arg2 deviceName:(id)arg3 deviceType:(id)arg4 phoneNumber:(id)arg5;
 - (void)account:(id)arg1 buddyPictureChanged:(id)arg2 imageData:(id)arg3 imageHash:(id)arg4;
 - (void)account:(id)arg1 buddyPropertiesChanged:(id)arg2;
+- (void)networkDataAvailabilityChanged:(BOOL)arg1;
 - (void)vcCapabilitiesChanged:(unsigned long long)arg1;
 - (void)account:(id)arg1 capabilitiesChanged:(unsigned long long)arg2;
 - (void)account:(id)arg1 statusChanged:(id)arg2;

@@ -14,17 +14,17 @@ __attribute__((visibility("hidden")))
     NSView *bannerContents;
     NSView *firstKeySubview;
     NSView *lastKeySubview;
-    struct SearchableWebContentViewController *_contentViewController;
     NSArray *_topLevelNibObjects;
+    id <BannerDelegate> _delegate;
     BarBackground *_bannerView;
 }
 
 + (BOOL)bannerHasBottomBorder;
 + (int)bannerSortOrder;
 + (id)bannerBackgroundImage;
-@property(readonly, retain, nonatomic) BarBackground *bannerView; // @synthesize bannerView=_bannerView;
-@property(readonly, nonatomic) struct SearchableWebContentViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
 - (void).cxx_destruct;
+@property(readonly, retain, nonatomic) BarBackground *bannerView; // @synthesize bannerView=_bannerView;
+@property(nonatomic) __weak id <BannerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)_populateBannerViewFromNib:(id)arg1;
 - (id)_createBannerView;
 - (void)willUninstallBannerView;
@@ -33,11 +33,10 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic, getter=isInstalled) BOOL installed;
 - (void)didUninstallBannerView;
 - (void)didInstallBannerView;
-- (void)detachContentViewController;
 - (long long)compareBanners:(id)arg1;
 - (id)bannerNibName;
 - (void)dealloc;
-- (id)initWithContentViewController:(struct SearchableWebContentViewController *)arg1;
+- (id)init;
 
 @end
 

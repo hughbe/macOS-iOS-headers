@@ -11,7 +11,7 @@
 }
 
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (struct CGRect)drawingRectForBounds:(struct CGRect)arg1;
+- (struct CGSize)cellSize;
 
 @end
 

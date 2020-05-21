@@ -10,12 +10,9 @@
 
 @interface GEOACResult : PBCodable <NSCopying>
 {
-    int _acType;
-    struct {
-        unsigned int acType:1;
-    } _has;
 }
 
++ (BOOL)isValid:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -23,12 +20,9 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-- (int)StringAsAcType:(id)arg1;
-- (id)acTypeAsString:(int)arg1;
-@property(nonatomic) BOOL hasAcType;
-@property(nonatomic) int acType; // @synthesize acType=_acType;
 
 @end
 

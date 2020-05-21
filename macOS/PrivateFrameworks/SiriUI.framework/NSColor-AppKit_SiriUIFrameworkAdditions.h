@@ -7,11 +7,18 @@
 #import "NSColor.h"
 
 @interface NSColor (AppKit_SiriUIFrameworkAdditions)
++ (id)siriui_blendEffectColor;
++ (id)siriui_vibrantButtonHighlightedBackgroundColor;
++ (id)siriui_vibrantButtonBackgroundColor;
++ (id)siriui_vibrantButtonSymbolColor;
 + (id)siriui_vibrantTranscriptButtonBackgroundColor;
 + (id)siriui_secondaryVibrantBackgroundColor;
 + (id)siriui_textHighlightColor;
 + (id)siriui_semiTransparentTextColor;
-+ (id)siriui_utteranceTextColor;
++ (id)siriui_userUtteranceStreamingEndTextColor;
++ (id)siriui_userUtteranceStreamingStartTextColor;
++ (id)siriui_serverUtteranceTextColor;
++ (id)siriui_hintTextColor;
 + (id)siriui_textColor;
 + (id)siriui_glyphMaskColor;
 + (id)siriui_maskingColor;

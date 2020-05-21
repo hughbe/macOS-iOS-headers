@@ -11,7 +11,6 @@
 __attribute__((visibility("hidden")))
 @interface PDSlideMaster : PDSlideBase
 {
-    PDPresentation *mPresentation;
     NSMutableArray *mSlideLayouts;
     OADTheme *mTheme;
     OADColorMap *mColorMap;
@@ -22,14 +21,16 @@ __attribute__((visibility("hidden")))
     BOOL mFooterPlaceholderIsVisible;
     BOOL mSlideNumberPlaceholderIsVisible;
     BOOL mDateTimePlaceholderIsVisible;
+    PDPresentation *mPresentation;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL dateTimePlaceholderIsVisible; // @synthesize dateTimePlaceholderIsVisible=mDateTimePlaceholderIsVisible;
 @property(nonatomic) BOOL slideNumberPlaceholderIsVisible; // @synthesize slideNumberPlaceholderIsVisible=mSlideNumberPlaceholderIsVisible;
 @property(nonatomic) BOOL footerPlaceholderIsVisible; // @synthesize footerPlaceholderIsVisible=mFooterPlaceholderIsVisible;
 @property(nonatomic) BOOL headerPlaceholderIsVisible; // @synthesize headerPlaceholderIsVisible=mHeaderPlaceholderIsVisible;
 @property(retain, nonatomic) NSMutableArray *slideLayouts; // @synthesize slideLayouts=mSlideLayouts;
-@property(readonly, nonatomic) PDPresentation *presentation; // @synthesize presentation=mPresentation;
+@property(readonly, nonatomic) __weak PDPresentation *presentation; // @synthesize presentation=mPresentation;
 - (id)description;
 - (void)removeUnnecessaryOverrides;
 - (void)setUpPropertyHierarchyPreservingEffectiveValues;
@@ -60,7 +61,6 @@ __attribute__((visibility("hidden")))
 - (id)fontScheme;
 - (id)colorScheme;
 - (id)theme;
-- (void)dealloc;
 - (id)initWithPresentation:(id)arg1;
 
 @end

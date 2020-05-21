@@ -8,19 +8,27 @@
 
 #import "NSCopying.h"
 
-@class GEOPDViewportInfo, NSString;
+@class GEOPDViewportInfo, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDAutocompleteParametersLocalitiesAndLandmarks : PBCodable <NSCopying>
 {
-    int _maxResults;
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSString *_query;
     GEOPDViewportInfo *_viewportInfo;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    int _maxResults;
     BOOL _highlightDiff;
-    CDStruct_00ef3c1e _has;
+    CDStruct_58fcab42 _flags;
 }
 
-@property(retain, nonatomic) GEOPDViewportInfo *viewportInfo; // @synthesize viewportInfo=_viewportInfo;
-@property(retain, nonatomic) NSString *query; // @synthesize query=_query;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -28,15 +36,21 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(nonatomic) BOOL hasHighlightDiff;
-@property(nonatomic) BOOL highlightDiff; // @synthesize highlightDiff=_highlightDiff;
+@property(nonatomic) BOOL highlightDiff;
 @property(nonatomic) BOOL hasMaxResults;
-@property(nonatomic) int maxResults; // @synthesize maxResults=_maxResults;
+@property(nonatomic) int maxResults;
+@property(retain, nonatomic) GEOPDViewportInfo *viewportInfo;
 @property(readonly, nonatomic) BOOL hasViewportInfo;
+- (void)_readViewportInfo;
+@property(retain, nonatomic) NSString *query;
 @property(readonly, nonatomic) BOOL hasQuery;
-- (void)dealloc;
+- (void)_readQuery;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

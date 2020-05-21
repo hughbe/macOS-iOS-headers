@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "EKProtocolMutableOccurrence.h"
 #import "EKProtocolReminderOccurrence.h"
+#import "MutableOccurrenceModelProtocol.h"
 
 @class NSData, NSDate, NSNumber, NSURL;
 
-@protocol EKProtocolMutableReminderOccurrence <EKProtocolMutableOccurrence, EKProtocolReminderOccurrence>
+@protocol EKProtocolMutableReminderOccurrence <MutableOccurrenceModelProtocol, EKProtocolReminderOccurrence>
 @property(nonatomic) BOOL statusCompleteNotByDate;
 @property(copy, nonatomic) NSData *appLink;
 @property(copy, nonatomic) NSURL *action;

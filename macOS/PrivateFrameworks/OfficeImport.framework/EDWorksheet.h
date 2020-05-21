@@ -6,8 +6,9 @@
 
 #import <OfficeImport/EDSheet.h>
 
-@class EDCollection, EDColumnInfoCollection, EDMergedCellCollection, EDPane, EDReference, EDRowBlocks, EDWarnings, NSMutableDictionary, OITSUPointerKeyDictionary;
+@class EDCollection, EDColumnInfoCollection, EDMergedCellCollection, EDPane, EDReference, EDRowBlocks, EDWarnings, NSMutableDictionary;
 
+__attribute__((visibility("hidden")))
 @interface EDWorksheet : EDSheet
 {
     EDRowBlocks *mRowBlocks;
@@ -26,11 +27,12 @@
     _Bool mFitToPage;
     EDReference *mMaxCellReferencedInFormulas;
     NSMutableDictionary *mContentOutOfLassoBoundsCache;
-    OITSUPointerKeyDictionary *mMergedRows;
-    OITSUPointerKeyDictionary *mMergedCols;
+    NSMutableDictionary *mMergedRows;
+    NSMutableDictionary *mMergedCols;
     EDReference *mImplicitCellArea;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (_Bool)hasMergedCells;
 - (id)worksheetWarnings;

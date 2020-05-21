@@ -6,19 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSString, SGExtractionInfo;
 
 @interface SGSelfIdentificationDetection : NSObject
 {
     NSString *_name;
     NSString *_context;
+    SGExtractionInfo *_extractionInfo;
     struct _NSRange _contextRange;
 }
 
-@property(nonatomic) struct _NSRange contextRange; // @synthesize contextRange=_contextRange;
-@property(retain, nonatomic) NSString *context; // @synthesize context=_context;
-@property(retain, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+@property(retain, nonatomic) SGExtractionInfo *extractionInfo; // @synthesize extractionInfo=_extractionInfo;
+@property(nonatomic) struct _NSRange contextRange; // @synthesize contextRange=_contextRange;
+@property(copy, nonatomic) NSString *context; // @synthesize context=_context;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 
 @end
 

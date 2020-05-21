@@ -11,15 +11,15 @@
 @interface CKDSystemAvailabilityMonitor : NSObject
 {
     unsigned long long _availabilityState;
-    NSMutableSet *_watchers;
+    NSMutableSet *_watcherWrappers;
     NSObject<OS_dispatch_queue> *_availabilityQueue;
 }
 
 + (id)sharedMonitor;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *availabilityQueue; // @synthesize availabilityQueue=_availabilityQueue;
-@property(retain, nonatomic) NSMutableSet *watchers; // @synthesize watchers=_watchers;
-@property unsigned long long availabilityState; // @synthesize availabilityState=_availabilityState;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *availabilityQueue; // @synthesize availabilityQueue=_availabilityQueue;
+@property(retain, nonatomic) NSMutableSet *watcherWrappers; // @synthesize watcherWrappers=_watcherWrappers;
+@property unsigned long long availabilityState; // @synthesize availabilityState=_availabilityState;
 - (void)unregisterWatcher:(id)arg1;
 - (void)registerWatcher:(id)arg1;
 - (BOOL)_systemMayNowBeReady;

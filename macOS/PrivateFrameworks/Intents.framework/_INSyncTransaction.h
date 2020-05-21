@@ -23,15 +23,17 @@
 }
 
 + (id)beginTransactionForBundleID:(id)arg1 bundlePath:(id)arg2 syncSlot:(id)arg3;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL fullResetRequired; // @synthesize fullResetRequired=_fullResetRequired;
 @property(readonly, nonatomic) _INVocabularyGenerationDocument *latestVocabularyDocument; // @synthesize latestVocabularyDocument=_latest;
-- (void).cxx_destruct;
 - (void)_beginTransaction;
+- (BOOL)_isMissingLatestFileError:(id)arg1;
 - (void)_deleteInvalidSavedData;
 - (id)_emptySentDocument;
 @property(readonly, nonatomic) _INVocabularyGenerationDocument *sentVocabularyDocument; // @synthesize sentVocabularyDocument=_sent;
 - (id)calculateDiff;
 - (void)endTransactionWithFinalAnchor:(id)arg1;
+- (void)_saveAndCleanup;
 - (id)_initWithVocabularyManager:(id)arg1 syncSlot:(id)arg2 deleteExistingVocabulary:(BOOL)arg3;
 
 @end

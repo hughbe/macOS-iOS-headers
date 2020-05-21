@@ -15,23 +15,39 @@
 {
     NSString *_address;
     NSString *_interfaceName;
+    double _timeout;
+    double _wait;
+    double _interval;
     long long _count;
+    long long _trafficClass;
+    unsigned long long _dataLength;
     double _packetLoss;
     double _min;
     double _max;
     double _avg;
     double _stddev;
-    double _timestamp;
+    NSString *_command;
+    NSString *_output;
+    double _startedAt;
+    double _endedAt;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(nonatomic) double timestamp; // @synthesize timestamp=_timestamp;
+@property(nonatomic) double endedAt; // @synthesize endedAt=_endedAt;
+@property(nonatomic) double startedAt; // @synthesize startedAt=_startedAt;
+@property(copy, nonatomic) NSString *output; // @synthesize output=_output;
+@property(copy, nonatomic) NSString *command; // @synthesize command=_command;
 @property(nonatomic) double stddev; // @synthesize stddev=_stddev;
 @property(nonatomic) double avg; // @synthesize avg=_avg;
 @property(nonatomic) double max; // @synthesize max=_max;
 @property(nonatomic) double min; // @synthesize min=_min;
 @property(nonatomic) double packetLoss; // @synthesize packetLoss=_packetLoss;
+@property(nonatomic) unsigned long long dataLength; // @synthesize dataLength=_dataLength;
+@property(nonatomic) long long trafficClass; // @synthesize trafficClass=_trafficClass;
 @property(nonatomic) long long count; // @synthesize count=_count;
+@property(nonatomic) double interval; // @synthesize interval=_interval;
+@property(nonatomic) double wait; // @synthesize wait=_wait;
+@property(nonatomic) double timeout; // @synthesize timeout=_timeout;
 @property(copy, nonatomic) NSString *interfaceName; // @synthesize interfaceName=_interfaceName;
 @property(copy, nonatomic) NSString *address; // @synthesize address=_address;
 - (id)initWithCoder:(id)arg1;
@@ -40,6 +56,7 @@
 - (BOOL)conformsToProtocol:(id)arg1;
 - (id)description;
 - (void)dealloc;
+@property(nonatomic) double timestamp; // @dynamic timestamp;
 
 @end
 

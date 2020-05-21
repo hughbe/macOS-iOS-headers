@@ -12,7 +12,6 @@
 - (struct CGRect)inlinePreview:(QLInlinePreviewController *)arg1 frameForPreviewItem:(id <QLPreviewItem>)arg2;
 
 @optional
-- (void)inlinePreview:(QLInlinePreviewController *)arg1 willChangeToState:(int)arg2;
 - (void)inlinePreview:(QLInlinePreviewController *)arg1 didChangeToState:(int)arg2;
 - (void)inlinePreview:(QLInlinePreviewController *)arg1 didLoadPreviewItem:(id <QLPreviewItem>)arg2;
 - (void)inlinePreview:(QLInlinePreviewController *)arg1 willLoadPreviewItem:(id <QLPreviewItem>)arg2;

@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSData, NSError, NSUUID, WPHeySiri;
+@class NSDictionary, NSError, NSUUID, WPHeySiri;
 
 @protocol WPHeySiriProtocol <NSObject>
-- (void)heySiri:(WPHeySiri *)arg1 foundDevice:(NSUUID *)arg2 withData:(NSData *)arg3;
 - (void)heySiriDidUpdateState:(WPHeySiri *)arg1;
 
 @optional
+- (void)heySiri:(WPHeySiri *)arg1 foundDevice:(NSUUID *)arg2 withInfo:(NSDictionary *)arg3;
 - (void)heySiri:(WPHeySiri *)arg1 failedToStartScanningWithError:(NSError *)arg2;
 - (void)heySiriStoppedScanning:(WPHeySiri *)arg1;
 - (void)heySiriStartedScanning:(WPHeySiri *)arg1;

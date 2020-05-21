@@ -17,8 +17,8 @@ __attribute__((visibility("hidden")))
     NSString *_clientID;
 }
 
+- (void).cxx_destruct;
 - (BOOL)generationsRemove:(id)arg1 error:(id *)arg2;
-- (void)dealloc;
 - (id)initWithURL:(id)arg1 clientID:(id)arg2 error:(id *)arg3;
 @property(readonly, nonatomic) NSString *nameSpace;
 @property(readonly, nonatomic) NSObject<GSAdditionStoring> *storage;

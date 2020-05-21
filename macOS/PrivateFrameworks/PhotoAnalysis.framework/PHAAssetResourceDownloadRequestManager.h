@@ -15,14 +15,14 @@
     NSObject<OS_dispatch_queue> *_queue;
     NSDate *_dateToRequestPermissionAgain;
     unsigned long long _allowedDownloadCount;
-    unsigned long long _requestCount;
+    unsigned long long _expectedRequestsCount;
 }
 
 + (id)sharedManager;
 - (void).cxx_destruct;
 - (void)requestPermissionToDownloadWithPhotoLibrary:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-@property unsigned long long requestCount; // @synthesize requestCount=_requestCount;
-- (BOOL)_canBypassPermissionChecks;
+@property unsigned long long expectedRequestsCount; // @synthesize expectedRequestsCount=_expectedRequestsCount;
+- (id)statusAsDictionary;
 - (id)init;
 
 // Remaining properties

@@ -10,16 +10,14 @@
 
 @class NSObject<OS_dispatch_source>, NSString;
 
-__attribute__((visibility("hidden")))
 @interface CNDispatchSource : NSObject <CNCancelable>
 {
     NSObject<OS_dispatch_source> *_source;
 }
 
+- (void).cxx_destruct;
 - (void)cancel;
 - (id)source;
-- (void)finalize;
-- (void)dealloc;
 - (id)initWithSource:(id)arg1;
 
 // Remaining properties

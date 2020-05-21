@@ -16,17 +16,16 @@
     NSArray *_showWhenRunItems;
 }
 
+- (void).cxx_destruct;
+@property __weak NSButton *_showWhenRunButton; // @synthesize _showWhenRunButton;
+@property(retain) NSArray *showWhenRunItems; // @synthesize showWhenRunItems=_showWhenRunItems;
+@property(nonatomic) __weak AMActionView *actionView; // @synthesize actionView=_actionView;
+@property __weak AMAction *action; // @synthesize action=_action;
 - (void)didToggleIgnoreInput:(id)arg1;
 - (void)showSelectedItemsWhenRun:(id)arg1;
 - (void)showActionWhenRun:(id)arg1;
-- (id)selectedShowWhenRunItemNames;
+@property(readonly, nonatomic) NSArray *selectedShowWhenRunItemNames;
 - (void)createShowWhenRunItems;
-- (void)setShowWhenRunItems:(id)arg1;
-- (id)showWhenRunItems;
-- (void)setActionView:(id)arg1;
-- (id)actionView;
-- (id)action;
-- (void)dealloc;
 
 @end
 

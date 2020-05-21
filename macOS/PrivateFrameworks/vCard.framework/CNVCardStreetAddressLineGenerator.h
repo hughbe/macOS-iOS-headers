@@ -12,6 +12,7 @@
 
 - (id)standardLabelsForLabel:(id)arg1;
 - (id)makeLineWithName:(id)arg1 value:(id)arg2;
+- (void)addGroupedLineWithName:(id)arg1 value:(id)arg2 toLine:(id)arg3;
 - (id)lineWithValue:(id)arg1 label:(id)arg2;
 
 @end

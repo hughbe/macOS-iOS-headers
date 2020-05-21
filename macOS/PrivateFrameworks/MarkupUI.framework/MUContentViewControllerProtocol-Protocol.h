@@ -6,15 +6,14 @@
 
 #import "NSObject.h"
 
-@class AKController;
-
 @protocol MUContentViewControllerProtocol <NSObject>
+@property BOOL contentViewControllerCropEnabled;
 - (struct CGSize)idealContentSizeForScreenSize:(struct CGSize)arg1 windowDecorationSize:(struct CGSize)arg2;
 - (struct CGSize)contentSize;
 - (struct CGRect)borderFrame;
 - (struct CGRect)contentRect;
+- (void)loadContentWithCompletionBlock:(void (^)(void))arg1;
 - (void)uninstallAllAnnotationControllerOverlays;
-- (void)loadContentForAnnotationController:(AKController *)arg1 withCompletionBlock:(void (^)(void))arg2;
 - (void)teardown;
 - (void)setup;
 @end

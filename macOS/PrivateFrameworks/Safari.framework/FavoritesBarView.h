@@ -4,16 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Safari/BarBackground.h>
+#import <Safari/KeyLoopSplicingContainerView.h>
 
 #import "ClippedItemsIndicatorDelegate.h"
 #import "NSDraggingDestination.h"
 #import "NSTextFieldDelegate.h"
 
-@class ClippedItemsIndicator, InlineButtonRetitler, NSArray, NSMutableArray, NSString, SeparatorView, TopSitesButton, WebBookmark;
+@class ClippedItemsIndicator, InlineButtonRetitler, NSArray, NSBox, NSMutableArray, NSString, TopSitesButton, WebBookmark;
 
 __attribute__((visibility("hidden")))
-@interface FavoritesBarView : BarBackground <ClippedItemsIndicatorDelegate, NSDraggingDestination, NSTextFieldDelegate>
+@interface FavoritesBarView : KeyLoopSplicingContainerView <ClippedItemsIndicatorDelegate, NSDraggingDestination, NSTextFieldDelegate>
 {
     NSMutableArray *_buttons;
     ClippedItemsIndicator *_clipIndicator;
@@ -33,26 +33,23 @@ __attribute__((visibility("hidden")))
     InlineButtonRetitler *_buttonRetitler;
     WebBookmark *_nextBookmarkToEdit;
     TopSitesButton *_startPageButton;
-    SeparatorView *_topBorderView;
+    NSBox *_topBorderView;
     unsigned long long _dropIndex;
 }
 
-+ (id)supportedProxyIdentifiers;
-@property(nonatomic) unsigned long long dropIndex; // @synthesize dropIndex=_dropIndex;
 - (void).cxx_destruct;
+@property(nonatomic) unsigned long long dropIndex; // @synthesize dropIndex=_dropIndex;
+- (id)accessibilityRole;
 - (id)accessibilityLabel;
-- (void)_windowDidResignKey:(id)arg1;
+- (void)_windowDidResignMain:(id)arg1;
 - (void)_cleanUpButtonRetitler;
 - (void)_cancelEditingButton;
 - (void)_finishEditingButton;
 - (void)_editButtonForBookmark:(id)arg1;
-- (void)_undoRemoveProxyWithIdentifier:(id)arg1;
-- (void)_undoAddProxyWithIdentifier:(id)arg1;
 - (id)_undoController;
 - (unsigned int)_leftSideNonRearrangeableButtonsCount;
 - (void)_resetClippedItems;
 - (void)_refreshButtonsSoon;
-- (void)_preferenceValueChanged:(id)arg1;
 - (void)_ensureButtonIsInViewHierarchy:(id)arg1;
 - (void)_slideButtonsIntoPlace;
 - (double)_totalWidthOccupiedByButtons;
@@ -63,16 +60,13 @@ __attribute__((visibility("hidden")))
 - (void)_bookmarkChanged:(id)arg1;
 - (void)_deleteFavoritesWithURLsMatchingBookmarks:(id)arg1;
 - (void)_createFolderInFavoritesBar:(id)arg1;
-- (BOOL)_contentsOutOfSyncWithDefaults;
 - (id)_buttonForBookmark:(id)arg1;
 - (BOOL)_bookmarkWithURLString:(id)arg1 isInArray:(id)arg2;
-- (void)_bookmarksReloaded:(id)arg1;
-- (void)_addProxyWithIdentifier:(id)arg1;
+- (void)_bookmarksReloadedOrCleanedUp:(id)arg1;
 - (void)_moveBookmarkForFavoriteButton:(id)arg1 toDropIndex:(unsigned long long)arg2;
 - (BOOL)_dragSourceIndexMatchesDropIndex:(unsigned long long)arg1;
 - (unsigned long long)_dropIndexForProposedDropIndex:(unsigned long long)arg1;
 - (id)_addButtonForBookmark:(id)arg1;
-- (void)_createTab:(id)arg1;
 - (void)_setUpStartPageButtonIfNeeded;
 - (void)controlTextDidEndEditing:(id)arg1;
 - (void)controlTextDidChange:(id)arg1;
@@ -80,7 +74,6 @@ __attribute__((visibility("hidden")))
 - (void)editFavoriteButton:(id)arg1;
 - (BOOL)willHandleMouseDownEvent:(id)arg1;
 - (void)windowWillClose;
-- (void)removeProxyWithIdentifier:(id)arg1;
 - (void)confirmURLAndTitleForNewBookmark:(id)arg1 bookmarkAdditionBlock:(CDUnknownBlockType)arg2;
 - (void)draggingEnded:(id)arg1;
 - (unsigned long long)draggingUpdated:(id)arg1;

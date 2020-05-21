@@ -6,16 +6,20 @@
 
 #import "NSObject.h"
 
-@class NSNotification, NSString, NSView;
+@class NSImage, NSNotification, NSString, NSView;
 
 @protocol CalUISuggestionsFieldDelegate <NSObject>
-- (void)queryStringUpdatedToString:(NSString *)arg1 suggestionsFoundHandler:(void (^)(NSArray *, BOOL))arg2;
+- (NSString *)titleForSuggestion:(id)arg1;
+- (void)queryForString:(NSString *)arg1 suggestionsFoundHandler:(void (^)(NSArray *, BOOL))arg2;
 
 @optional
-- (void)controlTextDidChange:(NSNotification *)arg1;
 - (double)suggestionsWindowWidth;
 - (struct CGPoint)suggestionsWindowOffset;
+- (void)insertNewline;
 - (void)suggestionSelected:(id)arg1;
+- (void)controlTextDidChange:(NSNotification *)arg1;
 - (NSView *)viewForSuggestion:(id)arg1;
+- (NSImage *)imageForSuggestion:(id)arg1;
+- (NSString *)subtitleForSuggestion:(id)arg1;
 @end
 

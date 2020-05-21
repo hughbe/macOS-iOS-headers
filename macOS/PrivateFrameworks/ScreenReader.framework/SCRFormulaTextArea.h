@@ -11,19 +11,19 @@
 __attribute__((visibility("hidden")))
 @interface SCRFormulaTextArea : SCRStandardText
 {
-    struct {
-        unsigned int registeredTextEntryDeniedNotification:1;
-        unsigned int registeredTokenForKeyboardInsertionDeletedNotification:1;
-        unsigned int suppressEchoContentChange:1;
-        unsigned int reserved:29;
-    } _formulaTextAreaFlags;
     SCRElement *_completionToken;
     struct _NSRange _completionTokenRange;
     NSString *_lastCompletionTokenTitleForOutput;
     NSString *_lastCompletionTokenTitleForWordEcho;
     NSArray *_lastReferencedCellUIElementsForMovingReference;
+    struct {
+        unsigned int registeredTextEntryDeniedNotification:1;
+        unsigned int registeredTokenForKeyboardInsertionDeletedNotification:1;
+        unsigned int suppressEchoContentChange:1;
+    } _formulaTextAreaFlags;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSArray *lastReferencedCellUIElementsForMovingReference; // @synthesize lastReferencedCellUIElementsForMovingReference=_lastReferencedCellUIElementsForMovingReference;
 @property(retain, nonatomic) NSString *lastCompletionTokenTitleForWordEcho; // @synthesize lastCompletionTokenTitleForWordEcho=_lastCompletionTokenTitleForWordEcho;
 @property(retain, nonatomic) NSString *lastCompletionTokenTitleForOutput; // @synthesize lastCompletionTokenTitleForOutput=_lastCompletionTokenTitleForOutput;
@@ -43,7 +43,6 @@ __attribute__((visibility("hidden")))
 - (void)echoLastTypedWord:(id)arg1;
 - (double)wordEchoDelay;
 - (void)handleTextChangeWithUserInfo:(id)arg1;
-- (void)dealloc;
 
 @end
 

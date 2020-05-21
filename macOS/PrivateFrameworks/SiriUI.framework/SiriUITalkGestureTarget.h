@@ -13,9 +13,9 @@ __attribute__((visibility("hidden")))
 }
 
 - (void).cxx_destruct;
+- (BOOL)accessibilityPerformPress;
 - (id)accessibilityLabel;
 - (id)accessibilityIdentifier;
-- (id)accessibilityTitle;
 - (id)accessibilityRole;
 - (BOOL)isAccessibilityElement;
 - (BOOL)acceptsFirstMouse:(id)arg1;

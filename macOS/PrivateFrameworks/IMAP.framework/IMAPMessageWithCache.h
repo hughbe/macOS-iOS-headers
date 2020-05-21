@@ -16,12 +16,11 @@
 
 - (void).cxx_destruct;
 - (id)headerDataFetchIfNotAvailable:(BOOL)arg1 allowPartial:(BOOL)arg2;
-- (id)headersIfAvailable;
 - (void)setHeaders:(id)arg1;
-- (id)headers;
+- (id)headersFetchIfNotAvailable:(BOOL)arg1;
 - (BOOL)isMessageContentLocallyAvailable;
 - (id)bodyDataFetchIfNotAvailable:(BOOL)arg1 allowPartial:(BOOL)arg2;
-- (id)messageDataIncludingFromSpace:(BOOL)arg1 newDocumentID:(id)arg2 fetchIfNotAvailable:(BOOL)arg3;
+- (id)messageDataFetchIfNotAvailable:(BOOL)arg1 newDocumentID:(id)arg2;
 @property(copy) NSData *messageData;
 
 @end

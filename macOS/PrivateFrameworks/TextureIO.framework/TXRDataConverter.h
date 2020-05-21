@@ -12,7 +12,7 @@
 
 + (id)newPixelFormatSetForCGImage:(struct CGImage *)arg1 displayGamut:(unsigned long long)arg2 options:(id)arg3;
 + (id)newImageFromSourceImage:(id)arg1 newPixelFormat:(unsigned long long)arg2 bufferAllocator:(id)arg3 gammaDegamma:(BOOL)arg4 error:(id *)arg5;
-+ (id)newCompressedImageFromSourceImage:(id)arg1 newPixelFormat:(unsigned long long)arg2 bufferAllocator:(id)arg3 gammaDegamma:(BOOL)arg4 error:(id *)arg5;
++ (id)newImageFromSourceImage:(id)arg1 newPixelFormat:(unsigned long long)arg2 bufferAllocator:(id)arg3 multiplyAlpha:(BOOL)arg4 gammaDegamma:(BOOL)arg5 error:(id *)arg6;
 
 @end
 

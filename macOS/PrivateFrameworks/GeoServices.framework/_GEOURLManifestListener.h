@@ -6,20 +6,20 @@
 
 #import "NSObject.h"
 
-@class NSLock, NSMutableArray, NSObject<OS_dispatch_source>;
+@class NSMutableArray, NSObject<OS_dispatch_source>;
 
 __attribute__((visibility("hidden")))
 @interface _GEOURLManifestListener : NSObject
 {
     NSMutableArray *_handlers;
-    NSLock *_lock;
+    struct os_unfair_lock_s _lock;
     NSObject<OS_dispatch_source> *_timeoutTimer;
 }
 
 + (id)sharedListener;
-- (void)waitForManifestWithHandler:(CDUnknownBlockType)arg1;
+- (void).cxx_destruct;
+- (void)waitForManifestWithCallback:(id)arg1;
 - (void)_finish:(BOOL)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

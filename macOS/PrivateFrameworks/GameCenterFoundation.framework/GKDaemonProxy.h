@@ -26,14 +26,15 @@
 + (void)removeProxyForPlayer:(id)arg1;
 + (id)daemonProxy;
 @property(nonatomic) int hostPID; // @synthesize hostPID=_hostPID;
-@property(nonatomic) id <GKDaemonProxyDataUpdateDelegate> dataUpdateDelegate; // @synthesize dataUpdateDelegate=_dataUpdateDelegate;
-@property(nonatomic) id <GKDaemonProxyNetworkActivityIndicatorDelegate> networkActivityIndicatorDelegate; // @synthesize networkActivityIndicatorDelegate=_networkActivityIndicatorDelegate;
 @property(retain, nonatomic) NSXPCConnection *connection; // @synthesize connection=_connection;
 - (void)connection:(id)arg1 handleInvocation:(id)arg2 isReply:(BOOL)arg3;
 - (id)replyQueueForRequestSelector:(SEL)arg1;
 - (oneway void)setLogBits:(int)arg1;
 - (oneway void)refreshContentsForDataType:(unsigned int)arg1 userInfo:(id)arg2;
 - (oneway void)setBadgeCount:(unsigned long long)arg1 forType:(unsigned long long)arg2;
+@property(nonatomic) id <GKDaemonProxyDataUpdateDelegate> dataUpdateDelegate; // @synthesize dataUpdateDelegate=_dataUpdateDelegate;
+@property(nonatomic) id <GKDaemonProxyNetworkActivityIndicatorDelegate> networkActivityIndicatorDelegate; // @synthesize networkActivityIndicatorDelegate=_networkActivityIndicatorDelegate;
+- (void)resetLoginCancelCount;
 - (void)loadRemoteImageDataForClientForURL:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (id)localizedMessageFromDictionary:(id)arg1 forBundleID:(id)arg2;
 - (oneway void)session:(id)arg1 didReceiveMessage:(id)arg2 withData:(id)arg3 fromPlayer:(id)arg4;
@@ -42,6 +43,7 @@
 - (oneway void)session:(id)arg1 player:(id)arg2 didChangeConnectionState:(long long)arg3;
 - (oneway void)session:(id)arg1 removedPlayer:(id)arg2;
 - (oneway void)session:(id)arg1 addedPlayer:(id)arg2;
+- (oneway void)localPlayerAcceptedCustomTournamentInvite;
 - (oneway void)didReceiveData:(id)arg1 reliably:(BOOL)arg2 forRecipients:(id)arg3 fromSender:(id)arg4;
 - (oneway void)didDisconnectFromParticipantWithID:(id)arg1;
 - (oneway void)didConnectToParticipantWithID:(id)arg1;
@@ -69,6 +71,7 @@
 - (oneway void)beginNetworkActivity;
 - (oneway void)getAuthenticatedPlayerIDWithHandler:(CDUnknownBlockType)arg1;
 - (oneway void)getAccountNameWithHandler:(CDUnknownBlockType)arg1;
+- (BOOL)restrictionEnabledForKey:(id)arg1;
 - (id)authenticatedLocalPlayersWithStatus:(unsigned long long)arg1;
 - (id)authenticatedPlayerInfo;
 - (BOOL)hasAuthenticatedAccount;

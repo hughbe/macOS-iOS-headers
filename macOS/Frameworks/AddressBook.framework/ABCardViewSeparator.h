@@ -6,14 +6,12 @@
 
 #import "NSBox.h"
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewSeparator : NSBox
 {
 }
 
 + (id)separator;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (BOOL)allowsVibrancy;
 
 @end
 

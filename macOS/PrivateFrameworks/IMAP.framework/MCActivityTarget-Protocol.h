@@ -11,7 +11,6 @@
 @protocol MCActivityTarget <NSObject>
 
 @optional
-@property(readonly, nonatomic) BOOL isSmartMailbox;
 @property(readonly, copy, nonatomic) NSString *displayName;
 @end
 

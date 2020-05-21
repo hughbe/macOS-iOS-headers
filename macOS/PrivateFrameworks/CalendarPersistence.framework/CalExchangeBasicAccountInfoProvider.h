@@ -17,6 +17,7 @@
     NSManagedObjectID *_sessionID;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSManagedObjectID *sessionID; // @synthesize sessionID=_sessionID;
 @property(copy, nonatomic) NSString *password; // @synthesize password=_password;
 @property(copy, nonatomic) NSString *login; // @synthesize login=_login;
@@ -24,7 +25,6 @@
 - (void)exchangeServiceBinding:(id)arg1 didFinishWithResponse:(id)arg2;
 - (void)exchangeServiceBinding:(id)arg1 didReceiveAuthenticationChallenge:(id)arg2;
 - (void)exchangeServiceBinding:(id)arg1 didCancelAuthenticationChallenge:(id)arg2;
-- (void)dealloc;
 - (id)initWithLogin:(id)arg1 password:(id)arg2 sessionID:(id)arg3;
 
 // Remaining properties

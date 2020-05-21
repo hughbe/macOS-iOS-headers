@@ -11,10 +11,9 @@
 __attribute__((visibility("hidden")))
 @interface FI_TBrowserContentViewController : FI_TViewController
 {
-    struct TNSRef<FI_TBrowserContainerController *, void> _browserContainerController;
-    struct TNSRef<NSMutableArray<NSLayoutConstraint *>*, void> _layoutConstraints;
-    struct TNotificationCenterObserver _viewDidMoveToWindowObserver;
-    FI_TContainerLayoutManager *_containerLayoutManager;
+    struct TNSWeakPtr<FI_TBrowserContainerController, void> _weakBrowserContainerController;
+    struct TNSRef<NSMutableArray<NSLayoutConstraint *>, void> _layoutConstraints;
+    struct TNSRef<FI_TContainerLayoutManager, void> _containerLayoutManager;
 }
 
 - (id).cxx_construct;
@@ -24,7 +23,8 @@ __attribute__((visibility("hidden")))
 - (double)statusBarHeight;
 - (_Bool)isStatusBarVisible;
 - (_Bool)isInBrowseMode;
-@property(retain, nonatomic) FI_TBrowserContainerController *browserContainerController; // @dynamic browserContainerController;
+@property(retain, nonatomic) FI_TContainerLayoutManager *containerLayoutManager;
+@property(nonatomic) __weak FI_TBrowserContainerController *browserContainerController; // @dynamic browserContainerController;
 - (id)initWithContentView:(id)arg1 containerLayoutManager:(id)arg2;
 - (void)initCommon;
 - (void)aboutToTearDown;

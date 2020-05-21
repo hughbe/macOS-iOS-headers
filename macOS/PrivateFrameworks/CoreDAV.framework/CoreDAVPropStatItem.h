@@ -17,12 +17,12 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVLeafItem *responseDescription; // @synthesize responseDescription=_responseDescription;
 @property(retain, nonatomic) CoreDAVErrorItem *errorItem; // @synthesize errorItem=_errorItem;
 @property(retain, nonatomic) CoreDAVItem *prop; // @synthesize prop=_prop;
 @property(retain, nonatomic) CoreDAVLeafItem *status; // @synthesize status=_status;
 - (id)description;
-- (void)dealloc;
 - (id)init;
 
 @end

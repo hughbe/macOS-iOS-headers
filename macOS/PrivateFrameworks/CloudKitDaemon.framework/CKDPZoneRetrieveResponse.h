@@ -8,17 +8,19 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray;
+@class NSData, NSMutableArray;
 
 __attribute__((visibility("hidden")))
 @interface CKDPZoneRetrieveResponse : PBCodable <NSCopying>
 {
+    NSData *_continuationMarker;
     NSMutableArray *_zoneSummarys;
 }
 
 + (Class)zoneSummaryType;
-@property(retain, nonatomic) NSMutableArray *zoneSummarys; // @synthesize zoneSummarys=_zoneSummarys;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSData *continuationMarker; // @synthesize continuationMarker=_continuationMarker;
+@property(retain, nonatomic) NSMutableArray *zoneSummarys; // @synthesize zoneSummarys=_zoneSummarys;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -28,6 +30,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasContinuationMarker;
 - (id)zoneSummaryAtIndex:(unsigned long long)arg1;
 - (unsigned long long)zoneSummarysCount;
 - (void)addZoneSummary:(id)arg1;

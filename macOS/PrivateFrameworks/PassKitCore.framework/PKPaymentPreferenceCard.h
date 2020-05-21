@@ -12,7 +12,10 @@
 }
 
 @property(nonatomic) BOOL supportsNullSelection; // @synthesize supportsNullSelection=_supportsNullSelection;
+- (id)errorsForPreference:(id)arg1;
+- (void)setErrors:(id)arg1 forPreference:(id)arg2;
 - (BOOL)supportsDeletion;
+- (id)initWithTitle:(id)arg1 preferences:(id)arg2 selectedIndex:(unsigned long long)arg3 readOnly:(BOOL)arg4;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSDate, NSObject<OS_xpc_object>, NSString, NSURL;
+@class NSArray, NSDate, NSPopover, NSString, NSURL, NSView;
 
 @interface DDActionContext : NSObject <NSCopying, NSSecureCoding>
 {
@@ -20,6 +20,7 @@
     NSString *_trailingText;
     NSString *_coreSpotlightUniqueIdentifier;
     NSDate *_referenceDate;
+    NSString *_hostUUID;
     NSString *_authorABUUID;
     NSString *_authorEmailAddress;
     NSString *_authorName;
@@ -27,7 +28,7 @@
     NSString *_matchedString;
     NSArray *_allResults;
     NSString *_selectionString;
-    struct __DDResult *_mainResult;
+    // Error parsing type: ^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf}, name: _mainResult
     BOOL _immediate;
     BOOL _isRightClick;
     CDUnknownBlockType _interactionStartedHandler;
@@ -38,13 +39,19 @@
     BOOL _skipAnimation;
     NSArray *_allowedActionUTIs;
     NSArray *_disallowedActionUTIs;
-    NSObject<OS_xpc_object> *_peerConnection;
     struct CGSize _targetViewSize;
     struct CGSize _targetScreenSize;
+    NSView *_view;
+    NSPopover *_popover;
+    NSString *_hostProcessIdentifier;
 }
 
 + (id)contextFromDictionary:(id)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *hostProcessIdentifier; // @synthesize hostProcessIdentifier=_hostProcessIdentifier;
+@property(retain) NSPopover *popover; // @synthesize popover=_popover;
+@property __weak NSView *view; // @synthesize view=_view;
 @property BOOL altMode; // @synthesize altMode=_altMenuMode;
 @property(copy) NSArray *disallowedActionUTIs; // @synthesize disallowedActionUTIs=_disallowedActionUTIs;
 @property(copy) NSArray *allowedActionUTIs; // @synthesize allowedActionUTIs=_allowedActionUTIs;
@@ -59,6 +66,7 @@
 @property(retain) NSArray *allResults; // @synthesize allResults=_allResults;
 @property(copy) NSString *matchedString; // @synthesize matchedString=_matchedString;
 @property(copy) NSURL *URL; // @synthesize URL=_url;
+@property(copy) NSString *hostUUID; // @synthesize hostUUID=_hostUUID;
 @property(copy) NSString *authorEmailAddress; // @synthesize authorEmailAddress=_authorEmailAddress;
 @property(copy) NSString *authorUUID; // @synthesize authorUUID=_authorABUUID;
 @property(copy) NSString *authorName; // @synthesize authorName=_authorName;
@@ -71,9 +79,9 @@
 @property struct CGRect highlightFrame; // @synthesize highlightFrame=_highlightFrame;
 - (struct CGSize)targetScreenSize;
 - (struct CGSize)targetViewSize;
-- (id)peerConnection;
-- (void)setPeerConnection:(id)arg1;
-@property(retain) struct __DDResult *mainResult;
+// Error parsing type for property mainResult:
+// Property attributes: T^{__DDResult={__CFRuntimeBase=QAQ}{__DDQueryRange={__DDQueryOffset=b32b32}{__DDQueryOffset=b32b32}}{?=qq}q^{__CFArray}^{__CFString}^{__CFString}^v^{__CFDictionary}qCf},&
+
 - (id)contextForView:(id)arg1 altMode:(BOOL)arg2 interactionStartedHandler:(CDUnknownBlockType)arg3 interactionChangedHandler:(CDUnknownBlockType)arg4 interactionStoppedHandler:(CDUnknownBlockType)arg5;
 - (void)augmentContextWithDictionary:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

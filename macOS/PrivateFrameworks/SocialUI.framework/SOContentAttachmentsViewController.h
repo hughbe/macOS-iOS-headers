@@ -11,28 +11,23 @@
 #import "QLPreviewPanelDataSource.h"
 #import "QLPreviewPanelDelegate.h"
 
-@class NSArray, NSCollectionViewFlowLayout, NSLayoutConstraint, NSString, QLPreviewPanel, SOContentAttachmentCollectionView;
+@class NSCollectionViewFlowLayout, NSString, QLPreviewPanel, SOContentAttachmentCollectionView;
 
 @interface SOContentAttachmentsViewController : SOAttachmentsViewController <QLPreviewPanelDataSource, QLPreviewPanelDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate>
 {
-    NSArray *_attachments;
-    NSLayoutConstraint *_collectionViewHeightConstraint;
     QLPreviewPanel *_previewPanel;
 }
 
-@property(retain) QLPreviewPanel *previewPanel; // @synthesize previewPanel=_previewPanel;
-@property __weak NSLayoutConstraint *collectionViewHeightConstraint; // @synthesize collectionViewHeightConstraint=_collectionViewHeightConstraint;
-@property(retain, nonatomic) NSArray *attachments; // @synthesize attachments=_attachments;
 - (void).cxx_destruct;
+@property(retain) QLPreviewPanel *previewPanel; // @synthesize previewPanel=_previewPanel;
 - (void)chatDisplayControllerWillChange:(id)arg1;
-- (double)stackViewFrameDidChange:(struct CGSize)arg1;
-- (BOOL)hasAttachments;
+- (void)attachmentsDidChange;
 - (void)deleteSelection:(id)arg1;
 - (void)openSelection:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (id)actionableIndexes:(id)arg1;
 - (id)_selectionIndexSet:(id)arg1;
-- (void)displayPreviewPanel;
+- (void)displayPreviewPanel:(id)arg1;
 - (void)endPreviewPanelControl:(id)arg1;
 - (void)beginPreviewPanelControl:(id)arg1;
 - (BOOL)acceptsPreviewPanelControl:(id)arg1;

@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (int)diagramTypeFromString:(id)arg1;
+- (void).cxx_destruct;
 - (id)styleMatrix;
 - (id)diagram;
 - (void)mapAt:(id)arg1 withState:(id)arg2;

@@ -8,11 +8,15 @@
 
 #import "MMCSCProgressIndicatorProtocol.h"
 #import "MMLinkTextFieldDelegate.h"
+#import "NSTouchBarProvider.h"
 
-@class MMLinkTextField, NSButton, NSImageView, NSLayoutConstraint, NSProgressIndicator, NSSecureTextField, NSString, NSTextField;
+@class MMLinkTextField, NSButton, NSImageView, NSLayoutConstraint, NSProgressIndicator, NSSecureTextField, NSString, NSTextField, NSTouchBar, iCloudTouchBarController;
 
-@interface MMCSCPassPhraseRecoveryViewController : NSViewController <MMLinkTextFieldDelegate, MMCSCProgressIndicatorProtocol>
+@interface MMCSCPassPhraseRecoveryViewController : NSViewController <NSTouchBarProvider, MMLinkTextFieldDelegate, MMCSCProgressIndicatorProtocol>
 {
+    BOOL _needsVerification;
+    BOOL _showRandomView;
+    NSString *_passPhrase;
     id <MMCSCPassPhraseRecoveryViewControllerDelegate> _delegate;
     NSImageView *_passPhraseImageView;
     NSTextField *_passPhraseTitle;
@@ -24,27 +28,27 @@
     NSButton *_passPhraseConfirmButton;
     NSButton *_passPhraseCancelButton;
     NSProgressIndicator *_passPhraseProgressIndicator;
-    BOOL _needsVerification;
-    BOOL _showRandomView;
-    NSString *_passPhrase;
     NSLayoutConstraint *_showErrorConstraint;
     NSLayoutConstraint *_hideErrorConstraint;
+    iCloudTouchBarController *_touchBarController;
 }
 
-@property NSLayoutConstraint *hideErrorConstraint; // @synthesize hideErrorConstraint=_hideErrorConstraint;
-@property NSLayoutConstraint *showErrorConstraint; // @synthesize showErrorConstraint=_showErrorConstraint;
+- (void).cxx_destruct;
+@property(retain) iCloudTouchBarController *touchBarController; // @synthesize touchBarController=_touchBarController;
+@property __weak NSLayoutConstraint *hideErrorConstraint; // @synthesize hideErrorConstraint=_hideErrorConstraint;
+@property __weak NSLayoutConstraint *showErrorConstraint; // @synthesize showErrorConstraint=_showErrorConstraint;
 @property(copy) NSString *passPhrase; // @synthesize passPhrase=_passPhrase;
 @property BOOL needsVerification; // @synthesize needsVerification=_needsVerification;
-@property NSProgressIndicator *passPhraseProgressIndicator; // @synthesize passPhraseProgressIndicator=_passPhraseProgressIndicator;
-@property NSButton *passPhraseCancelButton; // @synthesize passPhraseCancelButton=_passPhraseCancelButton;
-@property NSButton *passPhraseConfirmButton; // @synthesize passPhraseConfirmButton=_passPhraseConfirmButton;
-@property NSButton *passPhraseHelpButton; // @synthesize passPhraseHelpButton=_passPhraseHelpButton;
-@property NSTextField *passPhraseRandomCodeTextField; // @synthesize passPhraseRandomCodeTextField=_passPhraseRandomCodeTextField;
-@property NSSecureTextField *passPhraseSecurityCodeTextField; // @synthesize passPhraseSecurityCodeTextField=_passPhraseSecurityCodeTextField;
-@property MMLinkTextField *passPhraseAlternateMessageTextField; // @synthesize passPhraseAlternateMessageTextField=_passPhraseAlternateMessageTextField;
-@property MMLinkTextField *passPhraseMessageTextField; // @synthesize passPhraseMessageTextField=_passPhraseMessageTextField;
-@property NSTextField *passPhraseTitle; // @synthesize passPhraseTitle=_passPhraseTitle;
-@property NSImageView *passPhraseImageView; // @synthesize passPhraseImageView=_passPhraseImageView;
+@property __weak NSProgressIndicator *passPhraseProgressIndicator; // @synthesize passPhraseProgressIndicator=_passPhraseProgressIndicator;
+@property __weak NSButton *passPhraseCancelButton; // @synthesize passPhraseCancelButton=_passPhraseCancelButton;
+@property __weak NSButton *passPhraseConfirmButton; // @synthesize passPhraseConfirmButton=_passPhraseConfirmButton;
+@property __weak NSButton *passPhraseHelpButton; // @synthesize passPhraseHelpButton=_passPhraseHelpButton;
+@property __weak NSTextField *passPhraseRandomCodeTextField; // @synthesize passPhraseRandomCodeTextField=_passPhraseRandomCodeTextField;
+@property __weak NSSecureTextField *passPhraseSecurityCodeTextField; // @synthesize passPhraseSecurityCodeTextField=_passPhraseSecurityCodeTextField;
+@property __weak MMLinkTextField *passPhraseAlternateMessageTextField; // @synthesize passPhraseAlternateMessageTextField=_passPhraseAlternateMessageTextField;
+@property __weak MMLinkTextField *passPhraseMessageTextField; // @synthesize passPhraseMessageTextField=_passPhraseMessageTextField;
+@property __weak NSTextField *passPhraseTitle; // @synthesize passPhraseTitle=_passPhraseTitle;
+@property __weak NSImageView *passPhraseImageView; // @synthesize passPhraseImageView=_passPhraseImageView;
 @property BOOL showRandomView; // @synthesize showRandomView=_showRandomView;
 @property id <MMCSCPassPhraseRecoveryViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)clickedOnLink:(id)arg1;
@@ -59,7 +63,7 @@
 - (void)cancelButtonClicked:(id)arg1;
 - (void)confirmButtonClicked:(id)arg1;
 - (void)setupView:(long long)arg1;
-- (void)dealloc;
+@property(readonly) NSTouchBar *touchBar;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -9,7 +9,7 @@
 __attribute__((visibility("hidden")))
 @interface MTLTextureDescriptorInternal : MTLTextureDescriptor
 {
-    struct MTLTextureDescriptorPrivate *_private;
+    struct MTLTextureDescriptorPrivate _private;
 }
 
 - (BOOL)validateWithDevice:(id)arg1;
@@ -18,16 +18,32 @@ __attribute__((visibility("hidden")))
 - (void)setIsDrawable:(BOOL)arg1;
 - (void)setFramebufferOnly:(BOOL)arg1;
 - (BOOL)framebufferOnly;
+- (BOOL)writeSwizzleEnabled;
+- (void)setWriteSwizzleEnabled:(BOOL)arg1;
+- (unsigned int)swizzleKey;
+- (void)setSwizzleKey:(unsigned int)arg1;
+- (CDStruct_a06f635e)swizzle;
+- (void)setSwizzle:(CDStruct_a06f635e)arg1;
 - (void)setTextureUsage:(unsigned long long)arg1;
 - (unsigned long long)textureUsage;
 - (void)setUsage:(unsigned long long)arg1;
 - (unsigned long long)usage;
+- (void)setHazardTrackingMode:(unsigned long long)arg1;
+- (unsigned long long)hazardTrackingMode;
 - (void)setResourceOptions:(unsigned long long)arg1;
 - (unsigned long long)resourceOptions;
 - (void)setStorageMode:(unsigned long long)arg1;
 - (unsigned long long)storageMode;
+- (void)setProtectionOptions:(unsigned long long)arg1;
+- (unsigned long long)protectionOptions;
 - (void)setCpuCacheMode:(unsigned long long)arg1;
 - (unsigned long long)cpuCacheMode;
+- (void)setResourceIndex:(unsigned long long)arg1;
+- (unsigned long long)resourceIndex;
+- (void)setForceResourceIndex:(BOOL)arg1;
+- (BOOL)forceResourceIndex;
+- (void)setAllowGPUOptimizedContents:(BOOL)arg1;
+- (BOOL)allowGPUOptimizedContents;
 - (void)setArrayLength:(unsigned long long)arg1;
 - (unsigned long long)arrayLength;
 - (void)setSampleCount:(unsigned long long)arg1;
@@ -45,10 +61,10 @@ __attribute__((visibility("hidden")))
 - (void)setTextureType:(unsigned long long)arg1;
 - (unsigned long long)textureType;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

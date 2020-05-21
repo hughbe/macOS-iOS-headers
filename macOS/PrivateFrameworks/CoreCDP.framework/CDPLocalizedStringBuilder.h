@@ -18,6 +18,7 @@
 - (id)currentKey;
 - (id)localizedString;
 - (id)addSecretType:(unsigned long long)arg1;
+- (id)addUnqualifiedDeviceClass:(id)arg1;
 - (id)addDeviceClass:(id)arg1;
 
 @end

@@ -6,7 +6,7 @@
 
 #import <AppKit/_NSKeyLoopSplicingContainerView.h>
 
-@class CABackdropLayer, NSColor, NSMutableSet, NSString, NSView, NSVisualEffectView, _NSViewActionForwardingLayerDelegate;
+@class CABackdropLayer, NSBox, NSColor, NSMutableSet, NSString, NSView, NSVisualEffectView, _NSViewActionForwardingLayerDelegate;
 
 __attribute__((visibility("hidden")))
 @interface NSTabBarViewButton : _NSKeyLoopSplicingContainerView
@@ -15,8 +15,8 @@ __attribute__((visibility("hidden")))
     NSColor *_backgroundColor;
     NSView *_backgroundView;
     NSView *_topBorderView;
-    NSView *_leftBorderView;
-    NSView *_rightBorderView;
+    NSBox *_leftBorderView;
+    NSBox *_rightBorderView;
     NSView *_contentView;
     NSView *_vibrantContentView;
     NSView *_nonVibrantContentView;
@@ -27,18 +27,20 @@ __attribute__((visibility("hidden")))
     BOOL _forcesActiveWindowState;
     BOOL _active;
     BOOL _hasMouseOverHighlight;
+    BOOL _useModalCollapsedLayout;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSView *nonVibrantContentView; // @synthesize nonVibrantContentView=_nonVibrantContentView;
 @property(readonly, nonatomic) NSView *vibrantContentView; // @synthesize vibrantContentView=_vibrantContentView;
 @property(readonly, nonatomic) NSView *contentView; // @synthesize contentView=_contentView;
-- (void).cxx_destruct;
 - (void)_removeVisualEffectViewForFullScreenToolbarWindow;
 - (void)_addVisualEffectViewForFullScreenToolbarWindow;
 - (void)_unregisterBackgroundHighlightLayer:(id)arg1;
 - (void)_registerBackgroundHighlightLayer:(id)arg1;
 - (void)_setBackgroundColor:(id)arg1 withAnimation:(id)arg2;
 - (BOOL)_isAnimatingBackgroundColor;
+@property(nonatomic) BOOL useModalCollapsedLayout; // @dynamic useModalCollapsedLayout;
 @property(nonatomic) BOOL hasMouseOverHighlight; // @dynamic hasMouseOverHighlight;
 - (void)setHasMouseOverHighlight:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)_updateBackgroundLayerImagesForActiveTab:(BOOL)arg1 inActiveWindow:(BOOL)arg2;
@@ -57,6 +59,8 @@ __attribute__((visibility("hidden")))
 - (void)_reconfigureFullscreenViewsUsingVisualEffectViews:(BOOL)arg1;
 - (void)_reconfigureFullscreenViewsIfNeeded;
 - (BOOL)_isInFullscreenToolbarWindow;
+- (id)_makeTopBorderView;
+- (id)_makeBoxInVibrantContentView;
 - (id)_makeViewInVibrantContentView;
 - (void)_setUpBackgroundViews;
 - (id)initWithFrame:(struct CGRect)arg1;

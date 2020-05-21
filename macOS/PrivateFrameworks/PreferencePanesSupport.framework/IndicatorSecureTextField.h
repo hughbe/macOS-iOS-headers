@@ -15,6 +15,7 @@
     NSTextField *mNoteField;
 }
 
+- (void).cxx_destruct;
 - (void)setNoteField:(id)arg1;
 - (id)noteField;
 - (BOOL)becomeFirstResponder;
@@ -22,8 +23,6 @@
 - (void)setShowIndicator:(BOOL)arg1;
 - (BOOL)isShowingIndicator;
 - (void)drawRect:(struct CGRect)arg1;
-- (void)dealloc;
-- (void)awakeFromNib;
 
 @end
 

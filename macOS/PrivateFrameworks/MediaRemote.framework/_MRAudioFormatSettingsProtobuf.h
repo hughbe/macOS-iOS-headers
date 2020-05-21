@@ -15,6 +15,7 @@
     NSData *_formatSettingsPlistData;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSData *formatSettingsPlistData; // @synthesize formatSettingsPlistData=_formatSettingsPlistData;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -26,7 +27,6 @@
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(readonly, nonatomic) BOOL hasFormatSettingsPlistData;
-- (void)dealloc;
 
 @end
 

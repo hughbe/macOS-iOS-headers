@@ -12,7 +12,7 @@
 {
 }
 
-- (void)updatePackingPropertiesWithDocument:(id)arg1;
+- (BOOL)updatePackingPropertiesWithDocument:(id)arg1;
 - (void)addLayerReferencesObject:(id)arg1;
 - (id)createCSIRepresentationWithCompression:(BOOL)arg1 colorSpaceID:(unsigned long long)arg2 document:(id)arg3;
 - (void)drawFlattenedImageIntoContext:(struct CGContext *)arg1 document:(id)arg2;

@@ -12,25 +12,38 @@
 {
     unsigned char _goodness;
     unsigned char _userConfidence;
+    unsigned char _deviceGroup;
+    unsigned char _deviceClass;
     unsigned char _tieBreaker;
     BOOL _isMe;
     unsigned short _pHash;
-    unsigned short _deviceClass;
     NSUUID *_deviceID;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isMe; // @synthesize isMe=_isMe;
 @property(nonatomic) unsigned char tieBreaker; // @synthesize tieBreaker=_tieBreaker;
-@property(nonatomic) unsigned short deviceClass; // @synthesize deviceClass=_deviceClass;
-@property(retain, nonatomic) NSUUID *deviceID; // @synthesize deviceID=_deviceID;
+@property(nonatomic) unsigned char deviceClass; // @synthesize deviceClass=_deviceClass;
+@property(copy, nonatomic) NSUUID *deviceID; // @synthesize deviceID=_deviceID;
+@property(nonatomic) unsigned char deviceGroup; // @synthesize deviceGroup=_deviceGroup;
 @property(nonatomic) unsigned short pHash; // @synthesize pHash=_pHash;
 @property(nonatomic) unsigned char userConfidence; // @synthesize userConfidence=_userConfidence;
 @property(nonatomic) unsigned char goodness; // @synthesize goodness=_goodness;
-- (void).cxx_destruct;
 - (id)description;
 - (id)asAdvertisementData;
+- (int)slowdownDelay;
+- (BOOL)isSlowdown;
+- (BOOL)isSane;
+- (BOOL)isAnEmergencyHandled;
+- (BOOL)isAnEmergency;
+- (BOOL)isAContinuation;
+- (BOOL)isCarplayTrump;
+- (BOOL)isInEarTrump;
+- (BOOL)isATrump;
+- (void)generateRandomConfidence;
 - (void)generateTiebreaker;
 - (id)initWithDeviceID:(id)arg1 data:(id)arg2;
+- (void)adjustByMultiplier:(float)arg1 adding:(int)arg2;
 - (id)initWithAudioData:(id)arg1;
 - (id)init;
 

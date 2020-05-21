@@ -10,7 +10,7 @@
 
 @interface NSStackView : NSView
 {
-    id <NSStackViewDelegate> _delegate;
+    id _delegate;
     long long _orientation;
     long long _alignment;
     struct NSEdgeInsets _edgeInsets;
@@ -19,9 +19,6 @@
     float _horizontalClippingResistancePriority;
     float _verticalHuggingPriority;
     float _horizontalHuggingPriority;
-    BOOL _unused;
-    id _unused2;
-    id _unused3;
     id _private;
     struct {
         unsigned int _inDealloc:1;
@@ -35,7 +32,6 @@
 + (BOOL)requiresConstraintBasedLayout;
 + (id)keyPathsForValuesAffectingAlignment;
 + (id)stackViewWithViews:(id)arg1;
-@property id <NSStackViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)setArrangedSubviews:(id)arg1;
 @property(readonly, copy) NSArray *arrangedSubviews;
 - (void)insertArrangedSubview:(id)arg1 atIndex:(long long)arg2;
@@ -73,6 +69,9 @@
 - (float)visibilityPriorityForView:(id)arg1;
 - (id)_valueOfVisibilityPriorityForView:(id)arg1;
 - (void)setVisibilityPriority:(float)arg1 forView:(id)arg2;
+- (BOOL)_hasBaselineOffsetsAtSize;
+- (id)_viewForLastBaselineLayout;
+- (id)_viewForFirstBaselineLayout;
 - (double)lastBaselineOffsetFromBottom;
 - (double)_lastBaselineOffsetFromStackViewBottomForView:(id)arg1;
 - (double)firstBaselineOffsetFromTop;
@@ -90,7 +89,7 @@
 - (void)enumerateViewsIncludingDetached:(BOOL)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)setUserInterfaceLayoutDirection:(long long)arg1;
 - (id)_idealSizeLayoutDimensionCreateIfNecessary;
-- (BOOL)_viewsAreCentered;
+- (BOOL)_allAttachedViewsAreCentered;
 - (BOOL)_hasEffectiveGravityAreas;
 - (void)setViews:(id)arg1 inGravity:(long long)arg2;
 - (id)viewsInGravity:(long long)arg1;
@@ -144,6 +143,8 @@
 - (float)huggingPriorityForOrientation:(long long)arg1;
 @property long long orientation;
 - (BOOL)_isVertical;
+@property __weak id <NSStackViewDelegate> delegate;
+- (id)_delegate;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (float)_earlyDecodingOrderPriority;

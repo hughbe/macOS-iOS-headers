@@ -12,12 +12,11 @@
 {
     unsigned int _loadTarget;
     TXRTexture *_texture;
+    unsigned long long _API;
     BOOL _hasAlpha;
+    BOOL _lossyCompressedSource;
     unsigned int _GLTextureName;
     unsigned int _target;
-    unsigned int _internalFormat;
-    unsigned int _format;
-    unsigned int _type;
     unsigned int _mipmapLevelCount;
     unsigned int _arrayLength;
     unsigned int _width;
@@ -26,20 +25,18 @@
     NSString *_label;
 }
 
+@property(nonatomic) BOOL lossyCompressedSource; // @synthesize lossyCompressedSource=_lossyCompressedSource;
 @property(nonatomic) BOOL hasAlpha; // @synthesize hasAlpha=_hasAlpha;
 @property(nonatomic) unsigned int depth; // @synthesize depth=_depth;
 @property(nonatomic) unsigned int height; // @synthesize height=_height;
 @property(nonatomic) unsigned int width; // @synthesize width=_width;
 @property(nonatomic) unsigned int arrayLength; // @synthesize arrayLength=_arrayLength;
 @property(nonatomic) unsigned int mipmapLevelCount; // @synthesize mipmapLevelCount=_mipmapLevelCount;
-@property(nonatomic) unsigned int type; // @synthesize type=_type;
-@property(nonatomic) unsigned int format; // @synthesize format=_format;
-@property(nonatomic) unsigned int internalFormat; // @synthesize internalFormat=_internalFormat;
 @property(nonatomic) unsigned int target; // @synthesize target=_target;
 @property(nonatomic) unsigned int GLTextureName; // @synthesize GLTextureName=_GLTextureName;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;
 - (BOOL)uploadToGLTexture:(unsigned int)arg1 error:(id *)arg2;
-- (id)initWithTexture:(id)arg1 options:(id)arg2 error:(id *)arg3;
+- (id)initWithTexture:(id)arg1 API:(unsigned long long)arg2 options:(id)arg3 error:(id *)arg4;
 - (void)dealloc;
 
 @end

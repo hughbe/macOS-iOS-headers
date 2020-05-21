@@ -20,6 +20,7 @@
 + (void)endInstrumentation;
 + (id)defaultInstrumentation;
 + (id)initializeDefaultInstrumentation;
+- (void).cxx_destruct;
 - (void)initializeFilepaths;
 - (void)_captureScreenVideo:(id)arg1;
 - (void)captureEventRecorderScreenVideo;
@@ -28,7 +29,6 @@
 - (void)captureUIEvent:(id)arg1;
 - (void)_setupLogging;
 - (id)getRecordedFilePaths;
-- (void)dealloc;
 - (id)init;
 
 @end

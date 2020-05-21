@@ -10,7 +10,7 @@
 @class NSArray, NSTabView, NSTabViewController, NSTabViewItem, NSView, NSWindow;
 
 @protocol NSTabViewControllerUIProvider <NSObject, NSCoding>
-@property __weak NSTabViewController *tabViewController;
+@property NSTabViewController *tabViewController;
 - (void)tearDown;
 - (void)setUpForTabView:(NSTabView *)arg1 inContainer:(NSView *)arg2;
 

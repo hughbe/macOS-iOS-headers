@@ -10,6 +10,7 @@
 
 @interface AKUndoController : NSObject
 {
+    BOOL _externalSourceTrackingChanged;
     BOOL _undoGroupHasChangesToMultipleProperties;
     NSUndoManager *_undoManager;
     AKController *_controller;
@@ -19,14 +20,18 @@
     NSMapTable *_undoGroupOldPropertiesPerAnnotation;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSMapTable *undoGroupOldPropertiesPerAnnotation; // @synthesize undoGroupOldPropertiesPerAnnotation=_undoGroupOldPropertiesPerAnnotation;
 @property BOOL undoGroupHasChangesToMultipleProperties; // @synthesize undoGroupHasChangesToMultipleProperties=_undoGroupHasChangesToMultipleProperties;
 @property(retain) NSString *undoGroupPresentablePropertyName; // @synthesize undoGroupPresentablePropertyName=_undoGroupPresentablePropertyName;
 @property(retain) NSMutableSet *observedAnnotations; // @synthesize observedAnnotations=_observedAnnotations;
 @property(retain) NSMutableSet *observedPageModelControllers; // @synthesize observedPageModelControllers=_observedPageModelControllers;
 @property __weak AKController *controller; // @synthesize controller=_controller;
+@property BOOL externalSourceTrackingChanged; // @synthesize externalSourceTrackingChanged=_externalSourceTrackingChanged;
 @property(retain) NSUndoManager *undoManager; // @synthesize undoManager=_undoManager;
-- (void).cxx_destruct;
+- (void)observePageControllerRequestsEnableRegistration:(id)arg1;
+- (void)observePageControllerRequestsDisableRegistration:(id)arg1;
+- (void)_endEditingOfTextIfAnnotationsDeleted:(id)arg1;
 - (void)_undoActionForSelectionState:(id)arg1;
 - (void)_registerUndoForSelectionOnPageModelController:(id)arg1;
 - (void)_deleteAnnotationsFromModel:(id)arg1;

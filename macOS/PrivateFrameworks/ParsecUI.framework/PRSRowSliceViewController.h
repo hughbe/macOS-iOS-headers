@@ -15,6 +15,7 @@
 
 - (void).cxx_destruct;
 - (id)rowSliceView;
+- (BOOL)isGrayScale:(id)arg1;
 - (void)syncAttributes;
 @property(retain, nonatomic) PRSRowCardSection *rowCardSection;
 - (double)height;

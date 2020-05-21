@@ -14,11 +14,12 @@
 + (BOOL)_isPermanentStorageSupportedForStatFSInfo:(struct statfs *)arg1 error:(id *)arg2;
 + (id)manager;
 + (void)initialize;
+- (BOOL)isItemAtURLValidInsidePermanentStorage:(id)arg1 error:(id *)arg2;
 - (BOOL)isItemAtURLInsidePermanentStorage:(id)arg1 error:(id *)arg2;
 - (BOOL)deallocateDocumentIDOfItemAtURL:(id)arg1 error:(id *)arg2;
 - (BOOL)removeTemporaryStorage:(id)arg1 error:(id *)arg2;
 - (id)additionForItemAtURL:(id)arg1 forPersistentIdentifier:(id)arg2 error:(id *)arg3;
-- (id)persistentIdentifierInStorage:(struct NSObject *)arg1 forAdditionNamed:(id)arg2 inNameSpace:(id)arg3;
+- (id)persistentIdentifierInStorage:(id)arg1 forAdditionNamed:(id)arg2 inNameSpace:(id)arg3;
 - (id)temporaryStorageForItemAtURL:(id)arg1 locatedAtURL:(id)arg2 error:(id *)arg3;
 - (void)_connectionWithDaemonWasLost;
 - (id)permanentStorageForItemAtURL:(id)arg1 allocateIfNone:(BOOL)arg2 error:(id *)arg3;

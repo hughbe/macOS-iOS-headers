@@ -4,38 +4,39 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Automator/AMWorkflowMetaData.h>
+#import <Automator/AMInputOutputWorkflowMetadata.h>
 
-@class AMType, NSString;
+@class AMServiceWorkflowPersonality, NSColor, NSData, NSDictionary, NSString;
 
-@interface AMServiceWorkflowMetaData : AMWorkflowMetaData
+@interface AMServiceWorkflowMetaData : AMInputOutputWorkflowMetadata
 {
-    AMType *_outputType;
-    AMType *_inputType;
-    NSString *_serviceApplicationBundleID;
-    NSString *_serviceApplicationPath;
-    BOOL _serviceProcessesInput;
+    NSString *_systemImageName;
+    unsigned long long _presentationMode;
+    NSData *_customImageFileData;
+    NSString *_customImageFileExtension;
+    NSColor *_backgroundColor;
+    NSString *_backgroundColorName;
 }
 
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
-@property(retain) AMType *outputType; // @synthesize outputType=_outputType;
-@property(retain) AMType *inputType; // @synthesize inputType=_inputType;
-@property BOOL serviceProcessesInput; // @synthesize serviceProcessesInput=_serviceProcessesInput;
-@property(copy) NSString *serviceApplicationPath; // @synthesize serviceApplicationPath=_serviceApplicationPath;
-@property(copy) NSString *serviceApplicationBundleID; // @synthesize serviceApplicationBundleID=_serviceApplicationBundleID;
-- (id)headerInputType;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *backgroundColorName; // @synthesize backgroundColorName=_backgroundColorName;
+@property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(copy, nonatomic) NSString *customImageFileExtension; // @synthesize customImageFileExtension=_customImageFileExtension;
+@property(copy, nonatomic) NSData *customImageFileData; // @synthesize customImageFileData=_customImageFileData;
+@property(copy, nonatomic) NSString *systemImageName; // @synthesize systemImageName=_systemImageName;
+@property(nonatomic) unsigned long long presentationMode; // @synthesize presentationMode=_presentationMode;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)_updatePresentationModeBasedOnMetaData;
+@property(readonly, nonatomic) unsigned long long _presentationModeFromAppKit;
+@property(readonly, nonatomic) NSDictionary *_metaDataWithoutPresentationMode;
 - (id)metaData;
+- (id)quickLookThumbnailImage;
 - (void)setFromDictionary:(id)arg1;
+@property(readonly, nonatomic) NSData *_backgroundColorDataForSaving;
+@property(readonly, nonatomic) __weak AMServiceWorkflowPersonality *serviceWorkflowPersonality;
 - (void)dealloc;
 - (id)initWithPersonality:(id)arg1;
-@property(readonly, copy) NSString *inputOptionTitle;
-@property(readonly) BOOL canSelectInputOption;
-@property(readonly) BOOL canReplaceSelectedText;
-@property BOOL replacesSelectedText;
-@property(readonly) BOOL serviceInputTypeUnknown;
-@property(readonly) BOOL serviceHasNoInput;
-@property(readonly, copy) NSString *serviceOutputTypeIdentifier;
-@property(readonly, copy) NSString *serviceInputTypeIdentifier;
 
 @end
 

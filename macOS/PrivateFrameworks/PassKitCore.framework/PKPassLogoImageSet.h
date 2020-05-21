@@ -24,7 +24,10 @@
 
 + (BOOL)supportsSecureCoding;
 + (BOOL)shouldCache;
++ (unsigned int)currentVersion;
++ (id)archiveName;
 + (long long)imageSetType;
+- (void).cxx_destruct;
 @property(retain, nonatomic) PKImage *cardBackgroundCombinedImage; // @synthesize cardBackgroundCombinedImage=_cardBackgroundCombinedImage;
 @property(retain, nonatomic) PKImage *cardBackgroundImage; // @synthesize cardBackgroundImage=_cardBackgroundImage;
 @property(retain, nonatomic) PKImage *cobrandLogoImage; // @synthesize cobrandLogoImage=_cobrandLogoImage;
@@ -35,7 +38,6 @@
 @property(retain, nonatomic) PKImage *thumbnailImage; // @synthesize thumbnailImage=_thumbnailImage;
 @property(retain, nonatomic) PKImage *backgroundImage; // @synthesize backgroundImage=_backgroundImage;
 @property(retain, nonatomic) PKImage *logoImage; // @synthesize logoImage=_logoImage;
-- (void).cxx_destruct;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

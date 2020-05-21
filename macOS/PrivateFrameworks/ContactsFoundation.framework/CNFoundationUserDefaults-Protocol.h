@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSDictionary, NSString;
 
 @protocol CNFoundationUserDefaults <NSObject>
+@property(nonatomic) NSDictionary *filteredAccountsAndContainers;
 @property(nonatomic, getter=isShortNameFormatEnabled) BOOL shortNameFormatEnabled;
 @property unsigned long long shortNameFormat;
 @property unsigned long long nameOrder;

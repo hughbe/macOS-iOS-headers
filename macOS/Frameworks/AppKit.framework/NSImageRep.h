@@ -10,7 +10,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSString;
+@class NSMutableArray, NSString;
 
 @interface NSImageRep : NSObject <NSSecureCoding, NSCopying, NSCoding>
 {
@@ -26,10 +26,12 @@
         unsigned int internalLayoutDirection:2;
         unsigned int gsaved:14;
     } _repFlags;
+    int _pixelsWide;
     NSString *_colorSpaceName;
     struct CGSize _size;
-    int _pixelsWide;
     int _pixelsHigh;
+    NSMutableArray *_bitmapCache;
+    struct os_unfair_lock_s _bitmapCacheLock;
 }
 
 + (BOOL)_deprecated_hasReversedFlippednessInFlippedImages;
@@ -65,6 +67,7 @@
 + (BOOL)canInitWithData:(id)arg1;
 + (void)initialize;
 + (BOOL)supportsSecureCoding;
+@property(copy, setter=_setAppearanceName:) NSString *_appearanceName;
 - (id)_bitmapImageRepsForTIFFRepresentation;
 - (id)_imageRepsForEncodingWithCoder:(id)arg1;
 - (id)_bitmapImageReps;
@@ -72,6 +75,7 @@
 - (struct CGImage *)_CGImageRef;
 - (struct CGImage *)CGImageForProposedRect:(struct CGRect *)arg1 context:(id)arg2 hints:(id)arg3 flipped:(BOOL)arg4;
 - (struct CGImage *)CGImageForProposedRect:(struct CGRect *)arg1 context:(id)arg2 hints:(id)arg3;
+- (void)_recache;
 - (struct CGImage *)_newCGImageForProposedRect:(struct CGRect *)arg1 context:(id)arg2 hints:(id)arg3 flipped:(BOOL)arg4;
 - (id)description;
 - (BOOL)_loadDataIfNotYetLoaded;
@@ -86,7 +90,7 @@
 @property(getter=isOpaque) BOOL opaque;
 @property(getter=hasAlpha) BOOL alpha;
 @property long long layoutDirection;
-- (void)_setInternalLayoutDirectionFromCUILayoutDirection:(long long)arg1;
+@property(readonly) BOOL _incorporatesContentStyling;
 - (long long)_internalLayoutDirection;
 - (long long)_pixelsHighOrResolutionIndependent;
 - (long long)_pixelsWideOrResolutionIndependent;
@@ -101,8 +105,6 @@
 - (long long)_uncachedSize;
 - (BOOL)drawInRect:(struct CGRect)arg1 fromRect:(struct CGRect)arg2 operation:(unsigned long long)arg3 fraction:(double)arg4 respectFlipped:(BOOL)arg5 hints:(id)arg6;
 - (BOOL)_drawFromRect:(struct CGRect)arg1 toRect:(struct CGRect)arg2 operation:(unsigned long long)arg3 alpha:(double)arg4 compositing:(BOOL)arg5 flipped:(BOOL)arg6 ignoreContext:(BOOL)arg7;
-- (id)_processedHintsForHints:(id)arg1 includeOnlyIfAvailable:(BOOL)arg2;
-- (id)_defaultImageHintsIncludeOnlyIfAvailable:(BOOL)arg1;
 - (BOOL)draw;
 - (BOOL)drawInRect:(struct CGRect)arg1;
 - (BOOL)drawAtPoint:(struct CGPoint)arg1;

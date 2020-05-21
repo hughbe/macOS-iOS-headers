@@ -9,7 +9,7 @@
 #import "ABCardCollectionViewDataSource.h"
 #import "ABCardCollectionViewDelegate.h"
 
-@class ABCardCollectionView, ABCardViewLabelGenerator, ABCardViewPropertyProvider, ABCardViewStyleProvider, ABCollectionViewItemFactory, NSArray, NSString;
+@class ABCardCollectionView, ABCardViewLabelGenerator, ABCardViewPropertyProvider, ABCardViewStyleProvider, ABCollectionViewItemFactory, CNUIEditingRules, NSArray, NSString;
 
 @interface ABCardCollectionViewController : NSObject <ABCardCollectionViewDataSource, ABCardCollectionViewDelegate>
 {
@@ -24,21 +24,23 @@
     ABCardViewPropertyProvider *_propertyProvider;
     NSArray *_propetyKeysToDisplay;
     BOOL _suggestedCardMode;
+    CNUIEditingRules *_editingRules;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) CNUIEditingRules *editingRules; // @synthesize editingRules=_editingRules;
 @property(retain, nonatomic) NSArray *propetyKeysToDisplay; // @synthesize propetyKeysToDisplay=_propetyKeysToDisplay;
 @property(nonatomic, getter=isSuggestedCardMode) BOOL suggestedCardMode; // @synthesize suggestedCardMode=_suggestedCardMode;
 @property(retain, nonatomic) ABCardViewStyleProvider *styleProvider; // @synthesize styleProvider=_styleProvider;
 @property(retain, nonatomic) ABCollectionViewItemFactory *itemFactory; // @synthesize itemFactory=_itemFactory;
 @property(retain, nonatomic) ABCardViewPropertyProvider *propertyProvider; // @synthesize propertyProvider=_propertyProvider;
 @property(retain, nonatomic) ABCardViewLabelGenerator *labelGenerator; // @synthesize labelGenerator=_labelGenerator;
-@property(nonatomic) id <ABCardCollectionViewControllerDelegate> controllerDelegate; // @synthesize controllerDelegate=_controllerDelegate;
+@property __weak id <ABCardCollectionViewControllerDelegate> controllerDelegate; // @synthesize controllerDelegate=_controllerDelegate;
 @property(retain, nonatomic) ABCardCollectionView *view; // @synthesize view=_view;
 - (void)notifyDelegateActionWasPerformed;
 - (void)cardViewNoteDidChange;
 - (id)colorForProperty:(id)arg1 identifier:(id)arg2;
 - (void)editExistingKey:(id)arg1 identifier:(id)arg2 yOffset:(double)arg3;
-- (double)firstColumnWidth;
 - (id)delegate;
 - (BOOL)isSelectable;
 - (BOOL)isUnified;
@@ -55,9 +57,10 @@
 - (void)updateItemsOfKey:(id)arg1 withNewMultiValue:(id)arg2;
 - (void)validateSiblingsOfItem:(id)arg1;
 - (id)hostWindowForShareSheet;
-- (void)item:(id)arg1 didRejectSuggestedValue:(id)arg2;
-- (void)item:(id)arg1 didConfirmSuggestedValue:(id)arg2;
+- (void)item:(id)arg1 didRejectLabeledValue:(id)arg2;
+- (void)item:(id)arg1 didConfirmLabeledValue:(id)arg2;
 - (BOOL)isAugmentedCardItem:(id)arg1;
+- (void)cardCollectionViewKeyViewLoopNeedsUpdate:(id)arg1;
 - (id)userActionListDataSource;
 - (BOOL)isEditable;
 - (BOOL)isEditing;
@@ -66,6 +69,8 @@
 - (void)itemDidEndEditing:(id)arg1;
 - (void)itemValueDidBecomeEmpty:(id)arg1;
 - (void)itemValueDidBecomeNonEmpty:(id)arg1;
+- (void)buildActionGlyphsForItem:(id)arg1;
+- (void)buildVisibleViewForItem:(id)arg1;
 - (id)removeSuggestedEntriesFromMultiValue:(id)arg1;
 - (id)removeEntriesWithEmptyValuesFromMultiValue:(id)arg1;
 - (id)adjustedMultiValueForKey:(id)arg1;
@@ -80,7 +85,6 @@
 - (id)addEmptyEntryToMultiValue:(id)arg1;
 @property(retain, nonatomic) id <ABCardViewDataSource> dataSource;
 - (void)setImporting:(BOOL)arg1;
-- (void)dealloc;
 - (id)initWithView:(id)arg1 userActionListDataSource:(id)arg2;
 
 // Remaining properties

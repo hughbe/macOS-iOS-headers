@@ -18,6 +18,8 @@
 @property unsigned short vlanID; // @synthesize vlanID;
 @property unsigned char priority; // @synthesize priority;
 @property unsigned char trafficClass; // @synthesize trafficClass;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)debugLogStringWithIndentation:(id)arg1;
 - (BOOL)updateWithXML:(id)arg1;

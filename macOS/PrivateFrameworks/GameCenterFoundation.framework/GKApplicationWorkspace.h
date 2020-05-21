@@ -14,6 +14,7 @@
 - (id)gameDescriptorsWithInstalledBundleVersionsForGameDescriptors:(id)arg1;
 - (id)gameDescriptorsWithInstalledBundleVersionsForBundleIDs:(id)arg1;
 - (BOOL)applicationIsInstalled:(id)arg1;
+- (void)openURL:(id)arg1;
 - (void)openGameCenterSettings;
 - (void)openICloudSettings;
 - (void)openSettings;

@@ -11,12 +11,8 @@
 }
 
 + (id)sharedLoginPrefs;
-- (BOOL)setFileVaultPassword:(id)arg1 oldPassword:(id)arg2;
-- (void)disableFileVaultForCurrentUserWithPassword:(id)arg1;
-- (void)enableFileVaultForCurrentUserWithPassword:(id)arg1;
 - (BOOL)setAutomaticLoginUser:(id)arg1 uid:(long long)arg2 password:(id)arg3;
 - (void)setGuestUserPassword:(id)arg1 accountName:(id)arg2;
-- (void)convertFileVaultForCurrentUserWithPassword:(id)arg1;
 - (void)setAutoLoginUser:(id)arg1 password:(id)arg2;
 - (BOOL)setAutomaticLoginUser:(id)arg1 password:(id)arg2;
 - (id)automaticLoginUser;

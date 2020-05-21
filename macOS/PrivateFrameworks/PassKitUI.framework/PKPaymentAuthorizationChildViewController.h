@@ -8,22 +8,27 @@
 
 #import "PKPaymentAuthorizationStateMachineDelegate.h"
 
-@class NSString, PKPaymentAuthorizationCoreViewController, PKPaymentAuthorizationDataModel, PKPaymentAuthorizationLayout, PKPaymentAuthorizationStateMachine;
+@class NSString, PKPaymentAuthorizationCoreViewController, PKPaymentAuthorizationDataController, PKPaymentAuthorizationDataModel, PKPaymentAuthorizationLayout, PKPaymentAuthorizationStateMachine;
 
 @interface PKPaymentAuthorizationChildViewController : NSViewController <PKPaymentAuthorizationStateMachineDelegate>
 {
 }
 
+- (void)didDismiss;
 - (void)didBecomeInactiveViewController;
 - (void)willBecomeInactiveViewController;
 - (void)didBecomeActiveViewController;
 - (void)willBecomeActiveViewController;
 - (void)dataModelDidUpdate;
 - (void)preflight;
+@property(readonly, nonatomic) BOOL shouldDeactivateOnDidResign;
+@property(readonly, nonatomic) BOOL shouldActivateOnDidBecomeActive;
+@property(readonly, nonatomic) PKPaymentAuthorizationDataController *dataController;
 @property(readonly, nonatomic) PKPaymentAuthorizationDataModel *dataModel;
 @property(readonly, nonatomic) PKPaymentAuthorizationStateMachine *stateMachine;
 @property(readonly, nonatomic) PKPaymentAuthorizationLayout *paymentAuthorizationLayout;
 @property(readonly, nonatomic) PKPaymentAuthorizationCoreViewController *coreViewController;
+- (void)viewDidLayout;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

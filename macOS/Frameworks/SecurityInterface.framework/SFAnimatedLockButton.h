@@ -22,6 +22,7 @@
 
 - (void)startRollOverTracking:(float)arg1 forRTL:(BOOL)arg2;
 - (void)startRollOverTracking:(float)arg1;
+- (void)stopRollOverTracking:(BOOL)arg1;
 - (void)stopRollOverTracking;
 - (void)startRollOverTracking;
 - (void)unlock:(BOOL)arg1;

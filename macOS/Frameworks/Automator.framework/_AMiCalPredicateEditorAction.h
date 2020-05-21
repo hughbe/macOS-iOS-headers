@@ -10,8 +10,10 @@
 {
 }
 
-- (id)runWithInput:(id)arg1 error:(id *)arg2;
-- (id)runWithInput:(id)arg1 itemType:(id)arg2 predicate:(id)arg3;
+- (BOOL)validatePredicate:(id)arg1;
+- (void)runAsynchronouslyWithInput:(id)arg1;
+- (void)_runAsynchronouslyOnMainThreadWithInput:(id)arg1 itemType:(id)arg2 predicate:(id)arg3;
+- (void)_runAsynchronouslyOnMainThreadWithInput:(id)arg1 itemType:(id)arg2 predicate:(id)arg3 eventStore:(id)arg4;
 - (void)setPerItemTypeInfoWithCalendarsString:(id)arg1 eventsString:(id)arg2 todosString:(id)arg3;
 - (void)setSelectedOutputType:(id)arg1;
 - (void)setSelectedInputType:(id)arg1;

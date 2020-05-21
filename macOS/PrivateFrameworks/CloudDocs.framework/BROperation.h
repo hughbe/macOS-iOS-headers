@@ -6,21 +6,27 @@
 
 #import "NSOperation.h"
 
-@class NSObject<BRCancellable>, NSObject<OS_dispatch_queue>;
+#import "BROperationClient.h"
 
-@interface BROperation : NSOperation
+@class NSObject<BRCancellable>, NSObject<OS_dispatch_queue>, NSString;
+
+@interface BROperation : NSOperation <BROperationClient>
 {
     id _remoteOperation;
     NSObject<OS_dispatch_queue> *_queue;
     unsigned char _uuid[16];
     id _executionTransation;
     BOOL _finished;
+    BOOL _waitForRemoteToBeCancelled;
+    BOOL _nonDiscretionary;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL nonDiscretionary; // @synthesize nonDiscretionary=_nonDiscretionary;
+@property(nonatomic) BOOL waitForRemoteToBeCancelled; // @synthesize waitForRemoteToBeCancelled=_waitForRemoteToBeCancelled;
 @property(retain, nonatomic) NSObject<BRCancellable> *remoteOperation; // @synthesize remoteOperation=_remoteOperation;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *callbackQueue; // @synthesize callbackQueue=_queue;
 @property(readonly, getter=isFinished) BOOL finished; // @synthesize finished=_finished;
-- (void).cxx_destruct;
 - (oneway void)invalidate;
 - (oneway void)progressCallbackWithTopic:(id)arg1 userInfo:(id)arg2;
 - (oneway void)setRemoteOperationProxy:(id)arg1 userInfo:(id)arg2;
@@ -36,8 +42,13 @@
 @property(readonly, getter=isExecuting) BOOL executing;
 - (void)_setFinished:(BOOL)arg1;
 - (void)dealloc;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

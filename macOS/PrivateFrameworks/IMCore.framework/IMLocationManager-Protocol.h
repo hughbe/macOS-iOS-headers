@@ -6,12 +6,14 @@
 
 #import "NSObject.h"
 
-@class CLLocation, NSError;
+@class CLLocation, NSError, NSString;
 
 @protocol IMLocationManager <NSObject>
 @property(readonly, nonatomic) NSError *error;
 @property(readonly, nonatomic) CLLocation *location;
 @property(readonly, nonatomic) BOOL locationAuthorizationDenied;
+@property(readonly, nonatomic) BOOL locationAuthorizationDetermined;
+- (void)startUpdatingCurrentLocationWithForegroundAssertionForBundleIdentifier:(NSString *)arg1 updateHandler:(void (^)(CLLocation *, NSError *))arg2;
 - (void)startUpdatingCurrentLocationWithHandler:(void (^)(CLLocation *, NSError *))arg1;
 @end
 

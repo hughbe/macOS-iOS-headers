@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)supportsSecureCoding;
+- (BOOL)shouldCancelInsteadOfWaiting;
 - (id)allURLs;
 - (BOOL)shouldBeRevokedPriorToInvokingAccessor;
 - (BOOL)blocksClaim:(id)arg1;

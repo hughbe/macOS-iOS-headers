@@ -20,6 +20,7 @@
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 - (void)refreshUserAccessTokens:(id)arg1 error:(id)arg2;
 - (void)userAccessTokens:(id)arg1 error:(id)arg2;
 - (void)consentTokens:(id)arg1 error:(id)arg2;

@@ -8,9 +8,12 @@
 
 @class AVMediaFileType, NSArray, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterConfigurationState : NSObject
 {
     NSURL *_URL;
+    id <AVAssetWriterDataWritingDelegate> _dataWritingDelegate;
+    id <AVAssetWriterDelegate> _delegate;
     AVMediaFileType *_mediaFileType;
     CDStruct_1b6d18a9 _movieFragmentInterval;
     CDStruct_1b6d18a9 _overallDurationHint;
@@ -21,12 +24,17 @@
     struct CGAffineTransform _preferredTransform;
     float _preferredVolume;
     float _preferredRate;
+    long long _singlePassFileSize;
+    long long _singlePassMediaDataSize;
     NSArray *_inputs;
     NSArray *_inputGroups;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSArray *inputGroups; // @synthesize inputGroups=_inputGroups;
 @property(copy, nonatomic) NSArray *inputs; // @synthesize inputs=_inputs;
+@property(nonatomic) long long singlePassMediaDataSize; // @synthesize singlePassMediaDataSize=_singlePassMediaDataSize;
+@property(nonatomic) long long singlePassFileSize; // @synthesize singlePassFileSize=_singlePassFileSize;
 @property(nonatomic) float preferredRate; // @synthesize preferredRate=_preferredRate;
 @property(nonatomic) float preferredVolume; // @synthesize preferredVolume=_preferredVolume;
 @property(nonatomic) struct CGAffineTransform preferredTransform; // @synthesize preferredTransform=_preferredTransform;
@@ -37,6 +45,8 @@
 @property(nonatomic) CDStruct_1b6d18a9 overallDurationHint; // @synthesize overallDurationHint=_overallDurationHint;
 @property(nonatomic) CDStruct_1b6d18a9 movieFragmentInterval; // @synthesize movieFragmentInterval=_movieFragmentInterval;
 @property(copy, nonatomic) AVMediaFileType *mediaFileType; // @synthesize mediaFileType=_mediaFileType;
+@property __weak id <AVAssetWriterDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <AVAssetWriterDataWritingDelegate> dataWritingDelegate; // @synthesize dataWritingDelegate=_dataWritingDelegate;
 @property(copy, nonatomic) NSURL *URL; // @synthesize URL=_URL;
 - (void)dealloc;
 

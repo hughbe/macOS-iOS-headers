@@ -6,18 +6,38 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSUserDefaults;
 
 @interface CKBehaviorOptions : NSObject
 {
+    BOOL _didReadAutomatedDeviceGroup;
+    int _mcToken;
+    int _ckToken;
     NSMutableDictionary *_cachedPrefs;
     NSObject<OS_dispatch_queue> *_cachedPrefsQueue;
+    NSString *_automatedDeviceGroup;
+    NSUserDefaults *_automatedDeviceGroupDefaults;
 }
 
 + (id)sharedOptions;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSUserDefaults *automatedDeviceGroupDefaults; // @synthesize automatedDeviceGroupDefaults=_automatedDeviceGroupDefaults;
+@property(retain, nonatomic) NSString *automatedDeviceGroup; // @synthesize automatedDeviceGroup=_automatedDeviceGroup;
+@property BOOL didReadAutomatedDeviceGroup; // @synthesize didReadAutomatedDeviceGroup=_didReadAutomatedDeviceGroup;
+@property(nonatomic) int ckToken; // @synthesize ckToken=_ckToken;
+@property(nonatomic) int mcToken; // @synthesize mcToken=_mcToken;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *cachedPrefsQueue; // @synthesize cachedPrefsQueue=_cachedPrefsQueue;
 @property(retain, nonatomic) NSMutableDictionary *cachedPrefs; // @synthesize cachedPrefs=_cachedPrefs;
-- (void).cxx_destruct;
+- (void)setDeviceCountOverride:(id)arg1;
+- (id)deviceCountOverride;
+- (void)setForceUploadRequestActivitiesToRunImmediately:(BOOL)arg1;
+- (BOOL)forceUploadRequestActivitiesToRunImmediately;
+- (void)setIgnoreUploadRequestPushNotifications:(BOOL)arg1;
+- (BOOL)ignoreUploadRequestPushNotifications;
+- (id)recordNamesForFakingDecryptionFailure;
+- (double)minTTRPromptInterval;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (double)shareAcceptorRetrievingDialogMinPeriod;
 - (double)shareAcceptorRetrievingDialogDelay;
 - (double)maxRecentProxyAge;
 - (unsigned long long)recentProxiesToSave;
@@ -31,11 +51,11 @@
 - (id)vettedEmailsTestFormat;
 - (double)publicIdentitiesExpirationTimeout;
 - (double)maximumWaitAfterFetchRequest;
-- (double)maximumFetchWaitTime;
+- (double)maximumQueuedFetchWaitTime;
 - (double)maximumThrottleSeconds;
 - (int)defaultRetryAfter;
-- (BOOL)shouldLogProtobufBinary;
 - (BOOL)shouldDecryptRecordsBeforeSave;
+- (BOOL)allowExpiredDNSBehavior;
 - (unsigned long long)maxBatchSize;
 - (double)flowControlRegenerationOverride;
 - (long long)flowControlBudgetOverride;
@@ -48,6 +68,19 @@
 - (void)setProductName:(id)arg1;
 - (id)productName;
 - (BOOL)_buildIsOverridden;
+- (long long)maxRecordPCSMasterKeyRolls;
+- (void)setContainerIDToForceFatalManateeZoneDecryptionFailure:(id)arg1;
+- (id)containerIDToForceFatalManateeZoneDecryptionFailure;
+- (void)setUseEnhancedPCSEncryptionContext:(BOOL)arg1;
+- (BOOL)useEnhancedPCSEncryptionContext;
+- (void)setRollZoneSharingKeys:(BOOL)arg1;
+- (BOOL)rollZoneSharingKeys;
+- (void)setRollZonePCSIdentities:(BOOL)arg1;
+- (BOOL)rollZonePCSIdentities;
+- (void)setRollRecordMasterKeysOnUnshare:(BOOL)arg1;
+- (BOOL)rollRecordMasterKeysOnUnshare;
+- (void)setRollRecordPCSMasterKeys:(BOOL)arg1;
+- (BOOL)rollRecordPCSMasterKeys;
 - (BOOL)usePreauth;
 - (void)setUsePreauth:(BOOL)arg1;
 - (BOOL)useStingray;
@@ -62,9 +95,6 @@
 - (double)PCSCacheMinTime;
 - (unsigned long long)PCSCacheSize;
 - (BOOL)sandboxCloudD;
-- (BOOL)validateMescalResponses;
-- (void)setEnableMescal:(BOOL)arg1;
-- (BOOL)enableMescal;
 - (BOOL)isAppleInternalInstall;
 - (double)packageGCPeriod;
 - (double)packageGCGracePeriod;
@@ -80,6 +110,8 @@
 - (id)primaryAccountPasswordOverride;
 - (void)setPrimaryAccountEmailOverride:(id)arg1;
 - (id)primaryAccountEmailOverride;
+- (void)setCustomMetricsServiceBaseURL:(id)arg1;
+- (id)customMetricsServiceBaseURL;
 - (void)setCustomCodeServiceBaseURL:(id)arg1;
 - (id)customCodeServiceBaseURL;
 - (void)setCustomDeviceServiceBaseURL:(id)arg1;
@@ -95,23 +127,20 @@
 - (id)_urlForKey:(id)arg1 defaultURLString:(id)arg2;
 - (int)clientThrottleQueueWidth;
 - (void)setSendDebugHeader:(BOOL)arg1;
+- (BOOL)pipelineFetchAllChangesRequests;
+- (BOOL)logTraffic;
+- (void)setLogTraffic:(BOOL)arg1;
 - (BOOL)logTrafficToTextFile;
 - (void)setLogTrafficToTextFile:(BOOL)arg1;
 - (BOOL)sendDebugHeader;
 - (void)setModTimeInAssetCacheEviction:(BOOL)arg1;
 - (BOOL)useModTimeInAssetCacheEviction;
-- (void)setUseBackgroundSessions:(BOOL)arg1;
-- (BOOL)useBackgroundSessions;
 - (void)setCompressRequests:(BOOL)arg1;
 - (BOOL)compressRequests;
 - (void)setShouldProfileSQL:(BOOL)arg1;
 - (BOOL)shouldProfileSQL;
 - (void)setDisableCaching:(BOOL)arg1;
 - (BOOL)disableCaching;
-- (void)setCKTimeLoggingDetailed:(BOOL)arg1;
-- (BOOL)CKTimeLoggingDetailed;
-- (void)setCKTimeLogging:(BOOL)arg1;
-- (BOOL)CKTimeLogging;
 - (void)setCFNetworkLogging:(BOOL)arg1;
 - (BOOL)CFNetworkLogging;
 - (void)setCKCtlPrompt:(char *)arg1;
@@ -121,12 +150,8 @@
 - (int)trafficLogMaximumDataSize;
 - (void)setOperationTimeout:(double)arg1;
 - (double)operationTimeout;
-- (void)setDefaultResourceTimeout:(double)arg1;
-- (double)defaultResourceTimeout;
-- (void)setDefaultRequestTimeout:(double)arg1;
-- (double)defaultRequestTimeout;
-- (void)setServerIDExpiryTime:(int)arg1;
-- (int)serverIDExpiryTime;
+- (BOOL)highPriorityURLDelegates;
+- (unsigned long long)recordCacheSizeLimit;
 - (void)setCachedRecordExpiryTime:(int)arg1;
 - (int)cachedRecordExpiryTime;
 - (void)_setPref:(id)arg1 forKey:(id)arg2;
@@ -138,7 +163,8 @@
 - (BOOL)_getBoolOptionForKey:(id)arg1 defaultValue:(BOOL)arg2;
 - (id)_behaviorContainerOptionForKey:(id)arg1;
 - (id)_behaviorOptionForKey:(id)arg1;
-- (id)init;
+- (void)dealloc;
+- (id)_init;
 - (void)_startListeningForNotifications;
 
 @end

@@ -15,7 +15,6 @@
 {
     NSPopover *_popover;
     NSString *_searchTerm;
-    NSString *_searchLanguage;
     NSString *_searchTermContext;
     NSString *_searchDomain;
     NSNumber *_selectionType;
@@ -29,18 +28,18 @@
     struct CGSize _nextResize;
 }
 
-@property struct CGSize nextResize; // @synthesize nextResize=_nextResize;
-@property BOOL isAppearing; // @synthesize isAppearing=_isAppearing;
-@property BOOL isLiveResizing; // @synthesize isLiveResizing=_isLiveResizing;
-@property(retain) NSBox *calloutTint; // @synthesize calloutTint=_calloutTint;
-@property(copy) NSNumber *triggerType; // @synthesize triggerType=_triggerType;
-@property(copy) NSNumber *selectionType; // @synthesize selectionType=_selectionType;
-@property(copy) NSString *searchDomain; // @synthesize searchDomain=_searchDomain;
-@property(copy) NSString *searchLanguage; // @synthesize searchLanguage=_searchLanguage;
-@property(copy) NSString *searchTermContext; // @synthesize searchTermContext=_searchTermContext;
-@property(copy) NSString *searchTerm; // @synthesize searchTerm=_searchTerm;
-@property(retain) NSRemoteView *remoteView; // @synthesize remoteView=_remoteView;
-@property __weak NSPopover *popover; // @synthesize popover=_popover;
+- (void).cxx_destruct;
+@property(nonatomic) struct CGSize nextResize; // @synthesize nextResize=_nextResize;
+@property(nonatomic) BOOL isAppearing; // @synthesize isAppearing=_isAppearing;
+@property(nonatomic) BOOL isLiveResizing; // @synthesize isLiveResizing=_isLiveResizing;
+@property(retain, nonatomic) NSBox *calloutTint; // @synthesize calloutTint=_calloutTint;
+@property(copy, nonatomic) NSNumber *triggerType; // @synthesize triggerType=_triggerType;
+@property(copy, nonatomic) NSNumber *selectionType; // @synthesize selectionType=_selectionType;
+@property(copy, nonatomic) NSString *searchDomain; // @synthesize searchDomain=_searchDomain;
+@property(copy, nonatomic) NSString *searchTermContext; // @synthesize searchTermContext=_searchTermContext;
+@property(copy, nonatomic) NSString *searchTerm; // @synthesize searchTerm=_searchTerm;
+@property(retain, nonatomic) NSRemoteView *remoteView; // @synthesize remoteView=_remoteView;
+@property(nonatomic) __weak NSPopover *popover; // @synthesize popover=_popover;
 - (BOOL)view:(id)arg1 shouldResize:(struct CGSize)arg2;
 - (void)_updateContentSizeFromNextResize;
 - (void)windowDidEndLiveResize:(id)arg1;
@@ -54,7 +53,6 @@
 - (void)loadView;
 - (void)burnViewBridge;
 - (void)commonLULookupRemoteViewControllerTeardown;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

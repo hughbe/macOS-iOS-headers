@@ -9,8 +9,8 @@
 __attribute__((visibility("hidden")))
 @interface FI_TTagOperation : FI_IAsyncNodeOperation
 {
-    struct TTagsTask *_task;
-    struct TNSRef<FI_TTagOperationDelegate *, void> _opDelegate;
+    shared_ptr_68874bd0 _task;
+    struct TNSRef<FI_TTagOperationDelegate, void> _opDelegate;
 }
 
 - (id).cxx_construct;
@@ -19,7 +19,8 @@ __attribute__((visibility("hidden")))
 - (int)cancelOperation;
 - (int)startSubOperation:(unsigned int)arg1;
 - (void)configureOperationRecord:(struct TOperationRecord *)arg1 forIndex:(unsigned long long)arg2;
-- (id)initWithNodes:(const struct TFENodeVector *)arg1 forTask:(struct TTagsTask *)arg2;
+- (struct TString)authorizationPrompt;
+- (id)initWithNodes:(const struct TFENodeVector *)arg1 forTask:(const shared_ptr_68874bd0 *)arg2;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import <AppKit/NSActionCell.h>
 
-@class NSArray, NSAttributedString, NSColor, NSString;
+@class CALayer, NSArray, NSAttributedString, NSColor, NSString;
 
 @interface NSTextFieldCell : NSActionCell
 {
@@ -32,8 +32,10 @@
         unsigned int allowsDefaultTightening:1;
         unsigned int enableCP:1;
         unsigned int automaticCompletionDisabled:1;
-        unsigned int reservedTextFieldCell:7;
+        unsigned int determiningMenuItemTextColor:1;
+        unsigned int reservedTextFieldCell:6;
     } _tfFlags;
+    CALayer *_bezelLayer;
 }
 
 + (void)initialize;
@@ -42,7 +44,6 @@
 - (void)_setCachedLineRef:(id)arg1;
 - (id)_cachedLineRef;
 - (BOOL)cachesLineRef;
-- (id)_stringDrawingContextWithBaselineOffsetsInRect:(struct CGRect)arg1;
 - (id)_stringDrawingContext;
 - (void)drawWithExpansionFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (struct CGRect)expansionFrameWithFrame:(struct CGRect)arg1 inView:(id)arg2;
@@ -59,15 +60,16 @@
 - (BOOL)_canCacheAttributedStringValue;
 - (void)_windowChangedKeyStateInView:(id)arg1;
 - (BOOL)_needRedrawOnWindowChangedKeyState;
+- (BOOL)_allowsStyledTextForColor:(id)arg1;
 - (BOOL)_shouldUseStyledTextInView:(id)arg1;
 - (BOOL)_shouldStyleUneditableTextInView:(id)arg1;
-- (BOOL)_funkyOptOutLogicThatShouldGoAwayForView:(id)arg1 semanticContext:(int)arg2;
-- (BOOL)_permitDarkenedTextForDisabled;
 - (BOOL)_textDimsWhenDisabled;
-- (void)_updateCoreUIOptions:(id)arg1 withContentAppearanceInView:(id)arg2;
-- (int)_effectiveBackgroundStyleInView:(id)arg1;
+- (long long)_contentBacking;
+- (id)_appearanceContentStyleInView:(id)arg1;
 - (long long)interiorBackgroundStyle;
-- (unsigned long long)_interiorContentAppearanceInView:(id)arg1;
+- (long long)_interiorContentValueInView:(id)arg1;
+- (id)_textColorForMenuItemView;
+- (long long)_interiorContentStateInView:(id)arg1;
 - (id)setUpFieldEditorAttributes:(id)arg1;
 - (void)_getTextColor:(id *)arg1 backgroundColor:(id *)arg2;
 @property(copy) NSArray *allowedInputSourceLocales;
@@ -78,49 +80,27 @@
 - (BOOL)_isButtonTitleCell;
 - (void)_setShouldNotClipToBounds:(BOOL)arg1;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (void)layoutLayerWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)updateLayerWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (id)_bezelLayer;
+- (void)_updateBezelInLayer:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
 - (void)setBackgroundStyle:(long long)arg1;
-- (void)setObjectValue:(id)arg1;
-- (void)_invalidateTextLayerIfNeeded;
-- (id)actionForLayer:(id)arg1 forKey:(id)arg2;
-- (void)_updateTextLayerWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (BOOL)layer:(id)arg1 shouldInheritContentsScale:(double)arg2 fromWindow:(id)arg3;
+- (void)_setContents:(id)arg1;
+- (void)_invalidateCachedLineRef;
 - (BOOL)_isEditingInView:(id)arg1;
-- (BOOL)allowsLinearMaskOverlayForLayer:(id)arg1;
-- (BOOL)textLayerNeedsLinearMaskOverlayForFontSmoothing:(id)arg1;
-- (void)drawLayer:(id)arg1 inGraphicsContext:(id)arg2;
-- (struct CGRect)titleRectForLayerBounds:(struct CGRect)arg1;
-- (id)_backgroundColorFillingTextLayer;
-- (BOOL)_canCacheTextBoundingRect;
-- (unsigned long long)_textAlignmentForCanCacheTextBoundingRect;
-- (void)_setTextBoundingRect:(struct CGRect)arg1;
-- (struct CGRect)_textBoundingRect;
-- (id)_opaqueBackgroundColorForTextLayerInControlView:(id)arg1;
-- (struct CGRect)_textLayerFrameForCellFrame:(struct CGRect)arg1;
-- (void)_setDrawHandlerDelegate:(id)arg1;
-- (id)_drawHandlerDelegate;
-- (void)_setTextLayer:(id)arg1;
-- (id)_textLayer;
-- (BOOL)_wantsTextLayerForView:(id)arg1;
-- (BOOL)_layerDrawingSupportsLinearMaskOverlayForLayerBackedView:(id)arg1;
-- (BOOL)canSmoothFontsInFrame:(struct CGRect)arg1 forLayerBackedView:(id)arg2;
+- (void)_drawForegroundOfTextLayer;
+- (struct CGRect)_textLayerDrawingRectForCellFrame:(struct CGRect)arg1;
 - (BOOL)wantsUpdateLayerInView:(id)arg1;
 - (BOOL)_maybeCheckTitleClippingForFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (void)_drawThemeBezelWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)_drawBezeledBackgroundWithFrame:(struct CGRect)arg1 inView:(id)arg2 includeFocus:(BOOL)arg3;
-- (BOOL)_reallyDrawsBackground;
-- (BOOL)_hasOpaqueContentBoundsForFrame:(struct CGRect)arg1 inView:(id)arg2 includeFocus:(BOOL)arg3;
-- (BOOL)_hasOpaqueContentBoundsForFrame:(struct CGRect)arg1 coreUIOptions:(struct __CFDictionary *)arg2;
+- (BOOL)_fillsWithBackgroundColor;
 - (void)_drawFocusRingWithFrame:(struct CGRect)arg1;
 - (struct CGRect)focusRingMaskBoundsForFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawFocusRingMaskWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (void)_drawThemeBezelWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)_drawKeyboardFocusRingWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (int)_vibrancyBlendModeForControlView:(id)arg1;
-- (id)_vibrancyFilterForControlView:(id)arg1;
-- (BOOL)_allowsVibrancyForControlView:(id)arg1;
-- (struct __CFDictionary *)_coreUIDrawOptionsWithFrame:(struct CGRect)arg1 inView:(id)arg2 includeFocus:(BOOL)arg3;
+- (struct __CFDictionary *)_coreUIDrawOptionsWithFrame:(struct CGRect)arg1 inView:(id)arg2 includeFocus:(BOOL)arg3 maskOnly:(BOOL)arg4;
 - (struct __CFString *)_coreUIVariantKeyValue;
 - (struct __CFString *)_coreUIWidgetName;
 - (struct __CFString *)_coreUISizeKeyValueForCellFrame:(struct CGRect)arg1;
@@ -129,10 +109,17 @@
 - (id)_selectOrEdit:(const struct CGRect *)arg1 inView:(id)arg2 target:(id)arg3 editor:(id)arg4 event:(id)arg5 start:(long long)arg6 end:(long long)arg7;
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)drawingRectForBounds:(struct CGRect)arg1;
+- (BOOL)_shouldAdjustDrawingRectUsingSquareBezelHacks;
+- (struct CGRect)_adjustedFrameUsingSquareBezelHacks:(struct CGRect)arg1;
 - (struct CGSize)cellSizeForBounds:(struct CGRect)arg1;
 - (double)_coreUIHeightForRoundedBezel;
 @property(copy) NSAttributedString *placeholderAttributedString;
 @property(copy) NSString *placeholderString;
+- (unsigned long long)lineBreakStrategy;
+- (void)setAutomaticTextCompletionEnabled:(BOOL)arg1;
+- (BOOL)isAutomaticTextCompletionEnabled;
+- (void)setAllowsCharacterPickerTouchBarItem:(BOOL)arg1;
+- (BOOL)allowsCharacterPickerTouchBarItem;
 - (unsigned long long)textAlignmentPolicy;
 - (void)setAllowsDefaultTighteningForTruncation:(BOOL)arg1;
 - (BOOL)allowsDefaultTighteningForTruncation;
@@ -142,7 +129,6 @@
 @property(copy) NSColor *backgroundColor;
 @property BOOL drawsBackground;
 - (BOOL)acceptsFirstResponder;
-- (BOOL)_acceptsFirstResponderWhenSelectableWithFullKeyboardAccess;
 - (void)setBezeled:(BOOL)arg1;
 - (BOOL)isOpaque;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -150,6 +136,8 @@
 - (id)init;
 - (void)_setToolbarMode:(BOOL)arg1;
 - (BOOL)_isToolbarMode;
+- (void)accessibilityDrawFocusRing;
+- (id)accessibilityAuditContrast;
 - (BOOL)accessibilityIsPlaceholderValueAttributeSettable;
 - (id)accessibilityPlaceholderValueAttribute;
 - (id)accessibilitySizeOfChild:(id)arg1;

@@ -6,12 +6,16 @@
 
 #import "NSData.h"
 
-@interface IOBluetoothSDPUUID : NSData
+#import "NSCoding.h"
+#import "NSSecureCoding.h"
+
+@interface IOBluetoothSDPUUID : NSData <NSCoding, NSSecureCoding>
 {
     NSData *mUUIDData;
     void *_mReserved;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)withSDPUUIDRef:(struct OpaqueIOBluetoothObjectRef *)arg1;
 + (id)uuid32:(unsigned int)arg1;
 + (id)uuid16:(unsigned short)arg1;

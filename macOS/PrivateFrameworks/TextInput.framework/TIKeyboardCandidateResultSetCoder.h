@@ -19,6 +19,7 @@
 + (id)encodeWithCandidateResultSet:(id)arg1;
 + (Class)classFromCandidateType:(int)arg1;
 + (id)candidateTypeToClassNameMap;
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long offset; // @synthesize offset=_offset;
 @property(retain, nonatomic) NSData *data; // @synthesize data=_data;
 @property(retain, nonatomic) NSMutableData *mutableData; // @synthesize mutableData=_mutableData;
@@ -34,6 +35,8 @@
 - (void)encodeUInt64:(unsigned long long)arg1;
 - (unsigned int)decodeUInt32;
 - (void)encodeUInt32:(unsigned int)arg1;
+- (double)decodeDouble;
+- (void)encodeDouble:(double)arg1;
 - (unsigned short)decodeShort;
 - (void)encodeShort:(unsigned short)arg1;
 - (unsigned char)decodeByte;
@@ -43,7 +46,6 @@
 - (id)decodeCandidate;
 @property(readonly, nonatomic) const char *currentPosition;
 @property(readonly, nonatomic) const char *bytes;
-- (void)dealloc;
 - (id)initWithData:(id)arg1 mutableData:(id)arg2;
 - (id)initForDecodingWithData:(id)arg1;
 - (id)initForEncoding;

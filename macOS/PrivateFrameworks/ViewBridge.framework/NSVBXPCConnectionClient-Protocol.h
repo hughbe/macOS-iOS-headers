@@ -6,10 +6,7 @@
 
 #import "NSXPCConnectionDelegate.h"
 
-@class NSString;
-
 @protocol NSVBXPCConnectionClient <NSXPCConnectionDelegate>
-@property(readonly) NSString *_debuggingHint;
 @property(readonly) BOOL isValid;
 @end
 

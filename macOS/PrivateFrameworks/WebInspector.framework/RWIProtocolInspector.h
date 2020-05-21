@@ -17,8 +17,10 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (void)inspectorControllerDestroyed;
 @property(readonly, nonatomic) BOOL connected;
 @property(readonly, nonatomic) RWIProtocolConfiguration *configuration;
+- (void)dealloc;
 - (id)initWithController:(struct AugmentableInspectorController *)arg1;
 
 @end

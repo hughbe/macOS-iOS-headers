@@ -6,26 +6,40 @@
 
 #import <Intents/INIntent.h>
 
-#import "INSearchCallHistoryIntent.h"
+#import "INSearchCallHistoryIntentExport.h"
 
-@class INDateComponentsRange, INPerson, NSString;
+@class INDateComponentsRange, INPerson, NSNumber, NSString;
 
-@interface INSearchCallHistoryIntent : INIntent <INSearchCallHistoryIntent>
+@interface INSearchCallHistoryIntent : INIntent <INSearchCallHistoryIntentExport>
 {
 }
 
-- (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1;
+- (void)setParametersByName:(id)arg1;
+- (id)parametersByName;
+- (void)setVerb:(id)arg1;
+- (id)verb;
+- (void)setDomain:(id)arg1;
+- (id)domain;
+- (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1 containingAppBundleId:(id)arg2;
+- (id)_dictionaryRepresentation;
+- (void)setUnseen:(id)arg1;
+@property(readonly, copy) NSNumber *unseen;
+@property long long preferredCallProvider;
+- (void)setCallTypes:(unsigned long long)arg1;
+@property(readonly) unsigned long long callTypes;
 - (void)setCallCapabilities:(unsigned long long)arg1;
 @property(readonly) unsigned long long callCapabilities;
 - (void)setRecipient:(id)arg1;
 @property(readonly, copy) INPerson *recipient;
 - (void)setDateCreated:(id)arg1;
 @property(readonly, copy) INDateComponentsRange *dateCreated;
-- (void)setCallType:(long long)arg1;
-@property(readonly) long long callType;
-- (id)initWithCallType:(long long)arg1 dateCreated:(id)arg2 recipient:(id)arg3 callCapabilities:(unsigned long long)arg4;
+- (id)initWithDateCreated:(id)arg1 recipient:(id)arg2 callCapabilities:(unsigned long long)arg3 callTypes:(unsigned long long)arg4 unseen:(id)arg5;
+- (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;
+@property(readonly) long long callType;
+- (id)initWithCallType:(long long)arg1 dateCreated:(id)arg2 recipient:(id)arg3 callCapabilities:(unsigned long long)arg4;
+- (id)initWithDateCreated:(id)arg1 recipient:(id)arg2 callCapabilities:(unsigned long long)arg3 callTypes:(unsigned long long)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

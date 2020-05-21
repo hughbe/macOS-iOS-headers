@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     long long _displayStyle;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSSet *nextStopIDs;
 - (id)operatingHoursForDate:(id)arg1 inTimeZone:(id)arg2;
 - (BOOL)isDepartureDateInactive:(id)arg1 withReferenceDate:(id)arg2;
@@ -34,6 +35,7 @@ __attribute__((visibility("hidden")))
 - (id)firstDepartureAfterDate:(id)arg1;
 - (void)_enumerateDeparturesValidForDate:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (BOOL)isValidForDate:(id)arg1 inTimeZone:(id)arg2;
+- (BOOL)areOperatingHours:(id)arg1 activeForDate:(id)arg2;
 @property(readonly, nonatomic) long long displayStyle;
 @property(readonly, nonatomic) BOOL isLowFrequency;
 @property(readonly, nonatomic) NSArray *operatingHours;
@@ -41,8 +43,8 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSString *direction;
 @property(readonly, nonatomic) id <GEOTransitLine> line;
 @property(readonly, nonatomic) NSArray *frequencies;
+- (unsigned long long)stopId;
 @property(readonly, nonatomic) NSArray *departures;
-- (void)dealloc;
 - (id)initWithSequence:(id)arg1 line:(id)arg2 pbLine:(id)arg3;
 
 // Remaining properties

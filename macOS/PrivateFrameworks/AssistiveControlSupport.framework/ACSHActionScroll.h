@@ -16,11 +16,11 @@
 @property(nonatomic) unsigned long long scrollDirection; // @synthesize scrollDirection=_scrollDirection;
 @property(nonatomic) long long scrollSpeed; // @synthesize scrollSpeed=_scrollSpeed;
 - (id)paramDescription;
-- (void)perform;
+- (void)performWithEventSourceData:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
+- (void)_configureWithPlistDictionary:(id)arg1;
 - (id)init;
 
 @end

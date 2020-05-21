@@ -8,6 +8,7 @@
 
 @class OADDrawable<OADDrawableContainer>, OADDrawableProperties;
 
+__attribute__((visibility("hidden")))
 @interface OADDrawable : NSObject
 {
     BOOL mHidden;
@@ -19,13 +20,13 @@
 }
 
 + (unsigned int)generateOADDrawableId:(id)arg1;
+- (void).cxx_destruct;
+@property __weak OADDrawable<OADDrawableContainer> *parent; // @synthesize parent=mParent;
 - (id)description;
 - (id)createOrientedBoundsWithBounds:(struct CGRect)arg1;
 - (void)removeUnnecessaryOverrides;
 - (void)changeParentTextListStylePreservingEffectiveValues:(id)arg1;
 - (void)setParentTextListStyle:(id)arg1;
-- (id)parent;
-- (void)setParent:(id)arg1;
 - (id)ensureClientDataOfClass:(Class)arg1;
 - (id)clientData;
 - (void)setClientData:(id)arg1;
@@ -37,7 +38,6 @@
 - (unsigned int)id;
 - (void)setHidden:(BOOL)arg1;
 - (BOOL)hidden;
-- (void)dealloc;
 - (id)initWithPropertiesClass:(Class)arg1;
 - (id)createWordClientDataWithTextType:(int)arg1;
 

@@ -6,17 +6,20 @@
 
 #import <AddressBook/ABCollectionViewItem.h>
 
-__attribute__((visibility("hidden")))
 @interface ABInstantMessageCollectionViewItem : ABCollectionViewItem
 {
 }
 
-- (BOOL)validateMenuItem:(id)arg1;
 - (BOOL)isServiceActive:(id)arg1;
-- (id)_menuItemForService:(id)arg1;
-- (id)_serviceMenu;
-- (void)_serviceChanged:(id)arg1;
-- (id)_services;
+- (id)menuItemForService:(id)arg1;
+- (id)services;
+- (id)serviceMenu;
+- (BOOL)validateMenuItem:(id)arg1;
+- (void)serviceChanged:(id)arg1;
+- (void)populateEditViewMessagingServiceChooserPopup:(id)arg1;
+- (id)instantMessageEditView;
+- (id)instantMessageView;
+- (void)dealloc;
 - (void)updateView;
 
 @end

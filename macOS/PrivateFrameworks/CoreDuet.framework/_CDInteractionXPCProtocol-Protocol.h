@@ -4,9 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSArray, NSDate, NSPredicate, NSString, _CDInteractionAdvisorSettings;
+@class NSArray, NSDate, NSNumber, NSPredicate, NSString, _CDInteractionAdvisorSettings, _PSMapsPredictionContext, _PSPredictionContext;
 
 @protocol _CDInteractionXPCProtocol
+- (void)rankedAutocompleteSuggestionsFromContext:(_PSPredictionContext *)arg1 candidates:(NSArray *)arg2 reply:(void (^)(NSArray *))arg3;
+- (void)rankedNameSuggestionsFromContext:(_PSPredictionContext *)arg1 name:(NSString *)arg2 reply:(void (^)(NSArray *))arg3;
+- (void)rankedContactSuggestionsFromContext:(_PSPredictionContext *)arg1 contactsOnly:(BOOL)arg2 maxSuggestions:(NSNumber *)arg3 reply:(void (^)(NSArray *))arg4;
+- (void)messagesZKWSuggestionsFromContext:(_PSPredictionContext *)arg1 maxSuggestions:(NSNumber *)arg2 reply:(void (^)(NSArray *))arg3;
+- (void)mapsSuggestionsFromContext:(_PSMapsPredictionContext *)arg1 maxSuggestions:(NSNumber *)arg2 reply:(void (^)(NSArray *))arg3;
+- (void)shareExtensionSuggestionsFromContext:(_PSPredictionContext *)arg1 reply:(void (^)(NSArray *))arg2;
+- (void)suggestInteractionsFromContext:(_PSPredictionContext *)arg1 maxSuggestions:(NSNumber *)arg2 reply:(void (^)(NSArray *, _PSPredictionContext *))arg3;
 - (void)tuneSocialAdvisorUsingSettings:(_CDInteractionAdvisorSettings *)arg1 heartBeatHandler:(id <_CDInteractionXPCHeartBeatProtocol>)arg2 reply:(void (^)(void))arg3;
 - (void)adviseInteractionsForKeywordsInString:(NSString *)arg1 usingSettings:(_CDInteractionAdvisorSettings *)arg2 reply:(void (^)(NSArray *))arg3;
 - (void)adviseSocialInteractionsForDate:(NSDate *)arg1 andSeedContacts:(NSArray *)arg2 usingSettings:(_CDInteractionAdvisorSettings *)arg3 reply:(void (^)(NSArray *))arg4;

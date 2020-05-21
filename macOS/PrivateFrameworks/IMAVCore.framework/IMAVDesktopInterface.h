@@ -8,15 +8,7 @@
 
 @interface IMAVDesktopInterface : IMAVConferenceInterface
 {
-    unsigned int _idleDisplaySleepAssertion;
 }
-
-+ (void)initialize;
-- (void)chatStateUpdated;
-- (void)_disableDisplayIdleSleep;
-- (void)_enableDisplayIdleSleep;
-- (void)_resumeMediaPlayback;
-- (void)_pauseMediaPlayback;
 
 @end
 

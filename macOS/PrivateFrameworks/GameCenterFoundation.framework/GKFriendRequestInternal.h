@@ -15,6 +15,7 @@
 }
 
 + (id)secureCodedPropertyKeys;
++ (BOOL)supportsSecureCoding;
 @property(retain, nonatomic) NSString *message; // @synthesize message=_message;
 @property(retain, nonatomic) NSDate *date; // @synthesize date=_date;
 - (int)defaultFamiliarity;

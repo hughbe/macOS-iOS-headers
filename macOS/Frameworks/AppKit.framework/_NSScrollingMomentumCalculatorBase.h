@@ -37,6 +37,10 @@ __attribute__((visibility("hidden")))
 - (struct CGPoint)initialOrigin;
 - (void)calculateToReachDestination;
 - (void)calculateDestination;
+- (void)setVerticalScrollDecelerationFactor:(double)arg1;
+- (double)verticalScrollDecelerationFactor;
+- (void)setHorizontalScrollDecelerationFactor:(double)arg1;
+- (double)horizontalScrollDecelerationFactor;
 - (void)dealloc;
 
 @end

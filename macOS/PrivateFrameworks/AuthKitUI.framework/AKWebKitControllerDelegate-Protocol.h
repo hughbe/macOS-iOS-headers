@@ -12,8 +12,7 @@
 
 @optional
 - (void)akWebKitControllerSignRequest:(NSMutableURLRequest *)arg1;
-- (BOOL)akWebKitControllerIsFinalResponse:(NSHTTPURLResponse *)arg1;
-- (void)akWebKitControllerSendFinalResponse:(NSHTTPURLResponse *)arg1;
+- (void)akWebKitControllerDidReceiveResponse:(NSHTTPURLResponse *)arg1;
 - (void)akWebKitControllerDidFinishLoading:(AKWebKitController *)arg1;
 - (void)akWebKitControllerDidFailLoading:(AKWebKitController *)arg1 error:(NSError *)arg2;
 - (void)akWebKitControllerDidSucceed:(AKWebKitController *)arg1;

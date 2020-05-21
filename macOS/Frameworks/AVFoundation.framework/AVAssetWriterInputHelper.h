@@ -8,6 +8,7 @@
 
 @class AVAssetWriterInputConfigurationState, AVAssetWriterInputPassDescription, AVOutputSettings, AVWeakReference, NSArray, NSDictionary, NSString, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterInputHelper : NSObject
 {
     AVAssetWriterInputConfigurationState *_configurationState;
@@ -31,9 +32,10 @@
 - (long long)appendCaption:(id)arg1 error:(id *)arg2;
 - (BOOL)appendPixelBuffer:(struct __CVBuffer *)arg1 withPresentationTime:(CDStruct_1b6d18a9)arg2;
 - (long long)appendSampleBuffer:(struct opaqueCMSampleBuffer *)arg1 error:(id *)arg2;
+- (void)stopRequestingMediaData;
 - (void)requestMediaDataWhenReadyOnQueue:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 @property(copy, nonatomic) NSURL *sampleReferenceBaseURL;
-@property(nonatomic) BOOL writesMediaDataToBeginningOfFile;
+@property(copy, nonatomic) NSString *mediaDataLocation;
 @property(nonatomic) long long preferredMediaChunkSize;
 @property(nonatomic) long long preferredMediaChunkAlignment;
 @property(nonatomic) CDStruct_1b6d18a9 preferredMediaChunkDuration;
@@ -51,6 +53,7 @@
 @property(copy, nonatomic) NSString *extendedLanguageTag;
 @property(copy, nonatomic) NSString *languageCode;
 @property(nonatomic) struct CGSize naturalSize;
+@property(nonatomic) BOOL maximizePowerEfficiency;
 @property(nonatomic) BOOL expectsMediaDataInRealTime;
 @property(readonly, nonatomic, getter=isReadyForMoreMediaData) BOOL readyForMoreMediaData;
 @property(nonatomic) int mediaTimeScale;

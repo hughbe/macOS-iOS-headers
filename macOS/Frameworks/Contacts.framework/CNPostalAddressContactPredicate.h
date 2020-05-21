@@ -22,19 +22,22 @@ __attribute__((visibility("hidden")))
 + (id)predicatesForCountry:(id)arg1;
 + (id)predicatesForPostalCode:(id)arg1;
 + (id)predicatesForState:(id)arg1;
++ (id)predicatesForSubAdministrativeArea:(id)arg1;
 + (id)predicatesForCity:(id)arg1;
++ (id)predicatesForSubLocality:(id)arg1;
 + (id)predicatesForStreet:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) CNPostalAddress *postalAddress; // @synthesize postalAddress=_postalAddress;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)initWithPostalAddress:(id)arg1;
 - (id)cn_coreDataPredicate;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

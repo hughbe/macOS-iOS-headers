@@ -16,9 +16,9 @@ __attribute__((visibility("hidden")))
 }
 
 @property(copy, nonatomic) CDUnknownBlockType filter; // @synthesize filter=_filter;
+- (void)scheduleConnectionsBarrier:(CDUnknownBlockType)arg1;
 - (void)scheduleBarrierBlock:(CDUnknownBlockType)arg1;
 - (BOOL)handleStoreRequest:(id)arg1;
-- (void)clearCachedInformationForRequestWithIdentifier:(id)arg1;
 - (void)setExclusiveLockingMode:(BOOL)arg1;
 - (void)disconnectAllConnections;
 - (id)initializationConnection;

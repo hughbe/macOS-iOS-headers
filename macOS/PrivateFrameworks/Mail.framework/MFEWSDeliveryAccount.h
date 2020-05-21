@@ -15,8 +15,8 @@
 }
 
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
-@property BOOL stripsFromHeaderWhenSending; // @synthesize stripsFromHeaderWhenSending=_stripsFromHeaderWhenSending;
 - (void).cxx_destruct;
+@property BOOL stripsFromHeaderWhenSending; // @synthesize stripsFromHeaderWhenSending=_stripsFromHeaderWhenSending;
 - (id)remoteMailAccountsEmployedBy;
 - (void)setShouldUseAuthentication:(BOOL)arg1;
 - (BOOL)shouldUseAuthentication;
@@ -58,8 +58,8 @@
 - (long long)portNumber;
 - (id)appleAuthenticationToken;
 - (id)applePersonID;
-- (void)setTLSIdentity:(struct OpaqueSecIdentityRef *)arg1;
-- (struct OpaqueSecIdentityRef *)copyTLSIdentity;
+- (void)setTLSIdentity:(struct __SecIdentity *)arg1;
+- (struct __SecIdentity *)copyTLSIdentity;
 - (void)setPassword:(id)arg1;
 - (id)password;
 - (void)setUsername:(id)arg1;

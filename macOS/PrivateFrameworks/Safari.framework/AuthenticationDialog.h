@@ -19,8 +19,7 @@ __attribute__((visibility("hidden")))
     NSTextField *_smallLabel;
     NSTextField *_usernameTextField;
     NSButton *_rememberPasswordCheckbox;
-    NSTextField *_separateRealmLabel;
-    struct RefPtr<Safari::AuthenticationSheetRequest> _sheetRequest;
+    struct RefPtr<Safari::AuthenticationSheetRequest, WTF::DumbPtrTraits<Safari::AuthenticationSheetRequest>> _sheetRequest;
     BOOL _useStopModalWithCodeToEndAuthenticationDialog;
 }
 

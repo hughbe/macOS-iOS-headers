@@ -8,7 +8,6 @@
 
 @class NSPredicate, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABPeoplePickerProperty : NSObject
 {
     NSString *title;
@@ -17,12 +16,12 @@ __attribute__((visibility("hidden")))
     NSPredicate *filter;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSPredicate *filter; // @synthesize filter;
 @property(retain, nonatomic) NSString *key; // @synthesize key;
 @property(retain, nonatomic) NSString *property; // @synthesize property;
 @property(retain, nonatomic) NSString *title; // @synthesize title;
 - (id)description;
-- (void)dealloc;
 
 @end
 

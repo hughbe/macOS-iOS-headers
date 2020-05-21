@@ -10,7 +10,11 @@
 {
 }
 
-- (struct Module *)__newModule;
+- (id)cloneModule;
+- (void)setInputModule:(id)arg1 atIndex:(int)arg2;
+- (id)inputModuleAtIndex:(int)arg1;
+- (double)valueAt: /* Error: Ran out of types for this method. */;
+- (int)requiredInputModuleCount;
 
 @end
 

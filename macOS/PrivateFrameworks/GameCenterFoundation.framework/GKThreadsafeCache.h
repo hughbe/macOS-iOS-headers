@@ -20,7 +20,7 @@
     NSObject<OS_dispatch_queue> *_syncQueue;
 }
 
-@property(nonatomic) NSObject<OS_dispatch_queue> *syncQueue; // @synthesize syncQueue=_syncQueue;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *syncQueue; // @synthesize syncQueue=_syncQueue;
 @property(nonatomic) unsigned long long count; // @synthesize count=_count;
 @property(nonatomic) unsigned long long maxCount; // @synthesize maxCount=_maxCount;
 @property(retain, nonatomic) GKLinkedList *cacheList; // @synthesize cacheList=_cacheList;

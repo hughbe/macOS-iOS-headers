@@ -10,6 +10,7 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface NSPageableTableView : NSTableView <NSTableViewDelegate>
 {
     long long _displayedRowCount;
@@ -20,16 +21,17 @@
     id _proxyDelegate;
 }
 
-@property(getter=isPaged) BOOL paged; // @synthesize paged=_isPaged;
 - (id)dragImageForRowsWithIndexes:(id)arg1 tableColumns:(id)arg2 event:(id)arg3 offset:(struct CGPoint *)arg4;
 - (void)keyDown:(id)arg1;
 - (void)selectRowIndexes:(id)arg1 byExtendingSelection:(BOOL)arg2;
 - (void)setDelegate:(id)arg1;
 @property(readonly) long long pageCount; // @dynamic pageCount;
+@property(getter=isPaged) BOOL paged;
 @property long long page; // @dynamic page;
 - (BOOL)preservesContentDuringLiveResize;
 - (void)tile;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
+- (void)_updateMinimumHeightConstraint;
 @property long long displayedRowCount; // @dynamic displayedRowCount;
 - (void)scrollToPage;
 - (void)_updateLastVisibleHeightIfNeeded;

@@ -6,15 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSLock, NSMutableSet;
+@class NSLock, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet;
 
 @interface AXBBundleManager : NSObject
 {
     NSLock *_lock;
     NSMutableSet *_blacklistedBundles;
+    NSSet *_requiredBundles;
     NSMutableSet *_loadedBundlePaths;
     NSMutableSet *_bundlesWithoutAXBundles;
     NSMutableSet *_loadedBundles;
+    NSObject<OS_dispatch_queue> *_imageMonitorQueue;
 }
 
 + (void)initialize;
@@ -27,10 +29,12 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)loadAXBundles;
 - (BOOL)loadAXBundlesWithClientToken:(CDStruct_6ad76789)arg1;
+- (BOOL)loadRequiredAXBundlesWithClientToken:(CDStruct_6ad76789)arg1;
+- (BOOL)_loadRequiredBundlesNoCheck;
 - (void)_loadSystemBundles;
 - (BOOL)loadAXBundleForBundle:(id)arg1;
-- (BOOL)_processesBundlesToLoad:(id)arg1;
-- (id)_loadAXBundleForBundle:(id)arg1 didLoad:(char *)arg2 forceLoad:(BOOL)arg3;
+- (BOOL)_processesBundlesToLoad:(id)arg1 loadRecursively:(BOOL)arg2 loadingRequired:(BOOL)arg3;
+- (id)_loadAXBundleForBundle:(id)arg1 didLoad:(char *)arg2 forceLoad:(BOOL)arg3 loadingRequired:(BOOL)arg4;
 - (void)_loadAXBundle:(id)arg1 didLoad:(char *)arg2;
 - (id)_subBundlesForBundle:(id)arg1;
 - (id)_axBundleForBundle:(id)arg1;

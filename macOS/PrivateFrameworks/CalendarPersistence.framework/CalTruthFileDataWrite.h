@@ -17,9 +17,9 @@
 }
 
 + (id)methodWithPath:(id)arg1 data:(id)arg2;
+- (void).cxx_destruct;
 - (id)description;
 - (void)main;
-- (void)dealloc;
 - (id)initWithPath:(id)arg1 data:(id)arg2;
 
 @end

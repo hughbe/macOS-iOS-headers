@@ -8,10 +8,12 @@
 
 @class NSData;
 
+__attribute__((visibility("hidden")))
 @interface MTKTextureLoaderKTX : MTKTextureLoaderData
 {
     NSData *_imageData;
     struct MTLPixelFormatInfo _pixelFormatInfo;
+    BOOL _packedRowStride;
 }
 
 + (BOOL)isKTXFile:(id)arg1;

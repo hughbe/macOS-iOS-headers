@@ -18,12 +18,10 @@ __attribute__((visibility("hidden")))
 - (BOOL)_fetchPCSDataFromServer;
 - (BOOL)_fetchPCSDataFromDatabase;
 - (void)_handlePCSDataFetched:(id)arg1 withError:(id)arg2;
-- (void)dataWasFetched:(id)arg1 withError:(id)arg2 forRecordID:(id)arg3;
 - (BOOL)hasAllPCSData;
 - (id)itemTypeName;
 @property(retain, nonatomic) CKDSharePCSData *sharePCSData;
 @property(readonly, nonatomic) CKRecordID *shareID;
-- (id)initWithShareID:(id)arg1 parentOperation:(id)arg2 cache:(id)arg3 options:(unsigned long long)arg4;
 
 @end
 

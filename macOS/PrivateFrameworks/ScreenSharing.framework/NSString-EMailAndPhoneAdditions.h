@@ -8,6 +8,7 @@
 
 @interface NSString (EMailAndPhoneAdditions)
 - (id)formattedPhoneNumber;
+- (id)formattedPhoneNumberForCountryCode:(id)arg1;
 - (id)stringWithSchemeTrimmed;
 - (BOOL)isPhoneNumber;
 - (BOOL)isEmailAddress;

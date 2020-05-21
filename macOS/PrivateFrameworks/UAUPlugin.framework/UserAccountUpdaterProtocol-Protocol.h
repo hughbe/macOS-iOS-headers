@@ -16,5 +16,6 @@
 - (void)updateAccountWithPrivilege;
 - (BOOL)allowsAsyncExecution;
 - (NSArray *)mustRunAfterBundleIDs;
+- (BOOL)shouldRunForNewUsers;
 @end
 

@@ -18,6 +18,7 @@
     CDStruct_5accba53 _has;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSData *encryptedTextCyphertext; // @synthesize encryptedTextCyphertext=_encryptedTextCyphertext;
 @property(retain, nonatomic) _MRTextEditingAttributesProtobuf *attributes; // @synthesize attributes=_attributes;
 - (void)mergeFrom:(id)arg1;
@@ -35,7 +36,6 @@
 - (id)stateAsString:(int)arg1;
 @property(nonatomic) BOOL hasState;
 @property(nonatomic) int state; // @synthesize state=_state;
-- (void)dealloc;
 
 @end
 

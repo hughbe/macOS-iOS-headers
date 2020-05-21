@@ -6,22 +6,31 @@
 
 #import <PassKitUI/PKPaymentAuthorizationChildViewController.h>
 
-@class NSString, NSTextField;
+@class NSButton, NSImageView, NSString, NSTextField;
 
 @interface PKPaymentAuthorizationErrorViewController : PKPaymentAuthorizationChildViewController
 {
+    long long _mode;
     NSString *_deviceName;
     id <PKPaymentAuthorizationErrorViewControllerDelegate> _delegate;
+    NSImageView *_paymentLogoImageView;
     NSTextField *_titleTextField;
     NSTextField *_messageTextField;
+    NSButton *_okButton;
+    NSButton *_cancelButton;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSButton *cancelButton; // @synthesize cancelButton=_cancelButton;
+@property(retain, nonatomic) NSButton *okButton; // @synthesize okButton=_okButton;
 @property(retain, nonatomic) NSTextField *messageTextField; // @synthesize messageTextField=_messageTextField;
 @property(retain, nonatomic) NSTextField *titleTextField; // @synthesize titleTextField=_titleTextField;
+@property(retain, nonatomic) NSImageView *paymentLogoImageView; // @synthesize paymentLogoImageView=_paymentLogoImageView;
 @property(nonatomic) __weak id <PKPaymentAuthorizationErrorViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSString *deviceName; // @synthesize deviceName=_deviceName;
-- (void).cxx_destruct;
-- (void)_applyDeviceName;
+@property(nonatomic) long long mode; // @synthesize mode=_mode;
+- (void)_applyProperties;
+- (void)cancelButtonClicked:(id)arg1;
 - (void)okButtonClicked:(id)arg1;
 - (void)viewDidLoad;
 - (id)init;

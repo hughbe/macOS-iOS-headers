@@ -19,6 +19,7 @@
     NSString *_serverFilename;
 }
 
+- (void).cxx_destruct;
 - (id)serverFilename;
 - (id)entitySharedUID;
 - (id)entityLocalUID;
@@ -26,7 +27,6 @@
 - (void)getTask:(id)arg1 data:(id)arg2 error:(id)arg3;
 - (void)performOperation;
 - (id)readableDescription;
-- (void)dealloc;
 - (id)initWithPreviousOperation:(id)arg1;
 
 // Remaining properties

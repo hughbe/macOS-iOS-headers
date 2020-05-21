@@ -8,6 +8,7 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface NSPanelController : NSObject
 {
     id alertPanel;
@@ -28,6 +29,7 @@
 - (id)stringValue;
 - (BOOL)gotString;
 - (BOOL)showPanel:(id)arg1 andNotify:(id)arg2 with:(SEL)arg3;
+- (void)awakeFromNib;
 - (void)dealloc;
 - (void)_setTextFieldStringValue:(id)arg1;
 

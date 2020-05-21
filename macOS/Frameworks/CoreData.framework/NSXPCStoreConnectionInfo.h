@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSPersistentStoreCoordinator;
+@class NSDictionary, NSXPCStoreServerPerConnectionCache;
 
 @interface NSXPCStoreConnectionInfo : NSObject
 {
     NSDictionary *_entitlements;
-    NSPersistentStoreCoordinator *_coordinator;
+    NSXPCStoreServerPerConnectionCache *_cache;
     CDStruct_4c969caf _token;
     id _userInfo;
     int _lock;
@@ -23,8 +23,9 @@
 - (id)entitlements;
 - (id)description;
 - (void)dealloc;
+- (id)cache;
 - (void)setUserInfo:(id)arg1;
-- (id)initForToken:(CDStruct_4c969caf)arg1 entitlementNames:(id)arg2 coordinator:(id)arg3;
+- (id)initForToken:(CDStruct_4c969caf)arg1 entitlementNames:(id)arg2 cache:(id)arg3;
 
 @end
 

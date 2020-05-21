@@ -27,7 +27,7 @@
     CDUnknownFunctionPointerType _eventHandlerFunc;
     NSObject<OS_dispatch_queue> *_eventQueue;
     NSObject<OS_dispatch_queue> *_queue;
-    struct OpaqueAPBrowserBTLEManager *_managerRef;
+    // Error parsing type: ^{OpaqueAPBrowserBTLEManager={__CFRuntimeBase=QAQ}@}, name: _managerRef
     NSMutableDictionary *_btleDevices;
     NSObject<OS_dispatch_source> *_staleDevicesTimer;
 }
@@ -37,7 +37,9 @@
 @property(nonatomic) BOOL isSoloBeaconDisabled; // @synthesize isSoloBeaconDisabled=_isSoloBeaconDisabled;
 @property(nonatomic) BOOL isInvalidated; // @synthesize isInvalidated=_isInvalidated;
 @property(retain, nonatomic) NSMutableDictionary *btleDevices; // @synthesize btleDevices=_btleDevices;
-@property(nonatomic) struct OpaqueAPBrowserBTLEManager *managerRef; // @synthesize managerRef=_managerRef;
+// Error parsing type for property managerRef:
+// Property attributes: T^{OpaqueAPBrowserBTLEManager={__CFRuntimeBase=QAQ}@},N,V_managerRef
+
 @property(nonatomic) BOOL preferencesUpdated; // @synthesize preferencesUpdated=_preferencesUpdated;
 @property(nonatomic) BOOL isEnabled; // @synthesize isEnabled=_isEnabled;
 @property(nonatomic) BOOL isScanning; // @synthesize isScanning=_isScanning;
@@ -62,6 +64,7 @@
 - (void)airPlaySoloDidUpdateState:(id)arg1;
 - (int)handleFoundDevice:(id)arg1 withAdvertisementData:(CDStruct_b2d45402 *)arg2 rssi:(int)arg3;
 - (int)dispatchEvent:(unsigned int)arg1 withEventInfo:(id)arg2;
+- (int)ensureStaleDeviceTimerStarted;
 - (int)handleLostDevice:(id)arg1;
 - (int)ensureScanningStopped;
 - (int)dispatchLostEventForAllDevices;
@@ -76,8 +79,9 @@
 - (int)setSupportsSolo:(BOOL)arg1;
 - (int)ensurePreferencesUpdatedWithShouldForce:(BOOL)arg1;
 - (int)update;
+- (BOOL)shouldAdvertiseSourcePresence;
 - (unsigned long long)nearbySoloDevicesCount;
-- (int)setEventHandler:(CDUnknownFunctionPointerType)arg1 context:(void *)arg2 managerRef:(struct OpaqueAPBrowserBTLEManager *)arg3;
+-     // Error parsing type: i40@0:8^?16^v24^{OpaqueAPBrowserBTLEManager={__CFRuntimeBase=QAQ}@}32, name: setEventHandler:context:managerRef:
 - (int)stop;
 - (int)startMode:(unsigned short)arg1;
 - (int)invalidate;

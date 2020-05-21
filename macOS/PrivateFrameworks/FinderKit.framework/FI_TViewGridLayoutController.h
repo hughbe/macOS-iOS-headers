@@ -9,11 +9,13 @@
 __attribute__((visibility("hidden")))
 @interface FI_TViewGridLayoutController : FI_TGridLayoutController
 {
-    struct TNSRef<FI_TViewGridLayoutControllerDelegate *, void> _delegate;
+    struct TNSRef<FI_TViewGridLayoutControllerDelegate, void> _delegate;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) _Bool isLTRLayout; // @dynamic isLTRLayout;
+@property(nonatomic) _Bool layoutInRows; // @dynamic layoutInRows;
 - (void)setAnchoredCellFrame:(struct CGRect)arg1;
 - (void)setLayoutBounds:(const struct CGRect *)arg1;
 - (id)delegate;

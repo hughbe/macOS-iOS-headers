@@ -6,50 +6,50 @@
 
 #import "NSObject.h"
 
-@class NSMutableSet, NSString;
+@class CLLocationManager, CLLocationManagerStateTracker, CLSilo, CLTimer, NSMutableSet, NSString;
 
 @interface CLLocationManagerInternal : NSObject
 {
     struct __CLClient *fClient;
     id <CLLocationManagerDelegate> fDelegate;
-    double fDistanceFilter;
+    CLLocationManager *fManager;
+    CLLocationManagerStateTracker *fState;
     double fDesiredAccuracy;
-    BOOL fUpdatingLocation;
-    CDStruct_1920e936 fLocation;
+    CDStruct_4d1fbe9a fLocation;
     NSString *fLocationEventType;
-    BOOL fRequestingRanging;
-    BOOL fUpdatingRanging;
-    struct __CFRunLoopTimer *fRangingRequestTimer;
-    double fRangingRequestTimeout;
-    BOOL fCapabilitiesValid;
-    struct {
-        double bestAccuracy;
-    } fCapabilities;
-    BOOL fUpdatingHeading;
-    double fHeadingFilter;
+    CLTimer *fLocationRequestTimer;
+    double fLocationRequestTimeout;
+    CLTimer *fRangingRequestTimer;
+    double fLastRangingRequestTimeout;
+    unsigned long long fLastRangingRequestMachTime;
     int fHeadingOrientation;
-    BOOL fPersistentMonitoringEnabled;
-    BOOL fAllowsLocationPrompts;
-    BOOL fDynamicAccuracyReductionEnabled;
-    BOOL fPreviousAuthorizationStatusValid;
-    int fPreviousAuthorizationStatus;
-    long long fActivityType;
-    int fPausesLocationUpdatesAutomatically;
-    BOOL fPaused;
-    BOOL fAllowsMapCorrection;
-    BOOL fBatchingLocation;
-    BOOL fUpdatingVehicleSpeed;
-    BOOL fUpdatingVehicleHeading;
     NSMutableSet *fRangedRegions;
+    NSMutableSet *fRangedConstraints;
+    CDUnknownBlockType fPlaceInferenceHandler;
+    unsigned long long fFidelityPolicy;
+    CLSilo *fSilo;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak CLLocationManager *manager; // @synthesize manager=fManager;
+@property(nonatomic) __weak id <CLLocationManagerDelegate> delegate; // @synthesize delegate=fDelegate;
+@property(readonly, nonatomic) NSMutableSet *rangedConstraints; // @synthesize rangedConstraints=fRangedConstraints;
 @property(readonly, nonatomic) NSMutableSet *rangedRegions; // @synthesize rangedRegions=fRangedRegions;
 - (void)dealloc;
+- (void)invalidate;
+- (void)performCourtesyPromptIfNeeded;
+- (void)cancelLingeringRangingRequest;
+- (BOOL)hasLingeringRangingRequest;
 - (void)cancelRangingRequest;
+- (void)cancelLocationRequest;
 - (void)stopUpdatingLocationAutoPaused;
+- (BOOL)showsBackgroundLocationIndicator;
+- (void)setShowsBackgroundLocationIndicator:(BOOL)arg1;
+- (BOOL)allowsBackgroundLocationUpdates;
+- (void)setAllowsBackgroundLocationUpdates:(BOOL)arg1;
 - (int)PausesLocationUpdatesAutomatically;
 - (void)setPausesLocationUpdatesAutomatically:(int)arg1;
-- (id)initWithInfo:(id)arg1 bundleIdentifier:(id)arg2 bundle:(id)arg3;
+- (id)initWithInfo:(id)arg1 bundleIdentifier:(id)arg2 bundle:(id)arg3 delegate:(id)arg4 silo:(id)arg5;
 
 @end
 

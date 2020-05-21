@@ -13,7 +13,9 @@
     AVMutableMovieTrackInternal *_mutableMovieTrackInternal;
 }
 
++ (BOOL)expectsPropertyRevisedNotifications;
 + (id)trackWithTrackID:(int)arg1 forMovie:(id)arg2;
+- (void).cxx_destruct;
 - (id)description;
 - (void)setPreferredMediaChunkAlignment:(long long)arg1;
 - (void)setPreferredMediaChunkDuration:(CDStruct_1b6d18a9)arg1;
@@ -58,10 +60,13 @@
 - (struct OpaqueFigMutableMovie *)_figMutableMovie;
 - (void)loadValuesAsynchronouslyForKeys:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (long long)statusOfValueForKey:(id)arg1 error:(id *)arg2;
+- (void)_removeFigAssetTrackNotifications;
+- (void)_addFigAssetTrackNotifications;
+- (void)_signalMetadataUpdated;
 - (struct OpaqueFigAssetTrack *)_figAssetTrack;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithTrackID:(int)arg1 forMovie:(id)arg2;
+- (void)replaceFormatDescription:(struct opaqueCMFormatDescription *)arg1 withFormatDescription:(struct opaqueCMFormatDescription *)arg2;
 - (BOOL)isCompatibleWithFormatDescription:(struct opaqueCMFormatDescription *)arg1;
 @property(readonly, nonatomic) NSArray *formatDescriptions;
 - (void)scaleTimeRange:(CDStruct_e83c9415)arg1 toDuration:(CDStruct_1b6d18a9)arg2;

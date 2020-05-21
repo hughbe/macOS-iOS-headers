@@ -22,6 +22,7 @@
 + (BOOL)isMicrophoneMuted;
 + (void)setMicrophoneMuted:(BOOL)arg1;
 + (BOOL)hasActiveAudioSession;
++ (void)resetAudioSessionOutputPortOverride;
 + (void)stopAudioSession;
 + (void)setAudioSessionProperties:(id)arg1;
 + (void)startAudioSession;

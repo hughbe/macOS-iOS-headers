@@ -6,6 +6,10 @@
 
 #import "NSObject.h"
 
+@class GEOAutomobileOptions, GEOTransitOptions;
+
 @protocol _MKInfoCardController <NSObject>
+@property(retain, nonatomic) GEOTransitOptions *transitOptions;
+@property(retain, nonatomic) GEOAutomobileOptions *automobileOptions;
 @end
 

@@ -15,19 +15,18 @@
     NSIndexSet *_geometryKinds;
     struct CGRect _sectionHeaderRect;
     NSDictionary *_rectsByIndexByKind;
-    BOOL _needsPrepareLayout;
+    BOOL _isPrepared;
     long long _layoutAxis;
 }
 
-@property(nonatomic) long long layoutAxis; // @synthesize layoutAxis=_layoutAxis;
 - (void).cxx_destruct;
+@property(nonatomic) long long layoutAxis; // @synthesize layoutAxis=_layoutAxis;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)_prepareLayoutIfNeeded;
-- (void)_invalidateLayout;
+- (void)invalidate;
 - (void)getGeometries:(struct _PXLayoutGeometry *)arg1 inRange:(struct _NSRange)arg2 withKind:(long long)arg3;
 - (unsigned long long)numberOfGeometriesWithKind:(long long)arg1;
 - (id)geometryKinds;
-- (void)setItemCount:(unsigned long long)arg1;
 - (struct CGSize)size;
 - (struct CGSize)estimatedSize;
 - (id)initWithMetrics:(id)arg1;

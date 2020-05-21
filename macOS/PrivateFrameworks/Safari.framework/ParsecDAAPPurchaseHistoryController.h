@@ -20,8 +20,10 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)sharedController;
-@property(getter=isFinishedLoading) BOOL finishedLoading; // @synthesize finishedLoading=_finishedLoading;
 - (void).cxx_destruct;
+@property(getter=isFinishedLoading) BOOL finishedLoading; // @synthesize finishedLoading=_finishedLoading;
+- (void)_removeOwnedItem:(id)arg1;
+- (void)_addOwnedItem:(id)arg1;
 - (void)_populateOwnedItemIdentifiers;
 - (id)_init;
 - (void)daapPurchaseHistory:(id)arg1 didChangeWithItemsAdded:(id)arg2 changed:(id)arg3 removed:(id)arg4;

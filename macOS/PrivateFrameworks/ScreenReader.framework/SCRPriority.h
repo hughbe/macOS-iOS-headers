@@ -13,10 +13,10 @@ __attribute__((visibility("hidden")))
     id _representedObject;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) id representedObject; // @synthesize representedObject=_representedObject;
 @property(nonatomic) long long priority; // @synthesize priority=_priority;
 - (long long)compare:(id)arg1;
-- (void)dealloc;
 - (id)initWithRepresentedObject:(id)arg1 priority:(long long)arg2;
 
 @end

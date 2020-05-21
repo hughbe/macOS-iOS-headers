@@ -8,20 +8,18 @@
 
 #import "NSXPCListenerDelegate.h"
 
-@class NSLock, NSString, NSXPCConnection, NSXPCListener;
+@class NSString, NSXPCListener;
 
 @interface FLFollowUpController : NSObject <NSXPCListenerDelegate>
 {
     NSString *_clientIdentifier;
     NSString *_machServiceName;
-    NSXPCConnection *_conn;
-    NSLock *_connLock;
     NSXPCListener *_listener;
     id <FLFollowUpControllerDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <FLFollowUpControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <FLFollowUpControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (void)_didActivateHSA2LoginNotification:(id)arg1;
 - (void)_postHSA2PasswordResetNotification:(id)arg1 completion:(CDUnknownBlockType)arg2;
@@ -34,7 +32,15 @@
 - (void)pendingFollowUpItemsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)countOfPendingFollowUpItemsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)postFollowUpItem:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (BOOL)clearNotificationForItem:(id)arg1 error:(id *)arg2;
+- (BOOL)clearPendingFollowUpItemsWithUniqueIdentifiers:(id)arg1 error:(id *)arg2;
+- (BOOL)clearPendingFollowUpItems:(id *)arg1;
+- (id)pendingFollowUpItems:(id *)arg1;
+- (unsigned long long)countOfPendingFollowUpItems:(id *)arg1;
+- (BOOL)postFollowUpItem:(id)arg1 error:(id *)arg2;
 - (id)initWithClientIdentifier:(id)arg1 machServiceName:(id)arg2 delegate:(id)arg3;
+- (id)initWithClientIdentifier:(id)arg1;
+- (id)initWithClientIdentifier:(id)arg1 xpcEndpoint:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

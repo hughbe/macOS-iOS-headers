@@ -10,9 +10,10 @@
 {
 }
 
+- (BOOL)canSelectPreference:(id)arg1 preferenceIndex:(unsigned long long)arg2 subItemIndex:(unsigned long long)arg3;
 - (long long)numberOfMenuItemsInSection:(long long)arg1;
-- (void)setupUsingModel:(id)arg1;
-- (id)initWithModel:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)setModel:(id)arg1;
+- (void)updatePreferences;
 
 @end
 

@@ -12,10 +12,11 @@ __attribute__((visibility("hidden")))
 }
 
 - (id)requestDidParseProtobufObject:(id)arg1;
-- (id)requestOperations;
+- (id)generateRequestOperations;
 - (id)requestOperationClasses;
 - (BOOL)requiresTokenRegistration;
 - (int)operationType;
+- (long long)databaseScope;
 
 @end
 

@@ -30,6 +30,7 @@
 @property(readonly) NSURL *pageTemplateURL; // @synthesize pageTemplateURL;
 - (id)page;
 - (id)_allowedWebSitesHTML;
+- (id)_xssSafeStringFromString:(id)arg1;
 - (id)_javascript;
 - (id)_css;
 - (id)_fileContentWithName:(id)arg1 extension:(id)arg2;

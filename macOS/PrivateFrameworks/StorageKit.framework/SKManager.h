@@ -32,6 +32,7 @@
 + (id)sharedManager;
 + (id)sharedManagerWithBindingsSafety:(BOOL)arg1;
 - (void).cxx_destruct;
+- (BOOL)_DEBUG_sanityCheckDiskType:(id)arg1;
 - (void)managerResumed;
 - (void)managerStalled;
 - (void)disksChanged:(id)arg1;
@@ -50,11 +51,15 @@
 - (id)knownDiskForDictionary:(id)arg1 waitingForDaemon:(BOOL)arg2 fromSet:(id)arg3;
 - (id)knownDiskForDictionary:(id)arg1 waitingForDaemon:(BOOL)arg2;
 - (id)knownDiskForDictionary:(id)arg1;
+- (void)knownDiskForDictionary:(id)arg1 notify:(CDUnknownBlockType)arg2 onQueue:(id)arg3;
 - (id)knownDisksForDictionaries:(id)arg1 waitingForDaemon:(BOOL)arg2 fromSet:(id)arg3;
 - (id)knownDisksForDictionaries:(id)arg1 waitingForDaemon:(BOOL)arg2;
 - (id)knownDisksForDictionaries:(id)arg1;
+- (void)resizeLimitsForDisk:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)createAPFSContainerWithDisks:(id)arg1 progressBlock:(CDUnknownBlockType)arg2 callbackBlock:(CDUnknownBlockType)arg3;
 - (id)volumesForAPFSPS:(id)arg1;
 - (id)physicalStoresForAPFSVolume:(id)arg1;
+- (id)raidForContentDisk:(id)arg1;
 - (id)membersForRAIDSet:(id)arg1;
 - (id)setForRAIDMember:(id)arg1;
 - (id)filesystemWithSKType:(id)arg1 isCaseSensitive:(BOOL)arg2 isEncrypted:(BOOL)arg3;
@@ -62,6 +67,7 @@
 - (id)filesystems;
 - (id)enclosingDiskAtLevel:(unsigned long long)arg1;
 - (unsigned long long)enclosingVolumeCount;
+- (void)volumesForDiskImageFileURL:(id)arg1 progressBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (BOOL)compositeDisks:(id)arg1 volumeName:(id)arg2 progressBlock:(CDUnknownBlockType)arg3 callbackBlock:(CDUnknownBlockType)arg4;
 - (id)childDisksForWholeDisk:(id)arg1;
 - (id)wholeDiskForDisk:(id)arg1;
@@ -73,6 +79,7 @@
 - (id)visibleRoles;
 - (void)setVisibleRoles:(id)arg1;
 - (BOOL)isBusy;
+- (id)allDisksSet;
 - (id)allDisks;
 - (id)initWithBindingSafety:(BOOL)arg1;
 

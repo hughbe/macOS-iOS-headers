@@ -8,7 +8,7 @@
 
 #import "NSFilePresenter.h"
 
-@class NSLock, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSURL;
+@class NSLock, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSSet, NSString, NSURL;
 
 @interface ILMediaBrowserPathWatcher : NSObject <NSFilePresenter>
 {
@@ -121,6 +121,7 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSSet *observedPresentedItemUbiquityAttributes;
 @property(readonly, copy) NSURL *primaryPresentedItemURL;
 @property(readonly) Class superclass;
 

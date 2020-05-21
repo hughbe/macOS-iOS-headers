@@ -8,20 +8,31 @@
 
 #import "NSCopying.h"
 
-@class NSData, NSMutableArray;
+@class NSData, NSMutableArray, PBDataReader;
 
 @interface GEOMapsServerMetadata : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     NSMutableArray *_mapsSearchResults;
     NSMutableArray *_suggestionEntryMetadataDisplayeds;
     NSData *_suggestionEntryMetadataTappedOn;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_mapsSearchResults:1;
+        unsigned int read_suggestionEntryMetadataDisplayeds:1;
+        unsigned int read_suggestionEntryMetadataTappedOn:1;
+        unsigned int wrote_mapsSearchResults:1;
+        unsigned int wrote_suggestionEntryMetadataDisplayeds:1;
+        unsigned int wrote_suggestionEntryMetadataTappedOn:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)mapsSearchResultType;
 + (Class)suggestionEntryMetadataDisplayedType;
-@property(retain, nonatomic) NSMutableArray *mapsSearchResults; // @synthesize mapsSearchResults=_mapsSearchResults;
-@property(retain, nonatomic) NSMutableArray *suggestionEntryMetadataDisplayeds; // @synthesize suggestionEntryMetadataDisplayeds=_suggestionEntryMetadataDisplayeds;
-@property(retain, nonatomic) NSData *suggestionEntryMetadataTappedOn; // @synthesize suggestionEntryMetadataTappedOn=_suggestionEntryMetadataTappedOn;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -29,18 +40,28 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)mapsSearchResultAtIndex:(unsigned long long)arg1;
 - (unsigned long long)mapsSearchResultsCount;
+- (void)_addNoFlagsMapsSearchResult:(id)arg1;
 - (void)addMapsSearchResult:(id)arg1;
 - (void)clearMapsSearchResults;
+@property(retain, nonatomic) NSMutableArray *mapsSearchResults;
+- (void)_readMapsSearchResults;
 - (id)suggestionEntryMetadataDisplayedAtIndex:(unsigned long long)arg1;
 - (unsigned long long)suggestionEntryMetadataDisplayedsCount;
+- (void)_addNoFlagsSuggestionEntryMetadataDisplayed:(id)arg1;
 - (void)addSuggestionEntryMetadataDisplayed:(id)arg1;
 - (void)clearSuggestionEntryMetadataDisplayeds;
+@property(retain, nonatomic) NSMutableArray *suggestionEntryMetadataDisplayeds;
+- (void)_readSuggestionEntryMetadataDisplayeds;
+@property(retain, nonatomic) NSData *suggestionEntryMetadataTappedOn;
 @property(readonly, nonatomic) BOOL hasSuggestionEntryMetadataTappedOn;
-- (void)dealloc;
+- (void)_readSuggestionEntryMetadataTappedOn;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

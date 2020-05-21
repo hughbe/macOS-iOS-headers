@@ -6,16 +6,12 @@
 
 #import "NSView.h"
 
-@class IMKSimulatorUIDirectionButton, IMKSimulatorUIOrientationButton;
-
 @interface IMKSimulatorPreferencesBar : NSView
 {
-    IMKSimulatorUIOrientationButton *_UIOrientationButton;
-    IMKSimulatorUIDirectionButton *_UIDirectionButton;
 }
 
 - (void)drawRect:(struct CGRect)arg1;
-- (void)dealloc;
+- (void)selectInputMode:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

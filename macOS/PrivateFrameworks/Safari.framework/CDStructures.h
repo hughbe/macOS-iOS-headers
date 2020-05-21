@@ -4,8 +4,6 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class BrowserWindowController;
-
 #pragma mark Function Pointers and Blocks
 
 typedef void (*CDUnknownFunctionPointerType)(void); // return type and parameters are unknown
@@ -14,28 +12,30 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct AddressBookEntry {
-    unsigned int _field1;
-    id _field2;
-    id _field3;
+struct AppExtensionPage {
+    CDUnknownFunctionPointerType *_field1;
+    struct HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>> _field2;
+    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>> _field3;
+    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16, WTF::FastMalloc> _field4;
+    _Bool _field5;
+    struct os_unfair_lock_s _field6;
+    void *_field7;
+    struct BundlePage _field8;
 };
 
 struct Array {
     struct WKRetainPtr<const void *> m_webKit2Object;
 };
 
-struct AuthenticationChallenge {
-    struct WKRetainPtr<const void *> _field1;
-};
-
 struct AuthenticationSheetRequest {
     CDUnknownFunctionPointerType *_field1;
     unsigned int _field2;
     id _field3;
-    struct AuthenticationChallenge _field4;
-    int _field5;
-    id _field6;
+    id _field4;
+    CDUnknownBlockType _field5;
+    int _field6;
     id _field7;
+    id _field8;
 };
 
 struct AutomaticTerminationController {
@@ -56,79 +56,32 @@ struct BackForwardListItem {
     struct WKRetainPtr<const void *> m_webKit2Object;
 };
 
-struct BannerAction;
-
 struct Boolean {
     struct WKRetainPtr<const void *> m_webKit2Object;
 };
 
-struct BrowserContentViewController {
-    CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
-    id _field3;
-    id _field4;
-    _Bool _field5;
-    _Bool _field6;
-    id _field7;
-    struct Deque<Safari::BannerAction, 0> _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    struct Frame _field13;
-    id _field14;
-    struct Data _field15;
-    struct Data _field16;
-    id _field17;
-    id _field18;
-    _Bool _field19;
-    double _field20;
-    CDUnknownFunctionPointerType *_field21;
-    struct RefPtr<Safari::InternetAccountSetupController::DomainSetupPromptRequest> _field22;
-    struct unique_ptr<Safari::BrowserPageNavigationClient, std::__1::default_delete<Safari::BrowserPageNavigationClient>> _field23;
-    int _field24;
-    CDUnknownBlockType _field25;
-    _Bool _field26;
-    id _field27;
-    id _field28;
-    struct RefPtr<Safari::RemoteNotificationVerificationRequest> _field29;
-    _Bool _field30;
-    struct unique_ptr<Safari::BrowserPageContextMenuClient, std::__1::default_delete<Safari::BrowserPageContextMenuClient>> _field31;
-    struct unique_ptr<Safari::BrowserPageDiagnosticLoggingClient, std::__1::default_delete<Safari::BrowserPageDiagnosticLoggingClient>> _field32;
-    struct unique_ptr<Safari::BrowserPageFindClient, std::__1::default_delete<Safari::BrowserPageFindClient>> _field33;
-    struct unique_ptr<Safari::BrowserPageFormClient, std::__1::default_delete<Safari::BrowserPageFormClient>> _field34;
-    struct unique_ptr<Safari::BrowserPageUIClient, std::__1::default_delete<Safari::BrowserPageUIClient>> _field35;
-    unsigned long long _field36;
-    struct unique_ptr<Safari::PerformanceCollector, std::__1::default_delete<Safari::PerformanceCollector>> _field37;
-    struct RefPtr<Safari::PerformanceTesting> _field38;
-    _Bool _field39;
-    _Bool _field40;
-    struct PageLoadTestWithChrome *_field41;
-};
-
-struct BrowserPageContextMenuClient;
-
-struct BrowserPageDiagnosticLoggingClient;
-
-struct BrowserPageFindClient;
-
 struct BrowserPageFormClient;
-
-struct BrowserPageNavigationClient;
-
-struct BrowserPageUIClient;
 
 struct BrowserTab {
     CDUnknownFunctionPointerType *_field1;
     struct HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>> _field2;
-    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>> _field3;
-    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16> _field4;
+    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>> _field3;
+    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16, WTF::FastMalloc> _field4;
     _Bool _field5;
-    unsigned int _field6;
-    CDUnknownFunctionPointerType *_field7;
-    id _field8;
+    struct os_unfair_lock_s _field6;
+    unsigned int _field7;
+    CDUnknownFunctionPointerType *_field8;
     id _field9;
     id _field10;
+    id _field11;
+};
+
+struct BrowserViewControllerWKAdapter {
+    CDUnknownFunctionPointerType *_field1;
+    unsigned int _field2;
+    id _field3;
+    CDUnknownFunctionPointerType *_field4;
+    struct RefPtr<Safari::InternetAccountSetupController::DomainSetupPromptRequest, WTF::DumbPtrTraits<Safari::InternetAccountSetupController::DomainSetupPromptRequest>> _field5;
 };
 
 struct BundleFrame {
@@ -139,27 +92,12 @@ struct BundleNodeHandle {
     struct WKRetainPtr<const void *> m_webKit2Object;
 };
 
-struct BundleScriptWorld {
+struct BundlePage {
     struct WKRetainPtr<const void *> m_webKit2Object;
 };
 
-struct CATransform3D {
-    double _field1;
-    double _field2;
-    double _field3;
-    double _field4;
-    double _field5;
-    double _field6;
-    double _field7;
-    double _field8;
-    double _field9;
-    double _field10;
-    double _field11;
-    double _field12;
-    double _field13;
-    double _field14;
-    double _field15;
-    double _field16;
+struct BundleScriptWorld {
+    struct WKRetainPtr<const void *> m_webKit2Object;
 };
 
 struct CC_SHA256state_st {
@@ -195,75 +133,14 @@ struct CGSize {
 struct Certificate {
     CDUnknownFunctionPointerType *_field1;
     unsigned int _field2;
-    struct RetainPtr<OpaqueSecCertificateRef *> _field3;
+    struct RetainPtr<__SecCertificate *> _field3;
 };
 
-struct CoalescedAsynchronousWriter;
-
-struct CommandTarget;
-
-struct CompletionController {
-    CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
-    id _field3;
-    id _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    long long _field8;
-    struct Vector<WTF::RefPtr<Safari::CompletionListItem>, 0, WTF::CrashOnOverflow, 16> _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    double _field13;
-    _Bool _field14;
-    _Bool _field15;
-    _Bool _field16;
-    _Bool _field17;
-    _Bool _field18;
-    _Bool _field19;
-    _Bool _field20;
+struct CertificateInfo {
+    struct WKRetainPtr<const void *> _field1;
 };
 
-struct CompletionListAddressBookNonNameFieldAutoFillCommand {
-    CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
-    _Bool _field3;
-    id _field4;
-    struct CommandTarget *_field5;
-    int _field6;
-    struct Vector<std::__1::pair<NSString *, NSString *>, 0, WTF::CrashOnOverflow, 16> _field7;
-    id _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-};
-
-struct CompletionListAddressBookRecentlyUsedAutoFillCommand {
-    CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
-    _Bool _field3;
-    id _field4;
-    struct CommandTarget *_field5;
-    int _field6;
-    struct Vector<std::__1::pair<NSString *, NSString *>, 0, WTF::CrashOnOverflow, 16> _field7;
-    id _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    id _field13;
-};
-
-struct CompletionListItem {
-    CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
-    _Bool _field3;
-    id _field4;
-};
-
-struct ContentExtensionProxy;
+struct CompletionListItem;
 
 struct Context {
     struct WKRetainPtr<const void *> m_webKit2Object;
@@ -275,10 +152,10 @@ struct Data {
 
 struct Deque<NSURL *, 0>;
 
-struct Deque<Safari::BannerAction, 0> {
+struct Deque<WTF::RefPtr<Safari::TopSite, WTF::DumbPtrTraits<Safari::TopSite>>, 0> {
     unsigned long long _field1;
     unsigned long long _field2;
-    struct VectorBuffer<Safari::BannerAction, 0> _field3;
+    struct VectorBuffer<WTF::RefPtr<Safari::TopSite, WTF::DumbPtrTraits<Safari::TopSite>>, 0, WTF::FastMalloc> _field3;
 };
 
 struct Dictionary {
@@ -287,200 +164,44 @@ struct Dictionary {
 
 struct DomainSetupPromptRequest;
 
-struct Download {
-    struct WKRetainPtr<const void *> m_webKit2Object;
-};
-
 struct Error {
     struct WKRetainPtr<const void *> _field1;
 };
 
-struct EventTarget;
-
-struct Extension {
-    CDUnknownFunctionPointerType *_field1;
-    struct HashSet<Safari::EventTarget *, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *>> _field2;
-    CDUnknownFunctionPointerType *_field3;
-    unsigned int _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    id _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    id _field13;
-    id _field14;
-    id _field15;
-    id _field16;
-    id _field17;
-    id _field18;
-    id _field19;
-    _Bool _field20;
-    _Bool _field21;
-    _Bool _field22;
-    struct Vector<NSURL *, 0, WTF::CrashOnOverflow, 16> _field23;
-    struct Vector<Safari::CF::String, 0, WTF::CrashOnOverflow, 16> _field24;
-    struct Vector<Safari::CF::String, 0, WTF::CrashOnOverflow, 16> _field25;
-    int _field26;
-    Vector_851fab59 _field27;
-    int _field28;
-    int _field29;
-    id _field30;
-    struct HashMap<Safari::CF::String, WTF::RefPtr<Safari::ExtensionMenu>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionMenu>>> _field31;
-    struct HashMap<Safari::CF::String, WTF::RefPtr<Safari::ExtensionPopover>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionPopover>>> _field32;
-    struct Vector<Safari::CF::String, 0, WTF::CrashOnOverflow, 16> _field33;
-    struct HashSet<Safari::CF::String, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>> _field34;
-    struct HashSet<Safari::CF::String, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>> _field35;
-    struct HashSet<Safari::CF::String, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>> _field36;
-    struct RefPtr<Safari::ContentExtensionProxy> _field37;
-    struct RefPtr<Safari::ExtensionSettings> _field38;
-    struct RefPtr<Safari::ExtensionSecureSettings> _field39;
-    struct RefPtr<Safari::ExtensionNamespace> _field40;
-    struct RefPtr<Safari::ExtensionGlobalPageViewControllerOld> _field41;
-    struct RefPtr<Safari::ExtensionCompanion> _field42;
-    struct ListHashSet<WTF::RefPtr<Safari::ExtensionBar>, WTF::PtrHash<WTF::RefPtr<Safari::ExtensionBar>>> _field43;
-    struct ListHashSet<WTF::RefPtr<Safari::ExtensionToolbarItem>, WTF::PtrHash<WTF::RefPtr<Safari::ExtensionToolbarItem>>> _field44;
-    struct Vector<std::__1::unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent>>, 0, WTF::CrashOnOverflow, 16> _field45;
-    struct Vector<std::__1::unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent>>, 0, WTF::CrashOnOverflow, 16> _field46;
-    struct Vector<std::__1::unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent>>, 0, WTF::CrashOnOverflow, 16> _field47;
-    id _field48;
-    id _field49;
-    id _field50;
-    struct Vector<WTF::RefPtr<Safari::ExtensionContextMenuItem>, 0, WTF::CrashOnOverflow, 16> _field51;
-    struct HashSet<WTF::RefPtr<Safari::ExtensionContextMenuItem>, WTF::PtrHash<WTF::RefPtr<Safari::ExtensionContextMenuItem>>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionContextMenuItem>>> _field52;
-    struct HashMap<Safari::WK::Page, Safari::WK::SerializedScriptValue, Safari::WK::ObjectSubclassHash<Safari::WK::Page>, WTF::HashTraits<Safari::WK::Page>, WTF::HashTraits<Safari::WK::SerializedScriptValue>> _field53;
-    unsigned long long _field54;
-};
-
-struct ExtensionAPIBrowserTab;
-
-struct ExtensionAPIExtension {
-    CDUnknownFunctionPointerType *_field1;
-    struct HashSet<Safari::EventTarget *, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *>> _field2;
-    CDUnknownFunctionPointerType *_field3;
-};
-
-struct ExtensionBar {
-    CDUnknownFunctionPointerType *_field1;
-    struct Extension *_field2;
-    id _field3;
-    id _field4;
-    id _field5;
-    _Bool _field6;
-    struct ObjCAdapter<Safari::ExtensionViewControllerOld> _field7;
-    CDUnknownFunctionPointerType *_field8;
-    struct HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>> _field9;
-    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>> _field10;
-    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16> _field11;
-    _Bool _field12;
-    unsigned int _field13;
-    id _field14;
-    id _field15;
-    id _field16;
-    _Bool _field17;
-    id _field18;
-};
+struct Extension;
 
 struct ExtensionBrowserWindow {
     CDUnknownFunctionPointerType *_field1;
     struct HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>> _field2;
-    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>> _field3;
-    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16> _field4;
+    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>> _field3;
+    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16, WTF::FastMalloc> _field4;
     _Bool _field5;
-    unsigned int _field6;
-    id _field7;
-};
-
-struct ExtensionCompanion;
-
-struct ExtensionContextMenuItem {
-    CDUnknownFunctionPointerType *_field1;
-    struct HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>> _field2;
-    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>> _field3;
-    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16> _field4;
-    _Bool _field5;
-    unsigned int _field6;
-    struct Extension *_field7;
-    struct Page _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    _Bool _field12;
-    struct SerializedScriptValue _field13;
+    struct os_unfair_lock_s _field6;
+    unsigned int _field7;
+    id _field8;
 };
 
 struct ExtensionDomainPattern;
 
-struct ExtensionGlobalPageViewControllerOld;
-
-struct ExtensionMenu {
-    CDUnknownFunctionPointerType *_field1;
-    struct HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>> _field2;
-    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>> _field3;
-    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16> _field4;
+struct ExtensionsController {
+    void *_field1;
+    struct Vector<WTF::RefPtr<Safari::Extension, WTF::DumbPtrTraits<Safari::Extension>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> _field2;
+    struct HashMap<Safari::CF::String, Safari::Extension *, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::Extension *>> _field3;
+    id _field4;
     _Bool _field5;
-    unsigned int _field6;
-    struct Extension *_field7;
-    struct Vector<WTF::RefPtr<Safari::ExtensionMenuItem>, 0, WTF::CrashOnOverflow, 16> _field8;
-    id _field9;
-    struct EventTarget *_field10;
-    _Bool _field11;
-    int _field12;
+    _Bool _field6;
+    _Bool _field7;
+    _Bool _field8;
+    _Bool _field9;
+    id _field10;
+    long long _field11;
+    id _field12;
     _Bool _field13;
     id _field14;
-    id _field15;
-};
-
-struct ExtensionMenuItem {
-    CDUnknownFunctionPointerType *_field1;
-    struct HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>> _field2;
-    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>> _field3;
-    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16> _field4;
-    _Bool _field5;
-    unsigned int _field6;
-    struct Extension *_field7;
-    struct ExtensionMenu *_field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    _Bool _field12;
-    int _field13;
-    id _field14;
-    id _field15;
+    struct os_unfair_lock_s _field15;
     _Bool _field16;
-};
-
-struct ExtensionNamespace;
-
-struct ExtensionSecureSettings;
-
-struct ExtensionSettings;
-
-struct ExtensionToolbarItem {
-    CDUnknownFunctionPointerType *_field1;
-    struct HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>> _field2;
-    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>> _field3;
-    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16> _field4;
-    _Bool _field5;
-    unsigned int _field6;
-    struct Extension *_field7;
-    id _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    id _field13;
-    unsigned long long _field14;
-    id _field15;
-    _Bool _field16;
-    id _field17;
-    id _field18;
-    id _field19;
-    id _field20;
-    id _field21;
-    id _field22;
+    struct OpaqueJSContextGroup *_field17;
+    struct os_unfair_lock_s _field18;
 };
 
 struct ExtensionsPreferencesView;
@@ -490,107 +211,19 @@ struct ExtensionsPreferencesViewController;
 struct FileLocker {
     id _field1;
     id _field2;
-    double _field3;
-    _Bool _field4;
-    id _field5;
-    struct unique_ptr<SafariShared::SuddenTerminationDisabler, std::__1::default_delete<SafariShared::SuddenTerminationDisabler>> _field6;
+    id _field3;
+    id _field4;
+    double _field5;
+    _Bool _field6;
+    id _field7;
+    struct unique_ptr<SafariShared::SuddenTerminationDisabler, std::__1::default_delete<SafariShared::SuddenTerminationDisabler>> _field8;
 };
 
 struct FiringEventIterator;
 
-struct FormAutoFillCompletionController {
-    CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
-    _Bool _field3;
-    id _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    long long _field8;
-    struct Vector<WTF::RefPtr<Safari::CompletionListItem>, 0, WTF::CrashOnOverflow, 16> _field9;
-    id _field10;
-    id _field11;
-    double _field12;
-    _Bool _field13;
-    _Bool _field14;
-    _Bool _field15;
-    _Bool _field16;
-    _Bool _field17;
-};
+struct FormAddressBookAutoFillCompletionController;
 
-struct FormCompletionController {
-    CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
-    _Bool _field3;
-    id _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    long long _field8;
-    struct Vector<WTF::RefPtr<Safari::CompletionListItem>, 0, WTF::CrashOnOverflow, 16> _field9;
-    id _field10;
-    id _field11;
-    double _field12;
-    _Bool _field13;
-    _Bool _field14;
-    _Bool _field15;
-    _Bool _field16;
-    _Bool _field17;
-    CDUnknownFunctionPointerType *_field18;
-    id _field19;
-    id _field20;
-    unsigned long long _field21;
-    _Bool _field22;
-    struct SafeAutoFillConfirmationController *_field23;
-    id _field24;
-    id _field25;
-    struct Frame _field26;
-    id _field27;
-    id _field28;
-    _Bool _field29;
-    _Bool _field30;
-};
-
-struct FormCredentialsCompletionController {
-    CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
-    _Bool _field3;
-    id _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    long long _field8;
-    struct Vector<WTF::RefPtr<Safari::CompletionListItem>, 0, WTF::CrashOnOverflow, 16> _field9;
-    id _field10;
-    id _field11;
-    double _field12;
-    _Bool _field13;
-    _Bool _field14;
-    _Bool _field15;
-    _Bool _field16;
-    _Bool _field17;
-    CDUnknownFunctionPointerType *_field18;
-    id _field19;
-    id _field20;
-    unsigned long long _field21;
-    _Bool _field22;
-    struct SafeAutoFillConfirmationController *_field23;
-    id _field24;
-    id _field25;
-    struct Frame _field26;
-    id _field27;
-    id _field28;
-    _Bool _field29;
-    _Bool _field30;
-    id _field31;
-    id _field32;
-    int _field33;
-    id _field34;
-    id _field35;
-    id _field36;
-    id _field37;
-    int _field38;
-};
+struct FormCompletionController;
 
 struct FormSubmissionListener {
     struct WKRetainPtr<const void *> _field1;
@@ -600,24 +233,20 @@ struct Frame {
     struct WKRetainPtr<const void *> m_webKit2Object;
 };
 
-struct HashMap<Safari::BrowserContentViewController *, WTF::RetainPtr<NSString>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashTraits<Safari::BrowserContentViewController *>, WTF::HashTraits<WTF::RetainPtr<NSString>>> {
-    struct HashTable<Safari::BrowserContentViewController *, WTF::KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSString>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSString>>>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashMap<Safari::BrowserContentViewController *, WTF::RetainPtr<NSString>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashTraits<Safari::BrowserContentViewController *>, WTF::HashTraits<WTF::RetainPtr<NSString>>>::KeyValuePairTraits, WTF::HashTraits<Safari::BrowserContentViewController *>> m_impl;
+struct GeolocationProvider {
+    CDUnknownFunctionPointerType *_field1;
 };
 
-struct HashMap<Safari::BrowserContentViewController *, WTF::RetainPtr<NSURL>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashTraits<Safari::BrowserContentViewController *>, WTF::HashTraits<WTF::RetainPtr<NSURL>>> {
-    struct HashTable<Safari::BrowserContentViewController *, WTF::KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSURL>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSURL>>>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashMap<Safari::BrowserContentViewController *, WTF::RetainPtr<NSURL>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashTraits<Safari::BrowserContentViewController *>, WTF::HashTraits<WTF::RetainPtr<NSURL>>>::KeyValuePairTraits, WTF::HashTraits<Safari::BrowserContentViewController *>> m_impl;
+struct HashMap<Safari::CF::String, Safari::Extension *, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::Extension *>> {
+    struct HashTable<Safari::CF::String, WTF::KeyValuePair<Safari::CF::String, Safari::Extension *>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::CF::String, Safari::Extension *>>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashMap<Safari::CF::String, Safari::Extension *, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::Extension *>>::KeyValuePairTraits, WTF::HashTraits<Safari::CF::String>> _field1;
 };
 
-struct HashMap<Safari::CF::String, WTF::RefPtr<Safari::ExtensionMenu>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionMenu>>> {
-    struct HashTable<Safari::CF::String, WTF::KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionMenu>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionMenu>>>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashMap<Safari::CF::String, WTF::RefPtr<Safari::ExtensionMenu>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionMenu>>>::KeyValuePairTraits, WTF::HashTraits<Safari::CF::String>> _field1;
+struct HashMap<Safari::CF::String, Safari::TopSite *, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::TopSite *>> {
+    struct HashTable<Safari::CF::String, WTF::KeyValuePair<Safari::CF::String, Safari::TopSite *>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::CF::String, Safari::TopSite *>>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashMap<Safari::CF::String, Safari::TopSite *, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::TopSite *>>::KeyValuePairTraits, WTF::HashTraits<Safari::CF::String>> _field1;
 };
 
-struct HashMap<Safari::CF::String, WTF::RefPtr<Safari::ExtensionPopover>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionPopover>>> {
-    struct HashTable<Safari::CF::String, WTF::KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionPopover>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionPopover>>>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashMap<Safari::CF::String, WTF::RefPtr<Safari::ExtensionPopover>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionPopover>>>::KeyValuePairTraits, WTF::HashTraits<Safari::CF::String>> _field1;
-};
-
-struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>> {
-    struct HashTable<Safari::EventTargetTracker *, WTF::KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>>, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>>::KeyValuePairTraits, WTF::HashTraits<Safari::EventTargetTracker *>> _field1;
+struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>> {
+    struct HashTable<Safari::EventTargetTracker *, WTF::KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>>, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>>::KeyValuePairTraits, WTF::HashTraits<Safari::EventTargetTracker *>> _field1;
 };
 
 struct HashMap<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>> {
@@ -628,44 +257,28 @@ struct HashMap<Safari::WK::BackForwardListItem, WTF::RetainPtr<NSString>, Safari
     struct HashTable<Safari::WK::BackForwardListItem, WTF::KeyValuePair<Safari::WK::BackForwardListItem, WTF::RetainPtr<NSString>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::BackForwardListItem, WTF::RetainPtr<NSString>>>, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashMap<Safari::WK::BackForwardListItem, WTF::RetainPtr<NSString>, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>, WTF::HashTraits<WTF::RetainPtr<NSString>>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::BackForwardListItem>> m_impl;
 };
 
-struct HashMap<Safari::WK::Download, WTF::RetainPtr<DownloadProgressEntry>, Safari::WK::ObjectSubclassHash<Safari::WK::Download>, WTF::HashTraits<Safari::WK::Download>, WTF::HashTraits<WTF::RetainPtr<DownloadProgressEntry>>> {
-    struct HashTable<Safari::WK::Download, WTF::KeyValuePair<Safari::WK::Download, WTF::RetainPtr<DownloadProgressEntry>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::Download, WTF::RetainPtr<DownloadProgressEntry>>>, Safari::WK::ObjectSubclassHash<Safari::WK::Download>, WTF::HashMap<Safari::WK::Download, WTF::RetainPtr<DownloadProgressEntry>, Safari::WK::ObjectSubclassHash<Safari::WK::Download>, WTF::HashTraits<Safari::WK::Download>, WTF::HashTraits<WTF::RetainPtr<DownloadProgressEntry>>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::Download>> m_impl;
-};
-
-struct HashMap<Safari::WK::Download, WTF::RetainPtr<PassFileDownload>, Safari::WK::ObjectSubclassHash<Safari::WK::Download>, WTF::HashTraits<Safari::WK::Download>, WTF::HashTraits<WTF::RetainPtr<PassFileDownload>>> {
-    struct HashTable<Safari::WK::Download, WTF::KeyValuePair<Safari::WK::Download, WTF::RetainPtr<PassFileDownload>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::Download, WTF::RetainPtr<PassFileDownload>>>, Safari::WK::ObjectSubclassHash<Safari::WK::Download>, WTF::HashMap<Safari::WK::Download, WTF::RetainPtr<PassFileDownload>, Safari::WK::ObjectSubclassHash<Safari::WK::Download>, WTF::HashTraits<Safari::WK::Download>, WTF::HashTraits<WTF::RetainPtr<PassFileDownload>>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::Download>> m_impl;
-};
-
 struct HashMap<Safari::WK::Frame, WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>, Safari::WK::ObjectSubclassHash<Safari::WK::Frame>, WTF::HashTraits<Safari::WK::Frame>, WTF::HashTraits<WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>>> {
     struct HashTable<Safari::WK::Frame, WTF::KeyValuePair<Safari::WK::Frame, WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::Frame, WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>>>, Safari::WK::ObjectSubclassHash<Safari::WK::Frame>, WTF::HashMap<Safari::WK::Frame, WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>, Safari::WK::ObjectSubclassHash<Safari::WK::Frame>, WTF::HashTraits<Safari::WK::Frame>, WTF::HashTraits<WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::Frame>> m_impl;
-};
-
-struct HashMap<Safari::WK::Page, Safari::WK::SerializedScriptValue, Safari::WK::ObjectSubclassHash<Safari::WK::Page>, WTF::HashTraits<Safari::WK::Page>, WTF::HashTraits<Safari::WK::SerializedScriptValue>> {
-    struct HashTable<Safari::WK::Page, WTF::KeyValuePair<Safari::WK::Page, Safari::WK::SerializedScriptValue>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::Page, Safari::WK::SerializedScriptValue>>, Safari::WK::ObjectSubclassHash<Safari::WK::Page>, WTF::HashMap<Safari::WK::Page, Safari::WK::SerializedScriptValue, Safari::WK::ObjectSubclassHash<Safari::WK::Page>, WTF::HashTraits<Safari::WK::Page>, WTF::HashTraits<Safari::WK::SerializedScriptValue>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::Page>> _field1;
 };
 
 struct HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>> {
     struct HashTable<WTF::RetainPtr<const __CFString *>, WTF::KeyValuePair<WTF::RetainPtr<const __CFString *>, unsigned int>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<WTF::RetainPtr<const __CFString *>, unsigned int>>, WTF::RetainPtrObjectHash<const __CFString *>, WTF::HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>>::KeyValuePairTraits, WTF::RetainPtrObjectHashTraits<const __CFString *>> _field1;
 };
 
+struct HashMap<long, Safari::TestData *, WTF::IntHash<unsigned long>, WTF::HashTraits<long>, WTF::HashTraits<Safari::TestData *>> {
+    struct HashTable<long, WTF::KeyValuePair<long, Safari::TestData *>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<long, Safari::TestData *>>, WTF::IntHash<unsigned long>, WTF::HashMap<long, Safari::TestData *, WTF::IntHash<unsigned long>, WTF::HashTraits<long>, WTF::HashTraits<Safari::TestData *>>::KeyValuePairTraits, WTF::HashTraits<long>> _field1;
+};
+
 struct HashMap<unsigned long long, WTF::RetainPtr<BrowserSharingOperation>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<WTF::RetainPtr<BrowserSharingOperation>>> {
     struct HashTable<unsigned long long, WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<BrowserSharingOperation>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<BrowserSharingOperation>>>, WTF::IntHash<unsigned long long>, WTF::HashMap<unsigned long long, WTF::RetainPtr<BrowserSharingOperation>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<WTF::RetainPtr<BrowserSharingOperation>>>::KeyValuePairTraits, WTF::HashTraits<unsigned long long>> m_impl;
 };
 
-struct HashMap<unsigned long long, WTF::RetainPtr<WebNotification>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<WTF::RetainPtr<WebNotification>>> {
-    struct HashTable<unsigned long long, WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<WebNotification>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<WebNotification>>>, WTF::IntHash<unsigned long long>, WTF::HashMap<unsigned long long, WTF::RetainPtr<WebNotification>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<WTF::RetainPtr<WebNotification>>>::KeyValuePairTraits, WTF::HashTraits<unsigned long long>> m_impl;
-};
-
-struct HashMap<unsigned long long, std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>>> {
-    struct HashTable<unsigned long long, WTF::KeyValuePair<unsigned long long, std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned long long, std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>>>, WTF::IntHash<unsigned long long>, WTF::HashMap<unsigned long long, std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>>>::KeyValuePairTraits, WTF::HashTraits<unsigned long long>> m_impl;
+struct HashMap<unsigned long long, WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>>> {
+    struct HashTable<unsigned long long, WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>>>, WTF::IntHash<unsigned long long>, WTF::HashMap<unsigned long long, WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>>>::KeyValuePairTraits, WTF::HashTraits<unsigned long long>> m_impl;
 };
 
 struct HashSet<Safari::CF::String, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>> {
     struct HashTable<Safari::CF::String, Safari::CF::String, WTF::IdentityExtractor, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>> _field1;
-};
-
-struct HashSet<Safari::EventTarget *, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *>> {
-    struct HashTable<Safari::EventTarget *, Safari::EventTarget *, WTF::IdentityExtractor, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *>> _field1;
 };
 
 struct HashSet<Safari::SQLiteStatement *, WTF::PtrHash<Safari::SQLiteStatement *>, WTF::HashTraits<Safari::SQLiteStatement *>> {
@@ -676,271 +289,89 @@ struct HashSet<Safari::WK::BackForwardListItem, Safari::WK::ObjectSubclassHash<S
     struct HashTable<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem, WTF::IdentityExtractor, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>> m_impl;
 };
 
-struct HashSet<Safari::WK::Frame, Safari::WK::ObjectSubclassHash<Safari::WK::Frame>, WTF::HashTraits<Safari::WK::Frame>> {
-    struct HashTable<Safari::WK::Frame, Safari::WK::Frame, WTF::IdentityExtractor, Safari::WK::ObjectSubclassHash<Safari::WK::Frame>, WTF::HashTraits<Safari::WK::Frame>, WTF::HashTraits<Safari::WK::Frame>> m_impl;
-};
-
 struct HashSet<Safari::WK::Page, Safari::WK::ObjectSubclassHash<Safari::WK::Page>, WTF::HashTraits<Safari::WK::Page>> {
     struct HashTable<Safari::WK::Page, Safari::WK::Page, WTF::IdentityExtractor, Safari::WK::ObjectSubclassHash<Safari::WK::Page>, WTF::HashTraits<Safari::WK::Page>, WTF::HashTraits<Safari::WK::Page>> m_impl;
 };
 
-struct HashSet<WTF::RefPtr<Safari::BrowserContentViewController>, WTF::PtrHash<WTF::RefPtr<Safari::BrowserContentViewController>>, WTF::HashTraits<WTF::RefPtr<Safari::BrowserContentViewController>>> {
-    struct HashTable<WTF::RefPtr<Safari::BrowserContentViewController>, WTF::RefPtr<Safari::BrowserContentViewController>, WTF::IdentityExtractor, WTF::PtrHash<WTF::RefPtr<Safari::BrowserContentViewController>>, WTF::HashTraits<WTF::RefPtr<Safari::BrowserContentViewController>>, WTF::HashTraits<WTF::RefPtr<Safari::BrowserContentViewController>>> m_impl;
-};
-
-struct HashSet<WTF::RefPtr<Safari::ExtensionContextMenuItem>, WTF::PtrHash<WTF::RefPtr<Safari::ExtensionContextMenuItem>>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionContextMenuItem>>> {
-    struct HashTable<WTF::RefPtr<Safari::ExtensionContextMenuItem>, WTF::RefPtr<Safari::ExtensionContextMenuItem>, WTF::IdentityExtractor, WTF::PtrHash<WTF::RefPtr<Safari::ExtensionContextMenuItem>>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionContextMenuItem>>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionContextMenuItem>>> _field1;
-};
-
-struct HashTable<Safari::BrowserContentViewController *, WTF::KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSString>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSString>>>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashMap<Safari::BrowserContentViewController *, WTF::RetainPtr<NSString>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashTraits<Safari::BrowserContentViewController *>, WTF::HashTraits<WTF::RetainPtr<NSString>>>::KeyValuePairTraits, WTF::HashTraits<Safari::BrowserContentViewController *>> {
-    struct KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSString>> *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
-};
-
-struct HashTable<Safari::BrowserContentViewController *, WTF::KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSURL>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSURL>>>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashMap<Safari::BrowserContentViewController *, WTF::RetainPtr<NSURL>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashTraits<Safari::BrowserContentViewController *>, WTF::HashTraits<WTF::RetainPtr<NSURL>>>::KeyValuePairTraits, WTF::HashTraits<Safari::BrowserContentViewController *>> {
-    struct KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSURL>> *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
-};
-
 struct HashTable<Safari::CF::String, Safari::CF::String, WTF::IdentityExtractor, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>> {
     struct String *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
 };
 
-struct HashTable<Safari::CF::String, WTF::KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionMenu>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionMenu>>>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashMap<Safari::CF::String, WTF::RefPtr<Safari::ExtensionMenu>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionMenu>>>::KeyValuePairTraits, WTF::HashTraits<Safari::CF::String>> {
-    struct KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionMenu>> *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
+struct HashTable<Safari::CF::String, WTF::KeyValuePair<Safari::CF::String, Safari::Extension *>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::CF::String, Safari::Extension *>>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashMap<Safari::CF::String, Safari::Extension *, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::Extension *>>::KeyValuePairTraits, WTF::HashTraits<Safari::CF::String>> {
+    struct KeyValuePair<Safari::CF::String, Safari::Extension *> *_field1;
 };
 
-struct HashTable<Safari::CF::String, WTF::KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionPopover>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionPopover>>>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashMap<Safari::CF::String, WTF::RefPtr<Safari::ExtensionPopover>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionPopover>>>::KeyValuePairTraits, WTF::HashTraits<Safari::CF::String>> {
-    struct KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionPopover>> *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
+struct HashTable<Safari::CF::String, WTF::KeyValuePair<Safari::CF::String, Safari::TopSite *>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::CF::String, Safari::TopSite *>>, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashMap<Safari::CF::String, Safari::TopSite *, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::TopSite *>>::KeyValuePairTraits, WTF::HashTraits<Safari::CF::String>> {
+    struct KeyValuePair<Safari::CF::String, Safari::TopSite *> *_field1;
 };
 
-struct HashTable<Safari::EventTarget *, Safari::EventTarget *, WTF::IdentityExtractor, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *>> {
-    struct EventTarget **_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
-};
-
-struct HashTable<Safari::EventTargetTracker *, WTF::KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>>, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>>::KeyValuePairTraits, WTF::HashTraits<Safari::EventTargetTracker *>> {
-    struct KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*> *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
+struct HashTable<Safari::EventTargetTracker *, WTF::KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>>, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>>::KeyValuePairTraits, WTF::HashTraits<Safari::EventTargetTracker *>> {
+    struct KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*> *_field1;
 };
 
 struct HashTable<Safari::SQLiteStatement *, Safari::SQLiteStatement *, WTF::IdentityExtractor, WTF::PtrHash<Safari::SQLiteStatement *>, WTF::HashTraits<Safari::SQLiteStatement *>, WTF::HashTraits<Safari::SQLiteStatement *>> {
     struct SQLiteStatement **_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
 };
 
 struct HashTable<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem, WTF::IdentityExtractor, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>> {
     struct BackForwardListItem *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
 };
 
 struct HashTable<Safari::WK::BackForwardListItem, WTF::KeyValuePair<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem>>, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashMap<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::BackForwardListItem>> {
     struct KeyValuePair<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem> *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
 };
 
 struct HashTable<Safari::WK::BackForwardListItem, WTF::KeyValuePair<Safari::WK::BackForwardListItem, WTF::RetainPtr<NSString>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::BackForwardListItem, WTF::RetainPtr<NSString>>>, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashMap<Safari::WK::BackForwardListItem, WTF::RetainPtr<NSString>, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>, WTF::HashTraits<WTF::RetainPtr<NSString>>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::BackForwardListItem>> {
     struct KeyValuePair<Safari::WK::BackForwardListItem, WTF::RetainPtr<NSString>> *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
-};
-
-struct HashTable<Safari::WK::Download, WTF::KeyValuePair<Safari::WK::Download, WTF::RetainPtr<DownloadProgressEntry>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::Download, WTF::RetainPtr<DownloadProgressEntry>>>, Safari::WK::ObjectSubclassHash<Safari::WK::Download>, WTF::HashMap<Safari::WK::Download, WTF::RetainPtr<DownloadProgressEntry>, Safari::WK::ObjectSubclassHash<Safari::WK::Download>, WTF::HashTraits<Safari::WK::Download>, WTF::HashTraits<WTF::RetainPtr<DownloadProgressEntry>>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::Download>> {
-    struct KeyValuePair<Safari::WK::Download, WTF::RetainPtr<DownloadProgressEntry>> *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
-};
-
-struct HashTable<Safari::WK::Download, WTF::KeyValuePair<Safari::WK::Download, WTF::RetainPtr<PassFileDownload>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::Download, WTF::RetainPtr<PassFileDownload>>>, Safari::WK::ObjectSubclassHash<Safari::WK::Download>, WTF::HashMap<Safari::WK::Download, WTF::RetainPtr<PassFileDownload>, Safari::WK::ObjectSubclassHash<Safari::WK::Download>, WTF::HashTraits<Safari::WK::Download>, WTF::HashTraits<WTF::RetainPtr<PassFileDownload>>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::Download>> {
-    struct KeyValuePair<Safari::WK::Download, WTF::RetainPtr<PassFileDownload>> *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
-};
-
-struct HashTable<Safari::WK::Frame, Safari::WK::Frame, WTF::IdentityExtractor, Safari::WK::ObjectSubclassHash<Safari::WK::Frame>, WTF::HashTraits<Safari::WK::Frame>, WTF::HashTraits<Safari::WK::Frame>> {
-    struct Frame *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
 };
 
 struct HashTable<Safari::WK::Frame, WTF::KeyValuePair<Safari::WK::Frame, WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::Frame, WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>>>, Safari::WK::ObjectSubclassHash<Safari::WK::Frame>, WTF::HashMap<Safari::WK::Frame, WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>, Safari::WK::ObjectSubclassHash<Safari::WK::Frame>, WTF::HashTraits<Safari::WK::Frame>, WTF::HashTraits<WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::Frame>> {
     struct KeyValuePair<Safari::WK::Frame, WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>> *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
 };
 
 struct HashTable<Safari::WK::Page, Safari::WK::Page, WTF::IdentityExtractor, Safari::WK::ObjectSubclassHash<Safari::WK::Page>, WTF::HashTraits<Safari::WK::Page>, WTF::HashTraits<Safari::WK::Page>> {
     struct Page *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
-};
-
-struct HashTable<Safari::WK::Page, WTF::KeyValuePair<Safari::WK::Page, Safari::WK::SerializedScriptValue>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::Page, Safari::WK::SerializedScriptValue>>, Safari::WK::ObjectSubclassHash<Safari::WK::Page>, WTF::HashMap<Safari::WK::Page, Safari::WK::SerializedScriptValue, Safari::WK::ObjectSubclassHash<Safari::WK::Page>, WTF::HashTraits<Safari::WK::Page>, WTF::HashTraits<Safari::WK::SerializedScriptValue>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::Page>> {
-    struct KeyValuePair<Safari::WK::Page, Safari::WK::SerializedScriptValue> *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
-};
-
-struct HashTable<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>>*, WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>>*, WTF::IdentityExtractor, WTF::ListHashSetNodeHashFunctions<WTF::PtrHash<WTF::RefPtr<Safari::ExtensionBar>>>, WTF::HashTraits<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>>*>, WTF::HashTraits<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>>*>> {
-    struct ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>> **_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
-};
-
-struct HashTable<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>>*, WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>>*, WTF::IdentityExtractor, WTF::ListHashSetNodeHashFunctions<WTF::PtrHash<WTF::RefPtr<Safari::ExtensionToolbarItem>>>, WTF::HashTraits<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>>*>, WTF::HashTraits<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>>*>> {
-    struct ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>> **_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
-};
-
-struct HashTable<WTF::RefPtr<Safari::BrowserContentViewController>, WTF::RefPtr<Safari::BrowserContentViewController>, WTF::IdentityExtractor, WTF::PtrHash<WTF::RefPtr<Safari::BrowserContentViewController>>, WTF::HashTraits<WTF::RefPtr<Safari::BrowserContentViewController>>, WTF::HashTraits<WTF::RefPtr<Safari::BrowserContentViewController>>> {
-    RefPtr_1016c1b7 *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
-};
-
-struct HashTable<WTF::RefPtr<Safari::ExtensionContextMenuItem>, WTF::RefPtr<Safari::ExtensionContextMenuItem>, WTF::IdentityExtractor, WTF::PtrHash<WTF::RefPtr<Safari::ExtensionContextMenuItem>>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionContextMenuItem>>, WTF::HashTraits<WTF::RefPtr<Safari::ExtensionContextMenuItem>>> {
-    struct RefPtr<Safari::ExtensionContextMenuItem> *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
 };
 
 struct HashTable<WTF::RetainPtr<const __CFString *>, WTF::KeyValuePair<WTF::RetainPtr<const __CFString *>, unsigned int>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<WTF::RetainPtr<const __CFString *>, unsigned int>>, WTF::RetainPtrObjectHash<const __CFString *>, WTF::HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>>::KeyValuePairTraits, WTF::RetainPtrObjectHashTraits<const __CFString *>> {
     struct KeyValuePair<WTF::RetainPtr<const __CFString *>, unsigned int> *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
+};
+
+struct HashTable<long, WTF::KeyValuePair<long, Safari::TestData *>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<long, Safari::TestData *>>, WTF::IntHash<unsigned long>, WTF::HashMap<long, Safari::TestData *, WTF::IntHash<unsigned long>, WTF::HashTraits<long>, WTF::HashTraits<Safari::TestData *>>::KeyValuePairTraits, WTF::HashTraits<long>> {
+    struct KeyValuePair<long, Safari::TestData *> *_field1;
 };
 
 struct HashTable<unsigned long long, WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<BrowserSharingOperation>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<BrowserSharingOperation>>>, WTF::IntHash<unsigned long long>, WTF::HashMap<unsigned long long, WTF::RetainPtr<BrowserSharingOperation>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<WTF::RetainPtr<BrowserSharingOperation>>>::KeyValuePairTraits, WTF::HashTraits<unsigned long long>> {
     struct KeyValuePair<unsigned long long, WTF::RetainPtr<BrowserSharingOperation>> *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
 };
 
-struct HashTable<unsigned long long, WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<WebNotification>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<WebNotification>>>, WTF::IntHash<unsigned long long>, WTF::HashMap<unsigned long long, WTF::RetainPtr<WebNotification>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<WTF::RetainPtr<WebNotification>>>::KeyValuePairTraits, WTF::HashTraits<unsigned long long>> {
-    struct KeyValuePair<unsigned long long, WTF::RetainPtr<WebNotification>> *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
-};
-
-struct HashTable<unsigned long long, WTF::KeyValuePair<unsigned long long, std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned long long, std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>>>, WTF::IntHash<unsigned long long>, WTF::HashMap<unsigned long long, std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>>>::KeyValuePairTraits, WTF::HashTraits<unsigned long long>> {
-    struct KeyValuePair<unsigned long long, std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>> *m_table;
-    unsigned int m_tableSize;
-    unsigned int m_tableSizeMask;
-    unsigned int m_keyCount;
-    unsigned int m_deletedCount;
+struct HashTable<unsigned long long, WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned long long, WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>>>, WTF::IntHash<unsigned long long>, WTF::HashMap<unsigned long long, WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>, WTF::IntHash<unsigned long long>, WTF::HashTraits<unsigned long long>, WTF::HashTraits<WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>>>::KeyValuePairTraits, WTF::HashTraits<unsigned long long>> {
+    struct KeyValuePair<unsigned long long, WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>> *m_table;
 };
 
 struct Image {
     struct WKRetainPtr<const void *> m_webKit2Object;
 };
 
-struct KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSString>>;
+struct KeyValuePair<Safari::CF::String, Safari::Extension *>;
 
-struct KeyValuePair<Safari::BrowserContentViewController *, WTF::RetainPtr<NSURL>>;
+struct KeyValuePair<Safari::CF::String, Safari::TopSite *>;
 
-struct KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionMenu>>;
-
-struct KeyValuePair<Safari::CF::String, WTF::RefPtr<Safari::ExtensionPopover>>;
-
-struct KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>;
+struct KeyValuePair<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener, WTF::DumbPtrTraits<Safari::RegisteredEventListener>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>*>>*>;
 
 struct KeyValuePair<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem>;
 
 struct KeyValuePair<Safari::WK::BackForwardListItem, WTF::RetainPtr<NSString>>;
 
-struct KeyValuePair<Safari::WK::Download, WTF::RetainPtr<DownloadProgressEntry>>;
-
-struct KeyValuePair<Safari::WK::Download, WTF::RetainPtr<PassFileDownload>>;
-
 struct KeyValuePair<Safari::WK::Frame, WTF::RetainPtr<WBSFormAutoFillMetadataCorrector>>;
-
-struct KeyValuePair<Safari::WK::Page, Safari::WK::SerializedScriptValue>;
 
 struct KeyValuePair<WTF::RetainPtr<const __CFString *>, unsigned int>;
 
+struct KeyValuePair<long, Safari::TestData *>;
+
 struct KeyValuePair<unsigned long long, WTF::RetainPtr<BrowserSharingOperation>>;
 
-struct KeyValuePair<unsigned long long, WTF::RetainPtr<WebNotification>>;
-
-struct KeyValuePair<unsigned long long, std::__1::pair<JSRetainPtr<OpaqueJSContext *>, OpaqueJSValue *>>;
-
-struct ListHashSet<WTF::RefPtr<Safari::ExtensionBar>, WTF::PtrHash<WTF::RefPtr<Safari::ExtensionBar>>> {
-    struct HashTable<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>>*, WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>>*, WTF::IdentityExtractor, WTF::ListHashSetNodeHashFunctions<WTF::PtrHash<WTF::RefPtr<Safari::ExtensionBar>>>, WTF::HashTraits<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>>*>, WTF::HashTraits<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>>*>> _field1;
-    struct ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>> *_field2;
-    struct ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>> *_field3;
-};
-
-struct ListHashSet<WTF::RefPtr<Safari::ExtensionToolbarItem>, WTF::PtrHash<WTF::RefPtr<Safari::ExtensionToolbarItem>>> {
-    struct HashTable<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>>*, WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>>*, WTF::IdentityExtractor, WTF::ListHashSetNodeHashFunctions<WTF::PtrHash<WTF::RefPtr<Safari::ExtensionToolbarItem>>>, WTF::HashTraits<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>>*>, WTF::HashTraits<WTF::ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>>*>> _field1;
-    struct ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>> *_field2;
-    struct ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>> *_field3;
-};
-
-struct ListHashSetNode<WTF::RefPtr<Safari::ExtensionBar>>;
-
-struct ListHashSetNode<WTF::RefPtr<Safari::ExtensionToolbarItem>>;
+struct KeyValuePair<unsigned long long, WTF::RetainPtr<RemoteNotificationVerificationRequestProxy>>;
 
 struct MutableDictionary {
     struct WKRetainPtr<const void *> m_webKit2Object;
@@ -953,6 +384,7 @@ struct MutableMediaPlaybackAndMuteState {
     unsigned long long _field4;
     unsigned long long _field5;
     unsigned long long _field6;
+    unsigned long long _field7;
 };
 
 struct NSEdgeInsets {
@@ -962,13 +394,18 @@ struct NSEdgeInsets {
     double right;
 };
 
-struct NotificationObject {
-    id _field1;
+struct ObjCAdapter<Safari::UnifiedFieldCompletionListGenerator>;
+
+struct OpaqueJSContextGroup;
+
+struct Optional<SearchSuggestionNavigation> {
+    _Bool init_;
+    union constexpr_storage_t<SearchSuggestionNavigation> storage_;
 };
 
-struct ObjCAdapter<Safari::ExtensionViewControllerOld> {
-    Class _field1;
-    id _field2;
+struct Optional<unsigned long long> {
+    _Bool init_;
+    union constexpr_storage_t<unsigned long long> storage_;
 };
 
 struct Page {
@@ -979,37 +416,27 @@ struct PageGroup {
     struct WKRetainPtr<const void *> m_webKit2Object;
 };
 
-struct PageLoadTestWithChrome;
-
-struct ParsecMapsExtraCompletionListItem {
+struct PageLoadTestViewController {
     CDUnknownFunctionPointerType *_field1;
     unsigned int _field2;
-    _Bool _field3;
+    id _field3;
     id _field4;
-    struct CommandTarget *_field5;
-    int _field6;
-    id _field7;
+    struct Timer<Safari::PageLoadTestViewController> _field5;
 };
 
-struct PassRefPtr<Safari::Certificate> {
-    struct Certificate *_field1;
+struct PerformanceCollector {
+    CDUnknownFunctionPointerType *_field1;
+    struct HashMap<long, Safari::TestData *, WTF::IntHash<unsigned long>, WTF::HashTraits<long>, WTF::HashTraits<Safari::TestData *>> _field2;
+    unsigned long long _field3;
 };
 
-struct PassRefPtr<Safari::CompletionListItem> {
-    struct CompletionListItem *_field1;
+struct PerformanceTesting {
+    CDUnknownFunctionPointerType *_field1;
+    unsigned int _field2;
+    struct PerformanceTestingClient *_field3;
 };
 
-struct PassRefPtr<Safari::SearchableWebContentViewController> {
-    struct SearchableWebContentViewController *_field1;
-};
-
-struct PassRefPtr<Safari::SheetRequest> {
-    struct SheetRequest *_field1;
-};
-
-struct PerformanceCollector;
-
-struct PerformanceTesting;
+struct PerformanceTestingClient;
 
 struct Popover {
     CDUnknownFunctionPointerType *_field1;
@@ -1027,226 +454,148 @@ struct Popover {
 
 struct PopoverClient;
 
-struct Preferences {
-    struct WKRetainPtr<const void *> _field1;
-};
-
 struct ProcessSerialNumber {
     unsigned int _field1;
     unsigned int _field2;
 };
 
-struct ProtectionSpace {
-    struct WKRetainPtr<const void *> _field1;
-};
-
 struct QueuedNavigation {
     CDUnknownFunctionPointerType *_field1;
-    RefPtr_1016c1b7 _field2;
+    id _field2;
     id _field3;
 };
 
 struct ReaderController {
     CDUnknownFunctionPointerType *_field1;
     unsigned int _field2;
-    struct BrowserContentViewController *_field3;
+    id _field3;
     id _field4;
     int _field5;
     id _field6;
     id _field7;
-    id _field8;
+    _Bool _field8;
     _Bool _field9;
-    _Bool _field10;
+    int _field10;
     int _field11;
-    id _field12;
+    int _field12;
     id _field13;
     id _field14;
-    _Bool _field15;
-    id _field16;
+    id _field15;
+    _Bool _field16;
+    id _field17;
+    id _field18;
+    id _field19;
+    struct BackForwardListItem _field20;
 };
 
-struct ReaderControllerProxy {
-    CDUnknownFunctionPointerType *_field1;
-    struct HashMap<WTF::RetainPtr<const __CFString *>, unsigned int, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<unsigned int>> _field2;
-    struct HashMap<Safari::EventTargetTracker *, WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*, WTF::PtrHash<Safari::EventTargetTracker *>, WTF::HashTraits<Safari::EventTargetTracker *>, WTF::HashTraits<WTF::HashMap<WTF::RetainPtr<const __CFString *>, WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*, WTF::RetainPtrObjectHash<const __CFString *>, WTF::RetainPtrObjectHashTraits<const __CFString *>, WTF::HashTraits<WTF::Vector<WTF::RefPtr<Safari::RegisteredEventListener>, 1, WTF::CrashOnOverflow, 16>*>>*>> _field3;
-    struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16> _field4;
-    _Bool _field5;
-    unsigned int _field6;
-    id _field7;
-};
-
-struct ReaderPageContextMenuClient;
-
-struct ReaderPageFindClient;
-
-struct ReaderPageNavigationClient;
-
-struct ReaderPageUIClient;
-
-struct ReaderViewController {
+struct ReaderizedArticleFetcher {
     CDUnknownFunctionPointerType *_field1;
     unsigned int _field2;
     id _field3;
     id _field4;
-    _Bool _field5;
-    _Bool _field6;
+    struct ReaderizedArticleFetcherClient *_field5;
+    id _field6;
     id _field7;
-    struct Deque<Safari::BannerAction, 0> _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    struct Frame _field13;
-    id _field14;
-    struct Data _field15;
-    struct Data _field16;
-    id _field17;
-    id _field18;
-    _Bool _field19;
-    double _field20;
-    struct unique_ptr<Safari::ReaderPageContextMenuClient, std::__1::default_delete<Safari::ReaderPageContextMenuClient>> _field21;
-    struct unique_ptr<Safari::ReaderPageFindClient, std::__1::default_delete<Safari::ReaderPageFindClient>> _field22;
-    struct unique_ptr<Safari::ReaderPageNavigationClient, std::__1::default_delete<Safari::ReaderPageNavigationClient>> _field23;
-    struct unique_ptr<Safari::ReaderPageUIClient, std::__1::default_delete<Safari::ReaderPageUIClient>> _field24;
-    id _field25;
-    id _field26;
-    id _field27;
+    id _field8;
 };
 
-struct ReaderizedArticleFetcher;
+struct ReaderizedArticleFetcherClient;
 
 struct ReadingListFetcher {
     CDUnknownFunctionPointerType *_field1;
-    id _field2;
-    struct unique_ptr<Safari::ReadingListFetcherPageNavigationClient, std::__1::default_delete<Safari::ReadingListFetcherPageNavigationClient>> _field3;
+    struct Context _field2;
+    id _field3;
     id _field4;
-    struct RefPtr<Safari::ReaderizedArticleFetcher> _field5;
+    id _field5;
     id _field6;
-    int _field7;
-    int _field8;
-    id _field9;
+    struct RefPtr<Safari::ReaderizedArticleFetcher, WTF::DumbPtrTraits<Safari::ReaderizedArticleFetcher>> _field7;
+    id _field8;
+    int _field9;
+    int _field10;
+    int _field11;
+    id _field12;
 };
 
-struct ReadingListFetcherPageNavigationClient;
-
-struct RefPtr<Safari::AddressBookEntry> {
-    struct AddressBookEntry *m_ptr;
+struct Ref<Safari::Certificate, WTF::DumbPtrTraits<Safari::Certificate>> {
+    struct Certificate *_field1;
 };
 
-struct RefPtr<Safari::AuthenticationSheetRequest> {
+struct Ref<Safari::WebViewControllerWKAdapter, WTF::DumbPtrTraits<Safari::WebViewControllerWKAdapter>> {
+    struct WebViewControllerWKAdapter *_field1;
+};
+
+struct RefPtr<Safari::AuthenticationSheetRequest, WTF::DumbPtrTraits<Safari::AuthenticationSheetRequest>> {
     struct AuthenticationSheetRequest *m_ptr;
 };
 
-struct RefPtr<Safari::BrowserContentViewController> {
-    struct BrowserContentViewController *m_ptr;
-};
-
-struct RefPtr<Safari::BrowserTab> {
+struct RefPtr<Safari::BrowserTab, WTF::DumbPtrTraits<Safari::BrowserTab>> {
     struct BrowserTab *m_ptr;
 };
 
-struct RefPtr<Safari::Certificate> {
+struct RefPtr<Safari::Certificate, WTF::DumbPtrTraits<Safari::Certificate>> {
     struct Certificate *m_ptr;
 };
 
-struct RefPtr<Safari::CompletionListItem>;
-
-struct RefPtr<Safari::ContentExtensionProxy> {
-    struct ContentExtensionProxy *_field1;
+struct RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem>> {
+    struct CompletionListItem *m_ptr;
 };
 
-struct RefPtr<Safari::Extension> {
+struct RefPtr<Safari::Extension, WTF::DumbPtrTraits<Safari::Extension>> {
     struct Extension *m_ptr;
 };
 
-struct RefPtr<Safari::ExtensionBar>;
-
-struct RefPtr<Safari::ExtensionBrowserWindow> {
+struct RefPtr<Safari::ExtensionBrowserWindow, WTF::DumbPtrTraits<Safari::ExtensionBrowserWindow>> {
     struct ExtensionBrowserWindow *m_ptr;
 };
 
-struct RefPtr<Safari::ExtensionCompanion> {
-    struct ExtensionCompanion *_field1;
+struct RefPtr<Safari::FormAddressBookAutoFillCompletionController, WTF::DumbPtrTraits<Safari::FormAddressBookAutoFillCompletionController>> {
+    struct FormAddressBookAutoFillCompletionController *_field1;
 };
 
-struct RefPtr<Safari::ExtensionContextMenuItem> {
-    struct ExtensionContextMenuItem *m_ptr;
-};
-
-struct RefPtr<Safari::ExtensionGlobalPageViewControllerOld> {
-    struct ExtensionGlobalPageViewControllerOld *_field1;
-};
-
-struct RefPtr<Safari::ExtensionMenuItem> {
-    struct ExtensionMenuItem *m_ptr;
-};
-
-struct RefPtr<Safari::ExtensionNamespace> {
-    struct ExtensionNamespace *_field1;
-};
-
-struct RefPtr<Safari::ExtensionSecureSettings> {
-    struct ExtensionSecureSettings *_field1;
-};
-
-struct RefPtr<Safari::ExtensionSettings> {
-    struct ExtensionSettings *_field1;
-};
-
-struct RefPtr<Safari::ExtensionToolbarItem> {
-    struct ExtensionToolbarItem *m_ptr;
-};
-
-struct RefPtr<Safari::FormCompletionController> {
+struct RefPtr<Safari::FormCompletionController, WTF::DumbPtrTraits<Safari::FormCompletionController>> {
     struct FormCompletionController *m_ptr;
 };
 
-struct RefPtr<Safari::InternetAccountSetupController::DomainSetupPromptRequest> {
+struct RefPtr<Safari::InternetAccountSetupController::DomainSetupPromptRequest, WTF::DumbPtrTraits<Safari::InternetAccountSetupController::DomainSetupPromptRequest>> {
     struct DomainSetupPromptRequest *_field1;
 };
 
-struct RefPtr<Safari::PerformanceTesting> {
-    struct PerformanceTesting *_field1;
+struct RefPtr<Safari::PerformanceTesting, WTF::DumbPtrTraits<Safari::PerformanceTesting>> {
+    struct PerformanceTesting *m_ptr;
 };
 
-struct RefPtr<Safari::ReaderController> {
+struct RefPtr<Safari::ReaderController, WTF::DumbPtrTraits<Safari::ReaderController>> {
     struct ReaderController *m_ptr;
 };
 
-struct RefPtr<Safari::ReaderControllerProxy> {
-    struct ReaderControllerProxy *m_ptr;
-};
-
-struct RefPtr<Safari::ReaderizedArticleFetcher> {
+struct RefPtr<Safari::ReaderizedArticleFetcher, WTF::DumbPtrTraits<Safari::ReaderizedArticleFetcher>> {
     struct ReaderizedArticleFetcher *_field1;
 };
 
-struct RefPtr<Safari::RemoteNotificationVerificationRequest> {
-    struct RemoteNotificationVerificationRequest *_field1;
+struct RefPtr<Safari::RemoteNotificationVerificationRequest, WTF::DumbPtrTraits<Safari::RemoteNotificationVerificationRequest>> {
+    struct RemoteNotificationVerificationRequest *m_ptr;
 };
 
-struct RefPtr<Safari::SearchableWebContentViewController> {
-    struct SearchableWebContentViewController *m_ptr;
-};
-
-struct RefPtr<Safari::SheetRequest> {
+struct RefPtr<Safari::SheetRequest, WTF::DumbPtrTraits<Safari::SheetRequest>> {
     struct SheetRequest *m_ptr;
 };
 
-struct RefPtr<Safari::SignatureCreator>;
-
-struct RefPtr<Safari::SiteMetadataFetcher> {
+struct RefPtr<Safari::SiteMetadataFetcher, WTF::DumbPtrTraits<Safari::SiteMetadataFetcher>> {
     struct SiteMetadataFetcher *m_ptr;
 };
 
-struct RefPtr<Safari::TopSite>;
+struct RefPtr<Safari::TopSite, WTF::DumbPtrTraits<Safari::TopSite>>;
 
-struct RefPtr<Safari::UnifiedFieldCompletionController> {
+struct RefPtr<Safari::UnifiedFieldCompletionController, WTF::DumbPtrTraits<Safari::UnifiedFieldCompletionController>> {
     struct UnifiedFieldCompletionController *m_ptr;
 };
 
-struct RefPtr<Safari::WebPageProxy> {
-    struct WebPageProxy *m_ptr;
+struct RefPtr<Safari::UnifiedFieldCompletionListGeneratorProxy, WTF::DumbPtrTraits<Safari::UnifiedFieldCompletionListGeneratorProxy>> {
+    struct UnifiedFieldCompletionListGeneratorProxy *_field1;
+};
+
+struct RefPtr<Safari::WebViewControllerWKAdapter, WTF::DumbPtrTraits<Safari::WebViewControllerWKAdapter>> {
+    struct WebViewControllerWKAdapter *m_ptr;
 };
 
 struct RemoteNotificationVerificationRequest;
@@ -1260,23 +609,35 @@ struct RenderObject {
 };
 
 struct RetainPtr<CGImage *> {
+    void *_field1;
+};
+
+struct RetainPtr<RemoteNotificationCenterRequest> {
     void *m_ptr;
 };
 
-struct RetainPtr<OpaqueSecCertificateRef *> {
+struct RetainPtr<__CFRunLoopTimer *> {
     void *_field1;
 };
 
-struct RetainPtr<OpaqueSecKeyRef *> {
+struct RetainPtr<__SecCertificate *> {
     void *_field1;
 };
 
-struct RetainPtr<OpaqueSecPolicyRef *> {
+struct RetainPtr<__SecIdentity *> {
+    void *_field1;
+};
+
+struct RetainPtr<__SecPolicy *> {
     void *_field1;
 };
 
 struct RetainPtr<__SecTrust *> {
-    void *_field1;
+    void *m_ptr;
+};
+
+struct RetainPtr<const __SecCode *> {
+    void *m_ptr;
 };
 
 struct SHA256 {
@@ -1301,7 +662,7 @@ struct SQLiteStatement;
 
 struct SafeAutoFillConfirmationController {
     CDUnknownFunctionPointerType *_field1;
-    struct RefPtr<Safari::FormCompletionController> _field2;
+    struct RefPtr<Safari::FormAddressBookAutoFillCompletionController, WTF::DumbPtrTraits<Safari::FormAddressBookAutoFillCompletionController>> _field2;
     id _field3;
     id _field4;
     id _field5;
@@ -1313,50 +674,26 @@ struct SafeAutoFillConfirmationController {
     struct CGRect _field11;
     id _field12;
     struct Frame _field13;
-    id _field14;
-    _Bool _field15;
+    _Bool _field14;
+    id _field15;
     id _field16;
-    id _field17;
 };
 
 struct ScopeExitHandler {
     CDUnknownBlockType _field1;
 };
 
-struct SearchableWebContentViewController {
-    CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
-    id _field3;
-    id _field4;
-    _Bool _field5;
-    _Bool _field6;
-    id _field7;
-    struct Deque<Safari::BannerAction, 0> _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    struct Frame _field13;
-    id _field14;
-    struct Data _field15;
-    struct Data _field16;
-    id _field17;
-    id _field18;
-    _Bool _field19;
-    double _field20;
-};
-
-struct SecurityInfo {
-    int _field1;
-    int _field2;
-    id _field3;
+struct SearchSuggestionNavigation {
+    char hasParsecResults;
+    unsigned long long queryID;
+    char sendCorrectButAbandonedFeedbackOnNextCommittedLoad;
 };
 
 struct SecurityOrigin {
     struct WKRetainPtr<const void *> _field1;
 };
 
-struct SerializedScriptValue {
+struct SessionState {
     struct WKRetainPtr<const void *> _field1;
 };
 
@@ -1366,15 +703,23 @@ struct SheetRequest {
     id _field3;
 };
 
-struct SignatureCreator {
-    unsigned int _field1;
-    struct RefPtr<Safari::Certificate> _field2;
-    struct RetainPtr<OpaqueSecKeyRef *> _field3;
+struct SidebarAnimationContext {
+    unsigned long long tabViewAutoresizingMask;
+    int revealingOrCoveringSidebar;
+    char sidebarAnimationInProgress;
+    char layoutAnalysisClaimsPageIsCentered;
+    char sidebarWillAppearAsOverlay;
 };
 
-struct SiteMetadataFetcher;
-
-struct SnippetEditorDelegate;
+struct SiteMetadataFetcher {
+    CDUnknownFunctionPointerType *_field1;
+    unsigned int _field2;
+    id _field3;
+    id _field4;
+    id _field5;
+    struct PageGroup _field6;
+    id _field7;
+};
 
 struct String {
     struct WKRetainPtr<const void *> m_webKit2Object;
@@ -1387,22 +732,50 @@ struct TabBarController {
 };
 
 struct TabPlacementHint {
-    BrowserWindowController *m_browserWindowController;
-    RefPtr_1016c1b7 m_browserContentViewController;
-    _Bool m_contentViewIsAncestorTab;
+    id _field1;
+    _Bool _field2;
+};
+
+struct Timer<Safari::PageLoadTestViewController> {
+    struct PageLoadTestViewController *_field1;
+    struct RetainPtr<__CFRunLoopTimer *> _field2;
 };
 
 struct TopSite {
     CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
+    void *_field2;
     id _field3;
     id _field4;
-    id _field5;
     unsigned int :1;
     unsigned int :1;
     unsigned int :1;
     unsigned int :1;
     unsigned int :1;
+};
+
+struct TopSitesController {
+    void *_field1;
+    id _field2;
+    struct HashSet<Safari::CF::String, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>> _field3;
+    int _field4;
+    Vector_4ba0cb78 _field5;
+    id _field6;
+    id _field7;
+    id _field8;
+    struct Deque<WTF::RefPtr<Safari::TopSite, WTF::DumbPtrTraits<Safari::TopSite>>, 0> _field9;
+    struct HashMap<Safari::CF::String, Safari::TopSite *, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::TopSite *>> _field10;
+    struct HashMap<Safari::CF::String, Safari::TopSite *, Safari::CF::ObjectSubclassHash<Safari::CF::String>, WTF::HashTraits<Safari::CF::String>, WTF::HashTraits<Safari::TopSite *>> _field11;
+    double _field12;
+    id _field13;
+    unsigned long long _field14;
+    unsigned long long _field15;
+    id _field16;
+    id _field17;
+    id _field18;
+    id _field19;
+    id _field20;
+    id _field21;
+    _Bool _field22;
 };
 
 struct TrackingDataController {
@@ -1441,131 +814,134 @@ struct UnifiedFieldCompletionController {
     id _field5;
     id _field6;
     id _field7;
-    long long _field8;
-    struct Vector<WTF::RefPtr<Safari::CompletionListItem>, 0, WTF::CrashOnOverflow, 16> _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    double _field13;
-    _Bool _field14;
-    _Bool _field15;
-    _Bool _field16;
+    id _field8;
+    id _field9;
+    long long _field10;
+    Vector_e1d4bda3 _field11;
+    Vector_e1d4bda3 _field12;
+    id _field13;
+    id _field14;
+    id _field15;
+    double _field16;
     _Bool _field17;
     _Bool _field18;
     _Bool _field19;
     _Bool _field20;
-    CDUnknownFunctionPointerType *_field21;
-    id _field22;
-    id _field23;
-    struct unique_ptr<Safari::UnifiedFieldCompletionListGenerator, std::__1::default_delete<Safari::UnifiedFieldCompletionListGenerator>> _field24;
+    _Bool _field21;
+    _Bool _field22;
+    struct unique_ptr<Safari::UnifiedFieldCompletionListGenerator, std::__1::default_delete<Safari::UnifiedFieldCompletionListGenerator>> _field23;
+    id _field24;
     id _field25;
     id _field26;
-    id _field27;
-    double _field28;
+    double _field27;
+    id _field28;
     id _field29;
-    id _field30;
+    _Bool _field30;
     _Bool _field31;
     _Bool _field32;
     long long _field33;
     unsigned long long _field34;
     id _field35;
     id _field36;
-    id _field37;
-    _Bool _field38;
-    id _field39;
+    _Bool _field37;
+    id _field38;
+    _Bool _field39;
     _Bool _field40;
-    _Bool _field41;
+    id _field41;
+    id _field42;
 };
 
-struct UnifiedFieldCompletionListGenerator;
-
-struct Vector<NSURL *, 0, WTF::CrashOnOverflow, 16> {
-    id *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
+struct UnifiedFieldCompletionListGenerator {
+    CDUnknownFunctionPointerType *_field1;
+    CDUnknownFunctionPointerType *_field2;
+    id _field3;
+    id _field4;
+    id _field5;
+    struct UnifiedFieldCompletionListGeneratorClient *_field6;
+    struct RefPtr<Safari::UnifiedFieldCompletionListGeneratorProxy, WTF::DumbPtrTraits<Safari::UnifiedFieldCompletionListGeneratorProxy>> _field7;
+    id _field8;
+    id _field9;
+    id _field10;
+    id _field11;
+    id _field12;
+    id _field13;
+    id _field14;
+    id _field15;
+    id _field16;
+    id _field17;
+    _Bool _field18;
+    long long _field19;
+    _Bool _field20;
+    _Bool _field21;
+    _Bool _field22;
+    int _field23;
+    _Bool _field24;
+    id _field25;
+    id _field26;
+    id _field27;
+    _Bool _field28;
+    unsigned long long _field29;
+    id _field30;
+    struct unique_ptr<Safari::ObjCAdapter<Safari::UnifiedFieldCompletionListGenerator>, std::__1::default_delete<Safari::ObjCAdapter<Safari::UnifiedFieldCompletionListGenerator>>> _field31;
+    struct unique_ptr<Safari::ObjCAdapter<Safari::UnifiedFieldCompletionListGenerator>, std::__1::default_delete<Safari::ObjCAdapter<Safari::UnifiedFieldCompletionListGenerator>>> _field32;
+    id _field33;
+    id _field34;
+    unsigned long long _field35;
+    id _field36;
+    id _field37;
+    id _field38;
+    _Bool _field39;
+    id _field40;
+    id _field41;
 };
 
-struct Vector<Safari::CF::String, 0, WTF::CrashOnOverflow, 16> {
-    struct String *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
+struct UnifiedFieldCompletionListGeneratorClient;
+
+struct UnifiedFieldCompletionListGeneratorProxy;
+
+struct UserNotificationProvider {
+    CDUnknownFunctionPointerType *_field1;
 };
 
-struct Vector<Safari::ExtensionDomainPattern, 0, WTF::CrashOnOverflow, 16> {
+struct Vector<Safari::ExtensionDomainPattern, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> {
     struct ExtensionDomainPattern *_field1;
     unsigned int _field2;
     unsigned int _field3;
 };
 
-struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16> {
+struct Vector<Safari::FiringEventIterator, 1, WTF::CrashOnOverflow, 16, WTF::FastMalloc> {
     struct FiringEventIterator *_field1;
     unsigned int _field2;
     unsigned int _field3;
     struct type _field4[1];
 };
 
-struct Vector<Safari::WK::AuthenticationChallenge, 0, WTF::CrashOnOverflow, 16> {
-    struct AuthenticationChallenge *m_buffer;
+struct Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> {
+    RefPtr_a864df3d *m_buffer;
     unsigned int m_capacity;
     unsigned int m_size;
 };
 
-struct Vector<WTF::RefPtr<Safari::CompletionListItem>, 0, WTF::CrashOnOverflow, 16> {
-    struct RefPtr<Safari::CompletionListItem> *_field1;
+struct Vector<WTF::RefPtr<Safari::Extension, WTF::DumbPtrTraits<Safari::Extension>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> {
+    struct RefPtr<Safari::Extension, WTF::DumbPtrTraits<Safari::Extension>> *_field1;
     unsigned int _field2;
     unsigned int _field3;
 };
 
-struct Vector<WTF::RefPtr<Safari::ExtensionBar>, 0, WTF::CrashOnOverflow, 16> {
-    struct RefPtr<Safari::ExtensionBar> *m_buffer;
-    unsigned int m_capacity;
-    unsigned int m_size;
-};
-
-struct Vector<WTF::RefPtr<Safari::ExtensionContextMenuItem>, 0, WTF::CrashOnOverflow, 16> {
-    struct RefPtr<Safari::ExtensionContextMenuItem> *_field1;
+struct Vector<WTF::RefPtr<Safari::TopSite, WTF::DumbPtrTraits<Safari::TopSite>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> {
+    struct RefPtr<Safari::TopSite, WTF::DumbPtrTraits<Safari::TopSite>> *_field1;
     unsigned int _field2;
     unsigned int _field3;
 };
 
-struct Vector<WTF::RefPtr<Safari::ExtensionMenuItem>, 0, WTF::CrashOnOverflow, 16> {
-    struct RefPtr<Safari::ExtensionMenuItem> *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-};
-
-struct Vector<WTF::RefPtr<Safari::SignatureCreator>, 0, WTF::CrashOnOverflow, 16> {
-    struct RefPtr<Safari::SignatureCreator> *m_buffer;
-    unsigned int m_capacity;
-    unsigned int m_size;
-};
-
-struct Vector<WTF::RefPtr<Safari::TopSite>, 0, WTF::CrashOnOverflow, 16> {
-    struct RefPtr<Safari::TopSite> *m_buffer;
-    unsigned int m_capacity;
-    unsigned int m_size;
-};
-
-struct Vector<std::__1::pair<NSString *, NSString *>, 0, WTF::CrashOnOverflow, 16> {
-    struct pair<NSString *, NSString *> *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-};
-
-struct Vector<std::__1::unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent>>, 0, WTF::CrashOnOverflow, 16> {
-    struct unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent>> *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-};
-
-struct Vector<unsigned int, 0, WTF::CrashOnOverflow, 16> {
+struct Vector<unsigned int, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> {
     unsigned int *m_buffer;
     unsigned int m_capacity;
     unsigned int m_size;
 };
 
-struct VectorBuffer<Safari::BannerAction, 0> {
-    struct BannerAction *_field1;
+struct VectorBuffer<WTF::RefPtr<Safari::TopSite, WTF::DumbPtrTraits<Safari::TopSite>>, 0, WTF::FastMalloc> {
+    struct RefPtr<Safari::TopSite, WTF::DumbPtrTraits<Safari::TopSite>> *_field1;
     unsigned int _field2;
     unsigned int _field3;
 };
@@ -1580,7 +956,20 @@ struct WKRetainPtr<const void *> {
     void *m_ptr;
 };
 
-struct WebArchiveGenerationControllerLoaderClient;
+struct WebArchiveGenerationController {
+    CDUnknownFunctionPointerType *_field1;
+    unsigned int _field2;
+    struct Frame _field3;
+    id _field4;
+    int _field5;
+    int _field6;
+    struct RefPtr<Safari::ReaderizedArticleFetcher, WTF::DumbPtrTraits<Safari::ReaderizedArticleFetcher>> _field7;
+    id _field8;
+    id _field9;
+    id _field10;
+    id _field11;
+    struct WKPrintInfo _field12;
+};
 
 struct WebArchiveSharingController {
     CDUnknownFunctionPointerType *_field1;
@@ -1589,11 +978,11 @@ struct WebArchiveSharingController {
     id _field4;
     int _field5;
     int _field6;
-    struct RefPtr<Safari::ReaderizedArticleFetcher> _field7;
-    struct unique_ptr<Safari::WebArchiveGenerationControllerLoaderClient, std::__1::default_delete<Safari::WebArchiveGenerationControllerLoaderClient>> _field8;
+    struct RefPtr<Safari::ReaderizedArticleFetcher, WTF::DumbPtrTraits<Safari::ReaderizedArticleFetcher>> _field7;
+    id _field8;
     id _field9;
     id _field10;
-    struct Page _field11;
+    id _field11;
     struct WKPrintInfo _field12;
     id _field13;
     id _field14;
@@ -1605,14 +994,14 @@ struct WebArchiveSharingController {
     int _field20;
 };
 
-struct WebPageProxy {
-    CDUnknownFunctionPointerType *_field1;
-    unsigned int _field2;
-    struct ExtensionAPIBrowserTab *_field3;
-};
-
 struct WebSearchSuggestionsFetcherControllerClient {
     CDUnknownFunctionPointerType *_field1;
+};
+
+struct WebViewControllerWKAdapter {
+    CDUnknownFunctionPointerType *_field1;
+    unsigned int _field2;
+    id _field3;
 };
 
 struct _NSRange {
@@ -1620,19 +1009,18 @@ struct _NSRange {
     unsigned long long _field2;
 };
 
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*> *__next_;
+};
+
 struct cssm_data {
     unsigned long long _field1;
     char *_field2;
 };
 
-struct mutex {
-    struct _opaque_pthread_mutex_t {
-        long long __sig;
-        char __opaque[56];
-    } __m_;
+struct os_unfair_lock_s {
+    unsigned int _field1;
 };
-
-struct pair<NSString *, NSString *>;
 
 struct sqlite3;
 
@@ -1642,129 +1030,67 @@ struct type {
 
 struct unique_ptr<Safari::AutomaticTerminationDisabler, std::__1::default_delete<Safari::AutomaticTerminationDisabler>> {
     struct __compressed_pair<Safari::AutomaticTerminationDisabler *, std::__1::default_delete<Safari::AutomaticTerminationDisabler>> {
-        struct AutomaticTerminationDisabler *__first_;
+        struct AutomaticTerminationDisabler *__value_;
     } __ptr_;
-};
-
-struct unique_ptr<Safari::BrowserPageContextMenuClient, std::__1::default_delete<Safari::BrowserPageContextMenuClient>> {
-    struct __compressed_pair<Safari::BrowserPageContextMenuClient *, std::__1::default_delete<Safari::BrowserPageContextMenuClient>> {
-        struct BrowserPageContextMenuClient *_field1;
-    } _field1;
-};
-
-struct unique_ptr<Safari::BrowserPageDiagnosticLoggingClient, std::__1::default_delete<Safari::BrowserPageDiagnosticLoggingClient>> {
-    struct __compressed_pair<Safari::BrowserPageDiagnosticLoggingClient *, std::__1::default_delete<Safari::BrowserPageDiagnosticLoggingClient>> {
-        struct BrowserPageDiagnosticLoggingClient *_field1;
-    } _field1;
-};
-
-struct unique_ptr<Safari::BrowserPageFindClient, std::__1::default_delete<Safari::BrowserPageFindClient>> {
-    struct __compressed_pair<Safari::BrowserPageFindClient *, std::__1::default_delete<Safari::BrowserPageFindClient>> {
-        struct BrowserPageFindClient *_field1;
-    } _field1;
 };
 
 struct unique_ptr<Safari::BrowserPageFormClient, std::__1::default_delete<Safari::BrowserPageFormClient>> {
     struct __compressed_pair<Safari::BrowserPageFormClient *, std::__1::default_delete<Safari::BrowserPageFormClient>> {
-        struct BrowserPageFormClient *_field1;
-    } _field1;
+        struct BrowserPageFormClient *__value_;
+    } __ptr_;
 };
-
-struct unique_ptr<Safari::BrowserPageNavigationClient, std::__1::default_delete<Safari::BrowserPageNavigationClient>> {
-    struct __compressed_pair<Safari::BrowserPageNavigationClient *, std::__1::default_delete<Safari::BrowserPageNavigationClient>> {
-        struct BrowserPageNavigationClient *_field1;
-    } _field1;
-};
-
-struct unique_ptr<Safari::BrowserPageUIClient, std::__1::default_delete<Safari::BrowserPageUIClient>> {
-    struct __compressed_pair<Safari::BrowserPageUIClient *, std::__1::default_delete<Safari::BrowserPageUIClient>> {
-        struct BrowserPageUIClient *_field1;
-    } _field1;
-};
-
-struct unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent>>;
 
 struct unique_ptr<Safari::ExtensionsPreferencesView, std::__1::default_delete<Safari::ExtensionsPreferencesView>> {
     struct __compressed_pair<Safari::ExtensionsPreferencesView *, std::__1::default_delete<Safari::ExtensionsPreferencesView>> {
-        struct ExtensionsPreferencesView *__first_;
+        struct ExtensionsPreferencesView *__value_;
     } __ptr_;
 };
 
 struct unique_ptr<Safari::ExtensionsPreferencesViewController, std::__1::default_delete<Safari::ExtensionsPreferencesViewController>> {
     struct __compressed_pair<Safari::ExtensionsPreferencesViewController *, std::__1::default_delete<Safari::ExtensionsPreferencesViewController>> {
-        struct ExtensionsPreferencesViewController *__first_;
+        struct ExtensionsPreferencesViewController *__value_;
     } __ptr_;
 };
 
 struct unique_ptr<Safari::FileLocker, std::__1::default_delete<Safari::FileLocker>> {
     struct __compressed_pair<Safari::FileLocker *, std::__1::default_delete<Safari::FileLocker>> {
-        struct FileLocker *__first_;
+        struct FileLocker *__value_;
     } __ptr_;
+};
+
+struct unique_ptr<Safari::ObjCAdapter<Safari::UnifiedFieldCompletionListGenerator>, std::__1::default_delete<Safari::ObjCAdapter<Safari::UnifiedFieldCompletionListGenerator>>> {
+    struct __compressed_pair<Safari::ObjCAdapter<Safari::UnifiedFieldCompletionListGenerator>*, std::__1::default_delete<Safari::ObjCAdapter<Safari::UnifiedFieldCompletionListGenerator>>> {
+        struct ObjCAdapter<Safari::UnifiedFieldCompletionListGenerator> *_field1;
+    } _field1;
 };
 
 struct unique_ptr<Safari::PerformanceCollector, std::__1::default_delete<Safari::PerformanceCollector>> {
     struct __compressed_pair<Safari::PerformanceCollector *, std::__1::default_delete<Safari::PerformanceCollector>> {
-        struct PerformanceCollector *_field1;
-    } _field1;
+        struct PerformanceCollector *__value_;
+    } __ptr_;
 };
 
 struct unique_ptr<Safari::QueuedNavigation, std::__1::default_delete<Safari::QueuedNavigation>> {
     struct __compressed_pair<Safari::QueuedNavigation *, std::__1::default_delete<Safari::QueuedNavigation>> {
-        struct QueuedNavigation *__first_;
+        struct QueuedNavigation *__value_;
     } __ptr_;
-};
-
-struct unique_ptr<Safari::ReaderPageContextMenuClient, std::__1::default_delete<Safari::ReaderPageContextMenuClient>> {
-    struct __compressed_pair<Safari::ReaderPageContextMenuClient *, std::__1::default_delete<Safari::ReaderPageContextMenuClient>> {
-        struct ReaderPageContextMenuClient *_field1;
-    } _field1;
-};
-
-struct unique_ptr<Safari::ReaderPageFindClient, std::__1::default_delete<Safari::ReaderPageFindClient>> {
-    struct __compressed_pair<Safari::ReaderPageFindClient *, std::__1::default_delete<Safari::ReaderPageFindClient>> {
-        struct ReaderPageFindClient *_field1;
-    } _field1;
-};
-
-struct unique_ptr<Safari::ReaderPageNavigationClient, std::__1::default_delete<Safari::ReaderPageNavigationClient>> {
-    struct __compressed_pair<Safari::ReaderPageNavigationClient *, std::__1::default_delete<Safari::ReaderPageNavigationClient>> {
-        struct ReaderPageNavigationClient *_field1;
-    } _field1;
-};
-
-struct unique_ptr<Safari::ReaderPageUIClient, std::__1::default_delete<Safari::ReaderPageUIClient>> {
-    struct __compressed_pair<Safari::ReaderPageUIClient *, std::__1::default_delete<Safari::ReaderPageUIClient>> {
-        struct ReaderPageUIClient *_field1;
-    } _field1;
 };
 
 struct unique_ptr<Safari::ReadingListFetcher, std::__1::default_delete<Safari::ReadingListFetcher>> {
     struct __compressed_pair<Safari::ReadingListFetcher *, std::__1::default_delete<Safari::ReadingListFetcher>> {
-        struct ReadingListFetcher *__first_;
-    } __ptr_;
-};
-
-struct unique_ptr<Safari::ReadingListFetcherPageNavigationClient, std::__1::default_delete<Safari::ReadingListFetcherPageNavigationClient>> {
-    struct __compressed_pair<Safari::ReadingListFetcherPageNavigationClient *, std::__1::default_delete<Safari::ReadingListFetcherPageNavigationClient>> {
-        struct ReadingListFetcherPageNavigationClient *_field1;
-    } _field1;
-};
-
-struct unique_ptr<Safari::SecurityInfo, std::__1::default_delete<Safari::SecurityInfo>> {
-    struct __compressed_pair<Safari::SecurityInfo *, std::__1::default_delete<Safari::SecurityInfo>> {
-        struct SecurityInfo *__first_;
+        struct ReadingListFetcher *__value_;
     } __ptr_;
 };
 
 struct unique_ptr<Safari::TabBarController, std::__1::default_delete<Safari::TabBarController>> {
     struct __compressed_pair<Safari::TabBarController *, std::__1::default_delete<Safari::TabBarController>> {
-        struct TabBarController *__first_;
+        struct TabBarController *__value_;
     } __ptr_;
 };
 
 struct unique_ptr<Safari::TrackingDataControllerClientObjCAdapter, std::__1::default_delete<Safari::TrackingDataControllerClientObjCAdapter>> {
     struct __compressed_pair<Safari::TrackingDataControllerClientObjCAdapter *, std::__1::default_delete<Safari::TrackingDataControllerClientObjCAdapter>> {
-        struct TrackingDataControllerClientObjCAdapter *__first_;
+        struct TrackingDataControllerClientObjCAdapter *__value_;
     } __ptr_;
 };
 
@@ -1774,114 +1100,157 @@ struct unique_ptr<Safari::UnifiedFieldCompletionListGenerator, std::__1::default
     } _field1;
 };
 
-struct unique_ptr<Safari::WebArchiveGenerationControllerLoaderClient, std::__1::default_delete<Safari::WebArchiveGenerationControllerLoaderClient>> {
-    struct __compressed_pair<Safari::WebArchiveGenerationControllerLoaderClient *, std::__1::default_delete<Safari::WebArchiveGenerationControllerLoaderClient>> {
-        struct WebArchiveGenerationControllerLoaderClient *_field1;
-    } _field1;
-};
-
-struct unique_ptr<SafariShared::CoalescedAsynchronousWriter, std::__1::default_delete<SafariShared::CoalescedAsynchronousWriter>> {
-    struct __compressed_pair<SafariShared::CoalescedAsynchronousWriter *, std::__1::default_delete<SafariShared::CoalescedAsynchronousWriter>> {
-        struct CoalescedAsynchronousWriter *__first_;
-    } __ptr_;
-};
-
 struct unique_ptr<SafariShared::SuddenTerminationDisabler, std::__1::default_delete<SafariShared::SuddenTerminationDisabler>> {
     struct __compressed_pair<SafariShared::SuddenTerminationDisabler *, std::__1::default_delete<SafariShared::SuddenTerminationDisabler>> {
-        struct SuddenTerminationDisabler *__first_;
-    } __ptr_;
-};
-
-struct unique_ptr<SnippetEditorDelegate, std::__1::default_delete<SnippetEditorDelegate>> {
-    struct __compressed_pair<SnippetEditorDelegate *, std::__1::default_delete<SnippetEditorDelegate>> {
-        struct SnippetEditorDelegate *__first_;
+        struct SuddenTerminationDisabler *__value_;
     } __ptr_;
 };
 
 struct unique_ptr<WTF::Deque<NSURL *, 0>, std::__1::default_delete<WTF::Deque<NSURL *, 0>>> {
     struct __compressed_pair<WTF::Deque<NSURL *, 0>*, std::__1::default_delete<WTF::Deque<NSURL *, 0>>> {
-        struct Deque<NSURL *, 0> *__first_;
+        struct Deque<NSURL *, 0> *__value_;
     } __ptr_;
+};
+
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*> **__value_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*>*>> {
+                unsigned long long __value_;
+            } __data_;
+        } __value_;
+    } __ptr_;
+};
+
+struct unordered_map<GridViewDisplayMode, Class, std::__1::hash<GridViewDisplayMode>, std::__1::equal_to<GridViewDisplayMode>, std::__1::allocator<std::__1::pair<const GridViewDisplayMode, Class>>> {
+    struct __hash_table<std::__1::__hash_value_type<GridViewDisplayMode, Class>, std::__1::__unordered_map_hasher<GridViewDisplayMode, std::__1::__hash_value_type<GridViewDisplayMode, Class>, std::__1::hash<GridViewDisplayMode>, true>, std::__1::__unordered_map_equal<GridViewDisplayMode, std::__1::__hash_value_type<GridViewDisplayMode, Class>, std::__1::equal_to<GridViewDisplayMode>, true>, std::__1::allocator<std::__1::__hash_value_type<GridViewDisplayMode, Class>>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<GridViewDisplayMode, Class>, void *>*> __value_;
+        } __p1_;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<GridViewDisplayMode, std::__1::__hash_value_type<GridViewDisplayMode, Class>, std::__1::hash<GridViewDisplayMode>, true>> {
+            unsigned long long __value_;
+        } __p2_;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<GridViewDisplayMode, std::__1::__hash_value_type<GridViewDisplayMode, Class>, std::__1::equal_to<GridViewDisplayMode>, true>> {
+            float __value_;
+        } __p3_;
+    } __table_;
+};
+
+struct vector<unsigned long, std::__1::allocator<unsigned long>> {
+    unsigned long long *__begin_;
+    unsigned long long *__end_;
+    struct __compressed_pair<unsigned long *, std::__1::allocator<unsigned long>> {
+        unsigned long long *__value_;
+    } __end_cap_;
 };
 
 #pragma mark Typedef'd Structures
 
 typedef struct {
-    long long _field1;
-    long long _field2;
-    long long _field3;
-} CDStruct_2ec95fd7;
+    unsigned int _field1[8];
+} CDStruct_6ad76789;
+
+typedef struct {
+    int webProcessID;
+    unsigned long long tabID;
+} CDStruct_497cfc99;
 
 // Template types
 typedef struct HashMap<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>> {
     struct HashTable<Safari::WK::BackForwardListItem, WTF::KeyValuePair<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem>>, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashMap<Safari::WK::BackForwardListItem, Safari::WK::BackForwardListItem, Safari::WK::ObjectSubclassHash<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>, WTF::HashTraits<Safari::WK::BackForwardListItem>>::KeyValuePairTraits, WTF::HashTraits<Safari::WK::BackForwardListItem>> _field1;
-} HashMap_bb21a8a3;
+} HashMap_7a735169;
 
-typedef struct PassRefPtr<Safari::Certificate> {
+typedef struct Ref<Safari::Certificate, WTF::DumbPtrTraits<Safari::Certificate>> {
     struct Certificate *_field1;
-} PassRefPtr_61025e73;
+} Ref_46982f58;
 
-typedef struct PassRefPtr<Safari::CompletionListItem> {
-    struct CompletionListItem *_field1;
-} PassRefPtr_46da3955;
+typedef struct Ref<Safari::WebViewControllerWKAdapter, WTF::DumbPtrTraits<Safari::WebViewControllerWKAdapter>> {
+    struct WebViewControllerWKAdapter *_field1;
+} Ref_a0637525;
 
-typedef struct PassRefPtr<Safari::SearchableWebContentViewController> {
-    struct SearchableWebContentViewController *_field1;
-} PassRefPtr_6e6851a6;
+typedef struct RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem>> {
+    struct CompletionListItem *m_ptr;
+} RefPtr_a864df3d;
 
-typedef struct PassRefPtr<Safari::SheetRequest> {
-    struct SheetRequest *_field1;
-} PassRefPtr_2d65b270;
-
-typedef struct RefPtr<Safari::BrowserContentViewController> {
-    struct BrowserContentViewController *m_ptr;
-} RefPtr_1016c1b7;
+typedef struct RefPtr<Safari::SheetRequest, WTF::DumbPtrTraits<Safari::SheetRequest>> {
+    struct SheetRequest *m_ptr;
+} RefPtr_55cde54d;
 
 typedef struct RetainPtr<CGImage *> {
-    void *m_ptr;
-} RetainPtr_c27edd19;
-
-typedef struct RetainPtr<OpaqueSecPolicyRef *> {
     void *_field1;
-} RetainPtr_3b882a02;
+} RetainPtr_fae59704;
+
+typedef struct RetainPtr<__SecIdentity *> {
+    void *_field1;
+} RetainPtr_6b1fd32a;
+
+typedef struct RetainPtr<__SecPolicy *> {
+    void *_field1;
+} RetainPtr_9f6ce05b;
 
 typedef struct RetainPtr<__SecTrust *> {
-    void *_field1;
-} RetainPtr_b11cdf8e;
+    void *m_ptr;
+} RetainPtr_e78bdbf8;
 
-typedef struct Vector<Safari::ExtensionDomainPattern, 0, WTF::CrashOnOverflow, 16> {
+typedef struct RetainPtr<const __SecCode *> {
+    void *m_ptr;
+} RetainPtr_86d965a1;
+
+typedef struct Vector<Safari::ExtensionDomainPattern, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> {
     struct ExtensionDomainPattern *_field1;
     unsigned int _field2;
     unsigned int _field3;
-} Vector_851fab59;
+} Vector_920cd39b;
 
-typedef struct Vector<WTF::RefPtr<Safari::ExtensionBar>, 0, WTF::CrashOnOverflow, 16> {
-    struct RefPtr<Safari::ExtensionBar> *m_buffer;
+typedef struct Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> {
+    RefPtr_a864df3d *m_buffer;
     unsigned int m_capacity;
     unsigned int m_size;
-} Vector_2480254a;
+} Vector_e1d4bda3;
 
-typedef struct Vector<WTF::RefPtr<Safari::TopSite>, 0, WTF::CrashOnOverflow, 16> {
-    struct RefPtr<Safari::TopSite> *m_buffer;
-    unsigned int m_capacity;
-    unsigned int m_size;
-} Vector_eea79b75;
+typedef struct Vector<WTF::RefPtr<Safari::TopSite, WTF::DumbPtrTraits<Safari::TopSite>>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> {
+    struct RefPtr<Safari::TopSite, WTF::DumbPtrTraits<Safari::TopSite>> *_field1;
+    unsigned int _field2;
+    unsigned int _field3;
+} Vector_4ba0cb78;
 
-typedef struct Vector<unsigned int, 0, WTF::CrashOnOverflow, 16> {
+typedef struct Vector<unsigned int, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> {
     unsigned int *m_buffer;
     unsigned int m_capacity;
     unsigned int m_size;
-} Vector_81153489;
+} Vector_f2f32486;
 
 typedef struct unique_ptr<Safari::QueuedNavigation, std::__1::default_delete<Safari::QueuedNavigation>> {
     struct __compressed_pair<Safari::QueuedNavigation *, std::__1::default_delete<Safari::QueuedNavigation>> {
-        struct QueuedNavigation *__first_;
+        struct QueuedNavigation *__value_;
     } __ptr_;
-} unique_ptr_c6cdb193;
+} unique_ptr_60e845e1;
 
 typedef struct unique_ptr<WTF::Deque<NSURL *, 0>, std::__1::default_delete<WTF::Deque<NSURL *, 0>>> {
     struct __compressed_pair<WTF::Deque<NSURL *, 0>*, std::__1::default_delete<WTF::Deque<NSURL *, 0>>> {
-        struct Deque<NSURL *, 0> *__first_;
+        struct Deque<NSURL *, 0> *__value_;
     } __ptr_;
-} unique_ptr_d9da4b2f;
+} unique_ptr_aba2cdfe;
+
+typedef struct vector<unsigned long, std::__1::allocator<unsigned long>> {
+    unsigned long long *__begin_;
+    unsigned long long *__end_;
+    struct __compressed_pair<unsigned long *, std::__1::allocator<unsigned long>> {
+        unsigned long long *__value_;
+    } __end_cap_;
+} vector_06e666a8;
+
+#pragma mark Named Unions
+
+union constexpr_storage_t<SearchSuggestionNavigation> {
+    unsigned char dummy_;
+    struct SearchSuggestionNavigation value_;
+};
+
+union constexpr_storage_t<unsigned long long> {
+    unsigned char dummy_;
+    unsigned long long value_;
+};
 

@@ -12,6 +12,7 @@
 - (void)sidebarView:(FI_TSidebarView *)arg1 draggingEnded:(id <NSDraggingInfo>)arg2;
 - (void)sidebarView:(FI_TSidebarView *)arg1 draggingExited:(id <NSDraggingInfo>)arg2;
 - (unsigned long long)sidebarView:(FI_TSidebarView *)arg1 draggingEntered:(id <NSDraggingInfo>)arg2;
+- (void)axRowHit:(long long)arg1;
 - (void)rowHit:(long long)arg1;
 @end
 

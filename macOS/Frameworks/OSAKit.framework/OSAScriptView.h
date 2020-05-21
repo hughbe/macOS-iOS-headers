@@ -36,6 +36,7 @@
 @property unsigned long long tabWidth;
 @property BOOL usesTabs;
 @property BOOL usesScriptAssistant;
+- (void)_ensureScriptAssistant;
 @property(copy) NSString *source;
 - (id)scriptAssistant;
 - (void)setController:(id)arg1;

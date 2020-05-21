@@ -6,12 +6,51 @@
 
 #import <MapKit/MKShape.h>
 
-@interface MKPointAnnotation : MKShape
+#import "MKAnnotationPrivate.h"
+#import "MKAnnotationRepresentation.h"
+#import "MKCustomFeatureAnnotation.h"
+#import "MKGeoJSONObject.h"
+
+@class CLLocation, NSString, VKCustomFeature;
+
+@interface MKPointAnnotation : MKShape <MKGeoJSONObject, MKCustomFeatureAnnotation, MKAnnotationRepresentation, MKAnnotationPrivate>
 {
     struct CLLocationCoordinate2D _coordinate;
+    long long _representation;
+    VKCustomFeature *_customFeature;
+    CLLocation *_location;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) long long representation; // @synthesize representation=_representation;
+@property(retain, nonatomic) CLLocation *location; // @synthesize location=_location;
 @property(nonatomic) struct CLLocationCoordinate2D coordinate; // @synthesize coordinate=_coordinate;
+- (BOOL)_shouldDeselectWhenDragged;
+- (BOOL)_isPendingSelectionAnimated;
+- (void)_invalidateCachedCoordinate;
+- (void)_setHiddenForOffscreen:(BOOL)arg1;
+- (BOOL)isPersistent;
+- (void)prepareForReuse;
+- (id)reuseIdentifier;
+- (id)annotation;
+- (id)viewRepresentation;
+- (BOOL)shouldRepresentSelf;
+@property(readonly, nonatomic) BOOL showsBalloonCallout;
+- (void)setShowsBalloonCallout:(BOOL)arg1;
+- (id)feature;
+- (id)initWithCoordinate:(struct CLLocationCoordinate2D)arg1 title:(id)arg2 subtitle:(id)arg3;
+- (id)initWithCoordinate:(struct CLLocationCoordinate2D)arg1;
+- (id)init;
+- (id)_initWithGeoJSONObject:(id)arg1 error:(id *)arg2;
+
+// Remaining properties
+@property(nonatomic) double course;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, copy, nonatomic) NSString *subtitle;
+@property(readonly) Class superclass;
+@property(readonly, copy, nonatomic) NSString *title;
 
 @end
 

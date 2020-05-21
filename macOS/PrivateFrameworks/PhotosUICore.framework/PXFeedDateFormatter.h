@@ -6,11 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSCalendar, NSDate, NSDateFormatter, NSString;
+@class NSCalendar, NSDate, NSDateFormatter, NSLocale, NSString;
 
 @interface PXFeedDateFormatter : NSObject
 {
     BOOL _prepared;
+    NSLocale *_locale;
+    BOOL _ignoreWhitelist;
     NSCalendar *_calendar;
     NSDate *_today;
     NSDate *_yesterday;
@@ -24,11 +26,15 @@
 - (void).cxx_destruct;
 - (void)_currentLocaleChanged:(id)arg1;
 - (void)_calendarDayChanged:(id)arg1;
+- (BOOL)_canSubstitueDateStringsWithLocale:(id)arg1;
 - (id)_completeRelativeStringForDate:(id)arg1 dateFormatter:(id)arg2;
 - (void)_prepare;
 - (void)_invalidate;
+- (BOOL)isDateInFuture:(id)arg1;
+- (BOOL)isDateInToday:(id)arg1;
 - (id)stringFromDate:(id)arg1;
 - (void)dealloc;
+- (id)initWithLocale:(id)arg1 ignoreWhitelist:(BOOL)arg2;
 - (id)init;
 
 @end

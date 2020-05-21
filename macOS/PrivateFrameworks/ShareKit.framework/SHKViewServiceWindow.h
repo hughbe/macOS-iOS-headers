@@ -8,15 +8,16 @@
 
 @class NSResponder;
 
+__attribute__((visibility("hidden")))
 @interface SHKViewServiceWindow : NSWindow
 {
     BOOL _canSetFirstResponder;
     NSResponder *_cachedFirstResponder;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL canSetFirstResponder; // @synthesize canSetFirstResponder=_canSetFirstResponder;
 @property(retain, nonatomic) NSResponder *cachedFirstResponder; // @synthesize cachedFirstResponder=_cachedFirstResponder;
-- (void).cxx_destruct;
 - (BOOL)makeFirstResponder:(id)arg1;
 - (void)makeCachedResponderFirstResponder;
 

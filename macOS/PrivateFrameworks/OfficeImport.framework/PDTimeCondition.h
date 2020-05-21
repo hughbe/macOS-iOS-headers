@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     PDAnimationTarget *mTarget;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (void)setTarget:(id)arg1;
 - (id)target;
@@ -27,7 +28,6 @@ __attribute__((visibility("hidden")))
 - (void)setDelay:(int)arg1;
 - (int)delay;
 - (BOOL)hasDelay;
-- (void)dealloc;
 - (id)init;
 - (int)writeDelay;
 

@@ -7,11 +7,11 @@
 #import "NSObject.h"
 
 #import "MKMapServiceTicket.h"
-#import "_MKMapServiceTicketForFreshness.h"
 
-@class GEOMapRegion, GEOMapServiceTraits, GEORelatedSearchSuggestion, NSArray, NSError, NSString;
+@class GEOCategorySearchResultSection, GEODirectionIntent, GEOMapRegion, GEOMapServiceTraits, GEORelatedSearchSuggestion, GEOResolvedItem, NSArray, NSError, NSString;
 
-@interface _MKTicket : NSObject <_MKMapServiceTicketForFreshness, MKMapServiceTicket>
+__attribute__((visibility("hidden")))
+@interface _MKTicket : NSObject <MKMapServiceTicket>
 {
     id <GEOMapServiceTicket> _ticket;
     NSArray *_exactMapItems;
@@ -20,12 +20,21 @@
 }
 
 - (void).cxx_destruct;
+@property(readonly, nonatomic) GEOCategorySearchResultSection *categorySearchResultSection;
+@property(readonly, nonatomic) NSArray *searchResultSections;
 @property(readonly, nonatomic) NSString *sectionHeader;
 @property(readonly, nonatomic) double requestResponseTime;
+@property(readonly, nonatomic) BOOL showDymSuggestionCloseButton;
+@property(readonly, nonatomic) unsigned int dymSuggestionVisibleTime;
 @property(readonly, nonatomic) NSError *error;
 @property(readonly, nonatomic) BOOL shouldEnableRedoSearch;
+@property(readonly, nonatomic) NSArray *displayHeaderSubstitutes;
 @property(readonly, nonatomic) NSString *resultDisplayHeader;
+@property(readonly, nonatomic) GEODirectionIntent *directionIntent;
+@property(readonly, nonatomic) NSArray *retainedSearchMetadata;
+@property(readonly, nonatomic) GEOResolvedItem *clientResolvedResult;
 @property(readonly, nonatomic) int searchResultType;
+@property(readonly, nonatomic) NSArray *browseCategories;
 @property(readonly, nonatomic) GEORelatedSearchSuggestion *defaultRelatedSuggestion;
 @property(readonly, nonatomic) NSArray *relatedSearchSuggestions;
 @property(readonly, nonatomic, getter=isChainResultSet) BOOL chainResultSet;
@@ -44,7 +53,6 @@
 - (void)submitWithHandler:(CDUnknownBlockType)arg1 timeout:(long long)arg2 networkActivity:(CDUnknownBlockType)arg3;
 @property(readonly, copy) NSString *description;
 - (id)initWithTicket:(id)arg1;
-@property(readonly, nonatomic) BOOL allAreFreshFromNetwork;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

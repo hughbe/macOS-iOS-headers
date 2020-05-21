@@ -6,31 +6,35 @@
 
 #import <Safari/MouseEventBlockingView.h>
 
-@class NSScrollView, NSView, VisualTabPickerCloudTabsView, VisualTabPickerGridView, VisualTabPickerSearchField, VisualTabPickerViewController;
+@class BackgroundColorView, NSScrollView, NSView, VisualTabPickerCloudTabsView, VisualTabPickerGridView, VisualTabPickerSearchField, VisualTabPickerViewController;
 
 __attribute__((visibility("hidden")))
 @interface VisualTabPickerRootView : MouseEventBlockingView
 {
     NSScrollView *_scrollView;
     NSView *_topBarView;
+    BackgroundColorView *_topBarViewSeparator;
     VisualTabPickerGridView *_gridView;
     VisualTabPickerSearchField *_searchField;
     VisualTabPickerCloudTabsView *_cloudTabsView;
     VisualTabPickerViewController *_visualTabPickerViewController;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak VisualTabPickerViewController *visualTabPickerViewController; // @synthesize visualTabPickerViewController=_visualTabPickerViewController;
 @property(readonly, nonatomic) VisualTabPickerCloudTabsView *cloudTabsView; // @synthesize cloudTabsView=_cloudTabsView;
 @property(readonly, nonatomic) VisualTabPickerSearchField *searchField; // @synthesize searchField=_searchField;
 @property(readonly, nonatomic) VisualTabPickerGridView *gridView; // @synthesize gridView=_gridView;
-- (void).cxx_destruct;
+- (BOOL)_isShowingSearchField;
+- (void)_didScroll:(id)arg1;
 - (void)setUpSubviews;
 - (void)_startTopBarAndCloudViewAnimation:(long long)arg1;
-- (void)_startPerspectiveAnimation:(long long)arg1;
 - (void)_getTopBarAnimationDuration:(double *)arg1 timeOffset:(double *)arg2 gridAnimation:(long long)arg3;
 - (void)setFrameSize:(struct CGSize)arg1;
+- (void)_showOrHideTopBarSeparator:(BOOL)arg1;
 - (void)showSearchField;
 - (BOOL)makeSearchFieldFirstResponder;
+- (void)prepareForEntryAnimation;
 - (void)startGridAnimation:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)cancelOperation:(id)arg1;
 - (BOOL)mouseDownCanMoveWindow;

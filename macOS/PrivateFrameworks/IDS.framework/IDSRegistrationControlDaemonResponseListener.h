@@ -15,10 +15,10 @@
     IDSDaemonRequestTimer *_requestTimer;
 }
 
+- (void).cxx_destruct;
 - (void)registrationControlStatusResponseForRequestID:(long long)arg1 requestID:(id)arg2 withError:(id)arg3;
 - (void)registrationControlResponseForRequestID:(id)arg1 withError:(id)arg2;
 - (id)initWithRequestTimer:(id)arg1;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

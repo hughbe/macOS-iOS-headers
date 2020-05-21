@@ -16,6 +16,7 @@
     BOOL _isSignedIn;
     BOOL _isManagedStudent;
     BOOL _primary;
+    long long _touchIDState;
     NSNumber *_dsID;
     NSString *_identifier;
     long long _kind;
@@ -31,6 +32,7 @@
 + (id)migratePersistedStoreDictionary:(id)arg1;
 + (id)dsidFromPlistValue:(id)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, getter=isPrimary) BOOL primary; // @synthesize primary=_primary;
 @property(retain) NSTimer *tokenExpirationTimer; // @synthesize tokenExpirationTimer=_tokenExpirationTimer;
 @property(retain) NSDate *tokenIssuedDate; // @synthesize tokenIssuedDate=_tokenIssuedDate;
@@ -44,7 +46,9 @@
 @property long long kind; // @synthesize kind=_kind;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy) NSNumber *dsID; // @synthesize dsID=_dsID;
-- (void).cxx_destruct;
+- (long long)getTouchIDState;
+@property long long touchIDState; // @synthesize touchIDState=_touchIDState;
+- (void)resetTouchIDState;
 - (void)mergeValuesFromAuthenticationResponse:(id)arg1;
 - (BOOL)hasValidStrongToken;
 - (double)strongTokenValidForSecond;

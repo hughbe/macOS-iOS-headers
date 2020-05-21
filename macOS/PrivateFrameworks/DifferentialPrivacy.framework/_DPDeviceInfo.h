@@ -10,6 +10,7 @@
 {
 }
 
++ (BOOL)isDisabledByTasking;
 + (BOOL)isDataCollectionEnabled;
 + (id)osVersion;
 + (BOOL)isInternalBuild;

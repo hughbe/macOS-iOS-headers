@@ -11,26 +11,23 @@
 @interface CKFetchDatabaseChangesOperation : CKDatabaseOperation
 {
     BOOL _fetchAllChanges;
-    CKServerChangeToken *_previousServerChangeToken;
-    unsigned long long _resultsLimit;
     CDUnknownBlockType _recordZoneWithIDChangedBlock;
     CDUnknownBlockType _recordZoneWithIDWasDeletedBlock;
+    CDUnknownBlockType _recordZoneWithIDWasPurgedBlock;
     CDUnknownBlockType _changeTokenUpdatedBlock;
     CDUnknownBlockType _fetchDatabaseChangesCompletionBlock;
+    CKServerChangeToken *_previousServerChangeToken;
+    unsigned long long _resultsLimit;
     CKServerChangeToken *_serverChangeToken;
     long long _status;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) long long status; // @synthesize status=_status;
 @property(retain, nonatomic) CKServerChangeToken *serverChangeToken; // @synthesize serverChangeToken=_serverChangeToken;
-@property(copy, nonatomic) CDUnknownBlockType fetchDatabaseChangesCompletionBlock; // @synthesize fetchDatabaseChangesCompletionBlock=_fetchDatabaseChangesCompletionBlock;
-@property(copy, nonatomic) CDUnknownBlockType changeTokenUpdatedBlock; // @synthesize changeTokenUpdatedBlock=_changeTokenUpdatedBlock;
-@property(copy, nonatomic) CDUnknownBlockType recordZoneWithIDWasDeletedBlock; // @synthesize recordZoneWithIDWasDeletedBlock=_recordZoneWithIDWasDeletedBlock;
-@property(copy, nonatomic) CDUnknownBlockType recordZoneWithIDChangedBlock; // @synthesize recordZoneWithIDChangedBlock=_recordZoneWithIDChangedBlock;
 @property(nonatomic) BOOL fetchAllChanges; // @synthesize fetchAllChanges=_fetchAllChanges;
 @property(nonatomic) unsigned long long resultsLimit; // @synthesize resultsLimit=_resultsLimit;
 @property(copy, nonatomic) CKServerChangeToken *previousServerChangeToken; // @synthesize previousServerChangeToken=_previousServerChangeToken;
-- (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleCompletionCallback:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
@@ -39,7 +36,13 @@
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
 - (id)activityCreate;
+@property(copy, nonatomic) CDUnknownBlockType fetchDatabaseChangesCompletionBlock; // @synthesize fetchDatabaseChangesCompletionBlock=_fetchDatabaseChangesCompletionBlock;
+@property(copy, nonatomic) CDUnknownBlockType changeTokenUpdatedBlock; // @synthesize changeTokenUpdatedBlock=_changeTokenUpdatedBlock;
+@property(copy, nonatomic) CDUnknownBlockType recordZoneWithIDWasPurgedBlock; // @synthesize recordZoneWithIDWasPurgedBlock=_recordZoneWithIDWasPurgedBlock;
+@property(copy, nonatomic) CDUnknownBlockType recordZoneWithIDWasDeletedBlock; // @synthesize recordZoneWithIDWasDeletedBlock=_recordZoneWithIDWasDeletedBlock;
+@property(copy, nonatomic) CDUnknownBlockType recordZoneWithIDChangedBlock; // @synthesize recordZoneWithIDChangedBlock=_recordZoneWithIDChangedBlock;
 - (id)initWithPreviousServerChangeToken:(id)arg1;
+- (id)init;
 
 @end
 

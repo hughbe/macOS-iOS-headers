@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSError, NSString, NSURL;
+@class NSArray, NSError, NSString, NSURL;
 
 @protocol SiriCoreSiriConnection <NSObject>
-@property(retain, nonatomic) Class peerStreamProviderClass;
+@property(nonatomic) BOOL imposePolicyBan;
+@property(copy, nonatomic) NSString *connectionId;
+@property(retain, nonatomic) Class peerProviderClass;
 @property(nonatomic) BOOL siriConnectionUsesPeerManagedSync;
 @property(nonatomic) BOOL deviceIsInWalkaboutExperimentGroup;
 @property(nonatomic) BOOL usesProxyConnection;
@@ -21,17 +23,20 @@
 @property(nonatomic) double timeout;
 @property(copy, nonatomic) NSString *languageCode;
 @property(copy, nonatomic) NSString *aceHost;
+@property(nonatomic) BOOL forceReconnect;
 @property(copy, nonatomic) NSError *skipPeerError;
-@property(nonatomic) BOOL skipEdge;
+@property(nonatomic) BOOL useWiFiHint;
 @property(nonatomic) BOOL skipPeer;
 @property(nonatomic) BOOL prefersWWAN;
 @property(copy, nonatomic) NSURL *url;
 @property(nonatomic) __weak id <SiriCoreSiriConnectionDelegate> delegate;
-- (void)getConnectionMetrics:(void (^)(SiriCoreConnectionMetrics *))arg1;
+- (void)getConnectionMetricsSynchronously:(BOOL)arg1 completion:(void (^)(SiriCoreConnectionMetrics *))arg2;
 - (void)getAnalysisInfo:(void (^)(SiriCoreAceConnectionAnalysisInfo *))arg1;
+- (void)probeConnection;
 - (void)barrier:(void (^)(BOOL))arg1;
-- (void)cancelSynchronously:(BOOL)arg1 completion:(void (^)(void))arg2;
+- (void)cancelSynchronously:(BOOL)arg1 onQueue:(BOOL)arg2 completion:(void (^)(void))arg3;
 - (void)setSendPings:(BOOL)arg1;
+- (void)sendCommands:(NSArray *)arg1 errorHandler:(void (^)(id <SiriCoreSessionObject>, NSError *))arg2;
 - (void)sendCommand:(id <SiriCoreSessionObject>)arg1 errorHandler:(void (^)(NSError *))arg2;
 - (void)start;
 @end

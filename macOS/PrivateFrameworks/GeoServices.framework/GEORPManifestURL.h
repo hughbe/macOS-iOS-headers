@@ -8,16 +8,26 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader;
 
 @interface GEORPManifestURL : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_urlName;
     NSString *_urlValue;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_urlName:1;
+        unsigned int read_urlValue:1;
+        unsigned int wrote_urlName:1;
+        unsigned int wrote_urlValue:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *urlValue; // @synthesize urlValue=_urlValue;
-@property(retain, nonatomic) NSString *urlName; // @synthesize urlName=_urlName;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +35,17 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *urlValue;
 @property(readonly, nonatomic) BOOL hasUrlValue;
+- (void)_readUrlValue;
+@property(retain, nonatomic) NSString *urlName;
 @property(readonly, nonatomic) BOOL hasUrlName;
-- (void)dealloc;
+- (void)_readUrlName;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

@@ -11,14 +11,13 @@
 @interface NSSecureTextFieldCell : NSTextFieldCell
 {
     BOOL _echosBullets;
-    BOOL _csMode;
 }
 
 + (id)_sharedSecureFieldEditor;
 + (void)initialize;
 - (id)initWithCoder:(id)arg1;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (void)drawLayer:(id)arg1 inGraphicsContext:(id)arg2;
+- (void)_drawForegroundOfTextLayer;
 - (BOOL)wantsUpdateLayerInView:(id)arg1;
 - (id)_bulletStringForString:(id)arg1;
 @property BOOL echosBullets;

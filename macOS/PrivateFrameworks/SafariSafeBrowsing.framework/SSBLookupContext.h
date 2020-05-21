@@ -15,10 +15,16 @@
 + (id)sharedLookupContext;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)getLastDatabaseUpdateTimeWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)lookUpURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)dealloc;
 - (id)init;
+- (void)_setSafeBrowsingEnabledStateNeedsUpdate;
+- (void)_lookUpURLs:(id)arg1 forProtectionType:(long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)_getLastDatabaseUpdateTimeWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)_fetchCellularDataPlanWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)_deleteAllDatabasesWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)_forceUpdateRemoteConfigurationFromServerWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)_forceLoadRemoteConfigurationFromDiskWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_getServiceStatusWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_getDatabaseStatusWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_forceDatabaseUpdateWithCompletionHandler:(CDUnknownBlockType)arg1;

@@ -30,7 +30,7 @@
 + (BOOL)shouldUseChinaSpecificFormattersForLocale:(id)arg1;
 + (id)dateFormatterWithYearFormat:(id)arg1 hasLongFormat:(BOOL)arg2 locale:(id)arg3;
 @property(retain, nonatomic) NSLocale *locale; // @synthesize locale=_locale;
-- (id)normalizedComponentsFromDate:(id)arg1 calendar:(id)arg2;
+- (id)normalizedComponentsFromDate:(id)arg1 calendar:(id)arg2 timeZone:(id)arg3;
 - (unsigned long long)componentsToExtract;
 - (BOOL)getObjectValue:(id *)arg1 forString:(id)arg2 errorDescription:(id *)arg3;
 - (id)stringForObjectValue:(id)arg1;

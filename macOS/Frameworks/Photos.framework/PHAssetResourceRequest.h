@@ -4,52 +4,68 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSOperation.h"
+#import "NSObject.h"
 
-@class NSError, PFDispatchQueue, PHAssetResource, PHAssetResourceDownloadRequest, PHAssetResourceRequestOptions, PHPhotoLibrary;
+#import "PHAssetResourceRequest.h"
+#import "PLTrackableRequestDelegate.h"
 
-@interface PHAssetResourceRequest : NSOperation
+@class NSDictionary, NSProgress, NSString, PHAssetResource, PHAssetResourceRequestOptions, PHResourceAvailabilityJob;
+
+@interface PHAssetResourceRequest : NSObject <PLTrackableRequestDelegate, PHAssetResourceRequest>
 {
-    BOOL _running;
-    BOOL _isExecuting;
-    BOOL _isFinished;
+    PHResourceAvailabilityJob *_availabilityJob;
+    struct os_unfair_lock_s _lock;
+    BOOL _cancelled;
+    NSProgress *_availabilityProgress;
+    NSProgress *_fileStreamProgress;
+    NSProgress *_totalProgress;
+    BOOL _loadURLOnly;
+    BOOL _synchronous;
     int _requestID;
-    PHAssetResourceRequestOptions *_options;
-    CDUnknownBlockType _urlHandler;
-    CDUnknownBlockType _dataHandler;
-    NSError *_error;
-    PHAssetResourceDownloadRequest *_downloadResourceRequest;
-    PHPhotoLibrary *_photoLibrary;
     PHAssetResource *_assetResource;
-    CDUnknownBlockType _reportProgress;
-    PFDispatchQueue *_queue;
+    PHAssetResourceRequestOptions *_options;
+    unsigned long long _managerID;
+    id <PHAssetResourceRequestDelegate> _delegate;
+    CDUnknownBlockType _completionHandler;
+    NSDictionary *_info;
+    NSString *_taskIdentifier;
+    CDUnknownBlockType _dataHandler;
 }
 
-@property(retain, nonatomic) PFDispatchQueue *queue; // @synthesize queue=_queue;
-@property(copy, nonatomic) CDUnknownBlockType reportProgress; // @synthesize reportProgress=_reportProgress;
-@property(retain, nonatomic) PHAssetResource *assetResource; // @synthesize assetResource=_assetResource;
-@property(retain, nonatomic) PHPhotoLibrary *photoLibrary; // @synthesize photoLibrary=_photoLibrary;
-@property(retain, nonatomic) PHAssetResourceDownloadRequest *downloadResourceRequest; // @synthesize downloadResourceRequest=_downloadResourceRequest;
-@property(nonatomic) BOOL isFinished; // @synthesize isFinished=_isFinished;
-@property(nonatomic) BOOL isExecuting; // @synthesize isExecuting=_isExecuting;
-@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
-@property(copy, nonatomic) CDUnknownBlockType dataHandler; // @synthesize dataHandler=_dataHandler;
-@property(copy, nonatomic) CDUnknownBlockType urlHandler; // @synthesize urlHandler=_urlHandler;
-@property(readonly, copy, nonatomic) PHAssetResourceRequestOptions *options; // @synthesize options=_options;
-@property(readonly, nonatomic) int requestID; // @synthesize requestID=_requestID;
++ (id)_globalFileIOQueue;
 - (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType dataHandler; // @synthesize dataHandler=_dataHandler;
+@property(nonatomic, getter=isSynchronous) BOOL synchronous; // @synthesize synchronous=_synchronous;
+@property(nonatomic) BOOL loadURLOnly; // @synthesize loadURLOnly=_loadURLOnly;
+@property(copy, nonatomic) NSString *taskIdentifier; // @synthesize taskIdentifier=_taskIdentifier;
+@property(readonly, nonatomic) NSDictionary *info; // @synthesize info=_info;
+@property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
+@property(readonly, nonatomic) __weak id <PHAssetResourceRequestDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) unsigned long long managerID; // @synthesize managerID=_managerID;
+@property(readonly, nonatomic) int requestID; // @synthesize requestID=_requestID;
+@property(readonly, nonatomic) PHAssetResourceRequestOptions *options; // @synthesize options=_options;
+@property(readonly, nonatomic) PHAssetResource *assetResource; // @synthesize assetResource=_assetResource;
+- (void)trackableResourceRepairRequest:(id)arg1 didFinishWithSuccess:(BOOL)arg2;
+- (void)trackableVideoChoosingAndAvailabilityRequest:(id)arg1 didFinishWithVideoURL:(id)arg2 info:(id)arg3 error:(id)arg4;
+- (void)trackableDownloadRequest:(id)arg1 didFinishWithSuccess:(BOOL)arg2 url:(id)arg3 data:(id)arg4 info:(id)arg5 error:(id)arg6;
+- (void)trackableRequest:(id)arg1 didReportProgress:(double)arg2 completed:(BOOL)arg3 error:(id)arg4;
+- (void)_updateAssetResourceWithLocallyAvailable:(BOOL)arg1 fileURL:(id)arg2;
+- (void)_streamDataAtURL:(id)arg1 dataHandler:(CDUnknownBlockType)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)_finishAsyncWithFileURL:(id)arg1;
+- (void)_finishWithFileURL:(id)arg1;
+- (void)_reportProgress;
+- (void)_setupProgressIfNeeded;
+- (id)_initialValidationError;
+- (void)startRequest;
 - (void)cancel;
-- (long long)streamDataAtURL:(id)arg1 progress:(CDUnknownBlockType)arg2 dataHandler:(CDUnknownBlockType)arg3 error:(id *)arg4;
-- (id)errorForCancel;
-- (void)finishWithError:(id)arg1;
-- (void)finishBecauseCancelled;
-- (BOOL)downloadResourceWithError:(id *)arg1;
-- (BOOL)readResourceURLWithError:(id *)arg1;
-- (void)start;
-- (void)main;
-- (BOOL)isAsynchronous;
-- (id)initWithPhotoLibrary:(id)arg1 requestID:(int)arg2 assetResource:(id)arg3 options:(id)arg4;
-- (id)init;
+@property(readonly, nonatomic, getter=isCancelled) BOOL cancelled;
+- (id)initWithAssetResource:(id)arg1 options:(id)arg2 requestID:(int)arg3 managerID:(unsigned long long)arg4 delegate:(id)arg5 dataReceivedHandler:(CDUnknownBlockType)arg6 completionHandler:(CDUnknownBlockType)arg7;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

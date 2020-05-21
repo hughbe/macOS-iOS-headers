@@ -17,11 +17,13 @@
     unsigned int _scope;
     NSDate *_scopeModificationDate;
     NSString *_altDSID;
+    NSString *_DSID;
     NSString *_rawPassword;
 }
 
 + (id)secureCodedPropertyKeys;
 @property(retain) NSString *rawPassword; // @synthesize rawPassword=_rawPassword;
+@property(retain) NSString *DSID; // @synthesize DSID=_DSID;
 @property(retain) NSString *altDSID; // @synthesize altDSID=_altDSID;
 @property(retain) NSDate *scopeModificationDate; // @synthesize scopeModificationDate=_scopeModificationDate;
 @property unsigned int scope; // @synthesize scope=_scope;

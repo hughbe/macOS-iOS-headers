@@ -4,9 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class INIntentResponse;
+#import "NSObject.h"
 
-@protocol INIntentResponseObserver
+@class INIntentResponse, NSSet;
+
+@protocol INIntentResponseObserver <NSObject>
+- (void)intentResponseDidUpdate:(INIntentResponse *)arg1 withSerializedCacheItems:(NSSet *)arg2;
+
+@optional
 - (void)intentResponseDidUpdate:(INIntentResponse *)arg1;
 @end
 

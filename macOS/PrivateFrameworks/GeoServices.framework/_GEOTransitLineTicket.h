@@ -4,33 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <GeoServices/GEOAbstractRequestResponseTicket.h>
 
 #import "GEOMapServiceTransitLineTicket.h"
 
-@class GEOMapServiceTraits, GEOPDPlaceRequest, GEOPDPlaceResponse, NSString;
+@class GEOMapServiceTraits, NSString;
 
 __attribute__((visibility("hidden")))
-@interface _GEOTransitLineTicket : NSObject <GEOMapServiceTransitLineTicket>
+@interface _GEOTransitLineTicket : GEOAbstractRequestResponseTicket <GEOMapServiceTransitLineTicket>
 {
-    GEOPDPlaceRequest *_request;
-    GEOPDPlaceResponse *_response;
-    GEOMapServiceTraits *_traits;
-    BOOL _canceled;
 }
 
-@property(readonly, nonatomic) GEOMapServiceTraits *traits; // @synthesize traits=_traits;
-@property(readonly, nonatomic, getter=isCanceled) BOOL canceled; // @synthesize canceled=_canceled;
-- (void)cancel;
 - (void)submitWithHandler:(CDUnknownBlockType)arg1 networkActivity:(CDUnknownBlockType)arg2;
-- (void)dealloc;
-- (id)initWithRequest:(id)arg1 traits:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic) GEOMapServiceTraits *traits;
 
 @end
 

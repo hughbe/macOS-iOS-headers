@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class MFMailbox, NSArray;
+@class MFMailbox, NSArray, NSString;
 
 @interface MFLibraryMessageWriter : NSObject
 {
@@ -18,18 +18,22 @@
     BOOL _copyFiles;
     BOOL _isInitialImport;
     BOOL _isMailboxRebuild;
+    NSString *_dataDirectory;
     NSArray *_messagesToWrite;
     MFMailbox *_destinationMailbox;
     id <MFAddProgressMonitor> _progressDelegate;
     CDUnknownBlockType _insertCompletionBlock;
+    id <EDMessageChangeHookResponder> _hookResponder;
     long long _messageFlagsToSet;
     long long _messageFlagsToClear;
     NSArray *_unsortedMessagesIndexesOrder;
 }
 
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSArray *unsortedMessagesIndexesOrder; // @synthesize unsortedMessagesIndexesOrder=_unsortedMessagesIndexesOrder;
 @property(nonatomic) long long messageFlagsToClear; // @synthesize messageFlagsToClear=_messageFlagsToClear;
 @property(nonatomic) long long messageFlagsToSet; // @synthesize messageFlagsToSet=_messageFlagsToSet;
+@property(retain, nonatomic) id <EDMessageChangeHookResponder> hookResponder; // @synthesize hookResponder=_hookResponder;
 @property(copy, nonatomic) CDUnknownBlockType insertCompletionBlock; // @synthesize insertCompletionBlock=_insertCompletionBlock;
 @property(retain, nonatomic) id <MFAddProgressMonitor> progressDelegate; // @synthesize progressDelegate=_progressDelegate;
 @property(nonatomic) BOOL isMailboxRebuild; // @synthesize isMailboxRebuild=_isMailboxRebuild;
@@ -38,7 +42,7 @@
 @property(nonatomic) BOOL fetchBodies; // @synthesize fetchBodies=_fetchBodies;
 @property(readonly, nonatomic) MFMailbox *destinationMailbox; // @synthesize destinationMailbox=_destinationMailbox;
 @property(readonly, copy, nonatomic) NSArray *messagesToWrite; // @synthesize messagesToWrite=_messagesToWrite;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *dataDirectory; // @synthesize dataDirectory=_dataDirectory;
 - (void)_copyMessageAuxiliaryTables:(id)arg1 originalLibraryID:(long long)arg2 newLibraryID:(long long)arg3;
 - (void)_cleanupTablesReferencingMessageID:(long long)arg1 preparedStatements:(id)arg2;
 - (void)_garbageCollectSubject:(long long)arg1 sender:(long long)arg2 preparedStatements:(id)arg3;

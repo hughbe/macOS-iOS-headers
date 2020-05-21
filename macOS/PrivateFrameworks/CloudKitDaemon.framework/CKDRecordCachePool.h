@@ -6,21 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
 @interface CKDRecordCachePool : NSObject
 {
     NSMutableDictionary *_pools;
     NSObject<OS_dispatch_queue> *_queue;
-    NSObject<OS_dispatch_source> *_expiryTimer;
+    NSObject<OS_dispatch_queue> *_recordExpiryQueue;
 }
 
 + (void)performWithClientContext:(id)arg1 scope:(long long)arg2 block:(CDUnknownBlockType)arg3;
 + (id)sharedPool;
-@property(retain, nonatomic) NSObject<OS_dispatch_source> *expiryTimer; // @synthesize expiryTimer=_expiryTimer;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *recordExpiryQueue; // @synthesize recordExpiryQueue=_recordExpiryQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(retain, nonatomic) NSMutableDictionary *pools; // @synthesize pools=_pools;
-- (void).cxx_destruct;
 - (void)releaseCache:(id)arg1;
 - (id)acquireCacheWithContext:(id)arg1 scope:(long long)arg2;
 - (id)_poolForContext:(id)arg1;

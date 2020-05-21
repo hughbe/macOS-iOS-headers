@@ -6,9 +6,11 @@
 
 #import "NSView.h"
 
-@class AMWorkflowController, NSArray, NSMutableArray, NSString;
+#import "AMWorkflowControllerDelegate.h"
 
-@interface AMWorkflowView : NSView
+@class AMHeaderViewController, AMVariablesEditorController, AMWorkflowController, NSArray, NSMutableArray, NSString, NSUndoManager;
+
+@interface AMWorkflowView : NSView <AMWorkflowControllerDelegate>
 {
     AMWorkflowController *_workflowController;
     NSMutableArray *_actionViewControllers;
@@ -17,16 +19,20 @@
     id _unused;
     id _variablesEditorController;
     id _showWhenRunController;
-    struct __AMWorkflowViewFlags {
-        unsigned int ignoreSubviewFrameChanges:1;
-        unsigned int editingEnabled:1;
-        unsigned int reserved:30;
-    } _flags;
+    struct __AMWorkflowViewFlags _flags;
     unsigned long long _draggingIndex;
     struct CGRect _selectionRect;
     id _future[4];
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak AMWorkflowController *workflowController; // @synthesize workflowController=_workflowController;
+@property(retain) NSMutableArray *actionViewControllers; // @synthesize actionViewControllers=_actionViewControllers;
+@property(retain) NSArray *draggedActionViews; // @synthesize draggedActionViews=_draggedActionViews;
+@property struct CGRect selectionRect; // @synthesize selectionRect=_selectionRect;
+@property struct __AMWorkflowViewFlags flags; // @synthesize flags=_flags;
+@property unsigned long long draggingIndex; // @synthesize draggingIndex=_draggingIndex;
+@property(copy) NSString *messageString; // @synthesize messageString=_messageString;
 - (void)restoreStateWithCoder:(id)arg1;
 - (void)encodeRestorableStateWithCoder:(id)arg1;
 - (void)_clearHeaderView;
@@ -43,9 +49,8 @@
 - (void)draggingExited:(id)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
 - (unsigned long long)dragOperationForDraggingInfo:(id)arg1;
-- (void)dragImage:(id)arg1 at:(struct CGPoint)arg2 offset:(struct CGSize)arg3 event:(id)arg4 pasteboard:(id)arg5 source:(id)arg6 slideBack:(BOOL)arg7;
 - (id)pasteboardTypes;
-- (id)_undoManager;
+@property(readonly, nonatomic) NSUndoManager *_undoManager;
 - (void)dragViewStarted;
 - (void)closeDetailsWindow;
 - (void)editVariable:(id)arg1;
@@ -65,7 +70,7 @@
 - (void)cut:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (BOOL)acceptsFirstResponder;
-- (void)makeActionViewFirstResponder:(id)arg1;
+- (BOOL)makeActionViewFirstResponderIfPossible:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (id)viewForAction:(id)arg1;
@@ -77,7 +82,7 @@
 - (void)actionViewDidChangeConnections:(id)arg1;
 - (void)actionViewWasRenamed:(id)arg1;
 - (void)actionViewWasModified:(id)arg1;
-- (struct CGRect)actionViewsFrame;
+@property(readonly, nonatomic) struct CGRect actionViewsFrame;
 - (void)redisplayAction:(id)arg1;
 - (void)modified;
 - (void)workflowController:(id)arg1 didError:(id)arg2;
@@ -87,13 +92,15 @@
 - (void)workflowControllerWillStep:(id)arg1;
 - (void)workflowControllerWillRun:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
+- (void)viewDidEndLiveResize;
+- (void)viewWillStartLiveResize;
 - (void)addHeaderView:(id)arg1;
 - (void)removeHeaderView:(id)arg1;
-- (id)_visibleActionViews;
+@property(readonly, nonatomic) NSArray *_visibleActionViews;
 - (void)dragSelectWithEvent:(id)arg1;
 - (void)scrollToAction:(id)arg1;
 - (void)selectAllToAction:(id)arg1;
-- (id)selectedActionViews;
+@property(readonly, nonatomic) NSArray *selectedActionViews;
 - (void)invalidateActionView:(id)arg1;
 - (void)deselectActionView:(id)arg1;
 - (void)extendSelectionToActionView:(id)arg1;
@@ -130,21 +137,17 @@
 - (void)invalidateActionLayout;
 - (void)_setActionConstraints:(id)arg1;
 - (id)_actionConstraints;
-- (void)setDraggedActionViews:(id)arg1;
-- (id)draggedActionViews;
-- (id)variablesEditorController;
+@property(readonly, nonatomic) AMVariablesEditorController *variablesEditorController;
 - (BOOL)requiresConstraintBasedLayout;
 - (BOOL)isFlipped;
-- (BOOL)_isEditable;
+@property(readonly, nonatomic) BOOL _isEditable;
 @property(getter=isEditable) BOOL editable;
-- (id)actionViews;
+@property(readonly, nonatomic) NSMutableArray *actionViews;
 - (id)connectors;
 - (id)actions;
-- (void)_setWorkflowController:(id)arg1;
-@property(retain) AMWorkflowController *workflowController;
+@property(nonatomic, setter=_setWorkflowController:) __weak AMWorkflowController *_workflowController;
 - (void)_setHeaderViewController:(id)arg1;
-- (id)_headerViewController;
-- (id)_workflowController;
+@property(readonly, nonatomic) AMHeaderViewController *_headerViewController;
 - (void)loadWorkflow:(id)arg1;
 - (void)_close;
 - (void)dealloc;
@@ -154,6 +157,12 @@
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityAttributeNames;
 - (BOOL)accessibilityIsIgnored;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

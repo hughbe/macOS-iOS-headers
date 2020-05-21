@@ -7,6 +7,7 @@
 #import "SASyncChunk.h"
 
 @interface SASyncChunk (SiriCoreSessionObject)
+- (BOOL)siriCore_isRetryable;
 - (BOOL)siriCore_bufferingAllowedDuringActiveSession;
 @end
 

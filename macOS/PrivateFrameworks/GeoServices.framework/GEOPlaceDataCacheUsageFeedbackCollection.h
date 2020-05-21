@@ -10,13 +10,15 @@
 
 @class NSMutableArray;
 
+__attribute__((visibility("hidden")))
 @interface GEOPlaceDataCacheUsageFeedbackCollection : PBCodable <NSCopying>
 {
     NSMutableArray *_cacheFeedbacks;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)cacheFeedbackType;
-@property(retain, nonatomic) NSMutableArray *cacheFeedbacks; // @synthesize cacheFeedbacks=_cacheFeedbacks;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -24,13 +26,14 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)cacheFeedbackAtIndex:(unsigned long long)arg1;
 - (unsigned long long)cacheFeedbacksCount;
 - (void)addCacheFeedback:(id)arg1;
 - (void)clearCacheFeedbacks;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *cacheFeedbacks;
 
 @end
 

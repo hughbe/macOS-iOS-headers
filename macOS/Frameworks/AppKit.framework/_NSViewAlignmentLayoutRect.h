@@ -6,16 +6,14 @@
 
 #import "NSLayoutRect.h"
 
-@class NSView;
-
 __attribute__((visibility("hidden")))
 @interface _NSViewAlignmentLayoutRect : NSLayoutRect
 {
-    NSView *_hostView;
+    id <NSAKLayoutItem> _hostItem;
 }
 
 + (id)layoutRectWithLeadingAnchor:(id)arg1 topAnchor:(id)arg2 trailingAnchor:(id)arg3 bottomAnchor:(id)arg4;
-@property(readonly) NSView *hostView; // @synthesize hostView=_hostView;
+@property(readonly) id <NSAKLayoutItem> hostItem; // @synthesize hostItem=_hostItem;
 - (id)_equationDescriptionInParent;
 - (id)heightAnchor;
 - (id)widthAnchor;
@@ -25,7 +23,7 @@ __attribute__((visibility("hidden")))
 - (id)trailingAnchor;
 - (id)centerXAnchor;
 - (id)leadingAnchor;
-- (id)initWithHostView:(id)arg1;
+- (id)initWithHostItem:(id)arg1;
 
 @end
 

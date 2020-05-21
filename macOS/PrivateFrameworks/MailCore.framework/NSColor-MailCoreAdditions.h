@@ -9,29 +9,38 @@
 @class NSString;
 
 @interface NSColor (MailCoreAdditions)
++ (BOOL)isDarkEffectiveAppearance:(id)arg1;
++ (BOOL)isDarkAppearance;
 + (id)scriptingRGBColorWithDescriptor:(id)arg1;
-+ (id)stationeryPaneBackgroundColor;
 + (id)aquaBlueColor;
-+ (id)linkColor;
 + (id)junkMailColor;
 + (id)threadBackgroundColor;
 + (void)_clearThreadBackgroundColors;
-+ (id)lighterThreadBackgroundColor;
++ (id)childThreadBackgroundColor;
++ (id)parentThreadBackgroundColor;
 + (void)setThreadBackgroundColor:(id)arg1;
 + (id)colorWithIntValue:(int)arg1;
 + (id)newSwatchForColor:(id)arg1;
 + (void)configureColorMenu:(id)arg1;
++ (id)_legacyColorForIdentifier:(id)arg1;
++ (id)_assetBasedColorForIdentifier:(id)arg1;
 + (id)colorForIdentifier:(id)arg1;
++ (id)_identifierForLegacyColor:(id)arg1;
++ (id)_identifierForAssetBasedColor:(id)arg1;
 + (id)identifierForColor:(id)arg1;
 + (id)_colorPlist;
 + (id)colorForHighlightColorValue:(unsigned int)arg1;
 + (unsigned int)highlightColorValueForColor:(id)arg1;
 + (id)colorForQuoteLevel:(unsigned long long)arg1;
 + (void)setQuotingColorList:(id)arg1;
++ (id)_userDefaultQuotingColorList;
 + (id)quotingColorList;
 + (id)defaultQuotingColors;
+- (id)_semanticCSSColorOverrideForAppearance:(id)arg1;
+- (id)cssColorStringForAppearance:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *cssColorString;
 - (id)scriptingRGBColorDescriptor;
+- (id)messageBlendedBackgroundColor;
 @property(readonly, nonatomic) int intValue;
 @end
 

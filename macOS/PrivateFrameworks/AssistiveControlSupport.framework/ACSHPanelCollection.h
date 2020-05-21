@@ -6,33 +6,56 @@
 
 #import <AssistiveControlSupport/ACSHPlistObject.h>
 
-@class NSMutableArray;
+@class ACSHToolbarOrdering, NSArray, NSMutableArray, NSString;
 
 @interface ACSHPanelCollection : ACSHPlistObject
 {
-    NSMutableArray *_panels;
+    BOOL _insertingPanelCollection;
+    ACSHToolbarOrdering *_toolbarOrdering;
+    unsigned long long _productSupportType;
+    NSMutableArray *__panels;
 }
 
-+ (id)userPanelCollectionPath:(BOOL)arg1;
-+ (id)_userPanelCollectionPath;
-+ (id)_applicationSupportDirectory;
-@property(retain, nonatomic) NSMutableArray *panels; // @synthesize panels=_panels;
-- (id)allAssociatedApplications;
++ (BOOL)_shouldLoadPanel:(id)arg1 matchingProductSupportType:(unsigned long long)arg2;
++ (id)userPanelCollectionURLForProductSupportType:(unsigned long long)arg1 createIfMissing:(BOOL)arg2;
++ (unsigned long long)productSupportTypeFromUserPanelCollectionURL:(id)arg1;
++ (BOOL)_createConfigurationFromTemplatePanelsAtNewURL:(id)arg1 productSupportType:(unsigned long long)arg2 error:(id *)arg3;
++ (id)virtualKeyboardUserPanelCollectionURLCreateIfMissing:(BOOL)arg1;
++ (id)switchControlUserPanelCollectionURLCreateIfMissing:(BOOL)arg1;
++ (id)_virtualKeyboardUserPanelCollectionURL;
++ (id)_oldSwitchControlUserPanelCollectionURL;
++ (id)_switchControlUserPanelCollectionURL;
++ (id)_applicationSupportDirectoryURL;
+- (void).cxx_destruct;
+@property BOOL insertingPanelCollection; // @synthesize insertingPanelCollection=_insertingPanelCollection;
+@property(retain, nonatomic) NSMutableArray *_panels; // @synthesize _panels=__panels;
+@property(nonatomic) unsigned long long productSupportType; // @synthesize productSupportType=_productSupportType;
+@property(retain, nonatomic) ACSHToolbarOrdering *toolbarOrdering; // @synthesize toolbarOrdering=_toolbarOrdering;
+@property(readonly, copy, nonatomic) NSArray *userVisiblePanelIDs;
+- (id)userPanelIDsVisibleOnly:(BOOL)arg1;
+@property(readonly, copy, nonatomic) NSArray *userVisibleToolbarPanelIDs;
+@property(readonly, copy, nonatomic) NSArray *userVisibleOpenablePanelIDs;
+- (id)_userPanelIDsVisibleOnly:(BOOL)arg1 containsDefaultKeyboard:(char *)arg2;
+@property(readonly, copy, nonatomic) NSArray *allAssociatedApplications;
 - (id)associatedPanelForApplicationWithBundleID:(id)arg1;
 - (void)associatePanel:(id)arg1 withApplication:(id)arg2;
-- (id)defaultPointerPanelID;
-- (BOOL)containsCustomHomePanel;
-- (id)customHomePanelID;
-- (id)defaultKeyboardPanelID;
+@property(readonly, nonatomic) NSString *defaultPointerPanelID;
+@property(retain, nonatomic) NSArray *panels;
+@property(readonly, nonatomic) BOOL containsCustomHomePanel;
+@property(readonly, nonatomic) NSString *customHomePanelID;
+@property(readonly, nonatomic) NSString *defaultKeyboardPanelID;
 - (void)addPanelsFromCollection:(id)arg1;
 - (void)insertPanel:(id)arg1 atIndex:(long long)arg2;
-- (id)allRequiredResourceIDs;
-- (id)allPanelIDs;
+- (BOOL)_insertPanel:(id)arg1 atIndex:(long long)arg2 notifying:(BOOL)arg3;
+- (void)removePanel:(id)arg1;
+- (BOOL)_removePanel:(id)arg1 notifying:(BOOL)arg2;
+@property(readonly, nonatomic) NSArray *allRequiredResourceIDs;
+@property(readonly, nonatomic) NSArray *allPanelIDs;
 - (id)panelForIdentifier:(id)arg1;
 - (id)dictionaryForSaving;
-- (void)dealloc;
-- (void)_initWithPlistDictionary:(id)arg1;
+- (void)_configureWithPlistDictionary:(id)arg1;
 - (id)init;
+@property(readonly, nonatomic) NSString *toolbarController_customKeyboardPanelIDForKeyboardLikePanel;
 
 @end
 

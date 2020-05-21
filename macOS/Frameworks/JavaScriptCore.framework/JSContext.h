@@ -6,15 +6,15 @@
 
 #import "NSObject.h"
 
-@class JSValue, JSVirtualMachine, JSWrapperMap, NSString;
+@class JSValue, JSVirtualMachine, NSString;
 
 @interface JSContext : NSObject
 {
     JSVirtualMachine *m_virtualMachine;
     struct OpaqueJSContext *m_context;
-    JSWrapperMap *m_wrapperMap;
-    struct Strong<JSC::JSObject> m_exception;
-    CDUnknownBlockType exceptionHandler;
+    struct Strong<JSC::JSObject, JSC::ShouldStrongDestructorGrabLock::No> m_exception;
+    struct WeakObjCPtr<id<JSModuleLoaderDelegate>> m_moduleLoaderDelegate;
+    CDUnknownBlockType _exceptionHandler;
 }
 
 + (id)currentArguments;
@@ -22,9 +22,11 @@
 + (id)currentThis;
 + (id)currentContext;
 + (id)contextWithJSGlobalContextRef:(struct OpaqueJSContext *)arg1;
-@property(copy) CDUnknownBlockType exceptionHandler; // @synthesize exceptionHandler;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(copy) CDUnknownBlockType exceptionHandler; // @synthesize exceptionHandler=_exceptionHandler;
+- (void)setModuleLoaderDelegate:(id)arg1;
+- (id)moduleLoaderDelegate;
 - (void)_setDebuggerRunLoop:(struct __CFRunLoop *)arg1;
 - (struct __CFRunLoop *)_debuggerRunLoop;
 - (void)_setIncludesNativeCallStackWhenReportingExceptions:(BOOL)arg1;
@@ -34,17 +36,20 @@
 @property(copy) NSString *name;
 @property(readonly) JSVirtualMachine *virtualMachine;
 @property(readonly) JSValue *globalObject;
-@property(readonly, retain) JSWrapperMap *wrapperMap;
 @property(retain) JSValue *exception;
+- (id)dependencyIdentifiersForModuleJSScript:(id)arg1;
+- (id)evaluateJSScript:(id)arg1;
 - (id)evaluateScript:(id)arg1 withSourceURL:(id)arg2;
 - (id)evaluateScript:(id)arg1;
 - (void)dealloc;
 - (id)initWithVirtualMachine:(id)arg1;
 - (id)init;
+- (void)ensureWrapperMap;
 - (struct OpaqueJSContext *)JSGlobalContextRef;
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 - (id)objectForKeyedSubscript:(id)arg1;
 - (id)wrapperForJSObject:(struct OpaqueJSValue *)arg1;
+- (id)wrapperMap;
 - (id)wrapperForObjCObject:(id)arg1;
 - (void)endCallbackWithData:(struct CallbackData *)arg1;
 - (void)beginCallbackWithData:(struct CallbackData *)arg1 calleeValue:(struct OpaqueJSValue *)arg2 thisValue:(struct OpaqueJSValue *)arg3 argumentCount:(unsigned long long)arg4 arguments:(const struct OpaqueJSValue **)arg5;

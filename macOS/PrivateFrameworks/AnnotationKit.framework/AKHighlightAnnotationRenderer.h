@@ -10,6 +10,8 @@
 {
 }
 
++ (void)_enumerateQuadPathsOfAnnotation:(id)arg1 applyStyle:(BOOL)arg2 handler:(CDUnknownBlockType)arg3;
++ (double)_highlightOutsetFactor;
 + (struct CGRect)_rectForQuad:(struct AKQuadrilateral)arg1 rotationAngle:(double *)arg2;
 + (BOOL)_concretePointIsOnInside:(struct CGPoint)arg1 ofAnnotation:(id)arg2;
 + (BOOL)_concretePointIsOnBorder:(struct CGPoint)arg1 ofAnnotation:(id)arg2 minimumBorderThickness:(double)arg3;

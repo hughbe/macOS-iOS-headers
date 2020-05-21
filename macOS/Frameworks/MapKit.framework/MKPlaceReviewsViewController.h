@@ -6,50 +6,38 @@
 
 #import <MapKit/MKPlaceSectionViewController.h>
 
-#import "MKPlaceAttributionProvider.h"
+#import "MKModuleViewControllerProtocol.h"
 #import "_MKInfoCardChildViewControllerAnalyticsDelegate.h"
 
-@class MKMapItem, NSArray, NSMutableArray, NSMutableDictionary, NSString, _MKPlaceViewController;
+@class MKMapItem, MKPlaceReviewAvatarGenerator, NSArray, NSMutableArray, NSString;
 
-@interface MKPlaceReviewsViewController : MKPlaceSectionViewController <MKPlaceAttributionProvider, _MKInfoCardChildViewControllerAnalyticsDelegate>
+__attribute__((visibility("hidden")))
+@interface MKPlaceReviewsViewController : MKPlaceSectionViewController <_MKInfoCardChildViewControllerAnalyticsDelegate, MKModuleViewControllerProtocol>
 {
-    NSMutableDictionary *_cachedMaskedImages;
-    BOOL _hasAttribution;
-    BOOL _showCheckInAndWriteReviewButtons;
-    BOOL _showMoreReviewsButton;
     MKMapItem *_mapItem;
+    id <MKPlaceCardReviewsControllerDelegate><MKPlaceCardActionControllerDelegate> _reviewsControllerDelegate;
+    MKPlaceReviewAvatarGenerator *_avatarGenerator;
     NSArray *_userSnippets;
-    id <MKPlaceCardReviewsControllerDelegate> _reviewsControllerDelegate;
-    _MKPlaceViewController *_owner;
-    NSMutableArray *_viewDidAppearBlocks;
     NSMutableArray *_cells;
 }
 
-@property(retain, nonatomic) NSMutableArray *cells; // @synthesize cells=_cells;
-@property(retain, nonatomic) NSMutableArray *viewDidAppearBlocks; // @synthesize viewDidAppearBlocks=_viewDidAppearBlocks;
-@property(nonatomic) __weak _MKPlaceViewController *owner; // @synthesize owner=_owner;
-@property(nonatomic) BOOL showMoreReviewsButton; // @synthesize showMoreReviewsButton=_showMoreReviewsButton;
-@property(nonatomic) BOOL showCheckInAndWriteReviewButtons; // @synthesize showCheckInAndWriteReviewButtons=_showCheckInAndWriteReviewButtons;
-@property(nonatomic) BOOL hasAttribution; // @synthesize hasAttribution=_hasAttribution;
-@property(nonatomic) __weak id <MKPlaceCardReviewsControllerDelegate> reviewsControllerDelegate; // @synthesize reviewsControllerDelegate=_reviewsControllerDelegate;
-@property(retain, nonatomic) NSArray *userSnippets; // @synthesize userSnippets=_userSnippets;
-@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *cells; // @synthesize cells=_cells;
+@property(retain, nonatomic) NSArray *userSnippets; // @synthesize userSnippets=_userSnippets;
+@property(retain, nonatomic) MKPlaceReviewAvatarGenerator *avatarGenerator; // @synthesize avatarGenerator=_avatarGenerator;
+@property(nonatomic) __weak id <MKPlaceCardReviewsControllerDelegate><MKPlaceCardActionControllerDelegate> reviewsControllerDelegate; // @synthesize reviewsControllerDelegate=_reviewsControllerDelegate;
+@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
+- (id)infoCardChildUnactionableUIElements;
 - (id)infoCardChildPossibleActions;
-- (void)attributionLinkWasClicked:(id)arg1;
-- (id)getAttributionDisplayString;
 - (void)sectionView:(id)arg1 didSelectRow:(id)arg2 atIndex:(unsigned long long)arg3;
-- (id)_sectionViewForRow:(unsigned long long)arg1;
 - (void)_showReview:(id)arg1 index:(unsigned long long)arg2;
 - (void)_viewAllReviews;
 - (id)reviewAtIndex:(unsigned long long)arg1;
-@property(readonly, nonatomic) unsigned long long reviewsCount;
+- (unsigned long long)reviewsCount;
 - (void)loadCells;
-- (void)_performWhenViewHasAppeared:(CDUnknownBlockType)arg1;
 - (void)_updateAttribution;
-- (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;
-- (id)init;
+- (BOOL)_canShowWhileLocked;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

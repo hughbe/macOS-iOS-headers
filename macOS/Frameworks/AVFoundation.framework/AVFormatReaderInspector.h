@@ -6,6 +6,7 @@
 
 #import <AVFoundation/AVAssetInspector.h>
 
+__attribute__((visibility("hidden")))
 @interface AVFormatReaderInspector : AVAssetInspector
 {
     struct OpaqueFigFormatReader *_formatReader;
@@ -13,6 +14,9 @@
     BOOL hasSaveRestriction;
 }
 
+- (CDStruct_1b6d18a9)overallDurationHint;
+- (long long)fragmentCount;
+- (long long)firstFragmentSequenceNumber;
 - (BOOL)containsFragments;
 - (BOOL)canContainFragments;
 - (BOOL)isComposable;
@@ -27,6 +31,7 @@
 - (id)alternateTrackGroups;
 - (long long)trackCount;
 - (BOOL)providesPreciseDurationAndTiming;
+- (CDStruct_1b6d18a9)minimumTimeOffsetFromLive;
 - (int)naturalTimeScale;
 - (struct CGSize)naturalSize;
 - (struct CGAffineTransform)preferredTransform;
@@ -38,7 +43,6 @@
 @property(retain, nonatomic, getter=_formatReader, setter=_setFormatReader:) struct OpaqueFigFormatReader *formatReader;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithFormatReader:(struct OpaqueFigFormatReader *)arg1;
 

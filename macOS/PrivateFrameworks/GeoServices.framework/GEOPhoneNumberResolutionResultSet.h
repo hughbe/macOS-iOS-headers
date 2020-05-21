@@ -13,11 +13,11 @@
     NSMutableDictionary *_results;
 }
 
+- (void).cxx_destruct;
 - (void)enumerateResolutionsUsingBlock:(CDUnknownBlockType)arg1;
 - (void)setError:(id)arg1 forPhoneNumber:(id)arg2;
 - (void)setResult:(id)arg1 forPhoneNumber:(id)arg2;
 - (id)xpcDictionaryRepresentation;
-- (void)dealloc;
 - (id)description;
 - (id)initWithXPCDictionaryRepresentation:(id)arg1;
 - (id)init;

@@ -6,16 +6,15 @@
 
 #import "NSObject.h"
 
-#import "NSServiceListenerProto.h"
-
 @class NSMutableArray;
 
-@interface NSServiceListener : NSObject <NSServiceListenerProto>
+__attribute__((visibility("hidden")))
+@interface NSServiceListener : NSObject
 {
     NSMutableArray *serviceProviders;
 }
 
-- (id)_doInvokeServiceIn:(id)arg1 msg:(id)arg2 pb:(id)arg3 userData:(id)arg4 error:(id *)arg5 unhide:(BOOL)arg6;
+- (BOOL)_doInvokeServiceIn:(id)arg1 msg:(id)arg2 pb:(id)arg3 userData:(id)arg4 error:(id *)arg5 unhide:(BOOL)arg6;
 - (id)providerRespondingToSelector:(SEL)arg1;
 - (void)removeServiceProvider:(id)arg1;
 - (void)addServiceProvider:(id)arg1;

@@ -10,18 +10,17 @@
 
 @class ABCollectionViewItem, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCollectionMessageAction : ABCollectionAbstractAction <NSSharingServiceDelegate>
 {
     ABCollectionViewItem *_target;
 }
 
-@property(retain) ABCollectionViewItem *target; // @synthesize target=_target;
+- (void).cxx_destruct;
+@property(retain, nonatomic) ABCollectionViewItem *target; // @synthesize target=_target;
 - (void)sharingService:(id)arg1 didShareItems:(id)arg2;
 - (void)sharingService:(id)arg1 didFailToShareItems:(id)arg2 error:(id)arg3;
 - (id)sharingService:(id)arg1 sourceWindowForShareItems:(id)arg2 sharingContentScope:(long long *)arg3;
 - (void)executeWithTarget:(id)arg1;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

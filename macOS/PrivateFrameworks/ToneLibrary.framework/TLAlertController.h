@@ -6,32 +6,46 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, TLAccessQueue, TLAlert, TLAlertLoopPlayer;
+#import "TLAlertPlaybackBackEndController.h"
 
-@interface TLAlertController : NSObject
+@class NSMapTable, NSObject<OS_dispatch_queue>, NSString, TLAlertQueuePlayerController, TLAlertSystemSoundController;
+
+@interface TLAlertController : NSObject <TLAlertPlaybackBackEndController>
 {
-    TLAccessQueue *_accessQueue;
-    NSMutableDictionary *_alertsBySoundIDs;
-    TLAlertLoopPlayer *_loopPlayer;
-    TLAlert *_repeatedlyPlayingAlert;
+    NSObject<OS_dispatch_queue> *_accessQueue;
+    NSString *_accessQueueLabel;
+    TLAlertQueuePlayerController *_queuePlayerController;
+    TLAlertSystemSoundController *_systemSoundController;
+    NSMapTable *_alertContexts;
 }
 
++ (BOOL)_shouldStopAlertForUserInterruption:(id)arg1;
++ (long long)_playbackBackEndForAlert:(id)arg1;
 + (id)sharedAlertController;
-@property(retain, nonatomic, setter=_setRepeatedlyPlayingAlert:) TLAlert *_repeatedlyPlayingAlert; // @synthesize _repeatedlyPlayingAlert;
-@property(retain, nonatomic, setter=_setLoopPlayer:) TLAlertLoopPlayer *_loopPlayer; // @synthesize _loopPlayer;
-@property(retain, nonatomic, setter=_setAlertsBySoundIDs:) NSMutableDictionary *_alertsBySoundIDs; // @synthesize _alertsBySoundIDs;
-@property(retain, setter=_setAccessQueue:) TLAccessQueue *_accessQueue; // @synthesize _accessQueue;
-- (void)_didReachTimeoutForSystemSound:(id)arg1;
-- (void)_systemSoundDidFinishPlaying:(unsigned int)arg1;
-- (void)_removeSoundID:(unsigned int)arg1 shouldStopSound:(BOOL)arg2 fireCompletionHandler:(BOOL)arg3;
-- (BOOL)_stopAllAlerts;
-- (unsigned int)_soundIDForAlert:(id)arg1;
-- (void)_stopAlert:(id)arg1 withFadeOutDuration:(double)arg2;
-- (void)_startPlayingAlertRepeatedly:(id)arg1;
-- (BOOL)_playAlert:(id)arg1 completionHandler:(CDUnknownBlockType)arg2 targetQueue:(id)arg3;
+- (void).cxx_destruct;
+- (BOOL)_stopAllAlertsInCurrentProcess;
+- (id)_systemSoundController;
+- (id)_queuePlayerController;
+- (id)_controllerForPlaybackBackEnd:(long long)arg1;
+- (void)_didCompletePlaybackOfAlert:(id)arg1;
+- (void)_didReachTimeoutForAlert:(id)arg1;
+- (void)_stopPlayingAlerts:(id)arg1 withOptions:(id)arg2 playbackCompletionType:(long long)arg3 willStopAlertsHandler:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (id)_prepareForPlayingAlert:(id)arg1;
+- (void)handleActivationAssertionStatusChangeForAlert:(id)arg1 updatedStatus:(BOOL)arg2;
+- (void)updateAudioVolumeDynamicallyForAlert:(id)arg1 toValue:(float)arg2;
+- (void)stopPlayingAlerts:(id)arg1 withOptions:(id)arg2 playbackCompletionType:(long long)arg3 willStopAlertsHandler:(CDUnknownBlockType)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)playAlert:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)stopAllAlerts;
+- (void)_assertRunningOnAccessQueue;
+- (void)_performBlockOnAccessQueue:(CDUnknownBlockType)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import <SAObjects/SAUITemplateBaseItem.h>
 
-@class NSArray, NSString;
+@class NSArray;
 
 @interface SAUITemplateButton : SAUITemplateBaseItem
 {
@@ -14,7 +14,6 @@
 
 + (id)buttonWithDictionary:(id)arg1 context:(id)arg2;
 + (id)button;
-@property(copy, nonatomic) NSString *text;
 @property(copy, nonatomic) NSArray *commands;
 - (id)encodedClassName;
 - (id)groupIdentifier;

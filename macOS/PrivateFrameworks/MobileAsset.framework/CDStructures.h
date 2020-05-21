@@ -8,20 +8,3 @@
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
-#pragma mark Named Structures
-
-struct __MobileAsset {
-    struct __CFRuntimeBase {
-        unsigned long long _field1;
-        unsigned char _field2[4];
-        unsigned int _field3;
-    } _field1;
-    struct __CFString *_field2;
-    struct __CFDictionary *_field3;
-    struct __MobileAssetQuery *_field4;
-    struct __MobileAssetQuery *_field5;
-    unsigned char _field6;
-};
-
-struct __MobileAssetQuery;
-

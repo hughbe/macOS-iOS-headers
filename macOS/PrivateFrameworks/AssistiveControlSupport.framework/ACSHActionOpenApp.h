@@ -17,16 +17,16 @@
 }
 
 + (id)actionBundleID:(id)arg1 absolutePath:(id)arg2;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *absolutePath; // @synthesize absolutePath=_absolutePath;
 @property(retain, nonatomic) NSString *bundleID; // @synthesize bundleID=_bundleID;
 - (void)_resetDisplayValues;
 - (id)resolvedPath;
 - (id)name;
 - (id)icon;
-- (void)perform;
+- (void)performWithEventSourceData:(id)arg1;
 - (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
-- (void)dealloc;
+- (void)_configureWithPlistDictionary:(id)arg1;
 - (id)paramDescription;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;

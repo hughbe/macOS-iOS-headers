@@ -11,7 +11,7 @@
 __attribute__((visibility("hidden")))
 @interface _NSXPCConnectionClassCache : NSObject
 {
-    int _lock;
+    struct _opaque_pthread_mutex_t _lock;
     NSMutableSet *_cache;
 }
 

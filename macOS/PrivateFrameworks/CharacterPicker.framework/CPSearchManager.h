@@ -6,20 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSCharacterSet, NSString;
+@class NSString;
 
 __attribute__((visibility("hidden")))
 @interface CPSearchManager : NSObject
 {
     NSString *_lastSearchString;
-    NSCharacterSet *_whiteSpaceSet;
     unsigned long long _transactionID;
 }
 
 + (id)sharedSearchManager;
 - (void)setLastSearchedString:(id)arg1;
 - (id)infoForCharcater:(id)arg1 infoTag:(id)arg2;
-- (void)searchForCharactersWithSearchString:(id)arg1 maxCount:(long long)arg2 usingBlock:(CDUnknownBlockType)arg3;
+- (void)_searchEmojiStringByCoreEmoji:(id)arg1 inLanguages:(id)arg2 maxResults:(unsigned long long)arg3 usingBlock:(CDUnknownBlockType)arg4;
+- (void)emojiTokensForSearchString:(id)arg1 inLanguages:(id)arg2 maxResults:(unsigned long long)arg3 usingBlock:(CDUnknownBlockType)arg4;
+- (void)searchForCharactersWithSearchString:(id)arg1 maxCount:(long long)arg2 emojiIMMode:(BOOL)arg3 usingBlock:(CDUnknownBlockType)arg4;
 - (void)dealloc;
 
 @end

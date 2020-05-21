@@ -10,20 +10,23 @@
 
 @interface TUMetadataCacheDataProvider : NSObject
 {
-    NSObject<OS_dispatch_queue> *_synchronizationQueue;
+    id <TUMetadataCacheDataProviderDelegate> _delegate;
+    NSObject<OS_dispatch_queue> *_queue;
     NSMutableDictionary *_providerCache;
 }
 
-@property(readonly, nonatomic) NSMutableDictionary *providerCache; // @synthesize providerCache=_providerCache;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *synchronizationQueue; // @synthesize synchronizationQueue=_synchronizationQueue;
++ (id)classIdentifier;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSMutableDictionary *providerCache; // @synthesize providerCache=_providerCache;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (id)description;
-- (void)removeAllObjects;
-- (void)removeMetadataForKey:(id)arg1;
-- (BOOL)isEmpty;
+@property(readonly, nonatomic, getter=isEmpty) BOOL empty;
+- (void)refresh;
 - (void)updateCacheWithDestinationIDs:(id)arg1 withGroup:(id)arg2;
-- (void)setObject:(id)arg1 forKey:(id)arg2;
+- (void)setObject:(id)arg1 forDestinationID:(id)arg2;
 - (id)metadataForDestinationID:(id)arg1;
+@property(nonatomic) __weak id <TUMetadataCacheDataProviderDelegate> delegate; // @synthesize delegate=_delegate;
+- (id)initWithQueue:(id)arg1;
 - (id)init;
 
 @end

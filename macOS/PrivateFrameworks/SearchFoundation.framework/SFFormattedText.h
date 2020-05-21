@@ -4,30 +4,50 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <SearchFoundation/SFText.h>
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
+#import "SFFormattedText.h"
 
-@class NSString, SFImage;
+@class NSData, NSDictionary, NSString, SFImage;
 
-@interface SFFormattedText : NSObject <NSSecureCoding>
+@interface SFFormattedText : SFText <SFFormattedText, NSSecureCoding, NSCopying>
 {
+    struct {
+        unsigned int isEmphasized:1;
+        unsigned int isBold:1;
+        unsigned int textColor:1;
+    } _has;
     BOOL _isEmphasized;
     BOOL _isBold;
-    NSString *_text;
+    int _textColor;
     SFImage *_glyph;
-    unsigned long long _textColor;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(nonatomic) unsigned long long textColor; // @synthesize textColor=_textColor;
+- (void).cxx_destruct;
+@property(nonatomic) int textColor; // @synthesize textColor=_textColor;
 @property(nonatomic) BOOL isBold; // @synthesize isBold=_isBold;
 @property(nonatomic) BOOL isEmphasized; // @synthesize isEmphasized=_isEmphasized;
 @property(retain, nonatomic) SFImage *glyph; // @synthesize glyph=_glyph;
-@property(copy, nonatomic) NSString *text; // @synthesize text=_text;
-- (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) NSData *jsonData;
+@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)hasTextColor;
+- (BOOL)hasIsBold;
+- (BOOL)hasIsEmphasized;
+- (id)initWithProtobuf:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(nonatomic) unsigned long long maxLines;
+@property(readonly) Class superclass;
+@property(copy) NSString *text;
 
 @end
 

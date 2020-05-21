@@ -4,33 +4,40 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <TelephonyUtilities/TURoute.h>
 
-@class NSArray, NSDictionary, NSString, TUAudioRoutePreferredRouteOptions;
+@class NSDictionary, NSString;
 
-@interface TUAudioRoute : NSObject
+@interface TUAudioRoute : TURoute
 {
-    TUAudioRoutePreferredRouteOptions *_preferredRouteOptions;
+    NSString *_avAudioRouteName;
     NSDictionary *_route;
 }
 
-@property(retain, nonatomic) NSDictionary *route; // @synthesize route=_route;
-@property(retain, nonatomic) TUAudioRoutePreferredRouteOptions *preferredRouteOptions; // @synthesize preferredRouteOptions=_preferredRouteOptions;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSArray *identifiersOfOtherConnectedDevices;
-- (void)_updatePreferredRouteOptions;
-- (BOOL)_routeNameEqualTo:(id)arg1;
-@property(readonly, nonatomic, getter=isPreferred) BOOL preferred;
-@property(readonly, nonatomic) long long bluetoothEndpointType;
-@property(readonly, nonatomic, getter=isWirelessHeadset) BOOL wirelessHeadset;
-@property(readonly, nonatomic, getter=isBluetooth) BOOL bluetooth;
-@property(readonly, nonatomic, getter=isCarAudio) BOOL carAudio;
-@property(readonly, nonatomic, getter=isAirTunes) BOOL airTunes;
-@property(readonly, nonatomic, getter=isSpeaker) BOOL speaker;
-@property(readonly, nonatomic, getter=isReceiver) BOOL receiver;
-@property(readonly, nonatomic, getter=isCurrentlyPicked) BOOL currentlyPicked;
-@property(readonly, nonatomic) NSString *uniqueIdentifier;
-- (id)description;
+@property(readonly, copy, nonatomic) NSDictionary *route; // @synthesize route=_route;
+@property(readonly, copy, nonatomic) NSString *avAudioRouteName; // @synthesize avAudioRouteName=_avAudioRouteName;
+- (id)identifiersOfOtherConnectedDevices;
+- (BOOL)_routeTypeEqualTo:(id)arg1;
+@property(readonly, nonatomic, getter=isHeadphoneJackConnected) BOOL headphoneJackConnected;
+@property(readonly, copy, nonatomic) NSString *bluetoothProductIdentifier;
+- (long long)deviceType;
+- (BOOL)supportsPreferredAndActive;
+- (BOOL)isPreferredAndActive;
+- (BOOL)isPreferred;
+- (long long)bluetoothEndpointType;
+- (BOOL)isDefaultRoute;
+- (BOOL)isWirelessHeadset;
+- (BOOL)isWiredHeadset;
+- (BOOL)isWiredHeadphones;
+- (BOOL)isBluetooth;
+- (BOOL)isBluetoothLE;
+- (BOOL)isCarAudio;
+- (BOOL)isAirTunes;
+- (BOOL)isSpeaker;
+- (BOOL)isReceiver;
+- (BOOL)isHandset;
+- (BOOL)isCurrentlyPicked;
 - (id)initWithDictionary:(id)arg1;
 
 @end

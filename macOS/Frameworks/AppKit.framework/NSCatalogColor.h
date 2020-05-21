@@ -28,6 +28,9 @@
 - (id)colorNameComponent;
 - (id)catalogNameComponent;
 - (id)colorUsingColorSpace:(id)arg1;
+- (id)colorUsingType:(long long)arg1;
+- (long long)type;
+- (id)colorSpaceName;
 - (id)colorUsingColorSpaceName:(id)arg1 device:(id)arg2;
 - (id)colorWithAlphaComponent:(double)arg1;
 - (double)alphaComponent;
@@ -39,7 +42,6 @@
 - (void)setStroke;
 - (void)setFill;
 - (void)set;
-- (id)colorSpaceName;
 - (id)initWithCatalogName:(id)arg1 colorName:(id)arg2 genericColor:(id)arg3;
 
 @end

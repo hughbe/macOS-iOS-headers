@@ -6,21 +6,22 @@
 
 #import <GameplayKit/GKComponent.h>
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class GKBehavior;
 
-@interface GKAgent : GKComponent <NSCoding>
+@interface GKAgent : GKComponent <NSSecureCoding>
 {
-    struct SimpleVehicle _vehicle;
+    struct GKSimpleVehicle _vehicle;
     id <GKAgentDelegate> _delegate;
     GKBehavior *_behavior;
 }
 
-@property(retain, nonatomic) GKBehavior *behavior; // @synthesize behavior=_behavior;
-@property(nonatomic) __weak id <GKAgentDelegate> delegate; // @synthesize delegate=_delegate;
++ (BOOL)supportsSecureCoding;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(retain, nonatomic) GKBehavior *behavior; // @synthesize behavior=_behavior;
+@property(nonatomic) __weak id <GKAgentDelegate> delegate; // @synthesize delegate=_delegate;
 -     // Error parsing type: 32@0:8@16d24, name: steerToStayOnPath:maxPredictionTime:
 -     // Error parsing type: 36@0:8@16d24c32, name: steerToFollowPath:maxPredictionTime:forward:
 -     // Error parsing type: 32@0:8@16d24, name: steerForIntercept:maxPredictionTime:
@@ -40,7 +41,7 @@
 @property(nonatomic) float speed;
 @property(nonatomic) float radius;
 @property(nonatomic) float mass;
-- (struct SimpleVehicle *)vehicle;
+- (struct GKSimpleVehicle *)vehicle;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;

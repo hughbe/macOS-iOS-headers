@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSSecureCoding.h"
+
 @class DDLocation, DDNonTerminal, NSArray;
 
 __attribute__((visibility("hidden")))
-@interface DDProduction : NSObject
+@interface DDProduction : NSObject <NSSecureCoding>
 {
     NSArray *_items;
     DDNonTerminal *_nonTerminal;
@@ -20,6 +22,7 @@ __attribute__((visibility("hidden")))
     struct __DDDotedProduction *_dottedProductions;
 }
 
++ (BOOL)supportsSecureCoding;
 @property long long index; // @synthesize index=_index;
 - (BOOL)checkDottedProductionIndex:(long long)arg1;
 - (struct __DDDotedProduction *)dottedProductions;

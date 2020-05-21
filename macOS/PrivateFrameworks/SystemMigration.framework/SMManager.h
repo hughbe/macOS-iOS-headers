@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSSet, NSString, NSURL, PKDeferredInstallManager, SMAutoLoaderServer, SMMigrateEngine, SMPaths;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSSet, NSString, NSURL, PKDeferredInstallManager, SMAutoLoaderServer, SMMigrateEngine, SMPaths, SMWindowsAnalyzer, SUSoftwareUpdateController;
 
 @interface SMManager : NSObject
 {
@@ -19,47 +19,64 @@
     BOOL _allowLocalNetworkServer;
     BOOL _timemachineSuspended;
     BOOL _throttlingSuspended;
+    BOOL _suScanSuspended;
     BOOL _hasDeferredFiles;
     BOOL _setupDeferredSandbox;
+    BOOL _blockingUpgradeRequests;
     NSObject<OS_dispatch_queue> *_spotlightIndexQueue;
     NSObject<OS_dispatch_queue> *_spotlightIndexHeartbeatQueue;
     void *_spotlightSession;
     NSObject<OS_dispatch_queue> *_spotlightSuppressQueue;
     SMPaths *_pathSystem;
     unsigned long long _totalTimeSpentWaitingForSpotlight;
+    SMWindowsAnalyzer *_windowsAnalyzer;
+    NSObject<OS_dispatch_queue> *_progressQueue;
     SMMigrateEngine *_engine;
     PKDeferredInstallManager *_deferredInstallManager;
     NSObject<OS_dispatch_queue> *_timemachineSuppressQueue;
     NSObject<OS_dispatch_source> *_timemachineSuppressTimer;
+    NSObject<OS_dispatch_source> *_suScanSuppressTimer;
     NSObject<OS_dispatch_queue> *_throttlingSuppressQueue;
+    NSObject<OS_dispatch_queue> *_suScanningSuppressQueue;
     NSObject<OS_dispatch_queue> *_requestQueue;
     SMAutoLoaderServer *_autoLoaderServer;
     NSSet *_systemDefenseAppleLocations;
     NSSet *_systemDefenseUserLocations;
     NSObject<OS_dispatch_source> *_cancelWatchdogSource;
     NSString *_cancelWatchdogUUID;
+    SUSoftwareUpdateController *_suController;
 }
 
 + (void)systemRetain;
 + (void)releaseSystemAssertions:(BOOL)arg1;
 + (BOOL)enoughfreeSpaceOnSystemVolume;
++ (BOOL)isUpgradeOrSUInProgress;
++ (BOOL)isSoftwareUpdateInProgress;
 + (BOOL)isOSUpgradeInProgress;
 + (id)sharedManager;
+- (void).cxx_destruct;
+@property(retain) SUSoftwareUpdateController *suController; // @synthesize suController=_suController;
+@property BOOL blockingUpgradeRequests; // @synthesize blockingUpgradeRequests=_blockingUpgradeRequests;
 @property(retain) NSString *cancelWatchdogUUID; // @synthesize cancelWatchdogUUID=_cancelWatchdogUUID;
 @property(retain) NSObject<OS_dispatch_source> *cancelWatchdogSource; // @synthesize cancelWatchdogSource=_cancelWatchdogSource;
 @property(retain) NSSet *systemDefenseUserLocations; // @synthesize systemDefenseUserLocations=_systemDefenseUserLocations;
 @property(retain) NSSet *systemDefenseAppleLocations; // @synthesize systemDefenseAppleLocations=_systemDefenseAppleLocations;
 @property(retain) SMAutoLoaderServer *autoLoaderServer; // @synthesize autoLoaderServer=_autoLoaderServer;
 @property(retain) NSObject<OS_dispatch_queue> *requestQueue; // @synthesize requestQueue=_requestQueue;
+@property(retain) NSObject<OS_dispatch_queue> *suScanningSuppressQueue; // @synthesize suScanningSuppressQueue=_suScanningSuppressQueue;
 @property(retain) NSObject<OS_dispatch_queue> *throttlingSuppressQueue; // @synthesize throttlingSuppressQueue=_throttlingSuppressQueue;
+@property(retain) NSObject<OS_dispatch_source> *suScanSuppressTimer; // @synthesize suScanSuppressTimer=_suScanSuppressTimer;
 @property(retain) NSObject<OS_dispatch_source> *timemachineSuppressTimer; // @synthesize timemachineSuppressTimer=_timemachineSuppressTimer;
 @property(retain) NSObject<OS_dispatch_queue> *timemachineSuppressQueue; // @synthesize timemachineSuppressQueue=_timemachineSuppressQueue;
 @property(retain) PKDeferredInstallManager *deferredInstallManager; // @synthesize deferredInstallManager=_deferredInstallManager;
 @property BOOL setupDeferredSandbox; // @synthesize setupDeferredSandbox=_setupDeferredSandbox;
 @property BOOL hasDeferredFiles; // @synthesize hasDeferredFiles=_hasDeferredFiles;
+@property BOOL suScanSuspended; // @synthesize suScanSuspended=_suScanSuspended;
 @property BOOL throttlingSuspended; // @synthesize throttlingSuspended=_throttlingSuspended;
 @property BOOL timemachineSuspended; // @synthesize timemachineSuspended=_timemachineSuspended;
 @property(retain) SMMigrateEngine *engine; // @synthesize engine=_engine;
+@property(retain) NSObject<OS_dispatch_queue> *progressQueue; // @synthesize progressQueue=_progressQueue;
+@property(retain) SMWindowsAnalyzer *windowsAnalyzer; // @synthesize windowsAnalyzer=_windowsAnalyzer;
 @property unsigned long long totalTimeSpentWaitingForSpotlight; // @synthesize totalTimeSpentWaitingForSpotlight=_totalTimeSpentWaitingForSpotlight;
 @property BOOL allowLocalNetworkServer; // @synthesize allowLocalNetworkServer=_allowLocalNetworkServer;
 @property BOOL forceSlowEnumeration; // @synthesize forceSlowEnumeration=_forceSlowEnumeration;
@@ -73,10 +90,11 @@
 @property BOOL skipSpotlightIndexing; // @synthesize skipSpotlightIndexing=_skipSpotlightIndexing;
 @property(retain) NSObject<OS_dispatch_queue> *spotlightIndexHeartbeatQueue; // @synthesize spotlightIndexHeartbeatQueue=_spotlightIndexHeartbeatQueue;
 @property(retain) NSObject<OS_dispatch_queue> *spotlightIndexQueue; // @synthesize spotlightIndexQueue=_spotlightIndexQueue;
-- (void).cxx_destruct;
-- (BOOL)validateTimeMachineSystemAtPath:(id)arg1 rejectionReason:(id *)arg2;
+- (BOOL)isTimeMachineDataVolume:(id)arg1;
 - (BOOL)validateArchiveInstallSystemAtPath:(id)arg1;
+- (BOOL)validateSystemAtPath:(id)arg1 serverSystemsAllowed:(BOOL)arg2 tmVolumeStoreInfo:(id)arg3 rejectionReason:(id *)arg4;
 - (BOOL)validateSystemAtPath:(id)arg1 serverSystemsAllowed:(BOOL)arg2 rejectionReason:(id *)arg3;
+- (BOOL)validateSystemAtTMVolumeStoreInfo:(id)arg1 rejectionReason:(id *)arg2;
 - (BOOL)validateSystemAtPath:(id)arg1 rejectionReason:(id *)arg2;
 - (BOOL)validateSystemAtPath:(id)arg1 serverSystemsAllowed:(BOOL)arg2;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
@@ -85,6 +103,7 @@
 - (void)stopNetworkMigrationServer;
 - (BOOL)startNetworkMigrationServerUsingSourcePath:(id)arg1 andSecretPassword:(id)arg2;
 - (id)safeDestinationForIntendedDestination:(id)arg1 usingPather:(id)arg2;
+- (id)applySyntheticRedirections:(id)arg1 fromPather:(id)arg2;
 - (void)loadRootlessConfigFromRoot:(id)arg1;
 @property(readonly) NSURL *systemDefenseQuarantinePath;
 - (void)setupSystemDefenseForRequest;
@@ -95,7 +114,7 @@
 - (BOOL)deferredInstallAvailableForPath:(id)arg1;
 - (void)waitOnBlacklistUpdate;
 - (void)ensureUpdatedBlacklist;
-- (BOOL)validateWindowsClientVersion:(id)arg1 supportedClientVersion:(id)arg2 rejectionReason:(id *)arg3;
+- (BOOL)validateWindowsClientVersion:(id)arg1 supportedClientVersion:(id)arg2 includeMinor:(BOOL)arg3 rejectionReason:(id *)arg4;
 - (BOOL)validateWindowsClientVersion:(id)arg1 rejectionReason:(id *)arg2;
 - (BOOL)validateSystemProductVersion:(id)arg1 currentSystemVersion:(id)arg2 rejectionReason:(id *)arg3;
 - (BOOL)validateSystemProductVersion:(id)arg1 rejectionReason:(id *)arg2;
@@ -103,10 +122,16 @@
 - (id)leadingNumberFromDecimalVersion:(id)arg1;
 - (BOOL)_validateLiteBackupAtPath:(id)arg1;
 - (void)mountRemoteTMShare:(id)arg1;
+- (void)enableSoftwareUpdateScanning;
+- (void)disableSoftwareUpdateScanning;
 - (void)allowSystemThrottling;
 - (void)disableSystemThrottling;
 - (void)enableLocalTimeMachineDaemon;
 - (void)disableLocalTimeMachineDaemon;
+- (BOOL)verifyWindowsAnalyzer:(id)arg1;
+- (BOOL)verifyWindowsAnalyzer;
+- (void)removeWindowsAnalyzer;
+- (void)submitWindowsAnalyzer:(id)arg1;
 - (BOOL)verifyPathSystem:(id)arg1;
 - (BOOL)verifyPathSystem;
 - (void)removePathSystem;
@@ -121,12 +146,14 @@
 - (void)scanRequestQueue;
 - (BOOL)pickNewRequestFile;
 - (void)submitMigrationRequest:(id)arg1;
+- (void)blockUpgradeRequests;
 - (void)dealloc;
 - (id)init;
 - (void)enableSpotlightIndexing;
 - (void)disableSpotlightIndexing;
 - (void)gatherSpotlightDebuggingInformation;
 - (void)waitForSpotlightToIndex:(CDUnknownBlockType)arg1;
+- (BOOL)spotlightStillIndexing;
 - (void)indexFileAtPath:(id)arg1;
 - (void)leaveUserHome:(id)arg1 newHome:(id)arg2;
 - (void)enterUserHome:(id)arg1 newHome:(id)arg2;

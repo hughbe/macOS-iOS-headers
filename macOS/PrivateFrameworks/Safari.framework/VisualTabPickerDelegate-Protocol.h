@@ -14,7 +14,7 @@
 - (void)willStartExitAnimationForVisualTabPickerController:(VisualTabPickerViewController *)arg1;
 - (void)visualTabPickerControllerWillClose:(VisualTabPickerViewController *)arg1;
 - (void)visualTabPickerController:(VisualTabPickerViewController *)arg1 selectTab:(BrowserTabViewItem *)arg2;
-- (void)createNewTabForVisualTabPickerController:(VisualTabPickerViewController *)arg1;
+- (BOOL)createNewTabForVisualTabPickerController:(VisualTabPickerViewController *)arg1;
 - (BOOL)creatingNewTabWillCloseVisualTabPickerController:(VisualTabPickerViewController *)arg1;
 - (void)visualTabPickerController:(VisualTabPickerViewController *)arg1 openCloudTab:(WBSCloudTab *)arg2;
 - (NSArray *)browserTabViewItemsForVisualTabPickerController:(VisualTabPickerViewController *)arg1;

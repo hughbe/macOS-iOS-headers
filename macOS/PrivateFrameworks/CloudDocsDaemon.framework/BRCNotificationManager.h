@@ -8,7 +8,7 @@
 
 #import "BRCModule.h"
 
-@class BRCAccountSession, BRCClientRanksPersistedState, BRCXPCClient, BRNotificationQueue, NSHashTable, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
+@class BRCAccountSession, BRCClientRanksPersistedState, BRCXPCClient, BRNotificationQueue, NSHashTable, NSMapTable, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface BRCNotificationManager : NSObject <BRCModule>
@@ -23,22 +23,30 @@ __attribute__((visibility("hidden")))
     BRCXPCClient *_client;
     // Error parsing type: AQ, name: _activeAliasQueries
     NSMutableSet *_additionalUpdatesItemRowID;
+    unsigned long long _previousMaxRank;
+    NSMutableDictionary *_watchersByFileObjectID;
+    NSMapTable *_fileObjectIDByWatcher;
     BOOL _isCancelled;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
 @property(readonly, nonatomic) BRCAccountSession *session; // @synthesize session=_session;
-- (void).cxx_destruct;
 - (void)invalidatePipeReceiversWatchingAppLibraryIDs:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)pipeDelegateInvalidated:(id)arg1;
 - (void)invalidatePipesWatchingAppLibraryIDs:(id)arg1;
-- (void)flushUpdates;
+- (void)flushUpdatesWithRank:(unsigned long long)arg1;
 - (void)_queueAdditionalUpdates;
-- (void)_dispatchUpdatesToPipes;
+- (void)_dispatchUpdatesToPipesWithRank:(unsigned long long)arg1;
+- (void)fetchLastFlushedRankWithReply:(CDUnknownBlockType)arg1;
 - (void)queueUpdateForItemAtRowID:(unsigned long long)arg1;
 - (void)queueUpdate:(id)arg1;
 - (void)queueProgressUpdates:(id)arg1;
 - (id)pipeWithReceiver:(id)arg1;
 - (void)getPipeWithXPCReceiver:(id)arg1 client:(id)arg2 reply:(CDUnknownBlockType)arg3;
+- (void)unregisterPipeAsWatcher:(id)arg1;
+- (void)registerPipe:(id)arg1 asWatcherForFileObjectID:(id)arg2;
+- (BOOL)hasWatcherForDocumentID:(id)arg1;
 - (void)unregisterAppLibraries:(id)arg1 forFlags:(unsigned long long)arg2;
 - (void)registerAppLibraries:(id)arg1 forFlags:(unsigned long long)arg2;
 @property(readonly) BOOL hasActiveAliasWatchers;

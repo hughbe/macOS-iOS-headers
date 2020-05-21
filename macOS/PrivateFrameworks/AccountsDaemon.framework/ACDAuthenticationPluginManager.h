@@ -6,13 +6,15 @@
 
 #import "NSObject.h"
 
-@class ACDQueueDictionary, NSLock, NSMutableDictionary, NSObject<OS_dispatch_queue>;
+@class ACDQueueDictionary, ACRateLimiter, NSLock, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>;
 
 @interface ACDAuthenticationPluginManager : NSObject
 {
     ACDQueueDictionary *_verificationHandlerQueues;
     ACDQueueDictionary *_renewalHandlerQueues;
     ACDQueueDictionary *_discoveryHandlerQueues;
+    ACRateLimiter *_renewalRateLimiter;
+    NSMutableSet *_keysForRateExceededBugSent;
     NSLock *_verificationHandlersLock;
     NSLock *_renewalHandlersLock;
     NSLock *_discoveryHandlersLock;
@@ -30,12 +32,14 @@
 - (void)_handleDiscoveryCompletionResult:(id)arg1 forAccount:(id)arg2 discoveryID:(id)arg3 accountStore:(id)arg4 shouldSave:(BOOL)arg5 error:(id)arg6;
 - (void)discoverPropertiesForAccount:(id)arg1 accountStore:(id)arg2 options:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_handleRenewalCompletionResult:(long long)arg1 forAccount:(id)arg2 renewalID:(id)arg3 accountStore:(id)arg4 error:(id)arg5;
+- (BOOL)_renewalRequestIsWithinLimitsForAccount:(id)arg1 accountStore:(id)arg2;
 - (void)renewCredentialsForAccount:(id)arg1 accountStore:(id)arg2 options:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_handleVerificationCompletionForAccount:(id)arg1 verifiedAccount:(id)arg2 error:(id)arg3 store:(id)arg4 shouldSave:(BOOL)arg5;
 - (void)verifyCredentialsForAccount:(id)arg1 accountStore:(id)arg2 options:(id)arg3 handler:(CDUnknownBlockType)arg4;
 - (void)credentialForAccount:(id)arg1 client:(id)arg2 store:(id)arg3 handler:(CDUnknownBlockType)arg4;
 - (BOOL)isPushSupportedForAccount:(id)arg1;
 - (id)init;
+@property(retain) ACRateLimiter *renewalRateLimiter;
 
 @end
 

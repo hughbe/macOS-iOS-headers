@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (long long)defaultSortOrder;
+- (void).cxx_destruct;
 - (BOOL)unifyResults;
 - (CDUnknownBlockType)contactsByNameComparator;
 - (id)effectiveKeysToFetch;
@@ -25,7 +26,6 @@ __attribute__((visibility("hidden")))
 - (id)buildFetchRequestDescription;
 - (id)relationshipKeyPathsForKeysToFetch:(id)arg1;
 - (id)relationshipKeyPaths;
-- (void)dealloc;
 - (id)initWithFetchRequest:(id)arg1;
 
 @end

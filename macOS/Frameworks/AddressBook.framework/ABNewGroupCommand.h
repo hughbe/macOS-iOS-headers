@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABCommand.h>
+#import "ABCommand.h"
 
 @class ABGroup, NSArray, NSDictionary;
 
@@ -20,7 +20,6 @@
 - (BOOL)doIt;
 - (void)redoIt;
 - (void)undoIt;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithPeople:(id)arg1 parentGroup:(id)arg2 addressBook:(id)arg3;
 

@@ -6,15 +6,16 @@
 
 #import <CoreData/NSStoreMapNode.h>
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 __attribute__((visibility("hidden")))
-@interface NSDictionaryMapNode : NSStoreMapNode <NSCoding>
+@interface NSDictionaryMapNode : NSStoreMapNode <NSSecureCoding>
 {
     id *_attributes;
     id _attributesAsEncoded;
 }
 
++ (BOOL)supportsSecureCoding;
 + (void)initialize;
 - (id)valueForKey:(id)arg1;
 - (const id *)attributeValues;

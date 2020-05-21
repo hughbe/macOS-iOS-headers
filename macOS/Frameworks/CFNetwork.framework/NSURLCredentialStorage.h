@@ -24,7 +24,9 @@
 - (void)removeCredential:(id)arg1 forProtectionSpace:(id)arg2 options:(id)arg3;
 - (void)removeCredential:(id)arg1 forProtectionSpace:(id)arg2;
 - (void)setCredential:(id)arg1 forProtectionSpace:(id)arg2;
+- (id)_allCredentialsWithAccessControlGroup:(id)arg1 includeLegacyKeychain:(_Bool)arg2;
 @property(readonly, copy) NSDictionary *allCredentials;
+- (id)__allCredentialsWithAccessControlGroup:(id)arg1 includeLegacyKeychain:(_Bool)arg2;
 - (id)credentialsForProtectionSpace:(id)arg1;
 @property(nonatomic) BOOL _useSystemKeychain;
 - (struct _CFURLCredentialStorage *)_CFURLCredentialStorage;

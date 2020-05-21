@@ -13,6 +13,7 @@
     NSObject<OS_dispatch_group> *_group;
     BOOL _isFinished;
     BOOL _isExecuting;
+    BOOL _finishInvoked;
     NSString *_sectionID;
     id _context;
     NSDate *_startDate;
@@ -20,6 +21,8 @@
     CDUnknownBlockType _daemonInvokeBlock;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL finishInvoked; // @synthesize finishInvoked=_finishInvoked;
 @property(readonly, nonatomic) CDUnknownBlockType daemonInvokeBlock; // @synthesize daemonInvokeBlock=_daemonInvokeBlock;
 @property(readonly, nonatomic) NSString *operationID; // @synthesize operationID=_operationID;
 @property(retain, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;
@@ -27,13 +30,14 @@
 @property(retain, nonatomic) NSString *sectionID; // @synthesize sectionID=_sectionID;
 @property(nonatomic) BOOL isExecuting; // @synthesize isExecuting=_isExecuting;
 @property(nonatomic) BOOL isFinished; // @synthesize isFinished=_isFinished;
-- (void).cxx_destruct;
 - (id)description;
-- (id)CKPropertiesDescription;
+- (id)CKDescriptionPropertiesWithPublic:(BOOL)arg1 private:(BOOL)arg2 shouldExpand:(BOOL)arg3;
+- (void)_setIsExecuting:(BOOL)arg1;
+- (void)_setIsFinished:(BOOL)arg1;
 - (BOOL)isConcurrent;
+- (void)finish;
 - (void)main;
 - (void)start;
-- (void)cancel;
 - (id)initWithOperation:(id)arg1 daemonInvocationBlock:(CDUnknownBlockType)arg2;
 
 @end

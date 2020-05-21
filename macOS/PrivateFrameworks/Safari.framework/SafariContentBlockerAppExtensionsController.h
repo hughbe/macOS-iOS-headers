@@ -8,23 +8,26 @@
 
 #import "SFContentBlockerManagerDelegate.h"
 
-@class NSArray, NSString;
+@class NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
-__attribute__((visibility("hidden")))
 @interface SafariContentBlockerAppExtensionsController : NSObject <SFContentBlockerManagerDelegate>
 {
-    NSArray *_enabledContentBlockers;
+    NSMutableSet *_contentBlockersInInvalidAppBundles;
+    NSObject<OS_dispatch_queue> *_appBundleValidationQueue;
     NSString *_crashReporterMessage;
 }
 
-+ (id)_contentBlockerStore;
++ (id)contentBlockerStores;
++ (id)contentBlockerStore;
++ (id)_contentBlockerStoreWithBundleIdentifier:(id)arg1;
 + (id)sharedController;
-@property(readonly, nonatomic) NSString *crashReporterMessage; // @synthesize crashReporterMessage=_crashReporterMessage;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSString *crashReporterMessage; // @synthesize crashReporterMessage=_crashReporterMessage;
+- (BOOL)allowUnsignedContentBlockers;
 - (id)developerIdentifierForContentBlocker:(id)arg1;
 - (id)contentBlockersFromContentBlockersState:(id)arg1;
-- (void)replaceLegacyExtensionsWithContentBlocker:(id)arg1;
-- (id)contentBlockersNotBlockedByXProtect:(id)arg1;
+- (void)replaceLegacyExtensionsWithContentBlocker:(id)arg1 userHasChangedEnabledState:(BOOL)arg2;
+- (id)contentBlockersNotBlockedForAnyReason:(id)arg1;
 - (void)contentBlockerEnabledStateDidChange:(id)arg1;
 - (void)contentBlockersWereRemoved:(id)arg1;
 - (void)contentBlockersWereAdded:(id)arg1;
@@ -33,6 +36,11 @@ __attribute__((visibility("hidden")))
 - (void)_updateContentBlockersCrashReporterMessage;
 - (void)_removeContentBlockerWithIdentifier:(id)arg1;
 - (void)_applyContentBlocker:(id)arg1;
+- (void)_extensionsWereGloballyDisabled;
+- (void)_extensionsWereGloballyEnabled;
+- (BOOL)shouldDisableAllContentBlockers;
+- (void)dealloc;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

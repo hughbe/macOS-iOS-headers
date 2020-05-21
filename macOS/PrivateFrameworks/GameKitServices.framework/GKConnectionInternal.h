@@ -11,6 +11,7 @@
 
 @class CDXClient, NSData, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, TimingCollection;
 
+__attribute__((visibility("hidden")))
 @interface GKConnectionInternal : GKConnection <CDXClientDelegate, CDXClientSessionDelegate>
 {
     unsigned int _gckPID;

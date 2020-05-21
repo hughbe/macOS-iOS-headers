@@ -6,24 +6,25 @@
 
 #import "NSObject.h"
 
-#import "VMULibraryLoadDelegate.h"
+@class NSArray, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSString;
 
-@class NSArray, NSDate, NSDictionary, NSMutableArray, NSString, _VMULibraryLoadObserver;
-
-@interface VMUProcessDescription : NSObject <VMULibraryLoadDelegate>
+@interface VMUProcessDescription : NSObject
 {
     unsigned int _task;
     int _pid;
+    BOOL _taskIsCorpse;
     NSString *_hardwareModel;
     NSString *_processName;
     BOOL _processNameNeedsCorrection;
     NSString *_executablePath;
-    _VMULibraryLoadObserver *_loadUnloadObserver;
+    struct _CSTypeRef _symbolicator;
     BOOL _executablePathNeedsCorrection;
     unsigned long long _executableLoadAddress;
     int _cpuType;
     BOOL _is64Bit;
     struct timeval _proc_starttime;
+    unsigned long long _physicalFootprint;
+    unsigned long long _physicalFootprintPeak;
     NSDictionary *_lsApplicationInformation;
     NSMutableArray *_binaryImages;
     NSArray *_sortedBinaryImages;
@@ -37,11 +38,18 @@
     NSString *_parentExecutablePath;
     int _ppid;
     NSDate *_date;
+    NSMutableDictionary *_environment;
 }
 
++ (struct _CSTypeRef)symbolicatorFromBinaryImagesDescription:(id)arg1;
 + (id)parseBinaryImagesDescription:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long physicalFootprintPeak; // @synthesize physicalFootprintPeak=_physicalFootprintPeak;
+@property(readonly, nonatomic) unsigned long long physicalFootprint; // @synthesize physicalFootprint=_physicalFootprint;
 - (void)dealloc;
-@property(readonly, copy) NSString *description;
+- (id)description;
+- (void)cleansePathsIncludingBinaryImageList:(BOOL)arg1;
+- (id)processStatisticsDescription;
 - (id)analysisToolDescription;
 - (id)dateAndVersionDescription;
 - (id)processDescriptionHeader;
@@ -54,6 +62,7 @@
 - (id)_rangesOfBinaryImages:(id)arg1 forBacktraces:(id)arg2;
 - (id)_binaryImagesDescriptionForRanges:(id)arg1;
 - (id)_cpuTypeDescription;
+- (id)valueForEnvVar:(id)arg1;
 - (id)binaryImageDictionaryForAddress:(unsigned long long)arg1;
 - (id)binaryImages;
 - (id)_bundleLock;
@@ -63,29 +72,26 @@
 - (id)processVersion;
 - (id)_sanitizeVersion:(id)arg1;
 - (id)processVersionDictionary;
+- (id)parentProcessPath;
 - (id)parentProcessName;
+- (int)parentPid;
 - (id)displayName;
 - (id)processIdentifier;
 - (id)processName;
 - (int)cpuType;
+- (BOOL)is64Bit;
 - (int)pid;
 - (unsigned int)task;
 - (id)date;
 - (void)_libraryLoaded:(struct _CSTypeRef)arg1;
-- (void)_extractCrashReporterBinaryImageHintsFromSymbolOwner:(struct _CSTypeRef)arg1 withMemory:(struct mapped_memory_t *)arg2;
 - (id)_extractInfoPlistFromSymbolOwner:(struct _CSTypeRef)arg1 withMemory:(struct mapped_memory_t *)arg2;
 - (id)_readDataFromMemory:(struct mapped_memory_t *)arg1 atAddress:(unsigned long long)arg2 size:(unsigned long long)arg3;
-- (id)_readStringFromMemory:(struct mapped_memory_t *)arg1 atAddress:(unsigned long long)arg2;
-- (double)_extractDyldInfoFromSymbolOwner:(struct _CSTypeRef)arg1 withMemory:(struct mapped_memory_t *)arg2;
+- (BOOL)initFromCorpse;
+- (void)initFromLiveProcess;
+- (id)initWithTask:(unsigned int)arg1 getBinariesList:(BOOL)arg2;
 - (id)initWithPid:(int)arg1 orTask:(unsigned int)arg2;
-- (id)initWithPid:(int)arg1 orTask:(unsigned int)arg2 getBinariesList:(BOOL)arg3;
 - (void)clearCrashReporterInfo;
 - (void)setCrashReporterInfo;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

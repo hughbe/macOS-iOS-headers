@@ -15,7 +15,6 @@
     NSString *_ID;
     NSString *_name;
     NSImage *_icon;
-    NSString *_path;
     NSURL *_url;
     NSString *_aliasResolvedPath;
     NSDate *_modificationDate;
@@ -45,7 +44,7 @@
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 - (id)objectSpecifier;
-- (BOOL)_canUseiTunesAccessForThumbnail;
+- (BOOL)_canUseiTunesLibraryForThumbnail;
 - (unsigned long long)imageVersion;
 - (unsigned long long)_internal_imageVersion;
 - (void)_setShouldHideImageBorder:(BOOL)arg1;
@@ -77,6 +76,7 @@
 - (void)setExtendedProperties:(id)arg1;
 - (id)extendedProperties;
 - (id)_internal_extendedProperties;
+- (void)setSourceProperty:(id)arg1 forKey:(id)arg2;
 - (void)setSourceProperties:(id)arg1;
 - (id)sourceProperties;
 - (void)clearThumbnailImage;
@@ -112,6 +112,7 @@
 - (void)setHasAppliedThumbnailCacheInfo:(BOOL)arg1;
 - (BOOL)conformsToContentType:(id)arg1;
 - (BOOL)hasContentType:(id)arg1;
+- (BOOL)hasGarageBandContentType;
 - (BOOL)hasSourcePluginIdentifier:(id)arg1;
 - (void)setSourcePluginIdentifier:(id)arg1;
 - (id)sourcePluginIdentifier;

@@ -24,6 +24,7 @@
 @property(nonatomic) long long priority;
 @property(copy, nonatomic) NSNumber *mptcp;
 @property(copy, nonatomic) NSString *host;
+@property(copy, nonatomic) NSString *connectionId;
 @property(copy, nonatomic) NSString *cname;
 - (id)encodedClassName;
 - (id)groupIdentifier;

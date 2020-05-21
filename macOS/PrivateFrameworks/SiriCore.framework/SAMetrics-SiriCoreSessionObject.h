@@ -7,8 +7,9 @@
 #import "SAMetrics.h"
 
 @interface SAMetrics (SiriCoreSessionObject)
-- (void)siriCore_dispatchSendCompletionsWithResult:(long long)arg1 error:(id)arg2;
-- (void)siriCore_addSendCompletion:(CDUnknownBlockType)arg1;
-- (BOOL)siriCore_supportsSendCompletions;
+- (BOOL)siriCore_supportedByLocalSession;
+- (BOOL)siriCore_isRetryable;
+- (void)siriCore_setSessionRequestId:(id)arg1;
+- (id)siriCore_requestId;
 @end
 

@@ -8,7 +8,7 @@
 
 #import "NSAdminPrefAuthenticator.h"
 
-@class NSMutableArray;
+@class NSMutableArray, NSString;
 
 @interface NSAdminMultiAuthenticator : NSObject <NSAdminPrefAuthenticator>
 {
@@ -17,12 +17,20 @@
 
 + (id)multiAuthenticator;
 - (void).cxx_destruct;
+- (void)authenticateUsingAuthorization:(id)arg1 userName:(id)arg2 password:(id)arg3;
 - (BOOL)isAuthenticated;
 - (void)deauthenticate;
 - (void)authenticateUsingAuthorization:(id)arg1;
 - (void)removeAuthenticator:(id)arg1;
 - (void)addAuthenticator:(id)arg1;
+- (BOOL)wantsClearTextAuthentication;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

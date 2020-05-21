@@ -8,22 +8,23 @@
 
 #import "MCRemoteAttachmentDataSource.h"
 
-@class MFLibraryMessage, NSConditionLock, NSMutableDictionary, NSProgress, NSString;
+@class MFLibraryMessage, NSLock, NSMutableDictionary, NSOperationQueue, NSProgress, NSString;
 
 @interface MFRemoteAttachmentDataSource : NSObject <MCRemoteAttachmentDataSource>
 {
-    NSConditionLock *_attachmentFetchLock;
+    NSLock *_attachmentFetchLock;
     NSMutableDictionary *_completionBlocksByMimePartNumber;
-    id _completionBlocksByMimePartNumberLock;
-    MFLibraryMessage *_message;
     NSProgress *_downloadProgress;
+    MFLibraryMessage *_message;
+    NSOperationQueue *_attachmentFetchCompletionQueue;
 }
 
 + (id)remoteAttachmentDataSourceForMessage:(id)arg1;
-@property(readonly, nonatomic) NSProgress *downloadProgress; // @synthesize downloadProgress=_downloadProgress;
-@property(readonly, nonatomic) MFLibraryMessage *message; // @synthesize message=_message;
 - (void).cxx_destruct;
-- (void)fetchAttachmentMimePartNumber:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) NSOperationQueue *attachmentFetchCompletionQueue; // @synthesize attachmentFetchCompletionQueue=_attachmentFetchCompletionQueue;
+@property(readonly, nonatomic) MFLibraryMessage *message; // @synthesize message=_message;
+@property(readonly, nonatomic) NSProgress *downloadProgress; // @synthesize downloadProgress=_downloadProgress;
+- (void)fetchAttachmentForAccessLevel:(long long)arg1 mimePartNumber:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)_attachmentBecameAvailable:(id)arg1;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;

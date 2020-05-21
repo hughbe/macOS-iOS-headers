@@ -6,14 +6,29 @@
 
 #import "NSObject.h"
 
+@class NSMutableArray, NSObject<OS_dispatch_queue>;
+
 @interface PXPreloadScheduler : NSObject
 {
+    NSObject<OS_dispatch_queue> *_backgroundQueue;
+    NSMutableArray *_pendingBlocks;
+    struct __CFRunLoopObserver *_runloopObserver;
+    BOOL __isActive;
 }
 
 + (id)sharedScheduler;
+- (void).cxx_destruct;
+@property(nonatomic, setter=_setActive:) BOOL _isActive; // @synthesize _isActive=__isActive;
+- (void)scheduleTaskAfterCATransactionCommits:(CDUnknownBlockType)arg1;
+- (void)_updateIsActive;
+- (void)_runLoopWillStartWaiting;
+- (BOOL)_shouldExecutePendingBlock;
+- (void)scheduleDeferredBackgroundTask:(CDUnknownBlockType)arg1;
+- (void)scheduleBackgroundTask:(CDUnknownBlockType)arg1;
 - (void)scheduleMainQueueTaskAndWait:(CDUnknownBlockType)arg1;
 - (void)scheduleMainQueueTask:(CDUnknownBlockType)arg1;
-- (void)scheduleBackgroundTask:(CDUnknownBlockType)arg1;
+- (void)dealloc;
+- (id)init;
 
 @end
 

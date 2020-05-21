@@ -9,7 +9,6 @@
 @protocol SafariNotificationAgentProxy
 - (void)agentDidUnregisterForRemoteNotifications:(unsigned long long)arg1 disallowedDomains:(NSArray *)arg2;
 - (void)agentDidRegisterForRemoteNotifications:(unsigned long long)arg1 allowedDomains:(NSArray *)arg2 deviceToken:(NSString *)arg3;
-- (void)agentDidVerifyRemoteNotificationProviderRequest:(unsigned long long)arg1 withResult:(int)arg2 websiteName:(NSString *)arg3 lowResIcon:(NSData *)arg4 highResIcon:(NSData *)arg5;
 - (void)agentDidVerifyRemoteNotificationProviderRequest:(unsigned long long)arg1 withResult:(int)arg2 websiteName:(NSString *)arg3 lowResIcon:(NSData *)arg4 highResIcon:(NSData *)arg5 errorMessages:(NSArray *)arg6;
 @end
 

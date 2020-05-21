@@ -13,8 +13,8 @@
     NSXPCConnection *_connection;
 }
 
+- (void).cxx_destruct;
 - (void)requestRecentLocationsWithResponse:(CDUnknownBlockType)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

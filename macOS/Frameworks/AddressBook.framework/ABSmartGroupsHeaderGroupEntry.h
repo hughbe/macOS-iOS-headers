@@ -8,13 +8,13 @@
 
 @class ABAddressBook, ABGroup;
 
-__attribute__((visibility("hidden")))
 @interface ABSmartGroupsHeaderGroupEntry : ABHeaderGroupEntry
 {
     ABAddressBook *_addressBook;
     ABGroup *_group;
 }
 
+- (void).cxx_destruct;
 @property(readonly, retain) ABGroup *group; // @synthesize group=_group;
 @property(readonly, retain) ABAddressBook *addressBook; // @synthesize addressBook=_addressBook;
 - (id)createGroupInSectionHelperWithFactory:(id)arg1;

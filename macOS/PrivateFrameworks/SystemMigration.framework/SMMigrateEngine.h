@@ -11,7 +11,7 @@
 #import "SMSystemScannerChangesProtocol.h"
 #import "SMSystemScannerDaemonClient.h"
 
-@class NSArray, NSDate, NSError, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSProgress, NSString, SMEngineDelegateProxy, SMMigrationRequest, SMWindowsMacPathMapper;
+@class NSArray, NSDate, NSError, NSLock, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSProgress, NSString, SMEngineDelegateProxy, SMMigrationRequest, SMWindowsMacPathMapper;
 
 @interface SMMigrateEngine : NSObject <SMMigrationEngineProtocol, SMSystemScannerDaemonClient, SMSystemScannerChangesProtocol, SMPathsProgressInfoDelegateProtocol>
 {
@@ -33,7 +33,9 @@
     unsigned long long _requestedDaemonScannerState;
     NSMutableSet *_pathsInSandbox;
     SMWindowsMacPathMapper *_windowsMacPathMap;
-    NSProgress *_progress;
+    NSProgress *_absoluteParentProgress;
+    double _lastProgressPercentComplete;
+    NSLock *_progressUpdateLock;
     NSDate *_startTime;
     NSError *_error;
     double _estimatedTotalTime;
@@ -43,21 +45,22 @@
     double _lastReportedTransferRate;
     NSDate *_lastProgressUpdate;
     NSDate *_lastProgressLog;
-    double _lastPercentComplete;
     double _oneMinuteRemainingTime;
     NSDate *_pathingStartTime;
     double _timeDelayedByPathing;
     NSObject<OS_dispatch_source> *_batteryLogSource;
+    NSMutableArray *_migrationElementsProgressPercentage;
 }
 
 + (id)sortOrder;
+- (void).cxx_destruct;
+@property(retain) NSMutableArray *migrationElementsProgressPercentage; // @synthesize migrationElementsProgressPercentage=_migrationElementsProgressPercentage;
 @property(retain) NSObject<OS_dispatch_source> *batteryLogSource; // @synthesize batteryLogSource=_batteryLogSource;
 @property BOOL reportTimeRemaining; // @synthesize reportTimeRemaining=_reportTimeRemaining;
 @property double timeDelayedByPathing; // @synthesize timeDelayedByPathing=_timeDelayedByPathing;
 @property(retain) NSDate *pathingStartTime; // @synthesize pathingStartTime=_pathingStartTime;
 @property BOOL recordedOneMinuteRemainingTime; // @synthesize recordedOneMinuteRemainingTime=_recordedOneMinuteRemainingTime;
 @property double oneMinuteRemainingTime; // @synthesize oneMinuteRemainingTime=_oneMinuteRemainingTime;
-@property double lastPercentComplete; // @synthesize lastPercentComplete=_lastPercentComplete;
 @property(retain) NSDate *lastProgressLog; // @synthesize lastProgressLog=_lastProgressLog;
 @property(retain) NSDate *lastProgressUpdate; // @synthesize lastProgressUpdate=_lastProgressUpdate;
 @property double lastReportedTransferRate; // @synthesize lastReportedTransferRate=_lastReportedTransferRate;
@@ -67,7 +70,9 @@
 @property double estimatedTotalTime; // @synthesize estimatedTotalTime=_estimatedTotalTime;
 @property(retain) NSError *error; // @synthesize error=_error;
 @property(retain) NSDate *startTime; // @synthesize startTime=_startTime;
-@property(retain) NSProgress *progress; // @synthesize progress=_progress;
+@property(retain) NSLock *progressUpdateLock; // @synthesize progressUpdateLock=_progressUpdateLock;
+@property double lastProgressPercentComplete; // @synthesize lastProgressPercentComplete=_lastProgressPercentComplete;
+@property(retain) NSProgress *absoluteParentProgress; // @synthesize absoluteParentProgress=_absoluteParentProgress;
 @property(retain) SMWindowsMacPathMapper *windowsMacPathMap; // @synthesize windowsMacPathMap=_windowsMacPathMap;
 @property(retain) NSMutableSet *pathsInSandbox; // @synthesize pathsInSandbox=_pathsInSandbox;
 @property unsigned long long requestedDaemonScannerState; // @synthesize requestedDaemonScannerState=_requestedDaemonScannerState;
@@ -83,7 +88,6 @@
 @property(retain) NSString *tracingUUID; // @synthesize tracingUUID=_tracingUUID;
 @property(retain) SMEngineDelegateProxy *delegate; // @synthesize delegate=_delegate;
 @property(retain) SMMigrationRequest *migrationRequest; // @synthesize migrationRequest=_migrationRequest;
-- (void).cxx_destruct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)pathingProgressFormatKey:(id)arg1 arguments:(id)arg2;
 - (void)aggregateEngineErrorsAndWarnings;
@@ -105,7 +109,6 @@
 - (void)updateTransferRate:(double)arg1;
 - (void)updateTimeRemaining;
 - (double)smoothTimeRemaining:(double)arg1;
-- (double)estimatedTimeRemainingFromFractionComplete:(double)arg1;
 - (double)estimatedTimeRemaining;
 - (double)estimatedTimeToComplete;
 - (void)completedFilesWereShoved;
@@ -115,13 +118,14 @@
 - (void)suspend;
 - (void)stop;
 - (void)stopOrSuspend:(unsigned long long)arg1;
-- (void)prioritizeMigratingPath:(id)arg1;
+- (void)recordAndReportFinalAnalyticsInformation;
 - (void)messageTraceCancellation;
 - (void)messageTraceStateCompletion;
 - (void)gatherCompletionMessageTracerData;
 - (void)setupMessageTracing;
 - (BOOL)runStepPrepare;
 - (BOOL)spaceIsSufficient;
+- (id)filteredErrorsAndWarnings;
 - (void)finally;
 - (BOOL)process;
 - (BOOL)preProcess;
@@ -132,6 +136,7 @@
 - (void)addStep:(id)arg1;
 - (void)addElement:(id)arg1;
 - (void)generateEngineElements;
+- (void)generateEnterpriseMigrateFilesStep;
 - (void)generateAppsFileStep;
 - (void)generateMachineSettingsStep;
 - (void)generateUsersStep;
@@ -150,7 +155,6 @@
 @property(readonly) BOOL engineShouldContinue;
 - (BOOL)isEngineState:(unsigned long long)arg1;
 @property unsigned long long state; // @synthesize state=_state;
-@property(readonly) BOOL shovePromptly;
 @property(readonly) BOOL useSandbox;
 - (void)removeDelegate:(id)arg1;
 - (void)addDelegate:(id)arg1;

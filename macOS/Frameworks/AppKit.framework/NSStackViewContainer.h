@@ -16,9 +16,9 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_detachedViews;
     NSMapTable *_customSpaceMapping;
     NSMapTable *_visibilityPriorityMapping;
-    CDStruct_4a40d4f7 _flags;
 }
 
+- (void).cxx_destruct;
 @property __weak NSStackView *stackView; // @synthesize stackView=_stackView;
 - (void)reattachViews:(id)arg1;
 - (void)detachViews:(id)arg1;

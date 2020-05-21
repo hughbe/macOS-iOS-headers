@@ -6,22 +6,25 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class CALayer, NSString;
 
-@interface CAStateElement : NSObject <NSCopying, NSCoding>
+@interface CAStateElement : NSObject <NSCopying, NSSecureCoding>
 {
     CALayer *_target;
     CAStateElement *_source;
 }
 
++ (BOOL)supportsSecureCoding;
 + (void)CAMLParserStartElement:(id)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CAStateElement *source; // @synthesize source=_source;
 @property(nonatomic) __weak CALayer *target; // @synthesize target=_target;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (BOOL)CAMLTypeSupportedForKey:(id)arg1;
 - (id)CAMLTypeForKey:(id)arg1;
 - (void)encodeWithCAMLWriter:(id)arg1;
 - (void)CAMLParser:(id)arg1 setValue:(id)arg2 forKey:(id)arg3;

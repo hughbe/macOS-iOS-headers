@@ -14,12 +14,10 @@
     NSObject<OS_dispatch_queue> *_notifyQueue;
     NSString *_hostName;
     NSString *_directHostName;
-    BOOL _observing;
     CDUnknownBlockType _notifyBlock;
 }
 
 + (id)_directHostToCheckConsideringProxy:(id)arg1;
-+ (BOOL)_isHostReachableWithFlags:(unsigned int)arg1;
 + (BOOL)waitForNetworkAvailabilityWithTimeout:(long long)arg1 forHost:(id)arg2;
 + (BOOL)isHostReachable:(id)arg1;
 - (void)_handleChangeInReachability:(unsigned int)arg1;
@@ -28,7 +26,6 @@
 - (void)stop;
 - (void)start;
 - (BOOL)isHostReachable;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithHostName:(id)arg1 notifyQueue:(id)arg2 usingBlock:(CDUnknownBlockType)arg3;
 

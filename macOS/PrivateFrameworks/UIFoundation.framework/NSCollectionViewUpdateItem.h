@@ -6,28 +6,36 @@
 
 #import "NSObject.h"
 
-@class NSIndexPath;
+#import "NSCopying.h"
 
-@interface NSCollectionViewUpdateItem : NSObject
+@class NSIndexPath, NSUUID;
+
+@interface NSCollectionViewUpdateItem : NSObject <NSCopying>
 {
     NSIndexPath *_initialIndexPath;
     NSIndexPath *_finalIndexPath;
     long long _updateAction;
     id _gap;
+    id _reserved[11];
+    BOOL _isAppendingSectionInsert;
+    NSUUID *_identifier;
 }
 
-@property(readonly, nonatomic) long long updateAction; // @synthesize updateAction=_updateAction;
-@property(readonly, nonatomic) NSIndexPath *indexPathAfterUpdate; // @synthesize indexPathAfterUpdate=_finalIndexPath;
-@property(readonly, nonatomic) NSIndexPath *indexPathBeforeUpdate; // @synthesize indexPathBeforeUpdate=_initialIndexPath;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL isAppendingSectionInsert; // @synthesize isAppendingSectionInsert=_isAppendingSectionInsert;
+@property(retain, nonatomic) NSUUID *identifier; // @synthesize identifier=_identifier;
+@property(readonly) long long updateAction; // @synthesize updateAction=_updateAction;
+@property(readonly) NSIndexPath *indexPathAfterUpdate; // @synthesize indexPathAfterUpdate=_finalIndexPath;
+@property(readonly) NSIndexPath *indexPathBeforeUpdate; // @synthesize indexPathBeforeUpdate=_initialIndexPath;
+- (id)revertedUpdate;
 - (long long)inverseCompareIndexPaths:(id)arg1;
 - (long long)compareIndexPaths:(id)arg1;
 @property(readonly, nonatomic, getter=_isSectionOperation) BOOL isSectionOperation;
-@property(nonatomic, getter=_gap, setter=_setGap:) id gap;
 @property(readonly, nonatomic, getter=_indexPath) NSIndexPath *indexPath;
 @property(readonly, nonatomic, getter=_action) long long action;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 @property(retain, nonatomic, getter=_newIndexPath, setter=_setNewIndexPath:) NSIndexPath *newIndexPath;
-- (void)dealloc;
 - (id)initWithOldIndexPath:(id)arg1 newIndexPath:(id)arg2;
 - (id)initWithAction:(long long)arg1 forIndexPath:(id)arg2;
 - (id)initWithInitialIndexPath:(id)arg1 finalIndexPath:(id)arg2 updateAction:(long long)arg3;

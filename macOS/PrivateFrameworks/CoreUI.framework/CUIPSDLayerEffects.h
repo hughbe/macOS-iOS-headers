@@ -15,11 +15,12 @@
     NSMutableDictionary *_effectList;
 }
 
-@property(copy) NSMutableDictionary *effectList; // @synthesize effectList=_effectList;
+@property(retain) NSMutableDictionary *effectList; // @synthesize effectList=_effectList;
 @property double effectScale; // @synthesize effectScale=_effectScale;
 @property BOOL visible; // @synthesize visible=_visible;
 - (void)dealloc;
 - (void)addLayerEffectComponent:(id)arg1;
+- (id)colorOverlay;
 - (id)dropShadow;
 - (id)init;
 

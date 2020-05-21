@@ -8,19 +8,23 @@
 
 #import "VCMediaStreamDelegate.h"
 
-@class AVCMediaStreamConfig, AVConferenceXPCClient, NSDictionary, NSString, VCVideoStream;
+@class AVCMediaStreamConfig, AVConferenceXPCClient, NSDictionary, NSObject<OS_dispatch_queue>, NSString, VCVideoStream;
 
 @interface AVCVideoStream : NSObject <VCMediaStreamDelegate>
 {
     AVConferenceXPCClient *_connection;
     AVCMediaStreamConfig *_configuration;
-    id <AVCVideoStreamDelegate> _delegate;
+    id _delegate;
     VCVideoStream *_opaqueStream;
     long long _streamToken;
     NSDictionary *_capabilities;
+    NSObject<OS_dispatch_queue> *_callbackQueue;
+    BOOL _shouldUseXPC;
 }
 
 + (id)capabilities;
++ (id)extractClientUplinkQualityInfoDictionary:(id)arg1;
++ (id)extractClientDownlinkQualityInfoDictionary:(id)arg1;
 @property(retain, nonatomic) AVCMediaStreamConfig *configuration; // @synthesize configuration=_configuration;
 @property(retain, nonatomic) NSDictionary *capabilities; // @synthesize capabilities=_capabilities;
 @property(readonly, nonatomic) long long streamToken; // @synthesize streamToken=_streamToken;
@@ -50,13 +54,15 @@
 - (void)pause;
 - (void)stop;
 - (void)start;
-- (void)configure:(id)arg1 error:(id *)arg2;
+- (BOOL)configure:(id)arg1 error:(id *)arg2;
 - (void)refreshLoggingParameters;
 @property(nonatomic) id <AVCVideoStreamDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)dealloc;
 - (void)terminateSession;
-- (id)initWithLocalAddress:(id)arg1 networkSockets:(id)arg2 IDSDestination:(id)arg3 callID:(id)arg4 error:(id *)arg5;
+- (id)initWithLocalAddress:(id)arg1 networkSockets:(id)arg2 IDSDestination:(id)arg3 connectionClientID:(id)arg4 callID:(id)arg5 options:(id)arg6 error:(id *)arg7;
 - (id)initWithIDSDestination:(id)arg1 callID:(id)arg2 error:(id *)arg3;
+- (id)initWithNWConnectionClientID:(unsigned char [16])arg1 options:(id)arg2 error:(id *)arg3;
+- (id)initWithNetworkSockets:(id)arg1 options:(id)arg2 error:(id *)arg3;
 - (id)initWithNetworkSockets:(id)arg1 callID:(id)arg2 error:(id *)arg3;
 
 // Remaining properties

@@ -8,14 +8,15 @@
 
 @class NSObject<OS_dispatch_semaphore>, TXRImageInfo;
 
+__attribute__((visibility("hidden")))
 @interface TXRDeferredImageInfo : NSObject
 {
     NSObject<OS_dispatch_semaphore> *_infoLoaded;
     TXRImageInfo *_info;
 }
 
-@property(retain, nonatomic) TXRImageInfo *info; // @synthesize info=_info;
 - (void).cxx_destruct;
+@property(retain, nonatomic) TXRImageInfo *info; // @synthesize info=_info;
 - (void)signalLoaded;
 - (id)init;
 

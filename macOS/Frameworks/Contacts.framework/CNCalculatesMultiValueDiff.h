@@ -23,6 +23,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)diffMultiValue:(id)arg1 toMultiValue:(id)arg2;
+- (void).cxx_destruct;
 - (id)updates;
 - (void)calculateDiff;
 - (void)appendReorderUpdates;
@@ -35,7 +36,6 @@ __attribute__((visibility("hidden")))
 - (void)setupRemovedIdentifiers;
 - (void)setupFinalIdentifiers;
 - (void)setupOriginalIdentifiers;
-- (void)dealloc;
 - (id)initWithMultiValue1:(id)arg1 multiValue2:(id)arg2;
 
 @end

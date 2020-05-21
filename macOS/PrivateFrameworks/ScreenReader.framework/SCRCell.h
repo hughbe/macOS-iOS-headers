@@ -17,8 +17,8 @@ __attribute__((visibility("hidden")))
     BOOL _hasCoordinatesInfoWithoutContentDescription;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL hasCoordinatesInfoWithoutContentDescription; // @synthesize hasCoordinatesInfoWithoutContentDescription=_hasCoordinatesInfoWithoutContentDescription;
-- (void)dealloc;
 - (id)dragDescription;
 - (BOOL)alwaysAllowDrag;
 - (BOOL)performDefaultActionWithRequest:(id)arg1 allowClick:(BOOL)arg2;
@@ -27,15 +27,15 @@ __attribute__((visibility("hidden")))
 - (id)spanInfo;
 - (id)coordinatesInfo;
 - (id)textRepresentation;
+- (id)helpDescription;
 - (id)typeDescription;
-- (id)statusDescriptionWithOptionsMask:(int)arg1;
+- (id)statusDescription;
 - (id)titleDescription;
 - (id)attributedValueDescription;
 - (id)valueDescription;
 - (id)descriptionForNonTitleContentElement:(id)arg1;
 - (id)cellChildrenValueDescriptionsIncludingCaption:(BOOL)arg1;
 - (id)reorderedChildrenForSummaryDescription:(id)arg1;
-- (void)addItemNameContentToRequest:(id)arg1;
 - (void)addItemNameDescriptionToRequest:(id)arg1;
 - (void)addItemNameToRequest:(id)arg1;
 - (void)_addCoordinatesInfoToRequest:(id)arg1;
@@ -51,8 +51,13 @@ __attribute__((visibility("hidden")))
 - (void)setFocusedChild:(id)arg1;
 - (id)lastFocusedAXIdentifier;
 - (BOOL)interactDownShiftWithEvent:(id)arg1 request:(id)arg2;
+- (BOOL)interactLeftWithEvent:(id)arg1 request:(id)arg2;
+- (BOOL)interactRightWithEvent:(id)arg1 request:(id)arg2;
+- (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
+- (BOOL)interactUpWithEvent:(id)arg1 request:(id)arg2;
+- (BOOL)_hasFocusOnSingleChild;
 - (BOOL)isInteractive;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 - (BOOL)canNavigateToChildren;
 - (BOOL)isContainerElement;
 @property(readonly, nonatomic) struct SCRDataCell cellCoordinates;
@@ -61,6 +66,8 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)columnIndex;
 - (unsigned long long)rowIndex;
 - (id)parentTable;
+- (void)_layoutChanged:(id)arg1;
+- (void)setIsEventHandler:(BOOL)arg1 isKeyboardHandler:(BOOL)arg2;
 
 @end
 

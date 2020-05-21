@@ -40,6 +40,11 @@ struct __va_list_tag {
     void *_field4;
 };
 
+struct _opaque_pthread_mutex_t {
+    long long __sig;
+    char __opaque[56];
+};
+
 struct in_addr {
     unsigned int _field1;
 };

@@ -9,31 +9,34 @@
 __attribute__((visibility("hidden")))
 @interface __NSArrayM : NSMutableArray
 {
-    unsigned long long _used;
-    unsigned long long _offset;
-    unsigned int _size:60;
-    unsigned int _unused:4;
-    unsigned long long _mutations;
-    id *_list;
+    // Error parsing type: A^{__cow_state_t}, name: cow
+    CDStruct_a6934631 storage;
 }
 
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
-+ (id)__new:(const id *)arg1:(unsigned long long)arg2:(BOOL)arg3;
-- (void)removeLastObject;
-- (void)addObject:(id)arg1;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
+- (id)mutableCopy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)copy;
 - (void)dealloc;
-- (void)removeAllObjects;
-- (void)exchangeObjectAtIndex:(unsigned long long)arg1 withObjectAtIndex:(unsigned long long)arg2;
-- (unsigned long long)indexOfObjectIdenticalTo:(id)arg1;
+- (void)setObject:(id)arg1 atIndexedSubscript:(unsigned long long)arg2;
 - (void)setObject:(id)arg1 atIndex:(unsigned long long)arg2;
+- (void)replaceObjectsInRange:(struct _NSRange)arg1 withObjects:(const id *)arg2 count:(unsigned long long)arg3;
+- (void)removeObjectsInRange:(struct _NSRange)arg1;
+- (void)removeLastObject;
+- (void)removeAllObjects;
+- (id)objectAtIndexedSubscript:(unsigned long long)arg1;
+- (void)insertObjects:(const id *)arg1 count:(unsigned long long)arg2 atIndex:(unsigned long long)arg3;
+- (unsigned long long)indexOfObjectIdenticalTo:(id)arg1;
+- (void)exchangeObjectAtIndex:(unsigned long long)arg1 withObjectAtIndex:(unsigned long long)arg2;
+- (void)enumerateObjectsWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (unsigned long long)countByEnumeratingWithState:(CDStruct_58648341 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
+- (void)addObject:(id)arg1;
 - (void)replaceObjectAtIndex:(unsigned long long)arg1 withObject:(id)arg2;
 - (void)removeObjectAtIndex:(unsigned long long)arg1;
 - (void)insertObject:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)_mutate;
-- (void)enumerateObjectsWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
-- (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 - (void)getObjects:(id *)arg1 range:(struct _NSRange)arg2;
 - (id)objectAtIndex:(unsigned long long)arg1;
 - (unsigned long long)count;

@@ -11,8 +11,10 @@ __attribute__((visibility("hidden")))
 {
 }
 
-- (void)dealloc;
-- (id)init;
++ (id)targetQueue;
++ (id)connectionContext;
++ (void)stopVTP;
++ (void)startVTP;
 
 @end
 

@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class MKStackingViewController, NSSet, _MKUIViewController;
+@class MKStackingViewController, _MKUIViewController;
 
 @protocol MKStackingViewControllerDelegate <NSObject>
 
 @optional
-- (void)stackingViewController:(MKStackingViewController *)arg1 didLayoutViewControllers:(NSSet *)arg2 remaningViewControllers:(NSSet *)arg3;
+- (void)stackingViewControllerDidLayoutViewControllers:(MKStackingViewController *)arg1;
 - (void)stackingViewController:(MKStackingViewController *)arg1 verticalScrollerInsetDidChangeDuringLayoutPhase:(long long)arg2;
 - (void)stackingViewControllerDidEndScroll:(MKStackingViewController *)arg1;
 - (void)stackingViewControllerWillBeginScroll:(MKStackingViewController *)arg1;

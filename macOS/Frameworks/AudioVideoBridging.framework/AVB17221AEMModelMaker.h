@@ -24,8 +24,10 @@
 @property(nonatomic) unsigned char stringsIndex; // @synthesize stringsIndex=_stringsIndex;
 - (void)dealloc;
 - (id)stringWithLocalizedDescription:(id)arg1;
+- (id)memoryObjectWithDeviceLogo;
 - (id)memoryObjectWithAppleLogo;
 - (id)memoryObjectWithImage:(id)arg1;
+- (id)memoryObjectWithData:(id)arg1;
 - (id)localeWithIdentitfier:(id)arg1;
 - (id)locale;
 - (id)entity;

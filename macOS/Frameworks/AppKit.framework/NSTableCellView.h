@@ -18,8 +18,7 @@
     NSImageView *_imageView;
 }
 
-@property NSImageView *imageView; // @synthesize imageView=_imageView;
-@property NSTextField *textField; // @synthesize textField=_textField;
+- (void).cxx_destruct;
 @property(retain) id objectValue; // @synthesize objectValue=_objectValue;
 @property(readonly) NSArray *draggingImageComponents;
 - (void)layout;
@@ -34,6 +33,7 @@
 - (void)_updateSourceListGroupRowAttributesInRowView:(id)arg1;
 - (id)_enclosingTableView;
 - (struct CGRect)_textFieldFrame;
+- (double)_imageToTextOffset;
 - (void)_updateFont;
 - (struct CGRect)_imageViewFrame;
 @property long long rowSizeStyle; // @synthesize rowSizeStyle=_rowSizeStyle;
@@ -44,8 +44,11 @@
 - (BOOL)preservesContentDuringLiveResize;
 - (id)_autounbinder;
 @property long long backgroundStyle;
+- (void)_setBackgroundStyleForSubtree:(long long)arg1;
 - (oneway void)release;
 - (void)dealloc;
+@property NSImageView *imageView;
+@property NSTextField *textField;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

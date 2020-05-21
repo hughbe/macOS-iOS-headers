@@ -24,6 +24,7 @@
 - (void)addTrackAssociationWithTrackOfInput:(id)arg1 type:(id)arg2;
 - (BOOL)canAddTrackAssociationWithTrackOfInput:(id)arg1 type:(id)arg2;
 - (void)markCurrentPassAsFinished;
+@property(readonly, getter=_markAsFinishedCalled) BOOL markAsFinishedCalled;
 - (void)markAsFinished;
 @property(readonly) long long numberOfAppendFailures;
 - (long long)_appendCaptionGroup:(id)arg1 error:(id *)arg2;
@@ -31,6 +32,7 @@
 - (BOOL)_appendPixelBuffer:(struct __CVBuffer *)arg1 withPresentationTime:(CDStruct_1b6d18a9)arg2;
 - (BOOL)appendSampleBuffer:(struct opaqueCMSampleBuffer *)arg1;
 - (long long)_appendSampleBuffer:(struct opaqueCMSampleBuffer *)arg1 error:(id *)arg2;
+- (void)stopRequestingMediaData;
 - (void)requestMediaDataWhenReadyOnQueue:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)respondToEachPassDescriptionOnQueue:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
@@ -39,6 +41,8 @@
 - (void)addCallbackToCancelDuringDeallocation:(id)arg1;
 - (void)setPerformsMultiPassEncodingIfSupported:(BOOL)arg1;
 - (BOOL)performsMultiPassEncodingIfSupported;
+- (void)setMaximizePowerEfficiency:(BOOL)arg1;
+- (BOOL)maximizePowerEfficiency;
 @property(nonatomic) BOOL expectsMediaDataInRealTime;
 @property(readonly, nonatomic, getter=isReadyForMoreMediaData) BOOL readyForMoreMediaData;
 - (void)declareKeyPathDependenciesWithRegistry:(id)arg1;
@@ -54,6 +58,8 @@
 @property(readonly, nonatomic, getter=_pixelBufferPool) struct __CVPixelBufferPool *pixelBufferPool;
 - (void)setSampleReferenceBaseURL:(id)arg1;
 - (id)sampleReferenceBaseURL;
+- (void)setMediaDataLocation:(id)arg1;
+- (id)mediaDataLocation;
 - (void)setWritesMediaDataToBeginningOfFile:(BOOL)arg1;
 - (BOOL)writesMediaDataToBeginningOfFile;
 - (void)setPreferredMediaChunkSize:(long long)arg1;
@@ -92,7 +98,6 @@
 - (void)_tellAssetWriterToTransitionToFailedStatusWithError:(id)arg1;
 @property(retain, nonatomic, getter=_weakReferenceToAssetWriter, setter=_setWeakReferenceToAssetWriter:) AVWeakReference *weakReferenceToAssetWriter;
 @property(readonly, copy) NSString *description;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithMediaType:(id)arg1 outputSettings:(id)arg2 sourceFormatHint:(struct opaqueCMFormatDescription *)arg3;
 - (id)initWithMediaType:(id)arg1 outputSettings:(id)arg2;

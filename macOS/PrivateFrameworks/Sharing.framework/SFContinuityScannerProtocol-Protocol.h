@@ -4,12 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import "SDXPCDaemonProtocol.h"
 
 @class NSData, NSString;
 
-@protocol SFContinuityScannerProtocol <NSObject>
-- (void)activityPayloadFromDeviceUniqueID:(NSString *)arg1 forAdvertisementPayload:(NSData *)arg2 command:(NSString *)arg3 withCompletionHandler:(void (^)(NSData *, NSError *))arg4;
-- (void)setForceScanningEnabled:(BOOL)arg1;
+@protocol SFContinuityScannerProtocol <SDXPCDaemonProtocol>
+- (void)activityPayloadFromDeviceUniqueID:(NSString *)arg1 forAdvertisementPayload:(NSData *)arg2 command:(NSString *)arg3 timeout:(long long)arg4 withCompletionHandler:(void (^)(NSData *, NSError *))arg5;
+- (void)scanForTypes:(unsigned long long)arg1;
 @end
 

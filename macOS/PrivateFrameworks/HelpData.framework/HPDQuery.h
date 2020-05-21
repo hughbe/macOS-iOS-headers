@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSSecureCoding.h"
+
 @class NSArray, NSDictionary, NSNumber, NSString;
 
-@interface HPDQuery : NSObject
+@interface HPDQuery : NSObject <NSSecureCoding>
 {
     NSString *_queryString;
     NSArray *_scope;
@@ -22,7 +24,9 @@
     NSDictionary *_options;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)queryWithScope:(id)arg1 andString:(id)arg2;
+- (void).cxx_destruct;
 @property BOOL cancelled; // @synthesize cancelled=_cancelled;
 @property(retain) NSNumber *pid; // @synthesize pid=_pid;
 @property(retain) NSString *queryID; // @synthesize queryID=_queryID;
@@ -33,7 +37,6 @@
 @property(retain) NSArray *resultTypes; // @synthesize resultTypes=_resultTypes;
 @property(readonly) NSArray *scope; // @synthesize scope=_scope;
 @property(readonly) NSString *queryString; // @synthesize queryString=_queryString;
-- (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (id)initWithCoder:(id)arg1;

@@ -13,32 +13,27 @@ __attribute__((visibility("hidden")))
 {
     ViewActionForwardingLayerDelegate *_layerDelegate;
     NSColor *_backgroundColor;
+    NSView *_vibrantContentView;
     NSView *_backgroundView;
     NSView *_topBorderView;
     NSView *_leftBorderView;
     NSView *_rightBorderView;
     CABackdropLayer *_backdropLayer;
-    NSVisualEffectView *_fullscreenContentVisualEffectView;
+    NSVisualEffectView *_fullScreenContentVisualEffectView;
     NSMutableSet *_backgroundHighlightLayers;
     BOOL _active;
     BOOL _hasMouseOverHighlight;
-    BOOL _mouseOverHighlightShouldIncludeRightBorderFrameWidth;
     BOOL _forcesActiveWindowState;
     BOOL _shouldReduceTransparency;
     NSView *_contentView;
-    NSView *_vibrantContentView;
-    NSView *_nonVibrantContentView;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL shouldReduceTransparency; // @synthesize shouldReduceTransparency=_shouldReduceTransparency;
-@property(readonly, nonatomic) NSView *nonVibrantContentView; // @synthesize nonVibrantContentView=_nonVibrantContentView;
-@property(readonly, nonatomic) NSView *vibrantContentView; // @synthesize vibrantContentView=_vibrantContentView;
 @property(readonly, nonatomic) NSView *contentView; // @synthesize contentView=_contentView;
 @property(nonatomic) BOOL forcesActiveWindowState; // @synthesize forcesActiveWindowState=_forcesActiveWindowState;
-@property(nonatomic) BOOL mouseOverHighlightShouldIncludeRightBorderFrameWidth; // @synthesize mouseOverHighlightShouldIncludeRightBorderFrameWidth=_mouseOverHighlightShouldIncludeRightBorderFrameWidth;
 @property(nonatomic) BOOL hasMouseOverHighlight; // @synthesize hasMouseOverHighlight=_hasMouseOverHighlight;
 @property(nonatomic, getter=isActive) BOOL active; // @synthesize active=_active;
-- (void).cxx_destruct;
 - (void)_removeVisualEffectViewForFullScreenToolbarWindow;
 - (void)_addVisualEffectViewForFullScreenToolbarWindow;
 - (void)_unregisterBackgroundHighlightLayer:(id)arg1;
@@ -47,18 +42,18 @@ __attribute__((visibility("hidden")))
 - (BOOL)_isAnimatingBackgroundColor;
 - (void)setHasMouseOverHighlight:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)_updateBackgroundLayerImagesForActiveTab:(BOOL)arg1 inActiveWindow:(BOOL)arg2;
-- (id)hitTest:(struct CGPoint)arg1;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
 - (void)_windowChangedKeyState;
 - (BOOL)isOpaque;
 - (void)layout;
 @property(copy, nonatomic) NSString *backdropGroupName;
-- (BOOL)allowsVibrancy;
 - (void)viewDidMoveToWindow;
-- (void)_reconfigureFullscreenViewsUsingVisualEffectViews:(BOOL)arg1;
-- (void)_reconfigureFullscreenViewsIfNeeded;
+- (void)_reconfigureFullScreenViewsUsingVisualEffectViews:(BOOL)arg1;
+- (void)_reconfigureFullScreenViewsIfNeeded;
 - (id)_makeViewInVibrantContentView;
+- (id)_makeTopBorderView;
+- (void)_setUpTabBarViewButtonConstraints;
 - (void)_setUpBackgroundViews;
 - (id)initWithFrame:(struct CGRect)arg1;
 

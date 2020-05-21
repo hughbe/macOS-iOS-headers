@@ -8,6 +8,7 @@
 
 @class AVAssetWriterInputHelper, AVAssetWriterInputPassDescriptionResponder, AVKeyPathDependencyManager, AVWeakReference, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterInputInternal : NSObject
 {
     AVWeakReference *weakReference;
@@ -17,6 +18,7 @@
     AVWeakReference *weakReferenceToAssetWriter;
     AVKeyPathDependencyManager *keyPathDependencyManager;
     long long numberOfAppendFailures;
+    BOOL markAsFinishedCalled;
     NSObject<OS_dispatch_queue> *appendFailureReadWriteQueue;
     AVAssetWriterInputPassDescriptionResponder *passDescriptionResponder;
 }

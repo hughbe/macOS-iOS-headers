@@ -25,8 +25,9 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) NSString *uniqueId; // @synthesize uniqueId=_uniqueId;
-@property id publicRecord; // @synthesize publicRecord=_publicRecord;
+@property(retain) id publicRecord; // @synthesize publicRecord=_publicRecord;
 @property long long personFlags; // @synthesize personFlags=_personFlags;
 @property(retain) NSDate *modificationDate; // @synthesize modificationDate=_modificationDate;
 @property BOOL isPartialObject; // @synthesize isPartialObject=_isPartialObject;
@@ -37,7 +38,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 

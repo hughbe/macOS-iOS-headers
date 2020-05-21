@@ -6,27 +6,31 @@
 
 #import "NSObject.h"
 
-@class ABCardViewStyleProvider;
+@class ABCardViewStyleProvider, CNUIEditingRules;
 
-__attribute__((visibility("hidden")))
 @interface ABCollectionRowViewFactory : NSObject
 {
     BOOL _shouldFormatURLs;
     BOOL _shouldBuildActionGlyphs;
     ABCardViewStyleProvider *_styleProvider;
+    CNUIEditingRules *_editingRules;
 }
 
-@property(retain) ABCardViewStyleProvider *styleProvider; // @synthesize styleProvider=_styleProvider;
-@property BOOL shouldBuildActionGlyphs; // @synthesize shouldBuildActionGlyphs=_shouldBuildActionGlyphs;
-@property BOOL shouldFormatURLs; // @synthesize shouldFormatURLs=_shouldFormatURLs;
++ (id)infoButtonNamedImageWrapper;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CNUIEditingRules *editingRules; // @synthesize editingRules=_editingRules;
+@property(retain, nonatomic) ABCardViewStyleProvider *styleProvider; // @synthesize styleProvider=_styleProvider;
+@property(nonatomic) BOOL shouldBuildActionGlyphs; // @synthesize shouldBuildActionGlyphs=_shouldBuildActionGlyphs;
+@property(nonatomic) BOOL shouldFormatURLs; // @synthesize shouldFormatURLs=_shouldFormatURLs;
 - (void)applyHuggingAndCompressionSettingsToValueView:(id)arg1;
 - (id)accessibilityTitleForGlyphName:(id)arg1;
-- (id)glyphWithName:(id)arg1;
+- (id)glyphNamedImageWrapperWithName:(id)arg1;
 - (void)buildMessagingServiceViewForRowView:(id)arg1;
 - (void)buildPreferredNameValueViewForRowView:(id)arg1;
 - (void)buildNoteValueViewForRowView:(id)arg1;
 - (void)buildURLFormattingValueViewForRowView:(id)arg1;
 - (void)buildSimpleLinkedTextFieldForRowView:(id)arg1;
+- (void)buildFocusRingViewForRowView:(id)arg1;
 - (void)buildValueViewForRowView:(id)arg1;
 - (void)buildPrivacyCheckboxForRowView:(id)arg1;
 - (void)buildAddRemoveControlsForRowView:(id)arg1;
@@ -46,7 +50,6 @@ __attribute__((visibility("hidden")))
 - (id)messagingRowViewForItem:(id)arg1;
 - (id)genericRowViewForItem:(id)arg1;
 - (id)rowViewForItem:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

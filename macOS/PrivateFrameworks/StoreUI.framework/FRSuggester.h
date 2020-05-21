@@ -6,21 +6,21 @@
 
 #import "SGTSuggester.h"
 
-@class FRServerGETRequest, SGTInput;
+@class CKStoreClient, CKStoreRequest, SGTInput;
 
 @interface FRSuggester : SGTSuggester
 {
-    SGTInput *__input;
-    FRServerGETRequest *__request;
+    SGTInput *_input;
+    CKStoreClient *_storeClient;
+    CKStoreRequest *_storeRequest;
 }
 
-@property(retain, nonatomic) FRServerGETRequest *_request; // @synthesize _request=__request;
-@property(retain, nonatomic) SGTInput *_input; // @synthesize _input=__input;
 - (void).cxx_destruct;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)getHints;
-- (void)setInput:(id)arg1;
-- (id)init;
+@property(retain, nonatomic) CKStoreRequest *storeRequest; // @synthesize storeRequest=_storeRequest;
+@property(retain, nonatomic) CKStoreClient *storeClient; // @synthesize storeClient=_storeClient;
+@property(retain, nonatomic) SGTInput *input; // @synthesize input=_input;
+- (void)_getHints;
+- (id)initWithStoreClient:(id)arg1;
 
 @end
 

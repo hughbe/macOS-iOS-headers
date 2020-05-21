@@ -19,8 +19,8 @@
 @property(readonly) double coefficient; // @synthesize coefficient=_coefficient;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)description;
 - (BOOL)isEqual:(id)arg1;
-- (id)copyWithZone:(struct _NSZone *)arg1;
 - (double)valueFromBaseUnitValue:(double)arg1;
 - (double)baseUnitValueFromValue:(double)arg1;
 - (id)initWithCoefficient:(double)arg1 constant:(double)arg2;

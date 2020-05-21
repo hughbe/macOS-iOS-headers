@@ -8,6 +8,7 @@
 
 @interface WFTreeHTMLStripper : WFTreeXMLDocumentStripper
 {
+    struct _xmlDoc *_document;
 }
 
 + (id)treeStripperWithString:(id)arg1;

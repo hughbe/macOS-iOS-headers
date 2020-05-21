@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSString;
+@class NSArray, NSString;
 
 @interface W5BluetoothStatus : NSObject <NSCopying, NSSecureCoding>
 {
@@ -18,18 +18,14 @@
     BOOL _isConnectable;
     BOOL _isScanning;
     NSString *_address;
-    long long _pairedDeviceCount;
-    long long _cloudPairedDeviceCount;
-    long long _connectedDeviceCount;
+    NSArray *_devices;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(copy, nonatomic) NSArray *devices; // @synthesize devices=_devices;
 @property(nonatomic) BOOL isScanning; // @synthesize isScanning=_isScanning;
 @property(nonatomic) BOOL isConnectable; // @synthesize isConnectable=_isConnectable;
 @property(nonatomic) BOOL isDiscoverable; // @synthesize isDiscoverable=_isDiscoverable;
-@property(nonatomic) long long connectedDeviceCount; // @synthesize connectedDeviceCount=_connectedDeviceCount;
-@property(nonatomic) long long cloudPairedDeviceCount; // @synthesize cloudPairedDeviceCount=_cloudPairedDeviceCount;
-@property(nonatomic) long long pairedDeviceCount; // @synthesize pairedDeviceCount=_pairedDeviceCount;
 @property(copy, nonatomic) NSString *address; // @synthesize address=_address;
 @property(nonatomic) BOOL powerOn; // @synthesize powerOn=_powerOn;
 - (id)initWithCoder:(id)arg1;

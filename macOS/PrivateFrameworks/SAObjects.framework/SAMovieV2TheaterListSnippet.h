@@ -6,7 +6,7 @@
 
 #import <SAObjects/SAUISnippet.h>
 
-@class NSArray, NSString;
+@class NSArray;
 
 @interface SAMovieV2TheaterListSnippet : SAUISnippet
 {
@@ -14,9 +14,7 @@
 
 + (id)theaterListSnippetWithDictionary:(id)arg1 context:(id)arg2;
 + (id)theaterListSnippet;
-@property(copy, nonatomic) NSString *title;
 @property(copy, nonatomic) NSArray *theaterListCells;
-@property(copy, nonatomic) NSString *subtitle;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

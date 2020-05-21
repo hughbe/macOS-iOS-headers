@@ -10,6 +10,19 @@
 {
 }
 
++ (id)blacklistFileRemovalKey;
++ (id)blacklistFileCreationKey;
++ (id)staleReportFileRemovalKey;
++ (id)staleRecordRemovalKey;
++ (id)submittedRecordRemovalKey;
++ (id)parsecReportSubmissionKey;
++ (id)daReportSubmissionKey;
++ (id)budgetUpdateKey;
++ (id)IOTrackingPrefix;
++ (id)diagnosticReportKeyFor:(id)arg1 scalerKeyPrefix:(id)arg2;
++ (void)clearDPKey:(id)arg1 scalarKeyPrefix:(id)arg2;
++ (void)addValue:(long long)arg1 forDPKey:(id)arg2 scalarKeyPrefix:(id)arg3;
++ (void)setValue:(long long)arg1 forDPKey:(id)arg2 scalarKeyPrefix:(id)arg3;
 + (void)clearScalarKey:(id)arg1;
 + (void)addValue:(long long)arg1 forScalarKey:(id)arg2;
 + (void)setValue:(long long)arg1 forScalarKey:(id)arg2;

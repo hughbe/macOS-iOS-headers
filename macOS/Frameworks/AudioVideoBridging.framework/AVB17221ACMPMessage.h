@@ -28,9 +28,7 @@
     AVBMACAddress *sourceMAC;
 }
 
-+ (id)keyPathsForValuesAffectingListenerGUID;
-+ (id)keyPathsForValuesAffectingTalkerGUID;
-+ (id)keyPathsForValuesAffectingControllerGUID;
++ (id)errorForStatusCode:(unsigned char)arg1;
 @property(copy) AVBMACAddress *sourceMAC; // @synthesize sourceMAC;
 @property unsigned short vlanID; // @synthesize vlanID;
 @property unsigned short flags; // @synthesize flags;
@@ -46,9 +44,7 @@
 @property unsigned char status; // @synthesize status;
 @property unsigned char messageType; // @synthesize messageType;
 - (void)dealloc;
-@property unsigned long long listenerGUID; // @dynamic listenerGUID;
-@property unsigned long long talkerGUID; // @dynamic talkerGUID;
-@property unsigned long long controllerGUID; // @dynamic controllerGUID;
+- (id)errorForStatusCode;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithPayload:(CDStruct_812a75e2 *)arg1;

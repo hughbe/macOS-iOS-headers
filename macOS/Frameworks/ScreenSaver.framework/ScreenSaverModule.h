@@ -21,19 +21,20 @@
     BOOL _enabled;
     BOOL _archCompatible;
     BOOL _requiresGraphicsAcceleration;
+    BOOL _hasConfigureSheet;
 }
 
++ (id)floatingMessageModuleWithMessage:(id)arg1;
 + (id)moduleFromLegacyDefaults:(id)arg1;
 + (id)moduleWithDictionary:(id)arg1;
-+ (id)shuffleModuleName;
-+ (id)defaultModuleName;
-+ (id)floatingMessageModuleWithMessage:(id)arg1;
-+ (id)randomModule;
-+ (id)shuffleModule;
-+ (id)defaultModule;
 + (id)moduleWithName:(id)arg1;
 + (id)moduleWithPath:(id)arg1;
 + (id)localizedSaverNameForPath:(id)arg1;
+- (void)requestConfigurationViewController:(CDUnknownBlockType)arg1;
+- (void)requestConfigurationSheetViewController:(CDUnknownBlockType)arg1;
+- (id)loadViewForFrame:(struct CGRect)arg1 isPreview:(BOOL)arg2;
+- (void)presentConfigureSheetWithCompletionBlock:(CDUnknownBlockType)arg1 dismissBlock:(CDUnknownBlockType)arg2;
+- (BOOL)hasConfigureSheet;
 - (void)setEnabled:(BOOL)arg1;
 - (BOOL)enabled;
 - (id)description;
@@ -46,9 +47,6 @@
 - (id)representedObject;
 - (BOOL)canRunAtLoginWindow;
 - (BOOL)signedByApple;
-- (BOOL)isAperture;
-- (BOOL)isIPhoto;
-- (BOOL)isPhotos;
 - (id)saverPath;
 - (BOOL)isCompatibleWithCurrentArch;
 - (void)setPath:(id)arg1;
@@ -57,10 +55,8 @@
 - (id)bundleID;
 - (id)dictionaryRepresentation;
 - (void)setDisplayName:(id)arg1;
-- (void)generateSemiUniqueName;
 - (id)crashReporterString;
 - (id)thumbnail;
-- (BOOL)needsAnimationTimer;
 - (id)displayName;
 - (id)defaultsName;
 - (void)setName:(id)arg1;
@@ -68,7 +64,6 @@
 - (void)setRequiresGraphicsAcceleration:(BOOL)arg1;
 - (BOOL)requiresGraphicsAcceleration;
 - (BOOL)isQC;
-- (BOOL)isSlideshow;
 - (BOOL)isScreenSaver;
 - (void)addMessageTracerEntry;
 - (BOOL)is32bitOnly;

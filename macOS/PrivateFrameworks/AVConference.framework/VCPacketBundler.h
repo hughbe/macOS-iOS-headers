@@ -17,23 +17,42 @@ __attribute__((visibility("hidden")))
     int _payload;
     unsigned int _timestamp;
     unsigned int _encodedBufferSize;
+    unsigned int _accessUnitDataSectionSize;
     unsigned int _bundledPackets;
+    BOOL _currentBundleVoiceActivity;
+    BOOL _lastBundleVoiceActivity;
+    struct tagAccessUnitHeaderInfo _accessUnitHeaderInfo;
+    int _bundlingScheme;
     BOOL _allowLargePackets;
     BOOL _isFull;
+    int _operatingMode;
+    unsigned char _priority;
 }
 
+@property(readonly, nonatomic) unsigned char priority; // @synthesize priority=_priority;
+@property(nonatomic) int bundlingScheme; // @synthesize bundlingScheme=_bundlingScheme;
 @property(nonatomic) unsigned int timestamp; // @synthesize timestamp=_timestamp;
 @property(nonatomic) int payload; // @synthesize payload=_payload;
-@property(readonly, nonatomic) unsigned int encodedBufferSize; // @synthesize encodedBufferSize=_encodedBufferSize;
 @property(readonly, nonatomic) unsigned int bundledPackets; // @synthesize bundledPackets=_bundledPackets;
-@property(readonly, nonatomic) char *encodedBuffer; // @synthesize encodedBuffer=_buffer;
 @property(readonly, nonatomic) BOOL isFull; // @synthesize isFull=_isFull;
 @property(nonatomic) BOOL allowLargePackets; // @synthesize allowLargePackets=_allowLargePackets;
 - (void)unlock;
 - (void)lock;
 - (void)initLock;
+- (void)updatePriority:(unsigned char)arg1;
 - (void)resetBuffer;
-- (BOOL)bundleAudio:(void *)arg1 numInputBytes:(unsigned int)arg2 packetPayload:(id)arg3 timestamp:(unsigned int)arg4;
+- (BOOL)bundleAudioLegacy:(void *)arg1 numInputBytes:(unsigned int)arg2 payloadType:(int)arg3 timestamp:(unsigned int)arg4;
+- (BOOL)_copyInputBytes:(void *)arg1 numInputBytes:(unsigned int)arg2 payloadType:(int)arg3 timestamp:(unsigned int)arg4;
+- (BOOL)bundleAudio:(void *)arg1 numInputBytes:(unsigned int)arg2 payloadType:(int)arg3 timestamp:(unsigned int)arg4 voiceActivity:(BOOL)arg5 priority:(unsigned char)arg6;
+- (BOOL)bundleAudioRFC3640:(void *)arg1 numInputBytes:(unsigned int)arg2 payloadType:(int)arg3 timestamp:(unsigned int)arg4;
+- (char *)accessUnitDataSectionHead;
+- (unsigned int)accessUnitHeaderSectionSizeMaximum;
+- (unsigned int)accessUnitHeaderSectionSize;
+- (unsigned int)encodedBufferSizeForRFC3640;
+- (char *)encodedBufferForRFC3640;
+@property(readonly, nonatomic) BOOL isTalkSpurtStart;
+@property(readonly, nonatomic) unsigned int encodedBufferSize;
+@property(readonly, nonatomic) char *encodedBuffer;
 @property(readonly, nonatomic) unsigned int packetsPerBundle;
 - (BOOL)setPacketsPerBundle:(unsigned int)arg1;
 @property(nonatomic) unsigned int maxPacketSize;
@@ -42,7 +61,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)allocateBundleBuffer:(unsigned int)arg1;
 - (unsigned int)bundleBufferSizeWidthMaxPacketSize:(unsigned int)arg1 maxPacketCount:(unsigned int)arg2;
 - (void)dealloc;
-- (id)init;
+- (id)initWithOperatingMode:(int)arg1;
 
 @end
 

@@ -6,17 +6,29 @@
 
 #import "NSObject.h"
 
+@class CALayer;
+
 @protocol MDRenderTarget <NSObject>
+@property(readonly, nonatomic) struct RenderTarget *finalRenderTarget;
 @property(readonly, nonatomic) struct CGSize sizeInPixels;
 @property(readonly, nonatomic) BOOL shouldRasterize;
-@property(readonly, nonatomic) double contentScale;
-@property(readonly, nonatomic) struct CGSize size;
+@property(readonly, nonatomic) struct Renderer *renderer;
 @property(readonly, nonatomic) const struct RenderTargetFormat *format;
 @property(readonly, nonatomic) BOOL multiSample;
-@property(readonly, nonatomic) struct Device *device;
+@property(nonatomic) id <GGLRenderQueueSource> renderSource;
+@property(nonatomic) struct CGRect bounds;
+@property(nonatomic) double contentScale;
+@property(nonatomic) struct CGSize size;
+- (shared_ptr_fa6aa836)bitmapData;
+- (void)renderWithTimestamp:(double)arg1 completion:(function_d3afe2e2)arg2;
+- (BOOL)hasRenderTarget;
+- (void)destroyRenderTarget;
+- (void)createRenderTarget;
 
 @optional
 @property(readonly, nonatomic) float averageFPS;
+- (struct DebugConsole *)debugConsoleForId:(int)arg1;
+- (struct CGPoint)convertPoint:(struct CGPoint)arg1 toLayer:(CALayer *)arg2;
 - (void)didDrawView;
 - (void)willDrawView;
 @end

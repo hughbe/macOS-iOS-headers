@@ -10,38 +10,37 @@
 
 @interface ISScrollViewVitalityController : NSObject
 {
-    BOOL _isListeningToScrollViewNotifications;
+    BOOL _enabled;
     BOOL __isPerformingChanges;
-    BOOL __isScrolling;
-    BOOL __isDecelerating;
-    BOOL __hasTargetContentOffset;
+    BOOL _scrolling;
+    BOOL _decelerating;
+    BOOL _hasTargetContentOffset;
     NSScrollView *__scrollView;
     NSHashTable *__playerViews;
-    ISVisibilityOffsetHelper *__visibilityOffsetHelper;
-    NSDate *__estimatedScrollEndDate;
-    struct CGPoint __targetContentOffset;
+    NSDate *_estimatedScrollEndDate;
+    ISVisibilityOffsetHelper *_visibilityOffsetHelper;
+    struct CGPoint _targetContentOffset;
 }
 
-@property(retain, nonatomic, setter=_setEstimatedScrollEndDate:) NSDate *_estimatedScrollEndDate; // @synthesize _estimatedScrollEndDate=__estimatedScrollEndDate;
-@property(nonatomic, setter=_setTargetContentOffset:) struct CGPoint _targetContentOffset; // @synthesize _targetContentOffset=__targetContentOffset;
-@property(nonatomic, setter=_setHasTargetContentOffset:) BOOL _hasTargetContentOffset; // @synthesize _hasTargetContentOffset=__hasTargetContentOffset;
-@property(nonatomic, setter=_setDecelerating:) BOOL _isDecelerating; // @synthesize _isDecelerating=__isDecelerating;
-@property(nonatomic, setter=_setScrolling:) BOOL _isScrolling; // @synthesize _isScrolling=__isScrolling;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) ISVisibilityOffsetHelper *visibilityOffsetHelper; // @synthesize visibilityOffsetHelper=_visibilityOffsetHelper;
+@property(retain, nonatomic) NSDate *estimatedScrollEndDate; // @synthesize estimatedScrollEndDate=_estimatedScrollEndDate;
+@property(nonatomic) struct CGPoint targetContentOffset; // @synthesize targetContentOffset=_targetContentOffset;
+@property(nonatomic) BOOL hasTargetContentOffset; // @synthesize hasTargetContentOffset=_hasTargetContentOffset;
+@property(nonatomic, getter=isDecelerating) BOOL decelerating; // @synthesize decelerating=_decelerating;
+@property(nonatomic, getter=isScrolling) BOOL scrolling; // @synthesize scrolling=_scrolling;
 @property(nonatomic, setter=_setPerformingChanges:) BOOL _isPerformingChanges; // @synthesize _isPerformingChanges=__isPerformingChanges;
-@property(readonly, nonatomic) ISVisibilityOffsetHelper *_visibilityOffsetHelper; // @synthesize _visibilityOffsetHelper=__visibilityOffsetHelper;
 @property(readonly, nonatomic) NSHashTable *_playerViews; // @synthesize _playerViews=__playerViews;
 @property(nonatomic, setter=_setScrollView:) __weak NSScrollView *_scrollView; // @synthesize _scrollView=__scrollView;
-- (void).cxx_destruct;
-- (void)_handleDidEndLiveScrollNotification:(id)arg1;
-- (void)_handleDidLiveScrollNotification:(id)arg1;
-- (void)_handleWillStartLiveScrollNotification:(id)arg1;
-- (void)_updatePlayerViewsVitalityFilters;
-- (void)_performChanges:(CDUnknownBlockType)arg1;
-- (void)scrollViewVitalityHintsDidChange;
+@property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
+- (void)_updateVitalityFilters;
+- (id)_newVitalityFilter;
+- (void)canPerformVitalityDidChange;
+@property(readonly, nonatomic) BOOL canPerformVitality;
+- (void)performChanges:(CDUnknownBlockType)arg1;
 - (void)didLayoutPlayerViews;
 - (void)removePlayerView:(id)arg1;
 - (void)addPlayerView:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

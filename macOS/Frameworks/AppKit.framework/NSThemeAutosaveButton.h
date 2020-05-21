@@ -15,13 +15,11 @@ __attribute__((visibility("hidden")))
 {
     long long _editState;
     NSError *_autosavingError;
-    double _pulseAnimationStartTime;
     id _animationCompletionBlock;
     id _showHideDelay;
     id _eventMonitor;
     id _flagsChangedEventMonitor;
     NSPopover *_documentPopover;
-    double _imageAlphaValue;
     NSError *_nonModalError;
     NSPopover *_alertPopover;
     BOOL _needsShowAlertPopover;
@@ -32,14 +30,12 @@ __attribute__((visibility("hidden")))
 + (Class)cellClass;
 - (void)viewDidMoveToWindow;
 - (void)_windowDidOrderOnScreen:(id)arg1;
-- (id)nonModalDocumentError;
-- (void)setNonModalDocumentError:(id)arg1;
-- (id)documentAutosavingError;
-- (void)setDocumentAutosavingError:(id)arg1;
+@property(copy) NSError *nonModalDocumentError;
+@property(copy) NSError *documentAutosavingError;
 - (long long)documentEditingState;
 - (void)setDocumentEditingState:(long long)arg1 animate:(BOOL)arg2;
 - (BOOL)_shouldColorTextForAlertPopover;
-- (id)displayedPopover;
+@property(readonly) NSPopover *displayedPopover;
 - (void)popoverDidClose:(id)arg1;
 - (BOOL)mouseDownEvent:(id)arg1 wouldReactivatePopover:(id)arg2;
 - (void)_hidePopover;
@@ -60,8 +56,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)_performMouseDownWithEvent:(id)arg1;
 - (BOOL)_shouldShowDocumentPopoverWithMouseDownEvent:(id)arg1;
 - (void)_setTitleCellHighlighted:(BOOL)arg1;
-- (BOOL)_shouldShowSeparatorField;
-- (BOOL)_shouldUseWindowTitleCell;
+@property(readonly) BOOL _shouldShowSeparatorField;
 - (void)_showOrHideArrowAnimate:(BOOL)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)_cancelFadeAnimationDelay;
 - (void)_setAnimationCompletionBlock:(CDUnknownBlockType)arg1 withDuration:(double)arg2;

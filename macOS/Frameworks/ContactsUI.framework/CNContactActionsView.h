@@ -8,7 +8,7 @@
 
 #import "CNUIUserActionListConsumer.h"
 
-@class NSMutableArray, NSMutableDictionary, NSStackView, NSString;
+@class CNUserDefaults, NSMutableArray, NSMutableDictionary, NSStackView, NSString;
 
 @interface CNContactActionsView : NSView <CNUIUserActionListConsumer>
 {
@@ -21,8 +21,11 @@
     NSMutableArray *_tokens;
     id <CNSchedulerProvider> _schedulerProvider;
     double _cachedHeight;
+    CNUserDefaults *_userDefaults;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) CNUserDefaults *userDefaults; // @synthesize userDefaults=_userDefaults;
 @property(nonatomic) double cachedHeight; // @synthesize cachedHeight=_cachedHeight;
 @property(retain, nonatomic) id <CNSchedulerProvider> schedulerProvider; // @synthesize schedulerProvider=_schedulerProvider;
 @property(retain, nonatomic) NSMutableArray *tokens; // @synthesize tokens=_tokens;
@@ -32,7 +35,6 @@
 @property(retain, nonatomic) NSString *contactIdentifier; // @synthesize contactIdentifier=_contactIdentifier;
 @property(nonatomic) __weak id <CNUIUserActionListConsumerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <CNUIUserActionListDataSource> dataSource; // @synthesize dataSource=_dataSource;
-- (void).cxx_destruct;
 - (double)desiredHeight;
 - (void)updateCachedHeight;
 - (void)layout;
@@ -41,8 +43,13 @@
 - (void)addRightClickHandlerToButton:(id)arg1 actionType:(id)arg2;
 - (void)addClickHandlerToButton:(id)arg1 actionType:(id)arg2;
 - (id)buttonImageForActionType:(id)arg1;
-- (id)modelObservableForActionType:(id)arg1;
 - (id)makeActionViewForActionTypeWithName:(id)arg1;
+- (void)updateQuickActionView:(id)arg1 forActionType:(id)arg2 withModel:(id)arg3;
+- (BOOL)shouldLookupQuickActionsForContactWithIdentifier:(id)arg1;
+- (void)resetQuickActionButtonsIfNecessary;
+- (void)prepareForUpdates;
+- (void)updateQuickActionButtons;
+- (void)cancelTokens;
 - (void)reloadStackView;
 - (void)reloadData;
 - (void)initStackView;

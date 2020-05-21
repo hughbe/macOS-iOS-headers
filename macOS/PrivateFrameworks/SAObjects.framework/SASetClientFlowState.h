@@ -17,6 +17,7 @@
 
 + (id)setClientFlowStateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setClientFlowState;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SAClientFlowState *clientState;
 - (id)encodedClassName;
 - (id)groupIdentifier;

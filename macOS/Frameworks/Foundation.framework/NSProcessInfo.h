@@ -49,7 +49,6 @@
 - (id)operatingSystemName;
 - (unsigned long long)operatingSystem;
 - (id)userHomeDirectory;
-- (id)userFullName;
 @property(readonly, copy) NSString *userName;
 @property(readonly, copy) NSString *globallyUniqueString;
 @property(readonly) int processIdentifier;
@@ -60,6 +59,7 @@
 - (void)_registerForHardwareStateNotifications;
 @property(readonly, copy) NSDictionary *environment;
 - (void)dealloc;
+- (void)performExpiringActivityWithReason:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)performActivityWithOptions:(unsigned long long)arg1 reason:(id)arg2 usingBlock:(CDUnknownBlockType)arg3;
 - (void)performActivityWithOptions:(unsigned long long)arg1 reason:(id)arg2 block:(CDUnknownBlockType)arg3;
 - (void)endActivity:(id)arg1;
@@ -67,7 +67,9 @@
 - (void)endSystemBehaviorSuspension:(id)arg1;
 - (id)beginSuspensionOfSystemBehaviors:(unsigned long long)arg1 reason:(id)arg2;
 @property(readonly, copy) NSString *fullUserName;
+- (BOOL)isLowPowerModeEnabled;
 - (long long)thermalState;
+@property(readonly, getter=isMacCatalystApp) BOOL macCatalystApp;
 
 @end
 

@@ -31,6 +31,7 @@
 - (void)windowDidEndSheet:(id)arg1;
 - (void)baseWindowWillClose:(id)arg1;
 - (void)closePasswordAssistantPanel;
+- (id)passwordAssistantPanel;
 - (void)showPasswordAssistantPanel:(id)arg1;
 - (void)loadOurNib;
 - (void)dealloc;

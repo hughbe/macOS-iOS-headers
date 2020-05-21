@@ -6,30 +6,28 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSMutableArray;
+@class NSMutableArray;
 
 @interface IntlUtility : NSObject
 {
-    NSDictionary *mLanguageList;
-    NSDictionary *mLocalizedLanguageList;
-    void *mDisplayLanguageCachePtr;
-    int mDisplayLanguageCacheUsed;
     NSMutableArray *mBidiLanguagesArray;
     NSMutableArray *mBidiTestedLanguagesArray;
 }
 
-+ (id)performMigrationFromVersion:(id)arg1 toVersion:(id)arg2 forPreferences:(id)arg3;
-+ (void)performMigrationFromVersion:(id)arg1 toVersion:(id)arg2;
++ (void)setPreferredLanguage:(id)arg1 forBundleID:(id)arg2 andRelaunchWithCompletion:(CDUnknownBlockType)arg3;
++ (void)setPreferredLanguage:(id)arg1 forBundleID:(id)arg2;
++ (void)_setPreferredLanguage:(id)arg1 forBundleID:(id)arg2;
++ (id)_proposedOverrideLanguageFromLanguage:(id)arg1 forLocalizations:(id)arg2 preferredLanguages:(id)arg3 regionCode:(id)arg4;
++ (id)preferredLanguageForBundleID:(id)arg1;
++ (long long)formattingContextFromIUDisplayNameContext:(unsigned long long)arg1;
 + (BOOL)upgradeAppleLanguagesFrom:(id)arg1 to:(id)arg2;
-+ (id)appendRegionalVariantsToLanguageIdentifiers:(id)arg1 regionCode:(id)arg2;
-+ (id)importAppleLanguagesFromOldVersion:(id)arg1 forPreferences:(id)arg2;
-+ (id)importAppleLanguagesMavericksForPreferences:(id)arg1;
 + (id)parentLocaleIdentifierForIdentifier:(id)arg1;
 + (id)preferredLanguagesFromLanguages:(id)arg1 byAddingFallbacksForRegion:(id)arg2;
 + (id)filterLanguageList:(id)arg1 forRegion:(id)arg2 fromLanguages:(id)arg3;
 + (id)preferredLanguagesForRegion:(id)arg1;
 + (id)preferredLanguagesForRegionWithoutFiltering:(id)arg1;
 + (int)UDisplayContextForIUDisplayNameContext:(unsigned long long)arg1;
++ (BOOL)forceCapitalizationInLanguageLists;
 + (id)defaultNumberingSystemForLocaleID:(id)arg1;
 + (id)shortDisplayNameForNumberingSystemWithIdentifier:(id)arg1 localeIdentifier:(id)arg2;
 + (id)displayNameForNumberingSystemWithIdentifier:(id)arg1 localeIdentifier:(id)arg2;
@@ -55,26 +53,22 @@
 + (id)languageIdentifierFromIdentifier:(id)arg1 withRegion:(id)arg2;
 + (id)baseSystemLanguages;
 + (id)stdLanguageIDs;
-+ (id)stdLanguageIDsAndNativeNames;
-+ (id)languageCharSetList;
 + (id)sharedIntlUtility;
-- (id)localizedNameForScript:(short)arg1;
-- (BOOL)isBidiLanguage:(id)arg1;
-- (BOOL)canRenderLanguage:(id)arg1;
-- (void)setUserTextEncoding:(id)arg1;
-- (id)localizedLanguageList;
+- (void).cxx_destruct;
 - (id)displayNameForRegion:(id)arg1 displayLanguage:(id)arg2 capitalization:(unsigned long long)arg3 short:(BOOL)arg4;
 - (id)displayNameForRegion:(id)arg1 displayLanguage:(id)arg2 capitalization:(unsigned long long)arg3;
-- (id)displayNameForLocale:(id)arg1 displayLanguage:(id)arg2 capitalization:(unsigned long long)arg3 short:(BOOL)arg4;
-- (id)ICUdisplayNameForLanguage:(id)arg1 capitalization:(struct ULocaleDisplayNames *)arg2;
-- (id)displayNameForDialect:(id)arg1 context:(unsigned long long)arg2 displayLanguage:(id)arg3;
 - (id)displayNameForNormalizedLanguage:(id)arg1 context:(unsigned long long)arg2 displayLanguage:(id)arg3;
 - (id)displayNameForLanguage:(id)arg1 context:(unsigned long long)arg2 displayLanguage:(id)arg3;
 - (id)localizedLanguageForLanguage:(id)arg1;
+- (id)localizedNameForScript:(short)arg1;
+- (BOOL)isBidiLanguage:(id)arg1;
+- (BOOL)canRenderLanguage:(id)arg1;
+- (id)displayNameForLocale:(id)arg1 displayLanguage:(id)arg2 capitalization:(unsigned long long)arg3 short:(BOOL)arg4;
+- (id)ICUdisplayNameForLanguage:(id)arg1 capitalization:(struct ULocaleDisplayNames *)arg2;
+- (id)displayNameForDialect:(id)arg1 context:(unsigned long long)arg2 displayLanguage:(id)arg3;
 - (id)languageList;
 - (id)dataCFUserTextEncodingForLanguage:(id)arg1;
 - (id)entryForLanguage:(id)arg1;
-- (void)dealloc;
 - (id)displayNameForLabelForLunarCalendarID:(id)arg1 displayLanguage:(id)arg2;
 
 @end

@@ -20,9 +20,29 @@
 }
 
 + (BOOL)supportsSecureCoding;
++ (id)styleAttributesForPlace:(id)arg1;
++ (id)inviteStyleAttributes;
++ (id)ticketedEventStyleAttributes;
++ (id)carRentalStyleAttributes;
++ (id)hotelStyleAttributes;
++ (id)evChargerStyleAttributes;
++ (id)gasStationStyleAttributes;
++ (id)frequentLocationStyleAttributes;
++ (id)calendarEventStyleAttributes;
++ (id)restaurantStyleAttributes;
++ (id)parkedCarStyleAttributes;
++ (id)transitStationStyleAttributes;
++ (id)workStyleAttributes;
++ (id)homeStyleAttributes;
++ (id)searchResultStyleAttributes;
++ (id)airportStyleAttributes;
++ (id)addressMarkerStyleAttributes;
+- (void).cxx_destruct;
 - (void)sort;
 - (id)description;
 - (unsigned long long)hash;
+- (int)poiType;
+- (BOOL)hasAttributes;
 - (BOOL)isSuperset:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -38,11 +58,20 @@
 - (id)initWithStyleAttributes:(id)arg1;
 - (id)initWithAttributes:(unsigned int)arg1;
 - (id)init;
+- (id)dictionaryRepresentation;
+- (BOOL)isTransit;
+- (BOOL)isSearchResult;
+- (BOOL)isLandmarkPOI;
+- (BOOL)isLabelPOI;
+- (id)copyWithAirportStyleAttributes;
 - (id)initWithPlaceDataStyleAttributes:(id)arg1;
 - (unsigned int)lineType;
 - (BOOL)shouldSuppress3DBuildingStrokes;
 - (BOOL)isDrivable;
 - (BOOL)isWalkable;
+- (int)walkableSide;
+- (int)sidewalkSide;
+- (BOOL)isRoadPedestrianNavigable;
 - (int)drivingSide;
 - (BOOL)hasDrivingSide;
 - (BOOL)isBorder;
@@ -53,6 +82,7 @@
 - (BOOL)isRamp;
 - (BOOL)isBridge;
 - (BOOL)isTunnel;
+- (id)initWithPlaceStyleAttributes:(id)arg1;
 
 @end
 

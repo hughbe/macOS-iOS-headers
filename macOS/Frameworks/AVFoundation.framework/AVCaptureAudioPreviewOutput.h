@@ -13,6 +13,7 @@
     AVCaptureAudioPreviewOutputInternal *_internal;
 }
 
++ (id)new;
 + (void)initialize;
 - (void)_updateCompressorNodesForConnection:(id)arg1;
 - (BOOL)getAudioSplitterNode:(int *)arg1 andAudioMixerNode:(int *)arg2 forConnection:(id)arg3;
@@ -24,11 +25,9 @@
 - (BOOL)canAddConnectionForMediaType:(id)arg1;
 - (id)connectionMediaTypes;
 @property(nonatomic) float volume;
-- (void)_updateVolumeFromPropertyListener;
-- (void)_updateVolume;
+- (void)_updateVolume:(float)arg1;
 @property(copy, nonatomic) NSString *outputDeviceUniqueID;
-- (void)_updateOutputDeviceUniqueIDFromPropertyListener;
-- (void)_updateOutputDeviceUniqueID;
+- (void)_updateOutputDeviceUniqueID:(id)arg1;
 - (void)dealloc;
 - (id)init;
 

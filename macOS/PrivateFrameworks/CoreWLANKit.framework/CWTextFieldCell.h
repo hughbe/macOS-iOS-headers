@@ -6,6 +6,7 @@
 
 #import "NSTextFieldCell.h"
 
+__attribute__((visibility("hidden")))
 @interface CWTextFieldCell : NSTextFieldCell
 {
 }

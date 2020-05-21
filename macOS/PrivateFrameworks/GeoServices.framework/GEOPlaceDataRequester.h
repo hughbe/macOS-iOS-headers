@@ -6,21 +6,17 @@
 
 #import <GeoServices/GEOServiceRequester.h>
 
+#import "GEOPlaceDataRequester.h"
+
 __attribute__((visibility("hidden")))
-@interface GEOPlaceDataRequester : GEOServiceRequester
+@interface GEOPlaceDataRequester : GEOServiceRequester <GEOPlaceDataRequester>
 {
 }
 
 + (id)sharedInstance;
-+ (unsigned char)_requestCounterInfoTypeForRequest:(id)arg1;
-+ (int)_experimentDispatcherRequestTypeForRequest:(id)arg1;
-+ (long long)_experimentType;
-+ (id)_serviceTypeNumber;
-+ (BOOL)_shouldThrottleRequests;
-+ (unsigned long long)_urlType;
 - (id)_validateResponse:(id)arg1;
 - (void)cancelRequest:(id)arg1;
-- (void)startWithRequest:(id)arg1 traits:(id)arg2 timeout:(double)arg3 auditToken:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)startWithRequest:(id)arg1 traits:(id)arg2 timeout:(double)arg3 auditToken:(id)arg4 throttleToken:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 
 @end
 

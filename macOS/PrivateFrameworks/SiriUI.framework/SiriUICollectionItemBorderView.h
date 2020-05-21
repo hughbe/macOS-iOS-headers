@@ -6,20 +6,12 @@
 
 #import "NSView.h"
 
-@class NSColor;
-
 __attribute__((visibility("hidden")))
 @interface SiriUICollectionItemBorderView : NSView
 {
-    BOOL _shouldFillIn;
-    NSColor *_borderColor;
 }
 
-@property BOOL shouldFillIn; // @synthesize shouldFillIn=_shouldFillIn;
-@property(retain) NSColor *borderColor; // @synthesize borderColor=_borderColor;
-- (void).cxx_destruct;
-- (void)updateLayer;
-- (BOOL)wantsUpdateLayer;
+- (id)initWithFrame:(struct CGRect)arg1 borderColor:(id)arg2 shouldFillIn:(BOOL)arg3;
 
 @end
 

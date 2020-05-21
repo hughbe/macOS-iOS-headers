@@ -19,9 +19,9 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSData *encryptedData; // @synthesize encryptedData=_encryptedData;
 @property(copy, nonatomic) NSData *data; // @synthesize data=_data;
-- (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 @property(readonly, nonatomic) BOOL needsDecryption;
@@ -30,10 +30,13 @@
 @property(readonly, copy) NSString *description;
 - (id)CKPropertiesDescription;
 @property(readonly) unsigned long long hash;
+- (id)value;
 - (BOOL)isEqual:(id)arg1;
+- (id)initWithValue:(id)arg1;
 - (id)initWithEncryptedData:(id)arg1;
 - (id)initWithData:(id)arg1;
 - (id)init;
+- (id)CKDescriptionPropertiesWithPublic:(BOOL)arg1 private:(BOOL)arg2 shouldExpand:(BOOL)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

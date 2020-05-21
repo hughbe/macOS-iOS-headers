@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface _MKRotationGestureRecognizer : NSObject
 {
     id _target;
@@ -16,9 +17,9 @@
     double _rotationInDegrees;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) long long state; // @synthesize state=_state;
 @property(nonatomic) BOOL enabled; // @synthesize enabled=_enabled;
-- (void).cxx_destruct;
 - (struct CGPoint)locationInView:(id)arg1;
 - (void)rotateWithEvent:(id)arg1;
 @property(readonly, nonatomic) double rotation;

@@ -6,23 +6,36 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
+#import "SAConditionallyMutatingClientBoundCommand.h"
+
 @class NSArray, NSString, SASendCommands;
 
-@interface SAUIAddViews : SABaseClientBoundCommand
+@interface SAUIAddViews : SABaseClientBoundCommand <SAConditionallyMutatingClientBoundCommand>
 {
 }
 
 + (id)addViewsWithDictionary:(id)arg1 context:(id)arg2;
 + (id)addViews;
-- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *views;
 @property(nonatomic) BOOL temporary;
 @property(nonatomic) BOOL scrollToTop;
+@property(nonatomic) BOOL requiresResponse;
 @property(retain, nonatomic) SASendCommands *refreshCommand;
+@property(nonatomic) BOOL mutatingCommand;
 @property(copy, nonatomic) NSString *displayTarget;
 @property(copy, nonatomic) NSString *dialogPhase;
 - (id)encodedClassName;
 - (id)groupIdentifier;
+
+// Remaining properties
+@property(copy, nonatomic) NSString *aceId;
+@property(copy, nonatomic) NSString *appId; // @dynamic appId;
+@property(copy, nonatomic) NSArray *callbacks; // @dynamic callbacks;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(copy, nonatomic) NSString *refId;
+@property(readonly) Class superclass;
 
 @end
 

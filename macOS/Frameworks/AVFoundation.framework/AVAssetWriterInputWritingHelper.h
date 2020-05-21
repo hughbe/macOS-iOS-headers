@@ -10,8 +10,9 @@
 #import "AVKeyPathDependencyHost.h"
 #import "AVWeakObservable.h"
 
-@class AVAssetWriterInputMediaDataRequester, AVAssetWriterInputPassDescription, AVFigAssetWriterTrack, AVKeyPathDependencyManager, NSString;
+@class AVAssetWriterInputMediaDataRequester, AVAssetWriterInputPassDescription, AVFigAssetWriterTrack, AVKeyPathDependencyManager, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterInputWritingHelper : AVAssetWriterInputHelper <AVAssetWriterInputMediaDataRequesterDelegate, AVWeakObservable, AVKeyPathDependencyHost>
 {
     AVFigAssetWriterTrack *_assetWriterTrack;
@@ -20,6 +21,8 @@
     struct __CVPixelBufferPool *_pixelBufferPool;
     AVAssetWriterInputPassDescription *_currentPassDescription;
     AVKeyPathDependencyManager *_keyPathDependencyManager;
+    NSObject<OS_dispatch_queue> *_mediaDataRequesterSerialQueue;
+    NSObject<OS_dispatch_queue> *_readyForMoreMediaDataObserverSerialQueue;
 }
 
 @property(retain, nonatomic) AVAssetWriterInputPassDescription *currentPassDescription; // @synthesize currentPassDescription=_currentPassDescription;
@@ -38,16 +41,16 @@
 - (void)beginPassIfAppropriate;
 - (void)didStartInitialSession;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)_detachFromMediaDataRequester:(id)arg1;
-- (void)_attachToMediaDataRequester:(id)arg1;
-- (BOOL)mediaDataRequesterShouldRequestMediaData:(id)arg1;
-- (void)_nudgeMediaDataRequesterIfAppropriate;
+- (void)_stopObservingReadyForMoreMediaDataKeyPath;
+- (void)_startObservingReadyForMoreMediaDataKeyPath;
+- (BOOL)mediaDataRequesterShouldRequestMediaData;
+- (void)_nudgeMediaDataRequesterIfAppropriate:(id)arg1;
+- (void)stopRequestingMediaData;
 - (void)requestMediaDataWhenReadyOnQueue:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (BOOL)isReadyForMoreMediaData;
 - (void)declareKeyPathDependenciesWithRegistry:(id)arg1;
 - (BOOL)canPerformMultiplePasses;
 - (long long)status;
-- (void)finalize;
 - (void)dealloc;
 - (void)addCallbackToCancelDuringDeallocation:(id)arg1;
 - (id)initWithConfigurationState:(id)arg1 assetWriterTrack:(id)arg2 error:(id *)arg3;

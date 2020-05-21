@@ -12,6 +12,7 @@
 
 + (id)getAirplaneModeWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getAirplaneMode;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;

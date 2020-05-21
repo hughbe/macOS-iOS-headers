@@ -6,7 +6,7 @@
 
 #import <CalendarUI/EKUILabeledGadget.h>
 
-@class CalLocation, EKUIPopUpButton, EKUITravelTimeSpinnerView, NSMutableDictionary, NSMutableSet, NSSet, NSString;
+@class CalLocation, EKUIPopUpButton, EKUITravelTimeSpinnerView, NSMenuItem, NSMutableDictionary, NSMutableSet, NSSet, NSString;
 
 @interface EKUITravelTimeGadget : EKUILabeledGadget
 {
@@ -20,10 +20,17 @@
     NSString *_lastLocation;
     CalLocation *_startLocation;
     EKUITravelTimeSpinnerView *_spinnerView;
+    NSMenuItem *_calculatingRoutesPlaceholderMenuItem;
+    NSMenuItem *_routesSectionTopSeparator;
+    NSMenuItem *_routesSectionBottomSeparator;
 }
 
 + (void)_messageTraceTravelTimeDurationSelected:(long long)arg1;
 + (id)interestedChangeKeys;
+- (void).cxx_destruct;
+@property(retain) NSMenuItem *routesSectionBottomSeparator; // @synthesize routesSectionBottomSeparator=_routesSectionBottomSeparator;
+@property(retain) NSMenuItem *routesSectionTopSeparator; // @synthesize routesSectionTopSeparator=_routesSectionTopSeparator;
+@property(retain) NSMenuItem *calculatingRoutesPlaceholderMenuItem; // @synthesize calculatingRoutesPlaceholderMenuItem=_calculatingRoutesPlaceholderMenuItem;
 @property(retain) EKUITravelTimeSpinnerView *spinnerView; // @synthesize spinnerView=_spinnerView;
 @property(retain) CalLocation *startLocation; // @synthesize startLocation=_startLocation;
 @property(retain) NSString *lastLocation; // @synthesize lastLocation=_lastLocation;
@@ -34,7 +41,6 @@
 @property(retain) NSMutableSet *currentlyCalculatingRoutes; // @synthesize currentlyCalculatingRoutes=_currentlyCalculatingRoutes;
 @property(retain) NSMutableDictionary *validRoutes; // @synthesize validRoutes=_validRoutes;
 @property(retain) EKUIPopUpButton *popUpButton; // @synthesize popUpButton=_popUpButton;
-- (void).cxx_destruct;
 - (id)_findEventStartLocation;
 - (id)_localizeTravelTimeChoiceStringWithDuration:(double)arg1 fromLocation:(id)arg2 includeLocationDescription:(BOOL)arg3;
 - (BOOL)startingCountryEqualsEndingCountry;
@@ -47,8 +53,11 @@
 - (void)durationChosen:(id)arg1;
 - (void)popUpButtonClicked:(id)arg1;
 - (id)_menuItemWithDuration:(long long)arg1 andTitle:(id)arg2;
+- (id)_formattedStringForTimeInterval:(double)arg1;
 - (void)_addCustomItemIfNeeded;
-- (void)_addCalculatingSectionIfNeeded;
+- (void)_updateRoutesSectionWithValidResults;
+- (id)_validRouteMenuItems;
+- (void)_addRoutesSectionIfNeeded;
 - (void)_populatePopUpButton;
 - (void)updateWithChanges:(id)arg1;
 - (BOOL)isEditable;

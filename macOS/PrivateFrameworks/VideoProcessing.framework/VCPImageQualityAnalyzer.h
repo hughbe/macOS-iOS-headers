@@ -4,15 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <VideoProcessing/VCPImageAnalyzer.h>
+#import "NSObject.h"
 
-@interface VCPImageQualityAnalyzer : VCPImageAnalyzer
+@interface VCPImageQualityAnalyzer : NSObject
 {
     float _qualityScore;
 }
 
 @property(readonly) float qualityScore; // @synthesize qualityScore=_qualityScore;
-- (int)analyzePixelBuffer:(struct __CVBuffer *)arg1 withTransform:(struct CGAffineTransform)arg2 flags:(unsigned long long *)arg3 results:(id *)arg4 cancel:(CDUnknownBlockType)arg5;
+- (int)analyzeImageQuality:(id)arg1 irisPhotoOffsetSec:(float)arg2 cancel:(CDUnknownBlockType)arg3;
 
 @end
 

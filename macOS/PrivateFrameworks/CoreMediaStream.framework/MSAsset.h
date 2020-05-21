@@ -31,7 +31,7 @@
     NSString *_assetCollectionGUID;
     NSDate *_batchCreationDate;
     NSDate *_photoCreationDate;
-    id <NSCoding> _userInfo;
+    id _userInfo;
     unsigned long long _mediaAssetType;
 }
 
@@ -39,9 +39,10 @@
 + (id)assetWithAsset:(id)arg1;
 + (id)asset;
 + (id)MSASPAssetFromProtocolDictionary:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL assetDataAvailableOnServer; // @synthesize assetDataAvailableOnServer=_assetDataAvailableOnServer;
 @property(nonatomic) unsigned long long mediaAssetType; // @synthesize mediaAssetType=_mediaAssetType;
-@property(retain, nonatomic) id <NSCoding> userInfo; // @synthesize userInfo=_userInfo;
+@property(retain, nonatomic) id userInfo; // @synthesize userInfo=_userInfo;
 @property(retain, nonatomic) NSDate *photoCreationDate; // @synthesize photoCreationDate=_photoCreationDate;
 @property(retain, nonatomic) NSDate *batchCreationDate; // @synthesize batchCreationDate=_batchCreationDate;
 @property(retain, nonatomic) NSString *assetCollectionGUID; // @synthesize assetCollectionGUID=_assetCollectionGUID;
@@ -58,7 +59,6 @@
 @property(retain, nonatomic) NSString *path; // @synthesize path=_path;
 @property(retain, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
 @property(retain, nonatomic) NSData *masterAssetHash; // @synthesize masterAssetHash=_masterAssetHash;
-- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)metadataValueForKey:(id)arg1;
 - (void)addMetadataValue:(id)arg1 forKey:(id)arg2;

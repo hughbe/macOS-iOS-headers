@@ -36,6 +36,7 @@ __attribute__((visibility("hidden")))
 - (int)strokeMiterLimit;
 - (int)strokeWidth;
 - (int)strokeFgAlpha;
+- (struct EshBlip *)strokeFillBlipDataReference;
 - (id)strokeFillBlipName;
 - (unsigned int)strokeFillBlipID;
 - (int)strokeFillType;
@@ -43,7 +44,6 @@ __attribute__((visibility("hidden")))
 - (struct EshColor)strokeBgColor;
 - (struct EshColor)strokeFgColor;
 - (BOOL)isStroked;
-- (void)dealloc;
 - (id)initWithShapeBase:(struct EshShapeBase *)arg1 shapeType:(int)arg2 masterShape:(struct EshShape *)arg3;
 
 // Remaining properties

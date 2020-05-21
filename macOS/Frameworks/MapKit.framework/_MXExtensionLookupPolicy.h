@@ -10,13 +10,14 @@
 
 @class NSPredicate, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _MXExtensionLookupPolicy : NSObject <_MXExtensionLookupPolicy>
 {
     NSPredicate *_extensionPredicate;
 }
 
-@property(retain, nonatomic) NSPredicate *extensionPredicate; // @synthesize extensionPredicate=_extensionPredicate;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSPredicate *extensionPredicate; // @synthesize extensionPredicate=_extensionPredicate;
 - (id)initWithPredicate:(id)arg1;
 
 // Remaining properties

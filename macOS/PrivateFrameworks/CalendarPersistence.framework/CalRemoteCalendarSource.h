@@ -14,6 +14,7 @@
     NSManagedObjectID *_calendarObjectID;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSManagedObjectID *calendarObjectID; // @synthesize calendarObjectID=_calendarObjectID;
 @property int sharingStatus; // @synthesize sharingStatus=_sharingStatus;
 - (BOOL)isMarkedImmutableSharees;
@@ -22,7 +23,6 @@
 - (id)_calendar;
 @property(readonly) BOOL isDelegate;
 - (BOOL)isSubscription;
-- (void)dealloc;
 - (id)initWithKey:(id)arg1;
 
 @end

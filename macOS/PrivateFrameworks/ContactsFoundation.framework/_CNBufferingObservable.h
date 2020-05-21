@@ -8,7 +8,6 @@
 
 @class NSMutableArray;
 
-__attribute__((visibility("hidden")))
 @interface _CNBufferingObservable : CNObservable
 {
     id <_CNBufferingStrategy> _strategy;
@@ -17,6 +16,9 @@ __attribute__((visibility("hidden")))
 }
 
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *results; // @synthesize results=_results;
+@property(retain, nonatomic) id <CNObservable> observable; // @synthesize observable=_observable;
+@property(retain, nonatomic) id <_CNBufferingStrategy> strategy; // @synthesize strategy=_strategy;
 - (void)sendBufferedResultsToObserver:(id)arg1;
 - (id)subscribe:(id)arg1;
 - (id)initWithBufferingStrategy:(id)arg1 observable:(id)arg2;

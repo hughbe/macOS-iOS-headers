@@ -11,8 +11,8 @@ __attribute__((visibility("hidden")))
 {
 }
 
-- (void)setSecond:(id)arg1;
-- (void)setFirst:(id)arg1;
+@property(retain, nonatomic) id second; // @dynamic second;
+@property(retain, nonatomic) id first; // @dynamic first;
 
 @end
 

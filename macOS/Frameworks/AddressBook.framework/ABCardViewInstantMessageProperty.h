@@ -8,15 +8,14 @@
 
 @class ABCardViewInstantMessageServiceGenerator;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewInstantMessageProperty : ABCardViewProperty
 {
     ABCardViewInstantMessageServiceGenerator *_serviceGenerator;
 }
 
+- (void).cxx_destruct;
 - (id)emptyValueForMultiValue:(id)arg1 label:(id)arg2;
 - (BOOL)isValueEmpty:(id)arg1;
-- (void)dealloc;
 - (id)initWithServiceGenerator:(id)arg1;
 
 @end

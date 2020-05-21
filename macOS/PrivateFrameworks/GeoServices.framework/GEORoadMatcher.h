@@ -6,29 +6,20 @@
 
 #import "NSObject.h"
 
-#import "GEOMapAccessRestrictions.h"
+@class GEOMapFeatureAccess;
 
-@class GEOMapAccess, NSString;
-
-@interface GEORoadMatcher : NSObject <GEOMapAccessRestrictions>
+@interface GEORoadMatcher : NSObject
 {
-    GEOMapAccess *_map;
+    GEOMapFeatureAccess *_mapFeatureAccess;
     BOOL _useRawLocations;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL useRawLocations; // @synthesize useRawLocations=_useRawLocations;
-- (id)_bestSegmentForTile:(id)arg1 location:(id)arg2 transportType:(int)arg3;
-- (id)_tilesAround:(CDStruct_c3b9c2ee)arg1 radius:(double)arg2;
+- (id)_bestCandidateSegmentForLocation:(id)arg1 transportType:(int)arg2;
 - (id)matchLocation:(id)arg1 forTransportType:(int)arg2;
-@property(readonly, nonatomic) BOOL allowsNetworkTileLoad;
 - (void)dealloc;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

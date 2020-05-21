@@ -4,19 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <SAObjects/SABaseCommand.h>
+#import <SAObjects/SABaseClientBoundCommand.h>
 
 #import "SAServerBoundCommand.h"
 
 @class NSArray, NSDictionary, NSString;
 
-@interface SASyncGetAnchors : SABaseCommand <SAServerBoundCommand>
+@interface SASyncGetAnchors : SABaseClientBoundCommand <SAServerBoundCommand>
 {
 }
 
 + (id)getAnchorsWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getAnchors;
+- (BOOL)mutatingCommand;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *watchAppMetaDataList;
+@property(copy, nonatomic) NSString *syncReason;
 @property(copy, nonatomic) NSArray *sources;
 @property(nonatomic) BOOL includeAllKnownAnchors;
 @property(copy, nonatomic) NSDictionary *customVocabSources;

@@ -6,15 +6,16 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@class CIFilter, NSArray, NSString, SKTextureAtlas, SKTextureCache;
+@class CIFilter, NSArray, NSObject<OS_dispatch_queue>, NSString, SKTextureAtlas, SKTextureCache;
 
-@interface SKTexture : NSObject <NSCopying, NSCoding>
+@interface SKTexture : NSObject <NSCopying, NSSecureCoding>
 {
     BOOL _shouldGenerateMipmaps;
     BOOL _didGenerateMipmaps;
+    BOOL _needsExtrusionWorkaround;
     BOOL _isPath;
     BOOL _isData;
     NSString *_imgName;
@@ -34,6 +35,7 @@
     NSString *_originalAtlasName;
     NSString *_subTextureName;
     SKTextureCache *_textureCache;
+    NSObject<OS_dispatch_queue> *_textureSyncQueue;
     BOOL _performFullCapture;
     BOOL _isRepeatable;
     NSString *_accessibilityLabel;
@@ -55,8 +57,10 @@
 + (id)textureWithImageNamed:(id)arg1 rect:(struct CGRect)arg2;
 + (id)textureWithImageNamed:(id)arg1;
 + (void)preloadTextures:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
++ (id)preloadQueue;
 + (id)lookupTextureCacheForName:(id)arg1;
 + (void)registerTextureCache:(id)arg1 forName:(id)arg2;
++ (BOOL)supportsSecureCoding;
 + (id)textureWithMetalTexture:(id)arg1;
 + (id)textureWithIOSurfaceID:(unsigned int)arg1 width:(unsigned int)arg2 height:(unsigned int)arg3 format:(unsigned int)arg4;
 + (id)_textureWithGLTextureId:(unsigned int)arg1 size:(struct CGSize)arg2;
@@ -65,6 +69,8 @@
 + (id)textureWithImagePath:(id)arg1;
 + (id)_cachedTextureNames;
 + (void)_reloadTextureCacheForImageNamed:(id)arg1;
+- (void).cxx_destruct;
+@property(nonatomic, getter=_needsExtrusionWorkaround) BOOL needsExtrusionWorkaround; // @synthesize needsExtrusionWorkaround=_needsExtrusionWorkaround;
 @property(readonly, nonatomic) struct CGSize alphaMapSize; // @synthesize alphaMapSize=_alphaMapSize;
 @property(readonly, nonatomic) unsigned int *alphaMap; // @synthesize alphaMap=_alphaMap;
 @property(retain, nonatomic) SKTextureAtlas *rootAtlas; // @synthesize rootAtlas=_rootAtlas;
@@ -75,7 +81,6 @@
 @property(copy, nonatomic) NSString *originalAtlasName; // @synthesize originalAtlasName=_originalAtlasName;
 @property(nonatomic) struct CGPoint cropOffset; // @synthesize cropOffset=_cropOffset;
 @property(nonatomic) struct CGPoint cropScale; // @synthesize cropScale=_cropScale;
-- (void).cxx_destruct;
 - (void)dealloc;
 @property(nonatomic) long long filteringMode;
 @property(nonatomic) int wrapMode;
@@ -88,6 +93,7 @@
 @property(readonly, nonatomic) BOOL hasAlpha;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (BOOL)isEqualToTexture:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithImagePath:(id)arg1;
 - (id)init;
@@ -105,11 +111,13 @@
 - (struct CGImage *)CGImage;
 - (id)_textureCache;
 - (id)imgName;
+- (void)setIsData:(BOOL)arg1;
 - (shared_ptr_bb77cfd9)_backingTexture;
 - (id)initWithBackingTetxure:(shared_ptr_bb77cfd9)arg1 logicalWidth:(float)arg2 height:(float)arg3;
 - (id)initWithBackingTetxure:(shared_ptr_bb77cfd9)arg1;
 - (void)_savePngFromGLCache:(id)arg1;
 - (struct CGImage *)_newTextureFromGLCache;
+- (int)_convert_jet_texture_format_to_ci_format:(unsigned int)arg1;
 - (struct CGImage *)_createCGImage;
 - (id)metalTexture;
 - (int)glTextureId;

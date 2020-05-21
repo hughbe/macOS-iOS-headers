@@ -9,22 +9,27 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
+@class NSArray;
+
 @interface SSBLookupResult : NSObject <NSCopying, NSSecureCoding>
 {
-    struct LookupResult _lookupResult;
+    BOOL _URLContainsUserInfo;
+    NSArray *_serviceLookupResults;
 }
 
 + (BOOL)supportsSecureCoding;
-- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL URLContainsUserInfo; // @synthesize URLContainsUserInfo=_URLContainsUserInfo;
+@property(readonly, nonatomic) NSArray *serviceLookupResults; // @synthesize serviceLookupResults=_serviceLookupResults;
 @property(readonly, nonatomic, getter=isKnownToBeUnsafe) BOOL knownToBeUnsafe;
-@property(readonly, nonatomic) BOOL URLContainsUserInfo;
 @property(readonly, nonatomic, getter=isUnwantedSoftware) BOOL unwantedSoftware;
 @property(readonly, nonatomic, getter=isPhishing) BOOL phishing;
 @property(readonly, nonatomic, getter=isMalware) BOOL malware;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)_initWithLookupResult:(struct LookupResult)arg1;
+- (id)_initWithServiceLookUpResults:(id)arg1;
+- (id)_initWithServiceLookUpResults:(id)arg1 URLContainsUserInfo:(BOOL)arg2;
 
 @end
 

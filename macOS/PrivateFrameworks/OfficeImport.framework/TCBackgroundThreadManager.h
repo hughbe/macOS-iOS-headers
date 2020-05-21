@@ -21,9 +21,9 @@ __attribute__((visibility("hidden")))
     TCProgressContext *mProgressContext;
 }
 
+- (void).cxx_destruct;
 @property(retain) TCProgressContext *progressContext; // @synthesize progressContext=mProgressContext;
 @property(retain) TCMessageContext *messageContext; // @synthesize messageContext=mMessageContext;
-- (void)reportWarning:(struct TCTaggedMessageStructure *)arg1;
 - (void)waitUntilComplete;
 - (void)addASyncBlock:(CDUnknownBlockType)arg1;
 - (void)dealloc;

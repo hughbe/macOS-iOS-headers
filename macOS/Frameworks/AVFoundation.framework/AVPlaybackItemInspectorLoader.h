@@ -8,6 +8,7 @@
 
 @class NSArray;
 
+__attribute__((visibility("hidden")))
 @interface AVPlaybackItemInspectorLoader : AVAssetMakeReadyForInspectionLoader
 {
     struct OpaqueFigPlaybackItem *_playbackItem;
@@ -28,7 +29,6 @@
 - (id)assetInspector;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (void)_removeFigObjectNotifications;
 - (void)_addFigObjectNotifications;

@@ -8,18 +8,20 @@
 
 #import "NSCopying.h"
 
+@class PBUnknownFields;
+
 @interface GEOStyleAttribute : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     unsigned int _key;
     unsigned int _value;
-    struct {
-        unsigned int key:1;
-        unsigned int value:1;
-    } _has;
+    CDStruct_a4cc0a70 _flags;
 }
 
-@property(nonatomic) unsigned int value; // @synthesize value=_value;
-@property(nonatomic) unsigned int key; // @synthesize key=_key;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -27,10 +29,13 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(nonatomic) BOOL hasValue;
+@property(nonatomic) unsigned int value;
 @property(nonatomic) BOOL hasKey;
+@property(nonatomic) unsigned int key;
 
 @end
 

@@ -16,6 +16,7 @@
 @property(retain, nonatomic) NSString *language;
 @property(retain, nonatomic) NSString *info;
 @property(retain, nonatomic) NSString *feature;
+- (id)initWithValue:(id)arg1 type:(unsigned long long)arg2;
 - (void)_ICSStringWithOptions:(unsigned long long)arg1 appendingToString:(id)arg2;
 
 @end

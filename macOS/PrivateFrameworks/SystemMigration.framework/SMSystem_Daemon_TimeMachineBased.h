@@ -6,36 +6,43 @@
 
 #import <SystemMigration/SMSystem_Daemon.h>
 
-@class NSDate, NSString;
+@class NSDate, NSString, TMSession;
 
 @interface SMSystem_Daemon_TimeMachineBased : SMSystem_Daemon
 {
     BOOL caseSensitive;
     BOOL _isLiteBackup;
+    unsigned long long filesystemType;
     NSString *_machineName;
     NSString *_storageVolume;
     NSDate *_backupCompletedDate;
+    TMSession *_timeMachineSession;
+    id <TMMachineStoreInfo> _machineStoreInfo;
+    id <TMVolumeStoreInfo> _volumeStoreInfo;
 }
 
 + (unsigned long long)requiredScannerState;
+- (void).cxx_destruct;
+@property(retain) id <TMVolumeStoreInfo> volumeStoreInfo; // @synthesize volumeStoreInfo=_volumeStoreInfo;
+@property(retain) id <TMMachineStoreInfo> machineStoreInfo; // @synthesize machineStoreInfo=_machineStoreInfo;
+@property(retain) TMSession *timeMachineSession; // @synthesize timeMachineSession=_timeMachineSession;
 @property(retain) NSDate *backupCompletedDate; // @synthesize backupCompletedDate=_backupCompletedDate;
 @property(retain) NSString *storageVolume; // @synthesize storageVolume=_storageVolume;
 @property(retain) NSString *machineName; // @synthesize machineName=_machineName;
 @property BOOL isLiteBackup; // @synthesize isLiteBackup=_isLiteBackup;
+@property unsigned long long filesystemType; // @synthesize filesystemType;
 @property(getter=isCaseSensitive) BOOL caseSensitive; // @synthesize caseSensitive;
-- (void).cxx_destruct;
 - (id)accessibilityDescription;
 - (void)unmount;
 - (id)volumeIcon;
 - (double)estimatedTransferRate;
-- (BOOL)isOverAFP;
+- (BOOL)isOverNetworkedFS;
 - (id)systemVersion;
 - (BOOL)isInternal;
 - (id)displayState;
 - (unsigned long long)systemType;
-- (id)replacementObjectForPortCoder:(id)arg1;
 - (id)description;
-- (id)initWithPath:(id)arg1 onVolume:(id)arg2 onMachine:(id)arg3 backedUpOnVolume:(id)arg4;
+- (id)initWithTimeMachineSession:(id)arg1 volumeStoreInfo:(id)arg2 machineStoreInfo:(id)arg3;
 
 @end
 

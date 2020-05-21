@@ -14,14 +14,21 @@
 
 + (id)setQueueWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setQueue;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSNumber *startPlaying;
 @property(copy, nonatomic) NSArray *sort;
 @property(nonatomic) BOOL shouldShuffle;
+@property(nonatomic) BOOL shouldReloadQueue;
 @property(nonatomic) BOOL shouldOverrideManuallyCuratedUpNext;
+@property(copy, nonatomic) NSString *sharedUserIdFromPlayableMusicAccount;
+@property(copy, nonatomic) NSString *requesterSharedUserId;
+@property(copy, nonatomic) NSString *recommendationId;
 @property(retain, nonatomic) SAMPCollection *mediaItems;
+@property(copy, nonatomic) NSArray *hashedRouteUIDs;
 @property(copy, nonatomic) NSArray *filters;
-@property(copy, nonatomic) NSString *airplayRouteUID;
+@property(nonatomic) BOOL dryRun;
+@property(copy, nonatomic) NSString *assetInfo;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

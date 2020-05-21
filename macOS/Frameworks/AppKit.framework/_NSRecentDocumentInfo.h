@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
     NSImage *icon;
     CDUnknownBlockType deletionBlock;
     long long state;
+    BOOL ownsSecurityScope;
 }
 
 @property long long state; // @synthesize state;
@@ -28,6 +29,7 @@ __attribute__((visibility("hidden")))
 @property(retain) NSString *displayName; // @synthesize displayName;
 @property(retain) NSURL *resolvedURL; // @synthesize resolvedURL;
 @property(readonly) struct OpaqueLSSharedFileListItemRef *sharedFileListItem; // @synthesize sharedFileListItem;
+- (void)transferSecurityScope;
 - (void)resolveURLWithCompletionHandler:(CDUnknownBlockType)arg1;
 @property(readonly) NSURL *URL;
 - (void)resolveByMountingVolumesIfNecessary:(BOOL)arg1 queue:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;

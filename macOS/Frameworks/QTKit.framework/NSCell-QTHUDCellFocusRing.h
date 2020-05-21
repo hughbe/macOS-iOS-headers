@@ -8,5 +8,12 @@
 
 @interface NSCell (QTHUDCellFocusRing)
 - (BOOL)QTHUD_shouldShowFocusRing;
+- (void)QTHUD_markAreasNeedingDisplayForAction:(void *)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
+- (void)takeQTTimeValueFrom:(id)arg1;
+- (void)setQTTimeValue:(CDStruct_2ec95fd7)arg1;
+- (CDStruct_2ec95fd7)QTTimeValue;
+- (void)takeCMTimeValueFrom:(id)arg1;
+- (void)setCMTimeValue:(CDStruct_198678f7)arg1;
+- (CDStruct_198678f7)CMTimeValue;
 @end
 

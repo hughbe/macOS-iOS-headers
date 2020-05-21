@@ -6,9 +6,15 @@
 
 #import <PassKitCore/PKPaymentRewrapResponseBase.h>
 
+@class NSString;
+
 @interface PKPaymentCompleteSessionResponse : PKPaymentRewrapResponseBase
 {
+    NSString *_retryNonce;
 }
+
+- (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSString *retryNonce; // @synthesize retryNonce=_retryNonce;
 
 @end
 

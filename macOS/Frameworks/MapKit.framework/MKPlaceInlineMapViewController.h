@@ -6,30 +6,48 @@
 
 #import <MapKit/_MKUIViewController.h>
 
-@class MKMapItem, NSImage, _MKPlaceInlineMapContentView, _MKPlaceViewController;
+#import "MKModuleViewControllerProtocol.h"
 
-@interface MKPlaceInlineMapViewController : _MKUIViewController
+@class MKMapCamera, MKMapItem, NSArray, NSString, _MKPlaceInlineMapContentView, _MKPlaceViewController;
+
+__attribute__((visibility("hidden")))
+@interface MKPlaceInlineMapViewController : _MKUIViewController <MKModuleViewControllerProtocol>
 {
     _MKPlaceInlineMapContentView *_contentView;
     MKMapItem *_updatingInlineMapItem;
+    BOOL _bottomHairlineHidden;
+    BOOL _useWindowTrait;
     MKMapItem *_mapItem;
     _MKPlaceViewController *_owner;
+    MKMapCamera *_mapCamera;
 }
 
-@property(nonatomic) __weak _MKPlaceViewController *owner; // @synthesize owner=_owner;
-@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
++ (id)inlineMapWithMapItem:(id)arg1 options:(unsigned long long)arg2;
 - (void).cxx_destruct;
+@property(retain, nonatomic) MKMapCamera *mapCamera; // @synthesize mapCamera=_mapCamera;
+@property(nonatomic) BOOL useWindowTrait; // @synthesize useWindowTrait=_useWindowTrait;
+@property(nonatomic) __weak _MKPlaceViewController *owner; // @synthesize owner=_owner;
+@property(nonatomic, getter=isBottomHairlineHidden) BOOL bottomHairlineHidden; // @synthesize bottomHairlineHidden=_bottomHairlineHidden;
+@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
 - (void)_launchMaps;
 - (void)_handleTapOnMap;
-- (void)_updateSnapshotImage:(id)arg1 mapItem:(id)arg2;
-- (void)_addLabelToSnaphot:(id)arg1 mapItem:(id)arg2;
-- (void)_addAnnotationToSnapshot:(id)arg1 mapItem:(id)arg2;
-- (void)_updateInlineMapWithRefinedMapItem:(id)arg1;
-- (void)updateInlineMapWithRefinedMapItem:(id)arg1;
+- (void)_updateSnapshotImage:(id)arg1;
+- (struct CGSize)_mapSize;
+- (void)_updateInlineMapWithRefinedMapItems;
+- (void)updateInlineMapWithRefinedMapItems;
 - (void)_updateMap;
-@property(readonly, nonatomic) NSImage *snapshot;
+- (id)snapshot;
+@property(readonly, nonatomic) NSArray *visibleMapItems;
 - (void)viewDidLoad;
 - (Class)classForRootView;
+- (id)initWithMKMapItem:(id)arg1;
+- (BOOL)_canShowWhileLocked;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

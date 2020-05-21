@@ -12,25 +12,6 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct CATransform3D {
-    double m11;
-    double m12;
-    double m13;
-    double m14;
-    double m21;
-    double m22;
-    double m23;
-    double m24;
-    double m31;
-    double m32;
-    double m33;
-    double m34;
-    double m41;
-    double m42;
-    double m43;
-    double m44;
-};
-
 struct CGPoint {
     double x;
     double y;
@@ -56,79 +37,14 @@ struct IMAssociatedMessageGeometryDescriptor {
     float _field7;
 };
 
-struct NSCollectionView {
-    Class _field1;
-    id _field2;
-    struct CGRect _field3;
-    struct CGRect _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    id _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    struct __VFlags _field13;
-    struct __VFlags2 _field14;
-    id _field15;
-    id _field16;
-    id _field17;
-    struct CGSize _field18;
-    struct CGSize _field19;
-    unsigned long long _field20;
-    unsigned long long _field21;
-    id _field22;
-    id _field23;
-    double _field24;
-    struct {
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :1;
-        unsigned int :12;
-    } _field25;
-    id _field26;
-    id _field27;
-    struct CGSize _field28;
-    id _field29;
-    char *_field30;
-    id _field31;
-    id _field32;
-    id _field33;
-    char *_field34;
-    id _field35;
-    unsigned long long _field36;
-    unsigned long long _field37;
-    long long _field38;
-    long long _field39;
-    long long _field40;
-    unsigned long long _field41;
-    long long _field42;
-    id _field43;
-    char *_field44;
-    id _field45;
-    void *_field46[13];
-};
-
-struct NSCollectionViewLayoutAttributes {
-    Class _field1;
+struct IMBalloonDescriptor_t {
+    char shape;
+    char tailShape;
+    char style;
+    unsigned long long orientation;
+    unsigned long long corners;
+    char color;
+    char attributes;
 };
 
 struct NSEdgeInsets {
@@ -138,59 +54,8 @@ struct NSEdgeInsets {
     double right;
 };
 
-struct NSView {
-    Class _field1;
-    id _field2;
-    struct CGRect _field3;
-    struct CGRect _field4;
-    id _field5;
-    id _field6;
-    id _field7;
-    id _field8;
-    id _field9;
-    id _field10;
-    id _field11;
-    id _field12;
-    struct __VFlags _field13;
-    struct __VFlags2 _field14;
-};
-
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
-};
-
-struct __VFlags {
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :5;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :2;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :6;
-    unsigned int :1;
-    unsigned int :1;
-};
-
-struct __VFlags2 {
-    unsigned int :14;
-    unsigned int :14;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
-    unsigned int :1;
 };
 

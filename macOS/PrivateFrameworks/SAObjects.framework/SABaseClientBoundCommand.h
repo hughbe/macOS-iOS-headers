@@ -8,7 +8,7 @@
 
 #import "SAClientBoundCommand.h"
 
-@class NSArray, NSString;
+@class NSArray, NSNumber, NSString;
 
 @interface SABaseClientBoundCommand : SABaseCommand <SAClientBoundCommand>
 {
@@ -16,7 +16,9 @@
 
 + (id)baseClientBoundCommandWithDictionary:(id)arg1 context:(id)arg2;
 + (id)baseClientBoundCommand;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
+@property(copy, nonatomic) NSNumber *usefulnessScore;
 @property(copy, nonatomic) NSString *metricsContext;
 @property(copy, nonatomic) NSArray *callbacks;
 @property(copy, nonatomic) NSString *appId;

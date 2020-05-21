@@ -8,7 +8,7 @@
 
 #import "NSLocking.h"
 
-@class NSArray, NSManagedObjectModel, NSString;
+@class NSArray, NSManagedObjectModel, NSString, _PFModelMap;
 
 @interface NSPersistentStoreCoordinator : NSObject <NSLocking>
 {
@@ -27,6 +27,8 @@
 }
 
 + (BOOL)removeUbiquitousContentAndPersistentStoreAtURL:(id)arg1 options:(id)arg2 error:(id *)arg3;
++ (id)allocWithZone:(struct _NSZone *)arg1;
++ (id)alloc;
 + (id)metadataForPersistentStoreWithURL:(id)arg1 error:(id *)arg2;
 + (id)elementsDerivedFromExternalRecordURL:(id)arg1;
 + (BOOL)setMetadata:(id)arg1 forPersistentStoreOfType:(id)arg2 URL:(id)arg3 error:(id *)arg4;
@@ -49,7 +51,9 @@
 + (Class)_storeClassForStoreType:(id)arg1;
 + (id)_storeTypeForStore:(id)arg1;
 + (void)_endPowerAssertionWithAssert:(unsigned long long)arg1 andApp:(id)arg2;
-+ (id)_beginPowerAssertionWithAssert:(unsigned long long *)arg1;
++ (id)_beginPowerAssertionNamed:(id)arg1 withAssert:(unsigned long long *)arg2;
++ (BOOL)removePersistentHistoryFromPersistentStoreAtURL:(id)arg1 options:(id)arg2 error:(id *)arg3;
++ (unsigned long long)__platformOptions;
 - (id)executeRequest:(id)arg1 withContext:(id)arg2 error:(id *)arg3;
 - (BOOL)_canRouteToStore:(id)arg1 forContext:(id)arg2;
 - (id)_routableStoresForContext:(id)arg1 fromStores:(id)arg2;
@@ -68,15 +72,22 @@
 - (id)_processStoreResults:(id)arg1 forRequest:(id)arg2;
 - (id)importStoreWithIdentifier:(id)arg1 fromExternalRecordsDirectory:(id)arg2 toURL:(id)arg3 options:(id)arg4 withType:(id)arg5 error:(id *)arg6;
 - (id)managedObjectIDForURIRepresentation:(id)arg1;
+- (id)currentPersistentHistoryTokenFromStores:(id)arg1;
 - (BOOL)replacePersistentStoreAtURL:(id)arg1 destinationOptions:(id)arg2 withPersistentStoreFromURL:(id)arg3 sourceOptions:(id)arg4 storeType:(id)arg5 error:(id *)arg6;
 - (BOOL)destroyPersistentStoreAtURL:(id)arg1 withType:(id)arg2 options:(id)arg3 error:(id *)arg4;
 - (id)migratePersistentStore:(id)arg1 toURL:(id)arg2 options:(id)arg3 withType:(id)arg4 error:(id *)arg5;
 - (BOOL)setURL:(id)arg1 forPersistentStore:(id)arg2;
 - (id)URLForPersistentStore:(id)arg1;
 - (id)persistentStoreForURL:(id)arg1;
+- (BOOL)_removePersistentStore:(id)arg1 error:(id *)arg2;
+- (BOOL)_removeAllPersistentStores:(id *)arg1;
 - (BOOL)removePersistentStore:(id)arg1 error:(id *)arg2;
+- (void)_repairIndiciesForStoreWithIdentifier:(id)arg1 synchronous:(BOOL)arg2;
 - (id)addPersistentStoreWithType:(id)arg1 configuration:(id)arg2 URL:(id)arg3 options:(id)arg4 error:(id *)arg5;
 - (void)addPersistentStoreWithDescription:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_doAddPersistentStoreWithDescription:(id)arg1 privateCopy:(id)arg2 completeOnMainThread:(BOOL)arg3 withHandler:(CDUnknownBlockType)arg4;
+- (BOOL)_attemptRecoveryFromAddPersistentStoreError:(id)arg1 withDescription:(id)arg2;
+- (BOOL)_checkForTombstoneSkew:(id)arg1 metadata:(id)arg2 configuration:(id)arg3;
 - (BOOL)_checkForSkewedEntityHashes:(id)arg1 metadata:(id)arg2;
 - (id)_retainedPersistentStores;
 @property(readonly) NSArray *persistentStores;
@@ -87,7 +98,6 @@
 - (id)initWithManagedObjectModel:(id)arg1;
 - (id)init;
 - (void)dealloc;
-- (void)finalize;
 - (id)metadataForPersistentStore:(id)arg1;
 - (void)setMetadata:(id)arg1 forPersistentStore:(id)arg2;
 @property(copy) NSString *name;
@@ -95,6 +105,7 @@
 - (void)_routeLightweightBlock:(CDUnknownBlockType)arg1 toStore:(id)arg2;
 - (void)performBlockAndWait:(CDUnknownBlockType)arg1;
 - (void)performBlock:(CDUnknownBlockType)arg1;
+@property(readonly, nonatomic) _PFModelMap *modelMap;
 - (BOOL)_isRegisteredWithUbiquity;
 - (void)_setIsRegisteredWithUbiquity:(BOOL)arg1;
 - (BOOL)_isRegisteredWithCloudKit;
@@ -105,13 +116,16 @@
 - (BOOL)_importExternalRecordsAtStoreUUIDPath:(id)arg1 intoStore:(id)arg2 batchSize:(unsigned long long)arg3 error:(id *)arg4;
 - (id)_externalRecordsHelper;
 - (BOOL)_checkForPostLionWriter:(id)arg1;
-- (void)clearCachedInformationForRequestWithIdentifier:(id)arg1;
 - (void)_copyMetadataFromStore:(id)arg1 toStore:(id)arg2 migrationManager:(id)arg3;
 - (id)_retainedAllMigratedObjectsInStore:(id)arg1 toStore:(id)arg2;
 - (id)_realStoreTypeForStoreWithType:(id)arg1 URL:(id)arg2 options:(id)arg3 error:(id *)arg4;
 - (void)_assignObject:(id)arg1 toPersistentStore:(id)arg2 forConfiguration:(id)arg3;
 - (void)_postStoresChangedNotificationsForStores:(id)arg1 changeKey:(id)arg2 options:(id)arg3;
+- (void)_postStoreRemoteChangeNotificationsForStore:(id)arg1 andState:(unsigned long long)arg2;
 - (id)_fetchAllInstancesFromStore:(id)arg1 intoContext:(id)arg2 underlyingException:(id *)arg3;
+- (Class)_storeClassForStoreWithType:(id)arg1 URL:(id)arg2 options:(id)arg3;
+- (id)_qosClassOptions;
+- (void)_setQosClassOptions:(unsigned int)arg1;
 - (id)_saveRequestForStore:(id)arg1 withContext:(id)arg2 originalRequest:(id)arg3 andOptimisticLocking:(id)arg4;
 - (id)_checkRequestForStore:(id)arg1 withContext:(id)arg2 originalRequest:(id)arg3 andOptimisticLocking:(id)arg4;
 - (id)_conflictsWithRowCacheForObject:(id)arg1 withContext:(id)arg2 andStore:(id)arg3;
@@ -133,17 +147,27 @@
 - (id)managedObjectIDForURIRepresentation:(id)arg1 error:(id *)arg2;
 - (id)managedObjectIDFromUTF8String:(const char *)arg1 length:(unsigned long long)arg2 error:(id *)arg3;
 - (BOOL)_removePersistentStore:(id)arg1;
+- (id)_lastOpenError;
 - (id)persistentStoreForIdentifier:(id)arg1;
+- (BOOL)_rekeyPersistentStoreAtURL:(id)arg1 type:(id)arg2 options:(id)arg3 withKey:(id)arg4 error:(id *)arg5;
 - (BOOL)_destroyPersistentStoreAtURL:(id)arg1 withType:(id)arg2 error:(id *)arg3;
 - (BOOL)_destroyPersistentStoreAtURL:(id)arg1 withType:(id)arg2 options:(id)arg3 error:(id *)arg4;
 - (BOOL)_replacePersistentStoreAtURL:(id)arg1 destinationOptions:(id)arg2 withPersistentStoreFromURL:(id)arg3 sourceOptions:(id)arg4 storeType:(id)arg5 error:(id *)arg6;
 - (id)managedObjectIDFromUTF8String:(const char *)arg1 length:(unsigned long long)arg2;
-- (id)_objectIDForContactsIdentifier:(int)arg1 entityName:(id)arg2 store:(id)arg3;
-- (int)_contactsIdentifierForObjectID:(id)arg1;
-- (BOOL)_deleteAllRowsNoRelationshipIntegrityForStore:(id)arg1 andEntityWithAllSubentities:(id)arg2 error:(id *)arg3;
+- (id)currentQueryGenerationTokenFromStores:(id)arg1;
 - (BOOL)_validateQueryGeneration:(id)arg1 error:(id *)arg2;
-- (id)_retainedCurrentQueryGeneration;
+- (id)_reopenQueryGenerationWithIdentifier:(id)arg1 inStoreWithIdentifier:(id)arg2 error:(id *)arg3;
+- (id)_retainedCurrentQueryGeneration:(id)arg1;
 - (id)_retainedIdentifierFromStores:(id)arg1;
+- (BOOL)_refreshTriggerValuesInStore:(id)arg1 error:(id *)arg2;
+- (BOOL)validateManagedObjectModel:(id)arg1 forHistoryTrackingWithOptions:(id)arg2 error:(id *)arg3;
+- (id)_retainedCurrentChangeTrackingToken;
+- (id)_retainedChangeTokenFromStores:(id)arg1;
+- (BOOL)_hasHistoryTracking:(id)arg1;
+- (id)_xpcProcessName;
+- (id)_xpcBundleIdentifier;
+- (void)_setXPCProcessName:(id)arg1;
+- (void)_setXPCBundleIdentifier:(id)arg1;
 
 @end
 

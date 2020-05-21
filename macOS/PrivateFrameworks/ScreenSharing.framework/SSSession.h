@@ -9,7 +9,7 @@
 #import "NWConnectionReader.h"
 #import "SSInputEventConsumer.h"
 
-@class MessageTracerInfo, NSArray, NSDate, NSImage, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_source>, NSObject<SSDragDelegate>, NSObject<SSSessionDelegate><IDSSessionDelegate>, NSRecursiveLock, NSSet, NSString, NSThread, NSTimer, NWConnectionManager, SSAddress, SSConnectionOptions, SSFrameBuffer, SSScreenConfiguration, SSScreenInfo, SenderThread;
+@class MessageTracerInfo, NSArray, NSDate, NSImage, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>, NSObject<SSDragDelegate>, NSObject<SSSessionDelegate><IDSSessionDelegate>, NSRecursiveLock, NSSet, NSString, NSThread, NSTimer, NWConnectionManager, SSAddress, SSConnectionOptions, SSFrameBuffer, SSScreenConfiguration, SSScreenInfo, SenderThread;
 
 @interface SSSession : NSObject <SSInputEventConsumer, NWConnectionReader>
 {
@@ -60,12 +60,25 @@
     NSObject<SSDragDelegate> *mDragDelegate;
     struct SSPoint mLastCursorCoordinates;
     unsigned char mLastButtonMask;
+    long long mLastClickCount;
     NSMutableDictionary *mFileCopies;
     NSMutableArray *mQueuedCopies;
     double mSessionContentsScale;
     int mTerminationStatus;
-    void *mReservedForInstanceVariables;
+    unsigned int mAskToResumeRequest;
+    unsigned int mAskToControlRequest;
+    unsigned int mAskToAddTextToPasteboard;
+    unsigned int mShowMessageToUser;
+    unsigned int mAskToOpenURL;
+    unsigned int mRequestCount;
     SenderThread *mSenderThread;
+    struct {
+        unsigned short _field1;
+        unsigned short _field2;
+        unsigned short _field3;
+        char _field4[0];
+    } *mUnverifiedServerHostKey;
+    NSObject<OS_dispatch_semaphore> *mScaleFactorSemaphore;
     BOOL hasUnfulfilledPasteboardPromises;
     BOOL _assistModeEnabled;
     BOOL _assistModeWasEnabled;
@@ -73,24 +86,36 @@
     BOOL _canToggleCurtainMode;
     BOOL _onConsole;
     BOOL _encodingsWereSet;
+    BOOL _mUnverifiedServerMessageDisplayed;
+    BOOL _scaleFactorEnqueued;
+    unsigned short _lastX;
+    unsigned short _lastY;
     unsigned int _assistModeFlags;
     unsigned int _AVConferenceVideoWidth;
     unsigned int _AVConferenceVideoHeight;
-    MessageTracerInfo *messageTracerInfo;
     NWConnectionManager *_datagramConnectionManager;
+    NSString *_mUnverifiedServerHostLabel;
+    MessageTracerInfo *_messageTracerInfo;
     double _connectTimeout;
     long long _displayInfo2Version;
     NSDate *_lastContactDate;
     NSTimer *_udpLivenessTimer;
+    struct CGPoint mLastCursorPercent;
 }
 
 + (id)qualityEncodingsForMode:(long long)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (void)registerForDisplayChanges;
+@property BOOL scaleFactorEnqueued; // @synthesize scaleFactorEnqueued=_scaleFactorEnqueued;
+@property unsigned short lastY; // @synthesize lastY=_lastY;
+@property unsigned short lastX; // @synthesize lastX=_lastX;
 @property(retain) NSTimer *udpLivenessTimer; // @synthesize udpLivenessTimer=_udpLivenessTimer;
 @property(retain) NSDate *lastContactDate; // @synthesize lastContactDate=_lastContactDate;
 @property long long displayInfo2Version; // @synthesize displayInfo2Version=_displayInfo2Version;
 @property double connectTimeout; // @synthesize connectTimeout=_connectTimeout;
+@property(retain) MessageTracerInfo *messageTracerInfo; // @synthesize messageTracerInfo=_messageTracerInfo;
+@property BOOL mUnverifiedServerMessageDisplayed; // @synthesize mUnverifiedServerMessageDisplayed=_mUnverifiedServerMessageDisplayed;
+@property(retain) NSString *mUnverifiedServerHostLabel; // @synthesize mUnverifiedServerHostLabel=_mUnverifiedServerHostLabel;
 @property BOOL encodingsWereSet; // @synthesize encodingsWereSet=_encodingsWereSet;
 @property unsigned int AVConferenceVideoHeight; // @synthesize AVConferenceVideoHeight=_AVConferenceVideoHeight;
 @property unsigned int AVConferenceVideoWidth; // @synthesize AVConferenceVideoWidth=_AVConferenceVideoWidth;
@@ -100,7 +125,6 @@
 @property BOOL canToggleCurtainMode; // @synthesize canToggleCurtainMode=_canToggleCurtainMode;
 @property BOOL assistModeWasEnabled; // @synthesize assistModeWasEnabled=_assistModeWasEnabled;
 @property BOOL hasUnfulfilledPasteboardPromises; // @synthesize hasUnfulfilledPasteboardPromises;
-@property(retain) MessageTracerInfo *messageTracerInfo; // @synthesize messageTracerInfo;
 @property(copy) NSArray *localFilePaths; // @synthesize localFilePaths=mLocalFilePaths;
 @property(retain) NSObject<SSDragDelegate> *dragDelegate; // @synthesize dragDelegate=mDragDelegate;
 @property(copy) NSImage *remoteDragImage; // @synthesize remoteDragImage=mRemoteDragImage;
@@ -113,6 +137,7 @@
 @property unsigned int viewerAppMajorVersion; // @synthesize viewerAppMajorVersion=mViewerAppMajorVersion;
 @property unsigned int viewerApp; // @synthesize viewerApp=mViewerApp;
 @property BOOL isUsingSSHTunnel; // @synthesize isUsingSSHTunnel=mIsUsingSSHTunnel;
+@property struct CGPoint lastCursorPercent; // @synthesize lastCursorPercent=mLastCursorPercent;
 @property struct SSPoint lastCursorCoodinates; // @synthesize lastCursorCoodinates=mLastCursorCoordinates;
 @property(copy) NSSet *pseudoEncodings; // @synthesize pseudoEncodings=mPseudoEncodings;
 @property int cursorMode; // @synthesize cursorMode=mCursorMode;
@@ -134,6 +159,14 @@
 - (void)delegateSessionResumed;
 - (void)dtDelegateSessionPaused;
 - (void)delegateSessionPaused;
+- (void)dtDelegateSessionRequestToAddTextToPasteboard:(id)arg1;
+- (void)delegateSessionRequestToAddTextToPasteboard:(int)arg1;
+- (void)dtDelegateSessionRequestToOpenURLResult:(id)arg1;
+- (void)delegateSessionRequestToOpenURLResult:(int)arg1;
+- (void)dtDelegateSessionRequestToResumeResult:(id)arg1;
+- (void)delegateSessionRequestToResumeResult:(int)arg1;
+- (void)dtDelegateSessionDidSetLocalWindowUIResolution:(id)arg1;
+- (void)delegateSessionDidSetLocalWindowUIResolution:(id)arg1;
 - (void)dtDelegateSessionAllowsControl:(id)arg1;
 - (void)delegateSessionAllowsControl:(BOOL)arg1;
 - (void)dtDelegateDisplaysDidSleep;
@@ -173,6 +206,8 @@
 - (void)dtDelegateOnConsoleChanged;
 - (void)delegateOnConsoleChanged;
 - (void)dtDelegateVirtualDisplayStateChanged;
+- (void)dtDelegateTouchEvent:(id)arg1;
+- (void)delegateTouchEvent:(id)arg1;
 - (void)delegateVirtualDisplayStateChanged;
 - (void)dtDelegateUserPictureChanged;
 - (void)delegateUserPictureChanged;
@@ -194,6 +229,8 @@
 - (BOOL)recordRemotePasteboardData:(id)arg1 toLocalPasteboard:(id)arg2 uncompressedSize:(unsigned int)arg3;
 - (BOOL)validateAndAdjustMouseCoordinatesForServer:(struct SSPoint)arg1 withXOut:(unsigned short *)arg2 withYOut:(unsigned short *)arg3;
 - (void)setFrameBuffer:(id)arg1;
+- (void)handleTouchEvent:(CDStruct_13724557 *)arg1;
+- (void)handleUserRequestResponse:(CDStruct_250aeff3 *)arg1;
 - (void)handleFileTransferResultInfo:(CDStruct_c0c3f3c9 *)arg1;
 - (void)handleFileTransferProgressInfo:(CDStruct_e4886f83 *)arg1;
 - (void)handleFileTransferItemInfo:(CDStruct_ea3b5b84 *)arg1;
@@ -209,7 +246,9 @@
 - (void)handleUserImage:(struct RFBUserBitmap *)arg1;
 - (void)handleFrameBufferUpdate:(struct Rect *)arg1;
 - (void)handleResolutionChange:(struct RFBScreenSizeInfo *)arg1;
+- (void)handleDisplayInfoB:(unsigned int)arg1 screenConfiguration:(id)arg2 newSelectedScreen:(id)arg3;
 - (void)handleDisplayInfo:(struct ServerDisplayInfo *)arg1;
+- (void)handleDisplayInfo2b:(unsigned int)arg1 screenConfiguration:(id)arg2 newSelectedScreen:(id)arg3 displayCountChanged:(BOOL)arg4;
 - (void)handleDisplayInfo2:(CDStruct_2f05c45a *)arg1;
 - (void)simulateDisplayInfo2MessageForAVConferenceVideo;
 - (void)stPauseFileCopy:(id)arg1;
@@ -251,9 +290,15 @@
 - (void)stSendMouseScrollEvent:(id)arg1;
 - (void)stSendMouseButtonEvent:(id)arg1;
 - (void)stSendMouseMoveEvent:(id)arg1;
-- (void)stCommonPostMouseEventWithX:(unsigned short)arg1 withY:(unsigned short)arg2 withButtonMask:(unsigned char)arg3 withFrameBufferCoords:(struct SSPoint)arg4;
+- (void)repostMouseEvent;
+- (void)stCommonRepostMouseEvent;
+- (void)stCommonPostMouseEventWithX:(unsigned short)arg1 withY:(unsigned short)arg2 withButtonMask:(unsigned char)arg3 withFrameBufferCoords:(struct SSPoint)arg4 withClickCount:(long long)arg5 framePercent:(struct CGPoint)arg6;
+- (void)stCommonPostMouseEvent:(id)arg1 withX:(unsigned short)arg2 withY:(unsigned short)arg3 withButtonMask:(unsigned char)arg4 withClickCount:(long long)arg5;
+- (void)stCorePostMouseEventWithX:(unsigned short)arg1 withY:(unsigned short)arg2 withButtonMask:(unsigned char)arg3 withFrameBufferCoords:(struct SSPoint)arg4 withClickCount:(long long)arg5 active:(BOOL)arg6 framePercent:(struct CGPoint)arg7;
 - (void)turnAssistModeOff:(BOOL)arg1;
-- (void)turnAssistModeOnWithX:(unsigned short)arg1 Y:(unsigned short)arg2 andFlags:(unsigned int)arg3;
+- (void)turnAssistModeOnWithX:(unsigned short)arg1 Y:(unsigned short)arg2 flags:(unsigned int)arg3 info:(struct RFBAssistCursorV2Info *)arg4;
+- (int)assistPointerColor;
+- (void)setAssistPointerColor:(int)arg1;
 - (int)assistPointerKind;
 - (void)setAssistPointerKind:(int)arg1;
 @property BOOL assistModeEnabled; // @synthesize assistModeEnabled=_assistModeEnabled;
@@ -269,7 +314,13 @@
 - (void)stConfigureSession;
 - (void)stUpdateForServerControlType:(id)arg1;
 - (void)stSetControlMode:(id)arg1;
+- (void)stPauseScreenSharing;
+- (void)stRequestToOpenURL:(id)arg1;
+- (void)stShowMessageToUser:(id)arg1;
+- (void)stRequestToCopyTextToPaasteboard:(id)arg1;
+- (void)stRequestToResumeScreenSharing;
 - (void)stControlModeRequest;
+- (void)acceptNewHostKey;
 - (void)stAuthenticateWithCredentials:(id)arg1;
 - (void)stConnectToAddress:(id)arg1;
 - (void)enqueueSenderThreadCommand:(SEL)arg1 withArgument:(id)arg2;
@@ -278,6 +329,7 @@
 @property(readonly) struct CGSize selectedScreenMaxSize;
 @property(retain) SSScreenInfo *selectedScreen; // @dynamic selectedScreen;
 - (double)remoteScaleFactorForLocalScaleFactor:(double)arg1;
+- (BOOL)setScalingFactor:(double)arg1 forced:(BOOL)arg2;
 @property double scalingFactor;
 - (BOOL)updateRemoteScalingFactor;
 - (BOOL)doesServerSupportFeature:(int)arg1;
@@ -293,7 +345,7 @@
 - (void)resumeFileCopy:(id)arg1;
 - (void)pauseFileCopy:(id)arg1;
 - (id)activeFileCopies;
-- (id)fileCopyRemotePath:(id)arg1 toLocalPath:(id)arg2;
+- (id)fileCopyRemotePath:(id)arg1 toLocalPath:(id)arg2 withFileName:(id)arg3;
 - (id)fileCopyLocalPath:(id)arg1 toRemotePath:(id)arg2;
 - (void)requestSystemInfo:(int)arg1 args:(id)arg2;
 - (void)requestSystemInfo:(int)arg1 args:(id)arg2 senderToken:(unsigned int)arg3;
@@ -312,6 +364,11 @@
 - (void)requestUpdates;
 - (void)cancelSelectSession;
 - (void)selectSession:(id)arg1;
+- (void)pauseScreenSharing;
+- (void)requestToOpenURL:(id)arg1;
+- (void)showMessageToUser:(id)arg1;
+- (void)requestToCopyTextToPasteboard:(id)arg1;
+- (void)requestToResumeScreenSharing;
 - (void)requestControlMode;
 - (void)setControlMode:(long long)arg1;
 - (void)authenticateWithCredentials:(id)arg1;

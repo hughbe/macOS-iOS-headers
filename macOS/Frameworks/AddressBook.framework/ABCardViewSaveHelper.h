@@ -6,57 +6,57 @@
 
 #import "NSObject.h"
 
-@class ABAddressBook, ABCNContactStore, ABCommandExecutor, AKCardViewDataSource;
+@class ABCommandExecutor, AKCardViewDataSource, CNContactStore, CNContainer;
 
 @interface ABCardViewSaveHelper : NSObject
 {
-    BOOL _isNewPerson;
+    BOOL _isContactNewlyCreated;
     BOOL _isSaving;
     BOOL _hasSaved;
+    BOOL _ignoresGuardianRestrictions;
+    CNContactStore *_contactStore;
     AKCardViewDataSource *_dataSource;
-    ABAddressBook *_legacyAddressBook;
-    ABCNContactStore *_addressBook;
+    CNContainer *_parentContainer;
     ABCommandExecutor *_commandExecutor;
     id <ABCardViewSaveHelperDelegate> _delegate;
 }
 
-@property BOOL isNewPerson; // @synthesize isNewPerson=_isNewPerson;
-@property id <ABCardViewSaveHelperDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain) ABAddressBook *legacyAddressBook; // @synthesize legacyAddressBook=_legacyAddressBook;
-@property(retain) ABCNContactStore *addressBook; // @synthesize addressBook=_addressBook;
-@property(retain) ABCommandExecutor *commandExecutor; // @synthesize commandExecutor=_commandExecutor;
-@property(readonly) BOOL isSaving; // @synthesize isSaving=_isSaving;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL ignoresGuardianRestrictions; // @synthesize ignoresGuardianRestrictions=_ignoresGuardianRestrictions;
+@property(nonatomic) __weak id <ABCardViewSaveHelperDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) BOOL hasSaved; // @synthesize hasSaved=_hasSaved;
+@property(nonatomic) BOOL isSaving; // @synthesize isSaving=_isSaving;
+@property(nonatomic) BOOL isContactNewlyCreated; // @synthesize isContactNewlyCreated=_isContactNewlyCreated;
+@property(retain, nonatomic) ABCommandExecutor *commandExecutor; // @synthesize commandExecutor=_commandExecutor;
+@property(retain, nonatomic) CNContainer *parentContainer; // @synthesize parentContainer=_parentContainer;
 @property(retain, nonatomic) AKCardViewDataSource *dataSource; // @synthesize dataSource=_dataSource;
-- (id)publicRecordsForAKRecords:(id)arg1;
-- (id)makeCommandBuilderWithActionName:(id)arg1;
-- (id)linkPeople:(id)arg1 withLinkIdentifier:(id)arg2;
-- (id)makeSetImageCommandForPerson:(id)arg1;
-- (id)makeLinkCommandForPeople:(id)arg1 linkIdentifier:(id)arg2;
-- (id)makeDeleteCommandForDeletedPeople:(id)arg1;
-- (id)makeDeleteCommand;
-- (id)makeUpdateCommand;
-- (id)makeAddCommandForPerson:(id)arg1 accountIdentifier:(id)arg2 personInserted:(BOOL)arg3;
+@property(retain, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
+- (id)makeSetImageCommandForContact:(id)arg1;
+- (id)makeLinkCommandForContacts:(id)arg1 linkIdentifier:(id)arg2;
+- (id)makeUpdateCommandForUpdatedContacts:(id)arg1;
+- (id)makeDeleteCommandForDeletedContacts:(id)arg1;
+- (id)makeAddCommandForContacts:(id)arg1 toContainer:(id)arg2;
 - (void)executeCommand:(id)arg1;
-- (void)deletePeople;
-- (void)addPerson;
-- (void)deleteUnsavedPerson;
 - (id)propertiesToSetOnNewPerson;
-- (id)personByApplyingChangesFromPerson:(id)arg1 toPerson:(id)arg2;
-- (void)applyProperties:(id)arg1 fromPerson:(id)arg2 toPerson:(id)arg3;
+- (id)contactByApplyingChangesFromContact:(id)arg1 toContact:(id)arg2;
+- (void)applyProperties:(id)arg1 fromContact:(id)arg2 toContact:(id)arg3;
 - (id)makeNewPersonToStoreDataSourceChanges;
-- (BOOL)dataSourceHasNonLinkChanges;
-- (void)updatePeople;
+- (void)preferForPhotoContact:(id)arg1 inContacts:(id)arg2;
 - (BOOL)hasPhotoChanges;
+- (void)preferForNameContact:(id)arg1 inContacts:(id)arg2;
 - (BOOL)hasNameChanges;
-- (void)preferForPhotoPerson:(id)arg1 inPeople:(id)arg2;
-- (void)preferForNamePerson:(id)arg1 inPeople:(id)arg2;
 - (void)addNewPersonToStoreDataSourceChanges;
+- (void)updatePeople;
+- (BOOL)dataSourceHasNonLinkChanges;
 - (BOOL)shouldAddNewPersonToStoreDataSourceChanges;
+- (void)addPerson;
 - (void)saveDataSourceWithChanges;
+- (void)deletePeople;
+- (void)deleteUnsavedContact;
 - (void)saveEmptyDataSource;
 - (void)save;
 - (BOOL)canSave;
-- (void)dealloc;
+- (id)initWithContactStore:(id)arg1;
 
 @end
 

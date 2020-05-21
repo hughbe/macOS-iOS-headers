@@ -19,6 +19,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) NSNumber *valueType; // @synthesize valueType=_valueType;
 @property(copy) NSString *recordType; // @synthesize recordType=_recordType;
 @property(copy) NSString *propertyName; // @synthesize propertyName=_propertyName;
@@ -27,7 +28,6 @@
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

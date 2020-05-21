@@ -15,15 +15,23 @@ __attribute__((visibility("hidden")))
     NSString *mDescription;
     NSString *mKeywords;
     NSString *mTitle;
+    NSString *mAppVersion;
+    NSString *mSubject;
+    NSString *mCompany;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSString *company; // @synthesize company=mCompany;
+@property(retain) NSString *subject; // @synthesize subject=mSubject;
+- (id)appVersion;
 - (id)title;
 - (id)keywords;
 - (id)description;
 - (id)creator;
-- (void)dealloc;
-- (id)initWithXml:(struct _xmlDoc *)arg1;
-- (void)readFromXml:(struct _xmlDoc *)arg1;
+- (id)initWithCoreXml:(struct _xmlDoc *)arg1 appXml:(struct _xmlDoc *)arg2;
+- (void)readFromCoreXml:(struct _xmlDoc *)arg1 appXml:(struct _xmlDoc *)arg2;
+- (void)readFromAppXml:(struct _xmlDoc *)arg1;
+- (void)readFromCoreXml:(struct _xmlDoc *)arg1;
 
 @end
 

@@ -17,20 +17,16 @@
 
 @interface TKTonePickerOutlineViewController : NSViewController <NSOutlineViewDataSource, NSOutlineViewDelegate, TKPickerOutlineViewEventHandlingDelegate, TKTonePickerControllerDelegate, TKTonePickerControllerDelegateInternal, TKTonePickerContentViewController>
 {
-    BOOL _updatingSelectionProgrammatically;
-    id <TKTonePickerContentViewControllerDelegate> _delegate;
-    TKPickerOutlineView *_outlineView;
     TKTonePickerController *_tonePickerController;
+    TKPickerOutlineView *_outlineView;
+    BOOL _isUpdatingSelectionProgrammatically;
     long long _previouslySelectedRow;
     NSTimer *_selectionConsistencyRestorationTimer;
+    id <TKTonePickerContentViewControllerDelegate> _delegate;
 }
 
-@property(retain, nonatomic, setter=_setSelectionConsistencyRestorationTimer:) NSTimer *_selectionConsistencyRestorationTimer; // @synthesize _selectionConsistencyRestorationTimer;
-@property(nonatomic, setter=_setPreviouslySelectedRow:) long long _previouslySelectedRow; // @synthesize _previouslySelectedRow;
-@property(nonatomic, getter=_isUpdatingSelectionProgrammatically, setter=_setUpdatingSelectionProgrammatically:) BOOL _updatingSelectionProgrammatically; // @synthesize _updatingSelectionProgrammatically;
-@property(retain, nonatomic, setter=_setTonePickerController:) TKTonePickerController *_tonePickerController; // @synthesize _tonePickerController;
-@property(retain, nonatomic, setter=_setOutlineView:) TKPickerOutlineView *_outlineView; // @synthesize _outlineView;
-@property(nonatomic) id <TKTonePickerContentViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <TKTonePickerContentViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)tonePickerController:(id)arg1 requestsPresentingToneClassicsPickerForItem:(id)arg2;
 - (void)tonePickerController:(id)arg1 selectedToneWithIdentifier:(id)arg2;
 - (void)tonePickerController:(id)arg1 didUpdateDetailText:(id)arg2 ofTonePickerItem:(id)arg3;

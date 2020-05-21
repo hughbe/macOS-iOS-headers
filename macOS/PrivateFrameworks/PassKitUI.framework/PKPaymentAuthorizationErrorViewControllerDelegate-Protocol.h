@@ -10,5 +10,6 @@
 
 @protocol PKPaymentAuthorizationErrorViewControllerDelegate <NSObject>
 - (void)paymentAuthorizationErrorViewControllerDidFinish:(PKPaymentAuthorizationErrorViewController *)arg1;
+- (void)paymentAuthorizationErrorViewControllerDidCancel:(PKPaymentAuthorizationErrorViewController *)arg1;
 @end
 

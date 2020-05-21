@@ -6,20 +6,13 @@
 
 #import "NSObject.h"
 
-#import "CHLoggerProtocol.h"
-
-@interface CHLogger : NSObject <CHLoggerProtocol>
+@interface CHLogger : NSObject
 {
-    struct StaticLogger _logger;
+    struct os_log_s *_logHandle;
 }
 
-+ (void)logWithLevel:(unsigned char)arg1 logger:(LoggerBase_f7398810 *)arg2 format:(id)arg3 argList:(struct __va_list_tag [1])arg4;
-- (id).cxx_construct;
-- (void).cxx_destruct;
-- (void)logWithLevel:(unsigned int)arg1 withFormat:(id)arg2 withArgs:(struct __va_list_tag [1])arg3;
-- (void)logWithLevel:(unsigned int)arg1 withFormat:(id)arg2;
-- (BOOL)shouldLogForLevel:(unsigned int)arg1;
-- (id)initWithDomain:(id)arg1;
+- (struct os_log_s *)logHandle;
+- (id)initWithDomain:(const char *)arg1;
 
 @end
 

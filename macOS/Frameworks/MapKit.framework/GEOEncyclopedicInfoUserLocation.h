@@ -10,15 +10,17 @@
 
 @class GEOMapItemAttribution, MKMapItem, NSArray, NSString;
 
+__attribute__((visibility("hidden")))
 @interface GEOEncyclopedicInfoUserLocation : NSObject <GEOEncyclopedicInfo>
 {
     MKMapItem *_mapItem;
 }
 
-@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
 - (void).cxx_destruct;
+@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
 - (id)initWithMapItem:(id)arg1;
 @property(readonly, nonatomic) NSArray *factoids;
+@property(readonly, nonatomic) BOOL hasStandAloneFactoids;
 @property(readonly, nonatomic) BOOL hasPairOfFactoids;
 @property(readonly, nonatomic) GEOMapItemAttribution *encyclopedicAttribution;
 @property(readonly, nonatomic) NSString *textBlockText;

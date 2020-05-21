@@ -7,17 +7,18 @@
 #import "NSObject.h"
 
 #import "ICSWriting.h"
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSMutableDictionary;
 
-@interface ICSProperty : NSObject <NSCoding, ICSWriting>
+@interface ICSProperty : NSObject <NSSecureCoding, ICSWriting>
 {
     NSMutableDictionary *_parameters;
     unsigned long long _type;
     id _value;
 }
 
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
 - (id)description;
 - (id)stringValue;

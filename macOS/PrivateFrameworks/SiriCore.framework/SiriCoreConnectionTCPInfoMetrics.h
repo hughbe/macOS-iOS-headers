@@ -25,8 +25,11 @@
     NSNumber *_outOfOrderBytesReceived;
     NSNumber *_sendBandwidth;
     NSNumber *_synRetransmits;
+    NSNumber *_tfoSynDataAcked;
 }
 
+- (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSNumber *tfoSynDataAcked; // @synthesize tfoSynDataAcked=_tfoSynDataAcked;
 @property(readonly, copy, nonatomic) NSNumber *synRetransmits; // @synthesize synRetransmits=_synRetransmits;
 @property(readonly, copy, nonatomic) NSNumber *sendBandwidth; // @synthesize sendBandwidth=_sendBandwidth;
 @property(readonly, copy, nonatomic) NSNumber *outOfOrderBytesReceived; // @synthesize outOfOrderBytesReceived=_outOfOrderBytesReceived;
@@ -42,10 +45,9 @@
 @property(readonly, copy, nonatomic) NSNumber *rttSmoothed; // @synthesize rttSmoothed=_rttSmoothed;
 @property(readonly, copy, nonatomic) NSNumber *rttCurrent; // @synthesize rttCurrent=_rttCurrent;
 @property(readonly, copy, nonatomic) NSString *interfaceName; // @synthesize interfaceName=_interfaceName;
-- (void).cxx_destruct;
 - (id)description;
 - (id)init;
-- (id)initWithInterfaceName:(id)arg1 rttCurrent:(id)arg2 rttSmoothed:(id)arg3 rttVariance:(id)arg4 rttBest:(id)arg5 packetsSent:(id)arg6 bytesSent:(id)arg7 bytesRetransmitted:(id)arg8 bytesUnacked:(id)arg9 packetsReceived:(id)arg10 bytesReceived:(id)arg11 duplicateBytesReceived:(id)arg12 outOfOrderBytesReceived:(id)arg13 sendBandwidth:(id)arg14 synRetransmits:(id)arg15;
+- (id)initWithInterfaceName:(id)arg1 rttCurrent:(id)arg2 rttSmoothed:(id)arg3 rttVariance:(id)arg4 rttBest:(id)arg5 packetsSent:(id)arg6 bytesSent:(id)arg7 bytesRetransmitted:(id)arg8 bytesUnacked:(id)arg9 packetsReceived:(id)arg10 bytesReceived:(id)arg11 duplicateBytesReceived:(id)arg12 outOfOrderBytesReceived:(id)arg13 sendBandwidth:(id)arg14 synRetransmits:(id)arg15 tfoSynDataAcked:(id)arg16;
 
 @end
 

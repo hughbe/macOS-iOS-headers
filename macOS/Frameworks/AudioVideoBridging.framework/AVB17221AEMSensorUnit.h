@@ -13,6 +13,8 @@
 }
 
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)objectLogName;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isExpectedDescriptorType:(unsigned short)arg1;

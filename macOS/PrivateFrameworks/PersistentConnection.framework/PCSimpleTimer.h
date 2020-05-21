@@ -6,15 +6,14 @@
 
 #import "NSObject.h"
 
-#import "PCLoggingDelegate.h"
-
 @class NSDate, NSObject<OS_dispatch_queue>, NSRunLoop, NSString, PCDispatchTimer;
 
-@interface PCSimpleTimer : NSObject <PCLoggingDelegate>
+@interface PCSimpleTimer : NSObject
 {
     double _fireTime;
     double _startTime;
     double _lastUpdateTime;
+    double _earlyFireDelta;
     BOOL _triggerOnGMTChange;
     BOOL _disableSystemWaking;
     NSDate *_scheduledWakeDate;
@@ -22,6 +21,7 @@
     id _target;
     SEL _selector;
     id _userInfo;
+    BOOL _userVisible;
     PCDispatchTimer *_preventSleepTimer;
     PCDispatchTimer *_fireTimer;
     BOOL _sleepIsImminent;
@@ -35,9 +35,9 @@
 
 + (double)currentMachTimeInterval;
 + (id)lastSystemWakeDate;
-@property(readonly, nonatomic) NSString *loggingIdentifier; // @synthesize loggingIdentifier=_serviceIdentifier;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL disableSystemWaking; // @synthesize disableSystemWaking=_disableSystemWaking;
-@property(readonly, copy) NSString *debugDescription;
+- (id)debugDescription;
 - (void)_setSignificantTimeChangeMonitoringEnabled:(BOOL)arg1;
 - (void)_significantTimeChange;
 - (void)_powerNotificationSleepIsImminent;
@@ -57,16 +57,12 @@
 - (void)scheduleInQueue:(id)arg1;
 - (void)scheduleInRunLoop:(id)arg1 inMode:(id)arg2;
 - (void)scheduleInRunLoop:(id)arg1;
+@property(nonatomic, getter=isUserVisible) BOOL userVisible;
 - (void)updateFireTime:(double)arg1 triggerOnGMTChange:(BOOL)arg2;
 - (void)dealloc;
 - (id)initWithAbsoluteTime:(double)arg1 serviceIdentifier:(id)arg2 target:(id)arg3 selector:(SEL)arg4 userInfo:(id)arg5 triggerOnGMTChange:(BOOL)arg6;
 - (id)initWithTimeInterval:(double)arg1 serviceIdentifier:(id)arg2 target:(id)arg3 selector:(SEL)arg4 userInfo:(id)arg5;
 - (id)initWithFireDate:(id)arg1 serviceIdentifier:(id)arg2 target:(id)arg3 selector:(SEL)arg4 userInfo:(id)arg5;
-
-// Remaining properties
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

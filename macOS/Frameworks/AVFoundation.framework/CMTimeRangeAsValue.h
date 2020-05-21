@@ -6,12 +6,18 @@
 
 #import "NSValue.h"
 
+__attribute__((visibility("hidden")))
 @interface CMTimeRangeAsValue : NSValue
 {
     CDStruct_e83c9415 _timeRange;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)valueWithCMTimeRange:(CDStruct_e83c9415)arg1;
+- (Class)classForCoder;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqualToValue:(id)arg1;
 - (id)description;

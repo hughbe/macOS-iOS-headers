@@ -6,42 +6,46 @@
 
 #import <CalendarUI/CalUIControlView.h>
 
-@class CalUILabel, EKInviteeAlternativeTime, EKViewController, NSImage, NSImageView, NSLayoutConstraint;
+#import "NSAccessibilityButton.h"
 
-@interface EKUINewTimeOptionView : CalUIControlView
+@class CalUILabel, EKInviteeAlternativeTime, EKViewController, NSImage, NSImageView, NSString;
+
+@interface EKUINewTimeOptionView : CalUIControlView <NSAccessibilityButton>
 {
     BOOL _selected;
     id <EKUINewTimeOptionViewDelegate> _delegate;
     EKInviteeAlternativeTime *_alternativeTime;
     EKViewController *_viewController;
     NSImageView *_selectionImageView;
-    NSImage *_circleImage;
-    NSImage *_circleWithCheckImage;
     CalUILabel *_dayLabel;
     CalUILabel *_timeLabel;
     CalUILabel *_attendeesLabel;
     NSImage *_busyStatusIcon;
-    NSLayoutConstraint *_heightConstraint;
 }
 
-@property(retain) NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
+- (void).cxx_destruct;
 @property(retain) NSImage *busyStatusIcon; // @synthesize busyStatusIcon=_busyStatusIcon;
 @property(retain) CalUILabel *attendeesLabel; // @synthesize attendeesLabel=_attendeesLabel;
 @property(retain) CalUILabel *timeLabel; // @synthesize timeLabel=_timeLabel;
 @property(retain) CalUILabel *dayLabel; // @synthesize dayLabel=_dayLabel;
-@property(retain) NSImage *circleWithCheckImage; // @synthesize circleWithCheckImage=_circleWithCheckImage;
-@property(retain) NSImage *circleImage; // @synthesize circleImage=_circleImage;
 @property(retain) NSImageView *selectionImageView; // @synthesize selectionImageView=_selectionImageView;
 @property __weak EKViewController *viewController; // @synthesize viewController=_viewController;
 @property(nonatomic) BOOL selected; // @synthesize selected=_selected;
 @property(retain, nonatomic) EKInviteeAlternativeTime *alternativeTime; // @synthesize alternativeTime=_alternativeTime;
 @property __weak id <EKUINewTimeOptionViewDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityLabel;
 - (void)keyDown:(id)arg1;
 - (void)mouseUp:(id)arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (BOOL)hasConflictedParticipants;
 - (id)initWithController:(id)arg1 delegate:(id)arg2 alternativeTime:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

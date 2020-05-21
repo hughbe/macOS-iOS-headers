@@ -8,6 +8,7 @@
 
 @class AVMediaFileType, AVWeakReference, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVFigAssetWriterTrack : NSObject
 {
     AVWeakReference *_weakReference;
@@ -30,7 +31,7 @@
 - (int)_attachToFigAssetWriterUsingFormatSpecification:(id)arg1 sourcePixelBufferAttributes:(id)arg2 multiPass:(BOOL)arg3 error:(id *)arg4;
 - (void)setFormatDescriptions:(id)arg1;
 - (void)setSampleReferenceBaseURL:(id)arg1;
-- (void)setWritesMediaDataToBeginningOfFile:(BOOL)arg1;
+- (void)setMediaDataLocation:(id)arg1;
 - (void)setPreferredChunkSize:(long long)arg1;
 - (void)setPreferredChunkAlignment:(long long)arg1;
 - (void)setPreferredChunkDuration:(CDStruct_1b6d18a9)arg1;
@@ -57,7 +58,6 @@
 - (void)_refreshAboveHighWaterLevel;
 - (void)_figAssetWriterDidDropBelowLowWaterLevelForTrackID:(int)arg1;
 @property(readonly, nonatomic) struct __CVPixelBufferPool *pixelBufferPool;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithFigAssetWriter:(struct OpaqueFigAssetWriter *)arg1 mediaType:(id)arg2 mediaFileType:(id)arg3 formatSpecification:(id)arg4 sourcePixelBufferAttributes:(id)arg5 multiPass:(BOOL)arg6 error:(id *)arg7;
 - (id)init;

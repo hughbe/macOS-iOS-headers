@@ -8,5 +8,7 @@
 
 @interface CAFilter (PhotosUICore)
 + (id)px_filterWithPXCompositingFilterType:(long long)arg1;
+@property(readonly, nonatomic) BOOL px_supportsAlphaBlending;
+@property(readonly, nonatomic, getter=px_isSnapshotCompatible) BOOL px_snapshotCompatible;
 @end
 

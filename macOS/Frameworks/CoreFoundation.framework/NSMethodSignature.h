@@ -8,14 +8,16 @@
 
 @interface NSMethodSignature : NSObject
 {
-    void *_private;
-    void *_reserved[6];
+    struct NSMethodFrameDescriptor *_frameDescriptor;
+    char *_typeString;
+    unsigned long long _flags;
 }
 
 + (id)signatureWithObjCTypes:(const char *)arg1;
 - (id)debugDescription;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
+- (BOOL)_isAllObjects;
 - (BOOL)_isHiddenStructRet;
 @property(readonly) unsigned long long methodReturnLength;
 @property(readonly) const char *methodReturnType;
@@ -27,8 +29,10 @@
 - (Class)_classForObjectAtArgumentIndex:(long long)arg1;
 - (id)_signatureForBlockAtArgumentIndex:(long long)arg1;
 - (id)_typeString;
+- (const char *)_cTypeString;
 - (struct NSMethodFrameArgInfo *)_argInfo:(long long)arg1;
-- (CDStruct_52991635 *)_frameDescriptor;
+- (unsigned long long)_flags;
+- (struct NSMethodFrameDescriptor *)_frameDescriptor;
 - (void)dealloc;
 - (id)init;
 

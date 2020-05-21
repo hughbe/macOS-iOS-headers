@@ -6,17 +6,19 @@
 
 #import <CloudKitDaemon/CKDPCSData.h>
 
+#import "NSSecureCoding.h"
+
 @class CKEncryptedData;
 
 __attribute__((visibility("hidden")))
-@interface CKDChainPCSData : CKDPCSData
+@interface CKDChainPCSData : CKDPCSData <NSSecureCoding>
 {
     CKEncryptedData *_encryptedChainPCSPrivateKey;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(readonly, nonatomic) CKEncryptedData *encryptedChainPCSPrivateKey; // @synthesize encryptedChainPCSPrivateKey=_encryptedChainPCSPrivateKey;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) CKEncryptedData *encryptedChainPCSPrivateKey; // @synthesize encryptedChainPCSPrivateKey=_encryptedChainPCSPrivateKey;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)CKPropertiesDescription;

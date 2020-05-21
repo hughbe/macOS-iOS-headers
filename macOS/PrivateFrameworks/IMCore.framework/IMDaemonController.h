@@ -38,6 +38,8 @@
     unsigned int _cachedCapabilities;
     unsigned int _lastUpdatedCapabilities;
     BOOL _requestingConnection;
+    NSMutableDictionary *_requestQOSClassCompletionBlocks;
+    CDUnknownBlockType _prewarmingBlock;
 }
 
 + (void)_setApplicationWillTerminate;
@@ -45,6 +47,9 @@
 + (BOOL)_applicationWillTerminate;
 + (id)sharedController;
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType prewarmingBlock; // @synthesize prewarmingBlock=_prewarmingBlock;
+@property(retain, nonatomic) NSMutableDictionary *requestQOSClassCompletionBlocks; // @synthesize requestQOSClassCompletionBlocks=_requestQOSClassCompletionBlocks;
 @property(readonly, nonatomic, getter=isRequestingConnection) BOOL requestingConnection; // @synthesize requestingConnection=_requestingConnection;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *_remoteMessageQueue; // @synthesize _remoteMessageQueue;
 @property(retain, setter=_setServicesToDeny:) NSArray *_servicesToDeny; // @synthesize _servicesToDeny;
@@ -55,7 +60,6 @@
 @property(nonatomic) __weak id delegate; // @synthesize delegate=_delegate;
 @property(nonatomic, setter=_setBlocksConnectionAtResume:) BOOL _blocksConnectionAtResume; // @synthesize _blocksConnectionAtResume;
 @property(readonly, nonatomic) IMDaemonListener *listener; // @synthesize listener=_daemonListener;
-- (void).cxx_destruct;
 - (void)systemApplicationDidResume;
 - (void)systemApplicationWillEnterForeground;
 - (void)systemApplicationDidEnterBackground;
@@ -86,7 +90,6 @@
 - (void)_addressBookChanged:(id)arg1;
 - (void)setMyStatus:(unsigned long long)arg1 message:(id)arg2 forAccount:(id)arg3;
 - (void)setMyStatus:(unsigned long long)arg1 message:(id)arg2;
-- (void)setMyProfile:(id)arg1;
 - (void)setMyPicture:(id)arg1 smallPictureData:(id)arg2;
 - (id)_remoteObject;
 - (BOOL)setCapabilities:(unsigned int)arg1 forListenerID:(id)arg2;
@@ -109,6 +112,8 @@
 - (void)_handleDaemonException:(id)arg1;
 - (void)_agentDidLaunchNotification:(id)arg1;
 - (void)dealloc;
+- (void)_handleReceivedQOSClassWhileServicingRequestsNotification:(id)arg1;
+- (void)requestQOSClassOfAgentWhileServicingRequests:(CDUnknownBlockType)arg1;
 - (id)init;
 
 @end

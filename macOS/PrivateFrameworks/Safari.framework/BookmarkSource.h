@@ -7,20 +7,14 @@
 #import "NSObject.h"
 
 #import "BookmarkSource.h"
-#import "NSMenuDelegate.h"
-
-@class NSMapTable, NSMutableSet, NSString;
 
 __attribute__((visibility("hidden")))
-@interface BookmarkSource : NSObject <BookmarkSource, NSMenuDelegate>
+@interface BookmarkSource : NSObject <BookmarkSource>
 {
-    NSMutableSet *_updatedBookmarkSourceMenus;
-    NSMapTable *_tabPlacementHintsForBookmarkSourceMenus;
 }
 
-- (void).cxx_destruct;
-- (id)bookmarkSourceMenuTitle;
 - (id)imageForContentItem:(id)arg1;
+- (id)imageURLStringForContentItem:(id)arg1;
 - (id)titleStringForContentItem:(id)arg1;
 - (id)addressStringForContentItem:(id)arg1;
 - (id)bookmarkSourceImage;
@@ -42,23 +36,10 @@ __attribute__((visibility("hidden")))
 - (id)child:(unsigned int)arg1 ofContentItem:(id)arg2;
 - (BOOL)contentItemCanHaveChildren:(id)arg1;
 - (BOOL)contentItemCanBeSearchResult:(id)arg1;
-- (BOOL)deleteContentItems:(id)arg1 withParentWindow:(id)arg2 undoManager:(id)arg3;
+- (BOOL)deleteContentItems:(id)arg1;
 - (BOOL)canDeleteContents;
 - (BOOL)canCopyContents;
 - (void)refreshContents;
-- (BOOL)menuHasKeyEquivalent:(id)arg1 forEvent:(id)arg2 target:(id *)arg3 action:(SEL *)arg4;
-- (BOOL)menuNeedsRealUpdate:(id)arg1;
-- (void)setMenu:(id)arg1 needsRealUpdate:(BOOL)arg2;
-- (void)setAllMenusNeedRealUpdate;
-- (void)removeBookmarkSourceMenu:(id)arg1;
-- (struct TabPlacementHint)tabPlacementHintForMenu:(id)arg1;
-- (void)addBookmarkSourceMenu:(id)arg1 withTabPlacementHint:(const struct TabPlacementHint *)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

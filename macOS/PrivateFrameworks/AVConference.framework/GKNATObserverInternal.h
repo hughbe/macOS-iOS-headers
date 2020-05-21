@@ -11,7 +11,7 @@
 __attribute__((visibility("hidden")))
 @interface GKNATObserverInternal : GKNATObserver
 {
-    id <GKNATObserverDelegate> _delegate;
+    id _delegate;
     struct __SCDynamicStore *_dynamicStore;
     NSRecursiveLock *_xNATCheck;
     int _lastReportedNATType;
@@ -44,21 +44,21 @@ __attribute__((visibility("hidden")))
 - (id)nameForNetworkWithIPPort:(struct tagIPPORT *)arg1 interfaceName:(id)arg2;
 - (void)tryNATCheckWithDelay:(double)arg1;
 - (void)clearRetries;
-- (void)HTTPSCheckWithIPPort:(struct tagIPPORT *)arg1 ipv6Prefix:(CDStruct_c3d3b44c *)arg2 useCache:(BOOL)arg3;
-- (void)HTTPCheckWithIPPort:(struct tagIPPORT *)arg1 ipv6Prefix:(CDStruct_c3d3b44c *)arg2 useCache:(BOOL)arg3;
-- (void)NATCheckWithIPPort:(struct tagIPPORT *)arg1 ipv6Prefix:(CDStruct_c3d3b44c *)arg2 useCache:(BOOL)arg3;
+- (void)HTTPSCheckWithIPPort:(struct tagIPPORT *)arg1 ipv6Prefix:(const CDStruct_c3d3b44c *)arg2 useCache:(BOOL)arg3;
+- (void)HTTPCheckWithIPPort:(struct tagIPPORT *)arg1 ipv6Prefix:(const CDStruct_c3d3b44c *)arg2 useCache:(BOOL)arg3;
+- (void)NATCheckWithIPPort:(struct tagIPPORT *)arg1 ipv6Prefix:(const CDStruct_c3d3b44c *)arg2 useCache:(BOOL)arg3;
 - (void)cacheNATFlags:(id)arg1 forNetwork:(id)arg2;
 - (id)lookupCachedNATFlagsForNetwork:(id)arg1;
 - (void)updateNatTypeCache:(id)arg1;
-- (id)retrieveNatTypeCache;
+- (id)copyNatTypeCache;
 - (void)updateNatTypeCache_OSXGamedScheme:(id)arg1;
-- (id)retrieveNatTypeCache_OSXGamedScheme;
+- (id)copyNatTypeCache_OSXGamedScheme;
 - (void)updateNatTypeCache_CachePlistScheme:(id)arg1;
-- (id)retrieveNatTypeCache_CachePlistScheme;
+- (id)copyNatTypeCachePlistScheme;
 - (BOOL)ensureNatCachePathExists;
 - (BOOL)theObserverRunsInFaceTime;
-- (int)callHTTPTestFromIPPort:(struct tagIPPORT *)arg1 ipv6Prefix:(CDStruct_c3d3b44c *)arg2 ToServer:(id)arg3 isSSL:(BOOL)arg4;
-- (struct tagCommNATInfo *)callCommNATTestFromIPPort:(struct tagIPPORT *)arg1 ipv6Prefix:(CDStruct_c3d3b44c *)arg2;
+- (int)callHTTPTestFromIPPort:(struct tagIPPORT *)arg1 ipv6Prefix:(const CDStruct_c3d3b44c *)arg2 ToServer:(id)arg3 isSSL:(BOOL)arg4;
+- (struct tagCommNATInfo *)callCommNATTestFromIPPort:(struct tagIPPORT *)arg1 ipv6Prefix:(const CDStruct_c3d3b44c *)arg2;
 - (id)delegate;
 - (void)setDelegate:(id)arg1;
 - (void)reportNATType;
@@ -69,7 +69,7 @@ __attribute__((visibility("hidden")))
 - (unsigned int)setTCPFlags:(unsigned int)arg1 forInterface:(id)arg2 isCached:(BOOL)arg3;
 - (unsigned int)setCommNATFlags:(unsigned int)arg1 forInterface:(id)arg2 isCached:(BOOL)arg3;
 - (unsigned int)setFlags:(unsigned int)arg1 forInterface:(id)arg2 isCached:(BOOL)arg3 isCachedKey:(id)arg4 mask:(unsigned int)arg5;
-- (int)natTypeForCommNATFlags:(unsigned int)arg1 isCarrier:(BOOL)arg2 commnatFlagsCached:(BOOL)arg3 tcpFlagsCached:(BOOL)arg4 sslFlagsCached:(BOOL)arg5;
+- (int)natTypeForCommNATFlags:(unsigned int)arg1 isCarrier:(BOOL)arg2;
 - (void)dealloc;
 - (oneway void)release;
 - (id)initWithOptions:(id)arg1;

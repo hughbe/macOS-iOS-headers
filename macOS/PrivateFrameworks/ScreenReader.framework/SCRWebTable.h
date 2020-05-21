@@ -8,39 +8,37 @@
 
 #import "SCRWebElementAutoDrillAndAnnounceNavigationProtocol.h"
 
-@class NSMutableArray, NSSet;
-
 __attribute__((visibility("hidden")))
 @interface SCRWebTable : SCRTable <SCRWebElementAutoDrillAndAnnounceNavigationProtocol>
 {
-    BOOL _justLandedOnTable;
-    BOOL _arrivedAtStart;
-    long long _tableRequiresInteraction;
-    NSMutableArray *_cachedBrailleLine;
-    NSSet *_cachedRetainedElements;
-    unsigned long long _previousBrailleRowIndex;
+    unsigned char _tableRequiresInteraction;
+    unsigned long long __previousBrailleRowIndex;
 }
 
+@property(nonatomic) unsigned long long _previousBrailleRowIndex; // @synthesize _previousBrailleRowIndex=__previousBrailleRowIndex;
+- (void)_outputBorderDescriptionForRequest:(id)arg1 direction:(long long)arg2;
 - (id)emptyCellDescription;
 - (BOOL)toggleWebTableInteractability:(id)arg1 request:(id)arg2;
-- (id)_createWebTableDomainKey;
+- (id)_newWebTableDomainKey;
 - (BOOL)trackElementWithGestureEvent:(id)arg1 request:(id)arg2;
 - (unsigned long long)rowCount;
 - (void)addDescendantsToArray:(id)arg1 additionalToRetain:(id)arg2 additionalToSkip:(id)arg3;
-- (void)buildBrailleLineWithFocusedElement:(id)arg1;
+- (void)setBrailleLineWithFocusedElement:(id)arg1 forceRebuild:(BOOL)arg2;
+- (BOOL)allowDirectNavigationBetweenContentOfRows;
 - (BOOL)webElementSuperInteractRightWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)webElementSuperInteractLeftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)webElementSuperInteractDownWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)webElementSuperInteractUpWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownShiftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpShiftWithEvent:(id)arg1 request:(id)arg2;
+- (BOOL)allowStopInteractionIndependentOfGroupingMode;
 - (BOOL)interactRightShiftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactRightWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactLeftShiftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactLeftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpWithEvent:(id)arg1 request:(id)arg2;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 - (BOOL)_handleMovementWithEvent:(id)arg1 inDirection:(long long)arg2 request:(id)arg3 lastElement:(id)arg4 jumpToBookend:(BOOL)arg5;
 - (BOOL)canWrapWhileNavigating;
 - (BOOL)needToRebuildChildren;
@@ -61,8 +59,10 @@ __attribute__((visibility("hidden")))
 - (BOOL)includeColumnIndices;
 - (void)addItemDescriptionForSearchToRequest:(id)arg1;
 - (void)addItemDescriptionForInteractionToRequest:(id)arg1;
+- (void)_addRowColumnInfoForCell:(id)arg1 request:(id)arg2 includeColumnIndex:(BOOL)arg3;
 - (void)addItemDescriptionToRequest:(id)arg1;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)moveToBookmarkInDirection:(long long)arg1 withEvent:(id)arg2 request:(id)arg3;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (void)endFocus;
 - (void)setFocusedChild:(id)arg1;
 - (id)focusOntoUIElement:(id)arg1 withScrolling:(BOOL)arg2 withSelection:(BOOL)arg3;
@@ -71,18 +71,14 @@ __attribute__((visibility("hidden")))
 - (id)fullItemDescriptionForMenu;
 - (void)addItemDescriptionForEndInteractionToRequest:(id)arg1;
 - (void)addEndBookendToRequest:(id)arg1;
-- (id)statusDescriptionWithOptionsMask:(int)arg1;
+- (id)statusDescription;
 - (BOOL)allowFocusThroughSingleChild;
 - (BOOL)_moveFirstWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
 - (BOOL)_moveLastWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
 - (void)beginFocusFromElement:(id)arg1 withEvent:(id)arg2;
 - (void)focusOntoAutoDrillAndAnnouceWebElement:(id)arg1;
-- (void)setFocusArrivedFromFront:(BOOL)arg1;
-- (BOOL)focusArrivedFromFront;
-- (void)setFocusIsOnElement:(BOOL)arg1;
-- (BOOL)focusIsOnElement;
 - (BOOL)_webTableRequiresInteraction;
-- (BOOL)webTableRequiresInteraction;
+- (BOOL)requiresInteraction;
 - (Class)classForChildUIElement:(id)arg1 parent:(id)arg2;
 - (BOOL)isDepthLevelElement;
 - (BOOL)isWebTable;

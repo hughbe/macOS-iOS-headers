@@ -6,13 +6,17 @@
 
 #import "CNKeyDescriptor.h"
 
-@class NSSet, NSString;
+@class CNContactKeyVector, NSString;
 
 @protocol CNKeyDescriptor_Private <CNKeyDescriptor>
+- (CNContactKeyVector *)_cn_ignorableKeys;
+- (CNContactKeyVector *)_cn_optionalKeys;
+- (CNContactKeyVector *)_cn_requiredKeys;
 - (void)_cn_executeGetterForRepresentedKeys:(id (^)(NSString *))arg1;
 
 @optional
+- (void)_cn_setUnauthorizedKeys:(CNContactKeyVector *)arg1;
+- (CNContactKeyVector *)_cn_unauthorizedKeys;
 - (NSString *)_cn_recursiveDescriptionWithPrefix:(NSString *)arg1;
-- (NSSet *)_cn_requiredKeys;
 @end
 

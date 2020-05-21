@@ -16,7 +16,7 @@ __attribute__((visibility("hidden")))
     DDHighlightObject *highlight;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (void)resetOffsets;
 - (id)initWithHighlight:(id)arg1;
 

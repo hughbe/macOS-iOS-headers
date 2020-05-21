@@ -10,17 +10,17 @@
 
 @interface IMAPFetchCommand : IMAPSingleCommand
 {
+    NSIndexSet *_messageNumbers;
     NSMutableArray *_dataItems;
     id <IMAPFetchResponseHandler> _responseHandler;
-    NSIndexSet *_messageNumbers;
 }
 
 + (id)_fetchDataItemsForMessageSkeletons;
 + (id)_headersToFetch;
-@property(copy) NSIndexSet *messageNumbers; // @synthesize messageNumbers=_messageNumbers;
+- (void).cxx_destruct;
 @property(retain) id <IMAPFetchResponseHandler> responseHandler; // @synthesize responseHandler=_responseHandler;
 @property(retain) NSMutableArray *dataItems; // @synthesize dataItems=_dataItems;
-- (void).cxx_destruct;
+@property(copy) NSIndexSet *messageNumbers; // @synthesize messageNumbers=_messageNumbers;
 - (long long)maxAllowedConnectionState;
 - (long long)minRequiredConnectionState;
 - (id)_newMessageSetCommandString;

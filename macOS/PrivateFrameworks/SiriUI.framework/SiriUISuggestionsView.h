@@ -6,22 +6,16 @@
 
 #import "NSView.h"
 
-@class NSArray, NSColor, NSMutableArray, NSMutableOrderedSet, NSString, NSTimer, SiriUIAcousticIDSpinner, SiriUIContentLabel;
+@class NSColor, NSMutableArray, NSString, SiriUIAcousticIDSpinner, SiriUIContentLabel;
 
-__attribute__((visibility("hidden")))
 @interface SiriUISuggestionsView : NSView
 {
     SiriUIContentLabel *_headerLabel;
     SiriUIContentLabel *_oldHeaderLabel;
     SiriUIContentLabel *_subheaderLabel;
     SiriUIContentLabel *_largeSubheaderLabel;
-    NSArray *_suggestionLabels;
-    NSArray *_oldSuggestionLabels;
     BOOL _firstSuggestionPresentation;
-    NSTimer *_updateSuggestionsTimer;
-    NSMutableOrderedSet *_pendedSuggestions;
     SiriUIAcousticIDSpinner *_acousticIDSpinner;
-    unsigned long long _numberOfSuggestions;
     BOOL _useSmallText;
     NSMutableArray *_allConstraints;
     BOOL _springAnimateIn;
@@ -33,6 +27,7 @@ __attribute__((visibility("hidden")))
     struct CGPoint _contentOffset;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <SiriUISuggestionsViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) BOOL springAnimateIn; // @synthesize springAnimateIn=_springAnimateIn;
 @property(nonatomic) struct CGPoint contentOffset; // @synthesize contentOffset=_contentOffset;
@@ -40,7 +35,11 @@ __attribute__((visibility("hidden")))
 @property(copy, nonatomic) NSString *largeSubheaderText; // @synthesize largeSubheaderText=_largeSubheaderText;
 @property(copy, nonatomic) NSString *subheaderText; // @synthesize subheaderText=_subheaderText;
 @property(copy, nonatomic) NSString *headerText; // @synthesize headerText=_headerText;
-- (void).cxx_destruct;
+- (id)accessibilityIdentifier;
+- (id)accessibilityChildren;
+- (id)accessibilityLabel;
+- (id)accessibilityRole;
+- (BOOL)isAccessibilityElement;
 @property(nonatomic) BOOL useSmallText;
 - (void)_updateHeaderFontSize;
 - (BOOL)isFlipped;
@@ -53,23 +52,13 @@ __attribute__((visibility("hidden")))
 - (double)_headerToSubheaderOffset;
 - (unsigned long long)_numberOfSuggestionsToDisplay;
 - (double)_suggestionSpacing;
-- (double)_updateSuggestionsDelay;
 - (void)hideAcousticIDSpinner;
 - (void)_reallyShowAcousticIDSpinner;
 - (void)showAcousticIDSpinner;
-- (void)_updateSuggestions;
-- (void)clearCurrentSuggestions;
-- (BOOL)isShowingSuggestions;
-- (void)stopSuggesting;
-- (void)startSuggesting;
-- (void)_setSuggestionTexts:(id)arg1;
 - (void)animateOutWithCompletion:(CDUnknownBlockType)arg1;
-- (void)_animateOutSuggestionAtIndex:(unsigned long long)arg1;
-- (void)_animateInSuggestionAtIndex:(unsigned long long)arg1;
 - (void)_animateHeaderOut;
 - (void)_animateHeaderIn;
 - (void)updateConstraints;
-- (void)_loadSuggestionsViewsIfNeeded;
 - (void)_loadLargeSubheaderViewIfNeeded;
 - (void)_loadSubheaderViewIfNeeded;
 - (id)initWithFrame:(struct CGRect)arg1;

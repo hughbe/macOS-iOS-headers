@@ -12,6 +12,7 @@
 
 + (id)setBoolWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setBool;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(nonatomic) BOOL value;
 @property(nonatomic) BOOL toggle;

@@ -8,14 +8,14 @@
 
 @class NSArray;
 
-__attribute__((visibility("hidden")))
 @interface _CNObservableEventStaticArrayBufferingStrategy : _CNObservableEventBufferingStrategy
 {
     NSArray *_events;
 }
 
-@property(readonly, nonatomic) NSArray *events; // @synthesize events=_events;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSArray *events; // @synthesize events=_events;
+- (BOOL)isSequenceTerminated;
 - (id)allEvents;
 - (void)addEvent:(id)arg1;
 - (id)initWithEvents:(id)arg1;

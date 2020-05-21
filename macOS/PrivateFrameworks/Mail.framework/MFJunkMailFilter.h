@@ -12,11 +12,11 @@
 {
     struct __LSMMap *_map;
     BOOL _isDirty;
-    BOOL _useCleanMap;
     BOOL _isInTraining;
-    NSURL *_oldMapFileURL;
+    BOOL _useCleanMap;
     NSURL *_mapFileURL;
     NSString *_mapFilePath;
+    NSURL *_oldMapFileURL;
 }
 
 + (id)junkStringForMessage:(id)arg1 withRecorder:(id)arg2;
@@ -27,12 +27,12 @@
 + (BOOL)shouldUpdateTrainingDebt;
 + (id)_junkFilterUsageCounterKeys;
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL useCleanMap; // @synthesize useCleanMap=_useCleanMap;
 @property(nonatomic) BOOL isInTraining; // @synthesize isInTraining=_isInTraining;
+@property(retain, nonatomic) NSURL *oldMapFileURL; // @synthesize oldMapFileURL=_oldMapFileURL;
 @property(copy, nonatomic) NSString *mapFilePath; // @synthesize mapFilePath=_mapFilePath;
 @property(retain, nonatomic) NSURL *mapFileURL; // @synthesize mapFileURL=_mapFileURL;
-@property(retain, nonatomic) NSURL *oldMapFileURL; // @synthesize oldMapFileURL=_oldMapFileURL;
-@property(nonatomic) BOOL useCleanMap; // @synthesize useCleanMap=_useCleanMap;
-- (void).cxx_destruct;
 - (void)_saveTrainingWithDelay;
 @property(nonatomic) BOOL isDirty;
 - (void)userDidReplyToMessage:(id)arg1;

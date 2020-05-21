@@ -6,15 +6,14 @@
 
 #import "NSObject.h"
 
-@class AVWeakReference, NSObject<OS_dispatch_queue>;
+@class NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVOutputDeviceDiscoverySessionInternal : NSObject
 {
-    AVWeakReference *weakReference;
-    NSObject<OS_dispatch_queue> *pickerQueue;
-    struct OpaqueFigEndpointPicker *endpointPicker;
+    NSObject<OS_dispatch_queue> *ivarAccessQueue;
+    id <AVOutputDeviceDiscoverySessionImpl> impl;
     long long discoveryMode;
-    unsigned long long features;
 }
 
 @end

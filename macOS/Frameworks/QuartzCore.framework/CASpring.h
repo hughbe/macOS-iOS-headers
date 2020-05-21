@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
+#import "NSSecureCoding.h"
 
 @class CALayer, CAValueFunction, NSString;
 
-@interface CASpring : NSObject <NSCopying, NSMutableCopying, NSCoding>
+@interface CASpring : NSObject <NSCopying, NSMutableCopying, NSSecureCoding>
 {
     NSString *_name;
     CALayer *_layerA;
@@ -28,6 +28,7 @@
 }
 
 + (void)CAMLParserStartElement:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (id)attributesForKey:(id)arg1;
 + (id)properties;
 + (id)defaultValueForKey:(id)arg1;
@@ -46,7 +47,7 @@
 - (id)valueForKey:(id)arg1;
 - (struct Object *)CA_copyRenderValue;
 - (void)dealloc;
-@property __weak id delegate;
+@property __weak id <CASpringDelegate> delegate;
 @property(retain) CAValueFunction *function;
 @property double restLength;
 @property double damping;

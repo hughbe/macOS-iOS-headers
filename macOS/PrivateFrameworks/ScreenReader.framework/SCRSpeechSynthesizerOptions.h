@@ -20,7 +20,7 @@ __attribute__((visibility("hidden")))
     double _volume;
     double _customizedNormalVolume;
     double _customizedMaxVolume;
-    double _customizedMimVolume;
+    double _customizedMinVolume;
     double _customizedMinRate;
     double _customizedMaxRate;
     double _customizedNormalRate;
@@ -31,7 +31,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) double customizedNormalRate; // @synthesize customizedNormalRate=_customizedNormalRate;
 @property(nonatomic) double customizedMaxRate; // @synthesize customizedMaxRate=_customizedMaxRate;
 @property(nonatomic) double customizedMinRate; // @synthesize customizedMinRate=_customizedMinRate;
-@property(nonatomic) double customizedMimVolume; // @synthesize customizedMimVolume=_customizedMimVolume;
+@property(nonatomic) double customizedMinVolume; // @synthesize customizedMinVolume=_customizedMinVolume;
 @property(nonatomic) double customizedMaxVolume; // @synthesize customizedMaxVolume=_customizedMaxVolume;
 @property(nonatomic) double customizedNormalVolume; // @synthesize customizedNormalVolume=_customizedNormalVolume;
 @property(nonatomic) double volume; // @synthesize volume=_volume;

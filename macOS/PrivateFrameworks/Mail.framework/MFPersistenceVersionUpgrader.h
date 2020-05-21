@@ -24,14 +24,13 @@
 + (BOOL)renameMigrationDirectoryToFinalDirectory:(long long)arg1;
 + (BOOL)renameVersionDirectory:(long long)arg1 toMigrationDirectory:(long long)arg2;
 + (id)log;
+- (void).cxx_destruct;
 @property(retain, nonatomic) MCActivityAggregate *activity; // @synthesize activity=_activity;
 @property(retain, nonatomic) MCActivityMonitor *monitor; // @synthesize monitor=_monitor;
 @property(nonatomic) __weak id <MFPersistenceVersionUpgraderDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)resetProgressItemsWithTotal:(unsigned long long)arg1 andStatusMessage:(id)arg2;
 - (void)incrementProgressIndicator;
 - (void)setProgressItemTotal:(unsigned long long)arg1;
-- (void)_backupV3Directory;
 - (void)run;
 @property(readonly) BOOL requiresVersionMigration;
 
@@ -40,7 +39,6 @@
 @property(readonly, copy) NSString *description;
 @property(readonly, copy, nonatomic) NSString *displayName;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) BOOL isSmartMailbox;
 @property(readonly) Class superclass;
 
 @end

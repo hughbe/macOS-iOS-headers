@@ -30,6 +30,7 @@
 @property(nonatomic) BOOL respondsToMovement; // @synthesize respondsToMovement=_respondsToMovement;
 @property(nonatomic) unsigned long long numberOfVisibleLines; // @synthesize numberOfVisibleLines=_numberOfVisibleLines;
 @property(readonly, nonatomic) unsigned long long lineCount; // @synthesize lineCount=_lineCount;
+- (id)candidateForIndex:(id)arg1;
 - (id)currentlySelectedUnit;
 - (unsigned long long)currentCandidateIndex;
 - (unsigned long long)layoutUnitLineCount;

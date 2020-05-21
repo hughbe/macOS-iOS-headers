@@ -46,6 +46,7 @@
     } _has;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isAdvertisement; // @synthesize isAdvertisement=_isAdvertisement;
 @property(nonatomic) BOOL isAlwaysLive; // @synthesize isAlwaysLive=_isAlwaysLive;
 @property(retain, nonatomic) NSData *artworkDataDigest; // @synthesize artworkDataDigest=_artworkDataDigest;
@@ -95,7 +96,6 @@
 @property(nonatomic) BOOL hasDuration;
 @property(readonly, nonatomic) BOOL hasArtist;
 @property(readonly, nonatomic) BOOL hasAlbum;
-- (void)dealloc;
 
 @end
 

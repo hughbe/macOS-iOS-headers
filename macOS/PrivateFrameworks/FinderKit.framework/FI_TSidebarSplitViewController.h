@@ -11,10 +11,10 @@
 __attribute__((visibility("hidden")))
 @interface FI_TSidebarSplitViewController : NSSplitViewController
 {
-    struct TNSRef<NSSplitViewItem *, void> _browserSplitViewItem;
-    struct TNSRef<FI_TBrowserViewContainerController *, void> _browserViewContainerController;
-    struct TNSRef<NSSplitViewItem *, void> _sidebarSplitViewItem;
-    struct TNSRef<FI_TSidebarViewController *, void> _sidebarViewController;
+    struct TNSRef<NSSplitViewItem, void> _browserSplitViewItem;
+    struct TNSRef<FI_TBrowserViewContainerController, void> _browserViewContainerController;
+    struct TNSRef<NSSplitViewItem, void> _sidebarSplitViewItem;
+    struct TNSRef<FI_TSidebarViewController, void> _sidebarViewController;
     double _sidebarColumnWidthCache;
     _Bool _snapToOptimalSidebarWidth;
     long long _mediaBrowserShownTypes;
@@ -27,10 +27,10 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)keyPathsForValuesAffectingIsSidebarColumnCollapsed;
-@property(nonatomic, getter=isSpringLoaded) _Bool springLoaded; // @synthesize springLoaded=_springLoaded;
-@property(nonatomic) _Bool shouldPersistContainerSidebarWidth; // @synthesize shouldPersistContainerSidebarWidth=_shouldPersistContainerSidebarWidth;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic, getter=isSpringLoaded) _Bool springLoaded; // @synthesize springLoaded=_springLoaded;
+@property(nonatomic) _Bool shouldPersistContainerSidebarWidth; // @synthesize shouldPersistContainerSidebarWidth=_shouldPersistContainerSidebarWidth;
 - (double)splitView:(id)arg1 constrainSplitPosition:(double)arg2 ofSubviewAt:(long long)arg3;
 - (void)splitViewDidResizeSubviews:(id)arg1;
 - (struct CGImage *)newSidebarImageForFullScreenAnimationInitialCoverWindow:(struct CGRect *)arg1;
@@ -42,13 +42,15 @@ __attribute__((visibility("hidden")))
 - (void)updateSidebarSelectionForTarget:(const struct TFENode *)arg1;
 - (void)updateSidebarSelectionForCurrentTarget;
 - (void)removeNodeFromSidebar:(const struct TFENode *)arg1;
-- (_Bool)hidesSharedSection;
-- (void)setHidesSharedSection:(_Bool)arg1;
+- (_Bool)hidesSharedSharedItems;
+- (void)setHidesSharedItems:(_Bool)arg1;
 - (void)setMediaBrowserShownTypes:(unsigned long long)arg1;
 - (void)saveSidebarColumnWidthToDisk:(double)arg1 didUserResizeSidebar:(_Bool)arg2;
+- (void)setSidebarColumnWidth:(double)arg1;
 - (struct CGSize)sidebarColumnOptimalSize;
 - (double)sidebarColumnExpandedWidth;
 - (double)sidebarColumnWidth;
+- (double)computeOptimalInitialWidthAfterFullPopulation;
 - (struct CGRect)sidebarColumnFrameInWindow:(_Bool)arg1;
 - (void)removeSidebarColumn;
 - (void)addSidebarColumn:(id)arg1 initialWidth:(double)arg2 containerLayoutManager:(id)arg3;
@@ -65,8 +67,7 @@ __attribute__((visibility("hidden")))
 - (void)updateHoldingPriorities;
 @property(retain) FI_TSplitView *splitView; // @dynamic splitView;
 - (void)aboutToTearDown;
-- (id)init;
-- (id)initWithInitialSidebarWidth:(double)arg1 containerLayoutManager:(id)arg2 browserContainerController:(id)arg3;
+- (id)initWithFrame:(const struct CGRect *)arg1 initialSidebarWidth:(double)arg2 containerLayoutManager:(id)arg3 browserContainerController:(id)arg4;
 
 @end
 

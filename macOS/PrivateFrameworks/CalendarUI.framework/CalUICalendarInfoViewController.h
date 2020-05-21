@@ -14,18 +14,21 @@
 @interface CalUICalendarInfoViewController : NSViewController <NSPopoverDelegate, EKViewWindowControllerPrivate>
 {
     NSPopover *_popover;
+    id <CalUICalendarInfoViewDelegate> _delegate;
     EKCalendarViewController *_calendarViewController;
 }
 
-@property(retain) EKCalendarViewController *calendarViewController; // @synthesize calendarViewController=_calendarViewController;
-@property(retain) NSPopover *popover; // @synthesize popover=_popover;
 - (void).cxx_destruct;
+@property(retain) EKCalendarViewController *calendarViewController; // @synthesize calendarViewController=_calendarViewController;
+@property __weak id <CalUICalendarInfoViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain) NSPopover *popover; // @synthesize popover=_popover;
 - (void)didCommitItem;
 - (void)controllerCouldNotSaveWithError:(id)arg1;
 - (void)showPopoverRelativeToRect:(struct CGRect)arg1 ofView:(id)arg2 preferredEdge:(unsigned long long)arg3;
 - (id)view;
 - (void)setCalendar:(id)arg1;
 - (void)popoverDidClose:(id)arg1;
+- (void)popoverWillClose:(id)arg1;
 - (BOOL)popoverShouldClose:(id)arg1;
 - (void)popoverDidShow:(id)arg1;
 - (void)dismissPopover;

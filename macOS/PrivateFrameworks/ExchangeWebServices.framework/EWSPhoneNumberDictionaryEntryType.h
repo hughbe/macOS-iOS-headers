@@ -12,14 +12,14 @@
 
 @interface EWSPhoneNumberDictionaryEntryType : NSObject <XSDefinitionProvider>
 {
-    NSString *_Key;
     NSString *_contentString;
+    NSString *_Key;
 }
 
 + (id)definition;
-@property(copy, nonatomic) NSString *contentString; // @synthesize contentString=_contentString;
-@property(copy, nonatomic) NSString *Key; // @synthesize Key=_Key;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSString *Key; // @synthesize Key=_Key;
+@property(copy, nonatomic) NSString *contentString; // @synthesize contentString=_contentString;
 @property(readonly, copy) NSString *description;
 
 // Remaining properties

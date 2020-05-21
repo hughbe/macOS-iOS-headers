@@ -8,18 +8,16 @@
 
 @interface WFCategoryJudgement : NSObject
 {
-    float score;
-    long long category;
+    float _score;
+    long long _category;
 }
 
 + (id)categoryJudgementWithCategory:(long long)arg1 score:(float)arg2;
+@property long long category; // @synthesize category=_category;
+@property float score; // @synthesize score=_score;
 - (id)description;
 - (long long)compareByScore:(id)arg1;
 - (long long)compareByCategory:(id)arg1;
-- (void)setCategory:(long long)arg1;
-- (long long)category;
-- (void)setScore:(float)arg1;
-- (float)score;
 
 @end
 

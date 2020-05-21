@@ -6,23 +6,25 @@
 
 #import "NSObject.h"
 
-@class PHModelChangeDescriptor, PHObject;
+@class PHObject;
 
 @interface PHObjectChangeDetails : NSObject
 {
     PHObject *_objectBeforeChanges;
     PHObject *_objectAfterChanges;
     BOOL _assetContentChanged;
-    PHModelChangeDescriptor *_changeDescriptor;
+    BOOL _assetCollectionTitlePropertiesChanged;
 }
 
 - (void).cxx_destruct;
-- (void)calculateObjectAfterChanges;
-@property(readonly) BOOL assetContentChanged;
+- (id)description;
 @property(readonly) BOOL objectWasDeleted;
+@property(readonly, nonatomic) BOOL assetCollectionTitlePropertiesChanged;
+@property(readonly) BOOL assetContentChanged;
+- (void)_calculateDiffs;
 @property(readonly) PHObject *objectAfterChanges;
 @property(readonly) PHObject *objectBeforeChanges;
-- (id)initWithObject:(id)arg1 modelChangeDescriptor:(id)arg2;
+- (id)initWithPHObject:(id)arg1;
 
 @end
 

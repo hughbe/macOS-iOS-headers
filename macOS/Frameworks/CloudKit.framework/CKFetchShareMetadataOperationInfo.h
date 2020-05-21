@@ -6,20 +6,24 @@
 
 #import <CloudKit/CKOperationInfo.h>
 
-@class NSArray;
+#import "NSSecureCoding.h"
 
-@interface CKFetchShareMetadataOperationInfo : CKOperationInfo
+@class NSArray, NSDictionary;
+
+@interface CKFetchShareMetadataOperationInfo : CKOperationInfo <NSSecureCoding>
 {
     BOOL _shouldFetchRootRecord;
     NSArray *_shareURLsToFetch;
     NSArray *_rootRecordDesiredKeys;
+    NSDictionary *_shareInvitationTokensByShareURL;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSDictionary *shareInvitationTokensByShareURL; // @synthesize shareInvitationTokensByShareURL=_shareInvitationTokensByShareURL;
 @property(retain, nonatomic) NSArray *rootRecordDesiredKeys; // @synthesize rootRecordDesiredKeys=_rootRecordDesiredKeys;
 @property(nonatomic) BOOL shouldFetchRootRecord; // @synthesize shouldFetchRootRecord=_shouldFetchRootRecord;
 @property(retain, nonatomic) NSArray *shareURLsToFetch; // @synthesize shareURLsToFetch=_shareURLsToFetch;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 

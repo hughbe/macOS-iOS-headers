@@ -4,30 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Safari/SafariExtensionData.h>
 
-@class AppExtensionContextMenu, AppExtensionToolbarItem, AppExtensionWebsiteAccess, NSArray, NSString;
+@class AppExtensionContextMenu, AppExtensionToolbarItem;
 
 __attribute__((visibility("hidden")))
-@interface SafariAppExtensionData : NSObject
+@interface SafariAppExtensionData : SafariExtensionData
 {
-    BOOL _atLeastOneLegacyExtensionWasEnabled;
     AppExtensionToolbarItem *_toolbarItem;
     AppExtensionContextMenu *_contextMenu;
-    NSArray *_injectedScripts;
-    NSArray *_injectedStyleSheets;
-    AppExtensionWebsiteAccess *_websiteAccess;
-    NSString *_developerIdentifier;
 }
 
-@property(nonatomic) BOOL atLeastOneLegacyExtensionWasEnabled; // @synthesize atLeastOneLegacyExtensionWasEnabled=_atLeastOneLegacyExtensionWasEnabled;
-@property(copy, nonatomic) NSString *developerIdentifier; // @synthesize developerIdentifier=_developerIdentifier;
-@property(retain, nonatomic) AppExtensionWebsiteAccess *websiteAccess; // @synthesize websiteAccess=_websiteAccess;
-@property(copy, nonatomic) NSArray *injectedStyleSheets; // @synthesize injectedStyleSheets=_injectedStyleSheets;
-@property(copy, nonatomic) NSArray *injectedScripts; // @synthesize injectedScripts=_injectedScripts;
+- (void).cxx_destruct;
 @property(retain, nonatomic) AppExtensionContextMenu *contextMenu; // @synthesize contextMenu=_contextMenu;
 @property(retain, nonatomic) AppExtensionToolbarItem *toolbarItem; // @synthesize toolbarItem=_toolbarItem;
-- (void).cxx_destruct;
 
 @end
 

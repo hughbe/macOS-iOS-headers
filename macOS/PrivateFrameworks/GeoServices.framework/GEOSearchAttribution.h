@@ -8,19 +8,34 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray, NSString;
+@class NSMutableArray, NSString, PBDataReader, PBUnknownFields;
 
 @interface GEOSearchAttribution : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_attributionURLs;
     NSString *_sourceIdentifier;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     unsigned int _sourceVersion;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_attributionURLs:1;
+        unsigned int read_sourceIdentifier:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_attributionURLs:1;
+        unsigned int wrote_sourceIdentifier:1;
+        unsigned int wrote_sourceVersion:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)attributionURLsType;
-@property(retain, nonatomic) NSMutableArray *attributionURLs; // @synthesize attributionURLs=_attributionURLs;
-@property(nonatomic) unsigned int sourceVersion; // @synthesize sourceVersion=_sourceVersion;
-@property(retain, nonatomic) NSString *sourceIdentifier; // @synthesize sourceIdentifier=_sourceIdentifier;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -28,13 +43,21 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)attributionURLsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)attributionURLsCount;
+- (void)_addNoFlagsAttributionURLs:(id)arg1;
 - (void)addAttributionURLs:(id)arg1;
 - (void)clearAttributionURLs;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *attributionURLs;
+- (void)_readAttributionURLs;
+@property(nonatomic) unsigned int sourceVersion;
+@property(retain, nonatomic) NSString *sourceIdentifier;
+- (void)_readSourceIdentifier;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

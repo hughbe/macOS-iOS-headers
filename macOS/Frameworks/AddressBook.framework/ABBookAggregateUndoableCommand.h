@@ -4,22 +4,23 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABBookUndoableCommand.h>
+#import "ABBookUndoableCommand.h"
 
 #import "ABSaveRequestCommand.h"
 
 @class ABAddressBook, NSArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABBookAggregateUndoableCommand : ABBookUndoableCommand <ABSaveRequestCommand>
 {
     NSString *_actionName;
     NSArray *_undoableCommands;
     ABAddressBook *_addressBook;
     BOOL _shouldSave;
+    BOOL ignoresGuardianRestrictions;
 }
 
 + (id)builder;
+@property(nonatomic) BOOL ignoresGuardianRestrictions; // @synthesize ignoresGuardianRestrictions;
 - (void)configureVisitor:(id)arg1;
 - (void)visitCommandsWithVisitor:(id)arg1 enumerationOptions:(unsigned long long)arg2;
 - (void)visitCommandsWithUnconfiguredVisitor:(id)arg1 enumerationOptions:(unsigned long long)arg2;

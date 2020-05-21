@@ -6,10 +6,19 @@
 
 #import <FamilyCircle/FAFamilyCircleRequest.h>
 
+@class SSAccount, UIViewController;
+
 @interface FAFamilySettings : FAFamilyCircleRequest
 {
+    BOOL _isFirstRun;
+    UIViewController *_presentingViewController;
+    SSAccount *_iTunesAccount;
 }
 
+- (void).cxx_destruct;
+@property BOOL isFirstRun; // @synthesize isFirstRun=_isFirstRun;
+@property(retain) SSAccount *iTunesAccount; // @synthesize iTunesAccount=_iTunesAccount;
+@property UIViewController *presentingViewController; // @synthesize presentingViewController=_presentingViewController;
 - (void)_launchPrefsUsingDaemon;
 - (void)launchiCloudFamilySettings;
 

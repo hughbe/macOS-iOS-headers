@@ -8,28 +8,34 @@
 
 #import "NSCopying.h"
 
-@class CKDPContactInformation, CKDPIdentifier, CKDPProtectionInfo, NSData;
+@class CKDPContactInformation, CKDPDate, CKDPIdentifier, CKDPProtectionInfo, NSData;
 
-__attribute__((visibility("hidden")))
 @interface CKDPParticipant : PBCodable <NSCopying>
 {
     long long _acceptTimestamp;
+    CKDPDate *_acceptedTimestampDate;
     CKDPContactInformation *_contactInformation;
+    CKDPDate *_inviteTimestampDate;
     CKDPIdentifier *_inviterId;
+    int _keyHealth;
     int _outOfNetworkKeyType;
     NSData *_outOfNetworkPrivateKey;
     CKDPIdentifier *_participantId;
     int _participantType;
     int _permission;
     CKDPProtectionInfo *_protectionInfo;
+    NSData *_protectionInfoPublicKey;
     CKDPProtectionInfo *_publicKey;
     int _publicKeyVersion;
     int _state;
     CKDPIdentifier *_userId;
     BOOL _acceptedInProcess;
     BOOL _createdInProcess;
+    BOOL _isInNetwork;
+    BOOL _isOrgUser;
     struct {
         unsigned int acceptTimestamp:1;
+        unsigned int keyHealth:1;
         unsigned int outOfNetworkKeyType:1;
         unsigned int participantType:1;
         unsigned int permission:1;
@@ -37,9 +43,17 @@ __attribute__((visibility("hidden")))
         unsigned int state:1;
         unsigned int acceptedInProcess:1;
         unsigned int createdInProcess:1;
+        unsigned int isInNetwork:1;
+        unsigned int isOrgUser:1;
     } _has;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) CKDPDate *inviteTimestampDate; // @synthesize inviteTimestampDate=_inviteTimestampDate;
+@property(retain, nonatomic) NSData *protectionInfoPublicKey; // @synthesize protectionInfoPublicKey=_protectionInfoPublicKey;
+@property(nonatomic) BOOL isOrgUser; // @synthesize isOrgUser=_isOrgUser;
+@property(retain, nonatomic) CKDPDate *acceptedTimestampDate; // @synthesize acceptedTimestampDate=_acceptedTimestampDate;
+@property(nonatomic) BOOL isInNetwork; // @synthesize isInNetwork=_isInNetwork;
 @property(nonatomic) BOOL acceptedInProcess; // @synthesize acceptedInProcess=_acceptedInProcess;
 @property(nonatomic) int outOfNetworkKeyType; // @synthesize outOfNetworkKeyType=_outOfNetworkKeyType;
 @property(retain, nonatomic) NSData *outOfNetworkPrivateKey; // @synthesize outOfNetworkPrivateKey=_outOfNetworkPrivateKey;
@@ -51,7 +65,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) CKDPContactInformation *contactInformation; // @synthesize contactInformation=_contactInformation;
 @property(retain, nonatomic) CKDPIdentifier *userId; // @synthesize userId=_userId;
 @property(retain, nonatomic) CKDPIdentifier *participantId; // @synthesize participantId=_participantId;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -61,6 +74,15 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasInviteTimestampDate;
+- (int)StringAsKeyHealth:(id)arg1;
+- (id)keyHealthAsString:(int)arg1;
+@property(nonatomic) BOOL hasKeyHealth;
+@property(nonatomic) int keyHealth; // @synthesize keyHealth=_keyHealth;
+@property(readonly, nonatomic) BOOL hasProtectionInfoPublicKey;
+@property(nonatomic) BOOL hasIsOrgUser;
+@property(readonly, nonatomic) BOOL hasAcceptedTimestampDate;
+@property(nonatomic) BOOL hasIsInNetwork;
 @property(nonatomic) BOOL hasAcceptedInProcess;
 @property(nonatomic) BOOL hasPublicKeyVersion;
 @property(nonatomic) int publicKeyVersion; // @synthesize publicKeyVersion=_publicKeyVersion;

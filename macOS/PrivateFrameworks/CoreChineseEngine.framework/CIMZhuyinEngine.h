@@ -8,17 +8,21 @@
 
 #import "CIMMecabraZhuyinEngineDelegate.h"
 
-@class CIMMecabraZhuyinEngine, NSString;
+@class CIMMecabraZhuyinEngine, NSAttributedString, NSString;
 
 @interface CIMZhuyinEngine : CIMBaseEngine <CIMMecabraZhuyinEngineDelegate>
 {
+    NSAttributedString *_inlineText;
     CIMMecabraZhuyinEngine *_mecabraEngine;
     NSString *_selectedCandidateSurface;
 }
 
+- (void).cxx_destruct;
 @property(copy) NSString *selectedCandidateSurface; // @synthesize selectedCandidateSurface=_selectedCandidateSurface;
 @property(retain, nonatomic) CIMMecabraZhuyinEngine *mecabraEngine; // @synthesize mecabraEngine=_mecabraEngine;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSAttributedString *inlineText; // @synthesize inlineText=_inlineText;
+- (void)didHandleSecondaryCandidateSelectionChanged:(id)arg1;
+- (void)updateMecabraEnvironmentWithCandidates:(id)arg1;
 - (id)mecabraEnvironment;
 - (BOOL)forceNoIncrementalSearchPositioning;
 - (id)preConvertedTextForDebugging;
@@ -27,17 +31,21 @@
 - (BOOL)inputModeShowsDynamicCandidates;
 - (BOOL)showsHorizontalWindowInIncrementalSearchMode;
 - (BOOL)incrementalSearchClientShouldHandleEvent:(id)arg1;
+- (id)currentInlineText;
+- (BOOL)isUsingSortingBar;
 - (id)inputModeNameForMecabraEngine:(id)arg1;
 - (void)mecabraEngine:(id)arg1 willDropComposedText:(id)arg2;
 - (void)mecabraEngine:(id)arg1 didUpdateComposedText:(id)arg2 withCursorLocation:(unsigned long long)arg3;
 - (id)mecabraEngine:(id)arg1 textAttributeForStyle:(long long)arg2 atRange:(struct _NSRange)arg3;
+- (void)setSecondaryCandidates:(id)arg1;
 - (id)sortingMethods;
 - (void)showCandidateWindowWithSelectedCandidate:(id)arg1;
-- (id)candidatesForSortingMethod:(id)arg1;
+- (void)didHandleSecondaryCandidateSelected:(id)arg1;
+- (unsigned long long)panelType;
+- (id)candidateListDictionaryWithSortingMethod:(id)arg1;
 - (void)showPunctationCandidates;
-- (void)annotationSelected:(id)arg1 forCandidate:(id)arg2;
-- (void)didHandleCandidateSelectionChanged:(id)arg1;
-- (void)didHandleCandidateSelected:(id)arg1;
+- (void)didHandleCandidateSelectionChanged:(id)arg1 candidateController:(id)arg2;
+- (void)didHandleCandidateSelected:(id)arg1 candidateController:(id)arg2;
 - (void)commitComposition:(id)arg1;
 - (BOOL)handleKeyEvent;
 - (void)updateTextReplacementEntries;

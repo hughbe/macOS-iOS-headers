@@ -24,24 +24,25 @@
     SKUniform *_shaderTimeUniform;
     SKNode *_heartScale;
     float _hapticLoopPeriod;
-    double _heartbreakTime;
     SKTexture *_heartbreakAtlas;
     BOOL _broken;
     float _beatsPerMinute;
     int _duration;
     float _scale;
     double _rotation;
+    double _heartbreakTime;
     struct CGPoint _normalizedCenter;
 }
 
 + (unsigned short)messageType;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) double heartbreakTime; // @synthesize heartbreakTime=_heartbreakTime;
 @property(readonly, nonatomic, getter=isBroken) BOOL broken; // @synthesize broken=_broken;
 @property(nonatomic) double rotation; // @synthesize rotation=_rotation;
 @property(nonatomic) struct CGPoint normalizedCenter; // @synthesize normalizedCenter=_normalizedCenter;
 @property(nonatomic) float scale; // @synthesize scale=_scale;
 @property(nonatomic) int duration; // @synthesize duration=_duration;
 @property(nonatomic) float beatsPerMinute; // @synthesize beatsPerMinute=_beatsPerMinute;
-- (void).cxx_destruct;
 - (double)messageDuration;
 - (void)_startAudioPlayback;
 - (void)_stopAudioPlayback;

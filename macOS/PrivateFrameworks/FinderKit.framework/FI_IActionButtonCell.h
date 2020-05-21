@@ -10,12 +10,9 @@ __attribute__((visibility("hidden")))
 @interface FI_IActionButtonCell : FI_TButtonCell
 {
     _Bool _inRollOverState;
-    struct TNSRef<FI_TTargetActionFunctor *, void> _actionFunctor;
 }
 
 @property(readonly) _Bool inRollOverState; // @synthesize inRollOverState=_inRollOverState;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;

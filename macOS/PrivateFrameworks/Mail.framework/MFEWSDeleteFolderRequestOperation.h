@@ -6,17 +6,18 @@
 
 #import <Mail/MFEWSRequestOperation.h>
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSString;
 
-@interface MFEWSDeleteFolderRequestOperation : MFEWSRequestOperation <NSCoding>
+@interface MFEWSDeleteFolderRequestOperation : MFEWSRequestOperation <NSSecureCoding>
 {
     NSString *_folderIdString;
 }
 
-@property(readonly, copy, nonatomic) NSString *folderIdString; // @synthesize folderIdString=_folderIdString;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSString *folderIdString; // @synthesize folderIdString=_folderIdString;
 - (void)setupOfflineResponse;
 - (id)prepareRequest;
 - (BOOL)isFolderRequest;

@@ -16,10 +16,11 @@ __attribute__((visibility("hidden")))
     unsigned long long keyOptions;
     unsigned long long valueOptions;
     unsigned long long mutations;
-    int growLock;
+    struct os_unfair_lock_s growLock;
     _Bool shouldRehash;
 }
 
++ (BOOL)supportsSecureCoding;
 - (id)allValues;
 - (id)allKeys;
 - (BOOL)isEqual:(id)arg1;
@@ -51,7 +52,6 @@ __attribute__((visibility("hidden")))
 - (id)keyPointerFunctions;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (Class)classForCoder;
 - (id)initWithKeyPointerFunctions:(id)arg1 valuePointerFunctions:(id)arg2 capacity:(unsigned long long)arg3;
 - (id)initWithKeyOptions:(unsigned long long)arg1 valueOptions:(unsigned long long)arg2 capacity:(unsigned long long)arg3;
 - (id)copy;

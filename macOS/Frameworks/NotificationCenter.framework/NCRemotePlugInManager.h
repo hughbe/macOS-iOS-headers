@@ -17,7 +17,7 @@
     NSObject<OS_dispatch_queue> *_processingQueue;
     NSObject<OS_dispatch_source> *_processingTimer;
     NSSet *_pendingPlugIns;
-    NSSet *_knownPlugIns;
+    NSDictionary *_containerToIdentifier;
     NSDictionary *_knownExtensionsByID;
     NSDictionary *_remotePluginsByIdentifier;
     NSString *_extensionType;
@@ -26,17 +26,19 @@
     NSString *_requiredEntitlement;
 }
 
-+ (void)findPluginWithPath:(id)arg1 ofType:(id)arg2 registerIfNecessary:(_Bool)arg3 block:(CDUnknownBlockType)arg4;
++ (void)findPluginWithPath:(id)arg1 ofType:(id)arg2 block:(CDUnknownBlockType)arg3;
 + (Class)_pluginClassForType:(id)arg1;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *requiredEntitlement; // @synthesize requiredEntitlement=_requiredEntitlement;
 @property(readonly, nonatomic) NSError *lastSearchError; // @synthesize lastSearchError=_lastSearchError;
 @property(nonatomic) __weak id delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) NSString *extensionType; // @synthesize extensionType=_extensionType;
-- (void).cxx_destruct;
 - (BOOL)_valideExtension:(id)arg1;
-- (void)_processPluginChanges:(id)arg1;
+- (void)_updateContainerToIdentifierTable:(id)arg1;
+- (void)_processPluginChanges:(id)arg1 currentContainerToIdentifier:(id)arg2;
 - (void)_actuallyStartSearching;
-- (id)pluginByIdentifier:(id)arg1;
+- (id)identifierForPluginIdentifier:(id)arg1;
+- (id)pluginIdentifierForIdentifier:(id)arg1;
 - (void)stopSearching;
 - (void)startSearching;
 @property(readonly, nonatomic) NSArray *allPlugInIdentifiers;

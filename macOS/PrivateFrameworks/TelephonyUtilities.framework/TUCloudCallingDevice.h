@@ -9,24 +9,26 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSString;
+@class NSArray, NSString;
 
 @interface TUCloudCallingDevice : NSObject <NSSecureCoding, NSCopying>
 {
     BOOL _defaultPairedDevice;
+    BOOL _supportsRestrictingSecondaryCalling;
     NSString *_name;
     NSString *_modelIdentifier;
     NSString *_uniqueID;
-    NSString *_phoneNumberURI;
+    NSArray *_linkedUserURIs;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy, nonatomic) NSString *phoneNumberURI; // @synthesize phoneNumberURI=_phoneNumberURI;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSArray *linkedUserURIs; // @synthesize linkedUserURIs=_linkedUserURIs;
+@property(nonatomic) BOOL supportsRestrictingSecondaryCalling; // @synthesize supportsRestrictingSecondaryCalling=_supportsRestrictingSecondaryCalling;
 @property(nonatomic, getter=isDefaultPairedDevice) BOOL defaultPairedDevice; // @synthesize defaultPairedDevice=_defaultPairedDevice;
 @property(copy, nonatomic) NSString *uniqueID; // @synthesize uniqueID=_uniqueID;
 @property(copy, nonatomic) NSString *modelIdentifier; // @synthesize modelIdentifier=_modelIdentifier;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

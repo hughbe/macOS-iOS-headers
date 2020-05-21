@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSString;
 
 __attribute__((visibility("hidden")))
-@interface DDBinderInfo : NSObject <NSCoding>
+@interface DDBinderInfo : NSObject <NSSecureCoding>
 {
     NSString *_name;
     long long _score;
@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
     BOOL _topLevel;
 }
 
++ (BOOL)supportsSecureCoding;
 @property BOOL topLevel; // @synthesize topLevel=_topLevel;
 - (id)description;
 - (BOOL)isDummy;

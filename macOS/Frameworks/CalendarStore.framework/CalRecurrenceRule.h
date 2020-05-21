@@ -36,6 +36,7 @@
 @property(readonly) NSArray *daysOfTheMonth; // @synthesize daysOfTheMonth=_daysOfTheMonth;
 @property(readonly) NSArray *nthWeekDaysOfTheMonth; // @synthesize nthWeekDaysOfTheMonth=_nthWeekDaysOfTheMonth;
 @property(readonly) NSArray *monthsOfTheYear; // @synthesize monthsOfTheYear=_monthsOfTheYear;
+- (id)stringValueAsDateOnly:(BOOL)arg1 isFloating:(BOOL)arg2;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
@@ -51,8 +52,6 @@
 - (id)initWeeklyRecurrenceWithInterval:(unsigned long long)arg1 end:(id)arg2;
 - (id)initDailyRecurrenceWithInterval:(unsigned long long)arg1 end:(id)arg2;
 - (id)initRecurrenceWithType:(int)arg1 interval:(unsigned long long)arg2 forDaysOfTheWeek:(id)arg3 forDaysOfTheMonth:(id)arg4 forNthWeekDaysOfTheMonth:(id)arg5 forMonthsOfTheYear:(id)arg6 end:(id)arg7;
-- (id)stringValueAsDateOnly:(BOOL)arg1 isFloating:(BOOL)arg2;
-- (void)setRecurrenceEnd:(id)arg1;
 
 @end
 

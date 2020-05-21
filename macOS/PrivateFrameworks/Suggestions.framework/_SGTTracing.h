@@ -18,7 +18,7 @@ __attribute__((visibility("hidden")))
     BOOL hasAbandoned;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 
 @end
 

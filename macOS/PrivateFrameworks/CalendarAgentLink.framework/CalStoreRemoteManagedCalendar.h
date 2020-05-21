@@ -18,6 +18,7 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)fetchObjectsWithPredicate:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL shouldShowInPrimaryAccounts; // @synthesize shouldShowInPrimaryAccounts=_shouldShowInPrimaryAccounts;
 @property(nonatomic) BOOL isEventContainer; // @synthesize isEventContainer=_isEventContainer;
 @property(nonatomic) BOOL isTaskContainer; // @synthesize isTaskContainer=_isTaskContainer;
@@ -29,7 +30,6 @@
 - (BOOL)hasCapability:(int)arg1;
 - (id)description;
 - (long long)compare:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

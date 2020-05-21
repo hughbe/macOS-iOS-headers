@@ -14,16 +14,22 @@ __attribute__((visibility("hidden")))
 
 + (id)attachmentDescriptor;
 - (const struct MTLRenderPassAttachmentDescriptorPrivate *)_descriptorPrivate;
+- (void)setStoreActionOptions:(unsigned long long)arg1;
+- (unsigned long long)storeActionOptions;
 - (void)setStoreAction:(unsigned long long)arg1;
 - (unsigned long long)storeAction;
 - (void)setLoadAction:(unsigned long long)arg1;
 - (unsigned long long)loadAction;
+- (BOOL)yInvert;
+- (void)setYInvert:(BOOL)arg1;
 - (unsigned long long)resolveDepthPlane;
 - (void)setResolveDepthPlane:(unsigned long long)arg1;
 - (unsigned long long)resolveSlice;
 - (void)setResolveSlice:(unsigned long long)arg1;
 - (unsigned long long)resolveLevel;
 - (void)setResolveLevel:(unsigned long long)arg1;
+- (void)setStencilResolveFilter:(unsigned long long)arg1;
+- (unsigned long long)stencilResolveFilter;
 - (unsigned int)clearStencil;
 - (void)setClearStencil:(unsigned int)arg1;
 - (unsigned long long)depthPlane;
@@ -37,6 +43,7 @@ __attribute__((visibility("hidden")))
 - (id)texture;
 - (void)setTexture:(id)arg1;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)dealloc;

@@ -8,11 +8,10 @@
 
 #import "WFWebPageProtocol.h"
 
-@class NSMutableArray, NSMutableDictionary, NSString, NSXMLDocument;
+@class NSMutableArray, NSMutableDictionary, NSString;
 
 @interface WFTreeXMLDocumentStripper : NSObject <WFWebPageProtocol>
 {
-    NSXMLDocument *xmlDocument;
     NSString *pageTitle;
     NSMutableDictionary *metaTagsLabeled;
     NSMutableArray *metaTagsUnlabeled;
@@ -24,12 +23,12 @@
     BOOL hasShortRefresh;
 }
 
-+ (id)treeStripperWithXMLDocument:(id)arg1;
++ (id)treeStripperWithXMLDocument:(struct _xmlDoc *)arg1;
 - (void)dealloc;
 - (id)description;
-- (id)processXMLElement:(id)arg1 blockComments:(BOOL)arg2;
-- (void)processXMLDocument:(id)arg1;
-- (void)strip;
+- (id)processXMLDocument:(struct _xmlDoc *)arg1 blockComments:(BOOL)arg2;
+- (void)processXMLDocument:(struct _xmlDoc *)arg1;
+- (void)strip:(struct _xmlDoc *)arg1;
 - (BOOL)hasShortRefresh;
 - (BOOL)hasFrameset;
 - (id)links;
@@ -44,8 +43,7 @@
 - (id)pageTitle;
 - (id)URLString;
 - (void)setPageTitle:(id)arg1;
-- (void)setXMLDocument:(id)arg1;
-- (id)initWithXMLDocument:(id)arg1;
+- (id)initWithXMLDocument:(struct _xmlDoc *)arg1;
 
 @end
 

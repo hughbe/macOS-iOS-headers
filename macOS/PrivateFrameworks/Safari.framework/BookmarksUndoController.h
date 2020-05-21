@@ -6,12 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSUndoManager;
+@class BookmarksController, NSMutableArray, NSUndoManager;
 
 __attribute__((visibility("hidden")))
 @interface BookmarksUndoController : NSObject
 {
     NSUndoManager *_undoManager;
+    id <BookmarksUndoControllerDataStore> _dataStore;
+    BookmarksController *_bookmarksController;
     NSUndoManager *_strongUndoManager;
     unsigned long long _undoCompatibleChangeCount;
     NSMutableArray *_transactionActionNameStack;
@@ -19,8 +21,8 @@ __attribute__((visibility("hidden")))
 
 + (BOOL)canPerformUserInitiatedBookmarkOperations;
 + (id)frontmostUndoController;
-@property(nonatomic) __weak NSUndoManager *undoManager; // @synthesize undoManager=_undoManager;
 - (void).cxx_destruct;
+@property(nonatomic) __weak NSUndoManager *undoManager; // @synthesize undoManager=_undoManager;
 - (id)_insertBookmarksFromPasteboard:(id)arg1 inFolder:(id)arg2 startingIndex:(unsigned long long)arg3 undoTarget:(id)arg4 selector:(SEL)arg5 isCopy:(BOOL)arg6;
 - (id)_addNewFolderTo:(id)arg1 withTitle:(id)arg2 insertionIndex:(unsigned long long)arg3 undoTarget:(id)arg4 selector:(SEL)arg5;
 - (BOOL)_moveBookmarks:(id)arg1 to:(id)arg2 startingIndex:(unsigned long long)arg3 isCopy:(BOOL)arg4 undoTarget:(id)arg5 selector:(SEL)arg6 addedBookmarks:(id *)arg7;
@@ -52,6 +54,11 @@ __attribute__((visibility("hidden")))
 - (BOOL)changeAddressOfBookmark:(id)arg1 to:(id)arg2;
 - (BOOL)changePreviewTextOfBookmark:(id)arg1 to:(id)arg2 isUserCustomized:(BOOL)arg3;
 - (BOOL)changeTitleOfBookmark:(id)arg1 to:(id)arg2;
+- (void)_reorderBookmarksAsMovesWithSortedBookmarks:(id)arg1;
+- (id)_cleanUpBookmarksByAddressForBookmarks:(id)arg1;
+- (id)_cleanUpBookmarksByNameForBookmarks:(id)arg1;
+- (void)cleanUpBookmarksByAddressForFolder:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)cleanUpBookmarksByNameForFolder:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)addNewContentsFolderTo:(id)arg1 withTitle:(id)arg2 insertionIndex:(unsigned long long)arg3 undoTarget:(id)arg4 selector:(SEL)arg5;
 - (void)finishMovingBookmarks:(id)arg1 originalBookmarks:(id)arg2 undoTarget:(id)arg3 selector:(SEL)arg4;
 - (id)copyBookmarksFromPasteboard:(id)arg1 toFolder:(id)arg2 startingIndex:(unsigned long long)arg3 undoTarget:(id)arg4 selector:(SEL)arg5;
@@ -69,9 +76,8 @@ __attribute__((visibility("hidden")))
 - (void)setCurrentTransactionActionName:(id)arg1;
 - (void)endTransaction;
 - (void)beginTransactionWithActionName:(id)arg1 logActionName:(id)arg2;
-- (id)initWithUndoManager:(id)arg1;
+- (id)initWithUndoManager:(id)arg1 dataStore:(id)arg2 bookmarksController:(id)arg3;
 - (void)dealloc;
-- (id)init;
 
 @end
 

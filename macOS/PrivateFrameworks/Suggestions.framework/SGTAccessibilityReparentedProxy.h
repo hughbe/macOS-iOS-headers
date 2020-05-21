@@ -13,6 +13,7 @@ __attribute__((visibility("hidden")))
     id proxiedObject;
 }
 
+- (void).cxx_destruct;
 - (id)accessibilityArrayAttributeValues:(id)arg1 index:(unsigned long long)arg2 maxCount:(unsigned long long)arg3;
 - (unsigned long long)accessibilityArrayAttributeCount:(id)arg1;
 - (unsigned long long)accessibilityIndexOfChild:(id)arg1;
@@ -34,7 +35,6 @@ __attribute__((visibility("hidden")))
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 - (id)initWithParent:(id)arg1 proxiedObject:(id)arg2;
 
 @end

@@ -6,19 +6,28 @@
 
 #import "NSObject.h"
 
-@class NSView;
+#import "CABackdropLayerDelegate.h"
+#import "CALayerDelegate.h"
+
+@class NSString, NSView;
 
 __attribute__((visibility("hidden")))
-@interface _NSViewActionForwardingLayerDelegate : NSObject
+@interface _NSViewActionForwardingLayerDelegate : NSObject <CABackdropLayerDelegate, CALayerDelegate>
 {
     NSView *_view;
 }
 
-@property(readonly, nonatomic) __weak NSView *view; // @synthesize view=_view;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) __weak NSView *view; // @synthesize view=_view;
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
 - (id)initWithView:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

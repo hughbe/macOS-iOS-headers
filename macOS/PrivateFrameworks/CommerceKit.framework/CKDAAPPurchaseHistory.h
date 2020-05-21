@@ -6,21 +6,34 @@
 
 #import "NSObject.h"
 
-@class ISServiceProxy;
+#import "CKStoreDAAPLibraryObserver.h"
 
-@interface CKDAAPPurchaseHistory : NSObject
+@class CKStoreDAAPLibrary, NSMutableDictionary, NSString;
+
+@interface CKDAAPPurchaseHistory : NSObject <CKStoreDAAPLibraryObserver>
 {
-    ISServiceProxy *_serviceProxy;
+    CKStoreDAAPLibrary *_library;
+    NSMutableDictionary *_observers;
+    id _token;
 }
 
-@property(readonly) ISServiceProxy *serviceProxy; // @synthesize serviceProxy=_serviceProxy;
 - (void).cxx_destruct;
+@property(retain) id token; // @synthesize token=_token;
+@property(retain) NSMutableDictionary *observers; // @synthesize observers=_observers;
+@property(readonly) CKStoreDAAPLibrary *library; // @synthesize library=_library;
+- (void)storeDAAPLibrary:(id)arg1 addedItems:(id)arg2 removedItems:(id)arg3;
+- (id)_purchaseFromDAAPItem:(id)arg1;
 - (void)pollForPurchasedItems:(BOOL)arg1;
 - (void)removeObserver:(id)arg1;
 - (id)addObserver:(id)arg1;
-- (id)addObserverWithBlock:(CDUnknownBlockType)arg1;
 - (id)purchasedItems;
 - (id)initWithStoreClient:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

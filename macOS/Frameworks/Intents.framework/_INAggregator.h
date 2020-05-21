@@ -11,7 +11,11 @@
 }
 
 + (void)resetSynapseVocabularyUpdate;
-+ (void)logSynapseVocabularyUpdate;
++ (void)logReceivedCount:(unsigned long long)arg1 ofVocabularyStringType:(long long)arg2;
++ (double)roundCount:(unsigned long long)arg1 toSignificantFigure:(unsigned long long)arg2;
++ (id)_distributionKeyForVocabularyStringType:(long long)arg1;
++ (BOOL)_canReportDistributionOfVocabularyStringType:(long long)arg1;
++ (unsigned long long)_singificantFigureForVocabularyStringType:(long long)arg1;
 
 @end
 

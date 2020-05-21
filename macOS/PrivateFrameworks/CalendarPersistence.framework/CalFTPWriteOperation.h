@@ -15,6 +15,7 @@
     struct __CFWriteStream *_writeStream;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) struct __CFWriteStream *writeStream; // @synthesize writeStream=_writeStream;
 @property(nonatomic) long long numberOfBytesWritten; // @synthesize numberOfBytesWritten=_numberOfBytesWritten;
 @property(retain, nonatomic) NSData *data; // @synthesize data=_data;

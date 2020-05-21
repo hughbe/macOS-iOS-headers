@@ -47,6 +47,7 @@ __attribute__((visibility("hidden")))
 - (void)confirmDeletingFolder;
 - (unsigned long long)draggingSourceOperationMaskForLocal:(BOOL)arg1;
 - (BOOL)ignoreModifierKeysWhileDragging;
+- (BOOL)acceptsFirstResponder;
 - (void)otherMouseDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)performClickIgnoringModifiers:(id)arg1;
@@ -95,7 +96,6 @@ __attribute__((visibility("hidden")))
 - (void)_setAttributes;
 - (void)registerForDraggedTypes;
 @property(readonly, copy) NSString *description;
-- (BOOL)allowsVibrancy;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

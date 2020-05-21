@@ -6,32 +6,29 @@
 
 #import <Foundation/NSXPCCoder.h>
 
-@class NSObject<OS_xpc_object>, NSXPCConnection, NSXPCInterface;
+@class NSObject<OS_xpc_object>, NSXPCConnection;
 
 __attribute__((visibility("hidden")))
 @interface NSXPCDecoder : NSXPCCoder
 {
-    NSObject<OS_xpc_object> *_oolObjects;
-    NSXPCInterface *_interface;
-    SEL _replyToSelector;
     unsigned long long _genericIndex;
-    void **_decoder;
-    NSXPCConnection *_connection;
-    struct *_collections[128];
     struct {
-        unsigned long long offset;
-        int type;
-    } _rootObject;
+        char *data;
+        unsigned long long dataLen;
+        struct __CFString *tempString;
+    } _decoder;
+    NSXPCConnection *_connection;
+    CDStruct_183601bc *_collections[128];
+    CDStruct_1b1be194 _rootObject;
     unsigned int _collectionPointer;
     id _allowedClassesList[128];
     long long _allowedClassesIndex;
+    NSObject<OS_xpc_object> *_oolObjects;
 }
 
-+ (id)_createXPCObjectWithData:(id)arg1;
 @property NSXPCConnection *_connection; // @synthesize _connection;
-@property SEL replyToSelector; // @synthesize replyToSelector=_replyToSelector;
-@property(retain) NSXPCInterface *interface; // @synthesize interface=_interface;
 - (id)decodeXPCObjectOfType:(struct _xpc_type_s *)arg1 forKey:(id)arg2;
+- (id)_xpcObjectForIndex:(long long)arg1;
 - (id)decodeXPCObjectForKey:(id)arg1;
 - (const char *)_decodeCStringForKey:(id)arg1;
 - (const char *)decodeBytesForKey:(id)arg1 returnedLength:(unsigned long long *)arg2;
@@ -44,18 +41,23 @@ __attribute__((visibility("hidden")))
 - (BOOL)decodeBoolForKey:(id)arg1;
 - (id)_decodeArrayOfObjectsForKey:(id)arg1;
 - (id)allowedClasses;
+- (int)__decodeXPCObject:(id)arg1 allowingSimpleMessageSend:(BOOL)arg2 outInvocation:(id *)arg3 outArguments:(id *)arg4 outArgumentsMaxCount:(unsigned long long)arg5 outMethodSignature:(id *)arg6 outSelector:(SEL *)arg7 isReply:(BOOL)arg8 replySelector:(SEL)arg9 interface:(id)arg10;
+- (id)_decodeReplyFromXPCObject:(id)arg1 forSelector:(SEL)arg2 interface:(id)arg3;
+- (int)_decodeMessageFromXPCObject:(id)arg1 allowingSimpleMessageSend:(BOOL)arg2 outInvocation:(id *)arg3 outArguments:(id *)arg4 outArgumentsMaxCount:(unsigned long long)arg5 outMethodSignature:(id *)arg6 outSelector:(SEL *)arg7 interface:(id)arg8;
 - (id)decodeObjectOfClasses:(id)arg1 forKey:(id)arg2;
 - (id)decodeObjectOfClass:(Class)arg1 forKey:(id)arg2;
+- (id)_decodeObjectOfClasses:(id)arg1 atObject:(CDStruct_1b1be194 *)arg2;
 - (id)decodeObjectForKey:(id)arg1;
 - (BOOL)containsValueForKey:(id)arg1;
-- (id)decodeInvocation;
 - (id)decodeObject;
 - (void)decodeValueOfObjCType:(const char *)arg1 at:(void *)arg2;
+- (void)_validateAllowedXPCType:(struct _xpc_type_s *)arg1 forKey:(id)arg2;
 - (void)_validateAllowedClass:(Class)arg1 forKey:(id)arg2 allowingInvocations:(BOOL)arg3;
 - (BOOL)allowsKeyedCoding;
 - (id)debugDescription;
 - (void)dealloc;
-- (id)_initWithRootXPCObject:(id)arg1;
+- (void)_startReadingFromXPCObject:(id)arg1;
+- (id)init;
 - (id)connection;
 
 @end

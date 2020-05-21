@@ -6,39 +6,51 @@
 
 #import "NSObject.h"
 
-@class CNContactStore, CNUIMeContactMonitor, CNUIPRPersonaStoreObservableProvider, PRPersonaStore;
+#import "CNUIPRLikenessResolver.h"
 
-@interface CNUIPRLikenessResolver : NSObject
+@class CNCache, CNContactStore, CNQueue, CNSchedulerProvider, NSObject<OS_dispatch_source>, NSString;
+
+@interface CNUIPRLikenessResolver : NSObject <CNUIPRLikenessResolver>
 {
-    CNContactStore *_contactStore;
-    PRPersonaStore *_personaStore;
-    id <CNUIPRLikenessProviderCache> _likenessProviderCache;
-    id <CNScheduler> _scheduler;
-    long long _prohibitedSources;
-    CNUIPRPersonaStoreObservableProvider *_personaStoreProvider;
-    CNUIMeContactMonitor *_meMonitor;
+    id <CNUIPRLikenessResolver> _likenessResolver;
+    CNCache *_likenessCache;
+    CNQueue *_evictionQueue;
+    NSObject<OS_dispatch_source> *_memoryMonitoringSource;
+    id <CNSchedulerProvider> _mainThreadSchedulerProvider;
+    id <CNUIPlaceholderProviderFactory> _placeholderProviderFactory;
 }
 
-+ (id)monogramObservableForContactFuture:(id)arg1;
-+ (id)photoObservableWithPhotoFuture:(id)arg1;
-+ (id)contactFuture:(id)arg1 contactStore:(id)arg2 scheduler:(id)arg3;
-+ (id)observableFromLikenessProviderBlock:(CDUnknownBlockType)arg1 withScheduler:(id)arg2;
++ (id)_cacheKeyForContact:(id)arg1;
 + (id)descriptorForRequiredKeys;
-@property(retain, nonatomic) CNUIMeContactMonitor *meMonitor; // @synthesize meMonitor=_meMonitor;
-@property(retain, nonatomic) CNUIPRPersonaStoreObservableProvider *personaStoreProvider; // @synthesize personaStoreProvider=_personaStoreProvider;
-@property(nonatomic) long long prohibitedSources; // @synthesize prohibitedSources=_prohibitedSources;
-@property(readonly, nonatomic) id <CNScheduler> scheduler; // @synthesize scheduler=_scheduler;
-@property(retain) id <CNUIPRLikenessProviderCache> likenessProviderCache; // @synthesize likenessProviderCache=_likenessProviderCache;
-@property(readonly, nonatomic) PRPersonaStore *personaStore; // @synthesize personaStore=_personaStore;
-@property(readonly, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
 - (void).cxx_destruct;
-- (id)photoFutureForContactFuture:(id)arg1 photoFuture:(id)arg2 allowingFallbackForMeCard:(BOOL)arg3;
-- (id)photoFutureForContactFuture:(id)arg1;
-- (BOOL)isMeContact:(id)arg1;
-- (id)likenessesForContact:(id)arg1;
-- (id)resolveLikenessesForContacts:(id)arg1 withContentHandler:(CDUnknownBlockType)arg2;
-- (id)initWithContactStore:(id)arg1 personaStore:(id)arg2 scheduler:(id)arg3;
-- (id)initWithContactStore:(id)arg1 personaStore:(id)arg2 scheduler:(id)arg3 meMonitor:(id)arg4;
+@property(retain, nonatomic) id <CNUIPlaceholderProviderFactory> placeholderProviderFactory; // @synthesize placeholderProviderFactory=_placeholderProviderFactory;
+@property(retain, nonatomic) id <CNSchedulerProvider> mainThreadSchedulerProvider; // @synthesize mainThreadSchedulerProvider=_mainThreadSchedulerProvider;
+@property(retain, nonatomic) NSObject<OS_dispatch_source> *memoryMonitoringSource; // @synthesize memoryMonitoringSource=_memoryMonitoringSource;
+@property(retain, nonatomic) CNQueue *evictionQueue; // @synthesize evictionQueue=_evictionQueue;
+@property(retain, nonatomic) CNCache *likenessCache; // @synthesize likenessCache=_likenessCache;
+@property(retain, nonatomic) id <CNUIPRLikenessResolver> likenessResolver; // @synthesize likenessResolver=_likenessResolver;
+- (id)initWithContactStore:(id)arg1 scheduler:(id)arg2 meMonitor:(id)arg3;
+- (id)initWithContactStore:(id)arg1 scheduler:(id)arg2;
+@property(readonly, nonatomic) CNSchedulerProvider *schedulerProvider;
+@property(readonly, nonatomic) CNContactStore *contactStore;
+@property(nonatomic) long long prohibitedSources;
+- (id)likenessLookup;
+- (id)basicMonogramObservableFromString:(id)arg1 color:(id)arg2;
+- (void)refreshCacheKey:(id)arg1;
+- (id)likenessesForContact:(id)arg1 options:(id)arg2 workScheduler:(id)arg3;
+- (id)likenessesForContact:(id)arg1 workScheduler:(id)arg2;
+- (id)resolveLikenessesForContacts:(id)arg1 workScheduler:(id)arg2 withContentHandler:(CDUnknownBlockType)arg3;
+- (void)emptyCache:(id)arg1;
+- (void)dealloc;
+- (id)initWithLikenessResolver:(id)arg1 capacity:(unsigned long long)arg2 schedulerProvider:(id)arg3;
+- (id)initWithLikenessResolver:(id)arg1 capacity:(unsigned long long)arg2;
+- (id)initWithLikenessResolver:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

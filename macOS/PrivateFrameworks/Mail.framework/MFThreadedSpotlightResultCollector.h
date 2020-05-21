@@ -20,26 +20,26 @@
     unsigned int _options;
     id <MFMessageConsumer> _target;
     NSArray *_excludedMailboxURLs;
+    MFMessageCriterion *_threadScope;
     NSOperationQueue *_serializationQueue;
     long long _nextIndexToProcess;
-    MFMessageCriterion *_threadScope;
 }
 
-@property(nonatomic) unsigned int options; // @synthesize options=_options;
-@property(retain, nonatomic) MFMessageCriterion *threadScope; // @synthesize threadScope=_threadScope;
-@property(nonatomic) BOOL queryIsCancelled; // @synthesize queryIsCancelled=_queryIsCancelled;
+- (void).cxx_destruct;
 @property(nonatomic) long long nextIndexToProcess; // @synthesize nextIndexToProcess=_nextIndexToProcess;
 @property(readonly, nonatomic) NSOperationQueue *serializationQueue; // @synthesize serializationQueue=_serializationQueue;
+@property(retain, nonatomic) MFMessageCriterion *threadScope; // @synthesize threadScope=_threadScope;
+@property(nonatomic) unsigned int options; // @synthesize options=_options;
+@property(nonatomic) BOOL queryIsCancelled; // @synthesize queryIsCancelled=_queryIsCancelled;
 @property(retain, nonatomic) NSArray *excludedMailboxURLs; // @synthesize excludedMailboxURLs=_excludedMailboxURLs;
 @property(nonatomic) BOOL checkWhereFromsPaths; // @synthesize checkWhereFromsPaths=_checkWhereFromsPaths;
 @property(retain, nonatomic) id <MFMessageConsumer> target; // @synthesize target=_target;
-- (void).cxx_destruct;
 - (void)cancelQuery;
 - (void)_messagesCompacted:(id)arg1;
 - (void)_messagesAdded:(id)arg1;
 @property(readonly) BOOL shouldCancel;
 - (void)finishedSendingMessages;
-- (void)newMessagesAvailable:(id)arg1 secondaryMessages:(id)arg2 options:(id)arg3;
+- (void)newMessagesAvailable:(id)arg1 secondaryMessages:(id)arg2 fromUpdate:(BOOL)arg3;
 - (void)receivedSpotlightCallback:(id)arg1 userInfo:(id)arg2;
 - (void)dealloc;
 - (id)init;

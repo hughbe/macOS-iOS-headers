@@ -10,27 +10,17 @@
 
 @interface PXMemoriesFeedWidgetLayoutGenerator : PXMemoriesFeedLayoutGenerator
 {
-    BOOL _isPrepared;
-    struct NSEdgeInsets _contentInsets;
-    struct CGSize _itemSize;
-    struct CGSize _interitemSpacing;
-    long long _numberOfColumns;
-    struct CGSize _size;
+    struct _LayoutContext _context;
 }
 
-- (struct CGRect)_itemRectForItemAtIndex:(unsigned long long)arg1;
-- (void)_prepareIfNeeded;
-- (double)_layoutHeightForLayoutWidth:(double)arg1;
-- (double)layoutHeightForLayoutWidth:(double)arg1;
 - (void)getGeometries:(struct _PXLayoutGeometry *)arg1 inRange:(struct _NSRange)arg2 withKind:(long long)arg3;
 - (id)geometryKinds;
 - (struct CGSize)size;
 - (struct CGSize)estimatedSize;
-- (void)invalidate;
 - (id)initWithMetrics:(id)arg1;
 
 // Remaining properties
-@property(readonly, copy, nonatomic) PXMemoriesFeedWidgetLayoutMetrics *metrics; // @dynamic metrics;
+@property(copy, nonatomic) PXMemoriesFeedWidgetLayoutMetrics *metrics; // @dynamic metrics;
 
 @end
 

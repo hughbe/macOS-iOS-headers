@@ -14,6 +14,7 @@
     NSMutableSet *_interruptionHandlers;
     NSDictionary *_libraryTokens;
     int _notifyToken;
+    struct os_unfair_lock_s _lock;
     BOOL _libraryOnline;
     NSObject<OS_dispatch_queue> *_replyQueue;
     id <BKAgentService> _agentService;
@@ -23,13 +24,13 @@
 }
 
 + (id)_securityScopedURLWithTokenPair:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long libraryVersion; // @synthesize libraryVersion=_libraryVersion;
 @property(readonly, nonatomic) BOOL libraryOnline; // @synthesize libraryOnline=_libraryOnline;
 @property(readonly, nonatomic) NSURL *currentLibraryDirectory; // @synthesize currentLibraryDirectory=_currentLibraryDirectory;
 @property(retain, nonatomic) NSXPCConnection *agentServiceConnection; // @synthesize agentServiceConnection=_agentServiceConnection;
 @property(retain, nonatomic) id <BKAgentService> agentService; // @synthesize agentService=_agentService;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *replyQueue; // @synthesize replyQueue=_replyQueue;
-- (void).cxx_destruct;
 - (void)simulateUploadFailure:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)simulateUploadEnd:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)simulateUploadProgress:(id)arg1 withReply:(CDUnknownBlockType)arg2;
@@ -41,24 +42,31 @@
 - (void)removeRedactedBook:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)fetchRedactedBooks:(CDUnknownBlockType)arg1;
 - (void)redactBook:(id)arg1 withReply:(CDUnknownBlockType)arg2;
-- (void)examineBook:(id)arg1 withReply:(CDUnknownBlockType)arg2;
+- (void)examineBook:(id)arg1 includeCover:(BOOL)arg2 withReply:(CDUnknownBlockType)arg3;
 - (void)uncompressBook:(id)arg1 withReply:(CDUnknownBlockType)arg2;
+- (void)validateAuthorization:(CDUnknownBlockType)arg1;
+- (void)moveAsideLibraryStore:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)chooseLibrary:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)reconnectToLibrary:(CDUnknownBlockType)arg1;
 - (void)fixOrphanedFiles:(CDUnknownBlockType)arg1;
 - (void)rebuildLibrary:(CDUnknownBlockType)arg1;
 - (void)moveLibrary:(id)arg1 withReply:(CDUnknownBlockType)arg2;
-- (void)applyPendingUpdates:(id)arg1 withReply:(CDUnknownBlockType)arg2;
-- (void)migrateBook:(id)arg1 withMetadata:(id)arg2 withReply:(CDUnknownBlockType)arg3;
+- (void)prepareToOpenAsset:(id)arg1 withReply:(CDUnknownBlockType)arg2;
+- (void)applyPendingUpdates:(CDUnknownBlockType)arg1;
+- (void)migrateBook:(id)arg1 withMetadata:(id)arg2 withCopy:(BOOL)arg3 withReply:(CDUnknownBlockType)arg4;
 - (void)evictBook:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)trashBook:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)removeBook:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)updateBook:(id)arg1 withMetadata:(id)arg2 withReply:(CDUnknownBlockType)arg3;
 - (void)prioritizeImport:(id)arg1 withReply:(CDUnknownBlockType)arg2;
+- (void)importBook:(id)arg1 withMetadata:(id)arg2 withReply:(CDUnknownBlockType)arg3;
 - (void)importBook:(id)arg1 withReply:(CDUnknownBlockType)arg2;
 - (void)fetchImportingBooks:(CDUnknownBlockType)arg1;
+- (void)fetchBooksPartsWithAssetID:(id)arg1 result:(CDUnknownBlockType)arg2;
+- (void)fetchCompleteBooksWithAssetIDs:(id)arg1 result:(CDUnknownBlockType)arg2;
 - (void)fetchBooksWithAssetIDs:(id)arg1 result:(CDUnknownBlockType)arg2;
 - (void)fetchBookAssetIDs:(CDUnknownBlockType)arg1;
+- (void)fetchCompleteBooks:(CDUnknownBlockType)arg1;
 - (void)fetchBooks:(CDUnknownBlockType)arg1;
 - (void)removeInterruptionHandler:(CDUnknownBlockType)arg1;
 - (void)addInterruptionHandler:(CDUnknownBlockType)arg1;

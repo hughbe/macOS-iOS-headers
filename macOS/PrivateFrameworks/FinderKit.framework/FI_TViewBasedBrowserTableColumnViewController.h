@@ -6,32 +6,24 @@
 
 #import <FinderKit/FI_TBrowserTableColumnViewController.h>
 
-@class NSColor;
+@class NSLayoutGuide;
 
 __attribute__((visibility("hidden")))
 @interface FI_TViewBasedBrowserTableColumnViewController : FI_TBrowserTableColumnViewController
 {
-    double _textSize;
-    struct TKeyValueBinder _textSizeBinder;
-    struct TNSRef<NSFont *, void> _cellViewFont;
-    double _titleFieldTextSize;
-    struct TNSRef<NSFont *, void> _titleFieldFont;
+    NSLayoutGuide *_masterLayoutGuide;
+    struct TKeyValueObserver _masterLayoutGuideFrameDidChangeObserver;
 }
 
-@property(nonatomic) double textSize; // @synthesize textSize=_textSize;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (BOOL)shouldAddColumnForSelection;
 - (id)tableView:(id)arg1 rowViewForRow:(long long)arg2;
-- (void)configureColumnRowView:(id)arg1 forRow:(long long)arg2;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (BOOL)tableView:(id)arg1 isGroupRow:(long long)arg2;
-@property(readonly, retain, nonatomic) NSColor *groupNameTextColor; // @dynamic groupNameTextColor;
-- (id)titleFieldFont;
-- (id)cellViewFont;
-- (void)columnWasAdded;
-- (void)aboutToTearDown;
 - (id)nibBundle;
+- (void)viewDidLoad;
 - (void)loadView;
 
 @end

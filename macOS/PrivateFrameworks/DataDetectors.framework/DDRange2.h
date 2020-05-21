@@ -17,11 +17,11 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)rangeWithDOMRange:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) long long endOffset; // @synthesize endOffset=_endOffset;
 @property(nonatomic) long long startOffset; // @synthesize startOffset=_startOffset;
 @property(retain, nonatomic) WKDOMNode *node; // @synthesize node=_node;
 - (id)description;
-- (void)dealloc;
 - (id)initWithDOMRange:(id)arg1;
 
 @end

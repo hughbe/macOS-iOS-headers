@@ -18,7 +18,6 @@
 + (id)appMetaData;
 @property(copy, nonatomic) NSArray *syncSlots;
 @property(copy, nonatomic) NSNumber *developerMode;
-@property(copy, nonatomic) NSString *applicationClientIdentifier;
 @property(retain, nonatomic) SASyncAppIdentifyingInfo *appIdentifyingInfo;
 - (id)encodedClassName;
 - (id)groupIdentifier;

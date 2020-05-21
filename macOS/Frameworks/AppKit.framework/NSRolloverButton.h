@@ -14,16 +14,18 @@ __attribute__((visibility("hidden")))
     NSTrackingArea *_trackingArea;
     BOOL _mouseOver;
     BOOL _trackingMouseDown;
-    BOOL _trackingRectUpdatePending;
     BOOL _usesRolloverAppearanceInInactiveWindow;
     BOOL _usesRolloverAppearanceOnMouseDown;
     BOOL _usesRolloverAppearanceWhenFirstResponder;
     BOOL _redrawOnMouseEnteredAndExited;
+    BOOL _useRolloverAppearanceNow;
     NSImage *_rolloverImage;
     id <NSRolloverButtonDelegate> _delegate;
     NSImage *_focusRingMask;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL useRolloverAppearanceNow; // @synthesize useRolloverAppearanceNow=_useRolloverAppearanceNow;
 @property(retain, nonatomic) NSImage *focusRingMask; // @synthesize focusRingMask=_focusRingMask;
 @property(nonatomic) __weak id <NSRolloverButtonDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) BOOL redrawOnMouseEnteredAndExited; // @synthesize redrawOnMouseEnteredAndExited=_redrawOnMouseEnteredAndExited;
@@ -31,7 +33,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSImage *rolloverImage; // @synthesize rolloverImage=_rolloverImage;
 @property(nonatomic) BOOL usesRolloverAppearanceOnMouseDown; // @synthesize usesRolloverAppearanceOnMouseDown=_usesRolloverAppearanceOnMouseDown;
 @property(nonatomic) BOOL usesRolloverAppearanceInInactiveWindow; // @synthesize usesRolloverAppearanceInInactiveWindow=_usesRolloverAppearanceInInactiveWindow;
-- (void).cxx_destruct;
+- (BOOL)accessibilityPerformPress;
 - (void)drawFocusRingMask;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)awakeFromNib;

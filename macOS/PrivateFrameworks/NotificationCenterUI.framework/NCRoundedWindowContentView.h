@@ -6,9 +6,12 @@
 
 #import "NSVisualEffectView.h"
 
-@class CALayer, NCMaterialLayer;
+#import "NCMaterialDelegate.h"
 
-@interface NCRoundedWindowContentView : NSVisualEffectView
+@class CALayer, NCMaterialLayer, NSTrackingArea;
+
+__attribute__((visibility("hidden")))
+@interface NCRoundedWindowContentView : NSVisualEffectView <NCMaterialDelegate>
 {
     CALayer *_shadowImageLayer;
     CALayer *_hitLayer;
@@ -34,20 +37,19 @@
     NCMaterialLayer *_material;
     CALayer *_containerLayer;
     BOOL _handledForceTouch;
+    NSTrackingArea *_trackingArea;
+    BOOL _isEffectiveDark;
+    unsigned char _materialStyle;
+    BOOL _isDark;
     id <NCRoundedWindowContentDelegate> _delegate;
 }
 
 + (double)shadowMargin;
 + (double)cornerRadius;
-@property(nonatomic) __weak id <NCRoundedWindowContentDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <NCRoundedWindowContentDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) BOOL isDark; // @synthesize isDark=_isDark;
 - (void)_closeButtonPressed:(id)arg1;
-- (void)accessibilityPerformAction:(id)arg1;
-- (id)accessibilityActionDescription:(id)arg1;
-- (id)accessibilityActionNames;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (id)accessibilityAttributeNames;
-- (BOOL)accessibilityIsIgnored;
 - (void)setFrameOrigin:(struct CGPoint)arg1;
 - (void)scrollWheel:(id)arg1;
 - (void)mouseUp:(id)arg1;
@@ -60,17 +62,22 @@
 - (id)_dragCursor;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)updateConstraints;
+- (void)updateLayer;
 - (void)layout;
+- (void)_checkAppearance;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)viewDidChangeBackingProperties;
 @property(readonly, nonatomic) BOOL isDraggingEdge;
 - (BOOL)isOpaque;
+- (BOOL)wantsUpdateLayer;
 - (BOOL)isFlipped;
 - (void)_updateLayerMasksToBoundsFromView;
 - (BOOL)clipsToBounds;
 - (void)awakeFromNib;
-- (id)_backgroundColorForFontSmoothing;
-- (void)setAppearance:(id)arg1;
+- (void)appearanceChanged:(_Bool)arg1;
+- (void)materialChanged:(unsigned char)arg1;
+- (void)_setupAppearanceOverrides;
+- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

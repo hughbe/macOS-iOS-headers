@@ -6,15 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_os_log>, NSURL;
+@class NSArray, NSObject<OS_dispatch_queue>;
 
 @interface CSKDirectoryObserver : NSObject
 {
-    NSObject<OS_os_log> *_log;
     BOOL _recursive;
     BOOL _ignoreFiles;
     BOOL _isEventStreamStarted;
-    NSURL *_URL;
+    NSArray *_URLs;
     NSObject<OS_dispatch_queue> *_eventQueue;
     id _representedObject;
     double _eventInterval;
@@ -22,6 +21,7 @@
     struct __FSEventStream *_eventStream;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isEventStreamStarted; // @synthesize isEventStreamStarted=_isEventStreamStarted;
 @property(nonatomic) struct __FSEventStream *eventStream; // @synthesize eventStream=_eventStream;
 @property(copy, nonatomic) CDUnknownBlockType eventHandler; // @synthesize eventHandler=_eventHandler;
@@ -30,11 +30,11 @@
 @property(nonatomic) BOOL recursive; // @synthesize recursive=_recursive;
 @property(retain, nonatomic) id representedObject; // @synthesize representedObject=_representedObject;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *eventQueue; // @synthesize eventQueue=_eventQueue;
-@property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) NSArray *URLs; // @synthesize URLs=_URLs;
 - (void)stop;
 - (void)start;
 - (void)dealloc;
+- (id)initWithURLs:(id)arg1 eventHandler:(CDUnknownBlockType)arg2;
 - (id)initWithURL:(id)arg1 eventHandler:(CDUnknownBlockType)arg2;
 - (id)init;
 

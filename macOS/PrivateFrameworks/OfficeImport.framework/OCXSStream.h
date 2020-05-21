@@ -14,12 +14,12 @@ __attribute__((visibility("hidden")))
     NSMutableArray *mLevelStack;
 }
 
+- (void).cxx_destruct;
 - (BOOL)hasLevels;
 - (BOOL)popLevel;
 - (void)pushLevel:(int)arg1 name:(const char *)arg2;
 - (int)currentContextChildDepth;
 - (int)currentContextDepth;
-- (void)dealloc;
 - (id)init;
 
 @end

@@ -8,13 +8,14 @@
 
 @class NSOperationQueue;
 
-__attribute__((visibility("hidden")))
 @interface ABEmailCertificateController : NSObject
 {
     NSOperationQueue *_operationQueue;
 }
 
++ (id)certificateImage;
 + (id)sharedController;
+- (void).cxx_destruct;
 - (BOOL)hasPendingOperations;
 - (void)cancelPendingCertLookups;
 - (void)certificateSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;

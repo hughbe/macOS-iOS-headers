@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     BOOL mStroked;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (void)setStroked:(BOOL)arg1;
 - (BOOL)stroked;
@@ -27,7 +28,6 @@ __attribute__((visibility("hidden")))
 - (void)addElement:(id)arg1;
 - (void)setSize:(struct CGSize)arg1;
 - (struct CGSize)size;
-- (void)dealloc;
 - (id)init;
 
 @end

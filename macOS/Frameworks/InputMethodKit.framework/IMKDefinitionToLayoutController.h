@@ -23,11 +23,12 @@
 @property(retain, nonatomic) IMKDefinitionToLayoutConstraint *constraints; // @synthesize constraints=_constraints;
 @property(nonatomic) Class layoutUnitClass; // @synthesize layoutUnitClass=_layoutUnitClass;
 @property(nonatomic, getter=isVerticallyAligned) BOOL verticallyAligned; // @synthesize verticallyAligned=_verticallyAligned;
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
+@property(nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
 @property(readonly, nonatomic) IMKLayout *layout;
 - (id)layoutForHorizontallyAligned;
 - (id)layoutForVerticallyAligned;
 - (id)layoutForSingleRowType;
+- (id)layoutForSingleRowTypeWithSimilarWidth;
 - (id)layoutForSingleRowPressAndHoldType;
 - (void)removeLastLineIfEmpty:(id)arg1;
 - (void)dealloc;

@@ -22,10 +22,9 @@
     void *_hiView;
     struct CGSize _minimumViewSize;
     id _rememberedFirstResponder;
-    id _itemViewerReserved[2];
 }
 
-+ (BOOL)requiresConstraintBasedLayout;
++ (Class)_classToCheckForRequiresConstraintBasedLayout;
 + (struct __CFString *)_getMenuItemViewerHIViewClassRegisteringIfNecessary;
 - (void)_displayFromCarbonIgnoringOpacity;
 - (void)_displayRectIgnoringOpacity:(struct CGRect)arg1 isVisibleRect:(BOOL)arg2 rectIsVisibleRectForView:(id)arg3;
@@ -38,6 +37,7 @@
 - (void)_setClipRect:(struct CGRect)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawMenuItemBackgroundWithHighlight:(BOOL)arg1 inRect:(struct CGRect)arg2 withClipRect:(struct CGRect)arg3;
+- (BOOL)clipsToBounds;
 - (BOOL)wantsDefaultClipping;
 - (id)initWithFrame:(struct CGRect)arg1 forMenuItem:(id)arg2;
 - (void)dealloc;
@@ -47,7 +47,6 @@
 - (struct CGSize)_minimumViewSize;
 - (void)updateConstraints;
 - (void)_menuItemViewFrameChanged:(id)arg1;
-- (void)_setFrameFromHIViewFrame:(struct CGRect)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (void)_clearMenuItem;
 - (id)_menuItem;

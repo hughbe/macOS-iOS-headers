@@ -8,6 +8,5 @@
 
 @interface NSColor (RGBString)
 + (id)colorWithRGBString:(id)arg1;
-- (id)hexString;
 @end
 

@@ -29,6 +29,7 @@
 + (id)fetchObjectsWithSharedUID:(id)arg1;
 + (id)fetchObjectsWithPredicate:(id)arg1 inCalendars:(id)arg2;
 + (id)fetchObjectsWithPredicate:(id)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
 @property(retain, nonatomic) NSString *title; // @synthesize title=_title;
 @property(retain, nonatomic) NSTimeZone *timeZone; // @synthesize timeZone=_timeZone;
@@ -44,7 +45,6 @@
 @property(retain, nonatomic) NSSet *attachments; // @synthesize attachments=_attachments;
 - (void)encodeWithCoder:(id)arg1;
 @property(readonly, nonatomic) BOOL hasAlarm;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

@@ -14,6 +14,10 @@
 - (BOOL)showsSummaryPanel;
 - (long long)totalSpaceUsed;
 - (BOOL)isHidden;
+- (NSString *)localizedRevealButtonTitle;
+- (BOOL)showRevealButton;
+- (BOOL)showItemPaths;
+- (NSString *)localizedHeaderMessage;
 - (NSError *)performHeaderAction;
 - (NSString *)localizedHeaderButtonTitle;
 - (NSError *)performTipAction:(NSExtensionItem *)arg1;

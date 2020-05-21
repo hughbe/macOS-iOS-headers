@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSObject<OS_dispatch_queue>, NSPredicate, NSString;
+@class NSArray, NSObject<OS_dispatch_queue>, NSPredicate, NSString, PHFetchResult;
 
 @interface PXPeopleDataSource : NSObject
 {
@@ -21,15 +21,16 @@
     CDUnknownBlockType _sortComparator;
     NSArray *_members;
     NSObject<OS_dispatch_queue> *_reloadQueue;
-    id <NSFastEnumeration> _objects;
+    PHFetchResult *_objects;
     CDUnknownBlockType _reloadBlock;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType reloadBlock; // @synthesize reloadBlock=_reloadBlock;
-@property(retain, nonatomic) id <NSFastEnumeration> objects; // @synthesize objects=_objects;
+@property(retain, nonatomic) PHFetchResult *objects; // @synthesize objects=_objects;
 @property(readonly, nonatomic) BOOL useAsynchronousLoad; // @synthesize useAsynchronousLoad=_useAsynchronousLoad;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *reloadQueue; // @synthesize reloadQueue=_reloadQueue;
-@property(retain, nonatomic) NSArray *members; // @synthesize members=_members;
+@property(copy, nonatomic) NSArray *members; // @synthesize members=_members;
 @property(copy, nonatomic) CDUnknownBlockType sortComparator; // @synthesize sortComparator=_sortComparator;
 @property(copy, nonatomic) NSPredicate *filterPredicate; // @synthesize filterPredicate=_filterPredicate;
 @property(getter=isDisclosed) BOOL disclosed; // @synthesize disclosed=_disclosed;
@@ -38,8 +39,7 @@
 @property(nonatomic) __weak id <PXPeopleDataSourceDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) unsigned long long maximumNumberOfMembers; // @synthesize maximumNumberOfMembers=_maximumNumberOfMembers;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
-- (void)_asyncLoadImageForItem:(id)arg1 targetSize:(struct CGSize)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
+- (void)_asyncLoadImageForItem:(id)arg1 targetSize:(struct CGSize)arg2 withCompletionBlock:(CDUnknownBlockType)arg3 fastDisplayBlock:(CDUnknownBlockType)arg4;
 - (id)_itemsArrayFromObjects:(id)arg1;
 - (void)stopListeningForChanges;
 - (void)startListeningForChanges;
@@ -50,10 +50,12 @@
 - (id)localizedTitle;
 - (unsigned long long)photoQuantityAtIndex:(unsigned long long)arg1;
 - (void)imageAtIndex:(unsigned long long)arg1 targetSize:(struct CGSize)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
+- (void)imageAtIndex:(unsigned long long)arg1 targetSize:(struct CGSize)arg2 withCompletionBlock:(CDUnknownBlockType)arg3 fastDisplayBlock:(CDUnknownBlockType)arg4;
 - (id)titleAtIndex:(unsigned long long)arg1;
-- (unsigned long long)indexOfMember:(id)arg1;
+- (id)personAtIndex:(unsigned long long)arg1;
 - (id)memberAtIndex:(unsigned long long)arg1;
 @property(readonly, nonatomic) unsigned long long numberOfMembers;
+@property(readonly, nonatomic) NSArray *persons;
 - (void)dealloc;
 - (id)initWithName:(id)arg1 objects:(id)arg2;
 - (id)initWithName:(id)arg1 objectsReloadBlock:(CDUnknownBlockType)arg2 asynchronousLoad:(BOOL)arg3 callbackDelegate:(id)arg4;

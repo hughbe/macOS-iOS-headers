@@ -24,7 +24,7 @@
 - (void)beginElement:(unsigned int)arg1;
 - (void)encodeObject:(id)arg1 conditionally:(BOOL)arg2;
 - (void)encodeObject:(id)arg1;
-@property __weak id delegate;
+@property __weak id <CAMLWriterDelegate> delegate;
 @property(retain) NSURL *baseURL;
 - (id)initWithData:(id)arg1;
 

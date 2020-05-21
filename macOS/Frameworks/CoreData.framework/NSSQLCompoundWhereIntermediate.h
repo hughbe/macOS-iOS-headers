@@ -6,19 +6,24 @@
 
 #import <CoreData/NSSQLWhereIntermediate.h>
 
-@class NSMutableArray, NSSQLEntity;
+@class NSArray, NSMutableArray, NSSQLEntity;
 
 __attribute__((visibility("hidden")))
 @interface NSSQLCompoundWhereIntermediate : NSSQLWhereIntermediate
 {
     NSMutableArray *_subclauses;
     NSSQLEntity *_disambiguatingEntity;
+    NSArray *_disambiguationKeypath;
+    BOOL _disambiguationKeypathHasToMany;
 }
 
 - (BOOL)isOrScoped;
 - (id)generateSQLStringInContext:(id)arg1;
 - (id)_generateMulticlauseStringInContext:(id)arg1;
-@property(nonatomic) NSSQLEntity *disambiguatingEntity;
+- (void)setDisambiguatingEntity:(id)arg1 withKeypath:(id)arg2 hasToMany:(BOOL)arg3;
+- (BOOL)disambiguationKeypathHasToMany;
+- (id)disambiguationKeypath;
+- (id)disambiguatingEntity;
 - (void)dealloc;
 - (id)initWithPredicate:(id)arg1 inScope:(id)arg2 inContext:(id)arg3;
 

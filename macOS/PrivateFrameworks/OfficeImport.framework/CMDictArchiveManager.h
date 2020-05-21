@@ -4,14 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <OfficeImport/CMArchiveManager.h>
+#import <OfficeImport/CMStylingArchiveManager.h>
 
 @class NSMutableDictionary, NSMutableString, NSString;
 
-@interface CMDictArchiveManager : CMArchiveManager
+__attribute__((visibility("hidden")))
+@interface CMDictArchiveManager : CMStylingArchiveManager
 {
-    NSMutableString *mCssString;
-    NSMutableDictionary *mStyleCache;
     NSMutableDictionary *mResources;
     NSString *mPrefix;
     NSString *mResourceUrlProtocol;
@@ -20,19 +19,16 @@
     _Bool mIsFrameset;
 }
 
-- (id)cssStylesheetString;
+- (void).cxx_destruct;
 - (void)pushCssToPath:(id)arg1;
-- (void)addCssStyle:(id)arg1 withName:(id)arg2;
-- (id)addCssStyle:(id)arg1;
 - (id)resourceUrlProtocol;
 - (unsigned long long)resourceCount;
 - (id)copyDictionaryWithSizeInfos:(BOOL)arg1;
 - (void)pushText:(id)arg1 toPath:(id)arg2;
 - (void)pushData:(id)arg1 toPath:(id)arg2;
-- (id)copyResourceWithName:(id)arg1;
+- (id)copyResourceWithName:(id)arg1 type:(int)arg2;
 - (id)name;
 - (void)setIsFrameset;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 resourcePathPrefix:(id)arg2;
 
 @end

@@ -68,12 +68,12 @@
 @property(copy) NSURL *initialURL;
 - (void)_updateOkButtonEnabledState;
 - (void)dealloc;
-- (void)_selectFirstKeyView;
 - (void)finderLocationPopUpOtherLocation:(id)arg1;
 - (unsigned long long)finderLocationPopUpMenuOptions:(id)arg1;
 - (id)finderLocationPopUpRequestRecentPlaces:(id)arg1;
 - (void)finderLocationPopUp:(id)arg1 didChangeToDirectoryURL:(id)arg2;
 - (void)_configureMovePopUp;
+- (CDStruct_4c969caf)_hostAppAuditToken;
 - (id)_ubiquityContainerURLs;
 - (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4;
 

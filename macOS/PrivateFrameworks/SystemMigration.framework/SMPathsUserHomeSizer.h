@@ -10,15 +10,15 @@
 
 @interface SMPathsUserHomeSizer : NSObject
 {
+    NSURL *_cacheLocation;
     SMSystem_Daemon *_system;
     NSObject<OS_dispatch_queue> *_cacheQueue;
-    NSURL *_cacheLocation;
 }
 
-@property(retain) NSURL *cacheLocation; // @synthesize cacheLocation=_cacheLocation;
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_queue> *cacheQueue; // @synthesize cacheQueue=_cacheQueue;
 @property(retain) SMSystem_Daemon *system; // @synthesize system=_system;
-- (void).cxx_destruct;
+@property(retain) NSURL *cacheLocation; // @synthesize cacheLocation=_cacheLocation;
 - (unsigned long long)latestFSEventForHome:(id)arg1 since:(unsigned long long)arg2;
 - (BOOL)user:(id)arg1 needsSizeUpdated:(id)arg2 latestEvent:(unsigned long long *)arg3;
 - (unsigned long long)calculateSizeForUser:(id)arg1;

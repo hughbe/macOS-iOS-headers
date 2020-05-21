@@ -20,6 +20,7 @@
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property(retain) NSString *lastLocalUIDProcessed; // @synthesize lastLocalUIDProcessed=_lastLocalUIDProcessed;
 @property int lastChangeRequestTypeProcessed; // @synthesize lastChangeRequestTypeProcessed=_lastChangeRequestTypeProcessed;
 @property long long lastSequenceNumberProcessed; // @synthesize lastSequenceNumberProcessed=_lastSequenceNumberProcessed;
@@ -41,6 +42,7 @@
 - (id)makeSetPropertyCalendarOperation:(id)arg1 forSession:(id)arg2;
 - (id)makeRemovePropertyCalendarOperation:(id)arg1 forSession:(id)arg2;
 - (id)makeSplitCalendarItemTypesOperation:(id)arg1 forSession:(id)arg2 forSource:(id)arg3;
+- (id)makeReportJunkCalendarOperation:(id)arg1 principal:(id)arg2 forSession:(id)arg3;
 - (id)makeRemoveCalendarOperation:(id)arg1 forSession:(id)arg2;
 - (id)makeAddCalendarOperation:(id)arg1 forSession:(id)arg2;
 - (id)makeEventScheduleOperation:(id)arg1 forSource:(id)arg2 forSession:(id)arg3;
@@ -53,7 +55,6 @@
 - (id)_expandProcessChangeRequest:(id)arg1 forOperation:(id)arg2 inManagedObjectContext:(id)arg3;
 - (id)_processChangeRequest:(id)arg1 deleteCRIfNoOperation:(char *)arg2 inManagedObjectContext:(id)arg3;
 - (void)runOperationOnConsumerQueue:(id)arg1;
-- (void)dealloc;
 - (id)initWithObserver:(id)arg1;
 - (id)init;
 

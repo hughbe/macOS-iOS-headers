@@ -6,26 +6,31 @@
 
 #import "NSObject.h"
 
+@class BrowserViewController, CKContextResponse;
+
 @protocol BrowserContentLoaderDelegate <NSObject>
-- (void)installedBannersDidChangeInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)statusDidChangeInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)secureContentStatusDidChangeInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)loadingStatusDidChangeInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)pageTitleDidChangeInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)unifiedFieldURLDidChangeInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)currentURLDidChangeInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)pageTypeDidChangeInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)mainDocumentDidLoadInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)mainDocumentDidFirstVisuallyNonEmptyLayoutInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)mainDocumentDidFirstLayoutInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)mainContentViewDidChangeInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)browserContentViewController:(struct BrowserContentViewController *)arg1 loadDidFinishForMainFrame:(const struct Frame *)arg2;
-- (void)browserContentViewController:(struct BrowserContentViewController *)arg1 loadDidCommitForMainFrame:(const struct Frame *)arg2;
-- (void)browserContentViewController:(struct BrowserContentViewController *)arg1 loadDidStartForMainFrame:(const struct Frame *)arg2;
-- (void)progressDidCancelInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)progressDidFinishInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)progressValueDidChangeInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)progressDidStartInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
-- (void)didStartBrowserInitiatedLoadInBrowserContentViewController:(struct BrowserContentViewController *)arg1;
+- (void)installedBannersDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)statusDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)secureContentStatusDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)loadingStatusDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)browserViewController:(BrowserViewController *)arg1 didUpdateContextResponse:(CKContextResponse *)arg2;
+- (void)notSecureWarningStatusDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)tabDialogDidChangeInBrowserViewController:(BrowserViewController *)arg1 isHTTPAuthenticationDialog:(BOOL)arg2;
+- (void)pageTitleDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)unifiedFieldURLDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)currentURLDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)pageTypeDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)mainDocumentDidLoadInBrowserViewController:(BrowserViewController *)arg1;
+- (void)mainDocumentDidFirstVisuallyNonEmptyLayoutInBrowserViewController:(BrowserViewController *)arg1;
+- (void)mainDocumentDidFirstLayoutInBrowserViewController:(BrowserViewController *)arg1;
+- (void)mainContentViewDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)loadDidFinishInBrowserViewController:(BrowserViewController *)arg1;
+- (void)loadDidCommitInBrowserViewController:(BrowserViewController *)arg1;
+- (void)loadDidStartInBrowserViewController:(BrowserViewController *)arg1;
+- (void)progressDidCancelInBrowserViewController:(BrowserViewController *)arg1;
+- (void)progressDidFinishInBrowserViewController:(BrowserViewController *)arg1;
+- (void)progressValueDidChangeInBrowserViewController:(BrowserViewController *)arg1;
+- (void)progressDidStartInBrowserViewController:(BrowserViewController *)arg1;
+- (void)didStartBrowserInitiatedLoadInBrowserViewController:(BrowserViewController *)arg1;
 @end
 

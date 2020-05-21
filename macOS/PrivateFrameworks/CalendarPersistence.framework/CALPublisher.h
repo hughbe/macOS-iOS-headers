@@ -23,6 +23,7 @@
 }
 
 + (id)publisherWithDictionaryRepresentation:(id)arg1;
+- (void).cxx_destruct;
 - (BOOL)isActive;
 - (void)setActive:(BOOL)arg1;
 - (int)filteringMask;
@@ -49,8 +50,6 @@
 - (void)setUploadURL:(id)arg1;
 - (BOOL)hasCapability:(unsigned int)arg1;
 - (BOOL)isEqualToPublisher:(id)arg1;
-- (void)finalize;
-- (void)dealloc;
 - (id)init;
 
 @end

@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSDate;
+@class CXCallObserver, NSDate;
 
 @interface IMCallMonitor : NSObject
 {
-    id _callCenter;
+    CXCallObserver *_callCenter;
     BOOL _wasOnCall;
     NSDate *_lastCallDate;
 }

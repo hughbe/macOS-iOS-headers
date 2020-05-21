@@ -8,7 +8,7 @@
 
 #import "CoreDAVSubmittable.h"
 
-@class CoreDAVErrorItem, CoreDAVRequestLogger, NSData, NSDate, NSDictionary, NSError, NSHTTPURLResponse, NSMutableArray, NSMutableDictionary, NSString, NSURL, NSURLConnection, NSURLRequest;
+@class CoreDAVErrorItem, CoreDAVRequestLogger, NSData, NSDate, NSDictionary, NSError, NSHTTPURLResponse, NSMutableArray, NSMutableDictionary, NSRunLoop, NSString, NSURL, NSURLConnection, NSURLRequest;
 
 @interface CoreDAVTask : NSObject <CoreDAVSubmittable>
 {
@@ -56,10 +56,15 @@
     BOOL _haveParsedFakeResponseData;
     CoreDAVErrorItem *_forbiddenErrorItem;
     NSString *_uniqueID;
+    BOOL _ignoresGuardianRestrictions;
+    BOOL _totalBytesWasProcessedAsAbnormallyLarge;
 }
 
 + (id)stringFromDepth:(int)arg1;
 + (unsigned int)uniqueQueryID;
+- (void).cxx_destruct;
+@property BOOL totalBytesWasProcessedAsAbnormallyLarge; // @synthesize totalBytesWasProcessedAsAbnormallyLarge=_totalBytesWasProcessedAsAbnormallyLarge;
+@property(nonatomic) BOOL ignoresGuardianRestrictions; // @synthesize ignoresGuardianRestrictions=_ignoresGuardianRestrictions;
 @property(retain, nonatomic) NSDictionary *requestProperties; // @synthesize requestProperties=_requestProperties;
 @property(nonatomic) BOOL allowAutomaticRedirects; // @synthesize allowAutomaticRedirects=_allowAutomaticRedirects;
 @property(nonatomic) unsigned long long totalBytesReceived; // @synthesize totalBytesReceived=_totalBytesReceived;
@@ -73,9 +78,9 @@
 @property(nonatomic) int depth; // @synthesize depth=_depth;
 @property(readonly, nonatomic) NSURL *url; // @synthesize url=_url;
 @property(retain, nonatomic) id context; // @synthesize context=_context;
-@property(nonatomic) id <CoreDAVTaskDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic) id <CoreDAVAccountInfoProvider> accountInfoProvider; // @synthesize accountInfoProvider=_accountInfoProvider;
-@property(nonatomic) id <CoreDAVTaskManager> taskManager; // @synthesize taskManager=_taskManager;
+@property(nonatomic) __weak id <CoreDAVTaskDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <CoreDAVAccountInfoProvider> accountInfoProvider; // @synthesize accountInfoProvider=_accountInfoProvider;
+@property(nonatomic) __weak id <CoreDAVTaskManager> taskManager; // @synthesize taskManager=_taskManager;
 - (id)_requestForLogging;
 - (id)_connectionForLogging;
 - (void)reportStatusWithError:(id)arg1;
@@ -119,6 +124,7 @@
 - (id)_createBodyData;
 - (id)_compressBodyData:(id)arg1;
 - (void)tearDownResources;
+- (void)_logSantizedRequest:(id)arg1 withTaskID:(id)arg2;
 - (void)loadRequest:(id)arg1;
 - (BOOL)shouldLogResponseBody;
 - (id)copyDefaultParserForContentType:(id)arg1;
@@ -126,6 +132,8 @@
 - (id)requestBodyStream;
 - (BOOL)_includeGeneralHeaders;
 - (id)httpMethod;
+@property(readonly, nonatomic) NSRunLoop *workRunLoop;
+- (id)redactedDescription;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;
 - (id)initWithURL:(id)arg1;

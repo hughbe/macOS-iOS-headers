@@ -16,10 +16,13 @@
 + (id)snippet;
 @property(copy, nonatomic) NSNumber *widgetIndex;
 @property(nonatomic) BOOL widgetAllowed;
-@property(copy, nonatomic) NSString *title;
 @property(copy, nonatomic) NSArray *snippetTemplates;
 @property(retain, nonatomic) id <SAServerBoundCommand> processSynapseFlowCommand;
+@property(copy, nonatomic) NSString *jsonEncodedIntentResponse;
+@property(copy, nonatomic) NSString *jsonEncodedIntent;
+@property(retain, nonatomic) SAIntentGroupProtobufMessage *intentResponse;
 @property(retain, nonatomic) SAIntentGroupProtobufMessage *intent;
+@property(copy, nonatomic) NSArray *commands;
 @property(copy, nonatomic) NSString *appId;
 - (id)encodedClassName;
 - (id)groupIdentifier;

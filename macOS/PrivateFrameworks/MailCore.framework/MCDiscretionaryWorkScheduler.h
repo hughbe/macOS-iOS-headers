@@ -20,12 +20,12 @@
 }
 
 + (id)keyPathsForValuesAffectingDeferDiscretionaryWork;
+- (void).cxx_destruct;
 @property BOOL suspended; // @synthesize suspended=_suspended;
 @property BOOL hasDeferrableWork; // @synthesize hasDeferrableWork=_hasDeferrableWork;
-- (void).cxx_destruct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 @property(readonly) BOOL deferDiscretionaryWork;
-@property BOOL overrideConditions; // @synthesize overrideConditions=_overrideConditions;
+@property BOOL overrideConditions;
 - (void)_conditions:(unsigned long long)arg1 becameSatified:(BOOL)arg2;
 @property(readonly) unsigned long long unsatisfiedConditions;
 - (void)_stopTrackingConditions:(unsigned long long)arg1;

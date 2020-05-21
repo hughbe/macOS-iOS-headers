@@ -6,27 +6,25 @@
 
 #import <Contacts/CNContactStore.h>
 
-@class SGSuggestionsService;
-
-__attribute__((visibility("hidden")))
 @interface CNSuggestedContactStore : CNContactStore
 {
-    SGSuggestionsService *_suggestionService;
+    id <SGSuggestionsServiceContactsProtocol> _suggestionService;
+    id <CNSiriIntelligenceSettingsProtocol> _siriIntelligenceSettings;
 }
 
 + (BOOL)isSuggestionsSupported;
-+ (void)initialize;
 + (id)storeIdentifier;
 + (id)storeInfoClasses;
-@property(retain, nonatomic) SGSuggestionsService *suggestionService; // @synthesize suggestionService=_suggestionService;
+- (void).cxx_destruct;
+@property(retain, nonatomic) id <CNSiriIntelligenceSettingsProtocol> siriIntelligenceSettings; // @synthesize siriIntelligenceSettings=_siriIntelligenceSettings;
+@property(retain, nonatomic) id <SGSuggestionsServiceContactsProtocol> suggestionService; // @synthesize suggestionService=_suggestionService;
 - (BOOL)executeSaveRequest:(id)arg1 error:(id *)arg2;
 - (BOOL)_processSuggestions:(id)arg1 error:(id *)arg2 withBlock:(CDUnknownBlockType)arg3;
 - (id)unifiedContactsMatchingPredicate:(id)arg1 keysToFetch:(id)arg2 error:(id *)arg3;
 - (BOOL)enumerateContactsAndMatchInfoWithFetchRequest:(id)arg1 error:(id *)arg2 usingBlock:(CDUnknownBlockType)arg3;
 - (id)originForSuggestion:(id)arg1 error:(id *)arg2;
-- (void)dealloc;
 - (id)requestAccessForEntityType:(long long)arg1;
-- (id)initWithSuggestionsService:(id)arg1;
+- (id)initWithSuggestionsService:(id)arg1 siriIntelligenceSettings:(id)arg2;
 - (id)init;
 
 @end

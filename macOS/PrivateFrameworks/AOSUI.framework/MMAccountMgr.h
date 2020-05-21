@@ -13,10 +13,12 @@
     NSMutableDictionary *_accounts;
     MMTermsOfServiceController *_termsOfServiceController;
     NSWindow *_parentWindow;
+    struct os_unfair_lock_s _accountContextLock;
 }
 
 + (id)sharedMgr;
 + (void)showSignInError:(id)arg1 usingWindow:(id)arg2 forAccountID:(id)arg3 andPassword:(id)arg4 authenticationResults:(id)arg5;
+- (void).cxx_destruct;
 @property(retain, nonatomic) MMTermsOfServiceController *termsOfServiceController; // @synthesize termsOfServiceController=_termsOfServiceController;
 - (void)deactivateFailed:(id)arg1;
 - (void)deactivateCompleted:(id)arg1;
@@ -25,12 +27,11 @@
 - (void)serviceDataChanged:(id)arg1;
 - (void)accountDataChanged:(id)arg1;
 - (void)tosDeniedFailed:(id)arg1;
-- (void)signOutFailed:(id)arg1;
 - (void)signInFailed:(id)arg1;
-- (void)signOutCompleted:(id)arg1;
 - (void)refreshCompleted:(id)arg1;
 - (void)signInCompleted:(id)arg1;
 - (void)signInAccount:(id)arg1 withPassword:(id)arg2 context:(id)arg3;
+- (id)accountWithID:(id)arg1 createIfMissing:(BOOL)arg2 fetchAccountImage:(BOOL)arg3;
 - (id)accountWithID:(id)arg1 createIfMissing:(BOOL)arg2;
 - (void)signOutAccount:(id)arg1 withOptions:(id)arg2;
 - (void)signOutAccount:(id)arg1;
@@ -39,7 +40,6 @@
 - (void)willSelect;
 - (void)didUnselect;
 - (void)didSelect;
-- (void)finalize;
 - (void)dealloc;
 - (void)deregisterNotifications;
 - (id)init;
@@ -53,6 +53,7 @@
 - (void)finishedSetup:(id)arg1;
 - (void)verifyFailed:(id)arg1;
 - (void)verifyCompleted:(id)arg1;
+- (void)authenticateAccount:(id)arg1 withPassword:(id)arg2 withAuthResults:(id)arg3 delegatePlist:(id)arg4;
 - (void)authenticateAccount:(id)arg1 withPassword:(id)arg2 delegatePlist:(id)arg3;
 - (BOOL)completeSignin:(id)arg1 withPassword:(id)arg2 delegatePlist:(id)arg3;
 - (BOOL)completeSignin:(id)arg1 withPassword:(id)arg2 withAuthContext:(id)arg3 delegatePlist:(id)arg4 mobileMePlist:(id)arg5;

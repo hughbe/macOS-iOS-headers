@@ -8,6 +8,7 @@
 
 @class NSError, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVOperation : NSOperation
 {
     NSObject<OS_dispatch_queue> *_ivarAccessQueue;
@@ -28,7 +29,6 @@
 - (BOOL)evaluateDependenciesAndMarkAsExecuting;
 @property(readonly) NSError *error;
 @property(readonly) long long status;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

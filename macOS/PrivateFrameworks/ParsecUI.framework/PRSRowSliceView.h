@@ -19,6 +19,7 @@
     PRSLinkButton *_attributionButton;
 }
 
+- (void).cxx_destruct;
 @property PRSLinkButton *attributionButton; // @synthesize attributionButton=_attributionButton;
 @property PRSImageView *trailingImageView; // @synthesize trailingImageView=_trailingImageView;
 @property PRSAppearanceTextField *trailingTextField; // @synthesize trailingTextField=_trailingTextField;
@@ -26,7 +27,6 @@
 @property(nonatomic) BOOL clickable; // @synthesize clickable=_clickable;
 @property(retain, nonatomic) NSURL *attributionURL; // @synthesize attributionURL=_attributionURL;
 @property(retain, nonatomic) NSImage *attributionImage; // @synthesize attributionImage=_attributionImage;
-- (void).cxx_destruct;
 - (void)_setNoWrap:(BOOL)arg1 forTextField:(id)arg2;
 - (BOOL)_getNoWrapForTextField:(id)arg1;
 @property(retain, nonatomic) NSImage *trailingImage;
@@ -38,7 +38,8 @@
 @property(retain, nonatomic) NSColor *leadingTextColor;
 @property(retain, nonatomic) NSFont *leadingFont;
 @property(retain, nonatomic) NSString *leadingString;
-- (BOOL)allowsVibrancy;
+- (BOOL)accessibilityPerformPress;
+- (BOOL)isAccessibilityElement;
 - (void)updateTrackingAreas;
 - (void)cursorUpdate:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

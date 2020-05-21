@@ -6,24 +6,21 @@
 
 #import <Foundation/NSTask.h>
 
-@class NSMutableDictionary, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>, NSPort;
+@class NSMutableDictionary, NSObject<OS_dispatch_source>, NSPort;
 
 __attribute__((visibility("hidden")))
 @interface NSConcreteTask : NSTask
 {
-    NSObject<OS_dispatch_semaphore> *_lock;
+    struct os_unfair_lock_s _lock;
     NSMutableDictionary *_dictionary;
     CDUnknownBlockType _terminationHandler;
     NSObject<OS_dispatch_source> *_dsrc;
     NSPort *_tmpPort;
     long long _suspendCount;
     int _pid;
-    int _platformExitInfo;
-    BOOL _hasExeced;
-    BOOL _isRunning;
-    BOOL _hasPostedDeathNotification;
-    BOOL _terminationRun;
+    // Error parsing type: AQ, name: __exitRunningInfo
     BOOL _qos;
+    // Error parsing type: AB, name: _isSpawnedProcessDisclaimed
 }
 
 - (void)setStartsNewProcessGroup:(BOOL)arg1;
@@ -57,7 +54,8 @@ __attribute__((visibility("hidden")))
 - (void)setArguments:(id)arg1;
 - (void)_withTaskDictionary:(CDUnknownBlockType)arg1;
 - (void)waitUntilExit;
-- (void)launchWithDictionary:(id)arg1;
+- (BOOL)launchWithDictionary:(id)arg1 error:(id *)arg2;
+- (BOOL)launchAndReturnError:(id *)arg1;
 - (void)launch;
 - (BOOL)isRunning;
 - (long long)terminationReason;
@@ -66,6 +64,8 @@ __attribute__((visibility("hidden")))
 - (void)setTerminationHandler:(CDUnknownBlockType)arg1;
 - (void)_setTerminationHandler:(CDUnknownBlockType)arg1;
 - (CDUnknownBlockType)terminationHandler;
+- (BOOL)isSpawnedProcessDisclaimed;
+- (void)setSpawnedProcessDisclaimed:(BOOL)arg1;
 - (void)setQualityOfService:(long long)arg1;
 - (long long)qualityOfService;
 

@@ -6,18 +6,17 @@
 
 #import <AddressBook/ABCardViewProperty.h>
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewLinkedPeopleProperty : ABCardViewProperty
 {
 }
 
 + (id)localizedLabel;
-+ (CDUnknownBlockType)linkedPersonComparatorWithAddressBook:(id)arg1;
++ (CDUnknownBlockType)linkedContactsComparatorWithMapper:(id)arg1;
 - (BOOL)allowsCustomLabels;
-- (BOOL)shouldShowNamesForPeople:(id)arg1;
-- (id)nameForPerson:(id)arg1;
+- (BOOL)shouldShowNamesForContacts:(id)arg1;
+- (id)nameForContact:(id)arg1;
 - (id)multiValueWithPersonMapper:(id)arg1;
-- (id)multiValueFromLinkedPeople:(id)arg1 personMapper:(id)arg2 addressBook:(id)arg3;
+- (id)multiValueFromLinkedContacts:(id)arg1 personMapper:(id)arg2;
 - (id)emptyValueForMultiValue:(id)arg1 label:(id)arg2;
 - (BOOL)isValueEmpty:(id)arg1;
 - (BOOL)shouldReloadViewOnUserEdit;

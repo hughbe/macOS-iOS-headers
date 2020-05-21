@@ -17,12 +17,12 @@ __attribute__((visibility("hidden")))
     int _providerID;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSURL *urlToOpen;
 @property(readonly, nonatomic) int providerID;
 @property(readonly, nonatomic) NSArray *labelItems;
 @property(readonly, nonatomic) NSString *name;
 @property(readonly, nonatomic) unsigned long long muid;
-- (void)dealloc;
 - (id)initWithConnection:(id)arg1 providerID:(int)arg2;
 
 // Remaining properties

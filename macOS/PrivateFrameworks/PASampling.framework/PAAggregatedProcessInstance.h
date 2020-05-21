@@ -23,21 +23,26 @@
     unsigned int _countSuspended;
     unsigned int _countTerminated;
     unsigned long long _cpuTimeNsCached;
+    unsigned long long _cpuCyclesCached;
+    unsigned long long _cpuInstructionsCached;
 }
 
+- (void).cxx_destruct;
 @property(readonly) unsigned long long timestampIndexWhenTransitionedToSamplingAllThreads; // @synthesize timestampIndexWhenTransitionedToSamplingAllThreads=_timestampIndexWhenTransitionedToSamplingAllThreads;
 @property(readonly) unsigned long long firstTimestampIndex; // @synthesize firstTimestampIndex=_firstTimestampIndex;
 @property(retain) NSDictionary *threadsInPreviousSample; // @synthesize threadsInPreviousSample=_threadsInPreviousSample;
 @property(readonly) unsigned int countTerminated; // @synthesize countTerminated=_countTerminated;
 @property(readonly) unsigned int countSuspended; // @synthesize countSuspended=_countSuspended;
 @property(readonly) NSArray *timestampIndexedTasks; // @synthesize timestampIndexedTasks=_timestampIndexedTasks;
-- (void).cxx_destruct;
 - (void)printToOutputStream:(id)arg1;
 - (BOOL)_shouldDisplayStacks;
 - (void)printStacksToOutputStream:(id)arg1;
 - (void)printHeaderToOutputStream:(id)arg1;
+- (unsigned long long)cpuCycles;
+- (unsigned long long)cpuInstructions;
 - (unsigned long long)cpuTimeNs;
 - (id)debugDescription;
+@property(readonly) BOOL isTranslocated;
 @property(readonly) BOOL isThirdParty;
 @property(readonly) BOOL workQueueExceededTotalThreadLimit;
 @property(readonly) BOOL workQueueExceededConstrainedThreadLimit;
@@ -58,6 +63,8 @@
 @property(readonly) unsigned long long lastTimestampIndex;
 - (id)sortedStacks;
 - (void)combineStacks;
+- (void)_combineAllStacks;
+- (void)_combineStacksByThreadID;
 - (void)_combineSerialDispatchQueueStacks;
 - (void)_combineMainThreadStacks;
 - (void)addSampleThread:(id)arg1 atTimestampIndex:(unsigned long long)arg2 fillGapInTimestampIndexWithPreviousThreads:(BOOL)arg3;

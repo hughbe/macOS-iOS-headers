@@ -6,21 +6,27 @@
 
 #import <PassKitCore/PKPassImageSet.h>
 
-@class PKImage;
+@class NSData, PKImage;
 
 @interface PKPassPreviewImageSet : PKPassImageSet
 {
+    PKImage *_iconImage1x;
+    PKImage *_iconImage2x;
     PKImage *_iconImage;
     PKImage *_notificationIconImage;
+    PKImage *_rawIcon;
+    NSData *_iconImageICNSData;
 }
 
 + (BOOL)supportsSecureCoding;
 + (unsigned int)currentVersion;
 + (id)archiveName;
 + (long long)imageSetType;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSData *iconImageICNSData; // @synthesize iconImageICNSData=_iconImageICNSData;
+@property(retain, nonatomic) PKImage *rawIcon; // @synthesize rawIcon=_rawIcon;
 @property(retain, nonatomic) PKImage *notificationIconImage; // @synthesize notificationIconImage=_notificationIconImage;
 @property(retain, nonatomic) PKImage *iconImage; // @synthesize iconImage=_iconImage;
-- (void).cxx_destruct;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

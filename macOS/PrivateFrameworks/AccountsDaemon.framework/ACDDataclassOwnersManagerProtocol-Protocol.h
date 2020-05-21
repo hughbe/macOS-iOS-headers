@@ -15,5 +15,6 @@
 - (void)actionsForEnablingDataclass:(NSString *)arg1 onAccount:(ACAccount *)arg2 completion:(void (^)(NSArray *, NSError *))arg3;
 - (void)actionsForDeletingAccount:(ACAccount *)arg1 affectingDataclass:(NSString *)arg2 completion:(void (^)(NSArray *, NSError *))arg3;
 - (void)actionsForAddingAccount:(ACAccount *)arg1 affectingDataclass:(NSString *)arg2 completion:(void (^)(NSArray *, NSError *))arg3;
+- (void)preloadDataclassOwnersWithCompletion:(void (^)(NSError *))arg1;
 @end
 

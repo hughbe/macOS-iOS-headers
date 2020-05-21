@@ -15,20 +15,18 @@
     NSString *_userName;
     NSString *_domainName;
     BOOL _dirty;
-    BOOL _screenLockPrefChanged;
 }
 
-+ (void)resetStandardUserDefaults;
-+ (id)standardUserDefaults;
 + (id)defaultsForModuleWithName:(id)arg1;
 + (id)defaultsForModule:(id)arg1;
 + (id)defaultsForEngine;
 + (id)defaultsForUser:(id)arg1 moduleName:(id)arg2;
++ (void)resetStandardUserDefaults;
++ (id)standardUserDefaults;
 - (id)description;
 - (void)removePersistentDomainForName:(id)arg1;
 - (void)setPersistentDomain:(id)arg1 forName:(id)arg2;
 - (id)persistentDomainForName:(id)arg1;
-- (id)persistentDomainNames;
 - (void)removeVolatileDomainForName:(id)arg1;
 - (void)setVolatileDomain:(id)arg1 forName:(id)arg2;
 - (id)volatileDomainForName:(id)arg1;

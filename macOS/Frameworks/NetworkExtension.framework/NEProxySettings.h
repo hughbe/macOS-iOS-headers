@@ -40,6 +40,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) NSArray *supplementalMatchOrders; // @synthesize supplementalMatchOrders=_supplementalMatchOrders;
 @property(copy) NSArray *supplementalMatchDomains; // @synthesize supplementalMatchDomains=_supplementalMatchDomains;
 @property BOOL usePassiveFTP; // @synthesize usePassiveFTP=_usePassiveFTP;
@@ -59,7 +60,6 @@
 @property BOOL HTTPSEnabled; // @synthesize HTTPSEnabled=_HTTPSEnabled;
 @property BOOL HTTPEnabled; // @synthesize HTTPEnabled=_HTTPEnabled;
 @property BOOL autoProxyConfigurationEnabled; // @synthesize autoProxyConfigurationEnabled=_autoProxyConfigurationEnabled;
-- (void).cxx_destruct;
 @property(readonly) BOOL enabled;
 @property(copy) NEProxyServer *HTTPSServer;
 @property(copy) NEProxyServer *HTTPServer;
@@ -68,6 +68,7 @@
 @property(copy) NSURL *proxyAutoConfigurationURL;
 - (void)copyPasswordsFromKeychain;
 - (void)removeKeychainItems;
+- (BOOL)needToUpdateKeychain;
 - (void)syncWithKeychain;
 - (id)initFromLegacyDictionary:(id)arg1;
 - (id)copyLegacyDictionary;

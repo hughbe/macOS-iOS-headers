@@ -6,22 +6,22 @@
 
 #import "NSViewController.h"
 
-@class BrowserContentViewControllerObjCAdapter, CombinedFavoritesGridViewController, KeyLoopSplicingContainerView, NSLayoutConstraint, NSString, NSView, NSViewController<StartPageContentViewController>, TestDriveMigrationBannerViewController, TopSitesViewController;
+@class BrowserViewController, ForYouRecommendationMediator, KeyLoopSplicingContainerView, NSLayoutConstraint, NSString, NSView, NSViewController<StartPageContentViewController>, NSVisualEffectView, SiriSuggestionsStartPageViewController, TopSitesViewController;
 
 __attribute__((visibility("hidden")))
 @interface StartPageViewController : NSViewController
 {
     NSView *_rootView;
     NSViewController<StartPageContentViewController> *_currentMainContainerViewController;
-    CombinedFavoritesGridViewController *_favoritesGridViewController;
     TopSitesViewController *_topSitesViewController;
-    TestDriveMigrationBannerViewController *_testDriveMigrationBannerViewController;
+    SiriSuggestionsStartPageViewController *_siriSuggestionsStartPageViewController;
     double _defaultBottomBannerContainerToMainContainerBottomConstraintConstant;
-    BOOL _canShowTestDriveMigrationBanner;
     int _mode;
-    BrowserContentViewControllerObjCAdapter *_browserContentViewController;
+    BrowserViewController *_browserContentViewController;
     NSView *_externalCenteringView;
+    ForYouRecommendationMediator *_mediator;
     KeyLoopSplicingContainerView *_mainContainerView;
+    NSVisualEffectView *_windowBackdropVisualEffectView;
     NSView *_bottomBanner;
     NSView *_bottomBannerContainer;
     NSLayoutConstraint *_mainContainerToBottomBannerContainerConstraint;
@@ -30,33 +30,31 @@ __attribute__((visibility("hidden")))
 
 + (id)urlForMode:(int)arg1;
 + (int)defaultStartPageMode;
++ (id)pageTitleForURL:(id)arg1;
 + (id)defaultPageTitle;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSLayoutConstraint *bottomBannerContainerToMainContainerBottomConstraint; // @synthesize bottomBannerContainerToMainContainerBottomConstraint=_bottomBannerContainerToMainContainerBottomConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *mainContainerToBottomBannerContainerConstraint; // @synthesize mainContainerToBottomBannerContainerConstraint=_mainContainerToBottomBannerContainerConstraint;
 @property(nonatomic) __weak NSView *bottomBannerContainer; // @synthesize bottomBannerContainer=_bottomBannerContainer;
 @property(retain, nonatomic) NSView *bottomBanner; // @synthesize bottomBanner=_bottomBanner;
+@property(nonatomic) __weak NSVisualEffectView *windowBackdropVisualEffectView; // @synthesize windowBackdropVisualEffectView=_windowBackdropVisualEffectView;
 @property(nonatomic) __weak KeyLoopSplicingContainerView *mainContainerView; // @synthesize mainContainerView=_mainContainerView;
-@property(nonatomic) BOOL canShowTestDriveMigrationBanner; // @synthesize canShowTestDriveMigrationBanner=_canShowTestDriveMigrationBanner;
+@property(retain, nonatomic) ForYouRecommendationMediator *mediator; // @synthesize mediator=_mediator;
 @property(retain, nonatomic) NSView *externalCenteringView; // @synthesize externalCenteringView=_externalCenteringView;
 @property(nonatomic) int mode; // @synthesize mode=_mode;
-@property(nonatomic) __weak BrowserContentViewControllerObjCAdapter *browserContentViewController; // @synthesize browserContentViewController=_browserContentViewController;
-- (void).cxx_destruct;
-- (id)test_combinedFavoritesGridViewController;
-- (void)_stopObservingMigrationState;
-- (void)_startObservingMigrationState;
-- (void)_testDriveMigrationBannerStatusDidChange:(id)arg1;
-- (void)_updateTestDriveMigrationBannerVisibilityAnimated:(BOOL)arg1;
+@property(nonatomic) __weak BrowserViewController *browserContentViewController; // @synthesize browserContentViewController=_browserContentViewController;
 - (void)_updateBottomBanner;
 - (void)_animateBottomBannerIn:(id)arg1;
 - (void)_animateBottomBannerOut;
 - (void)_reLayOutThenRunAnimationGroup:(CDUnknownBlockType)arg1;
 - (void)setBottomBanner:(id)arg1 animated:(BOOL)arg2;
-- (BOOL)handleScrollEventAsSwipeGesture:(id)arg1;
 - (void)_setMainContainerViewControllerUsingMode:(int)arg1;
 - (void)_updateWindowAndTabTitle;
-- (void)viewDidLoad;
 - (void)loadView;
+@property(readonly, nonatomic) struct CGRect startPageViewContentRect;
 @property(readonly, nonatomic) NSString *pageTitle;
+- (void)didDismissTabDialog;
+- (void)willPresentTabDialog;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)awakeFromNib;
 - (void)dealloc;

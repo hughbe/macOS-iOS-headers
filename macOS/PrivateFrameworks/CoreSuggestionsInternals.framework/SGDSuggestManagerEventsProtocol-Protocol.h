@@ -7,11 +7,15 @@
 #import "_SGDSuggestManagerBaseProtocol.h"
 #import "_SGDSuggestManagerEventsConfirmRejectProtocol.h"
 
-@class NSArray, NSString;
+@class NSArray, NSLocale, NSString, NSURL, SGSuggestedEventLaunchInfo;
 
 @protocol SGDSuggestManagerEventsProtocol <_SGDSuggestManagerBaseProtocol, _SGDSuggestManagerEventsConfirmRejectProtocol>
-- (void)allEventsLimitedTo:(unsigned long long)arg1 withCompletion:(void (^)(NSArray *, NSError *))arg2;
-- (void)schemaOrgToEvents:(NSArray *)arg1 completion:(void (^)(NSArray *, NSError *))arg2;
-- (void)eventFromUniqueId:(NSString *)arg1 completion:(void (^)(SGEvent *, NSError *))arg2;
+- (void)suggestionsFromURL:(NSURL *)arg1 title:(NSString *)arg2 HTMLPayload:(NSString *)arg3 withCompletion:(void (^)(SGXPCResponse1 *))arg4;
+- (void)isEventCandidateForURL:(NSURL *)arg1 title:(NSString *)arg2 withCompletion:(void (^)(SGXPCResponse1 *))arg3;
+- (void)allEventsLimitedTo:(unsigned long long)arg1 withCompletion:(void (^)(SGXPCResponse1 *))arg2;
+- (void)schemaOrgToEvents:(NSArray *)arg1 completion:(void (^)(SGXPCResponse1 *))arg2;
+- (void)launchAppForSuggestedEventUsingLaunchInfo:(SGSuggestedEventLaunchInfo *)arg1 completion:(void (^)(SGXPCResponse *))arg2;
+- (void)launchInfoForSuggestedEventWithUniqueIdentifier:(NSString *)arg1 sourceURL:(NSURL *)arg2 clientLocale:(NSLocale *)arg3 ignoreUserActivitySupport:(BOOL)arg4 completion:(void (^)(SGXPCResponse1 *))arg5;
+- (void)eventFromUniqueId:(NSString *)arg1 completion:(void (^)(SGXPCResponse1 *))arg2;
 @end
 

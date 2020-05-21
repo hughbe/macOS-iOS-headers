@@ -10,13 +10,13 @@
 
 @interface _UIDsBatch : NSObject
 {
-    unsigned int expectedLength;
+    unsigned int _expectedLength;
     NSMutableIndexSet *_uids;
 }
 
-@property(nonatomic) unsigned int expectedLength; // @synthesize expectedLength;
-@property(retain, nonatomic) NSMutableIndexSet *uids; // @synthesize uids=_uids;
 - (void).cxx_destruct;
+@property(nonatomic) unsigned int expectedLength; // @synthesize expectedLength=_expectedLength;
+@property(retain, nonatomic) NSMutableIndexSet *uids; // @synthesize uids=_uids;
 - (id)description;
 - (id)init;
 

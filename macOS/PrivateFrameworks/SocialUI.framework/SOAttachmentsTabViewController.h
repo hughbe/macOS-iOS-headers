@@ -16,24 +16,27 @@
     SOContentAttachmentsViewController *_fileAttachmentsViewController;
 }
 
+- (void).cxx_destruct;
 @property BOOL hasUpdatedAttachments; // @synthesize hasUpdatedAttachments=_hasUpdatedAttachments;
 @property(retain) SOContentAttachmentsViewController *fileAttachmentsViewController; // @synthesize fileAttachmentsViewController=_fileAttachmentsViewController;
 @property(retain) SOPhotoAttachmentsViewController *photoAttachmentsViewController; // @synthesize photoAttachmentsViewController=_photoAttachmentsViewController;
 @property __weak id <SOAttachmentsTabViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)setRepresentedObject:(id)arg1;
 - (void)chatDisplayControllerDidChange:(id)arg1;
 - (void)chatDisplayControllerWillChange:(id)arg1;
 - (id)chatDisplayController;
+- (void)_chatPurgedAttachmentsDownloadBatchDidComplete:(id)arg1;
 - (void)_chatItemsChanged:(id)arg1;
-- (double)tabViewControllerViewHeightConstant;
 - (void)_updateSelectedTabViewItemIndex;
 - (void)_updateEnabledTabs;
 - (void)_updateAttachments;
 - (void)_parseAndSetAttachments:(id)arg1;
 - (double)stackViewFrameDidChange:(struct CGSize)arg1;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)tabView:(id)arg1 didSelectTabViewItem:(id)arg2;
 - (void)viewDidLoad;
+@property(readonly, nonatomic) BOOL hasPhotoAttachments;
+@property(readonly) BOOL hasAttachments;
 @property(readonly, nonatomic) NSSegmentedControl *segmentedControl;
 
 @end

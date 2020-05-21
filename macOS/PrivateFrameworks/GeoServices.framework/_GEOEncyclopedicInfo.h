@@ -17,13 +17,14 @@ __attribute__((visibility("hidden")))
     NSMapTable *_attributionMap;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL hasStandAloneFactoids;
 @property(readonly, nonatomic) GEOMapItemAttribution *encyclopedicAttribution;
 @property(readonly, nonatomic) NSArray *factoids;
 @property(readonly, nonatomic) BOOL hasPairOfFactoids;
 @property(readonly, nonatomic) NSString *textBlockText;
 @property(readonly, nonatomic) NSString *textBlockTitle;
 @property(readonly, nonatomic) BOOL hasTextBlock;
-- (void)dealloc;
 - (id)initWithPlaceData:(id)arg1 attributionMap:(id)arg2;
 
 // Remaining properties

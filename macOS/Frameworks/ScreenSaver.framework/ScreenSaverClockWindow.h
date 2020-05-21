@@ -17,7 +17,6 @@
     NSBezierPath *_clockPath;
     struct CGPoint _startingPoint;
     int _corner;
-    long long _lastHour;
     long long _lastMinute;
     int _zeroPointIndex;
     id _clockDelegate;

@@ -15,7 +15,7 @@
     ACAccount *_imapACAccount;
 }
 
-+ (id)keyPathsForValuesAffectingIsAOSAccount;
++ (id)keyPathsForValuesAffectingIsICloudAccount;
 + (id)createAccountWithEmailAddress:(id)arg1 context:(id)arg2;
 + (id)accountWithEmailAddress:(id)arg1 context:(id)arg2;
 + (id)accountWithUsername:(id)arg1 hostname:(id)arg2 context:(id)arg3;
@@ -26,7 +26,8 @@
 - (BOOL)validateRootFolder:(inout id *)arg1 error:(out id *)arg2;
 - (void)setPassword:(id)arg1;
 - (id)password;
-- (BOOL)isAOSAccount;
+- (BOOL)isYahooAccount;
+- (BOOL)isICloudAccount;
 - (BOOL)participatesInInternetAccounts;
 - (long long)accountClassPriority;
 - (id)newMailboxWithName:(id)arg1 serverName:(id)arg2 parent:(id)arg3;

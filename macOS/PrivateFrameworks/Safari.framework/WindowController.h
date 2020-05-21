@@ -15,7 +15,6 @@ __attribute__((visibility("hidden")))
 {
     NSString *_multiWindowFrameAutosaveName;
     BOOL _autosaveFrame;
-    BOOL _lastResizeWasProgrammatic;
 }
 
 - (void).cxx_destruct;
@@ -25,10 +24,7 @@ __attribute__((visibility("hidden")))
 - (void)_windowDidLoad;
 - (void)setFrameToDefault;
 - (struct CGRect)defaultFrame;
-- (BOOL)lastResizeWasProgrammatic;
-- (void)setFrameProgrammatically:(struct CGRect)arg1;
 - (void)setFrameWithoutAutosaving:(struct CGRect)arg1;
-- (void)_setFrameWithoutAutosaving:(struct CGRect)arg1 programmatically:(BOOL)arg2;
 @property(readonly, nonatomic) BOOL didRestoreFinalWindowFrame;
 - (id)multiWindowFrameAutosaveName;
 - (BOOL)setMultiWindowFrameAutosaveName:(id)arg1;

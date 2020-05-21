@@ -16,9 +16,8 @@
     UAModifiersController *_modifiersController;
 }
 
-- (void)finalize;
+- (void).cxx_destruct;
 - (void)dealloc;
-- (void)_cleanupUAScrollZoomSimpleController;
 - (id)initWithCheckBox:(id)arg1 andComboBox:(id)arg2;
 - (void)awakeFromNib;
 - (void)scrollZoomCheckBoxPressed:(id)arg1;

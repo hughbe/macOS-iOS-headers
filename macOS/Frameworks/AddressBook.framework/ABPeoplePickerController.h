@@ -26,7 +26,7 @@
     NSArray *_allSections;
     NSMutableDictionary *_entryForRecordReverseMap;
     NSMenu *newSourceOrGroupMenu;
-    BOOL _singleCard;
+    BOOL _optionKeyWasDownAtStartOfDraggingSession;
     BOOL _shouldAutomaticallyEditInsertedGroupNames;
     BOOL _inDistributionListEditor;
     NSView *pickerView;
@@ -83,6 +83,7 @@
 - (void)personListDidDoubleClick:(id)arg1;
 - (void)personList:(id)arg1 didSelectEntries:(id)arg2;
 - (void)clearExtraUniqueIdsInSearchResults;
+- (void)expandPersonEntriesCacheWithEntry:(id)arg1;
 @property(retain, nonatomic) NSString *displayedProperty;
 @property(nonatomic) int valueSelectionBehavior;
 - (void)setHasTableBorder:(BOOL)arg1;
@@ -96,9 +97,6 @@
 - (void)saveAutosaveValues;
 - (id)autosaveDefaultsKey;
 - (void)pasteboard:(id)arg1 provideDataForType:(id)arg2;
-- (double)splitView:(id)arg1 constrainMaxCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
-- (double)splitView:(id)arg1 constrainMinCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
-- (void)splitView:(id)arg1 resizeSubviewsWithOldSize:(struct CGSize)arg2;
 - (void)writeSplitViewColumnWidthsToPrefs:(BOOL)arg1;
 - (void)tableView:(id)arg1 userClickedSubrow:(long long)arg2 ofRow:(long long)arg3;
 - (void)_postSelectionChangedNotification;

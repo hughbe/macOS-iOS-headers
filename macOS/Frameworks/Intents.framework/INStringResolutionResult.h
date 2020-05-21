@@ -6,14 +6,26 @@
 
 #import <Intents/INIntentResolutionResult.h>
 
-@interface INStringResolutionResult : INIntentResolutionResult
+#import "INStringResolutionResultExport.h"
+
+@class NSString;
+
+@interface INStringResolutionResult : INIntentResolutionResult <INStringResolutionResultExport>
 {
 }
 
-+ (id)unsupportedWithReason:(long long)arg1 alternativeStrings:(id)arg2;
 + (id)confirmationRequiredWithStringToConfirm:(id)arg1;
 + (id)disambiguationWithStringsToDisambiguate:(id)arg1;
 + (id)successWithResolvedString:(id)arg1;
++ (id)unsupportedWithReason:(unsigned long long)arg1 alternativeStrings:(id)arg2;
+- (id)_vocabularyValueForObject:(id)arg1 slotDescription:(id)arg2;
+- (id)_intentSlotValueForObject:(id)arg1 slotDescription:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

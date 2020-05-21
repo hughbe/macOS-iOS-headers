@@ -8,13 +8,18 @@
 
 @class AVAssetWriterHelper, AVKeyPathDependencyManager, AVWeakReference, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterInternal : NSObject
 {
     AVWeakReference *weakReference;
     AVAssetWriterHelper *helper;
     NSObject<OS_dispatch_queue> *helperReadWriteQueue;
     AVKeyPathDependencyManager *keyPathDependencyManager;
+    id <AVAssetWriterFinishWritingDelegate> finishWritingDelegate;
+    id <AVAssetWriterDataWritingDelegate> dataWritingDelegate;
 }
+
+- (void).cxx_destruct;
 
 @end
 

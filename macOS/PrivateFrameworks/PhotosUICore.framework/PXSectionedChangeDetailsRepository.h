@@ -15,8 +15,9 @@
     long long _historyLimit;
 }
 
-@property(readonly, nonatomic) long long historyLimit; // @synthesize historyLimit=_historyLimit;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) long long historyLimit; // @synthesize historyLimit=_historyLimit;
+- (id)coalescedChangeDetailsFromDataSourceIdentifier:(unsigned long long)arg1 toDataSourceIdentifier:(unsigned long long)arg2;
 - (id)changeDetailsFromDataSourceIdentifier:(unsigned long long)arg1 toDataSourceIdentifier:(unsigned long long)arg2;
 - (void)addChangeDetails:(id)arg1;
 - (id)initWithChangeHistoryLimit:(long long)arg1;

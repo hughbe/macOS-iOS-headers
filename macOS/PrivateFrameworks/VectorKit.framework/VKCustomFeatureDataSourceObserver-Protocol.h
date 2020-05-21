@@ -7,7 +7,8 @@
 #import "NSObject.h"
 
 @protocol VKCustomFeatureDataSourceObserver <NSObject>
+- (void)dataSource:(id <VKCustomFeatureDataSource>)arg1 didChangeSceneID:(unsigned char)arg2;
 - (void)dataSource:(id <VKCustomFeatureDataSource>)arg1 didChangeSceneState:(unsigned char)arg2;
-- (void)dataSource:(id <VKCustomFeatureDataSource>)arg1 featuresDidChangeForRect:(CDStruct_90e2a262)arg2;
+- (void)dataSource:(id <VKCustomFeatureDataSource>)arg1 featuresDidChangeForRect:(CDStruct_02837cd9)arg2;
 @end
 

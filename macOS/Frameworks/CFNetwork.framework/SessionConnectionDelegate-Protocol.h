@@ -10,6 +10,7 @@
 @class NSCachedURLResponse, NSError, NSHTTPURLResponse, NSInputStream, NSNumber, NSObject<OS_dispatch_data>, NSString, NSURLAuthenticationChallenge, NSURLRequest, NSURLResponse, NSURLSessionTaskMetrics, __NSCFURLSessionConnection;
 
 @protocol SessionConnectionDelegate <NSObject, NSCopying>
+- (void)connection:(__NSCFURLSessionConnection *)arg1 didReceiveTCPConnection:(shared_ptr_8da4e70b)arg2 extraBytes:(NSObject<OS_dispatch_data> *)arg3;
 - (void)connection:(__NSCFURLSessionConnection *)arg1 needConnectedSocketToHost:(NSString *)arg2 port:(unsigned long long)arg3 completion:(void (^)(int, struct))arg4;
 - (void)connection:(__NSCFURLSessionConnection *)arg1 didReceiveSocketInputStream:(NSInputStream *)arg2 outputStream:(id)arg3;
 - (void)connection:(__NSCFURLSessionConnection *)arg1 _conditionalRequirementsChanged:(BOOL)arg2;

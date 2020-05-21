@@ -6,7 +6,10 @@
 
 #import "INVocabularyUpdateService.h"
 
+@class NSString;
+
 @protocol INIntentPreferencesAndVocabularyUpdateService <INVocabularyUpdateService>
+- (void)verifyProcessCanDonateIntentWithName:(NSString *)arg1 completion:(void (^)(BOOL))arg2;
 - (void)fetchCurrentSiriLanguageCode:(void (^)(NSString *))arg1;
 - (void)requestSiriAuthorization:(void (^)(long long))arg1;
 - (void)fetchSiriAuthorization:(void (^)(long long))arg1;

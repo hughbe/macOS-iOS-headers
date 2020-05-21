@@ -6,15 +6,26 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
-@interface TITypologyRecord : NSObject <NSCoding>
+@class NSUUID;
+
+@interface TITypologyRecord : NSObject <NSSecureCoding>
 {
     double _timestamp;
+    NSUUID *_recordID;
 }
 
++ (id)recordClasses;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSUUID *recordID; // @synthesize recordID=_recordID;
 @property(nonatomic) double timestamp; // @synthesize timestamp=_timestamp;
 - (id)textSummaryForAutocorrection:(id)arg1;
+- (void)replaceDocumentState:(id)arg1;
+- (void)removeContextFromKeyboardState;
+- (id)currentKeyboardState;
+- (id)changedText;
 - (id)shortDescription;
 - (id)textSummary;
 - (void)encodeWithCoder:(id)arg1;

@@ -8,7 +8,6 @@
 
 @class NSButton, NSPanel, NSTextField, NSView<ABCardCollectionRowView>;
 
-__attribute__((visibility("hidden")))
 @interface ABCustomLabelController : NSObject
 {
     NSPanel *mEditPanel;
@@ -18,7 +17,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (void)addCustomLabelToDatumView:(id)arg1;
-- (void)dealloc;
+- (void).cxx_destruct;
 - (void)sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)controlTextDidChange:(id)arg1;
 - (void)help:(id)arg1;

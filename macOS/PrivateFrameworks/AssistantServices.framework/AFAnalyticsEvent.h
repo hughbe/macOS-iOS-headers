@@ -9,29 +9,36 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSDictionary;
+@class NSData;
 
 @interface AFAnalyticsEvent : NSObject <NSCopying, NSSecureCoding>
 {
+    unsigned long long _deliveryStream;
     long long _type;
-    unsigned long long _machAbsoluteTime;
-    long long _categoryType;
-    NSDictionary *_context;
+    unsigned long long _timestamp;
+    long long _contextDataType;
+    NSData *_contextData;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(readonly, nonatomic) NSDictionary *context; // @synthesize context=_context;
-@property(readonly, nonatomic) long long categoryType; // @synthesize categoryType=_categoryType;
-@property(readonly, nonatomic) unsigned long long machAbsoluteTime; // @synthesize machAbsoluteTime=_machAbsoluteTime;
-@property(readonly, nonatomic) long long type; // @synthesize type=_type;
++ (id)eventsReferenceTime;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSData *contextData; // @synthesize contextData=_contextData;
+@property(readonly, nonatomic) long long contextDataType; // @synthesize contextDataType=_contextDataType;
+@property(readonly, nonatomic) unsigned long long timestamp; // @synthesize timestamp=_timestamp;
+@property(readonly, nonatomic) long long type; // @synthesize type=_type;
+@property(readonly, nonatomic) unsigned long long deliveryStream; // @synthesize deliveryStream=_deliveryStream;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithType:(long long)arg1 machAbsoluteTime:(unsigned long long)arg2 categoryType:(long long)arg3 context:(id)arg4;
+- (id)dateStamp;
+- (id)contextDataAsProtobuf;
+- (id)contextDataAsDictionary;
+- (id)legacyTypeName;
+- (id)typeName;
+- (id)initWithDeliveryStream:(unsigned long long)arg1 type:(long long)arg2 timestamp:(unsigned long long)arg3 contextDataType:(long long)arg4 contextData:(id)arg5;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (id)description;
 - (id)init;
 
 @end

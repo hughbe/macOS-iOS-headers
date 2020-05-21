@@ -18,6 +18,7 @@
 + (BOOL)isGuestEnabled;
 + (void)setGuestEnabled:(BOOL)arg1;
 + (id)sharedConfig;
++ (BOOL)_isFDEEnabled;
 - (id)guestUserPicture;
 - (id)_imageFromCGImage1x:(struct CGImage *)arg1 andCGImage2x:(struct CGImage *)arg2;
 - (BOOL)isGuestAccountEnabled;

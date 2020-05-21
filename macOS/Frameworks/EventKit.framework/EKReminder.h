@@ -13,14 +13,17 @@
 @interface EKReminder : EKCalendarItem <EKProtocolMutableReminderOccurrence>
 {
     BOOL cachedHasLocationAlarm;
+    NSDateComponents *_startDateComponents;
+    NSDateComponents *_dueDateComponents;
 }
 
 + (id)sortDescriptorsForSortOrder:(int)arg1;
 + (BOOL)fixBrokenICalReminderOrdersWithReminders:(id)arg1;
 + (void)fixBrokenICalReminderOrdersWithEventStore:(id)arg1;
 + (void)fixBrokenICalReminderOrdersInReminderList:(id)arg1;
++ (id)reorderReminders:(id)arg1 betweenEarlier:(id)arg2 later:(id)arg3 shouldSave:(BOOL)arg4;
 + (void)reorderReminders:(id)arg1 betweenEarlier:(id)arg2 later:(id)arg3;
-+ (void)_adjustOrderOnReminders:(id)arg1 boundaryOrder:(unsigned long long)arg2 reverse:(BOOL)arg3 eventStore:(id)arg4;
++ (void)_adjustOrderOnReminders:(id)arg1 boundaryOrder:(unsigned long long)arg2 reverse:(BOOL)arg3 eventStore:(id)arg4 saveBlock:(CDUnknownBlockType)arg5;
 + (id)orderSortDescriptors;
 + (id)dataFromUserActivity:(id)arg1;
 + (id)batchChangeNotificationName;
@@ -31,21 +34,21 @@
 + (Class)frozenClass;
 + (id)itemWithIdentifier:(id)arg1 inStore:(id)arg2;
 + (id)reminderWithEventStore:(id)arg1;
-+ (id)actionStringsPluralDisplayName;
-+ (id)actionStringsDisplayName;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSDateComponents *dueDateComponents; // @synthesize dueDateComponents=_dueDateComponents;
+@property(copy, nonatomic) NSDateComponents *startDateComponents; // @synthesize startDateComponents=_startDateComponents;
 @property(readonly, nonatomic) BOOL cachedHasLocationAlarm; // @synthesize cachedHasLocationAlarm;
 - (BOOL)_validateEntityTypeIsSupported:(id *)arg1;
 - (id)humanReadableRecurrenceDescription;
+- (id)prepareReminderKitObjectForSaveWithUpdatedBackingObjectProvider:(id)arg1;
 - (BOOL)validate:(id *)arg1;
 - (void)reorderBetweenEarlier:(id)arg1 later:(id)arg2;
-- (void)_adjustOrderOnReminders:(id)arg1 reverse:(BOOL)arg2;
+- (void)_adjustOrderOnReminders:(id)arg1 reverse:(BOOL)arg2 saveBlock:(CDUnknownBlockType)arg3;
 - (long long)compareDueDateWithReminder:(id)arg1;
 - (void)setDisplayOrder:(unsigned long long)arg1;
 - (unsigned long long)displayOrder;
 - (BOOL)currentUserMayActAsOrganizer;
 - (id)externalURI;
-- (void)setAllDay:(BOOL)arg1;
-- (void)setTimeZoneObject:(id)arg1;
 - (BOOL)hasLocationAlarm;
 - (id)bestDisplayAlarm;
 @property(readonly, nonatomic) BOOL canEditRecurrence;
@@ -58,10 +61,6 @@
 @property(readonly, copy, nonatomic) NSNumber *orderNumber;
 - (void)setDueDateUnadjustedFromUTC:(id)arg1;
 @property(readonly, copy, nonatomic) NSDate *dueDateUnadjustedFromUTC;
-- (void)setDueDate:(id)arg1;
-- (id)dueDate;
-@property(copy, nonatomic) NSDateComponents *dueDateComponents;
-@property(copy, nonatomic) NSDateComponents *startDateComponents;
 @property(copy, nonatomic) NSDate *completionDate;
 - (void)updateWithAppLink:(id)arg1 usedSelectedText:(char *)arg2;
 - (void)setAppLink:(id)arg1;
@@ -73,9 +72,26 @@
 - (unsigned long long)entityType;
 - (BOOL)canMoveOrCopyFromCalendar:(id)arg1 toCalendar:(id)arg2 error:(id *)arg3;
 - (BOOL)canMoveToCalendar:(id)arg1 fromCalendar:(id)arg2 error:(id *)arg3;
-- (id)actionStringsDisplayTitle;
-- (BOOL)removeWithSpan:(long long)arg1 error:(id *)arg2;
-- (BOOL)saveWithSpan:(long long)arg1 error:(id *)arg2;
+- (BOOL)refresh;
+- (void)rollback;
+- (void)reset;
+- (BOOL)isAllDay;
+- (void)_adjustPersistedStartDateComponentsForNewTimeZone:(id)arg1;
+- (void)setAllDay:(BOOL)arg1;
+- (void)setStartTimeZone:(id)arg1;
+- (id)startTimeZone;
+- (id)timeZone;
+- (void)setTimeZone:(id)arg1;
+- (void)setDueDate:(id)arg1;
+- (id)dueDate;
+- (BOOL)dueDateAllDay;
+@property(readonly, nonatomic) NSTimeZone *dueDateTimeZone;
+- (id)startDateComponentsRaw;
+- (void)setStartDateAllDay:(BOOL)arg1;
+- (BOOL)startDateAllDay;
+- (void)setStartDateTimeZone:(id)arg1;
+- (id)startDateTimeZone;
+- (void)forceUpdateFrozenCalendar:(id)arg1;
 
 // Remaining properties
 @property(copy, nonatomic) NSURL *URL;
@@ -87,20 +103,21 @@
 @property(readonly, nonatomic) NSNumber *calendarItemPermissionNumber; // @dynamic calendarItemPermissionNumber;
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;
 @property(readonly, copy, nonatomic) NSString *contactIdentifiersString;
-@property(readonly, copy, nonatomic) id <EKProtocolCalendar> container;
+@property(readonly, retain, nonatomic) id <CalendarModelProtocol> container;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, nonatomic) BOOL defaultAlarmWasDeleted; // @dynamic defaultAlarmWasDeleted;
 @property(readonly, copy) NSString *description;
 @property(readonly, copy, nonatomic) id <EKProtocolStructuredLocation> ekStructuredLocation;
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) BOOL isPartialObject;
-@property(readonly, copy, nonatomic) NSDate *lastModifiedDate;
+@property(readonly, copy, nonatomic) NSData *localStructuredData;
 @property(readonly, nonatomic) NSManagedObjectID *managedObjectID;
 @property(copy, nonatomic) NSString *notes;
 @property(readonly, nonatomic) BOOL organizedByMe; // @dynamic organizedByMe;
 @property(readonly, copy, nonatomic) NSString *organizerEmail; // @dynamic organizerEmail;
 @property(readonly, copy, nonatomic) NSString *organizerEncodedLikenessData; // @dynamic organizerEncodedLikenessData;
 @property(readonly, copy, nonatomic) NSString *organizerName; // @dynamic organizerName;
+@property(readonly, copy, nonatomic) NSString *organizerPhoneNumber; // @dynamic organizerPhoneNumber;
 @property(readonly, copy, nonatomic) NSURL *organizerURL; // @dynamic organizerURL;
 @property(readonly, copy, nonatomic) id <EKProtocolParticipant> participantForMe; // @dynamic participantForMe;
 @property(readonly, nonatomic) NSDictionary *preFrozenRelationshipObjects;
@@ -111,6 +128,7 @@
 @property(readonly, copy, nonatomic) NSString *relatedExternalID;
 @property(readonly, copy, nonatomic) NSString *scheduleAgentString;
 @property(readonly, copy, nonatomic) NSDate *startDateUnadjustedFromUTC;
+@property(readonly, copy, nonatomic) NSData *structuredData;
 @property(readonly) Class superclass;
 @property(readonly, copy, nonatomic) NSTimeZone *timeZoneObject;
 @property(copy, nonatomic) NSString *title;

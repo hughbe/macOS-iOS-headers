@@ -8,7 +8,7 @@
 
 #import "GEOCompletionItemPrivate.h"
 
-@class GEOMapServiceTraits, GEOPDAutocompleteEntry, GEOSearchCategory, NSArray, NSData, NSString;
+@class GEODirectionIntent, GEOMapItemIdentifier, GEOMapServiceTraits, GEOPDAutocompleteEntry, GEOResolvedItem, GEORetainedSearchMetadata, GEOSearchCategory, GEOServerResultScoreMetadata, NSArray, NSData, NSString;
 
 __attribute__((visibility("hidden")))
 @interface _GEOPlaceSearchCompletionItem : NSObject <GEOCompletionItemPrivate>
@@ -23,8 +23,13 @@ __attribute__((visibility("hidden")))
     GEOSearchCategory *_category;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) GEOPDAutocompleteEntry *entry; // @synthesize entry=_entry;
 @property(readonly, nonatomic) NSArray *displayLines; // @synthesize displayLines=_displayLines;
+@property(readonly, nonatomic) float disambiguationRadiusMeters;
+@property(readonly, nonatomic) BOOL hasDisambiguationRadiusMeters;
+@property(readonly, nonatomic) int placeType;
+@property(readonly, nonatomic) GEOMapItemIdentifier *identifier;
 @property(readonly, nonatomic) long long type;
 @property(readonly, nonatomic, getter=_placeDataAutocompleteEntry) GEOPDAutocompleteEntry *placeDataAutocompleteEntry;
 @property(readonly) unsigned long long hash;
@@ -33,12 +38,21 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSData *entryMetadata;
 - (void)sendFeedback;
 - (BOOL)getCoordinate:(CDStruct_c3b9c2ee *)arg1;
+@property(readonly, nonatomic) NSString *queryAcceleratorCompletionString;
+@property(readonly, nonatomic) BOOL hasQueryAcceleratorAffordanceEnabled;
+@property(readonly, nonatomic) GEOServerResultScoreMetadata *serverResultScoreMetadata;
+@property(readonly, nonatomic) long long autocompleteCellType;
+@property(readonly, nonatomic) long long entryTapBehavior;
+@property(readonly, nonatomic) long long sortPriority;
+@property(readonly, nonatomic) BOOL hasSortPriority;
+@property(readonly, nonatomic) GEORetainedSearchMetadata *retainedSearchMetadata;
+@property(readonly, nonatomic) GEODirectionIntent *directionIntent;
+@property(readonly, nonatomic) GEOResolvedItem *clientResolved;
 @property(readonly, nonatomic) GEOSearchCategory *searchCategory;
 @property(readonly, nonatomic) id <GEOMapItem> geoMapItem;
 - (id)calloutTitle;
 - (id)queryLine;
 - (id)highlightsForLine:(unsigned long long)arg1;
-- (void)dealloc;
 - (id)initWithEntry:(id)arg1 traits:(id)arg2 entryListIndex:(int)arg3 entryIndex:(int)arg4 mapItems:(id)arg5;
 
 // Remaining properties

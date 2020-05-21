@@ -8,6 +8,7 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureAudioPreviewOutputInternal : NSObject
 {
     struct __CFDictionary *splitterUnits;
@@ -16,6 +17,7 @@
     struct __CFDictionary *callbackContextTokens;
     float volume;
     NSString *outputDeviceUniqueID;
+    struct os_unfair_lock_s internalLock;
 }
 
 @end

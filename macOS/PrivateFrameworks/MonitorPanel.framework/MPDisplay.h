@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class MPDisplayMode, NSArray, NSImage, NSMutableArray, NSMutableDictionary, NSString, NSUUID;
+@class MPDisplayMode, MPDisplayPreset, NSArray, NSImage, NSMutableArray, NSMutableDictionary, NSString, NSUUID;
 
 @interface MPDisplay : NSObject
 {
@@ -48,18 +48,34 @@
     BOOL _isProjector;
     BOOL _isAirPlayDisplay;
     BOOL _is4K;
+    BOOL _isSidecarDisplay;
     BOOL _hasMultipleRates;
     BOOL _hasZeroRate;
     BOOL _uiProjectorOverride;
+    BOOL _hasHDRModes;
+    BOOL _preferHDRModes;
     BOOL _needsUpdate;
     struct os_unfair_lock_s _accessLock;
+    void *_coreDisplayFrameworkBundle;
+    CDUnknownFunctionPointerType _isHDRModeSupported;
+    CDUnknownFunctionPointerType _isHDRModeEnabled;
+    CDUnknownFunctionPointerType _enableHDRMode;
+    BOOL _hasHDRModeSupport;
+    NSMutableArray *_presetsArray;
+    unsigned int _numberOfPresets;
+    BOOL _hasRotationSensor;
+    BOOL _usePreciseRefreshRate;
+    BOOL _loadingPresets;
+    BOOL _isAppleProDisplay;
 }
 
-@property(readonly) struct CGRect displayResolutionPreviewRect; // @synthesize displayResolutionPreviewRect=_displayResolutionPreviewRect;
-@property(readonly) NSImage *displayResolutionPreviewIcon; // @synthesize displayResolutionPreviewIcon=_displayResolutionPreviewIcon;
-@property(readonly) NSImage *displayIcon; // @synthesize displayIcon=_displayIcon;
+@property(readonly) BOOL hasRotationSensor; // @synthesize hasRotationSensor=_hasRotationSensor;
+@property(retain) MPDisplayMode *defaultMode; // @synthesize defaultMode=_defaultMode;
+@property(retain) MPDisplayMode *nativeMode; // @synthesize nativeMode=_nativeMode;
+@property(retain) MPDisplayMode *currentMode; // @synthesize currentMode=_currentMode;
 @property(readonly) BOOL hasZeroRate; // @synthesize hasZeroRate=_hasZeroRate;
 @property(readonly) BOOL hasMultipleRates; // @synthesize hasMultipleRates=_hasMultipleRates;
+@property(readonly) BOOL isSidecarDisplay; // @synthesize isSidecarDisplay=_isSidecarDisplay;
 @property(readonly) BOOL isAirPlayDisplay; // @synthesize isAirPlayDisplay=_isAirPlayDisplay;
 @property(readonly) BOOL isProjector; // @synthesize isProjector=_isProjector;
 @property(readonly) BOOL is4K; // @synthesize is4K=_is4K;
@@ -76,9 +92,24 @@
 @property unsigned int userFlags; // @synthesize userFlags=_userFlags;
 @property(readonly) int aliasID; // @synthesize aliasID=_aliasID;
 @property(readonly) int displayID; // @synthesize displayID=_displayID;
+- (BOOL)setActivePreset:(id)arg1;
+@property(readonly) NSArray *presets;
+@property(readonly) BOOL hasPresets;
+@property(readonly) MPDisplayPreset *defaultPreset;
+- (void)buildPresetsList;
+@property(readonly) MPDisplayPreset *activePreset;
+- (void)_loadPreviewIconFromServiceDictionary:(id)arg1;
+- (id)_imageAndRect:(struct CGRect *)arg1 fromDictionary:(id)arg2 forOrientation:(long long)arg3;
+- (id)_iconAtPath:(id)arg1;
+@property(readonly) struct CGRect displayResolutionPreviewRect;
+@property(readonly) NSImage *displayResolutionPreviewIcon;
+@property(readonly) NSImage *displayIcon;
 @property(readonly) NSUUID *uuid;
 @property(readonly) struct CGRect hardwareBounds;
 @property(readonly) int mirrorMasterDisplayID;
+- (void)setPreferHDRModes:(BOOL)arg1;
+@property(readonly) BOOL preferHDRModes;
+@property(readonly) BOOL hasHDRModes;
 @property(readonly) BOOL isForcedToMirror;
 - (void)setMirrorMaster:(BOOL)arg1;
 - (void)setMirrorMode:(id)arg1;
@@ -88,9 +119,6 @@
 - (BOOL)isModeNative:(id)arg1;
 - (BOOL)inDefaultMode;
 - (id)modesForResolution:(id)arg1;
-@property(readonly) MPDisplayMode *currentMode;
-@property(readonly) MPDisplayMode *nativeMode;
-@property(readonly) MPDisplayMode *defaultMode;
 @property(readonly) NSArray *scanRateStrings;
 @property(readonly) NSArray *scanRates;
 - (id)allModes;
@@ -123,6 +151,7 @@
 - (BOOL)isAlias:(int)arg1;
 - (id)multiscanModesForMode:(id)arg1;
 @property(readonly) BOOL hasMenuBar;
+@property(readonly) BOOL isAppleProDisplay;
 @property(readonly) BOOL isBuiltInRetina;
 @property(readonly) NSString *titleName;
 @property(retain, nonatomic) NSString *displayName;

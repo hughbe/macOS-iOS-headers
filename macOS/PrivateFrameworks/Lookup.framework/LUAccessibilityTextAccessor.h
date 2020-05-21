@@ -6,6 +6,7 @@
 
 #import <Lookup/LUTextAccessor.h>
 
+__attribute__((visibility("hidden")))
 @interface LUAccessibilityTextAccessor : LUTextAccessor
 {
     id _accessibilityElement;
@@ -13,10 +14,11 @@
 
 + (BOOL)canAccessTextInView:(id)arg1;
 + (BOOL)canAccessTextAtLocation:(struct CGPoint)arg1;
-@property(retain) id accessibilityElement; // @synthesize accessibilityElement=_accessibilityElement;
-- (id)termForRange:(struct _NSRange)arg1 textOrigin:(struct CGPoint *)arg2 language:(id *)arg3 partOfSpeech:(id *)arg4;
-- (id)_termAndTextOrigin:(struct CGPoint *)arg1 language:(id *)arg2 partOfSpeech:(id *)arg3;
-- (id)_termAtLocation:(struct CGPoint)arg1 textOrigin:(struct CGPoint *)arg2 language:(id *)arg3 partOfSpeech:(id *)arg4;
+- (void).cxx_destruct;
+@property(retain, nonatomic) id accessibilityElement; // @synthesize accessibilityElement=_accessibilityElement;
+- (id)termForRange:(struct _NSRange)arg1 textOrigin:(struct CGPoint *)arg2;
+- (id)_termAndTextOrigin:(struct CGPoint *)arg1;
+- (id)_termAtLocation:(struct CGPoint)arg1 textOrigin:(struct CGPoint *)arg2;
 - (id)initWithView:(id)arg1;
 - (id)initWithLocation:(struct CGPoint)arg1;
 - (void)dealloc;

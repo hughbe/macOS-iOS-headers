@@ -15,16 +15,15 @@
     CNAutocompleteResult *_autocompleteResult;
 }
 
-@property(retain, nonatomic) CNAutocompleteResult *autocompleteResult; // @synthesize autocompleteResult=_autocompleteResult;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CNAutocompleteResult *autocompleteResult; // @synthesize autocompleteResult=_autocompleteResult;
 @property(readonly) NSArray *idsCanonicalDestinations;
-@property(readonly) NSString *idsCanonicalDestination;
-@property(readonly) NSString *idsUniqueId;
 @property(readonly) BOOL mostRecentCallWasMissed;
 @property(readonly) long long mostRecentCallType;
 @property(readonly) NSArray *handles;
 @property(readonly) NSString *isoCountryCode;
 @property(readonly) NSString *destinationId;
+@property(readonly) NSString *backingContactIdentifier;
 @property(readonly) NSString *backingContactId;
 @property(readonly) CNContact *backingContact;
 @property(readonly) NSString *callerId;

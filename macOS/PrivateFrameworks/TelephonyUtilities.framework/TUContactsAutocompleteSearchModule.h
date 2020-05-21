@@ -23,6 +23,7 @@
     CDUnknownBlockType _completion;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic, getter=isCancelled) BOOL cancelled; // @synthesize cancelled=_cancelled;
 @property(nonatomic, getter=isSearchComplete) BOOL searchComplete; // @synthesize searchComplete=_searchComplete;
 @property(copy, nonatomic) CDUnknownBlockType completion; // @synthesize completion=_completion;
@@ -31,7 +32,6 @@
 @property(retain, nonatomic) id <CNCancelable> fetchRequest; // @synthesize fetchRequest=_fetchRequest;
 @property(retain, nonatomic) CNAutocompleteStore *autocompleteStore; // @synthesize autocompleteStore=_autocompleteStore;
 @property __weak TUSearchController *searchController; // @synthesize searchController=_searchController;
-- (void).cxx_destruct;
 - (void)autocompleteFetchDidFinish:(id)arg1;
 - (void)autocompleteFetch:(id)arg1 didFailWithError:(id)arg2;
 - (void)autocompleteFetch:(id)arg1 didReceiveResults:(id)arg2;
@@ -39,6 +39,7 @@
 - (void)cancelSearch;
 - (void)searchForString:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_cleanup;
+- (void)dealloc;
 - (id)init;
 
 // Remaining properties

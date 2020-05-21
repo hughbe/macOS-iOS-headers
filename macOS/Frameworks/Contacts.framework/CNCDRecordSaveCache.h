@@ -16,14 +16,15 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_recordsByIdentifier;
 }
 
+- (void).cxx_destruct;
 - (void)enumerateCoreDataGroupsMatchingGroups:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)enumerateCoreDataContactsMatchingContacts:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
+- (id)fetchRecordsWithLinkIdentifiers:(id)arg1 error:(id *)arg2;
 - (id)fetchRecordsWithIdentifiers:(id)arg1 error:(id *)arg2;
 - (id)fetchIndexedRecordsWithIdentifiers:(id)arg1 error:(id *)arg2;
 - (BOOL)fetchAllIdentifiers:(id)arg1 error:(id *)arg2;
 - (id)recordsForIdentifiers:(id)arg1;
 - (id)recordForIdentifier:(id)arg1;
-- (void)dealloc;
 - (id)initWithContext:(id)arg1 entityName:(id)arg2;
 
 @end

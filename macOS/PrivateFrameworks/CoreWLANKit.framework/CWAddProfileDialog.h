@@ -77,6 +77,7 @@
 - (BOOL)validateEntries;
 - (void)resetSecurityEntries;
 - (void)setSecurityTypeViewForTag:(long long)arg1;
+- (long long)getDefaultTag;
 - (id)localizedStringForKey:(id)arg1;
 - (void)controlTextDidChange:(id)arg1;
 - (void)onChooseNetworkButton:(id)arg1;
@@ -93,6 +94,7 @@
 - (void)windowDidLoad;
 - (void)close;
 - (void)awakeFromNib;
+- (void)__updateWindowFrame:(struct CGRect)arg1 complete:(CDUnknownBlockType)arg2;
 - (void)removeEnterpriseViews:(struct CGRect *)arg1;
 - (void)insertEnterpriseViews;
 - (void)expandFrameForEnterpriseViews:(struct CGRect *)arg1;

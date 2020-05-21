@@ -19,18 +19,18 @@
 }
 
 + (id)_copySearchTermsFromSearchString:(id)arg1;
+- (void).cxx_destruct;
 - (void)finishCoreDAVTaskWithError:(id)arg1;
 - (id)copyDefaultParserForContentType:(id)arg1;
 - (id)requestBody;
 - (void)addFiltersToXMLData:(id)arg1;
 - (id)httpMethod;
-- (void)dealloc;
 - (id)_initWithSearchTerms:(id)arg1 searchLimit:(unsigned long long)arg2 atURL:(id)arg3 appSpecificDataItemClass:(Class)arg4;
 - (id)initWithSearchString:(id)arg1 searchLimit:(unsigned long long)arg2 atURL:(id)arg3 appSpecificDataItemClass:(Class)arg4;
 - (id)initWithSearchTerms:(id)arg1 searchLimit:(unsigned long long)arg2 atURL:(id)arg3 appSpecificDataItemClass:(Class)arg4;
 
 // Remaining properties
-@property(nonatomic) id <CoreDAVContainerQueryTaskDelegate> delegate; // @dynamic delegate;
+@property(nonatomic) __weak id <CoreDAVContainerQueryTaskDelegate> delegate; // @dynamic delegate;
 
 @end
 

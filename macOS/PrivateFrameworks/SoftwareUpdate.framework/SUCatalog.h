@@ -14,6 +14,8 @@
     NSDictionary *_dictionaryRepresentation;
 }
 
++ (void)initialize;
+- (id)postDateForProductKey:(id)arg1;
 - (id)extraInfoForProductKey:(id)arg1;
 - (id)packageDictionariesForProductKey:(id)arg1;
 - (id)distributionURLForProductKey:(id)arg1 preferredLocalizations:(id)arg2;

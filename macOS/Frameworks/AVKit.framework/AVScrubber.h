@@ -4,23 +4,41 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSSlider.h"
+#import "NSView.h"
 
-@class NSArray;
+@class AVObservationController, AVPlayerController, AVScrubberSlider, AVWaveform, AVWaveformLayer;
 
 __attribute__((visibility("hidden")))
-@interface AVScrubber : NSSlider
+@interface AVScrubber : NSView
 {
-    NSArray *_loadedTimeRanges;
+    AVObservationController *_observationController;
+    id _audioWaveformStatusObservationToken;
+    BOOL _showsWaveform;
+    double _maxTime;
+    double _minTime;
+    AVWaveformLayer *_waveformLayer;
+    AVWaveform *_waveform;
+    AVPlayerController *_playerController;
+    AVScrubberSlider *_slider;
 }
 
 + (void)initialize;
 - (void).cxx_destruct;
-- (struct CGSize)intrinsicContentSize;
-- (double)baselineOffsetFromBottom;
-- (struct NSEdgeInsets)alignmentRectInsets;
+@property(readonly, nonatomic) AVScrubberSlider *slider; // @synthesize slider=_slider;
+@property(retain, nonatomic) AVPlayerController *playerController; // @synthesize playerController=_playerController;
+- (void)_updateWaveformVisibilityState;
+- (void)_updateWaveformRange;
+- (void)_updateWaveformIfNeeded;
+- (void)_setupWaveformLayerIfNeeded;
+- (void)viewDidMoveToSuperview;
+- (void)viewDidEndLiveResize;
 - (BOOL)allowsVibrancy;
-@property(retain, nonatomic) NSArray *loadedTimeRanges;
+@property(retain, nonatomic) AVWaveform *waveform;
+@property(nonatomic) BOOL showsWaveform;
+@property(nonatomic) double minTime;
+@property(nonatomic) double maxTime;
+- (void)dealloc;
+- (id)init;
 
 @end
 

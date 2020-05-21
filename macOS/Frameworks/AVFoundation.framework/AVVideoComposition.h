@@ -24,7 +24,7 @@
 - (void)setColorTransferFunction:(id)arg1;
 - (void)setColorYCbCrMatrix:(id)arg1;
 - (void)setColorPrimaries:(id)arg1;
-- (void)_setFrameDurationForFrameRate:(float)arg1;
+- (void)_setFrameDurationForFrameRate:(float)arg1 sourceTrackIDForFrameTiming:(int)arg2;
 - (BOOL)isValidForAsset:(id)arg1 timeRange:(CDStruct_e83c9415)arg2 validationDelegate:(id)arg3;
 - (BOOL)_isValidReturningExceptionReason:(id *)arg1;
 - (id)instructionForFigInstruction:(void *)arg1;
@@ -40,8 +40,12 @@
 - (BOOL)_hasLayerAsAuxiliaryTrack;
 - (void)setInstructions:(id)arg1;
 @property(readonly, copy, nonatomic) NSArray *instructions;
+- (void)setRenderScale:(float)arg1;
+@property(readonly, nonatomic) float renderScale;
 - (void)setRenderSize:(struct CGSize)arg1;
 @property(readonly, nonatomic) struct CGSize renderSize;
+- (void)setSourceTrackIDForFrameTiming:(int)arg1;
+@property(readonly, nonatomic) int sourceTrackIDForFrameTiming;
 - (void)setFrameDuration:(CDStruct_1b6d18a9)arg1;
 @property(readonly, nonatomic) CDStruct_1b6d18a9 frameDuration;
 - (BOOL)_copyFigVideoCompositor:(const void **)arg1 andSession:(id *)arg2 recyclingSession:(id)arg3 forFigRemaker:(BOOL)arg4 error:(id *)arg5;
@@ -51,16 +55,15 @@
 - (id)builtInCompositorName;
 - (void)_bumpChangeSeed;
 - (unsigned long long)_changeSeed;
-- (void)finalize;
 - (void)dealloc;
+- (id)_deepCopy;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 @property(readonly, nonatomic) NSString *colorTransferFunction;
 @property(readonly, nonatomic) NSString *colorYCbCrMatrix;
 @property(readonly, nonatomic) NSString *colorPrimaries;
-- (void)setSourceTrackIDForFrameTiming:(int)arg1;
-@property(readonly, nonatomic) int sourceTrackIDForFrameTiming;
+- (void)videoCompositionOutputColorPropertiesWithCustomCompositor:(id)arg1 formatDescriptions:(id)arg2 colorPrimaries:(id *)arg3 transferFunction:(id *)arg4 yCbCrMatrix:(id *)arg5;
 
 @end
 

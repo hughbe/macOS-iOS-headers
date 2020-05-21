@@ -6,25 +6,51 @@
 
 #import <CalendarUI/EKViewController.h>
 
-@class EKReminder, EKUIRemindGadget;
+#import "CalUIReminderViewTouchBarDelegate.h"
 
-@interface EKReminderViewController : EKViewController
+@class CalUIReminderViewTouchBar, EKReminder, EKUIRemindGadget, EKUITitleGadget, NSString;
+
+@interface EKReminderViewController : EKViewController <CalUIReminderViewTouchBarDelegate>
 {
+    EKUITitleGadget *_titleGadget;
     EKUIRemindGadget *_remindGadget;
+    CalUIReminderViewTouchBar *_reminderViewTouchBar;
 }
 
 + (id)emptyPlaceholderTitleString;
 + (id)newPlaceholderTitleString;
-@property(retain) EKUIRemindGadget *remindGadget; // @synthesize remindGadget=_remindGadget;
 - (void).cxx_destruct;
-- (void)addRemindMeLocation;
-- (void)addRemindMeDate;
+@property(retain) CalUIReminderViewTouchBar *reminderViewTouchBar; // @synthesize reminderViewTouchBar=_reminderViewTouchBar;
+@property(retain) EKUIRemindGadget *remindGadget; // @synthesize remindGadget=_remindGadget;
+@property(retain) EKUITitleGadget *titleGadget; // @synthesize titleGadget=_titleGadget;
+- (void)focusInspectorLocation;
+- (void)focusInspectorDateTime;
+- (void)removeInspectorLocation;
+- (void)removeInspectorDateTime;
+- (id)locationCandidateTouchBar;
+- (void)toggleReminderInspector;
+- (void)toggleReminderCompletion;
+- (void)createNewReminder;
+- (BOOL)isInspectorOpen;
+- (BOOL)isReminderSelected;
+- (BOOL)isReminderNew;
+- (BOOL)canCreateNewReminder;
+- (void)updateTouchBar;
+- (void)_updateTouchBarFirstResponder:(id)arg1;
+- (id)makeTouchBar;
+- (void)firstResponderChanged:(id)arg1;
 - (void)updateContainersWithChanges:(id)arg1;
 @property(retain, nonatomic) EKReminder *reminder;
 - (void)setObject:(id)arg1;
 - (BOOL)labelWithColons;
 - (double)defaultLabelWidth;
 - (id)initWithSettings:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

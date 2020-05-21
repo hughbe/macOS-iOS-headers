@@ -14,6 +14,7 @@
     NSObject<OS_dispatch_queue> *_recordStoreQueue;
     NSString *_identifier;
     _CSDBThreadObject *_thread;
+    struct CSDBLookAsideBufferConfig _lookAsideConfig;
     BOOL _wantsRegister;
     NSObject<OS_dispatch_queue> *_dbBackupQueue;
     BOOL _registeredWithBackupd;
@@ -22,7 +23,7 @@
 - (void)performBlock:(CDUnknownBlockType)arg1 afterDelay:(double)arg2;
 - (void)performBlock:(CDUnknownBlockType)arg1 waitUntilDone:(BOOL)arg2;
 - (BOOL)ownsCurrentThreadOtherwiseAssert:(BOOL)arg1;
-- (void)registerClass:(const CDStruct_2cac97d9 *)arg1;
+- (void)registerClass:(const CDStruct_47876580 *)arg1;
 - (void)_unregisterWithBackupd:(struct __CFString *)arg1;
 - (void)_registerWithBackupd:(struct __CFString *)arg1;
 - (void)teardownDatabase;
@@ -30,7 +31,7 @@
 - (void)setupDatabaseWithAllowLocalMigration:(BOOL)arg1 pathBlock:(CDUnknownBlockType)arg2 setupStoreHandler:(CDUnknownFunctionPointerType)arg3 connectionInitializer:(CDUnknownFunctionPointerType)arg4 versionChecker:(CDUnknownFunctionPointerType)arg5 migrationHandler:(CDUnknownFunctionPointerType)arg6 schemaVersion:(int)arg7 dataProtectionClass:(unsigned int)arg8 registerBlock:(CDUnknownBlockType)arg9;
 - (void)setupDatabaseWithAllowLocalMigration:(BOOL)arg1 pathBlock:(CDUnknownBlockType)arg2 setupStoreHandler:(CDUnknownFunctionPointerType)arg3 connectionInitializer:(CDUnknownFunctionPointerType)arg4 versionChecker:(CDUnknownFunctionPointerType)arg5 migrationHandler:(CDUnknownFunctionPointerType)arg6 schemaVersion:(int)arg7 dataProtectionClass:(unsigned int)arg8 registerBlock:(CDUnknownBlockType)arg9 exclusiveOwnership:(BOOL)arg10;
 - (void)dealloc;
-- (id)initWithIdentifier:(struct __CFString *)arg1 qosClass:(unsigned short)arg2;
+- (id)initWithIdentifier:(struct __CFString *)arg1 qosClass:(unsigned short)arg2 lookAsideConfig:(struct CSDBLookAsideBufferConfig)arg3;
 
 @end
 

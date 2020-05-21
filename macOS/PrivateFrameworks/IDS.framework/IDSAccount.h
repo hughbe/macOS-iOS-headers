@@ -6,13 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSData, NSDate, NSDictionary, NSString, _IDSAccount;
+@class NSArray, NSData, NSDate, NSDictionary, NSSet, NSString, _IDSAccount;
 
 @interface IDSAccount : NSObject
 {
     _IDSAccount *_internal;
+    NSString *_loginID;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *loginID; // @synthesize loginID=_loginID;
+- (void)deactivateAlias:(id)arg1;
+- (void)activateAlias:(id)arg1;
+@property(readonly, nonatomic) NSSet *activeAliases;
 - (void)_reloadCachedDevices;
 - (void)_callNearbyDevicesChanged;
 - (void)deactivateAndPurgeIdentify;
@@ -27,6 +33,10 @@
 - (void)updateAuthorizationCredentials:(id)arg1 token:(id)arg2;
 - (void)passwordUpdated;
 - (void)authenticateAccount;
+@property(readonly, nonatomic) NSString *userUniqueIdentifier;
+@property(retain, nonatomic) NSString *displayName;
+@property(retain, nonatomic) NSString *regionBasePhoneNumber;
+@property(retain, nonatomic) NSString *regionID;
 - (id)description;
 - (void)removeRegistrationDelegate:(id)arg1;
 - (void)addRegistrationDelegate:(id)arg1 queue:(id)arg2;
@@ -34,40 +44,45 @@
 - (void)addDelegate:(id)arg1 queue:(id)arg2;
 @property(readonly, nonatomic) NSString *profileID;
 @property(readonly, nonatomic) NSDictionary *regionServerContext;
-@property(readonly, nonatomic) NSString *regionBasePhoneNumber;
-@property(readonly, nonatomic) NSString *regionID;
 @property(readonly, nonatomic) NSData *pushToken;
 @property(readonly, nonatomic) NSData *registrationCertificate;
+@property(readonly, nonatomic) NSArray *accountRegisteredURIs;
 @property(readonly, nonatomic) NSArray *registeredURIs;
 @property(readonly, nonatomic) NSDate *dateRegistered;
 @property(readonly, nonatomic) NSDate *nextRegistrationDate;
+@property(readonly, nonatomic) int profileValidationErrorReason;
+@property(readonly, nonatomic) long long profileValidationStatus;
+@property(readonly, nonatomic) NSDictionary *registrationAlertInfo;
+@property(readonly, nonatomic) int registrationError;
 @property(readonly, nonatomic) int registrationStatus;
 - (void)updateAccountWithAccountInfo:(id)arg1;
 @property(retain, nonatomic) NSDictionary *accountInfo;
-- (void)_setIsEnabled:(BOOL)arg1;
-- (BOOL)_isEnabled;
+@property(readonly, nonatomic) BOOL isUsableForOuterMessaging;
+@property(nonatomic, setter=_setIsEnabled:) BOOL _isEnabled;
+@property(readonly, nonatomic) BOOL isEnabled;
 - (void)setAuthToken:(id)arg1;
 - (void)setPassword:(id)arg1;
-@property(readonly, retain, nonatomic) NSArray *vettedAliases;
-@property(readonly, retain, nonatomic) NSArray *aliasStrings;
-@property(readonly, retain, nonatomic) NSArray *aliases;
-@property(readonly, retain, nonatomic) NSDictionary *profileInfo;
-@property(readonly, retain, nonatomic) NSArray *nearbyDevices;
-@property(readonly, retain, nonatomic) NSArray *devices;
+@property(readonly, nonatomic) NSArray *handles;
+@property(readonly, nonatomic) NSArray *aliasesToRegister;
+@property(readonly, nonatomic) NSArray *vettedAliases;
+@property(readonly, nonatomic) NSArray *aliasStrings;
+@property(readonly, nonatomic) NSArray *aliases;
+@property(readonly, nonatomic) NSDictionary *profileInfo;
+@property(readonly, nonatomic) NSArray *nearbyDevices;
+@property(readonly, nonatomic) NSArray *devices;
 @property(readonly, nonatomic) BOOL canSend;
 @property(readonly, nonatomic) BOOL isUserDisabled;
 @property(readonly, nonatomic) BOOL isActive;
 @property(readonly, nonatomic) int accountType;
-@property(readonly, retain, nonatomic) NSString *primaryServiceName;
-@property(readonly, retain, nonatomic) NSString *serviceName;
-@property(retain, nonatomic) NSString *loginID;
-@property(readonly, retain, nonatomic) NSString *displayName;
-@property(readonly, retain, nonatomic) NSString *uniqueID;
-- (id)_internal;
+@property(readonly, nonatomic) NSString *primaryServiceName;
+@property(readonly, nonatomic) NSString *serviceName;
+@property(readonly, nonatomic) NSString *uniqueID;
+@property(readonly, retain, nonatomic) _IDSAccount *_internal;
 - (void)dealloc;
 - (id)initWithLoginID:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
 - (id)initWithDictionary:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
 - (id)_initWithDictionary:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
+- (id)matchingSim;
 
 @end
 

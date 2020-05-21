@@ -11,9 +11,9 @@
     id _delegate;
 }
 
-+ (id)alloc;
 + (id)sharedInstance;
-@property id delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id delegate; // @synthesize delegate=_delegate;
 - (void)updateAVChat:(id)arg1 withCallMetadata:(id)arg2 isFinalUpdate:(BOOL)arg3;
 - (long long)_runPingTestForChat:(id)arg1;
 - (long long)_checkNetworkForChat:(id)arg1 requiresWifi:(BOOL)arg2;
@@ -32,13 +32,8 @@
 @property(nonatomic) unsigned int maxBitrate;
 - (void)setRemoteVideoPresentationState:(unsigned int)arg1 forChat:(id)arg2;
 - (void)setRemoteVideoPresentationSize:(struct CGSize)arg1 forChat:(id)arg2;
-- (void)setRemoteVideoLayersFromChat:(id)arg1 toChat:(id)arg2;
 @property(nonatomic) void *localVideoBackLayer;
 @property(nonatomic) void *localVideoLayer;
-- (void)setRemoteVideoBackLayer:(void *)arg1 forChat:(id)arg2;
-- (void *)remoteVideoBackLayerForChat:(id)arg1;
-- (void)setRemoteVideoLayer:(void *)arg1 forChat:(id)arg2;
-- (void *)remoteVideoLayerForChat:(id)arg1;
 @property(readonly, nonatomic) BOOL supportsLayers;
 - (id)avChat:(id)arg1 IPAndPortDataWithCallerIP:(id)arg2 callerSIPPort:(unsigned int)arg3 shouldFindExternalIP:(BOOL)arg4;
 - (id)avChat:(id)arg1 IPAndPortDataWithCallerIPAndPortData:(id)arg2 shouldFindExternalIP:(BOOL)arg3;
@@ -46,6 +41,7 @@
 - (id)getNatIPFromICEData:(id)arg1;
 - (BOOL)avChat:(id)arg1 generateCallInfoForID:(id)arg2 service:(id)arg3 usingRelay:(BOOL)arg4 callInfo:(id)arg5;
 - (void)avChat:(id)arg1 prepareConnectionWithCallInfo:(id)arg2;
+- (void)cancelConferenceForAVChat:(id)arg1;
 - (int)avChat:(id)arg1 endConferenceForUserID:(id)arg2;
 - (void)endAVConferenceWithChat:(id)arg1 callID:(long long)arg2;
 - (int)endConferenceForAVChat:(id)arg1;
@@ -54,7 +50,7 @@
 @property(readonly, nonatomic) unsigned long long capabilities;
 @property(readonly, nonatomic) unsigned long long capabilitiesOfCPU;
 @property(readonly, nonatomic) unsigned long long capabilitiesOfNetwork;
-- (void)avChat:(id)arg1 setValidatedIdentity:(struct OpaqueSecIdentityRef *)arg2;
+- (void)avChat:(id)arg1 setValidatedIdentity:(struct __SecIdentity *)arg2;
 - (void)avChat:(id)arg1 setSendingVideo:(BOOL)arg2;
 - (BOOL)isSendingVideoForAVChat:(id)arg1;
 - (void)avChat:(id)arg1 setSendingAudio:(BOOL)arg2;

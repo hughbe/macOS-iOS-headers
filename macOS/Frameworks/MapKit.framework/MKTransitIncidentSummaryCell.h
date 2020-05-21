@@ -8,21 +8,22 @@
 
 #import "MKMultiLineLabelContainer.h"
 
-@class MKImageView, NSDate, NSImage, NSLayoutConstraint, NSString, NSView, _MKUILabel;
+@class MKImageView, NSBox, NSDate, NSImage, NSLayoutConstraint, NSString, _MKUILabel;
 
+__attribute__((visibility("hidden")))
 @interface MKTransitIncidentSummaryCell : MKTableViewCell <MKMultiLineLabelContainer>
 {
     _MKUILabel *_titleLabel;
+    _MKUILabel *_summaryLabel;
     _MKUILabel *_startedLabel;
     MKImageView *_iconImageView;
-    _MKUILabel *_summaryLabel;
-    NSView *_separator;
+    NSBox *_separator;
     NSLayoutConstraint *_separatorHeightConstraint;
     NSDate *_startDate;
 }
 
-@property(retain, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;
 - (id)multilineTextFieldsWithinContainer;
 - (void)viewDidMoveToWindow;
 - (double)_hairlineViewHeight;

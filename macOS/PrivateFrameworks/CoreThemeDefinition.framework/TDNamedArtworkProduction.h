@@ -12,6 +12,7 @@
 }
 
 @property(nonatomic) BOOL hasCustomDateOfLastChange; // @synthesize hasCustomDateOfLastChange=_hasCustomDateOfLastChange;
+- (void)processRendition:(id)arg1 withBackstop:(id)arg2;
 - (void)setDateOfLastChange:(id)arg1;
 
 @end

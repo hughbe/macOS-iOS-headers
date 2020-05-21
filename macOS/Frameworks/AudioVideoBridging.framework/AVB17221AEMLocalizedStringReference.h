@@ -16,6 +16,8 @@
 + (id)keyPathsForValuesAffectingIndex;
 + (id)keyPathsForValuesAffectingOffset;
 @property unsigned short reference; // @synthesize reference;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)debugLogStringWithIndentation:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property unsigned char index; // @dynamic index;

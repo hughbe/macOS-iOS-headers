@@ -17,6 +17,7 @@
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (id)keyPathWithRootObject:(id)arg1 path:(const char *)arg2;
 + (id)newKeyPathWithRootObject:(id)arg1 keyPathString:(id)arg2;
+- (void).cxx_destruct;
 - (id)mutableSetValue;
 - (id)mutableOrderedSetValue;
 - (id)mutableArrayValue;

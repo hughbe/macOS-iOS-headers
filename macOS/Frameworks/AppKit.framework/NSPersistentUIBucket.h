@@ -25,7 +25,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)isMenuBar;
 - (BOOL)isGlobal;
 - (void)setPublicProperty:(id)arg1 forKey:(id)arg2;
-- (void)encodeInvalidPersistentStateIntoRecords:(id)arg1;
+- (void)encodeInvalidPersistentStateWithBackgroundQueue:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_invalidateRestorableStateOfContents;
 - (BOOL)_contentsHaveInvalidRestorableState;
 - (void)_setContentsHaveInvalidRestorableState:(BOOL)arg1;

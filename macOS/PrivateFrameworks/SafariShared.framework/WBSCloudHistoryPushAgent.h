@@ -6,13 +6,12 @@
 
 #import "NSObject.h"
 
-#import "APSConnectionDelegate.h"
 #import "NSXPCListenerDelegate.h"
 #import "WBSCloudHistoryPushAgent.h"
 
 @class APSConnection, NSObject<OS_dispatch_queue>, NSString, NSXPCListener;
 
-@interface WBSCloudHistoryPushAgent : NSObject <APSConnectionDelegate, NSXPCListenerDelegate, WBSCloudHistoryPushAgent>
+@interface WBSCloudHistoryPushAgent : NSObject <NSXPCListenerDelegate, WBSCloudHistoryPushAgent>
 {
     NSXPCListener *_xpcListener;
     APSConnection *_pushConnection;
@@ -20,11 +19,15 @@
 }
 
 - (void).cxx_destruct;
-@property(nonatomic, setter=_setHasAcknowlegedPushNotifications:) BOOL _hasAcknowledgedPushNotifications;
-@property(nonatomic, setter=_setHasUnacknowledgedPushNotifications:) BOOL _hasUnacknowledgedPushNotifications;
+- (void)_setHasAcknowlegedPushNotifications:(BOOL)arg1;
+- (BOOL)_hasAcknowledgedPushNotifications;
+- (void)_setHasUnacknowledgedPushNotifications:(BOOL)arg1;
+- (BOOL)_hasUnacknowledgedPushNotifications;
+- (id)_userDefaults;
 - (id)_pushTopic;
 - (void)clearAcknowledgedPushNotifications;
 - (void)acknowledgePendingPushNotifications;
+- (void)queryMemoryFootprint:(CDUnknownBlockType)arg1;
 - (void)getPushNotifications:(CDUnknownBlockType)arg1;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (void)connection:(id)arg1 didReceiveIncomingMessage:(id)arg2;

@@ -18,12 +18,13 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) SGOrigin *origin; // @synthesize origin=_origin;
 @property(readonly, nonatomic) SGRecordId *recordId; // @synthesize recordId=_recordId;
-- (void).cxx_destruct;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqualToSuggestion:(id)arg1;
+- (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithRecordId:(id)arg1 origin:(id)arg2;

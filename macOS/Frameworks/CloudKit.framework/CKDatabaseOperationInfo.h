@@ -18,6 +18,7 @@
 - (id)activityCreate;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)takeValuesFrom:(id)arg1;
 
 @end
 

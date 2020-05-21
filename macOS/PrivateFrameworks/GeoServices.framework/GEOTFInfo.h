@@ -8,16 +8,27 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader;
 
+__attribute__((visibility("hidden")))
 @interface GEOTFInfo : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_comment;
     NSString *_language;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_comment:1;
+        unsigned int read_language:1;
+        unsigned int wrote_comment:1;
+        unsigned int wrote_language:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *comment; // @synthesize comment=_comment;
-@property(retain, nonatomic) NSString *language; // @synthesize language=_language;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +36,17 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *comment;
 @property(readonly, nonatomic) BOOL hasComment;
+- (void)_readComment;
+@property(retain, nonatomic) NSString *language;
 @property(readonly, nonatomic) BOOL hasLanguage;
-- (void)dealloc;
+- (void)_readLanguage;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

@@ -14,6 +14,7 @@
 }
 
 + (id)avCameraList;
++ (void)initialize;
 @property NSObject<AVCameraListDelegate> *delegate; // @synthesize delegate;
 - (id)cameraList;
 - (void)refreshListeners;

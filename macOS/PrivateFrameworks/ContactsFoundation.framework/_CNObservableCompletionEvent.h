@@ -6,7 +6,6 @@
 
 #import <ContactsFoundation/CNObservableEvent.h>
 
-__attribute__((visibility("hidden")))
 @interface _CNObservableCompletionEvent : CNObservableEvent
 {
 }

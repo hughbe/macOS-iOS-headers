@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)masterBackground;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 
 @end

@@ -8,17 +8,19 @@
 
 #import "GEOCompletion.h"
 
-@class NSArray, NSString;
+@class GEOAutocompleteSessionData, NSArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface _GEOPlaceSearchCompletion : NSObject <GEOCompletion>
 {
     NSArray *_groups;
+    GEOAutocompleteSessionData *_sessionData;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) GEOAutocompleteSessionData *sessionData; // @synthesize sessionData=_sessionData;
 @property(readonly, nonatomic) NSArray *groups; // @synthesize groups=_groups;
-- (void)dealloc;
-- (id)initWithResponse:(id)arg1 traits:(id)arg2 mapItems:(id)arg3;
+- (id)initWithResponse:(id)arg1 traits:(id)arg2 sessionData:(id)arg3 mapItems:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

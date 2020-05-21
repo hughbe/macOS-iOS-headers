@@ -20,7 +20,8 @@
 - (BOOL)exists:(id)arg1;
 - (void)addAsync:(id)arg1;
 - (void)add:(id)arg1;
-- (void)rotate;
+- (void)forceRotate;
+- (void)_rotate;
 - (void)_rotateIfNecessary;
 - (id)initWithDirectory:(id)arg1 name:(id)arg2;
 - (id)initWithInMemoryStorageSparse;

@@ -8,21 +8,29 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader;
 
 @interface GEORPTransitLineTileInfo : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     unsigned long long _transitLineMuid;
     NSString *_transitLineName;
     NSString *_transitSystemName;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     struct {
-        unsigned int transitLineMuid:1;
-    } _has;
+        unsigned int has_transitLineMuid:1;
+        unsigned int read_transitLineName:1;
+        unsigned int read_transitSystemName:1;
+        unsigned int wrote_transitLineMuid:1;
+        unsigned int wrote_transitLineName:1;
+        unsigned int wrote_transitSystemName:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *transitSystemName; // @synthesize transitSystemName=_transitSystemName;
-@property(retain, nonatomic) NSString *transitLineName; // @synthesize transitLineName=_transitLineName;
-@property(nonatomic) unsigned long long transitLineMuid; // @synthesize transitLineMuid=_transitLineMuid;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -30,12 +38,19 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *transitSystemName;
 @property(readonly, nonatomic) BOOL hasTransitSystemName;
+- (void)_readTransitSystemName;
+@property(retain, nonatomic) NSString *transitLineName;
 @property(readonly, nonatomic) BOOL hasTransitLineName;
+- (void)_readTransitLineName;
 @property(nonatomic) BOOL hasTransitLineMuid;
-- (void)dealloc;
+@property(nonatomic) unsigned long long transitLineMuid;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

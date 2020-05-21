@@ -6,22 +6,25 @@
 
 #import "PBCodable.h"
 
-#import "GEOSurchargeOption.h"
+#import "GEOSurchargeType.h"
 #import "NSCopying.h"
 
-@class GEOFormattedString, NSString;
+@class GEOFormattedString, NSString, PBUnknownFields;
 
-@interface GEORequestOption : PBCodable <GEOSurchargeOption, NSCopying>
+@interface GEORequestOption : PBCodable <GEOSurchargeType, NSCopying>
 {
-    int _enumValue;
+    PBUnknownFields *_unknownFields;
     GEOFormattedString *_name;
+    int _enumValue;
     struct {
-        unsigned int enumValue:1;
-    } _has;
+        unsigned int has_enumValue:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOFormattedString *name; // @synthesize name=_name;
-@property(nonatomic) int enumValue; // @synthesize enumValue=_enumValue;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
@@ -29,11 +32,13 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 @property(readonly, copy) NSString *description;
+@property(retain, nonatomic) GEOFormattedString *name;
 @property(readonly, nonatomic) BOOL hasName;
 @property(nonatomic) BOOL hasEnumValue;
-- (void)dealloc;
+@property(nonatomic) int enumValue;
 @property(readonly, nonatomic) id <GEOServerFormattedString> formattedName;
 @property(readonly, nonatomic) int value;
 

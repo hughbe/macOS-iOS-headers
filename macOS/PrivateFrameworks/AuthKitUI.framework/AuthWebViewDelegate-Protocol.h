@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class JSValue, NSDictionary, NSString;
+@class JSValue, NSDictionary, NSError, NSString;
 
 @protocol AuthWebViewDelegate <NSObject>
 
 @optional
 - (id)clientInfo;
 - (void)skipAndContinueSignIn;
-- (void)loadFailed:(NSString *)arg1;
+- (void)loadFailed:(NSString *)arg1 withError:(NSError *)arg2;
 - (BOOL)shouldHideCancelButton;
 - (void)icaSetButtonBar:(NSDictionary *)arg1 webViewName:(NSString *)arg2;
 - (void)sizeChangedFrom:(struct CGSize)arg1 toSize:(struct CGSize)arg2 webViewName:(NSString *)arg3 callback:(JSValue *)arg4;

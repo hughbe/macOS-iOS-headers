@@ -7,6 +7,8 @@
 #import "IMPluginPayload.h"
 
 @interface IMPluginPayload (SocialAppsCoreAdditions)
+- (id)businessPayloadDictionaryRepresentation;
+- (id)businessMessageActionURL;
 - (id)superFormatStringForFileTransfers:(id *)arg1;
 @end
 

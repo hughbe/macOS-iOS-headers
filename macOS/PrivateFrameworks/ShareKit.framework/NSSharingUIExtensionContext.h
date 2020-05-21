@@ -16,8 +16,8 @@
 }
 
 + (BOOL)shouldDimSourceWindow;
-@property __weak SHKSharingViewService *viewService; // @synthesize viewService=_viewService;
 - (void).cxx_destruct;
+@property __weak SHKSharingViewService *viewService; // @synthesize viewService=_viewService;
 - (BOOL)_fadesOutSuccessfulClosingAnimation;
 - (void)getPreviewImageForAttachments:(id)arg1 block:(CDUnknownBlockType)arg2 timeoutBlock:(CDUnknownBlockType)arg3;
 - (id)imageForItem:(id)arg1;
@@ -36,7 +36,6 @@
 - (void)prepareUIWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)performServiceWithOptionsDictionaryData:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)title;
-- (BOOL)isInNotificationCenter;
 - (BOOL)disableWindowPresentation;
 - (BOOL)hasNarrowLayout;
 - (BOOL)serviceNeedsUserConfiguration;

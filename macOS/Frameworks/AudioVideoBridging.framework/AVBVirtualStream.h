@@ -39,15 +39,19 @@
 @property(nonatomic) unsigned long long streamID; // @synthesize streamID=_streamID;
 - (void)dealloc;
 - (id)debugInfoDictionary;
+- (void)stopStream;
+- (void)startStream;
 - (BOOL)setStreamFormat:(id)arg1;
 @property(nonatomic) NSObject<OS_dispatch_semaphore> *talkerSync; // @dynamic talkerSync;
 - (BOOL)deregisterMSRPListener;
 - (BOOL)registerMSRPListener;
 - (BOOL)deregisterMSRPTalker;
 - (BOOL)registerMSRPTalker;
-- (unsigned int)accumulatedLatency;
-- (unsigned short)maximumIntervalFrames;
-- (unsigned short)maximumFrameSize;
+- (void)calculateBandwidth;
+@property(readonly, nonatomic) unsigned long long maximumBandwidth;
+@property(readonly, nonatomic) unsigned int accumulatedLatency;
+@property(readonly, nonatomic) unsigned short maximumIntervalFrames;
+@property(readonly, nonatomic) unsigned short maximumFrameSize;
 - (id)initWithUniqueID:(unsigned short)arg1;
 
 @end

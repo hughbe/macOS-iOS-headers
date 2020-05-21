@@ -17,14 +17,18 @@ __attribute__((visibility("hidden")))
     BOOL _allowSwitching;
     int _primaryPayload;
     int _dtxPayload;
+    int _redPayload;
     NSMutableArray *_secondaryPayloads;
+    BOOL _useSBR;
 }
 
+@property(nonatomic) BOOL useSBR; // @synthesize useSBR=_useSBR;
 @property(nonatomic) unsigned int remoteSSRC; // @synthesize remoteSSRC=_remoteSSRC;
 @property(nonatomic) BOOL allowSwitching; // @synthesize allowSwitching=_allowSwitching;
 @property(nonatomic) unsigned int audioUnitModel; // @synthesize audioUnitModel=_audioUnitModel;
 @property(nonatomic) BOOL allowRecording; // @synthesize allowRecording=_allowRecording;
 @property(readonly, nonatomic) NSArray *secondaryPayloads; // @synthesize secondaryPayloads=_secondaryPayloads;
+@property(nonatomic) int redPayload; // @synthesize redPayload=_redPayload;
 @property(nonatomic) int dtxPayload; // @synthesize dtxPayload=_dtxPayload;
 @property(nonatomic) int primaryPayload; // @synthesize primaryPayload=_primaryPayload;
 - (void)dealloc;

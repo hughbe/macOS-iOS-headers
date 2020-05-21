@@ -15,7 +15,7 @@ __attribute__((visibility("hidden")))
 - (void)applyProcessorToObject:(id)arg1 sheet:(id)arg2;
 - (_Bool)isObjectSupported:(id)arg1;
 - (void)reorderDataFormula:(id)arg1 dataPointCount:(unsigned long long)arg2 byRow:(_Bool)arg3;
-- (void)reorderDataValues:(id)arg1 dataPointCount:(unsigned long long)arg2;
+- (long long)reorderDataValues:(id)arg1 dataPointCount:(unsigned long long)arg2;
 - (void)reorderData:(id)arg1 dataPointCount:(unsigned long long)arg2 byRow:(_Bool)arg3;
 - (void)reorderValueProperties:(id)arg1 dataPointCount:(unsigned long long)arg2;
 - (void)reorderSeriesCategory:(id)arg1 dataPointCount:(unsigned long long)arg2 byRow:(_Bool)arg3;

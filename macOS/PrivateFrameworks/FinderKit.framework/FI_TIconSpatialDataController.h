@@ -9,23 +9,26 @@
 __attribute__((visibility("hidden")))
 @interface FI_TIconSpatialDataController : NSObject
 {
-    struct TMutex _lock;
+    struct mutex _lock;
     struct TFENode _bulkSettingContainer;
     struct TFENodeVector _bulkSettingNodes;
-    vector_3577cbd0 _bulkSettingSpatialData;
+    vector_55f57b11 _bulkSettingSpatialData;
     long long _settingSpatialDataInBulk;
     _Bool _writeSpatialDataToDisk;
 }
 
-@property _Bool writeSpatialDataToDisk; // @synthesize writeSpatialDataToDisk=_writeSpatialDataToDisk;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)setNodePropertyList:(struct TFENodePropertyList *)arg1 spatialData:(const struct DataBrowserItemSpatialData *)arg2;
-- (_Bool)loadSpatialData:(struct DataBrowserItemSpatialData *)arg1 forNode:(const struct TFENode *)arg2;
-- (void)manuallyWriteSpatialDataInBulk:(const struct TFENodeVector *)arg1 spatialData:(const vector_3577cbd0 *)arg2;
-- (void)writeSpatialDataInBulk:(const struct TFENode *)arg1 nodes:(const struct TFENodeVector *)arg2 spatialData:(const vector_3577cbd0 *)arg3;
-- (void)writeSpatialData:(const struct DataBrowserItemSpatialData *)arg1 forNode:(const struct TFENode *)arg2;
-- (void)saveSpatialData:(const struct DataBrowserItemSpatialData *)arg1 forNode:(const struct TFENode *)arg2;
+@property _Bool writeSpatialDataToDisk; // @synthesize writeSpatialDataToDisk=_writeSpatialDataToDisk;
+- (void)setSpatialDataOnNode:(const struct TFENode *)arg1 fromNodePropertyList:(const struct TFENodePropertyList *)arg2;
+- (void)setSpatialData:(const struct IconSpatialData *)arg1 inNodePropertyList:(struct TFENodePropertyList *)arg2;
+- (struct IconSpatialData)spatialDataFromNodePropertyList:(const struct TFENodePropertyList *)arg1;
+- (void)loadSpatialDataBulk:(vector_55f57b11 *)arg1 forNodes:(const struct TFENodeVector *)arg2 inContainer:(const struct TFENode *)arg3;
+- (_Bool)loadSpatialData:(struct IconSpatialData *)arg1 forNode:(const struct TFENode *)arg2;
+- (void)manuallyWriteSpatialDataInBulk:(const struct TFENodeVector *)arg1 spatialData:(const vector_55f57b11 *)arg2;
+- (void)writeSpatialDataInBulk:(const struct TFENode *)arg1 nodes:(const struct TFENodeVector *)arg2 spatialData:(const vector_55f57b11 *)arg3;
+- (void)writeSpatialData:(const struct IconSpatialData *)arg1 forNode:(const struct TFENode *)arg2;
+- (void)saveSpatialData:(const struct IconSpatialData *)arg1 forNode:(const struct TFENode *)arg2;
 - (void)setSpatialDataBulkMode:(_Bool)arg1 forParent:(const struct TFENode *)arg2;
 - (_Bool)inBulkModeForParent:(const struct TFENode *)arg1;
 

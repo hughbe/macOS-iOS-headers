@@ -45,7 +45,6 @@
 @property(readonly, copy) NSString *description;
 @property(retain, nonatomic) NFFolder *folder; // @dynamic folder;
 @property(readonly) unsigned long long hash;
-@property(nonatomic) BOOL invalidateForIndexing; // @dynamic invalidateForIndexing;
 @property(retain, nonatomic) NFNoteBody *primitiveBody; // @dynamic primitiveBody;
 @property(retain, nonatomic) NSDate *primitiveDateCreated; // @dynamic primitiveDateCreated;
 @property(retain, nonatomic) NSDate *primitiveDateEdited; // @dynamic primitiveDateEdited;

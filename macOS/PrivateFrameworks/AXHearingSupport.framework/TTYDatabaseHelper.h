@@ -17,8 +17,8 @@
 }
 
 + (id)sharedHelper;
-@property(retain, nonatomic) NSManagedObjectContext *managedObjectContext; // @synthesize managedObjectContext=_managedObjectContext;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSManagedObjectContext *managedObjectContext; // @synthesize managedObjectContext=_managedObjectContext;
 - (id)ttyDatabaseFilePath;
 - (id)ttyDirectoryPath;
 - (BOOL)contactPathWasUsedForTTY:(id)arg1;
@@ -32,6 +32,7 @@
 - (void)contentDidUpdate:(id)arg1;
 - (void)storesWillChange:(id)arg1;
 - (void)callHistoryDBDidChange:(id)arg1;
+- (void)setupDatabase;
 - (void)dealloc;
 - (id)init;
 

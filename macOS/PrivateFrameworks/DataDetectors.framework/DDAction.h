@@ -20,6 +20,7 @@
 }
 
 + (id)actionForDictionary:(id)arg1 inBundle:(id)arg2;
+- (void).cxx_destruct;
 @property(readonly) BOOL isImmediate; // @synthesize isImmediate=_isImmediate;
 @property(readonly) BOOL alternate; // @synthesize alternate=_alternate;
 @property(readonly) NSString *actionUTI; // @synthesize actionUTI=_actionUTI;
@@ -31,7 +32,6 @@
 @property(readonly) int type;
 @property(readonly) NSString *name; // @synthesize name=_name;
 - (BOOL)displaysUI;
-- (void)dealloc;
 - (id)initWithDict:(id)arg1 bundle:(id)arg2;
 
 @end

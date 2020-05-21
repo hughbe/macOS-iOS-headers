@@ -8,19 +8,20 @@
 
 #import "NSTextFieldDelegate.h"
 
-@class NSButton, NSData, NSPanel, NSProgressIndicator, NSString, NSTabView, NSTextField, NSTimer, NSWindow, ODCAction, ODCGetODServerInfoAction, ODCServerComboBox, ODCViewControllerBase, SFAuthorizationView, XSDisablingTextField;
+@class NSButton, NSData, NSPanel, NSProgressIndicator, NSStackView, NSString, NSTextField, NSTimer, NSWindow, ODCAction, ODCGetODServerInfoAction, ODCServerComboBox, ODCViewControllerBase, SFAuthorizationView, XSDisablingTextField;
 
+__attribute__((visibility("hidden")))
 @interface ODCAddServerSheetController : NSObject <NSTextFieldDelegate>
 {
     NSPanel *_sheet;
-    NSTabView *_serverTypeTabView;
     ODCServerComboBox *_odServerNameCombo;
-    NSTabView *_odAuthOrNotTabView;
+    NSStackView *_odAuthStackView;
     NSTextField *_odclientIDTextField;
     NSTextField *_odUserNameTextField;
     NSTextField *_odPassTextField;
     NSTextField *_odMessageTextField;
     NSTextField *_odServerTypeInstructionsLabel;
+    NSStackView *_adAuthStackView;
     NSTextField *_adClientIDTextField;
     NSTextField *_adAdminNameTextField;
     NSTextField *_adAdminPassTextField;
@@ -84,9 +85,7 @@
 - (void)handleOtherActionError:(id)arg1;
 - (void)actionDidFinish:(id)arg1;
 - (void)didFinishGettingServerInfo:(id)arg1;
-- (void)tabView:(id)arg1 didSelectTabViewItem:(id)arg2;
 - (void)setControlsEnabled:(BOOL)arg1;
-- (void)adjustSheet:(BOOL)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 
 // Remaining properties

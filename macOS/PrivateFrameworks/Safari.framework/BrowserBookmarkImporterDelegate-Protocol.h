@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class BookmarksUndoController, BrowserBookmarkImporter;
 
 @protocol BrowserBookmarkImporterDelegate <NSObject>
-- (void)importerDidFailToImportBookmarks;
-- (void)importerDidFinishImportingBookmarks;
-- (void)importerDidImportBookmarks:(NSArray *)arg1 fromCollection:(int)arg2;
+
+@optional
+- (BookmarksUndoController *)undoControllerForBookmarkImporter:(BrowserBookmarkImporter *)arg1;
 @end
 

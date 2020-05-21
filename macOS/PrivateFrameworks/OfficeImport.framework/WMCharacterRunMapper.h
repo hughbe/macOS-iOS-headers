@@ -19,13 +19,13 @@ __attribute__((visibility("hidden")))
 }
 
 + (void)addNonCollapsableSpanAt:(id)arg1 withState:(id)arg2;
+- (void).cxx_destruct;
 - (unsigned int)countAndStripLeadingTabs;
 - (void)mapTabs:(unsigned int)arg1 at:(id)arg2 afterText:(id)arg3;
 - (void)mapSubstring:(id)arg1 at:(id)arg2;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (void)map1At:(id)arg1 withState:(id)arg2;
 - (BOOL)isDeleted;
-- (void)dealloc;
 - (id)initWithText:(id)arg1;
 - (id)initWithWDCharacterRun:(id)arg1 parent:(id)arg2;
 - (int)defaultTabWidth;

@@ -6,22 +6,17 @@
 
 #import "NSObject.h"
 
-@class CIMIssueReporterRadarInfoController, NUCRadar;
+@class CIMIssueReporterRadarInfoController, NSString;
 
 @interface CIMIssueReporter : NSObject
 {
-    NUCRadar *_radar;
     CIMIssueReporterRadarInfoController *_radarInfoController;
 }
 
-@property(readonly, retain) CIMIssueReporterRadarInfoController *radarInfoController; // @synthesize radarInfoController=_radarInfoController;
 - (void).cxx_destruct;
-- (id)_zipURLFromSourceURL:(id)arg1;
-- (id)attachments;
-- (void)createProblemWithFieldOverrides:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (id)radarProblemWithFieldOverrides:(id)arg1;
-- (BOOL)authenticateRadarWithError:(id *)arg1;
-@property(readonly) NUCRadar *radar; // @synthesize radar=_radar;
+@property(readonly, retain) CIMIssueReporterRadarInfoController *radarInfoController; // @synthesize radarInfoController=_radarInfoController;
+@property(readonly) NSString *description;
+@property(readonly) NSString *title;
 - (id)initWithDebugLogger:(id)arg1 candidateState:(id)arg2;
 
 @end

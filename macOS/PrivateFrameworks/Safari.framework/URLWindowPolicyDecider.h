@@ -6,22 +6,44 @@
 
 #import "NSObject.h"
 
+@class NSEvent;
+
 __attribute__((visibility("hidden")))
 @interface URLWindowPolicyDecider : NSObject
 {
+    BOOL _middleMouseButtonWasClicked;
+    BOOL _respectKeyEquivalents;
+    BOOL _forOpeningCloudTab;
+    BOOL _requireCommandKey;
+    BOOL _commandClickCreatesNewTabs;
+    BOOL _newTabsAndWindowsOpenInFront;
+    unsigned int _navigationType;
+    NSEvent *_event;
+    unsigned long long _eventType;
+    unsigned long long _eventModifierFlags;
+    CDUnknownBlockType _shouldNavigateToFavoriteInResponseToKeyEventDecider;
 }
 
-+ (long long)windowPolicyForOpeningCloudTabs;
-+ (long long)windowPolicyFromEventModifierFlags:(unsigned long long)arg1 mouseButton:(long long)arg2 navigationType:(unsigned int)arg3;
-+ (long long)windowPolicyFromNavigationAction:(id)arg1;
-+ (long long)windowPolicyFromCurrentEventRespectingKeyEquivalents:(BOOL)arg1;
-+ (long long)windowPolicyFromCurrentEvent;
-+ (long long)windowPolicyFromEvent:(id)arg1;
-+ (long long)windowPolicyFromEvent:(id)arg1 requireCommandKey:(BOOL)arg2;
-+ (long long)windowPolicyFromCurrentEventRequireCommandKey:(BOOL)arg1;
-+ (long long)windowPolicyFromEventModifierFlags:(unsigned long long)arg1 requireCommandKey:(BOOL)arg2;
-+ (long long)windowPolicyFromEventModifierFlags:(unsigned long long)arg1 isMiddleMouseButton:(BOOL)arg2;
-+ (long long)windowPolicyFromEventModifierFlags:(unsigned long long)arg1 isMiddleMouseButton:(BOOL)arg2 requireCommandKey:(BOOL)arg3;
++ (id)defaultDeciderForEvent:(id)arg1;
++ (id)defaultDeciderForCurrentEvent;
++ (id)defaultDecider;
+- (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType shouldNavigateToFavoriteInResponseToKeyEventDecider; // @synthesize shouldNavigateToFavoriteInResponseToKeyEventDecider=_shouldNavigateToFavoriteInResponseToKeyEventDecider;
+@property(nonatomic) unsigned int navigationType; // @synthesize navigationType=_navigationType;
+@property(nonatomic) BOOL newTabsAndWindowsOpenInFront; // @synthesize newTabsAndWindowsOpenInFront=_newTabsAndWindowsOpenInFront;
+@property(nonatomic) BOOL commandClickCreatesNewTabs; // @synthesize commandClickCreatesNewTabs=_commandClickCreatesNewTabs;
+@property(nonatomic) BOOL requireCommandKey; // @synthesize requireCommandKey=_requireCommandKey;
+@property(nonatomic, getter=isForOpeningCloudTab) BOOL forOpeningCloudTab; // @synthesize forOpeningCloudTab=_forOpeningCloudTab;
+@property(nonatomic) BOOL respectKeyEquivalents; // @synthesize respectKeyEquivalents=_respectKeyEquivalents;
+@property(nonatomic) BOOL middleMouseButtonWasClicked; // @synthesize middleMouseButtonWasClicked=_middleMouseButtonWasClicked;
+@property(nonatomic) unsigned long long eventModifierFlags; // @synthesize eventModifierFlags=_eventModifierFlags;
+@property(nonatomic) unsigned long long eventType; // @synthesize eventType=_eventType;
+@property(retain, nonatomic) NSEvent *event; // @synthesize event=_event;
+- (long long)_decidePolicyForNavigationEvent;
+- (long long)_decidePolicyForCreatingWindowOrTab;
+- (long long)_decidePolicyForStandardEvent;
+- (long long)decidePolicy;
+- (id)init;
 
 @end
 

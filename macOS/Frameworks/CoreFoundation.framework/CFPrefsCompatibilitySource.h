@@ -13,10 +13,10 @@ __attribute__((visibility("hidden")))
 }
 
 - (struct __CFDictionary *)alreadylocked_copyDictionary;
-- (void)mergeIntoDictionary:(struct __CFDictionary *)arg1;
+- (void)mergeIntoDictionary:(struct __CFDictionary *)arg1 sourceDictionary:(struct __CFDictionary *)arg2 cloudKeyEvaluator:(CDUnknownBlockType)arg3;
 - (struct __CFArray *)alreadylocked_copyKeyList;
 - (BOOL)alreadylocked_requestNewData;
-- (void)alreadylocked_setValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3;
+- (void)alreadylocked_setPrecopiedValues:(const void **)arg1 forKeys:(const struct __CFString **)arg2 count:(long long)arg3;
 - (void *)alreadylocked_copyValueForKey:(struct __CFString *)arg1;
 
 @end

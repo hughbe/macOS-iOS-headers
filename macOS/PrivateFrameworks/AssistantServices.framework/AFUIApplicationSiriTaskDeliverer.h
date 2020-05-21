@@ -19,13 +19,15 @@
     AFSiriTaskmaster *_taskmaster;
 }
 
-@property(nonatomic) __weak AFSiriTaskmaster *taskmaster; // @synthesize taskmaster=_taskmaster;
 - (void).cxx_destruct;
+@property(nonatomic) __weak AFSiriTaskmaster *taskmaster; // @synthesize taskmaster=_taskmaster;
 - (void)_invalidateAssertionTimer;
 - (void)_invalidateBackboardServices;
+- (void)_handleSuccessfulAppLaunchToBackground:(BOOL)arg1 forRequest:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)siriTaskDidFinish;
 - (void)deliverSiriTask:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @property(readonly, copy) NSString *description;
+- (void)_startAppStateMonitoringForRequest:(id)arg1;
 - (void)dealloc;
 - (id)initWithAppBundleIdentifier:(id)arg1;
 

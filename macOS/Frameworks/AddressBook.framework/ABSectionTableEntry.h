@@ -11,8 +11,11 @@
 @interface ABSectionTableEntry : ABTableEntry
 {
     NSString *_header;
+    long long _theme;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) long long theme; // @synthesize theme=_theme;
 @property(copy, nonatomic) NSString *header; // @synthesize header=_header;
 @property(readonly, nonatomic) NSString *sortingLastName;
 @property(readonly, nonatomic) NSString *sortingFirstName;

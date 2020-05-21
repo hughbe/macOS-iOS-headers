@@ -8,12 +8,14 @@
 
 @class NSArray;
 
+__attribute__((visibility("hidden")))
 @interface NSBlockExpression : NSExpression
 {
     CDUnknownBlockType _block;
     NSArray *_arguments;
 }
 
++ (BOOL)supportsSecureCoding;
 - (void)acceptVisitor:(id)arg1 flags:(unsigned long long)arg2;
 - (id)_expressionWithSubstitutionVariables:(id)arg1;
 - (id)predicateFormat;

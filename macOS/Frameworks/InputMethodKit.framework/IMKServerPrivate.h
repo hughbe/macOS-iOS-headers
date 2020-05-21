@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IMKCandidates, IMKEvent, IMKInputController, IMKPreferences, NSBundle, NSConnection, NSEvent, NSLock, NSMenu, NSMutableArray, NSMutableDictionary, NSRecursiveLock, NSString, NSTask, NSTimer, NSXPCConnection, NSXPCListener;
+@class IMKCandidates, IMKEvent, IMKInputController, IMKKeyboardService, IMKPreferences, NSBundle, NSConnection, NSLock, NSMenu, NSMutableArray, NSMutableDictionary, NSRecursiveLock, NSString, NSTask, NSTimer, NSXPCConnection, NSXPCListener, NSXPCListenerEndpoint;
 
 @interface IMKServerPrivate : NSObject
 {
@@ -15,6 +15,7 @@
     NSConnection *_connection;
     NSXPCListener *_inputMethodXPCListener;
     NSXPCConnection *_launcherXPCConnection;
+    NSXPCListenerEndpoint *_functionRowItemViewServiceXPCEndpoint;
     NSRecursiveLock *_imkConnectionModesLock;
     int _imkConnectionReplyWaitCount;
     NSTimer *_imkTimerForDelayedEndpointCheckin;
@@ -24,7 +25,6 @@
     IMKInputController *_currentController;
     NSBundle *_bundle;
     BOOL _hasKeys;
-    id _keyBindingState;
     id _keybindings;
     NSMutableArray *_runLoopInvocations;
     NSMutableDictionary *_eventDictionaries;
@@ -39,12 +39,14 @@
     IMKCandidates *_candidates;
     IMKEvent *_currentIMKEvent;
     BOOL _stopping;
-    NSEvent *_previousKeyDownEvent;
+    IMKKeyboardService *_keyboardService;
+    id *_keyboardServiceDelegate;
 }
 
+@property(retain, nonatomic) NSXPCListenerEndpoint *functionRowItemViewServiceXPCEndpoint; // @synthesize functionRowItemViewServiceXPCEndpoint=_functionRowItemViewServiceXPCEndpoint;
 @property(readonly) NSString *_bundleIdentifier; // @synthesize _bundleIdentifier;
 @property BOOL _stopping; // @synthesize _stopping;
-@property(nonatomic) IMKCandidates *_candidates; // @synthesize _candidates;
+@property(retain, nonatomic) IMKCandidates *_candidates; // @synthesize _candidates;
 - (void)replyWaitCount_decrementWithLocking;
 - (void)replyWaitCount_incrementWithLocking;
 - (void)replyWaitCount_unlock;
@@ -52,7 +54,6 @@
 - (void)replyWaitCount_lockIncrement;
 - (int)replyWaitCount_testWithLocking;
 - (void)dealloc;
-@property(retain, nonatomic) NSEvent *previousKeyDownEvent; // @synthesize previousKeyDownEvent=_previousKeyDownEvent;
 @property(nonatomic) id presentingClientWrapper; // @dynamic presentingClientWrapper;
 @property(nonatomic) id currentClientWrapper; // @dynamic currentClientWrapper;
 

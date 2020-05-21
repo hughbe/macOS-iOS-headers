@@ -7,11 +7,12 @@
 #import "NSObject.h"
 
 #import "NSFileManagerDelegate.h"
+#import "SpotlightCacheController.h"
 
 @class NSMutableDictionary, NSString;
 
 __attribute__((visibility("hidden")))
-@interface SpotlightCacheController : NSObject <NSFileManagerDelegate>
+@interface SpotlightCacheController : NSObject <SpotlightCacheController, NSFileManagerDelegate>
 {
     BOOL _updateInProgress;
     BOOL _needsUpdate;
@@ -25,15 +26,6 @@ __attribute__((visibility("hidden")))
 + (id)sharedController;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)dealloc;
-- (id)init;
-- (id)URLToVisitFromSpotlightCacheFile:(id)arg1;
-- (void)registerSpotlightDataSource:(id)arg1 andWriter:(id)arg2 forType:(id)arg3;
-- (void)partialUpdateNeededForType:(id)arg1 immediately:(BOOL)arg2;
-- (void)partialUpdateNeededForType:(id)arg1;
-- (void)fullUpdateNeededForType:(id)arg1 immediately:(BOOL)arg2;
-- (void)fullUpdateNeededForType:(id)arg1;
-- (BOOL)fileIsSpotlightCacheFile:(id)arg1;
 - (void)updaterThreadBody:(id)arg1;
 - (void)deleteAllCachedFilesForType:(id)arg1;
 - (BOOL)updateCacheFilesForType:(id)arg1;
@@ -46,6 +38,16 @@ __attribute__((visibility("hidden")))
 - (void)updaterThreadFinished;
 - (void)updateCacheSoon;
 - (void)updateCache;
+- (void)dealloc;
+- (id)init;
+- (void)clearAllMetadataFromDiskIfExistsWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)URLToVisitFromSpotlightCacheFile:(id)arg1;
+- (void)registerSpotlightDataSource:(id)arg1 andWriter:(id)arg2 forType:(id)arg3;
+- (void)partialUpdateNeededForType:(id)arg1 immediately:(BOOL)arg2;
+- (void)partialUpdateNeededForType:(id)arg1;
+- (void)fullUpdateNeededForType:(id)arg1 immediately:(BOOL)arg2;
+- (void)fullUpdateNeededForType:(id)arg1;
+- (BOOL)fileIsSpotlightCacheFile:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

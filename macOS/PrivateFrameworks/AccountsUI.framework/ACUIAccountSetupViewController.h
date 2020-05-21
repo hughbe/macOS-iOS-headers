@@ -7,11 +7,12 @@
 #import <AccountsUI/ACUIViewController.h>
 
 #import "ACUIAccountDataclassDelegate.h"
+#import "ACUIWebAuthDelegate.h"
 #import "NSControlTextEditingDelegate.h"
 
-@class ACUILegalSheetViewController, ACUIWebLoginViewController, NSArray, NSButton, NSLayoutConstraint, NSProgressIndicator, NSStackView, NSString, NSTextField, NSView, NSWindow;
+@class ACUIWebAuthViewController, NSArray, NSButton, NSLayoutConstraint, NSProgressIndicator, NSStackView, NSString, NSTextField, NSView, NSWindow;
 
-@interface ACUIAccountSetupViewController : ACUIViewController <NSControlTextEditingDelegate, ACUIAccountDataclassDelegate>
+@interface ACUIAccountSetupViewController : ACUIViewController <ACUIWebAuthDelegate, NSControlTextEditingDelegate, ACUIAccountDataclassDelegate>
 {
     NSStackView *_stackView;
     NSWindow *_window;
@@ -25,8 +26,7 @@
     NSTextField *_userNameField;
     NSTextField *_dislaimerLabel;
     NSTextField *_emailAddressField;
-    ACUIWebLoginViewController *_webLoginVC;
-    ACUILegalSheetViewController *_legalSheetVC;
+    ACUIWebAuthViewController *_webLoginVC;
     NSLayoutConstraint *_dataclassTableViewHeight;
     NSString *_dataclassToAutoEnable;
     NSView *_logoSlice;
@@ -37,6 +37,7 @@
     NSArray *_bottomButtonsConstraints;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSArray *bottomButtonsConstraints; // @synthesize bottomButtonsConstraints=_bottomButtonsConstraints;
 @property(retain) NSView *disclaimerSlice; // @synthesize disclaimerSlice=_disclaimerSlice;
 @property(retain) NSView *dataclassConfigurationSlice; // @synthesize dataclassConfigurationSlice=_dataclassConfigurationSlice;
@@ -45,8 +46,7 @@
 @property(retain) NSView *logoSlice; // @synthesize logoSlice=_logoSlice;
 @property(retain) NSString *dataclassToAutoEnable; // @synthesize dataclassToAutoEnable=_dataclassToAutoEnable;
 @property(retain) NSLayoutConstraint *dataclassTableViewHeight; // @synthesize dataclassTableViewHeight=_dataclassTableViewHeight;
-@property(retain) ACUILegalSheetViewController *legalSheetVC; // @synthesize legalSheetVC=_legalSheetVC;
-@property(retain) ACUIWebLoginViewController *webLoginVC; // @synthesize webLoginVC=_webLoginVC;
+@property(retain) ACUIWebAuthViewController *webLoginVC; // @synthesize webLoginVC=_webLoginVC;
 @property(retain) NSTextField *emailAddressField; // @synthesize emailAddressField=_emailAddressField;
 @property(retain) NSTextField *dislaimerLabel; // @synthesize dislaimerLabel=_dislaimerLabel;
 @property(retain) NSTextField *userNameField; // @synthesize userNameField=_userNameField;
@@ -59,7 +59,6 @@
 @property(readonly) NSWindow *sheet; // @synthesize sheet=_sheet;
 @property(readonly) NSWindow *window; // @synthesize window=_window;
 @property(retain) NSStackView *stackView; // @synthesize stackView=_stackView;
-- (void).cxx_destruct;
 - (BOOL)handleInsecureConnectionForAccount:(id)arg1 withSaveError:(id)arg2;
 - (void)controlTextDidChange:(id)arg1;
 - (id)nibName;
@@ -75,21 +74,26 @@
 - (void)addEmailAddressSlice;
 - (void)addUserNameSliceWithLabel:(id)arg1;
 - (BOOL)_accountTypeSupportsMail;
+- (void)startWebAuthorization:(id)arg1;
 - (BOOL)alternateButtonIsOnTheLeft;
 - (BOOL)hasAlternateButton;
 - (void)alternateButtonAction:(id)arg1;
 - (void)cancel:(id)arg1;
 - (void)next:(id)arg1;
 - (void)didToggleDataclass:(id)arg1;
-- (void)webLoginEndedWithError:(id)arg1;
+- (void)webAuthViewController:(id)arg1 loginEndedWithError:(id)arg2;
 - (void)saveAccountSucceeded;
 - (void)saveAccountFailedWithError:(id)arg1;
 - (void)_animateNewConstructViewStack;
 - (BOOL)willPersistVerifiedAccount;
 - (BOOL)willSaveAccount;
-- (void)_showLegalScreen;
 - (void)_showDataclassSelectionScreen;
-- (void)_layoutBottomButtons;
+- (void)layoutDefaultBottomButtons;
+- (void)layoutWebViewBottomButtons;
+- (void)layoutWebAuthBottomButtons;
+- (void)layoutBottomButtonsWithAlternativeButton;
+- (void)_setBottomConstraints:(id)arg1;
+- (void)layoutBottomButtons;
 - (BOOL)disableAutoReload;
 - (void)setSpinningAndDisabledInputControls:(BOOL)arg1;
 - (void)_initFirstScreen;

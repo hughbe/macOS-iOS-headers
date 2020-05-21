@@ -8,7 +8,7 @@
 
 @interface BRCTermDumper : BRCDumper
 {
-    int _fd;
+    struct __sFILE *_file;
     unsigned long long _termWidth;
     unsigned long long _usedTermWidth;
     int _curAttrs;
@@ -29,6 +29,7 @@
 - (void)puts:(const char *)arg1;
 - (void)puts:(const char *)arg1 len:(unsigned long long)arg2;
 - (void)_putsAndCrop:(const char *)arg1 len:(unsigned long long)arg2;
+- (void)forgetRemainingSpace;
 - (unsigned long long)remainingSpace;
 - (void)endLine;
 - (void)startNewLine;

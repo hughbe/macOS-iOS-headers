@@ -21,13 +21,12 @@
 + (void)registerPublishOperation:(Class)arg1 priority:(unsigned int)arg2;
 + (BOOL)onlySupportsWebDAV;
 + (void)_bootstrapCALURLPublishOperationFactory;
+- (void).cxx_destruct;
 - (id)password;
 - (void)setPassword:(id)arg1;
 - (void)setUsername:(id)arg1;
 - (id)remoteOperation;
 - (void)setUploadURL:(id)arg1;
-- (void)finalize;
-- (void)dealloc;
 - (id)initWithDictionaryRepresentation:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)init;

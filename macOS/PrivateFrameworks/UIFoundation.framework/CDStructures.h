@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSFont, NSMutableParagraphStyle;
+@class NSFont, NSMapTable, NSMutableParagraphStyle, NSString, NSTextContainer, NSTextRange;
 
 #pragma mark Function Pointers and Blocks
 
@@ -57,6 +57,18 @@ struct CGSize {
     double height;
 };
 
+struct CGVector {
+    double dx;
+    double dy;
+};
+
+struct NSDirectionalEdgeInsets {
+    double top;
+    double leading;
+    double bottom;
+    double trailing;
+};
+
 struct NSEdgeInsets {
     double top;
     double left;
@@ -69,6 +81,66 @@ struct RTFColor;
 struct RTFFont;
 
 struct RTFStyle;
+
+struct UIEdgeInsets {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+};
+
+struct UIKeyAndScopeToValueCache {
+    unsigned int previousScope;
+    unsigned int previousKey;
+    struct UINibDecoderValue *previousValue;
+};
+
+struct UIKeyToKeyIDCache {
+    NSString *previousKey[64];
+    void *previousKeyID[64];
+    char previousKeyExists[64];
+    long long hashHits;
+    long long hashHotMisses;
+    long long hashColdMisses;
+};
+
+struct UINibArchiveTableInfo {
+    unsigned int count;
+    unsigned int offset;
+};
+
+struct UINibDecoderHeader {
+    unsigned char type[10];
+    unsigned int formatVersion;
+    unsigned int coderVersion;
+    struct UINibArchiveTableInfo objects;
+    struct UINibArchiveTableInfo keys;
+    struct UINibArchiveTableInfo values;
+    struct UINibArchiveTableInfo classes;
+};
+
+struct UINibDecoderObjectEntry {
+    unsigned int _field1;
+    unsigned int _field2;
+};
+
+struct UINibDecoderRecursiveState {
+    long long objectID;
+    long long nextGenericKey;
+    unsigned int nextValueSearchIndex;
+    char replaced;
+};
+
+struct UINibDecoderValue {
+    unsigned int _field1;
+    unsigned int _field2;
+};
+
+struct UIStringIDTableBucket {
+    id _field1;
+    unsigned long long _field2;
+    struct UIStringIDTableBucket *_field3;
+};
 
 struct _NSAttributeDictionaryElement {
     unsigned long long hash;
@@ -103,6 +175,13 @@ struct _NSDrawingParameters {
     id _field2;
 };
 
+struct _NSGlyphIndexForPointCache {
+    struct CGPoint point;
+    void *textContainer;
+    unsigned long long indexCache;
+    double fractionCache;
+};
+
 struct _NSGlyphNode;
 
 struct _NSGlyphTree {
@@ -123,6 +202,15 @@ struct _NSLayoutTree {
     struct CGRect extraLineFragmentUsedRect;
     unsigned long long glyphsPerLineEstimate;
     double offsetPerLineEstimate;
+};
+
+struct _NSOrderedRangeIndexerImpl;
+
+struct _NSOrthogonalScrollingContentInsets {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
 };
 
 struct _NSRTFPriv {
@@ -159,6 +247,8 @@ struct _NSRTFPriv {
     int groupState;
 };
 
+struct _NSRTreeContainerNode;
+
 struct _NSRange {
     unsigned long long location;
     unsigned long long length;
@@ -182,6 +272,8 @@ struct _NSStoredContainerUsage {
     struct _NSRange _field5;
 };
 
+struct __shared_weak_count;
+
 struct _xmlNode {
     void *_field1;
     int _field2;
@@ -203,7 +295,23 @@ struct _xmlNode {
 
 struct _xmlNs;
 
+struct shared_ptr<_NSOrderedRangeIndexerImpl> {
+    struct _NSOrderedRangeIndexerImpl *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
+struct shared_ptr<_NSRTreeContainerNode> {
+    struct _NSRTreeContainerNode *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
 #pragma mark Typedef'd Structures
+
+typedef struct {
+    id _field1;
+    id _field2;
+    id _field3;
+} CDStruct_0f015c83;
 
 typedef struct {
     unsigned long long _field1;
@@ -212,9 +320,26 @@ typedef struct {
 } CDStruct_a5183674;
 
 typedef struct {
+    int commonRowHorizontalAlignment;
+    int lastRowHorizontalAlignment;
+    int rowVerticalAlignment;
+} CDStruct_2f5e8405;
+
+typedef struct {
     long long location;
     long long length;
 } CDStruct_627e0f85;
+
+typedef struct {
+    NSTextContainer *textContainer;
+    NSTextRange *textRange;
+    NSMapTable *layoutFragmentTable;
+    struct CGRect usageBounds;
+    id *layoutFragments;
+    id *layoutFragmentsHint;
+    unsigned long long layoutFragmentsCount;
+    unsigned long long layoutFragmentsSize;
+} CDStruct_80f920e0;
 
 typedef struct {
     id _field1;
@@ -272,10 +397,11 @@ typedef struct {
         unsigned int :1;
         unsigned int :2;
         unsigned int :1;
-        unsigned int :10;
+        unsigned int :3;
+        unsigned int :7;
     } _field20;
     void *_field21[0];
-} CDStruct_9b8416ed;
+} CDStruct_3fda14a5;
 
 #pragma mark Typedef'd Unions
 

@@ -21,6 +21,8 @@
 - (unsigned long long)depth;
 @property(readonly) BOOL isRemote;
 @property(retain, nonatomic) NFAccount *account; // @dynamic account;
+- (void)addNotesForChildFoldersToArray:(id)arg1;
+- (id)notesIncludingChildFolders;
 - (id)newNote;
 - (void)moveToTrash;
 - (BOOL)isDeletedOrInTrash;

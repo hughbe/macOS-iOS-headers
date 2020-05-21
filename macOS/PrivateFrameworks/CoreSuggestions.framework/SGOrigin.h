@@ -25,26 +25,32 @@
     NSArray *_bcc;
     NSDate *_date;
     NSString *_title;
+    NSString *_operatingSystemVersion;
+    BOOL _shouldShowOperatingSystemVersion;
     BOOL _fromForwardedMessage;
+    NSString *_localizedApplicationName;
+    NSString *_teamId;
 }
 
 + (id)originWithType:(unsigned long long)arg1 sourceKey:(id)arg2 externalKey:(id)arg3 fromForwardedMessage:(BOOL)arg4;
 + (id)originWithType:(unsigned long long)arg1 sourceKey:(id)arg2 externalKey:(id)arg3 bundleId:(id)arg4 fromForwardedMessage:(BOOL)arg5;
 + (BOOL)supportsSecureCoding;
-@property(readonly, getter=isFromForwardedMessage) BOOL fromForwardedMessage; // @synthesize fromForwardedMessage=_fromForwardedMessage;
+- (void).cxx_destruct;
+@property(readonly, nonatomic, getter=isFromForwardedMessage) BOOL fromForwardedMessage; // @synthesize fromForwardedMessage=_fromForwardedMessage;
 @property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
 @property(readonly, nonatomic) NSDate *date; // @synthesize date=_date;
 @property(readonly, nonatomic) NSArray *bcc; // @synthesize bcc=_bcc;
 @property(readonly, nonatomic) NSArray *cc; // @synthesize cc=_cc;
 @property(readonly, nonatomic) NSArray *to; // @synthesize to=_to;
+@property(readonly, nonatomic) NSString *teamId; // @synthesize teamId=_teamId;
+@property(readonly, nonatomic) NSString *localizedApplicationName; // @synthesize localizedApplicationName=_localizedApplicationName;
 @property(readonly, nonatomic) NSString *bundleId; // @synthesize bundleId=_bundleId;
 @property(readonly, nonatomic) CSPerson *fromPerson; // @synthesize fromPerson=_fromPerson;
-@property(readonly, nonatomic) struct _NSRange contextSnippetRange; // @synthesize contextSnippetRange=_contextSnippetRange;
-@property(readonly, nonatomic) NSString *contextSnippet; // @synthesize contextSnippet=_contextSnippet;
 @property(readonly, nonatomic) NSString *externalKey; // @synthesize externalKey=_externalKey;
 @property(readonly, nonatomic) NSString *sourceKey; // @synthesize sourceKey=_sourceKey;
 @property(readonly, nonatomic) unsigned long long type; // @synthesize type=_type;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) struct _NSRange contextSnippetRange;
+@property(readonly, nonatomic) NSString *contextSnippet;
 @property(readonly, nonatomic) SGSimpleNamedEmailAddress *from;
 - (unsigned long long)hash;
 - (BOOL)isEqualToOrigin:(id)arg1;
@@ -52,6 +58,7 @@
 @property(readonly, nonatomic) NSURL *url;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)_resolveAppName;
 - (id)initWithType:(unsigned long long)arg1 sourceKey:(id)arg2 externalKey:(id)arg3 bundleId:(id)arg4 fromForwardedMessage:(BOOL)arg5;
 - (id)init;
 - (id)copyWithZone:(struct _NSZone *)arg1;

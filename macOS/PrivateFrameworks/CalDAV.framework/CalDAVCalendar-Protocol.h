@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class CoreDAVAction, NSArray, NSDictionary, NSError, NSSet, NSString, NSTimeZone, NSURL;
+@class CalDAVRecurrenceSplitAction, CoreDAVAction, NSArray, NSDictionary, NSError, NSSet, NSString, NSTimeZone, NSURL;
 
 @protocol CalDAVCalendar <NSObject>
 @property(readonly, nonatomic) NSSet *allItemURLs;
 @property(readonly, nonatomic) NSDictionary *hrefsToModDeleteActions;
 @property(readonly, nonatomic) NSDictionary *uuidsToAddActions;
+@property(readonly, nonatomic) NSArray *itemsToReportAsJunk;
 @property(readonly, nonatomic) NSArray *shareeActions;
 @property(readonly, nonatomic) NSArray *syncActions;
 @property(readonly, nonatomic) BOOL needsPublishUpdate;
@@ -44,7 +45,7 @@
 @property(retain, nonatomic) NSTimeZone *timeZone;
 @property(retain, nonatomic) NSURL *prePublishURL;
 @property(retain, nonatomic) NSURL *publishURL;
-@property(retain, nonatomic) NSSet *calendarUserAddresses;
+@property(retain, nonatomic) NSSet *preferredCalendarUserAddresses;
 @property(retain, nonatomic) NSString *ownerDisplayName;
 @property(retain, nonatomic) NSURL *owner;
 @property(retain, nonatomic) NSString *pushKey;
@@ -64,6 +65,12 @@
 - (NSDictionary *)etagsForItemURLs:(NSArray *)arg1;
 
 @optional
+@property(readonly, nonatomic) BOOL needsIsAffectingAvailabilityUpdate;
+@property(nonatomic) long long maxAttendees;
+@property(readonly, nonatomic) NSArray *recurrenceSplitActions;
+- (void)recurrenceSplitActionsCompletedWithError:(NSError *)arg1;
+- (void)recurrenceSplitAction:(CalDAVRecurrenceSplitAction *)arg1 failedWithError:(NSError *)arg2;
+- (void)recurrenceSplitAction:(CalDAVRecurrenceSplitAction *)arg1 completedWithUpdatedETag:(NSString *)arg2 updatedScheduleTag:(NSString *)arg3 createdURL:(NSURL *)arg4 createdETag:(NSString *)arg5 createdScheduleTag:(NSString *)arg6;
 - (void)deleteAction:(CoreDAVAction *)arg1 completedWithError:(NSError *)arg2;
 - (void)putAction:(CoreDAVAction *)arg1 completedWithError:(NSError *)arg2;
 - (void)syncDidFinishWithError:(NSError *)arg1;

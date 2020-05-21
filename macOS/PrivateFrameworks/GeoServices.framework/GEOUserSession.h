@@ -6,42 +6,76 @@
 
 #import "NSObject.h"
 
-@class GEOUserSessionEntity, NSLock;
+@class GEOUserSessionEntity, GEOUserSessionSnapshot, NSData, NSObject<OS_dispatch_queue>;
 
 @interface GEOUserSession : NSObject
 {
     struct GEOSessionID _sessionID;
     double _sessionCreationTime;
     unsigned int _sequenceNumber;
-    struct GEOSessionID _usageCollectionSessionID;
-    double _usageSessionIDGenerationTime;
+    struct GEOSessionID _longSessionID;
+    double _longSessionIDGenerationTime;
+    struct GEOSessionID _thirtyDayCountsSessionID;
+    double _thirtyDayCountsSessionIDGenerationTime;
     BOOL _shareSessionWithMaps;
     GEOUserSessionEntity *_mapsUserSessionEntity;
     BOOL _zeroSessionIDMode;
-    NSLock *_lock;
+    struct GEOSessionID _cohortSessionID;
+    double _cohortSessionStartTime;
+    struct os_unfair_lock_s _lock;
+    NSData *_navigationDirectionsID;
+    struct GEOSessionID _navigationSessionID;
+    double _navigationSessionStartTime;
+    NSData *_previousNavigationDirectionsID;
+    struct GEOSessionID _previousNavigationSessionID;
+    double _previousNavigationSessionStartTime;
+    double _previousNavigationSessionEndTime;
+    struct GEOSessionID _zeroSessionID;
+    unsigned char _shortSessionMachElapsedShiftFactor;
+    struct GEOSessionID _shortSessionID;
+    double _shortSessionCreationTime;
+    unsigned long long _shortSessionMachTimeBasis;
+    NSObject<OS_dispatch_queue> *_snapshotQueue;
+    int _shortSessionChangedToken;
 }
 
-+ (void)registerGEOLogFacility;
 + (id)sharedInstance;
 + (void)setIsGeod;
 + (BOOL)isGeod;
-@property BOOL zeroSessionIDMode; // @synthesize zeroSessionIDMode=_zeroSessionIDMode;
-@property BOOL shareSessionWithMaps; // @synthesize shareSessionWithMaps=_shareSessionWithMaps;
-- (unsigned int)incrementSequenceNumber;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL zeroSessionIDMode; // @synthesize zeroSessionIDMode=_zeroSessionIDMode;
+@property(nonatomic) BOOL shareSessionWithMaps; // @synthesize shareSessionWithMaps=_shareSessionWithMaps;
+- (void)prepareForNewShortSession;
+- (void)endNavigationSession;
+- (void)startNavigationSessionWithDirectionsID:(id)arg1 originalDirectionsID:(id)arg2;
+@property(readonly, nonatomic) GEOUserSessionEntity *navSessionEntity;
+- (id)thirtyDayCountsEntity;
+@property(readonly, nonatomic) GEOUserSessionEntity *longSessionEntity;
+- (void)_updateNavSessionID;
+- (void)_generateNewNavSessionID;
 - (void)setSharedMapsUserSessionEntity:(id)arg1 shareSessionIDWithMaps:(BOOL)arg2;
+@property(readonly, nonatomic) GEOUserSessionSnapshot *userSessionSnapshot;
 @property(retain, nonatomic) GEOUserSessionEntity *mapsUserSessionEntity; // @synthesize mapsUserSessionEntity=_mapsUserSessionEntity;
-@property(readonly) struct GEOSessionID usageCollectionSessionID;
+- (id)shortSessionEntity;
+- (struct GEOSessionID)thirtyDayCountsSessionID;
+@property(readonly, nonatomic) struct GEOSessionID longSessionID;
 - (void)mapsSessionEntityWithCallback:(CDUnknownBlockType)arg1 shareSessionIDWithMaps:(BOOL)arg2 resetSession:(BOOL)arg3;
-- (void)_mapsSessionEntityWithCallback:(CDUnknownBlockType)arg1;
 - (void)_resetSessionID;
-- (void)_updateSessionID;
-- (void)_renewUsageCollectionSessionID;
-- (void)_safe_renewUsageCollectionSessionID;
-- (void)_updateWithNewUUIDForSessionID:(struct GEOSessionID *)arg1;
-- (id)_defaultForKey:(id)arg1;
-- (void)_setDefault:(id)arg1 forKey:(id)arg2;
+- (void)_renewThirtyDayCountsSessionID;
+- (void)_renewLongSessionID;
+- (void)_rollInitialLongSessionId;
+- (void)_createLongSessionWithOffset:(BOOL)arg1;
+@property(readonly, nonatomic) GEOUserSessionEntity *cohortSessionEntity;
+- (void)_safe_renewCohortSessionID;
+- (void)_renewCohortSessionID;
+- (void)_safe_renewThirtyDayCountsSessionID;
+- (void)_safe_renewLongSessionID;
 - (void)dealloc;
 - (id)init;
+- (double)_getCurrentTime;
+- (void)_overrideShortSessionId:(struct GEOSessionID)arg1 sessionMachBasisTime:(unsigned long long)arg2 sessionStartTime:(double)arg3;
+- (void)_shortSessionWithBasisComponentsCompletion:(CDUnknownBlockType)arg1;
+- (void)_updateWithNewUUIDForSessionID:(struct GEOSessionID *)arg1;
 
 @end
 

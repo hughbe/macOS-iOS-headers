@@ -15,11 +15,14 @@
 + (id)guideDomainSnippetWithDictionary:(id)arg1 context:(id)arg2;
 + (id)guideDomainSnippet;
 @property(copy, nonatomic) NSString *tagPhrase;
+@property(nonatomic) BOOL performIntentEnabledAppAuthorizationCheck;
 @property(nonatomic) BOOL isAppIcon;
 @property(copy, nonatomic) NSString *iconResourceName;
 @property(nonatomic) BOOL iconNeedsProcessing;
 @property(copy, nonatomic) NSString *iconDisplayIdentifier;
 @property(copy, nonatomic) NSArray *guideSections;
+@property(nonatomic) BOOL enabledInOnlineMode;
+@property(nonatomic) BOOL enabledInOfflineMode;
 @property(copy, nonatomic) NSString *domainName;
 @property(copy, nonatomic) NSURL *domainIconURI;
 @property(copy, nonatomic) NSString *domainDisplayName;

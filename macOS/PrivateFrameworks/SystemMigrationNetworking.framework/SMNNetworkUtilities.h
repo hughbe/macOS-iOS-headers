@@ -11,7 +11,6 @@
 }
 
 + (id)timeCapsuleMightBeExperiencingProblemsAlertWindow;
-+ (id)otherMacNeedsToRunSoftwareUpdate;
 
 @end
 

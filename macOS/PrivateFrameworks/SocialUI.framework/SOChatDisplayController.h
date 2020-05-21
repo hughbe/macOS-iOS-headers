@@ -6,22 +6,25 @@
 
 #import "NSResponder.h"
 
-#import "NSCoding.h"
+#import "IMChatTranscriptItemVending.h"
+#import "NSSecureCoding.h"
 #import "NSTextStorageDelegate.h"
 
-@class IMAccount, IMChat, NSArray, NSAttributedString, NSDate, NSMutableDictionary, NSOrderedSet, NSString, NSTextStorage, NSUndoManager;
+@class IMAccount, IMChat, NSArray, NSAttributedString, NSDate, NSDictionary, NSMutableDictionary, NSOrderedSet, NSString, NSTextStorage, NSUndoManager;
 
-@interface SOChatDisplayController : NSResponder <NSCoding, NSTextStorageDelegate>
+@interface SOChatDisplayController : NSResponder <IMChatTranscriptItemVending, NSSecureCoding, NSTextStorageDelegate>
 {
     BOOL _isShowingSendingText;
     BOOL _hasHitBoundsLimit;
+    BOOL _sendingMessage;
     _Bool _joiningInvitation;
     NSString *_title;
     NSString *_customTitle;
     NSString *_defaultTitle;
     NSString *_persistentGUID;
-    NSDate *_lastActivityDate;
     NSString *_summary;
+    NSDictionary *_bizIntent;
+    NSDate *_dateLastViewed;
     IMChat *_chat;
     IMAccount *_sendingAccount;
     NSTextStorage *_inputLineTextStorage;
@@ -32,8 +35,15 @@
     NSMutableDictionary *_viewConfigurationStorage;
 }
 
++ (BOOL)pinnedConversationsEnabled;
++ (id)inputLineTextStorableClasses;
++ (BOOL)supportsSecureCoding;
++ (id)allowedSecureArchivingClasses_so;
++ (id)chatDisplayController;
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *viewConfigurationStorage; // @synthesize viewConfigurationStorage=_viewConfigurationStorage;
 @property(readonly, nonatomic, getter=isJoiningInvitation) _Bool joiningInvitation; // @synthesize joiningInvitation=_joiningInvitation;
+@property(nonatomic) BOOL sendingMessage; // @synthesize sendingMessage=_sendingMessage;
 @property BOOL hasHitBoundsLimit; // @synthesize hasHitBoundsLimit=_hasHitBoundsLimit;
 @property(copy, nonatomic) NSOrderedSet *recipientHandles; // @synthesize recipientHandles=_recipientHandles;
 @property(copy, nonatomic) NSArray *recipients; // @synthesize recipients=_recipients;
@@ -43,22 +53,32 @@
 @property(nonatomic, setter=setShowingSendingText:) BOOL isShowingSendingText; // @synthesize isShowingSendingText=_isShowingSendingText;
 @property(retain, nonatomic) IMAccount *sendingAccount; // @synthesize sendingAccount=_sendingAccount;
 @property(retain, nonatomic) IMChat *chat; // @synthesize chat=_chat;
+@property(nonatomic) NSDate *dateLastViewed; // @synthesize dateLastViewed=_dateLastViewed;
+@property(retain, nonatomic) NSDictionary *bizIntent; // @synthesize bizIntent=_bizIntent;
 @property(readonly, nonatomic) NSString *summary; // @synthesize summary=_summary;
-@property(retain, nonatomic) NSDate *lastActivityDate; // @synthesize lastActivityDate=_lastActivityDate;
 @property(retain, nonatomic) NSString *persistentGUID; // @synthesize persistentGUID=_persistentGUID;
 @property(readonly, copy, nonatomic) NSString *defaultTitle; // @synthesize defaultTitle=_defaultTitle;
 @property(copy, nonatomic) NSString *customTitle; // @synthesize customTitle=_customTitle;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
-- (void).cxx_destruct;
+- (long long)compareForConversationListSorting:(id)arg1;
+- (long long)compareBySequenceNumberAndDateDescending:(id)arg1;
+- (id)deviceIndependentID;
+- (BOOL)isPinned;
 - (void)dealloc;
 - (id)init;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+@property(readonly, copy, nonatomic) id <NSFastEnumeration> chatTranscriptItems;
+- (id)chatTranscriptItemAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long numberOfChatTranscriptItems;
 - (void)textStorageWillProcessEditing:(id)arg1;
+- (void)resortMessagesIfNecessary;
 - (void)_updateRecipientHandles;
 - (void)_chatDisplayNameDidChange:(id)arg1;
 - (void)_addressBookPreferencesChanged:(id)arg1;
 - (void)_handleInfoChanged:(id)arg1;
+- (void)chatItemsDidChange;
+- (void)_chatAllowedByScreenTimeDidChange:(id)arg1;
 - (void)_chatRecipientsDidChange:(id)arg1;
 - (void)chatDisplayNameDidChange;
 - (void)chatRecipientsDidChange;
@@ -70,6 +90,9 @@
 - (BOOL)removeParticipant:(id)arg1;
 - (BOOL)sendFormattedString:(id)arg1 error:(id *)arg2;
 - (BOOL)sendInputLineContentsAndReturnError:(id *)arg1;
+- (void)resetHistoryNavigation;
+- (BOOL)navigateToNextOutgoingMessage;
+- (BOOL)navigateToPriorOutgoingMessage;
 - (BOOL)appendFilesAtURLs:(id)arg1 intoInputLineContentsReturningError:(id *)arg2;
 - (BOOL)insertFilesAtURLs:(id)arg1 intoInputLineContentsReturningError:(id *)arg2;
 - (BOOL)canInsertFilesAtURLs:(id)arg1 intoInputLineContentsReturningError:(id *)arg2;
@@ -79,15 +102,19 @@
 - (void)restoreInputLineSelectedRanges:(id)arg1;
 - (void)setValue:(id)arg1 forViewConfigurationStorageKey:(id)arg2;
 - (id)valueForViewConfigurationStorageKey:(id)arg1;
+@property(readonly) NSString *businessChatPlaceholderString;
+@property(readonly, nonatomic) BOOL filterEmptyChatOut;
 @property(readonly) BOOL canRemoveRecipientHandles; // @dynamic canRemoveRecipientHandles;
 @property(readonly, nonatomic) BOOL canAddRecipientHandles; // @dynamic canAddRecipientHandles;
 @property(readonly, nonatomic) NSOrderedSet *actionableHandles; // @dynamic actionableHandles;
+@property(readonly, nonatomic) NSArray *recipientHandlesArray;
 @property(readonly) BOOL recipientIsChat; // @dynamic recipientIsChat;
 @property(readonly, nonatomic) BOOL canInsertAttachmentsIntoInputLineContents; // @dynamic canInsertAttachmentsIntoInputLineContents;
 @property(readonly) BOOL inputLineContainsFileTransfers; // @dynamic inputLineContainsFileTransfers;
 @property(readonly, nonatomic) BOOL inputLineHasContent; // @dynamic inputLineHasContent;
 @property(copy, nonatomic) NSAttributedString *inputLineAttributedString; // @dynamic inputLineAttributedString;
 @property(readonly, nonatomic) BOOL canBeRestored; // @dynamic canBeRestored;
+@property(readonly, nonatomic) BOOL hasBusinessRecipient; // @dynamic hasBusinessRecipient;
 @property(readonly, nonatomic) BOOL representsNewChat; // @dynamic representsNewChat;
 
 // Remaining properties

@@ -40,9 +40,10 @@
 - (id)_asset;
 - (void)setSupportsRandomAccess:(BOOL)arg1;
 - (BOOL)supportsRandomAccess;
+- (void)setMaximizePowerEfficiency:(BOOL)arg1;
+- (BOOL)maximizePowerEfficiency;
 @property(nonatomic) BOOL alwaysCopiesSampleData;
 @property(readonly, nonatomic) NSString *mediaType;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

@@ -10,6 +10,7 @@
 
 @class NSMutableArray, NSMutableDictionary, NSString;
 
+__attribute__((visibility("hidden")))
 @interface NSFontEffectsBox : NSBox <NSToolbarDelegate>
 {
     id _blurSlider;
@@ -52,6 +53,7 @@
 - (void)_validateTextColor:(BOOL)arg1;
 - (void)_validateStrikethrough:(BOOL)arg1;
 - (void)_validateUnderline:(BOOL)arg1;
+- (BOOL)_sendChangeAttributesActionIfSupported;
 - (void)_sendCarbonNotificationFor:(unsigned long long)arg1 tags:(const unsigned int *)arg2 withValuePtrs:(const void **)arg3 andSizes:(const unsigned long long *)arg4;
 - (void)_sendCarbonNotificationForTag:(unsigned int)arg1 withValuePtr:(const void *)arg2 andSize:(unsigned long long)arg3;
 - (void *)carbonNotificationProc;

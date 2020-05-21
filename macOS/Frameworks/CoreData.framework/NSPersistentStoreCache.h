@@ -42,6 +42,7 @@ __attribute__((visibility("hidden")))
 - (void)forgetAllExternalData;
 - (void)dealloc;
 - (void)growRegistrationCollectionTo:(unsigned long long)arg1;
+- (id)initWithPersistentStore:(id)arg1;
 - (id)init;
 - (id)initWithValueCallbacks:(void *)arg1 preserveToManyRelationships:(BOOL)arg2;
 - (void)_createExternalDataDictWithValueCallbacks:(void *)arg1;

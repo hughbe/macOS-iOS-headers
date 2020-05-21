@@ -8,21 +8,29 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader;
 
 @interface GEOAddressCorrectionInitRequest : PBRequest <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_personID;
     NSString *_token;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     BOOL _supportsMultipleAddresses;
     struct {
-        unsigned int supportsMultipleAddresses:1;
-    } _has;
+        unsigned int has_supportsMultipleAddresses:1;
+        unsigned int read_personID:1;
+        unsigned int read_token:1;
+        unsigned int wrote_personID:1;
+        unsigned int wrote_token:1;
+        unsigned int wrote_supportsMultipleAddresses:1;
+    } _flags;
 }
 
-@property(nonatomic) BOOL supportsMultipleAddresses; // @synthesize supportsMultipleAddresses=_supportsMultipleAddresses;
-@property(retain, nonatomic) NSString *personID; // @synthesize personID=_personID;
-@property(retain, nonatomic) NSString *token; // @synthesize token=_token;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -32,12 +40,19 @@
 - (unsigned int)requestTypeCode;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(nonatomic) BOOL hasSupportsMultipleAddresses;
+@property(nonatomic) BOOL supportsMultipleAddresses;
+@property(retain, nonatomic) NSString *personID;
 @property(readonly, nonatomic) BOOL hasPersonID;
+- (void)_readPersonID;
+@property(retain, nonatomic) NSString *token;
 @property(readonly, nonatomic) BOOL hasToken;
-- (void)dealloc;
+- (void)_readToken;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

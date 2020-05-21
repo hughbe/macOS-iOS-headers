@@ -16,6 +16,7 @@
 
 + (id)searchWithDictionary:(id)arg1 context:(id)arg2;
 + (id)search;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSData *fingerprint;
 @property(nonatomic) double duration;
 - (id)encodedClassName;

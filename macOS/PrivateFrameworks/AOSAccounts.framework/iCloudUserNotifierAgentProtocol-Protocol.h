@@ -15,6 +15,6 @@
 - (void)removeAllNotifications;
 - (void)removeNotificationsWithDSID:(NSString *)arg1;
 - (void)removeNotificationWithIdentifier:(NSString *)arg1;
-- (void)deliverNotificaton:(iCloudUserNotification *)arg1;
+- (void)deliverNotificaton:(iCloudUserNotification *)arg1 replyBlock:(void (^)(void))arg2;
 @end
 

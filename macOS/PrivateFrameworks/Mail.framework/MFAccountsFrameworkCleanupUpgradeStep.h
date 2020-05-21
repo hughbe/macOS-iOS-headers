@@ -21,8 +21,8 @@
     NSDictionary *_mailboxFileSystemURLByDatabaseURL;
 }
 
-+ (BOOL)requiredAfterBackbooting;
 + (unsigned long long)targetVersion;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSDictionary *mailboxFileSystemURLByDatabaseURL; // @synthesize mailboxFileSystemURLByDatabaseURL=_mailboxFileSystemURLByDatabaseURL;
 @property(copy, nonatomic) NSDictionary *syncableSystemAccountURLByConnectionHostnameAccountURL; // @synthesize syncableSystemAccountURLByConnectionHostnameAccountURL=_syncableSystemAccountURLByConnectionHostnameAccountURL;
 @property(copy, nonatomic) NSDictionary *systemAccountURLByConnectionHostnameAccountURL; // @synthesize systemAccountURLByConnectionHostnameAccountURL=_systemAccountURLByConnectionHostnameAccountURL;
@@ -32,7 +32,6 @@
 @property(copy, nonatomic) NSDictionary *systemAccountsURLByV1V2PersistenceAccountURL; // @synthesize systemAccountsURLByV1V2PersistenceAccountURL=_systemAccountsURLByV1V2PersistenceAccountURL;
 @property(copy, nonatomic) NSDictionary *systemAccountIdentifiersByV1V2PersistenceAccountUID; // @synthesize systemAccountIdentifiersByV1V2PersistenceAccountUID=_systemAccountIdentifiersByV1V2PersistenceAccountUID;
 @property(copy, nonatomic) NSArray *systemAccountURLs; // @synthesize systemAccountURLs=_systemAccountURLs;
-- (void).cxx_destruct;
 - (void)_migratePOPAccounts;
 - (id)_fixV1V2PersistenceAccountURL:(id)arg1 syncable:(BOOL)arg2;
 - (void)_migrateDefaults;
@@ -46,7 +45,7 @@
 - (void)_cleanupEMLXFilesAndDatabaseForMailboxURLs:(id)arg1;
 - (void)_migrateAccountsPathsInMailboxesTable;
 - (void)runWithRowIDsNeedingConversationRecalculation:(id)arg1;
-- (id)initWithSQLHandle:(id)arg1 accounts:(id)arg2;
+- (id)initWithDatabaseConnection:(id)arg1 accounts:(id)arg2;
 
 @end
 

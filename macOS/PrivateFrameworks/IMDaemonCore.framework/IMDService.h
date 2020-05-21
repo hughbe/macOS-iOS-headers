@@ -23,8 +23,9 @@
     BOOL _blockPrefWriting;
 }
 
-@property(readonly, retain, nonatomic) NSDictionary *serviceProperties; // @synthesize serviceProperties=_serviceProperties;
+@property(retain, nonatomic) NSDictionary *serviceProperties; // @synthesize serviceProperties=_serviceProperties;
 @property(readonly, retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
+- (id)mainService;
 - (void)systemDidEnterMemoryPressure;
 - (void)systemDidStartBackup;
 - (id)description;
@@ -43,6 +44,7 @@
 @property(readonly, nonatomic) BOOL shouldCreateActiveAccounts;
 @property(readonly, nonatomic) BOOL serviceWantsNullHostReachability;
 @property(readonly, nonatomic) BOOL serviceIgnoresNetworkConnectivity;
+@property(readonly, nonatomic) BOOL serviceSupportsAuthorization;
 @property(readonly, nonatomic) BOOL serviceSupportsRegistration;
 @property(readonly, nonatomic) BOOL supportsDatabase;
 @property(readonly, nonatomic) BOOL disallowDeactivation;
@@ -60,6 +62,8 @@
 - (id)_serviceDefaultsForDomain:(id)arg1;
 - (id)_defaultDefaults;
 - (void)synchronizeServiceDefaults;
+@property(readonly, nonatomic, getter=isDiscontinued) BOOL discontinued;
+@property(readonly, nonatomic) BOOL isLegacy;
 @property(readonly, nonatomic) BOOL isIDSBased;
 @property(readonly, nonatomic) Class accountClass;
 @property(readonly, nonatomic) Class sessionClass;
@@ -68,10 +72,10 @@
 - (id)_serviceDomain;
 - (id)oldInternalName;
 @property(readonly, retain, nonatomic) NSString *internalName;
+- (id)createDiscontinuedAccount;
 - (void)unloadServiceBundle;
 - (void)_reallyUnloadServiceBundle;
 - (void)loadServiceBundle;
-- (id)_copyServicePropertiesFromIMServicePlugInBundle:(id)arg1;
 - (id)_copyServicePropertiesFromIMServiceBundle:(id)arg1;
 - (void)dealloc;
 - (id)initWithBundle:(id)arg1;

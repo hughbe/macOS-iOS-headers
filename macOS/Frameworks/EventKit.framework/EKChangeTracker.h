@@ -34,6 +34,7 @@
     CalDefaultDictionary *_movedNotificationMap;
 }
 
+- (void).cxx_destruct;
 @property(retain) CalDefaultDictionary *movedNotificationMap; // @synthesize movedNotificationMap=_movedNotificationMap;
 @property(retain) NSMutableDictionary *createdNotificationIDMap; // @synthesize createdNotificationIDMap=_createdNotificationIDMap;
 @property(retain) NSMutableDictionary *changedNotificationIDMap; // @synthesize changedNotificationIDMap=_changedNotificationIDMap;
@@ -56,7 +57,6 @@
 @property(retain) NSMutableArray *objectsToReset; // @synthesize objectsToReset=_objectsToReset;
 @property(retain) EKChangeLog *changeLog; // @synthesize changeLog=_changeLog;
 @property(nonatomic) __weak EKBackingStore *backingStore; // @synthesize backingStore=_backingStore;
-- (void).cxx_destruct;
 - (id)summary;
 - (void)resetObjectsForIdentifiers:(id)arg1 skipReset:(BOOL)arg2;
 - (void)resetObjectsForIdentifiers:(id)arg1;
@@ -122,6 +122,7 @@
 - (id)createdCalendarIdentifiers;
 - (void)trackCreatedCalendar:(id)arg1;
 - (id)itemByApplyingTrackedChangesToItem:(id)arg1 withIdentifier:(id)arg2;
+- (BOOL)suggestedEventsChanged;
 - (id)allModifiedItems;
 - (id)allModifiedItemIdentifiers;
 - (id)removedExceptionWithIdentifier:(id)arg1;

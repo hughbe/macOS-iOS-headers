@@ -19,7 +19,7 @@
 - (BOOL)canSerializeArray:(NSArray *)arg1;
 - (BOOL)canSerializeString:(NSString *)arg1;
 - (void)serializeVersionPlaceholder;
-- (void)serializeOpaqueValue:(NSString *)arg1;
+- (void)serializeOpaqueValue:(NSData *)arg1;
 - (void)serializeLine:(CNVCardLine *)arg1;
 @end
 

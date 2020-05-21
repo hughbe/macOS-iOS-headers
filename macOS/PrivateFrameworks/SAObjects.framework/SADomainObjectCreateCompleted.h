@@ -17,6 +17,7 @@
 
 + (id)domainObjectCreateCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)domainObjectCreateCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSURL *identifier;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -10,6 +10,9 @@
 {
 }
 
++ (id)eosDeviceType;
++ (BOOL)hasTouchIDAndEnrolled;
++ (BOOL)isTouchIDCapable;
 + (BOOL)isBootedFromRecoveryPartition;
 + (id)osMajorVersionString;
 + (void)osVersionReturningMajor:(int *)arg1 minor:(int *)arg2 point:(int *)arg3;

@@ -9,7 +9,7 @@
 @class NSString;
 
 @protocol TLServiceAgentInterface <NSObject>
-- (void)setCurrentToneIdentifier:(NSString *)arg1 forPreferenceKey:(NSString *)arg2 completionHandler:(void (^)(BOOL, NSError *))arg3;
+- (void)setCurrentToneIdentifier:(NSString *)arg1 keyedByTopic:(NSString *)arg2 forPreferenceKey:(NSString *)arg3 completionHandler:(void (^)(BOOL, NSError *))arg4;
 - (void)retrieveCurrentTonePreferencesWithCompletionHandler:(void (^)(NSDictionary *, NSError *))arg1;
 @end
 

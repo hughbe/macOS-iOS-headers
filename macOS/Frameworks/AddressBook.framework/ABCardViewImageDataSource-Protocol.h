@@ -6,21 +6,12 @@
 
 #import "NSObject.h"
 
-@class ABCardViewImage, CNFuture, NSArray, NSDictionary, NSString;
+@class ABCardViewImage, NSString;
 
 @protocol ABCardViewImageDataSource <NSObject>
-- (void)setPreferredLikenessSource:(NSString *)arg1;
-- (NSString *)accountTypeForImageIdentifier:(NSString *)arg1;
-- (NSDictionary *)linkedLocalPhotoFuturesByIdentifier;
 - (NSString *)identifierOfPersonPreferredForPhoto;
 - (void)setPersonWithIdentifierPreferredForPhoto:(NSString *)arg1;
+- (void)setImage:(ABCardViewImage *)arg1 forLinkedContactWithIdentifier:(NSString *)arg2;
 - (void)setImage:(ABCardViewImage *)arg1;
-- (CNFuture *)remotePhotoFuture;
-- (CNFuture *)localThumbnailPhotoFuture;
-- (CNFuture *)localLargePhotoFuture;
-- (NSString *)alternateImagePath;
-- (void)setAlternateImagePath:(NSString *)arg1;
-- (NSArray *)alternateImageIDs;
-- (void)setAlternateImageIDs:(NSArray *)arg1;
 @end
 

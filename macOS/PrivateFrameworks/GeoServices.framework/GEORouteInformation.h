@@ -8,16 +8,32 @@
 
 #import "NSCopying.h"
 
-@class GEOFormattedString;
+@class GEOFormattedString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEORouteInformation : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     GEOFormattedString *_detail;
     GEOFormattedString *_duration;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_detail:1;
+        unsigned int read_duration:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_detail:1;
+        unsigned int wrote_duration:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOFormattedString *detail; // @synthesize detail=_detail;
-@property(retain, nonatomic) GEOFormattedString *duration; // @synthesize duration=_duration;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +41,17 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOFormattedString *detail;
 @property(readonly, nonatomic) BOOL hasDetail;
+- (void)_readDetail;
+@property(retain, nonatomic) GEOFormattedString *duration;
 @property(readonly, nonatomic) BOOL hasDuration;
-- (void)dealloc;
+- (void)_readDuration;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

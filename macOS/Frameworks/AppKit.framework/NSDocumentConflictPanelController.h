@@ -12,7 +12,7 @@
 #import "QLPreviewPanelDataSource.h"
 #import "QLPreviewPanelDelegate.h"
 
-@class NSArray, NSBox, NSButton, NSFileVersion, NSImageView, NSOperationQueue, NSPanel, NSString, NSTableView, NSURL, _NSDocumentConflictNonTableView;
+@class NSArray, NSBox, NSButton, NSFileVersion, NSImageView, NSOperationQueue, NSPanel, NSSet, NSString, NSTableView, NSURL, _NSDocumentConflictNonTableView;
 
 __attribute__((visibility("hidden")))
 @interface NSDocumentConflictPanelController : NSObject <NSTableViewDataSource, NSTableViewDelegate, QLPreviewPanelDelegate, QLPreviewPanelDataSource, NSFilePresenter>
@@ -25,6 +25,7 @@ __attribute__((visibility("hidden")))
     _NSDocumentConflictNonTableView *_nonTableView;
     NSURL *_url;
     NSArray *_conflicts;
+    BOOL _documentIsShared;
     NSImageView *_clickedImageView;
     id _clickedConflict;
     BOOL _forceTableView;
@@ -82,6 +83,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSSet *observedPresentedItemUbiquityAttributes;
 @property(readonly, copy) NSURL *primaryPresentedItemURL;
 @property(readonly) Class superclass;
 

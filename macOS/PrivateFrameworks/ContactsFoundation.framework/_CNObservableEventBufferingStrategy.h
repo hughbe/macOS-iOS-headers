@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface _CNObservableEventBufferingStrategy : NSObject
 {
 }
 
 + (id)strategyWithEvents:(id)arg1;
 + (id)strategyWithQueue:(id)arg1;
+- (BOOL)isSequenceTerminated;
 - (id)allEvents;
 - (void)addEvent:(id)arg1;
 

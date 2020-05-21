@@ -16,6 +16,7 @@
 }
 
 + (BOOL)requiresConstraintBasedLayout;
++ (Class)_classToCheckForRequiresConstraintBasedLayout;
 + (id)defaultAnimationForKey:(id)arg1;
 + (void)initialize;
 + (id)_autosaveDefaultsKeyForName:(id)arg1;
@@ -70,7 +71,6 @@
 - (BOOL)_nsib_splitViewAlwaysLaysOutAccordingToAlignmentRects;
 - (void)_nsib_setSplitViewAlwaysLaysOutAccordingToAlignmentRects:(BOOL)arg1;
 - (void)_windowChangedKeyState;
-- (void)willRemoveSubview:(id)arg1;
 - (void)_removeSubview:(id)arg1;
 - (BOOL)_inDividerLiveResize;
 - (BOOL)_inWindowLiveResize;
@@ -92,7 +92,6 @@
 - (BOOL)_liveCollapseIsCanned;
 - (BOOL)_canLiveCollapseArrangedViews;
 - (void)viewWillDraw;
-- (struct CGSRegionObject *)_regionForOpaqueDescendants:(struct CGRect)arg1 forMove:(BOOL)arg2;
 - (void)_adjustArrangedViewsIfNecessary;
 - (BOOL)shouldBeTreatedAsInkEvent:(id)arg1;
 - (void)setAutoresizesSubviews:(BOOL)arg1;
@@ -105,6 +104,7 @@
 - (void)setLayer:(id)arg1;
 - (id)_makeShadowView;
 - (void)_updateLayerDividersIfNeeded;
+- (BOOL)_canUseLayersForDividers;
 - (id)_priorityGroups;
 - (BOOL)_validateArrangedViewFrames;
 - (void)resetCursorRects;
@@ -115,8 +115,6 @@
 - (void)mouseDown:(id)arg1;
 - (struct CGRect)_opaqueRectForWindowMoveWhenInTitlebar;
 - (id)_cursorOfDividerAtIndex:(unsigned long long)arg1 position:(double)arg2 dragLimits:(CDStruct_0a28aba5)arg3;
-- (BOOL)isOpaque;
-- (BOOL)_allSubviewsAreOpaque;
 - (BOOL)isFlipped;
 - (id)_hitTestToBlockWindowResizing:(struct CGPoint)arg1 forResizeDirection:(long long)arg2;
 - (id)hitTest:(struct CGPoint)arg1;
@@ -129,7 +127,7 @@
 - (void)updateLayer;
 - (id)_makeDividerLayerWithFrame:(struct CGRect)arg1;
 - (void)_updateDividerLayer:(id)arg1;
-- (BOOL)layer:(id)arg1 shouldInheritContentsScale:(double)arg2 fromWindow:(id)arg3;
+- (void)viewDidChangeBackingProperties;
 - (void)_removeDividerLayers;
 - (void)_setDividerLayers:(id)arg1;
 - (id)_dividerLayers;
@@ -141,7 +139,6 @@
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)sortSubviewsUsingFunction:(CDUnknownFunctionPointerType)arg1 context:(void *)arg2;
 - (void)setSubviews:(id)arg1;
-- (void)didAddSubview:(id)arg1;
 - (void)_addSubview:(id)arg1;
 - (void)addSubview:(id)arg1;
 - (void)_sortSubviews;
@@ -149,6 +146,7 @@
 - (BOOL)isPaneSplitter;
 - (void)setIsPaneSplitter:(BOOL)arg1;
 - (void)setPosition:(double)arg1 ofDividerAtIndex:(long long)arg2;
+- (double)positionOfDividerAtIndex:(long long)arg1;
 - (double)_presentDividerDragResult:(CDStruct_8e9e3288)arg1 withParams:(id)arg2;
 - (double)_doConstraintBasedPresentDividerDragResult:(CDStruct_8e9e3288)arg1 withParams:(id)arg2;
 - (long long)_visualDividerIndexForLogicalIndex:(long long)arg1;
@@ -185,7 +183,6 @@
 @property(readonly) double dividerThickness;
 @property(readonly, copy) NSColor *dividerColor;
 - (void)setDividerColor:(id)arg1;
-- (BOOL)_hasBehaviorForLinkedOnOrAfter:(long long)arg1;
 - (void)drawDividerInRect:(struct CGRect)arg1;
 - (void)_drawDividerDimpleInRect:(struct CGRect)arg1 indicatorOnly:(BOOL)arg2;
 - (struct __CFString *)_currentStateKey;
@@ -234,9 +231,6 @@
 - (void)_autosaveArrangedViewLayoutIfNecessary;
 - (id)_arrangedViewLayoutDescriptions;
 - (BOOL)_walkLayoutDescriptionArray:(id)arg1 withFrameHandler:(CDUnknownBlockType)arg2;
-- (void)_removeTrackingOverlayView:(id)arg1;
-- (void)_addTrackingOverlayView:(id)arg1;
-@property(setter=_setShowsOverlayMetrics:) BOOL _showsOverlayMetrics;
 - (BOOL)_isArrangedViewAutoCollapsed:(id)arg1;
 - (void)_setArrangedView:(id)arg1 isAutocollapsed:(BOOL)arg2;
 - (void)_animatedAutoCollapseArrangedView:(id)arg1;

@@ -20,6 +20,8 @@
 @property(copy) AVB17221AEMLocalizedStringReference *localizedDescription; // @synthesize localizedDescription;
 @property(copy) NSString *objectName; // @synthesize objectName;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)description;
 - (id)preferredObjectNameForLanguages:(id)arg1;
 @property(readonly) NSString *preferredObjectName;

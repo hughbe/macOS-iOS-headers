@@ -6,22 +6,18 @@
 
 #import "NSTableColumn.h"
 
-@class NSFormatter, NSString;
-
 __attribute__((visibility("hidden")))
 @interface FI_TListTableColumn : NSTableColumn
 {
-    struct TString _columnViewType;
-    struct TNSRef<NSFormatter *, void> _formatter;
     _Bool _isSortColumn;
+    int _mainProperty;
 }
 
+@property(nonatomic) int mainProperty; // @synthesize mainProperty=_mainProperty;
 @property(nonatomic) _Bool isSortColumn; // @synthesize isSortColumn=_isSortColumn;
-- (id).cxx_construct;
-- (void).cxx_destruct;
-- (void)setWidth:(double)arg1;
-@property(retain, nonatomic) NSFormatter *formatter; // @dynamic formatter;
-@property(retain, nonatomic) NSString *columnViewType; // @dynamic columnViewType;
+- (void)setIdentifier:(id)arg1;
+- (void)awakeFromNib;
+- (id)initWithIdentifier:(id)arg1;
 - (id)copyColumn;
 
 @end

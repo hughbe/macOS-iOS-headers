@@ -11,8 +11,14 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (id)_kernel;
 + (id)customAttributes;
+- (id)_kernel;
+- (id)_kernel_v1;
+- (id)_kernel_v0;
+- (int)_defaultVersion;
+- (int)_maxVersion;
+- (void)setDefaults;
+- (id)init;
 
 @end
 

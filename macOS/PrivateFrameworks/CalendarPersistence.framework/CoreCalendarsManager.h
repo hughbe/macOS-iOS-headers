@@ -16,6 +16,7 @@
 + (void)_resetForUnitTests;
 + (BOOL)defaultManagerInitialized;
 + (id)defaultManager;
+- (void).cxx_destruct;
 - (id)sources;
 - (void)unregisterSourceForKey:(id)arg1;
 - (void)unregisterSource:(id)arg1;
@@ -23,7 +24,6 @@
 - (void)unregisterAllSources;
 - (id)sourceForKey:(id)arg1;
 - (id)init;
-- (void)dealloc;
 
 @end
 

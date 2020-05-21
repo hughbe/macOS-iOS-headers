@@ -76,6 +76,7 @@
 - (void)removeServerLock;
 - (void)_enableFlagChanged:(id)arg1;
 - (BOOL)isAvailable:(id *)arg1;
+- (void)_syncServerCheck;
 - (BOOL)_isAvailable:(id *)arg1;
 - (void)_registerAllClientSyncAlertConnectionsToServer;
 - (void)resetEntityNamesAndSetAllClientsToRefresh:(id)arg1;

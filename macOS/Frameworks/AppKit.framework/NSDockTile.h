@@ -22,9 +22,9 @@
     } _dFlags;
     struct CGSize _dockTileSize;
     id _miniViewController;
-    id reserved[4];
 }
 
+- (void).cxx_destruct;
 - (void)_dockIsAlive:(BOOL)arg1;
 - (void)_updateDockWindowIDAndDisplayIfNeeded:(BOOL)arg1;
 - (void)_dockTileScaleFactorChanged:(id)arg1;
@@ -35,11 +35,10 @@
 - (void)display;
 - (void)_reenableAppNap:(id)arg1;
 - (void)_temporarilyDisableAppNap;
-- (BOOL)_needsTigerDockContextBehavior;
 @property(retain) NSView *contentView;
 - (struct CGSize)_getSizeFromDock;
 @property(readonly) struct CGSize size;
-@property(readonly) id owner;
+@property(readonly) __weak id owner;
 - (void)dealloc;
 - (void)_createFrameViewIfNeeded;
 - (BOOL)_releaseContextIfEmpty;

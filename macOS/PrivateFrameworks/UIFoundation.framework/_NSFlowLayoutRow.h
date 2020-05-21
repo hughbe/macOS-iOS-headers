@@ -20,17 +20,20 @@
     int _verticalAlignement;
     int _horizontalAlignement;
     double _availableSpace;
+    struct CGPoint _rowOffsetForDropTargetInsertionGap;
     BOOL _fixedItemSize;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) double availableSpace; // @synthesize availableSpace=_availableSpace;
 @property(nonatomic) BOOL fixedItemSize; // @synthesize fixedItemSize=_fixedItemSize;
 @property(nonatomic) BOOL complete; // @synthesize complete=_complete;
 @property(readonly, nonatomic) NSMutableArray *items; // @synthesize items=_items;
 @property(nonatomic) long long index; // @synthesize index=_index;
+@property(nonatomic) struct CGPoint rowOffsetForDropTargetInsertionGap; // @synthesize rowOffsetForDropTargetInsertionGap=_rowOffsetForDropTargetInsertionGap;
 @property(nonatomic) struct CGRect rowFrame; // @synthesize rowFrame=_rowFrame;
 @property(nonatomic) struct CGSize rowSize; // @synthesize rowSize=_rowSize;
-@property(nonatomic) _NSFlowLayoutSection *section; // @synthesize section=_section;
+@property(nonatomic) __weak _NSFlowLayoutSection *section; // @synthesize section=_section;
 - (long long)indexOfNearestItemAtPoint:(struct CGPoint)arg1;
 - (id)copyFromSection:(id)arg1;
 - (id)snapshot;
@@ -39,7 +42,6 @@
 - (void)addItem:(id)arg1 atEnd:(BOOL)arg2;
 - (void)layoutRow;
 - (void)invalidate;
-- (void)dealloc;
 - (id)init;
 
 @end

@@ -8,25 +8,23 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface SiriUISiriLanguage : NSObject
 {
-    BOOL _setupAssistantHasCompletedInitialRunChecked;
-    BOOL _setupAssistantHasCompletedInitialRunAvailable;
+    BOOL _macBuddyChecked;
+    BOOL _macBuddyRunning;
     NSString *_spokenLanguageCode;
     id <SiriUISiriLanguageDelegate> _delegate;
 }
 
-@property(nonatomic, getter=_setupAssistantHasCompletedInitialRunAvailable) BOOL setupAssistantHasCompletedInitialRunAvailable; // @synthesize setupAssistantHasCompletedInitialRunAvailable=_setupAssistantHasCompletedInitialRunAvailable;
-@property(nonatomic) BOOL setupAssistantHasCompletedInitialRunChecked; // @synthesize setupAssistantHasCompletedInitialRunChecked=_setupAssistantHasCompletedInitialRunChecked;
+- (void).cxx_destruct;
+@property(nonatomic, getter=_isMacBuddyRunning) BOOL macBuddyRunning; // @synthesize macBuddyRunning=_macBuddyRunning;
+@property(nonatomic) BOOL macBuddyChecked; // @synthesize macBuddyChecked=_macBuddyChecked;
 @property(readonly, nonatomic, getter=_delegate) __weak id <SiriUISiriLanguageDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy, nonatomic, setter=_setSpokenLanguageCode:) NSString *spokenLanguageCode; // @synthesize spokenLanguageCode=_spokenLanguageCode;
-- (void).cxx_destruct;
 - (id)_computeSpokenLanguageCode;
 - (void)_updateSpokenLanguageCode;
 - (void)_spokenLanguageDidChange:(id)arg1;
 - (void)_currentLocaleDidChange:(id)arg1;
-- (void)dealloc;
 - (id)init;
 - (id)initWithDelegate:(id)arg1;
 

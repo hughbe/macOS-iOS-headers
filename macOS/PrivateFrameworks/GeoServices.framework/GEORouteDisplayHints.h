@@ -8,20 +8,37 @@
 
 #import "NSCopying.h"
 
-@class NSArray, NSMutableArray;
+@class GEORequestOptions, NSArray, PBDataReader, PBUnknownFields;
 
 @interface GEORouteDisplayHints : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
+    CDStruct_95bda58d _availablePaymentTypes;
     CDStruct_95bda58d _availablePrioritizations;
-    NSMutableArray *_availableTransitSurcharges;
+    GEORequestOptions *_transitSurchargeOptions;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     BOOL _showTransitSchedules;
     struct {
-        unsigned int showTransitSchedules:1;
-    } _has;
+        unsigned int has_showTransitSchedules:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_availablePaymentTypes:1;
+        unsigned int read_availablePrioritizations:1;
+        unsigned int read_transitSurchargeOptions:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_availablePaymentTypes:1;
+        unsigned int wrote_availablePrioritizations:1;
+        unsigned int wrote_transitSurchargeOptions:1;
+        unsigned int wrote_showTransitSchedules:1;
+    } _flags;
 }
 
-+ (Class)availableTransitSurchargeType;
-@property(retain, nonatomic) NSMutableArray *availableTransitSurcharges; // @synthesize availableTransitSurcharges=_availableTransitSurcharges;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -29,25 +46,39 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-- (id)availableTransitSurchargeAtIndex:(unsigned long long)arg1;
-- (unsigned long long)availableTransitSurchargesCount;
-- (void)addAvailableTransitSurcharge:(id)arg1;
-- (void)clearAvailableTransitSurcharges;
+@property(retain, nonatomic) GEORequestOptions *transitSurchargeOptions;
+@property(readonly, nonatomic) BOOL hasTransitSurchargeOptions;
+- (void)_readTransitSurchargeOptions;
+- (int)StringAsAvailablePaymentTypes:(id)arg1;
+- (id)availablePaymentTypesAsString:(int)arg1;
+- (void)setAvailablePaymentTypes:(int *)arg1 count:(unsigned long long)arg2;
+- (int)availablePaymentTypeAtIndex:(unsigned long long)arg1;
+- (void)_addNoFlagsAvailablePaymentType:(int)arg1;
+- (void)addAvailablePaymentType:(int)arg1;
+- (void)clearAvailablePaymentTypes;
+@property(readonly, nonatomic) int *availablePaymentTypes;
+@property(readonly, nonatomic) unsigned long long availablePaymentTypesCount;
+- (void)_readAvailablePaymentTypes;
 - (int)StringAsAvailablePrioritizations:(id)arg1;
 - (id)availablePrioritizationsAsString:(int)arg1;
 - (void)setAvailablePrioritizations:(int *)arg1 count:(unsigned long long)arg2;
 - (int)availablePrioritizationAtIndex:(unsigned long long)arg1;
+- (void)_addNoFlagsAvailablePrioritization:(int)arg1;
 - (void)addAvailablePrioritization:(int)arg1;
 - (void)clearAvailablePrioritizations;
 @property(readonly, nonatomic) int *availablePrioritizations;
 @property(readonly, nonatomic) unsigned long long availablePrioritizationsCount;
+- (void)_readAvailablePrioritizations;
 @property(nonatomic) BOOL hasShowTransitSchedules;
-@property(nonatomic) BOOL showTransitSchedules; // @synthesize showTransitSchedules=_showTransitSchedules;
+@property(nonatomic) BOOL showTransitSchedules;
 - (void)dealloc;
+- (id)initWithData:(id)arg1;
+- (id)init;
 @property(readonly, nonatomic) NSArray *prioritizationOptions;
-@property(readonly, nonatomic) NSArray *surchargeOptions;
+@property(readonly, nonatomic) id <GEOSurchargeOption> surchargeOptions;
 
 @end
 

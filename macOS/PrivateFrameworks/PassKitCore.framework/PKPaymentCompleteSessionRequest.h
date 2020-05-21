@@ -13,11 +13,10 @@
     PKPaymentMerchantSession *_merchantSession;
 }
 
-@property(retain, nonatomic) PKPaymentMerchantSession *merchantSession; // @synthesize merchantSession=_merchantSession;
 - (void).cxx_destruct;
-- (id)bodyDictionaryWithDeviceData:(id)arg1;
+@property(retain, nonatomic) PKPaymentMerchantSession *merchantSession; // @synthesize merchantSession=_merchantSession;
+- (id)bodyDictionary;
 - (id)endpointName;
-- (id)initWithWrappedPayment:(id)arg1 paymentPass:(id)arg2 merchantSession:(id)arg3;
 
 @end
 

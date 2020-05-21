@@ -6,20 +6,22 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSSet, NSString, NSURL, SMConfMigratorPlugin;
 
-@interface SMConfMigratorRule : NSObject <NSCoding>
+@interface SMConfMigratorRule : NSObject <NSSecureCoding>
 {
     BOOL _overwriteExistingPath;
     BOOL _disableMigratedVersion;
     BOOL _skipIfDestinationExists;
     BOOL _skipIfLegacyServer;
     BOOL _deferredCopy;
+    BOOL _allowSIP;
     BOOL _runsAfterRestart;
     BOOL _defaultedCopyRule;
-    id _identifier;
+    BOOL _attemptedPluginLoad;
+    NSObject *_identifier;
     NSArray *_children;
     unsigned long long _actionType;
     unsigned long long _context;
@@ -37,9 +39,13 @@
 
 + (void)executeSpecificPlugin:(id)arg1;
 + (id)loadPlugin:(id)arg1 forRequest:(id)arg2;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property BOOL attemptedPluginLoad; // @synthesize attemptedPluginLoad=_attemptedPluginLoad;
 @property(retain) SMConfMigratorPlugin *plugin; // @synthesize plugin=_plugin;
 @property(readonly, getter=isDefaultedCopyRule) BOOL defaultedCopyRule; // @synthesize defaultedCopyRule=_defaultedCopyRule;
 @property BOOL runsAfterRestart; // @synthesize runsAfterRestart=_runsAfterRestart;
+@property BOOL allowSIP; // @synthesize allowSIP=_allowSIP;
 @property(retain) NSURL *toolPath; // @synthesize toolPath=_toolPath;
 @property(retain) NSArray *toolArguments; // @synthesize toolArguments=_toolArguments;
 @property(retain) NSString *skipIfOlderThan; // @synthesize skipIfOlderThan=_skipIfOlderThan;
@@ -57,12 +63,11 @@
 @property unsigned long long context; // @synthesize context=_context;
 @property unsigned long long actionType; // @synthesize actionType=_actionType;
 @property(retain) NSArray *children; // @synthesize children=_children;
-@property(retain) id identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
+@property(retain) NSObject *identifier; // @synthesize identifier=_identifier;
 - (void)executePlugin;
 - (double)estimateTime;
 - (BOOL)defaultedCopyRule;
-- (BOOL)supportedFromSystem:(id)arg1 toSystem:(id)arg2 duringUpgrade:(BOOL)arg3;
+- (BOOL)supportedFromSystem:(id)arg1 toSystem:(id)arg2 ofType:(unsigned long long)arg3;
 - (id)description;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

@@ -12,6 +12,8 @@
 }
 
 @property unsigned short clockDomainIndex; // @synthesize clockDomainIndex;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (void)appendFixedDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)updateWithXML:(id)arg1;

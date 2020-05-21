@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, WBSCloudHistoryFetchResult, WBSHistory;
+@class NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, WBSCloudHistoryFetchResult;
 
 @interface WBSCloudHistoryMergeOperation : NSObject
 {
     NSObject<OS_dispatch_queue> *_queue;
-    WBSHistory *_history;
+    id <WBSHistoryServiceDatabaseProtocol> _database;
     WBSCloudHistoryFetchResult *_fetchResult;
     BOOL _mergeStarted;
     NSMutableDictionary *_visitsByVisitIdentifiers;
@@ -31,10 +31,10 @@
 - (void)_buildRedirectChains;
 - (void)_loadTombstonesWithCompletion:(CDUnknownBlockType)arg1;
 - (void)_buildVisitsByVisitIdentifiersMap;
-- (void)_replayAndAddTombstones;
+- (void)_replayAndAddTombstones:(CDUnknownBlockType)arg1;
 - (void)_updateClientVersions;
 - (void)mergeWithCompletion:(CDUnknownBlockType)arg1;
-- (id)initWithHistory:(id)arg1 fetchResult:(id)arg2;
+- (id)initWithDatabase:(id)arg1 fetchResult:(id)arg2;
 
 @end
 

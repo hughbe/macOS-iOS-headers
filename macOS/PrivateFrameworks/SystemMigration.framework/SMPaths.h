@@ -10,7 +10,6 @@
 
 @interface SMPaths : NSObject
 {
-    BOOL _osUpgrade;
     BOOL _collectDataForBackgroundMigrations;
     BOOL _processedUserHomes;
     BOOL _cancel;
@@ -19,6 +18,7 @@
     SMPathsCache *_cache;
     SMSystem_Daemon *_system;
     SMSystem_Daemon *_comparisonSystem;
+    unsigned long long _migrationType;
     SMPathsBundleScanner *_bundleScanner;
     SMConfMigrator *_confMigrator;
     SMCollectIncompatibleApps *_incompatibleAppsData;
@@ -40,6 +40,7 @@
 + (id)systemPrintersPKGIDs;
 + (id)pathOverridesPlistPath;
 + (id)userDataCategories;
+- (void).cxx_destruct;
 @property(retain) NSMutableArray *progressInfoDelegates; // @synthesize progressInfoDelegates=_progressInfoDelegates;
 @property(retain) NSMutableDictionary *preliminaryPathGroupSizeDelegates; // @synthesize preliminaryPathGroupSizeDelegates=_preliminaryPathGroupSizeDelegates;
 @property(retain) NSMutableArray *preliminaryUserSizeDelegates; // @synthesize preliminaryUserSizeDelegates=_preliminaryUserSizeDelegates;
@@ -56,13 +57,12 @@
 @property(retain, nonatomic) SMConfMigrator *confMigrator; // @synthesize confMigrator=_confMigrator;
 @property(nonatomic) BOOL collectDataForBackgroundMigrations; // @synthesize collectDataForBackgroundMigrations=_collectDataForBackgroundMigrations;
 @property(retain, nonatomic) SMPathsBundleScanner *bundleScanner; // @synthesize bundleScanner=_bundleScanner;
-@property(nonatomic) BOOL osUpgrade; // @synthesize osUpgrade=_osUpgrade;
+@property(nonatomic) unsigned long long migrationType; // @synthesize migrationType=_migrationType;
 @property(retain, nonatomic) SMSystem_Daemon *comparisonSystem; // @synthesize comparisonSystem=_comparisonSystem;
 @property(retain, nonatomic) SMSystem_Daemon *system; // @synthesize system=_system;
 @property(retain, nonatomic) SMPathsCache *cache; // @synthesize cache=_cache;
 @property(retain) SMPathsDirectoryClassifier *filesystemClassifier; // @synthesize filesystemClassifier=_filesystemClassifier;
 @property(retain) SMPathsDirectoryClassifier *preliminaryClassifier; // @synthesize preliminaryClassifier=_preliminaryClassifier;
-- (void).cxx_destruct;
 - (id)pathingReport:(BOOL)arg1;
 - (void)addLocalRedirectPathFrom:(id)arg1 to:(id)arg2;
 - (id)redirectForSourcePath:(id)arg1;
@@ -121,6 +121,11 @@
 - (void)enumerateFilesystem;
 - (BOOL)shouldContainOnlyUserData:(id)arg1;
 - (void)processUserHomes;
+@property(readonly, nonatomic) NSSet *allFirmlinkPaths;
+@property(readonly, nonatomic) NSSet *allSyntheticDirectoryPaths;
+@property(readonly, nonatomic) NSDictionary *allSyntheticSymlinkPaths;
+- (void)loadAllFakelinks;
+- (id)allSafariUserPaths;
 @property(readonly, nonatomic) NSSet *allConfMigratorClaimedPaths;
 @property(readonly, nonatomic) NSSet *allConfMigratorKeepPaths;
 @property(readonly, nonatomic) NSSet *allConfMigratorUserPaths;
@@ -152,7 +157,7 @@
 - (void)addPreliminarySizeDelegate:(id)arg1 forPathGroup:(unsigned long long)arg2;
 - (void)removePreliminaryUserSizeDelegate:(id)arg1;
 - (void)addPreliminaryUserSizeDelegate:(id)arg1;
-- (id)initWithSystem:(id)arg1 andComparisonSystem:(id)arg2;
+- (id)initWithSystem:(id)arg1 andComparisonSystem:(id)arg2 forMigrationType:(unsigned long long)arg3;
 @property(readonly, nonatomic) unsigned long long totalCountOfIncompatibleAppPaths;
 @property(readonly, nonatomic) unsigned long long totalSizeOfIncompatibleAppPaths;
 @property(readonly, nonatomic) NSSet *allIncompatiblePaths;

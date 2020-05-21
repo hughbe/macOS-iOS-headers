@@ -6,19 +6,24 @@
 
 #import "NSView.h"
 
-@class _MKUILabel;
+@class NSAttributedString;
 
+__attribute__((visibility("hidden")))
 @interface MKAttributionLabel : NSView
 {
-    _MKUILabel *_strokeLabel;
-    _MKUILabel *_innerLabel;
+    NSAttributedString *_strokeText;
+    NSAttributedString *_innerText;
     unsigned long long _mapType;
     BOOL _useDarkText;
 }
 
-@property(nonatomic) unsigned long long mapType; // @synthesize mapType=_mapType;
 - (void).cxx_destruct;
+@property(nonatomic) unsigned long long mapType; // @synthesize mapType=_mapType;
+- (BOOL)allowsVibrancy;
+- (void)drawRect:(struct CGRect)arg1;
 - (void)sizeToFit;
+- (void)viewDidChangeEffectiveAppearance;
+- (void)_updateTextColor;
 - (void)_prepareLabel;
 - (id)_attributesWithStroke:(BOOL)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

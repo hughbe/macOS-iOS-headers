@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     double mValue;
 }
 
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)setValue:(double)arg1;
 - (double)value;

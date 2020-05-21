@@ -6,25 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSObject<SGSuggestionsServiceContactsProtocol>;
-
 @interface AKCardViewDataSourceFactory : NSObject
 {
     id <AKCardViewDataSourceSupport> _cardView;
-    NSObject<SGSuggestionsServiceContactsProtocol> *_suggestionsService;
 }
 
-+ (id)contactWithPerson:(id)arg1 unified:(BOOL)arg2 error:(id *)arg3;
-@property(readonly, nonatomic) NSObject<SGSuggestionsServiceContactsProtocol> *suggestionsService; // @synthesize suggestionsService=_suggestionsService;
-- (id)sgContactMatchingCNContact:(id)arg1;
-- (id)cnContactFromABCNContact:(id)arg1;
-- (BOOL)hasSuggestionsEntitlement;
-- (id)suggestedContactWithContact:(id)arg1;
-- (id)dataSourceWithContact:(id)arg1 addressBook:(id)arg2 delegate:(id)arg3 shouldShowSuggestedContact:(BOOL)arg4;
-- (id)dataSourceWithContact:(id)arg1 addressBook:(id)arg2 delegate:(id)arg3;
-- (id)dataSourceWithPerson:(id)arg1 unified:(BOOL)arg2 delegate:(id)arg3;
-- (void)dealloc;
-- (id)initWithCardView:(id)arg1 suggestionsService:(id)arg2;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <AKCardViewDataSourceSupport> cardView; // @synthesize cardView=_cardView;
+- (id)dataSourceWithContact:(id)arg1 contactStore:(id)arg2 delegate:(id)arg3;
 - (id)initWithCardView:(id)arg1;
 
 @end

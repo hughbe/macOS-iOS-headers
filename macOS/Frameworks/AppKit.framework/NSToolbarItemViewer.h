@@ -6,23 +6,34 @@
 
 #import <AppKit/NSView.h>
 
-@class NSMutableArray, NSToolbarItem, NSToolbarView;
+#import "_NSTouchBarItemLayoutWrapper.h"
 
-@interface NSToolbarItemViewer : NSView
+@class NSMutableArray, NSStackView, NSString, NSToolbar, NSToolbarItem, NSToolbarView;
+
+@interface NSToolbarItemViewer : NSView <_NSTouchBarItemLayoutWrapper>
 {
     NSToolbarItem *_item;
     NSToolbarView *_toolbarView;
     NSMutableArray *_labelViews;
+    NSStackView *_labelStack;
     struct CGRect _labelRect;
     double _labelHeight;
+    long long _priorityIndex;
+    NSMutableArray *_activeConstraints;
     struct CGSize _maxViewerSize;
     struct CGSize _minViewerSize;
-    struct CGRect _minIconFrame;
-    struct CGRect _minLabelFrame;
+    struct CGSize _scalableMinIconSize;
+    struct CGSize _scalableMaxIconSize;
+    double _overriddenMaxWidth;
+    double _preferredTrailingPosition;
+    double _widthRequiredForLabelLayout;
     struct _NSToolbarMotion *_motion;
     double _xOriginForLayout;
     double _iconWidthForLayout;
     double _forcibleFrameWidthForLayout;
+    NSToolbarView *_savedToolbarView;
+    NSToolbarItem *_savedItem;
+    NSToolbar *_savedToolbar;
     struct {
         unsigned int drawsIconPart:1;
         unsigned int drawsLabelPart:1;
@@ -40,15 +51,21 @@
         unsigned int needsRedrawForChangeInActiveState:1;
         unsigned int watchingBackgroundChangedNotification:1;
         unsigned int accessibilityAddedDescriptionToSubelements:1;
-        unsigned int UNUSED:16;
+        unsigned int configuringForLayout:1;
+        unsigned int needsLayoutAfterSubviewsBorrowed:1;
+        unsigned int needsPreferredTrailingPositionUpdate:1;
+        unsigned int UNUSED:13;
     } _tbivFlags;
 }
 
-@property(nonatomic) double forcibleFrameWidthForLayout; // @synthesize forcibleFrameWidthForLayout=_forcibleFrameWidthForLayout;
-@property(nonatomic) double iconWidthForLayout; // @synthesize iconWidthForLayout=_iconWidthForLayout;
-@property(nonatomic) double xOriginForLayout; // @synthesize xOriginForLayout=_xOriginForLayout;
 - (id)_toolbarView;
 - (void)_menuFormRepresentationChanged;
+- (void)constraintsDidChangeInEngine:(id)arg1;
+- (void)_setLayoutEngine:(id)arg1;
+- (struct CGSize)_scalableMaxIconSize;
+- (struct CGSize)_scalableMinIconSize;
+- (void)_updateMeasuredSizes;
+- (void)_updatePreferredTrailingPosition;
 - (void)_itemChangedLabelOrPaletteLabel;
 - (void)_itemLayoutChanged;
 - (void)_itemChangedToolTip;
@@ -56,15 +73,16 @@
 - (void)_itemChanged;
 - (long long)_itemVisibilityPriority;
 - (BOOL)_labelOnlyShowsAsPopupMenu;
-- (BOOL)_isSizedSmallerThanMinWidth;
-- (BOOL)_widthIsFlexible;
-- (BOOL)_heightIsFlexible;
+- (BOOL)_needsPreferredTrailingPositionUpdate;
+- (void)_setNeedsPreferredTrailingPositionUpdate:(BOOL)arg1;
 - (BOOL)_needsViewerLayout;
 - (void)_setNeedsViewerLayout:(BOOL)arg1;
 - (BOOL)_needsModeConfiguration;
 - (void)_setNeedsModeConfiguration:(BOOL)arg1;
 - (void)_endToolbarEditingMode;
 - (void)_beginToolbarEditingMode;
+- (void)_accessibilityOptionsChanged;
+- (void)_updateJiggle:(BOOL)arg1;
 - (void)_simulateClickInLabelView:(id)arg1 deferringPopUpsForAccessibility:(BOOL)arg2;
 - (void)mouseDown:(id)arg1;
 - (BOOL)_simultaneousSegmentAndLabelTrackingWithEvent:(id)arg1 forSegmentAtIndex:(long long)arg2 withLabelRect:(struct CGRect)arg3;
@@ -97,7 +115,7 @@
 - (void)resignKeyWindow;
 - (void)becomeKeyWindow;
 - (void)setNeedsDisplay:(BOOL)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)_setHighlighted:(BOOL)arg1 displayNow:(BOOL)arg2;
 - (void)_setHighlighted:(BOOL)arg1 pieces:(unsigned long long)arg2 forItemAtIndex:(unsigned long long)arg3 displayNow:(BOOL)arg4;
@@ -114,49 +132,29 @@
 - (void)drawSelectionIndicatorInRect:(struct CGRect)arg1;
 - (void)_drawSelectionIndicatorInRect:(struct CGRect)arg1 clipRect:(struct CGRect)arg2;
 - (BOOL)_shouldDrawFocus;
-- (BOOL)_useSquareToolbarSelectionHighlight;
-- (BOOL)_useLeopardToolbarSelectionHighlight;
 - (BOOL)_shouldDrawSelectionIndicator;
 - (void)_recursiveDisplayAllDirtyWithLockFocus:(BOOL)arg1 visRect:(struct CGRect)arg2;
-- (void)_drawWithImageCache;
-- (void)_captureVisibleIntoImageCache;
-- (BOOL)_hasImageCache;
-- (void)_captureVisibleIntoLiveResizeCache;
-- (BOOL)_wantsLiveResizeToUseCachedImage;
-- (BOOL)preservesContentDuringLiveResize;
 - (void)_windowChangedKeyState;
 - (void)_endInsertionOptimization;
 - (void)_startInsertionOptimization;
-- (struct CGPoint)destination;
-- (BOOL)isInMotion;
-- (void)stepTowardsDestinationWithCurrentTime:(double)arg1;
-- (void)setDestinationRect:(struct CGRect)arg1 targetIconWidth:(double)arg2 travelTimeInSeconds:(double)arg3;
-- (void)_teardownMotionData;
 - (void)setFrameOrigin:(struct CGPoint)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
-- (void)_setFrameAssumingLTR:(struct CGRect)arg1;
-- (void)_setFrameOriginAssumingLTR:(struct CGPoint)arg1;
-- (struct CGRect)_frameAssumingLTR;
-- (void)viewWillMoveToWindow:(id)arg1;
-- (void)viewDidMoveToWindow;
-- (void)setLayer:(id)arg1;
-- (void)_stopWatchingBackgroundGradientNotification;
-- (void)_watchBackgroundGradientNotification;
-- (void)_invalidateLabelViewsWhenLayerBacked:(id)arg1;
-- (struct CGSize)minIconSize;
 - (struct CGSize)minViewerSize;
-- (struct CGSize)maxSize;
-- (void)layoutToFitInIconWidth:(double)arg1;
-- (double)frameWidthForIconWidth:(double)arg1;
-- (void)layoutToFitInViewerFrameHeight:(double)arg1;
-- (void)layoutToFitInMinimumIconSizeInWindow:(id)arg1;
-- (void)layoutToFitInMinimumIconSize;
+- (void)_setOverriddenMaxWidth:(double)arg1;
+- (struct CGSize)sizeThatFitsProposedLayoutSize:(struct CGSize)arg1;
+@property(readonly) BOOL participatesInOverflow;
+@property(readonly) double preferredTrailingPosition;
+@property long long priorityIndex;
+@property(readonly) BOOL isSpace;
+@property(readonly) struct CGSize minSize;
+@property(readonly) struct CGSize maxSize;
 - (void)_hackUpTheItemSizesAndFrameToHaveSpaceFor10_11Borders;
 - (void)configureForLayoutInDisplayMode:(unsigned long long)arg1 andSizeMode:(unsigned long long)arg2 inToolbarView:(id)arg3;
+- (void)updateConstraints;
 - (void)_configureLabelCellStringValue;
 - (void)_noteToolbarSizeModeChanged;
 - (void)_recomputeLabelHeight;
-- (void)_computeLayoutInfoForIconViewSize:(struct CGSize)arg1 frameSize:(struct CGSize *)arg2 iconFrame:(struct CGRect *)arg3 labelFrame:(struct CGRect *)arg4;
+- (void)_computeLayoutInfoForIconViewSize:(struct CGSize)arg1 frameSize:(struct CGSize *)arg2;
 - (struct CGAffineTransform)_getPixelAligningTransformForLayout;
 - (double)_widthRequiredForLabelLayout;
 - (BOOL)_itemCanBeDraggedInTemporaryEditingModeFromPoint:(struct CGPoint)arg1;
@@ -168,7 +166,8 @@
 - (BOOL)transparentBackground;
 - (void)setTransparentBackground:(BOOL)arg1;
 - (void)dealloc;
-- (id)_backgroundColorForFontSmoothing;
+- (void)_endSubviewsBeingBorrowed;
+- (void)_beginSubviewsBeingBorrowed;
 - (void)_clearToolbarView;
 - (void)_setToolbarItem:(id)arg1;
 - (id)item;
@@ -182,6 +181,7 @@
 - (BOOL)element:(id)arg1 hasOverriddenAttribute:(id)arg2;
 - (id)_accessibilityToolbarItemLabelAtIndex:(unsigned long long)arg1;
 - (id)_accessibilityToolbarItemLabel;
+- (void)accessibilityPopUpMenuCreated:(id)arg1 forSubview:(id)arg2 returningAccessibilityParent:(id *)arg3;
 - (void)_accessibilityShowMenu:(id)arg1;
 - (id)accessibilityHitTest:(struct CGPoint)arg1;
 - (void)accessibilityPerformAction:(id)arg1;
@@ -212,6 +212,15 @@
 - (BOOL)_accessibilityIsSpaceOrSeparatorItem;
 - (BOOL)_accessibilityTreatButtonAsToolbarButton:(id)arg1;
 - (BOOL)_accessibilityTreatSegmentedControlAsToolbarButtons:(id)arg1;
+
+// Remaining properties
+@property(readonly) struct CGSize contentClippingSize;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) unsigned long long itemPosition;
+@property(readonly) struct CGSize preferredSize;
+@property(readonly) double preferredZOrder;
+@property(readonly) Class superclass;
 
 @end
 

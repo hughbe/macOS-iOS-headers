@@ -6,9 +6,14 @@
 
 #import "NSView.h"
 
+@class AMActionView;
+
 @interface NSView (AMCocoaExtensions)
-- (void)constrainToSuperviewWithInset:(double)arg1;
-- (void)constrainToSuperview;
+- (void)am_constrainToSuperviewWithInset:(double)arg1;
+- (void)am_constrainToSuperview;
+- (BOOL)satisfiesOrHasRecursiveSubviewSatisfyingBlock:(CDUnknownBlockType)arg1;
+- (void)performBlockForSelfAndRecursiveSubviews:(CDUnknownBlockType)arg1;
+@property(readonly, nonatomic) AMActionView *enclosingActionView;
 
 // Remaining properties
 @property(getter=isFlipped) BOOL flipped; // @dynamic flipped;

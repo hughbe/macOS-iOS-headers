@@ -6,30 +6,65 @@
 
 #import "NSObject.h"
 
-@class SiriCoreWiFiManagerClient;
+@class NSHashTable, NSNumber, NSObject<OS_dispatch_queue>, NSObject<OS_nw_path_evaluator>, SiriCoreWiFiManagerClient;
 
 @interface SiriCoreNetworkManager : NSObject
 {
-    id <SiriCoreNetworkManagerDelegate> _delegate;
-    struct __SCNetworkReachability *_scReachability;
-    unsigned int _flags;
+    NSObject<OS_dispatch_queue> *_queue;
+    NSHashTable *_observers;
+    NSObject<OS_nw_path_evaluator> *_pathEvaluator;
+    int _pathStatus;
+    BOOL _pathUsesCellular;
     SiriCoreWiFiManagerClient *_wiFiManagerClient;
+    BOOL _hasSymptomsBasedInstantCellQuality;
+    BOOL _symptomsBasedInstantCellQualityIsGood;
+    BOOL _hasSymptomsBasedInstantWiFiQuality;
+    BOOL _symptomsBasedInstantWiFiQualityIsGood;
+    BOOL _hasSymptomsBasedHistoricalCellQuality;
+    BOOL _symptomsBasedHistoricalCellQualityIsGood;
+    BOOL _hasSymptomsBasedHistoricalWiFiQuality;
+    BOOL _symptomsBasedHistoricalWiFiQualityIsGood;
+    BOOL _lastFetchInProgress;
+    double _lastSuccessfulSymptomsFetch;
+    NSNumber *_lastSignalStrength;
+    unsigned long long _subscriptionCount;
 }
 
-+ (id)connectionTypeForStream:(id)arg1 interfaceName:(id)arg2;
-+ (BOOL)_ifnameIsWiFi:(char *)arg1;
-@property(nonatomic) __weak id <SiriCoreNetworkManagerDelegate> delegate; // @synthesize delegate=_delegate;
++ (void)releaseDormancySuspendAssertion:(void *)arg1;
++ (void)acquireDormancySuspendAssertion:(const void **)arg1;
++ (long long)connectionTypeForInterface:(id)arg1;
++ (id)connectionTypeForInterfaceName:(id)arg1 isCellular:(BOOL)arg2;
++ (void)getCarrierName:(id *)arg1 signalStrength:(id *)arg2 subscriptionCount:(id *)arg3;
++ (long long)connectionSubTypeForCellularInterface;
++ (void)_ifnameTypeForName:(char *)arg1 isWiFi:(char *)arg2 isCellular:(char *)arg3;
++ (id)sharedInstance;
 - (void).cxx_destruct;
-- (void)releaseDormancySuspendAssertion:(void *)arg1;
-- (void)acquireDormancySuspendAssertion:(const void **)arg1;
-- (void)disableWiFiTimeout;
-- (void)enableWiFiTimeout;
+- (BOOL)_getConnectionSuccessRate:(id)arg1 hasMetric:(char *)arg2;
+- (BOOL)_defaultWiFiLinkRecommendation;
+- (BOOL)_defaultBTLinkRecommendation;
+- (void)acquireWiFiAssertion:(long long)arg1;
+- (void)releaseWiFiAssertion;
 - (void)forceFastDormancy;
+- (void)getSignalStrength:(id *)arg1 subscriptionCount:(unsigned long long *)arg2;
+- (long long)_reportWiFiHistoricalQuality;
+- (long long)_reportWiFiInstantQuality;
+- (long long)_reportCellularHistoricalQuality;
+- (long long)_reportCellularInstantQuality;
+- (void)getQualityReport:(CDUnknownBlockType)arg1;
+- (long long)anyNetworkQuality;
+- (long long)wifiNetworkQuality;
+- (long long)cellularNetworkQuality;
+- (void)getNetworkPerformanceFeed;
+- (void)_getNetworkPerformanceFeed;
 - (void)stopMonitoringNetwork;
-- (void)startMonitoringNetworkForHost:(id)arg1 onQueue:(id)arg2;
-- (void)_setFlags:(unsigned int)arg1;
+- (void)_stopMonitoringNetwork;
+- (void)startMonitoringNetworkForHost:(id)arg1;
+- (void)_pathUpdated:(id)arg1;
 - (id)_wiFiManagerClient;
+- (void)removeObserver:(id)arg1;
+- (void)addObserver:(id)arg1;
 - (void)dealloc;
+- (id)_init;
 
 @end
 

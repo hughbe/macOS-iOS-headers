@@ -17,6 +17,7 @@
 - (NSDictionary *)bundleInfoAtCurrentPath;
 - (BOOL)isCurrentPathARegularFile;
 - (BOOL)isCurrentPathABundle;
+- (BOOL)isCurrentPathARegularDirectory;
 - (BOOL)isCurrentPathADirectory;
 @end
 

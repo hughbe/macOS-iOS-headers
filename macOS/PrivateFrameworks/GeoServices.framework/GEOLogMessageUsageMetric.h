@@ -8,6 +8,7 @@
 
 #import "NSCopying.h"
 
+__attribute__((visibility("hidden")))
 @interface GEOLogMessageUsageMetric : PBCodable <NSCopying>
 {
     struct GEOSessionID _sessionId;
@@ -17,23 +18,16 @@
     int _metricType;
     unsigned int _retryCount;
     struct {
-        unsigned int sessionId:1;
-        unsigned int messageSize:1;
-        unsigned int messageCount:1;
-        unsigned int metricState:1;
-        unsigned int metricType:1;
-        unsigned int retryCount:1;
-    } _has;
+        unsigned int has_sessionId:1;
+        unsigned int has_messageSize:1;
+        unsigned int has_messageCount:1;
+        unsigned int has_metricState:1;
+        unsigned int has_metricType:1;
+        unsigned int has_retryCount:1;
+    } _flags;
 }
 
-+ (id)logMessageUsageMetricForFailedMsgWithCount:(int)arg1;
-+ (id)logMessageUsageMetricForPurgeWithState:(int)arg1 messageCount:(int)arg2;
-+ (id)logMessageUsageMetricForForcePurgeWithState:(int)arg1;
-+ (id)logMessageUsageMetricForNetworkWithState:(int)arg1 messageCount:(int)arg2 messageSize:(long long)arg3 retryCount:(int)arg4;
-@property(nonatomic) struct GEOSessionID sessionId; // @synthesize sessionId=_sessionId;
-@property(nonatomic) unsigned int retryCount; // @synthesize retryCount=_retryCount;
-@property(nonatomic) unsigned long long messageSize; // @synthesize messageSize=_messageSize;
-@property(nonatomic) unsigned int messageCount; // @synthesize messageCount=_messageCount;
++ (BOOL)isValid:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -41,20 +35,25 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(nonatomic) BOOL hasSessionId;
+@property(nonatomic) struct GEOSessionID sessionId;
 @property(nonatomic) BOOL hasRetryCount;
+@property(nonatomic) unsigned int retryCount;
 @property(nonatomic) BOOL hasMessageSize;
+@property(nonatomic) unsigned long long messageSize;
 @property(nonatomic) BOOL hasMessageCount;
+@property(nonatomic) unsigned int messageCount;
 - (int)StringAsMetricState:(id)arg1;
 - (id)metricStateAsString:(int)arg1;
 @property(nonatomic) BOOL hasMetricState;
-@property(nonatomic) int metricState; // @synthesize metricState=_metricState;
+@property(nonatomic) int metricState;
 - (int)StringAsMetricType:(id)arg1;
 - (id)metricTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasMetricType;
-@property(nonatomic) int metricType; // @synthesize metricType=_metricType;
+@property(nonatomic) int metricType;
 
 @end
 

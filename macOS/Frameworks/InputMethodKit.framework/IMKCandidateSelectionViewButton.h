@@ -11,10 +11,12 @@
 @interface IMKCandidateSelectionViewButton : NSButton
 {
     BOOL _mousePointerInside;
+    BOOL _radarButton;
     IMKUIProperties *_properties;
     long long _trackingRectTag;
 }
 
+@property(nonatomic, getter=isRadarButton) BOOL radarButton; // @synthesize radarButton=_radarButton;
 @property(retain, nonatomic) IMKUIProperties *properties; // @synthesize properties=_properties;
 @property(nonatomic) long long trackingRectTag; // @synthesize trackingRectTag=_trackingRectTag;
 @property(nonatomic) BOOL mousePointerInside; // @synthesize mousePointerInside=_mousePointerInside;

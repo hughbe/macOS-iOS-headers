@@ -6,20 +6,23 @@
 
 #import "NSObject.h"
 
-@class NSLock, NSMapTable;
+@class NSMutableDictionary, NSObject<OS_dispatch_source>, geo_isolater;
 
 @interface GEORequestThrottler : NSObject
 {
-    NSMapTable *_throttleMap;
-    NSLock *_lock;
+    geo_isolater *_isolater;
+    NSMutableDictionary *_enqueuedTickets;
+    BOOL _isSubmitting;
+    double _nextSubmissionTime;
+    NSObject<OS_dispatch_source> *_submissionTimer;
 }
 
 + (id)sharedThrottler;
-- (id)_throttlePolicyForKey:(id)arg1;
-- (double)throttleStateResetTimeRemainingForKey:(id)arg1;
-- (unsigned long long)throttleStateLevelForKey:(id)arg1;
-- (BOOL)allowRequestForKey:(id)arg1;
-- (void)dealloc;
+- (void).cxx_destruct;
+- (void)submitTickets;
+- (void)_scheduleTimer:(double)arg1;
+- (void)cancelTicket:(id)arg1;
+- (void)enqueueTicket:(id)arg1 submissionHandler:(CDUnknownBlockType)arg2;
 - (id)init;
 
 @end

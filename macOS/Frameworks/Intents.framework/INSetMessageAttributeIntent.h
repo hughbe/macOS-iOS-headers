@@ -6,20 +6,30 @@
 
 #import <Intents/INIntent.h>
 
-#import "INSetMessageAttributeIntent.h"
+#import "INSetMessageAttributeIntentExport.h"
 
 @class NSArray, NSString;
 
-@interface INSetMessageAttributeIntent : INIntent <INSetMessageAttributeIntent>
+@interface INSetMessageAttributeIntent : INIntent <INSetMessageAttributeIntentExport>
 {
 }
 
-- (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1;
-- (void)setAttribute:(id)arg1;
-@property(readonly, copy) NSString *attribute;
+- (void)setParametersByName:(id)arg1;
+- (id)parametersByName;
+- (void)setVerb:(id)arg1;
+- (id)verb;
+- (void)setDomain:(id)arg1;
+- (id)domain;
+- (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1 containingAppBundleId:(id)arg2;
+- (id)_dictionaryRepresentation;
+- (void)setAttribute:(long long)arg1;
+@property(readonly) long long attribute;
 - (void)setIdentifiers:(id)arg1;
 @property(readonly, copy) NSArray *identifiers;
-- (id)initWithIdentifiers:(id)arg1 attribute:(id)arg2;
+- (id)initWithIdentifiers:(id)arg1 attribute:(long long)arg2;
+- (id)_categoryVerb;
+- (long long)_intentCategory;
+- (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;
 

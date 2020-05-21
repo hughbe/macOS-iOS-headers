@@ -14,17 +14,20 @@
 {
     NSString *_deviceName;
     NSMutableArray *_knownManifestHashes;
+    unsigned int _protocolVersion;
     BOOL _shouldAdvertise;
     struct {
+        unsigned int protocolVersion:1;
         unsigned int shouldAdvertise:1;
     } _has;
 }
 
 + (Class)knownManifestHashesType;
+- (void).cxx_destruct;
+@property(nonatomic) unsigned int protocolVersion; // @synthesize protocolVersion=_protocolVersion;
 @property(retain, nonatomic) NSMutableArray *knownManifestHashes; // @synthesize knownManifestHashes=_knownManifestHashes;
 @property(nonatomic) BOOL shouldAdvertise; // @synthesize shouldAdvertise=_shouldAdvertise;
 @property(retain, nonatomic) NSString *deviceName; // @synthesize deviceName=_deviceName;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -36,6 +39,7 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasProtocolVersion;
 - (id)knownManifestHashesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)knownManifestHashesCount;
 - (void)addKnownManifestHashes:(id)arg1;

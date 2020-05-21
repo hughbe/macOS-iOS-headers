@@ -7,11 +7,12 @@
 #import <Safari/TextFieldEditor.h>
 
 #import "NSTextInputClient_IncrementalSearch.h"
+#import "UnifiedFieldLayoutManagerDelegate.h"
 
 @class NSString;
 
 __attribute__((visibility("hidden")))
-@interface UnifiedFieldEditor : TextFieldEditor <NSTextInputClient_IncrementalSearch>
+@interface UnifiedFieldEditor : TextFieldEditor <NSTextInputClient_IncrementalSearch, UnifiedFieldLayoutManagerDelegate>
 {
     NSString *_previousMarkedText;
     BOOL _selectionWasAutocompleted;
@@ -19,12 +20,13 @@ __attribute__((visibility("hidden")))
     id <UnifiedFieldEditorDelegate> _unifiedFieldEditorDelegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <UnifiedFieldEditorDelegate> unifiedFieldEditorDelegate; // @synthesize unifiedFieldEditorDelegate=_unifiedFieldEditorDelegate;
 @property(nonatomic, getter=isAdjustingAutocompleteSelection) BOOL adjustingAutocompleteSelection; // @synthesize adjustingAutocompleteSelection=_isAdjustingAutocompleteSelection;
 @property(nonatomic) BOOL selectionWasAutocompleted; // @synthesize selectionWasAutocompleted=_selectionWasAutocompleted;
-- (void).cxx_destruct;
 - (BOOL)wouldHandleEvent:(id)arg1;
 - (unsigned long long)incrementalSearchClientGeometry;
+- (id)menuForEvent:(id)arg1;
 - (id)selectedTextAttributes;
 - (BOOL)writeSelectionToPasteboard:(id)arg1 type:(id)arg2;
 - (id)writablePasteboardTypes;
@@ -50,6 +52,7 @@ __attribute__((visibility("hidden")))
 - (void)mouseDown:(id)arg1;
 - (BOOL)resignFirstResponder;
 - (BOOL)becomeFirstResponder;
+- (double)extraTrailingPaddingForSelectionRectInUnifiedFieldLayoutManager:(id)arg1;
 - (id)init;
 
 @end

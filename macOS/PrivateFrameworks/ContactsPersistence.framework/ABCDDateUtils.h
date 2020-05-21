@@ -14,8 +14,8 @@ __attribute__((visibility("hidden")))
 + (id)componentsFromDate:(id)arg1;
 + (id)gregorianCalendar;
 + (_Bool)isDateComponentsEmpty:(id)arg1;
-+ (id)dateFromDateComponents:(id)arg1;
-+ (id)dateComponentsFromDate:(id)arg1;
++ (id)dateAtNoonGMTFromGregorianDateComponents:(id)arg1;
++ (id)dateComponentsFromGMTDate:(id)arg1;
 + (id)localDateWithHour:(unsigned long long)arg1 occurringOnSameCalendarDayAsDateInLocalTimeZone:(id)arg2;
 + (id)makeCalendarWithOffsetFromGMT:(long long)arg1;
 + (id)calendarWithOffsetFromGMT:(long long)arg1;
@@ -23,7 +23,6 @@ __attribute__((visibility("hidden")))
 + (id)localDateOccurringAtNoonOnSameCalendarDayAsDate:(id)arg1 inTimeZoneSecondsFromGMT:(long long)arg2;
 + (id)localDateOccurringAtNoonOnSameCalendarDayAsDateInGMT:(id)arg1;
 + (id)localDateOccurringOnSameCalendarDayAsDateInGMT:(id)arg1;
-+ (id)gmtCalendar;
 + (id)localCalendar;
 + (id)gmtDateOccurringAtNoonOnSameCalendarDayAsDateInLocalTime:(id)arg1;
 + (id)dateByNormalizingToGMT:(id)arg1;

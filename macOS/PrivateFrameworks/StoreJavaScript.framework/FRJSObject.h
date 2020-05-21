@@ -20,14 +20,17 @@
     NSMutableDictionary *_properties;
     NSMutableArray *_registeredProperties;
     NSMutableArray *_registeredFunctions;
+    id <FRJSMessagingDelegate> _messagingDelegate;
 }
 
 + (BOOL)supportsSecureCoding;
++ (void)setJSClass:(struct OpaqueJSClass *)arg1 forClassName:(id)arg2;
++ (struct OpaqueJSClass *)jsClassForClassName:(id)arg1;
 + (Class)classForKeyedUnarchiver;
-+ (id)messagingDelegate;
-+ (void)setMessagingDelegate:(id)arg1;
 + (void)addObjectToGlobalCache:(id)arg1;
 + (id)objectForIdentifier:(id)arg1;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <FRJSMessagingDelegate> messagingDelegate; // @synthesize messagingDelegate=_messagingDelegate;
 @property(nonatomic) BOOL isBundleObject; // @synthesize isBundleObject=_isBundleObject;
 @property(retain, nonatomic) NSMutableArray *registeredFunctions; // @synthesize registeredFunctions=_registeredFunctions;
 @property(retain, nonatomic) NSMutableArray *registeredProperties; // @synthesize registeredProperties=_registeredProperties;
@@ -36,7 +39,6 @@
 @property(readonly, nonatomic) NSUUID *objectID; // @synthesize objectID=_objectID;
 @property(nonatomic) __weak id <FRJSObjectDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) NSString *javaScriptClassName; // @synthesize javaScriptClassName=_javaScriptClassName;
-- (void).cxx_destruct;
 - (id)callFunction:(id)arg1 withArguments:(id)arg2;
 - (void)_addFunction:(id)arg1 sendMessage:(BOOL)arg2;
 - (void)addFunctions:(id)arg1;

@@ -8,16 +8,26 @@
 
 #import "NSCopying.h"
 
-@class GEOLatLng, NSString;
+@class GEOLatLng, NSString, PBDataReader;
 
 @interface GEORPUpdatedLabel : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     GEOLatLng *_center;
     NSString *_localizedText;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_center:1;
+        unsigned int read_localizedText:1;
+        unsigned int wrote_center:1;
+        unsigned int wrote_localizedText:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOLatLng *center; // @synthesize center=_center;
-@property(retain, nonatomic) NSString *localizedText; // @synthesize localizedText=_localizedText;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +35,17 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOLatLng *center;
 @property(readonly, nonatomic) BOOL hasCenter;
+- (void)_readCenter;
+@property(retain, nonatomic) NSString *localizedText;
 @property(readonly, nonatomic) BOOL hasLocalizedText;
-- (void)dealloc;
+- (void)_readLocalizedText;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

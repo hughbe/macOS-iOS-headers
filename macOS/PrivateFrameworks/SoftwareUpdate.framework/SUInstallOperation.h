@@ -6,16 +6,15 @@
 
 #import "NSOperation.h"
 
-@class NSArray, NSDate, NSError, NSMutableArray, NSMutableDictionary, NSString, PKInstallClient, PKInstallRequest;
+@class NSArray, NSDate, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_os_activity>, NSString, PKInstallClient, PKInstallRequest;
 
 @interface SUInstallOperation : NSOperation
 {
     NSArray *_localProducts;
     PKInstallRequest *_request;
+    NSMutableArray *_atomicUpdateProducts;
     BOOL _clientBlocksRestart;
-    BOOL _allowOnlyAppleSignedFlatPackages;
     BOOL _holdBoostDuringInstall;
-    BOOL _preLogoutCommit;
     BOOL _isStaging;
     unsigned int _packageScriptUserID;
     struct AuthorizationOpaqueRef *_overrideAuthorization;
@@ -34,49 +33,54 @@
     NSError *_nonSpecificError;
     NSMutableDictionary *_errorByProductKey;
     BOOL _didInstallSuccessfully;
+    NSMutableArray *_successfullyArmedBaseSystemProductKeys;
     NSMutableArray *_productKeysToDelete;
     CDUnknownBlockType _finishBlock;
     CDUnknownBlockType _progressBlock;
+    NSObject<OS_os_activity> *_activity;
     PKInstallClient *_installClient;
+    CDUnknownBlockType _bundleRegistrationBlock;
     double _estimatedTimeForPostLogoutCommit;
 }
 
 + (unsigned long long)workingSpaceForInstallSize:(unsigned long long)arg1;
 + (unsigned long long)adjustedInstallSize:(unsigned long long)arg1 forLocalProducts:(id)arg2;
-+ (id)installOperationsWithLocalProducts:(id)arg1 forPreLogoutCommit:(BOOL)arg2 forStaging:(BOOL)arg3;
++ (id)installOperationsWithLocalProducts:(id)arg1 forStaging:(BOOL)arg2;
 + (unsigned long long)_spaceRequiredForPossiblyStagedLocalProducts:(id)arg1;
 + (void)_enumerateProducts:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 + (BOOL)_isCurrentlyStagedWithLocalProducts:(id)arg1 purgeableSize:(id *)arg2;
 @property double estimatedTimeForPostLogoutCommit; // @synthesize estimatedTimeForPostLogoutCommit=_estimatedTimeForPostLogoutCommit;
 @property unsigned int packageScriptUserID; // @synthesize packageScriptUserID=_packageScriptUserID;
 @property BOOL holdBoostDuringInstall; // @synthesize holdBoostDuringInstall=_holdBoostDuringInstall;
-@property BOOL allowOnlyAppleSignedFlatPackages; // @synthesize allowOnlyAppleSignedFlatPackages=_allowOnlyAppleSignedFlatPackages;
 @property BOOL clientBlocksRestart; // @synthesize clientBlocksRestart=_clientBlocksRestart;
 @property id <SUInstallOperationDelegate><NSObject> delegate; // @synthesize delegate;
 - (void)installClientDidFinish:(id)arg1;
 - (void)installClient:(id)arg1 didFailWithError:(id)arg2;
 - (void)installClient:(id)arg1 currentState:(int)arg2 package:(id)arg3 progress:(double)arg4 timeRemaining:(double)arg5;
+- (BOOL)installClient:(id)arg1 registerBundlesWithLaunchServices:(id)arg2;
+- (void)setBundleRegistrationBlock:(CDUnknownBlockType)arg1;
 - (void)setProgressBlock:(CDUnknownBlockType)arg1 andFinishBlock:(CDUnknownBlockType)arg2;
 - (id)errorForProductKey:(id)arg1;
 - (id)errorProductKeys;
 - (BOOL)didInstallSuccessfully;
+- (BOOL)armBaseSytemUpdatesMechanismWithError:(id *)arg1;
 - (BOOL)performPreflightChecks;
 - (BOOL)_performInstallTimeChecks;
 - (id)_productFromPackageKitError:(id)arg1;
 - (void)main;
 - (void)_dispatchStatus:(id)arg1 progress:(float)arg2 timeRemaining:(double)arg3;
 - (void)setAuthorizationRef:(struct AuthorizationOpaqueRef *)arg1;
+- (id)successfullyArmedBaseSystemProductKeys;
 - (void)removeInstalledOrInapplicableProducts;
 - (id)activeSpecialStatus;
 - (BOOL)isDoingIndeterminateFirmwareUpdate;
 - (double)estimatedTimeRemaining;
 - (double)progressPercent;
 - (BOOL)isStaging;
-- (BOOL)preLogoutCommit;
 - (unsigned long long)totalInstallSize;
 - (id)localProducts;
 - (void)dealloc;
-- (id)_initWithLocalProducts:(id)arg1 preLogoutCommit:(BOOL)arg2 stageOnly:(BOOL)arg3 spaceRequired:(unsigned long long)arg4;
+- (id)_initWithLocalProducts:(id)arg1 stageOnly:(BOOL)arg2 spaceRequired:(unsigned long long)arg3;
 
 @end
 

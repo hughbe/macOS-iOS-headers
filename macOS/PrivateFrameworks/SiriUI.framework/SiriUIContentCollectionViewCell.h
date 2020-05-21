@@ -6,22 +6,25 @@
 
 #import <SiriUI/SiriUIClearBackgroundCell.h>
 
-@class NSImageView, NSLayoutConstraint, NSMutableArray, NSTextField, NSView, SiriUIKeyline;
+@class NSLayoutConstraint, NSMutableArray, NSTextField, NSView, SiriUIKeyline, SiriUITintedImageView;
 
 @interface SiriUIContentCollectionViewCell : SiriUIClearBackgroundCell
 {
     SiriUIKeyline *_keyline;
-    NSImageView *_chevronView;
+    SiriUITintedImageView *_chevronView;
     BOOL _hasSetUpSubviewConstraints;
     BOOL _hasSetupStaticSubviewConstraints;
     NSLayoutConstraint *leftChevronWidthConstraint;
     NSLayoutConstraint *rightChevronWidthConstraint;
     NSMutableArray *_subviewConstraints;
     BOOL _hasChevron;
+    BOOL _accessibilityIsIgnored;
+    BOOL _accessibilityIsOverridden;
     long long _verticalAlignment;
     NSView *_accessoryView;
     NSTextField *_textLabel;
     long long _keylineType;
+    id <SiriUIAccessibilityDelegate> _accessibilityDelegate;
     struct UIOffset _textOffset;
     struct UIOffset _accessoryOffset;
     struct UIOffset _chevronOffset;
@@ -30,6 +33,10 @@
 
 + (id)reuseIdentifier;
 + (struct NSEdgeInsets)defaultInsets;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL accessibilityIsOverridden; // @synthesize accessibilityIsOverridden=_accessibilityIsOverridden;
+@property(nonatomic) BOOL accessibilityIsIgnored; // @synthesize accessibilityIsIgnored=_accessibilityIsIgnored;
+@property(nonatomic) __weak id <SiriUIAccessibilityDelegate> accessibilityDelegate; // @synthesize accessibilityDelegate=_accessibilityDelegate;
 @property(nonatomic) BOOL hasChevron; // @synthesize hasChevron=_hasChevron;
 @property(nonatomic) long long keylineType; // @synthesize keylineType=_keylineType;
 @property(readonly, nonatomic) SiriUIKeyline *keyline; // @synthesize keyline=_keyline;
@@ -40,11 +47,18 @@
 @property(retain, nonatomic) NSView *accessoryView; // @synthesize accessoryView=_accessoryView;
 @property(nonatomic) struct NSEdgeInsets textAndAccessoryInsets; // @synthesize textAndAccessoryInsets=_textAndAccessoryInsets;
 @property(nonatomic) long long verticalAlignment; // @synthesize verticalAlignment=_verticalAlignment;
-- (void).cxx_destruct;
+- (id)accessibilitySynthesizeMouseEventWithType:(unsigned long long)arg1 clickCount:(long long)arg2;
+- (void)accessibilityPerformAction:(id)arg1;
+- (id)accessibilityActionNames;
+- (id)accessibilityLabel;
+- (id)accessibilityRole;
+- (void)setAccessibilityElement:(BOOL)arg1;
+- (BOOL)isAccessibilityElement;
 - (void)prepareForReuse;
 - (void)setNeedsUpdateSubviewConstraints;
 @property(readonly, nonatomic) double chevronTrailingMargin;
 @property(readonly, nonatomic) double chevronLeadingMargin;
+- (void)setChevronColor:(id)arg1;
 - (void)layout;
 - (void)updateConstraints;
 - (void)_updateSubviewConstraints;

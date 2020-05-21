@@ -11,6 +11,7 @@
 @protocol CNContactCardViewControllerDelegate <NSObject>
 
 @optional
+- (void)contactCardViewContollerDidLoad:(CNContactCardViewController *)arg1;
 - (void)contactCardViewControllerDesiredHeightDidChange:(CNContactCardViewController *)arg1;
 - (void)contactCardViewControllerHeaderWasClicked:(CNContactCardViewController *)arg1;
 @end

@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)allocTempFileWithBase:(id)arg1 filename:(id *)arg2;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *outputFilename; // @synthesize outputFilename=mOutputFilename;
 - (BOOL)encryptIntoOutputFile;
 - (BOOL)encrypt;

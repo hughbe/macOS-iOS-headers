@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-@class CBCentralManager, CBScalablePipe, CBScalablePipeManager, NSData, NSMutableData, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, SFBLEData;
+@class CBCentralManager, CBScalablePipe, CBScalablePipeManager, NSData, NSDate, NSMutableArray, NSMutableData, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, SFBLEData;
 
 @interface SFBLEPipe : NSObject
 {
     BOOL _activateCalled;
     CBCentralManager *_btCentral;
-    struct __channel *_btChannel;
+    struct channel *_btChannel;
     BOOL _btConnected;
     BOOL _btConnecting;
     BOOL _btEndpointRegistering;
@@ -22,21 +22,22 @@
     NSMutableData *_btReadPayload;
     unsigned long long _btReadLen;
     unsigned long long _btReadOffset;
-    struct __channel_ring_desc *_btReadRing;
+    struct channel_ring_desc *_btReadRing;
     NSObject<OS_dispatch_source> *_btReadSource;
     NSData *_btWriteData;
     SFBLEData *_btWriteItem;
     unsigned long long _btWriteLen;
     unsigned long long _btWriteOffset;
     const char *_btWritePtr;
-    struct NSMutableArray *_btWriteQueue;
-    struct __channel_ring_desc *_btWriteRing;
+    NSMutableArray *_btWriteQueue;
+    struct channel_ring_desc *_btWriteRing;
     NSObject<OS_dispatch_source> *_btWriteSource;
     BOOL _btWriteSuspended;
     CBScalablePipe *_btPipe;
     CBScalablePipeManager *_btPipeManager;
-    struct NSMutableDictionary *_frameHandlers;
+    NSMutableDictionary *_frameHandlers;
     BOOL _invalidateCalled;
+    NSDate *_lastDisconnectDate;
     struct LogCategory *_ucat;
     BOOL _manualConnect;
     CDUnknownBlockType _bluetoothStateChangedHandler;
@@ -47,6 +48,7 @@
     CDUnknownBlockType _invalidationHandler;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL manualConnect; // @synthesize manualConnect=_manualConnect;
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
@@ -54,7 +56,6 @@
 @property(copy, nonatomic) CDUnknownBlockType frameHandler; // @synthesize frameHandler=_frameHandler;
 @property(copy, nonatomic) CDUnknownBlockType connectionStateChangedHandler; // @synthesize connectionStateChangedHandler=_connectionStateChangedHandler;
 @property(copy, nonatomic) CDUnknownBlockType bluetoothStateChangedHandler; // @synthesize bluetoothStateChangedHandler=_bluetoothStateChangedHandler;
-- (void).cxx_destruct;
 - (void)centralManager:(id)arg1 didDisconnectPeripheral:(id)arg2 error:(id)arg3;
 - (void)centralManager:(id)arg1 didFailToConnectPeripheral:(id)arg2 error:(id)arg3;
 - (void)centralManager:(id)arg1 didConnectPeripheral:(id)arg2;
@@ -70,6 +71,7 @@
 - (void)invalidate;
 - (void)_activate;
 - (void)activate;
+@property(readonly, nonatomic) long long connectionState;
 - (id)description;
 - (void)dealloc;
 - (id)init;

@@ -37,6 +37,8 @@
 @property(copy) AVB17221AEMSamplingRate *currentSamplingRate; // @synthesize currentSamplingRate;
 @property(copy) AVB17221AEMVideoFormatSpecific *currentFormatSpecific; // @synthesize currentFormatSpecific;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)objectLogName;
 - (void)appendVariableDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (void)appendFixedDescriptorContentToString:(id)arg1 withIndent:(id)arg2;

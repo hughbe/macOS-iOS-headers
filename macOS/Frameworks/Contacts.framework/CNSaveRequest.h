@@ -6,12 +6,11 @@
 
 #import "NSObject.h"
 
-#import "CNObjectValidation.h"
 #import "NSSecureCoding.h"
 
 @class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSString;
 
-@interface CNSaveRequest : NSObject <CNObjectValidation, NSSecureCoding>
+@interface CNSaveRequest : NSObject <NSSecureCoding>
 {
     NSMutableDictionary *_addedContactsByIdentifier;
     NSMutableArray *_updatedContacts;
@@ -29,18 +28,27 @@
     NSMutableDictionary *_deletedContainersByIdentifier;
     NSMutableDictionary *_movedContainersByIdentifier;
     NSMutableDictionary *_addedAccountContainersByIdentifier;
+    NSMutableDictionary *_defaultAccountContainersByIdentifier;
     NSMutableArray *_contactChangeRequests;
     NSMutableArray *_addedAccounts;
+    NSMutableArray *_removedAccounts;
     NSMutableDictionary *_parentRecordsByIdentifier;
     BOOL _unsafeApplyChangesOnly;
-    NSString *_clientIdentifier;
+    BOOL _ignoresGuardianRestrictions;
+    NSString *_saveRequestIdentifier;
+    NSString *_changeHistoryClientIdentifier;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy) NSString *clientIdentifier; // @synthesize clientIdentifier=_clientIdentifier;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *changeHistoryClientIdentifier; // @synthesize changeHistoryClientIdentifier=_changeHistoryClientIdentifier;
+@property BOOL ignoresGuardianRestrictions; // @synthesize ignoresGuardianRestrictions=_ignoresGuardianRestrictions;
 @property(readonly, copy) NSDictionary *deletedContactsByIdentifier; // @synthesize deletedContactsByIdentifier=_deletedContactsByIdentifier;
+@property(readonly, copy) NSString *saveRequestIdentifier; // @synthesize saveRequestIdentifier=_saveRequestIdentifier;
+@property(readonly, copy, nonatomic) NSArray *removedAccounts; // @synthesize removedAccounts=_removedAccounts;
 @property(readonly, copy, nonatomic) NSArray *addedAccounts; // @synthesize addedAccounts=_addedAccounts;
 @property(nonatomic) BOOL unsafeApplyChangesOnly; // @synthesize unsafeApplyChangesOnly=_unsafeApplyChangesOnly;
+@property BOOL ignoresParentalRestrictions;
 @property(readonly, copy, nonatomic) NSArray *allAccountIdentifierStrings;
 - (id)allAccountIdentifiers;
 - (id)allContainerIdentifierStrings:(char *)arg1;
@@ -54,6 +62,7 @@
 - (id)groupWithAddedSubgroupForGroupIdentifier:(id)arg1;
 - (id)groupWithRemovedMemberForGroupIdentifier:(id)arg1;
 - (id)groupWithAddedMemberForGroupIdentifier:(id)arg1;
+- (void)removeAccount:(id)arg1;
 - (void)addAccount:(id)arg1;
 - (void)preferLinkedContactForImage:(id)arg1 inUnifiedContact:(id)arg2;
 - (void)preferLinkedContactForName:(id)arg1 inUnifiedContact:(id)arg2;
@@ -63,11 +72,13 @@
 - (void)updateContainer:(id)arg1;
 - (void)deleteContainer:(id)arg1;
 - (void)moveContainer:(id)arg1 toContainerWithIdentifier:(id)arg2;
+- (void)setContainer:(id)arg1 asDefaultContainerOfAccountWithIdentifier:(id)arg2;
 - (void)addContainer:(id)arg1 toAccountWithIdentifier:(id)arg2;
 - (void)addContainer:(id)arg1 toContainerWithIdentifier:(id)arg2;
 @property(readonly, copy) NSDictionary *movedContainersByParentContainerIdentifier;
 @property(readonly, copy) NSArray *updatedContainers;
 @property(readonly, copy) NSArray *deletedContainers;
+@property(readonly, copy) NSDictionary *defaultAccountContainersByAccountIdentifier;
 @property(readonly, copy) NSDictionary *addedAccountContainersByParentContainerIdentifier;
 @property(readonly, copy) NSDictionary *addedContainersByParentContainerIdentifier;
 @property(readonly, copy) NSDictionary *removedSubgroupsByGroupIdentifier;
@@ -90,7 +101,6 @@
 - (void)deleteGroup:(id)arg1;
 - (void)updateGroup:(id)arg1;
 - (void)addGroup:(id)arg1 toContainerWithIdentifier:(id)arg2;
-- (BOOL)isValid:(id *)arg1;
 - (void)setMeCardIdentifier:(id)arg1;
 - (void)deleteContact:(id)arg1;
 - (void)updateContact:(id)arg1;
@@ -98,17 +108,10 @@
 - (void)queueUpdatedObject:(id)arg1 intoArray:(id)arg2;
 - (void)_insertContact:(id)arg1 intoDictionary:(id)arg2 complementDictionary:(id)arg3;
 @property(readonly, copy, nonatomic) NSString *storeIdentifier;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 - (void)setLinkIdentifier:(id)arg1 forContact:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

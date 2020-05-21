@@ -16,6 +16,7 @@
 
 + (id)setAssistantDataWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setAssistantData;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SAWatchData *watchData;
 @property(copy, nonatomic) NSNumber *voiceTriggerEnabled;
 @property(nonatomic) BOOL voiceOver;

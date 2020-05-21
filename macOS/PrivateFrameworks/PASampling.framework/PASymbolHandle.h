@@ -20,14 +20,16 @@
 + (id)getEmptySymbolHandle;
 + (id)newInstanceWithoutReferencesFromBufferPosition:(const void *)arg1;
 + (id)classDictionaryKey;
-@property(readonly) unsigned long long symbolOwnerStartAddressInTask; // @synthesize symbolOwnerStartAddressInTask=_symbolOwnerStartAddressInTask;
 - (void).cxx_destruct;
+@property(readonly) unsigned long long symbolOwnerStartAddressInTask; // @synthesize symbolOwnerStartAddressInTask=_symbolOwnerStartAddressInTask;
 - (BOOL)addToPersistentCache;
 - (id)debugDescriptionForAddress:(unsigned long long)arg1;
 @property(readonly, copy) NSString *debugDescription;
 - (id)_initAsEmptyHandle;
 - (id)initWithSymbol:(id)arg1 andSymbolOwnerStartAddress:(unsigned long long)arg2 andSymbolOwner:(id)arg3;
 - (long long)compareInfoRichnessToSymbolHandle:(id)arg1 forAddress:(unsigned long long)arg2;
+- (unsigned long long)sourceLengthForAddress:(unsigned long long)arg1;
+- (unsigned long long)sourceStartAddressInTaskForAddress:(unsigned long long)arg1;
 - (unsigned int)sourceLineNumberForAddress:(unsigned long long)arg1;
 - (unsigned int)sourceColumnNumberForAddress:(unsigned long long)arg1;
 - (id)sourceFileNameForAddress:(unsigned long long)arg1;
@@ -41,6 +43,7 @@
 @property(readonly) NSString *symbolOwnerBundleShortVersion;
 @property(readonly) NSString *symbolOwnerBundleVersion;
 @property(readonly) NSString *symbolOwnerBundleIdentifier;
+@property(readonly) BOOL symbolOwnerIsTextExecSegment;
 @property(readonly) unsigned long long symbolOwnerTextSegmentLength;
 @property(retain) NSString *symbolOwnerPath;
 @property(readonly) NSUUID *symbolOwnerUUID;

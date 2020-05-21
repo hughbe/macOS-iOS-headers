@@ -6,33 +6,41 @@
 
 #import "NSObject.h"
 
-@class ASBContainerACL, NSData, NSDictionary, NSMutableDictionary, NSString, NSURL;
+@class ASBContainerACL, ASBContainerSchema, NSData, NSDictionary, NSMutableDictionary, NSString, NSURL;
 
 @interface ASBContainer : NSObject
 {
     NSString *_homeDirPath;
+    NSString *_personaVolume;
     NSString *_containerPath;
     NSString *_metadataPath;
     NSString *_dataPath;
     NSMutableDictionary *_metadata;
     ASBContainerACL *_acl;
+    ASBContainerSchema *_schema;
 }
 
++ (id)containerForApplicationAtURL:(id)arg1 withHomeDirectory:(id)arg2 error:(id *)arg3;
 + (id)containerForApplicationAtURL:(id)arg1 error:(id *)arg2;
-+ (id)containerForCodeIdentity:(id)arg1 error:(id *)arg2;
++ (id)containerForCodeIdentity:(id)arg1 andHomeDirectory:(id)arg2 error:(id *)arg3;
++ (id)containerForAppSigningId:(id)arg1 andHomeDirectory:(id)arg2 error:(id *)arg3;
 + (id)containerForAppSigningId:(id)arg1 error:(id *)arg2;
-+ (id)containerWithURL:(id)arg1 error:(id *)arg2;
-+ (id)containerURLForApplicationAtURL:(id)arg1;
++ (id)containerURLForApplicationAtURL:(id)arg1 withHomeDirectory:(id)arg2 error:(id *)arg3;
 + (id)containerURLForApplicationAtURL:(id)arg1 error:(id *)arg2;
-+ (id)containerURLForCodeIdentity:(id)arg1;
-+ (id)containerURLForCodeIdentity:(id)arg1 error:(id *)arg2;
++ (id)containerURLForCodeIdentity:(id)arg1 andHomeDirectory:(id)arg2 error:(id *)arg3;
++ (id)containerURLForAppSigningId:(id)arg1 andHomeDirectory:(id)arg2;
++ (id)containerURLForAppSigningId:(id)arg1 inBaseDirectory:(id)arg2;
 + (id)containerURLForAppSigningId:(id)arg1;
 + (id)containerIdentifierForAppSigningId:(id)arg1;
-+ (id)sanitizedPath:(id)arg1;
-+ (id)_userHomeDirectory:(id *)arg1;
-+ (void)_setUserHomeDirectory:(id)arg1;
-+ (unsigned long long)currentVersion;
++ (id)currentPersonaOrHomeDirectoryOverride:(id)arg1;
++ (id)currentPersonaOrHomeDirectory;
++ (id)currentPersonaVolume;
 - (void).cxx_destruct;
+@property(readonly) NSString *dataPath; // @synthesize dataPath=_dataPath;
+@property(readonly) NSString *metadataPath; // @synthesize metadataPath=_metadataPath;
+@property(readonly) NSString *containerPath; // @synthesize containerPath=_containerPath;
+@property(readonly) NSString *personaVolume; // @synthesize personaVolume=_personaVolume;
+@property(readonly) NSString *homeDirPath; // @synthesize homeDirPath=_homeDirPath;
 - (BOOL)setError:(id *)arg1 message:(id)arg2 forPath:(id)arg3 withDomain:(id)arg4 code:(long long)arg5;
 @property(readonly) NSDictionary *sandboxProfileDataValidationInfo; // @dynamic sandboxProfileDataValidationInfo;
 @property(readonly) NSData *sandboxProfileData; // @dynamic sandboxProfileData;
@@ -46,12 +54,14 @@
 - (id)rebasedFileURL:(id)arg1;
 @property(readonly) NSURL *dataURL; // @dynamic dataURL;
 @property(readonly) NSURL *baseURL; // @dynamic baseURL;
+- (id)initWithApplicationAtURL:(id)arg1 andHomeDirectory:(id)arg2 error:(id *)arg3;
 - (id)initWithApplicationAtURL:(id)arg1 error:(id *)arg2;
-- (id)initWithCodeIdentity:(id)arg1 error:(id *)arg2;
-- (id)initWithAppSigningId:(id)arg1 error:(id *)arg2;
-- (id)initWithURL:(id)arg1 error:(id *)arg2;
-- (id)initWithPath:(id)arg1 error:(id *)arg2;
-- (id)userHomeDirectory:(id *)arg1;
+- (id)initWithCodeIdentity:(id)arg1 andHomeDirectory:(id)arg2 error:(id *)arg3;
+- (id)initWithAppSigningId:(id)arg1 andHomeDirectory:(id)arg2 error:(id *)arg3;
+- (id)initWithHomeDirectory:(id)arg1 andContainerURL:(id)arg2 error:(id *)arg3;
+- (id)initWithHomeDirectory:(id)arg1 andContainerPath:(id)arg2 error:(id *)arg3;
+- (id)sanitizedPath:(id)arg1;
+- (void)recordPermissionsError:(id *)arg1 withAuxString:(id)arg2 writePath:(id)arg3 readPath:(id)arg4;
 
 @end
 

@@ -14,8 +14,16 @@
 {
 }
 
-- (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1;
+- (void)setParametersByName:(id)arg1;
+- (id)parametersByName;
+- (void)setVerb:(id)arg1;
+- (id)verb;
+- (void)setDomain:(id)arg1;
+- (id)domain;
+- (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1 containingAppBundleId:(id)arg2;
+- (id)_dictionaryRepresentation;
 - (id)init;
+- (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;
 

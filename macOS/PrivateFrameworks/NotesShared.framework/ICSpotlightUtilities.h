@@ -10,17 +10,8 @@
 {
 }
 
-+ (BOOL)deleteObsoletedExternalRecordsForPersistentStore:(id)arg1;
-+ (id)externalRecordsDirectoryForModernNotes;
-+ (id)externalRecordsBaseDirectory;
-+ (void)invalidateAllExternalRecords;
-+ (void)invalidateAllExternalRecordsIfImporterVersionHasChanged;
-+ (id)noteTitleFromSearchIndexableTitle:(id)arg1 contentText:(id)arg2 suffix:(id)arg3;
-+ (id)contentTextUsingBlockingOperationIfNeededFromSearchIndexable:(id)arg1;
-+ (id)contentTextFromSearchStrings:(id)arg1;
-+ (id)attributeSetWithoutPerformingAdditionalOperationsFromSearchIndexable:(id)arg1;
-+ (id)attributeSetFromSearchIndexable:(id)arg1;
-+ (id)attributeSetFromSearchIndexable:(id)arg1 contentText:(id)arg2;
++ (id)userActivityPersistentIdentifierForNote:(id)arg1;
++ (id)stringByEscapingSearchString:(id)arg1;
 
 @end
 

@@ -16,16 +16,17 @@
 
 + (id)commandSucceededWithDictionary:(id)arg1 context:(id)arg2;
 + (id)commandSucceeded;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 
 // Remaining properties
-@property(copy, nonatomic) NSString *aceId; // @dynamic aceId;
+@property(copy, nonatomic) NSString *aceId;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(copy, nonatomic) NSString *refId; // @dynamic refId;
+@property(copy, nonatomic) NSString *refId;
 @property(readonly) Class superclass;
 
 @end

@@ -19,10 +19,6 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_queue> *clientConnectionsQueue;
 }
 
-+ (void)setupVideoConfig:(id)arg1 fromDictionary:(id)arg2;
-+ (void)setupAudioConfig:(id)arg1 fromDictionary:(id)arg2;
-+ (void)setupCommonStreamConfig:(id)arg1 fromDictionary:(id)arg2;
-+ (id)createMediaStreamConfigFromDictionary:(id)arg1;
 + (id)AVConferenceXPCServerSingleton;
 @property(readonly) NSMutableDictionary *registeredBlocks; // @synthesize registeredBlocks;
 @property(readonly) NSObject<OS_xpc_object> *listener; // @synthesize listener;
@@ -30,16 +26,18 @@ __attribute__((visibility("hidden")))
 - (void)_xpc_start_listening_for_connections;
 - (void)appendContextToDictionary:(id)arg1 forConnection:(id)arg2;
 - (void)appendPIDToDictionary:(id)arg1 pid:(int)arg2;
-- (id)createClientDiedDictionary;
-- (id)createNSDictionaryFromNSError:(id)arg1;
-- (id)createNSErrorFromNSDictionary:(id)arg1;
-- (id)createXPCDictionaryFromNSDictionary:(id)arg1 forEvent:(id)arg2;
-- (id)createNSDictionaryFromXPCDictionary:(id)arg1;
+- (id)newClientDiedDictionary;
+- (id)newNSDictionaryFromNSError:(id)arg1;
+- (id)newNSErrorFromNSDictionary:(id)arg1;
+- (id)newXPCDictionaryFromNSDictionary:(id)arg1 forEvent:(id)arg2;
+- (id)newNSDictionaryFromXPCDictionary:(id)arg1;
 - (void)deregisterFromService:(char *)arg1;
+- (void)registerBlockForService:(char *)arg1 block:(CDUnknownBlockType)arg2 queue:(id)arg3 eventLogLevel:(int)arg4;
 - (void)registerBlockForService:(char *)arg1 block:(CDUnknownBlockType)arg2 queue:(id)arg3;
 - (void)registerBlockForService:(char *)arg1 block:(CDUnknownBlockType)arg2;
 - (void)sendMessageAsync:(char *)arg1 arguments:(id)arg2 toAllClientsWithContext:(id)arg3;
 - (void)sendMessageAsync:(char *)arg1 arguments:(id)arg2 context:(id)arg3;
+- (void)sendMessageAsync:(char *)arg1 arguments:(id)arg2 xpcArguments:(id)arg3 context:(id)arg4;
 - (void)sendMessageAsync:(char *)arg1 arguments:(id)arg2;
 - (id)autorelease;
 - (oneway void)release;

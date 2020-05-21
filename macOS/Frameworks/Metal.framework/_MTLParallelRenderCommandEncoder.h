@@ -4,17 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Metal/_MTLObjectWithLabel.h>
 
 #import "MTLParallelRenderCommandEncoder.h"
 
 @class MTLRenderPassDescriptor, NSString, _MTLCommandBuffer<MTLCommandBuffer>;
 
-@interface _MTLParallelRenderCommandEncoder : NSObject <MTLParallelRenderCommandEncoder>
+@interface _MTLParallelRenderCommandEncoder : _MTLObjectWithLabel <MTLParallelRenderCommandEncoder>
 {
     id <MTLDevice> _device;
     id <MTLCommandQueue> _queue;
-    NSString *_label;
     unsigned long long _globalTraceObjectID;
     unsigned long long _labelTraceID;
     _MTLCommandBuffer<MTLCommandBuffer> *_commandBuffer;
@@ -32,9 +31,12 @@
     unsigned long long _numCommands;
 }
 
+@property unsigned long long numThisCommand; // @synthesize numThisCommand=_numCommands;
 @property(readonly) unsigned long long globalTraceObjectID; // @synthesize globalTraceObjectID=_globalTraceObjectID;
-@property(copy) NSString *label; // @synthesize label=_label;
 @property(readonly) id <MTLDevice> device; // @synthesize device=_device;
+- (void)setStencilStoreActionOptions:(unsigned long long)arg1;
+- (void)setDepthStoreActionOptions:(unsigned long long)arg1;
+- (void)setColorStoreActionOptions:(unsigned long long)arg1 atIndex:(unsigned long long)arg2;
 - (void)setStencilStoreAction:(unsigned long long)arg1;
 - (void)setDepthStoreAction:(unsigned long long)arg1;
 - (void)setColorStoreAction:(unsigned long long)arg1 atIndex:(unsigned long long)arg2;
@@ -47,12 +49,14 @@
 - (id)_renderCommandEncoderCommon;
 - (id)commandBuffer;
 @property(readonly, copy) NSString *description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (void)dealloc;
 - (id)initWithCommandBuffer:(id)arg1 renderPassDescriptor:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
+@property(copy) NSString *label; // @dynamic label;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=getType) unsigned long long type; // @dynamic type;
 

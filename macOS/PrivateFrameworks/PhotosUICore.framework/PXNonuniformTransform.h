@@ -8,11 +8,13 @@
 
 #import "NSCopying.h"
 
+@class NSView<PXAnonymousCoordinateSpace>;
+
 @interface PXNonuniformTransform : NSObject <NSCopying>
 {
     struct CGRect _sourceRect;
     struct CGRect _targetRect;
-    id _coordinateSpace;
+    NSView<PXAnonymousCoordinateSpace> *_coordinateSpace;
     double _minimumScale;
     double _maximumScale;
 }

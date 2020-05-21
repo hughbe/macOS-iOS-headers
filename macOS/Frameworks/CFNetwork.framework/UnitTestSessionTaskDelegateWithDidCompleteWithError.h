@@ -6,15 +6,14 @@
 
 #import <CFNetwork/UnitTestSessionTaskDelegate.h>
 
-__attribute__((visibility("hidden")))
 @interface UnitTestSessionTaskDelegateWithDidCompleteWithError : UnitTestSessionTaskDelegate
 {
     SmartBlockWithArgs_e26c205b _didDidCompleteWithErrorCompletionBlock;
 }
 
-@property(nonatomic) SmartBlockWithArgs_e26c205b didDidCompleteWithErrorCompletionBlock; // @synthesize didDidCompleteWithErrorCompletionBlock=_didDidCompleteWithErrorCompletionBlock;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) SmartBlockWithArgs_e26c205b didDidCompleteWithErrorCompletionBlock; // @synthesize didDidCompleteWithErrorCompletionBlock=_didDidCompleteWithErrorCompletionBlock;
 - (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
 
 @end

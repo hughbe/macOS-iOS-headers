@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
 
 - (double)contentHeight;
 - (void)showEmptyView;
+- (void)showNoSoundWithActionBlock:(CDUnknownBlockType)arg1;
 - (void)showMicrophoneUnavailableWithExplanation:(id)arg1;
 - (void)showNetworkUnavailable;
 - (void)loadView;

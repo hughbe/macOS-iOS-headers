@@ -6,13 +6,13 @@
 
 #import <Automator/AMAction.h>
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 #import "NSTokenFieldDelegate.h"
 
 @class NSArray, NSBundle, NSMutableDictionary, NSString, NSView;
 
-@interface AMBundleAction : AMAction <NSTokenFieldDelegate, NSCoding, NSCopying>
+@interface AMBundleAction : AMAction <NSTokenFieldDelegate, NSCopying, NSSecureCoding>
 {
     NSView *_view;
     NSBundle *_bundle;
@@ -23,38 +23,37 @@
     id _reserved4;
 }
 
-- (id)showWhenRunItems;
-- (id)selectedShowWhenRunItems;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *_topLevelObjects; // @synthesize _topLevelObjects;
+@property(nonatomic) __weak NSView *_view; // @synthesize _view;
+@property(retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
+@property(readonly, nonatomic) NSArray *showWhenRunItems;
+@property(readonly, nonatomic) NSArray *selectedShowWhenRunItems;
 - (id)_itemNameFromString:(id)arg1;
 - (id)_getAccessibilityTitleUIElementAttributeForView:(id)arg1;
 - (id)_findLabelViewForView:(id)arg1;
 - (void)_postLoadView:(id)arg1 withStudioScripts:(id)arg2;
 - (id)_scriptWithContentsOfURL:(id)arg1;
-- (int)validate;
+- (long long)validate;
 - (void)setDisabled:(BOOL)arg1;
 - (void)_updateParameters;
-- (id)actionViewClassName;
+- (BOOL)_allowsDarkAppearance;
 - (id)iconPath;
 - (id)name;
 - (void)assignBindingsToVariables;
-- (BOOL)containsVariables;
+@property(readonly, nonatomic) BOOL containsVariables;
 - (id)evaluateParameterValue:(id)arg1;
 - (id)createRuntimeParameters;
 - (void)setRuntimeParameters:(id)arg1;
 - (id)runtimeParameters;
-@property(retain) NSMutableDictionary *parameters;
-- (void)setBundleIdentifier:(id)arg1;
-- (id)bundleIdentifier;
-- (void)setBundlePath:(id)arg1;
-- (id)bundlePath;
-- (void)setBundle:(id)arg1;
-@property(readonly) NSBundle *bundle;
-- (void)setView:(id)arg1;
-@property(readonly) NSView *view;
-- (BOOL)_hasNib;
-- (id)_view;
+@property(retain, nonatomic) NSMutableDictionary *parameters;
+@property(retain, nonatomic) NSString *bundleIdentifier;
+@property(retain, nonatomic) NSString *bundlePath;
+@property(retain, nonatomic) NSView *view;
+@property(readonly, nonatomic) BOOL _hasNib;
 - (BOOL)isViewLoaded;
-@property(readonly) BOOL hasView;
+@property(readonly, nonatomic) BOOL hasView;
 - (id)bundleVersion;
 - (id)version;
 - (void)dealloc;

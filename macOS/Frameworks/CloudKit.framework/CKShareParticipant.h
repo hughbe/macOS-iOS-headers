@@ -9,59 +9,68 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class CKRecordID, CKUserIdentity, NSData, NSString;
+@class CKDeviceToDeviceShareInvitationToken, CKRecordID, CKUserIdentity, NSData, NSString;
 
 @interface CKShareParticipant : NSObject <NSSecureCoding, NSCopying>
 {
     BOOL _isCurrentUser;
+    BOOL _isOrgAdminUser;
     BOOL _createdInProcess;
     BOOL _acceptedInProcess;
+    BOOL _wantsNewInvitationToken;
     CKUserIdentity *_userIdentity;
-    long long _type;
+    long long _role;
     long long _acceptanceStatus;
     long long _permission;
+    long long _mutableInvitationTokenStatus;
     NSString *_participantID;
     CKRecordID *_shareRecordID;
     NSString *_inviterID;
-    CKUserIdentity *_originalUserIdentity;
-    long long _originalParticipantType;
+    long long _originalParticipantRole;
     long long _originalAcceptanceStatus;
     long long _originalPermission;
     NSData *_protectionInfo;
+    NSData *_protectionInfoPublicKey;
     NSData *_encryptedPersonalInfo;
+    CKDeviceToDeviceShareInvitationToken *_invitationToken;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL wantsNewInvitationToken; // @synthesize wantsNewInvitationToken=_wantsNewInvitationToken;
+@property(retain, nonatomic) CKDeviceToDeviceShareInvitationToken *invitationToken; // @synthesize invitationToken=_invitationToken;
 @property(retain, nonatomic) NSData *encryptedPersonalInfo; // @synthesize encryptedPersonalInfo=_encryptedPersonalInfo;
+@property(retain, nonatomic) NSData *protectionInfoPublicKey; // @synthesize protectionInfoPublicKey=_protectionInfoPublicKey;
 @property(retain, nonatomic) NSData *protectionInfo; // @synthesize protectionInfo=_protectionInfo;
 @property(nonatomic) BOOL acceptedInProcess; // @synthesize acceptedInProcess=_acceptedInProcess;
 @property(nonatomic) BOOL createdInProcess; // @synthesize createdInProcess=_createdInProcess;
 @property(nonatomic) long long originalPermission; // @synthesize originalPermission=_originalPermission;
 @property(nonatomic) long long originalAcceptanceStatus; // @synthesize originalAcceptanceStatus=_originalAcceptanceStatus;
-@property(nonatomic) long long originalParticipantType; // @synthesize originalParticipantType=_originalParticipantType;
-@property(retain, nonatomic) CKUserIdentity *originalUserIdentity; // @synthesize originalUserIdentity=_originalUserIdentity;
+@property(nonatomic) long long originalParticipantRole; // @synthesize originalParticipantRole=_originalParticipantRole;
 @property(retain, nonatomic) NSString *inviterID; // @synthesize inviterID=_inviterID;
+@property(nonatomic) BOOL isOrgAdminUser; // @synthesize isOrgAdminUser=_isOrgAdminUser;
 @property(nonatomic) BOOL isCurrentUser; // @synthesize isCurrentUser=_isCurrentUser;
 @property(retain, nonatomic) CKRecordID *shareRecordID; // @synthesize shareRecordID=_shareRecordID;
 @property(retain, nonatomic) NSString *participantID; // @synthesize participantID=_participantID;
+@property(nonatomic) long long mutableInvitationTokenStatus; // @synthesize mutableInvitationTokenStatus=_mutableInvitationTokenStatus;
 @property(nonatomic) long long permission; // @synthesize permission=_permission;
 @property(nonatomic) long long acceptanceStatus; // @synthesize acceptanceStatus=_acceptanceStatus;
-@property(nonatomic) long long type; // @synthesize type=_type;
+@property(nonatomic) long long role; // @synthesize role=_role;
 @property(retain, nonatomic) CKUserIdentity *userIdentity; // @synthesize userIdentity=_userIdentity;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)unifiedContactsInStore:(id)arg1 keysToFetch:(id)arg2 error:(id *)arg3;
+@property(nonatomic) long long type;
+@property(readonly, nonatomic) long long invitationTokenStatus;
 - (void)_stripPersonalInfo;
 - (id)debugDescription;
 - (id)description;
-- (id)CKPropertiesToDescribe:(BOOL)arg1;
-- (BOOL)isEquivalentToParticipant:(id)arg1;
+- (id)CKDescriptionPropertiesWithPublic:(BOOL)arg1 private:(BOOL)arg2 shouldExpand:(BOOL)arg3;
 - (unsigned long long)hash;
-- (BOOL)isEquivalentToParticipantWithPermissions:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)_initWithUserIdentity:(id)arg1;
+- (id)_init;
 
 @end
 

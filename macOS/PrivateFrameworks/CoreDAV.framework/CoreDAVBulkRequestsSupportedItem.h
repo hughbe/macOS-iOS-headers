@@ -12,9 +12,9 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVItem *supported; // @synthesize supported=_supported;
 - (id)description;
-- (void)dealloc;
 - (id)init;
 
 @end

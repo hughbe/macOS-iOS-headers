@@ -17,8 +17,7 @@
     struct _frFlags {
         unsigned int defeatTitleWrap:1;
         unsigned int resizeByIncrement:1;
-        unsigned int shadowIsActive:1;
-        unsigned int RESERVED:29;
+        unsigned int RESERVED:30;
     } fvFlags;
     struct CGSize sizingParams;
 }
@@ -29,6 +28,7 @@
 + (struct CGRect)contentRectForFrameRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2;
 + (struct CGRect)frameRectForContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2;
 + (double)minFrameWidthWithTitle:(id)arg1 styleMask:(unsigned long long)arg2;
++ (void)load;
 - (id)_autosaveButtonSeparatorField;
 - (id)autosaveButton;
 - (id)fileButton;
@@ -40,8 +40,6 @@
 - (void)_renamingDidEndNormally:(BOOL)arg1;
 - (void)_didEnd:(BOOL)arg1 renameWithTitle:(id)arg2 editingRange:(struct _NSRange)arg3 grantHandler:(CDUnknownBlockType)arg4;
 - (void)_willStartRenameWithTitle:(id)arg1 editingRange:(struct _NSRange)arg2;
-- (void)_setShadowParameters;
-- (void)_drawFrameShadowAndFlushContext:(id)arg1;
 - (void)_clearPressedButtons;
 - (unsigned long long)styleMask;
 - (void)setStyleMask:(unsigned long long)arg1;
@@ -67,13 +65,11 @@
 - (void)mouseUp:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
-- (void)_drawTitleStringIn:(struct CGRect)arg1 withColor:(double)arg2;
 - (void)_calcTextRect:(struct CGRect *)arg1;
 - (struct CGRect)titlebarRect;
-- (void)setWantsLayer:(BOOL)arg1;
-- (void)_updateWindowBackingTypeForLayer:(BOOL)arg1;
+- (BOOL)isOpaque;
 - (void)updateLayer;
-- (BOOL)wantsUpdateLayer;
+- (Class)_classToCheckForWantsUpdateLayer;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)usesCustomDrawing;
 - (BOOL)needsFill;
@@ -90,7 +86,6 @@
 - (void)setTitle:(id)arg1 andDefeatWrap:(BOOL)arg2;
 - (void)setTitle:(id)arg1;
 - (void)_setFrameNeedsDisplay:(BOOL)arg1;
-- (void)_setTitleNeedsDisplay;
 - (struct CGSRegionObject *)_regionForOpaqueDescendants:(struct CGRect)arg1 forMove:(BOOL)arg2;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
@@ -108,8 +103,10 @@
 - (struct CGRect)contentRectForFrameRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2;
 - (struct CGRect)frameRectForContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2;
 - (id)opaqueAncestor;
-- (BOOL)isOpaque;
+- (void)backgroundColorChanged:(id)arg1;
 - (void)shapeWindow;
+- (struct CGSRegionObject *)_createWindowOpaqueShape;
+- (struct CGRect)_windowOpaqueRect;
 - (id)initWithFrame:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 owner:(id)arg3;
 - (void)setRepresentedFilename:(id)arg1;
 - (double)_distanceFromToolbarBaseToTitlebar;

@@ -8,5 +8,6 @@
 
 @interface NSBundle (MKAdditions)
 + (id)_mapkitBundle;
+- (id)_mapkit_localizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
 @end
 

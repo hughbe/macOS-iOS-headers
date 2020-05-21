@@ -21,6 +21,7 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVMatchResultsItem *matchResults; // @synthesize matchResults=_matchResults;
 @property(retain, nonatomic) CoreDAVLeafItem *serverUID; // @synthesize serverUID=_serverUID;
 @property(retain, nonatomic) CoreDAVItemWithHrefChildItem *location; // @synthesize location=_location;
@@ -35,7 +36,6 @@
 - (void)addHref:(id)arg1;
 - (void)addPropStat:(id)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)init;
 
 @end

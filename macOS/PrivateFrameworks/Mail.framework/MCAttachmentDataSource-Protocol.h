@@ -6,13 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSNumber;
-
 @protocol MCAttachmentDataSource <NSObject>
 @property(readonly, nonatomic) BOOL isDirectory;
 @property(readonly, nonatomic) BOOL canResultsBeCached;
 @property(readonly, nonatomic) BOOL dataIsLocallyAvailable;
-- (NSNumber *)approximateSizeForAccessLevel:(long long)arg1;
+- (unsigned long long)approximateSizeForAccessLevel:(long long)arg1;
 - (void)fileWrapperForAccessLevel:(long long)arg1 completionBlock:(void (^)(MCFileWrapper *, NSError *))arg2;
 - (void)dataForAccessLevel:(long long)arg1 completionBlock:(void (^)(NSData *, NSError *))arg2;
 @end

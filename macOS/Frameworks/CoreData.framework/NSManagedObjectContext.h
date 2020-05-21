@@ -9,7 +9,7 @@
 #import "NSCoding.h"
 #import "NSLocking.h"
 
-@class NSMutableDictionary, NSMutableSet, NSPersistentStoreCoordinator, NSQueryGenerationToken, NSSet, NSString, NSUndoManager;
+@class NSArray, NSMutableDictionary, NSMutableSet, NSPersistentStoreCoordinator, NSQueryGenerationToken, NSSet, NSString, NSUndoManager;
 
 @interface NSManagedObjectContext : NSObject <NSCoding, NSLocking>
 {
@@ -44,7 +44,12 @@
         unsigned int _deleteInaccessible:1;
         unsigned int _priority:2;
         unsigned int _autoMerge:1;
-        unsigned int _reservedFlags:6;
+        unsigned int _isXPCServerContext:1;
+        unsigned int _pushSecureDelete:1;
+        unsigned int _refreshAfterSave:1;
+        unsigned int _allowAncillary:1;
+        unsigned int _generatedMutatedIDsNotification:1;
+        unsigned int _reservedFlags:1;
     } _flags;
     NSMutableSet *_unprocessedChanges;
     NSMutableSet *_unprocessedDeletes;
@@ -63,32 +68,44 @@
     double _fetchTimestamp;
     long long _referenceCallbackRegistration;
     id _referenceQueue;
-    id _reserved3;
-    id _reserved4;
     int _cd_rc;
     int _ignoreChangeNotification;
-    id _reserved6;
     NSString *_contextLabel;
+    NSArray *_persistentStoreIdentifiers;
     id *_additionalPrivateIvars;
 }
 
 + (void)mergeChangesFromRemoteContextSave:(id)arg1 intoContexts:(id)arg2;
++ (id)allocWithZone:(struct _NSZone *)arg1;
++ (id)alloc;
 + (id)new;
 + (void)__Multithreading_Violation_AllThatIsLeftToUsIsHonor__;
 + (BOOL)accessInstanceVariablesDirectly;
 + (void)initialize;
 + (BOOL)_handleError:(id)arg1 withError:(id *)arg2;
 + (void)_mergeChangesFromRemoteContextSave:(id)arg1 intoContexts:(id)arg2;
++ (id)createFutureForFileAtURL:(id)arg1;
+- (BOOL)isEditing;
+- (void)_managedObjectContextEditor:(id)arg1 didCommit:(BOOL)arg2 contextInfo:(CDStruct_f8f0024c *)arg3;
+- (void)commitEditingWithDelegate:(id)arg1 didCommitSelector:(SEL)arg2 contextInfo:(void *)arg3;
+- (void)_sendCommitEditingSelectorToTarget:(id)arg1 sender:(id)arg2 selector:(SEL)arg3 flag:(BOOL)arg4 contextInfo:(void *)arg5 delayed:(BOOL)arg6;
+- (BOOL)commitEditing;
+- (BOOL)commitEditingAndReturnError:(id *)arg1;
+- (void)discardEditing;
+- (void)objectDidEndEditing:(id)arg1;
+- (void)objectDidBeginEditing:(id)arg1;
 - (void)_automaticallyMergeChangesFromContextDidSaveNotification:(id)arg1;
-- (void)_AUTOMATICALLY_MERGING_SAVE_TO_COORDINATOR:(id)arg1;
-- (void)_AUTOMATICALLY_MERGING_SAVE_FROM_PARENT_CONTEXT:(id)arg1;
 - (void)_setAutomaticallyMergesChangesFromParent:(BOOL)arg1;
 @property(nonatomic) BOOL automaticallyMergesChangesFromParent;
 - (id)_queryGenerationToken__;
 @property(readonly, nonatomic) NSQueryGenerationToken *queryGenerationToken;
+- (id)_changeTrackingToken__;
+- (id)changeTrackingToken;
+- (BOOL)_setChangeTrackingTokenFromToken:(id)arg1 error:(id *)arg2;
 - (BOOL)setQueryGenerationFromToken:(id)arg1 error:(id *)arg2;
 - (BOOL)_setQueryGenerationFromToken:(id)arg1 error:(id *)arg2;
-- (id)_retainedCurrentQueryGeneration;
+- (id)_retainedCurrentQueryGeneration:(id)arg1;
+@property(copy) NSString *transactionAuthor;
 @property(copy) NSString *name;
 @property(readonly) unsigned long long concurrencyType;
 @property(retain) NSManagedObjectContext *parentContext;
@@ -115,11 +132,13 @@
 - (id)_executeAsynchronousFetchRequest:(id)arg1;
 - (id)executeFetchRequest:(id)arg1 error:(id *)arg2;
 - (unsigned long long)countForFetchRequest:(id)arg1 error:(id *)arg2;
+- (unsigned long long)_countForFetchRequest_:(id)arg1 error:(id *)arg2;
 - (id)executeRequest:(id)arg1 error:(id *)arg2;
 - (BOOL)_checkObjectForExistenceAndCacheRow:(id)arg1;
 - (id)existingObjectWithID:(id)arg1 error:(id *)arg2;
 - (id)objectWithID:(id)arg1;
 - (BOOL)save:(id *)arg1;
+- (void)_advanceQueryGenerationForSave;
 - (id)_generateOptLockExceptionForConstraintFailure:(id)arg1;
 - (void)_youcreatedanNSManagedObjectContextOnthemainthreadandillegallypassedittoabackgroundthread;
 - (void)_thereIsNoSadnessLikeTheDeathOfOptimism;
@@ -140,7 +159,6 @@
 @property(retain, nonatomic) NSUndoManager *undoManager;
 - (void)_setUndoManager:(id)arg1;
 @property double stalenessInterval;
-- (void)finalize;
 - (void)dealloc;
 - (void)assertOnImproperDealloc;
 - (void)_dealloc__;
@@ -158,12 +176,15 @@
 @property(nonatomic) BOOL retainsRegisteredObjects;
 - (void)_setRetainsRegisteredObjects:(BOOL)arg1;
 @property(retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-- (void)_setPersistentStoreCoordinator:(id)arg1;
+- (void)_setAllowAncillaryEntities:(BOOL)arg1;
+- (BOOL)_allowAncillaryEntities;
 - (void)_persistentStoreDidUpdateAdditionalRowsWithNewVersions:(id)arg1;
 - (void)_setStalenessInterval:(double)arg1;
 - (BOOL)_postSaveNotifications;
 - (void)_setPostSaveNotifications:(BOOL)arg1;
 - (BOOL)_disableDiscardEditing;
+- (void)_setXPCServerContext:(BOOL)arg1;
+- (BOOL)_isXPCServerContext;
 - (void)_setDisableDiscardEditing:(BOOL)arg1;
 - (BOOL)_isPreflightSaveInProgress;
 - (BOOL)_isImportContext;
@@ -206,7 +227,7 @@
 - (id)_retainedRegisteredObjects;
 - (void)_resetAllChanges;
 - (id)_initWithParentObjectStore:(unsigned long long)arg1;
-- (void)_changeIDsForManagedObjects:(id)arg1 toIDs:(id)arg2;
+- (id)_changeIDsForManagedObjects:(id)arg1 toIDs:(id)arg2;
 - (void)_dispose:(BOOL)arg1;
 - (void)_disposeObjects:(id *)arg1 count:(unsigned long long)arg2 notifyParent:(BOOL)arg3;
 - (void)_performCoordinatorActionAndWait:(CDUnknownBlockType)arg1;
@@ -227,6 +248,15 @@
 - (BOOL)_hasIDMappings;
 - (id)_parentStore;
 - (id)performFetch:(id)arg1 error:(id *)arg2;
+- (id)_unsafeTransactionAuthor;
+- (id)_unsafeName;
+@property(copy, setter=_setPersistentStoresScope:) NSArray *_persistentStoresScope;
+- (void)_setPersistentStoreCoordinator:(id)arg1;
+- (void)_forceMoveInsertToUpdatedList:(id)arg1;
+- (unsigned long long)_countForFetchRequest:(id)arg1 error:(id *)arg2;
+- (void)_addObjectIDsUpdatedByTriggers:(id)arg1;
+- (void)_addObjectIDsUpdatedByDATriggers:(id)arg1;
+- (void)_addObjectIDsInsertUpdatedByDATriggers:(id)arg1;
 - (void)_processObjectStoreChanges:(id)arg1;
 - (void)_propagateDeletesUsingTable:(id)arg1;
 - (BOOL)_processDeletedObjects:(id *)arg1;
@@ -236,7 +266,7 @@
 - (void)_processRecentlyForgottenObjects:(id)arg1;
 - (void)_updateUndoTransactionForThisEvent:(id)arg1 withDeletions:(id)arg2 withUpdates:(id)arg3;
 - (BOOL)_propagatePendingDeletesAtEndOfEvent:(id *)arg1;
-- (void)_createAndPostChangeNotification:(id)arg1 deletions:(id)arg2 updates:(id)arg3 refreshes:(id)arg4 deferrals:(id)arg5;
+- (void)_createAndPostChangeNotification:(id)arg1 deletions:(id)arg2 updates:(id)arg3 refreshes:(id)arg4 deferrals:(id)arg5 wasMerge:(BOOL)arg6;
 - (id)_processPendingUpdates:(id)arg1;
 - (id)_processPendingInsertions:(id)arg1 withDeletions:(id)arg2 withUpdates:(id)arg3;
 - (id)_processPendingDeletions:(id)arg1 withInsertions:(id)arg2 withUpdates:(id)arg3 withNewlyForgottenList:(id)arg4 withRemovedChangedObjects:(id)arg5;
@@ -260,7 +290,7 @@
 - (void)_undoInsertions:(id)arg1;
 - (void)objectWillChange:(id)arg1;
 - (void)_establishEventSnapshotsForObject:(id)arg1;
-- (void)_registerAyncReferenceCallback;
+- (void)_registerAsyncReferenceCallback;
 - (void)_processReferenceQueue:(BOOL)arg1;
 - (void)_processNotificationQueue;
 - (void)_sendOrEnqueueNotification:(id)arg1 selector:(SEL)arg2;
@@ -275,17 +305,12 @@
 - (void)_enableChangeNotifications;
 - (void)_disableChangeNotifications;
 - (BOOL)_ignoringChangeNotifications;
+- (void)_postContextDidMergeChangesNotificationWithUserInfo:(id)arg1;
+- (void)_postContextDidSaveNotificationWithUserInfo:(id)arg1;
 - (void)_postObjectsDidChangeNotificationWithUserInfo:(id)arg1;
 - (void)_processEndOfEventNotification:(id)arg1;
 - (void)_enqueueEndOfEventNotification;
-- (BOOL)isEditing;
-- (void)_managedObjectContextEditor:(id)arg1 didCommit:(BOOL)arg2 contextInfo:(CDStruct_f8f0024c *)arg3;
-- (void)commitEditingWithDelegate:(id)arg1 didCommitSelector:(SEL)arg2 contextInfo:(void *)arg3;
-- (void)_sendCommitEditingSelectorToTarget:(id)arg1 sender:(id)arg2 selector:(SEL)arg3 flag:(BOOL)arg4 contextInfo:(void *)arg5 delayed:(BOOL)arg6;
-- (BOOL)commitEditing;
-- (void)discardEditing;
-- (void)objectDidEndEditing:(id)arg1;
-- (void)objectDidBeginEditing:(id)arg1;
+- (void)_registerMutatedObjectIDsNotifications;
 - (void)handlePeerContextDidSaveNotification:(id)arg1;
 - (void)_mergeChangesFromRemoteContextSave:(id)arg1;
 - (void)_stopConflictDetectionForObject:(id)arg1;
@@ -293,6 +318,11 @@
 - (id)_delegate;
 - (void)_setDelegate:(id)arg1;
 - (void)performWithOptions:(unsigned long long)arg1 andBlock:(CDUnknownBlockType)arg2;
+- (id)performBlockWithResult:(CDUnknownBlockType)arg1;
+- (BOOL)shouldPerformSecureOperation;
+- (void)setShouldPerformSecureOperation:(BOOL)arg1;
+- (BOOL)shouldRefreshAfterSave;
+- (void)setShouldRefreshAfterSave:(BOOL)arg1;
 - (BOOL)_parentObtainPermanentIDsForObjects:(id)arg1 context:(id)arg2 error:(id *)arg3;
 - (id)_newOrderedRelationshipInformationForRelationship:(id)arg1 forObjectWithID:(id)arg2 withContext:(id)arg3 error:(id *)arg4;
 - (id)newValueForRelationship:(id)arg1 forObjectWithID:(id)arg2 withContext:(id)arg3 error:(id *)arg4;
@@ -306,6 +336,7 @@
 - (id)_allOrderKeysForDestination:(id)arg1 inRelationship:(id)arg2 error:(id *)arg3;
 - (BOOL)_updateLocationsOfObjectsToLocationByOrderKey:(id)arg1 inRelationshipWithName:(id)arg2 onObjectWithID:(id)arg3 error:(id *)arg4;
 - (id)_orderKeysForRelationshipWithName__:(id)arg1 onObjectWithID:(id)arg2;
+- (BOOL)evictFuture:(id)arg1 withError:(id *)arg2;
 
 @end
 

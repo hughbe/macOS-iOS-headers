@@ -8,19 +8,32 @@
 
 #import "IMPluginChatItemProtocol.h"
 
-@class IMBalloonPluginDataSource, NSString;
+@class IMBalloonPluginDataSource, IMPluginPayload, NSString;
 
 @interface IMTranscriptPluginChatItem : IMMessagePartChatItem <IMPluginChatItemProtocol>
 {
+    BOOL _isLastChatItemOfPluginType;
+    BOOL _hasSetIsLastChatItemOfPluginType;
+    BOOL _parentChatHasKnownParticipants;
+    IMPluginPayload *_initialPayload;
+    NSString *_bundleIdentifier;
     IMBalloonPluginDataSource *_dataSource;
 }
 
-@property(retain, nonatomic) IMBalloonPluginDataSource *dataSource; // @synthesize dataSource=_dataSource;
 - (void).cxx_destruct;
+@property(retain, nonatomic) IMBalloonPluginDataSource *dataSource; // @synthesize dataSource=_dataSource;
+@property(readonly, nonatomic) BOOL parentChatHasKnownParticipants; // @synthesize parentChatHasKnownParticipants=_parentChatHasKnownParticipants;
+@property(nonatomic) BOOL hasSetIsLastChatItemOfPluginType; // @synthesize hasSetIsLastChatItemOfPluginType=_hasSetIsLastChatItemOfPluginType;
+@property(nonatomic, setter=setLastChatItemOfPluginType:) BOOL isLastChatItemOfPluginType; // @synthesize isLastChatItemOfPluginType=_isLastChatItemOfPluginType;
+@property(retain, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
+@property(retain, nonatomic) IMPluginPayload *initialPayload; // @synthesize initialPayload=_initialPayload;
 - (BOOL)wantsAutoPlayback;
 @property(readonly, nonatomic) BOOL isSaved;
 @property(readonly, nonatomic) BOOL isPlayed;
-- (id)_initWithItem:(id)arg1 dataSource:(id)arg2 messagePartRange:(struct _NSRange)arg3;
+@property(readonly, nonatomic) unsigned long long playbackType;
+@property(readonly, nonatomic) NSString *pluginSessionGUID;
+@property(readonly, nonatomic) BOOL isDataSourceInitialized;
+- (id)_initWithItem:(id)arg1 initialPayload:(id)arg2 messagePartRange:(struct _NSRange)arg3 parentChatHasKnownParticipants:(BOOL)arg4;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly, copy) NSString *description;
 @property(readonly, retain, nonatomic) NSString *type;

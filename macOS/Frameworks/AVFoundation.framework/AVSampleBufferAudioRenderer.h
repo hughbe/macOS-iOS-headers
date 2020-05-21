@@ -21,6 +21,7 @@
 - (void)stopRequestingMediaData;
 - (void)requestMediaDataWhenReadyOnQueue:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 @property(readonly, getter=isReadyForMoreMediaData) BOOL readyForMoreMediaData;
+- (void)flushFromSourceTime:(CDStruct_1b6d18a9)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)flush;
 - (void)enqueueSampleBuffer:(struct opaqueCMSampleBuffer *)arg1;
 - (BOOL)setRenderSynchronizer:(id)arg1 error:(id *)arg2;
@@ -38,9 +39,11 @@
 @property(readonly, nonatomic) long long status;
 - (void)_transitionToFailedStatusWithOSStatus:(int)arg1;
 - (void)_transitionToStatus:(long long)arg1 error:(id)arg2;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
+- (void)_uninstallNotificationHandlers;
+- (int)_installNotificationHandlers;
+- (void)_wasFlushedAutomaticallyAtTime:(CDStruct_1b6d18a9)arg1;
 - (void)_triggerMediaRequestCallback;
 - (int)_initializeTimebase;
 

@@ -17,8 +17,10 @@
     SGSqlEntityStore *_store;
 }
 
-@property(nonatomic) __weak SGSqlEntityStore *store; // @synthesize store=_store;
++ (id)entityIdentifiersFromCNIdentifiers:(id)arg1;
++ (id)searchableIndex;
 - (void).cxx_destruct;
+@property(nonatomic) __weak SGSqlEntityStore *store; // @synthesize store=_store;
 - (void)removeAllPseudoContactsInIdSet:(id)arg1;
 - (void)removeAllStoredPseudoContacts;
 - (void)rejectContact:(id)arg1;
@@ -26,6 +28,8 @@
 - (void)confirmOrRejectContact:(id)arg1;
 - (void)addContact:(id)arg1;
 - (void)sendContactToSpotlight:(id)arg1;
+- (id)searchableItemsForContactsForInternalIdentifiers:(id)arg1;
+- (id)coreSpotlightAttributeSetForContact:(id)arg1;
 - (id)urlForStorageContactVCard:(id)arg1;
 - (id)urlForRecordIdVCard:(id)arg1;
 - (id)pseudoContactVcardDirectory;

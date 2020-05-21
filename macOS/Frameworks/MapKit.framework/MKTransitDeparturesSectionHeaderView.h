@@ -8,26 +8,31 @@
 
 #import "MKMultiLineLabelContainer.h"
 
-@class MKButtonWithTargetArgument, NSLayoutConstraint, NSString, _MKUILabel;
+@class MKButtonWithTargetArgument, NSLayoutConstraint, NSStackView, NSString, NSTimer, _MKUILabel;
 
+__attribute__((visibility("hidden")))
 @interface MKTransitDeparturesSectionHeaderView : MKMouseOverActionView <MKMultiLineLabelContainer>
 {
     unsigned long long _type;
+    BOOL _extraSpacing;
     _MKUILabel *_label;
+    NSStackView *_updatingView;
+    _MKUILabel *_updatingLabel;
+    NSTimer *_updatingLabelTimestampRefreshTimer;
+    NSTimer *_updatingViewRefreshTimer;
     NSLayoutConstraint *_topConstraint;
     NSLayoutConstraint *_bottomConstraint;
     MKButtonWithTargetArgument *_button;
 }
 
-+ (double)defaultHeight;
 + (id)_buttonFont:(unsigned long long)arg1;
 + (id)_font:(unsigned long long)arg1;
-@property(readonly, nonatomic) MKButtonWithTargetArgument *button; // @synthesize button=_button;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) MKButtonWithTargetArgument *button; // @synthesize button=_button;
 - (id)multilineTextFieldsWithinContainer;
 @property(copy, nonatomic) NSString *text;
-- (id)initWithType:(unsigned long long)arg1 reuseIdentifier:(id)arg2;
-- (id)initWithType:(unsigned long long)arg1;
+- (id)initWithType:(unsigned long long)arg1 extraSpacing:(BOOL)arg2 reuseIdentifier:(id)arg3;
+- (id)initWithType:(unsigned long long)arg1 extraSpacing:(BOOL)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

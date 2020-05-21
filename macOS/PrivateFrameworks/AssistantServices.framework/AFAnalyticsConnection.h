@@ -7,39 +7,41 @@
 #import "NSObject.h"
 
 #import "AFAnalyticsService.h"
+#import "AFAnalyticsServiceDelegate.h"
 
-@class NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<OS_os_transaction>, NSString, NSXPCConnection;
+@class NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSXPCConnection;
 
-@interface AFAnalyticsConnection : NSObject <AFAnalyticsService>
+@interface AFAnalyticsConnection : NSObject <AFAnalyticsServiceDelegate, AFAnalyticsService>
 {
     NSObject<OS_dispatch_queue> *_queue;
     NSXPCConnection *_connection;
-    NSMutableSet *_stagedEventsToBeSent;
-    NSMutableSet *_stagedEventsBeingSent;
-    NSObject<OS_dispatch_source> *_houseKeepingTimer;
-    NSObject<OS_os_transaction> *_transaction;
+    NSObject<OS_dispatch_source> *_idleTimer;
+    unsigned long long _numberOfEventsBeingSent;
+    NSObject<OS_dispatch_group> *_group;
     BOOL _needsCleanUpConnection;
 }
 
-@property BOOL needsCleanUpConnection; // @synthesize needsCleanUpConnection=_needsCleanUpConnection;
 - (void).cxx_destruct;
-- (void)_houseKeeperArrived;
-- (void)_stopHouseKeepingTimer;
-- (void)_startHouseKeepingTimer;
+@property BOOL needsCleanUpConnection; // @synthesize needsCleanUpConnection=_needsCleanUpConnection;
+- (void)_idleTimerFired;
+- (void)_stopIdleTimer;
+- (void)_startIdleTimer;
 - (void)_cleanUpConnection;
 - (void)_cleanUpConnectionIfNeeded;
 - (void)_connectionInvalidated;
 - (void)_connectionInterrupted;
 - (id)_connection;
-- (unsigned long long)_numberOfStagedEvents;
-- (void)_mutateStagedEventsSynchronouslyUsingBlock:(CDUnknownBlockType)arg1;
-- (void)_finalizeSendingEvents:(id)arg1;
-- (void)_handleBarrierCallbackForEvents:(id)arg1;
-- (void)_handleFailureCallbackForEvents:(id)arg1 error:(id)arg2;
-- (void)_sendEvents:(id)arg1;
-- (void)_processStagedEvents;
-- (void)_stageEvents:(id)arg1;
-- (void)_stageEvent:(id)arg1;
+- (void)_didFinishSendingEvents:(id)arg1;
+- (void)_willStartSendingEvents:(id)arg1;
+- (void)_handleSuccessCallbackForEvents:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_handleFailureCallbackForEvents:(id)arg1 error:(id)arg2 numberOfRetries:(unsigned long long)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)_sendEvents:(id)arg1 numberOfRetries:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
+- (oneway void)boostQueuedEvents:(CDUnknownBlockType)arg1;
+- (oneway void)flushStagedEventsWithReply:(CDUnknownBlockType)arg1;
+- (oneway void)logInstrumentationOfType:(id)arg1 machAbsoluteTime:(unsigned long long)arg2 turnIdentifier:(id)arg3;
+- (oneway void)endEventsGrouping;
+- (oneway void)beginEventsGrouping;
+- (oneway void)stageEvents:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (oneway void)stageEvents:(id)arg1;
 - (oneway void)stageEvent:(id)arg1;
 - (void)dealloc;

@@ -16,11 +16,11 @@ __attribute__((visibility("hidden")))
     NSString *_identifier;
 }
 
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (id)cn_persistenceFilterRequest;
 - (id)cn_coreDataPredicate;
 - (id)cn_topLevelFilter;
-- (void)dealloc;
 - (id)initWithIdentifier:(id)arg1;
 
 // Remaining properties

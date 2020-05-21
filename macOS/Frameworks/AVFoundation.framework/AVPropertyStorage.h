@@ -6,22 +6,27 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>;
+@class NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVPropertyStorage : NSObject
 {
     NSObject<OS_dispatch_queue> *_storageAccessWorkQueue;
     NSMutableDictionary *_propertyStorage;
+    NSArray *_keysRequiringExplicitPerThreadSignal;
+    long long _cachePolicy;
 }
 
+- (void)didAccessKVOForAllKeys;
+- (void)willAccessKVOForAllKeys;
 - (void)didAccessKVOForKey:(id)arg1;
 - (void)willAccessKVOForKey:(id)arg1;
 - (id)objectForKey:(id)arg1;
 - (id)objectForKey:(id)arg1 defaultObjectBlock:(CDUnknownBlockType)arg2;
 - (BOOL)shouldUsePropertyStorageCacheForKey:(id)arg1;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
-- (void)finalize;
 - (void)dealloc;
+- (id)initWithCachePolicy:(long long)arg1 keysRequiringExplicitPerThreadSignal:(id)arg2;
 - (id)init;
 
 @end

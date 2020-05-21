@@ -6,6 +6,7 @@
 
 #import "NSWindow.h"
 
+__attribute__((visibility("hidden")))
 @interface SHKBorderlessEffectWindow : NSWindow
 {
     BOOL noSourceWindow;

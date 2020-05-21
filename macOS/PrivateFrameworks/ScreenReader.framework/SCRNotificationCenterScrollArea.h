@@ -9,7 +9,23 @@
 __attribute__((visibility("hidden")))
 @interface SCRNotificationCenterScrollArea : SCRScrollArea
 {
+    BOOL __isSiriTranscriptScrollView;
+    BOOL __supportsScrollUpAction;
+    BOOL __supportsScrollDownAction;
 }
+
+@property(nonatomic, setter=_setSupportsScrollDownAction:) BOOL _supportsScrollDownAction; // @synthesize _supportsScrollDownAction=__supportsScrollDownAction;
+@property(nonatomic, setter=_setSupportsScrollUpAction:) BOOL _supportsScrollUpAction; // @synthesize _supportsScrollUpAction=__supportsScrollUpAction;
+@property(nonatomic, setter=_setIsSiriTranscriptScrollView:) BOOL _isSiriTranscriptScrollView; // @synthesize _isSiriTranscriptScrollView=__isSiriTranscriptScrollView;
+- (BOOL)_scrollSiriTranscriptInDirection:(long long)arg1;
+- (BOOL)isChildScrollable:(id)arg1;
+- (BOOL)moveDownWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
+- (BOOL)moveUpWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
+- (BOOL)moveLeftWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
+- (BOOL)moveRightWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
+- (id)onlyChild;
+- (BOOL)allowFocusThroughSingleChild;
+- (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end
 

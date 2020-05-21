@@ -27,6 +27,8 @@
 @property unsigned short baseControl; // @synthesize baseControl;
 @property unsigned short numberOfControls; // @synthesize numberOfControls;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)objectLogName;
 - (void)renumberDescriptorWithNextIndexes:(id)arg1;
 - (void)updateDependentContent;

@@ -31,8 +31,8 @@
 + (id)imageNamed:(id)arg1 inBundle:(id)arg2;
 + (id)URLForImageNamed:(id)arg1 inBundle:(id)arg2 scale:(double *)arg3 preferredScreenScale:(double)arg4 suffix:(id)arg5;
 + (id)URLForImageNamed:(id)arg1 inBundle:(id)arg2 scale:(double *)arg3;
-@property(readonly, nonatomic) double scale; // @synthesize scale=_scale;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) double scale; // @synthesize scale=_scale;
 - (BOOL)_isTiledWhenStretchedToSize:(struct CGSize)arg1;
 - (void)_queue_createImageRefIfNecessary;
 - (id)initWithCoder:(id)arg1;
@@ -43,6 +43,8 @@
 - (id)resizableImageByStretchingWithCapInsets:(struct PKEdgeInsets)arg1;
 - (id)resizableImageByTilingWithCapInsets:(struct PKEdgeInsets)arg1;
 - (id)resizedImageWithConstraints:(id)arg1;
+- (id)imageWithoutCapInsets;
+- (id)croppedImageWithInsets:(struct PKEdgeInsets)arg1;
 - (id)blurredImageWithRadius:(unsigned long long)arg1 constraints:(id)arg2;
 @property(readonly, nonatomic) struct PKEdgeInsets capInsets;
 @property(readonly, nonatomic) BOOL stretches;
@@ -57,6 +59,8 @@
 - (id)initWithCGImage:(struct CGImage *)arg1 scale:(double)arg2 orientation:(long long)arg3;
 - (id)initWithData:(id)arg1 scale:(double)arg2;
 - (id)init;
+- (BOOL)isEqualToImage:(id)arg1;
+- (BOOL)isEqual:(id)arg1;
 - (id)imageHash;
 
 @end

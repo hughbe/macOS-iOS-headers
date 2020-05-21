@@ -7,32 +7,38 @@
 #import "NSObject.h"
 
 #import "INCacheableContainer.h"
+#import "INJSONSerializable.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class INPerson, NSString;
 
-@interface INShareDestination : NSObject <INCacheableContainer, NSCopying, NSSecureCoding>
+@interface INShareDestination : NSObject <INCacheableContainer, INJSONSerializable, NSCopying, NSSecureCoding>
 {
-    NSString *_deviceType;
     INPerson *_contact;
+    NSString *_deviceType;
 }
 
++ (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 + (BOOL)supportsSecureCoding;
-@property(readonly, copy) INPerson *contact; // @synthesize contact=_contact;
-@property(readonly, copy) NSString *deviceType; // @synthesize deviceType=_deviceType;
 - (void).cxx_destruct;
-- (id)initWithCoder:(id)arg1;
+@property(readonly, copy) NSString *deviceType; // @synthesize deviceType=_deviceType;
+@property(readonly, copy) INPerson *contact; // @synthesize contact=_contact;
+- (id)_dictionaryRepresentation;
+- (id)descriptionAtIndent:(unsigned long long)arg1;
+@property(readonly, copy) NSString *description;
+- (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (id)initWithContact:(id)arg1 deviceType:(id)arg2;
-- (id)cacheableObjects;
+- (void)_intents_updateContainerWithCache:(id)arg1;
+- (id)_intents_cacheableObjects;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) Class superclass;
 
 @end

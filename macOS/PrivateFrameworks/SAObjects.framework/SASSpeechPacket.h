@@ -16,6 +16,7 @@
 
 + (id)speechPacketWithDictionary:(id)arg1 context:(id)arg2;
 + (id)speechPacket;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *packets;
 @property(nonatomic) long long packetNumber;
 - (id)encodedClassName;

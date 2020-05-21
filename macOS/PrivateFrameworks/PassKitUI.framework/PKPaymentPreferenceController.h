@@ -6,30 +6,38 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMenu, NSMenuItem;
+@class NSArray, NSMenu, NSMenuItem, PKPaymentAuthorizationDataModel;
 
 @interface PKPaymentPreferenceController : NSObject
 {
-    NSArray *_preferences;
     CDUnknownBlockType _handler;
+    PKPaymentAuthorizationDataModel *_model;
+    NSArray *_preferences;
     NSMenu *_menu;
 }
 
-@property(retain, nonatomic) NSMenu *menu; // @synthesize menu=_menu;
-@property(copy, nonatomic) CDUnknownBlockType handler; // @synthesize handler=_handler;
-@property(retain, nonatomic) NSArray *preferences; // @synthesize preferences=_preferences;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMenu *menu; // @synthesize menu=_menu;
+@property(retain, nonatomic) NSArray *preferences; // @synthesize preferences=_preferences;
+@property(retain, nonatomic) PKPaymentAuthorizationDataModel *model; // @synthesize model=_model;
+@property(copy, nonatomic) CDUnknownBlockType handler; // @synthesize handler=_handler;
 - (id)_menuItemWithPreferenceView:(id)arg1;
 - (id)preferenceViewForPreference:(id)arg1 atIndex:(long long)arg2;
 - (id)preferenceViewForTitleOfSection:(long long)arg1;
 - (BOOL)shouldAddSeparatorForSection:(long long)arg1;
+- (BOOL)canSelectPreference:(id)arg1 preferenceIndex:(unsigned long long)arg2 subItemIndex:(unsigned long long)arg3;
+- (id)titleForSubItemInPreference:(id)arg1 preferenceIndex:(long long)arg2 subItemIndex:(long long)arg3;
 - (id)titleForSection:(long long)arg1;
+- (BOOL)shouldEnableSubItemInPreference:(id)arg1 preferenceIndex:(long long)arg2 subItemIndex:(long long)arg3;
+- (long long)numberOfSubItemInPreference:(id)arg1 preferenceIndex:(long long)arg2;
 - (long long)numberOfMenuItemsInSection:(long long)arg1;
 - (long long)numberOfSectionsInMenu;
-- (void)invalidate;
+- (void)invalidateMenu;
 @property(readonly, nonatomic) NSMenuItem *selectedMenuItem;
-- (void)handlePreferenceSelection:(id)arg1;
-- (id)initWithModel:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)_handlePreferenceSelectionMenuItemIndex:(long long)arg1 subMenuItemIndex:(long long)arg2;
+- (void)handleSubmenuSelection:(id)arg1;
+- (void)handleMenuSelection:(id)arg1;
+- (void)updatePreferences;
 
 @end
 

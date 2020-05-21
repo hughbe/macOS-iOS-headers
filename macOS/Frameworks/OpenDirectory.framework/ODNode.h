@@ -19,6 +19,14 @@
 + (id)nodeWithSession:(id)arg1 name:(id)arg2 options:(id)arg3 error:(id *)arg4;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (void)initialize;
+- (BOOL)setCredentialsWithBootstrapToken:(id)arg1 error:(id *)arg2;
+- (BOOL)replaceUserRecord:(id)arg1 withRecord:(id)arg2 attributes:(id)arg3 password:(id)arg4 options:(unsigned int)arg5 error:(id *)arg6;
+- (unsigned int)secureTokenRecoveryType;
+- (BOOL)setSecureTokenRecoveryMasterPasswordAndReturnError:(id *)arg1;
+- (BOOL)setSecureTokenRecoveryCloudUsingIdentity:(struct _PCSIdentityData *)arg1 error:(id *)arg2;
+- (BOOL)setSecureTokenRecoveryCloudAndReturnError:(id *)arg1;
+- (id)setSecureTokenRecoveryPersonalAndReturnError:(id *)arg1;
+- (BOOL)setSecureTokenRecoveryPersonalKey:(id)arg1 error:(id *)arg2;
 - (BOOL)passwordContentCheck:(id)arg1 forRecordName:(id)arg2 error:(id *)arg3;
 - (id)accountPoliciesAndReturnError:(id *)arg1;
 - (BOOL)setAccountPolicies:(id)arg1 error:(id *)arg2;

@@ -42,6 +42,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)deviceContextWithDriver:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL clippingIsRestarted; // @synthesize clippingIsRestarted=m_clippingIsRestarted;
 @property(readonly, nonatomic) NSMutableArray *clippingPaths; // @synthesize clippingPaths=m_clippingPaths;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -75,7 +76,7 @@ __attribute__((visibility("hidden")))
 - (void)setTextCharExtra:(int)arg1;
 - (int)getTextBreakCount;
 - (int)getTextBreakExtra;
-- (void)setTextJustification:(int)arg1:(int)arg2;
+- (void)setTextJustification:(int)arg1 in_breakCount:(int)arg2;
 - (id)getTextColour;
 - (void)setTextColour:(id)arg1;
 - (int)getTextDirection;
@@ -90,7 +91,6 @@ __attribute__((visibility("hidden")))
 - (void)setTextUpdateCP:(_Bool)arg1;
 - (void)setPenPosition:(struct CGPoint)arg1;
 - (struct CGPoint)getPenPosition;
-- (void)dealloc;
 - (id)initWithDriver:(id)arg1;
 
 @end

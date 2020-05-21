@@ -12,6 +12,7 @@
 
 + (id)getInvertColorsWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getInvertColors;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;

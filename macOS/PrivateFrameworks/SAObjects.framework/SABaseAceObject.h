@@ -17,11 +17,11 @@
 + (id)baseAceObjectWithDictionary:(id)arg1 context:(id)arg2;
 + (id)baseAceObject;
 @property(copy, nonatomic) NSString *metricsContext;
-@property(copy, nonatomic) NSString *aceId; // @dynamic aceId;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 
 // Remaining properties
+@property(copy, nonatomic) NSString *aceId;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;

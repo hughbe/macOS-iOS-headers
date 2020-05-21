@@ -6,11 +6,14 @@
 
 #import "NSObject.h"
 
-@class PXPeopleSuggestionManager;
+@class NSArray, PXPeopleSuggestionManager;
 
 @protocol PXPeopleSuggestionManagerDelegate <NSObject>
 - (void)noMoreSuggestionsAvailableForSuggestionManager:(PXPeopleSuggestionManager *)arg1;
-- (void)suggestionManager:(PXPeopleSuggestionManager *)arg1 hasNewSuggestionAvailable:(id <PXFaceCollection>)arg2;
-- (void)confirmationCountUpdatedForSuggestionManager:(PXPeopleSuggestionManager *)arg1;
+- (void)suggestionManager:(PXPeopleSuggestionManager *)arg1 hasNewSuggestionsAvailable:(NSArray *)arg2;
+
+@optional
+- (void)willLoadMoreSuggestionsForSuggestionManager:(PXPeopleSuggestionManager *)arg1;
+- (void)confirmationCountUpdatedForSuggestionManager:(PXPeopleSuggestionManager *)arg1 undoing:(BOOL)arg2;
 @end
 

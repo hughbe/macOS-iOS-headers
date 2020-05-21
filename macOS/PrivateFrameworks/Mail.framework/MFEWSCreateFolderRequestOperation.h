@@ -6,23 +6,24 @@
 
 #import <Mail/MFEWSRequestOperation.h>
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class MFEWSCreateFolderResponseOperation, NSString;
 
-@interface MFEWSCreateFolderRequestOperation : MFEWSRequestOperation <NSCoding>
+@interface MFEWSCreateFolderRequestOperation : MFEWSRequestOperation <NSSecureCoding>
 {
     int _mailboxType;
-    NSString *_parentEWSFolderIdString;
     NSString *_offlineCreatedEWSFolderIdString;
+    NSString *_parentEWSFolderIdString;
     NSString *_folderName;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) int mailboxType; // @synthesize mailboxType=_mailboxType;
 @property(readonly, copy, nonatomic) NSString *folderName; // @synthesize folderName=_folderName;
-@property(copy) NSString *offlineCreatedEWSFolderIdString; // @synthesize offlineCreatedEWSFolderIdString=_offlineCreatedEWSFolderIdString;
 @property(readonly, copy, nonatomic) NSString *parentEWSFolderIdString; // @synthesize parentEWSFolderIdString=_parentEWSFolderIdString;
-- (void).cxx_destruct;
+@property(copy) NSString *offlineCreatedEWSFolderIdString; // @synthesize offlineCreatedEWSFolderIdString=_offlineCreatedEWSFolderIdString;
 - (id)newResponseOperationWithGateway:(id)arg1 errorHandler:(id)arg2;
 @property(retain, nonatomic) MFEWSCreateFolderResponseOperation *responseOperation;
 - (void)_createdFolderIdString:(id)arg1 didChangeForOperation:(id)arg2;

@@ -6,9 +6,11 @@
 
 #import <CloudKit/CKOperationInfo.h>
 
+#import "NSSecureCoding.h"
+
 @class CKShareMetadata, NSString;
 
-@interface CKInitiateParticipantVettingOperationInfo : CKOperationInfo
+@interface CKInitiateParticipantVettingOperationInfo : CKOperationInfo <NSSecureCoding>
 {
     CKShareMetadata *_shareMetadata;
     NSString *_participantID;
@@ -16,10 +18,10 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *address; // @synthesize address=_address;
 @property(copy, nonatomic) NSString *participantID; // @synthesize participantID=_participantID;
 @property(retain, nonatomic) CKShareMetadata *shareMetadata; // @synthesize shareMetadata=_shareMetadata;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 

@@ -17,9 +17,6 @@ __attribute__((visibility("hidden")))
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 - (id)description;
 - (id)localizedName:(long long)arg1 locale:(id)arg2;
 - (id)nextDaylightSavingTimeTransitionAfterDate:(id)arg1;

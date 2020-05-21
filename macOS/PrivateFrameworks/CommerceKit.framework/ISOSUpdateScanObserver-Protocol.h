@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSError;
+@class NSArray, NSError;
 
 @protocol ISOSUpdateScanObserver
-- (void)osUpdateScanDidProgressWithPercentComplete:(float)arg1 isFinished:(BOOL)arg2 error:(NSError *)arg3;
+- (void)osUpdateScanForTags:(NSArray *)arg1 didProgressWithPercentComplete:(float)arg2 isFinished:(BOOL)arg3 error:(NSError *)arg4;
 @end
 

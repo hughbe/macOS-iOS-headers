@@ -22,19 +22,18 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_semaphore> *_semaphore;
     NSRunLoop *_runLoop;
     NSString *_runLoopMode;
-    NSString *_protocolVersion;
     NSMutableIndexSet *_inMemoryItemsIDs;
 }
 
-+ (void)tearDownMMCSEngineWithContext:(id)arg1;
++ (BOOL)tearDownMMCSEngineWithContext:(id)arg1;
 + (id)setupMMCSEngineWithApplicationBundleID:(id)arg1 path:(id)arg2 wasCached:(char *)arg3 error:(id *)arg4;
 + (BOOL)hasCachedCKDMMCSEngineContextForPath:(id)arg1;
 + (id)sharedContextsByPath;
 + (id)sharedContextsQueue;
 + (id)_appID;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableIndexSet *inMemoryItemsIDs; // @synthesize inMemoryItemsIDs=_inMemoryItemsIDs;
 @property(nonatomic) unsigned int maxChunkCountForSection; // @synthesize maxChunkCountForSection=_maxChunkCountForSection;
-@property(retain, nonatomic) NSString *protocolVersion; // @synthesize protocolVersion=_protocolVersion;
 @property(retain, nonatomic) NSString *runLoopMode; // @synthesize runLoopMode=_runLoopMode;
 @property(retain, nonatomic) NSRunLoop *runLoop; // @synthesize runLoop=_runLoop;
 @property(retain, nonatomic) NSObject<OS_dispatch_semaphore> *semaphore; // @synthesize semaphore=_semaphore;
@@ -45,7 +44,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL stopMMCSThread; // @synthesize stopMMCSThread=_stopMMCSThread;
 @property(nonatomic) long long state; // @synthesize state=_state;
 @property(nonatomic) long long refCount; // @synthesize refCount=_refCount;
-- (void).cxx_destruct;
 - (void)stopTrackingItemID:(unsigned long long)arg1;
 - (unsigned long long)nextAvailableItemID;
 - (void)performOnRunLoop:(CDUnknownBlockType)arg1;

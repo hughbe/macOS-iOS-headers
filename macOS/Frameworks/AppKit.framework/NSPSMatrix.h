@@ -8,6 +8,7 @@
 
 #import "NSCoding.h"
 
+__attribute__((visibility("hidden")))
 @interface NSPSMatrix : NSObject <NSCoding>
 {
     double matrixElements[12];
@@ -19,6 +20,7 @@
     } mFlags;
 }
 
++ (id)matrixWithCGAffineTransform:(struct CGAffineTransform)arg1;
 + (void)initialize;
 - (struct CGAffineTransform)CGAffineTransform;
 - (id)initWithCoder:(id)arg1;

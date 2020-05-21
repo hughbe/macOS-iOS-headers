@@ -18,6 +18,7 @@
     long long _state;
 }
 
+- (void).cxx_destruct;
 @property(readonly) long long state; // @synthesize state=_state;
 - (void)continuityDidStopTrackingPeer:(id)arg1 forType:(long long)arg2;
 - (void)continuityDidStopTrackingPeer:(id)arg1;
@@ -30,19 +31,20 @@
 - (void)continuityDidStopScanningForType:(long long)arg1;
 - (void)continuityDidStartScanningForType:(long long)arg1;
 - (void)continuityDidFailToStartAdvertisingOfType:(long long)arg1 withError:(id)arg2;
+- (void)continuityDidStopAdvertisingOfType:(long long)arg1 withError:(id)arg2;
 - (void)continuityDidStopAdvertisingOfType:(long long)arg1;
 - (void)continuityDidStartAdvertisingOfType:(long long)arg1;
-- (void)continuityDidUpdateState:(long long)arg1;
+- (void)continuityDidUpdateStateToState:(long long)arg1;
 - (void)_callDelegateWithBlock:(CDUnknownBlockType)arg1;
 - (void)_daemonDied:(id)arg1;
 - (void)_handleReconnect;
 - (void)stopTrackingPeer:(id)arg1 forType:(long long)arg2;
 - (void)startTrackingPeer:(id)arg1 forType:(long long)arg2;
 - (void)stopScanningForType:(long long)arg1;
-- (void)startScanningForType:(long long)arg1 withData:(id)arg2 mask:(id)arg3 withOptions:(id)arg4;
-- (void)startScanningForType:(long long)arg1 withData:(id)arg2 mask:(id)arg3 peers:(id)arg4 withOptions:(id)arg5;
-- (void)startScanningForType:(long long)arg1 withData:(id)arg2 withOptions:(id)arg3;
-- (void)startScanningForType:(long long)arg1 withData:(id)arg2 peers:(id)arg3 withOptions:(id)arg4;
+- (void)startScanningForType:(long long)arg1 withData:(id)arg2 mask:(id)arg3 boostedScan:(BOOL)arg4 duplicates:(BOOL)arg5;
+- (void)startScanningForType:(long long)arg1 withData:(id)arg2 mask:(id)arg3 peers:(id)arg4 boostedScan:(BOOL)arg5 duplicates:(BOOL)arg6;
+- (void)startScanningForType:(long long)arg1 withData:(id)arg2 mask:(id)arg3;
+- (void)startScanningForType:(long long)arg1 withData:(id)arg2 mask:(id)arg3 peers:(id)arg4;
 - (void)stopAdvertisingOfType:(long long)arg1;
 - (void)startAdvertisingOfType:(long long)arg1 withData:(id)arg2 withOptions:(id)arg3;
 - (void)dealloc;

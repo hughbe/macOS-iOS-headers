@@ -29,6 +29,11 @@ __attribute__((visibility("hidden")))
 - (double)durationUntilStop;
 - (void)calculateToReachDestination;
 - (void)calculateDestination;
+- (void)setVerticalScrollDecelerationFactor:(double)arg1;
+- (double)verticalScrollDecelerationFactor;
+- (void)setHorizontalScrollDecelerationFactor:(double)arg1;
+- (double)horizontalScrollDecelerationFactor;
+- (double)decelerationRate;
 - (id)init;
 
 @end

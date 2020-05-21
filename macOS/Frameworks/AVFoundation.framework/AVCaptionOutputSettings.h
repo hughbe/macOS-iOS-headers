@@ -8,13 +8,17 @@
 
 @class NSDictionary;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptionOutputSettings : AVOutputSettings
 {
     NSDictionary *_captionSettingsDictionary;
 }
 
-+ (id)_outputSettingsWithOutputSettingsDictionary:(id)arg1 exceptionReason:(id *)arg2;
++ (BOOL)supportsEmptyOutputSettingsDictionary;
++ (id)_outputSettingsWithOutputSettingsDictionary:(id)arg1 mediaType:(id)arg2 exceptionReason:(id *)arg3;
 + (id)eligibleOutputSettingsDictionaryKeys;
+@property(readonly, nonatomic) BOOL useDropFrameTimeCode;
+@property(readonly, nonatomic) CDStruct_1b6d18a9 captionTimeCodeFrameDuration;
 - (BOOL)encoderIsAvailableOnCurrentSystemReturningError:(id *)arg1;
 - (BOOL)validateUsingOutputSettingsValidator:(id)arg1 reason:(id *)arg2;
 - (BOOL)canFullySpecifyOutputFormatReturningReason:(id *)arg1;

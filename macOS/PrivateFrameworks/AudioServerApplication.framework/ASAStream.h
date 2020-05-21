@@ -14,6 +14,7 @@
 
 - (id)coreAudioClassName;
 - (id)diagnosticDescriptionWithIndent:(id)arg1 walkTree:(BOOL)arg2;
+@property(readonly, copy, nonatomic) NSArray *controls;
 @property(readonly, copy, nonatomic) NSArray *controlObjectIDs; // @dynamic controlObjectIDs;
 @property(readonly, copy, nonatomic) NSArray *availablePhysicalFormats; // @dynamic availablePhysicalFormats;
 @property(readonly, copy, nonatomic) NSArray *availableVirtualFormats; // @dynamic availableVirtualFormats;

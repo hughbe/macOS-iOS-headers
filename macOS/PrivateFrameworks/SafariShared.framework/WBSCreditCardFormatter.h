@@ -11,8 +11,10 @@
     BOOL _showLastFourDigits;
     BOOL _showCreditCardNumber;
     BOOL _allowsUnknownCardTypes;
+    BOOL _isVirtualCard;
 }
 
+@property(nonatomic) BOOL isVirtualCard; // @synthesize isVirtualCard=_isVirtualCard;
 @property(nonatomic) BOOL allowsUnknownCardTypes; // @synthesize allowsUnknownCardTypes=_allowsUnknownCardTypes;
 @property(nonatomic) BOOL showCreditCardNumber; // @synthesize showCreditCardNumber=_showCreditCardNumber;
 @property(nonatomic) BOOL showLastFourDigits; // @synthesize showLastFourDigits=_showLastFourDigits;

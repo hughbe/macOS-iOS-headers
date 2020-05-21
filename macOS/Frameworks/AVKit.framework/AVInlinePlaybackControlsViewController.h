@@ -6,7 +6,7 @@
 
 #import <AVKit/AVPlayerControlsViewController.h>
 
-@class NSView;
+@class NSStackView, NSView;
 
 __attribute__((visibility("hidden")))
 @interface AVInlinePlaybackControlsViewController : AVPlayerControlsViewController
@@ -14,16 +14,23 @@ __attribute__((visibility("hidden")))
     NSView *_initialFirstResponder;
     double _unmutedVolume;
     CDUnknownBlockType _nextKeyViewSetupBlock;
+    double _layoutWidth;
+    NSStackView *_timelineControl;
 }
 
 - (void).cxx_destruct;
+@property(retain) NSStackView *timelineControl; // @synthesize timelineControl=_timelineControl;
 - (void)volumeButtonPressed:(id)arg1;
 - (id)initialFirstResponder;
+- (CDStruct_83cd8af5)controlsContentViewMargin;
 - (struct CGSize)intrinsicControlsContentViewSize;
 - (long long)layoutStyle;
 - (id)backgroundBackdropViewMaskImage;
 - (id)controlsStyleIdentifier;
+@property double layoutWidth;
+- (double)minimumWidth;
 - (void)setupNextKeyView;
+- (void)viewDidLayout;
 - (void)loadView;
 
 @end

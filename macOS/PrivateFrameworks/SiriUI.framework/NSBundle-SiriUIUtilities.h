@@ -8,7 +8,9 @@
 
 @interface NSBundle (SiriUIUtilities)
 + (id)siriui_siriUIFrameworkBundle;
-- (id)siriUILocalizedPathForAppIcon;
+- (id)siriUILocalizedBundleIcon;
+- (id)siriUILocalizedPathForBundleIcon;
+- (id)siriUILocalizedBundleIconFileName;
 - (id)_siriUILocalizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3 language:(id)arg4;
 - (id)siriUILocalizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
 - (id)siriUILocalizedStringForKey:(id)arg1 table:(id)arg2;

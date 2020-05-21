@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class CPKDefaultDataSource;
+@class CPKDefaultDataSource, EMFEmojiPreferences;
 
 __attribute__((visibility("hidden")))
 @interface CPKPreferences : NSObject
 {
     CPKDefaultDataSource *_defaultSource;
+    EMFEmojiPreferences *_emojiPreference;
 }
 
 + (id)sharedPreferences;
@@ -21,16 +22,21 @@ __attribute__((visibility("hidden")))
 - (id)_convertXPCCategoryDataDict:(id)arg1;
 - (id)stateInfo;
 - (void)saveStateInfo:(id)arg1;
-- (void)setSkinTone:(id)arg1 ofDataSource:(id)arg2;
-- (void)addRecentSync:(id)arg1 ofDataSource:(id)arg2;
-- (void)setFavoritesSync:(id)arg1 ofDataSource:(id)arg2;
 - (id)favoritesOfDataSourceSync:(id)arg1;
-- (void)setRecentsSync:(id)arg1 ofDataSource:(id)arg2;
 - (id)recentsOfDataSourceSync:(id)arg1;
-- (void)clearRecentsOfDataSource:(id)arg1;
-- (void)addRecent:(id)arg1 ofDataSource:(id)arg2;
+- (id)userTemporaryParamForKey:(id)arg1;
+- (void)setUserTemporaryParam:(id)arg1 forKey:(id)arg2 expire:(double)arg3;
+- (void)setFavorites:(id)arg1 ofDataSource:(id)arg2;
+- (void)clearRecentStrings;
+- (void)setRecentString:(id)arg1;
+- (void)didDisplaySkinToneHelp;
+- (id)loadEmojiCategoryData:(id)arg1;
 - (void)loadCategoryData:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (void)recentsForDataSource:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (void)recentsAndFavoritesForDataSource:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)loadRecentsAndFavoritesForDataSource:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (void)_loadRecentsAndFavoritesForDataSource:(id)arg1 recentsOnly:(BOOL)arg2 asDictionaryNotAsEntity:(BOOL)arg3 callAsync:(BOOL)arg4 usingBlock:(CDUnknownBlockType)arg5;
+- (id)emojiPreference;
 - (id)defaultDataSource;
 - (void)dealloc;
 - (id)init;

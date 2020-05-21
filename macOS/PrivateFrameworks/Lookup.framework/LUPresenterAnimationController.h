@@ -8,6 +8,7 @@
 
 @class LUPresenter, LUSearchTermIndicator, NSAttributedString;
 
+__attribute__((visibility("hidden")))
 @interface LUPresenterAnimationController : NSPopoverAnimationController
 {
     LUSearchTermIndicator *_searchTermIndicator;
@@ -16,12 +17,12 @@
     LUPresenter *_associatedPresenter;
 }
 
-@property(retain) LUPresenter *associatedPresenter; // @synthesize associatedPresenter=_associatedPresenter;
-@property(retain) LUSearchTermIndicator *searchTermIndicator; // @synthesize searchTermIndicator=_searchTermIndicator;
-@property struct CGPoint displayedTermOrigin; // @synthesize displayedTermOrigin=_displayedTermOrigin;
-@property(retain) NSAttributedString *displayedTerm; // @synthesize displayedTerm=_displayedTerm;
+- (void).cxx_destruct;
+@property(retain, nonatomic) LUPresenter *associatedPresenter; // @synthesize associatedPresenter=_associatedPresenter;
+@property(retain, nonatomic) LUSearchTermIndicator *searchTermIndicator; // @synthesize searchTermIndicator=_searchTermIndicator;
+@property(nonatomic) struct CGPoint displayedTermOrigin; // @synthesize displayedTermOrigin=_displayedTermOrigin;
+@property(retain, nonatomic) NSAttributedString *displayedTerm; // @synthesize displayedTerm=_displayedTerm;
 - (void)commonLUPresenterAnimationControllerTeardown;
-- (void)finalize;
 - (void)dealloc;
 - (void)showPopover;
 - (void)recognizerDidCompleteAnimation:(id)arg1;

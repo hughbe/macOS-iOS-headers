@@ -19,11 +19,12 @@
 + (id)sheetWithPass:(id)arg1 hostWindow:(id)arg2;
 + (id)sheetWithPasses:(id)arg1 hostWindow:(id)arg2;
 + (id)_sheets;
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(readonly) NSWindow *hostWindow; // @synthesize hostWindow=_hostWindow;
 @property(readonly) NSArray *passes; // @synthesize passes=_passes;
-- (void).cxx_destruct;
 - (void)windowWillClose:(id)arg1;
+@property(readonly) BOOL didAddPass;
 - (void)showPass;
 - (void)showPassWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)initWithPass:(id)arg1 hostWindow:(id)arg2;

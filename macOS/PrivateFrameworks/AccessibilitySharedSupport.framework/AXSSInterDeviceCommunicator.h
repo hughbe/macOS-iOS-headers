@@ -11,7 +11,7 @@
 #import "MCNearbyServiceBrowserDelegate.h"
 #import "MCSessionDelegate.h"
 
-@class IDSService, MCNearbyServiceAdvertiser, MCNearbyServiceBrowser, MCPeerID, MCSession, NSArray, NSMutableArray, NSMutableDictionary, NSString, NSTimer;
+@class AXSSInterDeviceSecurityHelper, IDSService, MCNearbyServiceAdvertiser, MCNearbyServiceBrowser, MCPeerID, MCSession, NSArray, NSMutableArray, NSMutableDictionary, NSString, NSTimer;
 
 @interface AXSSInterDeviceCommunicator : NSObject <IDSServiceDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate>
 {
@@ -31,8 +31,11 @@
     unsigned long long _switchEventIndex;
     NSTimer *_dummyPacketTimer;
     unsigned long long _numberOfBurstPacketsRemaining;
+    AXSSInterDeviceSecurityHelper *_securityHelper;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) AXSSInterDeviceSecurityHelper *securityHelper; // @synthesize securityHelper=_securityHelper;
 @property(nonatomic) unsigned long long numberOfBurstPacketsRemaining; // @synthesize numberOfBurstPacketsRemaining=_numberOfBurstPacketsRemaining;
 @property(retain, nonatomic) NSTimer *dummyPacketTimer; // @synthesize dummyPacketTimer=_dummyPacketTimer;
 @property(nonatomic) unsigned long long switchEventIndex; // @synthesize switchEventIndex=_switchEventIndex;
@@ -46,20 +49,21 @@
 @property(readonly, nonatomic) MCPeerID *localPeerID; // @synthesize localPeerID=_localPeerID;
 @property(nonatomic) long long state; // @synthesize state=_state;
 @property(readonly, nonatomic) IDSService *service; // @synthesize service=_service;
-@property(nonatomic) id <AXSSInterDeviceSearchObserver> searchObserver; // @synthesize searchObserver=_searchObserver;
-@property(nonatomic) id <AXSSInterDeviceActionReceiver> actionReceiver; // @synthesize actionReceiver=_actionReceiver;
-@property(nonatomic) id <AXSSInterDeviceConnectionListener> connectionListener; // @synthesize connectionListener=_connectionListener;
-- (void).cxx_destruct;
+@property(nonatomic) __weak id <AXSSInterDeviceSearchObserver> searchObserver; // @synthesize searchObserver=_searchObserver;
+@property(nonatomic) __weak id <AXSSInterDeviceActionReceiver> actionReceiver; // @synthesize actionReceiver=_actionReceiver;
+@property(nonatomic) __weak id <AXSSInterDeviceConnectionListener> connectionListener; // @synthesize connectionListener=_connectionListener;
 - (void)advertiser:(id)arg1 didNotStartAdvertisingPeer:(id)arg2;
 - (void)advertiser:(id)arg1 didReceiveInvitationFromPeer:(id)arg2 withContext:(id)arg3 invitationHandler:(CDUnknownBlockType)arg4;
 - (void)browser:(id)arg1 didNotStartBrowsingForPeers:(id)arg2;
 - (void)browser:(id)arg1 lostPeer:(id)arg2;
 - (void)browser:(id)arg1 foundPeer:(id)arg2 withDiscoveryInfo:(id)arg3;
+- (void)session:(id)arg1 didReceiveCertificate:(id)arg2 fromPeer:(id)arg3 certificateHandler:(CDUnknownBlockType)arg4;
 - (void)session:(id)arg1 peer:(id)arg2 didChangeState:(long long)arg3;
 - (void)session:(id)arg1 didReceiveStream:(id)arg2 withName:(id)arg3 fromPeer:(id)arg4;
 - (void)session:(id)arg1 didFinishReceivingResourceWithName:(id)arg2 fromPeer:(id)arg3 atURL:(id)arg4 withError:(id)arg5;
 - (void)session:(id)arg1 didStartReceivingResourceWithName:(id)arg2 fromPeer:(id)arg3 withProgress:(id)arg4;
 - (void)session:(id)arg1 didReceiveData:(id)arg2 fromPeer:(id)arg3;
+- (void)_removePeerFromAvailableDevices:(id)arg1;
 - (void)_handleHighlightMessage;
 - (void)_handleSelectionMessageWithPayload:(id)arg1;
 - (void)_handleSwitchEventMessageWithPayload:(id)arg1 fromPeer:(id)arg2;

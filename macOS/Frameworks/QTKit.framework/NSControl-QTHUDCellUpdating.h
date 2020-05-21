@@ -10,5 +10,11 @@
 - (void)QTHUD_updateCellInside:(id)arg1 forAction:(void *)arg2;
 - (void)QTHUD_updateCell:(id)arg1 forAction:(void *)arg2;
 - (struct CGRect)QTHUD_frameForCell:(id)arg1;
+- (void)takeCMTimeValueFrom:(id)arg1;
+- (void)setCMTimeValue:(CDStruct_198678f7)arg1;
+- (CDStruct_198678f7)CMTimeValue;
+- (void)takeQTTimeValueFrom:(id)arg1;
+- (void)setQTTimeValue:(CDStruct_2ec95fd7)arg1;
+- (CDStruct_2ec95fd7)QTTimeValue;
 @end
 

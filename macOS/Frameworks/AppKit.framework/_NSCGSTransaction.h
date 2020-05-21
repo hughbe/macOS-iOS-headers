@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     const void *_disableUpdatesToken;
 }
 
++ (BOOL)isActive;
 + (id)currentTransaction;
 + (void)setSynchronous:(BOOL)arg1;
 + (void)initialize;

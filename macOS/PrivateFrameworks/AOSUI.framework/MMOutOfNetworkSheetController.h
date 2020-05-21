@@ -8,17 +8,17 @@
 
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
+#import "NSTouchBarProvider.h"
 
-@class CKContainer, CKInitiateParticipantVettingOperation, CKShareMetadata, NSButton, NSDictionary, NSString, NSTableView, NSTextField, NSWindow;
+@class CKContainer, CKInitiateParticipantVettingOperation, CKShareMetadata, NSButton, NSDictionary, NSString, NSTableView, NSTextField, NSTouchBar, NSWindow, iCloudTouchBarController;
 
-@interface MMOutOfNetworkSheetController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
+@interface MMOutOfNetworkSheetController : NSObject <NSTouchBarProvider, NSTableViewDataSource, NSTableViewDelegate>
 {
     NSWindow *_outOfNetworkSheet;
     NSTableView *_emailAddressTable;
     NSButton *_verifyButton;
     NSButton *_cancelButton;
     NSTextField *_titleText;
-    NSTextField *_messageText;
     NSTextField *_contactOwnerText;
     CDUnknownBlockType _completionHandler;
     NSDictionary *_userInfo;
@@ -27,8 +27,11 @@
     CKContainer *_metadataSpecifiedContainer;
     CKShareMetadata *_shareMetadata;
     CKInitiateParticipantVettingOperation *_operation;
+    iCloudTouchBarController *_touchBarController;
 }
 
+- (void).cxx_destruct;
+@property(retain) iCloudTouchBarController *touchBarController; // @synthesize touchBarController=_touchBarController;
 @property(retain) CKInitiateParticipantVettingOperation *operation; // @synthesize operation=_operation;
 @property(retain) CKShareMetadata *shareMetadata; // @synthesize shareMetadata=_shareMetadata;
 @property(retain) CKContainer *metadataSpecifiedContainer; // @synthesize metadataSpecifiedContainer=_metadataSpecifiedContainer;
@@ -36,23 +39,26 @@
 @property NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
 @property(retain) NSDictionary *userInfo; // @synthesize userInfo=_userInfo;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
-@property(retain) NSTextField *contactOwnerText; // @synthesize contactOwnerText=_contactOwnerText;
-@property(retain) NSTextField *messageText; // @synthesize messageText=_messageText;
-@property(retain) NSTextField *titleText; // @synthesize titleText=_titleText;
-@property(retain) NSButton *cancelButton; // @synthesize cancelButton=_cancelButton;
-@property(retain) NSButton *verifyButton; // @synthesize verifyButton=_verifyButton;
-@property(retain) NSTableView *emailAddressTable; // @synthesize emailAddressTable=_emailAddressTable;
+@property __weak NSTextField *contactOwnerText; // @synthesize contactOwnerText=_contactOwnerText;
+@property __weak NSTextField *titleText; // @synthesize titleText=_titleText;
+@property __weak NSButton *cancelButton; // @synthesize cancelButton=_cancelButton;
+@property __weak NSButton *verifyButton; // @synthesize verifyButton=_verifyButton;
+@property __weak NSTableView *emailAddressTable; // @synthesize emailAddressTable=_emailAddressTable;
 @property(retain) NSWindow *outOfNetworkSheet; // @synthesize outOfNetworkSheet=_outOfNetworkSheet;
 - (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (BOOL)isShowingSheet;
+- (void)help:(id)arg1;
 - (void)cancelButtonPressed:(id)arg1;
 - (void)verifyButtonPressed:(id)arg1;
+- (void)showFailureAlert:(id)arg1;
+- (id)alertContentForInitiateVettingError:(id)arg1 shareTitle:(id)arg2 isEmail:(BOOL)arg3 address:(id)arg4;
 - (BOOL)isVettedToSelfError:(id)arg1;
-- (void)initiateVettingForParticipantID:(id)arg1 address:(id)arg2;
+- (void)initiateVettingForParticipantID:(id)arg1 address:(id)arg2 andThen:(CDUnknownBlockType)arg3;
 - (void)dismissOutOfNetworkSheet;
 - (void)showOutOfNetworkSheetForServices:(id)arg1 usingWindow:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+@property(readonly) NSTouchBar *touchBar;
 - (void)awakeFromNib;
 - (id)init;
 

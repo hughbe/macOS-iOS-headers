@@ -16,7 +16,9 @@
 
 + (id)fetchScriptCommandWithDictionary:(id)arg1 context:(id)arg2;
 + (id)fetchScriptCommand;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *jsScriptIdentifiers;
+@property(copy, nonatomic) NSString *fetchScriptType;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

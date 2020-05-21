@@ -13,9 +13,9 @@
 @interface MKTransitItemIncidentCell : MKCustomSeparatorTableViewCell <MKMultiLineLabelContainer>
 {
     MKImageView *_incidentIconImageView;
-    _MKUILabel *_messageLabel;
     BOOL _needsConstraintsRebuild;
     NSArray *_constraints;
+    _MKUILabel *_messageLabel;
 }
 
 - (void).cxx_destruct;
@@ -24,8 +24,12 @@
 @property(retain, nonatomic) NSImage *incidentIcon;
 @property(copy, nonatomic) NSString *incidentMessage;
 - (id)multilineTextFieldsWithinContainer;
+- (void)_configureWithMessage:(id)arg1 referenceDate:(id)arg2 lastUpdated:(id)arg3 incidentIsBlocking:(BOOL)arg4 shouldShowImage:(BOOL)arg5 inSiri:(BOOL)arg6;
+- (void)configureWithIncidentMessage:(id)arg1 referenceDate:(id)arg2 shouldShowImage:(BOOL)arg3 inSiri:(BOOL)arg4;
 - (void)configureWithIncident:(id)arg1 referenceDate:(id)arg2 shouldShowImage:(BOOL)arg3 inSiri:(BOOL)arg4;
+- (void)configureViews;
 - (id)initWithReuseIdentifier:(id)arg1;
+- (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

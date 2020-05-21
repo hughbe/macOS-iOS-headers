@@ -11,7 +11,6 @@
 
 @class CNFutureCompletionBlocks, CNFutureResult, CNTask, NSConditionLock, NSString;
 
-__attribute__((visibility("hidden")))
 @interface CNFutureTask : NSObject <CNFuture, CNPromise>
 {
     NSConditionLock *_stateLock;
@@ -20,6 +19,7 @@ __attribute__((visibility("hidden")))
     CNFutureCompletionBlocks *_completionBlocks;
 }
 
+- (void).cxx_destruct;
 - (id)recover:(CDUnknownBlockType)arg1;
 - (id)flatMap:(CDUnknownBlockType)arg1;
 - (void)_flushCompletionBlocks;
@@ -30,6 +30,7 @@ __attribute__((visibility("hidden")))
 - (void)addSuccessBlock:(CDUnknownBlockType)arg1;
 - (CDUnknownBlockType)errorOnlyCompletionHandlerAdapter;
 - (CDUnknownBlockType)boolErrorCompletionHandlerAdapter;
+- (CDUnknownBlockType)completionHandlerAdapterWithDefaultValue:(id)arg1;
 - (CDUnknownBlockType)completionHandlerAdapter;
 - (BOOL)finishWithError:(id)arg1;
 - (BOOL)finishWithResult:(id)arg1;
@@ -43,7 +44,6 @@ __attribute__((visibility("hidden")))
 - (id)resultWithTimeout:(double)arg1 error:(id *)arg2;
 - (id)resultBeforeDate:(id)arg1 error:(id *)arg2;
 - (id)result:(id *)arg1;
-- (void)dealloc;
 - (id)initWithTask:(id)arg1;
 - (id)init;
 

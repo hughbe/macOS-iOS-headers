@@ -6,28 +6,26 @@
 
 #import "CALayer.h"
 
-@class CABackdropLayer, NSString;
+@class NSString;
 
+__attribute__((visibility("hidden")))
 @interface NCMaterialLayer : CALayer
 {
-    CABackdropLayer *_backdropLayer;
-    CALayer *_tintLayer;
-    _Bool _reduceTransparency;
     NSString *_groupName;
+    CALayer *_backdropLayer;
+    CALayer *_tintLayer;
+    unsigned char _materialStyle;
     unsigned long long _material;
 }
 
-+ (void)reduceTransparencyChanged;
-+ (BOOL)shouldReduceTransparency;
++ (_Bool)useDarkLook;
 + (void)initialize;
-@property(nonatomic) _Bool reduceTransparency; // @synthesize reduceTransparency=_reduceTransparency;
-@property(nonatomic) unsigned long long material; // @synthesize material=_material;
-@property(readonly, nonatomic) NSString *groupName; // @synthesize groupName=_groupName;
 - (void).cxx_destruct;
-- (void)_buildLayerTree;
+@property(nonatomic) unsigned char materialStyle; // @synthesize materialStyle=_materialStyle;
+@property(nonatomic) unsigned long long material; // @synthesize material=_material;
+- (void)_buildVibrantLayerTree:(unsigned long long)arg1;
 - (void)setBounds:(struct CGRect)arg1;
-@property(nonatomic) float blurRadius;
-- (id)initWithMaterial:(unsigned long long)arg1 groupName:(id)arg2;
+- (id)initWithMaterial:(unsigned long long)arg1 groupName:(id)arg2 style:(unsigned char)arg3;
 
 @end
 

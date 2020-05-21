@@ -10,17 +10,27 @@
 {
     struct CGPoint _origin;
     struct PXTileInfo _enqueuedCaptionTileInfo;
+    struct PXTileInfo _enqueuedLikesTileInfo;
+    struct PXTileInfo _enqueuedCommentsTileInfo;
     BOOL _shouldDisplayCaptionsBelowBatches;
     double _referenceWidth;
 }
 
 @property(nonatomic) BOOL shouldDisplayCaptionsBelowBatches; // @synthesize shouldDisplayCaptionsBelowBatches=_shouldDisplayCaptionsBelowBatches;
 @property(nonatomic) double referenceWidth; // @synthesize referenceWidth=_referenceWidth;
-- (void)_willAddRowWithFirstTileInfo:(struct PXTileInfo)arg1;
+- (void)_willAddCommentRowsWithFirstTileInfo:(struct PXTileInfo)arg1;
+- (void)_willAddLikeRowWithFirstTileInfo:(struct PXTileInfo)arg1;
+- (void)_willAddCaptionRowWithFirstTileInfo:(struct PXTileInfo)arg1;
 - (BOOL)_addSpecialSequenceBlock:(struct PXTileInfo *)arg1;
 - (BOOL)_addRowWithTiles:(struct PXTileInfo *)arg1 imageFrames:(struct CGRect *)arg2 count:(long long)arg3;
 - (void)_enumerateRowFramesWithContiguousTiles:(struct PXTileInfo *)arg1 count:(long long)arg2 useMagneticGuidelines:(BOOL)arg3 block:(CDUnknownBlockType)arg4;
 - (BOOL)_addRowWithContiguousTiles:(struct PXTileInfo *)arg1 count:(long long)arg2;
+- (BOOL)_dequeueComments;
+- (BOOL)_hasEnqueuedComments;
+- (void)_enqueueCommentsWithTileInfo:(struct PXTileInfo)arg1;
+- (BOOL)_dequeueLikes;
+- (BOOL)_hasEnqueuedLikes;
+- (void)_enqueueLikesWithTileInfo:(struct PXTileInfo)arg1;
 - (BOOL)_dequeueCaption;
 - (BOOL)_hasEnqueuedCaption;
 - (void)_enqueueCaptionWithTileInfo:(struct PXTileInfo)arg1;

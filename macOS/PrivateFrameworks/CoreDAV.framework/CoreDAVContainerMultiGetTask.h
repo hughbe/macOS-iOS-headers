@@ -25,6 +25,7 @@
     NSSet *_deletedURLs;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSSet *deletedURLs; // @synthesize deletedURLs=_deletedURLs;
 @property(readonly, nonatomic) NSSet *missingURLs; // @synthesize missingURLs=_missingURLs;
 @property(readonly, nonatomic) NSSet *parsedContents; // @synthesize parsedContents=_parsedContents;
@@ -34,7 +35,6 @@
 - (id)copyDefaultParserForContentType:(id)arg1;
 - (id)requestBody;
 - (id)httpMethod;
-- (void)dealloc;
 - (void)setAdditionalProperties:(id)arg1 onDataItem:(id)arg2;
 - (id)copyAdditionalPropElements;
 - (id)initWithURLs:(id)arg1 atContainerURL:(id)arg2 appSpecificDataItemClass:(Class)arg3;

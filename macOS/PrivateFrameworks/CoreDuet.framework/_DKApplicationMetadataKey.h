@@ -10,6 +10,8 @@
 {
 }
 
++ (id)extensionContainingBundleIdentifier;
++ (id)extensionHostIdentifier;
 + (id)launchReason;
 + (id)backboardState;
 + (id)processIdentifier;

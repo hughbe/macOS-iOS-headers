@@ -18,14 +18,15 @@
 + (unsigned int)currentVersion;
 + (id)archiveName;
 + (long long)imageSetType;
+- (void).cxx_destruct;
 @property(nonatomic) struct CGRect logoRect; // @synthesize logoRect=_logoRect;
 @property(retain, nonatomic) PKImage *placeHolderImage; // @synthesize placeHolderImage=_placeHolderImage;
-- (void).cxx_destruct;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)preheatImages;
+- (id)_initWithDisplayProfile:(id)arg1 fileURL:(id)arg2 screenScale:(double)arg3 suffix:(id)arg4 frontFaceImageSet:(id)arg5;
 - (id)initWithDisplayProfile:(id)arg1 fileURL:(id)arg2 screenScale:(double)arg3 suffix:(id)arg4;
 
 @end

@@ -6,22 +6,35 @@
 
 #import <GameController/GCControllerElement.h>
 
-@class GCControllerAxisInput, GCControllerButtonInput;
+@class GCControllerAxisInput, GCControllerButtonInput, NSString;
 
 @interface GCControllerDirectionPad : GCControllerElement
 {
+    NSString *_descriptionName;
+    _Bool _wasZeroed;
+    int _timesPressed;
+    BOOL _nonAnalog;
+    CDUnknownBlockType _valueChangedHandler;
+    GCControllerAxisInput *_xAxis;
+    GCControllerAxisInput *_yAxis;
 }
 
+- (void).cxx_destruct;
+@property BOOL nonAnalog; // @synthesize nonAnalog=_nonAnalog;
+@property(retain, nonatomic) GCControllerAxisInput *yAxis; // @synthesize yAxis=_yAxis;
+@property(retain, nonatomic) GCControllerAxisInput *xAxis; // @synthesize xAxis=_xAxis;
+@property(copy, nonatomic) CDUnknownBlockType valueChangedHandler; // @synthesize valueChangedHandler=_valueChangedHandler;
+- (int)getAndResetTimesPressed;
+- (void)setValueForXAxis:(float)arg1 yAxis:(float)arg2;
 @property(readonly, nonatomic) GCControllerButtonInput *right;
 @property(readonly, nonatomic) GCControllerButtonInput *left;
 @property(readonly, nonatomic) GCControllerButtonInput *down;
 @property(readonly, nonatomic) GCControllerButtonInput *up;
-@property(readonly, nonatomic) GCControllerAxisInput *yAxis;
-@property(readonly, nonatomic) GCControllerAxisInput *xAxis;
 - (id)description;
-- (BOOL)setHIDValue:(struct __IOHIDValue *)arg1 queue:(id)arg2;
-- (BOOL)setHIDValue:(struct __IOHIDValue *)arg1;
-@property(copy, nonatomic) CDUnknownBlockType valueChangedHandler;
+- (BOOL)isAnalog;
+- (void)_fireValueChangedWithQueue:(id)arg1;
+- (void)_fireValueChanged;
+- (id)initWithFlippedY:(BOOL)arg1 digital:(BOOL)arg2 descriptionName:(id)arg3;
 - (id)initWithFlippedY:(BOOL)arg1 digital:(BOOL)arg2;
 
 @end

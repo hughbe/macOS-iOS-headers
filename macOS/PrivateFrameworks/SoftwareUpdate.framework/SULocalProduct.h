@@ -13,10 +13,12 @@
     NSString *_productPath;
     NSDictionary *_packageReferences;
     NSMutableSet *_mustCloseAppsToInstallProduct;
-    SUProduct *_remoteProduct;
     NSURL *_altDistPackageURL;
+    SUProduct *_remoteProduct;
 }
 
+@property(retain) SUProduct *remoteProduct; // @synthesize remoteProduct=_remoteProduct;
+- (id)systemImagePackage;
 - (int)restartAction;
 - (id)mustCloseAppsToInstallProduct;
 - (id)packageReferenceForPackageIdentifier:(id)arg1;
@@ -24,10 +26,13 @@
 - (id)orderedPackageSpecifiersToInstall;
 - (unsigned long long)sizeAlreadyDownloaded;
 - (BOOL)isCompletelyDownloaded;
+- (id)outdatedExtraPackageReferences;
+- (id)invalidPackageRefsInProductDirectory;
 - (id)_localPackageReferenceFromDistribution:(id)arg1;
 - (BOOL)hasInstallablePackages;
 - (id)distributionEvaluationMetainfo;
 - (id)distributionEnvironment;
+- (id)personalizedManifestsPath;
 - (id)distributionPath;
 - (id)productPath;
 - (void)dealloc;

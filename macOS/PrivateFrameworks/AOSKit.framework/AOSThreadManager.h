@@ -23,6 +23,7 @@
 - (id)_aliasInfoFromJSONData:(id)arg1;
 - (void)AOSKPersistMailAliases:(id)arg1;
 - (void)AOSKPersistMailProperties:(id)arg1;
+- (id)_updateDelegateInfo:(id)arg1 usingStoredInfo:(id)arg2 forAccount:(struct AOSAccount *)arg3;
 - (id)_updateDerivedInfoUsingOldInfo:(id)arg1 andNewInfo:(id)arg2 forAccount:(struct AOSAccount *)arg3;
 - (void)runStorageAlertThreadWithContext:(id)arg1;
 - (void)AOSKPersistExpirationDate:(id)arg1;

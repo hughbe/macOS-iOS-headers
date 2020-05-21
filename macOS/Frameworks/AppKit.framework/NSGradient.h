@@ -6,24 +6,23 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSColorSpace;
 
-@interface NSGradient : NSObject <NSCopying, NSCoding>
+@interface NSGradient : NSObject <NSCopying, NSSecureCoding>
 {
     NSArray *_colorArray;
     NSColorSpace *_colorSpace;
     void *_functionRef;
     void *_componentArray;
-    void *_reserved1;
-    void *_reserved2;
-    void *_reserved3;
 }
 
++ (BOOL)supportsSecureCoding;
 + (void)initialize;
 + (id)_windowBorderGradientFromGrayValue:(int)arg1 toGrayValue:(int)arg2 colorSpace:(id)arg3;
+- (BOOL)_isValidDecodedColorArray:(id)arg1 error:(id *)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)isEqual:(id)arg1;

@@ -18,7 +18,10 @@
 - (id)thoroughfare;
 @property(readonly, nonatomic) struct CLLocationCoordinate2D coordinate;
 @property(readonly, copy, nonatomic) NSString *title;
+- (id)initWithCoordinate:(struct CLLocationCoordinate2D)arg1 postalAddress:(id)arg2;
 - (id)initWithCoordinate:(struct CLLocationCoordinate2D)arg1 addressDictionary:(id)arg2;
+- (id)initWithCoordinate:(struct CLLocationCoordinate2D)arg1;
+- (id)mkPostalAddressDictionary;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

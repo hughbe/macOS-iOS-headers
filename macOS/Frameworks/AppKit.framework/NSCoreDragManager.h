@@ -8,6 +8,7 @@
 
 @class NSDraggingSession;
 
+__attribute__((visibility("hidden")))
 @interface NSCoreDragManager : _NSDragManager
 {
     NSDraggingSession *_dragSession;
@@ -16,9 +17,10 @@
 
 + (void)doCommandBySelector:(SEL)arg1;
 + (void)insertText:(id)arg1;
+- (void)_cancelAllFilePromiseDrags;
 - (void)_registerFilePromiseDraggingEndedTarget:(id)arg1;
 - (void)dragImage:(id)arg1 fromWindow:(id)arg2 at:(struct CGPoint)arg3 offset:(struct CGSize)arg4 event:(id)arg5 pasteboard:(id)arg6 source:(id)arg7 slideBack:(BOOL)arg8;
-- (id)beginDraggingSessionWithItems:(id)arg1 fromWindow:(id)arg2 event:(id)arg3 source:(id)arg4;
+- (id)beginDraggingSessionWithItems:(id)arg1 fromWindow:(id)arg2 withClipRect:(struct CGRect)arg3 event:(id)arg4 source:(id)arg5;
 - (id)draggingSessionWithSequenceNumber:(long long)arg1;
 - (id)_alternateDragSource;
 - (void)_setAlternateDragSource:(id)arg1;
@@ -28,6 +30,8 @@
 - (BOOL)unregisterDragTypesForWindow:(id)arg1;
 - (BOOL)switchWindow:(id)arg1 dragRegistrationToRemoteContext:(unsigned int)arg2;
 - (int)registerDragTypes:(id)arg1 forWindow:(id)arg2;
+- (void)unregisterWindow:(id)arg1 foriOSMacContext:(unsigned int)arg2;
+- (void)registerWindow:(id)arg1 foriOSMacContext:(unsigned int)arg2;
 - (void)registerForCompletionOfDrag:(void *)arg1;
 
 @end

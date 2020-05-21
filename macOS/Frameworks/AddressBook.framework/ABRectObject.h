@@ -6,12 +6,14 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
-@interface ABRectObject : NSObject
+#import "NSSecureCoding.h"
+
+@interface ABRectObject : NSObject <NSSecureCoding>
 {
     struct CGRect _rect;
 }
 
++ (BOOL)supportsSecureCoding;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (struct CGRect)rectValue;

@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class NSArray, NSLayoutConstraint, NSTrackingArea, ResponsiveDesignResizeHandleView, WKView;
+@class NSArray, NSLayoutConstraint, NSTrackingArea, ResponsiveDesignResizeHandleView, WKWebView;
 
 __attribute__((visibility("hidden")))
 @interface ResponsiveDesignContainerView : NSView
@@ -26,13 +26,13 @@ __attribute__((visibility("hidden")))
     BOOL _stopNotifyingDelegateOfSizeChanges;
     BOOL _resizing;
     NSArray *_handleMarginConstraints;
-    WKView *_webView;
+    WKWebView *_webView;
     id <ResponsiveDesignContainerViewDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <ResponsiveDesignContainerViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) WKView *webView; // @synthesize webView=_webView;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <ResponsiveDesignContainerViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) WKWebView *webView; // @synthesize webView=_webView;
 - (void)_initalize;
 - (void)updateConstraints;
 - (BOOL)requiresConstraintBasedLayout;

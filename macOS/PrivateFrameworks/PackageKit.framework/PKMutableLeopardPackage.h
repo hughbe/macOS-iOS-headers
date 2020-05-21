@@ -13,6 +13,9 @@
 + (id)_intendedPayloadEncodingForPackageInfo:(id)arg1;
 + (id)_intendedPayloadEncodingForMinimumOSVersion:(id)arg1;
 + (id)_bundleAttributeDictionaryForComponent:(id)arg1;
+- (void)_staticObsoleteFilesOrRecursiveDirectories:(id)arg1;
+- (void)_setStaticObsoleteDirectories:(id)arg1;
+- (void)_setStaticObsoleteFiles:(id)arg1;
 - (BOOL)_writeToArchive:(id)arg1 atPath:(id)arg2 options:(id)arg3 error:(id *)arg4;
 - (void)setModifyOwnershipUsingBlock:(CDUnknownBlockType)arg1;
 - (void)setMaskExpressions:(id)arg1;

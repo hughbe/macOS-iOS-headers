@@ -30,6 +30,8 @@ __attribute__((visibility("hidden")))
 - (struct _NSRange)rangeOfUnit:(unsigned long long)arg1 inUnit:(unsigned long long)arg2 forDate:(id)arg3;
 - (struct _NSRange)maximumRangeOfUnit:(unsigned long long)arg1;
 - (struct _NSRange)minimumRangeOfUnit:(unsigned long long)arg1;
+- (void)setGregorianStartDate:(id)arg1;
+- (id)gregorianStartDate;
 - (unsigned long long)minimumDaysInFirstWeek;
 - (void)setMinimumDaysInFirstWeek:(unsigned long long)arg1;
 - (unsigned long long)firstWeekday;

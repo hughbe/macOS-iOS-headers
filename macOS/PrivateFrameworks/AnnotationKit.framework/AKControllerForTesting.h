@@ -6,7 +6,7 @@
 
 #import <AnnotationKit/AKController.h>
 
-@class AKActionController, AKAttributeController, AKCursorController_Mac, AKIntelligentSketchController, AKMainEventHandler, AKModelController, AKSignatureModelController, AKToolController, AKUndoController, NSView;
+@class AKActionController, AKAttributeController, AKCursorController_Mac, AKLegacyDoodleController, AKMainEventHandler, AKModelController, AKSignatureModelController, AKToolController, AKUndoController, NSView;
 
 @interface AKControllerForTesting : AKController
 {
@@ -19,15 +19,16 @@
     AKMainEventHandler *_testingMainEventHandler;
     NSView *_testingToolbarView;
     NSView *_testingOverlayView;
-    AKIntelligentSketchController *_testingIntelligentSketchController;
+    AKLegacyDoodleController *_testingIntelligentSketchController;
     AKSignatureModelController *_testingSignatureModelController;
     AKCursorController_Mac *_testingCursorController;
 }
 
 + (void)renderAnnotation:(id)arg1 inContext:(struct CGContext *)arg2;
+- (void).cxx_destruct;
 @property(retain) AKCursorController_Mac *testingCursorController; // @synthesize testingCursorController=_testingCursorController;
 @property(retain) AKSignatureModelController *testingSignatureModelController; // @synthesize testingSignatureModelController=_testingSignatureModelController;
-@property(retain) AKIntelligentSketchController *testingIntelligentSketchController; // @synthesize testingIntelligentSketchController=_testingIntelligentSketchController;
+@property(retain) AKLegacyDoodleController *testingIntelligentSketchController; // @synthesize testingIntelligentSketchController=_testingIntelligentSketchController;
 @property(retain) NSView *testingOverlayView; // @synthesize testingOverlayView=_testingOverlayView;
 @property(retain) NSView *testingToolbarView; // @synthesize testingToolbarView=_testingToolbarView;
 @property(retain) AKMainEventHandler *testingMainEventHandler; // @synthesize testingMainEventHandler=_testingMainEventHandler;
@@ -37,10 +38,9 @@
 @property(retain) AKActionController *testingActionController; // @synthesize testingActionController=_testingActionController;
 @property(retain) AKModelController *testingModelController; // @synthesize testingModelController=_testingModelController;
 @property(retain) id <AKControllerDelegateProtocol> testingDelegate; // @synthesize testingDelegate=_testingDelegate;
-- (void).cxx_destruct;
 - (id)cursorController;
 - (id)signatureModelController;
-- (id)intelligentSketchController;
+- (id)legacyDoodleController;
 - (id)mainEventHandler;
 - (id)undoController;
 - (id)attributeController;

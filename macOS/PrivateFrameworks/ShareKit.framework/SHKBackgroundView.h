@@ -6,13 +6,14 @@
 
 #import "NSView.h"
 
+__attribute__((visibility("hidden")))
 @interface SHKBackgroundView : NSView
 {
     id <SHKClientWindowSyncDelegate> _delegate;
 }
 
-@property __weak id <SHKClientWindowSyncDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property __weak id <SHKClientWindowSyncDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)mouseDown:(id)arg1;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;

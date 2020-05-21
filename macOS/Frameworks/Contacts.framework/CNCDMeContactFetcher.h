@@ -10,11 +10,16 @@
 {
 }
 
-+ (id)meContactIdentifierFromInfos:(id)arg1 error:(id *)arg2;
-+ (id)meContactIdentifierInManagedObjectContext:(id)arg1 store:(id)arg2 error:(id *)arg3;
-+ (id)_fallbackMeContactIdentifierInPersistenceContext:(id)arg1 managedObjectContext:(id)arg2 error:(id *)arg3;
-+ (id)meContactIdentifierInPersistenceContext:(id)arg1 error:(id *)arg2;
-+ (id)meContactIdentifierInPersistenceStack:(id)arg1 error:(id *)arg2;
++ (id)allMeContactIdentifiersInPersistenceContext:(id)arg1;
++ (id)allMeContactIdentifiersInPersistenceStack:(id)arg1 error:(id *)arg2;
++ (id)_containersWithWritableFirstInPersistenceContext:(id)arg1;
++ (id)_firstMeContactIdentifierInContainers:(id)arg1 persistenceContext:(id)arg2 managedObjectContext:(id)arg3;
++ (id)firstMeContactIdentifierFoundInStoresInPersistenceContext:(id)arg1 managedObjectContext:(id)arg2;
++ (id)meContactIdentifierFromInfos:(id)arg1;
++ (id)meContactIdentifierInManagedObjectContext:(id)arg1 store:(id)arg2;
++ (id)meContactIdentifierInDefaultStoreInPersistenceContext:(id)arg1 managedObjectContext:(id)arg2;
++ (id)defaultMeContactIdentifierInPersistenceContext:(id)arg1;
++ (id)defaultMeContactIdentifierInPersistenceStack:(id)arg1 error:(id *)arg2;
 
 @end
 

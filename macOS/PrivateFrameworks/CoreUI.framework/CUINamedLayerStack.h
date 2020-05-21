@@ -24,6 +24,8 @@
 @property(readonly, nonatomic) struct CGImage *flattenedImage;
 - (id)layerImageAtIndex:(unsigned long long)arg1;
 @property(readonly, nonatomic) struct CGSize size;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
 - (id)initWithName:(id)arg1 usingRenditionKey:(id)arg2 fromTheme:(unsigned long long)arg3 resolvingWithBlock:(CDUnknownBlockType)arg4;
 
 @end

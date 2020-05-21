@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
-#import "_CDUserContext.h"
+#import "_CDAsyncLocalContext.h"
+#import "_CDAsyncUserContext.h"
 #import "_CDUserContextServerMonitoring.h"
 
 @class NSCountedSet, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_os_log>, NSString, NSXPCConnection, NSXPCListenerEndpoint;
 
-@interface _CDClientContext : NSObject <_CDUserContext, _CDUserContextServerMonitoring>
+@interface _CDClientContext : NSObject <_CDAsyncUserContext, _CDAsyncLocalContext, _CDUserContextServerMonitoring>
 {
     BOOL _interrupted;
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_dispatch_queue> *_xpcQueue;
+    NSObject<OS_dispatch_queue> *_xpcEventQueue;
     NSXPCConnection *_xpcConnection;
     NSXPCListenerEndpoint *_endpoint;
     NSMutableDictionary *_keyPathToValues;
@@ -24,9 +26,15 @@
     NSObject<OS_dispatch_queue> *_registrationCallbackQueue;
     NSMutableDictionary *_openRegistrationTokens;
     NSObject<OS_os_log> *_log;
+    id <_CDRemoteUserContextServer> _remoteUserContextProxy;
 }
 
++ (id)userContextWithEndpoint:(id)arg1;
 + (id)userContext;
++ (id)clientInterface;
++ (id)serverInterface;
+- (void).cxx_destruct;
+@property(retain, nonatomic) id <_CDRemoteUserContextServer> remoteUserContextProxy; // @synthesize remoteUserContextProxy=_remoteUserContextProxy;
 @property(retain, nonatomic) NSObject<OS_os_log> *log; // @synthesize log=_log;
 @property(retain, nonatomic) NSMutableDictionary *openRegistrationTokens; // @synthesize openRegistrationTokens=_openRegistrationTokens;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *registrationCallbackQueue; // @synthesize registrationCallbackQueue=_registrationCallbackQueue;
@@ -36,27 +44,64 @@
 @property(nonatomic) BOOL interrupted; // @synthesize interrupted=_interrupted;
 @property(retain, nonatomic) NSXPCListenerEndpoint *endpoint; // @synthesize endpoint=_endpoint;
 @property(retain, nonatomic) NSXPCConnection *xpcConnection; // @synthesize xpcConnection=_xpcConnection;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *xpcEventQueue; // @synthesize xpcEventQueue=_xpcEventQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *xpcQueue; // @synthesize xpcQueue=_xpcQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
-- (void).cxx_destruct;
+- (void)deactivateDevices:(id)arg1 remoteUserContextProxySourceDeviceUUID:(id)arg2;
+- (void)activateDevices:(id)arg1 remoteUserContextProxySourceDeviceUUID:(id)arg2;
+- (BOOL)setObject:(id)arg1 lastModifiedDate:(id)arg2 forContextualKeyPath:(id)arg3;
+- (id)valuesForKeyPaths:(id)arg1 synchronous:(BOOL)arg2 responseQueue:(id)arg3 withCompletion:(CDUnknownBlockType)arg4;
+- (void)valuesForKeyPaths:(id)arg1 responseQueue:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
+- (id)valuesForKeyPaths:(id)arg1;
 - (id)valuesForKeyPaths:(id)arg1 inContextsMatchingPredicate:(id)arg2;
 - (id)localContext;
-- (BOOL)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
+- (BOOL)addObjects:(id)arg1 andRemoveObjects:(id)arg2 fromArrayAtKeyPath:(id)arg3 synchronous:(BOOL)arg4 responseQueue:(id)arg5 withCompletion:(CDUnknownBlockType)arg6;
+- (void)addObjects:(id)arg1 andRemoveObjects:(id)arg2 fromArrayAtKeyPath:(id)arg3 responseQueue:(id)arg4 withCompletion:(CDUnknownBlockType)arg5;
+- (BOOL)addObjects:(id)arg1 andRemoveObjects:(id)arg2 fromArrayAtKeyPath:(id)arg3;
+- (BOOL)removeObjects:(id)arg1 fromArrayAtKeyPath:(id)arg2 synchronous:(BOOL)arg3 responseQueue:(id)arg4 withCompletion:(CDUnknownBlockType)arg5;
+- (void)removeObjects:(id)arg1 fromArrayAtKeyPath:(id)arg2 responseQueue:(id)arg3 withCompletion:(CDUnknownBlockType)arg4;
+- (BOOL)removeObjects:(id)arg1 fromArrayAtKeyPath:(id)arg2;
+- (BOOL)addObjects:(id)arg1 toArrayAtKeyPath:(id)arg2 synchronous:(BOOL)arg3 responseQueue:(id)arg4 withCompletion:(CDUnknownBlockType)arg5;
+- (void)addObjects:(id)arg1 toArrayAtKeyPath:(id)arg2 responseQueue:(id)arg3 withCompletion:(CDUnknownBlockType)arg4;
+- (BOOL)addObjects:(id)arg1 toArrayAtKeyPath:(id)arg2;
+- (BOOL)setObject:(id)arg1 forContextualKeyPath:(id)arg2 synchronous:(BOOL)arg3 responseQueue:(id)arg4 withCompletion:(CDUnknownBlockType)arg5;
+- (void)setObject:(id)arg1 forContextualKeyPath:(id)arg2 responseQueue:(id)arg3 withCompletion:(CDUnknownBlockType)arg4;
 - (BOOL)setObject:(id)arg1 forContextualKeyPath:(id)arg2;
-- (void)handleContextualChange:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (BOOL)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
+- (void)handleRegistrationCompleted:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)handleContextualChange:(id)arg1 info:(id)arg2 handler:(CDUnknownBlockType)arg3;
 - (BOOL)evaluatePredicate:(id)arg1;
 - (void)deregisterCallback:(id)arg1;
 - (void)cleanupInternalReferencesToRegistration:(id)arg1;
 - (void)registerCallback:(id)arg1;
+- (void)retryTimes:(int)arg1 block:(CDUnknownBlockType)arg2;
+- (void)clearCacheForKeyPathsWithFireOnChangeRegistrations:(id)arg1;
 - (void)removeKeyPathsWithRegistrationsForAnyChangeFromRegistration:(id)arg1;
 - (void)addKeyPathsWithRegistrationsForAnyChangeFromRegistration:(id)arg1;
+- (id)lastModifiedDateForContextualKeyPath:(id)arg1 synchronous:(BOOL)arg2 responseQueue:(id)arg3 withCompletion:(CDUnknownBlockType)arg4;
+- (void)lastModifiedDateForContextualKeyPath:(id)arg1 responseQueue:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (id)lastModifiedDateForContextualKeyPath:(id)arg1;
 - (id)objectForKeyedSubscript:(id)arg1;
+- (id)objectForContextualKeyPath:(id)arg1 synchronous:(BOOL)arg2 responseQueue:(id)arg3 withCompletion:(CDUnknownBlockType)arg4;
+- (void)objectForContextualKeyPath:(id)arg1 responseQueue:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (id)objectForContextualKeyPath:(id)arg1;
+- (void)setCachedValueIfClientHasRegistrations:(id)arg1 forKeyPath:(id)arg2;
+- (id)cachedValueIfClientHasRegistrationsForKeyPath:(id)arg1;
 - (BOOL)hasKnowledgeOfContextualKeyPath:(id)arg1;
+- (void)handleNotificationEvent:(id)arg1;
+- (void)handleRequestActivateDevicesEvent:(id)arg1;
+- (void)handleFetchProxySourceDeviceUUIDEvent:(id)arg1;
+- (void)handleKeepAliveEvent:(id)arg1;
+- (void)handleUnsubscribeFromContextValueNotificationsEvent:(id)arg1;
+- (void)handleSubscribeToContextValueNotificationsEvent:(id)arg1;
+- (void)handleFetchPropertiesEvent:(id)arg1;
+- (void)handleMDCSEvent:(id)arg1;
+- (void)subscribeToEventStreams;
 - (void)dealloc;
 - (id)initWithEndpoint:(id)arg1;
-- (void)setUpXPCConnectionWithEndpoint:(id)arg1;
+- (id)defaultCallbackQueue;
+- (id)currentConnection;
+- (void)unprotectedSetUpXPCConnectionWithEndpoint:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

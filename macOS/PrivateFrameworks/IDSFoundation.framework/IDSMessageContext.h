@@ -6,23 +6,84 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSString;
+@class IDSCertifiedDeliveryContext, NSData, NSDate, NSDictionary, NSError, NSNumber, NSObject<OS_os_transaction>, NSString;
 
 @interface IDSMessageContext : NSObject
 {
-    NSMutableDictionary *_dict;
     id _boostContext;
-    NSObject<OS_dispatch_queue> *_ivarQueue;
+    NSObject<OS_os_transaction> *_transaction;
+    IDSCertifiedDeliveryContext *_certifiedDeliveryContext;
+    NSString *_storageGuid;
+    NSString *_outgoingResponseIdentifier;
+    NSString *_incomingResponseIdentifier;
+    NSString *_serviceIdentifier;
+    NSString *_fromID;
+    NSString *_toID;
+    NSString *_originalDestinationDevice;
+    NSString *_originalGUID;
+    NSData *_engramGroupID;
+    NSNumber *_originalCommand;
+    NSNumber *_serverTimestamp;
+    NSNumber *_originalTimestamp;
+    NSError *_wpConnectionError;
+    NSString *_senderCorrelationIdentifier;
+    NSString *_resourceTransferURLString;
+    NSString *_resourceTransferSandboxExtension;
+    NSDictionary *_resourceTransferMetadata;
+    NSNumber *_broadcastTime;
+    NSNumber *_priority;
+    NSNumber *_messageSequenceNumber;
+    NSNumber *_bytesSent;
+    NSNumber *_totalBytes;
+    double _averageLocalRTT;
+    long long _broadcastID;
+    long long _connectionType;
+    long long _localMessageState;
+    long long _endpointState;
+    struct os_unfair_lock_s _lock;
+    BOOL _expectsPeerResponse;
+    BOOL _wantsManualAck;
+    BOOL _fromServerStorage;
+    BOOL _deviceBlackedOut;
+    BOOL _wantsAppAck;
+    BOOL _usedEngram;
+    BOOL _messageHadEncryptedData;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) IDSCertifiedDeliveryContext *certifiedDeliveryContext; // @synthesize certifiedDeliveryContext=_certifiedDeliveryContext;
+@property(readonly, nonatomic) long long endpointState; // @synthesize endpointState=_endpointState;
+@property(readonly, copy, nonatomic) NSNumber *messageSequenceNumber; // @synthesize messageSequenceNumber=_messageSequenceNumber;
+@property(retain, nonatomic) id boostContext; // @synthesize boostContext=_boostContext;
+@property(readonly, nonatomic) BOOL deviceBlackedOut; // @synthesize deviceBlackedOut=_deviceBlackedOut;
+@property(readonly, nonatomic) long long localMessageState; // @synthesize localMessageState=_localMessageState;
+@property(readonly, nonatomic) double averageLocalRTT; // @synthesize averageLocalRTT=_averageLocalRTT;
+@property(nonatomic) BOOL messageHadEncryptedData; // @synthesize messageHadEncryptedData=_messageHadEncryptedData;
+@property(copy, nonatomic) NSString *originalGUID; // @synthesize originalGUID=_originalGUID;
+@property(nonatomic) BOOL usedEngram;
 @property(nonatomic) long long connectionType;
+@property(nonatomic) BOOL fromServerStorage;
 @property(nonatomic) BOOL wantsManualAck;
 @property(nonatomic) long long broadcastID;
 @property(nonatomic) BOOL wantsAppAck;
 @property(nonatomic) BOOL expectsPeerResponse;
-@property(nonatomic) NSNumber *priority;
-@property(nonatomic) NSNumber *broadcastTime;
-@property(nonatomic) NSNumber *originalCommand;
+@property(copy, nonatomic) NSString *resourceTransferSandboxExtension;
+@property(copy, nonatomic) NSDictionary *resourceTransferMetadata;
+@property(copy, nonatomic) NSString *resourceTransferURLString;
+@property(readonly, copy, nonatomic) NSNumber *totalBytes;
+- (void)setTotalBytes:(id)arg1;
+@property(readonly, copy, nonatomic) NSNumber *bytesSent;
+- (void)setBytesSent:(id)arg1;
+@property(readonly, nonatomic) NSError *wpConnectionError;
+- (void)setWPConnectionError:(id)arg1;
+@property(copy, nonatomic) NSString *senderCorrelationIdentifier;
+@property(copy, nonatomic) NSNumber *originalTimestamp;
+@property(copy, nonatomic) NSNumber *serverTimestamp;
+@property(retain, nonatomic) NSNumber *priority;
+@property(retain, nonatomic) NSNumber *broadcastTime;
+@property(copy, nonatomic) NSNumber *originalCommand;
+@property(copy, nonatomic) NSData *engramGroupID;
+- (void)setOriginalGuid:(id)arg1;
 @property(copy, nonatomic) NSString *originalDestinationDevice;
 @property(copy, nonatomic) NSString *toID;
 @property(copy, nonatomic) NSString *fromID;
@@ -30,10 +91,8 @@
 @property(copy, nonatomic) NSString *serviceIdentifier;
 @property(copy, nonatomic) NSString *incomingResponseIdentifier;
 @property(copy, nonatomic) NSString *outgoingResponseIdentifier;
-@property(retain, nonatomic) id boostContext;
-- (void)setObject:(id)arg1 forKey:(id)arg2;
+@property(readonly, nonatomic) NSDate *serverReceivedTime;
 - (id)objectForKey:(id)arg1;
-- (void)dealloc;
 - (id)initWithDictionary:(id)arg1 boostContext:(id)arg2;
 
 @end

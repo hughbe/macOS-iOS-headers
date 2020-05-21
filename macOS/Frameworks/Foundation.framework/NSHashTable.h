@@ -6,16 +6,17 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSFastEnumeration.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSPointerFunctions, NSSet;
 
-@interface NSHashTable : NSObject <NSCopying, NSCoding, NSFastEnumeration>
+@interface NSHashTable : NSObject <NSCopying, NSSecureCoding, NSFastEnumeration>
 {
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)hashTableWithOptions:(unsigned long long)arg1;
 + (id)weakObjectsHashTable;
 + (id)hashTableWithWeakObjects;
@@ -54,6 +55,7 @@
 - (id)description;
 - (id)init;
 - (id)initWithOptions:(unsigned long long)arg1 capacity:(unsigned long long)arg2;
+- (Class)classForCoder;
 - (id)initWithCoder:(id)arg1;
 
 @end

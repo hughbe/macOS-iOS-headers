@@ -8,48 +8,45 @@
 
 #import "NSGestureRecognizerDelegate.h"
 
-@class CNLabeledValue, MKImageView, NSArray, NSLayoutConstraint, NSString, _MKUILabel;
+@class CNLabeledValue, MKPlaceSectionHeaderView, NSArray, NSColor, NSLayoutConstraint, NSString, _MKUILabel;
 
+__attribute__((visibility("hidden")))
 @interface MKPlaceInfoContactRowView : MKPlaceSectionRowView <NSGestureRecognizerDelegate>
 {
+    MKPlaceSectionHeaderView *_headerView;
     NSLayoutConstraint *_topToTitleConstraint;
+    NSLayoutConstraint *_topToIconConstraint;
     NSLayoutConstraint *_titleToValueConstraint;
-    NSLayoutConstraint *_valueToBottomConstraint;
-    NSLayoutConstraint *_topToValueConstraint;
     NSLayoutConstraint *_valueToTrailingViewConstraint;
     NSArray *_iconConstraints;
     NSArray *_titleConstraints;
-    BOOL _trackingIconClick;
-    BOOL _bottomHairlineFullWidth;
+    BOOL _isInRightMouseDownEvent;
+    BOOL _textIsSelectable;
     CNLabeledValue *_labeledValue;
     _MKUILabel *_titleLabel;
     _MKUILabel *_valueLabel;
-    MKImageView *_iconView;
     CDUnknownBlockType _iconSelectedBlock;
+    NSLayoutConstraint *_valueToBottomConstraint;
+    NSColor *_labelColor;
 }
 
 + (id)icon;
-@property(nonatomic, getter=isBottomHairlineFullWidth) BOOL bottomHairlineFullWidth; // @synthesize bottomHairlineFullWidth=_bottomHairlineFullWidth;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSColor *labelColor; // @synthesize labelColor=_labelColor;
+@property(retain, nonatomic) NSLayoutConstraint *valueToBottomConstraint; // @synthesize valueToBottomConstraint=_valueToBottomConstraint;
 @property(copy, nonatomic) CDUnknownBlockType iconSelectedBlock; // @synthesize iconSelectedBlock=_iconSelectedBlock;
-@property(readonly, nonatomic) MKImageView *iconView; // @synthesize iconView=_iconView;
 @property(readonly, nonatomic) _MKUILabel *valueLabel; // @synthesize valueLabel=_valueLabel;
 @property(readonly, nonatomic) _MKUILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
 @property(retain, nonatomic) CNLabeledValue *labeledValue; // @synthesize labeledValue=_labeledValue;
-- (void).cxx_destruct;
-- (void)_iconTapped:(id)arg1;
-- (void)mouseUp:(id)arg1;
+@property(readonly, nonatomic) int analyticsTarget;
+- (void)_menuDone;
+- (void)rightMouseDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
-- (BOOL)_eventIsInIcon:(id)arg1;
-- (void)_updateGestureRecognizer;
-- (BOOL)_pointIsInIcon:(struct CGPoint)arg1;
-@property(nonatomic, getter=isIconVisible) BOOL iconVisible;
-@property(nonatomic, getter=isTitleVisible) BOOL titleVisible;
-- (void)_mapkit_tintColorDidChange;
-- (void)infoCardThemeChanged:(id)arg1;
+@property(nonatomic, getter=isTextSelectable) BOOL textIsSelectable;
 - (void)_contentSizeDidChange;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (Class)_labeledValueExpectedValueType;
+- (id)_iconAccessibilityLabel;
 - (id)_icon;
 - (id)_valueString;
 

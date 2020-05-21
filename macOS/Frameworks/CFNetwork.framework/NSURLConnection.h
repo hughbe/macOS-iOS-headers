@@ -22,9 +22,9 @@
 + (id)sendSynchronousRequest:(id)arg1 returningResponse:(id *)arg2 error:(id *)arg3;
 + (id)connectionWithRequest:(id)arg1 delegate:(id)arg2;
 + (void)_setMIMETypesWithNoSizeLimit:(id)arg1;
-+ (void)_resourceLoadLoop:(id)arg1;
 + (void)_setLoaderThreadPriority:(int)arg1;
 + (struct __CFRunLoop *)resourceLoaderRunLoop;
++ (void)withResourceLoaderRunLoopAsync:(CDUnknownBlockType)arg1;
 + (unsigned long long)_timingDataOptions;
 + (void)_collectTimingDataWithOptions:(unsigned long long)arg1;
 + (BOOL)_collectsTimingData;
@@ -53,7 +53,6 @@
 - (void)continueWithoutCredentialForAuthenticationChallenge:(id)arg1;
 - (void)useCredential:(id)arg1 forAuthenticationChallenge:(id)arg2;
 - (id)_initWithRequest:(id)arg1 delegate:(id)arg2 usesCache:(BOOL)arg3 maxContentLength:(long long)arg4 startImmediately:(BOOL)arg5 connectionProperties:(id)arg6;
-- (void)_reportTimingDataToAWD;
 - (id)_timingData;
 
 // Remaining properties

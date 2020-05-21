@@ -7,12 +7,13 @@
 #import "NSView.h"
 
 #import "ABCardCollectionRowView.h"
+#import "ABPopUpButtonDelegate.h"
+#import "CNCollectionViewTouchBarDelegate.h"
 #import "NSTextFieldDelegate.h"
 
-@class ABCardViewStyleProvider, ABCollectionViewItem, ABImmediateActionGestureAdapter, ABThrottledTrackingAreaMonitor, NSArray, NSButton, NSPopUpButton, NSStackView, NSString, NSTrackingArea;
+@class ABCardCollectionView, ABCardViewStyleProvider, ABCollectionViewItem, ABImmediateActionGestureAdapter, ABOverlayView, ABThrottledTrackingAreaMonitor, CNCollectionViewTouchBar, NSArray, NSButton, NSPopUpButton, NSStackView, NSString, NSTrackingArea;
 
-__attribute__((visibility("hidden")))
-@interface ABCardCollectionRowView : NSView <ABCardCollectionRowView, NSTextFieldDelegate>
+@interface ABCardCollectionRowView : NSView <CNCollectionViewTouchBarDelegate, ABPopUpButtonDelegate, ABCardCollectionRowView, NSTextFieldDelegate>
 {
     NSButton *_addValueButton;
     NSButton *_removeValueButton;
@@ -23,7 +24,10 @@ __attribute__((visibility("hidden")))
     NSView *_valueView;
     NSArray *_actionGlyphButtons;
     NSView *_accessoryView;
+    ABOverlayView *_focusRingView;
+    ABCardCollectionView *_cardCollectionView;
     ABCollectionViewItem *_collectionItem;
+    id <CNCancelable> _firstResponderChangedToken;
     NSTrackingArea *_labelTrackingArea;
     NSTrackingArea *_valueTrackingArea;
     NSTrackingArea *_rowTrackingArea;
@@ -38,15 +42,20 @@ __attribute__((visibility("hidden")))
     NSArray *_constraints;
     ABThrottledTrackingAreaMonitor *_rowTrackingAreaMonitor;
     ABImmediateActionGestureAdapter *_immediateActionGestureAdapter;
+    CNCollectionViewTouchBar *_collectionViewTouchBar;
 }
 
+- (void).cxx_destruct;
+@property(retain) CNCollectionViewTouchBar *collectionViewTouchBar; // @synthesize collectionViewTouchBar=_collectionViewTouchBar;
 @property(retain, nonatomic) ABCardViewStyleProvider *styleProvider; // @synthesize styleProvider=_styleProvider;
 @property BOOL shouldHighlightLabel; // @synthesize shouldHighlightLabel=_shouldHighlightLabel;
 @property BOOL shouldHideSuggestedButton; // @synthesize shouldHideSuggestedButton=_shouldHideSuggestedButton;
 @property BOOL shouldHideMinusButton; // @synthesize shouldHideMinusButton=_shouldHideMinusButton;
 @property BOOL shouldHideAddButton; // @synthesize shouldHideAddButton=_shouldHideAddButton;
 @property(getter=isLoaded) BOOL loaded; // @synthesize loaded=_loaded;
-@property ABCollectionViewItem *collectionItem; // @synthesize collectionItem=_collectionItem;
+@property __weak ABCollectionViewItem *collectionItem; // @synthesize collectionItem=_collectionItem;
+@property __weak ABCardCollectionView *cardCollectionView; // @synthesize cardCollectionView=_cardCollectionView;
+@property(retain) ABOverlayView *focusRingView; // @synthesize focusRingView=_focusRingView;
 @property(retain, nonatomic) NSView *accessoryView; // @synthesize accessoryView=_accessoryView;
 @property(retain) NSButton *suggestedButton; // @synthesize suggestedButton=_suggestedButton;
 @property(retain) NSButton *privacyCheckbox; // @synthesize privacyCheckbox=_privacyCheckbox;
@@ -65,12 +74,14 @@ __attribute__((visibility("hidden")))
 - (void)privacyCheckboxClicked:(id)arg1;
 @property BOOL valueIsPrivate;
 - (void)setPrivateMeEnabled:(BOOL)arg1;
+- (void)updateRemoveButton;
+- (void)updateAddButton;
 - (void)updateMultiValueControls;
 - (void)didRemoveFromCollection:(id)arg1;
 - (void)didChangeLabelForCollection:(id)arg1;
 - (void)didInsertIntoCollectionView:(id)arg1;
-- (BOOL)shouldDrawRolloverHilight;
-- (void)prepareForDrawingWithoutRolloverHilight;
+- (BOOL)shouldDrawRolloverHighlight;
+- (void)prepareForDrawingWithoutRolloverHighlight;
 - (void)mouseExitedValueTrackingArea;
 - (void)mouseExitedLabelTrackingArea;
 - (void)mouseExited:(id)arg1;
@@ -88,25 +99,21 @@ __attribute__((visibility("hidden")))
 - (void)clearValue;
 - (BOOL)hasValue;
 - (id)property;
+- (void)popUpButtonWillResignFirstResponder:(id)arg1;
+- (void)textFieldWillResignFirstResponder:(id)arg1;
 - (void)editWithFocus:(id)arg1;
 - (void)focus;
 - (BOOL)isEditView;
 @property(readonly, getter=isFocused) BOOL focused;
 - (BOOL)commitEditing;
 - (id)scope;
-- (void)updateConstraints;
+- (void)generateConstraints;
+- (void)viewWillMoveToWindow:(id)arg1;
+- (void)attachOverlayViewToFocusedView;
 @property(retain) NSPopUpButton *messagingServiceChooserPopup;
 @property(retain) NSView *messagingServiceLabel;
-- (id)suggestedColor;
 - (id)valueTextColor;
 - (id)labelTextColor;
-- (id)valueMouseoverValueTextColorKey;
-- (id)valueTextColorKey;
-- (id)valueFontSizeKey;
-- (id)valueFontNameKey;
-- (id)labelTextColorKey;
-- (id)labelFontSizeKey;
-- (id)labelFontNameKey;
 - (void)updateTextColors;
 - (void)updateValueFontWithFont:(id)arg1;
 - (void)updateValueFont;
@@ -136,19 +143,23 @@ __attribute__((visibility("hidden")))
 - (void)configureClickToEdit;
 - (id)labelContextualMenu;
 - (void)showLabelPopupMenuWithEvent:(id)arg1;
+- (void)addField:(id)arg1;
+- (id)labelMenuItems;
+- (id)selectedLabel;
+- (BOOL)hideRemoveButton;
+- (BOOL)_showTouchBar;
+- (id)makeTouchBar;
 - (void)hideGlyphButtonsIfNeeded;
 - (void)showGlyphsButtonsIfNeeded;
 - (void)setGlyphsButtonsVisible:(BOOL)arg1;
-- (BOOL)isVibrantDarkAppearance;
-- (id)labelMouseOverValueHighlightColor;
-- (id)labelMouseOverValueTextColor;
-- (id)labelMouseOverLabelTextColor;
+- (void)updateGlyphButtonsVisibility;
 - (void)drawValueHighlightRect:(struct CGRect)arg1 labelRect:(struct CGRect)arg2;
 - (void)drawLabelHighlightRect:(struct CGRect)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)performCollectionAction:(id)arg1 withSender:(id)arg2 item:(id)arg3;
 - (void)reviewSuggestion:(id)arg1;
 - (void)glyphButtonPressed:(id)arg1;
+- (void)resetFocusRingView;
 - (id)labelTextField;
 - (id)valueTextField;
 - (id)cardViewProperty;

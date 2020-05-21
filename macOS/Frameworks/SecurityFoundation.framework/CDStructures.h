@@ -10,6 +10,41 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct CC_MD5state_st {
+    unsigned int A;
+    unsigned int B;
+    unsigned int C;
+    unsigned int D;
+    unsigned int Nl;
+    unsigned int Nh;
+    unsigned int data[16];
+    int num;
+};
+
+struct CC_SHA1state_st {
+    unsigned int h0;
+    unsigned int h1;
+    unsigned int h2;
+    unsigned int h3;
+    unsigned int h4;
+    unsigned int Nl;
+    unsigned int Nh;
+    unsigned int data[16];
+    int num;
+};
+
+struct CC_SHA256state_st {
+    unsigned int count[2];
+    unsigned int hash[8];
+    unsigned int wbuf[16];
+};
+
+struct CC_SHA512state_st {
+    unsigned long long count[2];
+    unsigned long long hash[8];
+    unsigned long long wbuf[16];
+};
+
 struct __CE_CRLDistributionPoint {
     struct __CE_DistributionPointName *_field1;
     int _field2;
@@ -113,6 +148,17 @@ struct __CE_GeneralNames {
 
 struct __CE_GeneralSubtrees;
 
+struct ccdigest_info {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned long long _field4;
+    char *_field5;
+    void *_field6;
+    CDUnknownFunctionPointerType _field7;
+    CDUnknownFunctionPointerType _field8;
+};
+
 struct cssm_acl_keychain_prompt_selector {
     unsigned short _field1;
     unsigned short _field2;
@@ -163,11 +209,6 @@ struct cssm_keyheader {
     unsigned int Reserved;
 };
 
-struct cssm_x509_algorithm_identifier {
-    struct cssm_data _field1;
-    struct cssm_data _field2;
-};
-
 struct cssm_x509_name {
     unsigned int _field1;
     struct cssm_x509_rdn *_field2;
@@ -181,4 +222,17 @@ typedef struct {
     unsigned int _field1;
     struct *_field2;
 } CDStruct_166d2db6;
+
+typedef struct {
+    long long mode;
+    struct {
+        unsigned long long authenticationRequirements;
+        long long subsetCount;
+    } authenticationPolicy;
+} CDStruct_9d0d652d;
+
+typedef struct {
+    struct cssm_data _field1;
+    struct cssm_data _field2;
+} CDStruct_b9cef19c;
 

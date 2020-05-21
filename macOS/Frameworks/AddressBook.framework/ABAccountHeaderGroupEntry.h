@@ -8,18 +8,17 @@
 
 @class ABAddressBook;
 
-__attribute__((visibility("hidden")))
 @interface ABAccountHeaderGroupEntry : ABHeaderGroupEntry
 {
     ABAddressBook *_addressBook;
 }
 
+- (void).cxx_destruct;
 - (id)createGroupInSectionHelperWithFactory:(id)arg1;
 - (id)actionScope;
 - (BOOL)canCreateGroupInSection;
 - (id)iconWithStyleProvider:(id)arg1;
 - (id)selectHelperWithFactory:(id)arg1;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 account:(id)arg2 children:(id)arg3 addressBook:(id)arg4;
 
 @end

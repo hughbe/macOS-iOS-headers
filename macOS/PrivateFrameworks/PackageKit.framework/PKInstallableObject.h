@@ -19,11 +19,11 @@
     NSArray *_cachedBomDatas;
 }
 
-@property(readonly, retain) NSURL *URL; // @synthesize URL=_url;
-@property(readonly, retain) NSArray *bomsAsData;
-@property(readonly, retain) NSArray *referencedObjects;
+@property(readonly) NSURL *URL; // @synthesize URL=_url;
+@property(readonly) NSArray *bomsAsData;
+@property(readonly) NSArray *referencedObjects;
 - (id)_packageURLsUnderChoice:(id)arg1 internal:(BOOL)arg2;
-@property(readonly, retain) NSArray *certificates;
+@property(readonly) NSArray *certificates;
 @property(readonly) BOOL isSigned;
 - (id)description;
 - (void)dealloc;

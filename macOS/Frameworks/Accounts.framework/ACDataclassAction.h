@@ -6,31 +6,42 @@
 
 #import "NSObject.h"
 
+#import "ACProtobufCoding.h"
 #import "NSSecureCoding.h"
 
-@class NSArray;
+@class NSArray, NSString;
 
-@interface ACDataclassAction : NSObject <NSSecureCoding>
+@interface ACDataclassAction : NSObject <ACProtobufCoding, NSSecureCoding>
 {
     BOOL _isDestructive;
     long long _type;
     NSArray *_affectedContainers;
 }
 
++ (id)_actionForError:(id)arg1;
 + (id)destructiveActionWithType:(long long)arg1 affectedContainers:(id)arg2;
 + (id)destructiveActionWithType:(long long)arg1;
 + (id)actionWithType:(long long)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSArray *affectedContainers; // @synthesize affectedContainers=_affectedContainers;
 @property(readonly, nonatomic) BOOL isDestructive; // @synthesize isDestructive=_isDestructive;
 @property(readonly, nonatomic) long long type; // @synthesize type=_type;
-- (void).cxx_destruct;
-- (unsigned long long)hash;
+@property(readonly, getter=_isError) BOOL _error;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
+- (id)_encodeProtobufData;
+- (id)_encodeProtobuf;
+- (id)_initWithProtobufData:(id)arg1;
+- (id)_initWithProtobuf:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithType:(long long)arg1 destructivity:(BOOL)arg2 affectedContainers:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

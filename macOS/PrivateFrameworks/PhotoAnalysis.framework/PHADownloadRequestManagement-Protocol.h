@@ -9,7 +9,7 @@
 @class PHPhotoLibrary;
 
 @protocol PHADownloadRequestManagement <NSObject>
-@property unsigned long long requestCount;
+@property unsigned long long expectedRequestsCount;
 - (void)requestPermissionToDownloadWithPhotoLibrary:(PHPhotoLibrary *)arg1 completionHandler:(void (^)(BOOL, NSDate *))arg2;
 @end
 

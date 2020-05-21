@@ -8,6 +8,7 @@
 
 @class NSObject<OS_dispatch_source>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface WatchDogTimer : CHLogger
 {
     NSString *_name;

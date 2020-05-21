@@ -18,6 +18,7 @@
 + (id)workoutType;
 @property(copy, nonatomic) NSString *workoutLocationType;
 @property(copy, nonatomic) NSString *workoutCategory;
+@property(copy, nonatomic) NSString *swimmingLocationType;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

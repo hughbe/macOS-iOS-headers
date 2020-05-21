@@ -15,8 +15,9 @@
     NSObject<OS_dispatch_queue> *_concurrentQueue;
 }
 
-@property(retain) NSObject<OS_dispatch_queue> *concurrentQueue; // @synthesize concurrentQueue=_concurrentQueue;
 - (void).cxx_destruct;
+@property(retain) NSObject<OS_dispatch_queue> *concurrentQueue; // @synthesize concurrentQueue=_concurrentQueue;
+- (void)broadcastNotificationToOtherClients:(id)arg1 userInfo:(id)arg2;
 - (void)updateClientSideCacheWithReply:(CDUnknownBlockType)arg1;
 - (void)registerWithAgent;
 - (void)broadcastToOtherClients:(id)arg1 withObject:(id)arg2 withObject:(id)arg3;

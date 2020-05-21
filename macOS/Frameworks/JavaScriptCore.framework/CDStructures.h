@@ -10,6 +10,12 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct AuxiliaryBarrier<JSC::Butterfly *> {
+    struct Butterfly *_field1;
+};
+
+struct Butterfly;
+
 struct CGPoint {
     double _field1;
     double _field2;
@@ -25,6 +31,8 @@ struct CGSize {
     double _field2;
 };
 
+struct CachedBytecode;
+
 struct CallbackData {
     struct CallbackData *_field1;
     id _field2;
@@ -34,10 +42,6 @@ struct CallbackData {
     unsigned long long _field6;
     struct OpaqueJSValue **_field7;
     id _field8;
-};
-
-struct CopyBarrier<JSC::Butterfly> {
-    void *_field1;
 };
 
 struct JSCell;
@@ -50,20 +54,75 @@ struct JSObject {
     unsigned char _field3;
     unsigned char _field4;
     unsigned char _field5;
-    struct CopyBarrier<JSC::Butterfly> _field6;
+    struct AuxiliaryBarrier<JSC::Butterfly *> _field6;
+};
+
+struct JSSourceCode {
+    unsigned int _field1;
+    unsigned char _field2;
+    unsigned char _field3;
+    unsigned char _field4;
+    unsigned char _field5;
+    struct SourceCode _field6;
 };
 
 struct JSValue {
     union EncodedValueDescriptor u;
 };
 
+struct JSWeakValue {
+    int m_tag;
+    union WeakValueUnion m_value;
+};
+
+struct MappedFileData {
+    void *m_fileData;
+    unsigned int m_fileSize;
+};
+
 struct OpaqueJSValue;
 
-struct RefPtr<JSC::JSLock> {
+struct OrdinalNumber {
+    int _field1;
+};
+
+struct RefPtr<JSC::CachedBytecode, WTF::DumbPtrTraits<JSC::CachedBytecode>> {
+    struct CachedBytecode *m_ptr;
+};
+
+struct RefPtr<JSC::JSLock, WTF::DumbPtrTraits<JSC::JSLock>> {
     struct JSLock *m_ptr;
 };
 
-struct Strong<JSC::JSObject> {
+struct RefPtr<JSC::SourceProvider, WTF::DumbPtrTraits<JSC::SourceProvider>> {
+    struct SourceProvider *_field1;
+};
+
+struct RefPtr<WTF::StringImpl, WTF::DumbPtrTraits<WTF::StringImpl>> {
+    struct StringImpl *m_ptr;
+};
+
+struct RetainPtr<NSURL> {
+    void *m_ptr;
+};
+
+struct SourceCode {
+    struct RefPtr<JSC::SourceProvider, WTF::DumbPtrTraits<JSC::SourceProvider>> _field1;
+    int _field2;
+    int _field3;
+    struct OrdinalNumber _field4;
+    struct OrdinalNumber _field5;
+};
+
+struct SourceProvider;
+
+struct String {
+    struct RefPtr<WTF::StringImpl, WTF::DumbPtrTraits<WTF::StringImpl>> m_impl;
+};
+
+struct StringImpl;
+
+struct Strong<JSC::JSObject, JSC::ShouldStrongDestructorGrabLock::No> {
     struct JSValue *m_slot;
 };
 
@@ -79,13 +138,20 @@ struct Weak<JSC::JSString> {
     struct WeakImpl *m_impl;
 };
 
+struct Weak<JSC::Structure> {
+    struct WeakImpl *m_impl;
+};
+
 struct WeakGCMap<id, JSC::JSObject, WTF::PtrHash<id>, WTF::HashTraits<id>>;
 
 struct WeakImpl;
 
-struct WeakValueRef {
-    int m_tag;
-    union WeakValueUnion u;
+struct WeakObjCPtr<JSVirtualMachine> {
+    id m_weakReference;
+};
+
+struct WeakObjCPtr<id<JSModuleLoaderDelegate>> {
+    id m_weakReference;
 };
 
 struct _NSRange {
@@ -100,13 +166,17 @@ struct pair<JSC::JSObject *, JSC::JSObject *> {
 
 struct unique_ptr<JSC::WeakGCMap<id, JSC::JSObject, WTF::PtrHash<id>, WTF::HashTraits<id>>, std::__1::default_delete<JSC::WeakGCMap<id, JSC::JSObject, WTF::PtrHash<id>, WTF::HashTraits<id>>>> {
     struct __compressed_pair<JSC::WeakGCMap<id, JSC::JSObject, WTF::PtrHash<id>, WTF::HashTraits<id>>*, std::__1::default_delete<JSC::WeakGCMap<id, JSC::JSObject, WTF::PtrHash<id>, WTF::HashTraits<id>>>> {
-        struct WeakGCMap<id, JSC::JSObject, WTF::PtrHash<id>, WTF::HashTraits<id>> *__first_;
+        struct WeakGCMap<id, JSC::JSObject, WTF::PtrHash<id>, WTF::HashTraits<id>> *__value_;
     } __ptr_;
 };
 
 #pragma mark Typedef'd Structures
 
 // Template types
+typedef struct RefPtr<JSC::CachedBytecode, WTF::DumbPtrTraits<JSC::CachedBytecode>> {
+    struct CachedBytecode *m_ptr;
+} RefPtr_cd332c91;
+
 typedef struct pair<JSC::JSObject *, JSC::JSObject *> {
     struct JSObject *_field1;
     struct JSObject *_field2;
@@ -124,8 +194,8 @@ union EncodedValueDescriptor {
 };
 
 union WeakValueUnion {
-    struct JSValue m_primitive;
-    struct Weak<JSC::JSObject> m_object;
-    struct Weak<JSC::JSString> m_string;
+    struct JSValue primitive;
+    struct Weak<JSC::JSObject> object;
+    struct Weak<JSC::JSString> string;
 };
 

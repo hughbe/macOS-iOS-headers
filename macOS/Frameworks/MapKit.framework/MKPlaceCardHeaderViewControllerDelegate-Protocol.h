@@ -6,11 +6,6 @@
 
 #import "NSObject.h"
 
-@class MKPlaceCardHeaderViewController;
-
 @protocol MKPlaceCardHeaderViewControllerDelegate <NSObject>
-- (void)placeCardheaderHeaderViewControllerDidSelectShareLocationButton:(MKPlaceCardHeaderViewController *)arg1;
-- (void)placeCardheaderHeaderViewControllerDidSelectRerouteButton:(MKPlaceCardHeaderViewController *)arg1;
-- (void)placeCardheaderHeaderViewControllerDidSelectDirectionsButton:(MKPlaceCardHeaderViewController *)arg1;
 @end
 

@@ -6,47 +6,42 @@
 
 #import "NSViewController.h"
 
+#import "FUFlightViewDelegate.h"
 #import "MKMapViewDelegate.h"
 
-@class FUErrorView, FUFlight, FUFlightView, FULoadingView, NSDate, NSMapTable, NSNumber, NSString;
+@class FUErrorView, FUFlightView, FULoadingView, NSArray, NSDate, NSNumber, NSString;
 
-@interface FUFlightViewController : NSViewController <MKMapViewDelegate>
+@interface FUFlightViewController : NSViewController <MKMapViewDelegate, FUFlightViewDelegate>
 {
-    NSMapTable *_disabledConstraints;
     BOOL _loadingFlight;
     NSDate *_startLoadingDate;
+    unsigned long long _displayStyle;
+    id <FUFlightViewControllerDelegate> _delegate;
+    BOOL _requiresDataLoad;
+    BOOL _viewLoaded;
+    FUFlightView *_regularFlightView;
+    FUFlightView *_compactFlightView;
     BOOL _highlightCurrentFlightLeg;
     BOOL _showInfoPanel;
-    FUFlightView *_flightView;
-    FUFlight *_flight;
+    NSArray *_flights;
     FUErrorView *_errorView;
     FULoadingView *_loadingView;
-    unsigned long long _flightTimeDisplay;
     NSNumber *_flightCode;
     NSString *_airlineCode;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSString *airlineCode; // @synthesize airlineCode=_airlineCode;
 @property(retain) NSNumber *flightCode; // @synthesize flightCode=_flightCode;
-@property(nonatomic) unsigned long long flightTimeDisplay; // @synthesize flightTimeDisplay=_flightTimeDisplay;
 @property __weak FULoadingView *loadingView; // @synthesize loadingView=_loadingView;
 @property __weak FUErrorView *errorView; // @synthesize errorView=_errorView;
+@property(retain) FUFlightView *compactFlightView; // @synthesize compactFlightView=_compactFlightView;
+@property(retain) FUFlightView *regularFlightView; // @synthesize regularFlightView=_regularFlightView;
 @property(nonatomic) BOOL showInfoPanel; // @synthesize showInfoPanel=_showInfoPanel;
 @property(nonatomic) BOOL highlightCurrentFlightLeg; // @synthesize highlightCurrentFlightLeg=_highlightCurrentFlightLeg;
-@property(retain, nonatomic) FUFlight *flight; // @synthesize flight=_flight;
-@property(retain, nonatomic) FUFlightView *flightView; // @synthesize flightView=_flightView;
-- (void).cxx_destruct;
-- (void)enableConstraintsForView:(id)arg1 enable:(BOOL)arg2;
-- (BOOL)knownStatus;
-- (void)updateFlightStatus;
-- (void)updateFlightDates;
-- (id)displayStringForDate:(id)arg1 locale:(id)arg2 late:(BOOL)arg3 timeZone:(id)arg4;
-- (void)updateFlightTerminalInfo;
-- (void)updateDelayInfo;
-- (void)updateTimeLabel:(id)arg1 withString:(id)arg2;
-- (void)updateLocationInfo;
-- (void)updateAirlineInformation;
-- (void)toggleTimeDisplay;
+@property(retain, nonatomic) NSArray *flights; // @synthesize flights=_flights;
+@property(readonly, nonatomic) FUFlightView *flightView;
+- (void)flightView:(id)arg1 didSelectLeg:(long long)arg2 ofFlight:(long long)arg3;
 - (void)fadeLayer:(id)arg1 visible:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)addFittingView:(id)arg1;
 - (void)hideView:(id)arg1;
@@ -54,13 +49,18 @@
 - (void)showFlightView;
 - (void)showErrorView;
 - (void)showLoadingView;
-- (void)viewDidDisappear;
-- (void)viewWillAppear;
 - (void)viewDidLoad;
+@property(nonatomic) long long selectedFlight;
+@property(nonatomic) long long selectedLeg;
+- (void)setFlights:(id)arg1 selectedFlight:(long long)arg2 selectedLeg:(long long)arg3;
+- (void)setDisplayStyle:(unsigned long long)arg1;
 - (void)loadFlightWithFlightCode:(id)arg1 airlineCode:(id)arg2 date:(id)arg3;
+- (void)awakeFromNib;
 - (void)commonInit;
 - (id)initWithFlightCode:(unsigned long long)arg1 airlineCode:(id)arg2;
-- (id)initWithFlight:(id)arg1;
+- (id)initWithSFFlight:(id)arg1 leg:(long long)arg2 style:(unsigned long long)arg3 delegate:(id)arg4;
+- (id)initWithSFFlights:(id)arg1;
+- (id)initWithFlights:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)init;
 

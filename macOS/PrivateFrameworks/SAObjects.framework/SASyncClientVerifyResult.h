@@ -16,6 +16,7 @@
 
 + (id)clientVerifyResultWithDictionary:(id)arg1 context:(id)arg2;
 + (id)clientVerifyResult;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *checksums;
 - (id)encodedClassName;
 - (id)groupIdentifier;

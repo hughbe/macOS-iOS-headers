@@ -7,6 +7,6 @@
 #import "NSTextField.h"
 
 @interface NSTextField (AMCocoaExtensions)
-- (BOOL)canInsertVariable;
+@property(readonly) BOOL am_canInsertVariable;
 @end
 

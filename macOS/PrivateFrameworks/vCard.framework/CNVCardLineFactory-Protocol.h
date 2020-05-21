@@ -10,7 +10,7 @@
 
 @protocol CNVCardLineFactory <NSObject>
 - (id <CNVCardLine>)versionPlaceholderLine;
-- (id <CNVCardLine>)lineWithLiteralValue:(NSString *)arg1;
+- (id <CNVCardLine>)lineWithLiteralValue:(NSData *)arg1;
 - (id <CNVCardParameterLine>)dataLineWithName:(NSString *)arg1 value:(NSData *)arg2;
 - (id <CNVCardParameterLine>)arrayLineWithName:(NSString *)arg1 value:(NSArray *)arg2 itemSeparator:(NSString *)arg3;
 - (id <CNVCardParameterLine>)arrayLineWithName:(NSString *)arg1 value:(NSArray *)arg2;

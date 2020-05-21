@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSString, PARReply;
+@class GEOUserSessionEntity, NSArray, NSDictionary, NSString, PARReply;
 
 @interface PARResponse : NSObject
 {
@@ -17,22 +17,28 @@
     NSArray *_sections;
     NSArray *_results;
     NSDictionary *_rawSqf;
+    NSDictionary *_serverFeatures;
     NSArray *_suggestions;
     NSArray *_corrections;
+    GEOUserSessionEntity *_geoUserSessionEntity;
 }
 
 + (id)responseFromReply:(id)arg1;
 + (id)responseFromJSON:(id)arg1 session:(id)arg2;
+- (void).cxx_destruct;
+@property(retain, nonatomic) GEOUserSessionEntity *geoUserSessionEntity; // @synthesize geoUserSessionEntity=_geoUserSessionEntity;
 @property(readonly, nonatomic) NSArray *corrections; // @synthesize corrections=_corrections;
 @property(readonly, nonatomic) NSArray *suggestions; // @synthesize suggestions=_suggestions;
+@property(readonly, nonatomic) NSDictionary *serverFeatures; // @synthesize serverFeatures=_serverFeatures;
 @property(readonly, nonatomic) NSDictionary *rawSqf; // @synthesize rawSqf=_rawSqf;
 @property(retain, nonatomic) NSArray *results; // @synthesize results=_results;
 @property(readonly, nonatomic) NSArray *sections; // @synthesize sections=_sections;
 @property(readonly, nonatomic) NSArray *rawResponse; // @synthesize rawResponse=_rawResponse;
 @property(readonly, nonatomic) NSString *query; // @synthesize query=_query;
 @property(readonly, nonatomic) NSString *prefix; // @synthesize prefix=_prefix;
-@property(retain, nonatomic) PARReply *reply; // @synthesize reply=_reply;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) PARReply *reply; // @synthesize reply=_reply;
+- (id)initWithReply:(id)arg1 factory:(id)arg2 responseV2:(id)arg3;
+- (id)initWithReply:(id)arg1;
 
 @end
 

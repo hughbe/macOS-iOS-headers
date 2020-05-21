@@ -31,6 +31,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) NSString *delegateMachServiceName; // @synthesize delegateMachServiceName=_delegateMachServiceName;
 @property(copy) NSString *clientIdentifier; // @synthesize clientIdentifier=_clientIdentifier;
 @property(copy) NSString *uuid; // @synthesize uuid=_uuid;

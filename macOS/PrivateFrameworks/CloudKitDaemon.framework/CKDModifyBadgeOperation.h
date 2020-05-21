@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
     unsigned long long _badgeValue;
 }
 
++ (long long)isPredominatelyDownload;
 @property(readonly, nonatomic) unsigned long long badgeValue; // @synthesize badgeValue=_badgeValue;
 - (void)main;
 - (id)activityCreate;

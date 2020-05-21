@@ -10,7 +10,6 @@
 
 @class NSArray, NSMutableIndexSet, NSString;
 
-__attribute__((visibility("hidden")))
 @interface _CNForkJoinProgressiveResultObservationStrategy : NSObject <CNForkJoinResultReportingStrategy>
 {
     NSArray *_results;

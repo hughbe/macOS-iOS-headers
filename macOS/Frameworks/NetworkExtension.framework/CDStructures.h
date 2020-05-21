@@ -4,7 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#pragma mark Blocks
+#pragma mark Function Pointers and Blocks
+
+typedef void (*CDUnknownFunctionPointerType)(void); // return type and parameters are unknown
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
@@ -37,46 +39,86 @@ struct CGSize {
     double _field2;
 };
 
-struct IPCMessage;
-
-struct NEAgentFilterPluginCallbacks {
-    CDUnknownFunctionPointerType PluginInit;
-    CDUnknownFunctionPointerType PluginStart;
-    CDUnknownFunctionPointerType PluginStop;
-    CDUnknownFunctionPointerType PluginEnvironmentEvent;
-    CDUnknownFunctionPointerType PluginDispose;
+struct EAPClientPluginData_s {
+    void *private;
+    _Bool log_enabled;
+    unsigned int log_level;
+    unsigned int mtu;
+    unsigned int generation;
+    void *unique_id;
+    unsigned int unique_id_length;
+    char *username;
+    unsigned int username_length;
+    struct __CFData *encryptedEAPIdentity;
+    char *password;
+    unsigned int password_length;
+    struct __CFDictionary *properties;
+    _Bool system_mode;
+    struct __SecIdentity *sec_identity;
+    void *reserved[6];
 };
 
-struct _VPNConfigurationPrivate {
-    struct __CFRuntimeBase {
-        unsigned long long _field1;
-        unsigned char _field2[4];
-        unsigned int _field3;
-    } _field1;
-    struct __CFString *_field2;
-    unsigned char _field3;
-    struct __CFRunLoopSource *_field4;
-    struct __CFRunLoopSource *_field5;
-    struct __CFRunLoopSource *_field6;
-    struct __CFArray *_field7;
-    CDUnknownFunctionPointerType _field8;
-    CDStruct_e097db04 _field9;
-    CDUnknownFunctionPointerType _field10;
-    CDStruct_e097db04 _field11;
-    id _field12;
-    void *_field13;
-    struct ipc_queue _field14;
-    id _field15;
-    struct {
-        struct _VPNConfigurationPrivate *_field1;
-    } _field16;
+struct ccdigest_info;
+
+struct ccec_cp;
+
+struct ccec_full_ctx {
+    struct ccec_cp *cp;
+    unsigned char pad[8];
+    struct ccec_projective_point point[0];
 };
 
-struct __CFRunLoopSource;
+struct ccec_projective_point {
+    unsigned long long xyz[1];
+};
 
-struct ipc_queue {
-    struct IPCMessage *_field1;
-    struct IPCMessage **_field2;
+struct cfil_crypto_state {
+    struct ccdigest_info *_field1;
+    unsigned char _field2[32];
+};
+
+struct interpose_frame {
+    unsigned char ring_id;
+    char *buffer;
+    unsigned int bufferLength;
+    unsigned long long packet;
+    struct __user_buflet *buflet;
+};
+
+struct nw_frame;
+
+struct nw_frame_array_s {
+    struct nw_frame *tqh_first;
+    struct nw_frame **tqh_last;
+};
+
+struct nw_protocol {
+    unsigned char flow_id[16];
+    struct nw_protocol_identifier *identifier;
+    struct nw_protocol_callbacks *callbacks;
+    struct nw_protocol *output_handler;
+    void *handle;
+    struct nw_protocol *default_input_handler;
+    void *output_handler_context;
+};
+
+struct nw_protocol_callbacks;
+
+struct nw_protocol_identifier;
+
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
+};
+
+struct sockaddr {
+    unsigned char _field1;
+    unsigned char _field2;
+    char _field3[14];
+};
+
+struct timeval {
+    long long _field1;
+    int _field2;
 };
 
 #pragma mark Typedef'd Structures
@@ -86,11 +128,16 @@ typedef struct {
     unsigned char _field2[12];
 } CDStruct_c3d3b44c;
 
-typedef struct {
-    long long _field1;
-    void *_field2;
-    CDUnknownFunctionPointerType _field3;
-    CDUnknownFunctionPointerType _field4;
-    CDUnknownFunctionPointerType _field5;
-} CDStruct_e097db04;
+#pragma mark Typedef'd Unions
+
+typedef union {
+    union {
+        struct ccec_full_ctx dhECPKey256[9];
+        struct ccec_full_ctx dhECPKey384[13];
+        struct ccec_full_ctx dhECPKey521[19];
+    } dhECPKey;
+    union {
+        unsigned char dhCurveKey25519[32];
+    } dhCurveKey;
+} CDUnion_07c5b791;
 

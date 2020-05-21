@@ -8,26 +8,53 @@
 
 #import "NSCopying.h"
 
-@class GEOPDViewportInfo;
+@class GEOPDVenueIdentifier, GEOPDViewportInfo, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDSearchBrowseCategorySuggestionParameters : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
+    CDStruct_95bda58d _engineTypes;
     double _requestLocalTimestamp;
+    GEOPDVenueIdentifier *_venueFilter;
+    GEOPDViewportInfo *_viewportInfo;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     int _minimumNumberOfCategories;
     int _suggestionType;
-    GEOPDViewportInfo *_viewportInfo;
     BOOL _isCarplayRequest;
+    BOOL _isFlatCategoryListRequest;
+    BOOL _isFromNoQueryState;
     struct {
-        unsigned int requestLocalTimestamp:1;
-        unsigned int minimumNumberOfCategories:1;
-        unsigned int suggestionType:1;
-        unsigned int isCarplayRequest:1;
-    } _has;
+        unsigned int has_requestLocalTimestamp:1;
+        unsigned int has_minimumNumberOfCategories:1;
+        unsigned int has_suggestionType:1;
+        unsigned int has_isCarplayRequest:1;
+        unsigned int has_isFlatCategoryListRequest:1;
+        unsigned int has_isFromNoQueryState:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_engineTypes:1;
+        unsigned int read_venueFilter:1;
+        unsigned int read_viewportInfo:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_engineTypes:1;
+        unsigned int wrote_requestLocalTimestamp:1;
+        unsigned int wrote_venueFilter:1;
+        unsigned int wrote_viewportInfo:1;
+        unsigned int wrote_minimumNumberOfCategories:1;
+        unsigned int wrote_suggestionType:1;
+        unsigned int wrote_isCarplayRequest:1;
+        unsigned int wrote_isFlatCategoryListRequest:1;
+        unsigned int wrote_isFromNoQueryState:1;
+    } _flags;
 }
 
-@property(nonatomic) BOOL isCarplayRequest; // @synthesize isCarplayRequest=_isCarplayRequest;
-@property(nonatomic) double requestLocalTimestamp; // @synthesize requestLocalTimestamp=_requestLocalTimestamp;
-@property(retain, nonatomic) GEOPDViewportInfo *viewportInfo; // @synthesize viewportInfo=_viewportInfo;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -35,18 +62,42 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasIsFlatCategoryListRequest;
+@property(nonatomic) BOOL isFlatCategoryListRequest;
+@property(nonatomic) BOOL hasIsFromNoQueryState;
+@property(nonatomic) BOOL isFromNoQueryState;
+@property(retain, nonatomic) GEOPDVenueIdentifier *venueFilter;
+@property(readonly, nonatomic) BOOL hasVenueFilter;
+- (void)_readVenueFilter;
+- (int)StringAsEngineTypes:(id)arg1;
+- (id)engineTypesAsString:(int)arg1;
+- (void)setEngineTypes:(int *)arg1 count:(unsigned long long)arg2;
+- (int)engineTypeAtIndex:(unsigned long long)arg1;
+- (void)_addNoFlagsEngineType:(int)arg1;
+- (void)addEngineType:(int)arg1;
+- (void)clearEngineTypes;
+@property(readonly, nonatomic) int *engineTypes;
+@property(readonly, nonatomic) unsigned long long engineTypesCount;
+- (void)_readEngineTypes;
 - (int)StringAsSuggestionType:(id)arg1;
 - (id)suggestionTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasSuggestionType;
-@property(nonatomic) int suggestionType; // @synthesize suggestionType=_suggestionType;
+@property(nonatomic) int suggestionType;
 @property(nonatomic) BOOL hasIsCarplayRequest;
+@property(nonatomic) BOOL isCarplayRequest;
 @property(nonatomic) BOOL hasMinimumNumberOfCategories;
-@property(nonatomic) int minimumNumberOfCategories; // @synthesize minimumNumberOfCategories=_minimumNumberOfCategories;
+@property(nonatomic) int minimumNumberOfCategories;
 @property(nonatomic) BOOL hasRequestLocalTimestamp;
+@property(nonatomic) double requestLocalTimestamp;
+@property(retain, nonatomic) GEOPDViewportInfo *viewportInfo;
 @property(readonly, nonatomic) BOOL hasViewportInfo;
+- (void)_readViewportInfo;
 - (void)dealloc;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

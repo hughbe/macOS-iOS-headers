@@ -8,9 +8,10 @@
 
 @interface IMKVerbatimInputMethod : IMKAbstractInputMethod
 {
+    BOOL _useComposingText;
 }
 
-- (BOOL)handleKeyRelease:(id)arg1 whileInKeyboardState:(id)arg2;
+@property(nonatomic) BOOL useComposingText; // @synthesize useComposingText=_useComposingText;
 - (BOOL)handleKeyPress:(id)arg1 whileInKeyboardState:(id)arg2;
 
 @end

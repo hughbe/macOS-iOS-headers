@@ -13,15 +13,15 @@ __attribute__((visibility("hidden")))
 {
     unsigned long long fIndex;
     _Bool fSnapshotImageRequested;
-    struct TRef<TTimeMachineTarget *, TRetainReleasePolicy<TTimeMachineTarget *>> fTarget;
-    struct TNSRef<CABackdropLayer *, void> _backdropLayer;
-    struct TNSRef<CALayer *, void> _effectLayer;
+    shared_ptr_253687d6 fTarget;
+    struct TNSRef<CABackdropLayer, void> _backdropLayer;
+    struct TNSRef<CALayer, void> _effectLayer;
     _Bool _configuredForInvalid;
 }
 
-@property(nonatomic) _Bool configuredForInvalid; // @synthesize configuredForInvalid=_configuredForInvalid;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) _Bool configuredForInvalid; // @synthesize configuredForInvalid=_configuredForInvalid;
 - (void)removeAnimationForKey:(id)arg1;
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
 - (_Bool)showAsValidTarget;

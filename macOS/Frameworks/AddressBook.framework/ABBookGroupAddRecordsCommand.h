@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABBookUndoableCommand.h>
+#import "ABBookUndoableCommand.h"
 
 @class ABBookGroupAddMembersCommand, ABBookGroupAddSubgroupsCommand, NSSet;
 
@@ -12,8 +12,11 @@
 {
     ABBookGroupAddMembersCommand *_addMembersCommand;
     ABBookGroupAddSubgroupsCommand *_addSubgroupsCommand;
+    BOOL ignoresGuardianRestrictions;
 }
 
+- (void)setIgnoresGuardianRestrictions:(BOOL)arg1;
+- (BOOL)ignoresGuardianRestrictions;
 - (void)executeUndo;
 - (void)execute;
 @property(readonly) NSSet *newSubgroupUids;

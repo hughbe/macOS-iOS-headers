@@ -7,6 +7,7 @@
 #import "NSImage.h"
 
 @interface NSImage (AKPlatformImage_Extensions)
++ (id)akImageNamed:(id)arg1;
 - (struct CGImage *)akCGImage;
 - (id)initWithCGImage:(struct CGImage *)arg1;
 @end

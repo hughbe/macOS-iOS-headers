@@ -7,10 +7,6 @@
 #import "EKCalendarResourceChangeNotification.h"
 
 @interface EKCalendarResourceChangeNotification (CUIKDescription)
-+ (id)_sharedPropLocationString;
-+ (id)_sharedPropTitleString;
-+ (id)_sharedPropTimeString;
-+ (id)_sharedPropDateString;
 - (long long)_changedPropertyCount;
 - (id)allDescriptionStringsWithOptions:(unsigned long long)arg1;
 - (id)_resourceChangeStringWithOptions:(unsigned long long)arg1;

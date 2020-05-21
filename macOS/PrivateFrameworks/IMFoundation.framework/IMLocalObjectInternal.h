@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IMMessageContext, NSLock, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_xpc_object>, NSProtocolChecker, NSRecursiveLock, NSString;
+@class IMMessageContext, NSArray, NSLock, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_xpc_object>, NSProtocolChecker, NSRecursiveLock, NSString;
 
 @interface IMLocalObjectInternal : NSObject
 {
@@ -19,6 +19,7 @@
     NSString *_portName;
     NSString *_processName;
     NSProtocolChecker *_protocolChecker;
+    NSArray *_whitelistedClasses;
     NSMutableArray *_componentQueue;
     NSLock *_componentQueueLock;
     NSRecursiveLock *_componentQueueProcessingLock;
@@ -26,7 +27,7 @@
     BOOL _pendingComponentQueueProcessing;
     BOOL _busyForwarding;
     BOOL _offMainThread;
-    BOOL _forceSecureCoding;
+    BOOL _wasInterrupted;
 }
 
 - (void)dealloc;

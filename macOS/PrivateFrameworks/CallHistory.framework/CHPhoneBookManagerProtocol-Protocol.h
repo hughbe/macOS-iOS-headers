@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSString;
+@class CNContact, NSDictionary, NSString;
 
 @protocol CHPhoneBookManagerProtocol <NSObject>
 + (id)get;
 - (BOOL)isABContactASuggestion;
-- (NSString *)getLocalizedCallerIdLabelForRecord:(const void *)arg1 withMultiValueId:(NSString *)arg2 withCallerIdIsEmail:(BOOL)arg3;
-- (NSString *)getPersonsNameForRecord:(const void *)arg1;
-- (NSDictionary *)getRecordId:(NSString *)arg1 andISOCountryCode:(NSString *)arg2 isEmail:(BOOL)arg3;
+- (NSString *)getLocalizedCallerIdLabelForContact:(CNContact *)arg1 forCallerId:(NSString *)arg2 withCallerIdIsEmail:(BOOL)arg3;
+- (NSString *)getPersonsNameForContact:(CNContact *)arg1;
+- (CNContact *)fetchFullCNContactForContactIdentifier:(NSString *)arg1 isEmail:(BOOL)arg2;
+- (NSDictionary *)getRecordId:(NSString *)arg1 countryCode:(NSString *)arg2 isEmail:(BOOL)arg3;
 @end
 

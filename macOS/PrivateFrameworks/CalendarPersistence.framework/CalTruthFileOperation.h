@@ -15,6 +15,7 @@
 }
 
 + (id)operationWithMethods:(id)arg1;
+- (void).cxx_destruct;
 - (void)main;
 - (void)finalize;
 - (void)dealloc;

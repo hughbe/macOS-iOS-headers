@@ -6,20 +6,41 @@
 
 #import "NSObject.h"
 
-@class NSData;
+@class NSData, NSUUID;
 
 @interface ISImage : NSObject
 {
-    NSData *_data;
 }
 
++ (id)allocWithZone:(struct _NSZone *)arg1;
++ (struct CGColorSpace *)defaultCGColorSpace;
++ (id)imageDestinationPropertiesForScale:(unsigned int)arg1;
++ (BOOL)writeCGImage:(struct CGImage *)arg1 toURL:(id)arg2;
 + (struct CGImage *)newCGImageWithDataSource:(id)arg1;
-- (struct CGImageBlockSet *)copyCGImageBlockSetWithProvider:(struct CGImageProvider *)arg1;
-- (void)_getImageBuffer:(void **)arg1 size:(unsigned long long *)arg2;
-- (CDStruct_9d4bab76 *)_header;
-@property(readonly) BOOL hasData; // @dynamic hasData;
-- (void)dealloc;
-- (id)initWithData:(id)arg1;
++ (struct CGImage *)newCGImageWithCacheFileURL:(id)arg1;
++ (struct CGImage *)newCGImageWithContentsOfURL:(id)arg1;
++ (struct CGColorSpace *)srgbColorSpace;
+@property(retain) NSUUID *uuid; // @dynamic uuid;
+- (id)debugDescription;
+- (id)description;
+@property(readonly) struct CGImage *CGImage; // @dynamic CGImage;
+@property(readonly) NSData *bitmapData;
+@property(readonly) struct CGSize pixelSize;
+- (id)_init;
+- (id)initWithCGImage:(struct CGImage *)arg1 scale:(double)arg2 placeholder:(BOOL)arg3;
+- (id)initWithCGImage:(struct CGImage *)arg1 scale:(double)arg2;
+- (id)initWithContentsOfURL:(id)arg1 scale:(double)arg2;
+- (id)initWithData:(id)arg1 uuid:(id)arg2;
+- (id)initWithCGImage:(struct CGImage *)arg1 scale:(double)arg2 minimumSize:(struct CGSize)arg3 placeholder:(BOOL)arg4;
+- (id)digest;
+- (BOOL)writeToURL:(id)arg1;
+
+// Remaining properties
+@property(readonly) struct CGImage *cgImage; // @dynamic cgImage;
+@property struct CGSize minimumSize; // @dynamic minimumSize;
+@property(readonly) BOOL placeholder; // @dynamic placeholder;
+@property(readonly) double scale; // @dynamic scale;
+@property(readonly) struct CGSize size; // @dynamic size;
 
 @end
 

@@ -6,9 +6,11 @@
 
 #import <StoreFoundation/ISOperation.h>
 
-@class ISDialog, ISDialogButton, ISServerAuthenticationOperation;
+#import "ISDialogOperationDelegate.h"
 
-@interface ISDialogOperation : ISOperation
+@class ISDialog, ISDialogButton, ISServerAuthenticationOperation, NSNumber, NSString;
+
+@interface ISDialogOperation : ISOperation <ISDialogOperationDelegate>
 {
     ISDialog *_dialog;
     BOOL _performDefaultActions;
@@ -19,17 +21,24 @@
 }
 
 + (id)operationWithDialog:(id)arg1 storeClient:(id)arg2;
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType buttonClickHandler; // @synthesize buttonClickHandler=_buttonClickHandler;
 @property(retain) ISDialogButton *selectedButton; // @synthesize selectedButton=_selectedButton;
 @property BOOL performDefaultActions; // @synthesize performDefaultActions=_performDefaultActions;
 @property(readonly) ISDialog *dialog; // @synthesize dialog=_dialog;
-- (void).cxx_destruct;
 - (void)run;
 - (void)operation:(id)arg1 selectedButton:(id)arg2;
 - (void)handleButtonSelected:(long long)arg1;
+@property(readonly) NSNumber *authenticatedAccountDSID;
 @property(readonly) ISServerAuthenticationOperation *authenticationOperation; // @dynamic authenticationOperation;
 - (id)initWithDialog:(id)arg1 storeClient:(id)arg2;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

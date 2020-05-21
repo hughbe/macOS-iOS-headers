@@ -15,13 +15,13 @@ __attribute__((visibility("hidden")))
     id _value;
 }
 
+- (void).cxx_destruct;
 @property(readonly) id value; // @synthesize value=_value;
 @property(readonly) CNPropertyDescription *property; // @synthesize property=_property;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (void)applyToMutableContact:(id)arg1 withIdentifierMap:(id)arg2;
-- (void)dealloc;
 - (id)initWithProperty:(id)arg1 value:(id)arg2;
 - (void)applyToABCDContact:(id)arg1;
 

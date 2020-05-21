@@ -29,6 +29,7 @@
     NSString *_name;
     NSString *_iCloudName;
     NSArray *_iCloudNames;
+    NSArray *_iCloudIdentifiers;
     NSString *_fullName;
     NSImage *_accountPicture;
     NSURL *_relativeHomeDir;
@@ -42,6 +43,7 @@
 + (id)keyPathsForValuesAffectingShouldPreserveConflictedHomeDirectory;
 + (id)keyPathsForValuesAffectingShouldOverwriteConflictedShortName;
 + (id)keyPathsForValuesAffectingAllowOverwriteOfConflictedShortName;
+- (void).cxx_destruct;
 @property unsigned long long userConflictResolutionOptions; // @synthesize userConflictResolutionOptions=_userConflictResolutionOptions;
 @property(readonly) unsigned long long userConflictState; // @synthesize userConflictState=_userConflictState;
 @property BOOL needsAttention; // @synthesize needsAttention=_needsAttention;
@@ -54,6 +56,7 @@
 @property(readonly) NSURL *relativeHomeDir; // @synthesize relativeHomeDir=_relativeHomeDir;
 @property(retain) NSImage *accountPicture; // @synthesize accountPicture=_accountPicture;
 @property(retain) NSString *fullName; // @synthesize fullName=_fullName;
+@property(retain) NSArray *iCloudIdentifiers; // @synthesize iCloudIdentifiers=_iCloudIdentifiers;
 @property(retain) NSArray *iCloudNames; // @synthesize iCloudNames=_iCloudNames;
 @property(retain) NSString *iCloudName; // @synthesize iCloudName=_iCloudName;
 @property(retain) NSString *name; // @synthesize name=_name;
@@ -65,12 +68,12 @@
 @property(retain) NSString *UUID; // @synthesize UUID=_UUID;
 @property unsigned int gid; // @synthesize gid=_gid;
 @property unsigned int uid; // @synthesize uid=_uid;
-- (void).cxx_destruct;
 - (void)updateConflictStateForSystem:(id)arg1 consideringOtherUsers:(id)arg2;
 - (id)sanitizedLoginStringForComparison:(id)arg1;
 @property(readonly) BOOL longNameHasConflict;
 @property(readonly) BOOL shortNameHasConflictWithOtherShortName;
 @property(readonly) BOOL shortNameHasConflict;
+- (BOOL)isMigratable;
 - (void)resetNamesForImport;
 @property(retain) NSString *longNameForImport;
 @property(retain) NSString *shortNameForImport;

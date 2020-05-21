@@ -11,9 +11,9 @@
 @interface RKPersistentPersonalizer : NSObject
 {
     void *_model;
+    NSURL *_dynamicDataURL;
     NSString *_languageID;
     NSLocale *_languageLocale;
-    NSURL *_dynamicDataURL;
     id <RKDisplayStringsProvider> _displayStringsProvider;
     NSDate *_lastObservedDynamicDataCreationDate;
     NSDate *_lastDynamicDataCreationCheckDate;
@@ -22,14 +22,14 @@
 
 + (void)removeAllDynamicModelsInDirectory:(id)arg1;
 + (id)nonEmptyStringsPredicate;
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *synonyms; // @synthesize synonyms=_synonyms;
 @property(retain) NSDate *lastDynamicDataCreationCheckDate; // @synthesize lastDynamicDataCreationCheckDate=_lastDynamicDataCreationCheckDate;
 @property(retain) NSDate *lastObservedDynamicDataCreationDate; // @synthesize lastObservedDynamicDataCreationDate=_lastObservedDynamicDataCreationDate;
 @property(readonly) id <RKDisplayStringsProvider> displayStringsProvider; // @synthesize displayStringsProvider=_displayStringsProvider;
-@property(retain) NSURL *dynamicDataURL; // @synthesize dynamicDataURL=_dynamicDataURL;
 @property(retain) NSLocale *languageLocale; // @synthesize languageLocale=_languageLocale;
 @property(retain) NSString *languageID; // @synthesize languageID=_languageID;
-- (void).cxx_destruct;
+@property(retain) NSURL *dynamicDataURL; // @synthesize dynamicDataURL=_dynamicDataURL;
 - (void)flushDynamicData;
 - (id)headwordsForSynonymPrefix:(id)arg1;
 - (id)headwordsForSynonym:(id)arg1;

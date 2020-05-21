@@ -10,10 +10,22 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct _NSRange {
+    unsigned long long _field1;
+    unsigned long long _field2;
+};
+
 struct __va_list_tag {
     unsigned int _field1;
     unsigned int _field2;
     void *_field3;
     void *_field4;
 };
+
+#pragma mark Typedef'd Structures
+
+// Ambiguous groups
+typedef struct {
+    unsigned int type:1;
+} CDStruct_f953fb60;
 

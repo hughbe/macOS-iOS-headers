@@ -12,7 +12,7 @@
 {
     long long _addedFrequency;
     NSURL *_alarmId;
-    BOOL _enabled;
+    NSNumber *_enabled;
     NSNumber *_hour;
     NSString *_label;
     NSNumber *_minute;
@@ -27,10 +27,10 @@
 - (id)minute;
 - (id)label;
 - (id)hour;
-- (BOOL)enabled;
+- (id)enabled;
 - (id)alarmId;
 - (long long)addedFrequency;
-- (id)_initWithAddedFrequency:(long long)arg1 alarmId:(id)arg2 enabled:(BOOL)arg3 hour:(id)arg4 label:(id)arg5 minute:(id)arg6 removedFrequency:(long long)arg7;
+- (id)_initWithAddedFrequency:(long long)arg1 alarmId:(id)arg2 enabled:(id)arg3 hour:(id)arg4 label:(id)arg5 minute:(id)arg6 removedFrequency:(long long)arg7;
 
 @end
 

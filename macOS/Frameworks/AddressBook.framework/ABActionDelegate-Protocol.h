@@ -10,9 +10,10 @@
 @property(readonly) NSString *actionProperty;
 - (void)performActionForPerson:(ABPerson *)arg1 identifier:(NSString *)arg2;
 - (NSString *)titleForPerson:(ABPerson *)arg1 identifier:(NSString *)arg2;
+- (NSString *)unlocalizedTitle;
 
 @optional
-- (void)performActionForPerson:(ABPerson *)arg1 identifier:(NSString *)arg2 transitionProvider:(id <ABShareKitTransitionProvider>)arg3;
+- (void)performActionForPerson:(ABPerson *)arg1 identifier:(NSString *)arg2 transitionProvider:(id <CNUIShareKitTransitionProvider>)arg3;
 - (BOOL)shouldEnableActionForPerson:(ABPerson *)arg1 identifier:(NSString *)arg2;
 @end
 

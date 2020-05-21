@@ -17,6 +17,7 @@
 - (BOOL)allowsOriginalFontMetricsOverride;
 - (struct _NSRange)range;
 - (void)setTextStorage:(id)arg1;
+- (id)textStorage;
 - (void)textStorage:(id)arg1 edited:(unsigned long long)arg2 range:(struct _NSRange)arg3 changeInLength:(long long)arg4 invalidatedRange:(struct _NSRange)arg5;
 - (void)processEditingForTextStorage:(id)arg1 edited:(unsigned long long)arg2 range:(struct _NSRange)arg3 changeInLength:(long long)arg4 invalidatedRange:(struct _NSRange)arg5;
 - (id)_subtextStorageFromRange:(struct _NSRange)arg1;

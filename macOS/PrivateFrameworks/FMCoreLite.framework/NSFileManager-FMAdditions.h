@@ -7,6 +7,6 @@
 #import "NSFileManager.h"
 
 @interface NSFileManager (FMAdditions)
-+ (BOOL)fm_setDataProtectionClass:(int)arg1 forFileURL:(id)arg2 error:(id *)arg3;
++ (BOOL)fm_setDataProtectionClass:(long long)arg1 forFileURL:(id)arg2 error:(id *)arg3;
 @end
 

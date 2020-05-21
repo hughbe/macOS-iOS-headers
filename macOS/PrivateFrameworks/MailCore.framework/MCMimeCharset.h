@@ -6,30 +6,38 @@
 
 #import "NSObject.h"
 
+#import "ECMIMECharset.h"
+#import "NSSecureCoding.h"
+
 @class NSString;
 
-@interface MCMimeCharset : NSObject
+@interface MCMimeCharset : NSObject <ECMIMECharset, NSSecureCoding>
 {
-    BOOL _useBase64InHeaders;
     BOOL _canBeUsedForOutgoingMessages;
     unsigned long long _encoding;
     NSString *_charsetName;
 }
 
-+ (id)encodingVariantsForRecipients:(id)arg1;
 + (unsigned long long)encodingVariantForEncoding:(unsigned long long)arg1 address:(id)arg2;
 + (id)preferredMimeCharset;
 + (id)charsetForEncoding:(unsigned long long)arg1;
 + (id)allMimeCharsets;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL canBeUsedForOutgoingMessages; // @synthesize canBeUsedForOutgoingMessages=_canBeUsedForOutgoingMessages;
-@property(readonly, nonatomic) BOOL useBase64InHeaders; // @synthesize useBase64InHeaders=_useBase64InHeaders;
 @property(readonly, copy, nonatomic) NSString *charsetName; // @synthesize charsetName=_charsetName;
 @property(readonly) unsigned long long encoding; // @synthesize encoding=_encoding;
-- (void).cxx_destruct;
-- (id)description;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+@property(readonly, copy) NSString *description;
 @property(readonly, copy, nonatomic) NSString *displayName;
 - (id)init;
 - (id)initWithCFEncoding:(unsigned int)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

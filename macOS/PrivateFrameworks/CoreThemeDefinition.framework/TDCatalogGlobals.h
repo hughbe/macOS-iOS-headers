@@ -10,9 +10,19 @@
 {
     unsigned long long _defaultBlendMode;
     BOOL _allowsVibrancy;
+    BOOL _supportsWhitePointAdjustments;
+    BOOL _supportsBrightnessAdjustments;
+    BOOL _allowsSystemTintColors;
+    BOOL _allowsCustomTintColors;
+    BOOL _supportsMultipleAppearancesForEffects;
 }
 
 - (id)dictionaryForArchiving;
+@property(nonatomic) BOOL supportsMultipleAppearancesForEffects;
+@property(nonatomic) BOOL allowsCustomTintColors;
+@property(nonatomic) BOOL allowsSystemTintColors;
+@property(nonatomic) BOOL supportsBrightnessAdjustments;
+@property(nonatomic) BOOL supportsWhitePointAdjustments;
 @property(nonatomic) BOOL allowsVibrancy;
 @property(nonatomic) unsigned long long defaultBlendMode;
 

@@ -7,8 +7,43 @@
 #import "NSBundle.h"
 
 @interface NSBundle (BrowserDataImportingNSBundleExtras)
-+ (id)safari_defaultBrowserBundle;
-- (unsigned long long)safari_supportedTestDriveImportingDataTypes;
-- (unsigned long long)safari_supportedImportingDataTypes;
++ (unsigned long long)safari_firefoxSupportedImportingDataTypes;
++ (unsigned long long)safari_chromeSupportedImportingDataTypes;
++ (void)safari_fetchDefaultBrowserBundleWithCompletionHandler:(CDUnknownBlockType)arg1;
++ (id)safari_safariTechnologyPreviewBundleURL;
++ (BOOL)safari_applicationAtURL:(id)arg1 passesCodeSignCheck:(id)arg2;
++ (BOOL)safari_applicationIsSignedByMacAppStoreAtURL:(id)arg1;
++ (BOOL)safari_handlerIsSafariFamilyApplication:(id)arg1;
++ (id)safari_URLOfDefaultHTTPHandlerApplication;
++ (BOOL)safari_isSafariFamilyApplicationDefaultHTTPHandler;
++ (void)safari_setSafariAsDefaultHTTPHandler;
++ (id)safari_domainForAutomaticBugCapture;
++ (id)safari_webKitFrameworkBundle;
++ (id)safari_safariSharedFrameworkBundle;
++ (id)safari_safariFrameworkBundle;
++ (id)safari_safariApplicationBundle;
++ (void)safari_fetchDefaultBrowserBundleForScheme:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
++ (id)safari_bundlesFromDirectory:(id)arg1 bundleType:(id)arg2;
++ (id)safari_defaultSafariBrowserBundleIdentifier;
++ (id)_safari_defaultApplicationNameForUserAgentFromBundle:(id)arg1;
++ (id)safari_defaultApplicationNameForUserAgent;
++ (id)test_safari_defaultApplicationNameForUserAgentUsingBundle:(id)arg1;
+@property(readonly, nonatomic) BOOL safari_isDataImportingInstallPathDependent;
+@property(readonly, nonatomic) unsigned long long safari_supportedImportingDataTypes;
+@property(readonly, nonatomic) BOOL safari_isFirefoxBrowser;
+@property(readonly, nonatomic) BOOL safari_isChromeBrowser;
+- (id)safari_localizedStringsForKey:(id)arg1;
+- (BOOL)safari_isSafariQuickLookPreviewBundle;
+- (BOOL)safari_isSafariPlatformSupportHelperBundle;
+- (BOOL)safari_isSafariServicesFrameworkBundle;
+- (BOOL)safari_isSafariApplicationBundle;
+- (BOOL)safari_isSystemFramework;
+- (id)safari_localizedShortVersion;
+- (id)safari_shortVersion;
+- (id)safari_version;
+- (id)safari_displayName;
+- (id)safari_localizedDisplayName;
+- (id)_safari_defaultApplicationNameForUserAgent;
+- (id)test_safari_defaultApplicationNameForUserAgent;
 @end
 

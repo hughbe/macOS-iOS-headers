@@ -10,9 +10,11 @@
 {
 }
 
+- (unsigned long long)supportedActions;
 - (id)deleteCount;
 - (id)updateCount;
 - (id)createCount;
+- (BOOL)allDay;
 - (id)location;
 - (id)startDate;
 - (BOOL)isResourceChange;

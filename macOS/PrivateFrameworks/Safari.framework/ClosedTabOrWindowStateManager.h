@@ -6,36 +6,44 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
+#import "ClosedTabOrWindowMenuBuilderMenuActionTarget.h"
+
+@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, WBSCoalescedAsynchronousWriter;
 
 __attribute__((visibility("hidden")))
-@interface ClosedTabOrWindowStateManager : NSObject
+@interface ClosedTabOrWindowStateManager : NSObject <ClosedTabOrWindowMenuBuilderMenuActionTarget>
 {
     NSMutableArray *_closedTabOrWindowPersistentStates;
-    struct unique_ptr<SafariShared::CoalescedAsynchronousWriter, std::__1::default_delete<SafariShared::CoalescedAsynchronousWriter>> _recentlyClosedTabsOrWindowsWriter;
+    WBSCoalescedAsynchronousWriter *_recentlyClosedTabsOrWindowsWriter;
     NSObject<OS_dispatch_queue> *_loadClosedTabsDataFromDiskSynchronizationQueue;
-    // Error parsing type: {atomic<LoadingStatus>="__a_"Aq}, name: _savedStateLoadingStatus
+    // Error parsing type: {atomic<LoadingStatus>="__a_"{__cxx_atomic_impl<LoadingStatus, std::__1::__cxx_atomic_base_impl<LoadingStatus> >="__a_value"Aq}}, name: _savedStateLoadingStatus
     NSMutableDictionary *_closingWindowUUIDsToClosedTabStateArrays;
+    id <TabSnapshotSensitiveDataPurging> _purger;
+    id <EncryptionProvider> _encryptionProvider;
     unsigned long long _numberOfSavedTabStates;
 }
 
 + (id)sharedManager;
-@property unsigned long long numberOfSavedTabStates; // @synthesize numberOfSavedTabStates=_numberOfSavedTabStates;
-- (id).cxx_construct;
 - (void).cxx_destruct;
+@property unsigned long long numberOfSavedTabStates; // @synthesize numberOfSavedTabStates=_numberOfSavedTabStates;
+- (void)_didUndoTabOrTabGroupClose;
+- (void)_didReopenTabOrWindowFromPersistedState;
+- (void)_didReopenTabOrWindow;
+- (unsigned long long)_maximumNumberOfTabStatesToPersist;
 - (id)_dictionaryRepresentation;
 - (void)_loadRecentlyClosedTabsOrWindowsFromDisk;
 - (void)savePendingChangesBeforeTermination;
 - (void)_recentlyClosedTabsOrWindowsStateDidChange;
 - (void)didReopenAllWindowsInSession:(id)arg1;
+- (void)_invalidateUndoClosedTabForAllWindows;
 - (void)_historyItemsWereRemoved:(id)arg1;
 - (void)clearStatesAddedAfterDate:(id)arg1 beforeDate:(id)arg2;
 - (void)clearStates;
 - (id)_closedStatesToPersist;
 - (id)closedStates;
 - (void)_pruneSavedStates;
-- (void)_updateNumberOfSavedTabStatesWithAddedState:(id)arg1;
-- (void)_updateNumberOfSavedTabStatesWithAddedStates:(id)arg1;
+- (void)_performInternalBookkeepingWithAddedState:(id)arg1;
+- (void)_performInternalBookkeepingWithAddedStates:(id)arg1;
 - (void)_updateNumberOfSavedTabStatesWithRemovedState:(id)arg1;
 - (void)_removeAllState;
 - (void)_removeTabPersistentState:(id)arg1;
@@ -50,6 +58,7 @@ __attribute__((visibility("hidden")))
 - (void)_restoreWindowWithState:(id)arg1;
 - (void)_restoreTabWithState:(id)arg1 atIndex:(unsigned long long)arg2 inWindowWithUUID:(id)arg3;
 - (void)_restoreTabWithState:(id)arg1 placement:(long long)arg2;
+- (id)_destinationBrowserWindowControllerToRestoreTabState;
 - (void)undoCloseTabGroupWithUUID:(id)arg1;
 - (void)undoClosedTabWithUUID:(id)arg1 inWindowWithUUID:(id)arg2;
 - (void)reopenTabGroupFromPersistentState:(id)arg1;
@@ -63,9 +72,15 @@ __attribute__((visibility("hidden")))
 - (void)closeTabWithoutConfirmingWithUUID:(id)arg1 inWindow:(id)arg2;
 - (void)_waitUntilStateHasLoadedFromDisk;
 - (void)performDelayedLaunchOperations;
-- (id)_init;
+- (id)initWithTabSnapshotSensitiveDataPurger:(id)arg1 encryptionProvider:(id)arg2;
 - (id)init;
 - (id)_recentlyClosedTabsOrWindowsFileURL;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

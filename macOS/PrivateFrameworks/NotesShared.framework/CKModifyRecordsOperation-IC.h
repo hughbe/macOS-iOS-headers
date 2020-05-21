@@ -8,6 +8,5 @@
 
 @interface CKModifyRecordsOperation (IC)
 - (void)ic_removeAllCompletionBlocks;
-- (id)ic_operationType;
 @end
 

@@ -17,22 +17,21 @@ __attribute__((visibility("hidden")))
     _Bool _isEditing;
     _Bool _enabled;
     FI_TMouseOverButton *_button;
-    function_e7efebff _iconGetter;
+    function_3343ca80 _iconGetter;
 }
 
 + (void)drawSidebarIcon:(id)arg1 inRect:(struct CGRect)arg2 inContext:(struct CGContext *)arg3 highlighted:(_Bool)arg4;
-+ (struct TString)imageName:(const struct TString *)arg1 forSize:(struct CGSize)arg2;
 + (const struct TFENode *)nodeForItem:(id)arg1;
 + (struct CGRect)roughActionButtonRectForCell:(const struct CGRect *)arg1;
 + (unsigned long long)frameRateMicroseconds;
 + (BOOL)prefersTrackingUntilMouseUp;
 + (id)makeSidebarItemCellForView:(id)arg1;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(retain) FI_TMouseOverButton *button; // @synthesize button=_button;
 @property(nonatomic) _Bool isEditing; // @synthesize isEditing=_isEditing;
 @property(readonly, nonatomic) int actionKind; // @synthesize actionKind=_actionKind;
 @property(nonatomic) _Bool selected; // @synthesize selected=_selected;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (void)nextAnimationFrame;
 - (void)updateLayer;
 - (void)viewWillDraw;
@@ -46,6 +45,7 @@ __attribute__((visibility("hidden")))
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1;
 - (double)imageSize;
 - (_Bool)isHighlighted;
+- (void)accessibilityPerformAction:(id)arg1;
 - (id)accessibilityActionDescription:(id)arg1;
 - (id)accessibilityActionNames;
 - (BOOL)accessibilityIsAttributeSettable:(id)arg1;
@@ -61,11 +61,15 @@ __attribute__((visibility("hidden")))
 - (id)description;
 - (id)dataForIdentifier:(id)arg1;
 - (void)dealloc;
-- (void)finishMakingWithNode:(const struct TFENode *)arg1 actionKind:(int)arg2 iconGetter:(function_e7efebff)arg3;
+- (void)finishMakingWithNode:(const struct TFENode *)arg1 actionKind:(int)arg2 iconGetter:(function_3343ca80)arg3;
+- (void)setRowSizeStyle:(long long)arg1;
 - (void)updateAction:(int)arg1;
 - (void)setAction:(int)arg1;
+- (void)removeProgressViewIfNeeded;
+- (void)addProgressViewIfNeeded;
 - (void)updateNameAndIcon;
-- (void)finishAddingActionButtonIfNeeded:(function_35a1745f)arg1;
+- (void)finishAddingActionButtonIfNeeded:(function_058db925)arg1;
+- (void)prepareForReuse;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

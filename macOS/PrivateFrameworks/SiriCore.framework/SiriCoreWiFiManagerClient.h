@@ -6,16 +6,17 @@
 
 #import "NSObject.h"
 
-#import "CWEventDelegate.h"
-
-@interface SiriCoreWiFiManagerClient : NSObject <CWEventDelegate>
+@interface SiriCoreWiFiManagerClient : NSObject
 {
+    long long _rssi;
+    long long _snr;
 }
 
-- (void)disableWiFiTimeout;
-- (void)enableWiFiTimeout;
+- (void)registerOneShotEnabledHandler:(CDUnknownBlockType)arg1;
+- (void)acquireWiFiAssertion:(long long)arg1;
+- (void)releaseWiFiAssertion;
 - (BOOL)isWifiEnabled;
-- (BOOL)hasAssociatedNetwork;
+- (BOOL)hasAssociatedNetworkWithRSSI:(long long *)arg1 andSNR:(long long *)arg2 andPhyMode:(id *)arg3 andChannelInfo:(id *)arg4 isCaptive:(char *)arg5;
 - (void)dealloc;
 - (id)init;
 

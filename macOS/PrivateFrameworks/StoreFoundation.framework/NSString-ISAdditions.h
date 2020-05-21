@@ -7,9 +7,13 @@
 #import "NSString.h"
 
 @interface NSString (ISAdditions)
++ (id)uniqueIdentifier;
 - (id)volumePath;
 - (id)parameterStringByAppendingParameters:(id)arg1;
 - (id)stripPassword;
 - (id)copyUTF8StringOfLength:(unsigned long long)arg1;
+- (id)stringByExpandingTildeInPathOutsideOfSandbox;
+- (id)dataFromHexString;
+- (unsigned long long)itemIdentifierValue;
 @end
 

@@ -6,6 +6,12 @@
 
 #import "NSObject.h"
 
+@class CAAnimation;
+
 @protocol CAAnimationDelegate <NSObject>
+
+@optional
+- (void)animationDidStop:(CAAnimation *)arg1 finished:(BOOL)arg2;
+- (void)animationDidStart:(CAAnimation *)arg1;
 @end
 

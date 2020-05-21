@@ -33,10 +33,9 @@
 - (void)generateCGImagesAsynchronouslyForTimes:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (struct CGImage *)copyCGImageAtTime:(CDStruct_1b6d18a9)arg1 actualTime:(CDStruct_1b6d18a9 *)arg2 error:(id *)arg3;
 - (id)_makeAutoreleasedAssetReader;
-- (struct __CFDictionary *)_createPixelBufferAttributesWithSize:(struct CGSize)arg1;
+- (id)_videoSettingWithSize:(struct CGSize)arg1;
 - (BOOL)_ensureFigAssetImageGeneratorReturningError:(id *)arg1;
 @property(readonly, nonatomic) AVAsset *asset;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithAsset:(id)arg1;
 - (id)init;

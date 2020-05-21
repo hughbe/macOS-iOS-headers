@@ -15,7 +15,7 @@
 
 - (void).cxx_destruct;
 - (BOOL)isCompacted;
-- (id)messageDataIncludingFromSpace:(BOOL)arg1 newDocumentID:(id)arg2 fetchIfNotAvailable:(BOOL)arg3;
+- (id)messageDataFetchIfNotAvailable:(BOOL)arg1 newDocumentID:(id)arg2;
 - (id)primitiveDataSource;
 - (void)setDataSource:(id)arg1;
 - (id)dataSource;

@@ -58,8 +58,8 @@
 - (id)layoutRectWithName:(id)arg1;
 - (BOOL)nsli_isLegalConstraintItem;
 - (id)nsli_superitem;
-- (id)relationshipContainingLayoutRect:(id)arg1;
-- (id)relationshipEqualToLayoutRect:(id)arg1;
+- (id)ruleContainingLayoutRect:(id)arg1;
+- (id)ruleEqualToLayoutRect:(id)arg1;
 
 @end
 

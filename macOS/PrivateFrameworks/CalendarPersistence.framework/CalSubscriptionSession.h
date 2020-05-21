@@ -18,6 +18,7 @@
     BOOL _needsRefresh;
 }
 
+- (void).cxx_destruct;
 @property BOOL needsRefresh; // @synthesize needsRefresh=_needsRefresh;
 @property BOOL isAutoRefreshed; // @synthesize isAutoRefreshed=_isAutoRefreshed;
 @property BOOL tryCredentialsOnNextSync; // @synthesize tryCredentialsOnNextSync=_tryCredentialsOnNextSync;
@@ -37,7 +38,6 @@
 - (BOOL)needsSync;
 - (double)timeSinceLastSync;
 - (void)reschedule;
-- (void)dealloc;
 - (id)initWithObjectID:(id)arg1;
 
 @end

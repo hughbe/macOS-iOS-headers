@@ -10,11 +10,12 @@ __attribute__((visibility("hidden")))
 @interface _PFWeakReference : NSObject
 {
     id _object;
-    unsigned long long _objectAddress;
+    long long _objectAddress;
 }
 
 + (id)weakReferenceWithObject:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+@property(readonly) long long address;
 - (unsigned long long)hash;
 - (id)retainedObject;
 @property(readonly) id object;

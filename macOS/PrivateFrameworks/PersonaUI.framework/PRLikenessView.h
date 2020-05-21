@@ -6,32 +6,36 @@
 
 #import "NSView.h"
 
-@class NSData, NSImageView, PRLikeness, PRMonogramView;
+@class NSData, PRImageView, PRLikeness, PRMonogramView;
 
 @interface PRLikenessView : NSView
 {
     BOOL _circular;
     PRMonogramView *_monogramView;
-    NSImageView *_imageView;
+    PRImageView *_imageView;
+    unsigned long long _likenessType;
     NSData *_recipe;
     struct CGRect _cropRect;
     struct CGImage *_staticRepresentation;
+    BOOL _highlighted;
+    BOOL _shouldDecode;
     PRLikeness *_likeness;
 }
 
-+ (BOOL)requiresConstraintBasedLayout;
-@property(retain, nonatomic) PRLikeness *likeness; // @synthesize likeness=_likeness;
++ (void)initialize;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL shouldDecode; // @synthesize shouldDecode=_shouldDecode;
+@property(nonatomic) BOOL highlighted; // @synthesize highlighted=_highlighted;
+@property(nonatomic, getter=isCircular) BOOL circular; // @synthesize circular=_circular;
+@property(retain, nonatomic) PRLikeness *likeness; // @synthesize likeness=_likeness;
+- (void)setNeedsRedraw;
+- (void)resizeSubviewsWithOldSize:(struct CGSize)arg1;
 - (void)_setDisplayedView:(id)arg1;
-- (void)setCircular:(BOOL)arg1;
+- (BOOL)_isLikenessEqual:(id)arg1;
 - (void)_imageForLikeness:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)_imageView;
 - (id)_monogramView;
 - (BOOL)_shouldRenderStaticRepresentation;
-- (BOOL)isCircular;
-- (void)_updateCornerRadius;
-- (void)layout;
-- (void)_addDisplayedView:(id)arg1;
 - (void)_updateViewForLikeness:(BOOL)arg1;
 - (void)dealloc;
 - (id)initWithLikeness:(id)arg1;

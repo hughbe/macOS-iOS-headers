@@ -6,58 +6,71 @@
 
 #import "NSObject.h"
 
-@class NSBundle, NSMutableArray, NSMutableDictionary, NSString;
+@class IMBalloonApp, NSBundle, NSMutableArray, NSMutableDictionary, NSString;
 
 @interface IMBalloonPlugin : NSObject
 {
-    BOOL _showInBrowser;
     BOOL _pluginLoaded;
-    NSString *_identifier;
-    NSString *_browserDisplayName;
     NSString *_browserImageName;
     NSString *_browserImagePath;
-    NSBundle *_bundle;
     long long _browserGroup;
-    Class _bubbleClass;
-    Class _browserClass;
-    Class _datasourceClass;
-    Class _customTypingIndicatorLayerClass;
-    Class _entryClass;
+    NSBundle *_bundle;
+    id <PKPlugIn> _plugin;
+    IMBalloonApp *_app;
     NSMutableDictionary *_messageToDatasourceMap;
     NSMutableDictionary *_messageToBalloonControllerMap;
+    Class _bubbleClass;
+    Class _browserClass;
+    Class _dataSourceClass;
+    Class _customTypingIndicatorLayerClass;
+    Class _entryClass;
     NSMutableArray *_balloonControllerPool;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableArray *balloonControllerPool; // @synthesize balloonControllerPool=_balloonControllerPool;
-@property(retain, nonatomic) NSMutableDictionary *messageToBalloonControllerMap; // @synthesize messageToBalloonControllerMap=_messageToBalloonControllerMap;
-@property(retain, nonatomic) NSMutableDictionary *messageToDatasourceMap; // @synthesize messageToDatasourceMap=_messageToDatasourceMap;
-@property(nonatomic) BOOL pluginLoaded; // @synthesize pluginLoaded=_pluginLoaded;
 @property(retain, nonatomic) Class entryClass; // @synthesize entryClass=_entryClass;
 @property(retain, nonatomic) Class customTypingIndicatorLayerClass; // @synthesize customTypingIndicatorLayerClass=_customTypingIndicatorLayerClass;
-@property(retain, nonatomic) Class datasourceClass; // @synthesize datasourceClass=_datasourceClass;
+@property(retain, nonatomic) Class dataSourceClass; // @synthesize dataSourceClass=_dataSourceClass;
 @property(retain, nonatomic) Class browserClass; // @synthesize browserClass=_browserClass;
 @property(retain, nonatomic) Class bubbleClass; // @synthesize bubbleClass=_bubbleClass;
-@property(nonatomic) BOOL showInBrowser; // @synthesize showInBrowser=_showInBrowser;
-@property(nonatomic) long long browserGroup; // @synthesize browserGroup=_browserGroup;
+@property(retain, nonatomic) NSMutableDictionary *messageToBalloonControllerMap; // @synthesize messageToBalloonControllerMap=_messageToBalloonControllerMap;
+@property(retain, nonatomic) NSMutableDictionary *messageToDatasourceMap; // @synthesize messageToDatasourceMap=_messageToDatasourceMap;
+@property(retain, nonatomic) IMBalloonApp *app; // @synthesize app=_app;
+@property(nonatomic) BOOL pluginLoaded; // @synthesize pluginLoaded=_pluginLoaded;
+@property(retain, nonatomic) id <PKPlugIn> plugin; // @synthesize plugin=_plugin;
 @property(retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
+@property(nonatomic) long long browserGroup; // @synthesize browserGroup=_browserGroup;
 @property(retain, nonatomic) NSString *browserImagePath; // @synthesize browserImagePath=_browserImagePath;
 @property(retain, nonatomic) NSString *browserImageName; // @synthesize browserImageName=_browserImageName;
-@property(retain, nonatomic) NSString *browserDisplayName; // @synthesize browserDisplayName=_browserDisplayName;
-@property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long presentationContexts;
+- (void)setIdentifier:(id)arg1;
+@property(readonly, retain, nonatomic) NSBundle *pluginBundle;
+@property(readonly, retain, nonatomic) NSBundle *appBundle;
+@property(readonly, retain, nonatomic) NSString *browserDisplayName;
+- (BOOL)isStickerPackOnly;
+@property(readonly, nonatomic) BOOL shouldHideAppSwitcher;
+@property(readonly, nonatomic) BOOL isEnabled;
+@property(readonly, nonatomic) BOOL showableInBrowser;
+@property(readonly, nonatomic) BOOL showInBrowser;
 @property(readonly, nonatomic, getter=isBetaPlugin) BOOL betaPlugin;
 @property(readonly, nonatomic) NSString *version;
+@property(readonly, retain, nonatomic) NSString *identifier;
 - (id)dataSourceForPluginPayload:(id)arg1;
 - (void)insertDataSource:(id)arg1 forGUID:(id)arg2;
 - (id)existingDataSourceForMessageGUID:(id)arg1;
-- (void)_loadBundle;
+- (BOOL)shouldShowForRecipients:(id)arg1;
 - (BOOL)supportsControllerReuse;
+- (void)removeController:(id)arg1 forChatItem:(id)arg2;
 - (void)moveController:(id)arg1 toReusePoolFromChatItem:(id)arg2;
 - (id)balloonControllerForChatItem:(id)arg1;
+- (id)existingBalloonControllerWithMessageGUID:(id)arg1;
 - (id)_getControllerFromReusePoolForChatItem:(id)arg1;
 - (void)unloadBundle;
 - (void)dealloc;
+- (id)initWithBundle:(id)arg1 app:(id)arg2;
 - (id)initWithBundle:(id)arg1;
+- (id)init;
 
 @end
 

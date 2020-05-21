@@ -16,6 +16,7 @@
 
 + (id)createAssistantWithDictionary:(id)arg1 context:(id)arg2;
 + (id)createAssistant;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSData *validationData;
 @property(copy, nonatomic) NSString *speechId;
 @property(copy, nonatomic) NSData *linkedValidationData;

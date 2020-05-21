@@ -6,7 +6,14 @@
 
 #import "NSObject.h"
 
+@class GEOApplicationAuditToken, GEOLatLng, NSObject<OS_dispatch_queue>;
+
 @protocol _GEOLocationShifterProxy <NSObject>
-- (void)shiftCoordinate:(CDStruct_c3b9c2ee)arg1 completionHandler:(void (^)(GEOLocationShiftFunctionResponse *, BOOL, NSError *))arg2;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue;
+- (void)flushDiskCache;
+- (void)shiftLatLng:(GEOLatLng *)arg1 auditToken:(GEOApplicationAuditToken *)arg2 completionHandler:(void (^)(GEOLocationShiftFunctionResponse *, BOOL, NSError *))arg3;
+- (unsigned int)locationShiftFunctionVersion;
+- (BOOL)isLocationShiftRequiredForCoordinate:(CDStruct_c3b9c2ee)arg1;
+- (BOOL)isLocationShiftEnabled;
 @end
 

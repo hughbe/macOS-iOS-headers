@@ -38,6 +38,7 @@
 + (id)migratableEventsListenerInterface;
 + (id)keyPathsForValuesAffectingAllSystems;
 + (id)sharedScannerClient;
+- (void).cxx_destruct;
 @property(retain) NSUserActivity *handoffActivity; // @synthesize handoffActivity=_handoffActivity;
 @property BOOL attemptingWirelessNetworkSwitch; // @synthesize attemptingWirelessNetworkSwitch=_attemptingWirelessNetworkSwitch;
 @property BOOL hostingWirelessAP; // @synthesize hostingWirelessAP=_hostingWirelessAP;
@@ -56,7 +57,6 @@
 @property(retain) id <SMDPScannerProtocol> daemonProxy; // @synthesize daemonProxy;
 @property(retain) NSXPCConnection *daemonConnection; // @synthesize daemonConnection;
 @property(retain) NSXPCInterface *daemonInterface; // @synthesize daemonInterface;
-- (void).cxx_destruct;
 - (void)stopAdvertisingHandoff;
 - (void)startAdvertisingHandoffTargetWithIdentifier:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;

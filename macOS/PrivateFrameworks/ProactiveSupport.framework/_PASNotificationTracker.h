@@ -17,6 +17,7 @@
 
 - (void).cxx_destruct;
 - (void)issueNotificationAsyncWithContext:(id)arg1;
+- (void)issueNotificationAsyncWithContext:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (BOOL)deregisterHandlerAsyncWithToken:(id)arg1;
 - (BOOL)deregisterHandlerWithToken:(id)arg1;
 - (BOOL)_deregisterHandlerWithToken:(id)arg1 waitOnPending:(BOOL)arg2;

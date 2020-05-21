@@ -6,51 +6,57 @@
 
 #import <CloudKitDaemon/CKDDatabaseOperation.h>
 
-@class CKDRecordCache, NSMutableDictionary, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSSet;
+@class CKDFetchRecordsOperation, CKDRecordCache, NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSSet;
 
 __attribute__((visibility("hidden")))
 @interface CKDRecordFetchAggregator : CKDDatabaseOperation
 {
     CKDRecordCache *_recordCache;
+    BOOL _useRecordCache;
     BOOL _fetchAssetContents;
     BOOL _preserveOrdering;
     BOOL _started;
     BOOL _markedToFinishByParent;
+    BOOL _forceDecryptionAttempt;
     CDUnknownBlockType _fetchAggregatorCompletionBlock;
+    NSDictionary *_assetTransferOptionsByRecordTypeAndKey;
     NSSet *_desiredKeys;
     NSObject<OS_dispatch_source> *_recordReadySource;
     NSObject<OS_dispatch_queue> *_fetchQueue;
     NSObject<OS_dispatch_source> *_fetchSource;
     NSObject<OS_dispatch_group> *_fetchGroup;
-    NSObject<OS_dispatch_source> *_timerSource;
     NSMutableDictionary *_fetchInfosByOrder;
     unsigned long long _curFetchOrder;
     unsigned long long _highestReturnedOrder;
+    CKDFetchRecordsOperation *_currentFetchOp;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL forceDecryptionAttempt; // @synthesize forceDecryptionAttempt=_forceDecryptionAttempt;
 @property(getter=isMarkedToFinishByParent) BOOL markedToFinishByParent; // @synthesize markedToFinishByParent=_markedToFinishByParent;
 @property BOOL started; // @synthesize started=_started;
+@property(nonatomic) __weak CKDFetchRecordsOperation *currentFetchOp; // @synthesize currentFetchOp=_currentFetchOp;
 @property unsigned long long highestReturnedOrder; // @synthesize highestReturnedOrder=_highestReturnedOrder;
 @property unsigned long long curFetchOrder; // @synthesize curFetchOrder=_curFetchOrder;
 @property(retain, nonatomic) NSMutableDictionary *fetchInfosByOrder; // @synthesize fetchInfosByOrder=_fetchInfosByOrder;
-@property(retain, nonatomic) NSObject<OS_dispatch_source> *timerSource; // @synthesize timerSource=_timerSource;
 @property(retain, nonatomic) NSObject<OS_dispatch_group> *fetchGroup; // @synthesize fetchGroup=_fetchGroup;
 @property(retain, nonatomic) NSObject<OS_dispatch_source> *fetchSource; // @synthesize fetchSource=_fetchSource;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *fetchQueue; // @synthesize fetchQueue=_fetchQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_source> *recordReadySource; // @synthesize recordReadySource=_recordReadySource;
 @property(retain, nonatomic) NSSet *desiredKeys; // @synthesize desiredKeys=_desiredKeys;
 @property(nonatomic) BOOL preserveOrdering; // @synthesize preserveOrdering=_preserveOrdering;
+@property(retain, nonatomic) NSDictionary *assetTransferOptionsByRecordTypeAndKey; // @synthesize assetTransferOptionsByRecordTypeAndKey=_assetTransferOptionsByRecordTypeAndKey;
 @property(nonatomic) BOOL fetchAssetContents; // @synthesize fetchAssetContents=_fetchAssetContents;
 @property(copy, nonatomic) CDUnknownBlockType fetchAggregatorCompletionBlock; // @synthesize fetchAggregatorCompletionBlock=_fetchAggregatorCompletionBlock;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL useRecordCache; // @synthesize useRecordCache=_useRecordCache;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_finishRecordFetchAggregator;
 - (void)finishIfAppropriate;
-- (void)fetchRecordFromResponse:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)fetchRecords:(id)arg1 withPerRecordCompletion:(CDUnknownBlockType)arg2;
+- (id)_fetchRecord:(id)arg1 recordReadyHandle:(char *)arg2 withRecordCompletion:(CDUnknownBlockType)arg3;
 - (void)main;
-- (void)_addRecordFetchInfo:(id)arg1;
+- (void)_addRecordFetchInfos:(id)arg1;
 - (void)_recordFetchesAvailable;
-- (void)_lockedRescheduleQueuedFetchesTimer;
 - (void)_lockedSendFetchRequest;
 - (void)_flushFetchedRecordsToConsumerLocked;
 - (void)_flushFetchedRecordsToConsumerNoOrderingLocked;
@@ -60,6 +66,7 @@ __attribute__((visibility("hidden")))
 - (id)CKPropertiesDescription;
 - (void)dealloc;
 @property(readonly, nonatomic) CKDRecordCache *recordCache;
+- (id)activityCreate;
 - (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2;
 
 @end

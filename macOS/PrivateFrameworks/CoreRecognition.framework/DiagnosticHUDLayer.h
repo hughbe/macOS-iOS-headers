@@ -6,11 +6,11 @@
 
 #import "CALayer.h"
 
-@class AVCaptureVideoPreviewLayer, CAShapeLayer, CRColor, NSMutableArray;
+@class CAShapeLayer, CRColor, NSMutableArray;
 
 @interface DiagnosticHUDLayer : CALayer
 {
-    AVCaptureVideoPreviewLayer *_previewLayer;
+    CALayer *_previewLayer;
     CRColor *_freshPointColor;
     CRColor *_stalePointColor;
     NSMutableArray *_pointLayers;
@@ -18,9 +18,12 @@
     CAShapeLayer *_focusIndicatorLayer;
     CAShapeLayer *_focusPointLayer;
     CAShapeLayer *_frameIndicator;
+    struct CGSize _cameraResolution;
+    struct CGRect _previewLayerVisibleRect;
 }
 
 + (id)layer;
+- (void).cxx_destruct;
 @property(retain) CAShapeLayer *frameIndicator; // @synthesize frameIndicator=_frameIndicator;
 @property(retain) CAShapeLayer *focusPointLayer; // @synthesize focusPointLayer=_focusPointLayer;
 @property(retain) CAShapeLayer *focusIndicatorLayer; // @synthesize focusIndicatorLayer=_focusIndicatorLayer;
@@ -28,11 +31,12 @@
 @property(retain) NSMutableArray *pointLayers; // @synthesize pointLayers=_pointLayers;
 @property(retain) CRColor *stalePointColor; // @synthesize stalePointColor=_stalePointColor;
 @property(retain) CRColor *freshPointColor; // @synthesize freshPointColor=_freshPointColor;
-@property(retain) AVCaptureVideoPreviewLayer *previewLayer; // @synthesize previewLayer=_previewLayer;
-- (void).cxx_destruct;
+@property struct CGSize cameraResolution; // @synthesize cameraResolution=_cameraResolution;
+@property struct CGRect previewLayerVisibleRect; // @synthesize previewLayerVisibleRect=_previewLayerVisibleRect;
+@property(retain) CALayer *previewLayer; // @synthesize previewLayer=_previewLayer;
 - (void)refreshFrameIndicator;
 - (void)setAdjustingFocus:(BOOL)arg1 pointOfInterestSupported:(BOOL)arg2 focusPoint:(struct CGPoint)arg3;
-- (void)setVisibleCameraArea:(id)arg1;
+- (void)setPreviewLayer:(id)arg1 visibleRect:(struct CGRect)arg2 cameraResolution:(struct CGSize)arg3;
 - (void)setBoxPoints:(id)arg1;
 - (void)layoutSublayers;
 - (id)init;

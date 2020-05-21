@@ -9,7 +9,7 @@
 #import "NSCoding.h"
 #import "NSSecureCoding.h"
 
-@class NSArray, NSMutableDictionary, NSMutableIndexSet, SMMigrationRequest;
+@class NSArray, NSMutableDictionary, NSMutableIndexSet, NSObject<OS_dispatch_queue>, SMMigrationRequest;
 
 @interface SMUIDGIDTranslator : NSObject <NSCoding, NSSecureCoding>
 {
@@ -18,17 +18,19 @@
     NSArray *_overwriteUsernames;
     NSMutableDictionary *_uidTranslationTable;
     NSMutableDictionary *_gidTranslationTable;
+    NSObject<OS_dispatch_queue> *_tableAccessQueue;
     NSMutableIndexSet *_existingGIDs;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain) NSMutableIndexSet *existingGIDs; // @synthesize existingGIDs=_existingGIDs;
+@property(retain) NSObject<OS_dispatch_queue> *tableAccessQueue; // @synthesize tableAccessQueue=_tableAccessQueue;
 @property(retain) NSMutableDictionary *gidTranslationTable; // @synthesize gidTranslationTable=_gidTranslationTable;
 @property(retain) NSMutableDictionary *uidTranslationTable; // @synthesize uidTranslationTable=_uidTranslationTable;
 @property(retain) NSArray *overwriteUsernames; // @synthesize overwriteUsernames=_overwriteUsernames;
 @property(retain) NSMutableIndexSet *existingUIDs; // @synthesize existingUIDs=_existingUIDs;
 @property(retain) SMMigrationRequest *migrationRequest; // @synthesize migrationRequest=_migrationRequest;
-- (void).cxx_destruct;
 - (void)deletedUIDFromSystem:(unsigned int)arg1;
 - (BOOL)translatedUID:(unsigned int *)arg1 andGID:(unsigned int *)arg2 forOldUID:(unsigned int)arg3 andOldGID:(unsigned int)arg4 ofType:(long long)arg5;
 - (BOOL)translatedUID:(unsigned int *)arg1 andGID:(unsigned int *)arg2 forOldUID:(unsigned int)arg3 andOldGID:(unsigned int)arg4;
@@ -36,7 +38,6 @@
 - (id)description;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (id)replacementObjectForPortCoder:(id)arg1;
 - (void)initializeExistingIDs;
 - (id)init;
 

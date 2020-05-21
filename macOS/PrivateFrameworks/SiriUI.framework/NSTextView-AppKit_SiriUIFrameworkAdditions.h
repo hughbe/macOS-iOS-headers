@@ -7,6 +7,7 @@
 #import "NSTextView.h"
 
 @interface NSTextView (AppKit_SiriUIFrameworkAdditions)
-- (void)siriui_setDictationResult:(id)arg1 withCorrectionIdentifier:(id)arg2;
+- (double)siriui_heightForWidth:(double)arg1;
+- (void)siriui_setEnabled:(BOOL)arg1;
 @end
 

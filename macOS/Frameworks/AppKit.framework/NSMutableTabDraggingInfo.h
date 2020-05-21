@@ -8,7 +8,7 @@
 
 #import "NSTabDraggingInfo.h"
 
-@class NSImage, NSString, NSWindow, NSWindowTabViewItem;
+@class NSImage, NSString, NSTabBarItem, NSWindow;
 
 __attribute__((visibility("hidden")))
 @interface NSMutableTabDraggingInfo : NSObject <NSTabDraggingInfo>
@@ -18,16 +18,16 @@ __attribute__((visibility("hidden")))
     struct CGPoint _draggingLocation;
     NSImage *_draggedImage;
     id _draggingSource;
-    NSWindowTabViewItem *_draggingItem;
+    NSTabBarItem *_draggingItem;
 }
 
-@property(retain, nonatomic) NSWindowTabViewItem *draggingItem; // @synthesize draggingItem=_draggingItem;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSTabBarItem *draggingItem; // @synthesize draggingItem=_draggingItem;
 @property(retain, nonatomic) id draggingSource; // @synthesize draggingSource=_draggingSource;
 @property(retain, nonatomic) NSImage *draggedImage; // @synthesize draggedImage=_draggedImage;
 @property(nonatomic) struct CGPoint draggingLocation; // @synthesize draggingLocation=_draggingLocation;
 @property(nonatomic) unsigned long long draggingSourceOperationMask; // @synthesize draggingSourceOperationMask=_draggingSourceOperationMask;
 @property(retain, nonatomic) NSWindow *draggingDestinationWindow; // @synthesize draggingDestinationWindow=_draggingDestinationWindow;
-- (void).cxx_destruct;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

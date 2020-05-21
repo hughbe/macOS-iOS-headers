@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSString;
 
-@interface DDLocation : NSObject <NSCoding>
+@interface DDLocation : NSObject <NSSecureCoding>
 {
     NSString *_fileName;
     int _firstLine;
@@ -19,6 +19,7 @@
     int _lastColumn;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(readonly) int lastColumn; // @synthesize lastColumn=_lastColumn;
 @property(readonly) int lastLine; // @synthesize lastLine=_lastLine;
 @property(readonly) int firstColumn; // @synthesize firstColumn=_firstColumn;

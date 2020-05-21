@@ -17,11 +17,12 @@
     NSView *_anchorView;
     struct CGRect _positioningRect;
     id _reserved2;
-    unsigned int _weakAnchorViewHelper:1;
-    unsigned int _reservedPopoverFlags:31;
+    unsigned int _reservedPopoverFlags:32;
 }
 
 + (id)popoverAnimationControllerWithPopover:(id)arg1;
+- (void).cxx_destruct;
+@property __weak NSView *anchorView; // @synthesize anchorView=_anchorView;
 @property(readonly) NSPopover *popover; // @synthesize popover=_popover;
 @property struct CGRect positioningRect; // @synthesize positioningRect=_positioningRect;
 @property unsigned long long preferredEdge; // @synthesize preferredEdge=_preferredEdge;
@@ -31,7 +32,6 @@
 - (void)recognizerDidCompleteAnimation:(id)arg1;
 - (void)recognizerDidUpdateAnimation:(id)arg1;
 - (void)recognizerWillBeginAnimation:(id)arg1;
-@property __weak NSView *anchorView;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

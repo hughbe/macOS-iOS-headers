@@ -6,10 +6,19 @@
 
 #import "CKOperation.h"
 
-@interface CKOperation (IC)
+#import "ICLoggable.h"
+
+@class NSString;
+
+@interface CKOperation (IC) <ICLoggable>
 - (void)ic_removeAllCompletionBlocks;
-- (id)ic_loggingDescription;
-- (id)ic_loggingDescriptionStrings;
-- (id)ic_operationType;
+- (id)ic_loggingValues;
+- (id)ic_loggingIdentifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

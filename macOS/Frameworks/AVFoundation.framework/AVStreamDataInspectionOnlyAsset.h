@@ -6,10 +6,12 @@
 
 #import <AVFoundation/AVURLAsset.h>
 
+__attribute__((visibility("hidden")))
 @interface AVStreamDataInspectionOnlyAsset : AVURLAsset
 {
 }
 
+- (BOOL)isCompatibleWithPhotosTranscodingServiceWithOptions:(id)arg1;
 - (BOOL)isCompatibleWithAirPlayVideo;
 - (BOOL)isComposable;
 - (BOOL)isReadable;

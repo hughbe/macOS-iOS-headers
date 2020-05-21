@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class AVCaptureAudioSettings, NSObject<OS_dispatch_queue>;
+@class AVCaptureAudioSettings, AVWeakReference, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureAudioDataOutputInternal : NSObject
 {
-    id <AVCaptureAudioDataOutputSampleBufferDelegate> delegate;
+    AVWeakReference *weakReferenceDelegate;
     NSObject<OS_dispatch_queue> *clientQueue;
     struct __CFDictionary *splitterUnits;
     struct __CFDictionary *mixerUnits;
@@ -18,9 +19,9 @@
     struct __CFDictionary *audioToProcsUnits;
     struct __CFDictionary *callbackData;
     AVCaptureAudioSettings *audioSettings;
+    struct os_unfair_lock_s internalLock;
 }
 
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

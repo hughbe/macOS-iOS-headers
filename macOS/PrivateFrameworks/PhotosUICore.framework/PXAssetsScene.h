@@ -13,7 +13,7 @@
 #import "PXTilingControllerScrollDelegate.h"
 #import "PXTilingControllerTransitionDelegate.h"
 
-@class NSString, PXAssetBadgeManager, PXAssetReference, PXAssetsDataSource, PXAssetsDataSourceManager, PXAssetsTilingLayout, PXMediaProvider, PXReusableObjectPool, PXScrollViewSpeedometer, PXSectionedSelectionManager, PXTilingController;
+@class NSMutableArray, NSString, PXAssetBadgeManager, PXAssetsDataSource, PXAssetsDataSourceManager, PXAssetsTilingLayout, PXMediaProvider, PXReusableObjectPool, PXScrollViewSpeedometer, PXSectionedSelectionManager, PXTilingController;
 
 @interface PXAssetsScene : NSObject <PXReusableObjectPoolDelegate, PXAssetsDataSourceManagerObserver, PXChangeObserver, PXTileSource, PXTilingControllerScrollDelegate, PXTilingControllerTransitionDelegate>
 {
@@ -27,8 +27,12 @@
         char respondsToTileIdentifierConverterForChange;
         char respondsToWillTransitionToDataSource;
         char respondsToDidTransitionToDataSource;
+        char respondsToTransitionAnimationCoordinatorForChange;
     } _delegateFlags;
     BOOL _isAskingForTileIdentifierConverter;
+    BOOL _isAskingForTransitionAnimationCoordinator;
+    BOOL _animatesContent;
+    BOOL _autoplayTilesWaitForInput;
     id <PXAssetsSceneDelegate> _delegate;
     PXTilingController *_tilingController;
     PXMediaProvider *_mediaProvider;
@@ -38,13 +42,16 @@
     PXScrollViewSpeedometer *_scrollSpeedometer;
     PXReusableObjectPool *_viewTileReusePool;
     PXAssetsDataSource *__dataSource;
-    PXAssetReference *__anchorAssetReference;
-    struct CGPoint __anchorOrigin;
+    NSMutableArray *__anchors;
+    unsigned long long _autoplayBehavior;
 }
 
-@property(nonatomic, setter=_setAnchorOrigin:) struct CGPoint _anchorOrigin; // @synthesize _anchorOrigin=__anchorOrigin;
-@property(retain, nonatomic, setter=_setAnchorAssetReference:) PXAssetReference *_anchorAssetReference; // @synthesize _anchorAssetReference=__anchorAssetReference;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL autoplayTilesWaitForInput; // @synthesize autoplayTilesWaitForInput=_autoplayTilesWaitForInput;
+@property(nonatomic) unsigned long long autoplayBehavior; // @synthesize autoplayBehavior=_autoplayBehavior;
+@property(readonly, nonatomic) NSMutableArray *_anchors; // @synthesize _anchors=__anchors;
 @property(retain, nonatomic, setter=_setDataSource:) PXAssetsDataSource *_dataSource; // @synthesize _dataSource=__dataSource;
+@property(nonatomic) BOOL animatesContent; // @synthesize animatesContent=_animatesContent;
 @property(readonly, nonatomic) PXReusableObjectPool *viewTileReusePool; // @synthesize viewTileReusePool=_viewTileReusePool;
 @property(readonly, nonatomic) PXScrollViewSpeedometer *scrollSpeedometer; // @synthesize scrollSpeedometer=_scrollSpeedometer;
 @property(readonly, nonatomic) PXAssetBadgeManager *badgeManager; // @synthesize badgeManager=_badgeManager;
@@ -53,7 +60,6 @@
 @property(readonly, nonatomic) PXMediaProvider *mediaProvider; // @synthesize mediaProvider=_mediaProvider;
 @property(readonly, nonatomic) PXTilingController *tilingController; // @synthesize tilingController=_tilingController;
 @property(nonatomic) __weak id <PXAssetsSceneDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)checkInTile:(void *)arg1 withIdentifier:(struct PXTileIdentifier)arg2;
 - (void *)checkOutTileForIdentifier:(struct PXTileIdentifier)arg1 layout:(id)arg2;
 - (struct CGPoint)tilingController:(id)arg1 targetVisibleOriginForLayout:(id)arg2 proposedVisibleOrigin:(struct CGPoint)arg3;

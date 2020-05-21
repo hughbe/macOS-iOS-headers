@@ -9,13 +9,18 @@
 __attribute__((visibility("hidden")))
 @interface AVInlineTrimControlsViewController : AVTrimControlsViewController
 {
+    double _layoutWidth;
 }
 
+- (CDStruct_83cd8af5)controlsContentViewMargin;
 - (struct CGSize)intrinsicControlsContentViewSize;
 - (long long)layoutStyle;
 - (id)backgroundBackdropViewMaskImage;
 - (id)controlsStyleIdentifier;
 - (unsigned long long)preferredTrimViewStyle;
+@property double layoutWidth;
+- (double)minimumWidth;
+- (void)viewDidLayout;
 
 @end
 

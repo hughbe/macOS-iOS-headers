@@ -13,12 +13,15 @@
 @interface CNContactIconView : NSView <CNContactIconUpdating>
 {
     NSView<CNContactIconUpdating> *_representativeView;
+    long long _iconViewAppearance;
 }
 
 + (Class)representativeViewClassForViewModel:(id)arg1;
-@property(retain) NSView<CNContactIconUpdating> *representativeView; // @synthesize representativeView=_representativeView;
 - (void).cxx_destruct;
+@property(nonatomic) long long iconViewAppearance; // @synthesize iconViewAppearance=_iconViewAppearance;
+@property(retain, nonatomic) NSView<CNContactIconUpdating> *representativeView; // @synthesize representativeView=_representativeView;
 - (void)setupRepresentativeViewForViewModel:(id)arg1;
+- (void)setCircular:(BOOL)arg1;
 - (void)updateLayer;
 - (void)viewModelDidUpdate:(id)arg1;
 - (void)commonInit;

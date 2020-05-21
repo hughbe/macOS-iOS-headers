@@ -22,6 +22,7 @@
     BOOL _isNetwork;
     BOOL _isLocked;
     BOOL _canSupportRecoveryPartition;
+    BOOL _apfsConvertible;
     BOOL _isObserving;
     SKDisk *_representedDisk;
     NSString *_role;
@@ -37,11 +38,14 @@
     unsigned long long _minimumDiskSize;
     unsigned long long _maximumDiskSize;
     NSString *_diskIdentifier;
+    NSString *_contentDiskIdentifier;
     NSString *_protocol;
 }
 
 + (id)keysToObserve;
+- (void).cxx_destruct;
 @property BOOL isObserving; // @synthesize isObserving=_isObserving;
+@property BOOL apfsConvertible; // @synthesize apfsConvertible=_apfsConvertible;
 @property BOOL canSupportRecoveryPartition; // @synthesize canSupportRecoveryPartition=_canSupportRecoveryPartition;
 @property BOOL isLocked; // @synthesize isLocked=_isLocked;
 @property BOOL isNetwork; // @synthesize isNetwork=_isNetwork;
@@ -53,6 +57,7 @@
 @property BOOL isInternal; // @synthesize isInternal=_isInternal;
 @property BOOL isDiskImage; // @synthesize isDiskImage=_isDiskImage;
 @property(retain) NSString *protocol; // @synthesize protocol=_protocol;
+@property(readonly) NSString *contentDiskIdentifier; // @synthesize contentDiskIdentifier=_contentDiskIdentifier;
 @property(retain) NSString *diskIdentifier; // @synthesize diskIdentifier=_diskIdentifier;
 @property BOOL canBeDeleted; // @synthesize canBeDeleted=_canBeDeleted;
 @property unsigned long long maximumDiskSize; // @synthesize maximumDiskSize=_maximumDiskSize;
@@ -69,7 +74,6 @@
 @property(retain) NSString *type; // @synthesize type=_type;
 @property(retain) NSString *role; // @synthesize role=_role;
 @property(retain) SKDisk *representedDisk; // @synthesize representedDisk=_representedDisk;
-- (void).cxx_destruct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)stopObserving;
 - (void)dealloc;

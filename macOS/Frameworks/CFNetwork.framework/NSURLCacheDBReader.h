@@ -6,17 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSLock, NSMutableSet, NSString;
+@class NSMutableSet, NSString;
 
-__attribute__((visibility("hidden")))
 @interface NSURLCacheDBReader : NSObject
 {
     struct sqlite3_stmt *_sqlSelectStmt;
     struct sqlite3_stmt *_sqlSelectTimeStmt;
     struct sqlite3 *_dbReadConnection;
-    NSLock *_dbReadConnectionLock;
+    struct os_unfair_lock_s _dbReadConnectionLock;
     long long _schemaVersion;
-    NSLock *_timeRelativeLookupLock;
+    struct os_unfair_lock_s _timeRelativeLookupLock;
     NSMutableSet *recentTimeStampLookups;
     unsigned char _performTimeRelativeLookups;
     NSString *_dbPathDirectory;
@@ -33,8 +32,8 @@ __attribute__((visibility("hidden")))
 - (id)createCachedResponseDictForTransmissionWithKey:(id)arg1 objectVersion:(long long)arg2 storagePolicy:(int)arg3 responseObjectBytes:(char *)arg4 responseObjectBytesLength:(int)arg5 protoProps:(char *)arg6 protoPropsLength:(int)arg7 receiverDataBytes:(char *)arg8 receiverDataLength:(int)arg9 requestObjectBytes:(char *)arg10 requestObjectBytesLength:(int)arg11 userInfoBytes:(const char *)arg12 useInfoLength:(int)arg13 isDataOnFS:(BOOL)arg14 cacheDirPath:(id)arg15 cacheFileName:(id)arg16;
 - (int)execSQLStatement:(const char *)arg1 onConnection:(struct sqlite3 *)arg2 toCompletionWithRetry:(long long)arg3 writeLockHeld:(BOOL)arg4;
 - (int)stepSQLStatement:(struct sqlite3_stmt *)arg1 toCompletionWithRetry:(long long)arg2;
-- (void)performTimeRelativeLookupWithInitialTime:(id)arg1 caller:(struct _CFURLCache *)arg2;
-- (struct _CFCachedURLResponse *)createCachedResponseForKey:(id)arg1 cacheDataPath:(id *)arg2 cacheDataFile:(id *)arg3 caller:(struct _CFURLCache *)arg4;
+-     // Error parsing type: v32@0:8@16^{_CFURLCache={__CFRuntimeBase=QAQ}{shared_ptr<__CFURLCache>=^{__CFURLCache}^{__shared_weak_count}}}24, name: performTimeRelativeLookupWithInitialTime:caller:
+-     // Error parsing type: ^{_CFCachedURLResponse={__CFRuntimeBase=QAQ}^{__CFCachedURLResponse}}48@0:8@16^@24^@32^{_CFURLCache={__CFRuntimeBase=QAQ}{shared_ptr<__CFURLCache>=^{__CFURLCache}^{__shared_weak_count}}}40, name: createCachedResponseForKey:cacheDataPath:cacheDataFile:caller:
 - (BOOL)_finalizeDBSelectStatements;
 - (BOOL)_finalizeAllDBStatements;
 - (BOOL)_prepareDBSelectStatements;

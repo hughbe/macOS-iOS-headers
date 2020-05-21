@@ -14,16 +14,17 @@
 {
     NSMutableDictionary *_offlineToRealEWSIdStrings;
     id _offlineToRealEWSIdStringsLock;
+    NSOperationQueue *_requestResponseQueue;
     MFEWSConnection *_offlineConnection;
     MFEWSResponseOperation *_lastResponseDecoded;
-    NSOperationQueue *_requestResponseQueue;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)keyPathsForValuesAffectingRequestResponseQueue;
-- (id)requestResponseQueue;
+- (void).cxx_destruct;
 @property(retain) MFEWSResponseOperation *lastResponseDecoded; // @synthesize lastResponseDecoded=_lastResponseDecoded;
 @property(retain) MFEWSConnection *offlineConnection; // @synthesize offlineConnection=_offlineConnection;
-- (void).cxx_destruct;
+- (id)requestResponseQueue;
 - (Class)unarchiver:(id)arg1 cannotDecodeObjectOfClassName:(id)arg2 originalClasses:(id)arg3;
 - (id)unarchiver:(id)arg1 didDecodeObject:(id)arg2;
 - (void)_undeleteMessagesFromFailedDeleteRequest:(id)arg1;

@@ -4,23 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <PassKitCore/PKOverlayableWebServiceRequest.h>
 
-@interface PKPaymentWebServiceRequest : NSObject
+@interface PKPaymentWebServiceRequest : PKOverlayableWebServiceRequest
 {
-    BOOL _useLegacyFormat;
     id <PKPaymentWebServiceTargetDeviceProtocol> _targetDevice;
 }
 
-+ (id)_HTTPBodyWithDictionary:(id)arg1;
-+ (id)authHeaderWithAccount:(id)arg1;
-@property(retain, nonatomic) id <PKPaymentWebServiceTargetDeviceProtocol> targetDevice; // @synthesize targetDevice=_targetDevice;
-@property(nonatomic) BOOL useLegacyFormat; // @synthesize useLegacyFormat=_useLegacyFormat;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
-- (id)_murlRequestWithServiceURL:(id)arg1 endpointComponents:(id)arg2 queryParameters:(id)arg3 account:(id)arg4;
-- (id)_murlRequestWithURL:(id)arg1 account:(id)arg2;
+@property(retain, nonatomic) id <PKPaymentWebServiceTargetDeviceProtocol> targetDevice; // @synthesize targetDevice=_targetDevice;
+- (id)_murlRequestWithServiceURL:(id)arg1 version:(id)arg2 endpointComponents:(id)arg3 queryParameters:(id)arg4 appleAccountInformation:(id)arg5;
+- (id)_murlRequestWithServiceURL:(id)arg1 endpointComponents:(id)arg2 queryParameters:(id)arg3 appleAccountInformation:(id)arg4;
 - (id)_murlRequestWithURL:(id)arg1;
-- (void)signAndFinalizeRequest:(id)arg1 httpBodyContents:(id)arg2 webService:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)_signRequest:(id)arg1 webService:(id)arg2 completion:(CDUnknownBlockType)arg3;
 
 @end
 

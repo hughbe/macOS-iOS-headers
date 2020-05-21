@@ -6,13 +6,12 @@
 
 #import <AppKit/NSView.h>
 
-@class NSImage, NSToolbarFlexibleSpaceItem;
+@class NSToolbarFlexibleSpaceItem;
 
 @interface _NSToolbarFlexibleSpace : NSView
 {
     NSToolbarFlexibleSpaceItem *_spaceItem;
     BOOL _inPalette;
-    NSImage *_configPanelImage;
 }
 
 @property NSToolbarFlexibleSpaceItem *spaceItem; // @synthesize spaceItem=_spaceItem;
@@ -22,6 +21,7 @@
 - (BOOL)_shouldDrawFlexibleSpaceOutline;
 - (void)_drawToolbarFlexibleSpaceInRect:(struct CGRect)arg1;
 - (struct __CFString *)_currentCoreUIWidget;
+- (BOOL)allowsVibrancy;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (BOOL)preservesContentDuringLiveResize;
 - (BOOL)_drawsNothing;

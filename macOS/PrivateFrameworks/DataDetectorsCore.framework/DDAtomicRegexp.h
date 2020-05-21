@@ -10,12 +10,11 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface DDAtomicRegexp : DDBasicRegexp <NSCopying>
 {
-    union {
-        struct _NSRange range;
-        NSString *simplePattern;
-    } u;
+    struct _NSRange _range;
+    NSString *_simplePattern;
     BOOL _caseInsensitive;
     int _type;
     NSString *_displayName;

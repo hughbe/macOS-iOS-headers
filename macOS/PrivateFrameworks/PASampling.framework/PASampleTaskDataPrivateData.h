@@ -19,10 +19,18 @@
     int _pageins;
     int _cow_faults;
     unsigned int _latency_qos;
+    unsigned long long _terminatedThreadsUserTimeInNs;
+    unsigned long long _terminatedThreadsSystemTimeInNs;
+    unsigned long long _terminatedThreadsInstructions;
+    unsigned long long _terminatedThreadsCycles;
 }
 
 + (id)newInstanceWithoutReferencesFromBufferPosition:(const void *)arg1;
 + (id)classDictionaryKey;
+@property(readonly) unsigned long long terminatedThreadsCycles; // @synthesize terminatedThreadsCycles=_terminatedThreadsCycles;
+@property(readonly) unsigned long long terminatedThreadsInstructions; // @synthesize terminatedThreadsInstructions=_terminatedThreadsInstructions;
+@property(readonly) unsigned long long terminatedThreadsSystemTimeInNs; // @synthesize terminatedThreadsSystemTimeInNs=_terminatedThreadsSystemTimeInNs;
+@property(readonly) unsigned long long terminatedThreadsUserTimeInNs; // @synthesize terminatedThreadsUserTimeInNs=_terminatedThreadsUserTimeInNs;
 @property(readonly) unsigned int latencyQos; // @synthesize latencyQos=_latency_qos;
 @property(readonly) unsigned long long ss_flags; // @synthesize ss_flags=_ss_flags;
 @property(readonly) int numberOfPageIns; // @synthesize numberOfPageIns=_pageins;
@@ -30,12 +38,12 @@
 @property(readonly) int numberOfPageFaults; // @synthesize numberOfPageFaults=_faults;
 @property(readonly) long long taskSizeInBytes; // @synthesize taskSizeInBytes=_task_size_bytes;
 @property(readonly) int suspendCount; // @synthesize suspendCount=_suspend_count;
-- (id)initWithKCDataStackshotDeltaTask:(const struct task_delta_snapshot_v2 *)arg1;
-- (id)initWithKCDataStackshotTask:(const struct task_snapshot_v2 *)arg1;
-- (id)initWithTaskSnapshot:(const struct task_snapshot *)arg1;
-- (BOOL)correspondsToKCDataStackshotDeltaTask:(const struct task_delta_snapshot_v2 *)arg1;
-- (BOOL)correspondsToKCDataStackshotTask:(const struct task_snapshot_v2 *)arg1;
-- (BOOL)correspondsToTaskSnapshot:(const struct task_snapshot *)arg1;
+- (id)initWithKCDataStackshotDeltaTask:(const struct task_delta_snapshot_v2 *)arg1 andTerminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg2 machTimebase:(struct mach_timebase_info)arg3;
+- (id)initWithKCDataStackshotTask:(const struct task_snapshot_v2 *)arg1 andTerminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg2 machTimebase:(struct mach_timebase_info)arg3;
+- (id)initWithTaskSnapshot:(const struct task_snapshot *)arg1 machTimebase:(struct mach_timebase_info)arg2;
+- (BOOL)correspondsToKCDataStackshotDeltaTask:(const struct task_delta_snapshot_v2 *)arg1 andTerminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg2 machTimebase:(struct mach_timebase_info)arg3;
+- (BOOL)correspondsToKCDataStackshotTask:(const struct task_snapshot_v2 *)arg1 andTerminatedThreadsInstructionCycles:(const struct instrs_cycles_snapshot *)arg2 machTimebase:(struct mach_timebase_info)arg3;
+- (BOOL)correspondsToTaskSnapshot:(const struct task_snapshot *)arg1 machTimebase:(struct mach_timebase_info)arg2;
 @property(readonly) BOOL wqExceededTotalThreadLimit;
 @property(readonly) BOOL wqExceededConstrainedThreadLimit;
 @property(readonly) BOOL isDirty;

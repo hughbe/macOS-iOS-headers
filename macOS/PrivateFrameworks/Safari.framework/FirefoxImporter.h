@@ -4,10 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Safari/BrowserImportEngine.h>
+
+@class FirefoxDataDirectories;
 
 __attribute__((visibility("hidden")))
-@interface FirefoxImporter : NSObject
+@interface FirefoxImporter : BrowserImportEngine
 {
 }
 
@@ -15,6 +17,10 @@ __attribute__((visibility("hidden")))
 - (BOOL)openLegacyCredentialsDatabaseAndPerformBlock:(CDUnknownBlockType)arg1;
 - (BOOL)openCredentialsJSONFileAndPerformBlock:(CDUnknownBlockType)arg1;
 - (BOOL)openPlacesDatabaseAndPerformBlock:(CDUnknownBlockType)arg1;
+- (id)initWithDataDirectories:(id)arg1;
+
+// Remaining properties
+@property(readonly, nonatomic) FirefoxDataDirectories *dataDirectories; // @dynamic dataDirectories;
 
 @end
 

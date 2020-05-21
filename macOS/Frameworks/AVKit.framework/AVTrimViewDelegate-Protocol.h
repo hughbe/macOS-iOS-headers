@@ -11,8 +11,11 @@
 @protocol AVTrimViewDelegate <NSObject>
 
 @optional
-- (BOOL)canStartTrackingForTrimView:(AVTrimView *)arg1;
+- (BOOL)trimViewCanStartTracking:(AVTrimView *)arg1;
 - (void)trimView:(AVTrimView *)arg1 didZoomBy:(double)arg2;
+- (void)trimViewHideTimeIndicatorPopover:(AVTrimView *)arg1;
+- (void)trimView:(AVTrimView *)arg1 didChangeTimeIndicatorPopoverValue:(double)arg2;
+- (void)trimView:(AVTrimView *)arg1 showTimeIndicatorPopoverWithValue:(double)arg2;
 - (void)trimView:(AVTrimView *)arg1 didStopTracking:(unsigned long long)arg2;
 - (void)trimView:(AVTrimView *)arg1 willStartTracking:(unsigned long long)arg2;
 @end

@@ -12,8 +12,8 @@
     id <TKPickerOutlineViewEventHandlingDelegate> _eventHandlingDelegate;
 }
 
-@property(nonatomic) id <TKPickerOutlineViewEventHandlingDelegate> eventHandlingDelegate; // @synthesize eventHandlingDelegate=_eventHandlingDelegate;
-@property(nonatomic, setter=_setShouldSkipNextScrollRowToVisibleMessage:) BOOL _shouldSkipNextScrollRowToVisibleMessage; // @synthesize _shouldSkipNextScrollRowToVisibleMessage;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <TKPickerOutlineViewEventHandlingDelegate> eventHandlingDelegate; // @synthesize eventHandlingDelegate=_eventHandlingDelegate;
 - (void)keyDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)scrollRowToVisible:(long long)arg1;

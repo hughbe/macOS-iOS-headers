@@ -44,13 +44,13 @@ __attribute__((visibility("hidden")))
 @property double maximumThickness;
 @property double minimumThickness;
 - (id)_overlayMaterialGroupName;
-- (void)_updateBlendingModeAndVibrancyEffect;
+- (void)_updateEffectViewState;
 @property BOOL forceWithinWindowBlending;
 @property BOOL hasBaseVibrancyEffect;
 @property(getter=isOverlaid) BOOL overlaid;
 - (id)_preferredAppearance;
-- (void)_viewDidChangeAppearance:(id)arg1;
-@property NSSplitViewItem *splitViewItem;
+- (void)viewDidChangeEffectiveAppearance;
+@property(retain) NSSplitViewItem *splitViewItem;
 - (void)setHidden:(BOOL)arg1;
 - (id)_splitView;
 - (void)dealloc;

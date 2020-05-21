@@ -19,7 +19,6 @@
     NSMutableDictionary *_knownIDSIDStatus;
     BOOL _hideAlternateHandles;
     BOOL _showingMenu;
-    BOOL _includeAVOptions;
     BOOL _includeHandleAlternatives;
     NSMenu *_menu;
     CDUnknownBlockType _handleBlock;
@@ -27,19 +26,18 @@
 }
 
 + (id)_handleMenuItemLabelParagraphStyle;
+- (void).cxx_destruct;
 @property BOOL includeHandleAlternatives; // @synthesize includeHandleAlternatives=_includeHandleAlternatives;
-@property BOOL includeAVOptions; // @synthesize includeAVOptions=_includeAVOptions;
 @property BOOL showingMenu; // @synthesize showingMenu=_showingMenu;
 @property BOOL hideAlternateHandles; // @synthesize hideAlternateHandles=_hideAlternateHandles;
 @property __weak SOChatDisplayController *chatDisplayController; // @synthesize chatDisplayController=_chatDisplayController;
 @property(copy) CDUnknownBlockType handleBlock; // @synthesize handleBlock=_handleBlock;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (id)init;
 - (void)menuDidClose:(id)arg1;
 - (void)menuWillOpen:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
-- (void)idStatusUpdatedForDestinations:(id)arg1;
+- (void)batchQueryController:(id)arg1 updatedDestinationsStatus:(id)arg2 onService:(id)arg3 error:(id)arg4;
 - (id)_alternativeHandlesIncludingABCombinations:(BOOL)arg1;
 - (id)_actionItemsForHandle:(id)arg1 errorCode:(unsigned long long)arg2;
 - (void)_loginToIMessage:(id)arg1;

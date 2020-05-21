@@ -7,12 +7,12 @@
 #import "NSViewController.h"
 
 #import "GKDialogControllerSizing.h"
-#import "GKRestrictedViewController.h"
+#import "GKRemoteViewControllerDelegate.h"
 #import "GKViewController.h"
 
-@class GKRemoteViewController, NSString;
+@class NSString;
 
-@interface GKGameCenterViewController : NSViewController <GKDialogControllerSizing, GKRestrictedViewController, GKViewController>
+@interface GKGameCenterViewController : NSViewController <GKRemoteViewControllerDelegate, GKDialogControllerSizing, GKViewController>
 {
     id _internal1;
     id _internal2;
@@ -24,8 +24,10 @@
     BOOL _internalFlag;
 }
 
+- (void).cxx_destruct;
 @property BOOL didRequestRemoteViewController; // @synthesize didRequestRemoteViewController=_internalFlag;
-@property(retain, nonatomic) GKRemoteViewController *remoteViewController; // @synthesize remoteViewController=_internal1;
+@property __weak id <GKGameCenterControllerDelegate> gameCenterDelegate; // @synthesize gameCenterDelegate=_internal2;
+@property(retain, nonatomic) id <GKRemoteViewController> remoteViewController; // @synthesize remoteViewController=_internal1;
 - (id)_gkInGameUIUnavailableAlertWithDismissHandler:(CDUnknownBlockType)arg1;
 - (BOOL)remoteViewControllerRequestingDismiss:(id)arg1;
 - (void)remoteViewController:(id)arg1 receivedMessageFromService:(id)arg2;
@@ -34,17 +36,14 @@
 - (BOOL)shouldShowPlayForChallenge;
 - (void)playPressedForChallenge:(id)arg1;
 - (void)viewDidDisappear;
-- (void)viewWillAppear;
 - (void)requestRemoteViewController;
 - (void)loadView;
 - (id)view;
 @property long long viewState; // @synthesize viewState=_viewState;
 @property(nonatomic) long long leaderboardTimeScope; // @synthesize leaderboardTimeScope=_leaderboardTimeScope;
 @property(retain, nonatomic) NSString *leaderboardIdentifier; // @synthesize leaderboardIdentifier=_leaderboardIdentifier;
-@property id <GKGameCenterControllerDelegate> gameCenterDelegate; // @synthesize gameCenterDelegate=_internal2;
 @property(retain, nonatomic) NSString *leaderboardCategory;
 - (struct CGSize)_gkSizeForDialogController;
-- (void)dealloc;
 - (id)init;
 
 // Remaining properties

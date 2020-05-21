@@ -16,6 +16,9 @@
 + (unsigned char)data:(id)arg1 byteAtIndex:(unsigned long long)arg2;
 + (BOOL)tryUTF16ByInferrence:(id)arg1 analysis:(struct CNVCardDataAnalysis *)arg2;
 + (BOOL)tryUTF16WithByteOrderMarker:(id)arg1 analysis:(struct CNVCardDataAnalysis *)arg2;
++ (BOOL)data:(id)arg1 containsParam:(id)arg2 value:(id)arg3 encoding:(unsigned long long)arg4;
++ (BOOL)data:(id)arg1 containsString:(id)arg2 encoding:(unsigned long long)arg3;
++ (BOOL)data:(id)arg1 isVersion30WithPrefix:(id)arg2 encoding:(unsigned long long)arg3;
 + (BOOL)tryVCardEncoding:(unsigned long long)arg1 data:(id)arg2 analysis:(struct CNVCardDataAnalysis *)arg3;
 + (BOOL)tryUTF16BEBOMVCard:(id)arg1 analysis:(struct CNVCardDataAnalysis *)arg2;
 + (BOOL)tryUTF16LEBOMVCard:(id)arg1 analysis:(struct CNVCardDataAnalysis *)arg2;

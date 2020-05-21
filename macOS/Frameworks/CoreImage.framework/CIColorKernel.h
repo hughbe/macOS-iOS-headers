@@ -11,13 +11,19 @@
 }
 
 + (id)kernelWithString:(id)arg1;
-- (id)applyWithExtent:(struct CGRect)arg1 andArguments:(id)arg2;
++ (id)SDOFV3MetalKernelNamed:(id)arg1;
++ (id)SDOFV2MetalKernelNamed:(id)arg1;
 - (id)applyWithExtent:(struct CGRect)arg1 arguments:(id)arg2;
 - (id)applyWithExtent:(struct CGRect)arg1 arguments:(id)arg2 options:(id)arg3;
 - (id)applyWithExtent:(struct CGRect)arg1 roiCallback:(CDUnknownBlockType)arg2 arguments:(id)arg3;
 - (id)applyWithExtent:(struct CGRect)arg1 roiCallback:(CDUnknownBlockType)arg2 arguments:(id)arg3 options:(id)arg4;
+- (void)setCanReduceOutputChannels:(_Bool)arg1;
+- (_Bool)canReduceOutputChannels;
+- (void)setPreservesRange:(_Bool)arg1;
+- (_Bool)preservesRange;
 @property(nonatomic) _Bool perservesAlpha;
-- (id)_initWithDict:(id)arg1;
+- (id)_initWithReflection:(struct CIKernelReflection)arg1 constants:(id)arg2;
+- (id)initWithString:(id)arg1;
 
 @end
 

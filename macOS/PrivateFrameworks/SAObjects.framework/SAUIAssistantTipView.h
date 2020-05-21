@@ -14,6 +14,7 @@
 
 + (id)assistantTipViewWithDictionary:(id)arg1 context:(id)arg2;
 + (id)assistantTipView;
+@property(copy, nonatomic) NSString *tipPrefix;
 @property(copy, nonatomic) NSString *flowIdentifier;
 - (id)encodedClassName;
 - (id)groupIdentifier;

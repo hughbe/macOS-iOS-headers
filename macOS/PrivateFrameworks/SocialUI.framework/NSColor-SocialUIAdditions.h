@@ -7,9 +7,22 @@
 #import "NSColor.h"
 
 @interface NSColor (SocialUIAdditions)
++ (id)progressBarBusinessColor;
++ (id)progressBariMessageColor;
++ (id)progressBarSMSColor;
++ (id)mapViewContainerBorderColor;
++ (id)primaryContrastColorForBusinessChat:(id)arg1;
++ (id)secondaryBrandColorForBusinessChat:(id)arg1;
++ (id)primaryBrandColorForBusinessChat:(id)arg1;
++ (id)colorWithWebColor:(id)arg1;
++ (id)businessToFieldGray;
++ (id)iMessageBlue;
 + (id)borderlessControlBlue;
 + (id)messagesTintColor;
+- (BOOL)isDarkColor;
 - (id)webStringValue;
 - (BOOL)isEqualToColor:(id)arg1;
+- (id)hexColor;
+- (void)_getSRGBComponentValueRed:(unsigned long long *)arg1 green:(unsigned long long *)arg2 blue:(unsigned long long *)arg3;
 @end
 

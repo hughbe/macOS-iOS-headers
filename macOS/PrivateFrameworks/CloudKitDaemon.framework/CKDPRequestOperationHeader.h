@@ -8,9 +8,8 @@
 
 #import "NSCopying.h"
 
-@class CKDPIdentifier, CKDPLocale, NSData, NSString;
+@class CKDPIdentifier, CKDPLocale, CKDPRequestOperationHeaderAssetAuthorizeGetRequestOptions, NSData, NSMutableArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface CKDPRequestOperationHeader : PBCodable <NSCopying>
 {
     unsigned long long _applicationConfigVersion;
@@ -18,10 +17,12 @@ __attribute__((visibility("hidden")))
     unsigned long long _deviceFlowControlBudgetCap;
     unsigned long long _deviceProtocolVersion;
     unsigned long long _globalConfigVersion;
+    unsigned long long _operationGroupQuantity;
     NSString *_applicationBundle;
     NSString *_applicationContainer;
     int _applicationContainerEnvironment;
     NSString *_applicationVersion;
+    CKDPRequestOperationHeaderAssetAuthorizeGetRequestOptions *_assetAuthorizeGetRequestOptions;
     NSData *_clientChangeToken;
     NSString *_deviceAssignedName;
     NSString *_deviceFlowControlKey;
@@ -35,22 +36,34 @@ __attribute__((visibility("hidden")))
     int _isolationLevel;
     CKDPLocale *_locale;
     NSString *_mmcsProtocolVersion;
+    NSString *_operationGroupName;
+    NSMutableArray *_serviceIdentityKeyIDs;
     int _targetDatabase;
     NSString *_userIDContainerID;
     NSString *_userToken;
+    BOOL _deviceSoftwareIsAppleInternal;
     struct {
         unsigned int applicationConfigVersion:1;
         unsigned int deviceFlowControlBudget:1;
         unsigned int deviceFlowControlBudgetCap:1;
         unsigned int deviceProtocolVersion:1;
         unsigned int globalConfigVersion:1;
+        unsigned int operationGroupQuantity:1;
         unsigned int applicationContainerEnvironment:1;
         unsigned int deviceFlowControlRegeneration:1;
         unsigned int isolationLevel:1;
         unsigned int targetDatabase:1;
+        unsigned int deviceSoftwareIsAppleInternal:1;
     } _has;
 }
 
++ (Class)serviceIdentityKeyIDsType;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CKDPRequestOperationHeaderAssetAuthorizeGetRequestOptions *assetAuthorizeGetRequestOptions; // @synthesize assetAuthorizeGetRequestOptions=_assetAuthorizeGetRequestOptions;
+@property(nonatomic) BOOL deviceSoftwareIsAppleInternal; // @synthesize deviceSoftwareIsAppleInternal=_deviceSoftwareIsAppleInternal;
+@property(retain, nonatomic) NSMutableArray *serviceIdentityKeyIDs; // @synthesize serviceIdentityKeyIDs=_serviceIdentityKeyIDs;
+@property(nonatomic) unsigned long long operationGroupQuantity; // @synthesize operationGroupQuantity=_operationGroupQuantity;
+@property(retain, nonatomic) NSString *operationGroupName; // @synthesize operationGroupName=_operationGroupName;
 @property(retain, nonatomic) NSString *userIDContainerID; // @synthesize userIDContainerID=_userIDContainerID;
 @property(retain, nonatomic) NSString *deviceHardwareID; // @synthesize deviceHardwareID=_deviceHardwareID;
 @property(retain, nonatomic) NSString *deviceAssignedName; // @synthesize deviceAssignedName=_deviceAssignedName;
@@ -73,7 +86,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSString *applicationBundle; // @synthesize applicationBundle=_applicationBundle;
 @property(retain, nonatomic) NSString *applicationContainer; // @synthesize applicationContainer=_applicationContainer;
 @property(retain, nonatomic) NSString *userToken; // @synthesize userToken=_userToken;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -83,6 +95,14 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasAssetAuthorizeGetRequestOptions;
+@property(nonatomic) BOOL hasDeviceSoftwareIsAppleInternal;
+- (id)serviceIdentityKeyIDsAtIndex:(unsigned long long)arg1;
+- (unsigned long long)serviceIdentityKeyIDsCount;
+- (void)addServiceIdentityKeyIDs:(id)arg1;
+- (void)clearServiceIdentityKeyIDs;
+@property(nonatomic) BOOL hasOperationGroupQuantity;
+@property(readonly, nonatomic) BOOL hasOperationGroupName;
 - (int)StringAsIsolationLevel:(id)arg1;
 - (id)isolationLevelAsString:(int)arg1;
 @property(nonatomic) BOOL hasIsolationLevel;

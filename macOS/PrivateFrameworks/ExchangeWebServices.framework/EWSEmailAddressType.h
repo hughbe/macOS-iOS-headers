@@ -12,20 +12,20 @@
 
 @interface EWSEmailAddressType : EWSBaseEmailAddressType <XSDefinitionProvider>
 {
-    NSString *_EmailAddress;
-    EWSItemIdType *_ItemId;
-    long long _MailboxType;
     NSString *_Name;
+    NSString *_EmailAddress;
     NSString *_RoutingType;
+    long long _MailboxType;
+    EWSItemIdType *_ItemId;
 }
 
 + (id)definition;
-@property(copy, nonatomic) NSString *RoutingType; // @synthesize RoutingType=_RoutingType;
-@property(copy, nonatomic) NSString *Name; // @synthesize Name=_Name;
-@property(nonatomic) long long MailboxType; // @synthesize MailboxType=_MailboxType;
-@property(retain, nonatomic) EWSItemIdType *ItemId; // @synthesize ItemId=_ItemId;
-@property(copy, nonatomic) NSString *EmailAddress; // @synthesize EmailAddress=_EmailAddress;
 - (void).cxx_destruct;
+@property(retain, nonatomic) EWSItemIdType *ItemId; // @synthesize ItemId=_ItemId;
+@property(nonatomic) long long MailboxType; // @synthesize MailboxType=_MailboxType;
+@property(copy, nonatomic) NSString *RoutingType; // @synthesize RoutingType=_RoutingType;
+@property(copy, nonatomic) NSString *EmailAddress; // @synthesize EmailAddress=_EmailAddress;
+@property(copy, nonatomic) NSString *Name; // @synthesize Name=_Name;
 @property(readonly, copy) NSString *description;
 
 // Remaining properties

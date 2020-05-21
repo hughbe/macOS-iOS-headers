@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <FinderKit/FI_TDrawRectView.h>
+#import "NSNavBannerView.h"
 
 #import "NSStackViewDelegate.h"
 
-@class FI_TButton, FI_TPopUpButton, FI_TScopeBarRadioGroupView, FI_TTextField, NSLayoutConstraint, NSStackView, NSString;
+@class FI_TButton, FI_TPopUpButton, FI_TScopeBarRadioGroupView, FI_TTextField, NSLayoutConstraint, NSObject<TSearchScopeSliceControllerDelegate>, NSStackView, NSString;
 
 __attribute__((visibility("hidden")))
-@interface FI_TSearchScopeSlice : FI_TDrawRectView <NSStackViewDelegate>
+@interface FI_TSearchScopeSlice : NSNavBannerView <NSStackViewDelegate>
 {
     NSStackView *_stackView;
     FI_TTextField *_searchTextField;
@@ -22,11 +22,10 @@ __attribute__((visibility("hidden")))
     NSLayoutConstraint *_scopeDropdownMaxWidthConstraint;
     NSLayoutConstraint *_scopeDropdownMinWidthConstraint;
     FI_TButton *_genericRadioButton;
-    struct TNSRef<FI_TButton *, void> _genericRadioButtonRetainer;
-    id <TSearchScopeSliceControllerDelegate> _delegate;
+    struct TNSRef<FI_TButton, void> _genericRadioButtonRetainer;
+    struct TNSWeakPtr<NSObject<TSearchScopeSliceControllerDelegate>, void> _weakDelegate;
 }
 
-@property(nonatomic) id <TSearchScopeSliceControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)accessibilityAttributeValue:(id)arg1;
@@ -38,16 +37,16 @@ __attribute__((visibility("hidden")))
 - (void)setPlusMinusButtonEnabled:(_Bool)arg1;
 - (void)setPlusMinusButtonTitle:(_Bool)arg1;
 - (void)setSaveButtonEnabled:(_Bool)arg1;
-- (void)setButtonTitles:(const vector_e0f53d80 *)arg1 andToolTips:(const vector_e0f53d80 *)arg2;
+- (void)setButtonTitles:(const vector_757c8b87 *)arg1 andToolTips:(const vector_757c8b87 *)arg2;
 - (id)newRadioButtonForTitle:(const struct TString *)arg1 tooltip:(const struct TString *)arg2;
 - (void)plusMinusButtonPressed:(id)arg1;
 - (void)saveButtonPressed:(id)arg1;
 - (void)scopeDropdownChanged:(id)arg1;
 - (void)scopeButtonPressed:(id)arg1;
 - (void)chooseScopeButton:(id)arg1;
-- (void)drawRect:(struct CGRect)arg1;
 - (void)stackView:(id)arg1 didReattachViews:(id)arg2;
 - (void)stackView:(id)arg1 willDetachViews:(id)arg2;
+@property(nonatomic) __weak NSObject<TSearchScopeSliceControllerDelegate> *delegate; // @dynamic delegate;
 - (void)awakeFromNib;
 
 // Remaining properties

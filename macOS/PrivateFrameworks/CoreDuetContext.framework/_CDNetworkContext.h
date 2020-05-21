@@ -10,11 +10,24 @@
 {
 }
 
++ (long long)cellUploadCost:(id)arg1;
++ (long long)cellDownloadCost:(id)arg1;
++ (BOOL)cellInterfaceUp:(id)arg1;
 + (BOOL)networkingAvailable:(id)arg1;
 + (BOOL)inexpensiveNetworkingAvailable:(id)arg1;
-+ (double)cellQuality:(id)arg1;
-+ (double)wifiQuality:(id)arg1;
-+ (double)qualityForPath:(id)arg1 inContext:(id)arg2;
++ (long long)cellQuality:(id)arg1;
++ (long long)wifiQuality:(id)arg1;
++ (long long)wiredQuality:(id)arg1;
++ (long long)qualityForPath:(id)arg1 inContext:(id)arg2;
++ (id)predictionKey;
++ (id)loiKey;
++ (id)uploadPowerCostKey;
++ (id)downloadPowerCostKey;
++ (id)interfaceUpKey;
++ (id)connectionQualityKey;
++ (id)keyPathForCellConnectionStatus;
++ (id)keyPathForWiFiConnectionStatus;
++ (id)keyPathForWiredConnectionStatus;
 
 @end
 

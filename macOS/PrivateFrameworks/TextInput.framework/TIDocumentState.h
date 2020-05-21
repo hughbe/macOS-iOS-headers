@@ -19,11 +19,18 @@
     struct _NSRange _selectedRangeInMarkedText;
 }
 
++ (id)_selectedTextByDeletingInteriorSentences:(id)arg1;
++ (id)_contextStringByTrimmingSuccedingLines:(id)arg1;
++ (id)_contextStringByTrimmingPrecedingLines:(id)arg1;
++ (id)_string:(id)arg1 byTrimmingWordsAfterIndex:(unsigned long long)arg2;
++ (id)_string:(id)arg1 byTrimmingWordsBeforeIndex:(unsigned long long)arg2;
 + (id)documentStateWithContextBefore:(id)arg1 markedText:(id)arg2 selectedRange:(struct _NSRange)arg3 contextAfter:(id)arg4;
 + (id)documentStateWithContextBefore:(id)arg1 selectedText:(id)arg2 contextAfter:(id)arg3;
 + (BOOL)supportsSecureCoding;
++ (id)unboundedDocumentStateForTestingWithContextBefore:(id)arg1 selectedText:(id)arg2 contextAfter:(id)arg3;
 + (id)documentStateForTestingWithContextBefore:(id)arg1 selectedText:(id)arg2 contextAfter:(id)arg3;
 + (id)documentStateForTestingWithText:(id)arg1 selectedRange:(struct _NSRange)arg2;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) struct _NSRange selectedRangeInMarkedText; // @synthesize selectedRangeInMarkedText=_selectedRangeInMarkedText;
 @property(readonly, nonatomic) NSString *contextAfterInput; // @synthesize contextAfterInput=_contextAfterInput;
 @property(readonly, nonatomic) NSString *selectedText; // @synthesize selectedText=_selectedText;
@@ -36,8 +43,8 @@
 - (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithUnboundedContextBefore:(id)arg1 markedText:(id)arg2 selectedText:(id)arg3 unboundedContextAfter:(id)arg4 selectedRangeInMarkedText:(struct _NSRange)arg5;
 - (id)initWithContextBefore:(id)arg1 markedText:(id)arg2 selectedText:(id)arg3 contextAfter:(id)arg4 selectedRangeInMarkedText:(struct _NSRange)arg5;
-- (void)dealloc;
 - (id)documentStateAfterCursorAdjustment:(long long)arg1;
 - (id)documentStateAfterReplacingText:(id)arg1 withText:(id)arg2;
 - (id)documentStateAfterCollapsingSelection;

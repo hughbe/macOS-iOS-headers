@@ -6,24 +6,26 @@
 
 #import "NSObject.h"
 
-@class CALayer, NSObject<OS_xpc_object>;
+@class CALayerHost;
 
 __attribute__((visibility("hidden")))
 @interface BU_DPRemoteDesktopPicture : NSObject
 {
-    NSObject<OS_xpc_object> *_connection;
+    struct TRef<NSObject<OS_xpc_object>*, TRetainReleasePolicy<xpc_object_t>> _connection;
     struct TRef<NSObject<OS_dispatch_queue>*, TRetainReleasePolicy<dispatch_queue_t>> _queue;
     unsigned int _displayID;
-    CALayer *desktopPictureLayer;
+    unsigned int _context;
+    CALayerHost *desktopPictureLayer;
 }
 
-+ (void)queue:(id)arg1 remoteDesktopPictureForDisplay:(unsigned int)arg2 block:(CDUnknownBlockType)arg3;
-@property(retain, nonatomic) CALayer *desktopPictureLayer; // @synthesize desktopPictureLayer;
++ (void)queue:(id)arg1 remoteDesktopPictureForDisplay:(unsigned int)arg2 callback:(function_63706baa)arg3;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CALayerHost *desktopPictureLayer; // @synthesize desktopPictureLayer;
 - (void)invalidate;
 - (void)dealloc;
-- (id)_initWithDisplay:(unsigned int)arg1 queue:(id)arg2 andBlock:(CDUnknownBlockType)arg3;
+- (_Bool)finishHostLayerSetup;
+- (void)fetchForDisplay:(unsigned int)arg1 queue:(id)arg2 andCallback:(function_63706baa)arg3;
 
 @end
 

@@ -45,6 +45,9 @@
 + (id)_recurringPredicateFloating:(BOOL)arg1 useTravelTime:(BOOL)arg2 forReminders:(BOOL)arg3;
 + (id)_nonRecurringPredicateFloating:(BOOL)arg1 useTravelTime:(BOOL)arg2 forReminders:(BOOL)arg3;
 + (id)entitiesFromManagedCalendarItems:(id)arg1;
++ (id)_batchedPaths:(id)arg1 batchSize:(unsigned int)arg2;
++ (id)_masterForICSFile:(id)arg1 occurrenceCALDate:(id *)arg2 inContext:(id)arg3 checkCalendarPath:(BOOL)arg4;
++ (id)masterForICSFile:(id)arg1 occurrenceCALDate:(id *)arg2 inContext:(id)arg3;
 + (id)masterForTruthFile:(id)arg1 occurrenceCALDate:(id *)arg2 inContext:(id)arg3;
 + (id)masterForTruthFile:(id)arg1 occurrenceDate:(id *)arg2 inContext:(id)arg3;
 

@@ -13,22 +13,23 @@
 @interface CNContactCardViewControllerDataSourceDelegate : NSObject <ABCardViewDataSourceDelegate>
 {
     BOOL _saveChangesToABPerson;
+    BOOL _removingEmptyData;
     ABPerson *_legacySaveTarget;
     AKCardViewDataSource *_dataSource;
     CNContactDetailsViewController *_contactDetailsViewController;
     CNContactCardViewController *_contactCardViewController;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL removingEmptyData; // @synthesize removingEmptyData=_removingEmptyData;
 @property(nonatomic) BOOL saveChangesToABPerson; // @synthesize saveChangesToABPerson=_saveChangesToABPerson;
 @property(nonatomic) __weak CNContactCardViewController *contactCardViewController; // @synthesize contactCardViewController=_contactCardViewController;
 @property(nonatomic) __weak CNContactDetailsViewController *contactDetailsViewController; // @synthesize contactDetailsViewController=_contactDetailsViewController;
 @property(nonatomic) __weak AKCardViewDataSource *dataSource; // @synthesize dataSource=_dataSource;
 @property(nonatomic) __weak ABPerson *legacySaveTarget; // @synthesize legacySaveTarget=_legacySaveTarget;
-- (void).cxx_destruct;
 - (void)updateWithSaveTarget:(id)arg1 dataSource:(id)arg2 contactDetailsViewController:(id)arg3 contactCardViewController:(id)arg4;
 - (void)dataSourceDidChangeValueForKey:(id)arg1;
 - (void)dataSourceWillChangeValueForKey:(id)arg1;
-- (void)applyCNContact:(id)arg1 toABPerson:(id)arg2;
 - (void)dataSourceDidChange:(id)arg1;
 
 // Remaining properties

@@ -19,7 +19,7 @@
 @property unsigned long long options; // @synthesize options=_options;
 - (BOOL)prepareWithDeferredFileList:(id)arg1 error:(id *)arg2;
 - (BOOL)addScriptAtPath:(id)arg1 error:(id *)arg2;
-- (id)rootPath;
+@property(readonly) NSString *rootPath;
 - (void)dealloc;
 - (id)initWithDestinationPath:(id)arg1 systemContentManifestPath:(id)arg2 error:(id *)arg3;
 - (id)initWithDestinationPath:(id)arg1 error:(id *)arg2;

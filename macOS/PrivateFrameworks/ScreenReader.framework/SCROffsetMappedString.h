@@ -6,20 +6,22 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@class NSMutableAttributedString;
+@class NSMutableArray, NSMutableAttributedString;
 
 __attribute__((visibility("hidden")))
-@interface SCROffsetMappedString : NSObject <NSCopying, NSCoding>
+@interface SCROffsetMappedString : NSObject <NSCopying, NSSecureCoding>
 {
-    NSMutableAttributedString *_mutableAttributedString;
-    struct __CFArray *_offsetMapArray;
+    NSMutableAttributedString *__mutableAttributedString;
+    NSMutableArray *__offsetMapArray;
 }
 
-- (id)_mutableAttributedString;
-- (struct __CFArray *)_offsetMapArray;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(retain, nonatomic, setter=_setOffsetMapArray:) NSMutableArray *_offsetMapArray; // @synthesize _offsetMapArray=__offsetMapArray;
+@property(retain, nonatomic, setter=_setMutableAttributedString:) NSMutableAttributedString *_mutableAttributedString; // @synthesize _mutableAttributedString=__mutableAttributedString;
 - (void)_replaceRange:(struct _NSRange)arg1 withLength:(long long)arg2;
 - (id)_initWithSCROffsetMappedString:(id)arg1;
 - (void)setOriginalAttributedString:(id)arg1;
@@ -46,10 +48,8 @@ __attribute__((visibility("hidden")))
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)init;
 - (id)description;
-- (void)_debugOffsetMappedString:(id)arg1;
 - (BOOL)replaceRegex:(struct URegularExpression *)arg1 withString:(id)arg2 withAttributes:(id)arg3;
 
 @end

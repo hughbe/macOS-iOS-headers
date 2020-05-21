@@ -6,20 +6,20 @@
 
 #import "NSObject.h"
 
-@class NSData;
+@class CoreDAVXMLData_Impl, NSData, NSMutableArray, NSMutableDictionary;
 
 @interface CoreDAVXMLData : NSObject
 {
     BOOL _shouldAddFormattingSpaces;
-    struct _xmlTextWriter *_writer;
-    struct _xmlDoc *_doc;
+    CoreDAVXMLData_Impl *_dataImpl;
     BOOL _docHasEnded;
-    struct __CFDictionary *_seenURIsToPrefixes;
-    struct __CFDictionary *_seenURIsToDepth;
-    struct __CFArray *_elementStack;
+    NSMutableDictionary *_seenURIsToPrefixes;
+    NSMutableDictionary *_seenURIsToDepth;
+    NSMutableArray *_elementStack;
 }
 
 + (BOOL)string:(id)arg1 isEqualToXmlCharString:(const char *)arg2;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL shouldAddFormattingSpaces; // @synthesize shouldAddFormattingSpaces=_shouldAddFormattingSpaces;
 @property(readonly, nonatomic) NSData *data;
 - (void)appendElement:(id)arg1 inNamespace:(id)arg2 withStringContentAsCDATA:(id)arg3 withAttributeNamesAndValues:(id)arg4;

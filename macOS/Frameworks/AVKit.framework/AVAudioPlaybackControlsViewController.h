@@ -17,6 +17,10 @@ __attribute__((visibility("hidden")))
 
 - (void).cxx_destruct;
 - (void)externalPlaybackButtonPressed:(id)arg1;
+- (long long)preferredEffectMaterial;
+- (long long)preferredBlendingMode;
+- (struct CGSize)intrinsicControlsContentViewSize;
+- (long long)layoutStyle;
 - (id)initialFirstResponder;
 - (void)setupNextKeyView;
 - (void)loadView;

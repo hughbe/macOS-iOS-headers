@@ -16,7 +16,6 @@ __attribute__((visibility("hidden")))
 
 @property(copy) NSColor *customColor; // @dynamic customColor;
 - (id)_createContentViewWithFrame:(struct CGRect)arg1 customColor:(id)arg2;
-- (struct CGRect)_opaqueRect;
 - (void)invalidateRestorableState;
 - (BOOL)_ignoreForFullScreenTransition;
 - (BOOL)canEnterFullScreenMode;

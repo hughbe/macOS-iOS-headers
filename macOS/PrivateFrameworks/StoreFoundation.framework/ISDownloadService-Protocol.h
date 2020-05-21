@@ -16,6 +16,7 @@
 - (void)lockedApplicationTriedToLaunchAtPath:(NSString *)arg1;
 - (void)unlockApplicationsWithBundleIdentifier:(NSString *)arg1;
 - (void)lockApplicationsForBundleID:(NSString *)arg1;
+- (void)performedIconAnimationForDownloadWithIdentifier:(unsigned long long)arg1;
 - (void)fetchIconForItemIdentifier:(unsigned long long)arg1 atURL:(NSURL *)arg2 replyBlock:(void (^)(unsigned long long, BOOL, NSURL *, NSError *))arg3;
 - (void)cacheReceiptAsString:(id)arg1 forDownload:(SSDownload *)arg2 reply:(void (^)(BOOL, NSError *))arg3;
 - (void)checkAutomaticDownloadQueue;

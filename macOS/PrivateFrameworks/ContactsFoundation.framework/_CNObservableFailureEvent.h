@@ -8,7 +8,6 @@
 
 @class NSError;
 
-__attribute__((visibility("hidden")))
 @interface _CNObservableFailureEvent : CNObservableEvent
 {
     NSError *_error;

@@ -14,6 +14,7 @@
 
 @property BOOL enabled; // @synthesize enabled=_enabled;
 @property long long rangeType; // @synthesize rangeType=_rangeType;
+- (id)description;
 - (BOOL)dateIsInEffect:(id)arg1;
 
 @end

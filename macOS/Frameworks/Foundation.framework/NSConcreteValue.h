@@ -19,9 +19,10 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqualToValue:(id)arg1;
-- (BOOL)_matchType:(const char *)arg1 size:(unsigned long long)arg2;
+- (BOOL)_matchType:(const char *)arg1 size:(unsigned long long)arg2 strict:(BOOL)arg3;
 - (const void *)_value;
 - (const char *)objCType;
+- (void)getValue:(void *)arg1 size:(unsigned long long)arg2;
 - (void)getValue:(void *)arg1;
 
 @end

@@ -16,6 +16,7 @@
     struct CGRect _documentFrame;
     double _pointsPerPixel;
     struct CGAffineTransform _affineTransformOfContent;
+    double _stiffness;
     struct _flags1 {
         unsigned int flipped:1;
         unsigned int allowsHorizontalRubberbanding:1;
@@ -35,6 +36,7 @@
 + (void)initialize;
 @property(readonly, nonatomic) struct CGPoint filteredVelocity; // @synthesize filteredVelocity=_filteredVelocity;
 @property(readonly, nonatomic) struct CGPoint filteredDelta; // @synthesize filteredDelta=_filteredDelta;
+@property(nonatomic) double stiffness; // @synthesize stiffness=_stiffness;
 @property(nonatomic) double pointsPerPixel; // @synthesize pointsPerPixel=_pointsPerPixel;
 @property(nonatomic) struct CGAffineTransform affineTransformOfContent; // @synthesize affineTransformOfContent=_affineTransformOfContent;
 @property(nonatomic) struct CGRect documentFrame; // @synthesize documentFrame=_documentFrame;

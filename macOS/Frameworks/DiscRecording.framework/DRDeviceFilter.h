@@ -18,7 +18,8 @@
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-@property(nonatomic) id <DRDeviceFilterDelegate> delegate;
+- (void)setDelegate:(id)arg1;
+- (id)delegate;
 - (id)bestDeviceFromAvailableDevices:(id)arg1;
 - (BOOL)deviceIsSuitable:(id)arg1;
 

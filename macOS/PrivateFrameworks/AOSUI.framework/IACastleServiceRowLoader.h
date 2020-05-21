@@ -13,6 +13,7 @@
     IACastleServiceRow *_serviceRow;
 }
 
+- (void).cxx_destruct;
 @property(readonly) IACastleServiceRow *serviceRow; // @synthesize serviceRow=_serviceRow;
 
 @end

@@ -23,6 +23,7 @@
     BOOL _scheduleIsAnUpdate;
 }
 
+- (void).cxx_destruct;
 - (void)configureOperationDependencies;
 - (void)performSchedule;
 - (void)task:(id)arg1 didFinishWithError:(id)arg2;
@@ -30,7 +31,6 @@
 - (void)_sendMessageForInvalidAttendees:(id)arg1;
 - (void)_checkHeadETag:(id)arg1;
 - (void)performOperation;
-- (void)dealloc;
 - (id)readableDescription;
 - (id)initWithChangeRequest:(id)arg1 entity:(id)arg2 meAddress:(id)arg3 recipients:(id)arg4 scheduleData:(id)arg5 outboxPath:(id)arg6 fromSource:(id)arg7 session:(id)arg8 etag:(id)arg9 serverFilename:(id)arg10;
 

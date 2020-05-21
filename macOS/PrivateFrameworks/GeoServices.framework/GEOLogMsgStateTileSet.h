@@ -8,14 +8,16 @@
 
 #import "NSCopying.h"
 
+@class NSMutableArray;
+
 @interface GEOLogMsgStateTileSet : PBCodable <NSCopying>
 {
-    unsigned int _count;
-    int _style;
-    CDStruct_f13729b5 _has;
+    NSMutableArray *_tileSetInfos;
 }
 
-@property(nonatomic) unsigned int count; // @synthesize count=_count;
++ (BOOL)isValid:(id)arg1;
++ (Class)tileSetInfoType;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -23,13 +25,14 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-@property(nonatomic) BOOL hasCount;
-- (int)StringAsStyle:(id)arg1;
-- (id)styleAsString:(int)arg1;
-@property(nonatomic) BOOL hasStyle;
-@property(nonatomic) int style; // @synthesize style=_style;
+- (id)tileSetInfoAtIndex:(unsigned long long)arg1;
+- (unsigned long long)tileSetInfosCount;
+- (void)addTileSetInfo:(id)arg1;
+- (void)clearTileSetInfos;
+@property(retain, nonatomic) NSMutableArray *tileSetInfos;
 
 @end
 

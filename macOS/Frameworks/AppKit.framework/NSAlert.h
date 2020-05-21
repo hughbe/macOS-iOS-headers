@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSAttributedString, NSButton, NSImage, NSPanel, NSString, NSTextField, NSView, NSWindow;
+#import "NSTouchBarProvider.h"
 
-@interface NSAlert : NSObject
+@class NSArray, NSAttributedString, NSButton, NSImage, NSPanel, NSString, NSTextField, NSTouchBar, NSView, NSWindow;
+
+@interface NSAlert : NSObject <NSTouchBarProvider>
 {
     NSTextField *_informationField;
     id _first;
@@ -41,11 +43,14 @@
     id _accessoryView;
 }
 
++ (void)_stopTimerForSpeakingForAlert:(id)arg1;
++ (void)_startTimerForSpeakingWithTitle:(id)arg1 andText:(id)arg2 forAlert:(id)arg3;
 + (void)stopAllTimersForSpeaking;
 + (id)_dontShowMessageAgainTitle;
 + (id)_dontSaveButtonTitle;
 + (id)alertWithError:(id)arg1;
 + (id)alertWithMessageText:(id)arg1 defaultButton:(id)arg2 alternateButton:(id)arg3 otherButton:(id)arg4 informativeTextWithFormat:(id)arg5;
+@property(retain) NSWindow *_panel; // @synthesize _panel;
 - (void)_setSuppressionButton:(id)arg1;
 - (id)_suppressionButton;
 - (void)_setDidDismissSelector:(SEL)arg1;
@@ -58,8 +63,9 @@
 - (id)_third;
 - (id)_second;
 - (id)_first;
-- (void)didEndSheet:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-- (id)buildAlertStyle:(unsigned long long)arg1 title:(id)arg2 message:(id)arg3 first:(id)arg4 second:(id)arg5 third:(id)arg6 oldStyle:(BOOL)arg7 args:(struct __va_list_tag [1])arg8;
+- (BOOL)_thirdButtonExists;
+- (BOOL)_secondButtonExists;
+- (BOOL)_firstButtonExists;
 - (id)buildAlertStyle:(unsigned long long)arg1 title:(id)arg2 formattedMessage:(id)arg3 first:(id)arg4 second:(id)arg5 third:(id)arg6 oldStyle:(BOOL)arg7;
 - (id)_constraintsForExplicitFrameSize:(struct CGSize)arg1 forView:(id)arg2;
 - (id)_constraintForExplicitFrameHeight:(struct CGSize)arg1 forView:(id)arg2 strength:(double)arg3;
@@ -74,15 +80,13 @@
 - (BOOL)_interceptKeyEquivalent:(id)arg1;
 - (void)_setDontSaveButton:(id)arg1;
 - (id)_dontSaveButton;
-- (id)buttonPressed:(id)arg1;
+- (void)buttonPressed:(id)arg1;
 @property(retain) NSView *accessoryView;
 @property(readonly) NSButton *suppressionButton;
 @property BOOL showsSuppressionButton;
 - (id)_screenForMaxHeight;
 @property(readonly) NSWindow *window;
-- (void)didEndAlert:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)beginSheetModalForWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)beginSheetModalForWindow:(id)arg1 modalDelegate:(id)arg2 didEndSelector:(SEL)arg3 contextInfo:(void *)arg4;
 - (long long)runModal;
 - (void)prepare;
 - (void)layout;
@@ -103,6 +107,20 @@
 - (id)init;
 @property(copy) NSAttributedString *attributedInformativeText;
 @property(copy) NSAttributedString *attributedMessageText;
+- (void)_removeTouchBar;
+- (void)windowClosing:(id)arg1;
+- (id)_alertTouchBar;
+@property(readonly) NSTouchBar *touchBar;
+- (void)didEndSheet:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)didEndAlert:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)beginSheetModalForWindow:(id)arg1 modalDelegate:(id)arg2 didEndSelector:(SEL)arg3 contextInfo:(void *)arg4;
+- (id)buildAlertStyle:(unsigned long long)arg1 title:(id)arg2 message:(id)arg3 first:(id)arg4 second:(id)arg5 third:(id)arg6 oldStyle:(BOOL)arg7 args:(struct __va_list_tag [1])arg8;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

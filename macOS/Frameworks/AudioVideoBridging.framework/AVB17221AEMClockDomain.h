@@ -17,6 +17,8 @@
 @property(copy) NSArray *clockSources; // @synthesize clockSources;
 @property unsigned short clockSourceIndex; // @synthesize clockSourceIndex;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (void)appendVariableDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (void)appendFixedDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (id)objectLogName;

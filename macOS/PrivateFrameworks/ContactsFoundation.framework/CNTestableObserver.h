@@ -8,17 +8,18 @@
 
 #import "CNObserver.h"
 
-@class CNVirtualScheduler, NSArray, NSMutableArray, NSString;
+@class CNObservableContractEnforcement, CNVirtualScheduler, NSArray, NSMutableArray, NSString;
 
 @interface CNTestableObserver : NSObject <CNObserver>
 {
     CNVirtualScheduler *_scheduler;
     NSMutableArray *_results;
+    CNObservableContractEnforcement *_enforcement;
 }
 
 + (id)observerWithScheduler:(id)arg1;
-@property(readonly) NSArray *results; // @synthesize results=_results;
 - (void).cxx_destruct;
+@property(readonly) NSArray *results; // @synthesize results=_results;
 - (void)observerDidFailWithError:(id)arg1;
 - (void)observerDidComplete;
 - (void)observerDidReceiveResult:(id)arg1;

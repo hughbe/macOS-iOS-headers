@@ -16,6 +16,7 @@
 
 + (id)getResultObjectsWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getResultObjects;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *objectIdentifiers;
 - (id)encodedClassName;
 - (id)groupIdentifier;

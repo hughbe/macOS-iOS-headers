@@ -7,39 +7,54 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSMutableCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSObject<OS_dispatch_queue>, NSString;
+@class NSPersonNameComponents, NSString;
 
-@interface TUCallDisplayContext : NSObject <NSCopying, NSSecureCoding>
+@interface TUCallDisplayContext : NSObject <NSCopying, NSMutableCopying, NSSecureCoding>
 {
-    id <TUCallDisplayContextDelegate> _delegate;
-    NSString *_name;
-    NSString *_firstName;
+    int _legacyAddressBookIdentifier;
+    NSPersonNameComponents *_personNameComponents;
     NSString *_suggestedName;
     NSString *_label;
     NSString *_companyName;
-    NSString *_legacyAddressBookIdentifier;
-    NSObject<OS_dispatch_queue> *_serialQueue;
+    NSString *_mapName;
+    NSString *_location;
+    NSString *_contactName;
+    NSString *_contactLabel;
+    NSString *_callDirectoryLabel;
+    NSString *_callDirectoryLocalizedExtensionContainingAppName;
+    NSString *_callDirectoryExtensionIdentifier;
+    NSString *_contactIdentifier;
+    NSString *_name;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *serialQueue; // @synthesize serialQueue=_serialQueue;
-@property(copy, nonatomic) NSString *legacyAddressBookIdentifier; // @synthesize legacyAddressBookIdentifier=_legacyAddressBookIdentifier;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
+@property(readonly, nonatomic) int legacyAddressBookIdentifier; // @synthesize legacyAddressBookIdentifier=_legacyAddressBookIdentifier;
+@property(copy, nonatomic) NSString *contactIdentifier; // @synthesize contactIdentifier=_contactIdentifier;
+@property(copy, nonatomic) NSString *callDirectoryExtensionIdentifier; // @synthesize callDirectoryExtensionIdentifier=_callDirectoryExtensionIdentifier;
+@property(copy, nonatomic) NSString *callDirectoryLocalizedExtensionContainingAppName; // @synthesize callDirectoryLocalizedExtensionContainingAppName=_callDirectoryLocalizedExtensionContainingAppName;
+@property(copy, nonatomic) NSString *callDirectoryLabel; // @synthesize callDirectoryLabel=_callDirectoryLabel;
+@property(copy, nonatomic) NSString *contactLabel; // @synthesize contactLabel=_contactLabel;
+@property(copy, nonatomic) NSString *contactName; // @synthesize contactName=_contactName;
+@property(copy, nonatomic) NSString *location; // @synthesize location=_location;
+@property(copy, nonatomic) NSString *mapName; // @synthesize mapName=_mapName;
 @property(copy, nonatomic) NSString *companyName; // @synthesize companyName=_companyName;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;
 @property(copy, nonatomic) NSString *suggestedName; // @synthesize suggestedName=_suggestedName;
-@property(copy, nonatomic) NSString *firstName; // @synthesize firstName=_firstName;
-@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
-@property(nonatomic) __weak id <TUCallDisplayContextDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSPersonNameComponents *personNameComponents; // @synthesize personNameComponents=_personNameComponents;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)_initializeStateWithCall:(id)arg1;
-- (id)initWithCall:(id)arg1 serialQueue:(id)arg2;
+- (id)displayContextByMergingWithDisplayContext:(id)arg1;
+- (void)setFirstName:(id)arg1;
+@property(readonly, copy, nonatomic) NSString *firstName;
 - (id)init;
 
 @end

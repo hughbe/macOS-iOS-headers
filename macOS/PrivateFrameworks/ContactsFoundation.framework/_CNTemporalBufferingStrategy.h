@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface _CNTemporalBufferingStrategy : NSObject <_CNBufferingStrategy>
 {
     double _interval;
@@ -18,8 +17,8 @@ __attribute__((visibility("hidden")))
     id <CNCancelable> _sendToken;
 }
 
-@property(retain) id <CNCancelable> sendToken; // @synthesize sendToken=_sendToken;
 - (void).cxx_destruct;
+@property(retain) id <CNCancelable> sendToken; // @synthesize sendToken=_sendToken;
 - (void)bufferDidSendResults:(id)arg1;
 - (void)buffer:(id)arg1 didReceiveResults:(id)arg2 forObserver:(id)arg3;
 - (id)initWithTimeInterval:(double)arg1 scheduler:(id)arg2;

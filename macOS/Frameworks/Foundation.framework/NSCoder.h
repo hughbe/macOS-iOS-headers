@@ -12,6 +12,7 @@
 
 + (BOOL)__categorizeException:(id)arg1 intoError:(id *)arg2;
 - (BOOL)_validateAllowedClass:(Class)arg1 forKey:(id)arg2 allowingInvocations:(BOOL)arg3;
+- (BOOL)_validateAllowedClassesContainsClass:(Class)arg1 forKey:(id)arg2;
 - (BOOL)validateClassSupportsSecureCoding:(Class)arg1;
 - (BOOL)validateAllowedClass:(Class)arg1 forKey:(id)arg2;
 - (id)allowedClasses;
@@ -70,6 +71,7 @@
 - (void)encodeObject:(id)arg1;
 - (long long)versionForClassName:(id)arg1;
 - (id)decodeDataObject;
+- (void)decodeValueOfObjCType:(const char *)arg1 at:(void *)arg2 size:(unsigned long long)arg3;
 - (void)decodeValueOfObjCType:(const char *)arg1 at:(void *)arg2;
 - (void)encodeDataObject:(id)arg1;
 - (void)encodeValueOfObjCType:(const char *)arg1 at:(const void *)arg2;

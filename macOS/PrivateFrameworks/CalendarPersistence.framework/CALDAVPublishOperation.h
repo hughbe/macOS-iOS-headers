@@ -20,6 +20,7 @@
 }
 
 + (BOOL)canHandleURL:(id)arg1;
+- (void).cxx_destruct;
 @property BOOL taskInProgress; // @synthesize taskInProgress=_taskInProgress;
 @property(retain) NSError *taskError; // @synthesize taskError=_taskError;
 @property(retain) CalDAVBasicAccountInfoProvider *accountInfoProvider; // @synthesize accountInfoProvider=_accountInfoProvider;

@@ -15,9 +15,9 @@
 }
 
 + (id)sharedListener;
+- (void).cxx_destruct;
 - (void)managedObjectContextDidSave:(id)arg1;
 - (void)managedObjectContextWillSave:(id)arg1;
-- (void)dealloc;
 - (id)init;
 - (void)attemptGeocoding;
 

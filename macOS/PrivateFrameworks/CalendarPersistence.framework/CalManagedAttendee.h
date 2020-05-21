@@ -29,6 +29,8 @@
 - (id)inviterNameString;
 - (void)setProposalStatusString:(id)arg1;
 - (id)proposalStatusString;
+- (void)setProposedEndUnadjustedFromUTC:(id)arg1;
+- (id)proposedEndDateUnadjustedFromUTC;
 - (void)setProposedStartDateUnadjustedFromUTC:(id)arg1;
 - (id)proposedStartDateUnadjustedFromUTC;
 @property(readonly, nonatomic) NSString *name;
@@ -38,6 +40,7 @@
 - (id)uniqueKeyForObject;
 - (BOOL)needsReplyIgnoringIsOrganizerMe;
 @property(readonly, retain) NSString *justEmailAddress;
+@property(retain) NSString *emailAddress;
 @property(readonly) BOOL hasMail;
 - (id)attributesToCompareForMerge;
 - (id)attributesToApplyForMerge;
@@ -49,6 +52,7 @@
 - (void)_updateLikenessPropertiesForSave;
 - (void)willSave;
 - (void)willRefresh:(BOOL)arg1;
+- (id)keysOnlyRelevantToNetworkDetails;
 @property(readonly, getter=isOrganizer) BOOL organizer;
 - (id)_iCalendarElementWithOptions:(unsigned long long)arg1;
 - (void)importiCalendarProperty:(id)arg1 inComponent:(id)arg2 fromDocument:(id)arg3 inCalendar:(id)arg4;
@@ -60,7 +64,6 @@
 @property(readonly, copy) NSString *debugDescription;
 @property BOOL deleteSyncRecord; // @dynamic deleteSyncRecord;
 @property(readonly, copy) NSString *description;
-@property(retain) NSString *email; // @dynamic email;
 @property(retain) CalManagedEvent *event; // @dynamic event;
 @property(readonly) unsigned long long hash;
 @property BOOL includedInAllResponded; // @dynamic includedInAllResponded;
@@ -71,7 +74,9 @@
 @property(readonly, nonatomic) NSManagedObjectID *managedObjectID;
 @property(retain) CalManagedEvent *myAttendeeForEvent; // @dynamic myAttendeeForEvent;
 @property BOOL omitSyncRecord; // @dynamic omitSyncRecord;
+@property(retain) NSString *phoneNumber; // @dynamic phoneNumber;
 @property(readonly, nonatomic) NSDictionary *preFrozenRelationshipObjects;
+@property(retain) NSDate *proposalEndDate; // @dynamic proposalEndDate;
 @property(retain) NSDate *proposalStartDate; // @dynamic proposalStartDate;
 @property(retain) NSString *proposalStatus; // @dynamic proposalStatus;
 @property(retain) NSString *role; // @dynamic role;

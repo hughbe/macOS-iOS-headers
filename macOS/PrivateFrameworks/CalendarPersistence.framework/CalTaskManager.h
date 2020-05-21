@@ -13,6 +13,7 @@
     NSMutableSet *_independentTasks;
     NSMutableSet *_heldIndependentTasks;
     NSMutableSet *_modalHeldIndependentTasks;
+    NSMutableSet *_outstandingTaskGroups;
     NSMutableArray *_queuedTasks;
     id <CalExecutableTask> _activeQueuedTask;
     id <CalExecutableTask> _modalHeldActiveQueuedTask;
@@ -22,6 +23,8 @@
     NSRunLoop *_workRunLoop;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSMutableSet *outstandingTaskGroups; // @synthesize outstandingTaskGroups=_outstandingTaskGroups;
 @property(retain) NSRunLoop *workRunLoop; // @synthesize workRunLoop=_workRunLoop;
 - (void)_scheduleStartModal:(id)arg1;
 - (void)_schedulePerformTask:(id)arg1;
@@ -29,6 +32,8 @@
 - (void)_reactivateHeldTasks;
 - (void)_startModal:(id)arg1;
 - (void)_performTask:(id)arg1;
+- (void)taskGroupDidFinish:(id)arg1;
+- (void)startTaskGroup:(id)arg1;
 - (void)taskEndModal:(id)arg1;
 - (void)taskRequestModal:(id)arg1;
 - (void)taskDidFinish:(id)arg1;

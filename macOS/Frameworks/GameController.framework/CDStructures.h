@@ -10,6 +10,18 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct GCExtendedGamepadElementInitInfo {
+    char _field1;
+    char _field2;
+};
+
+struct GCExtendedGamepadInitWithControllerInitInfo {
+    char _field1;
+    char _field2;
+    char _field3;
+    struct GCExtendedGamepadElementInitInfo _field4[16];
+};
+
 struct GCQuaternion {
     double x;
     double y;
@@ -17,39 +29,42 @@ struct GCQuaternion {
     double w;
 };
 
-struct IOHIDEventData {
-    unsigned int _field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned char _field4;
-    unsigned char _field5[3];
-};
-
-struct __IOHIDEvent {
-    struct __CFRuntimeBase {
-        unsigned long long _field1;
-        unsigned char _field2[4];
-        unsigned int _field3;
-    } _field1;
-    unsigned long long _field2;
-    unsigned long long _field3;
-    unsigned long long _field4;
-    unsigned int _field5;
-    char *_field6;
-    void *_field7;
-    void *_field8;
-    struct __CFArray *_field9;
-    struct __IOHIDEvent *_field10;
-    long long _field11;
-    long long _field12;
-    struct IOHIDEventData _field13[0];
-};
-
 #pragma mark Typedef'd Structures
 
 typedef struct {
     float _field1[4];
 } CDStruct_212a8bf9;
+
+typedef struct {
+    int _field1;
+    int _field2;
+    int _field3;
+    int _field4;
+    int _field5;
+    int _field6;
+    int _field7;
+    int _field8;
+    int _field9;
+    int _field10;
+    int _field11;
+    int _field12;
+    int _field13;
+    int _field14;
+    int _field15;
+} CDStruct_6ad99454;
+
+// Ambiguous groups
+typedef struct {
+    double _field1;
+    double _field2;
+    double _field3;
+} CDStruct_39925896;
+
+typedef struct {
+    double pitch;
+    double yaw;
+    double roll;
+} CDStruct_27cd59c8;
 
 typedef struct {
     double x;

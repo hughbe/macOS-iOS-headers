@@ -7,12 +7,11 @@
 #import "NSObject.h"
 
 #import "NSURLSessionDataDelegate.h"
-#import "NSURLSessionDelegate.h"
 
 @class NSError, NSMutableData, NSMutableURLRequest, NSObject<OS_dispatch_semaphore>, NSString, NSURLSession, NSURLSessionDataTask;
 
 __attribute__((visibility("hidden")))
-@interface AIASRequest : NSObject <NSURLSessionDelegate, NSURLSessionDataDelegate>
+@interface AIASRequest : NSObject <NSURLSessionDataDelegate>
 {
     _Bool _done;
     _Bool _success;
@@ -23,8 +22,11 @@ __attribute__((visibility("hidden")))
     NSURLSession *_session;
     NSURLSessionDataTask *_task;
     NSError *_error;
+    NSString *_networkTaskDescription;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSString *networkTaskDescription; // @synthesize networkTaskDescription=_networkTaskDescription;
 @property(retain) NSError *error; // @synthesize error=_error;
 @property(retain) NSURLSessionDataTask *task; // @synthesize task=_task;
 @property(retain) NSURLSession *session; // @synthesize session=_session;
@@ -34,12 +36,8 @@ __attribute__((visibility("hidden")))
 @property _Bool done; // @synthesize done=_done;
 @property(retain) NSMutableData *data; // @synthesize data=_data;
 @property(retain) NSMutableURLRequest *URLRequest; // @synthesize URLRequest=_URLRequest;
-- (void).cxx_destruct;
-- (void)URLSession:(id)arg1 task:(id)arg2 didReceiveChallenge:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
-- (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3;
-- (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveResponse:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (id)initWithURL:(id)arg1 data:(struct __CFDictionary *)arg2 clientInfo:(id)arg3 proxiedClientInfo:(id)arg4 companionClientInfo:(id)arg5;
+- (void)resume;
+- (id)initWithURL:(id)arg1 data:(struct __CFDictionary *)arg2 clientInfo:(id)arg3 proxiedClientInfo:(id)arg4 companionClientInfo:(id)arg5 appleITeamId:(id)arg6 appleIClientId:(id)arg7;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

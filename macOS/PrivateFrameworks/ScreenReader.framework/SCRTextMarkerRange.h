@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
 + (id)markerRangeWithNSRange:(struct _NSRange)arg1;
 + (id)markerRangeWithMarker:(id)arg1 marker:(id)arg2 uiElement:(id)arg3;
 + (id)markerRangeWithStartMarker:(id)arg1 endMarker:(id)arg2;
+- (void).cxx_destruct;
 - (id)debugDescriptionWithUIElement:(id)arg1;
 - (id)relativeComplementWithTextMarkerRange:(id)arg1 uiElement:(id)arg2;
 - (BOOL)isVisuallyEquivalentToTextMarkerRange:(id)arg1 uiElement:(id)arg2;
@@ -34,7 +35,6 @@ __attribute__((visibility("hidden")))
 - (struct _NSRange)nsRange;
 - (id)endMarker;
 - (id)startMarker;
-- (void)dealloc;
 - (id)initWithStartMarker:(id)arg1 endMarker:(id)arg2;
 
 @end

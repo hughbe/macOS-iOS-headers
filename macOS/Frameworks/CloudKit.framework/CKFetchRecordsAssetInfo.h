@@ -8,7 +8,6 @@
 
 @class NSError, NSMutableData, NSMutableIndexSet;
 
-__attribute__((visibility("hidden")))
 @interface CKFetchRecordsAssetInfo : NSObject
 {
     NSError *_error;
@@ -16,11 +15,11 @@ __attribute__((visibility("hidden")))
     NSMutableIndexSet *_byteRanges;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableIndexSet *byteRanges; // @synthesize byteRanges=_byteRanges;
 @property(retain, nonatomic) NSMutableData *assetContent; // @synthesize assetContent=_assetContent;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
-- (void).cxx_destruct;
-- (id)assetContentWithError:(id *)arg1;
+- (id)assetContentWithError:(id *)arg1 expectedSignature:(id)arg2;
 - (BOOL)isContiguous;
 - (void)writeData:(id)arg1 atOffset:(id)arg2;
 - (id)init;

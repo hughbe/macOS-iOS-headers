@@ -4,10 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSData, NSString, SLMicroBlogStatus;
+@class NSArray, NSData, NSString, SLMicroBlogStatus;
 
 @protocol SLMicroBlogSheetDelegate
 @property(copy, nonatomic) CDUnknownBlockType locationInformationChangedBlock;
+- (void)logDidSendStatusWithText:(NSString *)arg1 attachments:(NSArray *)arg2 locationAttached:(BOOL)arg3 fromProcessWithPID:(int)arg4;
 - (void)stopDeferringExpensiveOperations;
 - (void)deferExpensiveOperations;
 - (NSString *)serviceAccountTypeIdentifier;

@@ -21,6 +21,7 @@
 - (void)locationManager:(id)arg1 didEnterRegion:(id)arg2;
 - (void)dismissNotificationHelper:(id)arg1;
 - (void)userNotificationCenter:(id)arg1 didDismissAlert:(id)arg2;
+- (BOOL)_isRedeliveredSnoozedNotification:(id)arg1;
 - (void)userNotificationCenter:(id)arg1 didRemoveDeliveredNotifications:(id)arg2;
 - (void)userNotificationCenter:(id)arg1 didExpireNotifications:(id)arg2;
 - (BOOL)userNotificationCenter:(id)arg1 shouldPresentNotification:(id)arg2;

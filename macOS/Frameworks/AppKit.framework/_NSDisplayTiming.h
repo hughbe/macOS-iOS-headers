@@ -9,22 +9,27 @@
 __attribute__((visibility("hidden")))
 @interface _NSDisplayTiming : NSDisplayTiming
 {
-    double _interval;
-    double _displayOffset;
-    double _submissionLatency;
+    unsigned long long _offset;
+    unsigned long long _interval;
+    unsigned long long _submissionDelta;
+    unsigned long long _wakeUpDelta;
 }
 
-- (double)submissionTimeStampBeforeTimeStamp:(double)arg1;
-- (double)submissionTimeStampAfterTimeStamp:(double)arg1;
-- (double)displayTimeStampForSubmissionTimeStamp:(double)arg1;
-- (double)submissionTimeStampForDisplayTimeStamp:(double)arg1;
-- (double)displayTimeStampBeforeTimeStamp:(double)arg1;
-- (double)displayTimeStampAfterTimeStamp:(double)arg1;
-- (id)copyWithZone:(struct _NSZone *)arg1;
++ (id)allocWithZone:(struct _NSZone *)arg1;
+- (unsigned long long)interval;
+- (unsigned long long)presentationTimeForWakeUpTime:(unsigned long long)arg1;
+- (unsigned long long)submissionDeadlineForWakeUpTime:(unsigned long long)arg1;
+- (unsigned long long)wakeUpTimeAfterTime:(unsigned long long)arg1;
+- (unsigned long long)submissionDeadlineAfterTime:(unsigned long long)arg1;
+- (unsigned long long)presentationTimeForSubmissionDeadline:(unsigned long long)arg1;
+- (unsigned long long)submissionDeadlineForPresentationTime:(unsigned long long)arg1;
+- (unsigned long long)presentationTimeAfterTime:(unsigned long long)arg1;
+- (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (id)initWithDisplayOffset:(double)arg1 interval:(double)arg2 submissionLatency:(double)arg3;
-- (id)initWithHostTime:(unsigned long long)arg1 interval:(unsigned long long)arg2;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)init;
+- (id)initWithAnchorTime:(unsigned long long)arg1 interval:(unsigned long long)arg2 submissionDelta:(unsigned long long)arg3 wakeUpDelta:(unsigned long long)arg4;
 
 @end
 

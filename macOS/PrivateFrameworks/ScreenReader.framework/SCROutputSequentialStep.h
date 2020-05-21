@@ -6,30 +6,32 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSMutableArray, NSString;
 
-@interface SCROutputSequentialStep : NSObject <NSCopying, NSCoding>
+@interface SCROutputSequentialStep : NSObject <NSCopying, NSSecureCoding>
 {
     NSString *_category;
     NSMutableArray *_actions;
-    int _repeatStyle;
+    long long _repeatStyle;
     BOOL _requestWasSentSynchronously;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL requestWasSentSynchronously; // @synthesize requestWasSentSynchronously=_requestWasSentSynchronously;
 - (id)shortDescription;
 - (id)description;
-- (int)repeatStyle;
+- (long long)repeatStyle;
 - (void)replaceActionsInRange:(struct _NSRange)arg1 withActionsFromArray:(id)arg2;
 - (void)removeActionAtIndex:(unsigned long long)arg1;
 - (void)insertAction:(id)arg1 atIndex:(unsigned long long)arg2;
 - (id)actionAtIndex:(unsigned long long)arg1;
 - (id)actions;
 - (id)category;
-- (void)setRepeatStyle:(int)arg1;
+- (void)setRepeatStyle:(long long)arg1;
 - (void)setCategory:(id)arg1;
 - (void)addAction:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -37,7 +39,6 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)_initWithSequentialStep:(id)arg1;
 - (id)initWithAction:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

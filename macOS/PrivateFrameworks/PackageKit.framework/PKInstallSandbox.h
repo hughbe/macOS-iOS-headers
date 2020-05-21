@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSNumber, NSString, PKInstallRequest;
+@class NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSNumber, NSSet, NSString, PKInstallRequest;
 
 @interface PKInstallSandbox : NSObject <NSSecureCoding>
 {
@@ -23,10 +23,13 @@
     NSMutableArray *_cleanupPaths;
     NSDictionary *_scriptsAttributes;
     NSDictionary *_temporaryAttributes;
+    NSSet *_previousPackageIdentifiersSharingGroupsWithSandbox;
     long long _relevance;
+    BOOL _safeToReset;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(retain) NSSet *previousPackageIdentifiersSharingGroupsWithSandbox; // @synthesize previousPackageIdentifiersSharingGroupsWithSandbox=_previousPackageIdentifiersSharingGroupsWithSandbox;
 @property long long relevance; // @synthesize relevance=_relevance;
 @property(retain) NSDate *stageDate; // @synthesize stageDate=_stageDate;
 @property(retain) NSNumber *stagedSize; // @synthesize stagedSize=_stagedSize;
@@ -37,10 +40,11 @@
 - (id)secureTemporaryDirectoryPath;
 - (BOOL)wasStaged;
 - (id)temporaryDirectoryForScripts;
-- (id)payloadDirectory;
+@property(readonly) NSString *payloadDirectory;
 @property(copy) NSString *sandboxPath;
 - (id)scriptsDirectoryForPackageSpecifier:(id)arg1;
 - (BOOL)prepareForCommitReturningError:(id *)arg1;
+- (BOOL)resetToEmptyReturningError:(id *)arg1;
 - (id)bomPathForPackageSpecifier:(id)arg1;
 - (id)_createDirectory:(id)arg1 uniquifying:(BOOL)arg2 error:(id *)arg3;
 @property(retain) PKInstallRequest *installRequest; // @synthesize installRequest=_installRequest;

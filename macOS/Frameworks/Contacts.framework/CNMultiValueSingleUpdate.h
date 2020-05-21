@@ -14,9 +14,9 @@ __attribute__((visibility("hidden")))
     CNLabeledValue *_value;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) CNLabeledValue *value; // @synthesize value=_value;
 - (id)description;
-- (void)dealloc;
 - (id)initWithValue:(id)arg1;
 
 @end

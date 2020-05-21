@@ -12,7 +12,7 @@
 
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (void)initialize;
-- (id)referencedObject;
+@property(readonly) __weak id referencedObject;
 - (id)initWithReferencedObject:(id)arg1;
 
 @end

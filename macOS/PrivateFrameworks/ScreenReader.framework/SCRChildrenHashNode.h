@@ -16,11 +16,11 @@ __attribute__((visibility("hidden")))
     unsigned long long _childrenHash;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long childrenHash; // @synthesize childrenHash=_childrenHash;
 @property(nonatomic) unsigned long long *childrenCount; // @synthesize childrenCount=_childrenCount;
 @property(retain, nonatomic) SCRUIElement *uiElement; // @synthesize uiElement=_uiElement;
 - (BOOL)didChildrenHashChange;
-- (void)dealloc;
 - (id)initWithUIElement:(id)arg1 childrenHash:(unsigned long long)arg2;
 - (id)init;
 

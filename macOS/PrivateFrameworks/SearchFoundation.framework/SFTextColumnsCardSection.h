@@ -6,22 +6,73 @@
 
 #import <SearchFoundation/SFCardSection.h>
 
-@class NSArray, NSString;
+#import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "SFTextColumnsCardSection.h"
 
-@interface SFTextColumnsCardSection : SFCardSection
+@class NSArray, NSData, NSDictionary, NSString, SFCard, SFColor, SFUserReportRequest;
+
+@interface SFTextColumnsCardSection : SFCardSection <SFTextColumnsCardSection, NSSecureCoding, NSCopying>
 {
+    struct {
+        unsigned int canBeHidden:1;
+        unsigned int hasTopPadding:1;
+        unsigned int hasBottomPadding:1;
+        unsigned int separatorStyle:1;
+        unsigned int titleWeight:1;
+    } _has;
+    BOOL _canBeHidden;
+    BOOL _hasTopPadding;
+    BOOL _hasBottomPadding;
+    int _separatorStyle;
+    NSArray *_punchoutOptions;
+    NSString *_punchoutPickerTitle;
+    NSString *_punchoutPickerDismissText;
+    NSString *_type;
+    SFColor *_backgroundColor;
     NSString *_title;
-    long long _titleWeight;
+    unsigned long long _titleWeight;
     NSArray *_columns;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy, nonatomic) NSArray *columns; // @synthesize columns=_columns;
-@property(nonatomic) long long titleWeight; // @synthesize titleWeight=_titleWeight;
-@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSArray *columns; // @synthesize columns=_columns;
+@property(nonatomic) unsigned long long titleWeight; // @synthesize titleWeight=_titleWeight;
+@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
+@property(retain, nonatomic) SFColor *backgroundColor;
+@property(nonatomic) int separatorStyle;
+@property(copy, nonatomic) NSString *type;
+@property(nonatomic) BOOL hasBottomPadding;
+@property(nonatomic) BOOL hasTopPadding;
+@property(nonatomic) BOOL canBeHidden;
+@property(copy, nonatomic) NSString *punchoutPickerDismissText;
+@property(copy, nonatomic) NSString *punchoutPickerTitle;
+@property(copy, nonatomic) NSArray *punchoutOptions;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) NSData *jsonData;
+@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)hasTitleWeight;
+- (BOOL)hasSeparatorStyle;
+- (BOOL)hasHasBottomPadding;
+- (BOOL)hasHasTopPadding;
+- (BOOL)hasCanBeHidden;
+- (id)initWithProtobuf:(id)arg1;
+
+// Remaining properties
+@property(copy, nonatomic) NSString *cardSectionId;
+@property(copy, nonatomic) NSArray *commands;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(nonatomic) BOOL hideDivider;
+@property(retain, nonatomic) SFCard *nextCard;
+@property(copy, nonatomic) NSArray *parameterKeyPaths;
+@property(copy, nonatomic) NSString *resultIdentifier;
+@property(readonly) Class superclass;
+@property(retain, nonatomic) SFUserReportRequest *userReportRequest;
 
 @end
 

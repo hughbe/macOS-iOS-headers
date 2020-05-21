@@ -10,13 +10,15 @@
 #import "NSSecureCoding.h"
 #import "SCNAnimatable.h"
 
-@class NSArray, NSString, SCNOrderedDictionary;
+@class NSArray, NSMutableDictionary, NSString, SCNOrderedDictionary;
 
 @interface SCNConstraint : NSObject <NSCopying, NSSecureCoding, SCNAnimatable>
 {
-    struct __C3DConstraint *_constraintRef;
+    // Error parsing type: ^{__C3DConstraint={__C3DEntity={__CFRuntimeBase=QAQ}^v^{__CFString}^{__CFString}^{__CFDictionary}^{__C3DScene}q}^{__CFString}fBB{?=^?^?^?^?^?^?}^v}, name: _constraintRef
     SCNOrderedDictionary *_animations;
+    NSMutableDictionary *_bindings;
     BOOL _enabled;
+    BOOL _incremental;
     double _influenceFactor;
 }
 
@@ -25,14 +27,20 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)scene;
 - (struct __C3DScene *)sceneRef;
+- (void)removeAllBindings;
 - (void)unbindAnimatablePath:(id)arg1;
 - (void)bindAnimatablePath:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
+- (id)_scnBindings;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
 - (void)setSpeed:(double)arg1 forAnimationKey:(id)arg2;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
+- (void)removeAnimationForKey:(id)arg1 blendOutDuration:(double)arg2;
 - (void)resumeAnimationForKey:(id)arg1;
 - (void)pauseAnimationForKey:(id)arg1;
-- (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2;
+- (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2 pausedByNode:(BOOL)arg3;
+- (id)animationPlayerForKey:(id)arg1;
+- (void)_copyAnimationsFrom:(id)arg1;
+- (id)_scnAnimationForKey:(id)arg1;
 - (id)animationForKey:(id)arg1;
 - (void)_syncObjCAnimations;
 @property(readonly) NSArray *animationKeys;
@@ -40,24 +48,26 @@
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
+- (void)addAnimationPlayer:(id)arg1 forKey:(id)arg2;
 - (BOOL)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
 - (const void *)__CFObject;
 - (BOOL)isPausedOrPausedByInheritance;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
+- (id)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)finalizeDecodeConstraint:(id)arg1;
 @property(nonatomic) double influenceFactor;
-- (void)setEnabled:(BOOL)arg1;
-- (BOOL)isEnabled;
-- (void)setConstraintRef:(struct __C3DConstraint *)arg1;
-- (struct __C3DConstraint *)constraintRef;
+@property(nonatomic, getter=isIncremental) BOOL incremental;
+@property(nonatomic, getter=isEnabled) BOOL enabled;
+-     // Error parsing type: v24@0:8^{__C3DConstraint={__C3DEntity={__CFRuntimeBase=QAQ}^v^{__CFString}^{__CFString}^{__CFDictionary}^{__C3DScene}q}^{__CFString}fBB{?=^?^?^?^?^?^?}^v}16, name: setConstraintRef:
+-     // Error parsing type: ^{__C3DConstraint={__C3DEntity={__CFRuntimeBase=QAQ}^v^{__CFString}^{__CFString}^{__CFDictionary}^{__C3DScene}q}^{__CFString}fBB{?=^?^?^?^?^?^?}^v}16@0:8, name: constraintRef
 - (void)setName:(id)arg1;
 - (id)name;
 - (void)copyTo:(id)arg1;
 - (void)dealloc;
 - (id)init;
+- (void)commonInit;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

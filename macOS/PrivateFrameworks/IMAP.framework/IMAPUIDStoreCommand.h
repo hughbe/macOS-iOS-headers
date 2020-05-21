@@ -11,13 +11,13 @@
 @interface IMAPUIDStoreCommand : IMAPUIDCommand
 {
     NSArray *_flagsOrGmailLabels;
-    BOOL _forGmailLabels;
     BOOL _add;
+    BOOL _forGmailLabels;
 }
 
-@property BOOL add; // @synthesize add=_add;
-@property(readonly) BOOL forGmailLabels; // @synthesize forGmailLabels=_forGmailLabels;
 - (void).cxx_destruct;
+@property(readonly) BOOL forGmailLabels; // @synthesize forGmailLabels=_forGmailLabels;
+@property BOOL add; // @synthesize add=_add;
 - (BOOL)executeOnConnection:(id)arg1;
 - (id)newCommandDataForLiteralPlus:(BOOL)arg1;
 @property(readonly, copy) NSArray *gmailLabels;

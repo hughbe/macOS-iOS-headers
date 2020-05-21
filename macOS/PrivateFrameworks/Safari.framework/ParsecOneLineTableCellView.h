@@ -4,42 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Safari/ParsecTableCellView.h>
+#import <Safari/UnifiedFieldCompletionStyledOneLineTableCellView.h>
 
-@class NSLayoutConstraint;
+#import "ParsecTableCellView.h"
 
 __attribute__((visibility("hidden")))
-@interface ParsecOneLineTableCellView : ParsecTableCellView
+@interface ParsecOneLineTableCellView : UnifiedFieldCompletionStyledOneLineTableCellView <ParsecTableCellView>
 {
-    NSLayoutConstraint *_imageViewWidthConstraint;
-    NSLayoutConstraint *_imageViewTopConstraint;
-    NSLayoutConstraint *_imageViewBottomConstraint;
-    NSLayoutConstraint *_imageViewLeadingConstraint;
-    NSLayoutConstraint *_textFieldBottomConstraint;
-    NSLayoutConstraint *_imageViewToTextFieldSpacingConstraint;
-    NSLayoutConstraint *_imageViewToTextFieldCenteringConstraint;
-    NSLayoutConstraint *_textFieldTrailingConstraint;
-    NSLayoutConstraint *_imageViewMinimumHeightConstraint;
-    NSLayoutConstraint *_imageViewMaximumHeightConstraint;
-    NSLayoutConstraint *_imageViewAspectRatioConstraint;
+    id <ParsecTableCellViewDelegate> _delegate;
+    unsigned long long _configuredDescriptionAlignment;
 }
 
-+ (id)_titleTextAttributesWithWrapping:(BOOL)arg1;
-@property(retain, nonatomic) NSLayoutConstraint *imageViewAspectRatioConstraint; // @synthesize imageViewAspectRatioConstraint=_imageViewAspectRatioConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *imageViewMaximumHeightConstraint; // @synthesize imageViewMaximumHeightConstraint=_imageViewMaximumHeightConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *imageViewMinimumHeightConstraint; // @synthesize imageViewMinimumHeightConstraint=_imageViewMinimumHeightConstraint;
-@property(nonatomic) __weak NSLayoutConstraint *textFieldTrailingConstraint; // @synthesize textFieldTrailingConstraint=_textFieldTrailingConstraint;
-@property(nonatomic) __weak NSLayoutConstraint *imageViewToTextFieldCenteringConstraint; // @synthesize imageViewToTextFieldCenteringConstraint=_imageViewToTextFieldCenteringConstraint;
-@property(nonatomic) __weak NSLayoutConstraint *imageViewToTextFieldSpacingConstraint; // @synthesize imageViewToTextFieldSpacingConstraint=_imageViewToTextFieldSpacingConstraint;
-@property(nonatomic) __weak NSLayoutConstraint *textFieldBottomConstraint; // @synthesize textFieldBottomConstraint=_textFieldBottomConstraint;
-@property(nonatomic) __weak NSLayoutConstraint *imageViewLeadingConstraint; // @synthesize imageViewLeadingConstraint=_imageViewLeadingConstraint;
-@property(nonatomic) __weak NSLayoutConstraint *imageViewBottomConstraint; // @synthesize imageViewBottomConstraint=_imageViewBottomConstraint;
-@property(nonatomic) __weak NSLayoutConstraint *imageViewTopConstraint; // @synthesize imageViewTopConstraint=_imageViewTopConstraint;
 - (void).cxx_destruct;
-- (void)configureUsingCompletionListItem:(struct CompletionListItem *)arg1 session:(id)arg2;
-- (void)_collapseIconImageView;
-- (void)_expandIconImageView;
-- (void)awakeFromNib;
+@property(nonatomic) unsigned long long configuredDescriptionAlignment; // @synthesize configuredDescriptionAlignment=_configuredDescriptionAlignment;
+@property(nonatomic) __weak id <ParsecTableCellViewDelegate> delegate; // @synthesize delegate=_delegate;
+- (id)identifier;
+-     // Error parsing type: v32@0:8^{CompletionListItem=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}@BQ@@}16@24, name: configureUsingCompletionListItem:session:
+- (void)_updateImageView:(id)arg1;
+- (void)_updateImageView:(id)arg1 withSize:(struct CGSize)arg2 isTemplate:(BOOL)arg3;
 
 @end
 

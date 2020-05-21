@@ -29,11 +29,9 @@
 - (unsigned long long)forwardXPCObject:(id)arg1 messageContext:(id)arg2;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (void)_systemShutdown:(id)arg1;
-@property(readonly, nonatomic) BOOL forceSecureCoding;
 @property(readonly, nonatomic) BOOL isValid;
 - (void)_portDidBecomeInvalid;
 - (void)dealloc;
-- (void)finalize;
 - (void)_cleanupMachBitsCanPost:(BOOL)arg1;
 - (id)initWithConnection:(id)arg1 protocol:(id)arg2 alreadyConfigured:(BOOL)arg3;
 - (id)initWithConnection:(id)arg1 protocol:(id)arg2 alreadyConfigured:(BOOL)arg3 forceSecureCoding:(BOOL)arg4;

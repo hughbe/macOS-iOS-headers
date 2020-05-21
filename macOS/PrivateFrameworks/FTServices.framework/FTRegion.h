@@ -15,6 +15,7 @@
     FTRegion *_parentRegion;
 }
 
+- (void).cxx_destruct;
 @property(retain) FTRegion *_parentRegion; // @synthesize _parentRegion;
 @property(retain) NSDictionary *_dictionary; // @synthesize _dictionary;
 - (id)description;
@@ -23,7 +24,7 @@
 @property(readonly) NSString *label;
 @property(readonly) NSString *isoCode;
 - (id)regionWithID:(id)arg1;
-@property(readonly, retain) NSArray *subRegions; // @synthesize subRegions=_subRegions;
+@property(readonly) NSArray *subRegions; // @synthesize subRegions=_subRegions;
 @property(readonly) FTRegion *parentRegion;
 - (void)_setParentRegion:(id)arg1;
 - (void)dealloc;

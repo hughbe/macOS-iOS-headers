@@ -9,6 +9,7 @@
 @class NSDate, NSDictionary, NSUUID, NSXPCConnection;
 
 @protocol PKPlugInPrivate <PKPlugIn>
+@property(retain) NSDictionary *environment;
 @property(retain) NSDictionary *extensionState;
 @property(readonly) NSXPCConnection *pluginConnection;
 @property(readonly) NSDate *timestamp;

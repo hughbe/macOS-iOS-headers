@@ -36,11 +36,11 @@
     struct NSEdgeInsets _graphInsets;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) StockChartDisplayMode *displayMode; // @synthesize displayMode=_displayMode;
 @property(nonatomic) struct NSEdgeInsets graphInsets; // @synthesize graphInsets=_graphInsets;
 @property(readonly, nonatomic) BOOL isRendered; // @synthesize isRendered=_isRendered;
 @property(nonatomic) __weak NSView<StockGraphViewContainer> *chartViewDelegate; // @synthesize chartViewDelegate=_chartViewDelegate;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (struct CGRect)volumeBarRectNearestToPoint:(struct CGPoint)arg1;
 - (CDStruct_8cc9ba3e)plottedPointNearestToPoint:(struct CGPoint *)arg1;
@@ -59,13 +59,13 @@
 - (struct CGRect)_trueGraphPointsRegion;
 - (double)_timeAtPosition:(double)arg1;
 - (float)_priceAtTime:(double)arg1 dataPosition:(double *)arg2;
-- (BOOL)allowsVibrancy;
 - (void)setEvenlySpacedDottedLinePositionsWithCount:(unsigned long long)arg1;
 - (void)setDottedLinePositionsWithLabelInfo:(id)arg1;
 - (void)setFrame:(struct CGRect)arg1;
 - (void)_layoutSubviews;
 - (struct CGRect)_volumeViewFrameForBoundsSize:(struct CGSize)arg1;
 - (struct CGRect)_lineViewFrameForBoundsSize:(struct CGSize)arg1;
+- (BOOL)allowsVibrancy;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

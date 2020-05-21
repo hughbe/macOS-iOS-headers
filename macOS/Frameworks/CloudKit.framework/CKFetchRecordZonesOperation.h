@@ -12,8 +12,8 @@
 {
     BOOL _isFetchAllRecordZonesOperation;
     BOOL _ignorePCSFailures;
-    NSArray *_recordZoneIDs;
     CDUnknownBlockType _fetchRecordZonesCompletionBlock;
+    NSArray *_recordZoneIDs;
     NSArray *_recordZones;
     NSMutableDictionary *_recordZonesByZoneID;
     NSMutableDictionary *_recordZoneErrors;
@@ -21,15 +21,14 @@
 }
 
 + (id)fetchAllRecordZonesOperation;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL ignorePCSFailures; // @synthesize ignorePCSFailures=_ignorePCSFailures;
 @property(nonatomic) BOOL isFetchAllRecordZonesOperation; // @synthesize isFetchAllRecordZonesOperation=_isFetchAllRecordZonesOperation;
 @property(retain, nonatomic) NSError *fetchAllRecordZonesError; // @synthesize fetchAllRecordZonesError=_fetchAllRecordZonesError;
 @property(retain, nonatomic) NSMutableDictionary *recordZoneErrors; // @synthesize recordZoneErrors=_recordZoneErrors;
 @property(retain, nonatomic) NSMutableDictionary *recordZonesByZoneID; // @synthesize recordZonesByZoneID=_recordZonesByZoneID;
 @property(retain, nonatomic) NSArray *recordZones; // @synthesize recordZones=_recordZones;
-@property(copy, nonatomic) CDUnknownBlockType fetchRecordZonesCompletionBlock; // @synthesize fetchRecordZonesCompletionBlock=_fetchRecordZonesCompletionBlock;
 @property(copy, nonatomic) NSArray *recordZoneIDs; // @synthesize recordZoneIDs=_recordZoneIDs;
-- (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
 - (void)performCKOperation;
@@ -38,6 +37,7 @@
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
 - (id)activityCreate;
+@property(copy, nonatomic) CDUnknownBlockType fetchRecordZonesCompletionBlock; // @synthesize fetchRecordZonesCompletionBlock=_fetchRecordZonesCompletionBlock;
 - (id)initWithRecordZoneIDs:(id)arg1;
 - (id)init;
 

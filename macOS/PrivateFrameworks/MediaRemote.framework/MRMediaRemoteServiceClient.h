@@ -6,56 +6,50 @@
 
 #import "NSObject.h"
 
-@class MRAVRoutingClientController, MSVDistributedNotificationObserver, NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
+@class MRAVRoutingClientController, MRBlockGuard, MRMediaRemoteService, MRNotificationClient, MRNotificationServiceClient, NSArray, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, _MRNowPlayingPlayerPathProtobuf;
 
-__attribute__((visibility("hidden")))
 @interface MRMediaRemoteServiceClient : NSObject
 {
     NSObject<OS_dispatch_queue> *_serialQueue;
-    unsigned long long _registeredNowPlayingObservers;
     NSMutableArray *_registeredOrigins;
     MRAVRoutingClientController *_routingClientController;
-    void *_nowPlayingPlaybackQueueContext;
-    NSMutableDictionary *_transactionSources;
-    MSVDistributedNotificationObserver *_televisionPairedDevicesChangedObserver;
-    BOOL _receivesExternalScreenTypeChangedNotifications;
-    BOOL _receivesSupportedCommandsNotifications;
-    BOOL _receivesRoutesChangedNotifications;
-    BOOL _receivesOriginChangedNotifications;
-    BOOL _receivesPlaybackErrorNotifications;
-    BOOL _receivesVoiceInputRecordingStateNotifications;
-    NSArray *_nowPlayingNotificationObservers;
-    NSArray *_routingNotificationObservers;
-    NSArray *_originNotificationObservers;
-    NSArray *_voiceInputNotificationObservers;
-    struct MRMediaRemoteService *_service;
-    NSArray *_externalScreenTypeNotificationObservers;
+    _MRNowPlayingPlayerPathProtobuf *_activePlayerPath;
+    int _notifyRestoreClientStateForLaunch;
+    NSMutableSet *_playerPathInvalidationHandlers;
+    MRNotificationServiceClient *_notificationService;
+    BOOL _xpcConnectionIsActive;
+    MRBlockGuard *_xpcConnectionIgnoreNextInvalidationTimer;
+    MRMediaRemoteService *_service;
+    MRNotificationClient *_notificationClient;
+    NSObject<OS_dispatch_queue> *_playbackQueueDispatchQueue;
 }
 
 + (id)sharedServiceClient;
-@property(retain, nonatomic) NSArray *externalScreenTypeNotificationObservers; // @synthesize externalScreenTypeNotificationObservers=_externalScreenTypeNotificationObservers;
-@property(nonatomic) BOOL receivesVoiceInputRecordingStateNotifications; // @synthesize receivesVoiceInputRecordingStateNotifications=_receivesVoiceInputRecordingStateNotifications;
-@property(nonatomic) BOOL receivesPlaybackErrorNotifications; // @synthesize receivesPlaybackErrorNotifications=_receivesPlaybackErrorNotifications;
-@property(nonatomic) BOOL receivesOriginChangedNotifications; // @synthesize receivesOriginChangedNotifications=_receivesOriginChangedNotifications;
-@property(nonatomic) BOOL receivesRoutesChangedNotifications; // @synthesize receivesRoutesChangedNotifications=_receivesRoutesChangedNotifications;
-@property(nonatomic) BOOL receivesSupportedCommandsNotifications; // @synthesize receivesSupportedCommandsNotifications=_receivesSupportedCommandsNotifications;
-@property(nonatomic) BOOL receivesExternalScreenTypeChangedNotifications; // @synthesize receivesExternalScreenTypeChangedNotifications=_receivesExternalScreenTypeChangedNotifications;
-@property(readonly, nonatomic) struct MRMediaRemoteService *service; // @synthesize service=_service;
-@property(retain, nonatomic) NSArray *voiceInputNotificationObservers; // @synthesize voiceInputNotificationObservers=_voiceInputNotificationObservers;
-@property(retain, nonatomic) NSArray *originNotificationObservers; // @synthesize originNotificationObservers=_originNotificationObservers;
-@property(retain, nonatomic) NSArray *routingNotificationObservers; // @synthesize routingNotificationObservers=_routingNotificationObservers;
-@property(retain, nonatomic) NSArray *nowPlayingNotificationObservers; // @synthesize nowPlayingNotificationObservers=_nowPlayingNotificationObservers;
-- (void)sendTransaction:(unsigned long long)arg1 withData:(id)arg2 forOrigin:(struct _MROrigin *)arg3;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *playbackQueueDispatchQueue; // @synthesize playbackQueueDispatchQueue=_playbackQueueDispatchQueue;
+@property(readonly, nonatomic) MRNotificationClient *notificationClient; // @synthesize notificationClient=_notificationClient;
+@property(readonly, nonatomic) MRMediaRemoteService *service; // @synthesize service=_service;
+- (void)_callInvalidationHandler:(id)arg1;
+- (void)_processPlayerPathInvalidationHandlersWithBlock:(CDUnknownBlockType)arg1;
+- (void)_onQueue_processPlayerPathInvalidationHandlersWithBlock:(CDUnknownBlockType)arg1;
+- (void)processPlayerPathInvalidationHandlersWithBlock:(CDUnknownBlockType)arg1;
+- (void)processPlayerPathInvalidationHandlersWithInvalidOrigin:(id)arg1;
+- (void)removeInvalidationHandler:(id)arg1;
+- (id)addPlayerPathInvalidationHandler:(id)arg1;
 - (void)fetchPickableRoutesWithCategory:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (BOOL)isOriginRegistered:(id)arg1;
 - (void)unregisterAllOriginsWithCompletion:(CDUnknownBlockType)arg1;
-- (void)unregisterOrigin:(struct _MROrigin *)arg1 withCompletion:(CDUnknownBlockType)arg2;
-- (void)registerOrigin:(struct _MROrigin *)arg1 withCompletion:(CDUnknownBlockType)arg2;
-- (void)unregisterForNowPlayingNotifications;
-- (void)registerForNowPlayingNotificationsWithQueue:(id)arg1;
-@property(nonatomic, getter=copyNowPlayingPlaybackQueueContext) void *nowPlayingPlaybackQueueContext;
+- (void)unregisterOrigin:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)registerOrigin:(id)arg1 withDeviceInfo:(id)arg2 completion:(CDUnknownBlockType)arg3;
+@property(retain, nonatomic) _MRNowPlayingPlayerPathProtobuf *activePlayerPath;
+- (void)_onQueue_setActivePlayerPath:(id)arg1;
 @property(readonly, nonatomic) NSArray *registeredOrigins;
-@property(readonly, nonatomic, getter=isRegisteredForNowPlayingNotifications) BOOL registeredForNowPlayingNotifications;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *serviceQueue;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *workerQueue;
+- (id)debugDescription;
+- (void)_resumeConnection;
+- (void)_invalidateConnectionWithTimer:(BOOL)arg1;
+- (void)_initializeConnection;
+- (void)_registerCallbacks;
 - (void)dealloc;
 - (id)init;
 

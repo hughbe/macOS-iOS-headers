@@ -8,7 +8,6 @@
 
 @class NSCountedSet, NSMutableDictionary, NSMutableSet;
 
-__attribute__((visibility("hidden")))
 @interface QTKeyValueProxy : NSObject
 {
     id _target;

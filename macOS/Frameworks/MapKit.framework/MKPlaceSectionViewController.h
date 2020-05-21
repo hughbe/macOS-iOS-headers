@@ -7,10 +7,11 @@
 #import <MapKit/_MKUIViewController.h>
 
 #import "MKPlaceSectionViewDelegate.h"
+#import "_MKAnimationStackViewDelegate.h"
 
 @class MKPlaceSectionView, NSString;
 
-@interface MKPlaceSectionViewController : _MKUIViewController <MKPlaceSectionViewDelegate>
+@interface MKPlaceSectionViewController : _MKUIViewController <_MKAnimationStackViewDelegate, MKPlaceSectionViewDelegate>
 {
     MKPlaceSectionView *_sectionView;
 }
@@ -20,6 +21,7 @@
 - (void)sectionView:(id)arg1 didDeselectRow:(id)arg2 atIndex:(unsigned long long)arg3;
 - (void)sectionView:(id)arg1 didSelectRow:(id)arg2 atIndex:(unsigned long long)arg3;
 - (void)sectionView:(id)arg1 didSelectHeader:(id)arg2;
+- (void)stackViewNeedsLayout:(id)arg1;
 @property(readonly, nonatomic) MKPlaceSectionView *sectionView; // @synthesize sectionView=_sectionView;
 - (void)dealloc;
 - (void)loadView;

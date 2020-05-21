@@ -8,7 +8,6 @@
 
 #import "NSCoding.h"
 
-__attribute__((visibility("hidden")))
 @interface SBAppLocator : NSObject <NSCoding>
 {
     struct AEDesc _address;

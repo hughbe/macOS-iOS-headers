@@ -33,7 +33,7 @@
 @property(copy, nonatomic) CDUnknownBlockType resolveTimeoutHandler; // @synthesize resolveTimeoutHandler=_resolveTimeoutHandler;
 @property(retain, nonatomic) GKSimpleTimer *resolveTimer; // @synthesize resolveTimer=_resolveTimer;
 @property(nonatomic) double discoveryTimeStamp; // @synthesize discoveryTimeStamp=_discoveryTimeStamp;
-@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *syncQueue; // @synthesize syncQueue=_syncQueue;
+@property(readonly, retain, nonatomic) NSObject<OS_dispatch_queue> *syncQueue; // @synthesize syncQueue=_syncQueue;
 @property(nonatomic) int state; // @synthesize state=_state;
 @property(retain, nonatomic) NSMutableArray *sendDataBuffer; // @synthesize sendDataBuffer=_sendDataBuffer;
 @property(retain, nonatomic) GKDiscoveryPeerConnection *connection; // @synthesize connection=_connection;

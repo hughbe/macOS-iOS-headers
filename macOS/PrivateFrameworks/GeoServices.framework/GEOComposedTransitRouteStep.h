@@ -6,7 +6,7 @@
 
 #import <GeoServices/GEOComposedRouteStep.h>
 
-@class GEOInstructionSet, GEOPBTransitHall, GEOPBTransitStop, GEOTransitStep, NSArray, NSString;
+@class GEOPBTransitHall, GEOPBTransitStop, GEOTransitScheduleInfo, GEOTransitStep, NSArray, NSString;
 
 @interface GEOComposedTransitRouteStep : GEOComposedRouteStep
 {
@@ -25,6 +25,8 @@
     GEOPBTransitHall *_destinationHall;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) GEOPBTransitHall *destinationHall; // @synthesize destinationHall=_destinationHall;
 @property(readonly, nonatomic) GEOPBTransitHall *originHall; // @synthesize originHall=_originHall;
 @property(readonly, nonatomic) GEOPBTransitStop *destinationStop; // @synthesize destinationStop=_destinationStop;
@@ -35,6 +37,8 @@
 @property(readonly, nonatomic) id <GEOTransitRoutingIncidentMessage> routeDetailsIncidentMessage; // @synthesize routeDetailsIncidentMessage=_routeDetailsIncidentMessage;
 @property(readonly, nonatomic) id <GEOTransitRoutingIncidentMessage> steppingIncidentMessage; // @synthesize steppingIncidentMessage=_steppingIncidentMessage;
 @property(readonly, nonatomic) int maneuver; // @synthesize maneuver=_maneuver;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)_intermediateListNameForStop:(id)arg1;
 @property(readonly, nonatomic) NSString *destinationStopIntermediateListName;
 @property(readonly, nonatomic) NSString *originStopIntermediateListName;
@@ -44,8 +48,8 @@
 @property(readonly, nonatomic) unsigned long long originTransitEntityMuid;
 - (id)description;
 - (BOOL)isArrivalStep;
-- (CDStruct_c3b9c2ee)endGeoCoordinate;
-- (CDStruct_c3b9c2ee)startGeoCoordinate;
+- (CDStruct_39925896)endGeoCoordinate;
+- (CDStruct_39925896)startGeoCoordinate;
 - (id)previousAlightingStep;
 - (id)nextAlightingStep;
 - (id)previousBoardingStep;
@@ -57,15 +61,16 @@
 - (id)startingStop;
 @property(readonly, nonatomic) GEOComposedTransitRouteStep *nextTransitStep;
 @property(readonly, nonatomic) GEOComposedTransitRouteStep *previousTransitStep;
-@property(readonly, nonatomic) GEOInstructionSet *instructions;
+@property(readonly, nonatomic) GEOTransitScheduleInfo *scheduleInfo;
+@property(readonly, nonatomic) id <GEOTransitVehicleEntries> vehicleEntries;
+- (id)instructions;
 @property(readonly, nonatomic) GEOTransitStep *transitStep; // @synthesize transitStep=_transitStep;
 - (unsigned int)distance;
 - (unsigned int)duration;
 - (BOOL)hasDuration;
-- (void)dealloc;
 - (void)_populateArtworksWithDecoderData:(id)arg1;
 - (void)_populateIncidentsWithDecoderData:(id)arg1;
-- (id)initWithComposedRoute:(id)arg1 routeLegType:(long long)arg2 step:(id)arg3 stepIndex:(unsigned long long)arg4 duration:(unsigned int)arg5 pointRange:(struct _NSRange)arg6;
+- (id)initWithComposedRoute:(id)arg1 decoderData:(id)arg2 routeLegType:(long long)arg3 step:(id)arg4 stepIndex:(unsigned long long)arg5 duration:(unsigned int)arg6 pointRange:(struct _NSRange)arg7;
 
 @end
 

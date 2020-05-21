@@ -9,21 +9,35 @@
 #import "GEOTransitShieldDataSource.h"
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPBTransitShield : PBCodable <GEOTransitShieldDataSource, NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSString *_shieldColor;
-    unsigned int _shieldEnumValue;
     NSString *_shieldText;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    unsigned int _shieldEnumValue;
     struct {
-        unsigned int shieldEnumValue:1;
-    } _has;
+        unsigned int has_shieldEnumValue:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_shieldColor:1;
+        unsigned int read_shieldText:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_shieldColor:1;
+        unsigned int wrote_shieldText:1;
+        unsigned int wrote_shieldEnumValue:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *shieldColor; // @synthesize shieldColor=_shieldColor;
-@property(nonatomic) unsigned int shieldEnumValue; // @synthesize shieldEnumValue=_shieldEnumValue;
-@property(retain, nonatomic) NSString *shieldText; // @synthesize shieldText=_shieldText;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
@@ -31,12 +45,19 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 @property(readonly, copy) NSString *description;
+@property(retain, nonatomic) NSString *shieldColor;
 @property(readonly, nonatomic) BOOL hasShieldColor;
+- (void)_readShieldColor;
 @property(nonatomic) BOOL hasShieldEnumValue;
+@property(nonatomic) unsigned int shieldEnumValue;
+@property(retain, nonatomic) NSString *shieldText;
 @property(readonly, nonatomic) BOOL hasShieldText;
-- (void)dealloc;
+- (void)_readShieldText;
+- (id)initWithData:(id)arg1;
+- (id)init;
 @property(readonly, nonatomic) NSString *shieldColorString;
 @property(readonly, nonatomic) long long shieldType;
 

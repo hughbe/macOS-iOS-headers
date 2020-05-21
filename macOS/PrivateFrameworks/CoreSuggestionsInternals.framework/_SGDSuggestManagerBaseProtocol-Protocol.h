@@ -4,8 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@protocol _SGDSuggestManagerBaseProtocol
+#import "_SGDSuggestManagerMetricsProtocol.h"
+
+@protocol _SGDSuggestManagerBaseProtocol <_SGDSuggestManagerMetricsProtocol>
+- (void)noopWithCompletion:(void (^)(SGXPCResponse *))arg1;
 - (void)keepDirty:(BOOL)arg1;
-- (void)isEnabledWithCompletion:(void (^)(BOOL, NSError *))arg1;
+- (void)isEnabledWithCompletion:(void (^)(SGXPCResponse1 *))arg1;
 @end
 

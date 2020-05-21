@@ -26,6 +26,7 @@
 + (id)generateUnixNameUsingString:(id)arg1;
 + (id)suggestUnixNameUsingString:(id)arg1;
 + (BOOL)hasRootPasswordBeingSet;
++ (BOOL)isCurrentUserGuest;
 + (BOOL)isCurrentUserAdministrator;
 + (struct __CSIdentity *)currentUserCSIdentityRef;
 + (id)currentUser;
@@ -41,9 +42,7 @@
 + (id)defaultFamilySettings;
 + (unsigned long long)sizeOfUserHomeTemplate;
 + (id)SBSNodeName;
-+ (int)changeMasterPassword:(id)arg1 oldPassword:(id)arg2;
-+ (void)setMasterPassword:(id)arg1;
-+ (BOOL)isMasterPasswordEnabled;
++ (BOOL)isBootVolumeAPFSFDE;
 + (BOOL)isBootVolumeCSFDE;
 + (struct __CFBundle *)_AOSFrameworkBundle;
 + (id)_findUserName:(id)arg1 searchParent:(BOOL)arg2;
@@ -51,6 +50,7 @@
 + (id)_userWithInfo:(id)arg1 attributes:(id)arg2;
 + (id)_findUser:(id)arg1 fullName:(BOOL)arg2 searchParent:(BOOL)arg3 attributes:(id)arg4;
 + (BOOL)_isAdministrator:(id)arg1;
++ (id)_attributesToFetch;
 - (void)setUserCanChangeDefaultLanguage:(BOOL)arg1;
 - (BOOL)userCanChangeDefaultLanguage;
 - (void)setDefaultLanguage:(id)arg1 immideately:(BOOL)arg2;
@@ -89,6 +89,7 @@
 - (id)HTTPConfigFilePath;
 - (BOOL)deleteHTTPConfig;
 - (BOOL)createHTTPConfig;
+- (long long)commitChangesWithOptions:(unsigned long long)arg1;
 - (long long)commitChangesReturningError;
 - (BOOL)commitChanges;
 - (BOOL)deleteUserWithParameters:(id)arg1;
@@ -161,10 +162,16 @@
 - (id)description;
 - (void)dealloc;
 - (id)initWithRecordName:(const char *)arg1 type:(const char *)arg2 node:(id)arg3;
+- (id)setSecureTokenAuthorizationEnabled:(BOOL)arg1 userPassword:(id)arg2 authorizingUserName:(id)arg3 authorizingUserPassword:(id)arg4;
+- (id)setSecureTokenAuthorizationEnabled:(id)arg1;
+- (id)setSecureTokenAuthorizationEnabled:(BOOL)arg1 userPassword:(id)arg2;
+- (BOOL)isSecureTokenAuthorizationEnabled;
+- (id)authenticationAuthority;
+- (void)setUnlockOptions:(long long)arg1 immideately:(BOOL)arg2;
+- (long long)unlockOptions;
 - (int)unpairSBSAccountWithAuthorizationRef:(struct AuthorizationOpaqueRef *)arg1;
 - (int)pairWithSBSAccount:(id)arg1 SBSPassword:(id)arg2 SBSNode:(id)arg3 password:(id)arg4 authorizationRef:(struct AuthorizationOpaqueRef *)arg5;
 - (id)SBSAccountName;
-- (int)resetFileVaultPassword:(id)arg1 newPassword:(id)arg2;
 - (BOOL)hasAFPHomeDir;
 - (id)AFPHomeDirURL;
 - (BOOL)isHomeDirEncrypted;

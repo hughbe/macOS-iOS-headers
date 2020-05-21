@@ -18,15 +18,15 @@
 }
 
 + (id)proxy;
+- (void).cxx_destruct;
 @property(retain, nonatomic) id result; // @synthesize result=_result;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
-- (struct __CFError *)CFError;
+- (struct __CFError *)copyCFError;
 - (void)handleObjResult:(id)arg1 error:(id)arg2;
 - (void)handleBoolResult:(BOOL)arg1 error:(id)arg2;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (void)forwardInvocation:(id)arg1;
 - (void)finalize;
-- (void)dealloc;
 - (id)initWithXPCObject:(id)arg1;
 
 @end

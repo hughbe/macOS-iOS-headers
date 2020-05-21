@@ -8,6 +8,7 @@
 
 @class CKSQLite, NSMutableArray, NSString;
 
+__attribute__((visibility("hidden")))
 @interface CKSQLiteStatement : NSObject
 {
     BOOL _reset;
@@ -17,12 +18,12 @@
     NSMutableArray *_temporaryBoundObjects;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableArray *temporaryBoundObjects; // @synthesize temporaryBoundObjects=_temporaryBoundObjects;
 @property(nonatomic, getter=isReset) BOOL reset; // @synthesize reset=_reset;
 @property(readonly, nonatomic) struct sqlite3_stmt *handle; // @synthesize handle=_handle;
 @property(readonly, nonatomic) NSString *SQL; // @synthesize SQL=_SQL;
 @property(readonly, nonatomic) __weak CKSQLite *SQLite; // @synthesize SQLite=_SQLite;
-- (void).cxx_destruct;
 - (id)allObjectsByColumnName;
 - (id)allObjects;
 - (id)objectAtIndex:(unsigned long long)arg1;
@@ -45,6 +46,7 @@
 - (void)bindInt:(int)arg1 atIndex:(unsigned long long)arg2;
 - (void)reset;
 - (BOOL)step;
+- (void)resetAfterStepError;
 - (void)finalizeStatement;
 - (id)initWithSQLite:(id)arg1 SQL:(id)arg2 handle:(struct sqlite3_stmt *)arg3;
 

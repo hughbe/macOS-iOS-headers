@@ -6,12 +6,11 @@
 
 #import <AppKit/NSResponder.h>
 
-#import "NSCoding.h"
 #import "NSSeguePerforming.h"
 
-@class NSArray, NSDocument, NSString, NSViewController, NSWindow;
+@class NSArray, NSDocument, NSString, NSViewController, NSWindow, NSWindowControllerMoreIVars;
 
-@interface NSWindowController : NSResponder <NSCoding, NSSeguePerforming>
+@interface NSWindowController : NSResponder <NSSeguePerforming>
 {
     NSWindow *_window;
     NSString *_windowNibName;
@@ -30,12 +29,13 @@
         unsigned int RESERVED:24;
     } _wcFlags;
     NSString *_frameAutosaveName;
-    id _moreVars;
+    NSWindowControllerMoreIVars *_moreVars;
 }
 
 + (void)_doneWithLocations;
 + (id)windowControllerWithContentViewController:(id)arg1;
 + (void)initialize;
+- (void).cxx_destruct;
 @property(copy, setter=_setFrameAutosaveName:) NSString *_frameAutosaveName; // @synthesize _frameAutosaveName;
 - (void)performSegueWithIdentifier:(id)arg1 sender:(id)arg2;
 - (void)prepareForSegue:(id)arg1 sender:(id)arg2;
@@ -76,7 +76,7 @@
 @property(retain) NSViewController *contentViewController;
 @property BOOL shouldCascadeWindows;
 @property(copy) NSString *windowFrameAutosaveName;
-@property(readonly) id owner;
+@property(readonly) __weak id owner;
 @property(readonly, copy) NSString *windowNibPath;
 @property(readonly, copy) NSString *windowNibName;
 - (void)_setRetainedSelf:(BOOL)arg1;
@@ -89,6 +89,7 @@
 - (id)initWithWindowNibName:(id)arg1;
 - (id)init;
 - (id)initWithWindow:(id)arg1;
+- (id)_responderDebugDescription;
 - (void)_didRestoreUserActivity:(id)arg1;
 - (id)_copyPersistentUIChildren;
 - (id)_persistentUIIdentifier;

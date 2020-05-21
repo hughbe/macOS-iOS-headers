@@ -6,16 +6,19 @@
 
 #import <CoreData/NSSQLColumn.h>
 
-@class NSSQLToOne;
+@class NSSQLToOne, NSString;
 
 __attribute__((visibility("hidden")))
 @interface NSSQLForeignKey : NSSQLColumn
 {
+    NSString *_name;
     NSSQLToOne *_toOne;
 }
 
 - (void)copyValuesForReadOnlyFetch:(id)arg1;
 - (void)dealloc;
+- (void)_setName:(id)arg1;
+- (id)name;
 - (id)toOneRelationship;
 - (id)initForReadOnlyFetchingOfEntity:(id)arg1 toOneRelationship:(id)arg2;
 - (id)initWithEntity:(id)arg1 propertyDescription:(id)arg2;

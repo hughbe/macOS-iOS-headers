@@ -15,14 +15,15 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)allTimeInterval;
-@property(readonly) NSArray *availableIntervals; // @synthesize availableIntervals=_availableIntervals;
 - (void).cxx_destruct;
+@property(readonly) NSArray *availableIntervals; // @synthesize availableIntervals=_availableIntervals;
 - (void)_clearVisitedLinksForAllTabs;
 - (void)_clearBackForwardListForAllTabs;
 - (void)_clearDataAddedAfterDate:(id)arg1;
 - (void)clearAllData;
 - (void)_deleteUnusedSafariDesktopPictureFiles;
-- (void)_clearNonTemporalData;
+- (void)_clearOCSPCache;
+- (void)_clearNonTemporalDataIncludingFavicons:(BOOL)arg1;
 - (void)clearDataFromInterval:(id)arg1;
 - (void)clearOnlySafariHistoryFromInterval:(id)arg1;
 - (id)init;

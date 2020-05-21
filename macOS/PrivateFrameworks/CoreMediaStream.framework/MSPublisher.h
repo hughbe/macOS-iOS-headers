@@ -45,12 +45,12 @@
 + (id)_clearInstantiatedPublishersByPersonID;
 + (id)existingPublisherForPersonID:(id)arg1;
 + (id)publisherForPersonID:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) int publishBatchSize; // @synthesize publishBatchSize=_publishBatchSize;
 @property(nonatomic) long long publishTargetByteCount; // @synthesize publishTargetByteCount=_publishTargetByteCount;
 @property(retain, nonatomic) NSURL *storageProtocolURL; // @synthesize storageProtocolURL=_storageProtocolURL;
 @property(nonatomic) MSMediaStreamDaemon *daemon; // @synthesize daemon=_daemon;
 @property(nonatomic) id <MSPublisherDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (BOOL)_isInRetryState;
 - (void)stop;
 - (void)abort;
@@ -71,7 +71,6 @@
 - (id)_invalidStreamsResponseErrorUnderlyingError:(id)arg1;
 - (void)_sendMetadataToStreams;
 - (void)submitAssetCollectionsForPublication:(id)arg1 skipAssetCollections:(id)arg2;
-- (void)submitAssetCollectionsForPublication:(id)arg1;
 - (void)_didFinishUsingAssetCollections:(id)arg1;
 - (void)_removeAssetsInAssetCollectionWrappersFromAssetMap:(id)arg1;
 - (void)_removeAssetFromFileHashMap:(id)arg1;

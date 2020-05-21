@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class MFEWSAccount, MFEWSConnection, NSDictionary, NSMutableArray, NSOperationQueue;
 
-@interface MFEWSGateway : NSObject <NSCoding>
+@interface MFEWSGateway : NSObject <NSSecureCoding>
 {
     NSMutableArray *_offlineRequests;
     MFEWSAccount *_account;
@@ -20,11 +20,12 @@
 
 + (id)newTemporaryItemId;
 + (id)keyPathsForValuesAffectingRequestResponseQueue;
++ (BOOL)supportsSecureCoding;
 + (id)operationActivityLog;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSDictionary *savedOfflineToRealEWSIdStrings; // @synthesize savedOfflineToRealEWSIdStrings=_savedOfflineToRealEWSIdStrings;
 @property(readonly, nonatomic) NSOperationQueue *syncOperationQueue; // @synthesize syncOperationQueue=_syncOperationQueue;
 @property(readonly, nonatomic) __weak MFEWSAccount *account; // @synthesize account=_account;
-- (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long maxRequestsToSend;
 - (void)_chunkItemsToSend:(id)arg1 applyToBlock:(CDUnknownBlockType)arg2;
 - (void)setOofState:(long long)arg1 internalReply:(id)arg2 externalReply:(id)arg3 startTime:(id)arg4 endTime:(id)arg5 externalAudienceType:(long long)arg6;
@@ -39,7 +40,6 @@
 - (void)undeleteMessageForFailedCreateEventResponse:(id)arg1;
 - (void)sendResponseType:(BOOL)arg1 forMeetingMessage:(id)arg2 inStore:(id)arg3 errorHandler:(id)arg4;
 - (id)copyMessagesWithEWSItemIds:(id)arg1 fromFolderWithIdString:(id)arg2 toFolderWithIdString:(id)arg3 errorHandler:(id)arg4;
-- (void)setFlagsFromDictionary:(id)arg1 forMessages:(id)arg2 inFolderWithEWSIdString:(id)arg3 errorHandler:(id)arg4;
 - (void)deleteMessagesWithEWSItemIds:(id)arg1 fromFolderWithEWSIdString:(id)arg2 synchronously:(BOOL)arg3;
 - (id)appendMessage:(id)arg1 withData:(id)arg2 toEWSFolderWithIdString:(id)arg3 messageType:(BOOL)arg4 flags:(long long)arg5 sender:(id)arg6 recipientsByHeaderKey:(id)arg7 send:(BOOL)arg8 errorHandler:(id)arg9;
 - (id)fetchMimeDataForMessage:(id)arg1 errorHandler:(id)arg2;

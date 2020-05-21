@@ -6,7 +6,6 @@
 
 #import <ContactsFoundation/CNObservable.h>
 
-__attribute__((visibility("hidden")))
 @interface _CNConcatenatingObservable : CNObservable
 {
 }

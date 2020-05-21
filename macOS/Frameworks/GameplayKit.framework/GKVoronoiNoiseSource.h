@@ -19,7 +19,8 @@
 @property(nonatomic, getter=isDistanceEnabled) BOOL distanceEnabled; // @synthesize distanceEnabled=_distanceEnabled;
 @property(nonatomic) double displacement; // @synthesize displacement=_displacement;
 @property(nonatomic) double frequency; // @synthesize frequency=_frequency;
-- (struct Module *)__newModule;
+- (id)cloneModule;
+- (double)valueAt: /* Error: Ran out of types for this method. */;
 - (id)initWithFrequency:(double)arg1 displacement:(double)arg2 distanceEnabled:(BOOL)arg3 seed:(int)arg4;
 - (id)init;
 

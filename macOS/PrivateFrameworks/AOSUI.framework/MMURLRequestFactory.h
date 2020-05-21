@@ -13,10 +13,11 @@
 + (id)parameterizedStorageURL:(id)arg1 account:(id)arg2 dsid:(id)arg3 authToken:(id)arg4;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)sharedURLRequestFactory;
-- (id)urlRequestForiCloudFamilyPagesInfo:(id)arg1 forAccountID:(id)arg2;
+- (id)urlRequestForiCloudWithInfo:(id)arg1 forAccountID:(id)arg2;
+- (id)urlRequestForiCloudPagesInfo:(id)arg1 forAccountID:(id)arg2;
 - (id)urlRequestForAppleIDPagesInfo:(id)arg1 forAccountID:(id)arg2;
-- (id)familyURLRequestForURL:(id)arg1 method:(id)arg2 accountID:(id)arg3 error:(id *)arg4;
-- (id)familyURLRequestForKey:(id)arg1 method:(id)arg2 accountID:(id)arg3 error:(id *)arg4;
+- (id)iCloudURLRequestForURL:(id)arg1 method:(id)arg2 accountID:(id)arg3 error:(id *)arg4;
+- (id)iCloudURLRequestForKey:(id)arg1 method:(id)arg2 accountID:(id)arg3 error:(id *)arg4;
 - (id)appleIDURLRequestForURL:(id)arg1 method:(id)arg2 accountID:(id)arg3 error:(id *)arg4;
 - (id)appleIDURLRequestForKey:(id)arg1 method:(id)arg2 accountID:(id)arg3 error:(id *)arg4;
 - (id)termsOfServiceURLRequest:(id)arg1;
@@ -27,10 +28,6 @@
 - (id)accountMailCreationURLRequest:(id)arg1 andError:(id *)arg2;
 - (id)accountContinuationURLRequest:(id)arg1 andError:(id *)arg2;
 - (id)accountCreationURLRequest:(id *)arg1;
-- (id)autorelease;
-- (oneway void)release;
-- (unsigned long long)retainCount;
-- (id)retain;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)urlRequestForURL:(id)arg1 method:(id)arg2 accountID:(id)arg3 error:(id *)arg4;
 - (id)urlRequestForKey:(id)arg1 method:(id)arg2 accountID:(id)arg3 error:(id *)arg4;

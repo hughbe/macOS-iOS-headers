@@ -24,6 +24,7 @@
 + (id)calculateDiffsForEvent:(id)arg1 changedProperties:(id)arg2;
 + (id)calculateDiffsForEvent:(id)arg1;
 + (id)calculateDiffsForEvent:(id)arg1 inMessage:(id)arg2 managedEvent:(id)arg3;
++ (id)bestCalendarForInviteInCalendars:(id)arg1 preferredCalendar:(id)arg2 principal:(id)arg3;
 + (BOOL)requestForEvent:(id)arg1 withOccurrences:(id)arg2 inMessage:(id)arg3 masterEvent:(id)arg4 delayFlag:(char *)arg5 principal:(id)arg6 preferCalendar:(id)arg7 inManagedObjectContext:(id)arg8 withPrefetchDictionary:(id)arg9 withImportOptions:(unsigned long long)arg10;
 + (id)preProcessRequestOccurrences:(id)arg1 forEvent:(id)arg2 principal:(id)arg3;
 + (BOOL)replyForEvent:(id)arg1 inMessage:(id)arg2 masterEvent:(id)arg3 principal:(id)arg4;

@@ -4,21 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
-
-@class NSManagedObjectContext, NSPersistentStore;
+#import <ContactsPersistence/CNCDMigrator.h>
 
 __attribute__((visibility("hidden")))
-@interface CNCDLabelMigrator : NSObject
+@interface CNCDLabelMigrator : CNCDMigrator
 {
-    NSManagedObjectContext *_moc;
-    NSPersistentStore *_store;
 }
 
++ (id)log;
 - (void)updateLabelsForEntityNamed:(id)arg1 fromLabel:(id)arg2 toLabel:(id)arg3;
 - (void)migrateLabels;
-- (void)dealloc;
-- (id)initWithStore:(id)arg1;
+- (void)migrate;
 
 @end
 

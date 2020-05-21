@@ -8,13 +8,14 @@
 
 #import "XSDefinitionProvider.h"
 
-@class NSNumber, NSString;
+@class EWSFaultDetailMessageXML, NSNumber, NSString;
 
 @interface EWSFaultDetail : SOAPFaultDetail <XSDefinitionProvider>
 {
 }
 
 + (id)definition;
+@property(readonly, nonatomic) EWSFaultDetailMessageXML *MessageXml;
 @property(readonly, nonatomic) NSNumber *Position;
 @property(readonly, nonatomic) NSNumber *Line;
 @property(readonly, copy, nonatomic) NSString *Message;

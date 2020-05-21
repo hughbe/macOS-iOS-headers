@@ -13,9 +13,7 @@
 
 @interface iCloudAccountsDetailsGeneral : NSObject <CNAvatarViewDelegate, MMWebKitViewControllerDelegate>
 {
-    id <iCloudWebViewDelegate> _delegate;
     NSView *_generalView;
-    MM_Account *_account;
     NSTextField *_appleIDLabel;
     NSTextField *_firstNameLabel;
     NSTextField *_lastNameLabel;
@@ -35,9 +33,12 @@
     iCloudNameFormatter *_nameFormatter;
     BOOL nameDidModify;
     CNAvatarViewController *avatarViewController;
+    MM_Account *_account;
+    id <iCloudWebViewDelegate> _delegate;
     CNAvatarViewController *_avatarViewController;
 }
 
+- (void).cxx_destruct;
 @property id <iCloudWebViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
 @property(copy) NSString *lastName; // @synthesize lastName=_lastName;

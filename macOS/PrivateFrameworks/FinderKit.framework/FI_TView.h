@@ -6,6 +6,8 @@
 
 #import "NSView.h"
 
+@class NSObject<CAAnimationDelegate>;
+
 __attribute__((visibility("hidden")))
 @interface FI_TView : NSView
 {
@@ -14,8 +16,9 @@ __attribute__((visibility("hidden")))
     BOOL _isFlipped;
     BOOL _isOpaque;
     _Bool _delayWindowOrderingOnClickThrough;
-    struct TNSRef<NSColor *, void> _backgroundColor;
-    id <CAAnimationDelegate> _animationDelegate;
+    struct TNSRef<NSColor, void> _backgroundColor;
+    NSObject<CAAnimationDelegate> *_animationDelegate;
+    _Bool _shouldBeVibrant;
 }
 
 + (void)notifyViewDidChangeBackingProperties:(id)arg1;
@@ -23,18 +26,20 @@ __attribute__((visibility("hidden")))
 + (void)notifyView:(id)arg1 willMoveToSuperview:(id)arg2;
 + (void)notifyViewDidMoveToWindow:(id)arg1;
 + (void)notifyView:(id)arg1 willMoveToWindow:(id)arg2;
-@property(nonatomic) id <CAAnimationDelegate> animationDelegate; // @synthesize animationDelegate=_animationDelegate;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(nonatomic) _Bool shouldBeVibrant; // @synthesize shouldBeVibrant=_shouldBeVibrant;
+@property(nonatomic) __weak NSObject<CAAnimationDelegate> *animationDelegate; // @synthesize animationDelegate=_animationDelegate;
 @property(nonatomic) _Bool delayWindowOrderingOnClickThrough; // @synthesize delayWindowOrderingOnClickThrough=_delayWindowOrderingOnClickThrough;
 @property(nonatomic) BOOL isOpaque; // @synthesize isOpaque=_isOpaque;
 @property(nonatomic) BOOL isFlipped; // @synthesize isFlipped=_isFlipped;
 @property(nonatomic) struct CGSize minSize; // @synthesize minSize=_minSize;
 @property(nonatomic) struct CGSize maxSize; // @synthesize maxSize=_maxSize;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (void)setBoundsSize:(struct CGSize)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (void)setWantsLayer:(BOOL)arg1;
 - (void)configureAnimations:(_Bool)arg1;
+- (BOOL)allowsVibrancy;
 - (void)viewDidChangeBackingProperties;
 - (void)viewDidMoveToSuperview;
 - (void)viewWillMoveToSuperview:(id)arg1;

@@ -15,6 +15,7 @@
     BOOL _isUserRequested;
 }
 
+- (void).cxx_destruct;
 @property BOOL isUserRequested; // @synthesize isUserRequested=_isUserRequested;
 - (void)performOperation;
 - (void)handleResultsOfDropBoxURLLookup:(id)arg1;
@@ -25,7 +26,6 @@
 - (BOOL)shouldIgnoreErrorForEvent:(id)arg1;
 - (BOOL)removeUnreferencedAttachmentsWithContents:(id)arg1 inManagedObjectContext:(id)arg2;
 - (id)_cachedETagForFilename:(id)arg1 sharedUID:(id)arg2;
-- (void)dealloc;
 - (id)initWithEvent:(id)arg1;
 
 @end

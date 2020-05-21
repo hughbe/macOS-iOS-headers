@@ -7,12 +7,15 @@
 #import "NSPasteboard.h"
 
 @interface NSPasteboard (BookmarkExtras)
++ (id)safari_bookmarkStatisticsAsPropertyList:(id)arg1;
 + (id)safari_writableBookmarkUTIs;
 + (id)safari_bookmarkPasteboardTypes;
++ (id)safari_bookmarkStatisticsPasteboardType;
++ (id)safari_bookmarkDictionaryListPasteboardType;
 - (id)_safari_bookmarksTopLevelOnly:(BOOL)arg1;
 - (void)_safari_writeBookmarks:(id)arg1 withOwner:(id)arg2 forInternalUseOnly:(BOOL)arg3;
 - (BOOL)safari_isDraggingFavoriteButton;
-- (void)safari_getExistingBookmarksFromPasteboard:(id *)arg1 newBookmarks:(id *)arg2;
+- (void)safari_getExistingBookmarksFromPasteboard:(id *)arg1 newBookmarks:(id *)arg2 bookmarkGroup:(id)arg3;
 - (id)safari_topLevelBookmarksOnPasteboard;
 - (void)_safari_addURLsFromBookmark:(id)arg1 toArray:(id)arg2;
 - (id)safari_urlsOnPasteboard;
@@ -22,5 +25,13 @@
 - (BOOL)safari_hasAnyBookmarks;
 - (void)safari_writeBookmarksForInternalUseOnly:(id)arg1 withOwner:(id)arg2;
 - (void)safari_writeBookmarks:(id)arg1 withOwner:(id)arg2;
+- (id)safari_textOnPasteboard;
+- (BOOL)safari_containsAnyText;
+- (BOOL)safari_containsAnyURLsViableForTopSites;
+- (BOOL)safari_containsAnyURLs;
+- (id)safari_URLsFromString;
+- (id)safari_URLs;
+- (void)safari_writeURLs:(id)arg1 andTitles:(id)arg2;
+- (void)safari_replaceContentsWithURL:(id)arg1;
 @end
 

@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSDictionary, NSString, NSURL;
 
-@interface HPDHelpBook : NSObject <NSCoding>
+@interface HPDHelpBook : NSObject <NSCoding, NSSecureCoding>
 {
     NSURL *_iconURL;
     NSURL *_remoteURL;
@@ -26,16 +27,22 @@
     NSString *_topiclistTemplatePath;
     NSString *_topiclistCSSPath;
     NSString *_pathToLoadFrom;
+    NSString *_csIndexPath;
     NSString *_localization;
-    NSString *_bundleVersion;
+    NSString *_bookVersion;
+    NSString *_appBundleID;
+    NSString *_appBundleVersion;
+    NSString *_productName;
     NSString *_lastSuccessfullySetPath;
     NSString *_lastSuccessfullySetLocale;
     BOOL _usesExternalViewer;
+    NSDictionary *_remoteBookInfo;
     unsigned long long _stringEncoding;
     unsigned int _type;
     unsigned short _alreadyCheckedMask;
 }
 
++ (id)unversionedbookIDFromBookID:(id)arg1;
 + (BOOL)isKeyExcludedFromWebScript:(const char *)arg1;
 + (BOOL)isSelectorExcludedFromWebScript:(SEL)arg1;
 + (id)webScriptNameForSelector:(SEL)arg1;
@@ -48,51 +55,69 @@
 + (id)_parseMetasForXMLDocument:(id)arg1;
 + (BOOL)_appleTitleExistsInDoc:(id)arg1;
 + (unsigned long long)_encodingOfXMLDocument:(id)arg1;
++ (unsigned int)_determineTypeFromBundle:(id)arg1;
++ (id)type4BookWithID:(id)arg1 params:(id)arg2;
++ (id)type4BookWithID:(id)arg1;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property unsigned long long stringEncoding; // @synthesize stringEncoding=_stringEncoding;
 @property(readonly) BOOL usesExternalViewer; // @synthesize usesExternalViewer=_usesExternalViewer;
+@property(retain) NSString *bookID; // @synthesize bookID=_bookID;
+@property(retain) NSDictionary *remoteBookInfo; // @synthesize remoteBookInfo=_remoteBookInfo;
+@property(retain) NSString *csIndexPath; // @synthesize csIndexPath=_csIndexPath;
 @property(retain) NSString *topiclistCSSPath; // @synthesize topiclistCSSPath=_topiclistCSSPath;
 @property(retain) NSString *topiclistTemplatePath; // @synthesize topiclistTemplatePath=_topiclistTemplatePath;
-@property(readonly) NSString *bundleVersion; // @synthesize bundleVersion=_bundleVersion;
-@property(readonly) NSString *localization; // @synthesize localization=_localization;
-@property(retain) NSURL *remoteURL; // @synthesize remoteURL=_remoteURL;
-@property unsigned int type; // @synthesize type=_type;
 @property(retain) NSString *accessPagePath; // @synthesize accessPagePath=_accessPagePath;
-@property(retain) NSArray *indexPaths; // @synthesize indexPaths=_indexPaths;
-@property unsigned long long stringEncoding; // @synthesize stringEncoding=_stringEncoding;
 @property(retain) NSString *kbProductString; // @synthesize kbProductString=_kbProductString;
 @property(retain) NSString *kbURLString; // @synthesize kbURLString=_kbURLString;
-@property(retain) NSString *title; // @synthesize title=_title;
+@property(readonly) NSString *title; // @synthesize title=_title;
+@property(readonly) NSString *productName; // @synthesize productName=_productName;
+@property(readonly) NSString *appBundleID; // @synthesize appBundleID=_appBundleID;
+@property(readonly) NSString *appBundleVersion; // @synthesize appBundleVersion=_appBundleVersion;
+@property(readonly) NSString *bookVersion; // @synthesize bookVersion=_bookVersion;
+@property(readonly) NSString *localization; // @synthesize localization=_localization;
 @property(readonly) NSString *path; // @synthesize path=_path;
-@property(retain) NSString *bookID; // @synthesize bookID=_bookID;
-- (void).cxx_destruct;
+@property(retain) NSURL *remoteURL; // @synthesize remoteURL=_remoteURL;
+@property(retain) NSArray *indexPaths; // @synthesize indexPaths=_indexPaths;
+@property(readonly) unsigned int type; // @synthesize type=_type;
 - (void)_populateFromKnownGoodDictionary:(id)arg1;
-@property(readonly, copy) NSDictionary *_dictionaryForBook;
-- (id)initWithCoder:(id)arg1;
+@property(readonly) NSDictionary *bookshelfDictionary;
 - (void)encodeWithCoder:(id)arg1;
-@property(readonly, copy) NSString *description;
+@property(readonly) NSString *description;
 - (long long)titleCompare:(id)arg1;
 - (BOOL)isEqualToHelpBook:(id)arg1;
 - (void)_verifyBundleDictionary:(id)arg1 containsAbsolutePathForKey:(id)arg2;
 - (BOOL)_verifyString:(id)arg1 existsInDictionary:(id)arg2;
-- (id)_dictionaryFromBundlePlistWithLocalization:(id)arg1;
+- (id)_dictionaryFromBundle:(id)arg1 withLocalization:(id)arg2;
 - (id)_dictionaryFromAccessPage:(id)arg1 forBookType:(unsigned int)arg2;
 - (BOOL)setPreferredLocalization:(id)arg1;
+- (id)_pathToParentBundle;
 - (id)_dictionaryForPath:(id)arg1 withLocalization:(id)arg2;
 - (id)_determineAccessPagePathForBookType:(unsigned int)arg1;
 - (id)_determineSuggestionsPlistPath;
+- (void)_populateAppIDAndVersionFromAppBundle:(id)arg1;
 - (id)_determineExactMatchPlistPath;
 - (id)_determineDefaultIconURL;
-- (unsigned int)_determineType;
 - (id)pathToResourceAtRelativePath:(id)arg1;
-@property(readonly) __weak NSString *resourcesRootPath; // @dynamic resourcesRootPath;
-@property(readonly) __weak NSString *localizedDocumentRootPath; // @dynamic localizedDocumentRootPath;
-@property(retain) NSString *pathToLoadFrom; // @dynamic pathToLoadFrom;
+- (BOOL)validateAppPathAndVersion;
+- (id)bookIDFromAppHelp:(id)arg1;
+@property(readonly) NSString *unversionedBookID;
+@property(readonly) NSString *resourcesRootPath;
+- (void)setPathToLoadFrom:(id)arg1;
+@property(readonly) NSString *pathToLoadFrom;
 - (BOOL)_setPath:(id)arg1 withLocalization:(id)arg2;
-@property(retain) NSURL *iconURL; // @dynamic iconURL;
-@property(retain) NSString *suggestionsPath; // @dynamic suggestionsPath;
-@property(retain) NSString *exactMatchPath; // @dynamic exactMatchPath;
+- (BOOL)_configureType4BookFromDDMConfigDictionary:(id)arg1;
+@property(readonly) NSString *appPath;
+- (id)absolutePathForApplicationWithBundleIdentifier:(id)arg1;
+- (void)setIconURL:(id)arg1;
+@property(readonly) NSURL *iconURL;
+- (void)setSuggestionsPath:(id)arg1;
+@property(readonly) NSString *suggestionsPath;
+@property(retain) NSString *exactMatchPath;
+- (void)_validateRemoteBookInfo;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithID:(id)arg1 andCacheDictionary:(id)arg2;
 - (id)initWithPath:(id)arg1;
-- (id)init;
 
 @end
 

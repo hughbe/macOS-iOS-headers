@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class SFActivityAdvertisement, SFPeerDevice;
+@class NSSet, SFActivityAdvertisement, SFPeerDevice;
 
 @protocol SFContinuityScannerClient <NSObject>
+- (void)pairedDevicesChanged:(NSSet *)arg1;
 - (void)lostDeviceWithDevice:(SFPeerDevice *)arg1;
 - (void)foundDeviceWithDevice:(SFPeerDevice *)arg1;
 - (void)receivedAdvertisement:(SFActivityAdvertisement *)arg1;

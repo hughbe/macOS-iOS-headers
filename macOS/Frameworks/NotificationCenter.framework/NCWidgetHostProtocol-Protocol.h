@@ -7,6 +7,7 @@
 #import "NCRemoteViewServiceHostProtocol.h"
 
 @protocol NCWidgetHostProtocol <NCRemoteViewServiceHostProtocol>
+- (void)_widgetHostSetTemperaturePreference:(BOOL)arg1;
 - (void)widgetHostEditModeChanged:(long long)arg1;
 - (void)widgetHostHasContentChanged:(BOOL)arg1;
 @end

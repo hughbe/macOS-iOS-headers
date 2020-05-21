@@ -8,17 +8,18 @@
 
 #import "NSSecureCoding.h"
 
-@class NSNumberFormatter, NSString;
+@class NSLocale, NSNumberFormatter;
 
 __attribute__((visibility("hidden")))
 @interface NSUnitFormatter : NSFormatter <NSSecureCoding>
 {
     NSNumberFormatter *_numberFormatter;
+    unsigned long long _unitOptions;
     long long _unitStyle;
     struct UAMeasureFormat *_formatter;
     struct UPluralRules *_prules;
     BOOL _modified;
-    NSString *_localeID;
+    NSLocale *_locale;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -31,7 +32,10 @@ __attribute__((visibility("hidden")))
 - (id)stringForValue:(double)arg1 unit:(unsigned long long)arg2;
 - (id)stringForObjectValue:(id)arg1;
 - (void)checkIfModified;
+- (int)_determineUnitsToFormat:(int *)arg1 fromMeasurement:(id)arg2;
+@property(copy) NSLocale *locale;
 @property long long unitStyle;
+@property unsigned long long unitOptions;
 @property(copy) NSNumberFormatter *numberFormatter;
 - (void)dealloc;
 - (id)init;

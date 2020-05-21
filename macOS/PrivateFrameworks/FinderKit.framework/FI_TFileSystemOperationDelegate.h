@@ -13,11 +13,18 @@
 __attribute__((visibility("hidden")))
 @interface FI_TFileSystemOperationDelegate : NSObject <TFileSystemOperationDelegateProtocol>
 {
+    _Bool tornDown;
+    FI_TFileSystemOperationDelegate *_selfReference;
 }
 
-+ (id)newDelegate;
-- (int)asyncNodeOperation:(id)arg1 completedNotification:(const struct OperationMonitor *)arg2;
-- (int)asyncNodeOperation:(id)arg1 errorNotification:(const struct OperationMonitor *)arg2 error:(const struct OperationErrorRecord *)arg3 reply:(struct NodeEventReply *)arg4;
++ (id)makeDelegate;
+- (void).cxx_destruct;
+@property(getter=isTornDown) _Bool tornDown; // @synthesize tornDown;
+@property(retain, nonatomic) FI_TFileSystemOperationDelegate *selfReference; // @synthesize selfReference=_selfReference;
+- (void)aboutToTearDown;
+- (int)asyncNodeOperation:(id)arg1 completedNotification:(const struct TOperationMonitor *)arg2;
+- (int)asyncNodeOperation:(id)arg1 errorNotification:(const struct TOperationMonitor *)arg2 error:(const struct OperationErrorRecord *)arg3 reply:(struct NodeEventReply *)arg4;
+- (id)initPriv;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

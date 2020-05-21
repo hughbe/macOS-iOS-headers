@@ -27,7 +27,12 @@
 + (void)initialize;
 + (id)secureTextViewForWindow:(id)arg1;
 + (void)_doMenu:(id)arg1;
+- (BOOL)_shouldUseBoundsOutsets;
+- (void)updateCandidates;
+- (BOOL)isAutomaticTextCompletionEnabled;
+- (id)candidateListTouchBarItem;
 - (id)_definitionAnimationControllerForAttributedString:(id)arg1 range:(struct _NSRange)arg2 options:(id)arg3 baselineOriginProvider:(CDUnknownBlockType)arg4;
+- (id)_revealAnimationControllerForCharacterAtIndex:(unsigned long long)arg1;
 - (id)_immediateActionAnimationControllerForCharacterAtIndex:(unsigned long long)arg1 withRecognizer:(id)arg2;
 - (void)quickLookWithEvent:(id)arg1;
 - (void)updateTrackingAreas;

@@ -6,12 +6,14 @@
 
 #import <CoreUI/CUIThemeRendition.h>
 
-@class CUIRenditionMetrics, CUIRenditionSliceInformation;
+@class CUIRenditionMetrics, CUIRenditionSliceInformation, NSData;
 
 __attribute__((visibility("hidden")))
 @interface _CUIRawPixelRendition : CUIThemeRendition
 {
+    int _pixelFormat;
     unsigned int _nimages;
+    NSData *_rawData;
     struct CGImage *_image[16];
     struct CGImage *_unslicedImage;
     CUIRenditionMetrics *_renditionMetrics;
@@ -23,6 +25,8 @@ __attribute__((visibility("hidden")))
 - (id)sliceInformation;
 - (id)maskForSliceIndex:(long long)arg1;
 - (id)imageForSliceIndex:(long long)arg1;
+- (struct CGSize)unslicedSize;
+- (id)rawData;
 - (struct CGImage *)unslicedImage;
 - (int)pixelFormat;
 - (id)_initWithCSIHeader:(const struct _csiheader *)arg1;

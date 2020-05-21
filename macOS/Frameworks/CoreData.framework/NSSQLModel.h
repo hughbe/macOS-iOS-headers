@@ -20,6 +20,8 @@ __attribute__((visibility("hidden")))
     BOOL _retainLeopardStyleDictionaries;
     BOOL _modelHasPrecomputedKeyOrder;
     BOOL _hasVirtualToOnes;
+    unsigned int _entityIDOffset;
+    unsigned int _lastEntityID;
 }
 
 - (void)_recordHasVirtualToOnes;
@@ -30,6 +32,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)_useLeopardStyleHashing;
 - (void)_addIndexedEntity:(id)arg1;
 - (id)entityForID:(unsigned long long)arg1;
+- (unsigned int)_lastEntityID;
+- (unsigned int)_entityOffset;
 - (id)entitiesByName;
 - (id)entities;
 - (unsigned long long)entityIDForName:(id)arg1;
@@ -45,7 +49,6 @@ __attribute__((visibility("hidden")))
 - (id)initWithManagedObjectModel:(id)arg1 configurationName:(id)arg2 retainHashHack:(BOOL)arg3;
 - (id)initWithManagedObjectModel:(id)arg1 configurationName:(id)arg2;
 - (id)initWithManagedObjectModel:(id)arg1 configurationName:(id)arg2 retainHashHack:(BOOL)arg3 brokenHashVersion:(unsigned long long)arg4;
-- (BOOL)_runSanityCheckForModel:(id)arg1;
 
 @end
 

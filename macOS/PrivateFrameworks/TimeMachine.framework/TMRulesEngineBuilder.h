@@ -15,6 +15,7 @@
 }
 
 - (id)_assembleDeviceEnginesUsingContext:(id)arg1;
+- (void)_processMailRealmsUsingContext:(id)arg1;
 - (void)_processSystemFilesUsingContext:(id)arg1;
 - (void)_processUserHomesUsingContext:(id)arg1;
 - (void)_processPathExclusionsUsingContext:(id)arg1;

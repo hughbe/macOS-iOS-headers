@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
 - (id)_formattedStringFromOrderedKeys:(id)arg1 components:(id)arg2 attributesByRange:(id)arg3;
 - (id)_delimiterBetweenString:(id)arg1 andString:(id)arg2 isPhonetic:(BOOL)arg3;
 - (id)fallbackStyleFormatter;
+- (BOOL)shouldIgnoreComponentsContainingSpecialCharacters;
 - (id)keysOfInterest;
 - (id)abbreviatedKeys;
 

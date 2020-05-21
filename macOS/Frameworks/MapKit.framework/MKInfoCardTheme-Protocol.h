@@ -6,27 +6,32 @@
 
 #import "NSObject.h"
 
-@class NSColor, NSFont;
+@class NSColor, NSString;
 
 @protocol MKInfoCardTheme <NSObject>
-@property(readonly, nonatomic) NSFont *smallAttributionFont;
-@property(readonly, nonatomic) NSFont *attributionFont;
-@property(readonly, nonatomic) NSFont *sectionHeaderFont;
-@property(readonly, nonatomic) NSFont *mediumBodyFont;
-@property(readonly, nonatomic) NSFont *boldBodyFont;
-@property(readonly, nonatomic) NSFont *bodyFont;
-@property(readonly, nonatomic) NSFont *titleFont;
-@property(readonly, nonatomic) NSFont *largeTitleFont;
-@property(readonly, nonatomic) NSColor *highlightedRowColor;
+@property(readonly, nonatomic) NSColor *buttonHighlightedColor;
+@property(readonly, nonatomic) NSColor *buttonNormalColor;
+@property(readonly, nonatomic) NSColor *normalBackgroundColor;
+@property(readonly, nonatomic) NSColor *transitChevronBackgroundColor;
+@property(readonly, nonatomic) NSColor *transitDelayedTextColor;
+@property(readonly, nonatomic) NSColor *transitOntimeTextColor;
+@property(readonly, nonatomic) NSColor *headerPrimaryButtonHighlightedColor;
+@property(readonly, nonatomic) NSColor *headerPrimaryButtonNormalColor;
+@property(readonly, nonatomic) NSColor *normalActionRowBackgroundPressedColor;
+@property(readonly, nonatomic) NSColor *normalActionRowBackgroundColor;
+@property(readonly, nonatomic) NSColor *disabledActionRowBackgroundColor;
+@property(readonly, nonatomic) NSColor *disabledActionRowTextColor;
+@property(readonly, nonatomic) NSColor *highlightedActionRowTextColor;
 @property(readonly, nonatomic) NSColor *selectedRowColor;
 @property(readonly, nonatomic) NSColor *rowColor;
 @property(readonly, nonatomic) NSColor *separatorLineColor;
-@property(readonly, nonatomic) NSColor *backgroundColor;
+@property(readonly, nonatomic) NSColor *highlightedTintColor;
 @property(readonly, nonatomic) NSColor *tintColor;
+@property(readonly, nonatomic) NSColor *tertiaryTextColor;
 @property(readonly, nonatomic) NSColor *lightTextColor;
 @property(readonly, nonatomic) NSColor *textColor;
 @property(readonly, nonatomic) BOOL isDarkTheme;
+@property(readonly, nonatomic) NSString *javaScriptName;
 @property(readonly, nonatomic) unsigned long long themeType;
-- (NSFont *)iconFontToMatch:(NSFont *)arg1;
 @end
 

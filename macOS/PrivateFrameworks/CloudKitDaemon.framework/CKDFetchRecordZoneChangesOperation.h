@@ -4,64 +4,41 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <CloudKitDaemon/CKDDatabaseOperation.h>
+#import <CloudKitDaemon/CKDFetchBatchedRecordsOperation.h>
 
-#import "CKDOperationPipelining.h"
-
-@class CKDFetchZoneChangesRequestOperationResult, CKDRecordCache, CKDRecordFetchAggregator, NSArray, NSDictionary, NSMutableArray, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString;
+@class CKDFetchZoneChangesRequestOperationResult;
 
 __attribute__((visibility("hidden")))
-@interface CKDFetchRecordZoneChangesOperation : CKDDatabaseOperation <CKDOperationPipelining>
+@interface CKDFetchRecordZoneChangesOperation : CKDFetchBatchedRecordsOperation
 {
-    BOOL _shouldFetchAssetContents;
-    BOOL _fetchAllChanges;
     BOOL _clientIsUsingLegacyCKFetchRecordChangesOperationAPI;
-    CKDRecordCache *_recordCache;
     CDUnknownBlockType _recordChangedBlock;
     CDUnknownBlockType _serverChangeTokenUpdatedBlock;
-    NSArray *_recordZoneIDs;
-    NSDictionary *_optionsByRecordZoneID;
-    unsigned long long _numRequestsSent;
     long long _changeTypes;
-    NSObject<OS_dispatch_group> *_fetchRecordsGroup;
-    CKDRecordFetchAggregator *_recordFetcher;
-    NSMutableArray *_requestInfos;
     CKDFetchZoneChangesRequestOperationResult *_savedResult;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL clientIsUsingLegacyCKFetchRecordChangesOperationAPI; // @synthesize clientIsUsingLegacyCKFetchRecordChangesOperationAPI=_clientIsUsingLegacyCKFetchRecordChangesOperationAPI;
 @property(retain, nonatomic) CKDFetchZoneChangesRequestOperationResult *savedResult; // @synthesize savedResult=_savedResult;
-@property(retain, nonatomic) NSMutableArray *requestInfos; // @synthesize requestInfos=_requestInfos;
-@property(retain, nonatomic) CKDRecordFetchAggregator *recordFetcher; // @synthesize recordFetcher=_recordFetcher;
-@property(retain, nonatomic) NSObject<OS_dispatch_group> *fetchRecordsGroup; // @synthesize fetchRecordsGroup=_fetchRecordsGroup;
 @property(nonatomic) long long changeTypes; // @synthesize changeTypes=_changeTypes;
-@property(nonatomic) unsigned long long numRequestsSent; // @synthesize numRequestsSent=_numRequestsSent;
-@property(nonatomic) BOOL fetchAllChanges; // @synthesize fetchAllChanges=_fetchAllChanges;
-@property(nonatomic) BOOL shouldFetchAssetContents; // @synthesize shouldFetchAssetContents=_shouldFetchAssetContents;
-@property(retain, nonatomic) NSDictionary *optionsByRecordZoneID; // @synthesize optionsByRecordZoneID=_optionsByRecordZoneID;
-@property(retain, nonatomic) NSArray *recordZoneIDs; // @synthesize recordZoneIDs=_recordZoneIDs;
 @property(copy, nonatomic) CDUnknownBlockType serverChangeTokenUpdatedBlock; // @synthesize serverChangeTokenUpdatedBlock=_serverChangeTokenUpdatedBlock;
 @property(copy, nonatomic) CDUnknownBlockType recordChangedBlock; // @synthesize recordChangedBlock=_recordChangedBlock;
-- (void).cxx_destruct;
+- (id)analyticsPayload;
 - (void)fillOutOperationResult:(id)arg1;
 - (Class)operationResultClass;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)main;
-- (void)_sendFetchChangesRequestForZoneIDs:(id)arg1 withOptions:(id)arg2 previousRequestSchedulerInfo:(id)arg3;
+- (void)_noteOperationFinishedBlockEnd;
+- (void)_noteOperationEnding;
+- (void)_noteOperationBeginning;
+- (id)_createAndConfigureURLRequestForZoneIDs:(id)arg1 optionsByZoneID:(id)arg2;
 - (id)_optionsForZonesWithPendingChangesAfterRequest:(id)arg1;
-- (void)_handleRecordChange:(id)arg1 perRequestSchedulerInfo:(id)arg2;
-- (void)_handleFetchChangesRequestFinishedWithSchedulerInfo:(id)arg1;
-@property(readonly, nonatomic) CKDRecordCache *recordCache; // @synthesize recordCache=_recordCache;
+- (void)_noteDeletedRecordWithID:(id)arg1 recordType:(id)arg2;
+- (void)_noteChangedRecordWithID:(id)arg1 recordType:(id)arg2 record:(id)arg3 error:(id)arg4;
+- (void)_noteCompletedURLRequest:(id)arg1 withSchedulerInfo:(id)arg2;
 - (id)activityCreate;
-@property(readonly, nonatomic) NSString *pipeliningDescription;
+- (id)pipeliningDescription;
 - (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2;
-
-// Remaining properties
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *callbackQueue;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

@@ -11,7 +11,7 @@
 @property(copy) CDUnknownBlockType readHandler;
 @property BOOL isDemuxNeeded;
 @property(readonly) unsigned char type;
-- (void)sendData:(const void *)arg1 size:(unsigned int)arg2 error:(id *)arg3;
+- (BOOL)sendData:(const void *)arg1 size:(unsigned int)arg2 error:(id *)arg3;
 - (void)readyToRead;
 - (int)stop;
 - (int)start;

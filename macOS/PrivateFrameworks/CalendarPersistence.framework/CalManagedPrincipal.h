@@ -44,6 +44,7 @@
 + (id)fetchRequestWithUIDs:(id)arg1 inManagedObjectContext:(id)arg2;
 + (id)fetchRequestWithUID:(id)arg1 inManagedObjectContext:(id)arg2;
 + (id)entityName;
++ (id)cachedParentACAccountForCachedACAccount:(id)arg1;
 @property BOOL statusIsBusy; // @synthesize statusIsBusy=_statusIsBusy;
 - (BOOL)updateCachedAccountValues;
 - (int)displayOrder;
@@ -61,13 +62,19 @@
 - (void)stripPathAndSetOverrideBaseURL:(id)arg1;
 @property(retain) NSURL *overrideBaseURL;
 - (void)_setOverrideBaseURL:(id)arg1;
+@property(readonly) BOOL allowsTasks;
+@property(readonly) BOOL allowsEvents;
+@property(readonly) BOOL supportsPhoneNumbers;
 - (BOOL)supportsPrivateEvents;
+@property(readonly) BOOL supportsPush;
 @property(readonly) BOOL supportsFreebusy;
 @property BOOL isDelegate;
 @property(readonly) BOOL isMainPrincipal;
+@property(readonly) BOOL requiresOpeningAttachmentAsLink;
 @property(readonly) BOOL isAutoScheduleSupported;
 @property(readonly) BOOL isLikenessPropagationSupported;
 @property(readonly) BOOL isPrivateCommentsSupported;
+@property(readonly) BOOL isJunkReportingSupported;
 @property(readonly) BOOL isCalendarServerPrivateEventsSupported;
 - (id)properties;
 @property(readonly) NSURL *calendarUserAddress;
@@ -76,6 +83,7 @@
 - (id)calendarUserAddressesAsURLs;
 - (id)serverURL;
 - (id)title;
+- (BOOL)isWritable;
 @property BOOL isManuallyConfigured;
 @property(readonly) NSString *fullName;
 @property(readonly) ACAccount *cachedACAccountForAccessingParentDerivedProperties;

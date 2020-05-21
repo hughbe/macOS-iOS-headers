@@ -17,18 +17,24 @@
     ABAccount *_destinationAccount;
     id <ABCreatePersonCommandDelegate> _delegate;
     ABAddressBook *_addressBook;
+    BOOL _ignoresGuardianRestrictions;
 }
 
++ (id)log;
+- (void).cxx_destruct;
+@property BOOL ignoresGuardianRestrictions; // @synthesize ignoresGuardianRestrictions=_ignoresGuardianRestrictions;
 @property(retain) ABAccount *destinationAccount; // @synthesize destinationAccount=_destinationAccount;
 @property(retain) NSArray *parentGroupIDs; // @synthesize parentGroupIDs=_parentGroupIDs;
 @property(retain) NSUndoManager *undoManager; // @synthesize undoManager=_undoManager;
 @property(retain) id <ABCreatePersonCommandDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) ABAddressBook *addressBook; // @synthesize addressBook=_addressBook;
 @property(retain) ABPersonListController *personListController; // @synthesize personListController=_personListController;
-- (void)updatePersonListControllerForPerson:(id)arg1;
+- (id)findAndMoveEntryForPerson:(id)arg1 toIndex:(unsigned long long)arg2;
+- (unsigned long long)indexOfFirstNonMeEntry;
+- (unsigned long long)indexToMoveNewPersonEntryToGivenPreviousSelection:(unsigned long long)arg1;
+- (void)saveAddressBookAndUpdatePersonListControllerForNewPerson:(id)arg1;
 - (void)setParentGroupsOfPerson:(id)arg1;
 - (void)createPerson;
-- (void)dealloc;
 
 @end
 

@@ -12,6 +12,7 @@
 
 + (id)getVoiceOverWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getVoiceOver;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;

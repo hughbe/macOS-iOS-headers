@@ -6,25 +6,28 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@class NSArray, NSMutableArray;
+@class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary;
 
-@interface GKScene : NSObject <NSCopying, NSCoding>
+@interface GKScene : NSObject <NSCopying, NSSecureCoding>
 {
     NSMutableArray *_entities;
-    NSMutableArray *_graphs;
+    NSMutableDictionary *_graphs;
     id <GKSceneRootNodeType> _rootNode;
 }
 
 + (id)sceneWithFileNamed:(id)arg1;
-@property(retain, nonatomic) id <GKSceneRootNodeType> rootNode; // @synthesize rootNode=_rootNode;
-@property(readonly, nonatomic) NSArray *graphs; // @synthesize graphs=_graphs;
-@property(readonly, nonatomic) NSArray *entities; // @synthesize entities=_entities;
++ (id)sceneWithFileNamed:(id)arg1 rootNode:(id)arg2;
++ (id)_sceneWithFileNamed:(id)arg1 rootNode:(id)arg2;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
+@property(retain, nonatomic) id <GKSceneRootNodeType> rootNode; // @synthesize rootNode=_rootNode;
+@property(readonly, nonatomic) NSDictionary *graphs; // @synthesize graphs=_graphs;
+@property(readonly, nonatomic) NSArray *entities; // @synthesize entities=_entities;
 - (void)removeGraph:(id)arg1;
-- (void)addGraph:(id)arg1;
+- (void)addGraph:(id)arg1 name:(id)arg2;
 - (void)removeEntity:(id)arg1;
 - (void)addEntity:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

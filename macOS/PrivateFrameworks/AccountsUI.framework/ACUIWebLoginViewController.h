@@ -13,6 +13,7 @@
 
 @interface ACUIWebLoginViewController : ACUIViewController <WKUIDelegate, WKNavigationDelegate>
 {
+    id <SLWebClient> _webClient;
     id <ACUIWebLoginDelegate> _delegate;
     WKWebView *_webView;
     NSBox *_webViewContainer;
@@ -20,13 +21,14 @@
 }
 
 + (BOOL)supportsAccount:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) NSProgressIndicator *spinner; // @synthesize spinner=_spinner;
 @property(retain) NSBox *webViewContainer; // @synthesize webViewContainer=_webViewContainer;
 @property(retain) WKWebView *webView; // @synthesize webView=_webView;
 @property __weak id <ACUIWebLoginDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)webView:(id)arg1 didReceiveAuthenticationChallenge:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)webView:(id)arg1 decidePolicyForNavigationAction:(id)arg2 decisionHandler:(CDUnknownBlockType)arg3;
+- (void)_evaluateDocumentTitleForWKWebView:(id)arg1 retryCount:(unsigned long long)arg2;
 - (void)webView:(id)arg1 didFinishNavigation:(id)arg2;
 - (void)webView:(id)arg1 didFailNavigation:(id)arg2 withError:(id)arg3;
 - (void)_fetchUserInfoWithToken:(id)arg1;
@@ -34,13 +36,14 @@
 - (void)_removeWebViewAndShowSpinner;
 - (void)_webViewwillLoadURL:(id)arg1;
 - (void)_webViewDidReceiveTitle:(id)arg1;
-- (id)_initialWebRequest;
+- (id)initialWebRequest;
 - (id)_redirectServerHost;
 - (void)_performRequest:(id)arg1 withHandler:(CDUnknownBlockType)arg2;
 - (void)helpButton:(id)arg1;
 - (void)_webLoginSucceeded;
 - (void)_webLoginFailureWithError:(id)arg1;
 - (void)viewDidLoad;
+- (id)webClient;
 - (void)awakeFromNib;
 - (void)dealloc;
 

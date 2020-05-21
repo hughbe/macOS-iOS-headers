@@ -12,20 +12,21 @@
 {
     BOOL _invalidateCalled;
     NSObject<OS_dispatch_source> *_retryTimer;
-    double _startTime;
-    CDUnknownBlockType _action;
+    CDUnknownBlockType _actionHandler;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     double _interval;
     double _leeway;
     CDUnknownBlockType _invalidationHandler;
+    double _startTime;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) double startTime; // @synthesize startTime=_startTime;
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
 @property(nonatomic) double leeway; // @synthesize leeway=_leeway;
 @property(nonatomic) double interval; // @synthesize interval=_interval;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
-@property(copy, nonatomic) CDUnknownBlockType action; // @synthesize action=_action;
-- (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType actionHandler; // @synthesize actionHandler=_actionHandler;
 - (void)succeededDirect;
 - (void)succeeded;
 - (void)failedDirect;

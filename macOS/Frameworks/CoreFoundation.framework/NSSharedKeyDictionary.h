@@ -8,6 +8,7 @@
 
 @class NSSharedKeySet;
 
+__attribute__((visibility("hidden")))
 @interface NSSharedKeyDictionary : NSMutableDictionary
 {
     NSSharedKeySet *_keyMap;
@@ -16,10 +17,12 @@
     CDUnknownFunctionPointerType _ifkIMP;
     NSMutableDictionary *_sideDic;
     unsigned long long _mutations;
+    BOOL _doKVO;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)sharedKeyDictionaryWithKeySet:(id)arg1;
+- (void)setObservationInfo:(void *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (Class)classForCoder;
@@ -31,7 +34,7 @@
 - (void)removeObjectForKey:(id)arg1;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
 - (void)enumerateKeysAndObjectsWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
-- (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
+- (unsigned long long)countByEnumeratingWithState:(CDStruct_58648341 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 - (id)keyEnumerator;
 - (void)getObjects:(id *)arg1 andKeys:(id *)arg2 count:(unsigned long long)arg3;
 - (id)objectForKey:(id)arg1;

@@ -6,7 +6,18 @@
 
 #import "NSOperation.h"
 
-@interface NSOperation (IC)
-- (id)ic_loggingDescription;
+#import "ICLoggable.h"
+
+@class NSString;
+
+@interface NSOperation (IC) <ICLoggable>
+- (id)ic_loggingValues;
+- (id)ic_loggingIdentifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

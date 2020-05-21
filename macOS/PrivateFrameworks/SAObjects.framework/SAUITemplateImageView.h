@@ -16,8 +16,11 @@
 
 + (id)imageViewWithDictionary:(id)arg1 context:(id)arg2;
 + (id)imageView;
+@property(copy, nonatomic) NSArray *themeImages;
 @property(copy, nonatomic) NSString *style;
-@property(copy, nonatomic) NSArray *monogramName; // @dynamic monogramName;
+@property(copy, nonatomic) NSArray *monogramName;
+@property(nonatomic) double imagePointWidth;
+@property(nonatomic) double imagePointHeight;
 @property(retain, nonatomic) SAUIImageResource *image;
 @property(nonatomic) float alpha;
 - (id)encodedClassName;

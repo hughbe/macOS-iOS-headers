@@ -22,6 +22,13 @@
 + (id)aceDataForPing:(unsigned int)arg1;
 + (id)aceDataForObject:(id)arg1 error:(id *)arg2;
 + (id)aceDataForStreamHeaderWithCompressionType:(unsigned char)arg1;
++ (id)dataForSpeechPacket:(id)arg1 error:(id *)arg2;
++ (id)dataForStreamEnd;
++ (id)dataForNop;
++ (id)dataForPong:(unsigned int)arg1;
++ (id)dataForPing:(unsigned int)arg1;
++ (id)dataForObject:(id)arg1 error:(id *)arg2;
++ (id)dataForStreamHeaderWithCompressionType:(unsigned char)arg1;
 
 @end
 

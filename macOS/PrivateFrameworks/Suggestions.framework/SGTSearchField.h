@@ -10,7 +10,7 @@
 #import "NSTableViewDelegate.h"
 #import "SGTInputDelegate.h"
 
-@class NSArray, NSMapTable, NSString, SGTQueryGenius, SGTSearchFieldReserved, SGTSuggestion;
+@class NSArray, NSDictionary, NSMapTable, NSString, SGTQueryGenius, SGTSearchFieldReserved, SGTSuggestion;
 
 @interface SGTSearchField : NSSearchField <SGTInputDelegate, NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -28,14 +28,17 @@
 + (void)initialize;
 + (id)keyPathsForValuesAffectingPropertyListRepresentationDescription;
 + (id)keyPathsForValuesAffectingSuggestionDebugProperties;
+- (void).cxx_destruct;
 - (void)textDidEndEditing:(id)arg1;
 - (BOOL)becomeFirstResponder;
 - (void)_showOrHideDebugWindow;
 - (void)_debugWindowWillDismiss;
 - (BOOL)performDragOperation:(id)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
+- (BOOL)suggesterCanGenerateTopHits:(id)arg1;
 - (id)_accessibilityCompletionMenu;
 @property(readonly) NSString *searchPhrase;
+@property(readonly) NSDictionary *displayCriteria;
 @property(readonly) NSArray *queryScopes;
 @property(readonly) NSString *queryString;
 - (void)_toggleSuggestionsWindow:(id)arg1;
@@ -117,7 +120,7 @@
 - (void)_startObservingSuggestion:(id)arg1;
 @property(retain) SGTSuggestion *currentSuggestion;
 - (void)_setCurrentSuggestion:(id)arg1;
-@property(retain) NSArray *freeTextSuggestions;
+@property(copy) NSArray *freeTextSuggestions;
 - (void)addSuggestion:(id)arg1;
 - (void)_setupWidenQueryScopeMenuWithItemWithSpinner:(BOOL)arg1;
 - (void)_searchDelegateFinished:(long long)arg1 hasResults:(BOOL)arg2;
@@ -134,8 +137,10 @@
 @property(retain) SGTQueryGenius *genius;
 @property long long typingScope;
 @property BOOL emptyStringAbortsSearch;
+@property unsigned long long maximumEffectiveInputLength;
 @property BOOL useTokens;
 @property(copy) NSArray *suggesters;
+@property long long searchQueryIndex;
 @property BOOL highlightsMatches;
 @property BOOL ignoreWindowResizeNotifications;
 @property(readonly) BOOL queryStringChangesAreTransient;
@@ -151,7 +156,7 @@
 - (void)commonInit;
 - (void)switchSuggestionScopesFromRecipientToSender;
 - (void)switchSuggestionScopesFromSenderToRecipient;
-@property id <SGTSearchFieldQueryScopeDelegate> queryScopeDelegate;
+@property __weak id <SGTSearchFieldQueryScopeDelegate> queryScopeDelegate;
 - (void)_setDidFindSuggestionsCallback:(CDUnknownBlockType)arg1;
 - (void)_simulateUserTextInput:(id)arg1;
 @property(readonly) NSString *propertyListRepresentationDescription;
@@ -159,6 +164,7 @@
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
+@property __weak id <SGTSearchFieldDelegate> delegate;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;

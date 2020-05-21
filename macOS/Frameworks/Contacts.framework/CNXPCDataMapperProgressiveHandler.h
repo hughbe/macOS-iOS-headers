@@ -15,7 +15,7 @@ __attribute__((visibility("hidden")))
     CDUnknownBlockType _completionBlock;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (void)receiveProgressiveContacts:(id)arg1 matchInfos:(id)arg2;
 - (void)completedWithError:(id)arg1;
 - (id)initWithProgressBlock:(CDUnknownBlockType)arg1 completionBlock:(CDUnknownBlockType)arg2;

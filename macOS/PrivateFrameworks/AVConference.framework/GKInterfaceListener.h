@@ -10,7 +10,7 @@
 {
     struct __SCDynamicStore *_dynamicStore;
     struct _opaque_pthread_mutex_t _notificationMutex;
-    id <InterfaceListenerDelegate> _interfaceListenerDelegate;
+    id _interfaceListenerDelegate;
     BOOL _isWifiUp;
     BOOL _isCellUp;
     int _notifyToken;

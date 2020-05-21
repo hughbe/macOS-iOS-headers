@@ -15,14 +15,16 @@
     BOOL _bottomConstraintShouldBeGreaterThanOrEqual;
     id <_MKStackViewDelegate> _stackDelegate;
     NSArray *_stackedSubviews;
+    id <_MKAnimationStackViewDelegate> _stackAnimationDelegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL bottomConstraintShouldBeGreaterThanOrEqual; // @synthesize bottomConstraintShouldBeGreaterThanOrEqual=_bottomConstraintShouldBeGreaterThanOrEqual;
+@property(nonatomic) __weak id <_MKAnimationStackViewDelegate> stackAnimationDelegate; // @synthesize stackAnimationDelegate=_stackAnimationDelegate;
 @property(copy, nonatomic) NSArray *stackedSubviews; // @synthesize stackedSubviews=_stackedSubviews;
 @property(nonatomic) __weak id <_MKStackViewDelegate> stackDelegate; // @synthesize stackDelegate=_stackDelegate;
-- (void).cxx_destruct;
 - (void)addSubview:(id)arg1;
-- (void)updateConstraints;
+- (void)_createConstraints;
 - (void)setStackedSubviews:(id)arg1 animated:(BOOL)arg2;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (BOOL)isFlipped;

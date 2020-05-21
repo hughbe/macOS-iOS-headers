@@ -73,10 +73,6 @@
 - (id)_panel;
 - (id)_certGroupView;
 - (id)_certView;
-- (double)splitView:(id)arg1 constrainMaxCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
-- (double)splitView:(id)arg1 constrainMinCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
-- (void)splitViewWillResizeSubviews:(id)arg1;
-- (void)splitView:(id)arg1 resizeSubviewsWithOldSize:(struct CGSize)arg2;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (BOOL)tableView:(id)arg1 shouldEditTableColumn:(id)arg2 row:(int)arg3;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(int)arg4;
@@ -92,7 +88,6 @@
 - (void)_certPanelSheetDidEnd:(id)arg1 returnCode:(int)arg2 contextInfo:(void *)arg3;
 - (void)_SFCertificatePanel_disclosureStateChanged:(id)arg1;
 - (void)_sizeToFitView:(BOOL)arg1;
-- (void)_adjustButtons;
 - (void)_helpClicked:(id)arg1;
 - (void)_cancelClicked:(id)arg1;
 - (void)_okClicked:(id)arg1;

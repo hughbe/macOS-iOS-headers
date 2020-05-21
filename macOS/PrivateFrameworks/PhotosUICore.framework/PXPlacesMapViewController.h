@@ -4,24 +4,30 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSViewController.h"
+#import "UXViewController.h"
 
+#import "PXChangeObserver.h"
 #import "PXPlacesMapControllerAccess.h"
 
-@class NSString, PXPlacesMapController;
+@class NSString, PKExtendedTraitCollection, PXPlacesMapController;
 
-@interface PXPlacesMapViewController : NSViewController <PXPlacesMapControllerAccess>
+@interface PXPlacesMapViewController : UXViewController <PXChangeObserver, PXPlacesMapControllerAccess>
 {
     PXPlacesMapController *_mapController;
 }
 
-@property(retain, nonatomic) PXPlacesMapController *mapController; // @synthesize mapController=_mapController;
 - (void).cxx_destruct;
-- (void)viewDidDisappear;
-- (void)viewWillDisappear;
-- (void)viewDidAppear;
-- (void)viewWillAppear;
+@property(retain, nonatomic) PXPlacesMapController *mapController; // @synthesize mapController=_mapController;
+- (void)sendTraitNotification;
+- (void)observable:(id)arg1 didChange:(unsigned long long)arg2 context:(void *)arg3;
+@property(readonly, nonatomic) PKExtendedTraitCollection *pk_extendedTraitCollection;
+- (void)viewDidDisappear:(BOOL)arg1;
+- (void)viewWillDisappear:(BOOL)arg1;
+- (void)viewDidAppear:(BOOL)arg1;
+- (void)viewWillAppear:(BOOL)arg1;
+- (void)viewDidLoad;
 - (void)loadView;
+- (void)dealloc;
 - (void)_commonInit;
 - (id)init;
 - (id)initWithCoder:(id)arg1;

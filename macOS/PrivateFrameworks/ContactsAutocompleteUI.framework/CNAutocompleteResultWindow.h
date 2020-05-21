@@ -20,12 +20,12 @@
 }
 
 + (BOOL)sourceTypeIsConsideredASuggestion:(unsigned long long)arg1;
-@property(retain) NSMutableDictionary *suggestedResults; // @synthesize suggestedResults=_suggestedResults;
-@property(retain) NSMutableDictionary *primaryResults; // @synthesize primaryResults=_primaryResults;
-@property(retain) NSMutableDictionary *prefixToResults; // @synthesize prefixToResults=_prefixToResults;
-@property BOOL onlyEmailFormat; // @synthesize onlyEmailFormat=_onlyEmailFormat;
-@property(copy, nonatomic) NSArray *autocompleteResults; // @synthesize autocompleteResults=_autocompleteResults;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableDictionary *suggestedResults; // @synthesize suggestedResults=_suggestedResults;
+@property(retain, nonatomic) NSMutableDictionary *primaryResults; // @synthesize primaryResults=_primaryResults;
+@property(retain, nonatomic) NSMutableDictionary *prefixToResults; // @synthesize prefixToResults=_prefixToResults;
+@property(nonatomic) BOOL onlyEmailFormat; // @synthesize onlyEmailFormat=_onlyEmailFormat;
+@property(copy, nonatomic) NSArray *autocompleteResults; // @synthesize autocompleteResults=_autocompleteResults;
 - (void)logDiagnosticForRow:(long long)arg1;
 - (id)viewForResult:(id)arg1;
 - (id)viewForRow:(long long)arg1;

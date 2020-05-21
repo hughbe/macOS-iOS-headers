@@ -35,13 +35,15 @@
 - (void)setCustomHighlightColor:(id)arg1;
 - (void)copy:(id)arg1;
 - (id)menuForEvent:(id)arg1;
-- (unsigned long long)draggingSourceOperationMaskForLocal:(BOOL)arg1;
+- (unsigned long long)draggingSession:(id)arg1 sourceOperationMaskForDraggingContext:(long long)arg2;
 - (BOOL)becomeFirstResponder;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (BOOL)_shouldAnimateExpandCollapse;
 - (void)_drawOutlineCell:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
 - (void)_highlightOutlineCell:(id)arg1 highlight:(BOOL)arg2 withFrame:(struct CGRect)arg3 inView:(id)arg4;
+- (void)effectiveAppearanceDidChange;
+- (id)backgroundColor;
 - (void)dealloc;
 
 @end

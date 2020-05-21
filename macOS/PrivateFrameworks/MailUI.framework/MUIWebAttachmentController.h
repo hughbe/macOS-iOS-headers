@@ -23,6 +23,7 @@
     struct CGRect _cachedFrame;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSProgress *downloadProgress; // @synthesize downloadProgress=_downloadProgress;
 @property(nonatomic) long long downloadedState; // @synthesize downloadedState=_downloadedState;
 @property(retain, nonatomic) NSImage *cachedSnapshot; // @synthesize cachedSnapshot=_cachedSnapshot;
@@ -30,7 +31,6 @@
 @property(readonly, nonatomic) NSString *markup; // @synthesize markup=_markup;
 @property(nonatomic) __weak MUIWKWebViewController *controller; // @synthesize controller=_controller;
 @property(readonly, nonatomic) MUIWebAttachment *webAttachment; // @synthesize webAttachment=_webAttachment;
-- (void).cxx_destruct;
 - (void)startDownloadingIfNeededWithProgress:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 @property(readonly, copy) NSString *mimeType;
 @property(readonly) NSURL *cidURL;
@@ -40,7 +40,6 @@
 @property(readonly, copy, nonatomic) NSImage *transitionImageForPreview;
 @property(readonly) NSString *previewItemTitle;
 @property(readonly) NSURL *previewItemURL;
-@property(readonly, copy, nonatomic) NSString *deletionScriptString;
 @property(readonly, copy, nonatomic) NSString *registrationScriptString;
 @property(readonly, nonatomic) BOOL canDisplayInline;
 @property(nonatomic) long long displayState;

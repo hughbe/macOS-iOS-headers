@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface LUExtractor : NSObject
 {
 }
 
 + (id)sharedExtractor;
 - (id)focusTermAndLocation:(struct CGPoint *)arg1 options:(id *)arg2;
-- (void)dealloc;
 - (id)init;
 
 @end

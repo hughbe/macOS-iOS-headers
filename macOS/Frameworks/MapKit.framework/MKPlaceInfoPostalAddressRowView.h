@@ -6,12 +6,15 @@
 
 #import <MapKit/MKPlaceInfoContactRowView.h>
 
+__attribute__((visibility("hidden")))
 @interface MKPlaceInfoPostalAddressRowView : MKPlaceInfoContactRowView
 {
 }
 
+- (int)analyticsTarget;
 - (Class)_labeledValueExpectedValueType;
 - (id)_valueString;
+- (id)_iconAccessibilityLabel;
 - (id)_icon;
 - (id)initWithFrame:(struct CGRect)arg1;
 

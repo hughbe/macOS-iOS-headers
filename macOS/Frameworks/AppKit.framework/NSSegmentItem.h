@@ -9,7 +9,7 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 
-@class NSImage, NSImageView, NSMenu, NSSegmentItemView, NSSegmentedCell, NSString;
+@class NSImage, NSImageView, NSMenu, NSMutableArray, NSSegmentItemView, NSSegmentedCell, NSString;
 
 @interface NSSegmentItem : NSObject <NSCopying, NSCoding>
 {
@@ -29,7 +29,9 @@
         unsigned int imageScaling:2;
         unsigned int showsBadge:1;
         unsigned int springLoadingHighlight:2;
-        unsigned int reserved:21;
+        unsigned int animating:1;
+        unsigned int alignment:3;
+        unsigned int reserved:17;
     } _flags;
     double _fullWidth;
     double _shrinkage;
@@ -39,21 +41,29 @@
     long long _toolTipTag;
     NSImage *_alternateImage;
     NSSegmentedCell *_owningCell;
+    NSMutableArray *_segmentItems;
+    long long _selectedSegment;
+    long long _keySegment;
+    struct CGRect _lastBounds;
+    CDStruct_bdbd3e0b _seFlags;
+    id _segmentTrackingInfo;
+    id _menuUniquer;
 }
 
 @property long long toolTipTag; // @synthesize toolTipTag=_toolTipTag;
 @property(readonly, getter=_menuIndRect) struct CGRect menuIndRect; // @synthesize menuIndRect=_menuIndRect;
 @property(readonly, getter=_labelRect) struct CGRect labelRect; // @synthesize labelRect=_labelRect;
-@property(getter=_shrinkage, setter=_setShrinkage:) double shrinkage; // @synthesize shrinkage=_shrinkage;
 @property(readonly, getter=_fullWidth) double fullWidth; // @synthesize fullWidth=_fullWidth;
 @property(copy) NSString *toolTip; // @synthesize toolTip=_toolTip;
 @property long long tag; // @synthesize tag=_tag;
 - (id)description;
+@property long long alignment;
 - (void)_setToolTipTag:(long long)arg1;
 - (long long)_toolTipTag;
 - (BOOL)disabled;
 - (void)setDisabled:(BOOL)arg1;
 - (id)view:(id)arg1 stringForToolTip:(long long)arg2 point:(struct CGPoint)arg3 userData:(void *)arg4;
+@property(getter=_shrinkage, setter=_setShrinkage:) double shrinkage; // @synthesize shrinkage=_shrinkage;
 @property(readonly, getter=_displayWidth) double displayWidth;
 - (void)_recalcRectsForCell:(id)arg1;
 @property(readonly, getter=_needsRecalc) BOOL needsRecalc;

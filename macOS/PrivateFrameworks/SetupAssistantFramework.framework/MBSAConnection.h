@@ -11,6 +11,7 @@
 
 @class NSMutableDictionary, NSString, NSXPCConnection;
 
+__attribute__((visibility("hidden")))
 @interface MBSAConnection : NSObject <MBSAProtocol, MBAppConnectionProtocol>
 {
     id <MBAppConnectionProtocol> _hostingApp;
@@ -19,22 +20,24 @@
 }
 
 + (id)sharedConnection;
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *progressBlocks; // @synthesize progressBlocks=_progressBlocks;
 @property(retain) NSXPCConnection *connection; // @synthesize connection=_connection;
 @property __weak id <MBAppConnectionProtocol> hostingApp; // @synthesize hostingApp=_hostingApp;
-- (void).cxx_destruct;
 - (void)progressUpdate:(float)arg1 status:(id)arg2 forUUID:(id)arg3;
 - (void)exitBuddyApp:(CDUnknownBlockType)arg1;
 - (void)getBuddyWindowRepresentationFromApp:(CDUnknownBlockType)arg1;
 - (void)requestConfigurationFinalizationForUserUUID:(id)arg1 reply:(CDUnknownBlockType)arg2;
-- (void)requestBridgedProfileWithAuthorization:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)requestCachedActivationRecordWithReply:(CDUnknownBlockType)arg1;
 - (void)abortActivationStatusRequest;
+- (void)requestBridgedActivationRecordWithReply:(CDUnknownBlockType)arg1;
 - (void)requestBridgedActivationStatusWithReply:(CDUnknownBlockType)arg1;
 - (void)readInitialSwitchedServerState:(CDUnknownBlockType)arg1;
 - (void)switchServerOfType:(id)arg1 toEnvironment:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)removeHardwareWarrantyCookie:(CDUnknownBlockType)arg1;
 - (void)setHardwareWarrantyCookie:(CDUnknownBlockType)arg1;
+- (void)setDidRunFLOCookie:(CDUnknownBlockType)arg1;
+- (void)setAutoTimeZoneEnabled:(CDUnknownBlockType)arg1;
 - (void)setDiagnosticsCookie:(CDUnknownBlockType)arg1;
 - (void)setSendDiagnosticsToApple:(BOOL)arg1 sendThirdPartyDiagnostics:(BOOL)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)removeLanguageChooserCookie:(CDUnknownBlockType)arg1;
@@ -44,12 +47,11 @@
 - (void)removeMigrationCookie:(CDUnknownBlockType)arg1;
 - (void)setMigrationCookie:(CDUnknownBlockType)arg1;
 - (void)setMacBuddyDoneCookie:(CDUnknownBlockType)arg1;
+- (void)healEOSHandlingProgressForUUID:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (void)fmmIsEnabled:(CDUnknownBlockType)arg1;
 - (void)setOSVersioniCloudCreatedForUser:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (void)saveDocumentationData:(id)arg1 withLocalizedName:(id)arg2 forLocale:(id)arg3 toFileNamed:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)removeIncompatibleApplicationDataFileAtRoot:(id)arg1 reply:(CDUnknownBlockType)arg2;
-- (void)changeUserPassword:(unsigned int)arg1 oldPassword:(id)arg2 newPassword:(id)arg3 hint:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
-- (void)changeUserToStandardAuth:(unsigned int)arg1 iCloudPassword:(id)arg2 newPassword:(id)arg3 hint:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)restart:(CDUnknownBlockType)arg1;
 - (void)shutdown:(CDUnknownBlockType)arg1;
 - (void)facelessConfigureFromInstallerCookie:(CDUnknownBlockType)arg1;
@@ -57,6 +59,9 @@
 - (void)createTeslaUsersWithInfo:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)createUserWithInfo:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)writeMachineDefaults:(id)arg1 toApplicationID:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
+- (void)setPasswordPolicyDictionary:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)passwordPolicyWithCompletion:(CDUnknownBlockType)arg1;
+- (void)setPasswordPolicy:(long long)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)removeBuddyUserHome:(CDUnknownBlockType)arg1;
 - (void)terminateBuddySessionTransitioningToUID:(unsigned int)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (void)tellBuddyAppToQuit:(CDUnknownBlockType)arg1;
@@ -69,6 +74,7 @@
 - (void)postMacBuddyTasks:(CDUnknownBlockType)arg1;
 - (void)preMacBuddyTasks:(CDUnknownBlockType)arg1;
 - (void)establishConnection:(CDUnknownBlockType)arg1;
+- (void)healEOSHandlingProgress:(CDUnknownBlockType)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (id)connectionWithErrorHandler:(CDUnknownBlockType)arg1;
 - (id)init;
 

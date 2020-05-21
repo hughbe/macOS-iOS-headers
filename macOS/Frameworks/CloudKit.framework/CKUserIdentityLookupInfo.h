@@ -17,7 +17,6 @@
     NSString *_emailAddress;
     NSString *_phoneNumber;
     CKRecordID *_userRecordID;
-    NSString *_dsid;
     NSData *_encryptedPersonalInfo;
 }
 
@@ -25,19 +24,18 @@
 + (id)lookupInfosWithRecordIDs:(id)arg1;
 + (id)lookupInfosWithEmails:(id)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSData *encryptedPersonalInfo; // @synthesize encryptedPersonalInfo=_encryptedPersonalInfo;
-@property(retain, nonatomic) NSString *dsid; // @synthesize dsid=_dsid;
 @property(nonatomic) BOOL shouldReportMissingIdentity; // @synthesize shouldReportMissingIdentity=_shouldReportMissingIdentity;
 @property(copy, nonatomic) CKRecordID *userRecordID; // @synthesize userRecordID=_userRecordID;
 @property(copy, nonatomic) NSString *phoneNumber; // @synthesize phoneNumber=_phoneNumber;
 @property(copy, nonatomic) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)CKPropertiesToDescribe:(BOOL)arg1;
+- (id)CKDescriptionPropertiesWithPublic:(BOOL)arg1 private:(BOOL)arg2 shouldExpand:(BOOL)arg3;
 - (id)ckShortDescription;
 - (id)description;
 - (id)CKPropertiesDescription;

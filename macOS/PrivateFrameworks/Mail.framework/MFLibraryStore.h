@@ -6,7 +6,7 @@
 
 #import <Mail/MFMessageStore.h>
 
-@class MFLibraryStoreMessageConsumer, MFMessageCriterion, NSArray, NSMutableArray, NSMutableSet, NSString;
+@class MFLibraryStoreMessageConsumer, MFMessageCriterion, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 
 @interface MFLibraryStore : MFMessageStore
 {
@@ -17,19 +17,21 @@
     NSMutableArray *_allMessagesDuringOpening;
     id _consumerLock;
     MFLibraryStoreMessageConsumer *_consumer;
+    NSMutableDictionary *_libraryFetchLockMap;
     NSString *_url;
     MFMessageCriterion *_criterion;
+    NSString *_searchPhrase;
 }
 
-+ (BOOL)storeAtPathIsWritable:(id)arg1;
 + (BOOL)createEmptyStoreForPath:(id)arg1;
 + (id)filterMessages:(id)arg1 throughSmartMailbox:(id)arg2;
 + (id)sharedInstance;
 + (unsigned int)defaultLoadOptions;
 + (void)initialize;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *searchPhrase; // @synthesize searchPhrase=_searchPhrase;
 @property(retain) MFMessageCriterion *criterion; // @synthesize criterion=_criterion;
 @property(copy) NSString *url; // @synthesize url=_url;
-- (void).cxx_destruct;
 - (BOOL)hasCacheFileForMessage:(id)arg1;
 - (BOOL)messageHasBeenDeleted:(id)arg1;
 - (id)attachmentsDirectoryForMessage:(id)arg1 partNumber:(id)arg2;
@@ -55,40 +57,35 @@
 - (void)doCompact;
 - (BOOL)shouldCallCompactWhenClosing;
 - (BOOL)canCompact;
-- (long long)undoAppendOfLibraryIDs:(id)arg1;
-- (long long)appendMessages:(id)arg1 missedMessages:(id)arg2 newMessages:(id)arg3 newDocumentIDsByOld:(id)arg4 flagsToSet:(id)arg5 appendReason:(long long)arg6 userInitiated:(BOOL)arg7 error:(id *)arg8;
+- (void)handleMutedMessages:(id)arg1;
+- (long long)updateMessages:(id)arg1 withLibraryIDs:(id)arg2 newMessages:(id)arg3;
+- (id)moveMessages:(id)arg1 destinationMailboxURL:(id)arg2 userInitiated:(BOOL)arg3;
 - (BOOL)allowsOverwrite;
 - (BOOL)allowsAppend;
 - (void)deleteMessagesOlderThanNumberOfDays:(long long)arg1 compact:(BOOL)arg2;
 - (void)deleteMessages:(id)arg1 moveToTrash:(BOOL)arg2;
-- (id)fullBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id *)arg2 fetchIfNotAvailable:(BOOL)arg3;
+- (void)getTopLevelMimePart:(id *)arg1 headers:(id *)arg2 body:(id *)arg3 forMessage:(id)arg4 fetchIfNotAvailable:(BOOL)arg5 updateFlags:(BOOL)arg6 allowPartial:(BOOL)arg7 skipSignatureVerification:(BOOL)arg8;
 - (id)_fetchBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id *)arg2 fetchIfNotAvailable:(BOOL)arg3 allowPartial:(BOOL)arg4;
 - (id)_fetchHeaderDataForMessage:(id)arg1 fetchIfNotAvailable:(BOOL)arg2 allowPartial:(BOOL)arg3;
 - (id)messageForMessageID:(id)arg1;
 - (void)_cancelQueryAndClearConsumer:(BOOL)arg1;
 - (void)cancelQuery;
-- (void)cancelOpen;
-- (void)cleanupSynchronously;
 - (void)dealloc;
 - (void)_invalidate;
 - (void)_messagesUpdated:(id)arg1;
 - (void)_messagesCompacted:(id)arg1;
 - (void)_messageFlagsChanged:(id)arg1;
-- (void)messagesWereAdded:(id)arg1 secondaryMessages:(id)arg2 duringOpen:(BOOL)arg3 options:(id)arg4;
+- (void)messagesWereAdded:(id)arg1 secondaryMessages:(id)arg2 duringOpen:(BOOL)arg3;
 - (void)_messagesAddedToLibrary:(id)arg1;
 - (void)_setFlagsAndColorForMessages:(id)arg1;
 - (void)setFlagsAndColorForMessages:(id)arg1;
 - (id)async_setLocalFlagsForMessages:(id)arg1;
-- (void)updateGmailLabelsFromDictionary:(id)arg1 forMessages:(id)arg2;
-- (id)_setGmailLabelsFromDictionary:(id)arg1 forMessages:(id)arg2 async:(BOOL)arg3;
-- (id)setGmailLabelsFromDictionary:(id)arg1 forMessages:(id)arg2;
-- (void)async_setGmailLabelsFromDictionary:(id)arg1 forMessages:(id)arg2;
+- (void)unmuteConversationForMessages:(id)arg1;
+- (void)muteConversationForMessages:(id)arg1;
 - (id)_setFlagsFromDictionary:(id)arg1 forMessages:(id)arg2 async:(BOOL)arg3;
 - (id)setFlagsFromDictionary:(id)arg1 forMessages:(id)arg2;
 - (void)async_setFlagsFromDictionary:(id)arg1 forMessages:(id)arg2;
 - (void)saveSnippetsForMessages:(id)arg1;
-- (id)snippetsForMessages:(id)arg1;
-- (BOOL)supportsSnippets;
 - (id)filterMessagesByMembership:(id)arg1;
 - (id)mutableCopyOfAllMessages;
 - (void)_asynchronousCopyOfAllMessagesWithOptions:(id)arg1;
@@ -97,14 +94,13 @@
 - (id)copyOfAllMessages;
 - (unsigned long long)totalCount;
 - (unsigned int)_openOptions;
-- (void)cleanupAsynchronously;
 - (id)openSynchronouslyUpdatingMetadata:(BOOL)arg1 returnRetainedMessages:(BOOL)arg2;
 - (void)openSynchronouslyUpdatingMetadata:(BOOL)arg1;
 - (BOOL)_shouldUpdateColorsAndAttachmentsAfterOpening;
 - (void)openAsynchronouslyWithOptions:(unsigned int)arg1;
 - (void)libraryFinishedSendingMessagesToLibraryStoreMessageConsumer:(id)arg1;
 @property(readonly, copy) NSArray *notificationMessagesFromOpen;
-- (void)newMessagesAvailable:(id)arg1 secondaryMessages:(id)arg2 fromLibraryStoreMessageConsumer:(id)arg3 options:(id)arg4;
+- (void)newMessagesAvailable:(id)arg1 secondaryMessages:(id)arg2 fromLibraryStoreMessageConsumer:(id)arg3 fromUpdate:(id)arg4;
 - (void)_updateCriterionFromMailbox:(id)arg1;
 @property(readonly, nonatomic) long long mailboxID;
 - (void)reset;

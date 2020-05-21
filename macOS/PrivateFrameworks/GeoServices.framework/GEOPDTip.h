@@ -8,25 +8,40 @@
 
 #import "NSCopying.h"
 
-@class GEOPDUser, NSMutableArray, NSString;
+@class GEOPDUser, NSMutableArray, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDTip : PBCodable <NSCopying>
 {
-    double _tipTime;
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_snippets;
     NSString *_tipId;
+    double _tipTime;
     GEOPDUser *_tipster;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     struct {
-        unsigned int tipTime:1;
-    } _has;
+        unsigned int has_tipTime:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_snippets:1;
+        unsigned int read_tipId:1;
+        unsigned int read_tipster:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_snippets:1;
+        unsigned int wrote_tipId:1;
+        unsigned int wrote_tipTime:1;
+        unsigned int wrote_tipster:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)snippetType;
 + (id)tipsForPlaceData:(id)arg1;
-@property(retain, nonatomic) NSString *tipId; // @synthesize tipId=_tipId;
-@property(retain, nonatomic) GEOPDUser *tipster; // @synthesize tipster=_tipster;
-@property(nonatomic) double tipTime; // @synthesize tipTime=_tipTime;
-@property(retain, nonatomic) NSMutableArray *snippets; // @synthesize snippets=_snippets;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -34,16 +49,26 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *tipId;
 @property(readonly, nonatomic) BOOL hasTipId;
+- (void)_readTipId;
+@property(retain, nonatomic) GEOPDUser *tipster;
 @property(readonly, nonatomic) BOOL hasTipster;
+- (void)_readTipster;
 @property(nonatomic) BOOL hasTipTime;
+@property(nonatomic) double tipTime;
 - (id)snippetAtIndex:(unsigned long long)arg1;
 - (unsigned long long)snippetsCount;
+- (void)_addNoFlagsSnippet:(id)arg1;
 - (void)addSnippet:(id)arg1;
 - (void)clearSnippets;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *snippets;
+- (void)_readSnippets;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

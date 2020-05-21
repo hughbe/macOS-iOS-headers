@@ -12,7 +12,6 @@
 
 + (struct _NSRange)range:(struct _NSRange)arg1 liesWithinRange:(struct _NSRange)arg2 assert:(BOOL)arg3;
 + (BOOL)isInternetReachable;
-+ (id)existingManagedObjectWithIdentifier:(id)arg1 managedObjectContext:(id)arg2;
 
 @end
 

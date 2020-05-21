@@ -9,14 +9,19 @@
 __attribute__((visibility("hidden")))
 @interface FI_IPropertyValueExtractor : NSObject
 {
+    _Bool _shouldPrefetchValue;
+    _Bool _forPreview;
 }
 
 + (id)extractor;
+@property _Bool forPreview; // @synthesize forPreview=_forPreview;
+@property _Bool shouldPrefetchValue; // @synthesize shouldPrefetchValue=_shouldPrefetchValue;
 - (void)flush;
 - (_Bool)isApplicableToNodes:(const struct TFENodeVector *)arg1;
 - (_Bool)needsUpdateForProperty:(unsigned int)arg1;
 - (id)defaultValue;
 - (id)extractValueFromNodes:(const struct TFENodeVector *)arg1;
+-     // Error parsing type: v32@0:8r^{TFENodeVector=^{TFENode}^{TFENode}{__compressed_pair<TFENode *, std::__1::allocator<TFENode> >=^{TFENode}}}16r^{atomic<bool>={__cxx_atomic_impl<bool, std::__1::__cxx_atomic_base_impl<bool> >=AB}}24, name: prefetchValueOnSecondaryThread:cancelled:
 
 @end
 

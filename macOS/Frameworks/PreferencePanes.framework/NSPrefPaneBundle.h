@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSSecureCoding.h"
+
 @class NSArray, NSBundle, NSDictionary, NSImage, NSMutableArray, NSMutableDictionary, NSNumber, NSPreferencePane, NSString;
 
-@interface NSPrefPaneBundle : NSObject
+@interface NSPrefPaneBundle : NSObject <NSSecureCoding>
 {
     NSString *_path;
     NSString *_iconLabel;
@@ -24,9 +26,9 @@
     NSString *_bestLocale;
     NSArray *_localizations;
     NSString *_shortVersion;
-    NSString *_remoteViewClass;
     NSMutableDictionary *_localizedNames;
     NSMutableDictionary *_localizedIconLabels;
+    NSString *_remoteViewClass;
     NSPreferencePane *_prefPaneObject;
     NSImage *_icon;
     NSString *_iconName;
@@ -36,26 +38,30 @@
     BOOL _visible;
     BOOL _overrideVisible;
     BOOL _favorite;
+    BOOL _devVersion;
     unsigned long long _nameIconVariant;
     NSMutableArray *_searchAnchors;
 }
 
-+ (BOOL)bundleAtPathIsNativeForSystem:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (BOOL)numberingSystemIsArabic;
+- (void).cxx_destruct;
+@property(getter=isDevVersion) BOOL devVersion; // @synthesize devVersion=_devVersion;
 @property unsigned long long nameIconVariant; // @synthesize nameIconVariant=_nameIconVariant;
 @property(readonly) NSPreferencePane *prefPaneObject; // @synthesize prefPaneObject=_prefPaneObject;
 @property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 @property BOOL overrideVisible; // @synthesize overrideVisible=_overrideVisible;
 @property BOOL favorite; // @synthesize favorite=_favorite;
-- (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)authorize:(id)arg1;
 - (void)reveal:(id)arg1;
 - (id)anchors;
 - (id)objectSpecifier;
 @property(getter=isVisible) BOOL visible; // @dynamic visible;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (long long)compare:(id)arg1;
+- (id)supportedAppearance;
+- (BOOL)isLinkedOnMacOS10_14_Or_Later;
 - (id)mainView;
 - (void)instantiatePrefPaneObjectWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)instantiatePrefPaneObject;
@@ -64,9 +70,9 @@
 - (id)bundle;
 - (id)largeIcon;
 - (id)icon;
-- (id)_insertLocaleSuffixIfNeeded:(id)arg1;
-- (id)_iconName;
-@property(readonly) NSString *remoteViewClass; // @dynamic remoteViewClass;
+- (id)_localeAwareIconNames:(id)arg1;
+@property(readonly) NSString *remoteViewClass;
+- (id)iconName;
 - (id)shortVersion;
 - (BOOL)isDisabledOnServer;
 - (id)searchGroupsPath;
@@ -74,6 +80,8 @@
 - (id)altNameIconTestTool;
 - (id)ioServiceToMatch;
 - (id)hardwareTestTool;
+- (BOOL)wantsCache;
+@property(readonly) BOOL hasRemoteView; // @dynamic hasRemoteView;
 @property(readonly) BOOL allowsXAppleSystemPreferencesURLScheme; // @dynamic allowsXAppleSystemPreferencesURLScheme;
 @property(readonly) BOOL supportsAutoLayout; // @dynamic supportsAutoLayout;
 @property(readonly) BOOL shouldAlwaysAllowOpenDocument; // @dynamic shouldAlwaysAllowOpenDocument;
@@ -85,7 +93,6 @@
 - (BOOL)hasEntitlement:(id)arg1;
 - (BOOL)isSignedByApple;
 - (BOOL)_isSignedByAppleUsingStaticCodeRef:(const struct __SecCode **)arg1;
-- (BOOL)isNativeForSystem;
 - (BOOL)isApple;
 - (id)name;
 - (id)identifier;

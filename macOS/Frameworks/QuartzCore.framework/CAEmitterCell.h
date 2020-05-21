@@ -8,12 +8,12 @@
 
 #import "CAMediaTiming.h"
 #import "CAPropertyInfo.h"
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSDictionary, NSString;
 
-@interface CAEmitterCell : NSObject <NSCopying, CAPropertyInfo, NSCoding, CAMediaTiming>
+@interface CAEmitterCell : NSObject <NSCopying, CAPropertyInfo, NSSecureCoding, CAMediaTiming>
 {
     void *_attr[2];
     void *_state;
@@ -23,6 +23,7 @@
 + (void)CAMLParserStartElement:(id)arg1;
 + (BOOL)CA_automaticallyNotifiesObservers:(Class)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (id)defaultValueForKey:(id)arg1;
 + (id)CA_attributes;
 + (id)emitterCell;
@@ -76,6 +77,7 @@
 @property double duration;
 @property double timeOffset;
 @property double beginTime;
+- (BOOL)CAMLTypeSupportedForKey:(id)arg1;
 - (id)CAMLTypeForKey:(id)arg1;
 - (void)encodeWithCAMLWriter:(id)arg1;
 - (void)CAMLParser:(id)arg1 setValue:(id)arg2 forKey:(id)arg3;

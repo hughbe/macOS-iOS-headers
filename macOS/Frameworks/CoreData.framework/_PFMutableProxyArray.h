@@ -20,6 +20,9 @@ __attribute__((visibility("hidden")))
     struct __CFArray *_indicesVeneer;
 }
 
++ (Class)classForKeyedUnarchiver;
+- (Class)classForArchiver;
+- (Class)classForCoder;
 - (void)replaceObjectAtIndex:(unsigned long long)arg1 withObject:(id)arg2;
 - (void)removeObjectAtIndex:(unsigned long long)arg1;
 - (void)insertObject:(id)arg1 atIndex:(unsigned long long)arg2;
@@ -34,6 +37,11 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)indexOfObject:(id)arg1;
 - (id)managedObjectIDAtIndex:(unsigned long long)arg1;
 - (id)objectAtIndex:(unsigned long long)arg1;
+- (void)getObjects:(id *)arg1 range:(struct _NSRange)arg2;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)mutableCopy;
+- (id)copy;
 - (void)_rehash;
 - (unsigned long long)count;
 - (BOOL)_isDeallocating;

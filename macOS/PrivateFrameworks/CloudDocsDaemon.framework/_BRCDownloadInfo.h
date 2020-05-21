@@ -11,22 +11,17 @@
 __attribute__((visibility("hidden")))
 @interface _BRCDownloadInfo : _BRCTransferInfo
 {
-    BOOL _isInactive;
     long long previousCompletedUnitCount;
     long long previousTotalUnitCount;
     NSMutableDictionary *_resumeUnitCounts;
 }
 
-@property(readonly, nonatomic) BOOL isInactive; // @synthesize isInactive=_isInactive;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSMutableDictionary *resumeUnitCounts; // @synthesize resumeUnitCounts=_resumeUnitCounts;
 @property(nonatomic) long long previousTotalUnitCount; // @synthesize previousTotalUnitCount;
 @property(nonatomic) long long previousCompletedUnitCount; // @synthesize previousCompletedUnitCount;
-- (void).cxx_destruct;
-- (void)markAsInactive;
 - (void)copyProgressInfoToProgress:(id)arg1 options:(BOOL)arg2;
 - (void)updateLocalizedDescriptionWithOptions:(BOOL)arg1;
-- (void)updateUnitCount;
-- (id)description;
 - (id)init;
 
 @end

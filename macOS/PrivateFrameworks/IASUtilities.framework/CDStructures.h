@@ -4,7 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#pragma mark Blocks
+#pragma mark Function Pointers and Blocks
+
+typedef void (*CDUnknownFunctionPointerType)(void); // return type and parameters are unknown
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
@@ -38,6 +40,23 @@ struct _opaque_pthread_cond_t {
 struct _opaque_pthread_mutex_t {
     long long __sig;
     char __opaque[56];
+};
+
+struct chunklist_chunk {
+    unsigned int _field1;
+    unsigned char _field2[32];
+};
+
+struct chunklist_hdr {
+    unsigned int _field1;
+    unsigned int _field2;
+    unsigned char _field3;
+    unsigned char _field4;
+    unsigned char _field5;
+    unsigned char _field6;
+    unsigned long long _field7;
+    unsigned long long _field8;
+    unsigned long long _field9;
 };
 
 struct internal_state;
@@ -91,9 +110,29 @@ typedef struct {
 } CDStruct_43893798;
 
 typedef struct {
+    unsigned int _field1;
+    int _field2;
+    char _field3[0];
+} CDStruct_69a1f978;
+
+typedef struct {
+    unsigned long long inSize;
+    unsigned long long outSize;
+} CDStruct_e37f3d4a;
+
+typedef struct {
     unsigned long long _field1;
     void *_field2;
 } CDStruct_7a75b897;
+
+typedef struct {
+    CDUnknownFunctionPointerType inSeqProc;
+    CDUnknownFunctionPointerType inAbortProc;
+    void *inUserData;
+    CDUnknownFunctionPointerType outSeqProc;
+    CDUnknownFunctionPointerType outAbortProc;
+    void *outUserData;
+} CDStruct_02dd2c37;
 
 typedef struct {
     char *_field1;
@@ -109,6 +148,14 @@ typedef struct {
     CDUnknownFunctionPointerType _field11;
     void *_field12;
 } CDStruct_14ac1504;
+
+typedef struct {
+    int algorithm;
+    int direction;
+    int nWorkerThreads;
+    unsigned long long blockSize;
+    int verbosity;
+} CDStruct_24cabc6e;
 
 typedef struct {
     char *_field1;
@@ -130,4 +177,36 @@ typedef struct {
     int _field17;
     int _field18;
 } CDStruct_d4262b82;
+
+typedef struct {
+    CDStruct_69a1f978 _field1;
+    unsigned char _field2[16];
+    int _field3;
+} CDStruct_3ecb445f;
+
+typedef struct {
+    CDStruct_69a1f978 _field1;
+    char _field2[64];
+    char _field3[0];
+} CDStruct_d2964125;
+
+typedef struct {
+    CDStruct_69a1f978 _field1;
+    char _field2[64];
+    int _field3;
+} CDStruct_4a8c97bd;
+
+typedef struct {
+    CDStruct_69a1f978 _field1;
+    int _field2;
+} CDStruct_3039fca9;
+
+typedef struct {
+    CDStruct_4a8c97bd _field1;
+    char _field2[1024];
+} CDStruct_7552e54d;
+
+typedef struct {
+    CDStruct_4a8c97bd _field1;
+} CDStruct_f5aa958a;
 

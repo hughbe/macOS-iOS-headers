@@ -21,6 +21,7 @@
     } _has;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *text; // @synthesize text=_text;
 @property(nonatomic) double timestamp; // @synthesize timestamp=_timestamp;
 - (void)mergeFrom:(id)arg1;
@@ -38,7 +39,6 @@
 @property(nonatomic) int actionType; // @synthesize actionType=_actionType;
 @property(readonly, nonatomic) BOOL hasText;
 @property(nonatomic) BOOL hasTimestamp;
-- (void)dealloc;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSExtension, NSString;
+@class NSDictionary, NSExtension, NSString, NSURL;
 
 __attribute__((visibility("hidden")))
 @interface ExtensionWrapper : NSObject
@@ -14,7 +14,7 @@ __attribute__((visibility("hidden")))
     NSExtension *_appExtension;
     NSExtension *_contentBlockerAppExtension;
     NSString *_iconDataURLString;
-    struct RefPtr<Safari::Extension> _legacyExtension;
+    struct RefPtr<Safari::Extension, WTF::DumbPtrTraits<Safari::Extension>> _legacyExtension;
 }
 
 - (id).cxx_construct;
@@ -23,18 +23,24 @@ __attribute__((visibility("hidden")))
 - (id)iconURLStringForResolution:(int)arg1;
 - (id)smallIconURLStringForResolution:(int)arg1;
 - (id)_dataURLStringForAppExtension:(id)arg1;
+- (id)_dataURLStringForIcon:(id)arg1;
 @property(readonly, copy, nonatomic) NSDictionary *websiteAccess;
-@property(readonly, nonatomic) BOOL canUninstallExtension;
 - (void)disable;
 - (void)enable;
 @property(readonly, nonatomic, getter=isSignedByApple) BOOL signedByApple;
-@property(readonly, nonatomic, getter=isLegacyExtension) BOOL legacyExtension;
+@property(readonly, nonatomic) NSExtension *appExtension;
+// Error parsing type for property legacyExtension:
+// Property attributes: T^{Extension=^^?{HashSet<Safari::EventTarget *, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *> >={HashTable<Safari::EventTarget *, Safari::EventTarget *, WTF::IdentityExtractor, WTF::PtrHash<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *>, WTF::HashTraits<Safari::EventTarget *> >=^^{EventTarget}}}{Lock={Atomic<unsigned char>={atomic<unsigned char>={__cxx_atomic_impl<unsigned char, std::__1::__cxx_atomic_base_impl<unsigned char> >=AC}}}}^^?^v@@@@@@@@@@@@@@BBBi{Vector<Safari::ExtensionDomainPattern, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{ExtensionDomainPattern}II}ii{RefPtr<Safari::ExtensionNamespace, WTF::DumbPtrTraits<Safari::ExtensionNamespace> >=^{ExtensionNamespace}}{Vector<std::__1::unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent> >}II}{Vector<std::__1::unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent> >}II}{Vector<std::__1::unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{unique_ptr<Safari::ExtensionPageContent, std::__1::default_delete<Safari::ExtensionPageContent> >}II}@@QB},R,N
+
+@property(readonly, nonatomic) BOOL isLegacyExtension;
 @property(readonly, nonatomic, getter=isEnabled) BOOL enabled;
 @property(readonly, copy, nonatomic) NSString *descriptionText;
+@property(readonly, copy, nonatomic) NSURL *containingAppURL;
 @property(readonly, copy, nonatomic) NSString *containingAppDisplayName;
 @property(readonly, copy, nonatomic) NSString *displayVersion;
 @property(readonly, copy, nonatomic) NSString *identifier;
 @property(readonly, copy, nonatomic) NSString *displayName;
+- (id)initWithComposedIdentifier:(id)arg1;
 - (id)initWithIdentifier:(id)arg1;
 
 @end

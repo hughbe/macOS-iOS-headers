@@ -10,16 +10,15 @@
 
 @class CKDPDate;
 
-__attribute__((visibility("hidden")))
 @interface CKDPDateStatistics : PBCodable <NSCopying>
 {
     CKDPDate *_creation;
     CKDPDate *_modification;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) CKDPDate *modification; // @synthesize modification=_modification;
 @property(retain, nonatomic) CKDPDate *creation; // @synthesize creation=_creation;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;

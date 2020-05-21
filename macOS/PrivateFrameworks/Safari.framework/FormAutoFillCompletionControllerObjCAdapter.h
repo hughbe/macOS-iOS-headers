@@ -10,42 +10,45 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class NSMutableSet, NSString;
+@class NSHashTable, NSMutableSet, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FormAutoFillCompletionControllerObjCAdapter : NSObject <NSTableViewDataSource, NSTableViewDelegate, CompletionUIPresentationControllerDelegate>
 {
-    struct FormAutoFillCompletionController *_completionController;
+    // Error parsing type: ^{FormAutoFillCompletionController=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}Bq@@@@{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@@dBBBBB{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}}, name: _completionController
     NSMutableSet *_completionAbortingNotificationNames;
+    NSHashTable *_observers;
 }
 
 - (void).cxx_destruct;
+- (void)removeAutoFillControllerObserver:(id)arg1;
+- (void)registerAutoFillControllerObserver:(id)arg1;
+-     // Error parsing type: c40@0:8r^{CompletionListItem=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}@BQ@@}16^c24^c32, name: performActionForListItem:result:shouldAbortCompletion:
+- (void)didRefreshCompletionListItems:(const Vector_e1d4bda3 *)arg1;
 - (void)_registerForCompletionAbortingNotificationNamed:(id)arg1 object:(id)arg2;
 - (void)_unregisterForCompletionAbortingNotifications;
 - (void)_registerForCompletionAbortingNotifications;
 - (BOOL)shouldAbortCompletionFromNotification:(id)arg1;
 - (void)_abortCompletionFromNotification:(id)arg1;
-- (id)attributedStringForTableColumn:(id)arg1 row:(long long)arg2;
-- (void)prepareForReloadOfCompletionList;
+- (id)_completionListTableView;
 - (void)completionWindowDidHide;
 - (void)completionWindowDidShow;
+- (void)completionWindowWillShow;
 - (void)invalidate;
-- (struct FormAutoFillCompletionController *)completionController;
-- (id)initWithCompletionController:(struct FormAutoFillCompletionController *)arg1;
+-     // Error parsing type: ^{FormAutoFillCompletionController=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}Bq@@@@{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@@dBBBBB{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}}16@0:8, name: completionController
+-     // Error parsing type: @24@0:8^{FormAutoFillCompletionController=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}Bq@@@@{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}@@dBBBBB{Vector<WTF::RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc>=^{RefPtr<Safari::CompletionListItem, WTF::DumbPtrTraits<Safari::CompletionListItem> >}II}}16, name: initWithCompletionController:
 - (void)completionUIPresentationControllerDidFinishPresentationAnimation:(id)arg1;
 - (void)completionUIPresentationControllerWillStartPresentationAnimation:(id)arg1;
+- (BOOL)completionListTableView:(id)arg1 rowSpansAllColumns:(long long)arg2;
 - (void)completionListTableView:(id)arg1 mouseUpInRow:(long long)arg2;
 - (long long)completionListTableViewUserInterfaceLayoutDirection:(id)arg1;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (void)tableView:(id)arg1 didAddRowView:(id)arg2 forRow:(long long)arg3;
-- (void)_updateSeparatorStateForItem:(struct CompletionListItem *)arg1 tableView:(id)arg2 rowView:(id)arg3 row:(long long)arg4;
+-     // Error parsing type: v48@0:8^{CompletionListItem=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}@BQ@@}16@24@32q40, name: _updateSeparatorStateForItem:tableView:rowView:row:
 - (id)tableView:(id)arg1 rowViewForRow:(long long)arg2;
 - (id)tableView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
 - (void)tableViewSelectionIsChanging:(id)arg1;
-- (BOOL)completionListTableView:(id)arg1 rowSpansAllColumns:(long long)arg2;
-- (BOOL)completionListTableView:(id)arg1 rowIsChecked:(long long)arg2;
-- (BOOL)completionListTableView:(id)arg1 rowIsSeparator:(long long)arg2;
 - (long long)numberOfRowsInTableView:(id)arg1;
 
 // Remaining properties

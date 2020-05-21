@@ -6,24 +6,31 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSURL;
+#import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@interface PKProductInfo : NSObject
+@class NSArray, NSDictionary, NSString, NSURL;
+
+@interface PKProductInfo : NSObject <NSSecureCoding, NSCopying>
 {
     NSDictionary *_productInfoDictionary;
     NSURL *_baseURL;
     NSArray *_cachedPackageReferences;
 }
 
-- (id)baseURL;
-- (id)dictionaryRepresentation;
-- (id)packageReferences;
++ (BOOL)supportsSecureCoding;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+@property(readonly) NSURL *baseURL;
+@property(readonly) NSDictionary *dictionaryRepresentation;
+@property(readonly) NSArray *packageReferences;
 - (id)preferredDistributionURL;
 - (id)distributionURLForLocalization:(id)arg1;
-- (id)localizations;
+@property(readonly) NSArray *localizations;
 - (id)_distributionsDictionary;
-- (id)productVersion;
-- (id)productIdentifier;
+@property(readonly) NSString *productVersion;
+@property(readonly) NSString *productIdentifier;
 - (void)dealloc;
 - (id)initWithDictionary:(id)arg1 baseURL:(id)arg2;
 - (void)setProductIdentifier:(id)arg1 version:(id)arg2;

@@ -10,27 +10,30 @@
 
 @interface PHRelatedCollection : PHAssetCollection
 {
+    long long _titleCategory;
     unsigned long long _relationType;
     NSArray *_debugInfo;
     PHObject *_relatedObject;
+    NSString *_highlightLocalIdentifier;
     NSArray *_momentLocalIdentifiers;
     NSString *_subtitle;
 }
 
-+ (id)transientCollectionListWithCollectionsRelatedToFaceCollections:(id)arg1 relationType:(unsigned long long)arg2 options:(id)arg3;
++ (id)_transientCollectionListWithCollectionsRelatedToIdentifiers:(id)arg1 relationType:(unsigned long long)arg2 options:(id)arg3 photoLibrary:(id)arg4;
++ (id)transientCollectionListWithCollectionsRelatedToPersons:(id)arg1 relationType:(unsigned long long)arg2 options:(id)arg3;
 + (id)transientCollectionListWithCollectionsRelatedToObject:(id)arg1 relationType:(unsigned long long)arg2 options:(id)arg3;
-+ (id)_relatedCollectionsFromInfos:(id)arg1 relatedObject:(id)arg2;
-+ (id)_relatedOptionsForTransientAssetCollection:(id)arg1;
++ (id)_relatedCollectionsFromInfos:(id)arg1 relatedObject:(id)arg2 photoLibrary:(id)arg3;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(readonly, nonatomic) NSArray *momentLocalIdentifiers; // @synthesize momentLocalIdentifiers=_momentLocalIdentifiers;
+@property(readonly, copy, nonatomic) NSString *highlightLocalIdentifier; // @synthesize highlightLocalIdentifier=_highlightLocalIdentifier;
 @property(readonly, nonatomic) PHObject *relatedObject; // @synthesize relatedObject=_relatedObject;
 @property(readonly, nonatomic) NSArray *debugInfo; // @synthesize debugInfo=_debugInfo;
 @property(readonly, nonatomic) unsigned long long relationType; // @synthesize relationType=_relationType;
-- (void).cxx_destruct;
-- (long long)assetCollectionType;
+- (BOOL)canPerformEditOperation:(long long)arg1;
+- (long long)titleCategory;
 - (id)localizedSubtitle;
-- (id)initTransientWithAssets:(id)arg1 relatedObject:(id)arg2 title:(id)arg3 subtitle:(id)arg4 momentLocalIdentifiers:(id)arg5 photoLibrary:(id)arg6;
-- (id)initTransientWithFetchResult:(id)arg1 relatedObject:(id)arg2 title:(id)arg3 subtitle:(id)arg4 momentLocalIdentifiers:(id)arg5;
+- (id)initTransientWithAssets:(id)arg1 orFetchResult:(id)arg2 relationType:(unsigned long long)arg3 relatedObject:(id)arg4 title:(id)arg5 subtitle:(id)arg6 titleCategory:(long long)arg7 highlightLocalIdentifier:(id)arg8 momentLocalIdentifiers:(id)arg9 debugInfo:(id)arg10;
 
 @end
 

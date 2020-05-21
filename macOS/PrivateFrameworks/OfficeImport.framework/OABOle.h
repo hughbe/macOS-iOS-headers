@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
 + (id)readCompressedFromStream:(struct SsrwOOStream *)arg1 compressedSize:(unsigned int)arg2 uncompressedSize:(unsigned int)arg3 cancel:(id)arg4;
 + (id)readFromData:(id)arg1 cancel:(id)arg2;
 + (id)readFromParentStorage:(struct SsrwOOStorage *)arg1 storageName:(id)arg2 cancel:(id)arg3;
++ (id)readFromFileName:(id)arg1 cancel:(id)arg2;
 + (BOOL)readSharedInfoFor:(id)arg1 fromStorage:(struct SsrwOOStorage *)arg2;
 + (id)readUnicodeStringFromStream:(struct SsrwOOStream *)arg1;
 + (BOOL)isChart:(id)arg1;

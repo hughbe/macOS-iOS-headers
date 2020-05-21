@@ -6,7 +6,7 @@
 
 #import <SAObjects/SAUISnippet.h>
 
-@class NSArray, NSString, SAUIAppPunchOut, SAUIImageResource;
+@class NSArray, SAUIAppPunchOut, SAUIImageResource;
 
 @interface SAWeatherAirQualitySnippet : SAUISnippet
 {
@@ -14,7 +14,6 @@
 
 + (id)airQualitySnippetWithDictionary:(id)arg1 context:(id)arg2;
 + (id)airQualitySnippet;
-@property(copy, nonatomic) NSString *title;
 @property(retain, nonatomic) SAUIImageResource *attributionImage;
 @property(retain, nonatomic) SAUIAppPunchOut *appPunchOut;
 @property(copy, nonatomic) NSArray *aceAirQualities;

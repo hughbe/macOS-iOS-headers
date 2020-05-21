@@ -23,7 +23,6 @@
 + (id)webPageWithData:(id)arg1;
 + (id)plainTextWithWebPageString:(id)arg1;
 + (id)plainTextWithWebPageData:(id)arg1;
-+ (id)plainTextWithXMLDocument:(id)arg1;
 + (id)_plainTextWithSelector:(SEL)arg1 object:(id)arg2;
 @property(retain) NSString *URLString; // @synthesize URLString;
 - (void)dealloc;
@@ -53,7 +52,6 @@
 - (id)initWithWebPageStripper:(id)arg1;
 - (id)initWithWebPageString:(id)arg1;
 - (id)initWithWebPageData:(id)arg1;
-- (id)initWithXMLDocument:(id)arg1;
 
 @end
 

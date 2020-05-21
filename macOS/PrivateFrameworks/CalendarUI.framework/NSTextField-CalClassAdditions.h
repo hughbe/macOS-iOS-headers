@@ -7,6 +7,8 @@
 #import "NSTextField.h"
 
 @interface NSTextField (CalClassAdditions)
++ (id)cal_baseAttributes;
+- (double)maximumIntrinsicWidthForStrings:(id)arg1;
 - (void)shrinkHeightForMaxHeight:(double)arg1 width:(double)arg2;
 @end
 

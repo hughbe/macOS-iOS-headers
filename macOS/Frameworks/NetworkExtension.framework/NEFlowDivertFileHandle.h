@@ -14,15 +14,16 @@
     NSData *_keyMaterial;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSData *keyMaterial; // @synthesize keyMaterial=_keyMaterial;
 @property(readonly) NSNumber *controlUnit; // @synthesize controlUnit=_controlUnit;
-- (void).cxx_destruct;
 - (unsigned long long)type;
 - (id)description;
 - (id)dictionary;
 - (id)initFromDictionary:(id)arg1;
 - (id)getUnitForSocket:(int)arg1;
 - (id)initFlowDivertDataSocket;
+- (id)initFlowDivertControlSocketDisableAppMap:(BOOL)arg1;
 - (id)initFlowDivertControlSocket;
 
 @end

@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
 @interface BRCLocalStatInfo : BRCStatInfo
 {
     NSNumber *_processingStamp;
+    NSString *_bouncedLogicalName;
     unsigned char _itemScope;
     unsigned int _stagedGenerationID;
     NSNumber *_documentID;
@@ -19,20 +20,23 @@ __attribute__((visibility("hidden")))
     BRCGenerationID *_generationID;
     NSNumber *_stagedFileID;
     NSString *_physicalName;
-    NSString *_bouncedName;
+    NSNumber *_tmpBouncedNo;
 }
 
++ (id)_finderTagsFromRelativePath:(id)arg1;
++ (BOOL)_modeFromRelativePath:(id)arg1 isPackageFault:(BOOL)arg2;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *rawBouncedLogicalName; // @synthesize rawBouncedLogicalName=_bouncedLogicalName;
 @property(nonatomic) unsigned char itemScope; // @synthesize itemScope=_itemScope;
 @property(readonly, nonatomic) NSNumber *processingStamp; // @synthesize processingStamp=_processingStamp;
-@property(readonly, nonatomic) NSString *bouncedName; // @synthesize bouncedName=_bouncedName;
+@property(readonly, nonatomic) NSNumber *tmpBouncedNo; // @synthesize tmpBouncedNo=_tmpBouncedNo;
 @property(readonly, nonatomic) NSString *physicalName; // @synthesize physicalName=_physicalName;
 @property(readonly, nonatomic) unsigned int stagedGenerationID; // @synthesize stagedGenerationID=_stagedGenerationID;
 @property(readonly, nonatomic) NSNumber *stagedFileID; // @synthesize stagedFileID=_stagedFileID;
 @property(readonly, nonatomic) BRCGenerationID *generationID; // @synthesize generationID=_generationID;
 @property(readonly, nonatomic) NSNumber *fileID; // @synthesize fileID=_fileID;
 @property(readonly, nonatomic) NSNumber *documentID; // @synthesize documentID=_documentID;
-- (void).cxx_destruct;
 - (BOOL)checkStateWithItemID:(id)arg1 logToFile:(struct __sFILE *)arg2;
 - (void)_clearGenerationID;
 - (void)_clearFileID;
@@ -46,27 +50,27 @@ __attribute__((visibility("hidden")))
 - (void)updateAsAppLibraryRoot:(id)arg1;
 - (void)_markAlmostDead;
 - (void)_markReserved;
-- (void)updateLocationAndMetaFromFSAtPath:(id)arg1 itemID:(id)arg2 parentID:(id)arg3 isPackageFault:(BOOL)arg4;
-- (void)updateFromFSAtPath:(id)arg1 itemID:(id)arg2 parentID:(id)arg3 isPackageFault:(BOOL)arg4;
-- (void)_updateMetadataFromFSAtPath:(id)arg1 itemID:(id)arg2 parentID:(id)arg3 isPackageFault:(BOOL)arg4;
+- (void)updateLocationAndMetaFromFSAtPath:(id)arg1 itemID:(id)arg2 parentGlobalID:(id)arg3 isPackageFault:(BOOL)arg4 readonlyShareChild:(BOOL)arg5;
+- (void)updateFromFSAtPath:(id)arg1 itemID:(id)arg2 parentGlobalID:(id)arg3 isPackageFault:(BOOL)arg4 readonlyShareChild:(BOOL)arg5;
+- (void)_updateMetadataFromFSAtPath:(id)arg1 itemID:(id)arg2 parentGlobalID:(id)arg3 isPackageFault:(BOOL)arg4 readonlyShareChild:(BOOL)arg5;
 - (unsigned long long)diffAgainstLocalInfo:(id)arg1;
 - (void)_clearBouncedName;
-- (void)_migrateBouncedNameToName;
-- (void)_migrateBouncedNameToLocalName;
-- (void)_generatedBouncedFilename:(id)arg1;
+- (void)_bouncePhysicalNameToRepresentableName;
+- (void)_migrateTmpBouncedNameToLocalName;
+- (void)_generatedBouncedLogicalFilenameWithBounceNumber:(unsigned long long)arg1;
 - (void)_moveItemAsideWithUUIDString;
 - (void)_markClearedFromStage;
 - (void)_setCKInfo:(id)arg1;
 - (void)_setItemScope:(unsigned char)arg1;
 - (void)_setParentID:(id)arg1;
-- (void)setFilename:(id)arg1 forceRename:(BOOL)arg2;
+- (void)setFilename:(id)arg1 forcePhysicalName:(id)arg2 forceBouncedLogicalName:(id)arg3 serverName:(id)arg4;
 - (void)setFilename:(id)arg1;
 @property(readonly, nonatomic) NSString *filename;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initAsShareAcceptFaultWithName:(id)arg1;
-- (id)initWithRelativePath:(id)arg1 itemID:(id)arg2 parentID:(id)arg3;
+- (id)initAsShareAcceptFaultWithName:(id)arg1 mode:(BOOL)arg2;
+- (id)initWithRelativePath:(id)arg1 itemID:(id)arg2 parentGlobalID:(id)arg3;
 - (id)initWithLocalStatInfo:(id)arg1;
 - (id)initFromResultSet:(id)arg1 pos:(int)arg2;
 - (id)description;
@@ -74,6 +78,8 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSNumber *lostStamp;
 @property(readonly, nonatomic) BRFileObjectID *fileObjectID;
 @property(readonly, nonatomic) NSNumber *stagedFileIDForDB;
+@property(readonly, nonatomic) NSString *logicalNameWithoutLocalBounce;
+- (id)logicalName;
 
 @end
 

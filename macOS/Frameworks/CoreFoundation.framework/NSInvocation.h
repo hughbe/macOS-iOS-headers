@@ -6,20 +6,23 @@
 
 #import "NSObject.h"
 
-@class NSMethodSignature;
+@class NSMethodSignature, NSMutableArray;
 
 @interface NSInvocation : NSObject
 {
     void *_frame;
     void *_retdata;
-    id _signature;
-    id _container;
+    NSMethodSignature *_signature;
+    NSMutableArray *_container;
+    char *_replacedByPointerBacking;
+    unsigned int _magic;
     unsigned char _retainedArgs;
-    unsigned char _reserved[15];
+    unsigned char _stackAllocated;
 }
 
 + (id)invocationWithMethodSignature:(id)arg1;
 + (id)_invocationWithMethodSignature:(id)arg1 frame:(void *)arg2;
++ (unsigned long long)requiredStackSizeForSignature:(id)arg1;
 - (void)invokeWithTarget:(id)arg1;
 - (void)invokeSuper;
 - (void)invokeUsingIMP:(CDUnknownFunctionPointerType)arg1;
@@ -37,6 +40,7 @@
 @property(readonly, retain) NSMethodSignature *methodSignature;
 - (void)dealloc;
 - (id)init;
+- (id)_initWithMethodSignature:(id)arg1 frame:(void *)arg2 buffer:(void *)arg3 size:(unsigned long long)arg4;
 
 @end
 

@@ -12,6 +12,7 @@
 @protocol EKProtocolMutableParticipant <EKProtocolParticipant, EKProtocolMutableObject>
 - (void)setScheduleForceSend:(BOOL)arg1;
 - (void)setProposalStatusString:(NSString *)arg1;
+- (void)setProposedEndDateUnadjustedFromUTC:(NSDate *)arg1;
 - (void)setProposedStartDateUnadjustedFromUTC:(NSDate *)arg1;
 - (void)setInviterNameString:(NSString *)arg1;
 - (void)setStatusModifiedDate:(NSDate *)arg1;

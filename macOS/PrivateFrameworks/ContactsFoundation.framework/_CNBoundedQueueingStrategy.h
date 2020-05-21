@@ -10,15 +10,14 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface _CNBoundedQueueingStrategy : NSObject <CNQueueingStrategy>
 {
     unsigned long long _capacity;
     CDUnknownBlockType _overflowHandler;
 }
 
+- (void).cxx_destruct;
 - (void)enqueueObject:(id)arg1 buffer:(id)arg2;
-- (void)dealloc;
 - (id)initWithCapacity:(unsigned long long)arg1 overflowHandler:(CDUnknownBlockType)arg2;
 - (id)initWithCapacity:(unsigned long long)arg1;
 

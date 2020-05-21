@@ -10,6 +10,7 @@
 
 @class GEOMapItemTip, MKMapItem, NSDate, NSString, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface _MKMapItemUserRatingSnippetReview : NSObject <MKMapItemProviderRatingSnippet>
 {
     MKMapItem *_mapItem;
@@ -23,6 +24,7 @@
 @property(readonly, nonatomic, getter=_reviewerImageURL) NSURL *reviewerImageURL;
 @property(readonly, nonatomic, getter=_reviewerName) NSString *reviewerName;
 @property(readonly, nonatomic, getter=_date) NSDate *date;
+@property(readonly, nonatomic, getter=_localizedSnippetLocale) NSString *localizedSnippetLocale;
 @property(readonly, nonatomic, getter=_localizedSnippet) NSString *localizedSnippet;
 @property(readonly, nonatomic, getter=_normalizedScore) double normalizedScore;
 @property(readonly, nonatomic, getter=_maxScore) double maxScore;

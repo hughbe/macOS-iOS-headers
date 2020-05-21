@@ -14,6 +14,7 @@
 
 + (id)appCustomVocabularyWithDictionary:(id)arg1 context:(id)arg2;
 + (id)appCustomVocabulary;
+@property(copy, nonatomic) NSString *vocabularyIdentifier;
 @property(copy, nonatomic) NSString *intentSlotValue;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -7,6 +7,6 @@
 #import "NSObject.h"
 
 @protocol MKInfoCardThemeListener <NSObject>
-- (void)infoCardThemeChanged:(id <MKInfoCardTheme>)arg1;
+- (void)infoCardThemeChanged;
 @end
 

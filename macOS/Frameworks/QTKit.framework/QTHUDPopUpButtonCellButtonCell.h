@@ -6,7 +6,6 @@
 
 #import <QTKit/QTHUDButtonCell.h>
 
-__attribute__((visibility("hidden")))
 @interface QTHUDPopUpButtonCellButtonCell : QTHUDButtonCell
 {
     unsigned long long _arrowPosition;

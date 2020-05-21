@@ -10,11 +10,7 @@
 
 @interface CUDashboardClient : NSObject
 {
-    union {
-        struct sockaddr sa;
-        struct sockaddr_in v4;
-        struct sockaddr_in6 v6;
-    } _destAddr;
+    CDUnion_fab80606 _destAddr;
     unsigned int _destLen;
     unsigned char _key[32];
     char _model[32];
@@ -24,8 +20,9 @@
     NSString *_server;
 }
 
-@property(retain, nonatomic) NSString *server; // @synthesize server=_server;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSString *server; // @synthesize server=_server;
+- (int)_setupSocket;
 - (int)_logCStr:(const char *)arg1 length:(unsigned long long)arg2;
 - (int)logv:(const char *)arg1 args:(struct __va_list_tag [1])arg2;
 - (int)logf:(const char *)arg1;

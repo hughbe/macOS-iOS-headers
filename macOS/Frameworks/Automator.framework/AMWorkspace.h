@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSError;
+#import "AMRunnerControllerDelegate.h"
 
-@interface AMWorkspace : NSObject
+@class AMRemoteRunnerController, NSError, NSObject<OS_dispatch_queue>, NSRunLoop, NSString;
+
+@interface AMWorkspace : NSObject <AMRunnerControllerDelegate>
 {
     id _reserved;
     id _reserved2;
@@ -19,21 +21,31 @@
 }
 
 + (id)sharedWorkspace;
-- (void)automatorRunnerDied;
-- (void)workflowRunner:(id)arg1 didError:(id)arg2;
-- (void)workflowRunnerDidStop:(id)arg1;
-- (void)workflowRunnerDidRun:(id)arg1;
-- (void)workflowRunnerWillRun:(id)arg1;
-- (void)workflowDidError:(id)arg1;
+- (void).cxx_destruct;
+@property BOOL finishedRunning; // @synthesize finishedRunning=_finishedRunning;
+@property BOOL didStart; // @synthesize didStart=_didStart;
+@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
+@property(retain) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_reserved3;
+@property(retain) id output; // @synthesize output=_reserved2;
+@property(retain) AMRemoteRunnerController *runnerController; // @synthesize runnerController=_reserved;
+- (void)runnerControllerDidStop:(id)arg1;
+- (void)runnerControllerDidRun:(id)arg1;
+- (void)runnerControllerWillRun:(id)arg1;
+- (void)runnerController:(id)arg1 didError:(id)arg2;
 - (id)runWorkflowAtPath:(id)arg1 withInput:(id)arg2 error:(id *)arg3;
-- (id)UUID;
-- (void)setError:(id)arg1;
-- (id)error;
-- (void)setOutput:(id)arg1;
-- (id)output;
-- (id)runnerInterface;
-- (void)dealloc;
+- (void)_runWorkflowOnMainThreadWithURL:(id)arg1 input:(id)arg2;
+- (void)_runOnBackgroundThreadWithWorkflow:(id)arg1 input:(id)arg2;
+- (void)_runOnDispatchQueueWithInput:(id)arg1;
+- (void)_finishRunningOnBackgroundThreadWithOutput:(id)arg1 error:(id)arg2;
+- (void)_performOnExcecutionRunLoop:(CDUnknownBlockType)arg1;
+@property(retain, nonatomic) NSRunLoop *runLoop;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -9,6 +9,7 @@
 @class BRCRelativePath, NSString;
 
 @protocol BRCFSEventsDelegate <NSObject>
+- (void)fseventRecursiveAtRoot:(BRCRelativePath *)arg1 withReason:(NSString *)arg2;
 - (void)fseventAtPath:(BRCRelativePath *)arg1 flags:(unsigned int)arg2;
 - (void)fseventAtPath:(BRCRelativePath *)arg1 flags:(unsigned int)arg2 unresolvedLastPathComponent:(NSString *)arg3;
 - (void)fseventAtPath:(BRCRelativePath *)arg1 flags:(unsigned int)arg2 options:(unsigned long long)arg3 unresolvedLastPathComponent:(NSString *)arg4;

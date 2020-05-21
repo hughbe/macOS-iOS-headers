@@ -17,15 +17,14 @@ __attribute__((visibility("hidden")))
     struct CGPoint _endingDockItemOrigin;
 }
 
+- (void).cxx_destruct;
 - (id)typeDescription;
 - (id)captionDescriptionContainsUserLabel:(char *)arg1 containsAncestorLabel:(char *)arg2;
 - (BOOL)addSelectionDescriptionToRequest:(id)arg1;
-- (BOOL)interactDownCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactUpCommandShiftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)moveToLastVisibleElementWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (BOOL)_moveLastInDockWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)_moveFirstInDockWithEvent:(id)arg1 request:(id)arg2;
 - (void)echoCurrentSelectionWithQueueID:(id)arg1 interruptsRequests:(BOOL)arg2 excludingIdentifiers:(id)arg3;
@@ -38,13 +37,11 @@ __attribute__((visibility("hidden")))
 - (BOOL)handleUntaggedOperationWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)handleEvent:(id)arg1 request:(id)arg2;
 - (BOOL)_handleDockItemReorder:(id)arg1;
-- (BOOL)addContainerSummaryToRequest:(id)arg1;
 - (BOOL)tabDockSelectionChanged;
 - (void)_delayedEchoCurrentSelection;
 - (BOOL)childrenShouldAddIndexToDescription;
 - (void)_updateDockItemsReorderList;
 - (BOOL)isStack;
-- (void)dealloc;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end

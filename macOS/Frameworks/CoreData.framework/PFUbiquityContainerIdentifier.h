@@ -8,7 +8,7 @@
 
 #import "NSFilePresenter.h"
 
-@class NSOperationQueue, NSString, NSURL, PFUbiquityLocation;
+@class NSOperationQueue, NSSet, NSString, NSURL, PFUbiquityLocation;
 
 __attribute__((visibility("hidden")))
 @interface PFUbiquityContainerIdentifier : NSObject <NSFilePresenter>
@@ -40,6 +40,7 @@ __attribute__((visibility("hidden")))
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSSet *observedPresentedItemUbiquityAttributes;
 @property(readonly, copy) NSURL *primaryPresentedItemURL;
 @property(readonly) Class superclass;
 

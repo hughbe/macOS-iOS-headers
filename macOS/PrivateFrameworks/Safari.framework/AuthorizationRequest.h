@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class LAContext;
+@class LAContext, NSData;
 
 __attribute__((visibility("hidden")))
 @interface AuthorizationRequest : NSObject
@@ -16,7 +16,11 @@ __attribute__((visibility("hidden")))
     int _authorizationRight;
 }
 
++ (id)localizedDFRTitleForRight:(int)arg1;
++ (id)localizedTitleForRight:(int)arg1;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSData *currentExternalizedContext;
+- (void)authorizeWithSheetInWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)authorize;
 - (id)initWithAuthorizationRight:(int)arg1;
 - (BOOL)_requestLocalAuthentication;

@@ -8,8 +8,9 @@
 
 #import "WFLocationQuery.h"
 
-@class MKLocalSearchCompletion, NSString, WFResponse, WFTaskIdentifier;
+@class CLGeocoder, MKLocalSearch, MKLocalSearchCompletion, NSString, WFResponse, WFTaskIdentifier;
 
+__attribute__((visibility("hidden")))
 @interface WFLocationQueryGeocode : NSObject <WFLocationQuery>
 {
     BOOL _finished;
@@ -18,25 +19,38 @@
     NSString *_searchString;
     CDUnknownBlockType _resultHandler;
     WFResponse *_response;
+    CLGeocoder *_reverseGeocoder;
+    MKLocalSearch *_search;
+    struct CLLocationCoordinate2D _searchCoordinate;
     struct CLLocationCoordinate2D _unshiftedCoordinate;
 }
 
 + (id)queryWithSearchString:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
++ (void)invalidateCaches;
 + (id)queryWithSearchCompletion:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
 + (id)queryWithCoordinate:(struct CLLocationCoordinate2D)arg1 resultHandler:(CDUnknownBlockType)arg2;
 + (id)queryWithDictionaryRepresentation:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
-+ (id)geoCodeCache;
++ (id)clReverseGeocoderCache;
++ (id)mkLocalSearchGeoCodeCache;
+- (void).cxx_destruct;
 @property(nonatomic) struct CLLocationCoordinate2D unshiftedCoordinate; // @synthesize unshiftedCoordinate=_unshiftedCoordinate;
+@property(nonatomic) struct CLLocationCoordinate2D searchCoordinate; // @synthesize searchCoordinate=_searchCoordinate;
+@property(retain, nonatomic) MKLocalSearch *search; // @synthesize search=_search;
+@property(retain, nonatomic) CLGeocoder *reverseGeocoder; // @synthesize reverseGeocoder=_reverseGeocoder;
 @property(retain) WFResponse *response; // @synthesize response=_response;
 @property(copy) CDUnknownBlockType resultHandler; // @synthesize resultHandler=_resultHandler;
 @property(readonly) NSString *searchString; // @synthesize searchString=_searchString;
 @property(readonly) MKLocalSearchCompletion *searchCompletion; // @synthesize searchCompletion=_searchCompletion;
 @property(retain) WFTaskIdentifier *identifier; // @synthesize identifier;
-- (void).cxx_destruct;
 - (void)_handleErrorResponse:(id)arg1;
-- (void)handleSearchResponse:(id)arg1 error:(id)arg2;
-- (id)searchRequest;
+- (void)handleSearchResponseWithLocation:(id)arg1;
+- (id)_reverseGeocoderLocation;
+- (id)_mkLocalSearchRequest;
+- (void)_startCLGeocoderReverseGeo;
+- (void)_startMKLocalSearch;
+- (void)cancel;
 - (void)start;
+- (id)initWithCoordinate:(struct CLLocationCoordinate2D)arg1 resultHandler:(CDUnknownBlockType)arg2;
 - (id)initWithSearchString:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
 - (id)initWithSearchCompletion:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
 

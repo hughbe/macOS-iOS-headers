@@ -6,7 +6,6 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface ABCardCollectionRowLayout : NSObject
 {
 }
@@ -16,9 +15,11 @@ __attribute__((visibility("hidden")))
 + (id)minusButtonAlignmentConstraintsForScope:(id)arg1;
 + (id)messagingServiceLabelConstraintsForScope:(id)arg1;
 + (id)rowWidthConstraintsForScope:(id)arg1;
-+ (id)labelTrailingConstraintsForScope:(id)arg1 editMode:(BOOL)arg2;
++ (id)labelTopOffsetConstraintsForScope:(id)arg1 editMode:(BOOL)arg2;
++ (id)labelTrailingConstraintsForScope:(id)arg1 editMode:(BOOL)arg2 isTemplate:(BOOL)arg3;
 + (id)stackViewConstraintsForScope:(id)arg1;
-+ (id)constraintsWithMetrics:(id)arg1 scope:(id)arg2 forEditMode:(BOOL)arg3;
++ (id)constraintsWithMetrics:(id)arg1 scope:(id)arg2 forEditMode:(BOOL)arg3 isTemplate:(BOOL)arg4;
++ (double)labelColumnWidth;
 
 @end
 

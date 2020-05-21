@@ -8,7 +8,7 @@
 
 #import "Endpointer.h"
 
-@class NSDictionary, NSMutableData, NSString;
+@class NSDictionary, NSMutableData, NSObject<OS_dispatch_queue>, NSString;
 
 @interface AFAudioAnalyzer : NSObject <Endpointer>
 {
@@ -18,9 +18,11 @@
     BOOL _detectedOneShotEndpoint;
     BOOL _detectedRecurrentEndpoint;
     BOOL _communicatedEndpointDetection;
+    BOOL _haveSeenNonZeroSamples;
     double _sampleRate;
     double _samplesSeen;
     unsigned int _frameRate;
+    double _totalSamples;
     double _lastOneShotStartpoint;
     double _lastOneShotEndpoint;
     double _lastRecurrentStartpoint;
@@ -32,25 +34,28 @@
     BOOL _isConfigured;
     BOOL _saveSampleSeenInReset;
     double _previousSamplesSeen;
+    NSObject<OS_dispatch_queue> *_queue;
     int _endpointMode;
     double _startWaitTime;
     double _interspeechWaitTime;
     double _endWaitTime;
     long long _style;
+    double _delay;
     double _automaticEndpointingSuspensionEndTime;
     double _minimumDurationForEndpointer;
     id <AFAudioAnalyzerDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <AFAudioAnalyzerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) double minimumDurationForEndpointer; // @synthesize minimumDurationForEndpointer=_minimumDurationForEndpointer;
 @property(nonatomic) double automaticEndpointingSuspensionEndTime; // @synthesize automaticEndpointingSuspensionEndTime=_automaticEndpointingSuspensionEndTime;
+@property(nonatomic) double delay; // @synthesize delay=_delay;
 @property(nonatomic) long long style; // @synthesize style=_style;
 @property double endWaitTime; // @synthesize endWaitTime=_endWaitTime;
 @property double interspeechWaitTime; // @synthesize interspeechWaitTime=_interspeechWaitTime;
 @property double startWaitTime; // @synthesize startWaitTime=_startWaitTime;
 @property int endpointMode; // @synthesize endpointMode=_endpointMode;
-- (void).cxx_destruct;
 - (void)reset;
 - (int)getStatus:(struct AudioQueueBuffer *)arg1;
 - (void)_detectVoiceActivityInSamples:(float *)arg1 numSamples:(unsigned int)arg2;

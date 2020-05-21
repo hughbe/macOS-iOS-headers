@@ -6,19 +6,31 @@
 
 #import <SystemMigration/SMMigrationEngineStep.h>
 
-@class NSArray;
+#import "DMAsyncDelegate.h"
 
-@interface SMMigrateUserAccountsStep : SMMigrationEngineStep
+@class NSArray, NSObject<OS_dispatch_semaphore>;
+
+@interface SMMigrateUserAccountsStep : SMMigrationEngineStep <DMAsyncDelegate>
 {
-    NSArray *_usersToDelete;
+    NSArray *_usersToReplace;
+    NSObject<OS_dispatch_semaphore> *_dmWaitingSem;
 }
 
-@property(retain) NSArray *usersToDelete; // @synthesize usersToDelete=_usersToDelete;
 - (void).cxx_destruct;
+@property(retain) NSObject<OS_dispatch_semaphore> *dmWaitingSem; // @synthesize dmWaitingSem=_dmWaitingSem;
+@property(retain) NSArray *usersToReplace; // @synthesize usersToReplace=_usersToReplace;
+- (void)dmAsyncFinishedForDisk:(struct __DADisk *)arg1 mainError:(int)arg2 detailError:(int)arg3 dictionary:(id)arg4;
+- (void)dmAsyncMessageForDisk:(struct __DADisk *)arg1 string:(id)arg2 dictionary:(id)arg3;
+- (void)dmAsyncProgressForDisk:(struct __DADisk *)arg1 barberPole:(BOOL)arg2 percent:(float)arg3;
+- (void)dmAsyncStartedForDisk:(struct __DADisk *)arg1;
 - (id)fdeUsersToAdd;
+- (void)updatePreboot;
 - (void)updateFDE;
-- (void)enableFDE;
+- (BOOL)enableFDEReturningError:(id *)arg1;
 - (id)transferUserAccounts;
+- (id)authorizeExistingTokenUserInDB:(id)arg1 returningError:(id *)arg2;
+- (BOOL)requiresSecureTokenOperations;
+- (id)getBiometricKitReference;
 - (void)calculateDeletedSize;
 - (id)process;
 - (id)prepare;

@@ -8,22 +8,28 @@
 
 #import "NSMenuDelegate.h"
 
-@class NSArray, NSString;
+@class NSArray, NSLayoutConstraint, NSString;
 
 @interface SOAttachmentsViewController : SOChatViewController <NSMenuDelegate>
 {
-    BOOL _hasAttachments;
     NSArray *_attachments;
+    NSLayoutConstraint *_preferredHeightConstraint;
 }
 
-@property(retain, nonatomic) NSArray *attachments; // @synthesize attachments=_attachments;
-@property(readonly) BOOL hasAttachments; // @synthesize hasAttachments=_hasAttachments;
++ (struct CGSize)itemSeparation;
++ (struct CGSize)itemSize;
 - (void).cxx_destruct;
+@property(retain) NSLayoutConstraint *preferredHeightConstraint; // @synthesize preferredHeightConstraint=_preferredHeightConstraint;
+@property(copy, nonatomic) NSArray *attachments; // @synthesize attachments=_attachments;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (id)initWithCoder:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (id)actionableIndexes:(id)arg1;
 - (void)copy:(id)arg1;
 - (id)createObjectsToCopyToPasteboard:(id)arg1;
 - (double)stackViewFrameDidChange:(struct CGSize)arg1;
+- (void)attachmentsDidChange;
+@property(readonly) BOOL hasAttachments;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

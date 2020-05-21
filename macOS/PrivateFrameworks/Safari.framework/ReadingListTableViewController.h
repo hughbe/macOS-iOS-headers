@@ -6,32 +6,37 @@
 
 #import "NSViewController.h"
 
+#import "ReadingListTableCellViewDelegate.h"
 #import "ReadingListTableViewLiveResizeDelegate.h"
 #import "SidebarSearchFieldDelegate.h"
 #import "SidebarTableCellViewDelegate.h"
 #import "TableViewPlusDataSource.h"
 #import "TableViewPlusDelegate.h"
 
-@class NSArray, NSDate, NSMenu, NSString, NSTimer, ReadingListTableView, SidebarTableCellView;
+@class NSArray, NSDate, NSLayoutConstraint, NSMenu, NSString, NSTimer, NSView, ReadingListTableView, SidebarTableCellView;
 
 __attribute__((visibility("hidden")))
-@interface ReadingListTableViewController : NSViewController <SidebarSearchFieldDelegate, SidebarTableCellViewDelegate, ReadingListTableViewLiveResizeDelegate, TableViewPlusDelegate, TableViewPlusDataSource>
+@interface ReadingListTableViewController : NSViewController <SidebarSearchFieldDelegate, SidebarTableCellViewDelegate, ReadingListTableViewLiveResizeDelegate, ReadingListTableCellViewDelegate, TableViewPlusDelegate, TableViewPlusDataSource>
 {
     ReadingListTableView *_tableView;
     NSArray *_displayedItems;
     NSDate *_dateOfLastInitialContentUpdate;
     SidebarTableCellView *_tableCellViewForRowHeightCalculation;
     NSTimer *_coalescedTableViewReloadTimer;
+    NSView *_spacerView;
+    NSLayoutConstraint *_spacerViewHeightConstraint;
     NSMenu *_contextMenu;
     BOOL _showsSearchFieldWrapperView;
+    BOOL _showAsOffline;
     id <ReadingListTableViewControllerDelegate> _delegate;
     id <ReadingListTableViewContentProvider> _contentProvider;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <ReadingListTableViewContentProvider> contentProvider; // @synthesize contentProvider=_contentProvider;
 @property(nonatomic) __weak id <ReadingListTableViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) BOOL showAsOffline; // @synthesize showAsOffline=_showAsOffline;
 @property(nonatomic) BOOL showsSearchFieldWrapperView; // @synthesize showsSearchFieldWrapperView=_showsSearchFieldWrapperView;
-- (void).cxx_destruct;
 - (long long)_rowIndexOfItem:(id)arg1;
 - (id)_adjustedIndexSetAccountingForDummyRow:(id)arg1;
 - (BOOL)_isValidRowIndex:(long long)arg1;
@@ -43,22 +48,19 @@ __attribute__((visibility("hidden")))
 - (BOOL)_hasFinishedDisplayingInitialContent;
 - (void)_updateItemsWithAnimation:(BOOL)arg1;
 - (void)_itemsInDataSourceDidChange:(id)arg1;
-- (void)_noteHeightOfRowsWithIndexesChangedWithoutAnimation:(id)arg1;
 - (id)_makeTableCellViewOfClass:(Class)arg1;
 - (void)_notifyDelegateTableViewDidMoveToWindow;
 - (id)_contextMenuBuilderForRow:(long long)arg1 item:(id *)arg2;
 - (id)_itemForRow:(long long)arg1;
-- (void)_configureContentProviderToDisplayInitialSetOfItemsForSidebarHeight:(double)arg1;
-- (void)_setContentProvider:(id)arg1 limitingDisplayedItemsBasedOnSidebarHeight:(double)arg2;
-- (void)tableViewDidEndLiveResize:(id)arg1;
+- (void)_setContentProvider:(id)arg1 limitingDisplayedItemsBasedOnSidebarBounds:(struct CGRect)arg2;
 - (void)openInNewTab:(id)arg1;
 - (void)openInNewWindow:(id)arg1;
 - (void)sidebarWillClose:(id)arg1;
-- (void)tableViewFrameDidChange:(id)arg1;
 - (id)accessibilityDescriptionForTableCellView:(id)arg1;
 - (void)didPressTableCellView:(id)arg1;
 - (void)actionButtonClickedInTableCellView:(id)arg1;
 - (void)sidebarSearchFieldDidBecomeFirstResponder:(id)arg1;
+- (void)readingListTableCellViewDidChangeTitleOrPreviewText:(id)arg1;
 - (id)tableView:(id)arg1 rowActionsForRow:(long long)arg2 edge:(long long)arg3;
 - (id)tableView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (BOOL)tableView:(id)arg1 shouldTypeSelectForEvent:(id)arg2 withCurrentSearchString:(id)arg3;
@@ -66,7 +68,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)tableView:(id)arg1 shouldEditOnDoubleClick:(id)arg2 inRow:(long long)arg3 tableColumn:(id)arg4;
 - (id)tableView:(id)arg1 menuForEvent:(id)arg2 inRow:(long long)arg3 tableColumn:(id)arg4;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
-- (double)_heightOfCellViewForItem:(id)arg1;
+- (id)_spacerViewAtAdjustedHeight;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (id)tableView:(id)arg1 rowViewForRow:(long long)arg2;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
@@ -82,7 +84,7 @@ __attribute__((visibility("hidden")))
 - (void)viewDidDisappear;
 - (void)viewDidAppear;
 - (void)loadView;
-- (id)initWithContentProvider:(id)arg1 initialSidebarHeight:(double)arg2;
+- (id)initWithContentProvider:(id)arg1 initialSidebarBounds:(struct CGRect)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

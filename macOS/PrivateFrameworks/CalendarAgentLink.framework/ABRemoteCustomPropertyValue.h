@@ -21,6 +21,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) NSString *stringValue; // @synthesize stringValue=_stringValue;
 @property(retain) NSNumber *numberValue; // @synthesize numberValue=_numberValue;
 @property(retain) NSDate *dateValue; // @synthesize dateValue=_dateValue;
@@ -29,7 +30,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

@@ -7,6 +7,6 @@
 #import "NSError.h"
 
 @interface NSError (CoreBluetooth)
-+ (id)errorWithBTResult:(id)arg1;
++ (id)errorWithInfo:(id)arg1;
 @end
 

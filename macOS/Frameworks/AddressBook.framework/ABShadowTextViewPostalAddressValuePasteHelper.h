@@ -8,16 +8,16 @@
 
 @class NSView<ABCardCollectionRowView>;
 
-__attribute__((visibility("hidden")))
 @interface ABShadowTextViewPostalAddressValuePasteHelper : NSObject
 {
     NSView<ABCardCollectionRowView> *_datumView;
 }
 
 + (BOOL)pasteString:(id)arg1 intoAddressDatumView:(id)arg2;
+- (void).cxx_destruct;
+@property(nonatomic) __weak NSView<ABCardCollectionRowView> *datumView; // @synthesize datumView=_datumView;
 - (void)setValue:(id)arg1 onFieldWithTag:(long long)arg2;
 - (void)setAddress:(id)arg1;
-- (void)dealloc;
 - (id)initWithAddressDatumView:(id)arg1;
 
 @end

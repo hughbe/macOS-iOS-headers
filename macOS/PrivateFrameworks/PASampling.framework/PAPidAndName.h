@@ -10,7 +10,10 @@
 {
     const char *name;
     int pid;
+    unsigned long long machAbsTime;
 }
+
+- (void)dealloc;
 
 @end
 

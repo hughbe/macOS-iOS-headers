@@ -59,7 +59,6 @@ __attribute__((visibility("hidden")))
 - (id)lastElementInSection:(BOOL)arg1;
 - (void)accessibilityPrepareLayout;
 - (void)accessibilityInvalidateLayout;
-- (void)accessibilityPrepareForCollectionViewUpdates;
 - (void)accessibilityDidEndScrolling;
 @property(readonly, nonatomic) __weak NSCollectionViewAccessibilityHelper *collectionViewAccessibility; // @dynamic collectionViewAccessibility;
 - (void)dealloc;

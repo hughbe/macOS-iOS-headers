@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class CLLocation, MKSearchCompletion, NSArray, NSString;
+@class CLLocation, MKSearchCompletion, NSArray, NSData, NSString;
 
 @interface CalUILocationSuggestionResult : NSObject
 {
     BOOL _isCategory;
     BOOL _drawDivider;
     NSString *_displayString;
+    NSData *_mapKitHandle;
     NSArray *_addressStrings;
     CLLocation *_location;
     double _radius;
@@ -22,6 +23,7 @@
     NSString *_searchTerm;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSString *searchTerm; // @synthesize searchTerm=_searchTerm;
 @property(retain) MKSearchCompletion *searchCompletion; // @synthesize searchCompletion=_searchCompletion;
 @property long long proximity; // @synthesize proximity=_proximity;
@@ -31,8 +33,8 @@
 @property double radius; // @synthesize radius=_radius;
 @property(retain) CLLocation *location; // @synthesize location=_location;
 @property(retain) NSArray *addressStrings; // @synthesize addressStrings=_addressStrings;
+@property(retain) NSData *mapKitHandle; // @synthesize mapKitHandle=_mapKitHandle;
 @property(retain) NSString *displayString; // @synthesize displayString=_displayString;
-- (void).cxx_destruct;
 - (id)singleLineAddress;
 - (id)addressString;
 - (id)keyForMatchingDuplicates;

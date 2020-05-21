@@ -15,19 +15,19 @@
     NSObject<OS_dispatch_queue> *_privateWorkQueue;
     unsigned long long _workTag;
     BOOL __generatingAdditionalEntries;
-    unsigned long long __firstUngroupedMemoryIndex;
 }
 
-@property(nonatomic, getter=_isGeneratingAdditionalEntries, setter=_setGeneratingAdditionalEntries:) BOOL _generatingAdditionalEntries; // @synthesize _generatingAdditionalEntries=__generatingAdditionalEntries;
-@property(nonatomic, setter=_setFirstUngroupedMemoryIndex:) unsigned long long _firstUngroupedMemoryIndex; // @synthesize _firstUngroupedMemoryIndex=__firstUngroupedMemoryIndex;
 - (void).cxx_destruct;
+@property(nonatomic, getter=_isGeneratingAdditionalEntries, setter=_setGeneratingAdditionalEntries:) BOOL _generatingAdditionalEntries; // @synthesize _generatingAdditionalEntries=__generatingAdditionalEntries;
 - (id)objectReferenceForMemory:(id)arg1;
+- (unsigned long long)_indexOfEntry:(id)arg1 inSortedEntries:(id)arg2 options:(unsigned long long)arg3;
 - (unsigned long long)_indexOfEntryForMemory:(id)arg1 inSortedEntries:(id)arg2 options:(unsigned long long)arg3;
 - (void)handleChangedKeyAssetsForMemories:(id)arg1;
 - (void)handleNonIncrementalFetchResultChange:(id)arg1;
 - (void)handleIncrementalFetchResultChange:(id)arg1 updatedFetchResultsForMemoriesWithChangedKeyAssets:(id)arg2;
 - (void)_handleFinishedGeneratingAdditionalEntriesWithNewDataSource:(id)arg1 changeDetails:(id)arg2 firstUngroupedMemoryIndex:(unsigned long long)arg3;
 - (void)_generateAdditionalEntriesWithOldDataSource:(id)arg1 startingIndex:(unsigned long long)arg2 sync:(BOOL)arg3;
+- (void)reloadMemories:(BOOL)arg1;
 - (void)generateAdditionalEntriesIfPossible;
 - (void)generateAdditionalEntriesWithOldDataSource:(id)arg1 startingIndex:(unsigned long long)arg2 sync:(BOOL)arg3;
 - (void)startGeneratingMemories;

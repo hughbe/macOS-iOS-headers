@@ -8,7 +8,7 @@
 
 #import "APSConnectionDelegate.h"
 
-@class APSConnection, CKContainer, CKDatabase, CKRecordZone, CKRecordZoneSubscription, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSPersistentStore, NSPersistentStoreCoordinator, NSString;
+@class APSConnection, CKContainer, CKDatabase, CKRecordZone, CKRecordZoneSubscription, NSError, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSPersistentStore, NSPersistentStoreCoordinator, NSString, NSURL;
 
 @interface AXCloudKitHelper : NSObject <APSConnectionDelegate>
 {
@@ -22,8 +22,13 @@
     NSObject<OS_dispatch_queue> *_cloudkitQueue;
     NSObject<OS_dispatch_semaphore> *_cloudKitQueueSemaphore;
     APSConnection *_apsConnection;
+    NSError *_lastInitializationError;
+    NSURL *_largeBlobDirectoryURL;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSURL *largeBlobDirectoryURL; // @synthesize largeBlobDirectoryURL=_largeBlobDirectoryURL;
+@property(readonly, nonatomic) NSError *lastInitializationError; // @synthesize lastInitializationError=_lastInitializationError;
 @property(readonly, nonatomic) APSConnection *apsConnection; // @synthesize apsConnection=_apsConnection;
 @property(readonly, nonatomic) NSObject<OS_dispatch_semaphore> *cloudKitQueueSemaphore; // @synthesize cloudKitQueueSemaphore=_cloudKitQueueSemaphore;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *cloudkitQueue; // @synthesize cloudkitQueue=_cloudkitQueue;
@@ -34,7 +39,6 @@
 @property(readonly, nonatomic) NSString *containerIdentifier; // @synthesize containerIdentifier=_containerIdentifier;
 @property(readonly, nonatomic) NSPersistentStoreCoordinator *observedCoordinator; // @synthesize observedCoordinator=_observedCoordinator;
 @property(readonly, nonatomic) __weak NSPersistentStore *observedStore; // @synthesize observedStore=_observedStore;
-- (void).cxx_destruct;
 - (void)_setApsConnection:(id)arg1;
 - (void)_setContainer:(id)arg1;
 - (void)_setDatabase:(id)arg1;
@@ -44,16 +48,20 @@
 - (void)connection:(id)arg1 didReceivePublicToken:(id)arg2;
 - (BOOL)_setupPushConnection:(id *)arg1;
 - (void)logMessage:(id)arg1;
-- (void)processAccumulatedChangesForServerChangeToken:(id)arg1 withAccumulatedUpdates:(id)arg2 andDeletes:(id)arg3;
+- (void)processAccumulatedChangesForServerChangeToken:(id)arg1 withAccumulatedUpdates:(id)arg2 andDeletes:(id)arg3 inTransaction:(id)arg4;
 - (void)fetchChangesAndUpdateObservedStore;
-- (id)createCKRecordFromObject:(id)arg1;
+- (BOOL)pruneExternalAssetFileAtURL:(id)arg1 error:(id *)arg2;
+- (id)_writeLargeData:(id)arg1 forUID:(id)arg2 error:(id *)arg3;
+- (id)createCKRecordFromObject:(id)arg1 withExternalAssetFile:(char *)arg2;
 - (BOOL)shouldExportManagedObject:(id)arg1;
 - (void)managedObjectContextDidSave:(id)arg1;
+- (void)_openTransactionWithLabel:(id)arg1 andExecuteWorkBlock:(CDUnknownBlockType)arg2;
 - (void)_beginWatchingForChanges;
 - (BOOL)_setupZoneSubscriptionIfNecessary:(id *)arg1;
 - (BOOL)_createSchemaIfNecessary:(id *)arg1;
 - (BOOL)_createZoneIfNecessary:(id *)arg1;
 - (BOOL)_checkAccountStatus:(id *)arg1;
+- (BOOL)_initializeAssetStorageURLError:(id *)arg1;
 - (void)_initializeCloudkitForObservedStore;
 - (void)observeChangesForStore:(id)arg1 inPersistentStoreCoordinator:(id)arg2;
 - (void)dealloc;

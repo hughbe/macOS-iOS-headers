@@ -9,7 +9,7 @@
 @class NEExtensionTunnelProviderHostContext, NETunnelNetworkSettings, NSData, NSString;
 
 @protocol NEExtensionTunnelProviderHostDelegate <NEExtensionProviderHostDelegate>
-- (void)extension:(NEExtensionTunnelProviderHostContext *)arg1 didRequestSocket:(BOOL)arg2 interface:(NSString *)arg3 local:(NSData *)arg4 remote:(NSData *)arg5 completionHandler:(void (^)(NSFileHandle *))arg6;
+- (void)extension:(NEExtensionTunnelProviderHostContext *)arg1 didRequestSocket:(BOOL)arg2 interface:(NSString *)arg3 local:(NSData *)arg4 remote:(NSData *)arg5 effectivePID:(int)arg6 completionHandler:(void (^)(NSFileHandle *))arg7;
 - (void)extensionDidDetachIPC:(NEExtensionTunnelProviderHostContext *)arg1;
 - (void)extension:(NEExtensionTunnelProviderHostContext *)arg1 didSetTunnelConfiguration:(NETunnelNetworkSettings *)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (void)extension:(NEExtensionTunnelProviderHostContext *)arg1 didSetStatus:(long long)arg2;

@@ -8,21 +8,14 @@
 
 #import "PKModularService.h"
 
-@class NSDictionary, NSString;
+@class NSString;
 
+__attribute__((visibility("hidden")))
 @interface TKTokenService_Subsystem : NSObject <PKModularService>
 {
-    id _driverObject;
-    NSDictionary *_extensionAttributes;
 }
 
-+ (id)sharedSubsystem;
 + (id)initForPlugInKit;
-@property(readonly, copy) NSDictionary *extensionAttributes; // @synthesize extensionAttributes=_extensionAttributes;
-@property(readonly) id driverObject; // @synthesize driverObject=_driverObject;
-- (void).cxx_destruct;
-- (void)endUsing:(id)arg1;
-- (void)beginUsing:(id)arg1 withBundle:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -24,6 +24,7 @@
 @property(readonly, nonatomic) CDStruct_79c5c966 toNodeID; // @synthesize toNodeID=_toNodeID;
 @property(readonly, nonatomic) CDStruct_79c5c966 fromNodeID; // @synthesize fromNodeID=_fromNodeID;
 @property(readonly, copy) NSString *description;
+- (BOOL)_MapsCarPlay_isEqual:(id)arg1;
 - (id)initWithRoute:(id)arg1 startPoint:(unsigned int)arg2 pointCount:(unsigned int)arg3 step:(id)arg4 toNodeSignificance:(int)arg5 startDistance:(double)arg6 lengthScaleFactor:(double)arg7;
 @property(readonly, nonatomic) BOOL isTransfer;
 @property(readonly, nonatomic) unsigned long long lineID;

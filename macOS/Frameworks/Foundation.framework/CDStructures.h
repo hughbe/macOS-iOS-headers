@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSArray, NSBundle, NSDate, NSIndexSet, NSObject, NSString;
+@class NSArray, NSBundle, NSDate, NSISEngine, NSIndexSet, NSObject, NSString;
 
 #pragma mark Function Pointers and Blocks
 
@@ -20,13 +20,13 @@ struct AEDesc {
 };
 
 struct CGPoint {
-    double x;
-    double y;
+    double _field1;
+    double _field2;
 };
 
 struct CGRect {
-    struct CGPoint origin;
-    struct CGSize size;
+    struct CGPoint _field1;
+    struct CGSize _field2;
 };
 
 struct CGSize {
@@ -48,10 +48,6 @@ struct NSEdgeInsets {
     double _field2;
     double _field3;
     double _field4;
-};
-
-struct NSObject {
-    Class _field1;
 };
 
 struct NSSlice {
@@ -98,13 +94,24 @@ struct _NSLTToken {
 
 struct _NSOrderedChange;
 
+struct _NSProgressFraction {
+    long long completed;
+    long long total;
+    char overflowed;
+};
+
+struct _NSProgressFractionTuple {
+    struct _NSProgressFraction _field1;
+    struct _NSProgressFraction _field2;
+};
+
 struct _NSRange {
     unsigned long long location;
     unsigned long long length;
 };
 
 struct _NSRefCountedRunArray {
-    void *_field1;
+    struct os_unfair_lock_s _field1;
     unsigned long long _field2;
     unsigned long long _field3;
     unsigned int _field4;
@@ -144,27 +151,6 @@ struct _TidyNode {
     int _field1;
 };
 
-struct _URIParseInfo {
-    unsigned long long userinfoNameOffset;
-    unsigned long long userinfoPasswordOffset;
-    unsigned long long hostOffset;
-    unsigned long long portOffset;
-    unsigned long long pathOffset;
-    unsigned long long paramOffset;
-    unsigned long long queryOffset;
-    unsigned long long fragmentOffset;
-    unsigned long long endOffset;
-    unsigned int schemeExists:1;
-    unsigned int authorityExists:1;
-    unsigned int userinfoNameExists:1;
-    unsigned int userinfoPasswordExists:1;
-    unsigned int hostExists:1;
-    unsigned int portExists:1;
-    unsigned int paramExists:1;
-    unsigned int queryExists:1;
-    unsigned int fragmentExists:1;
-};
-
 struct __va_list_tag {
     unsigned int _field1;
     unsigned int _field2;
@@ -198,12 +184,6 @@ struct _ftsent {
 struct _opaque_pthread_mutex_t {
     long long __sig;
     char __opaque[56];
-};
-
-struct _opaque_pthread_t {
-    long long _field1;
-    struct __darwin_pthread_handler_rec *_field2;
-    char _field3[8176];
 };
 
 struct _xmlAttr;
@@ -545,6 +525,10 @@ struct objc_method_description {
     char *_field2;
 };
 
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
+};
+
 struct sockaddr;
 
 struct stat {
@@ -652,7 +636,8 @@ typedef struct {
 typedef struct {
     id _field1;
     void *_field2;
-} CDStruct_c69bce23;
+    long long _field3;
+} CDStruct_4829dca9;
 
 typedef struct {
     unsigned char _field1;
@@ -674,6 +659,10 @@ typedef struct {
 } CDStruct_bd2f613f;
 
 typedef struct {
+    unsigned int value;
+} CDStruct_fcd6c539;
+
+typedef struct {
     unsigned long long kind;
     NSObject *oldValue;
     NSObject *newValue;
@@ -683,19 +672,19 @@ typedef struct {
 
 typedef struct {
     unsigned long long _field1;
-    id _field2[4];
-} CDStruct_7c9a8e9f;
-
-typedef struct {
-    unsigned long long _field1;
     id *_field2;
     unsigned long long *_field3;
     unsigned long long _field4[5];
 } CDStruct_70511ce9;
 
 typedef struct {
-    unsigned int _field1[8];
-} CDStruct_6ad76789;
+    unsigned long long offset;
+    int type;
+} CDStruct_1b1be194;
+
+typedef struct {
+    unsigned int val[8];
+} CDStruct_4c969caf;
 
 typedef struct {
     unsigned short *_field1;
@@ -736,7 +725,8 @@ typedef struct {
 typedef struct {
     long long _field1;
     id _field2;
-} CDStruct_6db0658e;
+    id _field3;
+} CDStruct_1b4a36b4;
 
 typedef struct {
     long long _field1;
@@ -757,6 +747,13 @@ typedef struct {
     long long _field3;
 } CDStruct_2ec95fd7;
 
+typedef struct CDStruct_183601bc;
+
+typedef struct {
+    NSISEngine *engine;
+    CDStruct_183601bc *storage;
+} CDStruct_a8d20eab;
+
 typedef struct {
     unsigned int creatorCode;
     unsigned int fileTypeCode;
@@ -775,6 +772,23 @@ typedef struct {
 } CDStruct_4352dce8;
 
 typedef struct {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned int _field3;
+    unsigned int _field4;
+    unsigned int _field5;
+    CDStruct_183601bc *_field6;
+} CDStruct_fee1177a;
+
+typedef struct {
+    CDStruct_183601bc *values;
+    unsigned int key;
+    unsigned int heap_position;
+    unsigned short count;
+    unsigned short capacity;
+} CDStruct_f13cc9bb;
+
+typedef struct {
     id objects;
     char isMutable;
     struct {
@@ -787,11 +801,33 @@ typedef struct {
     } list;
 } CDStruct_a8bf7a6a;
 
-#pragma mark Typedef'd Unions
+typedef struct {
+    CDStruct_183601bc *blocks;
+    unsigned long long blocksCount;
+    unsigned long long blocksCapacity;
+    struct {
+        union {
+            unsigned long long _data;
+            unsigned long long *_buckets;
+        } ;
+        unsigned int _bucketCount;
+    } freeIndexes;
+} CDStruct_52118125;
 
-typedef union {
-    struct __MDItem *_field1;
-    id _field2;
-    id _field3;
-} CDUnion_7d5f215e;
+typedef struct {
+    unsigned short inline_capacity;
+    unsigned int var_count;
+    double constant;
+    union {
+        struct {
+            id stored_extern_marker;
+            CDStruct_183601bc *slab;
+            unsigned long long capacity;
+        } extern_data;
+        struct {
+            unsigned long long aligner;
+        } inline_slab;
+        unsigned char padding[48];
+    } data;
+} CDStruct_9ac54d62;
 

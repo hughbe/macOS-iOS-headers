@@ -16,11 +16,11 @@ __attribute__((visibility("hidden")))
     CHDAnchor *mAnchor;
 }
 
+- (void).cxx_destruct;
 - (struct CGRect)bounds;
 - (BOOL)hasBounds;
 - (void)setAnchor:(id)arg1;
 - (id)anchor;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -29,6 +29,7 @@
 }
 
 + (id)_addRecurrenceSet:(id)arg1 toICSData:(id)arg2;
+- (void).cxx_destruct;
 @property(retain) NSData *icsData; // @synthesize icsData=_icsData;
 @property(retain) NSDate *sliceDate; // @synthesize sliceDate=_sliceDate;
 @property(retain) NSString *sliceChildLocalUID; // @synthesize sliceChildLocalUID=_sliceChildLocalUID;
@@ -46,7 +47,6 @@
 - (void)enqueue;
 - (void)configureOperationDependencies;
 - (id)calendarURL;
-- (void)dealloc;
 - (void)removeAssociatedEntities;
 - (void)getTask:(id)arg1 data:(id)arg2 error:(id)arg3;
 - (BOOL)_permanentErrorForStatus:(int)arg1;

@@ -14,10 +14,13 @@
     long long _reservedNetworkPriority;
 }
 
-@property(nonatomic) long long reservedNetworkPriority; // @synthesize reservedNetworkPriority=_reservedNetworkPriority;
-@property(readonly, nonatomic) NSString *mailboxName; // @synthesize mailboxName=_mailboxName;
 - (void).cxx_destruct;
+@property(nonatomic) long long reservedNetworkPriority; // @synthesize reservedNetworkPriority=_reservedNetworkPriority;
+@property(copy, nonatomic) NSString *mailboxName; // @synthesize mailboxName=_mailboxName;
+- (void)operationFinished:(id)arg1;
+- (void)trackOperation:(id)arg1;
 - (BOOL)mailboxIsUserVisibleUsingDataSource:(id)arg1;
+@property(readonly, copy, nonatomic) NSString *mailboxNameWithoutPII;
 - (id)description;
 - (id)init;
 - (id)initWithMailboxName:(id)arg1;

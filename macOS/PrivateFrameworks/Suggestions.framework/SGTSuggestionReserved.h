@@ -22,6 +22,7 @@ __attribute__((visibility("hidden")))
     id representedObject;
     SGTQueryGenius *genius;
     long long scope;
+    long long type;
     SGTCategory *category;
     NSURL *spotlightScope;
     BOOL additionalRawQueryIsOr;
@@ -31,6 +32,8 @@ __attribute__((visibility("hidden")))
     BOOL intermediateResult;
     BOOL forceLastPosition;
     BOOL enforceStrictMatch;
+    BOOL isTopHitCandidate;
+    BOOL isRecent;
     NSIndexSet *titleHighlights;
     NSIndexSet *uniquifierHighlights;
     NSString *inputString;
@@ -40,7 +43,7 @@ __attribute__((visibility("hidden")))
     struct _NSRange replacementRange;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 
 @end
 

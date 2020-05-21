@@ -10,34 +10,36 @@
 
 @interface AVBStream : NSObject
 {
-    unsigned int connection;
+    unsigned int service;
     struct IONotificationPort *notificationPort;
-    NSObject<OS_dispatch_queue> *notificationsQueue;
-    unsigned int notification;
     unsigned long long streamHeaderAddress;
     unsigned long long streamHeaderSize;
     unsigned long long streamPayloadAddress;
     unsigned long long streamPayloadSize;
-    unsigned long long dclInfoAddress;
-    unsigned long long dclInfoSize;
+    unsigned long long streamDescriptorAddress;
+    unsigned long long streamDescriptorSize;
+    unsigned int _connection;
     unsigned long long _streamID;
+    NSObject<OS_dispatch_queue> *_notificationsQueue;
 }
 
 + (id)diagnosticDescriptionForService:(unsigned int)arg1 withIndent:(id)arg2;
 + (id)IOClassName;
+@property(readonly, nonatomic) unsigned int connection; // @synthesize connection=_connection;
+@property(readonly, retain, nonatomic) NSObject<OS_dispatch_queue> *notificationsQueue; // @synthesize notificationsQueue=_notificationsQueue;
+@property(readonly, nonatomic) unsigned long long streamID; // @synthesize streamID=_streamID;
 - (void)dealloc;
-@property(readonly, nonatomic) CDStruct_8aa75d9a *dclInfoAddress; // @dynamic dclInfoAddress;
+@property(readonly, nonatomic) unsigned int numberOfPackets; // @dynamic numberOfPackets;
+@property(readonly, nonatomic) CDStruct_b7394dc9 *streamDescriptors; // @dynamic streamDescriptors;
 @property(readonly, nonatomic) unsigned long long streamPayloadSize; // @dynamic streamPayloadSize;
 @property(readonly, nonatomic) void *streamPayloadAddress; // @dynamic streamPayloadAddress;
+@property(readonly, nonatomic) unsigned long long streamHeaderSize; // @dynamic streamHeaderSize;
 @property(readonly, nonatomic) void *streamHeaderAddress; // @dynamic streamHeaderAddress;
-- (BOOL)updateDCLsWithInfoFromIndex:(unsigned int)arg1 toIndex:(unsigned int)arg2 error:(id *)arg3;
-- (BOOL)setDCLAtIndex:(unsigned int)arg1 withStreamPayloadOffset:(unsigned long long)arg2 andLength:(unsigned long long)arg3 error:(id *)arg4;
-- (BOOL)setDCLAtIndex:(unsigned int)arg1 withStreamHeaderOffset:(unsigned long long)arg2 andLength:(unsigned long long)arg3 error:(id *)arg4;
-- (BOOL)setupDCLsWithCallbackPeriod:(unsigned int)arg1 error:(id *)arg2;
+- (BOOL)resetStreamWithError:(id *)arg1;
 - (BOOL)stopStreamingWithError:(id *)arg1;
 - (BOOL)startStreamingWithError:(id *)arg1;
-- (BOOL)deregisterAsyncDCLCallbackWithError:(id *)arg1;
-- (BOOL)registerAsyncDCLCallback:(CDUnknownFunctionPointerType)arg1 withRefcon:(void *)arg2 error:(id *)arg3;
+- (BOOL)deregisterAsyncCallbackWithError:(id *)arg1;
+- (BOOL)registerAsyncCallback:(CDUnknownFunctionPointerType)arg1 withRefcon:(void *)arg2 error:(id *)arg3;
 - (id)initWithStreamID:(unsigned long long)arg1 onInterfaceNamed:(id)arg2;
 
 @end

@@ -6,7 +6,7 @@
 
 #import "NSWindowController.h"
 
-@class AMActionPanelActionView, AMBundleAction, AMVariablesEditorController, NSButton;
+@class AMActionPanelActionView, AMBundleAction, NSButton;
 
 @interface AMActionPanelController : NSWindowController
 {
@@ -15,26 +15,24 @@
     NSButton *_continueButton;
     AMBundleAction *_action;
     AMBundleAction *_panelAction;
-    AMVariablesEditorController *_variablesEditorController;
 }
 
-- (void)editVariable:(id)arg1;
+- (void).cxx_destruct;
+@property __weak NSButton *_continueButton; // @synthesize _continueButton;
+@property __weak NSButton *_cancelButton; // @synthesize _cancelButton;
+@property __weak AMActionPanelActionView *_actionBox; // @synthesize _actionBox;
+@property(retain) AMBundleAction *panelAction; // @synthesize panelAction=_panelAction;
+@property(retain) AMBundleAction *action; // @synthesize action=_action;
 - (void)cancelAction:(id)arg1;
 - (void)continueAction:(id)arg1;
+@property(readonly) NSButton *cancelButton;
+@property(readonly) NSButton *continueButton;
 - (long long)runModal;
 - (void)_runModalWithInfo:(id)arg1;
 - (void)_notifyLayoutViewOfActivation:(id)arg1;
 - (void)_panelDidBecomeMain:(id)arg1;
 - (void)_panelDidBecomeVisible:(id)arg1;
 - (struct CGSize)_adjustView:(id)arg1;
-- (id)variablesEditorController;
-- (void)setPanelAction:(id)arg1;
-- (id)panelAction;
-- (void)setAction:(id)arg1;
-- (id)action;
-- (id)continueButton;
-- (id)cancelButton;
-- (void)dealloc;
 - (id)initWithAction:(id)arg1;
 
 @end

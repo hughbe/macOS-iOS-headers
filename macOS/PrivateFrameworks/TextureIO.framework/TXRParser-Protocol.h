@@ -9,6 +9,7 @@
 @class NSData, TXRImageInfo, TXROptions, TXRTextureInfo;
 
 @protocol TXRParser <NSObject>
++ (BOOL)handlesData:(NSData *)arg1;
 @property(readonly, nonatomic) TXRTextureInfo *textureInfo;
 - (BOOL)parseData:(NSData *)arg1 bufferAllocator:(id <TXRBufferAllocator>)arg2 options:(TXROptions *)arg3 error:(id *)arg4;
 - (TXRImageInfo *)parsedImageAtLevel:(unsigned long long)arg1 element:(unsigned long long)arg2 face:(unsigned long long)arg3;

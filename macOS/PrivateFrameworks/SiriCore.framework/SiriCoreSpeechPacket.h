@@ -19,17 +19,23 @@
     long long _packetNumber;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) long long packetNumber; // @synthesize packetNumber=_packetNumber;
 @property(retain, nonatomic) NSArray *packets; // @synthesize packets=_packets;
 @property(copy, nonatomic) NSString *refId; // @synthesize refId=_refId;
 @property(copy, nonatomic) NSString *aceId; // @synthesize aceId=_aceId;
-- (void).cxx_destruct;
-- (void)siriCore_dispatchSendCompletionsWithResult:(long long)arg1 error:(id)arg2;
-- (void)siriCore_addSendCompletion:(CDUnknownBlockType)arg1;
-- (BOOL)siriCore_supportsSendCompletions;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (BOOL)siriCore_supportedByLocalSession;
+- (id)groupIdentifier;
+- (id)encodedClassName;
+- (void)siriCore_setSessionRequestId:(id)arg1;
+- (id)siriCore_requestId;
 @property(readonly, copy) NSString *description;
 - (id)siriCore_serializedAceDataError:(id *)arg1;
 - (void)siriCore_logDiagnostics;
+- (BOOL)siriCore_isProvisional;
+- (BOOL)siriCore_isRestartable;
+- (BOOL)siriCore_isRetryable;
 - (BOOL)siriCore_bufferingAllowedDuringActiveSession;
 - (void)siriCore_invokeThunk;
 

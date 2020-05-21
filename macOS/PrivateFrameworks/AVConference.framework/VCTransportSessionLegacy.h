@@ -4,17 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <AVConference/VCTransportSession.h>
 
 #import "InterfaceListenerDelegate.h"
 #import "LoopbackSocketTunnelDelegate.h"
 #import "VCConnectionManagerDelegate.h"
-#import "VCTransportSessionProtocol.h"
 
-@class GKInterfaceListener, LoopbackSocketTunnel, NSCondition, NSData, NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<VideoConferenceRealTimeChannel>, NSString, TCPTunnelClient, TimingCollection, VCConnectionManager, VCTransport;
+@class GKInterfaceListener, LoopbackSocketTunnel, NSCondition, NSData, NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_source>, NSObject<VideoConferenceRealTimeChannel>, NSString, TCPTunnelClient, VCTransport;
 
 __attribute__((visibility("hidden")))
-@interface VCTransportSessionLegacy : NSObject <VCTransportSessionProtocol, LoopbackSocketTunnelDelegate, InterfaceListenerDelegate, VCConnectionManagerDelegate>
+@interface VCTransportSessionLegacy : VCTransportSession <LoopbackSocketTunnelDelegate, InterfaceListenerDelegate, VCConnectionManagerDelegate>
 {
     unsigned char _localU8Version;
     long long relayState;
@@ -25,20 +24,15 @@ __attribute__((visibility("hidden")))
     BOOL initialSecondaryRelaySetupDone;
     BOOL requestedTimeoutRelay;
     BOOL _isCaller;
-    BOOL _requiresWiFi;
     BOOL _didReceivePiggybackBlob;
     BOOL _useLoopback;
-    BOOL _useCompressedConnectionData;
     BOOL _isRemoteOSPreLion;
     BOOL _isStarted;
     NSObject<OS_dispatch_source> *relaySetupTimer;
     VCTransport *transport;
-    VCConnectionManager *_connectionManager;
     unsigned int _callID;
     unsigned int _remoteCallID;
     int _NATType;
-    NSObject<OS_dispatch_queue> *_stateQueue;
-    NSObject<OS_dispatch_queue> *_notificationQueue;
     NSMutableDictionary *_localRelayRequestResponse;
     NSDictionary *_localRelayUpdate;
     NSMutableDictionary *_remoteRelayRequestResponse;
@@ -50,52 +44,42 @@ __attribute__((visibility("hidden")))
     NSString *_localParticipantID;
     NSString *_remoteParticipantID;
     NSString *_sessionID;
-    struct OpaqueSecIdentityRef *_identity;
-    struct opaqueRTCReporting *_reportingAgent;
-    TimingCollection *_perfTimings;
+    struct __SecIdentity *_identity;
     TCPTunnelClient *_tcpTunnelClient;
-    CDUnknownBlockType _eventHandler;
     NSObject<VideoConferenceRealTimeChannel> *rtChannel;
     LoopbackSocketTunnel *_tunnel;
     id <VCConnectionProtocol> _loopbackConnection;
     NSCondition *_connectionDataTimeoutCondVar;
     GKInterfaceListener *_interfaceListener;
-    NSObject *_connectionSetupPiggybackBlob;
-    id <VCTransportSessionLegacyDelegate> _delegate;
+    int _operatingMode;
+    id _delegate;
 }
 
+@property int operatingMode; // @synthesize operatingMode=_operatingMode;
 @property int NATType; // @synthesize NATType=_NATType;
-@property(retain, nonatomic) TimingCollection *perfTimings; // @synthesize perfTimings=_perfTimings;
 @property(retain, nonatomic) NSDictionary *remoteRelayUpdate; // @synthesize remoteRelayUpdate=_remoteRelayUpdate;
 @property(retain, nonatomic) NSDictionary *localRelayUpdate; // @synthesize localRelayUpdate=_localRelayUpdate;
 @property(retain, nonatomic) NSMutableDictionary *remoteRelayRequestResponse; // @synthesize remoteRelayRequestResponse=_remoteRelayRequestResponse;
-@property(retain, nonatomic) NSMutableDictionary *localRelayRequestResponse; // @synthesize localRelayRequestResponse=_localRelayRequestResponse;
-@property id <VCTransportSessionLegacyDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic) BOOL useCompressedConnectionData; // @synthesize useCompressedConnectionData=_useCompressedConnectionData;
-@property(copy, nonatomic) CDUnknownBlockType eventHandler; // @synthesize eventHandler=_eventHandler;
-@property(readonly, nonatomic) BOOL isRemoteOSPreLion; // @synthesize isRemoteOSPreLion=_isRemoteOSPreLion;
-@property(readonly, nonatomic) unsigned int connectionSetupRTTEstimate; // @synthesize connectionSetupRTTEstimate=_connectionSetupRTTEstimate;
-@property(retain, nonatomic) NSObject *connectionSetupPiggybackBlob; // @synthesize connectionSetupPiggybackBlob=_connectionSetupPiggybackBlob;
+@property(retain) NSMutableDictionary *localRelayRequestResponse; // @synthesize localRelayRequestResponse=_localRelayRequestResponse;
+- (BOOL)isRemoteOSPreLion;
+- (unsigned int)connectionSetupRTTEstimate;
 @property unsigned int remoteCallID; // @synthesize remoteCallID=_remoteCallID;
 @property(copy) NSString *sessionID; // @synthesize sessionID=_sessionID;
 @property BOOL allowsRelay; // @synthesize allowsRelay;
 @property(retain, nonatomic) NSData *remoteRelayConnectionData; // @synthesize remoteRelayConnectionData=_remoteRelayConnectionData;
-@property(retain, nonatomic) NSData *localRelayConnectionData; // @synthesize localRelayConnectionData=_localRelayConnectionData;
+@property(retain) NSData *localRelayConnectionData; // @synthesize localRelayConnectionData=_localRelayConnectionData;
 @property(retain) NSData *remoteConnectionData; // @synthesize remoteConnectionData=_remoteConnectionData;
-@property(retain, nonatomic) NSData *localConnectionData; // @synthesize localConnectionData=_localConnectionData;
-@property(nonatomic) BOOL requiresWiFi; // @synthesize requiresWiFi=_requiresWiFi;
+@property(retain) NSData *localConnectionData; // @synthesize localConnectionData=_localConnectionData;
 @property(copy) NSString *remoteParticipantID; // @synthesize remoteParticipantID=_remoteParticipantID;
 @property(copy) NSString *localParticipantID; // @synthesize localParticipantID=_localParticipantID;
 @property BOOL isCaller; // @synthesize isCaller=_isCaller;
 @property(nonatomic) BOOL initialSecondaryRelaySetupDone; // @synthesize initialSecondaryRelaySetupDone;
 @property(nonatomic) int pendingRelayCount; // @synthesize pendingRelayCount;
-@property(readonly, nonatomic) VCConnectionManager *connectionManager; // @synthesize connectionManager=_connectionManager;
-- (void)setIdentity:(struct OpaqueSecIdentityRef *)arg1;
-- (void)handleMediaReceivedOverRelayLink;
-- (void)handleMediaReceivedOverPeerToPeerLink;
+- (void)setIdentity:(struct __SecIdentity *)arg1;
+- (void)handleMediaReceivedOverRelayLinkWithConnectionId:(int)arg1;
+- (void)handleMediaReceivedOverPeerToPeerLinkWithConnectionId:(int)arg1;
 - (void)reportNetworkConditionsDegraded;
-@property(readonly, nonatomic) int detailedErrorCode;
-- (void)callEventHandlerWithEvent:(unsigned int)arg1 info:(id)arg2;
+- (int)detailedErrorCode;
 - (BOOL)isConnectedAndAllowAdditionalConnection;
 - (unsigned int)connectionTypeForConnectionResult:(struct tagCONNRESULT *)arg1;
 - (struct tagIPPORT)IPPortForPrimaryConnectionOnLocalInterface:(BOOL)arg1;
@@ -103,7 +87,9 @@ __attribute__((visibility("hidden")))
 - (void)resetICETimeoutToLongTimeout;
 - (void)setupTransport;
 - (int)generateConnectionData:(char **)arg1 forCallID:(unsigned int)arg2 connectionDataSize:(int *)arg3 nonCellularCandidateTimeout:(double)arg4;
-- (BOOL)createConnectionDataUsingRelay:(BOOL)arg1 isInitialRelay:(BOOL)arg2 nonCellularCandidateTimeout:(double)arg3 error:(id *)arg4;
+- (id)connectionDataUsingRelay:(BOOL)arg1 isInitialRelay:(BOOL)arg2 nonCellularCandidateTimeout:(double)arg3 error:(id *)arg4;
+- (id)connectionData:(char *)arg1 connectionDataSizeInBytes:(int)arg2 shouldUseRelay:(BOOL)arg3;
+- (void)getConnectionDataUsingRelay:(BOOL)arg1 isInitialRelay:(BOOL)arg2 nonCellularCandidateTimeout:(double)arg3 queue:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (BOOL)getConnectionSetupData:(id *)arg1 withOptions:(id)arg2 error:(id *)arg3;
 - (id)createRelayUpdateDictionary:(id)arg1;
 - (id)createInitiateRelayDictionaryForCall:(unsigned int)arg1 primaryConnection:(struct tagCONNRESULT *)arg2;
@@ -116,6 +102,8 @@ __attribute__((visibility("hidden")))
 - (void)loopbackSocketTunnel:(id)arg1 receivedData:(id)arg2 from:(struct tagIPPORT *)arg3;
 - (void)deleteTCPTunnel;
 - (BOOL)createTCPTunnelForParticipantID:(id)arg1 relayDictionary:(id)arg2 didOriginateRequest:(BOOL)arg3 relayType:(unsigned char)arg4 error:(id *)arg5;
+- (void)updateParticipantGenerationCounter:(unsigned char)arg1;
+- (void)didEnableDuplication:(BOOL)arg1 activeConnection:(id)arg2;
 - (void)connectionCallback:(id)arg1 isInitialConnection:(BOOL)arg2;
 - (void)primaryConnectionChanged:(id)arg1 oldPrimaryConnection:(id)arg2;
 - (BOOL)handleExchangedKey:(id)arg1 result:(int)arg2;
@@ -125,10 +113,10 @@ __attribute__((visibility("hidden")))
 - (void)handleNewCandidates:(id)arg1 version:(unsigned short)arg2;
 - (void)networkStateDidChange;
 - (void)triggerInterfaceChange;
-@property(readonly, nonatomic) BOOL isHandoverSupported;
+- (BOOL)isHandoverSupported;
 - (void)handleConnectionSetupDataChangeMessageDelivered;
 - (void)initiateRelayRequest;
-- (void)setupInitialSecondaryRelayWithCallbackRelayFlag:(BOOL)arg1 callID:(unsigned int)arg2;
+- (void)setupInitialSecondaryRelayWithCallbackRelayFlag:(BOOL)arg1 callID:(unsigned int)arg2 connectionId:(int)arg3;
 - (void)setupSecondaryRelayForCall:(unsigned int)arg1 callerRequired:(BOOL)arg2;
 - (void)notifyDelegateToCancelRelay;
 - (void)setupPendingSecondaryRelayWithNewPrimary:(id)arg1;
@@ -140,9 +128,9 @@ __attribute__((visibility("hidden")))
 - (void)stop;
 - (BOOL)startConnectionWithBlob:(id)arg1 useRelay:(BOOL)arg2 isInitialRelay:(BOOL)arg3 error:(id *)arg4;
 - (void)start;
-- (void)setReportingAgent:(struct opaqueRTCReporting *)arg1;
+@property id <VCTransportSessionLegacyDelegate> delegate;
 - (void)dealloc;
-- (id)initWithCallID:(unsigned int)arg1;
+- (id)initWithCallID:(unsigned int)arg1 reportingAgent:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

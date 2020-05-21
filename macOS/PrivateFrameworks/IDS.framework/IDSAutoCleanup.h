@@ -12,6 +12,7 @@
     int _accessCount;
 }
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (void)incrementAccessCount;
 - (id)initWithBlock:(CDUnknownBlockType)arg1;

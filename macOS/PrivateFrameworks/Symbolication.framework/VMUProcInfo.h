@@ -27,6 +27,7 @@
 + (int)processParentId:(int)arg1;
 + (BOOL)isProcessRunning:(int)arg1;
 + (id)getProcessIds;
+- (void).cxx_destruct;
 - (unsigned long long)hash;
 - (long long)compareByUserAppName:(id)arg1;
 - (long long)compareByName:(id)arg1;
@@ -56,7 +57,6 @@
 - (id)_infoFromCommandLine:(int)arg1;
 - (id)procTableName;
 - (struct timeval)startTime;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithTask:(unsigned int)arg1;
 - (id)initWithPid:(int)arg1;

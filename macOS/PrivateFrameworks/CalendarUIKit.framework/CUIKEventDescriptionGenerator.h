@@ -17,6 +17,9 @@
 
 + (id)sharedGenerator;
 - (void).cxx_destruct;
+- (id)textRepresentationForAttendee:(id)arg1 includeEmailAddress:(BOOL)arg2;
+- (id)_showEventURLStringForEvent:(id)arg1;
+- (id)textRepresentationForEvent:(id)arg1 withTextFormat:(int)arg2 showURI:(BOOL)arg3;
 - (void)meCardChanged:(id)arg1;
 - (long long)_notReallyRandomNumberBetween1AndN:(int)arg1;
 - (id)_addressDetector;

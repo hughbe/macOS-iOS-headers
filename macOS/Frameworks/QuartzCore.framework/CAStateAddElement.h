@@ -15,6 +15,7 @@
     id _beforeObject;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(retain, nonatomic) id beforeObject; // @synthesize beforeObject=_beforeObject;
 @property(retain, nonatomic) id object; // @synthesize object=_object;
 @property(copy, nonatomic) NSString *keyPath; // @synthesize keyPath=_keyPath;
@@ -22,6 +23,7 @@
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (BOOL)CAMLTypeSupportedForKey:(id)arg1;
 - (id)CAMLTypeForKey:(id)arg1;
 - (void)encodeWithCAMLWriter:(id)arg1;
 - (void)CAMLParser:(id)arg1 setValue:(id)arg2 forKey:(id)arg3;

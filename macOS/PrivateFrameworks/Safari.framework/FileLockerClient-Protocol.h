@@ -10,6 +10,6 @@
 
 @protocol FileLockerClient <NSObject>
 - (void)fileLocker:(const struct FileLocker *)arg1 lockWasStolen:(NSDictionary *)arg2;
-- (int)fileLocker:(const struct FileLocker *)arg1 actionForApparentlyAbandonedLock:(NSDictionary *)arg2 attempt:(unsigned int)arg3;
+- (int)fileLocker:(const struct FileLocker *)arg1 actionForApparentlyAbandonedLock:(NSDictionary *)arg2;
 @end
 

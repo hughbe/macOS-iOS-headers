@@ -11,18 +11,23 @@ __attribute__((visibility("hidden")))
 {
     unsigned int _used:58;
     unsigned int _szidx:6;
+    id _list[0];
 }
 
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
-+ (id)__new:(const id *)arg1:(unsigned long long)arg2:(BOOL)arg3;
+- (void)dealloc;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
+- (id)mutableCopy;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)copy;
+- (void)enumerateObjectsWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (void)getObjects:(id *)arg1 count:(unsigned long long)arg2;
+- (unsigned long long)countForObject:(id)arg1;
+- (BOOL)containsObject:(id)arg1;
+- (unsigned long long)countByEnumeratingWithState:(CDStruct_58648341 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 - (double)clumpingInterestingThreshold;
 - (double)clumpingFactor;
-- (void)dealloc;
-- (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)enumerateObjectsWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
-- (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
-- (void)getObjects:(id *)arg1 count:(unsigned long long)arg2;
 - (id)objectEnumerator;
 - (id)member:(id)arg1;
 - (unsigned long long)count;

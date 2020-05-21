@@ -18,6 +18,7 @@
     double _minFrameAspectRatio;
     BOOL _startLastPadding;
     NSMutableArray *_sharedTempArray;
+    double *_normalizedWeights;
     BOOL _layoutFromRightToLeft;
     unsigned long long _numberOfColumns;
     double _tileAspectRatio;
@@ -31,6 +32,7 @@
 + (void)printLayout:(id)arg1 numOfColumns:(unsigned long long)arg2;
 + (void)printInputs:(id)arg1;
 + (void)printPossibleFrames:(unsigned long long)arg1 cellAspectRatio:(double)arg2 maxAspectRatio:(double)arg3 minAspectRato:(double)arg4;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL layoutFromRightToLeft; // @synthesize layoutFromRightToLeft=_layoutFromRightToLeft;
 @property(nonatomic) unsigned long long maxTilesInFrame; // @synthesize maxTilesInFrame=_maxTilesInFrame;
 @property(nonatomic) double interTileSpacing; // @synthesize interTileSpacing=_interTileSpacing;
@@ -38,7 +40,6 @@
 @property(readonly, nonatomic) double height; // @synthesize height=_height;
 @property(readonly, nonatomic) struct CGSize referenceSize; // @synthesize referenceSize=_referenceSize;
 @property(readonly, nonatomic) double tileAspectRatio; // @synthesize tileAspectRatio=_tileAspectRatio;
-- (void).cxx_destruct;
 - (BOOL)checkAndPrintResults:(BOOL)arg1;
 - (long long)_availableFrames:(id *)arg1 maxReturnCount:(unsigned long long)arg2 forAspectRatio:(double)arg3 weight:(double)arg4 maxWidth:(unsigned long long)arg5;
 - (id)_getAllFramesInOrder;
@@ -52,9 +53,14 @@
 - (void)_resetWithNumberOfAssets:(unsigned long long)arg1;
 - (void)_updateDimensionInfos;
 - (void)_setRandomSeedWithInputs:(id)arg1;
+- (double *)_normalizeWeightsByInputs:(id)arg1;
+- (void)_getFrames:(struct CGRect *)arg1 magazineRects:(struct PXMagazineRect *)arg2 withInputs:(id)arg3;
 - (void)getFrames:(struct CGRect *)arg1 withInputs:(id)arg2;
+- (unsigned long long)getMagazineRects:(struct PXMagazineRect *)arg1 withInputs:(id)arg2;
 @property(readonly, nonatomic) unsigned long long numberOfColumns; // @synthesize numberOfColumns=_numberOfColumns;
+- (double)_aspectRatioOfInput:(id)arg1;
 - (id)description;
+- (void)dealloc;
 - (id)initWithReferenceSize:(struct CGSize)arg1 numberOfColumns:(unsigned long long)arg2;
 
 @end

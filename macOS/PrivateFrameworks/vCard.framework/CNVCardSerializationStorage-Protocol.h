@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSData, NSString;
 
 @protocol CNVCardSerializationStorage <NSObject>
 - (void)insertString:(NSString *)arg1 atMarker:(id)arg2;
 - (unsigned long long)estimatedDataLength;
 - (id)insertionMarker;
 - (unsigned long long)currentLength;
+- (void)appendData:(NSData *)arg1;
 - (void)appendString:(NSString *)arg1 usingEncoding:(unsigned long long)arg2;
 - (void)appendFormat:(NSString *)arg1;
 - (void)appendString:(NSString *)arg1;

@@ -19,7 +19,6 @@
     NSXPCListener *_customizeListener;
     NSXPCListener *_progressListener;
     NSXPCListener *_debugListener;
-    NSXPCListener *_backgroundListener;
     NSXPCListener *_odUtilsListener;
     NSMutableArray *_clientConnections;
     NSObject<OS_dispatch_queue> *_serviceQueue;
@@ -28,18 +27,17 @@
 
 + (id)sharedDaemon;
 + (void)initialize;
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_source> *shutdownTimer; // @synthesize shutdownTimer=_shutdownTimer;
 @property(retain) NSObject<OS_dispatch_queue> *serviceQueue; // @synthesize serviceQueue=_serviceQueue;
 @property(retain) NSMutableArray *clientConnections; // @synthesize clientConnections=_clientConnections;
 @property(retain) NSXPCListener *odUtilsListener; // @synthesize odUtilsListener=_odUtilsListener;
-@property(retain) NSXPCListener *backgroundListener; // @synthesize backgroundListener=_backgroundListener;
 @property(retain) NSXPCListener *debugListener; // @synthesize debugListener=_debugListener;
 @property(retain) NSXPCListener *progressListener; // @synthesize progressListener=_progressListener;
 @property(retain) NSXPCListener *customizeListener; // @synthesize customizeListener=_customizeListener;
 @property(retain) NSXPCListener *selectSourceListener; // @synthesize selectSourceListener=_selectSourceListener;
 @property(retain) NSXPCListener *migrateFromListener; // @synthesize migrateFromListener=_migrateFromListener;
 @property unsigned long long requestedDaemonScannerState; // @synthesize requestedDaemonScannerState=_requestedDaemonScannerState;
-- (void).cxx_destruct;
 - (void)doIdleCheck;
 - (void)attemptIdleExit;
 - (BOOL)daemonIsIdle;

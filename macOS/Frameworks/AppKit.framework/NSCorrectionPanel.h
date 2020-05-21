@@ -6,7 +6,7 @@
 
 #import <AppKit/NSPanel.h>
 
-@class NSAttributedString, NSCorrectionShadowView, NSCorrectionTextView, NSCorrectionTypedTextHighlightView, NSDictionary, NSMutableArray, NSString, NSView;
+@class NSAttributedString, NSCorrectionShadowView, NSCorrectionTextView, NSCorrectionTypedTextHighlightView, NSDictionary, NSMutableArray, NSString, NSView, NSVisualEffectView;
 
 __attribute__((visibility("hidden")))
 @interface NSCorrectionPanel : NSPanel
@@ -19,19 +19,23 @@ __attribute__((visibility("hidden")))
     NSPanel *correctionSubPanel;
     CDUnknownBlockType completionHandler;
     CDUnknownBlockType stringCompletionHandler;
-    BOOL useDefaultWindowShadow;
     NSAttributedString *primaryCandidate;
     NSMutableArray *alternativeCandidates;
     BOOL dismissedExternally;
+    BOOL dismissedExplicitly;
+    NSVisualEffectView *contentBackgroundMaterialView;
 }
 
 + (id)sharedCorrectionPanel;
+@property BOOL dismissedExplicitly; // @synthesize dismissedExplicitly;
 - (id)accessibilityChildrenInNavigationOrderAttribute;
 - (id)accessibilityChildrenAttribute;
 - (BOOL)accessibilityIsIgnored;
 - (void)dismiss;
 - (void)dismissAndAccept:(BOOL)arg1;
 - (void)_doDismissAndAccept:(id)arg1;
+- (void)_clearLastCorrectionPanel;
+- (void)_setLastCorrectionPanelExplicitlyAccepted:(BOOL)arg1 rejected:(BOOL)arg2;
 - (void)removeFromWindow;
 - (void)setSelectedCandidate:(unsigned long long)arg1;
 @property(readonly) long long correctionPanelType;
@@ -47,6 +51,7 @@ __attribute__((visibility("hidden")))
 - (void)_adjustLayoutForView:(id)arg1;
 - (BOOL)_shouldCorrectionViewBeAtBottom:(double)arg1 highlightRect:(struct CGRect)arg2 inScreenVisibleRect:(struct CGRect)arg3;
 - (struct CGRect)_highlightRectForTypedText:(struct CGRect)arg1;
+- (id)_maskImageWithSize:(struct CGSize)arg1;
 - (void)dealloc;
 - (id)initWithContentRect:(struct CGRect)arg1 backing:(unsigned long long)arg2 defer:(BOOL)arg3;
 - (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4;

@@ -10,6 +10,7 @@
 
 @interface SFDiagnostics : NSObject
 {
+    BOOL _btUser;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     BOOL _invalidateCalled;
     BOOL _invalidateDone;
@@ -18,10 +19,10 @@
     CDUnknownBlockType _invalidationHandler;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
 @property(copy, nonatomic) CDUnknownBlockType interruptionHandler; // @synthesize interruptionHandler=_interruptionHandler;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
-- (void).cxx_destruct;
 - (void)_invalidated;
 - (void)_interrupted;
 - (void)_ensureXPCStarted;
@@ -31,8 +32,9 @@
 - (void)show:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_logControl:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)logControl:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_getVersionWithCompletion:(CDUnknownBlockType)arg1;
-- (void)getVersionWithCompletion:(CDUnknownBlockType)arg1;
+- (void)diagnosticMockStop:(CDUnknownBlockType)arg1;
+- (void)diagnosticMockStart:(CDUnknownBlockType)arg1;
+- (void)diagnosticMock:(id)arg1 device:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)diagnosticControl:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)diagnosticBLEModeWithCompletion:(CDUnknownBlockType)arg1;
 - (void)bluetoothUserInteraction;

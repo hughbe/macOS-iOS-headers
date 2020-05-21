@@ -7,19 +7,20 @@
 #import "NSView.h"
 
 #import "NSCollectionViewSectionHeaderView.h"
+#import "NSCollectionViewSectionHeaderViewPrivate.h"
 
 @class NSButton, NSString;
 
-@interface FIIconHeaderView : NSView <NSCollectionViewSectionHeaderView>
+@interface FIIconHeaderView : NSView <NSCollectionViewSectionHeaderView, NSCollectionViewSectionHeaderViewPrivate>
 {
-    struct TNSRef<FI_TIconCollectionGroupHeaderView *, void> _headerView;
+    struct TNSRef<FI_TIconCollectionGroupHeaderView, void> _headerView;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (BOOL)accessibilityIsIgnored;
 - (void)setCollapseButtonPressedBlock:(CDUnknownBlockType)arg1;
-@property NSButton *sectionCollapseButton;
+@property __weak NSButton *sectionCollapseButton;
 @property(getter=isFloating) BOOL floating; // @dynamic floating;
 @property(getter=isCollapseButtonHiddenManually) BOOL collapseButtonHiddenManually;
 @property(getter=isCollapseButtonHidden) BOOL collapseButtonHidden; // @dynamic collapseButtonHidden;
@@ -28,7 +29,6 @@
 @property(copy) NSString *titleStr; // @dynamic titleStr;
 - (BOOL)wantsUpdateLayer;
 - (BOOL)isFlipped;
-- (BOOL)isOpaque;
 - (void)initCommon;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;

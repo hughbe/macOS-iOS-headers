@@ -6,6 +6,7 @@
 
 #import <MapKit/MKPolyline.h>
 
+__attribute__((visibility("hidden")))
 @interface MKRoutePolyline : MKPolyline
 {
 }

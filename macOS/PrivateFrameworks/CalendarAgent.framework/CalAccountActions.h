@@ -25,11 +25,15 @@
 + (void)_setupExchangeSpecificPropertiesForManagedPrincipal:(id)arg1 withAccount:(id)arg2;
 + (void)_setupCalDAVSpecificPropertiesForManagedPrincipal:(id)arg1 withAccount:(id)arg2;
 + (void)_processPrincipalWithUID:(id)arg1 addedToAccount:(id)arg2 inContext:(id)arg3;
-+ (id)_removeDuplicatePrincipals:(id)arg1 context:(id)arg2;
-+ (id)_managedPrincipalsForAccount:(id)arg1 context:(id)arg2;
++ (id)_groupPrincipals:(id)arg1 byKey:(id)arg2 specificToClass:(Class)arg3;
++ (id)_bestPrincipalInDuplicatePrincipals:(id)arg1 principalsToDelete:(id)arg2;
++ (id)_removeDuplicatePrincipals:(id)arg1 forAccount:(id)arg2 basedOnKey:(id)arg3 specificToClass:(Class)arg4 inContext:(id)arg5;
++ (id)principalsWithDuplicatesRemovedForAccount:(id)arg1 inContext:(id)arg2;
 + (id)_managedPrincipalEntityNameForAccount:(id)arg1;
 + (id)_infoDictionariesForUnmigratedPrincipals;
++ (id)_allManagedPrincipalsForAccount:(id)arg1 inContext:(id)arg2;
 + (void)_processPrincipalsAddedOrRemovedFromAccount:(id)arg1 inContext:(id)arg2;
++ (BOOL)_validatePrincipalsForAccount:(id)arg1 inContext:(id)arg2;
 + (void)_processAccountAddedOrChanged:(id)arg1;
 + (id)_emptyDefaultCalendarsFromCalendars:(id)arg1;
 + (id)_calendarsWithEntityName:(id)arg1 context:(id)arg2;

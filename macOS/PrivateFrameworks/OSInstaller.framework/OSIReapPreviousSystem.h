@@ -17,10 +17,9 @@
     SMPaths *_pather;
 }
 
+- (void).cxx_destruct;
 @property(retain) SMPaths *pather; // @synthesize pather=_pather;
 - (void)_recreateFSFPath;
-- (void)_pullFakeProgressTimer:(id)arg1;
-- (void)cleanupPartialInstall;
 - (void)_saveReaperPaths;
 - (BOOL)createRecoveredItems;
 - (id)_pathsToBackup;
@@ -30,7 +29,6 @@
 - (id)localizedStatusString;
 - (id)operationName;
 - (BOOL)runReturningError:(id *)arg1;
-- (void)dealloc;
 - (id)initWithOptions:(id)arg1 requiredSpaceToInstall:(unsigned long long)arg2;
 
 @end

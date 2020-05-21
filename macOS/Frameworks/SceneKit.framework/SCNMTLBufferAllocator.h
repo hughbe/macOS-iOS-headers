@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSObject<OS_dispatch_semaphore>, SCNFixedSizePage;
+@class NSMutableArray, NSString, SCNFixedSizePage;
 
 __attribute__((visibility("hidden")))
 @interface SCNMTLBufferAllocator : NSObject
@@ -14,16 +14,18 @@ __attribute__((visibility("hidden")))
     id <MTLDevice> _device;
     unsigned long long _bufferSize;
     unsigned long long _elementSize;
+    NSString *_name;
     NSMutableArray *_pages;
     SCNFixedSizePage *_currentAllocatorPage;
-    NSObject<OS_dispatch_semaphore> *_allocatorLock;
+    struct os_unfair_lock_s _allocatorLock;
 }
 
 @property(readonly, nonatomic) unsigned long long elementSize; // @synthesize elementSize=_elementSize;
 @property(readonly, nonatomic) unsigned long long bufferSize; // @synthesize bufferSize=_bufferSize;
-- (id)newSubBuffer;
+- (id)newSubBufferWithBytes:(const void *)arg1 length:(unsigned long long)arg2 renderContext:(id)arg3;
+- (id)_newSubBuffer;
 - (void)dealloc;
-- (id)initWithDevice:(id)arg1 fixedSizeElement:(unsigned long long)arg2 buffersize:(unsigned long long)arg3;
+- (id)initWithDevice:(id)arg1 fixedSizeElement:(unsigned long long)arg2 buffersize:(unsigned long long)arg3 name:(id)arg4;
 
 @end
 

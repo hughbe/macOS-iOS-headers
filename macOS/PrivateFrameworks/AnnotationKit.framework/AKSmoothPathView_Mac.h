@@ -15,6 +15,7 @@
 - (BOOL)mouseDownCanMoveWindow;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (BOOL)acceptsFirstResponder;
+- (id)hitTest:(struct CGPoint)arg1;
 
 @end
 

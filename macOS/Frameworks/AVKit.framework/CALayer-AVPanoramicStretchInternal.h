@@ -7,8 +7,13 @@
 #import "CALayer.h"
 
 @interface CALayer (AVPanoramicStretchInternal)
++ (id)keyPathsForValuesAffectingUsesPanoramicStretch;
++ (BOOL)automaticallyNotifiesObserversOfUsesPanoramicStretch;
+- (void)avkit_invalidatePanoramicStretchHelper;
+@property BOOL usesPanoramicStretch;
 
 // Remaining properties
 @property(getter=_usesPanoramicStretch, setter=_setUsesPanoramicStretch:) BOOL _usesPanoramicStretch; // @dynamic _usesPanoramicStretch;
+@property struct CGSize naturalSizeForPanoramicStretch; // @dynamic naturalSizeForPanoramicStretch;
 @end
 

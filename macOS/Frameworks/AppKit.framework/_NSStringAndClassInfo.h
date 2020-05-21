@@ -10,12 +10,11 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface _NSStringAndClassInfo : NSObject <NSCopying>
 {
     NSString *_registryString;
     Class _objectClass;
-    unsigned long long _registryStringHash;
-    unsigned long long _objectClassHash;
     unsigned long long _hash;
 }
 

@@ -9,9 +9,8 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class AFBulletin, AFRequestInfo, NSDictionary, NSNumber, NSString, NSURL, SASPronunciationContext;
+@class AFBulletin, AFRequestInfo, AFSpeechRequestOptions, NSDictionary, NSNumber, NSString, NSURL, SASPronunciationContext;
 
-__attribute__((visibility("hidden")))
 @interface SiriUIRequestOptions : NSObject <NSCopying, NSSecureCoding>
 {
     BOOL _pronunciationRequest;
@@ -20,6 +19,7 @@ __attribute__((visibility("hidden")))
     BOOL _useStreamingDictation;
     BOOL _acousticIdEnabled;
     BOOL _releaseAudioSessionOnRecordingCompletion;
+    BOOL _forListenAfterSpeaking;
     long long _requestSource;
     NSString *_activationDeviceIdentifier;
     AFBulletin *_bulletin;
@@ -37,11 +37,17 @@ __attribute__((visibility("hidden")))
     NSNumber *_homeButtonUpFromBeep;
     NSDictionary *_continuityInfo;
     AFRequestInfo *_requestInfo;
+    AFSpeechRequestOptions *_speechRequestOptions;
+    long long _listenAfterSpeakingOriginalRequestSource;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(nonatomic) long long listenAfterSpeakingOriginalRequestSource; // @synthesize listenAfterSpeakingOriginalRequestSource=_listenAfterSpeakingOriginalRequestSource;
+@property(nonatomic) BOOL forListenAfterSpeaking; // @synthesize forListenAfterSpeaking=_forListenAfterSpeaking;
 @property(nonatomic) BOOL releaseAudioSessionOnRecordingCompletion; // @synthesize releaseAudioSessionOnRecordingCompletion=_releaseAudioSessionOnRecordingCompletion;
 @property(nonatomic) BOOL acousticIdEnabled; // @synthesize acousticIdEnabled=_acousticIdEnabled;
+@property(retain, nonatomic) AFSpeechRequestOptions *speechRequestOptions; // @synthesize speechRequestOptions=_speechRequestOptions;
 @property(retain, nonatomic) AFRequestInfo *requestInfo; // @synthesize requestInfo=_requestInfo;
 @property(copy, nonatomic) NSDictionary *continuityInfo; // @synthesize continuityInfo=_continuityInfo;
 @property(retain, nonatomic) NSNumber *homeButtonUpFromBeep; // @synthesize homeButtonUpFromBeep=_homeButtonUpFromBeep;
@@ -63,7 +69,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) AFBulletin *bulletin; // @synthesize bulletin=_bulletin;
 @property(copy, nonatomic) NSString *activationDeviceIdentifier; // @synthesize activationDeviceIdentifier=_activationDeviceIdentifier;
 @property(nonatomic) long long requestSource; // @synthesize requestSource=_requestSource;
-- (void).cxx_destruct;
 @property(readonly, nonatomic, getter=isForStark) BOOL forStark;
 @property(readonly, nonatomic, getter=isForSpeechRequest) BOOL forSpeechRequest;
 - (id)description;

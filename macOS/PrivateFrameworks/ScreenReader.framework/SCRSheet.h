@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_trackedElements;
 }
 
+- (void).cxx_destruct;
 - (void)_removeTrackedElementsForKey:(id)arg1;
 - (void)setTrackedElement:(id)arg1 key:(id)arg2;
 - (id)trackedElementsForKey:(id)arg1;
@@ -44,8 +45,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)enableResizeModeWithRequest:(id)arg1 handleIndex:(unsigned long long)arg2;
 - (void)buildResizeOptionsMenu:(id)arg1;
 - (BOOL)performDefaultActionWithRequest:(id)arg1 allowClick:(BOOL)arg2;
-- (BOOL)interactLeftCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactRightCommandShiftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactLeftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)_moveLastInSheetWithEvent:(id)arg1 request:(id)arg2;
@@ -58,8 +57,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldRemoveSpecialChild:(id)arg1;
 - (id)prepareUIChildrenForNavigation:(id)arg1;
 - (id)buildDefaultChildrenWithUIElements:(id)arg1;
-- (void)dealloc;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end

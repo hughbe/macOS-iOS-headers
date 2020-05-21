@@ -39,6 +39,7 @@
 - (void)flush;
 - (void)addPoint: /* Error: Ran out of types for this method. */;
 - (void)setUnitScaleForViewSize:(struct CGSize)arg1 normalizedSize:(struct CGSize)arg2 contentScaleFactor:(double)arg3;
+- (void)enumerateInterpolationFromPoint:(CDUnknownBlockType)arg1 toPoint:controlPoint:usingBlock: /* Error: Ran out of types for this method. */;
 - (void)dealloc;
 - (id)initWithFIFO:(id)arg1 strokeView:(id)arg2;
 - (id)initWithFIFO:(id)arg1;

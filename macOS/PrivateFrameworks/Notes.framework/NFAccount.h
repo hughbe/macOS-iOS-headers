@@ -12,11 +12,13 @@
 
 @interface NFAccount : NSManagedObject <ICNFMCPersistedAccount>
 {
-    ACAccount *_parentACAccount;
+    ACAccount *_internalParentACAccount;
 }
 
++ (id)keyPathsForValuesAffectingParentACAccount;
 + (id)sharedAccountStore;
 + (id)keyPathsForValuesAffectingDefaultFolder;
++ (id)keyPathsForValuesAffectingAccountDescription;
 + (id)_initialDefaultAccountWithContext:(id)arg1;
 + (id)defaultAccountWithContext:(id)arg1;
 + (void)setDefaultAccount:(id)arg1;
@@ -30,14 +32,16 @@
 + (void)setSupportsACAccount:(BOOL)arg1;
 + (BOOL)supportsACAccount;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) ACAccount *parentACAccount; // @synthesize parentACAccount=_parentACAccount;
+@property(retain, nonatomic) ACAccount *internalParentACAccount; // @synthesize internalParentACAccount=_internalParentACAccount;
+@property(readonly, nonatomic) ACAccount *parentACAccount;
 @property(readonly, copy, nonatomic) NSString *internetAccountsUID;
 @property(readonly) BOOL participatesInInternetAccounts;
 @property(readonly, nonatomic) long long accountClassPriority;
 @property(readonly, nonatomic) __weak NSArray *allFolders;
 - (BOOL)hasNotes;
 @property(readonly, nonatomic) __weak NFFolder *defaultFolder;
-@property(readonly, nonatomic) BOOL isAOSAccount;
+@property(readonly, nonatomic) BOOL isYahooAccount;
+@property(readonly, nonatomic) BOOL isICloudAccount;
 @property(copy, nonatomic) NSString *username; // @dynamic username;
 @property(copy, nonatomic) NSString *accountDescription; // @dynamic accountDescription;
 @property(copy, nonatomic) NSString *emailAddress; // @dynamic emailAddress;

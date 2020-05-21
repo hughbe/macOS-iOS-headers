@@ -8,7 +8,7 @@
 
 #import "SASTTemplateItem.h"
 
-@class NSArray, NSString, SAUIDecoratedText;
+@class NSArray, NSString, SAUIDecoratedText, SAUINanoImageResource;
 
 @interface SASTPropertyListItem : AceObject <SASTTemplateItem>
 {
@@ -18,8 +18,10 @@
 + (id)propertyListItem;
 @property(copy, nonatomic) NSArray *values;
 @property(copy, nonatomic) NSString *title;
+@property(retain, nonatomic) SAUINanoImageResource *imageResource;
 @property(copy, nonatomic) NSArray *decoratedValues;
 @property(retain, nonatomic) SAUIDecoratedText *decoratedTitle;
+@property(copy, nonatomic) NSString *alignment;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

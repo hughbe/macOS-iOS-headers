@@ -12,10 +12,12 @@
 @interface SFFeedback : NSObject <NSSecureCoding, NSCopying>
 {
     unsigned long long _timestamp;
+    unsigned long long _queryId;
 }
 
 + (BOOL)supportsSecureCoding;
-@property unsigned long long timestamp; // @synthesize timestamp=_timestamp;
+@property(nonatomic) unsigned long long queryId; // @synthesize queryId=_queryId;
+@property(readonly) unsigned long long timestamp; // @synthesize timestamp=_timestamp;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

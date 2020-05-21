@@ -13,6 +13,8 @@
     NSMutableArray *_threads;
     unsigned long long _firstTimestampIndex;
     unsigned long long _previousCpuTimeNs;
+    unsigned long long _previousCpuInstructions;
+    unsigned long long _previousCpuCycles;
 }
 
 - (void).cxx_destruct;
@@ -22,12 +24,14 @@
 - (BOOL)isIdleWorkQueueThread;
 - (BOOL)isGlobalForcedIdleThread;
 - (BOOL)isProcessorIdleThread;
+- (unsigned long long)cpuCycles;
+- (unsigned long long)cpuInstructions;
 - (unsigned long long)cpuTimeNs;
 - (id)sampleThreadAtTimestampIndex:(unsigned long long)arg1;
 - (void)addSampleThread:(id)arg1 atTimestampIndex:(unsigned long long)arg2;
 @property(readonly) unsigned long long dispatchQueueId;
 @property(readonly) unsigned long long threadId;
-- (id)initWithTimestampIndex:(unsigned long long)arg1 andPreviousCpuTimeNs:(unsigned long long)arg2;
+- (id)initWithTimestampIndex:(unsigned long long)arg1 andPreviousCpuTimeNs:(unsigned long long)arg2 andPreviousCpuInstructions:(unsigned long long)arg3 andPreviousCpuCycles:(unsigned long long)arg4;
 - (BOOL)hasSingleName:(id *)arg1;
 - (BOOL)isSingleStackWithLeafUserFrame:(id)arg1 andLeafKernelFrame:(id)arg2;
 - (unsigned long long)count;

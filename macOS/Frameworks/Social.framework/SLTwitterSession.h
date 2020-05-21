@@ -22,13 +22,14 @@
 }
 
 + (id)_remoteInterface;
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType locationInformationChangedBlock; // @synthesize locationInformationChangedBlock=_locationInformationChangedBlock;
 @property(copy, nonatomic) CDUnknownBlockType connectionResetBlock; // @synthesize connectionResetBlock=_connectionResetBlock;
-- (void).cxx_destruct;
 - (id)serviceAccountTypeIdentifier;
 - (void)getPermaLinkFromLastStatusUpdate:(CDUnknownBlockType)arg1;
 - (void)showSettingsIfNeeded;
 - (void)acceptLocationUpdate:(id)arg1;
+- (void)logDidSendStatusWithText:(id)arg1 attachments:(id)arg2 locationAttached:(BOOL)arg3 fromProcessWithPID:(int)arg4;
 - (void)sendDirectMessage:(id)arg1 toUser:(id)arg2 withScreenName:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)retweetTweetWithID:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)sendStatus:(id)arg1 completion:(CDUnknownBlockType)arg2;

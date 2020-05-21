@@ -12,18 +12,19 @@
 
 @class GEORouteMatch, MKAnnotationView, NSHashTable, NSString;
 
+__attribute__((visibility("hidden")))
 @interface MKUserLocationAnnotationViewProxy : NSObject <VKPuckAnimatorTarget, VKTrackableAnnotationPresentation, VKRouteMatchedAnnotationPresentation>
 {
     MKAnnotationView *_annotationView;
     NSHashTable *_presentationCoordinateObservers;
 }
 
-@property(nonatomic) __weak MKAnnotationView *annotationView; // @synthesize annotationView=_annotationView;
 - (void).cxx_destruct;
+@property(nonatomic) __weak MKAnnotationView *annotationView; // @synthesize annotationView=_annotationView;
 - (void)removePresentationCoordinateChangedObserver:(id)arg1;
 - (void)addPresentationCoordinateChangedObserver:(id)arg1;
 @property(retain, nonatomic) GEORouteMatch *routeMatch;
-@property(nonatomic, getter=isTracking) BOOL tracking;
+@property(nonatomic) BOOL tracking;
 - (void)setAnimatingToCoordinate:(BOOL)arg1;
 @property(nonatomic) double presentationCourse;
 @property(nonatomic) CDStruct_c3b9c2ee presentationCoordinate;

@@ -11,11 +11,12 @@
     id <NSCopying> _identifier;
 }
 
-@property(copy, nonatomic) id <NSCopying> identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+@property(copy, nonatomic) id <NSCopying> identifier; // @synthesize identifier=_identifier;
 - (void)cancelAll;
 - (void)performBlock:(CDUnknownBlockType)arg1;
 - (void)dispatchAfter:(double)arg1 withBlock:(CDUnknownBlockType)arg2;
+- (void)dealloc;
 - (id)initWithIdentifier:(id)arg1;
 
 @end

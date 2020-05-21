@@ -6,18 +6,23 @@
 
 #import "NSObject.h"
 
-@class CNContactProperty, CNFuture, CNObservable, CNUIUserActionItem, NSArray, NSImage, NSString;
+@class CNContact, CNContactProperty, CNFuture, CNObservable, CNUIUserActionItem, NSArray, NSImage, NSString;
 
 @protocol CNUIUserActionListDataSource <NSObject>
++ (NSArray *)allSupportedActionTypesWithCapabilities:(id <CNCapabilities>)arg1;
++ (NSArray *)allSupportedActionTypes;
 + (NSArray *)allActionTypes;
+@property(nonatomic) BOOL tracksChanges;
 - (CNFuture *)thirdPartyActionsForCurrentContactAndPropertyKey:(NSString *)arg1 identifier:(NSString *)arg2;
 - (CNFuture *)thirdPartyActionsForContactProperty:(CNContactProperty *)arg1;
 - (CNFuture *)thirdPartyTargetsForActionTypes:(NSArray *)arg1;
 - (NSImage *)consumer:(id <CNUIUserActionListConsumer>)arg1 imageForActionType:(NSString *)arg2;
 - (NSString *)consumer:(id <CNUIUserActionListConsumer>)arg1 localizedDisplayNameForButtonWithDefaultAction:(CNUIUserActionItem *)arg2 actionType:(NSString *)arg3;
+- (NSString *)consumer:(id <CNUIUserActionListConsumer>)arg1 localizedButtonDisplayNameForActionType:(NSString *)arg2;
 - (NSString *)consumer:(id <CNUIUserActionListConsumer>)arg1 localizedDisplayNameForActionType:(NSString *)arg2;
 - (CNObservable *)consumer:(id <CNUIUserActionListConsumer>)arg1 actionModelsForActionType:(NSString *)arg2;
 - (id <CNCancelable>)consumer:(id <CNUIUserActionListConsumer>)arg1 actionModelsForActionType:(NSString *)arg2 handler:(void (^)(CNUIUserActionListModel *))arg3;
+- (void)setContact:(CNContact *)arg1;
 - (NSArray *)actionTypesForConsumer:(id <CNUIUserActionListConsumer>)arg1;
 @end
 

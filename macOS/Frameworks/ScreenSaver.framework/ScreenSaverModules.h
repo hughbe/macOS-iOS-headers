@@ -6,76 +6,41 @@
 
 #import "NSObject.h"
 
-@class ILMediaManager, NSMutableArray, NSMutableDictionary;
+@class NSMutableDictionary;
 
 @interface ScreenSaverModules : NSObject
 {
     NSMutableDictionary *_modules;
     NSMutableDictionary *_times;
-    unsigned long long _searchDomains;
-    ILMediaManager *_apertureManager;
-    ILMediaManager *_iPhotoManager;
-    ILMediaManager *_photosManager;
-    NSMutableArray *_userSelectedPictureFolderModules;
-    NSMutableArray *_mobileMeGalleryModules;
-    NSMutableArray *_rssFeedModules;
-    BOOL _iPhotoManagerFinished;
-    BOOL _apertureManagerFinished;
-    BOOL _photosManagerFinished;
+    BOOL _isPreview;
 }
 
++ (id)homeFolder;
++ (id)findNewModuleForPath:(id)arg1;
 + (id)sharedInstance;
+@property BOOL isPreview; // @synthesize isPreview=_isPreview;
 - (void)_dropCrashReporterBreadCrumbForModule:(id)arg1;
-- (void)_rebuildApertureAlbums;
-- (void)_rebuildIPhotoAlbums;
-- (void)_rebuildPhotosAlbums;
-- (void)_finishApertureLoading;
-- (void)_checkApertureLoading;
-- (void)_finishIPhotoLoading;
-- (void)_checkIPhotoLoading;
-- (BOOL)browser:(id)arg1 selectRow:(long long)arg2 inColumn:(long long)arg3;
-- (void)browser:(id)arg1 willDisplayCell:(id)arg2 atRow:(long long)arg3 column:(long long)arg4;
-- (long long)browser:(id)arg1 numberOfRowsInColumn:(long long)arg2;
+- (id)defaultModuleName;
 - (Class)classForModule:(id)arg1;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)enableShuffleItemsForRSS;
-- (void)enableRSSFeedModule:(id)arg1 exclusive:(BOOL)arg2;
-- (void)removeRSSFeedModule:(id)arg1;
-- (void)addRSSFeedModule:(id)arg1;
-- (void)loadRSSFeedModules;
-- (id)mobileMeGalleryModuleForMemberName:(id)arg1;
-- (void)enableMobileMeGalleryModule:(id)arg1 exclusive:(BOOL)arg2;
-- (void)removeMobileMeGalleryModule:(id)arg1;
-- (void)addMobileMeGalleryModule:(id)arg1;
-- (void)loadMobileMeGalleryModules;
-- (void)removeUserSelectedPicturesFolderModule:(id)arg1;
-- (void)addUserSelectedPicturesFolderModule:(id)arg1;
-- (id)userSelectedPictureFolderModulesForPrefs;
-- (void)loadUserSelectedFolderModules;
+- (BOOL)_moduleNeedsAcceleration:(id)arg1;
 - (id)loadModule:(id)arg1 frame:(struct CGRect)arg2 isPreview:(BOOL)arg3;
 - (id)sortedModulesForType:(id)arg1;
 - (void)findModulesWithOrder:(id)arg1 forceRebuild:(BOOL)arg2;
-- (void)addModule:(id)arg1;
+- (id)_findExtensionModules;
+- (id)randomModule;
+- (id)defaultModule;
+- (id)basicModule;
+- (id)basicModuleName;
 - (id)pathForModuleName:(id)arg1;
 - (id)findAll32BitModules;
 - (id)findAllModules;
+- (id)findModuleWithPath:(id)arg1;
 - (id)findModuleWithName:(id)arg1;
+- (id)moduleWithPath:(id)arg1;
 - (id)moduleWithName:(id)arg1;
 - (id)moduleNames;
-- (id)slideShowModuleName;
-- (id)basicModule;
-- (id)basicModuleName;
-- (BOOL)modulePathIsRSSPictures:(id)arg1;
-- (BOOL)modulePathIsDotMacSlides:(id)arg1;
 - (BOOL)modulePathIsAppleModule:(id)arg1;
-- (BOOL)modulePathIsUserSelectedPicturesFolderPath:(id)arg1;
-- (BOOL)modulePathIsPictureModule:(id)arg1;
-- (BOOL)modulePathIsApertureLibrary:(id)arg1;
-- (BOOL)modulePathIsApertureProject:(id)arg1;
-- (BOOL)modulePathIsIPhotoAlbum:(id)arg1;
-- (void)refreshRelocatableModules;
 - (id)_directoriesInSearchDomain;
-- (void)setModuleSearchDomains:(unsigned long long)arg1;
 - (unsigned long long)moduleSearchDomains;
 - (void)dealloc;
 - (id)init;

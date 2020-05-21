@@ -6,38 +6,25 @@
 
 #import "NSObject.h"
 
-#import "VKMapViewDelegate.h"
+@class NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>, VKMapView;
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>, NSString, VKMapView;
-
-@interface MIController : NSObject <VKMapViewDelegate>
+@interface MIController : NSObject
 {
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_xpc_object> *_connection;
     VKMapView *_mapView;
-    struct shared_ptr<MITManager> _mitManager;
     BOOL _isActive;
 }
 
 + (id)sharedController;
 @property(readonly, nonatomic) BOOL isActive; // @synthesize isActive=_isActive;
-- (id).cxx_construct;
-- (void).cxx_destruct;
-- (void)mapLayer:(id)arg1 didChangeRegionAnimated:(BOOL)arg2;
-- (BOOL)takeMITSnapshot:(out id *)arg1;
-- (void)decodeMITreeData:(id)arg1;
+- (void)decodeDebugTreeData:(id)arg1;
 - (void)sendData:(id)arg1;
 - (void)recievedData:(id)arg1;
 - (void)handleXPCEvent:(id)arg1;
 - (void)deactivateController;
 - (void)activateController:(id)arg1;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

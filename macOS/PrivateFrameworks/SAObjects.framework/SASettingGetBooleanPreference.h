@@ -14,6 +14,7 @@
 
 + (id)getBooleanPreferenceWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getBooleanPreference;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *settingKey;
 - (id)encodedClassName;

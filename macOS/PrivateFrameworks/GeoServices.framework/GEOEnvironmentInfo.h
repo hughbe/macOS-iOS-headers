@@ -19,11 +19,13 @@
     NSDictionary *_originalDictionaryRepresentation;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSError *lastLoadingError; // @synthesize lastLoadingError=_lastLoadingError;
 @property(readonly, nonatomic) long long state; // @synthesize state=_state;
 @property(readonly, nonatomic) NSString *releaseName; // @synthesize releaseName=_releaseName;
 @property(readonly, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
+- (id)useProxyAuth;
 - (id)overrideURLs;
 - (id)serviceURLs;
 - (void)reloadManifestDataWithCompletionHandler:(CDUnknownBlockType)arg1;
@@ -33,7 +35,6 @@
 - (BOOL)isActive;
 - (void)makeActive;
 - (id)urlDictionary;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 displayName:(id)arg2 dictionaryRepresentation:(id)arg3;
 
 @end

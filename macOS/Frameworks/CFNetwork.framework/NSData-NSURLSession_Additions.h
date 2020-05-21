@@ -7,6 +7,7 @@
 #import "NSData.h"
 
 @interface NSData (NSURLSession_Additions)
+- (id)_requestFromResumeData;
 - (BOOL)_isSafeResumeDataForBackgroundDownload;
 @end
 

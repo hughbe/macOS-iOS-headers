@@ -23,18 +23,19 @@ __attribute__((visibility("hidden")))
     GEOTransitDecoderData *_decoderData;
 }
 
-- (BOOL)_isWalkingOnlyRoute:(id)arg1;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) GEOMapRegion *boundingMapRegion; // @synthesize boundingMapRegion=_boundingMapRegion;
+@property(readonly, nonatomic) NSMutableArray *pointSections; // @synthesize pointSections=_pointSections;
 - (BOOL)_shouldBreakPointSectionAtStep:(id)arg1 previousStep:(id)arg2;
-- (id)_sectionForRoute:(id)arg1 pointRange:(struct _NSRange)arg2 stepIndex:(unsigned long long)arg3 bounds:(CDStruct_90e2a262)arg4 currentTransitLineColor:(id)arg5 startDistance:(double)arg6;
+- (id)_sectionForRoute:(id)arg1 pointRange:(struct _NSRange)arg2 stepIndex:(unsigned long long)arg3 bounds:(CDStruct_953f3dc7)arg4 currentTransitLineColor:(id)arg5 startDistance:(double)arg6;
 - (double)_buildPointSectionsForRoute:(id)arg1 pointRange:(struct _NSRange)arg2 stepIndex:(unsigned long long)arg3 currentTransitLineColor:(id)arg4 startDistance:(double)arg5;
-- (void)_buildPointSectionsForRoute:(id)arg1;
+- (void)buildPointSectionsForRoute:(id)arg1;
 - (id)_walkingStepForStepInfoIndex:(unsigned long long)arg1 route:(id)arg2 validPointRange:(struct _NSRange)arg3;
 - (struct _NSRange)_validPointRangeForStepInfoIndex:(unsigned long long)arg1;
 - (unsigned long long)_stepCountForLegWithStartingStepIndex:(unsigned long long)arg1;
 - (id)_legForSteps:(struct _NSRange)arg1 route:(id)arg2;
 - (id)_stepForStepInfo:(unsigned long long)arg1 route:(id)arg2;
 - (struct _NSRange)_appendPointData:(id)arg1 withContinuity:(BOOL)arg2;
-- (long long)_legTypeForTransitManeuver:(int)arg1;
 - (void)_buildTransitStepInfo:(id)arg1;
 - (void)_buildArrivalStepInfo:(id)arg1;
 - (void)_buildExpandedWalkingStepInfos:(id)arg1;

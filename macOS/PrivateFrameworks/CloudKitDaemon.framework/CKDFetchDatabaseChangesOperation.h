@@ -8,7 +8,7 @@
 
 #import "CKDOperationPipelining.h"
 
-@class CKServerChangeToken, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString;
+@class CKServerChangeToken, NSMutableArray, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CKDFetchDatabaseChangesOperation : CKDDatabaseOperation <CKDOperationPipelining>
@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     BOOL _fetchAllChanges;
     CDUnknownBlockType _recordZoneWithIDChangedBlock;
     CDUnknownBlockType _recordZoneWithIDWasDeletedBlock;
+    CDUnknownBlockType _recordZoneWithIDWasPurgedBlock;
     CDUnknownBlockType _serverChangeTokenUpdatedBlock;
     CKServerChangeToken *_serverChangeToken;
     long long _status;
@@ -23,8 +24,11 @@ __attribute__((visibility("hidden")))
     unsigned long long _resultsLimit;
     unsigned long long _numRequestsSent;
     NSObject<OS_dispatch_group> *_fetchZonesGroup;
+    NSMutableArray *_requestInfos;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *requestInfos; // @synthesize requestInfos=_requestInfos;
 @property(retain, nonatomic) NSObject<OS_dispatch_group> *fetchZonesGroup; // @synthesize fetchZonesGroup=_fetchZonesGroup;
 @property(nonatomic) unsigned long long numRequestsSent; // @synthesize numRequestsSent=_numRequestsSent;
 @property(nonatomic) BOOL fetchAllChanges; // @synthesize fetchAllChanges=_fetchAllChanges;
@@ -33,9 +37,10 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) long long status; // @synthesize status=_status;
 @property(retain, nonatomic) CKServerChangeToken *serverChangeToken; // @synthesize serverChangeToken=_serverChangeToken;
 @property(copy, nonatomic) CDUnknownBlockType serverChangeTokenUpdatedBlock; // @synthesize serverChangeTokenUpdatedBlock=_serverChangeTokenUpdatedBlock;
+@property(copy, nonatomic) CDUnknownBlockType recordZoneWithIDWasPurgedBlock; // @synthesize recordZoneWithIDWasPurgedBlock=_recordZoneWithIDWasPurgedBlock;
 @property(copy, nonatomic) CDUnknownBlockType recordZoneWithIDWasDeletedBlock; // @synthesize recordZoneWithIDWasDeletedBlock=_recordZoneWithIDWasDeletedBlock;
 @property(copy, nonatomic) CDUnknownBlockType recordZoneWithIDChangedBlock; // @synthesize recordZoneWithIDChangedBlock=_recordZoneWithIDChangedBlock;
-- (void).cxx_destruct;
+- (id)analyticsPayload;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)fillOutOperationResult:(id)arg1;
 - (Class)operationResultClass;

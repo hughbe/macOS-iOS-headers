@@ -6,18 +6,14 @@
 
 #import "NSObject.h"
 
-@class VCPCNNModel;
-
 @interface VCPCNNSmileDetector : NSObject
 {
-    VCPCNNModel *_model;
-    struct CNNData _input;
 }
 
-- (id).cxx_construct;
-- (void).cxx_destruct;
++ (id)detector;
 - (int)detectSmileForFace:(struct CGRect)arg1 inBuffer:(struct __CVBuffer *)arg2 smile:(char *)arg3;
-- (id)init;
+- (int)computeSmileScore:(float *)arg1;
+- (float *)getInputBuffer;
 
 @end
 

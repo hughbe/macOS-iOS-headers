@@ -7,6 +7,6 @@
 #import "NSMutableArray.h"
 
 @interface NSMutableArray (AMCocoaExtensions)
-- (id)popLastObject;
+- (id)am_popLastObject;
 @end
 

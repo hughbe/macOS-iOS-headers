@@ -8,19 +8,35 @@
 
 #import "NSCopying.h"
 
-@class GEOMapRegion, NSString;
+@class GEOMapRegion, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDPopularNearbySearchResult : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     GEOMapRegion *_displayMapRegion;
     NSString *_sectionHeader;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     BOOL _isChainResultSet;
-    CDStruct_5984ff81 _has;
+    struct {
+        unsigned int has_isChainResultSet:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_displayMapRegion:1;
+        unsigned int read_sectionHeader:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_displayMapRegion:1;
+        unsigned int wrote_sectionHeader:1;
+        unsigned int wrote_isChainResultSet:1;
+    } _flags;
 }
 
-@property(nonatomic) BOOL isChainResultSet; // @synthesize isChainResultSet=_isChainResultSet;
-@property(retain, nonatomic) NSString *sectionHeader; // @synthesize sectionHeader=_sectionHeader;
-@property(retain, nonatomic) GEOMapRegion *displayMapRegion; // @synthesize displayMapRegion=_displayMapRegion;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -28,12 +44,19 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(nonatomic) BOOL hasIsChainResultSet;
+@property(nonatomic) BOOL isChainResultSet;
+@property(retain, nonatomic) NSString *sectionHeader;
 @property(readonly, nonatomic) BOOL hasSectionHeader;
+- (void)_readSectionHeader;
+@property(retain, nonatomic) GEOMapRegion *displayMapRegion;
 @property(readonly, nonatomic) BOOL hasDisplayMapRegion;
-- (void)dealloc;
+- (void)_readDisplayMapRegion;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

@@ -8,42 +8,60 @@
 
 #import "NSCopying.h"
 
-@class GEOLocation, NSString;
+@class GEOLocation, NSString, PBDataReader;
 
 @interface GEOSignificantLocation : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     double _confidence;
     NSString *_identifier;
     GEOLocation *_location;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     unsigned int _locationIndex;
     unsigned int _numberOfVisitsBucket;
     struct {
-        unsigned int confidence:1;
-        unsigned int locationIndex:1;
-        unsigned int numberOfVisitsBucket:1;
-    } _has;
+        unsigned int has_confidence:1;
+        unsigned int has_locationIndex:1;
+        unsigned int has_numberOfVisitsBucket:1;
+        unsigned int read_identifier:1;
+        unsigned int read_location:1;
+        unsigned int wrote_confidence:1;
+        unsigned int wrote_identifier:1;
+        unsigned int wrote_location:1;
+        unsigned int wrote_locationIndex:1;
+        unsigned int wrote_numberOfVisitsBucket:1;
+    } _flags;
 }
 
-@property(nonatomic) double confidence; // @synthesize confidence=_confidence;
-@property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-@property(nonatomic) unsigned int numberOfVisitsBucket; // @synthesize numberOfVisitsBucket=_numberOfVisitsBucket;
-@property(nonatomic) unsigned int locationIndex; // @synthesize locationIndex=_locationIndex;
-@property(retain, nonatomic) GEOLocation *location; // @synthesize location=_location;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)copyTo:(id)arg1;
+- (void)clearSensitiveFields;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(nonatomic) BOOL hasConfidence;
+@property(nonatomic) double confidence;
+@property(retain, nonatomic) NSString *identifier;
 @property(readonly, nonatomic) BOOL hasIdentifier;
+- (void)_readIdentifier;
 @property(nonatomic) BOOL hasNumberOfVisitsBucket;
+@property(nonatomic) unsigned int numberOfVisitsBucket;
 @property(nonatomic) BOOL hasLocationIndex;
+@property(nonatomic) unsigned int locationIndex;
+@property(retain, nonatomic) GEOLocation *location;
 @property(readonly, nonatomic) BOOL hasLocation;
-- (void)dealloc;
+- (void)_readLocation;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

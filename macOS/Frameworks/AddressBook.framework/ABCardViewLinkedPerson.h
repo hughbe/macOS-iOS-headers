@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewLinkedPerson : NSObject <NSCopying>
 {
     NSString *_fullName;
@@ -21,6 +20,7 @@ __attribute__((visibility("hidden")))
     BOOL _isPreferredForName;
 }
 
+- (void).cxx_destruct;
 @property(readonly) BOOL isPreferredForName; // @synthesize isPreferredForName=_isPreferredForName;
 @property(readonly) BOOL showName; // @synthesize showName=_showName;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
@@ -31,7 +31,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithFullName:(id)arg1 accountName:(id)arg2 unified:(BOOL)arg3 identifier:(id)arg4 showName:(BOOL)arg5 isPreferredForName:(BOOL)arg6;
 
 @end

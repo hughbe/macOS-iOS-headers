@@ -10,15 +10,15 @@
 
 @interface CKOperationFlowControlManager : NSObject
 {
-    NSMutableDictionary *_flowControlledOperationClasses;
+    NSMutableDictionary *_flowControlledOperationKeys;
 }
 
-@property(readonly) NSMutableDictionary *flowControlledOperationClasses; // @synthesize flowControlledOperationClasses=_flowControlledOperationClasses;
 - (void).cxx_destruct;
+@property(readonly) NSMutableDictionary *flowControlledOperationKeys; // @synthesize flowControlledOperationKeys=_flowControlledOperationKeys;
 - (void)unlimitAllOperations;
-- (void)limitOperation:(id)arg1 retryAfter:(id)arg2;
+- (void)limitOperation:(id)arg1 retryAfter:(id)arg2 error:(id)arg3;
 - (double)secondsUntilUnlimited:(id)arg1;
-- (BOOL)isOperationLimited:(id)arg1;
+- (BOOL)isOperationLimited:(id)arg1 outLimitError:(id *)arg2;
 - (id)CKStatusReportArray;
 - (id)init;
 

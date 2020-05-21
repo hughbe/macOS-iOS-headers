@@ -6,11 +6,12 @@
 
 #import <Suggestions/SGTQueryGenius.h>
 
-@class ABAddressBook, NSArray, NSMutableDictionary, NSString;
+@class ABAddressBook, NSArray, NSMutableDictionary, NSPersonNameComponentsFormatter, NSString;
 
 @interface SGTMailQueryGenius : SGTQueryGenius
 {
     ABAddressBook *ab;
+    NSPersonNameComponentsFormatter *personFormatter;
     NSMutableDictionary *imageCache;
     NSMutableDictionary *uniqueIDToLoader;
     BOOL contentSearchEnabled;
@@ -31,6 +32,7 @@
 + (id)peopleCategory;
 + (id)messageCategory;
 + (id)didYouMeanCategory;
+- (void).cxx_destruct;
 @property(copy) NSString *contentSearchDisabledExplanation; // @synthesize contentSearchDisabledExplanation;
 @property(getter=isContentSearchEnabled) BOOL contentSearchEnabled; // @synthesize contentSearchEnabled;
 - (id)suggestionForUnknownPersonWithName:(id)arg1 address:(id)arg2;

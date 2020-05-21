@@ -16,14 +16,14 @@
     NSXPCInterface *helperInterface;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSXPCInterface *helperInterface; // @synthesize helperInterface;
 @property(retain) NSXPCConnection *helperConnection; // @synthesize helperConnection;
 @property(retain) NSString *tracingUUID; // @synthesize tracingUUID;
 @property unsigned int uid; // @synthesize uid;
-- (void).cxx_destruct;
 - (void)removeAllDeliveredNotifications;
 - (void)showNotificationWithTitle:(id)arg1 informativeText:(id)arg2 actionButtonTitle:(id)arg3 action:(long long)arg4;
-- (BOOL)encryptDiskWithiCloudUser:(id)arg1 iCloudPassword:(id)arg2 localUser:(id)arg3 localPassword:(id)arg4 andBag:(id)arg5;
+- (BOOL)encryptDiskWithiCloudUser:(id)arg1 iCloudPassword:(id)arg2 localUser:(id)arg3 localPassword:(id)arg4 andBag:(id)arg5 returningError:(id *)arg6;
 - (BOOL)doImportWithParameters:(id)arg1 pathMap:(id)arg2 error:(id *)arg3;
 - (void)setMigrationRequestUUID:(id)arg1;
 - (void)connectToHelper;

@@ -15,8 +15,8 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)scriptingRGBColorWithDescriptor:(id)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSArray *colors; // @synthesize colors=_colors;
-- (void)dealloc;
 - (id)scriptingRGBColorDescriptor;
 
 @end

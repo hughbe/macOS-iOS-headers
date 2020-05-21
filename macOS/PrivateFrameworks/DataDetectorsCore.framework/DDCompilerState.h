@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class DDGrammar, NSDictionary;
 
 __attribute__((visibility("hidden")))
-@interface DDCompilerState : NSObject <NSCoding>
+@interface DDCompilerState : NSObject <NSSecureCoding>
 {
     DDGrammar *_grammar;
     struct __CFArray *_states;
@@ -24,14 +24,13 @@ __attribute__((visibility("hidden")))
     NSDictionary *_InternalNonTerminalToTerminalNonExternal;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(readonly) DDGrammar *grammar; // @synthesize grammar=_grammar;
 - (struct __CFString *)_copyDescriptionOfInternalToken:(long long)arg1;
 - (long long)_resolveInternalNonTerminalID:(long long)arg1;
 - (long long)_resolveInternalTerminalID:(long long)arg1;
 - (id)copyItemSetForStateIndex:(long long)arg1;
 - (struct __CFString *)copyItemSetDescriptionForStateWithIndex:(long long)arg1;
-- (void)setNonTerminalPermutation:(struct __DDPermutation *)arg1;
-- (void)setTerminalPermutation:(struct __DDPermutation *)arg1;
 - (void)setPlCollection:(struct __DDProtoLexemeCollection *)arg1;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;

@@ -6,20 +6,19 @@
 
 #import "NSValueTransformer.h"
 
-@class ABCNInstantMessageAddress;
+@class CNInstantMessageAddress;
 
-__attribute__((visibility("hidden")))
 @interface AKInstantMessageAddressValueTransformer : NSValueTransformer
 {
-    ABCNInstantMessageAddress *_lastInstantMessageAddress;
+    CNInstantMessageAddress *_lastInstantMessageAddress;
 }
 
 + (Class)transformedValueClass;
 + (BOOL)allowsReverseTransformation;
-@property(retain, nonatomic) ABCNInstantMessageAddress *lastInstantMessageAddress; // @synthesize lastInstantMessageAddress=_lastInstantMessageAddress;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CNInstantMessageAddress *lastInstantMessageAddress; // @synthesize lastInstantMessageAddress=_lastInstantMessageAddress;
 - (id)reverseTransformedValue:(id)arg1;
 - (id)transformedValue:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

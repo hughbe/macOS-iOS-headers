@@ -8,31 +8,44 @@
 
 #import "IDSBatchIDQueryControllerDelegate.h"
 
-@class IDSBatchIDQueryController, NSMutableDictionary, NSString;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface TUIDSLookupManager : NSObject <IDSBatchIDQueryControllerDelegate>
 {
+    NSObject<OS_dispatch_queue> *_queue;
+    id <TUIDSIDQueryController> _queryController;
     NSMutableDictionary *_idsFaceTimeVideoStatuses;
     NSMutableDictionary *_idsFaceTimeAudioStatuses;
-    IDSBatchIDQueryController *_batchQuerySearchVideoController;
-    IDSBatchIDQueryController *_batchQuerySearchAudioController;
+    NSMutableDictionary *_idsFaceTimeMultiwayStatuses;
+    id <TUIDSBatchIDQueryController> _batchQuerySearchVideoController;
+    id <TUIDSBatchIDQueryController> _batchQuerySearchAudioController;
+    id <TUIDSBatchIDQueryController> _batchQuerySearchMultiwayController;
+    CDUnknownBlockType _batchQueryControllerCreationBlock;
 }
 
++ (BOOL)isAnyDestinationAvailableInDestinations:(id)arg1 usingCache:(id)arg2;
 + (id)sharedManager;
-@property(retain, nonatomic) IDSBatchIDQueryController *batchQuerySearchAudioController; // @synthesize batchQuerySearchAudioController=_batchQuerySearchAudioController;
-@property(retain, nonatomic) IDSBatchIDQueryController *batchQuerySearchVideoController; // @synthesize batchQuerySearchVideoController=_batchQuerySearchVideoController;
-@property(retain, nonatomic) NSMutableDictionary *idsFaceTimeAudioStatuses; // @synthesize idsFaceTimeAudioStatuses=_idsFaceTimeAudioStatuses;
-@property(retain, nonatomic) NSMutableDictionary *idsFaceTimeVideoStatuses; // @synthesize idsFaceTimeVideoStatuses=_idsFaceTimeVideoStatuses;
 - (void).cxx_destruct;
-- (void)idStatusUpdatedForDestinations:(id)arg1 service:(id)arg2;
-- (void)_populateWithCachedDataForItems:(id)arg1;
-- (BOOL)allCurrentItemsAreKnown:(id)arg1;
-- (void)beginQueryWithItems:(id)arg1;
+@property(copy, nonatomic) CDUnknownBlockType batchQueryControllerCreationBlock; // @synthesize batchQueryControllerCreationBlock=_batchQueryControllerCreationBlock;
+@property(retain, nonatomic) id <TUIDSBatchIDQueryController> batchQuerySearchMultiwayController; // @synthesize batchQuerySearchMultiwayController=_batchQuerySearchMultiwayController;
+@property(retain, nonatomic) id <TUIDSBatchIDQueryController> batchQuerySearchAudioController; // @synthesize batchQuerySearchAudioController=_batchQuerySearchAudioController;
+@property(retain, nonatomic) id <TUIDSBatchIDQueryController> batchQuerySearchVideoController; // @synthesize batchQuerySearchVideoController=_batchQuerySearchVideoController;
+@property(readonly, nonatomic) NSMutableDictionary *idsFaceTimeMultiwayStatuses; // @synthesize idsFaceTimeMultiwayStatuses=_idsFaceTimeMultiwayStatuses;
+@property(readonly, nonatomic) NSMutableDictionary *idsFaceTimeAudioStatuses; // @synthesize idsFaceTimeAudioStatuses=_idsFaceTimeAudioStatuses;
+@property(readonly, nonatomic) NSMutableDictionary *idsFaceTimeVideoStatuses; // @synthesize idsFaceTimeVideoStatuses=_idsFaceTimeVideoStatuses;
+@property(readonly, nonatomic) id <TUIDSIDQueryController> queryController; // @synthesize queryController=_queryController;
+@property(readonly, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+- (void)batchQueryController:(id)arg1 updatedDestinationsStatus:(id)arg2 onService:(id)arg3 error:(id)arg4;
+- (void)beginQueryWithDestinations:(id)arg1;
 - (void)cancelQueries;
-- (BOOL)_checkAvailabilityForItem:(id)arg1 withCache:(id)arg2;
-- (BOOL)audioAvailableForItem:(id)arg1;
-- (BOOL)videoAvailableForItem:(id)arg1;
+- (BOOL)isFaceTimeMultiwayAvailableForAnyDestinationInDestinations:(id)arg1;
+- (BOOL)isFaceTimeAudioAvailableForAnyDestinationInDestinations:(id)arg1;
+- (BOOL)isFaceTimeVideoAvailableForAnyDestinationInDestinations:(id)arg1;
+- (BOOL)isFaceTimeMultiwayAvailableForItem:(id)arg1;
+- (BOOL)isFaceTimeAudioAvailableForItem:(id)arg1;
+- (BOOL)isFaceTimeVideoAvailableForItem:(id)arg1;
 - (void)dealloc;
+- (id)initWithQueryController:(id)arg1;
 - (id)init;
 
 // Remaining properties

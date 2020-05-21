@@ -14,11 +14,12 @@
 
 @class ABActionAutovalidator, ABGroupEntriesList, ABGroupListView, ABKeystrokeForwarder, NSArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABGroupListController : NSViewController <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate, NSMenuDelegate, ABBookStateSaving>
 {
     ABGroupListView *_outlineView;
     id <ABGroupHelperFactory> _helperFactory;
+    id <ABGroupDragHelper> _dragHelper;
+    id <ABGroupDropHelper> _drophelper;
     BOOL _didAwakeFromNib;
     ABGroupEntriesList *_groupEntriesList;
     NSString *_selectedGroupEntryIdentifier;
@@ -27,7 +28,6 @@ __attribute__((visibility("hidden")))
     ABKeystrokeForwarder *_keystrokeForwarder;
     SEL _entryTextDidChangeMethod;
     CDUnknownBlockType _editCompletionHandler;
-    id <ABGroupDragHelper> _dragHelper;
     NSString *_identifier;
     NSString *_autosaveName;
     NSArray *_peopleForHighlightedMembership;
@@ -36,16 +36,18 @@ __attribute__((visibility("hidden")))
     long long _disableSelectionNotificationsCount;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) id <ABAccessoryViewProvider> accessoryViewProvider; // @synthesize accessoryViewProvider=_accessoryViewProvider;
 @property(copy) CDUnknownBlockType editCompletionHandler; // @synthesize editCompletionHandler=_editCompletionHandler;
 @property(copy) NSString *autosaveName; // @synthesize autosaveName=_autosaveName;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
-@property(retain) id <ABGroupDragHelper> dragHelper; // @synthesize dragHelper=_dragHelper;
 @property(retain, nonatomic) ABGroupEntriesList *groupEntriesList; // @synthesize groupEntriesList=_groupEntriesList;
-@property id <ABGroupHelperFactory> helperFactory; // @synthesize helperFactory=_helperFactory;
+@property(retain) id <ABGroupDropHelper> dropHelper; // @synthesize dropHelper=_drophelper;
+@property(retain) id <ABGroupDragHelper> dragHelper; // @synthesize dragHelper=_dragHelper;
+@property __weak id <ABGroupHelperFactory> helperFactory; // @synthesize helperFactory=_helperFactory;
 @property(copy) NSString *selectedGroupName; // @synthesize selectedGroupName=_selectedGroupName;
 @property(copy) NSString *selectedGroupEntryIdentifier; // @synthesize selectedGroupEntryIdentifier=_selectedGroupEntryIdentifier;
-@property ABGroupListView *outlineView; // @synthesize outlineView=_outlineView;
+@property __weak ABGroupListView *outlineView; // @synthesize outlineView=_outlineView;
 - (void)reloadAccessoryViewsForEntries:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
 - (BOOL)canSelectEntryAtRow:(long long)arg1;
@@ -97,7 +99,7 @@ __attribute__((visibility("hidden")))
 - (id)outlineView:(id)arg1 namesOfPromisedFilesDroppedAtDestination:(id)arg2 forDraggedItems:(id)arg3;
 - (BOOL)outlineView:(id)arg1 writeItems:(id)arg2 toPasteboard:(id)arg3;
 - (BOOL)canDragEntries:(id)arg1;
-- (void)importFiles:(id)arg1 showImportConfirmation:(BOOL)arg2;
+- (void)importFiles:(id)arg1 showImportConfirmation:(BOOL)arg2 ignoresGuardianRestrictions:(BOOL)arg3;
 - (id)dropHelperWithDraggingInfo:(id)arg1 droppedEntry:(id)arg2 childIndex:(long long)arg3;
 - (BOOL)outlineView:(id)arg1 acceptDrop:(id)arg2 item:(id)arg3 childIndex:(long long)arg4;
 - (unsigned long long)outlineView:(id)arg1 validateDrop:(id)arg2 proposedItem:(id)arg3 proposedChildIndex:(long long)arg4;

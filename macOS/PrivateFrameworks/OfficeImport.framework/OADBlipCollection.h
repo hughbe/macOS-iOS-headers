@@ -14,11 +14,11 @@ __attribute__((visibility("hidden")))
     NSMutableArray *mBlips;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableArray *blips; // @synthesize blips=mBlips;
 - (unsigned int)blipCount;
 - (unsigned int)addBlip:(id)arg1;
 - (id)blipAtIndex:(int)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

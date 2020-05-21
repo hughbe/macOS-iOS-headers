@@ -11,9 +11,10 @@ __attribute__((visibility("hidden")))
 {
 }
 
+- (struct TString)authorizationPrompt;
 - (void)setUpOperationRecordForIndex:(unsigned long long)arg1 withName:(const struct TString *)arg2 andExtensionState:(struct TriStateBool)arg3;
 - (void)configureOperationRecord:(struct TOperationRecord *)arg1 forNode:(const struct TFENode *)arg2;
-- (id)newDelegate;
+- (id)makeDelegate;
 
 @end
 

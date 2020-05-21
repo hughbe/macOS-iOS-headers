@@ -8,10 +8,11 @@
 
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
+#import "SGRealtimeSuggestion.h"
 
 @class NSString, SGEvent;
 
-@interface SGRealtimeEvent : NSObject <NSSecureCoding, NSCopying>
+@interface SGRealtimeEvent : NSObject <NSSecureCoding, NSCopying, SGRealtimeSuggestion>
 {
     BOOL _isHarvested;
     int _state;
@@ -30,19 +31,23 @@
 + (id)realtimeEventForNewEvent:(id)arg1 harvested:(BOOL)arg2;
 + (id)realtimeEventForNewEvent:(id)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL isHarvested; // @synthesize isHarvested=_isHarvested;
 @property(readonly, nonatomic) NSString *eventIdentifier; // @synthesize eventIdentifier=_eventIdentifier;
 @property(readonly, nonatomic) SGEvent *event; // @synthesize event=_event;
 @property(readonly, nonatomic) int state; // @synthesize state=_state;
-- (void).cxx_destruct;
-- (id)description;
-- (unsigned long long)hash;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqualToRealtimeEvent:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithState:(int)arg1 event:(id)arg2 eventIdentifier:(id)arg3 harvested:(BOOL)arg4;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

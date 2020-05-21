@@ -10,6 +10,7 @@
 {
 }
 
++ (id)validKeyPathsForPredicate;
 + (id)sharedInstance;
 - (id)convertToEvaluationPredicateFromComparisonUIPredicate:(id)arg1 withItemType:(id)arg2;
 - (id)_convertToEvaluationPredicateFromPathComparisonUIPredicate:(id)arg1;

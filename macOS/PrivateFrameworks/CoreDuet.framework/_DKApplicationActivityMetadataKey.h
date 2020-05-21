@@ -10,10 +10,17 @@
 {
 }
 
++ (id)suggestedInvocationPhrase;
++ (id)contentDescription;
++ (id)userActivityRequiredString;
 + (id)expirationDate;
++ (id)isEligibleForPrediction;
++ (id)isPubliclyIndexable;
++ (id)itemRelatedContentURL;
 + (id)itemRelatedUniqueIdentifier;
 + (id)itemIdentifier;
 + (id)activityType;
++ (id)userActivityUUID;
 + (id)title;
 
 @end

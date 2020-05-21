@@ -23,6 +23,9 @@
 + (id)_element:(id)arg1 coalescedAttributesDictionaryWithChildrenNamed:(id)arg2;
 + (id)maxSupportedSpecVersion;
 + (BOOL)supportsSecureCoding;
+- (id)bridgeBuildGroup;
+- (id)bridgeBuildVersion;
+- (id)bridgeElement;
 - (id)localizedStringForKey:(id)arg1 value:(id)arg2;
 - (void)setStringsDictionary:(id)arg1 forLocalization:(id)arg2;
 - (id)stringsDictionaryForLocalization:(id)arg1;
@@ -31,6 +34,7 @@
 - (id)searchAttributesForIdentifier:(id)arg1;
 - (id)_searchAttributeDictionaryForSearchElement:(id)arg1;
 - (id)orderedSearchIdentifiers;
+- (void)_setEnabledValue:(id)arg1 forDomain:(int)arg2;
 - (void)setEnabledValue:(id)arg1 forDomain:(int)arg2;
 - (id)enabledScriptForDomain:(int)arg1 creatingIfNeeded:(BOOL)arg2;
 - (id)enabledValueForDomain:(int)arg1;
@@ -46,6 +50,7 @@
 - (id)_pkgRefsInOrder;
 - (id)_pkgRefsByIdentifier;
 - (void)__cachePkgRefElement:(id)arg1;
+- (id)resourceEnabledScriptForKey:(id)arg1;
 - (id)_futureSystemVersionDictionary;
 - (void)setRequiredBundleComponents:(id)arg1 requireAll:(BOOL)arg2 description:(id)arg3;
 - (id)descriptionOfRequiredBundleComponents;
@@ -63,6 +68,8 @@
 - (id)descriptionOfRequiredGraphicsHardware;
 - (void)setRequireSingleGraphicsDevice:(BOOL)arg1;
 - (BOOL)requireSingleGraphicsDevice;
+- (void)setRequiredMetalDevicePredicate:(id)arg1;
+- (id)requiredMetalDevicePredicate;
 - (void)setRequiredCLDevicePredicate:(id)arg1;
 - (id)requiredCLDevicePredicate;
 - (void)setRequiredGLRendererPredicate:(id)arg1;

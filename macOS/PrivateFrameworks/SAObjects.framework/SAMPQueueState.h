@@ -8,7 +8,7 @@
 
 #import "SABackgroundContextObject.h"
 
-@class NSNumber, NSString, SAMPMediaItem, SAMPNowPlayingQueuePosition, SANPCommandInfo, SANPVideoAudioAndSubtitleLanguageOptions;
+@class NSDictionary, NSNumber, NSString, SAMPMediaItem, SAMPNowPlayingQueuePosition, SANPCommandInfo, SANPVideoAudioAndSubtitleLanguageOptions;
 
 @interface SAMPQueueState : AceObject <SABackgroundContextObject>
 {
@@ -18,10 +18,15 @@
 + (id)queueState;
 @property(nonatomic) int state;
 @property(copy, nonatomic) NSString *source;
+@property(copy, nonatomic) NSNumber *shuffleEnabled;
+@property(retain, nonatomic) SAMPMediaItem *previousListenedToItem;
 @property(copy, nonatomic) NSNumber *playbackRate;
 @property(retain, nonatomic) SAMPNowPlayingQueuePosition *playbackQueuePosition;
 @property(retain, nonatomic) SANPCommandInfo *nowPlayingCommandInfo;
+@property(retain, nonatomic) SAMPMediaItem *nextListeningToItem;
 @property(retain, nonatomic) SAMPMediaItem *listeningToItem;
+@property(copy, nonatomic) NSDictionary *currentListeningToContainer;
+@property(nonatomic) BOOL currentItemSteerable;
 @property(retain, nonatomic) SANPVideoAudioAndSubtitleLanguageOptions *audioAndSubtitleLanguageOptions;
 @property(copy, nonatomic) NSString *applicationIdentifier;
 - (id)encodedClassName;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class BrowserTabViewItem, BrowserWKView, NSArray, NSMutableArray, NSString;
+@class BrowserTabViewItem, BrowserViewController, NSArray, NSMutableArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface BackgroundLoad : NSObject
@@ -15,9 +15,8 @@ __attribute__((visibility("hidden")))
     struct Array _currentPageBackList;
     struct BackForwardListItem _currentPageCurrentBackForwardListItem;
     struct Array _backgroundLoadPageBackList;
-    BOOL _canBeCanceled;
-    BOOL _shouldSendExtensionNavigateWhenPageIsShown;
     BOOL _reissuedBecauseResultedInDownload;
+    BOOL _triggeringAppSSO;
     int _tryCloseOfDestinationPageCompletionAction;
     NSArray *_urls;
     NSString *_tabLabel;
@@ -25,26 +24,25 @@ __attribute__((visibility("hidden")))
     NSString *_identifier;
     NSString *_collectionIdentifier;
     struct BackForwardListItem _backgroundLoadPageCurrentBackForwardListItem;
-    BrowserWKView *_wkView;
+    BrowserViewController *_browserViewController;
     BrowserTabViewItem *_destinationTabViewItem;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(nonatomic) __weak BrowserTabViewItem *destinationTabViewItem; // @synthesize destinationTabViewItem=_destinationTabViewItem;
-@property(nonatomic) __weak BrowserWKView *wkView; // @synthesize wkView=_wkView;
+@property(nonatomic) __weak BrowserViewController *browserViewController; // @synthesize browserViewController=_browserViewController;
+@property(nonatomic, getter=isTriggeringAppSSO) BOOL triggeringAppSSO; // @synthesize triggeringAppSSO=_triggeringAppSSO;
 @property(nonatomic) BOOL reissuedBecauseResultedInDownload; // @synthesize reissuedBecauseResultedInDownload=_reissuedBecauseResultedInDownload;
 @property(readonly, nonatomic) struct BackForwardListItem backgroundLoadPageCurrentBackForwardListItem; // @synthesize backgroundLoadPageCurrentBackForwardListItem=_backgroundLoadPageCurrentBackForwardListItem;
 @property(nonatomic) int tryCloseOfDestinationPageCompletionAction; // @synthesize tryCloseOfDestinationPageCompletionAction=_tryCloseOfDestinationPageCompletionAction;
-@property(nonatomic) BOOL shouldSendExtensionNavigateWhenPageIsShown; // @synthesize shouldSendExtensionNavigateWhenPageIsShown=_shouldSendExtensionNavigateWhenPageIsShown;
-@property(nonatomic) BOOL canBeCanceled; // @synthesize canBeCanceled=_canBeCanceled;
 @property(copy, nonatomic) NSString *collectionIdentifier; // @synthesize collectionIdentifier=_collectionIdentifier;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy, nonatomic) NSString *httpReferrer; // @synthesize httpReferrer=_httpReferrer;
 @property(copy, nonatomic) NSString *tabLabel; // @synthesize tabLabel=_tabLabel;
 @property(copy, nonatomic) NSArray *urls; // @synthesize urls=_urls;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (void)updateBackForwardList;
-- (void)setUpSessionStateUsingContentViewController:(struct BrowserContentViewController *)arg1;
+- (void)setUpSessionStateWithoutNavigationUsingBrowserViewController:(id)arg1;
 - (void)commitAllHistoryOperations;
 - (void)enqueueHistoryOperation:(id)arg1;
 @property(readonly, nonatomic) BOOL destinationPageIsTryingToClose;
@@ -52,6 +50,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic, getter=isLoading) BOOL loading;
 @property(readonly, nonatomic, getter=isCommittedAndCanBeShown) BOOL committedAndCanBeShown;
 @property(readonly, nonatomic, getter=isCommitted) BOOL committed;
+@property(readonly, copy, nonatomic) NSString *publicLoggingDescription;
 - (id)initWithURLs:(id)arg1 tabLabel:(id)arg2 identifier:(id)arg3;
 
 @end

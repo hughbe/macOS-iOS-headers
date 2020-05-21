@@ -14,6 +14,6 @@
 
 
 // Remaining properties
-@property(copy) NSString *url; // @dynamic url;
+@property(retain, nonatomic) NSString *url; // @dynamic url;
 @end
 

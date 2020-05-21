@@ -19,16 +19,21 @@ __attribute__((visibility("hidden")))
     CKDPRecordIdentifier *_recordIdentifier;
     CKDPRequestedFields *_requestedFields;
     NSString *_versionETag;
+    BOOL _shouldFailBatch;
+    struct {
+        unsigned int shouldFailBatch:1;
+    } _has;
 }
 
 + (id)options;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL shouldFailBatch; // @synthesize shouldFailBatch=_shouldFailBatch;
 @property(retain, nonatomic) CKDPAssetsToDownload *assetsToDownload; // @synthesize assetsToDownload=_assetsToDownload;
 @property(retain, nonatomic) CKDPRecordRetrieveRequestRetrieveAssetURL *getAssetURL; // @synthesize getAssetURL=_getAssetURL;
 @property(retain, nonatomic) NSString *clientVersionETag; // @synthesize clientVersionETag=_clientVersionETag;
 @property(retain, nonatomic) NSString *versionETag; // @synthesize versionETag=_versionETag;
 @property(retain, nonatomic) CKDPRequestedFields *requestedFields; // @synthesize requestedFields=_requestedFields;
 @property(retain, nonatomic) CKDPRecordIdentifier *recordIdentifier; // @synthesize recordIdentifier=_recordIdentifier;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -40,6 +45,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasShouldFailBatch;
 @property(readonly, nonatomic) BOOL hasAssetsToDownload;
 @property(readonly, nonatomic) BOOL hasGetAssetURL;
 @property(readonly, nonatomic) BOOL hasClientVersionETag;

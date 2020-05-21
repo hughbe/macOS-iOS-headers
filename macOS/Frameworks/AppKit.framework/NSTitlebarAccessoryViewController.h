@@ -30,6 +30,7 @@
 }
 
 + (id)defaultAnimationForKey:(id)arg1;
+- (void).cxx_destruct;
 @property BOOL isToolbarAccessoryView; // @synthesize isToolbarAccessoryView=_isToolbarAccessoryView;
 @property BOOL inFullScreen; // @synthesize inFullScreen=_inFullScreen;
 @property long long layoutAttribute; // @synthesize layoutAttribute=_layoutAttribute;
@@ -50,8 +51,7 @@
 - (void)_updateVisibilityAnimationWithProgress:(float)arg1;
 - (void)_startAnimatingPlacement:(BOOL)arg1;
 - (void)_setHidden:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)setHidden:(BOOL)arg1;
-- (BOOL)isHidden;
+@property(getter=isHidden) BOOL hidden;
 - (id)animationData;
 - (void)viewDidAppear;
 - (void)viewWillAppear;

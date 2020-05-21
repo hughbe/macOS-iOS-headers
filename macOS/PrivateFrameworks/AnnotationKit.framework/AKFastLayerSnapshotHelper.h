@@ -10,7 +10,7 @@
 {
 }
 
-+ (struct CGImage *)newFastSnapshotFromLayer:(id)arg1 withSourceRect:(struct CGRect)arg2;
++ (struct CGImage *)newFastSnapshotFromLayer:(id)arg1 withSourceRect:(struct CGRect)arg2 acutalSnapshotRect:(struct CGRect *)arg3;
 
 @end
 

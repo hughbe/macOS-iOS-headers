@@ -7,6 +7,6 @@
 #import "NSMutableDictionary.h"
 
 @interface NSMutableDictionary (AMCocoaExtensions)
-- (void)overwriteEntriesFromDictionary:(id)arg1;
+- (void)am_overwriteEntriesFromDictionary:(id)arg1;
 @end
 

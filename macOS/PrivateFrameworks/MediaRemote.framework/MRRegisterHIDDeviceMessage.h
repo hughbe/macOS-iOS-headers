@@ -13,9 +13,9 @@
     MRVirtualTouchDeviceDescriptor *_deviceDescriptor;
 }
 
+- (void).cxx_destruct;
 - (unsigned long long)type;
 @property(readonly, copy, nonatomic) MRVirtualTouchDeviceDescriptor *deviceDescriptor;
-- (void)dealloc;
 - (id)initWithDeviceDescriptor:(id)arg1;
 
 @end

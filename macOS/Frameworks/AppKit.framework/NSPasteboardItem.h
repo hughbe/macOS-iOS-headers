@@ -8,16 +8,16 @@
 
 #import "NSPasteboardReading.h"
 #import "NSPasteboardWriting.h"
+#import "_NSPasteboardPromiseProviderAgency.h"
 
 @class NSArray, NSPasteboard, NSString;
 
-@interface NSPasteboardItem : NSObject <NSPasteboardWriting, NSPasteboardReading>
+@interface NSPasteboardItem : NSObject <_NSPasteboardPromiseProviderAgency, NSPasteboardWriting, NSPasteboardReading>
 {
     NSPasteboard *_pasteboard;
     unsigned long long _index;
     long long _gen;
     id _auxObject;
-    void *_reserved;
 }
 
 + (id)readableTypesForPasteboard:(id)arg1;

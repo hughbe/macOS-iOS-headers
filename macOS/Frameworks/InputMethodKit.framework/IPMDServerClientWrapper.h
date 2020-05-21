@@ -9,20 +9,30 @@
 #import "IMKTextInput.h"
 #import "IMKUnicodeTextInput.h"
 #import "IMTSMSupport.h"
+#import "TIPropertyProvider.h"
 
-@class NSMutableDictionary, NSXPCConnection;
+@class NSAppearance, NSMutableDictionary, NSString, NSXPCConnection;
 
-@interface IPMDServerClientWrapper : NSObject <IMKTextInput, IMKUnicodeTextInput, IMTSMSupport>
+@interface IPMDServerClientWrapper : NSObject <IMKTextInput, IMKUnicodeTextInput, IMTSMSupport, TIPropertyProvider>
 {
     id <NSObject><IMKTextInput><IMKUnicodeTextInput><IMTSMSupport> _clientDOProxy;
     NSXPCConnection *_xpcConnection;
     BOOL _usesXPC;
     BOOL _inserting;
     unsigned long long _markedCharacterCount;
+    long long _documentIDCache;
+    struct CGRect _touchBarAvailableFrameCache;
+    NSString *_markedTextCache;
+    BOOL _currentAttributesCacheValid;
+    BOOL _currentIndexZeroAttributeCacheValid;
     long long _keyboardType;
     NSMutableDictionary *_validEvents;
     double _replyTimeout;
     BOOL _isForcedSilentCommitComposition;
+    int _windowLevel_Cache;
+    NSString *_bundleIdentifier_Cache;
+    NSAppearance *_viewEffectiveAppearance_Cache;
+    NSMutableDictionary *_attributes_Cache;
 }
 
 + (void)terminateForClientXPCConn:(id)arg1;
@@ -31,6 +41,32 @@
 + (id)clientWrapperWithClientXPCConn:(id)arg1;
 + (id)_validateClientWrapper:(id)arg1;
 + (void)invalidateConnectionsAsNecessary:(id)arg1;
+@property(nonatomic) BOOL currentIndexZeroAttributeCacheValid; // @synthesize currentIndexZeroAttributeCacheValid=_currentIndexZeroAttributeCacheValid;
+@property(nonatomic) BOOL currentAttributesCacheValid; // @synthesize currentAttributesCacheValid=_currentAttributesCacheValid;
+@property(readonly, nonatomic) NSMutableDictionary *attributes_Cache; // @synthesize attributes_Cache=_attributes_Cache;
+@property(nonatomic) struct CGRect touchBarAvailableFrameCache; // @synthesize touchBarAvailableFrameCache=_touchBarAvailableFrameCache;
+@property(nonatomic) long long documentIDCache; // @synthesize documentIDCache=_documentIDCache;
+- (void)invalidateAttributesCacheForAllIndex:(BOOL)arg1;
+- (void)setAttributes_Cache:(id)arg1 forIndex:(unsigned long long)arg2;
+- (id)attributesForCharacterIndex_Cache:(unsigned long long)arg1;
+@property(retain, nonatomic) NSAppearance *viewEffectiveAppearance_Cache; // @synthesize viewEffectiveAppearance_Cache=_viewEffectiveAppearance_Cache;
+@property(copy, nonatomic) NSString *bundleIdentifier_Cache; // @synthesize bundleIdentifier_Cache=_bundleIdentifier_Cache;
+@property(nonatomic) int windowLevel_Cache; // @synthesize windowLevel_Cache=_windowLevel_Cache;
+- (void)invalidateClientCacheOnActivateServer;
+- (BOOL)isAutomaticPeriodSubstitutionEnabled_WithAvailability:(char *)arg1;
+- (BOOL)isAutomaticCapitalizationEnabled_WithAvailability:(char *)arg1;
+- (BOOL)isSmartInsertDeleteEnabled_WithAvailability:(char *)arg1;
+- (BOOL)isAutomaticQuoteSubstitutionEnabled_WithAvailability:(char *)arg1;
+- (BOOL)isAutomaticDashSubstitutionEnabled_WithAvailability:(char *)arg1;
+- (BOOL)isAutomaticSpellingCorrectionEnabled_WithAvailability:(char *)arg1;
+- (BOOL)isAutomaticTextReplacementEnabled_WithAvailability:(char *)arg1;
+- (BOOL)isAutomaticTextCompletionEnabled_WithAvailability:(char *)arg1;
+- (BOOL)isGrammarCheckingEnabled_WithAvailability:(char *)arg1;
+- (BOOL)isContinuousSpellCheckingEnabled_WithAvailability:(char *)arg1;
+- (id)windowEffectiveAppearance;
+- (id)viewEffectiveAppearance;
+- (void)dismissFunctionRowItemTextInputView;
+- (void)presentFunctionRowItemTextInputView;
 - (struct CGRect)firstRectForCharacterRange:(struct _NSRange)arg1 actualRange:(struct _NSRange *)arg2;
 - (id)stringFromRange:(struct _NSRange)arg1 actualRange:(struct _NSRange *)arg2;
 - (id)uniqueClientIdentifierString;
@@ -58,6 +94,15 @@
 - (id)currentInputSourceBundleID;
 - (void)selectInputMode:(id)arg1;
 - (id)bundleIdentifier;
+- (double)touchBarTotalWidth;
+- (struct CGRect)touchBarAvailableFrame;
+- (BOOL)shouldSuppressCandidates;
+- (BOOL)isSecureMode;
+- (long long)spellCheckerDocumentTag;
+- (int)processIdentifier;
+- (id)getApplicationPropertyValue:(unsigned long long)arg1;
+- (void)setApplicationProperty:(unsigned long long)arg1 withValue:(id)arg2 waitUntilDone:(BOOL)arg3;
+- (BOOL)_TIPropertyValueIsValid:(unsigned long long)arg1;
 - (BOOL)supportsUnicode;
 - (int)windowLevel;
 - (void)overrideKeyboardWithKeyboardNamed:(id)arg1;
@@ -81,6 +126,7 @@
 - (void)dealloc;
 - (void)setForcedSilentCommitComposition:(BOOL)arg1;
 - (BOOL)isForcedSilentCommitComposition;
+- (void)setMarkedText_Cache:(id)arg1;
 - (unsigned long long)markedCharacterCount;
 - (BOOL)inserting;
 - (void)replyWaitCount_decrementWithLocking;

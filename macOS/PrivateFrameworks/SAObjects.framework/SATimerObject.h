@@ -14,8 +14,11 @@
 
 + (id)objectWithDictionary:(id)arg1 context:(id)arg2;
 + (id)object;
+@property(copy, nonatomic) NSString *type;
+@property(copy, nonatomic) NSString *title;
 @property(copy, nonatomic) NSNumber *timerValue;
 @property(copy, nonatomic) NSString *state;
+@property(copy, nonatomic) NSNumber *isFiring;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

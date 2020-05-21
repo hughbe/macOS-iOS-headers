@@ -15,6 +15,7 @@
     NSString *_bundlePath;
 }
 
+- (void).cxx_destruct;
 - (BOOL)allowsSchedulingByMe;
 - (BOOL)isOwnerMe;
 - (BOOL)isSourceInSameAccount:(id)arg1 ignoringOwner:(BOOL)arg2;
@@ -27,7 +28,6 @@
 - (BOOL)removeEntity:(id)arg1 inManagedObjectContext:(id)arg2;
 - (BOOL)modifyEntity:(id)arg1 inManagedObjectContext:(id)arg2;
 - (BOOL)addEntity:(id)arg1 inManagedObjectContext:(id)arg2;
-- (BOOL)markVersionForUID:(id)arg1 forDate:(id)arg2 withComment:(id)arg3 withTagID:(id)arg4;
 - (id)allEventsInManagedObjectContext:(id)arg1;
 - (id)allToDosInManagedObjectContext:(id)arg1;
 - (id)allEntitiesInManagedObjectContext:(id)arg1;
@@ -46,7 +46,6 @@
 - (id)freeBusyCache;
 - (id)type;
 - (BOOL)hasCapability:(int)arg1;
-- (void)dealloc;
 - (id)bundlePath;
 - (void)setBundlePath:(id)arg1;
 - (void)setManagedObjectID:(id)arg1;
@@ -60,7 +59,6 @@
 - (id)entitiesStartingBefore:(id)arg1 withEntityType:(int)arg2 includingRecurringEvents:(BOOL)arg3 inManagedObjectContext:(id)arg4;
 - (void)fireRepositoryParametersChangeNotification;
 - (void)notifyChanges;
-- (void)notifyChangesWithChangeTracker:(id)arg1;
 
 @end
 

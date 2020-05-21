@@ -6,15 +6,19 @@
 
 #import <CoreUI/CUIThemeRendition.h>
 
+@class CUIShapeEffectPreset;
+
 __attribute__((visibility("hidden")))
 @interface _CUIThemeEffectRendition : CUIThemeRendition
 {
     const struct _cuieffectdata *effectData;
+    CUIShapeEffectPreset *_effectPreset;
+    float _minimumShadowSpread;
 }
 
-+ (id)_filteredCSIDataFromBaseCSIData:(id)arg1;
 - (void)_setStructuredThemeStore:(id)arg1;
 - (id)effectPreset;
+- (void)dealloc;
 - (id)_initWithCSIHeader:(const struct _csiheader *)arg1;
 
 @end

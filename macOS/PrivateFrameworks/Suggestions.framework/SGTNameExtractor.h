@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
 + (id)nameExtensionsThatDoNotNeedCommas;
 + (id)nameExtensions;
 + (id)extractorWithString:(id)arg1;
+- (void).cxx_destruct;
 - (id)addressDomain;
 - (id)searchStringComponents;
 - (id)componentsSeparatedByCharactersRespectingQuotesAndParens:(id)arg1;
@@ -29,7 +30,6 @@ __attribute__((visibility("hidden")))
 - (id)uncommentedAddressRespectingGroups;
 - (id)uncommentedAddress;
 - (BOOL)appearsToBeAnInitial;
-- (void)dealloc;
 
 @end
 

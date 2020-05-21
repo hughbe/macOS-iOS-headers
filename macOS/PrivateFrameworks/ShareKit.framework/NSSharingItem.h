@@ -26,6 +26,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property struct CGRect shareImageContentRect; // @synthesize shareImageContentRect=_shareImageContentRect;
 @property(retain) NSImage *shareImage; // @synthesize shareImage=_shareImage;
 @property struct CGRect sourceImageContentRect; // @synthesize sourceImageContentRect=_sourceImageContentRect;
@@ -35,13 +36,13 @@
 @property(retain) NSString *string; // @synthesize string=_string;
 @property(retain) NSString *type; // @synthesize type=_type;
 @property(retain, nonatomic) NSURL *coordinatedURL; // @synthesize coordinatedURL=_coordinatedURL;
-- (void).cxx_destruct;
 - (id)shareItemData;
 - (id)shareItemImage;
 - (id)shareItemString;
 - (id)shareItemURL;
 - (id)description;
-- (BOOL)isPromiseURL;
+- (void)coordinatedURLWithCompletion:(CDUnknownBlockType)arg1;
+- (id)coordinatedURLWithError:(id *)arg1;
 @property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
 @property(retain) NSImage *image; // @dynamic image;
 - (void)encodeWithCoder:(id)arg1;

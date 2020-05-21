@@ -14,6 +14,7 @@
 
 + (id)setAppearanceWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setAppearance;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *appearance;
 - (id)encodedClassName;

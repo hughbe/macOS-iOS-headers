@@ -4,16 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <PASampling/PAAggregatedThreadAndDispatchQueue.h>
+#import <PASampling/PAAggregatedThread.h>
 
-@interface PAAggregatedMainThread : PAAggregatedThreadAndDispatchQueue
+@interface PAAggregatedMainThread : PAAggregatedThread
 {
 }
 
 - (BOOL)isMainThread;
-- (void)addStack:(id)arg1;
 - (id)debugDescription;
-- (id)initWithAggregatedTask:(id)arg1 andThreadId:(unsigned long long)arg2;
 
 @end
 

@@ -4,17 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Safari/VisualTabPickerButton.h>
+#import "NSButton.h"
 
 __attribute__((visibility("hidden")))
-@interface VisualTabPickerMuteButton : VisualTabPickerButton
+@interface VisualTabPickerMuteButton : NSButton
 {
-    int _muteButtonState;
+    long long _muteButtonState;
 }
 
-+ (struct CGSize)buttonSize;
-@property(nonatomic) int muteButtonState; // @synthesize muteButtonState=_muteButtonState;
+@property(nonatomic) long long muteButtonState; // @synthesize muteButtonState=_muteButtonState;
 - (void)_updateImageAndAccessibilityLabel;
+- (BOOL)allowsVibrancy;
 - (id)init;
 
 @end

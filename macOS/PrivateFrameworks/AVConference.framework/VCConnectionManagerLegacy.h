@@ -6,16 +6,27 @@
 
 #import <AVConference/VCConnectionManager.h>
 
+@class NSString;
+
 __attribute__((visibility("hidden")))
 @interface VCConnectionManagerLegacy : VCConnectionManager
 {
     id <VCConnectionProtocol> _pendingPrimaryConnection;
     id <VCConnectionProtocol> _pendingSecondaryConnection;
+    NSString *_relayConnectionID;
 }
 
+@property(copy, nonatomic) NSString *relayConnectionID; // @synthesize relayConnectionID=_relayConnectionID;
 @property(retain, nonatomic) id <VCConnectionProtocol> pendingSecondaryConnection; // @synthesize pendingSecondaryConnection=_pendingSecondaryConnection;
 @property(retain, nonatomic) id <VCConnectionProtocol> pendingPrimaryConnection; // @synthesize pendingPrimaryConnection=_pendingPrimaryConnection;
-- (BOOL)hasConnectionWithSourceDestinationInfo:(struct tagVCSourceDestinationInfo *)arg1 isPrimary:(char *)arg2;
+- (void)updateConnectionForDuplication;
+- (unsigned int)getByteCountWithIndex:(unsigned char)arg1 isOutgoing:(BOOL)arg2;
+- (unsigned int)getPacketCountWithIndex:(unsigned char)arg1 isOutgoing:(BOOL)arg2;
+- (void)synchronizeParticipantGenerationCounter:(unsigned char)arg1;
+- (void)updatePacketCountAndByteCountWithIndex:(unsigned char)arg1 packetSize:(int)arg2 numOfStreamId:(int)arg3 isPriorityIncluded:(BOOL)arg4 isOutgoing:(BOOL)arg5;
+- (void)updateSessionStats:(unsigned short)arg1;
+- (id)copyConnectionWithSourceDestinationInfo:(struct tagVCSourceDestinationInfo *)arg1 isPrimary:(char *)arg2;
+- (BOOL)shouldAcceptDataFromSourceDestinationInfo:(struct tagVCSourceDestinationInfo *)arg1;
 - (void)sourceDestinationInfo:(struct tagVCSourceDestinationInfo *)arg1 isSourceOnCellular:(char *)arg2 isSourceIPv6:(char *)arg3;
 - (void)updateCellularTech:(int)arg1 forLocalInterface:(BOOL)arg2;
 - (void)updateCellularMTU:(int)arg1;
@@ -32,6 +43,7 @@ __attribute__((visibility("hidden")))
 - (int)shouldNominateCandidatePairInternal:(struct tagCANDIDATEPAIR *)arg1 interfaceMask:(int)arg2 nominated:(int *)arg3 demote:(int *)arg4 connectionPriority:(int *)arg5 replaceOnly:(int *)arg6;
 - (int)shouldNominateCandidatePair:(struct tagCANDIDATEPAIR *)arg1 interfaceMask:(int)arg2 nominated:(int *)arg3 demote:(int *)arg4 connectionPriority:(int *)arg5 replaceOnly:(int *)arg6;
 - (void)dealloc;
+- (id)init;
 
 @end
 

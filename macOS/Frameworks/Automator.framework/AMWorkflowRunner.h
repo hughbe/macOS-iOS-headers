@@ -6,17 +6,21 @@
 
 #import "NSObject.h"
 
-@class AMAction, NSArray, NSError, NSMutableArray, NSMutableDictionary, NSOperationQueue, NSString;
+#import "AMRunnerControl.h"
+#import "AMRunnerState.h"
+#import "NSProgressReporting.h"
 
-@interface AMWorkflowRunner : NSObject
+@class AMAction, AMFFeedController, AMWorkflow, NSArray, NSError, NSMapTable, NSMutableArray, NSMutableDictionary, NSObject<AMWorkflowRunnerDelegate>, NSOperationQueue, NSProgress, NSString;
+
+@interface AMWorkflowRunner : NSObject <AMRunnerState, AMRunnerControl, NSProgressReporting>
 {
     NSMutableArray *_runningActions;
     NSArray *_loopData;
     NSArray *_loopActions;
     NSMutableDictionary *_loopOutput;
     id _workflow;
-    id _delegate;
-    id _owner;
+    NSObject<AMWorkflowRunnerDelegate> *_delegate;
+    NSObject<AMWorkflowRunnerDelegate> *_owner;
     unsigned long long _state;
     unsigned long long _runNumber;
     unsigned long long _loopIndex;
@@ -31,57 +35,55 @@
     NSOperationQueue *_operationQueue;
     BOOL _isLooping;
     BOOL _shouldPauseBeforeNextAction;
-    struct __AMWorkflowRunnerDelegateRespondTo {
-        unsigned int workflowRunnerWillRun:1;
-        unsigned int workflowRunnerWillStep:1;
-        unsigned int workflowRunnerWillStop:1;
-        unsigned int workflowRunnerWillPause:1;
-        unsigned int workflowRunnerDidRun:1;
-        unsigned int workflowRunnerDidStep:1;
-        unsigned int workflowRunnerDidStop:1;
-        unsigned int workflowRunnerDidPause:1;
-        unsigned int workflowRunnerWillRunAction:1;
-        unsigned int workflowRunnerWillRunActionWithUUID:1;
-        unsigned int workflowRunnerDidRunAction:1;
-        unsigned int workflowRunnerDidRunActionWithUUID:1;
-        unsigned int workflowRunnerDidError:1;
-        unsigned int workflowRunnerDidLogMessageOfTypeFromAction:1;
-        unsigned int workflowRunnerWillRunConversion:1;
-        unsigned int workflowRunnerDidRunConversion:1;
-        unsigned int workflowRunnerDidFinish:1;
-        unsigned int workflowRunnerDidResumeWithAction:1;
-        unsigned int workflowRunnerProgressDidChangeForAction:1;
-        unsigned int reserved:13;
-    } _delegateRespondTo;
-    struct __AMWorkflowRunnerOwnerRespondTo {
-        unsigned int workflowRunnerWillRun:1;
-        unsigned int workflowRunnerWillStep:1;
-        unsigned int workflowRunnerWillStop:1;
-        unsigned int workflowRunnerWillPause:1;
-        unsigned int workflowRunnerDidRun:1;
-        unsigned int workflowRunnerDidStep:1;
-        unsigned int workflowRunnerDidStop:1;
-        unsigned int workflowRunnerDidPause:1;
-        unsigned int workflowRunnerWillRunAction:1;
-        unsigned int workflowRunnerDidRunAction:1;
-        unsigned int workflowRunnerDidError:1;
-        unsigned int workflowRunnerDidLogMessageOfTypeFromAction:1;
-        unsigned int workflowRunnerDidFinish:1;
-        unsigned int workflowRunnerDidResumeWithAction:1;
-        unsigned int workflowRunnerProgressDidChangeForAction:1;
-        unsigned int reserved:17;
-    } _ownerRespondTo;
+    NSProgress *_workflowProgress;
+    NSProgress *_actionProgress;
+    NSMapTable *_childProgressesByAction;
+    AMFFeedController *_feedController;
     NSMutableArray *_progressValueObservedList;
+    NSMutableArray *_actionOperationObservedList;
 }
 
++ (id)progressForWorkflow:(id)arg1;
++ (id)_operationKeysToObserve;
+- (void).cxx_destruct;
+@property(retain) NSMutableArray *actionOperationObservedList; // @synthesize actionOperationObservedList=_actionOperationObservedList;
+@property(retain) AMFFeedController *feedController; // @synthesize feedController=_feedController;
+@property(retain) NSMapTable *childProgressesByAction; // @synthesize childProgressesByAction=_childProgressesByAction;
+@property(retain) NSProgress *actionProgress; // @synthesize actionProgress=_actionProgress;
+@property(retain) NSProgress *workflowProgress; // @synthesize workflowProgress=_workflowProgress;
+@property(retain) NSMutableArray *progressValueObservedList; // @synthesize progressValueObservedList=_progressValueObservedList;
+@property BOOL shouldPauseBeforeNextAction; // @synthesize shouldPauseBeforeNextAction=_shouldPauseBeforeNextAction;
+@property BOOL isLooping; // @synthesize isLooping=_isLooping;
+@property(retain) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
+@property double endTime; // @synthesize endTime=_endTime;
+@property double startTime; // @synthesize startTime=_startTime;
+@property __weak AMAction *lastRunAction; // @synthesize lastRunAction=_lastRunAction;
+@property unsigned long long runNumber; // @synthesize runNumber=_runNumber;
+@property unsigned long long numberOfTimesToLoop; // @synthesize numberOfTimesToLoop=_numberOfTimesToLoop;
+@property unsigned long long loopIndex; // @synthesize loopIndex=_loopIndex;
+@property(retain) NSMutableDictionary *loopOutput; // @synthesize loopOutput=_loopOutput;
+@property(retain) NSArray *loopActions; // @synthesize loopActions=_loopActions;
+@property(retain) NSArray *loopData; // @synthesize loopData=_loopData;
+@property(retain) id currentData; // @synthesize currentData=_currentData;
+@property(retain) NSError *currentError; // @synthesize currentError=_currentError;
+@property unsigned long long state; // @synthesize state=_state;
+@property(retain) NSMutableArray *runningActions; // @synthesize runningActions=_runningActions;
+@property(nonatomic) __weak NSObject<AMWorkflowRunnerDelegate> *owner; // @synthesize owner=_owner;
+@property(retain, nonatomic) NSObject<AMWorkflowRunnerDelegate> *delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) AMWorkflow *workflow; // @synthesize workflow=_workflow;
 @property(retain) NSString *workflowID; // @synthesize workflowID=_workflowID;
 @property(retain) NSString *currentRunUUID; // @synthesize currentRunUUID=_currentRunUUID;
-- (double)totalRunTime;
-- (double)startTime;
+- (void)clearWorkflowProgress;
+- (void)completeWorkflowProgress;
+- (void)completeProgressForAction:(id)arg1;
+- (void)updateProgressForAction:(id)arg1;
+- (void)startProgressForAction:(id)arg1;
+@property(readonly) double totalRunTime;
 - (void)logMessage:(id)arg1 withLevel:(unsigned long long)arg2 fromAction:(id)arg3;
 - (void)_workflowRunner_logMessageOnMainThread:(id)arg1;
 - (id)errorWithError:(id)arg1 fromAction:(id)arg2;
-- (oneway void)actionDidRun:(id)arg1 error:(id)arg2;
+- (void)actionDidRun:(id)arg1 error:(id)arg2;
+- (void)_workflowRunner_actionErrorOnMainThreadWithDictionary:(id)arg1;
 - (void)_workflowRunner_didRunActionOnMainThread:(id)arg1;
 - (void)actionWillRun:(id)arg1;
 - (void)_workflowRunner_willRunActionOnMainThread:(id)arg1;
@@ -101,6 +103,12 @@
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)_observeValueOnMainThreadWithDictionary:(id)arg1;
 - (void)enqueueAction:(id)arg1;
+- (void)_removeProgressObservingForActionIfNeeded:(id)arg1;
+- (void)_addProgressObservingForActionIfNeeded:(id)arg1;
+- (void)_clearAllProgressObserving;
+- (void)_clearAllActionOperationObserving;
+- (void)_unobserveActionOperation:(id)arg1;
+- (void)_observeActionOperation:(id)arg1;
 - (void)workflowCompleted;
 - (void)runAction:(id)arg1 withInput:(id)arg2 loopParent:(id)arg3;
 - (void)runNextActionAndConvertDataFromAction:(id)arg1;
@@ -110,36 +118,19 @@
 - (void)runAction:(id)arg1;
 - (void)run;
 - (id)preflightWorkflow;
-- (void)setNumberOfTimesToLoop:(unsigned long long)arg1;
-- (unsigned long long)numberOfTimesToLoop;
-- (void)setLoopIndex:(unsigned long long)arg1;
-- (unsigned long long)loopIndex;
-- (void)setLoopOutput:(id)arg1;
-- (id)loopOutput;
-- (void)setLoopActions:(id)arg1;
-- (id)loopActions;
-- (void)setLoopData:(id)arg1;
-- (id)loopData;
-- (void)setCurrentData:(id)arg1;
-- (id)currentData;
-- (void)setCurrentError:(id)arg1;
-- (id)currentError;
-- (BOOL)isStopping;
-- (BOOL)isPaused;
-- (BOOL)isRunning;
-- (BOOL)isIdle;
-- (void)setState:(unsigned long long)arg1;
-- (unsigned long long)state;
-- (void)setOwner:(id)arg1;
-- (id)owner;
-- (void)setDelegate:(id)arg1;
-- (id)delegate;
-- (void)setRunningActions:(id)arg1;
-- (id)runningActions;
-- (void)setWorkflow:(id)arg1;
-- (id)workflow;
+@property(readonly) NSProgress *progress;
+@property(readonly, getter=isStopping) BOOL stopping;
+@property(readonly, getter=isPaused) BOOL paused;
+@property(readonly, getter=isRunning) BOOL running;
+@property(readonly, getter=isIdle) BOOL idle;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @protocol CNAutocompleteProbeProvider <NSObject>
+- (id <CNAutocompleteSuggestionsProbe>)suggestionsProbe;
 - (id <CNAutocompletePerformanceProbe>)performanceProbe;
 - (id <CNAutocompleteUsageMonitorProbe>)usageMonitorProbe;
 @end

@@ -12,11 +12,13 @@
 {
     NSURL *_url;
     CDUnknownBlockType _shareCopyCompletionBlock;
+    CDUnknownBlockType _rootShareCopyCompletionBlock;
 }
 
+- (void).cxx_destruct;
+@property(copy) CDUnknownBlockType rootShareCopyCompletionBlock; // @synthesize rootShareCopyCompletionBlock=_rootShareCopyCompletionBlock;
 @property(copy) CDUnknownBlockType shareCopyCompletionBlock; // @synthesize shareCopyCompletionBlock=_shareCopyCompletionBlock;
 @property(retain, nonatomic) NSURL *url; // @synthesize url=_url;
-- (void).cxx_destruct;
 - (void)finishWithResult:(id)arg1 error:(id)arg2;
 - (void)main;
 - (id)initWithURL:(id)arg1;

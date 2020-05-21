@@ -11,7 +11,6 @@
 
 @class NSCollectionView, NSMutableArray, NSString, NSView, SALocalSearchReviewList, SiriUIScrollView;
 
-__attribute__((visibility("hidden")))
 @interface SiriUIReviewsViewController : SiriUISnippetViewController <NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout>
 {
     SALocalSearchReviewList *_reviewList;
@@ -33,6 +32,7 @@ __attribute__((visibility("hidden")))
     struct UIOffset _providerViewOffset;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *providerName; // @synthesize providerName=_providerName;
 @property(nonatomic) struct UIOffset providerViewOffset; // @synthesize providerViewOffset=_providerViewOffset;
 @property(retain, nonatomic) NSView *providerView; // @synthesize providerView=_providerView;
@@ -42,7 +42,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) long long reviewCharacterLimit; // @synthesize reviewCharacterLimit=_reviewCharacterLimit;
 @property(retain, nonatomic) SALocalSearchReviewList *reviewList; // @synthesize reviewList=_reviewList;
 @property(nonatomic) __weak id <SiriUIReviewsViewControllerDelegate> reviewsDelegate; // @synthesize reviewsDelegate=_reviewsDelegate;
-- (void).cxx_destruct;
 - (struct NSEdgeInsets)collectionView:(id)arg1 layout:(id)arg2 insetForSectionAtIndex:(long long)arg3;
 - (struct CGSize)collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
 - (id)_punchoutForIndexPath:(id)arg1;

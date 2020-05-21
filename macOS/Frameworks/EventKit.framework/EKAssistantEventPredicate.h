@@ -18,14 +18,13 @@
     unsigned long long _countSoFar;
 }
 
-+ (id)predicateWithStartDate:(id)arg1 endDate:(id)arg2 timeZone:(id)arg3 title:(id)arg4 location:(id)arg5 notes:(id)arg6 limit:(long long)arg7 participants:(id)arg8;
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long countSoFar; // @synthesize countSoFar=_countSoFar;
 @property(readonly, nonatomic) long long limit; // @synthesize limit=_limit;
 @property(readonly, nonatomic) NSArray *participants; // @synthesize participants=_participants;
 @property(readonly, copy, nonatomic) NSString *notes; // @synthesize notes=_notes;
 @property(readonly, copy, nonatomic) NSString *location; // @synthesize location=_location;
 @property(readonly, copy, nonatomic) NSString *title; // @synthesize title=_title;
-- (void).cxx_destruct;
 - (id)_sortedParticipants;
 - (id)predicateFormat;
 - (BOOL)evaluateWithObject:(id)arg1;
@@ -33,7 +32,7 @@
 - (unsigned long long)hash;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithStartDate:(id)arg1 endDate:(id)arg2 timeZone:(id)arg3 title:(id)arg4 location:(id)arg5 notes:(id)arg6 limit:(long long)arg7 participants:(id)arg8;
+- (id)initWithStartDate:(id)arg1 endDate:(id)arg2 timeZone:(id)arg3 title:(id)arg4 location:(id)arg5 notes:(id)arg6 limit:(long long)arg7 calendars:(id)arg8 participants:(id)arg9;
 
 @end
 

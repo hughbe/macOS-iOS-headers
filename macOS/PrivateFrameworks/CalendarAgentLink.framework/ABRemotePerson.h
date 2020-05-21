@@ -42,6 +42,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain) NSArray *URLs; // @synthesize URLs=_URLs;
 @property(copy) NSString *title; // @synthesize title=_title;
 @property(copy) NSString *suffix; // @synthesize suffix=_suffix;
@@ -58,7 +59,7 @@
 @property(copy) NSString *notes; // @synthesize notes=_notes;
 @property(copy) NSString *nickname; // @synthesize nickname=_nickname;
 @property(copy) NSString *middleName; // @synthesize middleName=_middleName;
-@property(retain) NSArray *messagingAddresses; // @synthesize messagingAddresses=_messagingAddresses;
+@property(retain, nonatomic) NSArray *messagingAddresses; // @synthesize messagingAddresses=_messagingAddresses;
 @property(copy) NSString *maidenName; // @synthesize maidenName=_maidenName;
 @property(copy) NSString *linkId; // @synthesize linkId=_linkId;
 @property(copy) NSString *lastName; // @synthesize lastName=_lastName;
@@ -77,15 +78,14 @@
 - (void)_addYearComponentIfNeeded:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)fullNameIncludingPrefix:(BOOL)arg1 suffix:(BOOL)arg2 nickname:(BOOL)arg3 company:(BOOL)arg4;
-@property(retain) NSArray *yahooAddresses;
-@property(retain) NSArray *otherDates;
-@property(retain) NSArray *MSNAddresses;
-@property(copy) NSString *homePage;
-@property(retain) NSArray *jabberAddresses;
-@property(retain) NSArray *ICQAddresses;
-@property(retain) NSDate *birthday;
-@property(retain) NSArray *AIMAddresses;
-- (void)dealloc;
+@property(retain, nonatomic) NSArray *yahooAddresses;
+@property(retain, nonatomic) NSArray *otherDates;
+@property(retain, nonatomic) NSArray *MSNAddresses;
+@property(copy, nonatomic) NSString *homePage;
+@property(retain, nonatomic) NSArray *jabberAddresses;
+@property(retain, nonatomic) NSArray *ICQAddresses;
+@property(retain, nonatomic) NSDate *birthday;
+@property(retain, nonatomic) NSArray *AIMAddresses;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 

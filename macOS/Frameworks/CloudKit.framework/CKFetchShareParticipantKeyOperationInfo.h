@@ -6,18 +6,22 @@
 
 #import <CloudKit/CKDatabaseOperationInfo.h>
 
+#import "NSSecureCoding.h"
+
 @class NSArray, NSDictionary;
 
-@interface CKFetchShareParticipantKeyOperationInfo : CKDatabaseOperationInfo
+@interface CKFetchShareParticipantKeyOperationInfo : CKDatabaseOperationInfo <NSSecureCoding>
 {
     NSDictionary *_baseTokensByShareID;
+    NSDictionary *_childRecordIDsByShareID;
     NSArray *_shareIDs;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain, nonatomic) NSArray *shareIDs; // @synthesize shareIDs=_shareIDs;
-@property(retain, nonatomic) NSDictionary *baseTokensByShareID; // @synthesize baseTokensByShareID=_baseTokensByShareID;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *shareIDs; // @synthesize shareIDs=_shareIDs;
+@property(retain, nonatomic) NSDictionary *childRecordIDsByShareID; // @synthesize childRecordIDsByShareID=_childRecordIDsByShareID;
+@property(retain, nonatomic) NSDictionary *baseTokensByShareID; // @synthesize baseTokensByShareID=_baseTokensByShareID;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 

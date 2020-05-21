@@ -8,17 +8,21 @@
 
 #import "UnifiedFieldCompletionListParsecResultValidation.h"
 
-@class NSString;
+@class NSMutableSet, NSString;
 
 __attribute__((visibility("hidden")))
 @interface UnifiedFieldCompletionListParsecResultValidator : NSObject <UnifiedFieldCompletionListParsecResultValidation>
 {
+    NSMutableSet *_validatedResultIdentifiers;
 }
 
+- (void).cxx_destruct;
+- (void)resetValidationState;
 - (BOOL)validateParsecResult:(id)arg1 withSession:(id)arg2;
+- (BOOL)_isSFSearchResultValid:(id)arg1;
 - (BOOL)_validateSimpleResult:(id)arg1 withSession:(id)arg2;
-- (BOOL)_validateGenericResult:(id)arg1 withSession:(id)arg2;
 - (BOOL)_validateNonEmptyDescriptionInResult:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

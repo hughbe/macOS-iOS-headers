@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
 @property(readonly) double reciprocalValue; // @synthesize reciprocalValue=_reciprocalValue;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (double)valueFromBaseUnitValue:(double)arg1;

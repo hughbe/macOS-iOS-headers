@@ -17,9 +17,9 @@
 }
 
 + (BOOL)supportsSecureCoding;
-- (void)_reestablishInternalCFCachedURLResponse:(struct _CFCachedURLResponse *)arg1;
+-     // Error parsing type: v24@0:8^{_CFCachedURLResponse={__CFRuntimeBase=QAQ}^{__CFCachedURLResponse}}16, name: _reestablishInternalCFCachedURLResponse:
 - (void)_deallocInternalCFCachedURLResponse;
-- (const struct _CFCachedURLResponse *)_CFCachedURLResponse;
+-     // Error parsing type: r^{_CFCachedURLResponse={__CFRuntimeBase=QAQ}^{__CFCachedURLResponse}}16@0:8, name: _CFCachedURLResponse
 - (void)dealloc;
 @property(readonly) unsigned long long storagePolicy;
 @property(readonly, copy) NSDictionary *userInfo;
@@ -29,7 +29,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)_initWithCFCachedURLResponse:(struct _CFCachedURLResponse *)arg1;
+-     // Error parsing type: @24@0:8^{_CFCachedURLResponse={__CFRuntimeBase=QAQ}^{__CFCachedURLResponse}}16, name: _initWithCFCachedURLResponse:
 - (id)initWithResponse:(id)arg1 dataArray:(id)arg2 userInfo:(id)arg3 storagePolicy:(unsigned long long)arg4;
 - (id)initWithResponse:(id)arg1 data:(id)arg2 userInfo:(id)arg3 storagePolicy:(unsigned long long)arg4;
 - (id)initWithResponse:(id)arg1 data:(id)arg2;

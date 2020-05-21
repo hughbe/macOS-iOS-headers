@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class AVPlayerMediaSelectionCriteriaInternal, NSArray;
+@class NSArray;
 
 @interface AVPlayerMediaSelectionCriteria : NSObject
 {
-    AVPlayerMediaSelectionCriteriaInternal *_criteria;
+    void *_criteriaInternal;
 }
 
 - (id)description;
@@ -18,13 +18,15 @@
 - (BOOL)preferMultichannelAudio;
 - (id)precludedMediaSubTypes;
 - (id)preferredMediaSubTypes;
+@property(readonly, nonatomic) NSArray *principalMediaCharacteristics;
 @property(readonly, nonatomic) NSArray *preferredMediaCharacteristics;
 @property(readonly, nonatomic) NSArray *preferredLanguages;
 - (void)dealloc;
-- (id)initWithPreferredLanguages:(id)arg1 preferredMediaCharacteristics:(id)arg2 preferredMediaSubTypes:(id)arg3 precludedMediaSubTypes:(id)arg4;
-- (id)initWithPreferredLanguages:(id)arg1 preferredMediaCharacteristics:(id)arg2;
+- (id)initWithPreferredLanguages:(id)arg1 preferredMediaCharacteristics:(id)arg2 fallbackPreferredLanguages:(id)arg3 fallbackPreferredMediaCharacteristics:(id)arg4 captionDisplayType:(long long)arg5;
 - (id)initWithPreferredLanguages:(id)arg1 preferredMediaCharacteristics:(id)arg2 preferredMediaSubTypes:(id)arg3 precludedMediaSubTypes:(id)arg4 preferMultichannelAudio:(BOOL)arg5 precludeMultichannelAudio:(BOOL)arg6;
-- (id)_initWithPreferredLanguages:(id)arg1 preferredMediaCharacteristics:(id)arg2 preferredMediaSubTypes:(id)arg3 precludedMediaSubTypes:(id)arg4 preferMultichannelAudio:(BOOL)arg5 precludeMultichannelAudio:(BOOL)arg6;
+- (id)initWithPreferredLanguages:(id)arg1 preferredMediaCharacteristics:(id)arg2 preferredMediaSubTypes:(id)arg3 precludedMediaSubTypes:(id)arg4;
+- (id)initWithPrincipalMediaCharacteristics:(id)arg1 preferredLanguages:(id)arg2 preferredMediaCharacteristics:(id)arg3;
+- (id)initWithPreferredLanguages:(id)arg1 preferredMediaCharacteristics:(id)arg2;
 - (id)init;
 - (id)initWithFigDictionary:(id)arg1;
 - (id)figDictionary;

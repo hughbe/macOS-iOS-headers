@@ -16,7 +16,7 @@
 + (id)_bundleIdentifierFromBundleElement:(id)arg1;
 - (void)setValue:(id)arg1 forKey:(id)arg2;
 - (id)valueForKey:(id)arg1;
-- (id)XMLDocument;
+@property(readonly) NSXMLDocument *XMLDocument;
 - (void)dealloc;
 - (id)initWithIdentifier:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 version:(id)arg2;
@@ -35,6 +35,12 @@
 - (void)_setBundleDefinitionsWithBundleAttributeDictionaries:(id)arg1;
 - (void)setGroups:(id)arg1;
 - (id)groups;
+- (void)setstaticObsoleteFileOrRecursiveDirectoryListPath:(id)arg1;
+- (id)staticObsoleteFileOrRecursiveDirectoryListPath;
+- (void)setStaticObsoleteDirectoryListPath:(id)arg1;
+- (id)staticObsoleteDirectoryListPath;
+- (void)setStaticObsoleteFileListPath:(id)arg1;
+- (id)staticObsoleteFileListPath;
 - (void)setPostInstallScriptPath:(id)arg1;
 - (void)setPostinstallScriptPath:(id)arg1;
 - (id)postInstallScriptPath;
@@ -62,6 +68,8 @@
 - (BOOL)requiresDistributionCheck;
 - (void)setUpdatePackage:(BOOL)arg1;
 - (BOOL)updatePackage;
+- (void)setSystemVolumeGroupInstallLocation:(id)arg1;
+- (id)systemVolumeGroupInstallLocation;
 - (void)setInstallLocation:(id)arg1;
 - (id)installLocation;
 - (void)setRestartAction:(int)arg1;
@@ -115,6 +123,7 @@
 - (id)_generatedIdentifierForBundlePath:(id)arg1;
 - (id)_looseComponentIdentifier;
 - (id)_bundlePathFromBundleElement:(id)arg1;
+- (id)componentForIdentifier:(id)arg1;
 
 @end
 

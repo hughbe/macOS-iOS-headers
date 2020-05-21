@@ -29,17 +29,21 @@
 }
 
 + (id)createFromNib;
-@property(setter=setRowEnabled:) BOOL isRowEnabled; // @synthesize isRowEnabled=_isRowEnabled;
+- (void).cxx_destruct;
+@property(nonatomic, setter=setRowEnabled:) BOOL isRowEnabled; // @synthesize isRowEnabled=_isRowEnabled;
 @property(retain, nonatomic) MMService *service; // @synthesize service=_service;
 - (BOOL)isFlipped;
 - (void)optionsButtonPressed:(id)arg1;
 - (void)enableServicePressed:(id)arg1;
 - (void)update;
 - (void)doUpdate:(id)arg1;
+- (BOOL)statusSpinnerShouldContinue;
+- (void)startDelayedSpinner;
 - (void)stopDetermineStatusSpinner:(id)arg1;
 - (void)stopSpinner:(id)arg1;
 - (void)updateOptionsButton;
 - (BOOL)isRTL;
+- (id)initWithFrame:(struct CGRect)arg1;
 
 @end
 

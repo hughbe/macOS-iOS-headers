@@ -8,14 +8,13 @@
 
 @class ABCNDDScanner;
 
-__attribute__((visibility("hidden")))
 @interface ABCNPhoneNumberDetector : NSObject
 {
     ABCNDDScanner *_scanner;
 }
 
+- (void).cxx_destruct;
 - (id)firstPhoneNumberInString:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

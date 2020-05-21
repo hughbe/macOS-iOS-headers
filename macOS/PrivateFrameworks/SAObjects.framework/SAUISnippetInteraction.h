@@ -16,6 +16,7 @@
 
 + (id)snippetInteractionWithDictionary:(id)arg1 context:(id)arg2;
 + (id)snippetInteraction;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *snippetId;
 @property(copy, nonatomic) NSString *requestId;
 - (id)encodedClassName;

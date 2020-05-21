@@ -10,6 +10,7 @@
 
 @class NSString, NSView<_MKCalloutAccessoryView>;
 
+__attribute__((visibility("hidden")))
 @interface _MKCalloutAccessoryWrapperView : NSView <_MKCalloutAccessoryView>
 {
     NSView<_MKCalloutAccessoryView> *_view;
@@ -17,10 +18,6 @@
 
 - (void).cxx_destruct;
 - (double)_mapkit_minimumCalloutWidthMultiplier;
-- (double)_mapkit_calloutCustomRightMargin;
-- (double)_mapkit_calloutCustomLeftMargin;
-- (void)_mapkit_setCalloutTextColor:(id)arg1;
-- (void)_mapkit_setCalloutBackgroundColor:(id)arg1;
 - (id)_mapkit_accessoryControlToExtendWithCallout;
 - (struct CGSize)intrinsicContentSize;
 - (id)initWithView:(id)arg1;

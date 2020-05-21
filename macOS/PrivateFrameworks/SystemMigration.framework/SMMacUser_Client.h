@@ -12,24 +12,25 @@
 {
     BOOL isAdminUser;
     BOOL isRoleUser;
+    BOOL isSecureTokenAuth;
     BOOL _extraInfoIncludeFileVaultWarning;
-    BOOL _allowFileVaultUnlock;
+    BOOL _secureTokenAuth;
     NSString *relativeHomeDir;
     SMSystem_Client *sourceSystem;
-    NSString *_clearPassword;
 }
 
 + (id)keyPathsForValuesAffectingExtraInfoColor;
 + (id)keyPathsForValuesAffectingDisplayExtraInfo;
++ (id)interestedDaemonKeysLimitedToMigratableUsers;
 + (id)interestedDaemonKeys;
-@property BOOL allowFileVaultUnlock; // @synthesize allowFileVaultUnlock=_allowFileVaultUnlock;
-@property(retain) NSString *clearPassword; // @synthesize clearPassword=_clearPassword;
+- (void).cxx_destruct;
+@property(readonly, getter=isSecureTokenAuth) BOOL secureTokenAuth; // @synthesize secureTokenAuth=_secureTokenAuth;
 @property BOOL extraInfoIncludeFileVaultWarning; // @synthesize extraInfoIncludeFileVaultWarning=_extraInfoIncludeFileVaultWarning;
+@property BOOL isSecureTokenAuth; // @synthesize isSecureTokenAuth;
 @property BOOL isRoleUser; // @synthesize isRoleUser;
 @property BOOL isAdminUser; // @synthesize isAdminUser;
 @property(retain) SMSystem_Client *sourceSystem; // @synthesize sourceSystem;
 @property(retain) NSString *relativeHomeDir; // @synthesize relativeHomeDir;
-- (void).cxx_destruct;
 - (BOOL)validatePassword:(id)arg1;
 - (id)extraInfoColor;
 - (id)displayExtraInfo;

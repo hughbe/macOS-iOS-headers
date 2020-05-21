@@ -6,9 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class NSData;
 
 @protocol CKDProtocolTranslatorIdentityDelegate <NSObject>
-@property(readonly, nonatomic) NSArray *sharingIdentityFingerprints;
+- (BOOL)sharingFingerprintsContainPublicKeyWithData:(NSData *)arg1 error:(id *)arg2;
 @end
 

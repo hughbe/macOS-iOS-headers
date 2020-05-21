@@ -6,15 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSLock, NSMapTable;
+@class NSMapTable;
 
 @interface GEOAddressCorrectionRequester : NSObject
 {
     NSMapTable *_pendingRequests;
-    NSLock *_pendingRequestsLock;
+    struct os_unfair_lock_s _pendingRequestsLock;
 }
 
 + (id)sharedRequester;
+- (void).cxx_destruct;
 - (void)cancelRequest:(id)arg1;
 - (void)startAddressCorrectionUpdateRequest:(id)arg1 finished:(CDUnknownBlockType)arg2 error:(CDUnknownBlockType)arg3;
 - (void)startAddressCorrectionInitRequest:(id)arg1 finished:(CDUnknownBlockType)arg2 error:(CDUnknownBlockType)arg3;

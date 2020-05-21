@@ -9,12 +9,14 @@
 #import "CNAutocompleteFetchDelegate.h"
 #import "CNAutocompleteResultWindowDelegate.h"
 #import "IDSBatchIDQueryControllerDelegate.h"
+#import "NSCandidateListTouchBarItemDelegate.h"
 #import "NSControlTextEditingDelegate.h"
 #import "NSTextFieldDelegate.h"
+#import "NSTouchBarDelegate.h"
 
-@class CNAutocompleteStore, CNExtendedAutocompleteResultWindow, IDSBatchIDQueryController, IMAccount, IMHandle, NSDate, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSProgressIndicator, NSString, NSTextField, NSTimer;
+@class CNAutocompleteResult, CNAutocompleteStore, CNExtendedAutocompleteResultWindow, IDSBatchIDQueryController, IMAccount, IMHandle, NSCandidateListTouchBarItem, NSColor, NSDate, NSImageView, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSProgressIndicator, NSString, NSTextField, NSTimer;
 
-@interface SOAddRecipientFieldViewController : SOChatViewController <CNAutocompleteFetchDelegate, IDSBatchIDQueryControllerDelegate, NSTextFieldDelegate, NSControlTextEditingDelegate, CNAutocompleteResultWindowDelegate>
+@interface SOAddRecipientFieldViewController : SOChatViewController <NSCandidateListTouchBarItemDelegate, NSTouchBarDelegate, CNAutocompleteFetchDelegate, IDSBatchIDQueryControllerDelegate, NSTextFieldDelegate, NSControlTextEditingDelegate, CNAutocompleteResultWindowDelegate>
 {
     IDSBatchIDQueryController *_batchIDQueryController;
     NSMutableDictionary *_validatedIDQueryResults;
@@ -24,9 +26,12 @@
     BOOL _skipCompletionRebuilding;
     BOOL _userIsDeleting;
     BOOL _completionWindowVisible;
+    BOOL _isBlockedForDowntime;
+    BOOL _shouldShowDowntimeErrorAppearance;
     CDUnknownBlockType _autocompleteResultComparator;
     NSString *_searchString;
     CNExtendedAutocompleteResultWindow *_completionWindow;
+    NSCandidateListTouchBarItem *_recipientCandidateListTouchBarItem;
     NSProgressIndicator *_addRecipientProgressIndicator;
     IMHandle *_addRecipientInvitedHandle;
     NSTimer *_addRecipientIDSCheckTimer;
@@ -36,7 +41,11 @@
     NSMutableOrderedSet *_searchResults;
     id <CNCancelable> _currentFetchRequest;
     id _showingMenuForRepresentedObject;
+    NSImageView *_screenTimeGlyphView;
     NSMutableDictionary *_lastMessageDateCache;
+    NSTextField *_blockedForDowntimeTextField;
+    NSImageView *_blockedForDowntimeImageView;
+    NSColor *_textFieldNormalColor;
 }
 
 + (id)_stringForAutocompleteResultSourceType:(unsigned long long)arg1;
@@ -45,7 +54,14 @@
 + (void)_presentUnregisteredErrorForHandle:(id)arg1;
 + (id)activeLegacyIMAccountsForABProperty:(id)arg1;
 + (void)initialize;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL shouldShowDowntimeErrorAppearance; // @synthesize shouldShowDowntimeErrorAppearance=_shouldShowDowntimeErrorAppearance;
+@property(retain, nonatomic) NSColor *textFieldNormalColor; // @synthesize textFieldNormalColor=_textFieldNormalColor;
+@property(nonatomic) BOOL isBlockedForDowntime; // @synthesize isBlockedForDowntime=_isBlockedForDowntime;
+@property(retain, nonatomic) NSImageView *blockedForDowntimeImageView; // @synthesize blockedForDowntimeImageView=_blockedForDowntimeImageView;
+@property(retain, nonatomic) NSTextField *blockedForDowntimeTextField; // @synthesize blockedForDowntimeTextField=_blockedForDowntimeTextField;
 @property(retain) NSMutableDictionary *lastMessageDateCache; // @synthesize lastMessageDateCache=_lastMessageDateCache;
+@property(retain, nonatomic) NSImageView *screenTimeGlyphView; // @synthesize screenTimeGlyphView=_screenTimeGlyphView;
 @property(retain) id showingMenuForRepresentedObject; // @synthesize showingMenuForRepresentedObject=_showingMenuForRepresentedObject;
 @property(retain, nonatomic) id <CNCancelable> currentFetchRequest; // @synthesize currentFetchRequest=_currentFetchRequest;
 @property(retain, nonatomic) NSMutableOrderedSet *searchResults; // @synthesize searchResults=_searchResults;
@@ -57,10 +73,10 @@
 @property(retain) IMHandle *addRecipientInvitedHandle; // @synthesize addRecipientInvitedHandle=_addRecipientInvitedHandle;
 @property(retain) NSProgressIndicator *addRecipientProgressIndicator; // @synthesize addRecipientProgressIndicator=_addRecipientProgressIndicator;
 @property BOOL userIsDeleting; // @synthesize userIsDeleting=_userIsDeleting;
+@property(retain) NSCandidateListTouchBarItem *recipientCandidateListTouchBarItem; // @synthesize recipientCandidateListTouchBarItem=_recipientCandidateListTouchBarItem;
 @property BOOL skipCompletionRebuilding; // @synthesize skipCompletionRebuilding=_skipCompletionRebuilding;
 @property(retain, nonatomic) CNExtendedAutocompleteResultWindow *completionWindow; // @synthesize completionWindow=_completionWindow;
 @property(retain, nonatomic) NSString *searchString; // @synthesize searchString=_searchString;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (id)init;
 - (void)viewDidLayout;
@@ -68,10 +84,12 @@
 - (void)viewDidLoad;
 - (void)chatDisplayControllerWillChange:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)idStatusUpdatedForDestinations:(id)arg1;
+- (void)batchQueryController:(id)arg1 updatedDestinationsStatus:(id)arg2 onService:(id)arg3 error:(id)arg4;
 - (id)control:(id)arg1 textView:(id)arg2 completions:(id)arg3 forPartialWordRange:(struct _NSRange)arg4 indexOfSelectedItem:(long long *)arg5;
 - (void)controlTextDidChange;
 - (void)controlTextDidChange:(id)arg1;
+- (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
+- (BOOL)control:(id)arg1 textShouldEndEditing:(id)arg2;
 - (BOOL)_searchString:(id)arg1 matchesWithHandleID:(id)arg2;
 - (id)_searchString:(id)arg1 matchForAlternativeCombinationsOfFirstName:(id)arg2 lastName:(id)arg3;
 - (BOOL)_addSearchResult:(id)arg1;
@@ -80,6 +98,7 @@
 - (id)_completionResultsForName:(id)arg1 imHandleID:(id)arg2 person:(id)arg3 addressBookProperty:(id)arg4 originalResult:(id)arg5;
 - (void)showCompletions;
 - (void)updateWindowLocation;
+- (struct CGPoint)calculateWindowOrigin;
 - (void)completionWindowDidResize:(id)arg1;
 - (id)accountForAutocompleteResult:(id)arg1;
 - (id)iconTypeForResult:(id)arg1 selected:(BOOL)arg2;
@@ -93,8 +112,6 @@
 - (void)autocompleteFetchDidFinish:(id)arg1;
 - (void)autocompleteFetch:(id)arg1 didFailWithError:(id)arg2;
 - (void)autocompleteFetch:(id)arg1 didReceiveResults:(id)arg2;
-- (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
-- (BOOL)control:(id)arg1 textShouldEndEditing:(id)arg2;
 - (id)_lastDateForIMHandle:(id)arg1;
 - (BOOL)selectCurrentResult;
 - (BOOL)isHandleOrHandleAliasAlreadyAdded:(id)arg1;
@@ -103,6 +120,7 @@
 - (void)_cleanupIDSCheckUI;
 - (void)_cleanupIDSCheckTimer;
 - (long long)_knownIMessageIDStatusForIDSID:(id)arg1;
+- (long long)_knownIMessageIDStatusForIMHandle:(id)arg1;
 - (void)_queryIDSIMessageDestinations;
 - (void)_addIMHandleIDToDanglingHandlesForHandleGUID:(id)arg1 typedString:(id)arg2;
 - (id)_additionalSearchAccountsToHandleIDs;
@@ -113,15 +131,20 @@
 - (void)dismissCompletionUI;
 - (struct _NSRange)rangeForUserCompletionInFieldEditor:(id)arg1;
 - (id)autocompleteStringForFieldEditor:(id)arg1;
+- (BOOL)isHandleIDAllowedToJoinConversation:(id)arg1;
 - (void)didSelectResult:(id)arg1;
 - (void)selectedResult:(id)arg1;
 @property(readonly) CDUnknownBlockType autocompleteResultComparator; // @synthesize autocompleteResultComparator=_autocompleteResultComparator;
 @property(readonly) BOOL shouldShowAccountColumn; // @dynamic shouldShowAccountColumn;
 @property(readonly) IMAccount *autocompleteAccount; // @dynamic autocompleteAccount;
 - (unsigned long long)indexOfSelectedCompletionResult;
-- (id)selectedCompletionResult;
+@property(readonly) CNAutocompleteResult *selectedCompletionResult;
 @property(readonly) BOOL showingCompletionWindow; // @dynamic showingCompletionWindow;
 @property(readonly) NSTextField *addRecipientField; // @dynamic addRecipientField;
+- (id)makeTouchBar;
+- (id)touchBar:(id)arg1 makeItemForIdentifier:(id)arg2;
+- (void)candidateListTouchBarItem:(id)arg1 endSelectingCandidateAtIndex:(unsigned long long)arg2;
+- (void)_updateRecipientCandidateListTouchBarItem;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

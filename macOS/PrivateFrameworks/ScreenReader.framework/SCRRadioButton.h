@@ -9,14 +9,16 @@
 __attribute__((visibility("hidden")))
 @interface SCRRadioButton : SCRButton
 {
-    int _type;
+    long long _type;
 }
 
+- (BOOL)wantsAutoFocusIn;
 - (BOOL)isRadioButton;
 - (BOOL)tabOrDrillInShouldTempDisableQuickNav;
 - (id)titleElement;
 - (id)siblingTabUIElements;
 - (BOOL)isTab;
+- (BOOL)ignoreValueChangeAfterAction;
 - (BOOL)isControlElement;
 - (void)echoValueChangeToRequest:(id)arg1;
 - (id)valueDescription;
@@ -24,6 +26,7 @@ __attribute__((visibility("hidden")))
 - (void)handleParentGroupValueChange:(id)arg1;
 - (void)setIsEventHandler:(BOOL)arg1 isKeyboardHandler:(BOOL)arg2;
 - (BOOL)isSelected;
+- (BOOL)isInteractive;
 - (BOOL)canHandleValueChange;
 - (void)dealloc;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;

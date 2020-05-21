@@ -6,8 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSColor, NSDictionary;
+@class NSArray, NSColor, NSDictionary, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _NSToolbarAuxiliary : NSObject
 {
     NSColor *backgroundColor;
@@ -18,11 +19,16 @@
     NSArray *defaultItems;
     NSArray *allowedItems;
     NSArray *selectableItems;
+    NSString *centeredItemIdentifier;
+    double preferredPrincipalWidthRatio;
     struct {
         unsigned int wiringNibConnections:1;
         unsigned int firstMoveableItemIndex:6;
         unsigned int userInterfaceLayoutDirectionOverride:1;
-        unsigned int reserved:25;
+        unsigned int isPaletteToolbar:1;
+        unsigned int bezeled:1;
+        unsigned int overflowMenuUsesAllItems:1;
+        unsigned int reserved:22;
     } _tbaFlags;
     unsigned short _fullScreenAuxiliaryViewForceVisibleCounter;
     double auxMinHeight;
@@ -30,6 +36,7 @@
     double autohideHeight;
     unsigned long long originalAutoresizingMask;
     long long _toolbarUserInterfaceLayoutDirection;
+    NSString *_toolbarDragToken;
 }
 
 @end

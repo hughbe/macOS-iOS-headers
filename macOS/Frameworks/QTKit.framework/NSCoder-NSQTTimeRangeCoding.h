@@ -7,7 +7,7 @@
 #import "NSCoder.h"
 
 @interface NSCoder (NSQTTimeRangeCoding)
-- (CDStruct_977f9211)decodeQTTimeRangeForKey:(id)arg1;
-- (void)encodeQTTimeRange:(CDStruct_977f9211)arg1 forKey:(id)arg2;
+- (CDStruct_7cbd8c8b)decodeQTTimeRangeForKey:(id)arg1;
+- (void)encodeQTTimeRange:(CDStruct_7cbd8c8b)arg1 forKey:(id)arg2;
 @end
 

@@ -12,6 +12,7 @@
 
 + (id)snippetEditedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)snippetEdited;
+- (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

@@ -6,10 +6,13 @@
 
 #import "NSObject.h"
 
-@class CNObservable, NSArray, NSString;
+@class CNApplicationProxy, CNObservable, NSArray, NSDictionary, NSString, NSURL, NSUserActivity;
 
 @protocol CNLSApplicationWorkspace <NSObject>
-- (id <CNLSApplicationProxy>)applicationForBundleIdentifier:(NSString *)arg1;
+- (void)openSensitiveURLInBackground:(NSURL *)arg1 withOptions:(NSDictionary *)arg2 completionHandler:(void (^)(BOOL, NSError *))arg3;
+- (void)openSensitiveURLInBackground:(NSURL *)arg1 withOptions:(NSDictionary *)arg2;
+- (void)openUserActivity:(NSUserActivity *)arg1 inApplication:(CNApplicationProxy *)arg2 options:(NSDictionary *)arg3 completionHandler:(void (^)(BOOL, NSError *))arg4;
+- (CNApplicationProxy *)applicationForBundleIdentifier:(NSString *)arg1;
 - (NSArray *)applicationsForUserActivityType:(NSString *)arg1;
 - (NSArray *)applicationsAvailableForHandlingURLScheme:(NSString *)arg1;
 - (CNObservable *)observableForApplicationsChangedWithSchedulerProvider:(id <CNSchedulerProvider>)arg1;

@@ -14,6 +14,7 @@
     BOOL _supportsPlaybackTimeOffset;
     BOOL _missedDuringPlayback;
     BOOL _renderingOffscreen;
+    BOOL _renderingOffscreenOpaque;
     BOOL _delayWisp;
     BOOL _mute;
     unsigned long long _messageVersion;
@@ -29,11 +30,13 @@
 
 + (id)unarchive:(id)arg1;
 + (unsigned short)messageType;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL mute; // @synthesize mute=_mute;
 @property(nonatomic) __weak ETMessage *parentMessage; // @synthesize parentMessage=_parentMessage;
 @property(nonatomic) BOOL delayWisp; // @synthesize delayWisp=_delayWisp;
 @property(nonatomic) __weak id <ETMessageTimeSource> timeSource; // @synthesize timeSource=_timeSource;
 @property(nonatomic) __weak id <ETMessageDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic, getter=isRenderingOffscreenOpaque) BOOL renderingOffscreenOpaque; // @synthesize renderingOffscreenOpaque=_renderingOffscreenOpaque;
 @property(nonatomic, getter=isRenderingOffscreen) BOOL renderingOffscreen; // @synthesize renderingOffscreen=_renderingOffscreen;
 @property(retain, nonatomic) NSColor *color; // @synthesize color=_color;
 @property(nonatomic) BOOL missedDuringPlayback; // @synthesize missedDuringPlayback=_missedDuringPlayback;
@@ -43,7 +46,6 @@
 @property(nonatomic) double sendTime; // @synthesize sendTime=_sendTime;
 @property(nonatomic) double timeCreated; // @synthesize timeCreated=_timeCreated;
 @property(readonly, nonatomic) unsigned long long messageVersion; // @synthesize messageVersion=_messageVersion;
-- (void).cxx_destruct;
 @property(readonly, nonatomic, getter=isAnimated) BOOL animated;
 - (BOOL)hasWispingChildren;
 - (void)childMessageDidDelayWisp:(id)arg1;

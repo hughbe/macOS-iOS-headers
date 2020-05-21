@@ -6,21 +6,28 @@
 
 #import <CommerceKit/CKServiceInterface.h>
 
-@class NSArray, NSLock, NSMutableDictionary;
+@class CKDownloadQueueClient, NSArray, NSLock, NSMutableDictionary;
 
 @interface CKDownloadQueue : CKServiceInterface
 {
     NSMutableDictionary *_downloadsByItemID;
     NSLock *_downloadsLock;
+    NSLock *_tokenLock;
+    id _observerToken;
+    NSMutableDictionary *_downloadQueueObservers;
+    CKDownloadQueueClient *_sharedObserver;
 }
 
 + (id)sharedDownloadQueue;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CKDownloadQueueClient *sharedObserver; // @synthesize sharedObserver=_sharedObserver;
+@property(retain, nonatomic) NSMutableDictionary *downloadQueueObservers; // @synthesize downloadQueueObservers=_downloadQueueObservers;
 - (BOOL)cacheReceiptDataForDownload:(id)arg1;
 - (void)checkStoreDownloadQueueForAccount:(id)arg1;
 - (void)lockedApplicationTriedToLaunchAtPath:(id)arg1;
 - (void)unlockApplicationsWithBundleIdentifier:(id)arg1;
 - (void)lockApplicationsForBundleID:(id)arg1;
+- (void)performedIconAnimationForDownloadWithIdentifier:(unsigned long long)arg1;
 - (void)fetchIconForItemIdentifier:(unsigned long long)arg1 atURL:(id)arg2 replyBlock:(CDUnknownBlockType)arg3;
 - (void)removeDownloadWithItemIdentifier:(unsigned long long)arg1;
 - (void)cancelDownload:(id)arg1 promptToConfirm:(BOOL)arg2 askToDelete:(BOOL)arg3;
@@ -33,6 +40,7 @@
 - (id)addObserver:(id)arg1;
 - (id)addObserver:(id)arg1 forDownloadTypes:(long long)arg2;
 - (id)addObserverForDownloadTypes:(long long)arg1 withBlock:(CDUnknownBlockType)arg2;
+- (void)connectionWasInterrupted;
 - (id)initWithStoreClient:(id)arg1;
 
 @end

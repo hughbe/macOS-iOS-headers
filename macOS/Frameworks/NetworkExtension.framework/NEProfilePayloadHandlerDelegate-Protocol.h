@@ -7,7 +7,15 @@
 @class NSArray, NSDictionary, NSString;
 
 @protocol NEProfilePayloadHandlerDelegate
+- (BOOL)setRestrictDomains:(BOOL)arg1;
 - (BOOL)setAppLayerVPNRuleSettings:(NSDictionary *)arg1 withAppIdentifier:(NSString *)arg2;
+- (BOOL)setContactsDomains:(NSArray *)arg1 accountIdentifiers:(NSArray *)arg2;
+- (BOOL)setContactsDomains:(NSArray *)arg1;
+- (BOOL)setCalendarDomains:(NSArray *)arg1 accountIdentifiers:(NSArray *)arg2;
+- (BOOL)setCalendarDomains:(NSArray *)arg1;
+- (BOOL)setMailDomains:(NSArray *)arg1 accountIdentifiers:(NSArray *)arg2;
+- (BOOL)setMailDomains:(NSArray *)arg1;
+- (BOOL)setSMBDomains:(NSArray *)arg1;
 - (BOOL)setAppLayerVPNUUID:(NSString *)arg1 andSafariDomains:(NSArray *)arg2;
 - (BOOL)setProfileInfo:(NSDictionary *)arg1;
 - (BOOL)setPayloadInfoCommon:(NSString *)arg1 payloadOrganization:(NSString *)arg2;

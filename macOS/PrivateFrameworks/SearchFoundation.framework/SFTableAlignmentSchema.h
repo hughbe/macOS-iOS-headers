@@ -6,23 +6,34 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
+#import "SFTableAlignmentSchema.h"
 
-@class NSArray, NSDictionary;
+@class NSArray, NSData, NSDictionary, NSString;
 
-@interface SFTableAlignmentSchema : NSObject <NSSecureCoding>
+@interface SFTableAlignmentSchema : NSObject <SFTableAlignmentSchema, NSSecureCoding, NSCopying>
 {
     NSArray *_tableColumnAlignment;
     NSDictionary *_metadata;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
 @property(copy, nonatomic) NSArray *tableColumnAlignment; // @synthesize tableColumnAlignment=_tableColumnAlignment;
-- (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) NSData *jsonData;
+@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)tableColumnAlignment:(unsigned long long)arg1;
+- (id)initWithProtobuf:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

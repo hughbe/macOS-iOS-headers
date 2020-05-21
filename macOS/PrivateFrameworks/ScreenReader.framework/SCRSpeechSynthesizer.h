@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class SCRSpeechSynthesizerVars;
+@class NSArray, NSString, SCRSpeechSynthesizerVars;
 
 __attribute__((visibility("hidden")))
 @interface SCRSpeechSynthesizer : NSObject
 {
-    SCRSpeechSynthesizerVars *_privateSCRSpeechSynthesizerVars;
     BOOL __wordCallBackRegistered;
     struct __CFMessagePort *__speechSynthesizerConsoleRemoteMessagePort;
+    SCRSpeechSynthesizerVars *__privateSCRSpeechSynthesizerVars;
 }
 
 + (void)_setShouldShortCircuitSpeechSynthesizer:(BOOL)arg1;
@@ -31,54 +31,54 @@ __attribute__((visibility("hidden")))
 + (void)initialize;
 + (BOOL)loadSynthesizerResourceFromPath:(id)arg1 forDeviceID:(id)arg2;
 + (BOOL)unloadSynthesizerResourceForDeviceID:(id)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) SCRSpeechSynthesizerVars *_privateSCRSpeechSynthesizerVars; // @synthesize _privateSCRSpeechSynthesizerVars=__privateSCRSpeechSynthesizerVars;
 @property(nonatomic) struct __CFMessagePort *_speechSynthesizerConsoleRemoteMessagePort; // @synthesize _speechSynthesizerConsoleRemoteMessagePort=__speechSynthesizerConsoleRemoteMessagePort;
 @property(nonatomic) BOOL _wordCallBackRegistered; // @synthesize _wordCallBackRegistered=__wordCallBackRegistered;
+- (void)_handleSpeechDoneNoCallback;
+- (void)_handleDefaultVoiceChange;
+- (BOOL)_setupCallbacksSavingToFile:(BOOL)arg1;
+- (void)_handleWordCallbackWithParams:(id)arg1;
+- (void)_handleSpeechDoneCallback;
+- (BOOL)_feedbackWindowIsVisible;
+- (id)_speakingString;
+- (BOOL)_beginSpeakingString:(id)arg1 optionallyToURL:(id)arg2;
+- (void)_setMakeCallbacksOnTTSThread:(BOOL)arg1;
+- (BOOL)_makeCallbacksOnTTSThread;
+- (void)_setSkipSpeechDoneToggle:(BOOL)arg1;
+- (BOOL)_skipSpeechDoneToggle;
 - (BOOL)_setObject:(id)arg1 forProperty:(struct __CFString *)arg2;
 - (id)_objectForProperty:(struct __CFString *)arg1;
-- (BOOL)isPaused;
 - (void)_continueSpeaking;
 - (void)_pauseSpeakingAtBoundary:(unsigned int)arg1;
 - (void)_stopSpeakingAtBoundary:(unsigned int)arg1;
+- (float)_normalPitchMod;
+- (float)_normalPitchBase;
+- (float)_normalSpeakingRate;
 - (float)_volume;
 - (void)_setVolume:(float)arg1;
 - (float)_rate;
 - (void)_setRate:(float)arg1;
 - (float)_pitchMod;
 - (void)_setPitchMod:(float)arg1;
-- (float)pitchBase;
+- (float)_pitchBase;
 - (void)_setPitchBase:(float)arg1;
+- (void)_setAudioDeviceID:(unsigned int)arg1;
 - (unsigned int)_audioDeviceID;
-- (void)_setAudioDevice:(unsigned int)arg1;
-- (float)_normalPitchMod;
-- (float)_normalPitchBase;
-- (float)_normalSpeakingRate;
-- (void)_handleDefaultVoiceChange;
-- (BOOL)_setupCallbacksSavingToFile:(BOOL)arg1;
-- (BOOL)_makeCallbacksOnTTSThread;
-- (void)_setMakeCallbacksOnTTSThread:(BOOL)arg1;
-- (BOOL)_skipSpeechDoneToggle;
-- (void)_setSkipSpeechDoneToggle:(BOOL)arg1;
-- (BOOL)_beginSpeakingString:(id)arg1 optionallyToURL:(id)arg2;
-- (void)_handleWordCallbackWithParams:(id)arg1;
-- (void)_handleSpeechDoneCallback;
-- (void)_handleSpeechDoneNoCallback;
-- (void)_checkIfSpeakingThroughSpeechFeedbackWindowIsFinished:(id)arg1;
-- (BOOL)_feedbackWindowIsVisible;
-- (id)_speakingString;
-- (id)supportedCharacterRanges;
-- (id)supportedLiteralCharacterRanges;
-- (void)setUsesFeedbackWindow:(BOOL)arg1;
-- (BOOL)usesFeedbackWindow;
-- (BOOL)setVoice:(id)arg1;
-- (id)voice;
-- (id)delegate;
-- (void)setDelegate:(id)arg1;
-- (BOOL)isSpeaking;
+- (void)_stopAllSpeechNotify:(id)arg1;
+- (void)resetChannel;
 - (void)stopSpeaking;
-- (void)stopAllSpeechNotify:(id)arg1;
 - (BOOL)startSpeakingString:(id)arg1 toURL:(id)arg2;
 - (BOOL)startSpeakingString:(id)arg1;
-- (void)resetChannel;
+@property(readonly, nonatomic) BOOL shouldPostWhenSpeechCompletes;
+@property(readonly, nonatomic) float pitchBase;
+@property(readonly, nonatomic) NSArray *supportedLiteralCharacterRanges;
+@property(readonly, nonatomic) NSArray *supportedCharacterRanges;
+@property(readonly, nonatomic) BOOL isPaused;
+@property(readonly, nonatomic) BOOL isSpeaking;
+@property(nonatomic) BOOL usesFeedbackWindow;
+@property(copy, nonatomic) NSString *voice;
+@property(nonatomic) __weak id delegate;
 - (void)dealloc;
 - (id)initWithVoice:(id)arg1;
 - (id)init;

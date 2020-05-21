@@ -20,6 +20,7 @@
 }
 
 - (void).cxx_destruct;
+- (struct opaqueCMSampleBuffer *)getNextCaptureSampleBuffer;
 - (struct opaqueCMSampleBuffer *)copyNextSampleBuffer;
 - (long long)status;
 - (void)dealloc;

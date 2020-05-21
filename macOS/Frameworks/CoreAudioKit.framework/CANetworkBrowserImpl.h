@@ -63,6 +63,7 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (void)sizeTableToFit:(id)arg1;
 - (void)windowDidLoad;
+- (BOOL)shouldShowBox:(id)arg1;
 - (void)createFilteredItemList;
 - (void)updateViewEnabledState;
 - (id)getSortedItemList;

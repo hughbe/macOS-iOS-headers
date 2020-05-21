@@ -17,6 +17,7 @@
 + (id)eventSearchCompletedWithResults:(id)arg1;
 + (id)eventSearchCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)eventSearchCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *results;
 - (id)initWithResults:(id)arg1;
 - (id)encodedClassName;

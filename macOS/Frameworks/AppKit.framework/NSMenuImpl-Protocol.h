@@ -6,13 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMenuItem, NSPopover, NSView;
+@class NSArray, NSMenuItem, NSView;
 
 @protocol NSMenuImpl <NSObject>
 - (struct OpaqueMenuRef *)_principalMenuRef;
 - (void)_menuItem:(NSMenuItem *)arg1 atIndex:(unsigned long long)arg2 didChangeDestructiveFrom:(BOOL)arg3 to:(BOOL)arg4;
 - (void)_menuItem:(NSMenuItem *)arg1 atIndex:(unsigned long long)arg2 didChangeAlternateFrom:(BOOL)arg3 to:(BOOL)arg4;
-- (void)_showPopover:(NSPopover *)arg1 forMenuItem:(NSMenuItem *)arg2;
 - (void)_menuDidRemoveAllItems:(NSArray *)arg1;
 - (void)_cancelTrackingWithAnimation:(BOOL)arg1;
 - (NSMenuItem *)targetedItem;

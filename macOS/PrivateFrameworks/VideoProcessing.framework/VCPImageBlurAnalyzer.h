@@ -4,29 +4,33 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <VideoProcessing/VCPImageAnalyzer.h>
+#import <VideoProcessing/VCPBlurAnalyzer.h>
 
-@class NSArray;
+@class NSArray, VCPCNNBlurAnalyzer, VCPCNNData, VCPCNNModel;
 
-@interface VCPImageBlurAnalyzer : VCPImageAnalyzer
+@interface VCPImageBlurAnalyzer : VCPBlurAnalyzer
 {
     float _sharpnessBlocks[16];
     NSArray *_faces;
-    NSArray *_objects;
+    VCPCNNModel *_faceModel;
+    VCPCNNData *_faceInput;
+    BOOL _useGPU;
+    BOOL _sdof;
+    float _contrast;
+    VCPCNNBlurAnalyzer *_blurAnalyzer;
     float _sharpness;
-    float _irisSharpness;
+    float _textureScore;
 }
 
-@property(readonly) float irisSharpness; // @synthesize irisSharpness=_irisSharpness;
-@property(readonly) float sharpness; // @synthesize sharpness=_sharpness;
 - (void).cxx_destruct;
-- (int)analyzePixelBuffer:(struct __CVBuffer *)arg1 withTransform:(struct CGAffineTransform)arg2 flags:(unsigned long long *)arg3 results:(id *)arg4 cancel:(CDUnknownBlockType)arg5;
-- (void)computeLocalSharpness:(struct __CVBuffer *)arg1;
+@property(readonly) float textureScore; // @synthesize textureScore=_textureScore;
+@property(readonly) float sharpness; // @synthesize sharpness=_sharpness;
+- (int)analyzePixelBuffer:(struct __CVBuffer *)arg1 flags:(unsigned long long *)arg2 results:(id *)arg3 cancel:(CDUnknownBlockType)arg4;
+- (int)computeLocalSharpness:(struct __CVBuffer *)arg1;
 - (void)spatialPooling;
-- (float)computeObjectSharpness:(struct __CVBuffer *)arg1;
-- (float)computeFaceSharpness:(struct __CVBuffer *)arg1 withTransform:(struct CGAffineTransform)arg2;
-- (float)computeRegionSharpness:(char *)arg1 width:(int)arg2 height:(int)arg3 stride:(long long)arg4;
-- (id)initWithFaceResults:(id)arg1 objectRect:(id)arg2;
+- (int)computeSharpnessScore:(float *)arg1 forFacesInImage:(struct __CVBuffer *)arg2;
+- (void)setFaceResults:(id)arg1;
+- (id)initWithFaceResults:(id)arg1 sdof:(BOOL)arg2;
 
 @end
 

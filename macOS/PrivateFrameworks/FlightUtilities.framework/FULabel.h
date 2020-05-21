@@ -6,7 +6,7 @@
 
 #import "NSTextField.h"
 
-@class NSAttributedString, NSString;
+@class NSAttributedString, NSFont, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FULabel : NSTextField
@@ -14,18 +14,30 @@ __attribute__((visibility("hidden")))
     NSString *_stringValue;
     NSAttributedString *_attributedStringValue;
     FULabel *_realAssociatedScalingLabel;
+    NSFont *_downscaleFont;
+    NSFont *_originalFont;
     BOOL _uppercase;
+    BOOL _useCurrentLocale;
     CDUnknownBlockType _onTap;
+    unsigned long long _maxCharactersDownscale;
 }
 
-@property(nonatomic) BOOL uppercase; // @synthesize uppercase=_uppercase;
-@property(copy) CDUnknownBlockType onTap; // @synthesize onTap=_onTap;
 - (void).cxx_destruct;
+@property unsigned long long maxCharactersDownscale; // @synthesize maxCharactersDownscale=_maxCharactersDownscale;
+@property(readonly) BOOL useCurrentLocale; // @synthesize useCurrentLocale=_useCurrentLocale;
+@property(readonly, nonatomic) BOOL uppercase; // @synthesize uppercase=_uppercase;
+@property(copy) CDUnknownBlockType onTap; // @synthesize onTap=_onTap;
 - (id)attributedText;
 - (id)text;
+- (void)_updateFontForStringLength:(unsigned long long)arg1;
 - (void)setAttributedText:(id)arg1;
+- (void)setStyleProvider:(id)arg1 primaryStyle:(BOOL)arg2;
 - (void)setText:(id)arg1;
 - (void)mouseUp:(id)arg1;
+- (void)mouseDown:(id)arg1;
+- (id)_downscaleFont;
+- (id)_originalFont;
+- (void)setUppercase:(BOOL)arg1 usingCurrentLocale:(BOOL)arg2;
 
 @end
 

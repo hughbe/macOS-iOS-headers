@@ -6,9 +6,9 @@
 
 #import "NSObject.h"
 
-@class GEOComposedRoute, GEOTileKeyList, NSArray;
+@class GEOComposedRoute, GEOTileKeyList, NSDictionary;
 
 @protocol GEORoutePreloadCamera <NSObject>
-- (void)implicateTilesForCoordinate:(CDStruct_c3b9c2ee)arg1 route:(GEOComposedRoute *)arg2 nearestRoutePointIdx:(double)arg3 stepNearManeuever:(BOOL)arg4 into:(GEOTileKeyList *)arg5 stepSize:(double)arg6 maneuverSize:(double)arg7 tileSetStyles:(NSArray *)arg8;
+- (void)implicateTilesForCoordinate:(CDStruct_c3b9c2ee)arg1 route:(GEOComposedRoute *)arg2 nearestRoutePointIdx:(double)arg3 stepNearManeuever:(BOOL)arg4 into:(GEOTileKeyList *)arg5 stepSize:(double)arg6 maneuverSize:(double)arg7 tileSetStyles:(NSDictionary *)arg8;
 @end
 

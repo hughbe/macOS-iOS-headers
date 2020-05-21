@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSArray, _DASActivity;
+@class NSArray, NSDictionary, _DASActivity;
 
 @protocol _DASActivityScheduler <NSObject>
+- (void)updateActivity:(_DASActivity *)arg1 withParameters:(NSDictionary *)arg2;
 - (void)activityCanceled:(_DASActivity *)arg1;
 - (void)activityCompleted:(_DASActivity *)arg1;
 - (void)submitActivities:(NSArray *)arg1;

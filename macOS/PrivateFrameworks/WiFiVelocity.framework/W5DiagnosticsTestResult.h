@@ -33,7 +33,7 @@
 @property(nonatomic) BOOL didPass; // @synthesize didPass=_didPass;
 @property(nonatomic) BOOL result; // @synthesize result=_result;
 @property(nonatomic) long long testID; // @synthesize testID=_testID;
-@property(nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
+@property(copy, nonatomic) NSUUID *uuid; // @synthesize uuid=_uuid;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

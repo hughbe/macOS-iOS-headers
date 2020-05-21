@@ -12,6 +12,10 @@
 + (SCNMorpher *)morpher;
 @property(readonly, nonatomic) SCNMorpher *presentationMorpher;
 @property(copy, nonatomic) NSString *name;
+@property(retain, nonatomic) NSArray *channelTargetWeights;
+@property(retain, nonatomic) NSArray *channelTargetCounts;
+@property BOOL unifiesNormals;
+@property(retain, nonatomic) NSArray *weights;
 @property(nonatomic) long long calculationMode;
 @property(copy, nonatomic) NSArray *targets;
 - (void)setWeight:(double)arg1 atTargetIndex:(long long)arg2;

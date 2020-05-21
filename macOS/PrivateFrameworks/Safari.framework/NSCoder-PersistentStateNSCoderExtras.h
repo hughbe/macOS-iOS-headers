@@ -7,7 +7,7 @@
 #import "NSCoder.h"
 
 @interface NSCoder (PersistentStateNSCoderExtras)
-- (void)safari_encodeBrowserWindowPersistentState:(id)arg1;
-- (id)safari_decodeBrowserWindowPersistentState;
+- (void)safari_encodeBrowserWindowPersistentState:(id)arg1 forCleanExit:(BOOL)arg2;
+- (id)safari_decodeBrowserWindowPersistentStateWithEncryptionProvider:(id)arg1;
 @end
 

@@ -6,6 +6,7 @@
 
 #import "NSMutableDictionary.h"
 
+__attribute__((visibility("hidden")))
 @interface NSDirInfo : NSMutableDictionary
 {
     NSMutableDictionary *dict;

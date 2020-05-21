@@ -6,21 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSTimer;
+@class NSBackgroundActivityScheduler, NSObject<OS_dispatch_queue>;
 
 @interface WBSPeriodicActivityScheduler : NSObject
 {
     CDUnknownBlockType _block;
     BOOL _invalidated;
-    NSTimer *_timer;
     double _interval;
     NSObject<OS_dispatch_queue> *_queue;
+    NSBackgroundActivityScheduler *_backgroundActivityScheduler;
 }
 
 - (void).cxx_destruct;
+- (void)_performActivity;
+- (void)_scheduleActivityWithInterval:(double)arg1;
 - (void)invalidate;
-- (void)_timerDidFire:(id)arg1;
-- (void)_scheduleTimerWithFireInterval:(double)arg1;
 - (id)initWithInterval:(double)arg1 minimumDelay:(double)arg2 lastFireDate:(id)arg3 block:(CDUnknownBlockType)arg4;
 - (id)init;
 

@@ -8,12 +8,13 @@
 
 #import "IDSDaemonProtocol.h"
 
-@class IDSDaemonListener, IMLocalObject, IMRemoteObject<IDSDaemonProtocol>, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSProtocolChecker, NSSet, NSString;
+@class IDSDaemonControllerForwarder, IDSDaemonListener, IMLocalObject, IMRemoteObject<IDSDaemonProtocol>, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSProtocolChecker, NSSet, NSString;
 
 @interface IDSDaemonController : NSObject <IDSDaemonProtocol>
 {
     id _delegate;
     IMRemoteObject<IDSDaemonProtocol> *_remoteObject;
+    IDSDaemonControllerForwarder *_forwarder;
     IMLocalObject *_localObject;
     IDSDaemonListener *_daemonListener;
     NSProtocolChecker *_protocol;
@@ -36,6 +37,7 @@
     BOOL _acquiringDaemonConnection;
     BOOL _autoReconnect;
     BOOL _hasBeenSuspended;
+    BOOL _fatalErrorOccured;
     int _curXPCMessagePriority;
     NSMutableSet *_notificationServices;
 }
@@ -44,16 +46,18 @@
 + (void)_blockUntilSendQueueIsEmpty;
 + (BOOL)_applicationWillTerminate;
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property(retain, nonatomic) IMRemoteObject<IDSDaemonProtocol> *remoteObject; // @synthesize remoteObject=_remoteObject;
 @property(setter=_setAutoReconnect:) BOOL _autoReconnect; // @synthesize _autoReconnect;
-@property(nonatomic) id delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *_remoteMessageQueue; // @synthesize _remoteMessageQueue;
-@property(readonly, retain, nonatomic) IDSDaemonListener *listener; // @synthesize listener=_daemonListener;
+@property(readonly, nonatomic) IDSDaemonListener *listener; // @synthesize listener=_daemonListener;
 - (void)systemApplicationDidResume;
 - (void)systemApplicationWillEnterForeground;
 - (void)systemApplicationDidEnterBackground;
 - (void)systemApplicationDidSuspend;
-- (void)forwardInvocation:(id)arg1;
-- (id)methodSignatureForSelector:(SEL)arg1;
+- (id)forwardingTargetForSelector:(SEL)arg1;
+- (id)forwarderWithCompletion:(CDUnknownBlockType)arg1;
 - (void)sendXPCObject:(id)arg1 objectContext:(id)arg2;
 - (void)remoteObjectDiedNotification:(id)arg1;
 - (void)localObjectDiedNotification:(id)arg1;
@@ -75,11 +79,11 @@
 - (BOOL)setCommands:(id)arg1 forListenerID:(id)arg2;
 - (BOOL)setServices:(id)arg1 forListenerID:(id)arg2;
 - (id)servicesForListenerID:(id)arg1;
-- (BOOL)removeListenerID:(id)arg1;
+- (void)removeListenerID:(id)arg1;
 - (BOOL)hasListenerForID:(id)arg1;
 - (BOOL)addListenerID:(id)arg1 services:(id)arg2;
 - (BOOL)addListenerID:(id)arg1 services:(id)arg2 commands:(id)arg3;
-- (void)addedDelegateForService:(id)arg1;
+- (void)addedDelegateForService:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)_listenerSetUpdated;
 @property(nonatomic) int curXPCMessagePriority; // @synthesize curXPCMessagePriority=_curXPCMessagePriority;
 - (BOOL)_setCapabilities:(unsigned int)arg1;

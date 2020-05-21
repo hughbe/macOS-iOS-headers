@@ -6,18 +6,21 @@
 
 #import "NSObject.h"
 
-@class CAAnimation, NSArray, NSString;
+@class CAAnimation, NSArray, NSString, SCNAnimationPlayer;
 
 @protocol SCNAnimatable <NSObject>
 @property(readonly) NSArray *animationKeys;
-- (void)setSpeed:(double)arg1 forAnimationKey:(NSString *)arg2;
-- (void)removeAnimationForKey:(NSString *)arg1 fadeOutDuration:(double)arg2;
 - (BOOL)isAnimationForKeyPaused:(NSString *)arg1;
+- (void)setSpeed:(double)arg1 forAnimationKey:(NSString *)arg2;
 - (void)resumeAnimationForKey:(NSString *)arg1;
 - (void)pauseAnimationForKey:(NSString *)arg1;
 - (CAAnimation *)animationForKey:(NSString *)arg1;
+- (void)removeAnimationForKey:(NSString *)arg1 fadeOutDuration:(double)arg2;
+- (void)removeAnimationForKey:(NSString *)arg1 blendOutDuration:(double)arg2;
+- (SCNAnimationPlayer *)animationPlayerForKey:(NSString *)arg1;
 - (void)removeAnimationForKey:(NSString *)arg1;
 - (void)removeAllAnimations;
-- (void)addAnimation:(CAAnimation *)arg1 forKey:(NSString *)arg2;
+- (void)addAnimationPlayer:(SCNAnimationPlayer *)arg1 forKey:(NSString *)arg2;
+- (void)addAnimation:(id <SCNAnimation>)arg1 forKey:(NSString *)arg2;
 @end
 

@@ -10,7 +10,6 @@
 {
 }
 
-+ (id)sharedPolicy;
 - (id)initWithMergeType:(unsigned long long)arg1;
 - (id)init;
 - (BOOL)resolveConstraintConflicts:(id)arg1 error:(id *)arg2;

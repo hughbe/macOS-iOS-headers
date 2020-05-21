@@ -6,14 +6,12 @@
 
 #import "WBSSiteMetadataRequest.h"
 
-__attribute__((visibility("hidden")))
 @interface SnapshotRequest : WBSSiteMetadataRequest
 {
 }
 
 + (id)requestWithURL:(id)arg1 snapshotSizeCalculator:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) CDUnknownBlockType snapshotSizeCalculator;
-- (id)_initWithValidatedURL:(id)arg1 snapshotSizeCalculator:(CDUnknownBlockType)arg2;
 - (id)initWithURL:(id)arg1 snapshotSizeCalculator:(CDUnknownBlockType)arg2;
 
 @end

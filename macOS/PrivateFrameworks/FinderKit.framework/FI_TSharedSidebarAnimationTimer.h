@@ -9,15 +9,18 @@
 __attribute__((visibility("hidden")))
 @interface FI_TSharedSidebarAnimationTimer : NSObject
 {
-    struct TNSRef<NSTimer *, void> _timer;
-    struct vector<TNSRef<FI_TSidebarViewController *, void>, std::__1::allocator<TNSRef<FI_TSidebarViewController *, void>>> _controllers;
+    struct TNSRef<NSTimer, void> _timer;
+    struct vector<TNSRef<FI_TSidebarViewController, void>, std::__1::allocator<TNSRef<FI_TSidebarViewController, void>>> _controllers;
+    FI_TSharedSidebarAnimationTimer *_selfReference;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(retain, nonatomic) FI_TSharedSidebarAnimationTimer *selfReference; // @synthesize selfReference=_selfReference;
 - (void)remove:(id)arg1;
 - (void)add:(id)arg1;
 - (void)next;
+- (id)init;
 
 @end
 

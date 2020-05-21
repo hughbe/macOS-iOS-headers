@@ -7,32 +7,40 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBPayloadNeedsDisambiguation.h"
 
-@class NSMutableArray, PBUnknownFields;
+@class NSArray, NSString;
 
-@interface _INPBPayloadNeedsDisambiguation : PBCodable <NSCopying>
+@interface _INPBPayloadNeedsDisambiguation : PBCodable <_INPBPayloadNeedsDisambiguation, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    NSMutableArray *_disambiguationItems;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
+    NSArray *_disambiguationItems;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)disambiguationItemsType;
-+ (id)options;
-@property(retain, nonatomic) NSMutableArray *disambiguationItems; // @synthesize disambiguationItems=_disambiguationItems;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(copy, nonatomic) NSArray *disambiguationItems; // @synthesize disambiguationItems=_disambiguationItems;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
 - (id)disambiguationItemsAtIndex:(unsigned long long)arg1;
-- (unsigned long long)disambiguationItemsCount;
+@property(readonly, nonatomic) unsigned long long disambiguationItemsCount;
 - (void)addDisambiguationItems:(id)arg1;
 - (void)clearDisambiguationItems;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

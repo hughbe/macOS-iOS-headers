@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     struct __AXObserver *_appObserver;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) SCRApplication *applicationBeforeShowingExpose; // @synthesize applicationBeforeShowingExpose=_applicationBeforeShowingExpose;
 @property(nonatomic) BOOL isTabDockActive; // @synthesize isTabDockActive=_isTabDockActive;
 - (void)_handleNotification:(id)arg1 withAXElement:(id)arg2;
@@ -29,7 +30,7 @@ __attribute__((visibility("hidden")))
 - (void)_focusOutExpose;
 - (void)_focusOnExpose;
 - (id)_widgetList;
-- (void)dispatchBuildWidgetGuide:(id)arg1 target:(id)arg2 tag:(int)arg3 wait:(double)arg4;
+- (void)dispatchBuildWidgetGuide:(id)arg1 target:(id)arg2 tag:(long long)arg3 wait:(double)arg4;
 - (void)dispatchFocusOutDock;
 - (void)dispatchFocusOnDockAndSelectDockItem:(id)arg1;
 - (void)dispatchFocusOnDockAndSelectDockItemAtIndex:(unsigned long long)arg1;
@@ -41,7 +42,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)isDockApplication;
 - (BOOL)applicationNeedsWindows;
 - (void)addItemDescriptionToRequest:(id)arg1;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (void)setIsKeyboardEventHandler:(BOOL)arg1;
 - (void)_flyToDownloadsAnimationOccurred:(id)arg1;
 - (void)_launchpadPageDidChange:(id)arg1;
@@ -50,12 +51,8 @@ __attribute__((visibility("hidden")))
 - (void)_desktopDidShow:(id)arg1;
 - (void)_exposeDidShow:(id)arg1;
 - (void)_exposeDidHide:(id)arg1;
-- (void)_dashboardDidShow:(id)arg1;
-- (void)_dashboardDidHide:(id)arg1;
-- (void)_enableDashboard;
 - (void)applicationWillInvalidate;
 - (void)_initializeObserver;
-- (void)dealloc;
 - (void)applicationDidInitialize;
 
 @end

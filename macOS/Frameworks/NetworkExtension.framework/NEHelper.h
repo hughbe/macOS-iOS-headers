@@ -16,13 +16,14 @@
     NSObject<OS_xpc_object> *_initMessage;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSObject<OS_xpc_object> *initMessage; // @synthesize initMessage=_initMessage;
 @property(readonly) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(copy) CDUnknownBlockType incomingMessageHandler; // @synthesize incomingMessageHandler=_incomingMessageHandler;
-- (void).cxx_destruct;
 - (void)sendRequest:(id)arg1 responseHandler:(CDUnknownBlockType)arg2;
 - (id)connection;
 - (void)dealloc;
+- (id)initWithDelegateClassID:(int)arg1 queue:(id)arg2 initialMessage:(id)arg3;
 - (id)initWithDelegateClassID:(int)arg1 queue:(id)arg2;
 
 @end

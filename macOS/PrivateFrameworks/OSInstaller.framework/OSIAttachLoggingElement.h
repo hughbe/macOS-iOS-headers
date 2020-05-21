@@ -10,11 +10,12 @@
 {
 }
 
++ (BOOL)flushCurrentInstallLogToMutableProduct;
++ (void)markDetached;
 - (double)estimatedTimeToComplete;
 - (BOOL)_attachLog;
 - (id)operationName;
 - (BOOL)runReturningError:(id *)arg1;
-- (void)dealloc;
 
 @end
 

@@ -18,6 +18,7 @@
     NSURL *_priorOrderedURL;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSURL *priorOrderedURL; // @synthesize priorOrderedURL=_priorOrderedURL;
 @property(nonatomic) int absoluteOrder; // @synthesize absoluteOrder=_absoluteOrder;
 @property(retain, nonatomic) CoreDAVResponseItem *responseItem; // @synthesize responseItem=_responseItem;
@@ -29,12 +30,11 @@
 - (id)additionalHeaderValues;
 - (id)httpMethod;
 - (id)description;
-- (void)dealloc;
 - (id)initWithPropertiesToSet:(id)arg1 andRemove:(id)arg2 atURL:(id)arg3;
 - (id)initWithURL:(id)arg1;
 
 // Remaining properties
-@property(nonatomic) id <CoreDAVPropPatchTaskDelegate> delegate; // @dynamic delegate;
+@property(nonatomic) __weak id <CoreDAVPropPatchTaskDelegate> delegate; // @dynamic delegate;
 
 @end
 

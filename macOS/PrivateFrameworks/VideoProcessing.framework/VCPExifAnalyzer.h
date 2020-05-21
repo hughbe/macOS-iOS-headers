@@ -17,7 +17,7 @@
 
 - (void).cxx_destruct;
 - (int)analyzeAsset:(unsigned long long *)arg1 results:(id *)arg2;
-- (int)addFaceResults:(struct __CFDictionary *)arg1 flags:(unsigned long long *)arg2;
+- (int)addFaceResults:(id)arg1 flags:(unsigned long long *)arg2;
 - (struct CGAffineTransform)transformUprightAboutTopLeft:(unsigned int)arg1;
 - (id)initWithProperties:(id)arg1 forAnalysisTypes:(unsigned long long)arg2;
 

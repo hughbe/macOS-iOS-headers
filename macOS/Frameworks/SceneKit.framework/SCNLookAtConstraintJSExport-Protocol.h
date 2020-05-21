@@ -11,6 +11,9 @@
 @protocol SCNLookAtConstraintJSExport <JSExport>
 + (id)lookAtConstraintWithTarget:(SCNNode *)arg1;
 @property(nonatomic) BOOL gimbalLockEnabled;
+@property(nonatomic) struct SCNVector3 upVector;
+@property(nonatomic) struct SCNVector3 localFront;
+@property(nonatomic) struct SCNVector3 targetOffset;
 @property(retain, nonatomic) SCNNode *target;
 @end
 

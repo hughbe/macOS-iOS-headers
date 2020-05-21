@@ -15,20 +15,15 @@
     CalEventOccurrence *_regularOccurrence;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) CalEventOccurrence *regularOccurrence; // @synthesize regularOccurrence=_regularOccurrence;
 - (id)summary;
-- (id)commitWithDelegate:(id)arg1 commitWholeRecurrence:(BOOL)arg2 inManagedObjectContext:(id)arg3;
-- (id)commitWithDelegate:(id)arg1 inManagedObjectContext:(id)arg2;
 - (id)makeEntityFromOccurrence;
-- (BOOL)deleteWithDelegate:(id)arg1 inManagedObjectContext:(id)arg2;
-- (id)commitDateTimeChangeWithDelegate:(id)arg1 inManagedObjectContext:(id)arg2;
-- (id)commitDateTimeChangeWithDelegate:(id)arg1 withEntityTimeZone:(BOOL)arg2 inManagedObjectContext:(id)arg3;
 - (void)restore;
 - (BOOL)isFullDayOccurrence;
 - (id)timeRangeForFullDayOccurrence;
 - (id)endDate;
 - (void)setEndDate:(id)arg1;
-- (void)dealloc;
 - (void)setStartDate:(id)arg1 endDate:(id)arg2;
 - (void)moveToStartDate:(id)arg1;
 - (void)setStartDate:(id)arg1;
@@ -38,7 +33,6 @@
 - (id)duration;
 - (id)event;
 - (id)objectForKey:(id)arg1;
-- (id)startNSCalendarDate;
 
 @end
 

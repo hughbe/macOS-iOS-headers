@@ -7,10 +7,5 @@
 #import "NSObject.h"
 
 @protocol MDSnapshotMap <NSObject>
-@property(nonatomic) BOOL showsBuildings;
-@property(nonatomic) BOOL showsPointsOfInterest;
-@property(nonatomic) unsigned char labelScaleFactor;
-@property(nonatomic) BOOL localizeLabels;
-- (BOOL)isShowingNoDataPlaceholders;
 @end
 

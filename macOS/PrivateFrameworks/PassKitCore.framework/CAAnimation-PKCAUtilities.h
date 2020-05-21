@@ -7,6 +7,8 @@
 #import "CAAnimation.h"
 
 @interface CAAnimation (PKCAUtilities)
++ (id)pkui_shakeAnimationWithInitalOffest:(double)arg1 springStiffness:(double)arg2 springDamping:(double)arg3;
++ (id)pkui_smallShakeAnimation;
 + (id)pkui_shakeAnimation;
 - (void)pkui_setCompletionHandler:(CDUnknownBlockType)arg1;
 - (CDUnknownBlockType)pkui_completionHandler;

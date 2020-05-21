@@ -11,7 +11,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NEAOVPN, NEContentFilter, NEPathController, NEProfileIngestionPayloadInfo, NEVPN, NEVPNApp, NSString, NSUUID;
+@class NEAOVPN, NEContentFilter, NEDNSProxy, NEPathController, NEProfileIngestionPayloadInfo, NEVPN, NEVPNApp, NSString, NSUUID;
 
 @interface NEConfiguration : NSObject <NEProfilePayloadHandlerDelegate, NEConfigurationValidating, NSSecureCoding, NSCopying>
 {
@@ -28,6 +28,7 @@
     NEContentFilter *_contentFilter;
     NEProfileIngestionPayloadInfo *_payloadInfo;
     NEPathController *_pathController;
+    NEDNSProxy *_dnsProxy;
 }
 
 + (id)configurationWithProfilePayload:(id)arg1;
@@ -38,6 +39,8 @@
 + (BOOL)setConfiguration:(struct __CFDictionary *)arg1 forProtocol:(struct __CFString *)arg2 inService:(struct __SCNetworkService *)arg3;
 + (BOOL)removeSCServiceWithIdentifier:(id)arg1 fromPreferences:(struct __SCPreferences *)arg2;
 + (BOOL)SCServiceWithIdentifier:(id)arg1 existsInPreferences:(struct __SCPreferences *)arg2;
+- (void).cxx_destruct;
+@property(copy) NEDNSProxy *dnsProxy; // @synthesize dnsProxy=_dnsProxy;
 @property(copy) NEPathController *pathController; // @synthesize pathController=_pathController;
 @property(copy) NEProfileIngestionPayloadInfo *payloadInfo; // @synthesize payloadInfo=_payloadInfo;
 @property(copy) NEContentFilter *contentFilter; // @synthesize contentFilter=_contentFilter;
@@ -51,13 +54,12 @@
 @property(copy) NSString *application; // @synthesize application=_application;
 @property(readonly) NSUUID *identifier; // @synthesize identifier=_identifier;
 @property(readonly) long long grade; // @synthesize grade=_grade;
-- (void).cxx_destruct;
 - (void)copyPasswordsFromSystemKeychain;
 @property(readonly) NSString *pluginType;
-- (id)copyProfileDictionary;
 - (void)clearUserKeychain;
 - (void)clearSystemKeychain;
 - (void)clearKeychainInDomain:(long long)arg1;
+- (BOOL)needToUpdateKeychain;
 - (void)syncWithUserKeychain;
 - (void)syncWithSystemKeychain;
 - (void)syncWithKeychainInDomain:(long long)arg1;
@@ -74,6 +76,7 @@
 - (id)initWithName:(id)arg1 grade:(long long)arg2;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
+- (id)initWithDNSProxyPayload:(id)arg1 configurationName:(id)arg2 grade:(long long)arg3;
 - (id)initWithPathControllerPayload:(id)arg1 configurationName:(id)arg2 grade:(long long)arg3;
 - (void)setSystemCertificateData:(id)arg1;
 - (id)getInstalledSystemCertificatePersistentRef;
@@ -81,8 +84,18 @@
 - (id)installSystemCertificates;
 - (BOOL)hasSystemCertificatesToInstall;
 - (id)importSystemCertificatePayload:(id)arg1 outError:(id *)arg2;
+- (BOOL)setRestrictDomains:(BOOL)arg1;
+- (BOOL)setContactsDomains:(id)arg1 accountIdentifiers:(id)arg2;
+- (BOOL)setContactsDomains:(id)arg1;
+- (BOOL)setCalendarDomains:(id)arg1 accountIdentifiers:(id)arg2;
+- (BOOL)setCalendarDomains:(id)arg1;
+- (BOOL)setMailDomains:(id)arg1 accountIdentifiers:(id)arg2;
+- (BOOL)setMailDomains:(id)arg1;
+- (BOOL)validateStrings:(id)arg1;
+- (BOOL)setSMBDomains:(id)arg1;
 - (BOOL)setAppLayerVPNUUID:(id)arg1 andSafariDomains:(id)arg2;
 - (BOOL)setAppLayerVPNRuleSettings:(id)arg1 withAppIdentifier:(id)arg2;
+- (id)mergeArray:(id)arg1 withArray:(id)arg2;
 - (BOOL)setProfileInfo:(id)arg1;
 - (BOOL)setPayloadInfoCommon:(id)arg1 payloadOrganization:(id)arg2;
 - (BOOL)setPayloadInfoIdentity:(id)arg1;

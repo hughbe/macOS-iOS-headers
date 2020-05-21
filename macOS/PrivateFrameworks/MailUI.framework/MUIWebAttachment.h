@@ -6,33 +6,35 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSPasteboardReading.h"
 #import "NSPasteboardWriting.h"
+#import "NSSecureCoding.h"
 
 @class MCFileWrapper, NSImage, NSString, NSURL;
 
-@interface MUIWebAttachment : NSObject <NSCoding, NSPasteboardReading, NSPasteboardWriting>
+@interface MUIWebAttachment : NSObject <NSPasteboardReading, NSPasteboardWriting, NSSecureCoding>
 {
     NSString *_inlineTagName;
     NSString *_mimeType;
     NSString *_uti;
     NSURL *_fileURL;
     MCFileWrapper *_fileWrapper;
-    NSURL *_cidURL;
     NSString *_contentID;
     NSURL *_remoteURL;
+    NSURL *_cidURL;
 }
 
 + (id)readableTypesForPasteboard:(id)arg1;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSURL *cidURL; // @synthesize cidURL=_cidURL;
 @property(retain, nonatomic) NSURL *remoteURL; // @synthesize remoteURL=_remoteURL;
 @property(copy, nonatomic) NSString *contentID; // @synthesize contentID=_contentID;
-@property(retain, nonatomic) NSURL *cidURL; // @synthesize cidURL=_cidURL;
 @property(readonly, nonatomic) MCFileWrapper *fileWrapper; // @synthesize fileWrapper=_fileWrapper;
-- (void).cxx_destruct;
 - (id)initWithPasteboardPropertyList:(id)arg1 ofType:(id)arg2;
 - (id)pasteboardPropertyListForType:(id)arg1;
 - (id)writableTypesForPasteboard:(id)arg1;
+- (id)_mimeTypeForFilename:(id)arg1;
 @property(readonly, nonatomic) BOOL shouldAlwaysAutomaticallyDownload;
 @property(readonly, nonatomic) BOOL isDataDownloaded;
 @property(readonly, nonatomic) __weak NSURL *downloadDirectory;

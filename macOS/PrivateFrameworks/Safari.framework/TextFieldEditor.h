@@ -6,11 +6,17 @@
 
 #import "NSTextView.h"
 
+@class NSTouchBar;
+
 __attribute__((visibility("hidden")))
 @interface TextFieldEditor : NSTextView
 {
+    NSTouchBar *_emptyFunctionBar;
 }
 
+- (void).cxx_destruct;
+- (id)touchBar;
+- (void)disableDFRAccessories;
 - (BOOL)canSmoothFontsInLayer;
 - (void)doCommandBySelector:(SEL)arg1;
 - (void)pasteAsPlainText:(id)arg1;

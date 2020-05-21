@@ -10,20 +10,26 @@
 #import "_CDInteractionQuerying.h"
 #import "_CDInteractionRecording.h"
 
-@class NSObject<OS_dispatch_queue>, _CDInteractionStoreNotifier, _DKCoreDataStorage;
+@class NSObject<OS_dispatch_queue>, _CDInteraction, _CDInteractionStoreNotifier, _DKCoreDataStorage;
 
 @interface _CDInteractionStore : NSObject <_CDInteractionRecording, _CDInteractionQuerying, _CDInteractionDeleting>
 {
     _DKCoreDataStorage *_storage;
     NSObject<OS_dispatch_queue> *_workQueue;
     _CDInteractionStoreNotifier *_notifier;
+    NSObject<OS_dispatch_queue> *_pendingShareInteractionQueue;
+    BOOL _readConcurrently;
+    _CDInteraction *_pendingShareSheetInteraction;
     id <_DKLocationHistorian> _locationHistorian;
 }
 
 + (id)defaultDatabaseDirectory;
 + (id)storeWithDirectory:(id)arg1 readOnly:(BOOL)arg2;
-@property(retain) id <_DKLocationHistorian> locationHistorian; // @synthesize locationHistorian=_locationHistorian;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL readConcurrently; // @synthesize readConcurrently=_readConcurrently;
+@property(readonly, nonatomic) _DKCoreDataStorage *storage; // @synthesize storage=_storage;
+@property(retain) id <_DKLocationHistorian> locationHistorian; // @synthesize locationHistorian=_locationHistorian;
+@property(retain, nonatomic) _CDInteraction *pendingShareSheetInteraction; // @synthesize pendingShareSheetInteraction=_pendingShareSheetInteraction;
 - (void)anonymizeContactsWithSalt:(id)arg1;
 - (void)anonymizeKeywordsWithSalt:(id)arg1;
 - (void)anonymizeInteractionsWithSalt:(id)arg1;
@@ -45,6 +51,7 @@
 - (unsigned long long)deleteInteractionsOlderThanDate:(id)arg1 limit:(unsigned long long)arg2;
 - (unsigned long long)deleteUnreferencedContacts;
 - (unsigned long long)deleteUnreferencedKeywords;
+- (id)interactionCountPerMechanism;
 - (id)histogramContactInteractionsUsingPredicate:(id)arg1 withLimit:(unsigned long long)arg2;
 - (id)queryContactInteractionsUsingPredicate:(id)arg1 withLimit:(unsigned long long)arg2;
 - (unsigned long long)numberOfContactsMatchingPredicate:(id)arg1;
@@ -54,6 +61,7 @@
 - (id)queryInteractionsUsingPredicate:(id)arg1 withLimit:(unsigned long long)arg2;
 - (void)queryInteractionsUsingPredicate:(id)arg1 sortDescriptors:(id)arg2 limit:(unsigned long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)queryInteractionsUsingPredicate:(id)arg1 sortDescriptors:(id)arg2 limit:(unsigned long long)arg3;
+- (id)queryInteractionsUsingPredicate:(id)arg1 sortDescriptors:(id)arg2 limit:(unsigned long long)arg3 offset:(unsigned long long)arg4 error:(id *)arg5;
 - (id)queryInteractionsUsingPredicate:(id)arg1 sortDescriptors:(id)arg2 limit:(unsigned long long)arg3 error:(id *)arg4;
 - (unsigned long long)numberOfInteractionsMatchingPredicate:(id)arg1;
 - (void)countContactsUsingPredicate:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -61,25 +69,30 @@
 - (void)countInteractionsUsingPredicate:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (unsigned long long)countInteractionsUsingPredicate:(id)arg1 error:(id *)arg2;
 - (BOOL)openAndCheckIfReadable;
-- (BOOL)recordInteractionsBatch:(id)arg1;
+- (BOOL)recordInteractionsBatch:(id)arg1 error:(id *)arg2;
 - (void)recordInteractions:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (BOOL)recordInteractions:(id)arg1 error:(id *)arg2;
 - (BOOL)recordInteractions:(id)arg1;
 - (BOOL)recordInteraction:(id)arg1;
 - (id)createInteractionFromRecord:(id)arg1;
 - (id)createKeywordFromRecord:(id)arg1;
+- (id)createAttachmentFromRecord:(id)arg1;
 - (id)getContactForRecord:(id)arg1;
 - (id)dateFromTimeIntervalSinceRef:(double)arg1;
-- (id)createInteractionRecord:(id)arg1 context:(id)arg2 keywordCache:(id)arg3 contactCache:(id)arg4;
+- (id)createInteractionRecord:(id)arg1 context:(id)arg2 keywordCache:(id)arg3 attachmentCache:(id)arg4 contactCache:(id)arg5 error:(id *)arg6;
 - (void)updateCachedStatsForContactRecord:(id)arg1 isSender:(BOOL)arg2 withInteraction:(id)arg3;
-- (id)createInteractionRecord:(id)arg1 context:(id)arg2;
+- (id)createInteractionRecord:(id)arg1 context:(id)arg2 error:(id *)arg3;
 - (void)fillWithoutRelationshipsInteractionRecord:(id)arg1 fromInteraction:(id)arg2;
-- (id)batchFetchExistingInteractionsWithUUIDs:(id)arg1 context:(id)arg2;
-- (id)batchFetchExistingContactRecords:(id)arg1 context:(id)arg2;
-- (id)batchFetchExistingKeywordRecords:(id)arg1 context:(id)arg2;
-- (id)fetchOrCreateContactRecord:(id)arg1 context:(id)arg2 cache:(id)arg3;
-- (id)fetchOrCreateContactRecord:(id)arg1 context:(id)arg2;
-- (id)fetchOrCreateKeywordRecord:(id)arg1 context:(id)arg2 cache:(id)arg3;
-- (id)fetchOrCreateKeywordRecord:(id)arg1 context:(id)arg2;
+- (id)batchFetchExistingInteractionsWithUUIDs:(id)arg1 context:(id)arg2 error:(id *)arg3;
+- (id)batchFetchExistingContactRecords:(id)arg1 context:(id)arg2 error:(id *)arg3;
+- (id)batchFetchExistingAttachmentRecords:(id)arg1 context:(id)arg2 error:(id *)arg3;
+- (id)errorForException:(id)arg1;
+- (id)batchFetchExistingKeywordRecords:(id)arg1 context:(id)arg2 error:(id *)arg3;
+- (id)fetchOrCreateContactRecord:(id)arg1 context:(id)arg2 cache:(id)arg3 error:(id *)arg4;
+- (id)fetchOrCreateContactRecord:(id)arg1 context:(id)arg2 error:(id *)arg3;
+- (id)fetchOrCreateAttachmentRecord:(id)arg1 context:(id)arg2 cache:(id)arg3 error:(id *)arg4;
+- (id)fetchOrCreateKeywordRecord:(id)arg1 context:(id)arg2 cache:(id)arg3 error:(id *)arg4;
+- (id)fetchOrCreateKeywordRecord:(id)arg1 context:(id)arg2 error:(id *)arg3;
 - (id)init;
 - (id)initWithDirectory:(id)arg1 readOnly:(BOOL)arg2;
 - (id)initWithDatabasePath:(id)arg1 inDirectory:(id)arg2;

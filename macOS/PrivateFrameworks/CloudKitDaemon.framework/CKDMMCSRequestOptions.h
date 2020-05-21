@@ -6,33 +6,58 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSString;
+@class C2MetricOptions, CKOperationMMCSRequestOptions, NSArray, NSData, NSDictionary, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CKDMMCSRequestOptions : NSObject
 {
-    BOOL _usesBackgroundSession;
     BOOL _allowsCellularAccess;
     BOOL _allowsPowerNapScheduling;
+    BOOL _resolvedAutomaticallyRetryNetworkFailures;
+    long long _databaseScope;
+    long long _containerEnvironment;
+    NSString *_topmostParentOperationID;
+    NSString *_topmostParentOperationGroupID;
     NSString *_applicationBundleID;
     NSString *_applicationSecondaryID;
     NSString *_containerID;
     NSArray *_zoneNames;
+    NSString *_deviceHardwareID;
+    NSData *_authPutResponse;
+    NSDictionary *_authPutResponseHeaders;
     long long _qualityOfService;
-    NSDictionary *_MMCSRequestOptions;
+    long long _queuePriority;
+    unsigned long long _resolvedDiscretionaryNetworkBehavior;
+    unsigned long long _duetPreClearedMode;
+    C2MetricOptions *_metricOptions;
+    unsigned long long _networkServiceType;
+    CKOperationMMCSRequestOptions *_MMCSRequestOptions;
 }
 
-@property(retain, nonatomic) NSDictionary *MMCSRequestOptions; // @synthesize MMCSRequestOptions=_MMCSRequestOptions;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CKOperationMMCSRequestOptions *MMCSRequestOptions; // @synthesize MMCSRequestOptions=_MMCSRequestOptions;
+@property(nonatomic) unsigned long long networkServiceType; // @synthesize networkServiceType=_networkServiceType;
+@property(retain, nonatomic) C2MetricOptions *metricOptions; // @synthesize metricOptions=_metricOptions;
+@property(nonatomic) unsigned long long duetPreClearedMode; // @synthesize duetPreClearedMode=_duetPreClearedMode;
+@property(nonatomic) unsigned long long resolvedDiscretionaryNetworkBehavior; // @synthesize resolvedDiscretionaryNetworkBehavior=_resolvedDiscretionaryNetworkBehavior;
+@property(nonatomic) BOOL resolvedAutomaticallyRetryNetworkFailures; // @synthesize resolvedAutomaticallyRetryNetworkFailures=_resolvedAutomaticallyRetryNetworkFailures;
+@property(nonatomic) long long queuePriority; // @synthesize queuePriority=_queuePriority;
 @property(nonatomic) long long qualityOfService; // @synthesize qualityOfService=_qualityOfService;
 @property(nonatomic) BOOL allowsPowerNapScheduling; // @synthesize allowsPowerNapScheduling=_allowsPowerNapScheduling;
 @property(nonatomic) BOOL allowsCellularAccess; // @synthesize allowsCellularAccess=_allowsCellularAccess;
-@property(nonatomic) BOOL usesBackgroundSession; // @synthesize usesBackgroundSession=_usesBackgroundSession;
+@property(retain, nonatomic) NSDictionary *authPutResponseHeaders; // @synthesize authPutResponseHeaders=_authPutResponseHeaders;
+@property(retain, nonatomic) NSData *authPutResponse; // @synthesize authPutResponse=_authPutResponse;
+@property(retain, nonatomic) NSString *deviceHardwareID; // @synthesize deviceHardwareID=_deviceHardwareID;
 @property(retain, nonatomic) NSArray *zoneNames; // @synthesize zoneNames=_zoneNames;
 @property(retain, nonatomic) NSString *containerID; // @synthesize containerID=_containerID;
 @property(retain, nonatomic) NSString *applicationSecondaryID; // @synthesize applicationSecondaryID=_applicationSecondaryID;
 @property(retain, nonatomic) NSString *applicationBundleID; // @synthesize applicationBundleID=_applicationBundleID;
-- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *topmostParentOperationGroupID; // @synthesize topmostParentOperationGroupID=_topmostParentOperationGroupID;
+@property(retain, nonatomic) NSString *topmostParentOperationID; // @synthesize topmostParentOperationID=_topmostParentOperationID;
+@property(nonatomic) long long containerEnvironment; // @synthesize containerEnvironment=_containerEnvironment;
+@property(nonatomic) long long databaseScope; // @synthesize databaseScope=_databaseScope;
 - (id)MMCSOptions;
+- (BOOL)usesBackgroundSession;
 - (id)description;
 - (id)CKPropertiesDescription;
 - (id)initWithOperation:(id)arg1;

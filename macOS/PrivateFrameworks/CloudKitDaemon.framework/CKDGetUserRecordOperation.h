@@ -14,10 +14,11 @@ __attribute__((visibility("hidden")))
     CKRecord *_userRecord;
 }
 
-@property(retain, nonatomic) CKRecord *userRecord; // @synthesize userRecord=_userRecord;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CKRecord *userRecord; // @synthesize userRecord=_userRecord;
+- (id)analyticsPayload;
 - (void)main;
-- (void)_fetchRecords;
+- (void)fetchRecordsWithIDs:(id)arg1 andFullRecords:(id)arg2;
 
 @end
 

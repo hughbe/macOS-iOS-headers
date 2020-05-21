@@ -10,19 +10,23 @@
 {
 }
 
-+ (BOOL)deleteRestrictedItem:(id)arg1;
-+ (BOOL)deleteMobileBackupsTrashAsync;
-+ (BOOL)trashMobileBackups;
-+ (unsigned long long)purgeSpace:(unsigned long long)arg1 onVolume:(id)arg2 urgency:(int)arg3;
-+ (BOOL)startHandler;
-+ (BOOL)stopHandler;
++ (BOOL)unmountLocalSnapshotsForDate:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
++ (BOOL)unmountLocalSnapshotsForDisk:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
++ (BOOL)unmountLocalSnapshotForDate:(id)arg1 forDisk:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
++ (BOOL)mountLocalSnapshotsForDate:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
++ (BOOL)mountLocalSnapshotsForDisk:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
++ (BOOL)mountLocalSnapshotForDate:(id)arg1 forDisk:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
++ (id)purgeLocalSnapshotsForVolumeGroupContaining:(id)arg1 purgeAmount:(unsigned long long)arg2 urgency:(int)arg3;
++ (id)deleteLocalSnapshotsForDisk:(id)arg1;
++ (id)deleteLocalSnapshotsForDates:(id)arg1;
++ (id)mountedLocalSnapshotsForDisk:(id)arg1;
++ (id)localSnapshotDatesForDisk:(id)arg1;
++ (id)localSnapshotDates;
++ (id)createLocalSnapshots;
 + (BOOL)snapshot;
-+ (BOOL)readEvents;
-+ (BOOL)_sendXPCMessage:(id)arg1 connectionName:(const char *)arg2;
-+ (int)_sendXPCMessage:(id)arg1 connectionName:(const char *)arg2 timeout:(double)arg3 resultCode:(unsigned long long *)arg4;
-+ (BOOL)_sendMessage:(int)arg1 replyTimeout:(double)arg2;
-+ (BOOL)_sendMessage:(int)arg1 arguments:(id)arg2 replyTimeout:(double)arg3;
-+ (BOOL)_sendMessage:(int)arg1 data:(id)arg2 replyTimeout:(double)arg3 outReplyData:(id *)arg4;
++ (BOOL)_sendMessageWithId:(unsigned long long)arg1 disk:(id)arg2 date:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
++ (id)_copyReplyToXPCMessageWithId:(unsigned long long)arg1 connectionName:(const char *)arg2 timeOut:(double)arg3;
++ (id)_copyReplyToXPCMessage:(id)arg1 connectionName:(const char *)arg2 timeOut:(double)arg3;
 
 @end
 

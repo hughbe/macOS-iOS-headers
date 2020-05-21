@@ -23,12 +23,12 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)_createViewControllerWithItemIdentifier:(id)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic, getter=_navigationTransitionTimer, setter=_setNavigationTransitionTimer:) NSTimer *navigationTransitionTimer; // @synthesize navigationTransitionTimer=_navigationTransitionTimer;
 @property(retain, nonatomic, getter=_navigationTransitionQueue, setter=_navigationTransitionQueue:) NSMutableArray *navigationTransitionQueue; // @synthesize navigationTransitionQueue=_navigationTransitionQueue;
 @property(readonly, nonatomic, getter=_navigationController) SiriUINavigationController *navigationController; // @synthesize navigationController=_navigationController;
 @property(nonatomic) __weak id <SVSTranscriptStackViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <SVSTranscriptStackViewControllerDataSource> dataSource; // @synthesize dataSource=_dataSource;
-- (void).cxx_destruct;
 - (void)navigationController:(id)arg1 didShowViewController:(id)arg2 animated:(BOOL)arg3;
 - (void)navigationController:(id)arg1 didLayoutViewController:(id)arg2;
 - (void)navigationController:(id)arg1 willShowViewController:(id)arg2 animated:(BOOL)arg3;
@@ -54,9 +54,10 @@ __attribute__((visibility("hidden")))
 - (void)transcriptViewController:(id)arg1 didPresentConversationItemsWithIdentifiers:(id)arg2;
 - (void)transcriptViewControllerDidChangeContentHeight:(id)arg1;
 - (void)transcriptViewController:(id)arg1 didHideVibrantView:(id)arg2;
-- (void)transcriptViewControllerDidShowSuggestions:(id)arg1;
-- (BOOL)transcriptViewControllerWillShowSuggestions:(id)arg1;
+- (BOOL)transcriptViewControllerCanShowHelp:(id)arg1;
+- (void)showHelpForTranscriptViewController:(id)arg1;
 - (long long)initialDisplayTypeForTranscriptViewController:(id)arg1;
+- (double)windowWidthForTranscriptViewController:(id)arg1;
 - (double)contentWidthForTranscriptViewController:(id)arg1;
 - (id)domainObjectStoreForTranscriptViewController:(id)arg1;
 - (id)conversationItemListForTranscriptViewController:(id)arg1;
@@ -72,12 +73,11 @@ __attribute__((visibility("hidden")))
 - (id)_indexPathForItemWithIdentifier:(id)arg1;
 - (id)_identifierOfItemAtIndexPath:(id)arg1;
 - (id)_topTranscriptViewController;
-- (void)didChangeWindowHeight;
+- (void)didChangeWindowHeight:(BOOL)arg1;
 - (double)contentHeight;
 - (void)siriDidDetectSpeechStartpoint;
 - (void)siriStoppedFingerprintingMusic;
 - (void)siriBeganFingerprintingMusic;
-- (void)updateSuggestedUtterances:(id)arg1 forLanguage:(id)arg2;
 - (void)_processTransitionQueue;
 - (void)_queuePushViewController:(id)arg1 animated:(BOOL)arg2;
 - (void)_queuePopToViewController:(id)arg1 animated:(BOOL)arg2;
@@ -90,6 +90,8 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL transcriptEndIsVisible;
 @property(readonly, nonatomic) BOOL transcriptStartIsVisible;
 - (id)_conversation;
+- (void)siriDidStopSpeakingWithIdentifier:(id)arg1 speechQueueIsEmpty:(BOOL)arg2;
+- (void)siriDidStartSpeakingWithIdentifier:(id)arg1;
 - (void)siriRequestWillStart;
 - (void)siriDidDeactivate;
 - (void)siriDidTransitionFromState:(long long)arg1 event:(long long)arg2;

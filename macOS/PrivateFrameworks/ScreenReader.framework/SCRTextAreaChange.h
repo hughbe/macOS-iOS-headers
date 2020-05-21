@@ -13,17 +13,17 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (void)collapsePairs:(struct NSMutableArray *)arg1;
++ (void)collapsePairs:(id)arg1;
 + (id)changeWithEditType:(long long)arg1 value:(id)arg2 marker:(id)arg3 length:(unsigned long long)arg4;
 - (BOOL)containedByRange:(id)arg1 forUIElement:(id)arg2;
-- (void)addValueToOutputRequest:(id)arg1 typingEchoPreference:(unsigned long long)arg2;
-- (BOOL)isCandidateForWordEchoWithTypingEchoPreference:(unsigned long long)arg1;
-- (BOOL)isCandidateForCharacterEchoWithTypingEchoPreference:(unsigned long long)arg1;
+- (void)addValueToOutputRequest:(id)arg1 typingEchoPreference:(long long)arg2;
+- (BOOL)isCandidateForWordEchoWithTypingEchoPreference:(long long)arg1;
+- (BOOL)isCandidateForCharacterEchoWithTypingEchoPreference:(long long)arg1;
 
 // Remaining properties
 @property(readonly, nonatomic) long long editType; // @dynamic editType;
 @property(readonly, nonatomic) unsigned long long length; // @dynamic length;
-@property(readonly, retain, nonatomic) SCRTextMarker *marker; // @dynamic marker;
+@property(readonly, nonatomic) SCRTextMarker *marker; // @dynamic marker;
 @property(readonly, nonatomic, getter=isTruncated) BOOL truncated; // @dynamic truncated;
 @property(readonly, copy, nonatomic) NSString *value; // @dynamic value;
 

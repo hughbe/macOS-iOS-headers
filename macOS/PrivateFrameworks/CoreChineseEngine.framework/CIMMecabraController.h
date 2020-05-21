@@ -15,15 +15,18 @@
     NSMutableDictionary *_debugLoggerDictionary;
     NSMutableDictionary *_applicationContextDictionary;
     NSTimer *_maintenanceTimer;
+    id _mobileAssetListener;
 }
 
++ (id)TIInputModeIdentifierFrom:(int)arg1;
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property(retain, nonatomic) id mobileAssetListener; // @synthesize mobileAssetListener=_mobileAssetListener;
 @property(nonatomic) BOOL logStateSet; // @synthesize logStateSet=_logStateSet;
 @property(retain, nonatomic) NSTimer *maintenanceTimer; // @synthesize maintenanceTimer=_maintenanceTimer;
 @property(retain, nonatomic) NSMutableDictionary *applicationContextDictionary; // @synthesize applicationContextDictionary=_applicationContextDictionary;
 @property(retain, nonatomic) NSMutableDictionary *debugLoggerDictionary; // @synthesize debugLoggerDictionary=_debugLoggerDictionary;
 @property(retain, nonatomic) NSMutableDictionary *mecabraRefDictionary; // @synthesize mecabraRefDictionary=_mecabraRefDictionary;
-- (void).cxx_destruct;
 - (id)applicationContextForInputMethodType:(int)arg1;
 - (void)setApplicationContext:(id)arg1 inputMethodType:(int)arg2;
 - (void)flushDynamicData;
@@ -33,6 +36,10 @@
 - (void)setMecabraEngine:(struct __Mecabra *)arg1 forInputMethodType:(int)arg2;
 - (id)debugLoggerForInputMethodType:(int)arg1;
 - (struct __Mecabra *)mecabraEngineForInputMethodType:(int)arg1;
+- (void)updateDictionaryPathsFor:(int)arg1;
+- (void)updateDictionaryPaths;
+- (void)dealloc;
+- (id)init;
 
 @end
 

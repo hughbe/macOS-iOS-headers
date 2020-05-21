@@ -9,7 +9,7 @@
 @interface ICDrawingCommandData : NSObject
 {
     struct CGRect _cachedBounds;
-    vector_82e5b66f _points;
+    vector_352d2fdf _points;
     BOOL _isClipped;
     unsigned int _type;
     struct CGColor *_color;
@@ -20,6 +20,8 @@
     CDStruct_4a3d0796 _baseValues;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(nonatomic) struct ICDrawingCommandID commandID; // @synthesize commandID=_commandID;
 @property(nonatomic) struct CGPoint clipNormal; // @synthesize clipNormal=_clipNormal;
 @property(nonatomic) struct CGPoint clipOrigin; // @synthesize clipOrigin=_clipOrigin;
@@ -28,14 +30,15 @@
 @property(nonatomic) CDStruct_4a3d0796 baseValues; // @synthesize baseValues=_baseValues;
 @property(retain, nonatomic) struct CGColor *color; // @synthesize color=_color;
 @property(nonatomic) unsigned int type; // @synthesize type=_type;
-@property(readonly, nonatomic) vector_82e5b66f *points; // @synthesize points=_points;
-- (id).cxx_construct;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) vector_352d2fdf *points; // @synthesize points=_points;
 - (id)description;
 @property(readonly, nonatomic) struct CGRect bounds;
 - (double)renderCost;
 - (void)invalidateBounds;
 @property(readonly, nonatomic) unsigned int randomSeed;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
+- (BOOL)isEqualDrawingCommandData:(id)arg1;
 - (void)dealloc;
 - (id)init;
 - (unsigned int)saveToArchive:(struct Command *)arg1 sortedUUIDs:(id)arg2 withPathData:(BOOL)arg3 isHidden:(BOOL)arg4;

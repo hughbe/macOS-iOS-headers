@@ -12,15 +12,21 @@
 
 - (void)handleURLActionWithInfo:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)handleURLActionWithInfo:(id)arg1;
+- (id)generateRandomRecoveryKey:(id *)arg1;
+- (BOOL)deleteRecoveryKeyWithError:(id *)arg1;
+- (void)deleteRecoveryKey:(CDUnknownBlockType)arg1;
+- (void)generateNewRecoveryKey:(CDUnknownBlockType)arg1;
 - (BOOL)shouldPerformRepair:(id *)arg1;
-- (void)preflightStingrayDisableWithCompletion:(CDUnknownBlockType)arg1;
-- (void)getStingrayDisableEligibilityWithCompletion:(CDUnknownBlockType)arg1;
-- (void)getStringrayStatusWithCompletion:(CDUnknownBlockType)arg1;
-- (void)setStingrayState:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)finishOfflineLocalSecretChangeWithCompletion:(CDUnknownBlockType)arg1;
 - (void)localSecretChangedTo:(id)arg1 secretType:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)attemptToEscrowPreRecord:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)attemptToEscrowPreRecord:(id)arg1 preRecordUUID:(id)arg2 secretType:(unsigned long long)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)recoverWithSquirrel:(CDUnknownBlockType)arg1;
+- (void)recoverAndSynchronizeWithSquirrel:(CDUnknownBlockType)arg1;
+- (void)startCircleApplicationApprovalServer:(CDUnknownBlockType)arg1;
 - (void)repairCloudDataProtectionStateWithCompletion:(CDUnknownBlockType)arg1;
 - (void)handleCloudDataProtectionStateWithCompletion:(CDUnknownBlockType)arg1;
+- (BOOL)isManateeAvailable:(id *)arg1;
 
 @end
 

@@ -11,15 +11,15 @@
 @interface MFEWSGetMessagesNeedingBodiesOperation : MFEWSPersistenceTaskOperation
 {
     id <MFEWSGetMessagesNeedingBodiesOperationDelegate> _delegate;
-    NSArray *_mailboxURLs;
+    NSArray *_mailboxes;
 }
 
-@property(readonly, copy, nonatomic) NSArray *mailboxURLs; // @synthesize mailboxURLs=_mailboxURLs;
-@property(nonatomic) __weak id <MFEWSGetMessagesNeedingBodiesOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSArray *mailboxes; // @synthesize mailboxes=_mailboxes;
+@property(nonatomic) __weak id <MFEWSGetMessagesNeedingBodiesOperationDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)main;
 - (id)init;
-- (id)initWithMailboxURLs:(id)arg1;
+- (id)initWithMailboxes:(id)arg1;
 
 @end
 

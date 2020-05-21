@@ -24,7 +24,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) double length;
 @property(readonly, nonatomic) CDStruct_c3b9c2ee *coordinates;
 @property(readonly, nonatomic) unsigned long long coordinateCount;
-- (void)dealloc;
 - (id)initWithMap:(id)arg1 edge:(shared_ptr_035a2da2)arg2;
 
 // Remaining properties

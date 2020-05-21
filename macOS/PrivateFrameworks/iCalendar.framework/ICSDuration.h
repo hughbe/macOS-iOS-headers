@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
-@interface ICSDuration : NSObject <NSCoding>
+@interface ICSDuration : NSObject <NSSecureCoding>
 {
     double _duration;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)generateDurationFromICSString:(id)arg1;
 + (id)durationFromICSString:(id)arg1;
 + (id)durationFromRFC2445UTF8String:(const char *)arg1;

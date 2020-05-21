@@ -6,27 +6,33 @@
 
 #import "NSObject.h"
 
-#import "PreferencePaneProtocol.h"
+#import "PreferencePaneLegacyProtocol.h"
 
-@class NSPreferencePane, NSXPCConnection;
+@class NSPreferencePane, NSString, NSXPCConnection;
 
-@interface PreferencePaneDispatch : NSObject <PreferencePaneProtocol>
+@interface PreferencePaneDispatch : NSObject <PreferencePaneLegacyProtocol>
 {
     NSPreferencePane *_prefPaneObject;
     CDUnknownBlockType _replyToShouldUnselectBlock;
     NSXPCConnection *_connection;
     unsigned long long _savedReplyToShouldUnselect;
+    NSString *_legacyPreferencePanePath;
+    BOOL allowLegacyInteface;
 }
 
 + (id)sharedDispatch;
-@property(retain) NSPreferencePane *prefPaneObject; // @synthesize prefPaneObject=_prefPaneObject;
 - (void).cxx_destruct;
+@property(retain) NSPreferencePane *prefPaneObject; // @synthesize prefPaneObject=_prefPaneObject;
+@property BOOL allowLegacyInteface; // @synthesize allowLegacyInteface;
+@property(readonly) NSString *legacyPreferencePanePath; // @dynamic legacyPreferencePanePath;
+- (oneway void)setLegacyPreferencePanePath:(id)arg1;
 - (void)authorizationViewDidDismissAgent;
 - (void)authorizationViewWillShowAgent;
 - (oneway void)handleOpenAEData:(id)arg1;
 - (oneway void)authorize;
 - (oneway void)openDocumentAtPath:(id)arg1;
 - (oneway void)revealElementForKey:(id)arg1;
+- (oneway void)getHasElementForKey:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (oneway void)getHelpMenuItems:(CDUnknownBlockType)arg1;
 - (oneway void)didResignActive;
 - (oneway void)willResignActive;
@@ -45,6 +51,7 @@
 - (oneway void)willSelect;
 @property(retain) NSXPCConnection *connection; // @dynamic connection;
 - (id)init;
+- (void)_toggleTouchBarControlStripCustomizationPaletteNotification:(id)arg1;
 - (void)_suddenTerminationStateShouldChangeNotification:(id)arg1;
 - (void)_switchToPaneNotification:(id)arg1;
 - (void)_cancelPaneSwitchNotification:(id)arg1;

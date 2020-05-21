@@ -11,14 +11,16 @@
 @interface PCScheduleSystemWakeOperation : NSOperation
 {
     BOOL _scheduleOrCancel;
+    BOOL _userVisible;
     NSDate *_wakeDate;
+    double _acceptableDelay;
     NSString *_serviceIdentifier;
     void *_unqiueIdentifier;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (void)main;
-- (id)initForScheduledWake:(BOOL)arg1 wakeDate:(id)arg2 serviceIdentifier:(id)arg3 uniqueIdentifier:(void *)arg4;
+- (id)initForScheduledWake:(BOOL)arg1 wakeDate:(id)arg2 acceptableDelay:(double)arg3 userVisible:(BOOL)arg4 serviceIdentifier:(id)arg5 uniqueIdentifier:(void *)arg6;
 
 @end
 

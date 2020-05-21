@@ -8,28 +8,39 @@
 
 @interface ACSHActionPressKeyCode : ACSHAction
 {
+    BOOL _usesMacKeyCode;
+    BOOL _shouldExecuteSystemFunction;
+    BOOL _shouldNotLockModifierKey;
     unsigned long long _macKeyCode;
     unsigned long long _usbKeyCode;
-    BOOL _usesMacKeyCode;
     long long _keyboardHWType;
     unsigned long long _modifiers;
 }
 
 + (id)actionWithUSBKeyCode:(unsigned long long)arg1 keyboardHWType:(long long)arg2 modifiers:(unsigned long long)arg3;
 + (id)actionWithMacKeyCode:(unsigned long long)arg1 keyboardHWType:(long long)arg2 modifiers:(unsigned long long)arg3;
+@property(nonatomic) BOOL shouldNotLockModifierKey; // @synthesize shouldNotLockModifierKey=_shouldNotLockModifierKey;
+@property(nonatomic) BOOL shouldExecuteSystemFunction; // @synthesize shouldExecuteSystemFunction=_shouldExecuteSystemFunction;
 @property(nonatomic) unsigned long long modifiers; // @synthesize modifiers=_modifiers;
 @property(nonatomic) long long keyboardHWType; // @synthesize keyboardHWType=_keyboardHWType;
 @property(nonatomic) BOOL usesMacKeyCode; // @synthesize usesMacKeyCode=_usesMacKeyCode;
+- (BOOL)hasAssociatedSound;
+- (BOOL)hasAssociatedSoundForDoubleAction;
+- (BOOL)_hasAssociatedSoundForDoubleAction:(BOOL)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (void)repeatEnded;
-- (void)perform;
+- (void)repeatEndedWithEventSourceData:(id)arg1;
+- (void)performDeactivateWithEventSourceData:(id)arg1;
+- (void)performWithEventSourceData:(id)arg1;
+- (void)performDoubleActionWithEventSourceData:(id)arg1;
+- (BOOL)shouldPerformDoubleActionIfPossible;
+- (void)_performDoubleAction:(BOOL)arg1 eventSourceData:(id)arg2 keyDown:(BOOL)arg3;
 @property(nonatomic) unsigned long long macKeyCode; // @synthesize macKeyCode=_macKeyCode;
 @property(nonatomic) unsigned long long usbKeyCode; // @synthesize usbKeyCode=_usbKeyCode;
 - (id)displayString;
 - (id)paramDescription;
 - (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
+- (void)_configureWithPlistDictionary:(id)arg1;
 - (id)init;
 
 @end

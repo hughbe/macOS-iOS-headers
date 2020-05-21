@@ -6,10 +6,12 @@
 
 #import <AppKit/NSTableRow.h>
 
+__attribute__((visibility("hidden")))
 @interface NSOutlineRow : NSTableRow
 {
 }
 
+- (BOOL)accessibilityHasOutlineColumnMockGroupForRow:(long long)arg1 column:(long long)arg2;
 - (unsigned long long)accessibilityIndexOfChild:(id)arg1;
 - (long long)_childrenCount;
 - (id)_accessibilityChildrenWithIndexes:(id)arg1;

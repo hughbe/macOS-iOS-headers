@@ -6,13 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSError, NSObject<OS_dispatch_queue>;
+@class NSObject<OS_dispatch_queue>;
 
 @protocol AVQueuedSampleBufferRendering <NSObject>
 @property(readonly, getter=isReadyForMoreMediaData) BOOL readyForMoreMediaData;
 @property(readonly, retain) struct OpaqueCMTimebase *timebase;
-@property(readonly, nonatomic) NSError *error;
-@property(readonly, nonatomic) long long status;
 - (void)stopRequestingMediaData;
 - (void)requestMediaDataWhenReadyOnQueue:(NSObject<OS_dispatch_queue> *)arg1 usingBlock:(void (^)(void))arg2;
 - (void)flush;

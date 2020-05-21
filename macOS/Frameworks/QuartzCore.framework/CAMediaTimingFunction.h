@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
-@interface CAMediaTimingFunction : NSObject <NSCoding>
+@interface CAMediaTimingFunction : NSObject <NSSecureCoding>
 {
     struct CAMediaTimingFunctionPrivate *_priv;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)functionWithName:(id)arg1;
 + (id)functionWithControlPoints:(float)arg1:(float)arg2:(float)arg3:(float)arg4;
 + (void)CAMLParserEndElement:(id)arg1 content:(id)arg2;
@@ -26,6 +27,8 @@
 - (void)encodeWithCAMLWriter:(id)arg1;
 - (id)CAMLType;
 - (float)_solveForInput:(float)arg1;
+- (unsigned long long)CA_copyNumericValue:(double [20])arg1;
+- (struct Object *)CA_copyRenderValue;
 
 @end
 

@@ -6,24 +6,19 @@
 
 #import "CALayer.h"
 
-@class NSMutableDictionary, NSPointerArray, NSTileScrollingInfoLayer;
+@class NSPointerArray, NSTileScrollingInfoLayer;
 
 __attribute__((visibility("hidden")))
 @interface _NSTiledLayer : CALayer
 {
     NSPointerArray *_observedObjects;
-    NSMutableDictionary *_tiles;
-    struct CGSize _tileSize;
-    struct CGPoint _lastVelocity;
     NSTileScrollingInfoLayer *_tileScrollingInfoLayer;
-    Class _tileClass;
     BOOL _isScrolling;
 }
 
 + (BOOL)needsDisplayForKey:(id)arg1;
 + (id)defaultValueForKey:(id)arg1;
 + (void)initialize;
-@property(nonatomic) Class tileClass; // @synthesize tileClass=_tileClass;
 - (void)addSublayer:(id)arg1;
 - (void)NS_prepareContentRect:(struct CGRect)arg1;
 - (void)NS_invalidatePreparedContentRect;
@@ -35,10 +30,8 @@ __attribute__((visibility("hidden")))
 - (struct CGRect)NS_activeVisibleRect;
 - (void)NS_showPrefetchedContentsIfNecessaryInRect:(struct CGRect)arg1;
 - (BOOL)NS_wantsToPrefetchTiles;
-- (void)NS_prefetchTilesWithScrollVelocity:(struct CGPoint)arg1 hasMorePrefetch:(char *)arg2;
 - (void)_purgeExcessTileContents;
 - (void)drawTile:(id)arg1 inContext:(struct CGContext *)arg2;
-- (BOOL)canDrawTile:(id)arg1;
 - (void)setContents:(id)arg1;
 - (void)NS_setContentsScaleSize:(struct CGSize)arg1;
 - (void)setContentsScale:(double)arg1;

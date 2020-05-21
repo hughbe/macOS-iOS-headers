@@ -10,6 +10,7 @@
 {
 }
 
++ (id)validKeyPathsForPredicate;
 + (id)sharedInstance;
 - (id)convertToSearchElementFromUIPredicate:(id)arg1 withItemType:(id)arg2;
 - (id)_convertGroupEvaluationPredicateToSearchElement:(id)arg1;
@@ -17,7 +18,6 @@
 - (id)_convertPersonEvaluationPredicateToSearchElement:(id)arg1;
 - (id)_nameSearchElementForComparisonPredicate:(id)arg1;
 - (long long)searchComparisonForComparisonPredicate:(id)arg1;
-- (long long)searchComparisonForCustomSelector:(SEL)arg1;
 - (id)rowTemplatesForItemType:(id)arg1;
 - (id)rowTemplatesForAddressBookGroups;
 - (id)rowTemplatesForAddressBookPeople;

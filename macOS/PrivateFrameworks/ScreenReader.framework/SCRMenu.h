@@ -6,7 +6,7 @@
 
 #import <ScreenReader/SCRElement.h>
 
-@class NSMutableArray, SCRBrailleLineManager, SCRMenuItem, SCRTable;
+@class NSMutableArray, SCRMenuItem, SCRTable;
 
 __attribute__((visibility("hidden")))
 @interface SCRMenu : SCRElement
@@ -15,7 +15,6 @@ __attribute__((visibility("hidden")))
     SCRMenu *_currentMenu;
     SCRMenuItem *_selectedSubmenuItem;
     NSMutableArray *_uiMenuItems;
-    SCRBrailleLineManager *_brailleLineManager;
     SCRTable *_shortcutTable;
     SCRElement *_shortcutSearchField;
     struct {
@@ -27,11 +26,11 @@ __attribute__((visibility("hidden")))
         unsigned int justOpened:1;
         unsigned int isInApplicationMenuExtraBar:1;
         unsigned int isApplicationMenuExtraBar:1;
-        unsigned int reserved:20;
     } _srmFlags;
 }
 
 + (struct CGRect)tightBoundsForMenuBarUIElement:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) SCRTable *shortcutTable; // @synthesize shortcutTable=_shortcutTable;
 @property(readonly, nonatomic) SCRElement *shortcutSearchField; // @synthesize shortcutSearchField=_shortcutSearchField;
 - (BOOL)trackElementWithGestureEvent:(id)arg1 request:(id)arg2;
@@ -50,8 +49,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)handleUntaggedOperationWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)closeMenuWithRequest:(id)arg1;
 - (BOOL)performDefaultActionWithRequest:(id)arg1 allowClick:(BOOL)arg2;
-- (BOOL)jumpBottomEdgeWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
-- (BOOL)jumpTopEdgeWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
+- (void)_jumpBottomEdgeWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
+- (void)_jumpTopEdgeWithEvent:(id)arg1 request:(id)arg2 visibleOnly:(BOOL)arg3;
 - (BOOL)_moveToShortcutTable:(id)arg1 row:(unsigned long long)arg2 request:(id)arg3;
 - (BOOL)_moveNextWithEvent:(id)arg1 request:(id)arg2 wrap:(BOOL)arg3;
 - (BOOL)_movePreviousWithEvent:(id)arg1 request:(id)arg2 wrap:(BOOL)arg3;
@@ -60,10 +59,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)_moveDownWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
 - (BOOL)_moveUpWithEvent:(id)arg1 request:(id)arg2 allowFullWrapping:(BOOL)arg3;
 - (BOOL)_moveOutOfCurrentMenuWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactRightCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactLeftCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactDownCommandShiftWithEvent:(id)arg1 request:(id)arg2;
-- (BOOL)interactUpCommandShiftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)moveToLastElementWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)moveToFirstElementWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpShiftWithEvent:(id)arg1 request:(id)arg2;
@@ -73,14 +68,12 @@ __attribute__((visibility("hidden")))
 - (BOOL)interactLeftWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactDownWithEvent:(id)arg1 request:(id)arg2;
 - (BOOL)interactUpWithEvent:(id)arg1 request:(id)arg2;
-- (unsigned long long)groupBehavior;
+- (long long)groupBehavior;
+- (void)_delayedSelectItem;
 - (id)_handleEventForPrevOrNextKeyCommand:(BOOL)arg1 request:(id)arg2;
 - (BOOL)handleEvent:(id)arg1 request:(id)arg2;
 - (BOOL)chainEvent:(id)arg1 request:(id)arg2;
-- (id)brailleLineElementForUIElement:(id)arg1;
-- (void)buildBrailleLineWithFocusedElement:(id)arg1;
-- (void)updateBrailleLineWithFocusedElement:(id)arg1;
-- (id)brailleLineManager;
+- (void)setBrailleLineWithFocusedElement:(id)arg1 forceRebuild:(BOOL)arg2;
 - (void)addItemDescriptionToRequest:(id)arg1;
 - (BOOL)addSelectionDescriptionToRequest:(id)arg1;
 - (void)addElementSummaryToRequest:(id)arg1;
@@ -103,12 +96,13 @@ __attribute__((visibility("hidden")))
 - (void)setIsTopLevelMenu:(BOOL)arg1;
 - (id)_getSelectedMenuItemAndTrack:(BOOL)arg1;
 - (id)_getSelectedMenuItem;
+- (id)_getSelectedMenuItemAfterEvent;
 - (BOOL)_isUserSelectionHappening;
 - (void)_setIsUserSelectionHappening:(BOOL)arg1;
 - (id)selectedSubmenuItem;
 - (void)_setSelectedSubmenuItem:(id)arg1;
 - (BOOL)focusInto:(id)arg1 withLeafUIMenu:(id)arg2 itemWasSelected:(char *)arg3 isClosing:(BOOL)arg4;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (void)focusIntoFirstItem;
 - (BOOL)focusIntoFirstApplicationExtra;
 - (BOOL)handleApplicationExtraMovement:(long long)arg1;
@@ -130,8 +124,6 @@ __attribute__((visibility("hidden")))
 - (void)_shortcutSearchFieldTextDidChange:(id)arg1;
 - (void)_shortcutSearchFieldSelectionDidChange:(id)arg1;
 - (void)_shortcutSelectedRowDidChange:(id)arg1;
-- (void)dealloc;
-- (void)deallocChildren;
 - (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end

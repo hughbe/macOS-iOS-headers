@@ -10,21 +10,24 @@
 
 @interface _EARSpeechRecognitionAudioBuffer : NSObject
 {
-    shared_ptr_5649258a _buffer;
+    shared_ptr_809f9c31 _buffer;
     NSObject<OS_dispatch_queue> *_queue;
     _EARSpeechRecognizer *_speechRecognizer;
     BOOL _cancelled;
     BOOL _ended;
 }
 
++ (void)initialize;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (void)_detachFromRecognizer;
+- (void)_setUnderlyingBuffer:(shared_ptr_809f9c31)arg1;
 - (void)cancelRecognition;
+- (void)triggerServerSideEndPointer;
 - (void)endAudio;
 - (void)addAudioSampleData:(id)arg1;
 - (void)addAudioSamples:(const short *)arg1 count:(unsigned long long)arg2;
-- (void)dealloc;
-- (id)_initWithAudioBuffer:(shared_ptr_5649258a)arg1 speechRecognizer:(id)arg2;
+- (id)_initWithAudioBuffer:(shared_ptr_809f9c31)arg1 speechRecognizer:(id)arg2;
 
 @end
 

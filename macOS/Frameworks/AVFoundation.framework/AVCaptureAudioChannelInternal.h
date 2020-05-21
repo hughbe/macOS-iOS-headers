@@ -8,11 +8,13 @@
 
 @class AVCaptureConnection;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureAudioChannelInternal : NSObject
 {
     AVCaptureConnection *connection;
     BOOL enabled;
     float volume;
+    struct os_unfair_lock_s internalLock;
 }
 
 @end

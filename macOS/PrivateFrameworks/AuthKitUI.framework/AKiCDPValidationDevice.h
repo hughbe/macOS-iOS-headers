@@ -15,6 +15,7 @@
     BOOL _usesPasscode;
     BOOL _usesNumericPasscode;
     BOOL _usesRandomPasscode;
+    BOOL _isCurrentDevice;
     NSString *_deviceName;
     NSString *_deviceModel;
     NSString *_deviceModelClass;
@@ -25,17 +26,18 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain) NSDate *recordDate; // @synthesize recordDate=_recordDate;
+@property BOOL isCurrentDevice; // @synthesize isCurrentDevice=_isCurrentDevice;
 @property(retain) NSUUID *deviceID; // @synthesize deviceID=_deviceID;
 @property(retain) NSImage *deviceIcon; // @synthesize deviceIcon=_deviceIcon;
 @property(retain) NSNumber *numericPasscodeLength; // @synthesize numericPasscodeLength=_numericPasscodeLength;
 @property BOOL usesRandomPasscode; // @synthesize usesRandomPasscode=_usesRandomPasscode;
 @property BOOL usesNumericPasscode; // @synthesize usesNumericPasscode=_usesNumericPasscode;
 @property BOOL usesPasscode; // @synthesize usesPasscode=_usesPasscode;
-@property(retain) NSString *deviceModelClass; // @synthesize deviceModelClass=_deviceModelClass;
-@property(retain) NSString *deviceModel; // @synthesize deviceModel=_deviceModel;
-@property(retain) NSString *deviceName; // @synthesize deviceName=_deviceName;
-- (void).cxx_destruct;
+@property(copy) NSString *deviceModelClass; // @synthesize deviceModelClass=_deviceModelClass;
+@property(copy) NSString *deviceModel; // @synthesize deviceModel=_deviceModel;
+@property(copy) NSString *deviceName; // @synthesize deviceName=_deviceName;
 - (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

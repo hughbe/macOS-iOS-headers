@@ -6,35 +6,29 @@
 
 #import "NSObject.h"
 
-#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSString;
-
-@interface CKAccountInfo : NSObject <NSCopying, NSSecureCoding>
+@interface CKAccountInfo : NSObject <NSSecureCoding>
 {
-    BOOL _isUnitTestingAccount;
-    BOOL _accountWantsPushRegistration;
-    NSString *_email;
-    NSString *_password;
-    NSString *_secondEmail;
+    BOOL _hasValidCredentials;
+    long long _accountStatus;
+    long long _accountPartition;
+    long long _deviceToDeviceEncryptionAvailability;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(nonatomic) BOOL accountWantsPushRegistration; // @synthesize accountWantsPushRegistration=_accountWantsPushRegistration;
-@property(nonatomic) BOOL isUnitTestingAccount; // @synthesize isUnitTestingAccount=_isUnitTestingAccount;
-@property(copy, nonatomic) NSString *secondEmail; // @synthesize secondEmail=_secondEmail;
-@property(readonly, nonatomic) NSString *password; // @synthesize password=_password;
-@property(readonly, nonatomic) NSString *email; // @synthesize email=_email;
-- (void).cxx_destruct;
-- (id)initWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)copyWithZone:(struct _NSZone *)arg1;
+@property(nonatomic) BOOL hasValidCredentials; // @synthesize hasValidCredentials=_hasValidCredentials;
+@property(nonatomic) long long deviceToDeviceEncryptionAvailability; // @synthesize deviceToDeviceEncryptionAvailability=_deviceToDeviceEncryptionAvailability;
+@property(nonatomic) long long accountPartition; // @synthesize accountPartition=_accountPartition;
+@property(nonatomic) long long accountStatus; // @synthesize accountStatus=_accountStatus;
+@property(nonatomic) BOOL supportsDeviceToDeviceEncryption;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)description;
 - (id)CKPropertiesDescription;
-- (id)initWithEmail:(id)arg1 password:(id)arg2;
+- (id)description;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)init;
 
 @end
 

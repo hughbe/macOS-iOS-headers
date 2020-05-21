@@ -12,9 +12,20 @@
 @property(readonly) BOOL useAVConference;
 
 @optional
+- (void)ssSession:(SSSession *)arg1 touchEvent:(NSArray *)arg2;
+- (int)orientationForCurrentAngle;
+- (unsigned int)currentViewRotation;
+- (void)setSwitchedDisplayWithNumber:(NSNumber *)arg1;
+- (void)cursorUpdateCore;
+- (void)saveCredentialsToKeychain;
+- (BOOL)ssSessionIsRedwood;
 - (BOOL)handleSSInputEvent:(SSInputEvent *)arg1;
+- (void)ssSessionRequestToAddTextToPasteboard:(SSSession *)arg1 result:(int)arg2;
+- (void)ssSessionRequestToOpenURL:(SSSession *)arg1 result:(int)arg2;
+- (void)ssSessionRequestToResume:(SSSession *)arg1 result:(int)arg2;
 - (void)ssSessionResumed:(SSSession *)arg1;
 - (void)ssSessionPaused:(SSSession *)arg1;
+- (void)ssSession:(SSSession *)arg1 didSetLocalWindowUIResolution:(NSNumber *)arg2;
 - (void)ssSession:(SSSession *)arg1 allowsControl:(BOOL)arg2;
 - (void)ssSession:(SSSession *)arg1 canToggleCurtainModeChanged:(BOOL)arg2;
 - (void)ssSession:(SSSession *)arg1 onConsoleChanged:(BOOL)arg2;

@@ -9,11 +9,12 @@
 @class NSString;
 
 @protocol WBSURLCompletionMatchData <NSObject>
+@property(readonly, nonatomic) BOOL shouldPreload;
 @property(readonly, nonatomic) BOOL lastVisitWasFailure;
 @property(readonly, nonatomic) double lastVisitedTimeInterval;
 @property(readonly, nonatomic) BOOL containsBookmark;
 @property(readonly, nonatomic) NSString *originalURLString;
-- (float)topSitesScoreForPageTitleAtIndex:(unsigned long long)arg1 atTime:(double)arg2;
+- (float)topSitesScoreForPageTitleAtTime:(double)arg1;
 - (float)topSitesScoreForURLStringAtIndex:(unsigned long long)arg1 atTime:(double)arg2;
 - (BOOL)matchesAutocompleteTrigger:(NSString *)arg1;
 - (NSString *)pageTitleForUserVisibleURLStringAtIndex:(unsigned long long)arg1;
@@ -23,5 +24,8 @@
 - (NSString *)pageTitleAtIndex:(unsigned long long)arg1;
 - (void)enumeratePageTitlesUsingBlock:(void (^)(NSString *, unsigned long long, char *))arg1;
 - (id <WBSURLCompletionMatchData>)matchDataByMergingWithMatchData:(id <WBSURLCompletionMatchData>)arg1;
+
+@optional
+@property(readonly, nonatomic) long long visitCount;
 @end
 

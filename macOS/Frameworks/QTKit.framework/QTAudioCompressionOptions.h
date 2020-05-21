@@ -16,14 +16,9 @@
 }
 
 + (id)compressionOptionsWithDescription:(id)arg1;
-- (BOOL)isEqualToCompressionOptions:(id)arg1;
-- (BOOL)isEqual:(id)arg1;
-- (id)localizedCompressionOptionsSummary;
-- (id)mediaType;
 - (id)magicCookie;
 - (id)channelLayout;
 - (struct AudioStreamBasicDescription)audioStreamBasicDescription;
-- (void)dealloc;
 - (id)initWithAudioStreamBasicDescription:(struct AudioStreamBasicDescription)arg1 channelLayout:(id)arg2 magicCookie:(id)arg3;
 
 @end

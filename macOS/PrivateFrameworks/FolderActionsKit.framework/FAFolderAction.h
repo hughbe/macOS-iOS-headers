@@ -6,9 +6,11 @@
 
 #import <FolderActionsKit/FAScriptableObject.h>
 
+#import "NSSecureCoding.h"
+
 @class NSData, NSMutableArray, NSNumber, NSString, NSURL;
 
-@interface FAFolderAction : FAScriptableObject
+@interface FAFolderAction : FAScriptableObject <NSSecureCoding>
 {
     NSURL *_folderURL;
     NSNumber *_enabled;
@@ -24,24 +26,24 @@
 + (id)folderActionWithBookmark:(id)arg1 name:(id)arg2 enabled:(id)arg3 scripts:(id)arg4;
 + (BOOL)supportsSecureCoding;
 + (id)keyInContainer;
+- (void).cxx_destruct;
 @property BOOL hasBeenAddedToAFrontEnd; // @synthesize hasBeenAddedToAFrontEnd=_hasBeenAddedToAFrontEnd;
 @property BOOL propagateChangesToFolderActionsDispatcher; // @synthesize propagateChangesToFolderActionsDispatcher=_propagateChangesToFolderActionsDispatcher;
 @property(retain) NSMutableArray *scripts; // @synthesize scripts=_scripts;
 @property(retain) NSData *bookmark; // @synthesize bookmark=_bookmark;
-- (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)deleteVerb:(id)arg1;
 - (id)enableVerb:(id)arg1;
 - (BOOL)hasScriptWithURL:(id)arg1;
 - (id)scriptNamed:(id)arg1;
-@property(readonly) NSString *volume;
+@property(readonly, nonatomic) NSString *volume;
 - (void)setName:(id)arg1;
 - (id)name;
 - (void)updateName;
-@property(retain) NSString *path;
-@property(retain) NSNumber *enabled;
-@property(retain) NSURL *folderURL;
-@property(readonly) BOOL hasScripts;
+@property(retain, nonatomic) NSString *path;
+@property(retain, nonatomic) NSNumber *enabled;
+@property(retain, nonatomic) NSURL *folderURL;
+@property(readonly, nonatomic) BOOL hasScripts;
 - (BOOL)shouldCallDispatcher;
 - (id)objectInScriptsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)countOfScripts;

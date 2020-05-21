@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <iCalendar/ICSComponent.h>
+#import <iCalendar/ICSCalendarItem.h>
 
 @class ICSDate, ICSDuration, ICSStructuredLocation, ICSTravelAdvisoryBehavior, ICSTravelDuration, ICSUserAddress, NSArray, NSString, NSURL;
 
-@interface ICSEvent : ICSComponent
+@interface ICSEvent : ICSCalendarItem
 {
 }
 

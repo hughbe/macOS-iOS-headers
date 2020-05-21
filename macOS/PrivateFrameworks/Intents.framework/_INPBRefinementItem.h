@@ -7,31 +7,39 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBRefinementItem.h"
 
-@class NSString, PBUnknownFields, _INPBSelectionItem;
+@class NSString, _INPBSelectionItem;
 
-@interface _INPBRefinementItem : PBCodable <NSCopying>
+@interface _INPBRefinementItem : PBCodable <_INPBRefinementItem, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
     _INPBSelectionItem *_item;
     NSString *_subKeyPath;
 }
 
-+ (id)options;
-@property(retain, nonatomic) _INPBSelectionItem *item; // @synthesize item=_item;
-@property(retain, nonatomic) NSString *subKeyPath; // @synthesize subKeyPath=_subKeyPath;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(copy, nonatomic) NSString *subKeyPath; // @synthesize subKeyPath=_subKeyPath;
+@property(retain, nonatomic) _INPBSelectionItem *item; // @synthesize item=_item;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-@property(readonly, nonatomic) BOOL hasItem;
 @property(readonly, nonatomic) BOOL hasSubKeyPath;
+@property(readonly, nonatomic) BOOL hasItem;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

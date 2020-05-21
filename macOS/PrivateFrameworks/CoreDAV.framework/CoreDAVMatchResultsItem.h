@@ -17,12 +17,12 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVLeafItem *calendarDescription; // @synthesize calendarDescription=_calendarDescription;
 @property(retain, nonatomic) CoreDAVLeafItem *region; // @synthesize region=_region;
 @property(retain, nonatomic) CoreDAVLeafItem *language; // @synthesize language=_language;
 @property(retain, nonatomic) CoreDAVLeafItem *rank; // @synthesize rank=_rank;
 - (id)description;
-- (void)dealloc;
 
 @end
 

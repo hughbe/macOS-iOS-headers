@@ -9,7 +9,7 @@
 #import "AVConferencePreviewClientDelegate.h"
 #import "IMSystemMonitorListener.h"
 
-@class AVConferencePreview, IMAVCamera;
+@class AVConferencePreview;
 
 @interface IMAVLocalPreviewClient : NSObject <AVConferencePreviewClientDelegate, IMSystemMonitorListener>
 {
@@ -21,13 +21,13 @@
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property(retain, nonatomic) AVConferencePreview *conferencePreview; // @synthesize conferencePreview=_conferencePreview;
-- (void)didReceiveCommError;
-- (void)cameraDidBecomeAvailable:(unsigned int)arg1;
-- (void)didReceiveErrorFromCamera:(unsigned int)arg1 error:(id)arg2;
+- (void)cameraDidBecomeAvailableForUniqueID:(id)arg1;
+- (void)didReceiveErrorFromCameraUniqueID:(id)arg1 error:(id)arg2;
 - (void)didChangeLocalScreenAttributes:(id)arg1;
 - (void)didChangeLocalVideoAttributes:(id)arg1;
-- (void)didReceiveFirstPreviewFrameFromCamera:(unsigned int)arg1;
+- (void)didReceiveFirstPreviewFrameFromCameraUniqueID:(id)arg1;
 - (void)didPausePreview;
 - (void)didStopPreview;
 - (void)didStartPreview;
@@ -47,11 +47,11 @@
 - (void)_avDaemonConnected;
 - (void)_updatePreviewState;
 - (BOOL)_shouldPreviewBeRunning;
+- (void)avChat:(id)arg1 setLocalPortraitRatio:(struct CGSize)arg2 localLandscapeRatio:(struct CGSize)arg3;
 - (void)setLocalScreenAttributes:(id)arg1;
 - (id)localScreenAttributesForVideoAttributes:(id)arg1;
 @property(nonatomic) void *localVideoBackLayer;
 @property(nonatomic) void *localVideoLayer;
-@property(nonatomic) IMAVCamera *localCamera;
 @property(nonatomic) unsigned int cameraOrientation;
 @property(nonatomic) unsigned int cameraType;
 - (void)dealloc;

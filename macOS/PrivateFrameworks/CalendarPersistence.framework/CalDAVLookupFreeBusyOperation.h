@@ -16,10 +16,10 @@
     CalDateRange *_timeRange;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSDictionary *userEventArrays; // @synthesize userEventArrays=_userEventArrays;
 @property(readonly) NSDictionary *freeBusySpans; // @synthesize freeBusySpans=_freeBusySpans;
 - (BOOL)executeSynchronouslyWithError:(id *)arg1;
-- (void)dealloc;
 - (id)initWithPrincipal:(id)arg1 timeRange:(id)arg2 attendees:(id)arg3 maskingEventSharedUid:(id)arg4;
 
 @end

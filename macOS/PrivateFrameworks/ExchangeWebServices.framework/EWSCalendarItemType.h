@@ -31,6 +31,8 @@
     BOOL _AllowNewTimeProposalSpecified;
     BOOL _IsOnlineMeeting;
     BOOL _IsOnlineMeetingSpecified;
+    BOOL _IsAssociated;
+    BOOL _IsAssociatedSpecified;
     NSString *_UID;
     NSDateComponents *_RecurrenceId;
     NSDateComponents *_DateTimeStamp;
@@ -67,6 +69,9 @@
 }
 
 + (id)definition;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL IsAssociatedSpecified; // @synthesize IsAssociatedSpecified=_IsAssociatedSpecified;
+@property(nonatomic) BOOL IsAssociated; // @synthesize IsAssociated=_IsAssociated;
 @property(copy, nonatomic) NSString *NetShowUrl; // @synthesize NetShowUrl=_NetShowUrl;
 @property(copy, nonatomic) NSString *MeetingWorkspaceUrl; // @synthesize MeetingWorkspaceUrl=_MeetingWorkspaceUrl;
 @property(nonatomic) BOOL IsOnlineMeetingSpecified; // @synthesize IsOnlineMeetingSpecified=_IsOnlineMeetingSpecified;
@@ -121,7 +126,6 @@
 @property(retain, nonatomic) NSDateComponents *DateTimeStamp; // @synthesize DateTimeStamp=_DateTimeStamp;
 @property(retain, nonatomic) NSDateComponents *RecurrenceId; // @synthesize RecurrenceId=_RecurrenceId;
 @property(copy, nonatomic) NSString *UID; // @synthesize UID=_UID;
-- (void).cxx_destruct;
 
 @end
 

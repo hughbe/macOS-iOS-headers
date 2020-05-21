@@ -6,58 +6,81 @@
 
 #import "NSView.h"
 
-#import "PKSubglyphViewDelegate.h"
+#import "PKFingerprintGlyphViewDelegate.h"
 
-@class CALayer, NSColor, NSMutableArray, NSString, PKCheckGlyphLayer, PKPhoneGlyphLayer, PKSubglyphView;
+@class CALayer, LAUICheckmarkLayer, NSColor, NSMutableArray, NSObject<OS_dispatch_group>, NSString, PKFingerprintGlyphView, PKMicaLayer, PKPhoneGlyphLayer;
 
-@interface PKGlyphView : NSView <PKSubglyphViewDelegate>
+@interface PKGlyphView : NSView <PKFingerprintGlyphViewDelegate>
 {
     long long _style;
+    _Bool _isPad;
     unsigned long long _transitionIndex;
     BOOL _transitioning;
+    BOOL _transitioningAnimated;
     long long _priorState;
     NSMutableArray *_transitionCompletionHandlers;
+    NSObject<OS_dispatch_group> *_lastAnimationGroup;
     double _lastAnimationWillFinish;
     BOOL _phoneWiggling;
     NSString *_phoneWiggleAnimationKey;
     struct {
         unsigned int showingPhone:1;
         unsigned int phoneRotated:1;
+        unsigned int showingUserIntentPhone:1;
+        unsigned int showingUserIntentArrow:1;
     } _layoutFlags;
-    PKSubglyphView *_subglyphView;
+    PKFingerprintGlyphView *_fingerprintView;
     PKPhoneGlyphLayer *_phoneLayer;
-    PKCheckGlyphLayer *_checkLayer;
+    LAUICheckmarkLayer *_checkLayer;
+    CALayer *_userIntentLayer;
+    PKMicaLayer *_userIntentArrowLayer;
+    PKMicaLayer *_userIntentDeviceLayer;
     double _phoneAspectRatio;
     CALayer *_customImageLayer;
-    NSColor *_primaryColor;
     NSColor *_secondaryColor;
+    NSColor *_primaryHighlightColor;
+    NSColor *_intentPrimaryHighlightColor;
+    NSColor *_secondaryHighlightColor;
+    unsigned int _userIntentEdge;
+    long long _colorMode;
+    NSColor *_primaryColor;
     struct CGImage *_customImage;
     long long _state;
     id <PKGlyphViewDelegate> _delegate;
     struct NSEdgeInsets _customImageAlignmentEdgeInsets;
 }
 
++ (void)invokeSuccessFeedback;
++ (id)sharedStaticResources;
 + (BOOL)automaticallyNotifiesObserversOfState;
-@property(nonatomic) id <PKGlyphViewDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <PKGlyphViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) unsigned int userIntentEdge; // @synthesize userIntentEdge=_userIntentEdge;
 @property(readonly, nonatomic) long long state; // @synthesize state=_state;
 @property(readonly, nonatomic) struct CGImage *customImage; // @synthesize customImage=_customImage;
 @property(readonly, nonatomic) struct NSEdgeInsets customImageAlignmentEdgeInsets; // @synthesize customImageAlignmentEdgeInsets=_customImageAlignmentEdgeInsets;
-@property(copy, nonatomic) NSColor *secondaryColor; // @synthesize secondaryColor=_secondaryColor;
-@property(copy, nonatomic) NSColor *primaryColor; // @synthesize primaryColor=_primaryColor;
-- (void).cxx_destruct;
-- (void)subglyphView:(id)arg1 didLayoutContentLayer:(id)arg2;
+@property(readonly, copy, nonatomic) NSColor *primaryColor; // @synthesize primaryColor=_primaryColor;
+@property(readonly, nonatomic) long long colorMode; // @synthesize colorMode=_colorMode;
+- (void)fingerprintGlyphView:(id)arg1 didLayoutContentLayer:(id)arg2;
 - (struct CGPoint)_phonePositionDeltaWhileShownFromRotationPercentage:(double)arg1 toPercentage:(double)arg2;
 - (struct CGPoint)_phonePositionWhileShownWithRotationPercentage:(double)arg1;
 - (struct CATransform3D)_phoneTransformDeltaWhileShownFromRotationPercentage:(double)arg1 toPercentage:(double)arg2;
 - (id)createCustomImageLayer;
 - (void)setCustomImage:(struct CGImage *)arg1 withAlignmentEdgeInsets:(struct NSEdgeInsets)arg2;
 @property(nonatomic) BOOL fadeOnRecognized;
-- (void)setSecondaryColor:(struct NSColor *)arg1 animated:(BOOL)arg2;
-- (void)setPrimaryColor:(struct NSColor *)arg1 animated:(BOOL)arg2;
-- (struct NSColor *)_defaultSecondaryColor;
-- (struct NSColor *)_defaultPrimaryColor;
-- (void)_updateCheckViewStateAnimated:(BOOL)arg1;
+- (void)setColorMode:(long long)arg1 animated:(BOOL)arg2;
+- (void)_applyColorMode:(BOOL)arg1;
+- (id)_secondaryColorForStyle:(long long)arg1 mode:(long long)arg2;
+- (id)_primaryColorForStyle:(long long)arg1 mode:(long long)arg2;
+- (void)_setSecondaryColor:(id)arg1 animated:(BOOL)arg2;
+- (void)_applyEffectivePrimaryColorToLayersAnimated:(BOOL)arg1;
+- (void)_setPrimaryColor:(id)arg1 animated:(BOOL)arg2;
+- (void)_applyEffectiveHighlightColorsToLayersAnimated:(BOOL)arg1;
+- (void)_setRecognizedIfNecessaryWithTransitionIndex:(unsigned long long)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)_updateCheckViewStateAnimated:(BOOL)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)_updateCustomImageLayerOpacityAnimated:(BOOL)arg1;
+- (void)_updateUserIntentLayerRotation;
+- (void)_updateUserIntentLayoutAnimated:(BOOL)arg1;
 - (void)_endPhoneWiggle;
 - (void)_startPhoneWiggle;
 - (void)_updatePhoneWiggleIfNecessary;
@@ -67,13 +90,15 @@
 - (void)_executeTransitionCompletionHandlers:(BOOL)arg1;
 - (void)setState:(long long)arg1 animated:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)setState:(long long)arg1;
+- (void)_executeAfterMinimumAnimationDurationForStateTransitionWithDelayRatio:(double)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)_executeAfterMinimumAnimationDurationForStateTransition:(CDUnknownBlockType)arg1;
-- (double)_minimumAnimationDurationForStateTransition;
 - (void)_updateLastAnimationTimeWithAnimationOfDuration:(double)arg1;
 - (void)updateRasterizationScale:(double)arg1;
-- (void)viewDidChangeBackingProperties;
+- (void)updateRotation;
 - (void)_layoutContentLayer:(id)arg1;
 - (void)layout;
+- (void)viewDidChangeBackingProperties;
+- (void)viewDidMoveToWindow;
 - (void)dealloc;
 - (id)initWithStyle:(long long)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

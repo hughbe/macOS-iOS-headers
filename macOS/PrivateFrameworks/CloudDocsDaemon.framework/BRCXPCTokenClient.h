@@ -8,6 +8,8 @@
 
 #import "BRTokenProtocol.h"
 
+@class NSString;
+
 __attribute__((visibility("hidden")))
 @interface BRCXPCTokenClient : BRCXPCClient <BRTokenProtocol>
 {
@@ -15,8 +17,14 @@ __attribute__((visibility("hidden")))
 
 - (void)getPrimaryiCloudAccountStatus:(CDUnknownBlockType)arg1;
 - (void)currentAccountCopyTokenWithBundleID:(id)arg1 version:(id)arg2 reply:(CDUnknownBlockType)arg3;
+- (void)prepareFileProvidersWithReply:(CDUnknownBlockType)arg1;
 - (oneway void)checkinUbiquityContainers:(id)arg1 forBundleID:(id)arg2;
-- (id)description;
+@property(readonly, copy) NSString *description;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

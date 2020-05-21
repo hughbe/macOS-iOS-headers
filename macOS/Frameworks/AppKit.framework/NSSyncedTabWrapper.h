@@ -4,20 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <AppKit/NSBaseTabData.h>
 
-@class NSWindow, NSWindowTabViewItem;
+@class NSWindow;
 
 __attribute__((visibility("hidden")))
-@interface NSSyncedTabWrapper : NSObject
+@interface NSSyncedTabWrapper : NSBaseTabData
 {
-    NSWindowTabViewItem *_tabBarItem;
     NSWindow *_window;
+    BOOL _snapshotIsDisabled;
 }
 
-@property(retain) NSWindow *window; // @synthesize window=_window;
-@property(retain) NSWindowTabViewItem *tabBarItem; // @synthesize tabBarItem=_tabBarItem;
 - (void).cxx_destruct;
+@property BOOL snapshotIsDisabled; // @synthesize snapshotIsDisabled=_snapshotIsDisabled;
+@property(retain) NSWindow *window; // @synthesize window=_window;
 - (void)dispose;
 
 @end

@@ -6,21 +6,27 @@
 
 #import "NSObject.h"
 
-#import "MTLSamplerState.h"
+#import "MTLSamplerStateSPI.h"
 
 @class NSString;
 
-@interface _MTLSamplerState : NSObject <MTLSamplerState>
+@interface _MTLSamplerState : NSObject <MTLSamplerStateSPI>
 {
     id <MTLDevice> _device;
     NSString *_label;
+    unsigned long long _pixelFormat;
+    unsigned long long _resourceIndex;
 }
 
+@property(nonatomic) unsigned long long resourceIndex; // @synthesize resourceIndex=_resourceIndex;
+@property(readonly, nonatomic) unsigned long long pixelFormat; // @synthesize pixelFormat=_pixelFormat;
 @property(readonly) NSString *label; // @synthesize label=_label;
 @property(readonly) id <MTLDevice> device; // @synthesize device=_device;
 @property(readonly, copy) NSString *description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (void)dealloc;
 - (id)initWithDevice:(id)arg1 samplerDescriptor:(id)arg2;
+@property(readonly) unsigned long long uniqueIdentifier;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

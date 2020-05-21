@@ -4,23 +4,31 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSDictionary, NSString, NSURL, NSURLCredential;
+@class NSArray, NSDictionary, NSString, NSURL, NSURLCredential;
 
 @protocol SUHelperDProtocol
+- (unsigned long long)attemptToReclaimSpaceUsingCacheDeleteWithSpaceRequired:(unsigned long long)arg1;
+- (BOOL)rebootForPostLogoutUpdatesAfterSuccess:(BOOL)arg1 nightInstall:(BOOL)arg2 shouldShutDown:(BOOL)arg3;
 - (NSURLCredential *)lookupURLCredentialInSystemKeychainForHost:(NSString *)arg1 port:(long long)arg2;
-- (BOOL)configureProgressPhasesEnablingFLO:(BOOL)arg1 preLogoutCommit:(BOOL)arg2;
-- (BOOL)commitLoginCredentialsDisablingFLO:(BOOL)arg1;
+- (BOOL)configureProgressPhasesAll:(NSDictionary *)arg1;
+- (BOOL)setAppleUpgradeShouldFLORun:(BOOL)arg1;
+- (BOOL)setAppleStagedUpgradeShouldFLORun:(BOOL)arg1;
+- (BOOL)stashAndCommitAPFSFDEKey;
+- (BOOL)commitLoginCredentialsDisablingFLO:(BOOL)arg1 hasBaseSystemUpdates:(BOOL)arg2;
 - (BOOL)stashLoginCredentialsEnablingFLO:(BOOL)arg1;
 - (BOOL)unenrollFromSeedProgram;
-- (BOOL)setOSXAutoUpdate:(BOOL)arg1;
+- (BOOL)clearCatalogToProductionAndNotify;
+- (BOOL)deletePref:(NSString *)arg1 inDomain:(NSString *)arg2;
+- (BOOL)setMacOSAutoUpdate:(BOOL)arg1;
 - (BOOL)setAppStoreAutoUpdate:(BOOL)arg1;
-- (BOOL)clearCriticalUpdateNotificationDate;
 - (BOOL)removeUpdatesAvailableCookie;
 - (BOOL)createUpdatesAvailableCookie;
 - (BOOL)updateAnyUserPreferences;
 - (BOOL)clearAnyUserPreference:(NSString *)arg1;
 - (BOOL)setObject:(id)arg1 forAnyUserPreference:(NSString *)arg2;
 - (BOOL)getDigest:(id *)arg1 forPackageAtURL:(NSURL *)arg2;
+- (BOOL)removePackagesForLocalReferences:(NSArray *)arg1 forProductKey:(NSString *)arg2;
+- (BOOL)removeRecoveryInstallResult;
 - (BOOL)removeProductDirectoryForKey:(NSString *)arg1;
 - (BOOL)createDirectoryForProductKey:(NSString *)arg1 Firmware:(BOOL)arg2;
 - (BOOL)removeDistForProductKey:(NSString *)arg1 withFilename:(NSString *)arg2;
@@ -32,7 +40,8 @@
 - (BOOL)removeMetadataCacheFromUpdates;
 - (BOOL)moveInstalledPrintersToLibraryFromPath:(NSString *)arg1;
 - (BOOL)makeQueues;
-- (BOOL)registerProductFile:(NSString *)arg1 forProductKey:(NSString *)arg2 firmware:(BOOL)arg3 trustLevel:(int *)arg4 keepOriginal:(BOOL)arg5;
+- (BOOL)registerPersonalizedManifests:(NSString *)arg1 forProductKey:(NSString *)arg2 inForeground:(BOOL)arg3;
+- (NSString *)registerProductFile:(NSString *)arg1 forProductKey:(NSString *)arg2 firmware:(BOOL)arg3 trustLevel:(int *)arg4 keepOriginal:(BOOL)arg5 inForeground:(BOOL)arg6;
 - (BOOL)prepareLoginWindowForPostLogoutInstallWithNoConsoleUser;
 - (int)prepareForLogoutAndInstall:(BOOL)arg1;
 - (void)checkAndFixPermissionsAtPath:(NSString *)arg1 owner:(unsigned int)arg2;

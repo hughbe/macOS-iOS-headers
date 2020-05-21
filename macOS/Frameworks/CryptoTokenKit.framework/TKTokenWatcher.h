@@ -6,27 +6,35 @@
 
 #import "NSObject.h"
 
-#import "TKProtocolTokenWatcher.h"
+#import "TKProtocolTokenWatcherHost.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_semaphore>, NSXPCConnection;
+@class NSArray, NSMutableDictionary, NSXPCConnection, NSXPCListenerEndpoint, TKClientToken;
 
-@interface TKTokenWatcher : NSObject <TKProtocolTokenWatcher>
+@interface TKTokenWatcher : NSObject <TKProtocolTokenWatcherHost>
 {
+    int _notifyToken;
     NSXPCConnection *_connection;
-    NSMutableArray *_tokenIDs;
+    NSMutableDictionary *_tokenInfos;
     NSMutableDictionary *_removalHandlers;
-    NSObject<OS_dispatch_semaphore> *_semaphore;
     CDUnknownBlockType _insertionHandler;
+    TKClientToken *_client;
 }
 
-@property(readonly) NSArray *tokenIDs; // @synthesize tokenIDs=_tokenIDs;
 - (void).cxx_destruct;
-- (void)removedToken:(id)arg1 reply:(CDUnknownBlockType)arg2;
-- (void)insertedToken:(id)arg1 reply:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) TKClientToken *client; // @synthesize client=_client;
+- (id)getReaderAndDriverNameFor:(id)arg1;
+@property(readonly) NSArray *tokenIDs;
+- (void)removedToken:(id)arg1;
+- (void)insertedToken:(id)arg1;
 - (void)addRemovalHandler:(CDUnknownBlockType)arg1 forTokenID:(id)arg2;
-- (void)setup;
+- (void)setInsertionHandler:(CDUnknownBlockType)arg1;
 - (id)initWithInsertionHandler:(CDUnknownBlockType)arg1;
+- (void)dealloc;
+@property(readonly) NSXPCListenerEndpoint *endpoint;
+- (id)initWithEndpoint:(id)arg1;
 - (id)init;
+- (id)initWithClient:(id)arg1;
+- (void)startWatching;
 
 @end
 

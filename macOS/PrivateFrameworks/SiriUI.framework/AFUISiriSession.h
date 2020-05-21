@@ -33,16 +33,18 @@
 }
 
 + (id)effectiveCoreLocationBundle;
++ (id)currentMicrophoneIdentifier;
 + (void)beginMonitoringSiriAvailability;
 + (unsigned long long)availabilityState;
++ (void)forceAvailabilityStateAvailable:(BOOL)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic, getter=_currentSpeechRequestGroup, setter=_setCurrentSpeechRequestGroup:) NSObject<OS_dispatch_group> *currentSpeechRequestGroup; // @synthesize currentSpeechRequestGroup=_currentSpeechRequestGroup;
 @property(readonly, nonatomic, getter=_connection) AFConnection *connection; // @synthesize connection=_connection;
 @property(readonly, nonatomic) BOOL isProcessingAcousticIdRequest; // @synthesize isProcessingAcousticIdRequest=_isProcessingAcousticIdRequest;
 @property(nonatomic, getter=isEyesFree) BOOL eyesFree; // @synthesize eyesFree=_eyesFree;
 @property(nonatomic) __weak id <AFUISiriSessionLocalDelegate> localDelegate; // @synthesize localDelegate=_localDelegate;
 @property(nonatomic) __weak id <AFUISiriSessionLocalDataSource> localDataSource; // @synthesize localDataSource=_localDataSource;
-@property(retain, nonatomic) id <AFUISiriSessionDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+@property(nonatomic) __weak id <AFUISiriSessionDelegate> delegate; // @synthesize delegate=_delegate;
 - (id)underlyingConnection;
 - (float)recordingPowerLevel;
 - (BOOL)isListening;
@@ -79,7 +81,6 @@
 - (void)_startSpeechRequestWithSpeechFileAtURL:(id)arg1;
 - (void)_startSpeechRequestWithOptions:(id)arg1;
 - (void)_requestContextWithCompletion:(CDUnknownBlockType)arg1;
-- (id)_currentMicrophoneIdentifier;
 - (id)_preparedSpeechRequestWithRequestOptions:(id)arg1;
 - (BOOL)_hasActiveRequest;
 - (void)_startRequestWithBlock:(CDUnknownBlockType)arg1;
@@ -89,6 +90,7 @@
 - (void)assistantConnection:(id)arg1 speechRecordingDidFail:(id)arg2;
 - (void)assistantConnectionSpeechRecordingDidCancel:(id)arg1;
 - (void)assistantConnectionSpeechRecordingDidEnd:(id)arg1;
+- (void)assistantConnection:(id)arg1 speechRecordingPerformTwoShotPromptWithType:(long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)assistantConnectionSpeechRecordingDidDetectStartpoint:(id)arg1;
 - (void)assistantConnectionDidChangeAudioRecordingPower:(id)arg1;
 - (void)assistantConnection:(id)arg1 speechRecordingDidChangeAVRecordRoute:(id)arg2;
@@ -97,6 +99,7 @@
 - (void)assistantConnectionDidDetectMusic:(id)arg1;
 - (void)assistantConnectionDismissAssistant:(id)arg1;
 - (void)assistantConnection:(id)arg1 shouldSpeak:(BOOL)arg2;
+- (void)assistantConnection:(id)arg1 openApplicationWithBundleID:(id)arg2 URL:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)assistantConnection:(id)arg1 openURL:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)assistantConnectionRequestFinished:(id)arg1;
 - (void)assistantConnection:(id)arg1 requestFailedWithError:(id)arg2 requestClass:(id)arg3;
@@ -109,6 +112,7 @@
 - (void)speechSynthesisWillStartSpeaking:(id)arg1;
 - (void)stopCurrentRecordingForSpeechSynthesis:(id)arg1;
 - (id)speechSynthesis;
+- (void)_postInvocationRequestCompletedNotification:(BOOL)arg1;
 - (void)_continuePendingSpeechRequest;
 - (void)updateRequestOptions:(id)arg1;
 - (void)stopRequestWithOptions:(id)arg1;
@@ -125,7 +129,6 @@
 - (long long)_state;
 - (id)_stateMachine;
 - (void)_siriNetworkAvailabilityDidChange:(id)arg1;
-- (void)_voiceOverStatusDidChange:(id)arg1;
 - (void)_outputVoiceDidChange:(id)arg1;
 - (void)dealloc;
 - (id)initWithConnection:(id)arg1 delegateQueue:(id)arg2;

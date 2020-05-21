@@ -11,28 +11,25 @@
 
 @class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL, WBSSiteMetadataImageCache;
 
-__attribute__((visibility("hidden")))
 @interface SnapshotCache : NSObject <WBSSiteMetadataImageCacheDelegate, WBSSiteMetadataProvider>
 {
     NSObject<OS_dispatch_queue> *_internalQueue;
     WBSSiteMetadataImageCache *_imageCache;
     NSMutableDictionary *_urlStringsToRequestSets;
-    BOOL _forceUpdateSnapshotImages;
     id <WBSSiteMetadataProviderDelegate> _providerDelegate;
 }
 
 + (id)_imageDirectoryURL;
 + (id)sharedCache;
-@property(nonatomic) BOOL forceUpdateSnapshotImages; // @synthesize forceUpdateSnapshotImages=_forceUpdateSnapshotImages;
-@property(nonatomic) __weak id <WBSSiteMetadataProviderDelegate> providerDelegate; // @synthesize providerDelegate=_providerDelegate;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <WBSSiteMetadataProviderDelegate> providerDelegate; // @synthesize providerDelegate=_providerDelegate;
 - (id)_scaleSnapshot:(id)arg1 scaleFactor:(double)arg2;
 - (id)_lowFidelitySnapshotFromHighFidelitySnapshot:(id)arg1;
 - (void)siteMetadataImageCacheDidEmptyCache:(id)arg1;
 - (void)siteMetadataImageCache:(id)arg1 didFinishLoadingImage:(id)arg2 forKeyString:(id)arg3;
 - (void)stopWatchingUpdatesForRequest:(id)arg1;
 - (void)_registerRequest:(id)arg1;
-- (id)operationForRequest:(id)arg1 withProcessPool:(id)arg2;
+- (CDUnknownBlockType)_blockOperationForRequest:(id)arg1;
 - (void)prepareResponseForRequest:(id)arg1 allowDelayedResponse:(BOOL)arg2;
 - (id)responseForRequest:(id)arg1 willProvideUpdates:(char *)arg2;
 - (BOOL)canHandleRequest:(id)arg1;
@@ -43,9 +40,9 @@ __attribute__((visibility("hidden")))
 - (void)saveSnapshotToDisk:(id)arg1 forURLString:(id)arg2;
 - (BOOL)isMissingSnapshotForURLString:(id)arg1;
 - (id)snapshotForURLString:(id)arg1;
-- (void)emptyCache;
+- (void)emptyCaches;
 - (void)savePendingChangesBeforeTermination;
-- (void)purgeUnneededImages;
+- (void)purgeUnneededCacheEntries;
 @property(readonly, nonatomic) NSURL *imageDirectoryURL;
 - (id)initWithImageDirectoryURL:(id)arg1;
 - (id)init;
@@ -54,6 +51,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) BOOL providesFavicons;
 @property(readonly) Class superclass;
 
 @end

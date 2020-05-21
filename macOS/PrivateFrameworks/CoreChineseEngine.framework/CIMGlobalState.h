@@ -6,28 +6,31 @@
 
 #import "NSObject.h"
 
+@class CIMInputController, CIMPreferences, IMKServer, NSString;
+
 @interface CIMGlobalState : NSObject
 {
+    unsigned int _IOConnection;
+    IMKServer *_server;
+    NSString *_inputSourceIdentifier;
+    unsigned long long _inlineState;
+    CIMInputController *_mockInputController;
+    id _mockClient;
+    CIMPreferences *_mockPreferences;
 }
 
-+ (void)setMockPreferences:(id)arg1;
-+ (id)mockPreferences;
-+ (void)setMockInputController:(id)arg1;
-+ (id)mockInputController;
-+ (void)setMockClient:(id)arg1;
-+ (id)mockClient;
-+ (BOOL)useAddressBook;
-+ (void)setSelectedCandidateChanged:(BOOL)arg1;
-+ (BOOL)selectedCandidateChanged;
-+ (BOOL)capsLockIsOn;
-+ (id)currentController;
-+ (id)currentClient;
-+ (void)setInputModeIdentifier:(id)arg1;
-+ (id)inputModeIdentifier;
-+ (void)setServer:(id)arg1;
-+ (id)server;
-+ (void)setInlineState:(unsigned long long)arg1;
-+ (unsigned long long)inlineState;
++ (id)sharedInstance;
+- (void).cxx_destruct;
+@property(nonatomic) unsigned int IOConnection; // @synthesize IOConnection=_IOConnection;
+@property(retain, nonatomic) CIMPreferences *mockPreferences; // @synthesize mockPreferences=_mockPreferences;
+@property(retain, nonatomic) id mockClient; // @synthesize mockClient=_mockClient;
+@property(retain, nonatomic) CIMInputController *mockInputController; // @synthesize mockInputController=_mockInputController;
+@property(nonatomic) unsigned long long inlineState; // @synthesize inlineState=_inlineState;
+@property(copy, nonatomic) NSString *inputSourceIdentifier; // @synthesize inputSourceIdentifier=_inputSourceIdentifier;
+@property(retain, nonatomic) IMKServer *server; // @synthesize server=_server;
+@property(readonly, nonatomic) BOOL capsLockIsOn;
+@property(readonly, nonatomic) CIMInputController *currentController;
+@property(readonly, nonatomic) id currentClient;
 
 @end
 

@@ -17,12 +17,13 @@
     BOOL _cacheIsDirty;
 }
 
-+ (id)cacheFileURLForDomain:(int)arg1;
++ (id)cacheFileURLForDomain:(long long)arg1;
 + (id)readOnlySystemCacheFileURL;
 + (id)_cacheFileURLWithCacheFileName:(id)arg1 inDomain:(unsigned long long)arg2;
-+ (id)actionLocationsForDomain:(int)arg1;
++ (id)actionLocationsForDomain:(long long)arg1;
 + (id)_automatorLibraryFolderURLsForDomainMask:(unsigned long long)arg1;
-+ (unsigned long long)_actionDiscoveryDomainMaskForActionDomain:(int)arg1;
++ (unsigned long long)_actionDiscoveryDomainMaskForActionDomain:(long long)arg1;
+- (void).cxx_destruct;
 @property BOOL cacheIsDirty; // @synthesize cacheIsDirty=_cacheIsDirty;
 @property BOOL didLoadAllActions; // @synthesize didLoadAllActions=_didLoadAllActions;
 @property(retain) NSURL *cacheFileURL; // @synthesize cacheFileURL=_cacheFileURL;
@@ -42,7 +43,6 @@
 - (BOOL)validateCacheFileData:(id)arg1 error:(id *)arg2;
 - (id)_currentLanguages;
 - (id)description;
-- (void)dealloc;
 - (id)initWithCacheFileURL:(id)arg1 actionLocations:(id)arg2;
 
 @end

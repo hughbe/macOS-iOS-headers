@@ -27,6 +27,7 @@ __attribute__((visibility("hidden")))
     EDTableStylesCollection *mTableStyles;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (id)tableStyles;
 - (id)differentialStyles;
@@ -42,7 +43,6 @@ __attribute__((visibility("hidden")))
 - (id)fonts;
 - (id)contentFormats;
 - (id)strings;
-- (void)dealloc;
 - (id)initWithStringOptimization:(_Bool)arg1;
 - (void)setThemes:(id)arg1;
 - (void)setColors:(id)arg1;

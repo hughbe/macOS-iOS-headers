@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)serivicesDictionary;
++ (id)servicesDictionary;
 + (id)parseURLStringByInference:(id)arg1;
 + (void)enumerateMatchesWithRegexPattern:(id)arg1 inString:(id)arg2 withBlock:(CDUnknownBlockType)arg3;
 + (void)enumerateServiceMatchesForURLString:(id)arg1 withBlock:(CDUnknownBlockType)arg2;

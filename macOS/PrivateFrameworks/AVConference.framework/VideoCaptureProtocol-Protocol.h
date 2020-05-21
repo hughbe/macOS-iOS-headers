@@ -4,7 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+@class NSData, NSString, NSURL;
+
 @protocol VideoCaptureProtocol
+- (BOOL)cameraSupportsFormatWidth:(int)arg1 height:(int)arg2;
+- (int)frameBecameAvailableCount:(int *)arg1 figBufferQueueEmptyCount:(int *)arg2 figBufferQueueErrorCount:(int *)arg3;
+- (int)getPreviewFrameCount:(int *)arg1 captureFrameCount:(int *)arg2 reset:(BOOL)arg3;
+- (BOOL)isFrontCamera;
+- (int)setFrameRate:(int)arg1;
+- (NSString *)getCameraUID;
+- (int)setCameraWithUID:(NSString *)arg1;
 - (BOOL)isPreviewRunning;
 - (int)copyColorInfo:(const struct __CFDictionary **)arg1;
 - (int)setWidth:(int)arg1 height:(int)arg2 frameRate:(int)arg3;
@@ -13,12 +22,11 @@
 - (int)startPreview;
 
 @optional
-- (int)frameBecameAvailableCount:(int *)arg1 figBufferQueueEmptyCount:(int *)arg2 figBufferQueueErrorCount:(int *)arg3;
-- (int)getPreviewFrameCount:(int *)arg1 captureFrameCount:(int *)arg2 reset:(BOOL)arg3;
-- (int)setFrameRatePercentage:(double)arg1 newFramerate:(int *)arg2;
-- (int)getCameraType:(int *)arg1;
-- (int)setCameraType:(int)arg1;
-- (int)getCamera:(unsigned int *)arg1;
-- (int)setCamera:(unsigned int)arg1;
+- (void)setViewPointCorrectionEnabaled:(BOOL)arg1;
+- (void)setCameraZoomFactor:(double)arg1 withRate:(double)arg2;
+- (void)setCameraZoomFactor:(double)arg1;
+- (void)addStickerWithURL:(NSURL *)arg1 atPosition:(struct CGPoint)arg2 identifier:(NSString *)arg3;
+- (BOOL)setMemoji:(NSData *)arg1;
+- (BOOL)setAnimoji:(NSString *)arg1;
 @end
 

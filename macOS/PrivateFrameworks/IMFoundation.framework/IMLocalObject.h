@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_xpc_object>, NSProtocolChecker, NSString;
+@class NSArray, NSObject<OS_xpc_object>, NSProtocolChecker, NSString;
 
 @interface IMLocalObject : NSObject
 {
@@ -21,7 +21,7 @@
 + (id)_imLocalObjectQueue;
 - (id)description;
 - (void)invalidate;
-@property(readonly, nonatomic) BOOL forceSecureCoding;
+@property(retain, nonatomic) NSArray *whitelistedClasses;
 @property(readonly, nonatomic) BOOL isValid;
 - (BOOL)isValidSelector:(SEL)arg1;
 - (void)_enqueueInvocationWithPriority:(id)arg1 xpcMessage:(id)arg2 priority:(int)arg3;
@@ -42,10 +42,12 @@
 @property(readonly, nonatomic) NSObject<OS_xpc_object> *connection;
 - (void)_systemShutdown:(id)arg1;
 - (void)terminated;
+@property(readonly, nonatomic) BOOL wasInterrupted;
 - (void)_portDidBecomeInvalid;
 - (void)_portInterrupted;
 - (void)_cancelHandlerCompleted;
 - (void)dealloc;
+- (void)_clearPort:(BOOL)arg1 signalRunLoopIfNeeded:(BOOL)arg2;
 - (void)_clearPort:(BOOL)arg1;
 @property(readonly, nonatomic) NSProtocolChecker *protocolChecker;
 @property(nonatomic) id target;

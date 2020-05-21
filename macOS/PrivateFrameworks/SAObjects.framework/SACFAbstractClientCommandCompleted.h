@@ -16,6 +16,7 @@
 
 + (id)abstractClientCommandCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)abstractClientCommandCompleted;
+- (BOOL)requiresResponse;
 @property(nonatomic) long long status;
 @property(copy, nonatomic) NSString *results;
 @property(copy, nonatomic) NSArray *outputLogs;

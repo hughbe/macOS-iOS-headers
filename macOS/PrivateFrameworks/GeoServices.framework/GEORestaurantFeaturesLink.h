@@ -8,16 +8,17 @@
 
 @class GEOPDRestaurantReservationLink, NSArray, NSMapTable;
 
-__attribute__((visibility("hidden")))
 @interface GEORestaurantFeaturesLink : NSObject
 {
     GEOPDRestaurantReservationLink *_restaurantReservationLink;
     NSMapTable *_attributionMap;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) GEOPDRestaurantReservationLink *restaurantReservationLink; // @synthesize restaurantReservationLink=_restaurantReservationLink;
-- (void)dealloc;
-@property(readonly, nonatomic) unsigned long long featureType;
+@property(readonly, nonatomic) NSArray *featureTypes;
+- (unsigned long long)extensionModeForVendorID:(id)arg1;
+- (id)displayNameForVendorID:(id)arg1;
 - (id)applicationsForVendorID:(id)arg1;
 @property(readonly, nonatomic) NSArray *featureProviders;
 @property(readonly, nonatomic) BOOL hasFeatures;

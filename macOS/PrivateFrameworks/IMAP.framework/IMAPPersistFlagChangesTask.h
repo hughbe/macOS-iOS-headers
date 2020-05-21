@@ -6,20 +6,20 @@
 
 #import <IMAP/IMAPPersistenceTask.h>
 
-#import "IMAPGetPersistenceIDsAndFlagsForUIDsOperationDelegate.h"
+#import "IMAPGetServerMessagesOperationDelegate.h"
 #import "IMAPPersistFlagChangesOperationDelegate.h"
 
 @class NSMutableDictionary, NSString;
 
-@interface IMAPPersistFlagChangesTask : IMAPPersistenceTask <IMAPGetPersistenceIDsAndFlagsForUIDsOperationDelegate, IMAPPersistFlagChangesOperationDelegate>
+@interface IMAPPersistFlagChangesTask : IMAPPersistenceTask <IMAPGetServerMessagesOperationDelegate, IMAPPersistFlagChangesOperationDelegate>
 {
     NSMutableDictionary *_flagsByUIDs;
-    NSMutableDictionary *_flagChangesByDetails;
+    NSMutableDictionary *_flagChangesByServerMessage;
 }
 
 - (void).cxx_destruct;
-- (void)persistFlagChangesOperation:(id)arg1 persistedFlagChangesForUIDs:(id)arg2;
-- (void)getMessageDetailsOperation:(id)arg1 gotDetails:(id)arg2 uidsNotFound:(id)arg3;
+- (void)persistFlagChangesOperation:(id)arg1 persistedFlagChangesForRemoteIDs:(id)arg2;
+- (void)getServerMessagesOperation:(id)arg1 gotServerMessages:(id)arg2 uidsNotFound:(id)arg3;
 - (void)operationFinished:(id)arg1;
 - (void)recalculatePriorities;
 - (id)nextPersistenceOperation;

@@ -16,6 +16,7 @@
 
 + (id)destroyAssistantWithDictionary:(id)arg1 context:(id)arg2;
 + (id)destroyAssistant;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *speechId;
 @property(copy, nonatomic) NSString *assistantId;
 - (id)encodedClassName;

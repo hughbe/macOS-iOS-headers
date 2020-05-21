@@ -6,11 +6,20 @@
 
 #import <CommerceKit/CKServiceInterface.h>
 
+@class CKSoftwareMapObserver, NSMutableDictionary;
+
 @interface CKSoftwareMap : CKServiceInterface
 {
+    NSMutableDictionary *_productsObservers;
+    CKSoftwareMapObserver *_sharedObserver;
 }
 
 + (id)sharedSoftwareMap;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CKSoftwareMapObserver *sharedObserver; // @synthesize sharedObserver=_sharedObserver;
+@property(retain, nonatomic) NSMutableDictionary *productsObservers; // @synthesize productsObservers=_productsObservers;
+- (void)startAdoptionEligibilityCheckWithReplyBlock:(CDUnknownBlockType)arg1;
+- (id)adopt:(id)arg1;
 - (id)adoptableBundleIdentifiers;
 - (BOOL)adoptionCompletedForBundleID:(id)arg1 adoptingDSID:(out id *)arg2 appleID:(out id *)arg3;
 - (id)updateRequestBodyData:(char *)arg1 includeInstalledApps:(BOOL)arg2 includeBundledApps:(BOOL)arg3 conditionally:(BOOL)arg4 hadUnadoptedApps:(out char *)arg5;
@@ -24,6 +33,8 @@
 - (id)productForBundleIdentifier:(id)arg1;
 - (void)removeProductsObserverForToken:(id)arg1;
 - (id)addProductsObserver:(CDUnknownBlockType)arg1 queue:(id)arg2;
+- (void)connectionWasInterrupted;
+- (id)initWithStoreClient:(id)arg1;
 
 @end
 

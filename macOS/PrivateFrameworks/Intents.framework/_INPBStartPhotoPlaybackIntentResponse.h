@@ -7,29 +7,42 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBStartPhotoPlaybackIntentResponse.h"
 
-@class PBUnknownFields;
+@class NSString, _INPBLocation;
 
-@interface _INPBStartPhotoPlaybackIntentResponse : PBCodable <NSCopying>
+@interface _INPBStartPhotoPlaybackIntentResponse : PBCodable <_INPBStartPhotoPlaybackIntentResponse, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    int _searchResultsCount;
     CDStruct_a60b8694 _has;
+    BOOL __encodeLegacyGloryData;
+    int _searchResultsCount;
+    NSString *_albumName;
+    _INPBLocation *_locationCreated;
 }
 
-+ (id)options;
-@property(nonatomic) int searchResultsCount; // @synthesize searchResultsCount=_searchResultsCount;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(nonatomic) int searchResultsCount; // @synthesize searchResultsCount=_searchResultsCount;
+@property(retain, nonatomic) _INPBLocation *locationCreated; // @synthesize locationCreated=_locationCreated;
+@property(copy, nonatomic) NSString *albumName; // @synthesize albumName=_albumName;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
 @property(nonatomic) BOOL hasSearchResultsCount;
+@property(readonly, nonatomic) BOOL hasLocationCreated;
+@property(readonly, nonatomic) BOOL hasAlbumName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

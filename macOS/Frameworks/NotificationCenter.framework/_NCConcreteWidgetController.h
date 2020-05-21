@@ -6,10 +6,12 @@
 
 #import <NotificationCenter/NCWidgetController.h>
 
+__attribute__((visibility("hidden")))
 @interface _NCConcreteWidgetController : NCWidgetController
 {
 }
 
+- (void)_setSystemTemperatureUnit:(BOOL)arg1;
 - (void)setHasContent:(BOOL)arg1 forWidgetWithBundleIdentifier:(id)arg2;
 - (id)init;
 

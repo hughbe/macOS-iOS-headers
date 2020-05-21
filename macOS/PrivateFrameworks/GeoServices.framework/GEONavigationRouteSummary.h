@@ -8,25 +8,35 @@
 
 #import "NSCopying.h"
 
-@class GEOComposedWaypoint, NSString;
+@class GEOComposedWaypoint, NSString, PBDataReader;
 
 @interface GEONavigationRouteSummary : PBCodable <NSCopying>
 {
-    double _travelTime;
-    GEOComposedWaypoint *_destination;
+    PBDataReader *_reader;
     NSString *_destinationName;
+    GEOComposedWaypoint *_destination;
     GEOComposedWaypoint *_origin;
+    double _travelTime;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     int _transportType;
     struct {
-        unsigned int travelTime:1;
-        unsigned int transportType:1;
-    } _has;
+        unsigned int has_travelTime:1;
+        unsigned int has_transportType:1;
+        unsigned int read_destinationName:1;
+        unsigned int read_destination:1;
+        unsigned int read_origin:1;
+        unsigned int wrote_destinationName:1;
+        unsigned int wrote_destination:1;
+        unsigned int wrote_origin:1;
+        unsigned int wrote_travelTime:1;
+        unsigned int wrote_transportType:1;
+    } _flags;
 }
 
-@property(nonatomic) double travelTime; // @synthesize travelTime=_travelTime;
-@property(retain, nonatomic) NSString *destinationName; // @synthesize destinationName=_destinationName;
-@property(retain, nonatomic) GEOComposedWaypoint *destination; // @synthesize destination=_destination;
-@property(retain, nonatomic) GEOComposedWaypoint *origin; // @synthesize origin=_origin;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -34,17 +44,26 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(nonatomic) BOOL hasTravelTime;
+@property(nonatomic) double travelTime;
+@property(retain, nonatomic) NSString *destinationName;
 @property(readonly, nonatomic) BOOL hasDestinationName;
+- (void)_readDestinationName;
+@property(retain, nonatomic) GEOComposedWaypoint *destination;
 @property(readonly, nonatomic) BOOL hasDestination;
+- (void)_readDestination;
+@property(retain, nonatomic) GEOComposedWaypoint *origin;
 @property(readonly, nonatomic) BOOL hasOrigin;
+- (void)_readOrigin;
 - (int)StringAsTransportType:(id)arg1;
 - (id)transportTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasTransportType;
-@property(nonatomic) int transportType; // @synthesize transportType=_transportType;
-- (void)dealloc;
+@property(nonatomic) int transportType;
+- (id)initWithData:(id)arg1;
+- (id)init;
 - (void)setRoute:(id)arg1;
 - (id)initWithRoute:(id)arg1 destinationName:(id)arg2;
 

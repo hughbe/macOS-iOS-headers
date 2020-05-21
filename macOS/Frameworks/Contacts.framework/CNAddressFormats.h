@@ -18,6 +18,9 @@ __attribute__((visibility("hidden")))
 + (id)countryCodeByLocaleLookup;
 + (id)addressFormatForCountryCode:(id)arg1;
 + (id)addressFormats;
++ (id)defaultKeyboardSettingsDictionary;
++ (id)makeSupportedCountries;
++ (id)supportedCountries;
 
 @end
 

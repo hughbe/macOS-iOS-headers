@@ -6,19 +6,20 @@
 
 #import "NSObject.h"
 
-@class GEOPDResultDetourInfo;
+@class GEOPDResultDetourInfo, NSData;
 
 @interface GEOMapItemDetourInfo : NSObject
 {
     GEOPDResultDetourInfo *_detourInfo;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic, getter=_detourInfo) GEOPDResultDetourInfo *detourInfo; // @synthesize detourInfo=_detourInfo;
+@property(readonly, nonatomic) NSData *detourInfoAsData;
 @property(readonly, nonatomic) double distanceToPlace;
 @property(readonly, nonatomic) double detourDistance;
 @property(readonly, nonatomic) double timeToPlace;
 @property(readonly, nonatomic) double detourTime;
-- (void)dealloc;
 - (id)initWithResultDetourInfo:(id)arg1;
 - (id)init;
 

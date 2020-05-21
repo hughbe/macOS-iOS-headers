@@ -17,6 +17,8 @@
 @interface NEVPNProtocol : NSObject <NEConfigurationValidating, NEPrettyDescription, NEConfigurationLegacySupport, NSCopying, NSSecureCoding>
 {
     BOOL _disconnectOnSleep;
+    BOOL _includeAllNetworks;
+    BOOL _excludeLocalNetworks;
     BOOL _disconnectOnWake;
     BOOL _identityDataImported;
     BOOL _disconnectOnIdle;
@@ -43,6 +45,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property BOOL disconnectOnLogout; // @synthesize disconnectOnLogout=_disconnectOnLogout;
 @property BOOL disconnectOnUserSwitch; // @synthesize disconnectOnUserSwitch=_disconnectOnUserSwitch;
 @property int disconnectOnIdleTimeout; // @synthesize disconnectOnIdleTimeout=_disconnectOnIdleTimeout;
@@ -61,17 +64,19 @@
 @property(retain) NEIdentityKeychainItem *identity; // @synthesize identity=_identity;
 @property(retain) NSString *keychainAccessGroup; // @synthesize keychainAccessGroup=_keychainAccessGroup;
 @property long long keychainDomain; // @synthesize keychainDomain=_keychainDomain;
+@property BOOL excludeLocalNetworks; // @synthesize excludeLocalNetworks=_excludeLocalNetworks;
+@property BOOL includeAllNetworks; // @synthesize includeAllNetworks=_includeAllNetworks;
 @property(copy) NEProxySettings *proxySettings; // @synthesize proxySettings=_proxySettings;
 @property BOOL disconnectOnSleep; // @synthesize disconnectOnSleep=_disconnectOnSleep;
 @property(copy) NSString *identityDataPassword; // @synthesize identityDataPassword=_identityDataPassword;
 @property(copy) NSData *passwordReference; // @synthesize passwordReference=_passwordReference;
 @property(copy) NSString *username; // @synthesize username=_username;
 @property(copy) NSString *serverAddress; // @synthesize serverAddress=_serverAddress;
-- (void).cxx_destruct;
 - (id)description;
 - (void)copyPasswordsFromKeychainInDomain:(long long)arg1;
 - (void)migratePasswordsFromPreferences:(struct __SCPreferences *)arg1;
 - (void)removeKeychainItemsInDomain:(long long)arg1 keepIdentity:(_Bool)arg2;
+- (BOOL)needToUpdateKeychain;
 - (void)syncWithKeychainInDomain:(long long)arg1 configuration:(id)arg2 suffix:(id)arg3;
 - (void)syncWithKeychainInDomainCommon:(long long)arg1;
 @property(copy) NSData *identityData;

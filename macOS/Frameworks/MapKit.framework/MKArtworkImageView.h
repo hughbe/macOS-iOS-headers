@@ -6,16 +6,25 @@
 
 #import <MapKit/MKImageView.h>
 
+@class NSColor;
+
 @interface MKArtworkImageView : MKImageView
 {
     MKImageView *_cachedBadgeView;
     id <MKArtworkImageSource> _imageSource;
+    NSColor *_primaryTintColor;
+    NSColor *_secondaryTintColor;
 }
 
-@property(retain, nonatomic) id <MKArtworkImageSource> imageSource; // @synthesize imageSource=_imageSource;
 - (void).cxx_destruct;
-- (void)_updateImageView;
+@property(retain, nonatomic) NSColor *secondaryTintColor; // @synthesize secondaryTintColor=_secondaryTintColor;
+@property(retain, nonatomic) NSColor *primaryTintColor; // @synthesize primaryTintColor=_primaryTintColor;
+@property(retain, nonatomic) id <MKArtworkImageSource> imageSource; // @synthesize imageSource=_imageSource;
+- (void)viewDidChangeEffectiveAppearance;
 @property(readonly, nonatomic) MKImageView *badgeView;
+- (void)_updateImageView;
+- (void)setImage:(id)arg1;
+- (id)initWithFrame:(struct CGRect)arg1;
 
 @end
 

@@ -16,6 +16,7 @@
 
 + (id)cancelCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)cancelCompleted;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SATimerObject *timer;
 - (id)encodedClassName;
 - (id)groupIdentifier;

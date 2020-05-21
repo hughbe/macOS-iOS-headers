@@ -13,11 +13,10 @@
     NSMenuItem *_selectedSubmenuItem;
 }
 
-@property(retain, nonatomic, setter=_setSelectedSubmenuItem:) NSMenuItem *_selectedSubmenuItem; // @synthesize _selectedSubmenuItem;
+- (void).cxx_destruct;
 - (struct CGRect)drawTitle:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
 - (void)resetSubmenuItemSelection;
 - (void)selectSubmenuItem:(id)arg1;
-- (void)dealloc;
 
 @end
 

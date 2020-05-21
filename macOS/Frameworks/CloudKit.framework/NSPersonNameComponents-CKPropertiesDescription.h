@@ -7,6 +7,6 @@
 #import "NSPersonNameComponents.h"
 
 @interface NSPersonNameComponents (CKPropertiesDescription)
-- (id)CKPropertiesToDescribe:(BOOL)arg1;
+- (id)CKDescriptionPropertiesWithPublic:(BOOL)arg1 private:(BOOL)arg2 shouldExpand:(BOOL)arg3;
 @end
 

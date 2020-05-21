@@ -8,6 +8,7 @@
 
 @class CMStyle, ECColumnWidthConvertor, EDWorksheet;
 
+__attribute__((visibility("hidden")))
 @interface EMWorksheetMapper : EMSheetMapper
 {
     EDWorksheet *edWorksheet;
@@ -21,6 +22,7 @@
     ECColumnWidthConvertor *mColumnWidthConvertor;
 }
 
+- (void).cxx_destruct;
 - (struct CGSize)preprocessSizeWithState:(id)arg1;
 - (struct CGSize)preprocessDrawableSizeWithState:(id)arg1;
 - (int)preprocessHeightWithState:(id)arg1;
@@ -41,10 +43,9 @@
 - (void)dealloc;
 - (void)_initWithState:(id)arg1;
 - (id)initWithEDWorksheet:(id)arg1 parent:(id)arg2;
-- (void)mapTableStyleAt:(id)arg1 withState:(id)arg2;
 - (void)mapTableAt:(id)arg1 withState:(id)arg2;
 - (void)mapDrawablesAt:(id)arg1 withState:(id)arg2;
-- (void)mapGridAt:(id)arg1;
+- (void)mapWorksheetClassesAtTableNode:(id)arg1;
 - (void)mapColumnInfosAt:(id)arg1 withState:(id)arg2;
 - (void)countRowsAndColumnsWithState:(id)arg1;
 - (void)setRowGrid;

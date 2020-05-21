@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class NSColor, NSString;
+@class NSColor, NSImage, NSString;
 
 @interface NSTableViewRowAction : NSObject <NSCopying>
 {
@@ -16,9 +16,11 @@
     NSString *_title;
     CDUnknownBlockType _handler;
     NSColor *_backgroundColor;
+    NSImage *_image;
 }
 
 + (id)rowActionWithStyle:(long long)arg1 title:(id)arg2 handler:(CDUnknownBlockType)arg3;
+@property(retain) NSImage *image; // @synthesize image=_image;
 @property(readonly, nonatomic, getter=_handler) CDUnknownBlockType handler; // @synthesize handler=_handler;
 @property(copy) NSString *title; // @synthesize title=_title;
 @property long long style; // @synthesize style=_style;

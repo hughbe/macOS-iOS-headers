@@ -23,10 +23,10 @@ __attribute__((visibility("hidden")))
     id <VisualTabPickerCloudDeviceViewDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL closeRequestSupported; // @synthesize closeRequestSupported=_closeRequestSupported;
 @property(nonatomic) __weak id <VisualTabPickerCloudDeviceViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <VisualTabPickerCloudDeviceViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
-- (void).cxx_destruct;
 - (void)_reloadData;
 - (BOOL)_isHeaderRow:(long long)arg1;
 - (id)_createTabTitleField;
@@ -36,11 +36,13 @@ __attribute__((visibility("hidden")))
 - (void)_activateTableCellRow:(unsigned long long)arg1;
 - (void)accessibilityPerformPressActionForAccessibleRolloverActionButtonTableCellView:(id)arg1;
 - (id)accessibilityGetDescriptionForAccessibleRolloverActionButtonTableCellView:(id)arg1;
-- (BOOL)accessibilityIsIgnored;
+- (BOOL)isAccessibilityElement;
 - (void)actionButtonClickedInTableCellView:(id)arg1;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
+- (id)tableView:(id)arg1 rowActionsForRow:(long long)arg2 edge:(long long)arg3;
+- (id)tableView:(id)arg1 rowViewForRow:(long long)arg2;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (struct CGSize)intrinsicContentSize;
 - (id)initWithFrame:(struct CGRect)arg1;

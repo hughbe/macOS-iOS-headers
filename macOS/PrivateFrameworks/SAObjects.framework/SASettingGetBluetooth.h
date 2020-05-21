@@ -12,6 +12,7 @@
 
 + (id)getBluetoothWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getBluetooth;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;

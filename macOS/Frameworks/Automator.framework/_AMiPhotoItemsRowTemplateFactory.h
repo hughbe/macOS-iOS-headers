@@ -8,10 +8,9 @@
 
 @interface _AMiPhotoItemsRowTemplateFactory : _AMRowTemplateFactory
 {
-    struct __CFRunLoopSource *_runLoopSource;
-    BOOL _queryFinished;
 }
 
++ (id)validKeyPathsForPredicate;
 + (id)sharedInstance;
 - (id)_filterIPhotoPhotoBatchItems:(id)arg1 withSpotlightPredicate:(id)arg2 error:(id *)arg3;
 - (id)commonParentOfPaths:(id)arg1;

@@ -8,7 +8,7 @@
 
 #import "GEOTransitLineItem.h"
 
-@class GEOMapRegion, NSArray, NSString;
+@class GEOMapItemIdentifier, GEOMapRegion, NSArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface _GEOPlaceDataTransitLineItem : NSObject <GEOTransitLineItem>
@@ -21,6 +21,8 @@ __attribute__((visibility("hidden")))
     id <GEOEncyclopedicInfo> _encyclopedicInfo;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL isBus;
 @property(readonly, nonatomic) id <GEOEncyclopedicInfo> encyclopedicInfo;
 @property(readonly, nonatomic) BOOL hasEncyclopedicInfo;
 @property(readonly, nonatomic) BOOL isIncidentsTTLExpired;
@@ -33,15 +35,16 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL showVehicleNumber;
 @property(readonly, nonatomic) NSString *lineColorString;
 @property(readonly, nonatomic) BOOL hasLineColorString;
+@property(readonly, nonatomic) id <GEOTransitArtworkDataSource> alternateArtwork;
 @property(readonly, nonatomic) id <GEOTransitArtworkDataSource> modeArtwork;
 @property(readonly, nonatomic) id <GEOTransitArtworkDataSource> artwork;
 @property(readonly, nonatomic) BOOL departuresAreVehicleSpecific;
 @property(readonly, nonatomic) unsigned long long departureTimeDisplayStyle;
 @property(readonly, nonatomic) id <GEOTransitSystem> system;
 @property(readonly, nonatomic) NSString *name;
+@property(readonly, nonatomic) GEOMapItemIdentifier *identifier;
 @property(readonly, nonatomic) unsigned long long muid;
-- (void)dealloc;
-- (id)initWithPlaceData:(id)arg1;
+- (id)initWithMapItem:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

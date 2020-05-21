@@ -14,8 +14,11 @@
     id <ABCardCollectionViewDelegate> _cardCollectionViewDelegate;
     NSString *_identifier;
     id _transitionProvider;
+    id <ABActionManagerDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
+@property __weak id <ABActionManagerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) id transitionProvider; // @synthesize transitionProvider=_transitionProvider;
 @property(retain) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy) NSString *personUniqueId; // @synthesize personUniqueId=_personUniqueId;

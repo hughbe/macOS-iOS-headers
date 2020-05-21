@@ -24,16 +24,15 @@
 + (id)diskBasedCacheLocationEntryForURL:(id)arg1;
 + (id)validatedCacheLocationEntryForURL:(id)arg1 propertyListData:(id)arg2 error:(id *)arg3;
 + (id)cacheLocationEntryForURL:(id)arg1 propertyListData:(id)arg2;
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *actionsLoadedBooleansByType; // @synthesize actionsLoadedBooleansByType=_actionsLoadedBooleansByType;
-@property(retain) NSString *firstKeyInPlistData; // @synthesize firstKeyInPlistData=_firstKeyInPlistData;
+@property(copy) NSString *firstKeyInPlistData; // @synthesize firstKeyInPlistData=_firstKeyInPlistData;
 @property(retain) NSURL *rootDirectoryLocationURL; // @synthesize rootDirectoryLocationURL=_rootDirectoryLocationURL;
-@property(retain) NSDate *automatorDirectoryModificationDate; // @synthesize automatorDirectoryModificationDate=_automatorDirectoryModificationDate;
-@property(retain) NSDate *rootDirectoryModificationDate; // @synthesize rootDirectoryModificationDate=_rootDirectoryModificationDate;
+@property(copy) NSDate *automatorDirectoryModificationDate; // @synthesize automatorDirectoryModificationDate=_automatorDirectoryModificationDate;
+@property(copy) NSDate *rootDirectoryModificationDate; // @synthesize rootDirectoryModificationDate=_rootDirectoryModificationDate;
 @property(retain) NSMutableDictionary *regularActionsByBundleIdentifier; // @synthesize regularActionsByBundleIdentifier=_regularActionsByBundleIdentifier;
 @property(retain) NSURL *automatorDirectoryLocationURL; // @synthesize automatorDirectoryLocationURL=_automatorDirectoryLocationURL;
 @property(retain) NSMutableDictionary *actionArraysByType; // @synthesize actionArraysByType=_actionArraysByType;
-- (void)_loadDates;
-- (void)dealloc;
 - (id)description;
 - (void)loadAllActionsIfNeededForActionType:(id)arg1;
 - (id)_generateActionsForActionType:(id)arg1;
@@ -45,9 +44,9 @@
 - (void)_addAction:(id)arg1 actionType:(id)arg2;
 - (id)propertyListRepresentation;
 - (id)cacheDictionaryForAction:(id)arg1;
-@property(readonly) BOOL needsWrite;
-@property(readonly, retain) NSURL *locationURL;
-@property(readonly) struct __CFString *libraryBundleIdentifierForLaunchServices;
+@property(readonly, nonatomic) BOOL needsWrite;
+@property(readonly, nonatomic) NSURL *locationURL;
+@property(readonly, nonatomic) struct __CFString *libraryBundleIdentifierForLaunchServices;
 
 @end
 

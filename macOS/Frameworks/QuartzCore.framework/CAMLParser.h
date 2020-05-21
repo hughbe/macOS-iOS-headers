@@ -30,7 +30,7 @@
 - (_Bool)parseData:(id)arg1;
 - (_Bool)parseString:(id)arg1;
 - (_Bool)parseBytes:(const char *)arg1 length:(unsigned long long)arg2;
-@property __weak id delegate;
+@property __weak id <CAMLParserDelegate> delegate;
 @property(retain) NSURL *baseURL;
 - (void)dealloc;
 - (id)init;

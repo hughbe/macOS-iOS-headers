@@ -35,6 +35,7 @@
 
 + (id)makeNewLocalUID;
 + (id)entityFromManagedObject:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) NSURL *dropBoxLocationOverrideBaseURL; // @synthesize dropBoxLocationOverrideBaseURL=_dropBoxLocationOverrideBaseURL;
 @property(retain) NSNumber *dropBoxFreeBytes; // @synthesize dropBoxFreeBytes=_dropBoxFreeBytes;
 @property unsigned long long unlistedOtherAttendees; // @synthesize unlistedOtherAttendees=_unlistedOtherAttendees;
@@ -47,7 +48,6 @@
 - (id)changeKey;
 - (void)setEWSItemID:(id)arg1;
 - (id)EWSItemID;
-- (BOOL)hasOccurrenceInTheFuture;
 - (id)versions;
 - (id)versionForVersionTag:(id)arg1;
 - (long long)compare:(id)arg1;
@@ -250,7 +250,6 @@
 - (void)cleanUp;
 - (Class)correspondingOccurrenceClass;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)init;
 - (void)setMainRecurrenceRule:(id)arg1;
 - (id)mainRecurrenceRule;
@@ -305,17 +304,9 @@
 - (void)setMyRSVPStatus:(BOOL)arg1;
 - (BOOL)summaryMatchesString:(id)arg1;
 - (void)setExceptionNSCalendarDates:(id)arg1;
-- (void)setRecurrenceNSCalendarDates:(id)arg1;
 - (id)exceptionNSCalendarDates;
-- (id)recurrenceNSCalendarDates;
 - (void)setStampNSCalendarDate:(id)arg1;
 - (id)stampNSCalendarDate;
-- (void)setLastModificationNSCalendarDate:(id)arg1;
-- (id)lastModificationNSCalendarDate;
-- (void)setCreationNSCalendarDate:(id)arg1;
-- (id)creationNSCalendarDate;
-- (void)setStartNSCalendarDate:(id)arg1;
-- (id)startNSCalendarDate;
 - (void)setRecurID:(id)arg1;
 - (id)recurID;
 - (void)_setParent:(id)arg1;

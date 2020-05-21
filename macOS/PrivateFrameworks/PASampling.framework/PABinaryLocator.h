@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary;
+@class NSMutableDictionary, NSString;
 
 @interface PABinaryLocator : NSObject
 {
     NSMutableDictionary *_mappings;
+    NSString *_buildNumber;
     BOOL _dirty;
     BOOL _enabled;
 }

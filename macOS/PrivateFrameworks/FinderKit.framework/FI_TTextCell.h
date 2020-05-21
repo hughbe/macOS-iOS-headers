@@ -11,16 +11,16 @@
 __attribute__((visibility("hidden")))
 @interface FI_TTextCell : NSTextFieldCell
 {
-    struct TNSRef<NSColor *, void> _enabledTextColor;
-    struct TNSRef<NSColor *, void> _disabledTextColor;
+    struct TNSRef<NSColor, void> _enabledTextColor;
+    struct TNSRef<NSColor, void> _disabledTextColor;
     _Bool _drawGrayTextWhenDisabled;
     _Bool _centerVertically;
 }
 
-@property(nonatomic) _Bool centerVertically; // @synthesize centerVertically=_centerVertically;
-@property(nonatomic) _Bool drawGrayTextWhenDisabled; // @synthesize drawGrayTextWhenDisabled=_drawGrayTextWhenDisabled;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) _Bool centerVertically; // @synthesize centerVertically=_centerVertically;
+@property(nonatomic) _Bool drawGrayTextWhenDisabled; // @synthesize drawGrayTextWhenDisabled=_drawGrayTextWhenDisabled;
 - (unsigned long long)hitTestForEvent:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3;
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1;
 - (void)setEnabled:(BOOL)arg1;
@@ -30,7 +30,6 @@ __attribute__((visibility("hidden")))
 - (void)awakeCommon;
 - (void)initCommon;
 - (void)awakeFromNib;
-- (id)initImageCell:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initTextCell:(id)arg1;
 

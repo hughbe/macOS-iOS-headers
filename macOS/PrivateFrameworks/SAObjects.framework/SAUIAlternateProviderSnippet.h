@@ -6,7 +6,7 @@
 
 #import <SAObjects/SAUISnippet.h>
 
-@class NSArray, NSString;
+@class NSArray;
 
 @interface SAUIAlternateProviderSnippet : SAUISnippet
 {
@@ -14,7 +14,6 @@
 
 + (id)alternateProviderSnippetWithDictionary:(id)arg1 context:(id)arg2;
 + (id)alternateProviderSnippet;
-@property(copy, nonatomic) NSString *title;
 @property(copy, nonatomic) NSArray *alternateProviderResults;
 - (id)encodedClassName;
 - (id)groupIdentifier;

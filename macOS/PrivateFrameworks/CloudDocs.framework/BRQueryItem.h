@@ -7,12 +7,33 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSFileProviderItemDecorating.h"
+#import "NSFileProviderItem_Private.h"
 #import "NSSecureCoding.h"
 
-@class BRFileObjectID, NSDate, NSMutableDictionary, NSNumber, NSString, NSURL;
+@class BRFileObjectID, NSArray, NSData, NSDate, NSDictionary, NSError, NSFileProviderItemVersion, NSMutableDictionary, NSNumber, NSPersonNameComponents, NSSet, NSString, NSURL;
 
-@interface BRQueryItem : NSObject <NSSecureCoding, NSCopying>
+@interface BRQueryItem : NSObject <NSFileProviderItem_Private, NSFileProviderItemDecorating, NSSecureCoding, NSCopying>
 {
+    NSString *_appLibraryID;
+    NSString *_parentPath;
+    NSString *_logicalName;
+    NSString *_physicalName;
+    NSString *_bookmarkData;
+    BRFileObjectID *_fileObjectID;
+    BRFileObjectID *_parentFileObjectID;
+    BRFileObjectID *_shareRootFileObjectID;
+    NSNumber *_size;
+    NSNumber *_mtime;
+    NSNumber *_btime;
+    NSNumber *_lastUsedTime;
+    NSNumber *_favoriteRank;
+    NSURL *_url;
+    NSURL *_localRepresentationURL;
+    NSNumber *_parentZoneRowID;
+    NSNumber *_zoneRowID;
+    NSMutableDictionary *_attrs;
+    id _replacement;
     union {
         struct {
             unsigned int downloadStatus:2;
@@ -26,44 +47,32 @@
             unsigned int shareOptions:3;
             unsigned int isHiddenExt:1;
             unsigned int isBRAlias:1;
+            unsigned int isTrashed:1;
+            unsigned int itemMode:3;
+            unsigned int fromReadOnlyDB:1;
+            unsigned int isSharedFolderSubItem:1;
+            unsigned int possiblyContainsSharedToMeItem:1;
+            unsigned int possiblyContainsSharedByMeItem:1;
+            unsigned int editedSinceShared:1;
             unsigned char BRQueryItemKind;
             unsigned char kind;
         } ;
         unsigned long long value;
     } _flags;
-    unsigned short _diffs;
-    NSString *_appLibraryID;
-    NSString *_parentPath;
-    NSString *_logicalName;
-    NSString *_physicalName;
-    BRFileObjectID *_fileObjectID;
-    NSNumber *_size;
-    NSNumber *_mtime;
-    NSNumber *_btime;
-    NSMutableDictionary *_attrs;
-    NSURL *_url;
-    NSURL *_localRepresentationURL;
-    id _replacement;
-    BOOL _isNetworkOffline;
     long long _logicalHandle;
     long long _physicalHandle;
+    unsigned long long _parentFileID;
+    unsigned short _diffs;
+    BOOL _isNetworkOffline;
 }
 
-+ (id)askDaemonQueryItemForURL:(id)arg1;
++ (id)containerItemForContainer:(id)arg1 forceScan:(BOOL)arg2;
++ (id)containerItemForContainer:(id)arg1 withDocumentsItem:(id)arg2 zoneRowID:(id)arg3;
++ (id)containerItemForContainer:(id)arg1 withDocumentsItem:(id)arg2;
++ (id)askDaemonQueryItemForURL:(id)arg1 andFakeFSEvent:(BOOL)arg2 error:(id *)arg3;
++ (id)askDaemonQueryItemForURL:(id)arg1 error:(id *)arg2;
 + (BOOL)supportsSecureCoding;
 + (void)initialize;
-@property(nonatomic) BOOL isNetworkOffline; // @synthesize isNetworkOffline=_isNetworkOffline;
-@property(readonly, nonatomic) NSNumber *btime; // @synthesize btime=_btime;
-@property(readonly, nonatomic) NSNumber *mtime; // @synthesize mtime=_mtime;
-@property(readonly, nonatomic) NSNumber *size; // @synthesize size=_size;
-@property(readonly, nonatomic) NSString *appLibraryID; // @synthesize appLibraryID=_appLibraryID;
-@property(readonly, nonatomic) NSString *physicalName; // @synthesize physicalName=_physicalName;
-@property(readonly, nonatomic) NSString *logicalName; // @synthesize logicalName=_logicalName;
-@property(readonly, nonatomic) NSString *parentPath; // @synthesize parentPath=_parentPath;
-@property(readonly, nonatomic) BRFileObjectID *fileObjectID; // @synthesize fileObjectID=_fileObjectID;
-@property(readonly, nonatomic) unsigned short diffs; // @synthesize diffs=_diffs;
-@property(readonly, nonatomic) NSURL *localRepresentationURL; // @synthesize localRepresentationURL=_localRepresentationURL;
-@property(readonly, nonatomic) NSURL *url; // @synthesize url=_url;
 - (void).cxx_destruct;
 - (id)attributesForNames:(id)arg1;
 - (id)attributeNames;
@@ -77,11 +86,11 @@
 - (id)attributeForKey:(id)arg1;
 - (void)_mergeURL:(id)arg1;
 - (void)_mergeAttrs:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToQueryItem:(id)arg1;
 @property(readonly, nonatomic) NSString *path;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)subclassDescription;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithQueryItem:(id)arg1;
@@ -89,16 +98,18 @@
 - (void)attachLogicalExtension:(id)arg1 physicalExtension:(id)arg2;
 - (id)initWithCoder:(id)arg1;
 - (void)dealloc;
+@property(readonly, copy) NSString *fp_spotlightDomainIdentifier;
 - (id)sharedItemRole;
 - (BOOL)isHiddenExt;
-- (BOOL)isShared;
+@property(readonly, nonatomic, getter=isTrashed) BOOL trashed;
+@property(readonly, nonatomic) BOOL editedSinceShared;
 @property(readonly, nonatomic) BOOL isBRAlias;
 @property(readonly, nonatomic) BOOL isDocument;
 @property(readonly, nonatomic) BOOL isFinderBookmark;
 @property(readonly, nonatomic) BOOL isSymlink;
 @property(readonly, nonatomic) BOOL isDirectory;
 @property(readonly, nonatomic) BOOL isUploadActive;
-@property(readonly, nonatomic) BOOL isDownloadRequested;
+@property(readonly, copy, getter=isDownloadRequested) NSNumber *downloadRequested;
 @property(readonly, nonatomic) BOOL isDownloadActive;
 @property(nonatomic) BOOL isPreCrash;
 - (void)clearDiffs;
@@ -107,11 +118,91 @@
 @property(readonly, nonatomic) BOOL isLive;
 @property(readonly, nonatomic) BOOL isConflicted;
 @property(readonly, nonatomic) BOOL isInTransfer;
-@property(readonly, nonatomic) unsigned int shareOptions;
-@property(readonly, nonatomic) unsigned int uploadStatus;
-@property(readonly, nonatomic) unsigned int downloadStatus;
-@property(readonly, nonatomic) NSDate *birthDate;
-@property(readonly, nonatomic) NSDate *modificationDate;
+@property(readonly, nonatomic) unsigned int br_shareOptions;
+@property(readonly, nonatomic) unsigned int br_uploadStatus;
+@property(readonly, nonatomic) unsigned int br_downloadStatus;
+- (id)parentFileID;
+@property(nonatomic) BOOL isNetworkOffline;
+@property(readonly, nonatomic) NSData *versionIdentifier;
+@property(readonly, nonatomic) NSNumber *favoriteRank;
+@property(readonly, copy, nonatomic) NSData *tagData;
+@property(readonly, copy, nonatomic) NSDate *lastUsedDate;
+@property(readonly, nonatomic) NSNumber *lastUsedTime;
+@property(readonly, nonatomic) NSNumber *btime;
+@property(readonly, nonatomic) NSNumber *mtime;
+@property(readonly, nonatomic) NSNumber *size;
+@property(readonly, nonatomic) NSString *appLibraryID;
+@property(readonly, nonatomic) NSString *physicalName;
+@property(readonly, nonatomic) NSString *logicalName;
+@property(readonly, nonatomic) NSString *parentPath;
+@property(readonly, nonatomic) BRFileObjectID *fileObjectID;
+@property(readonly, nonatomic) unsigned short diffs;
+@property(readonly, nonatomic) NSURL *localRepresentationURL;
+@property(readonly, copy) NSString *containerDisplayName;
+@property(readonly, nonatomic) NSURL *url;
+@property(readonly, copy) NSString *sharingPermissions;
+@property(readonly, nonatomic) NSPersonNameComponents *mostRecentEditorNameComponents;
+@property(readonly, nonatomic) NSPersonNameComponents *ownerNameComponents;
+- (id)owner;
+@property(readonly, nonatomic, getter=fp_isLastModifiedByCurrentUser) BOOL fp_lastModifiedByCurrentUser;
+@property(readonly, nonatomic, getter=isSharedByCurrentUser) BOOL sharedByCurrentUser;
+- (BOOL)_isSharedFolderSubItem;
+@property(readonly, nonatomic, getter=isTopLevelSharedItem) BOOL topLevelSharedItem;
+@property(readonly, nonatomic, getter=isShared) BOOL shared;
+@property(readonly, copy) NSNumber *hasUnresolvedConflicts;
+@property(readonly, copy, nonatomic) NSError *downloadingError;
+- (id)downloadingStatus;
+@property(readonly, copy, nonatomic) NSError *uploadingError;
+@property(readonly, nonatomic, getter=isUploading) BOOL uploading;
+@property(readonly, nonatomic, getter=isUploaded) BOOL uploaded;
+@property(readonly, nonatomic, getter=isMostRecentVersionDownloaded) BOOL mostRecentVersionDownloaded;
+@property(readonly, nonatomic, getter=isDownloading) BOOL downloading;
+@property(readonly, nonatomic, getter=isDownloaded) BOOL downloaded;
+- (id)filePath;
+@property(readonly, copy, nonatomic) NSDate *contentModificationDate;
+@property(readonly, copy, nonatomic) NSDate *creationDate;
+- (id)fileSize;
+@property(readonly, nonatomic) unsigned long long capabilities;
+@property(readonly, nonatomic) NSArray *decorations;
+@property(readonly, nonatomic) NSDictionary *userInfo;
+@property(readonly, copy) NSURL *fileURL;
+- (BOOL)_isInSharedZone;
+@property(readonly, getter=isHidden) BOOL hidden;
+@property(readonly, copy, nonatomic) NSNumber *documentSize;
+@property(readonly, copy, nonatomic) NSString *typeIdentifier;
+@property(readonly, copy, nonatomic) NSString *displayName;
+@property(readonly, copy, nonatomic) NSString *filename;
+@property(readonly, copy, nonatomic) NSString *parentItemIdentifier;
+@property(readonly, copy, nonatomic) NSString *itemIdentifier;
+@property(readonly, copy) NSString *fp_cloudContainerIdentifier;
+@property(readonly) BOOL fp_isContainer;
+- (id)localizedFileNameIfDesktopOrDocuments;
+- (id)containerIDIfDesktopOrDocuments;
+
+// Remaining properties
+@property(readonly, copy, nonatomic) NSNumber *childItemCount;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, nonatomic, getter=isExcludedFromSync) BOOL excludedFromSync;
+@property(readonly, nonatomic) NSDictionary *extendedAttributes;
+@property(readonly, copy) NSString *fileSystemFilename;
+@property(readonly, nonatomic) id <NSFileProviderItemFlags> flags;
+@property(readonly, nonatomic, getter=fp_isAddedByCurrentUser) BOOL fp_addedByCurrentUser;
+@property(readonly, nonatomic) NSPersonNameComponents *fp_addedByNameComponents;
+@property(readonly, copy) NSSet *fp_cloudContainerClientBundleIdentifiers;
+@property(readonly, copy) NSString *fp_domainIdentifier;
+@property(readonly) BOOL fp_isContainerPristine;
+@property(readonly, copy) NSString *fp_parentDomainIdentifier;
+@property(readonly, getter=fp_isUbiquitous) BOOL fp_ubiquitous;
+@property(readonly, nonatomic) NSNumber *isDownloadRequested;
+@property(readonly, nonatomic) BOOL isTrashed;
+@property(readonly, nonatomic) NSFileProviderItemVersion *itemVersion;
+@property(readonly, nonatomic) NSString *preformattedMostRecentEditorName;
+@property(readonly, nonatomic) NSString *preformattedOwnerName;
+@property(readonly, copy) NSString *providerIdentifier;
+@property(readonly, copy, nonatomic) NSData *quarantineBlob;
+@property(readonly) Class superclass;
+@property(readonly, copy, nonatomic) NSString *symlinkTargetPath;
+@property(getter=isSyncRoot) BOOL syncRoot;
 
 @end
 

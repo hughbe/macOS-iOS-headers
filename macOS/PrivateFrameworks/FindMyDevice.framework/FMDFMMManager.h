@@ -6,22 +6,46 @@
 
 #import "NSObject.h"
 
-@class NSXPCConnection;
+@class FMDFMMAccountInfo, FMNSXPCConnection;
 
 @interface FMDFMMManager : NSObject
 {
-    NSXPCConnection *_xpcConnection;
     struct AuthorizationOpaqueRef *_authRef;
-    NSXPCConnection *_uaXpcConnection;
+    FMNSXPCConnection *_disableFMMConnection;
+    FMDFMMAccountInfo *_cachedAccountInfo;
 }
 
 + (id)sharedInstance;
-@property(retain, nonatomic) NSXPCConnection *uaXpcConnection; // @synthesize uaXpcConnection=_uaXpcConnection;
+- (void).cxx_destruct;
+@property(retain) FMDFMMAccountInfo *cachedAccountInfo; // @synthesize cachedAccountInfo=_cachedAccountInfo;
+@property(retain, nonatomic) FMNSXPCConnection *disableFMMConnection; // @synthesize disableFMMConnection=_disableFMMConnection;
 @property(nonatomic) struct AuthorizationOpaqueRef *authRef; // @synthesize authRef=_authRef;
-@property(retain, nonatomic) NSXPCConnection *xpcConnection; // @synthesize xpcConnection=_xpcConnection;
+- (void)didReceiveLostModeExitAuthToken:(id)arg1;
+- (BOOL)needsLostModeExitAuth;
+- (void)initiateLostModeExitAuthWithCompletion:(CDUnknownBlockType)arg1;
+- (void)shouldResumeCardsForUser:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (id)_adminAuthDataForRight:(const char *)arg1;
 - (void)_createAuthRight;
 - (id)newErrorForCode:(int)arg1 message:(id)arg2;
+- (id)_genericErrorForDisableContext:(unsigned long long)arg1;
+- (void)_invalidateDisableFMMConnection;
+- (void)_storeDisableFMMConnection:(id)arg1;
+- (void)eraseAllContentAndSettingsUsingCallback:(CDUnknownBlockType)arg1;
+- (void)enableActivationLockWithCompletion:(CDUnknownBlockType)arg1;
+- (void)isActivationLockedWithCompletion:(CDUnknownBlockType)arg1;
+- (void)isActivationLockCapableWithCompletion:(CDUnknownBlockType)arg1;
+- (void)performActivationLockOperationWithContext:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)validateActivationLockForiCloudUser:(id)arg1 authenticationPET:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
+- (void)removeManagedActivationLockWithCode:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)removeActivationLockForMacOSUserWithPassword:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)removeActivationLockForiCloudUser:(id)arg1 authenticationPET:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
+- (void)activationLockInfoForContext:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)activationLockInfoForValidationWithCompletion:(CDUnknownBlockType)arg1;
+- (void)activationLockInfoForUnlockWithCompletion:(CDUnknownBlockType)arg1;
+- (void)signatureHeadersWithData:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)didChangeFMMAccountInfo:(id)arg1;
+- (void)disableFMMUsingToken:(id)arg1 inContext:(unsigned long long)arg2 usingCallback:(CDUnknownBlockType)arg3;
+- (void)clearFMMAccountsWithCompletion:(CDUnknownBlockType)arg1;
 - (id)retrieveFMMAccount:(id *)arg1;
 - (id)removeFMMAccountWithUsername:(id)arg1 authRight:(id)arg2;
 - (id)removeFMMAccountWithUsername:(id)arg1;
@@ -31,10 +55,8 @@
 - (void)removeFMMAccountWithUsername:(id)arg1 authRight:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)removeFMMAccountWithUsername:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)addFMMAccount:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
-- (void)_destroyUAXPCConnection;
-- (id)currentUAXPCConnection;
-- (void)_destroyXPCConnection;
-- (id)currentXPCConnection;
+- (void)unregisterObservers;
+- (void)registerObservers;
 - (void)dealloc;
 - (id)init;
 

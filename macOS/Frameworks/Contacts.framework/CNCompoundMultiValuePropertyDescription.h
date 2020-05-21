@@ -6,11 +6,14 @@
 
 #import <Contacts/CNMultiValuePropertyDescription.h>
 
+@class NSArray;
+
 @interface CNCompoundMultiValuePropertyDescription : CNMultiValuePropertyDescription
 {
 }
 
 - (id)stringForIndexingForContact:(id)arg1;
+@property(readonly, nonatomic) NSArray *summarizationKeys;
 @property(readonly, nonatomic) CDUnknownBlockType fromDictionaryTransform;
 @property(readonly, nonatomic) CDUnknownBlockType dictionaryTransform;
 - (CDUnknownBlockType)fromPlistTransform;

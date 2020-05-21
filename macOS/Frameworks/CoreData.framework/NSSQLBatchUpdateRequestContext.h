@@ -6,7 +6,7 @@
 
 #import <CoreData/NSSQLStoreRequestContext.h>
 
-@class NSBatchUpdateRequest, NSFetchRequest, NSSQLCountRequestContext, NSSQLFetchRequestContext, NSSQLiteStatement;
+@class NSBatchUpdateRequest, NSFetchRequest, NSSQLiteStatement;
 
 __attribute__((visibility("hidden")))
 @interface NSSQLBatchUpdateRequestContext : NSSQLStoreRequestContext
@@ -15,15 +15,17 @@ __attribute__((visibility("hidden")))
     NSFetchRequest *_fetchRequest;
 }
 
-- (void)executeRequestUsingConnection:(id)arg1;
+- (id)dropObjectIDCaptureStatements;
+- (id)createObjectIDCaptureStatements;
+- (BOOL)executeRequestCore:(id *)arg1;
 - (void)executePrologue;
 - (BOOL)isWritingRequest;
-@property(readonly, nonatomic) NSSQLCountRequestContext *createCountRequestContextForObjectsToUpdate;
-@property(readonly, nonatomic) NSSQLFetchRequestContext *createFetchRequestContextForObjectsToUpdate;
+- (id)createFetchRequestContextForObjectsToUpdate;
 - (id)fetchRequestDescribingObjectsToUpdate;
 @property(readonly, nonatomic) NSSQLiteStatement *updateStatement;
 - (void)_createUpdateStatement;
 @property(readonly, nonatomic) NSBatchUpdateRequest *request;
+- (id)tempTableName;
 - (void)dealloc;
 - (id)initWithRequest:(id)arg1 context:(id)arg2 sqlCore:(id)arg3;
 

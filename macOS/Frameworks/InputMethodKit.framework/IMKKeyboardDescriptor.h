@@ -8,7 +8,13 @@
 
 @interface IMKKeyboardDescriptor : NSObject
 {
+    id <IMKCandidateMenu> _candidateMenu;
 }
+
+- (void).cxx_destruct;
+@property(readonly, nonatomic) id <IMKCandidateMenu> candidateMenu; // @synthesize candidateMenu=_candidateMenu;
+- (id)initWithCandidateMenu:(id)arg1;
+- (id)init;
 
 @end
 

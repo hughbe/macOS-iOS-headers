@@ -8,6 +8,5 @@
 
 @protocol MKStackingViewControllerFixedHeightAware <NSObject>
 @property(nonatomic) BOOL resizableViewsDisabled;
-- (double)extraHeightToReserveInLayout;
 @end
 

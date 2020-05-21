@@ -15,6 +15,7 @@
     IMTimer *_systemTimer;
 }
 
+- (void).cxx_destruct;
 - (void)killSystemTimer;
 - (id)systemTimer;
 - (CDUnknownBlockType)timeoutBlock;

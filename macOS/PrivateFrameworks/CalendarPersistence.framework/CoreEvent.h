@@ -21,6 +21,7 @@
 + (id)event;
 + (id)entityFromManagedObject:(id)arg1 omitAttendees:(BOOL)arg2;
 + (id)entityFromManagedObject:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly) BOOL hasEverUsedWorkingElswhere; // @synthesize hasEverUsedWorkingElswhere=_hasEverUsedWorkingElswhere;
 - (id)humanReadableRepeatDescription;
 - (void)_makeAlarmExchangeCompatible:(id)arg1;
@@ -81,9 +82,6 @@
 - (void)finalize;
 - (void)dealloc;
 - (Class)correspondingOccurrenceClass;
-- (void)forceFullDayEvent;
-- (void)setEndNSCalendarDate:(id)arg1;
-- (id)endNSCalendarDate;
 
 @end
 

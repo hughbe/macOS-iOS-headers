@@ -13,6 +13,8 @@
 }
 
 + (BOOL)supportsSecureCoding;
++ (id)SCNUID_instanciateWithOption:(id)arg1;
++ (id)SCNUID_creationOptions;
 - (BOOL)hasReferenceToPhysicsBody:(id)arg1;
 - (id)bodyB;
 - (id)bodyA;

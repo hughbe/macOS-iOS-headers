@@ -20,22 +20,23 @@ __attribute__((visibility("hidden")))
     double _delay;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic, setter=_setDelay:) double delay; // @synthesize delay=_delay;
 @property(retain, nonatomic, setter=_setLastEchoedTextMarkerRange:) SCRTextMarkerRange *_lastEchoedTextMarkerRange; // @synthesize _lastEchoedTextMarkerRange=__lastEchoedTextMarkerRange;
 @property(retain, nonatomic, setter=_setPunctuationMarkerRange:) SCRTextMarkerRange *_punctuationMarkerRange; // @synthesize _punctuationMarkerRange=__punctuationMarkerRange;
 @property(retain, nonatomic, setter=_setTextMarkerRange:) SCRTextMarkerRange *_textMarkerRange; // @synthesize _textMarkerRange=__textMarkerRange;
 @property(retain, nonatomic, setter=_setTimer:) SCRSimpleTimer *_timer; // @synthesize _timer=__timer;
-@property(nonatomic) id <SCRTextDelayedWordEchoHelperDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic) id <SCRTextDelayedWordEchoHelperDataSource> dataSource; // @synthesize dataSource=_dataSource;
+@property(nonatomic) __weak id <SCRTextDelayedWordEchoHelperDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <SCRTextDelayedWordEchoHelperDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (void)invalidate;
 - (void)cancel;
-- (void)_echo;
+- (BOOL)_echoWithAdditionalContent:(id)arg1;
 - (void)_timerFired;
 - (unsigned long long)updateWithChange:(id)arg1;
 - (long long)_shouldEchoWordIfTypingChangeAtEndOfWord:(id)arg1 wordTextMarkerRange:(id)arg2;
 - (BOOL)_shouldEchoWordIfWhitespaceOrNewline:(id)arg1;
 - (BOOL)_shouldEchoWordIfPunctuation:(id)arg1;
-- (void)dealloc;
+- (BOOL)_shouldEchoWordIfSymbol:(id)arg1;
 - (id)initWithDelay:(double)arg1;
 
 @end

@@ -11,7 +11,7 @@
 @interface CalLogMaster : NSObject
 {
     NSArray *_topLevelNodes;
-    CalLogNode *_aslNode;
+    CalLogNode *_oslogNode;
     CalLogNode *_rootConfigurationNode;
     CalLogNode *_standardOutNode;
     CalLogNode *_userNotificationNode;
@@ -23,15 +23,15 @@
 }
 
 + (id)sharedLogMaster;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL autoFlush; // @synthesize autoFlush=_autoFlush;
 @property(nonatomic) BOOL hasValidNotificationRegistrationToken; // @synthesize hasValidNotificationRegistrationToken=_hasValidNotificationRegistrationToken;
 @property(nonatomic) int notificationRegistrationToken; // @synthesize notificationRegistrationToken=_notificationRegistrationToken;
 @property(retain, nonatomic) CalLogNode *userNotificationNode; // @synthesize userNotificationNode=_userNotificationNode;
 @property(retain, nonatomic) CalLogNode *rootConfigurationNode; // @synthesize rootConfigurationNode=_rootConfigurationNode;
 @property(retain, nonatomic) CalLogNode *standardOutNode; // @synthesize standardOutNode=_standardOutNode;
-@property(retain, nonatomic) CalLogNode *aslNode; // @synthesize aslNode=_aslNode;
+@property(retain, nonatomic) CalLogNode *oslogNode; // @synthesize oslogNode=_oslogNode;
 @property(retain, nonatomic) NSArray *topLevelNodes; // @synthesize topLevelNodes=_topLevelNodes;
-- (void).cxx_destruct;
 - (void)processEnvelope:(id)arg1;
 - (BOOL)flush;
 - (id)findWhiteList;
@@ -39,10 +39,11 @@
 - (void)registerForConfigUpdateNotifications;
 - (void)reloadTopLevelNodes;
 - (id)copyLegacyLoggingDefaultsConvertedToNamespaces;
+- (BOOL)shouldProcessNamespace:(id)arg1;
 - (void)configureRootConfigurationNode;
 - (void)configureUserNotificationNode;
 - (void)configureStandardOutNode;
-- (void)configureASLNode;
+- (void)configureOSLogNode;
 - (void)loadPreferredConfiguration;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;

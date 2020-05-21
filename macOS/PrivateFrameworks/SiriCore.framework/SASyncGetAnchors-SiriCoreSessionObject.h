@@ -7,6 +7,7 @@
 #import "SASyncGetAnchors.h"
 
 @interface SASyncGetAnchors (SiriCoreSessionObject)
+- (BOOL)siriCore_isRetryable;
 - (BOOL)siriCore_bufferingAllowedDuringActiveSession;
 @end
 

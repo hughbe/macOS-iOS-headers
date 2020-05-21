@@ -7,20 +7,29 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
-@interface NSQueryGenerationToken : NSObject <NSCopying>
+@interface NSQueryGenerationToken : NSObject <NSCopying, NSSecureCoding>
 {
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)nostoresQueryGenerationToken;
 + (id)currentQueryGenerationToken;
 + (id)unpinnedQueryGenerationToken;
-- (id)_storesForRequestRoutingFrom:(id)arg1;
-- (id)_tokenForStore:(id)arg1;
++ (void)initialize;
+- (BOOL)_isEnabled;
+- (id)_storeIdentifier;
+- (BOOL)_isUnmoored;
+- (id)persistentStoreCoordinator;
+- (id)_storesForRequestRoutingFrom:(id)arg1 error:(id *)arg2;
+- (id)_generationalComponentForStore:(id)arg1;
 - (id)_token;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 
 @end
 

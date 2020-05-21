@@ -8,18 +8,16 @@
 
 #import "_CDPeriodicScheduler.h"
 
-@class NSMutableDictionary, NSString;
+@class NSString;
 
 @interface _CDPeriodicScheduler : NSObject <_CDPeriodicScheduler>
 {
-    NSMutableDictionary *allJobs;
 }
 
 + (id)sharedInstance;
-- (void).cxx_destruct;
+- (void)updateExecutionCriteriaOnJob:(id)arg1;
 - (void)unregisterJob:(id)arg1;
 - (void)registerJob:(id)arg1;
-- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

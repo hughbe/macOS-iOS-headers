@@ -6,44 +6,48 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary;
+@class NSMapTable, NSMutableDictionary, WBSPerSitePreference;
 
 __attribute__((visibility("hidden")))
 @interface SafariWebGLLoadPolicyController : NSObject
 {
     NSMutableDictionary *_policies;
-    struct HashMap<Safari::BrowserContentViewController *, WTF::RetainPtr<NSString>, WTF::PtrHash<Safari::BrowserContentViewController *>, WTF::HashTraits<Safari::BrowserContentViewController *>, WTF::HashTraits<WTF::RetainPtr<NSString>>> _browserContentViewControllerToPageHost;
+    NSMapTable *_browserViewControllerToPageHost;
     BOOL _changingPoliciesPerSitePreventedByAdmin;
     int _userDefaultWebGLLoadPolicy;
+    NSMutableDictionary *_domainsToHosts;
     BOOL _firstVisitPolicyIsManagedByAdmin;
     int _defaultWebGLPolicy;
-    int _hardwareSecurityLevel;
+    WBSPerSitePreference *_webGLPreference;
 }
 
 + (id)sharedController;
-@property(nonatomic) BOOL firstVisitPolicyIsManagedByAdmin; // @synthesize firstVisitPolicyIsManagedByAdmin=_firstVisitPolicyIsManagedByAdmin;
-@property(nonatomic) int hardwareSecurityLevel; // @synthesize hardwareSecurityLevel=_hardwareSecurityLevel;
-@property(nonatomic) int defaultWebGLPolicy; // @synthesize defaultWebGLPolicy=_defaultWebGLPolicy;
-- (id).cxx_construct;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) WBSPerSitePreference *webGLPreference; // @synthesize webGLPreference=_webGLPreference;
+@property(nonatomic) BOOL firstVisitPolicyIsManagedByAdmin; // @synthesize firstVisitPolicyIsManagedByAdmin=_firstVisitPolicyIsManagedByAdmin;
+@property(nonatomic) int defaultWebGLPolicy; // @synthesize defaultWebGLPolicy=_defaultWebGLPolicy;
+- (id)_hostForDomain:(id)arg1;
+- (id)_domainFromHost:(id)arg1;
 - (void)clearWebGLPoliciesAddedAfterDate:(id)arg1;
 - (void)clearWebGLPolicies;
 - (void)saveWebGLLoadPoliciesToUserDefaults;
 - (void)_loadPoliciesFromUserDefaults:(BOOL)arg1;
 - (void)reloadWebGLLoadPoliciesIfNeeded;
+@property(readonly, nonatomic) int hardwareSecurityLevel;
 - (void)resetWebGLLoadPolicies;
 - (BOOL)_openPageIsUsingPolicyForHost:(id)arg1;
-- (void)browserContentViewController:(struct BrowserContentViewController *)arg1 didLeavePageRunningWebGLWithHost:(id)arg2;
-- (void)browserContentViewController:(struct BrowserContentViewController *)arg1 didOpenPageRunningWebGLWithHost:(id)arg2;
+- (void)browserViewController:(id)arg1 didLeavePageRunningWebGLWithHost:(id)arg2;
+- (void)browserViewController:(id)arg1 didOpenPageRunningWebGLWithHost:(id)arg2;
 - (void)removeWebGLLoadPoliciesForHosts:(id)arg1;
 - (void)removeWebGLLoadPolicyForHost:(id)arg1;
 - (void)setWebGLLoadPolicy:(int)arg1 forHost:(id)arg2 saveToUserDefaults:(BOOL)arg3;
-- (unsigned int)webGLLoadPolicyForHost:(id)arg1;
-- (BOOL)showWebGLLoadPolicyDialogForURL:(id)arg1 inBrowserContentViewController:(struct BrowserContentViewController *)arg2;
+- (long long)webGLLoadPolicyForHost:(id)arg1;
+- (BOOL)showWebGLLoadPolicyDialogForURL:(id)arg1 inBrowserViewController:(id)arg2;
 - (BOOL)_isSuppressingDialog:(id)arg1;
 - (id)policyEntryForHost:(id)arg1;
 - (id)sortedPolicies;
-- (unsigned int)_managedPolicyToWKPolicy:(int)arg1;
+- (long long)_managedPolicyToWebGLLoadPolicy:(int)arg1;
+- (id)init;
 
 @end
 

@@ -18,13 +18,11 @@
     NSObject<OS_dispatch_queue> *_readWriteQueue;
     int _remoteProcessIdentifier;
     NSString *_remoteProcessApplicationIdentifier;
-    NSString *_remoteProcessBundleIdentifier;
 }
 
-@property(readonly, nonatomic) NSString *remoteProcessBundleIdentifier; // @synthesize remoteProcessBundleIdentifier=_remoteProcessBundleIdentifier;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *remoteProcessApplicationIdentifier; // @synthesize remoteProcessApplicationIdentifier=_remoteProcessApplicationIdentifier;
 @property(readonly, nonatomic) int remoteProcessIdentifier; // @synthesize remoteProcessIdentifier=_remoteProcessIdentifier;
-- (void).cxx_destruct;
 - (void)serviceSuspended;
 - (void)serviceResumed;
 - (id)remoteObjectProxyWithErrorHandler:(CDUnknownBlockType)arg1;

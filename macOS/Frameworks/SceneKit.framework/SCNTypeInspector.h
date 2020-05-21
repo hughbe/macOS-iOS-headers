@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_datasource;
 }
 
+- (void).cxx_destruct;
 - (id)outlineView:(id)arg1 objectValueForTableColumn:(id)arg2 byItem:(id)arg3;
 - (void)outlineView:(id)arg1 setObjectValue:(id)arg2 forTableColumn:(id)arg3 byItem:(id)arg4;
 - (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
@@ -27,7 +28,6 @@ __attribute__((visibility("hidden")))
 - (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
 - (id)ivarsOfItem:(id)arg1;
 @property(retain) id instance;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)_commonInit;

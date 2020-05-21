@@ -6,32 +6,31 @@
 
 #import <AppKit/NSView.h>
 
+#import "NSGestureRecognizerDelegate.h"
 #import "NSScrollerImpPairDelegate.h"
 #import "NSTextFinderBarContainer.h"
 
-@class NSClipView, NSColor, NSCursor, NSRulerView, NSScroller, NSString;
+@class NSArray, NSClipView, NSColor, NSCursor, NSGestureRecognizer, NSRulerView, NSScroller, NSScrollerImpPair, NSScrollingBehavior, NSString, _NSScrollViewContentBackgroundView, _NSScrollViewFloatingDebugView, _NSScrollViewFloatingSubviewsContainerView, _NSScrollViewLayoutHelper;
 
-@interface NSScrollView : NSView <NSScrollerImpPairDelegate, NSTextFinderBarContainer>
+@interface NSScrollView : NSView <NSScrollerImpPairDelegate, NSGestureRecognizerDelegate, NSTextFinderBarContainer>
 {
     NSScroller *_vScroller;
     NSScroller *_hScroller;
-    NSClipView *_contentView;
-    NSClipView *_headerClipView;
     NSView *_cornerView;
     id _ruler;
-    struct __SFlags {
-        unsigned int RESERVED:3;
+    struct {
+        unsigned int RESERVED1:3;
         unsigned int unarchiving:1;
         unsigned int registeredForWindowWillClose:1;
         unsigned int findBarPosition:2;
         unsigned int predominantAxisScrolling:1;
         unsigned int hContentElasticity:2;
         unsigned int vContentElasticity:2;
-        unsigned int unused:1;
+        unsigned int RESERVED2:1;
         unsigned int findBarVisible:1;
         unsigned int autoforwardsScrollWheelEvents:1;
         unsigned int autohidesScrollers:1;
-        unsigned int hasCustomLineBorderColor:1;
+        unsigned int RESERVED3:1;
         unsigned int focusRingNeedsRedisplay:1;
         unsigned int skipRemoveSuperviewCheck:1;
         unsigned int doesNotDrawBackground:1;
@@ -50,8 +49,68 @@
     id _extraIvars;
     NSRulerView *_horizontalRuler;
     NSRulerView *_verticalRuler;
+    NSClipView *_contentView;
+    NSClipView *_headerClipView;
+    double _hPageAmt;
+    double _vPageAmt;
+    double _hLineAmt;
+    double _vLineAmt;
+    double _hThumbDestination;
+    double _vThumbDestination;
+    struct NSEdgeInsets _contentInsets;
+    struct NSEdgeInsets _scrollerInsets;
+    _NSScrollViewLayoutHelper *_baseContentAreaLayout;
+    NSView *_findBarView;
+    NSScrollingBehavior *_scrollingBehavior;
+    NSScrollerImpPair *_scrollerImpPair;
+    double _effectiveMagnification;
+    double _magnification;
+    double _minMagnification;
+    double _maxMagnification;
+    double _magnificationLock;
+    struct CGPoint _lastSmartMagnificationLocation;
+    struct CGRect _lastSmartMagnificationRect;
+    struct CGPoint _magnificationAnchorPoint;
+    NSScrollView *_synchronizedSiblingHorizontal;
+    NSScrollView *_synchronizedSiblingVertical;
+    id <NSScrollViewDelegate> _delegate;
+    NSArray *_pageAlignmentsHorizontal;
+    NSArray *_pageAlignmentsVertical;
+    _NSScrollViewFloatingSubviewsContainerView *_floatingSubviewsHorizontalContainer;
+    _NSScrollViewFloatingSubviewsContainerView *_floatingSubviewsVerticalContainer;
+    _NSScrollViewFloatingDebugView *_floatingDebugView;
+    NSView *_currentRulerLineView;
+    id _mouseDownMonitor;
+    struct CGSize _decelerationRate;
+    NSView *_moreLeftContentIndicator;
+    NSView *_moreRightContentIndicator;
+    NSGestureRecognizer *_panGestureRecognizer;
+    unsigned char _inMagnificationAnimationCount;
+    _NSScrollViewContentBackgroundView *_contentBackgroundView;
+    unsigned int _tilingContentView:1;
+    unsigned int _inScrollGesture:1;
+    unsigned int _hasAccessoryViewsInScrollerAreas:1;
+    unsigned int _hasScrollOccurred:1;
+    unsigned int _allowMagnification:1;
+    unsigned int _supressMagnificationUpdateFromBoundsChange:1;
+    unsigned int _inMagnificationGesture:1;
+    unsigned int _hasMsgTracedFutureResponsiveOptInOut:1;
+    unsigned int _ignoreClippedSiblings:1;
+    unsigned int _delegateImplementsDidScroll:1;
+    unsigned int _horizontalAxisScrollingMode:2;
+    unsigned int _verticalAxisScrollingMode:2;
+    unsigned int _stuntedForIB:1;
+    unsigned int _forceContentsInseStyleLayout:1;
+    unsigned int _automaticallyAdjustsContentInsets:1;
+    unsigned int _haveCheckedForScrollerSizeMethodOverrides:1;
+    unsigned int _useCompatibiltyScrollerWidthMethods:1;
+    unsigned int _hasHorizontalMoreContentIndicators:2;
+    unsigned int _updateAutomaticContentInsetsInProgress:1;
 }
 
++ (void)_drawCornerWidgetInRect:(struct CGRect)arg1 withSmallSize:(BOOL)arg2;
++ (BOOL)automaticallyNotifiesObserversOfDocumentView;
++ (id)keyPathsForValuesAffectingDocumentView;
 + (struct CGSize)contentSizeForFrameSize:(struct CGSize)arg1 hasHorizontalScroller:(BOOL)arg2 hasVerticalScroller:(BOOL)arg3 borderType:(unsigned long long)arg4;
 + (struct CGSize)frameSizeForContentSize:(struct CGSize)arg1 hasHorizontalScroller:(BOOL)arg2 hasVerticalScroller:(BOOL)arg3 borderType:(unsigned long long)arg4;
 + (struct CGSize)contentSizeForFrameSize:(struct CGSize)arg1 horizontalScrollerClass:(Class)arg2 verticalScrollerClass:(Class)arg3 borderType:(unsigned long long)arg4 controlSize:(unsigned long long)arg5 scrollerStyle:(long long)arg6;
@@ -91,7 +150,7 @@
 - (void)willRemoveSubview:(id)arg1;
 - (void)removeFromSuperview;
 - (id)_contentView;
-- (id)_headerClipView;
+@property(readonly) NSClipView *_headerClipView;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)_conditionallyReflectScrolledClipView;
@@ -105,7 +164,6 @@
 - (void)_setVerticalScrollerHidden:(BOOL)arg1;
 - (void)_setHorizontalScrollerHidden:(BOOL)arg1;
 - (BOOL)_cornerViewHidesWithVerticalScroller;
-- (BOOL)_shouldAutoFlattenLayerTree;
 - (void)_setWindow:(id)arg1;
 - (void)_updateForLiveResizeWithOldSize:(struct CGSize)arg1;
 - (BOOL)preservesContentDuringLiveResize;
@@ -133,6 +191,10 @@
 - (void)_endMagnifying;
 - (void)_beginMagnifying;
 - (void)_panWithGestureRecognizer:(id)arg1;
+- (void)_gestureRecognizerFailed:(id)arg1;
+- (BOOL)_gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
+- (BOOL)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
+- (BOOL)_gestureRecognizer:(id)arg1 shouldAttemptToRecognizeWithEvent:(id)arg2;
 - (void)scrollWheel:(id)arg1;
 - (void)setLayer:(id)arg1;
 - (void)_endScrollGesture;
@@ -179,7 +241,6 @@
 - (void)_viewDidDrawInLayer:(id)arg1 inContext:(struct CGContext *)arg2;
 - (void)_drawRect:(struct CGRect)arg1 clip:(BOOL)arg2;
 - (void)_drawOldSchoolFocusRingIfNecessaryInRect:(struct CGRect)arg1;
-- (void)_setKeyboardFocusRingNeedsDisplayDuringLiveResize;
 - (struct CGRect)_insetBounds;
 - (struct CGRect)focusRingMaskBounds;
 - (void)drawFocusRingMask;
@@ -193,14 +254,12 @@
 - (void)_layoutLayerPiecesIfNeeded;
 - (void)_updateCornerViewForLayer;
 - (void)_drawCornerViewInRect:(struct CGRect)arg1;
-- (BOOL)_corneViewIsSmallSize;
 - (void)_removeCornerViewForLayer;
 - (void)_setCornerViewForLayer:(id)arg1;
 - (id)_cornerViewForLayer;
 - (BOOL)_needsCornerViewDrawn;
 - (void)_tileIfNeeded;
-- (BOOL)wantsUpdateLayer;
-- (BOOL)_drawRectIfEmpty;
+- (Class)_classToCheckForWantsUpdateLayer;
 @property BOOL drawsBackground;
 @property BOOL scrollsDynamically;
 - (void)setCopiesOnScroll:(BOOL)arg1;
@@ -210,12 +269,9 @@
 @property(readonly) struct CGRect documentVisibleRect;
 @property(retain) NSClipView *contentView;
 - (void)_sortSubviews;
-@property NSView *documentView;
+@property(retain) NSView *documentView;
 - (BOOL)_fixHeaderAndCornerViews;
 - (BOOL)_documentViewWantsHeaderView;
-- (BOOL)_updateGrowBoxForWindowFrameChange;
-- (void)_fixGrowBox;
-- (BOOL)_ownsWindowGrowBox;
 @property long long scrollerKnobStyle;
 @property long long scrollerStyle;
 - (id)hitTest:(struct CGPoint)arg1;
@@ -245,31 +301,15 @@
 - (id)_underTitlebarView;
 - (void)_addUnderTitlebarNotifications;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (BOOL)scrollRectToVisible:(const struct CGRect *)arg1 fromView:(id)arg2;
-- (BOOL)_desiredLayerSizeMeritsTiledBackingLayer:(struct CGSize)arg1;
 - (void)viewWillDraw;
-- (void)_setHasAutoSetWantsLayer:(BOOL)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)_unregisterForWindowWillClose;
 - (void)_registerForWindowWillClose;
-- (void)_windowWillClose:(id)arg1;
 - (void)_floatingSubviewCountChanged;
 - (id)_floatingSubviewsContainerForAxis:(long long)arg1;
 - (void)addFloatingSubview:(id)arg1 forAxis:(long long)arg2;
-- (void)_removeMemoryPressureMonitor;
-- (void)_addMemoryPressureMonitor;
-- (void)_doMemoryPressureHandler;
-- (void)_recursiveLostLayerTreeHostAncestor;
-- (void)_recursiveGainedLayerTreeHostAncestor;
 - (void)viewDidMoveToWindow;
-- (void)_windowChangedKeyState;
-- (void)_updateAutomaticInclusiveLayerSupport;
-- (void)_makeAutomaticInclusiveLayerIfNecessary;
-- (BOOL)_canUseInclusiveLayersAutomatically;
-- (void)_removeAutomaticInclusiveLayer;
-- (void)_makeAutomaticInclusiveLayer;
 - (void)_finishedMakingConnections;
-- (void)_updateAutomaticInclusiveLayerSupportSlightlyLater;
 - (void)instantiateWithObjectInstantiator:(id)arg1;
 - (BOOL)_shouldUseInclusiveLayersAutomatically;
 - (BOOL)_hasNonLayeredOverlappingSiblingView;
@@ -296,13 +336,18 @@
 - (void)_pulseOverlayScrollers;
 - (void)_overlayScroller:(id)arg1 didBecomeShown:(BOOL)arg2;
 - (BOOL)_overlayScrollersShown;
+- (void)viewDidChangeEffectiveAppearance;
 - (void)viewDidChangeBackingProperties;
 - (void)viewWillMoveToSuperview:(id)arg1;
-- (void)_updateTrackingAreas;
+- (void)_updateTrackingAreasWithInvalidCursorRects:(BOOL)arg1;
 - (BOOL)_usesOverlayScrollers;
+- (void)accessibilityPerformAction:(id)arg1;
 - (BOOL)accessibilityIsIgnored;
 - (id)accessibilityChildrenAttribute;
 - (id)_accessibilityAdditionalChildren;
+- (id)accessibilityScrollToShowDescendantAttributeForParameter:(id)arg1;
+- (BOOL)accessibilityIsAttributeSettable:(id)arg1;
+- (void)accessibilitySetValue:(id)arg1 forAttribute:(id)arg2;
 - (BOOL)accessibilityIsContentsAttributeSettable;
 - (id)accessibilityContentsAttribute;
 - (BOOL)accessibilityIsVerticalScrollBarAttributeSettable;
@@ -310,6 +355,9 @@
 - (BOOL)accessibilityIsHorizontalScrollBarAttributeSettable;
 - (id)accessibilityHorizontalScrollBarAttribute;
 - (id)accessibilityRoleAttribute;
+- (id)accessibilityActionDescription:(id)arg1;
+- (id)accessibilityActionNames;
+- (id)accessibilityParameterizedAttributeNames;
 - (id)accessibilityAttributeNames;
 - (id)rulerStateDescription;
 - (void)_handleBoundsChangeForSubview:(id)arg1;
@@ -323,9 +371,10 @@
 - (id)accessibilityPositionAttribute;
 @property BOOL automaticallyAdjustsContentViewInsets;
 @property struct NSEdgeInsets contentInset;
+@property double verticalScrollDecelerationFactor;
+@property double horizontalScrollDecelerationFactor;
 @property double decelerationRate;
-- (BOOL)_isStuntedForIB;
-- (void)_setStuntedForIB:(BOOL)arg1;
+@property(nonatomic, getter=_isStuntedForIB, setter=_setStuntedForIB:) BOOL _stuntedForIB;
 - (void)setDelegate:(id)arg1;
 - (id)delegate;
 - (id)_synchronizedSiblingsForAxis:(long long)arg1;
@@ -344,10 +393,8 @@
 - (void)_lockOverlayScrollerState:(unsigned long long)arg1;
 - (void)_hideOverlayScrollers;
 - (struct CGRect)_boundsInsetForBorder;
-- (void)setAutoforwardsScrollWheelEvents:(BOOL)arg1;
-- (BOOL)autoforwardsScrollWheelEvents;
-- (id)_lineBorderColor;
-- (void)_setLineBorderColor:(id)arg1;
+@property(nonatomic) BOOL autoforwardsScrollWheelEvents;
+@property(retain, nonatomic, setter=_setLineBorderColor:) NSColor *_lineBorderColor;
 - (void)scrollerImpPair:(id)arg1 updateScrollerStyleForNewRecommendedScrollerStyle:(long long)arg2;
 - (void)scrollerImpPair:(id)arg1 setContentAreaNeedsDisplayInRect:(struct CGRect)arg2;
 - (BOOL)scrollerImpPair:(id)arg1 isContentPointVisible:(struct CGPoint)arg2;
@@ -357,11 +404,11 @@
 - (struct CGRect)contentAreaRectForScrollerImpPair:(id)arg1;
 - (id)scrollerImpPair;
 @property BOOL hasHorizontalMoreContentIndicators;
-- (void)setDrawsContentShadow:(BOOL)arg1;
-- (BOOL)drawsContentShadow;
+@property(nonatomic) BOOL drawsContentShadow;
+- (void)_unregisterNonInterferingAccessoryView:(id)arg1;
+- (void)_registerNonInterferingAccessoryView:(id)arg1;
 - (BOOL)_accessoryViewMightInterfereWithOverlayScrollers:(id)arg1;
 - (void)_resetScrollingBehavior;
-- (BOOL)_wantsConcurrentScrolling;
 - (void)removeFloatingHeaderView:(id)arg1;
 - (void)addFloatingHeaderView:(id)arg1 forAxis:(long long)arg2;
 - (id)_pageAlignmentsForAxis:(long long)arg1;

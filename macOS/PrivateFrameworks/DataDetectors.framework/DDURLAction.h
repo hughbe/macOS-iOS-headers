@@ -16,9 +16,9 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)urlFromTemplateString:(id)arg1 result:(struct __DDResult *)arg2 replacementForSpaces:(id)arg3;
+- (void).cxx_destruct;
 - (BOOL)runForURL:(id)arg1 context:(id)arg2;
 - (BOOL)runForResult:(struct __DDResult *)arg1 context:(id)arg2;
-- (void)dealloc;
 - (id)initWithDict:(id)arg1 bundle:(id)arg2;
 
 @end

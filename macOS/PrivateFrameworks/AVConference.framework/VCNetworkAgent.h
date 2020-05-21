@@ -9,12 +9,16 @@
 __attribute__((visibility("hidden")))
 @interface VCNetworkAgent : NSObject
 {
+    int _assertionRefCount;
 }
 
 + (id)agentFromData:(id)arg1;
 + (id)agentType;
 + (id)agentDomain;
++ (id)sharedInstance;
 - (id)copyAgentData;
+- (void)removeAssertion;
+- (void)addAssertion;
 - (void)dealloc;
 - (id)init;
 

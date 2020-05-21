@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABPersonListControllerDelegateWrapper : NSObject <ABPersonListDelegate>
 {
     id <ABPersonListDelegate> _delegate;
@@ -20,6 +19,7 @@ __attribute__((visibility("hidden")))
 - (void)personListDidChangeAddressBook:(id)arg1;
 - (void)entriesChangedInPersonList:(id)arg1;
 - (BOOL)personList:(id)arg1 deleteContactsWithoutConfirmationWithSender:(id)arg2;
+- (BOOL)personList:(id)arg1 ignoreContactsWithSender:(id)arg2;
 - (BOOL)personList:(id)arg1 rejectContactsWithSender:(id)arg2;
 - (BOOL)personList:(id)arg1 deleteContactsWithSender:(id)arg2;
 - (BOOL)personList:(id)arg1 canDeleteContactsWithSender:(id)arg2;

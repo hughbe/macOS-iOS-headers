@@ -11,6 +11,7 @@
 @protocol EKFrozenMeltedPair <NSObject>
 + (Class)meltedClass;
 + (Class)frozenClass;
+@property(readonly, nonatomic) NSString *semanticIdentifier;
 @property(readonly, nonatomic) NSString *uniqueIdentifier;
 @property(readonly, nonatomic) BOOL isPartialObject;
 @property(readonly, nonatomic) BOOL isFrozen;
@@ -21,6 +22,7 @@
 - (EKObject *)meltedObjectInStore:(EKEventStore *)arg1;
 - (BOOL)isPropertyUnavailable:(NSString *)arg1;
 - (EKFrozenObject *)frozenObject;
+- (Class)frozenClass;
 - (EKObject *)existingMeltedObject;
 - (EKChangeSet *)changeSet;
 - (id)initWithObject:(id <EKProtocolObject>)arg1;

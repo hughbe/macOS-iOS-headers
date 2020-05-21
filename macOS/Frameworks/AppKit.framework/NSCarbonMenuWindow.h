@@ -8,6 +8,7 @@
 
 @class NSMutableDictionary;
 
+__attribute__((visibility("hidden")))
 @interface NSCarbonMenuWindow : NSCarbonWindow
 {
     NSMutableDictionary *_trackingRectDictionary;
@@ -24,9 +25,10 @@
     id _rememberedKeyWindow;
     const long long *_rememberedWindowOrdering;
     unsigned long long _rememberedWindowOrderingCount;
-    id _carbonMenuWindowReserved;
 }
 
++ (id)_allowedRunLoopModesForToolTips;
+- (BOOL)reconcileToCarbonWindowBounds;
 - (void)disableScreenUpdatesUntilFlush;
 - (BOOL)makeFirstResponder:(id)arg1;
 - (BOOL)accessibilityIsChildOfApp;
@@ -64,11 +66,10 @@
 - (void)_clearPreviousKeyWindowProperties;
 - (void)_recordPreviousKeyWindowProperties;
 - (BOOL)_handleEventsTheCarbonWay;
-- (id)_runLoopModesForInvalidCursorRectsObserver;
 - (BOOL)_sendManufacturedCursorUpdateEventForTrackingRectEvent:(id)arg1;
 - (void)_sendManufacturedTrackingAreaEventsForMouseDraggedEvent:(id)arg1 forceExit:(BOOL)arg2;
 - (BOOL)_allowsActiveInputContextDuringMenuTracking;
-- (BOOL)_shouldPropagateFrameChangesToWindowServer;
+- (void)_cgsPlaceWindow:(struct CGRect)arg1;
 - (BOOL)_allowsActiveInputContext;
 - (BOOL)_handleKeyEvent:(id)arg1;
 - (void)keyUp:(id)arg1;

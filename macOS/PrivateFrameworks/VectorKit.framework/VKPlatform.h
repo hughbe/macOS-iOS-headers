@@ -10,6 +10,7 @@
 {
     unsigned long long _memSize;
     int _numCPUs;
+    BOOL _isMac;
     BOOL _proceduralRoadAlpha;
     BOOL _useCheapTrafficShader;
     BOOL _supportsBuildingStrokes;
@@ -17,9 +18,11 @@
     BOOL _lowPerformanceDevice;
     BOOL _supportsCoastlineGlows;
     BOOL _supportsPerFragmentLighting;
+    BOOL _supportsARMode;
 }
 
 + (id)sharedPlatform;
+@property(readonly, nonatomic) BOOL supportsARMode; // @synthesize supportsARMode=_supportsARMode;
 @property(readonly, nonatomic) BOOL supportsPerFragmentLighting; // @synthesize supportsPerFragmentLighting=_supportsPerFragmentLighting;
 @property(readonly, nonatomic) BOOL supportsCoastlineGlows; // @synthesize supportsCoastlineGlows=_supportsCoastlineGlows;
 @property(readonly, nonatomic) BOOL supports3DBuildingStrokes; // @synthesize supports3DBuildingStrokes=_supports3DBuildingStrokes;
@@ -31,21 +34,16 @@
 @property(readonly, nonatomic) BOOL lowPerformanceDevice;
 @property(readonly, nonatomic) BOOL supports3DBuildings;
 @property(readonly, nonatomic) BOOL supportsBuildingShadows;
+@property(readonly, nonatomic) unsigned char processingQueueWidth;
 @property(readonly, nonatomic) unsigned char tileDecodeQueueWidth;
-@property(readonly, nonatomic) BOOL shouldPregenerateLabelGlyphs;
-@property(readonly, nonatomic) BOOL shouldLayoutLabelsInParallel;
 @property(readonly, nonatomic) BOOL shouldStyleLabelsInParallel;
 @property(readonly, nonatomic) BOOL supportsHiResBuildings;
-@property(readonly, nonatomic) double mainScreenPPI;
-@property(readonly, nonatomic) double maxContentScaleForRendering;
-@property(readonly, nonatomic) double mainScreenScale;
 @property(readonly, nonatomic) BOOL shouldDrawWhenReady;
 @property(readonly, nonatomic) BOOL isPad;
 @property(readonly, nonatomic) BOOL canMakeSharingThumbnails;
 @property(readonly, nonatomic) BOOL supportsHiResRTT;
 @property(readonly, nonatomic) unsigned int tilePrefetchNumberOfScreens;
-@property(readonly, nonatomic) unsigned long long tileMaximumLimit;
-- (unsigned long long)tileReserveLimit:(BOOL)arg1;
+- (unsigned long long)tileMaximumLimit:(unsigned long long)arg1;
 @property(readonly, nonatomic) BOOL roadsWithSimpleLineMeshesAvailable;
 - (void)_determineHardware;
 - (unsigned long long)_calculateMemSize;

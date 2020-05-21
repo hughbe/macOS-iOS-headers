@@ -11,21 +11,27 @@
 }
 
 + (id)sharedPlatform;
++ (BOOL)isRunningInGeod;
 + (void)setIsRunningInGeod:(BOOL)arg1;
 - (double)deviceScreenScale;
 - (long long)deviceScreenHeightInPixels;
 - (long long)deviceScreenWidthInPixels;
 - (id)clientCapabilities;
+- (BOOL)isCellDataPossible;
+- (BOOL)supportsForceTouch;
 - (BOOL)supportsNavigation;
 - (BOOL)supportsRealisticTiles;
 - (BOOL)mapsFeatureFreedomEnabled;
 - (BOOL)_deviceSupportsNavigation;
+- (id)hardwareModel;
 - (id)hardwareIdentifier;
+- (id)osAndBuildVersion;
 - (id)buildVersion;
 - (id)osVersion;
 - (id)productName;
 - (id)_systemInfoDictionary;
 - (BOOL)isInternalInstall;
+- (id)init;
 
 @end
 

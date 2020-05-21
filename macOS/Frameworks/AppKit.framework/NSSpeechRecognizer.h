@@ -18,7 +18,7 @@
 @property BOOL listensInForegroundOnly;
 @property(copy) NSString *displayedCommandsTitle;
 @property(copy) NSArray *commands;
-@property id <NSSpeechRecognizerDelegate> delegate;
+@property __weak id <NSSpeechRecognizerDelegate> delegate;
 - (void)stopListening;
 - (void)startListening;
 - (void)dealloc;

@@ -11,6 +11,7 @@
 @interface TXRTextureInfo : NSObject
 {
     unsigned long long _pixelFormat;
+    unsigned long long _alphaInfo;
     // Error parsing type: , name: _dimensions
     unsigned long long _mipmapLevelCount;
     unsigned long long _arrayLength;
@@ -18,6 +19,7 @@
     NSError *_error;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSError *error; // @synthesize error=_error;
 @property(nonatomic) BOOL cubemap; // @synthesize cubemap=_cubemap;
 @property(nonatomic) unsigned long long arrayLength; // @synthesize arrayLength=_arrayLength;
@@ -25,8 +27,8 @@
 // Error parsing type for property dimensions:
 // Property attributes: T,N,V_dimensions
 
+@property(nonatomic) unsigned long long alphaInfo; // @synthesize alphaInfo=_alphaInfo;
 @property(nonatomic) unsigned long long pixelFormat; // @synthesize pixelFormat=_pixelFormat;
-- (void).cxx_destruct;
 
 @end
 

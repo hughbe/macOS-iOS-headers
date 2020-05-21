@@ -6,7 +6,7 @@
 
 #import "NSTableCellView.h"
 
-@class DownloadProgressEntry, NSButton, NSImage, NSProgressIndicator, NSTextField, NSTimer;
+@class ConfigurableVibrancyButton, DownloadProgressEntry, NSImage, NSProgressIndicator, NSTextField, NSTimer;
 
 __attribute__((visibility("hidden")))
 @interface DownloadTableCellView : NSTableCellView
@@ -22,23 +22,22 @@ __attribute__((visibility("hidden")))
     int _buttonState;
     NSTextField *_filenameTextField;
     NSTextField *_statusTextField;
-    NSButton *_stopResumeButton;
-    NSButton *_revealButton;
     NSImage *_iconImage;
     long long _revealTrackingRectTag;
     long long _stopResumeTrackingRectTag;
+    ConfigurableVibrancyButton *_stopResumeButton;
+    ConfigurableVibrancyButton *_revealButton;
 }
 
 + (double)rowHeight;
 - (void).cxx_destruct;
 - (id)accessibilityRoleDescription;
-- (void)accessibilityPerformAction:(id)arg1;
-- (id)accessibilityActionDescription:(id)arg1;
-- (id)accessibilityActionNames;
-- (BOOL)accessibilityIsAttributeSettable:(id)arg1;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (id)accessibilityAttributeNames;
-- (BOOL)accessibilityIsIgnored;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityLabel;
+- (id)accessibilityRole;
+- (id)accessibilityChildren;
+- (id)accessibilityContents;
+- (BOOL)isAccessibilityElement;
 - (void)viewDidMoveToWindow;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)mouseExited:(id)arg1;
@@ -47,7 +46,7 @@ __attribute__((visibility("hidden")))
 - (void)_stopResume:(id)arg1;
 - (void)_reveal:(id)arg1;
 - (BOOL)acceptsFirstMouse:(id)arg1;
-- (void)open:(id)arg1;
+- (BOOL)open:(id)arg1;
 - (double)bestWidth;
 - (id)entry;
 - (void)_updateTextColor;

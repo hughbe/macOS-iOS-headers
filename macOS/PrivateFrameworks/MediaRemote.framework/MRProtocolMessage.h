@@ -6,36 +6,43 @@
 
 #import "NSObject.h"
 
-@class MSVMultiCallback, NSData, NSError, NSString, PBCodable;
+@class MRProtocolClientConnection, MSVMultiCallback, NSData, NSError, NSString, PBCodable;
 
 @interface MRProtocolMessage : NSObject
 {
     NSData *_protobufData;
+    BOOL _replied;
+    MSVMultiCallback *_messageSentCallbacks;
+    MSVMultiCallback *_messagePurgedCallbacks;
+    BOOL _isReply;
     PBCodable *_underlyingCodableMessage;
     NSError *_error;
     NSString *_identifier;
     unsigned long long _timestamp;
-    MSVMultiCallback *_messageSentCallbacks;
-    MSVMultiCallback *_messagePurgedCallbacks;
+    MRProtocolClientConnection *_clientConnection;
 }
 
 + (id)protocolMessageWithProtobufData:(id)arg1;
 + (unsigned long long)currentProtocolVersion;
-@property(readonly, nonatomic) MSVMultiCallback *messagePurgedCallbacks; // @synthesize messagePurgedCallbacks=_messagePurgedCallbacks;
-@property(readonly, nonatomic) MSVMultiCallback *messageSentCallbacks; // @synthesize messageSentCallbacks=_messageSentCallbacks;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL isReply; // @synthesize isReply=_isReply;
+@property(nonatomic) __weak MRProtocolClientConnection *clientConnection; // @synthesize clientConnection=_clientConnection;
 @property(nonatomic) unsigned long long timestamp; // @synthesize timestamp=_timestamp;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy, nonatomic) NSError *error; // @synthesize error=_error;
 @property(retain, nonatomic) PBCodable *underlyingCodableMessage; // @synthesize underlyingCodableMessage=_underlyingCodableMessage;
 @property(readonly, nonatomic) NSData *protobufData;
+- (BOOL)replyWithMessage:(id)arg1;
+- (BOOL)reply;
 @property(readonly, nonatomic) BOOL shouldLog;
 @property(readonly, nonatomic) unsigned long long priority;
 @property(readonly, nonatomic) unsigned long long type;
 @property(readonly, nonatomic) unsigned long long encryptionType;
 @property(readonly, nonatomic) NSString *description;
 - (void)dealloc;
-- (id)init;
-- (id)initWithUnderlyingCodableMessage:(id)arg1 identifier:(id)arg2 error:(id)arg3;
+@property(readonly, nonatomic) MSVMultiCallback *messagePurgedCallbacks;
+@property(readonly, nonatomic) MSVMultiCallback *messageSentCallbacks;
+- (id)initWithUnderlyingCodableMessage:(id)arg1 error:(id)arg2;
 
 @end
 

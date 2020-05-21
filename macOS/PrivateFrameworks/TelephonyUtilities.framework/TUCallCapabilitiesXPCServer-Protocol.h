@@ -5,8 +5,10 @@
 //
 
 #import "TUCallCapabilitiesXPCServerActions.h"
-#import "TUCallCapabilitiesXPCServerState.h"
 
-@protocol TUCallCapabilitiesXPCServer <TUCallCapabilitiesXPCServerState, TUCallCapabilitiesXPCServerActions>
+@protocol TUCallCapabilitiesXPCServer <TUCallCapabilitiesXPCServerActions>
+- (void)unregisterClient:(id <TUCallCapabilitiesXPCClient>)arg1;
+- (void)registerClient:(id <TUCallCapabilitiesXPCClient>)arg1;
+- (oneway void)callCapabilitiesState:(void (^)(TUCallCapabilitiesState *))arg1;
 @end
 

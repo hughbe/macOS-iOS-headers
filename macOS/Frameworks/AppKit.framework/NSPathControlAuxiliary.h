@@ -13,10 +13,8 @@ __attribute__((visibility("hidden")))
 {
     unsigned long long _dropOperation;
     NSPathComponentCell *_dropCell;
-    BOOL _delegateWeakRefFlag;
 }
 
-@property BOOL delegateWeakRefFlag; // @synthesize delegateWeakRefFlag=_delegateWeakRefFlag;
 @property unsigned long long dropOperation; // @synthesize dropOperation=_dropOperation;
 @property(retain) NSPathComponentCell *dropCell; // @synthesize dropCell=_dropCell;
 - (void)dealloc;

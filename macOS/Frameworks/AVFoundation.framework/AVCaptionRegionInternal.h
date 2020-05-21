@@ -6,9 +6,15 @@
 
 #import "NSObject.h"
 
+@class AVCaptionPosition;
+
+__attribute__((visibility("hidden")))
 @interface AVCaptionRegionInternal : NSObject
 {
     struct OpaqueFigCaptionRegion *figCaptionRegion;
+    AVCaptionPosition *position;
+    AVCaptionPosition *endPosition;
+    BOOL _overridePositionShouldBeNil;
 }
 
 @end

@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary;
+@class NSArray;
 
 @protocol MFMessageConsumer <NSObject>
 @property(readonly) BOOL shouldCancel;
 - (void)finishedSendingMessages;
-- (void)newMessagesAvailable:(NSArray *)arg1 secondaryMessages:(NSArray *)arg2 options:(NSDictionary *)arg3;
+- (void)newMessagesAvailable:(NSArray *)arg1 secondaryMessages:(NSArray *)arg2 fromUpdate:(BOOL)arg3;
 
 @optional
 - (void)searchPhaseComplete;

@@ -6,31 +6,16 @@
 
 #import <MessagesKit/SOHelper.h>
 
-#import "SOAlertsHelperReceiverProtocol.h"
-
-@class NSString;
-
-@interface SOAlertsHelper : SOHelper <SOAlertsHelperReceiverProtocol>
+@interface SOAlertsHelper : SOHelper
 {
-    id <SOAlertsHelperAppleScriptDelegate> _delegate;
 }
 
 + (id)weakSharedInstance;
 + (id)bundleName;
 + (id)remoteReceiverProtocol;
 + (id)receiverProtocol;
-@property __weak id <SOAlertsHelperAppleScriptDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
-- (void)performActionScriptForChatGUID:(id)arg1 handleID:(id)arg2 messageText:(id)arg3 accountGUID:(id)arg4 event:(int)arg5;
 - (void)clearMessageDeliveryError;
-- (void)copySampleScriptsFrom:(id)arg1 to:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)setValue:(id)arg1 forControllerKey:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

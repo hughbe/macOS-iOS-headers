@@ -18,6 +18,7 @@
     GEONavigationServer *_navigationServer;
 }
 
+- (void).cxx_destruct;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (void)dealloc;
 - (id)init;

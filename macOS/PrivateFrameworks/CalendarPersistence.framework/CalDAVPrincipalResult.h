@@ -24,6 +24,7 @@
 
 + (id)resultFromResponse:(id)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain) NSURL *overrideBaseURL; // @synthesize overrideBaseURL=_overrideBaseURL;
 @property(retain) NSArray *cuAddresses; // @synthesize cuAddresses=_cuAddresses;
 @property(retain) NSString *principalPath; // @synthesize principalPath=_principal;
@@ -40,7 +41,6 @@
 - (id)initWithResponse:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

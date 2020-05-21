@@ -11,7 +11,7 @@
 @property(readonly, nonatomic) BOOL shouldSaveUsernamesAndPasswords;
 @property(readonly, nonatomic) struct Frame frame;
 @property(readonly, nonatomic) NSView *browserView;
-@property(readonly, nonatomic) NSWindow *window;
+@property(readonly, nonatomic) __weak NSWindow *window;
 @property(readonly, nonatomic) NSURL *url;
 - (void)getCredentialMatches:(id *)arg1 andPotentialMatches:(id *)arg2 matchingPartialUsername:(NSString *)arg3 omittingCredentialsUserHasDeniedAccessTo:(BOOL)arg4;
 @end

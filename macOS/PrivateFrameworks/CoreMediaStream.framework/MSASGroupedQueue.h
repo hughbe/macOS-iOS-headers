@@ -22,13 +22,13 @@
     MSTimerGate *_stalenessTimerGate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isShuttingDown; // @synthesize isShuttingDown=_isShuttingDown;
 @property(retain, nonatomic) MSTimerGate *stalenessTimerGate; // @synthesize stalenessTimerGate=_stalenessTimerGate;
 @property(retain, nonatomic) MSTimerGate *idleTimerGate; // @synthesize idleTimerGate=_idleTimerGate;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *memberQueue; // @synthesize memberQueue=_memberQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *workQueue; // @synthesize workQueue=_workQueue;
 @property(nonatomic) __weak MSASServerSideModel *model; // @synthesize model=_model;
-- (void).cxx_destruct;
 - (void)workQueueDidEnqueueSubsequentItem;
 - (void)workQueueDidEnqueueFirstItem;
 - (void)workQueueClearStalenessTimer;
@@ -49,7 +49,6 @@
 @property(nonatomic) double maxGroupedCallbackEventIdleInterval; // @synthesize maxGroupedCallbackEventIdleInterval=_maxGroupedCallbackEventIdleInterval;
 @property(nonatomic) double maxGroupedCallbackEventStaleness; // @synthesize maxGroupedCallbackEventStaleness=_maxGroupedCallbackEventStaleness;
 @property(nonatomic) int maxGroupedCallbackEventBatchCount; // @synthesize maxGroupedCallbackEventBatchCount=_maxGroupedCallbackEventBatchCount;
-- (void)dealloc;
 - (id)init;
 
 @end

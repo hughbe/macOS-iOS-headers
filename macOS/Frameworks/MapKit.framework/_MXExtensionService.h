@@ -6,36 +6,46 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSError, NSUUID, NSViewController, _MXExtension;
+@class NSExtension, NSUUID, NSViewController, _MXExtension, _MXSerialQueue;
 
 @interface _MXExtensionService : NSObject
 {
-    _MXExtension *_extension;
+    _MXSerialQueue *_serialQueue;
+    BOOL _didSendConnectionTerminationNotifcation;
+    NSUUID *_connectionIdentifier;
+    NSExtension *_realExtension;
+    _MXExtension *_extensionProxy;
     unsigned long long _state;
-    NSArray *_returnItems;
-    NSError *_error;
-    struct NSViewController *_remoteViewController;
-    NSUUID *_serviceIdentifier;
+    id <_MXExtensionURLHandling> _URLHandlingDelegate;
+    NSViewController *_remoteViewController;
 }
 
-@property(retain, nonatomic) NSUUID *serviceIdentifier; // @synthesize serviceIdentifier=_serviceIdentifier;
-@property(nonatomic) __weak NSViewController *remoteViewController; // @synthesize remoteViewController=_remoteViewController;
-@property(copy, nonatomic) NSError *error; // @synthesize error=_error;
-@property(retain, nonatomic) NSArray *returnItems; // @synthesize returnItems=_returnItems;
-@property(nonatomic) unsigned long long state; // @synthesize state=_state;
-@property(readonly, nonatomic) _MXExtension *extension; // @synthesize extension=_extension;
++ (id)extensionCompletionQueue;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) int processIdentifier;
-- (id)vendorContextWithErrorHandler:(CDUnknownBlockType)arg1;
-- (id)vendorContext;
+@property(retain, nonatomic) NSViewController *remoteViewController; // @synthesize remoteViewController=_remoteViewController;
+@property(nonatomic) __weak id <_MXExtensionURLHandling> URLHandlingDelegate; // @synthesize URLHandlingDelegate=_URLHandlingDelegate;
+@property(nonatomic) unsigned long long state; // @synthesize state=_state;
+@property(readonly, nonatomic) _MXExtension *extensionProxy; // @synthesize extensionProxy=_extensionProxy;
+@property(retain, nonatomic) NSExtension *realExtension; // @synthesize realExtension=_realExtension;
+@property(retain, nonatomic) NSUUID *connectionIdentifier; // @synthesize connectionIdentifier=_connectionIdentifier;
+- (int)processIdentifier;
 - (id)description;
-- (void)completeServiceWithReturnItems:(id)arg1 error:(id)arg2;
-- (void)_completeServiceIfNeededWithError:(id)arg1;
+- (id)vendorContextWithErrorHandler:(CDUnknownBlockType)arg1;
+- (void)stopSendingUpdatesForRequest:(id)arg1 requestDispatcher:(id)arg2;
+- (id)startSendingUpdatesForRequest:(id)arg1 requestDispatcher:(id)arg2 toObserver:(id)arg3;
+- (id)handleRequest:(id)arg1 requestDispatcher:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)disconnectExtension;
+- (void)_connectExtensionWithRemoteViewControllerNeeded:(BOOL)arg1 Handler:(CDUnknownBlockType)arg2;
+- (void)connectExtensionWithRemoteViewControllerNeeded:(BOOL)arg1 Handler:(CDUnknownBlockType)arg2;
+- (void)connectUIExtensionWithHandler:(CDUnknownBlockType)arg1;
+- (void)connectExtensionWithHandler:(CDUnknownBlockType)arg1;
+- (id)initWithExtensionProxy:(id)arg1;
+- (void)dealloc;
+- (id)init;
+@property(readonly, nonatomic) NSUUID *serviceIdentifier;
+- (id)extension;
 - (void)cancel;
 - (id)context;
-- (id)initWithExtension:(id)arg1 serviceIdentifier:(id)arg2 remoteViewController:(struct NSViewController *)arg3;
-- (id)initWithExtension:(id)arg1 serviceIdentifier:(id)arg2;
-- (id)init;
 
 @end
 

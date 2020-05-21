@@ -10,19 +10,67 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct CLLocationCoordinate2D {
-    double _field1;
-    double _field2;
+struct CGSize {
+    double width;
+    double height;
 };
 
-struct ostream;
+struct CLAssertionInternal {
+    id _field1;
+    struct CLConnectionClient *_field2;
+};
 
-struct value_ostream {
-    _Bool _field1;
-    struct ostream *_field2;
+struct CLConnectionClient;
+
+struct CLLocationCoordinate2D {
+    double latitude;
+    double longitude;
+};
+
+struct _CLLocationManagerStateTrackerState {
+    double distanceFilter;
+    double desiredAccuracy;
+    char updatingLocation;
+    char requestingLocation;
+    char requestingRanging;
+    char updatingRanging;
+    char updatingHeading;
+    double headingFilter;
+    char allowsLocationPrompts;
+    char allowsAlteredAccessoryLocations;
+    char dynamicAccuracyReductionEnabled;
+    char previousAuthorizationStatusValid;
+    int previousAuthorizationStatus;
+    long long activityType;
+    int pausesLocationUpdatesAutomatically;
+    char paused;
+    char allowsBackgroundLocationUpdates;
+    char showsBackgroundLocationIndicator;
+    char allowsMapCorrection;
+    char batchingLocation;
+    char updatingVehicleSpeed;
+    char updatingVehicleHeading;
+    char matchInfoEnabled;
+    char groundAltitudeEnabled;
+    char courtesyPromptNeeded;
+};
+
+struct os_state_hints_s {
+    unsigned int _field1;
+    char *_field2;
+    unsigned int _field3;
+    unsigned int _field4;
 };
 
 #pragma mark Typedef'd Structures
+
+typedef struct {
+    unsigned long long _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+    double _field5;
+} CDStruct_b7b5e951;
 
 typedef struct {
     double x;
@@ -44,6 +92,41 @@ typedef struct {
 } CDStruct_2c43369c;
 
 typedef struct {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+    double _field5;
+    float _field6;
+    float _field7;
+    float _field8;
+    _Bool _field9;
+    int _field10;
+    CDStruct_2c43369c _field11;
+    double _field12;
+    int _field13;
+    int _field14;
+    _Bool _field15;
+    struct {
+        double _field1;
+        double _field2;
+        _Bool _field3;
+        _Bool _field4;
+    } _field16;
+    CDStruct_2c43369c _field17;
+    float _field18;
+    CDStruct_2c43369c _field19;
+    double _field20;
+    double _field21;
+    int _field22;
+    _Bool _field23;
+    double _field24;
+    double _field25;
+    double _field26;
+    double _field27;
+} CDStruct_44e85285;
+
+typedef struct {
     int suitability;
     CDStruct_2c43369c coordinate;
     double horizontalAccuracy;
@@ -62,7 +145,9 @@ typedef struct {
     int floor;
     unsigned int integrity;
     int referenceFrame;
-} CDStruct_1920e936;
+    int rawReferenceFrame;
+    int signalEnvironmentType;
+} CDStruct_4d1fbe9a;
 
 typedef struct {
     char identifier[512];
@@ -71,6 +156,7 @@ typedef struct {
     _Bool notifyOnEntry;
     _Bool notifyOnExit;
     _Bool conservativeEntry;
+    _Bool emergency;
     union {
         struct {
             char proximityUUID[512];
@@ -84,7 +170,30 @@ typedef struct {
             double radius;
             double desiredAccuracy;
             int referenceFrame;
+            _Bool allowMonitoringWhileNearby;
         } circularAttributes;
+        struct {
+            CDStruct_2c43369c vertices[101];
+            int verticesCount;
+            int referenceFrame;
+            _Bool allowMonitoringWhileNearby;
+        } polygonalAttributes;
     } ;
-} CDStruct_3afce72c;
+} CDStruct_4c505072;
+
+// Ambiguous groups
+typedef struct {
+    unsigned long long _field1;
+    unsigned char _field2;
+    unsigned char _field3;
+    unsigned char _field4;
+    unsigned char _field5;
+    unsigned char _field6;
+    unsigned char _field7;
+    unsigned char _field8;
+    unsigned char _field9;
+    unsigned char _field10;
+    unsigned char _field11;
+    unsigned char _field12;
+} CDStruct_789f8997;
 

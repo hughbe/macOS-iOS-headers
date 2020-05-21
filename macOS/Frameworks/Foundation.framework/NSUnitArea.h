@@ -12,6 +12,7 @@
 {
 }
 
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 + (id)hectares;
 + (id)ares;
 + (id)acres;
@@ -27,6 +28,7 @@
 + (id)squareKilometers;
 + (id)squareMegameters;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

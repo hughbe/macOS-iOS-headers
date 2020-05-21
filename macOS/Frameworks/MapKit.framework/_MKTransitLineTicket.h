@@ -10,6 +10,7 @@
 
 @class GEOMapServiceTraits, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _MKTransitLineTicket : NSObject <MKMapServiceTransitLineTicket>
 {
     id <GEOMapServiceTransitLineTicket> _ticket;

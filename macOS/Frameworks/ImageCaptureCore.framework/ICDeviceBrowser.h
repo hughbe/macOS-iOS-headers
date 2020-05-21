@@ -18,6 +18,7 @@
 - (void)removeAllTWAINDevices;
 - (id)copyOfTWAINDevices;
 - (void)addTWAINDevice:(id)arg1;
+- (id)deviceWithRef:(id)arg1;
 - (BOOL)containsDevice:(id)arg1;
 - (void)removeDevice:(id)arg1;
 - (void)addDevice:(id)arg1;
@@ -28,7 +29,6 @@
 @property unsigned long long browsedDeviceTypeMask;
 @property(readonly, getter=isBrowsing) BOOL browsing;
 @property id <ICDeviceBrowserDelegate> delegate;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

@@ -6,17 +6,20 @@
 
 #import <Safari/SheetWithTableController.h>
 
+#import "NSTableViewDataSource.h"
+#import "NSTableViewDelegate.h"
 #import "TrackingDataControllerClient.h"
 
-@class AcceptedSiteDataDescriptionProvider, NSArray, NSButton, NSMutableSet, NSSearchField, NSTextField, NSTimer;
+@class AcceptedSiteDataDescriptionProvider, NSArray, NSButton, NSMutableSet, NSSearchField, NSString, NSTextField, NSTimer, WBSFaviconRequestsController;
 
 __attribute__((visibility("hidden")))
-@interface AcceptedSiteDataSheetController : SheetWithTableController <TrackingDataControllerClient>
+@interface AcceptedSiteDataSheetController : SheetWithTableController <NSTableViewDataSource, NSTableViewDelegate, TrackingDataControllerClient>
 {
     NSSearchField *searchField;
     NSButton *doneButton;
     NSArray *_websiteTrackingData;
     NSArray *_unfilteredWebsiteTrackingData;
+    WBSFaviconRequestsController *_requestController;
     NSMutableSet *_selectedDisplayNames;
     struct unique_ptr<Safari::TrackingDataControllerClientObjCAdapter, std::__1::default_delete<Safari::TrackingDataControllerClientObjCAdapter>> _clientObjCAdapter;
     NSTimer *_updateWebsiteTrackingDataCoalescingTimer;
@@ -25,32 +28,40 @@ __attribute__((visibility("hidden")))
     NSTextField *_emptyTablePlaceholderText;
 }
 
-@property(nonatomic) __weak NSTextField *emptyTablePlaceholderText; // @synthesize emptyTablePlaceholderText=_emptyTablePlaceholderText;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic) __weak NSTextField *emptyTablePlaceholderText; // @synthesize emptyTablePlaceholderText=_emptyTablePlaceholderText;
 - (void)_updateTrackingDataCoalescingTimerFired;
 - (void)_cancelUpdateTrackingDataCoalescingTimer;
 - (void)didUpdateTrackingData:(id)arg1;
 - (void)focusContentSearchField:(id)arg1;
 - (BOOL)validate_focusContentSearchField:(id)arg1;
 - (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
-- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
-- (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(int)arg3;
+- (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (void)removeAllItems:(id)arg1;
 - (BOOL)_confirmRemoveAllItems;
 - (void)removeSelectedItems:(id)arg1;
 - (void)search:(id)arg1;
-- (void)_refreshAllIcons:(id)arg1;
 - (void)_reloadDataAndRestoreSelection;
 - (void)_updatePlaceholderTextValueAndVisibility;
 - (void)filterTrackingData:(id)arg1;
+- (void)reloadTableData;
 - (void)reloadDataAndRestoreSelectedSites;
 - (id)filterStringFromSearchField;
 - (void)hideSheet:(id)arg1;
+- (void)_stopWatchingTrackingData;
+- (void)_beginWatchingTrackingData;
+- (void)windowDidChangeOcclusionState:(id)arg1;
 - (void)showSheetInWindow:(id)arg1;
 - (void)awakeFromNib;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

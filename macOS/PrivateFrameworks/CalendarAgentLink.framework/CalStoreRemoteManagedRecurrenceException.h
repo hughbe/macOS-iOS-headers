@@ -14,10 +14,10 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDate *date; // @synthesize date=_date;
 - (void)encodeWithCoder:(id)arg1;
 @property(readonly, nonatomic) CalStoreRemoteManagedEvent *masterEvent;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

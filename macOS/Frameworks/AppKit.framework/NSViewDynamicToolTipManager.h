@@ -8,6 +8,7 @@
 
 @class NSView;
 
+__attribute__((visibility("hidden")))
 @interface NSViewDynamicToolTipManager : NSObject
 {
     NSView *_view;
@@ -66,6 +67,7 @@
 - (void)dealloc;
 - (void)detatchFromView;
 - (void)_removeAllTrackingRects;
+@property(readonly) NSView *view;
 - (id)initWithView:(id)arg1;
 - (void)abortToolTip;
 - (void)_abortAndRestartTracking:(BOOL)arg1;

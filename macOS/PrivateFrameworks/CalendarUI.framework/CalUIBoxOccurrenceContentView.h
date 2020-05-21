@@ -22,6 +22,7 @@
     BOOL _showsTravelTime;
     BOOL _hideTimeDueToOccurrenceStartingOnPreviousDay;
     BOOL _titleIsMultiLine;
+    int _attendeesStatus;
     int _titleLayoutState;
     int _locationLayoutState;
     EKEvent *_event;
@@ -40,7 +41,6 @@
     CalUILayerBackedView *_attendeeView;
     CalUILayerBackedView *_topAlignmentView;
     NSString *_accountIconID;
-    int *_attendeesStatus;
     double _currentFontSize;
     NSDictionary *_views;
     NSDictionary *_metrics;
@@ -72,6 +72,7 @@
 
 + (double)barToBarHorizontalDistanceIncludingBarWidth;
 + (id)aTextField;
+- (void).cxx_destruct;
 @property(nonatomic) double travelTimeHeight; // @synthesize travelTimeHeight=_travelTimeHeight;
 @property(nonatomic) double visibleHeight; // @synthesize visibleHeight=_visibleHeight;
 @property(retain) NSMutableArray *accountViewConstraintsInvolvingTitleField; // @synthesize accountViewConstraintsInvolvingTitleField=_accountViewConstraintsInvolvingTitleField;
@@ -102,7 +103,7 @@
 @property BOOL hideTimeDueToOccurrenceStartingOnPreviousDay; // @synthesize hideTimeDueToOccurrenceStartingOnPreviousDay=_hideTimeDueToOccurrenceStartingOnPreviousDay;
 @property int locationLayoutState; // @synthesize locationLayoutState=_locationLayoutState;
 @property int titleLayoutState; // @synthesize titleLayoutState=_titleLayoutState;
-@property int *attendeesStatus; // @synthesize attendeesStatus=_attendeesStatus;
+@property int attendeesStatus; // @synthesize attendeesStatus=_attendeesStatus;
 @property(retain) NSString *accountIconID; // @synthesize accountIconID=_accountIconID;
 @property BOOL showsTravelTime; // @synthesize showsTravelTime=_showsTravelTime;
 @property BOOL showsBirthdayIcon; // @synthesize showsBirthdayIcon=_showsBirthdayIcon;
@@ -128,7 +129,6 @@
 @property BOOL visibleHeightLocked; // @synthesize visibleHeightLocked=_visibleHeightLocked;
 @property struct CGSize singleLineTitleSize; // @synthesize singleLineTitleSize=_singleLineTitleSize;
 @property(retain, nonatomic) EKEvent *event; // @synthesize event=_event;
-- (void).cxx_destruct;
 - (id)_accessibilityTimeFromDate:(id)arg1;
 - (id)_accessibilityDateAndTimeFromDate:(id)arg1;
 - (id)_accessibilityDateOnlyForStart:(id)arg1 end:(id)arg2;
@@ -148,11 +148,14 @@
 @property(readonly, nonatomic) NSDate *end;
 @property(readonly, nonatomic) NSDate *start;
 @property(readonly, nonatomic) NSDate *startWithTravelTime;
+- (BOOL)shouldDragCompletionProposeNewTime;
+- (long long)myParticipantStatus;
 - (BOOL)wantsTentativeAppearance;
 - (id)timeZoneFont;
 - (id)timeFont;
 - (id)titleFont;
 - (id)locationFont;
+- (BOOL)isProposal;
 - (BOOL)shouldAlwaysShowColorBar;
 - (BOOL)shouldShowTime;
 - (long long)backgroundStyle;
@@ -193,7 +196,7 @@
 - (void)addTitleFieldIfNeeded;
 - (void)updateTravelTimeColors;
 - (void)rebuildString;
-- (struct CGColor *)newCurrentTextColor;
+- (id)newCurrentTextColor;
 - (void)updateAccountIconVerticalPositionConstraint;
 - (void)addOrRemoveAccountConstraints;
 - (void)addConstraintsWithVisualFormat:(id)arg1 options:(unsigned long long)arg2;

@@ -6,29 +6,55 @@
 
 #import "NSObject.h"
 
-@class NSHashTable, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, PKFieldProperties;
+#import "NFFieldDetectSessionDelegate.h"
+#import "NFLoyaltyAndPaymentSessionDelegate.h"
 
-@interface PKFieldDetector : NSObject
+@class NFFieldDetectSession, NFLoyaltyAndPaymentSession, NSHashTable, NSObject<NFSession>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, PKFieldProperties;
+
+@interface PKFieldDetector : NSObject <NFFieldDetectSessionDelegate, NFLoyaltyAndPaymentSessionDelegate>
 {
+    NFFieldDetectSession *_fieldDetectSession;
+    unsigned long long _fieldDetectSessionRetryCount;
+    BOOL _fieldDetectSessionRequested;
+    BOOL _fieldPresent;
+    PKFieldProperties *_fieldPropertiesToLookup;
+    NFLoyaltyAndPaymentSession *_fieldPropertiesLookupSession;
+    NSObject<NFSession> *_fieldPropertiesLookupSessionHandle;
+    NSObject<OS_dispatch_source> *_fieldPropertiesLookupTimer;
+    unsigned long long _fieldPropertieslookupSynchronizer;
+    struct os_unfair_lock_s _lock;
     NSHashTable *_observers;
     PKFieldProperties *_fieldProperties;
-    BOOL _fieldPresent;
-    unsigned long long _fieldDetectSessionRetryCount;
     NSObject<OS_dispatch_queue> *_fieldDetectorSerialQueue;
-    NSObject<OS_dispatch_queue> *_observersConcurrentQueue;
-    NSObject<OS_dispatch_source> *_valueAddedServiceLookupTimer;
-    unsigned long long _valueAddedServiceLookupSynchronizer;
-    unsigned long long _valueAddedServiceLookupTechnology;
-    unsigned long long _valueAddedServiceLookupMode;
+    NSObject<OS_dispatch_queue> *_replyQueue;
+    id <PKFieldDetectorDelegate> _delegate;
 }
 
 - (void).cxx_destruct;
+- (void)_endFieldPropertiesLookup;
+- (void)_endLookupAndNotifyForFieldProperties:(id)arg1;
+- (void)_startLookupForFieldProperties:(id)arg1;
+- (void)_startFieldDetectSession;
+- (void)_restartFieldDetectSession;
+@property(nonatomic) __weak id <PKFieldDetectorDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) __weak PKFieldProperties *fieldProperties;
 - (void)unregisterObserver:(id)arg1;
 - (void)registerObserver:(id)arg1;
 - (void)setPersistentFieldDetectionEnabled:(BOOL)arg1;
+- (void)loyaltyAndPaymentSessionDidEndUnexpectedly:(id)arg1;
+- (void)loyaltyAndPaymentSession:(id)arg1 didPerformValueAddedServiceTransactions:(id)arg2;
+- (void)fieldDetectSessionDidEndUnexpectedly:(id)arg1;
+- (void)fieldDetectSessionDidExitField:(id)arg1;
+- (void)fieldDetectSession:(id)arg1 didEnterFieldWithNotification:(id)arg2;
 - (void)dealloc;
+- (id)initWithDelegate:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -25,11 +25,13 @@
 - (void)clearDAVSyncState;
 - (void)clearAllChangesRecursively;
 - (void)updateByCopyingSyncDataFromBookmark:(id)arg1 withChildBookmarksByUUID:(id)arg2;
+- (BOOL)mergeAttributesFromBookmark:(id)arg1;
 - (BOOL)updateByCopyingAttributesFromBookmark:(id)arg1 withExistingBookmarksByUUID:(id)arg2;
 - (void)insertChild:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)removeChild:(id)arg1;
 - (void)_enumerateLeafDescendantsOnChildrenAccessQueueUsingBlock:(CDUnknownBlockType)arg1;
 - (void)enumerateLeafDescendantsUsingBlock:(CDUnknownBlockType)arg1;
+- (void)enumerateChildrenWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)enumerateChildrenUsingBlock:(CDUnknownBlockType)arg1;
 - (void)_appendDescendantsPassingTest:(CDUnknownBlockType)arg1 toArray:(id)arg2;
 - (void)getDescendantsPassingTest:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -43,18 +45,19 @@
 @property(readonly, copy, nonatomic) NSArray *folderAndLeafChildren;
 - (unsigned long long)numberOfChildren;
 - (long long)bookmarkType;
-- (void)setHasDefaultSiteOrFolderIcon:(BOOL)arg1;
-- (BOOL)hasDefaultSiteOrFolderIcon;
 - (id)icon;
+- (id)iconURLString;
 - (id)initFromDictionaryRepresentation:(id)arg1 topLevelOnly:(BOOL)arg2 withGroup:(id)arg3;
 - (BOOL)isUserVisiblyEqualToBookmark:(id)arg1;
 - (id)_children;
 @property(readonly, nonatomic, getter=isReadingListFolder) BOOL readingListFolder;
-@property BOOL automaticallyOpensInTabs; // @synthesize automaticallyOpensInTabs=_threadUnsafeAutomaticallyOpensInTabs;
+- (void)setAutomaticallyOpensInTabs:(BOOL)arg1 changeWasInteractive:(BOOL)arg2;
+@property(readonly) BOOL automaticallyOpensInTabs; // @synthesize automaticallyOpensInTabs=_threadUnsafeAutomaticallyOpensInTabs;
 - (BOOL)canOpenInTabs;
 @property(readonly, nonatomic) unsigned long long numberOfDescendants;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithIdentifier:(id)arg1 UUID:(id)arg2 group:(id)arg3;
+- (vector_06e666a8)indexesForShownCollectionsWithChildCount:(unsigned long long *)arg1;
 
 @end
 

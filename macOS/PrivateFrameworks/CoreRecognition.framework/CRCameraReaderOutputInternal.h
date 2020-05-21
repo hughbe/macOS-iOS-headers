@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSNumber, NSString;
+@class NSArray, NSAttributedString, NSImage, NSNumber, NSString;
 
 @interface CRCameraReaderOutputInternal : NSObject
 {
@@ -16,17 +16,28 @@
     NSNumber *_yearValue;
     NSNumber *_monthValue;
     NSNumber *_dayValue;
+    NSImage *_imageValue;
+    NSAttributedString *overlayString;
+    struct CGRect boundingBox;
+    float rotation;
+    float _rotation;
     NSString *_formattedStringValue;
+    NSAttributedString *_overlayString;
+    struct CGRect _boundingBox;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSImage *imageValue; // @synthesize imageValue=_imageValue;
 @property(retain) NSNumber *dayValue; // @synthesize dayValue=_dayValue;
 @property(retain) NSNumber *monthValue; // @synthesize monthValue=_monthValue;
 @property(retain) NSNumber *yearValue; // @synthesize yearValue=_yearValue;
-@property(retain) NSString *formattedStringValue; // @synthesize formattedStringValue=_formattedStringValue;
+@property float rotation; // @synthesize rotation=_rotation;
+@property struct CGRect boundingBox; // @synthesize boundingBox=_boundingBox;
+@property(retain) NSAttributedString *overlayString; // @synthesize overlayString=_overlayString;
 @property(retain) NSString *type; // @synthesize type=_type;
 @property(retain) NSArray *vertices; // @synthesize vertices=_vertices;
+@property(retain) NSString *formattedStringValue; // @synthesize formattedStringValue=_formattedStringValue;
 @property(retain) NSString *stringValue; // @synthesize stringValue=_stringValue;
-- (void).cxx_destruct;
 
 @end
 

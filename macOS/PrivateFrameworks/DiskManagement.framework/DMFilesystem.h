@@ -21,10 +21,12 @@
 + (void)ensureDatabaseAndForceRebuild:(BOOL)arg1;
 - (id)localizedVerifyRepairString:(id)arg1 found:(char *)arg2;
 - (void)setVerifyRepairStringLocale:(id)arg1;
-- (id)coreStorageEncryptedUserVisibleName;
-- (id)unlocalizedCoreStorageEncryptedUserVisibleName;
+- (id)encryptedUserVisibleName;
+- (id)unlocalizedEncryptedUserVisibleName;
 - (BOOL)supportedByAPFS;
 - (BOOL)supportedByCoreStorage;
+- (BOOL)supportedAsFullyFeaturedMacOSHFS;
+- (BOOL)supportedAsFullyFeaturedMacOS;
 - (BOOL)supportedByWindows;
 - (BOOL)supportsResize;
 - (BOOL)supportsLiveVerify;
@@ -73,7 +75,7 @@
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (void)dealloc;
-- (id)initWithPersonality:(id)arg1 majorType:(id)arg2 localizedUserVisibleName:(id)arg3 localizedUserVisibleCoreStorageEncryptionName:(id)arg4 personalityDict:(id)arg5 bundlePath:(id)arg6;
+- (id)initWithPersonality:(id)arg1 majorType:(id)arg2 locUsrVisName:(id)arg3 locUsrVisCrpName:(id)arg4 personalityDict:(id)arg5 bundlePath:(id)arg6;
 
 @end
 

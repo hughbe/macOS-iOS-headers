@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class BaseObjectImp, NSMutableDictionary, NSString;
+@class ICDBaseObjectImp, NSMutableDictionary, NSString;
 
+__attribute__((visibility("hidden")))
 @interface ICDBaseCommandImp : NSObject
 {
     NSString *_name;
     short _commandError;
-    BaseObjectImp *_objectPriv;
+    ICDBaseObjectImp *_objectPriv;
     NSMutableDictionary *_privateData;
     NSMutableDictionary *_commandData;
 }
@@ -24,6 +25,8 @@
 - (void)printCommandData:(id)arg1 commandDone:(BOOL)arg2;
 - (id)initWithPrivateData:(id)arg1 commandData:(id)arg2 name:(id)arg3;
 - (id)initWithPrivateData:(id)arg1 commandData:(id)arg2;
+- (id)initWithCommandDictionary:(id)arg1;
+- (id)initWithCommandDictonary:(id)arg1 name:(id)arg2;
 
 @end
 

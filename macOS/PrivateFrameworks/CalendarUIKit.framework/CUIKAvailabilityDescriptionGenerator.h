@@ -13,6 +13,7 @@
 + (id)attendeesWhoCanNotAttendeeStringWithBusyStatusIcon:(id)arg1 withAttendeeList:(id)arg2;
 + (id)timeRangeStringWithStartDate:(id)arg1 withEndDate:(id)arg2;
 + (id)weekdayMonthDayString:(id)arg1;
++ (id)attendeeProposedANewTime:(id)arg1 attendeeName:(id)arg2;
 + (id)proposeANewTimePlaceholderString;
 + (id)showMoreString;
 + (id)youProposedString;

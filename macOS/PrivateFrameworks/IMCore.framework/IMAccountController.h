@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableDictionary;
+@class IMAccount, NSArray, NSMutableDictionary;
 
 @interface IMAccountController : NSObject
 {
@@ -18,13 +18,15 @@
     NSMutableDictionary *_serviceToAccountsMap;
     NSMutableDictionary *_serviceToConnectedAccountsMap;
     NSMutableDictionary *_serviceToOperationalAccountsMap;
+    BOOL _networkDataAvailable;
     NSArray *_accounts;
 }
 
 + (id)bestAccountFromAccounts:(id)arg1;
 + (id)sharedInstance;
-@property(copy) NSArray *accounts; // @synthesize accounts=_accounts;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL networkDataAvailable; // @synthesize networkDataAvailable=_networkDataAvailable;
+@property(copy) NSArray *accounts; // @synthesize accounts=_accounts;
 - (void)_rebuildOperationalAccountsCache:(BOOL)arg1;
 - (void)_disableCache;
 - (void)_enableCache;
@@ -38,6 +40,7 @@
 - (id)bestAccountForService:(id)arg1;
 - (id)bestConnectedAccountForService:(id)arg1 withLogin:(id)arg2;
 - (id)bestActiveAccountForService:(id)arg1 withLogin:(id)arg2;
+- (id)iMessageAccountForLastAddressedHandle:(id)arg1 simID:(id)arg2;
 - (id)bestOperationalAccountForService:(id)arg1 withLogin:(id)arg2;
 - (id)bestAccountForService:(id)arg1 withLogin:(id)arg2;
 - (id)bestAccountForService:(id)arg1 login:(id)arg2 guid:(id)arg3;
@@ -86,13 +89,18 @@
 @property(readonly, nonatomic) int numberOfAccounts;
 - (id)accountAtIndex:(int)arg1;
 - (id)accountForUniqueID:(id)arg1;
+- (void)deferredSetup;
+- (void)_requestNetworkDataAvailability;
+- (BOOL)_shouldPerformDeferredSetup;
 - (void)dealloc;
 - (id)init;
 - (void)autoLogin;
+@property(readonly, nonatomic) IMAccount *activeSMSAccount;
+@property(readonly, nonatomic) IMAccount *activeIMessageAccount;
 - (id)_bestOperationalAccountForSendingForService:(id)arg1;
 - (id)__iCloudSystemAccountForService:(id)arg1;
 - (id)_bestAccountForAddresses:(id)arg1;
-- (id)_operationalPhoneAccountForService:(id)arg1;
+- (long long)activeAccountsAreEligibleForSpamFilter;
 
 @end
 

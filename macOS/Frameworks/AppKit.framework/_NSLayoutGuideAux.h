@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     NSObservation *_minYVariableObservation;
     NSObservation *_widthVariableObservation;
     NSObservation *_heightVariableObservation;
+    unsigned long long _piercingToken;
 }
 
 - (void)dealloc;

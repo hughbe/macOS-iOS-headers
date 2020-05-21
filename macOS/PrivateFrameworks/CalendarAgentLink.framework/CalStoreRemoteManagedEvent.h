@@ -23,6 +23,7 @@
 + (id)fetchObjectsWithSharedUID:(id)arg1 occurrence:(id)arg2;
 + (id)fetchObjectsWithSharedUID:(id)arg1;
 + (id)fetchObjectsWithPredicate:(id)arg1 inCalendars:(id)arg2;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL needsReply; // @synthesize needsReply=_needsReply;
 @property(retain, nonatomic) NSDate *occurrence; // @synthesize occurrence=_occurrence;
 @property(retain, nonatomic) CalStoreRemoteManagedRecurrenceException *masterException; // @synthesize masterException=_masterException;
@@ -36,7 +37,6 @@
 - (BOOL)removeWithSpan:(int)arg1 error:(id *)arg2;
 - (BOOL)removeWithError:(id *)arg1;
 - (long long)compareStartDate:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

@@ -61,7 +61,7 @@
 @property(readonly, nonatomic) NSNumber *calendarItemPermissionNumber;
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;
 @property(readonly, copy, nonatomic) NSString *contactIdentifiersString;
-@property(readonly, copy, nonatomic) id <EKProtocolCalendar> container; // @dynamic container;
+@property(readonly, retain, nonatomic) id <CalendarModelProtocol> container;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, nonatomic) BOOL defaultAlarmWasDeleted;
 @property(readonly, copy) NSString *description;
@@ -70,12 +70,13 @@
 @property BOOL hasLocationAlarm; // @dynamic hasLocationAlarm;
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) BOOL isPartialObject;
-@property(readonly, copy, nonatomic) NSDate *lastModifiedDate;
+@property(readonly, copy, nonatomic) NSData *localStructuredData;
 @property(readonly, nonatomic) NSManagedObjectID *managedObjectID; // @dynamic managedObjectID;
 @property(readonly, nonatomic) BOOL organizedByMe;
 @property(readonly, copy, nonatomic) NSString *organizerEmail;
 @property(readonly, copy, nonatomic) NSString *organizerEncodedLikenessData;
 @property(readonly, copy, nonatomic) NSString *organizerName;
+@property(readonly, copy, nonatomic) NSString *organizerPhoneNumber;
 @property(readonly, copy, nonatomic) NSURL *organizerURL;
 @property(readonly, copy, nonatomic) id <EKProtocolParticipant> participantForMe;
 @property(retain) NSNumber *percentComplete; // @dynamic percentComplete;
@@ -87,6 +88,7 @@
 @property(readonly, copy, nonatomic) NSString *relatedExternalID;
 @property(readonly, copy, nonatomic) NSString *scheduleAgentString;
 @property(readonly, copy, nonatomic) NSDate *startDateUnadjustedFromUTC;
+@property(readonly, copy, nonatomic) NSData *structuredData;
 @property(readonly) Class superclass;
 @property(readonly, copy, nonatomic) NSTimeZone *timeZoneObject;
 

@@ -6,19 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDate, NSString;
+@class NSDate, NSString;
 
 __attribute__((visibility("hidden")))
 @interface GEOQuickETATransitDeparturesInfo : NSObject
 {
     NSString *_direction;
     NSString *_headsign;
-    NSArray *_departures;
     BOOL _departuresHaveFrequency;
     double _departureFrequency;
     NSDate *_departureFrequencyValidUntil;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSDate *departureFrequencyValidUntil; // @synthesize departureFrequencyValidUntil=_departureFrequencyValidUntil;
 @property(readonly, nonatomic) double departureFrequency; // @synthesize departureFrequency=_departureFrequency;
 @property(readonly, nonatomic) BOOL departuresHaveFrequency; // @synthesize departuresHaveFrequency=_departuresHaveFrequency;
@@ -26,7 +26,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSString *direction; // @synthesize direction=_direction;
 - (id)_chooseMostImportantTransitLegInRoute:(id)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)initWithComposedRoute:(id)arg1;
 
 @end

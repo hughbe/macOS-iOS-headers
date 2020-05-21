@@ -6,10 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDate;
+@class NSArray, NSDate, NSMutableDictionary, NSMutableSet;
 
 @protocol MMCSOperationMetric <NSObject>
 @property(readonly) NSArray *rangesCopy;
+@property(readonly) NSMutableSet *requestUUIDs;
+@property(readonly) NSMutableDictionary *fileCountByChunkProfile;
+@property(readonly) NSMutableDictionary *chunkCountByChunkProfile;
+@property(readonly) NSMutableDictionary *totalBytesByChunkProfile;
 @property unsigned long long connectionsCreated;
 @property unsigned long long connections;
 @property unsigned long long bytesDownloaded;

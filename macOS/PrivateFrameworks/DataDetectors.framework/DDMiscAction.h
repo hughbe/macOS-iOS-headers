@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     BOOL _actionLoadedSuccessfully;
 }
 
+- (void).cxx_destruct;
 - (id)name;
 - (BOOL)_loadActionIfNeeded;
 - (BOOL)runForTextCheckingResult:(id)arg1 context:(id)arg2;
@@ -29,7 +30,6 @@ __attribute__((visibility("hidden")))
 - (id)menuItem:(id)arg1 viewAtScreenPoint:(struct CGPoint)arg2;
 - (unsigned long long)menuItem:(id)arg1 preferredEdgeForPoint:(struct CGPoint)arg2;
 - (id)menuItem:(id)arg1 previewItemAtPoint:(struct CGPoint)arg2;
-- (void)dealloc;
 - (id)initWithDict:(id)arg1 bundle:(id)arg2;
 
 @end

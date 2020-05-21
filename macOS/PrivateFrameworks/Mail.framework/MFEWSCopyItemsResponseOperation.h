@@ -10,13 +10,13 @@
 
 @interface MFEWSCopyItemsResponseOperation : MFEWSResponseOperation
 {
-    NSArray *_newEWSItemIdStrings;
+    NSArray *_destinationEWSItemIdStrings;
     unsigned long long _expectedResponseCount;
 }
 
-@property(nonatomic) unsigned long long expectedResponseCount; // @synthesize expectedResponseCount=_expectedResponseCount;
-@property(copy) NSArray *destinationEWSItemIdStrings; // @synthesize destinationEWSItemIdStrings=_newEWSItemIdStrings;
 - (void).cxx_destruct;
+@property(nonatomic) unsigned long long expectedResponseCount; // @synthesize expectedResponseCount=_expectedResponseCount;
+@property(copy) NSArray *destinationEWSItemIdStrings; // @synthesize destinationEWSItemIdStrings=_destinationEWSItemIdStrings;
 - (void)executeOperation;
 - (void)prepareToExecuteWithResponse:(id)arg1 forRequestOperation:(id)arg2;
 @property(retain) EWSCopyItemResponseType *response;

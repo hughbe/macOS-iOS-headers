@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     NSNumber *_searchNonFinderFiles;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSArray *slices; // @synthesize slices=_slices;
 @property(retain) NSNumber *searchNonFinderFiles; // @synthesize searchNonFinderFiles=_searchNonFinderFiles;
 @property(retain) NSNumber *fileNameOnly; // @synthesize fileNameOnly=_fileNameOnly;

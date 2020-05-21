@@ -32,6 +32,7 @@
 @property(nonatomic) unsigned int formatFlags; // @synthesize formatFlags=_formatFlags;
 @property(nonatomic) unsigned int formatID; // @synthesize formatID=_formatID;
 @property(nonatomic) double sampleRate; // @synthesize sampleRate=_sampleRate;
+- (unsigned int)framesToBytes:(unsigned int)arg1;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
@@ -40,6 +41,7 @@
 - (struct AudioStreamBasicDescription)audioStreamBasicDescription;
 - (id)initWithAudioStreamRangedDescription:(struct AudioStreamRangedDescription *)arg1;
 - (id)initWithAudioStreamBasicDescription:(struct AudioStreamBasicDescription *)arg1;
+- (id)initWithSampleRate:(double)arg1 numChannels:(unsigned int)arg2 commonPCMFormat:(unsigned int)arg3 isInterleaved:(BOOL)arg4;
 
 @end
 

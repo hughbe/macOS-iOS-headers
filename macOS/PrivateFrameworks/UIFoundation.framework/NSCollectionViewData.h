@@ -38,10 +38,11 @@
 }
 
 + (void)initialize;
+- (void).cxx_destruct;
+@property(nonatomic) struct CGSize contentSize; // @synthesize contentSize=_contentSize;
 @property(readonly, nonatomic) NSArray *clonedDecorationAttributes; // @synthesize clonedDecorationAttributes=_clonedDecorationAttributes;
 @property(readonly, nonatomic) NSArray *clonedSupplementaryAttributes; // @synthesize clonedSupplementaryAttributes=_clonedSupplementaryAttributes;
 @property(readonly, nonatomic) NSArray *clonedCellAttributes; // @synthesize clonedCellAttributes=_clonedCellAttributes;
-- (void)shimMoveForItemAtIndexPath:(id)arg1 toIndexPath:(id)arg2;
 @property(nonatomic, getter=isLayoutLocked) BOOL layoutLocked;
 @property(readonly, nonatomic) BOOL layoutIsPrepared;
 - (id)layoutAttributesForDecorationViewOfKind:(id)arg1 atIndexPath:(id)arg2;
@@ -50,6 +51,8 @@
 - (id)knownSupplementaryElementKinds;
 - (id)existingSupplementaryLayoutAttributes;
 - (id)existingSupplementaryLayoutAttributesInSection:(long long)arg1;
+- (id)layoutAttributesForCellsInRect:(struct CGRect)arg1 validateLayout:(BOOL)arg2;
+- (id)_layoutAttributesForElementsInRect:(struct CGRect)arg1;
 - (id)layoutAttributesForElementsInRect:(struct CGRect)arg1;
 - (id)layoutAttributesForElementsInSection:(long long)arg1;
 - (id)layoutAttributesForGlobalItemIndex:(long long)arg1;
@@ -59,18 +62,25 @@
 - (struct CGRect)rectForGlobalItemIndex:(long long)arg1;
 - (struct CGRect)collectionViewContentRect;
 - (struct CGRect)rectForItemAtIndexPath:(id)arg1;
+- (BOOL)dataSourceMatchesCurrentCounts;
 - (id)indexPathForItemAtGlobalIndex:(long long)arg1;
 - (long long)globalIndexForItemAtIndexPath:(id)arg1;
+- (id)validatedIndexPathForItemAtGlobalIndex:(long long)arg1;
+- (long long)validatedGlobalIndexForItemAtIndexPath:(id)arg1;
+- (BOOL)isIndexPathValid:(id)arg1;
+- (BOOL)isGlobalIndexValid:(long long)arg1;
 - (long long)numberOfItemsBeforeSection:(long long)arg1;
 - (long long)numberOfItemsInSection:(long long)arg1;
 - (long long)numberOfItems;
 - (long long)numberOfSections;
+- (long long *)_sectionItemCounts;
+- (BOOL)hasValidItemCounts;
 - (void)validateLayoutInRect:(struct CGRect)arg1;
 - (void)_loadEverything;
 - (void)_setLayoutAttributes:(id)arg1 atGlobalItemIndex:(int)arg2;
 - (id)_screenPageForPoint:(struct CGPoint)arg1;
-- (void)_setupMutableIndexPath:(id *)arg1 forGlobalItemIndex:(int)arg2;
 - (void)_prepareToLoadData;
+- (void)_prepareLayoutIfNeeded;
 - (void)_validateContentSize;
 - (void)_validateItemCounts;
 - (void)_updateItemCounts;

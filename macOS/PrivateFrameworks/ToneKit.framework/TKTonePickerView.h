@@ -8,12 +8,12 @@
 
 @interface TKTonePickerView : NSView
 {
-    BOOL _performingBlockAffectingBaselineOffsetFromBottom;
+    BOOL _isPerformingBlockAffectingBaselineOffsetFromBottom;
     id <TKTonePickerViewDelegate> _delegate;
 }
 
-@property(nonatomic, getter=_isPerformingBlockAffectingBaselineOffsetFromBottom, setter=_setPerformingBlockAffectingBaselineOffsetFromBottom:) BOOL _performingBlockAffectingBaselineOffsetFromBottom; // @synthesize _performingBlockAffectingBaselineOffsetFromBottom;
-@property(nonatomic) id <TKTonePickerViewDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <TKTonePickerViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)layout;
 - (void)setBoundsSize:(struct CGSize)arg1;
 - (void)setBounds:(struct CGRect)arg1;

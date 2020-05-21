@@ -9,13 +9,13 @@
 #import "CAAction.h"
 #import "CAMediaTiming.h"
 #import "CAPropertyInfo.h"
-#import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
+#import "NSSecureCoding.h"
 
 @class CAMediaTimingFunction, CAStateControllerTransition, NSString;
 
-@interface CAAnimation : NSObject <NSMutableCopying, CAPropertyInfo, NSCoding, NSCopying, CAMediaTiming, CAAction>
+@interface CAAnimation : NSObject <NSMutableCopying, CAPropertyInfo, NSSecureCoding, NSCopying, CAMediaTiming, CAAction>
 {
     void *_attr;
     unsigned int _flags;
@@ -23,6 +23,7 @@
 
 + (BOOL)CA_automaticallyNotifiesObservers:(Class)arg1;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (BOOL)CA_encodesPropertyConditionally:(unsigned int)arg1 type:(int)arg2;
 + (id)animation;
 + (id)defaultValueForKey:(id)arg1;
@@ -33,7 +34,7 @@
 + (CDUnknownFunctionPointerType)CA_setterForProperty:(const struct _CAPropertyInfo *)arg1;
 + (id)attributesForKey:(id)arg1;
 + (id)properties;
-@property(retain) id delegate;
+@property(retain) id <CAAnimationDelegate> delegate;
 @property(retain) CAMediaTimingFunction *timingFunction;
 @property(getter=isRemovedOnCompletion) BOOL removedOnCompletion;
 @property(copy) NSString *fillMode;
@@ -61,9 +62,11 @@
 - (unsigned int)_propertyFlagsForLayer:(id)arg1;
 - (BOOL)_setCARenderAnimation:(struct Animation *)arg1 layer:(id)arg2;
 @property(copy) NSString *beginTimeMode;
+@property BOOL discretizesTime;
 @property double frameInterval;
 @property(getter=isEnabled) BOOL enabled;
 @property long long preferredFramesPerSecond;
+- (BOOL)CAMLTypeSupportedForKey:(id)arg1;
 - (id)CAMLTypeForKey:(id)arg1;
 - (void)encodeWithCAMLWriter:(id)arg1;
 - (void)CAMLParser:(id)arg1 setValue:(id)arg2 forKey:(id)arg3;

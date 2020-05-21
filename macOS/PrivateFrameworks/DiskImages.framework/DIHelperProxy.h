@@ -7,11 +7,12 @@
 #import "NSObject.h"
 
 #import "DIHLHelperMasterProtocol.h"
+#import "NSXPCListenerDelegate.h"
 
-@class NSConditionLock, NSConnection, NSDictionary, NSDistantObject<DIHLHelperSlaveProtocol>, NSPort, NSString;
+@class NSConditionLock, NSDictionary, NSString, NSXPCConnection, NSXPCListener;
 
 __attribute__((visibility("hidden")))
-@interface DIHelperProxy : NSObject <DIHLHelperMasterProtocol>
+@interface DIHelperProxy : NSObject <DIHLHelperMasterProtocol, NSXPCListenerDelegate>
 {
     void *_context;
     NSDictionary *_operation;
@@ -20,10 +21,10 @@ __attribute__((visibility("hidden")))
     struct __CFRunLoop *_workerRunLoop;
     int _threadResultsError;
     NSDictionary *_threadResultsDictionary;
-    NSDistantObject<DIHLHelperSlaveProtocol> *_helper;
     NSString *_helperPath;
-    NSConnection *_helperConnection;
-    NSPort *_helperPort;
+    NSXPCConnection *_intermediaryConnection;
+    NSXPCListener *_helperListener;
+    NSXPCConnection *_helperConnection;
     BOOL _helperRegistered;
     BOOL _helperDone;
     NSString *_serverName;
@@ -40,27 +41,32 @@ __attribute__((visibility("hidden")))
 - (id)retain;
 - (id)initWithDictionary:(id)arg1 andStatusProc:(CDUnknownFunctionPointerType)arg2 andContext:(void *)arg3 withAuthentication:(BOOL)arg4;
 - (id)initWithDictionary:(id)arg1 andStatusProc:(CDUnknownFunctionPointerType)arg2 andContext:(void *)arg3;
-- (void)helperConnectionInitialized:(id)arg1;
-- (void)helperConnectionDied:(id)arg1;
 - (void)helperFailedToRegister;
-- (void)helperDied:(id)arg1;
+- (void)helperDied;
 - (void)setHelperDoneWithResult:(int)arg1;
 - (void)watchForHelperDeath;
 - (int)checkHelperStatusWaitingForExit:(BOOL)arg1;
 - (void)threadRunRunLoop;
 - (int)threadLaunchToolAuthenticated:(BOOL)arg1;
 - (BOOL)threadSetupServer;
+- (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (void)workerThread:(id)arg1;
 - (void)disconnectFromHelper:(id)arg1;
 - (void)sendOperationToHelper:(id)arg1;
-- (int)synchronousFrameworkCallbackWithDictionary:(id)arg1;
-- (int)frameworkCallbackWithDictionary:(id)arg1;
-- (void)reportResultsToFramework:(id)arg1;
-- (void)connectToFramework:(id)arg1;
+- (void)synchronousFrameworkCallbackWithDictionary:(id)arg1 withReply:(CDUnknownBlockType)arg2;
+- (void)frameworkCallbackWithDictionary:(id)arg1 withReply:(CDUnknownBlockType)arg2;
+- (void)reportResultsToFramework:(id)arg1 withReply:(CDUnknownBlockType)arg2;
+- (void)connectToFramework;
 - (int)askForPassword;
 - (int)authWithFlags:(unsigned int)arg1;
 - (BOOL)isAuthenticated;
 - (int)authenticate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

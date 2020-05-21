@@ -26,6 +26,7 @@
     id <CoreDAVAccountInfoProvider> _discoveredAccountInfo;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSArray *potentialContextPaths; // @synthesize potentialContextPaths=_potentialContextPaths;
 @property(retain, nonatomic) NSString *wellKnownPath; // @synthesize wellKnownPath=_wellKnownPath;
 @property(retain, nonatomic) id <CoreDAVAccountInfoProvider> discoveredAccountInfo; // @synthesize discoveredAccountInfo=_discoveredAccountInfo;
@@ -55,14 +56,13 @@
 - (void)startTaskGroup;
 - (void)cancelTaskGroup;
 - (void)taskGroupWillCancelWithError:(id)arg1;
-- (void)dealloc;
 - (id)initWithAccountInfoProvider:(id)arg1 taskManager:(id)arg2;
 - (id)initWithAccountInfoProvider:(id)arg1 taskManager:(id)arg2 httpPorts:(id)arg3 httpsPorts:(id)arg4 httpServiceString:(id)arg5 httpsServiceString:(id)arg6 wellKnownPaths:(id)arg7 requiredComplianceClass:(id)arg8;
 - (id)initWithAccountInfoProvider:(id)arg1 taskManager:(id)arg2 httpPorts:(id)arg3 httpsPorts:(id)arg4 httpServiceString:(id)arg5 httpsServiceString:(id)arg6 wellKnownPath:(id)arg7 potentialContextPaths:(id)arg8 requiredComplianceClass:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(nonatomic) id <CoreDAVDiscoveryTaskGroupDelegate> delegate; // @dynamic delegate;
+@property(nonatomic) __weak id <CoreDAVDiscoveryTaskGroupDelegate> delegate; // @dynamic delegate;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;

@@ -8,12 +8,21 @@
 
 #import "KCJoiningAcceptCircleDelegate.h"
 
+@class NSString;
+
 @interface KCJoiningAcceptAccountCircleDelegate : NSObject <KCJoiningAcceptCircleDelegate>
 {
 }
 
 + (id)delegate;
+- (id)circleGetInitialSyncViews:(unsigned int)arg1 error:(id *)arg2;
 - (id)circleJoinDataFor:(struct __OpaqueSOSPeerInfo *)arg1 error:(id *)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

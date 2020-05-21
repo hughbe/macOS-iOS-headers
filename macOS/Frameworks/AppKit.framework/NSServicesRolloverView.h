@@ -18,8 +18,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (void)dealloc;
-- (id)delegate;
-- (void)setDelegate:(id)arg1;
+@property __weak id <NSServicesRolloverViewDelegate> delegate;
 - (id)initWithDelegate:(id)arg1 style:(long long)arg2;
 - (void)mouseDown:(id)arg1;
 - (id)hitTest:(struct CGPoint)arg1;

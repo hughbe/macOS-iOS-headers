@@ -6,11 +6,12 @@
 
 #import <AddressBook/ABUndoableCommandVisitor.h>
 
-__attribute__((visibility("hidden")))
 @interface ABExecuteUndoableCommandVisitor : ABUndoableCommandVisitor
 {
 }
 
+- (void)visitUndoableSaveCNRequestCommand:(id)arg1;
+- (void)visitSaveCNRequestCommand:(id)arg1;
 - (void)visitSaveRequestCommand:(id)arg1;
 - (void)visitUndoableCommand:(id)arg1;
 - (void)visitCommand:(id)arg1;

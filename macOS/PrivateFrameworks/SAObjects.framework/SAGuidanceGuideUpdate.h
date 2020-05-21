@@ -6,7 +6,7 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
-@class NSNumber, NSString, SAGuidanceGuideSnippet;
+@class NSNumber, NSString, SAGuidanceGuideSnippet, SAGuidanceSuggestedUtterances;
 
 @interface SAGuidanceGuideUpdate : SABaseClientBoundCommand
 {
@@ -14,7 +14,9 @@
 
 + (id)guideUpdateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)guideUpdate;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
+@property(retain, nonatomic) SAGuidanceSuggestedUtterances *suggestedUtterances;
 @property(copy, nonatomic) NSString *languageCode;
 @property(copy, nonatomic) NSNumber *guideTag;
 @property(retain, nonatomic) SAGuidanceGuideSnippet *guideSnippet;

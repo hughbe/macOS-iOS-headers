@@ -7,8 +7,21 @@
 #import "NSArray.h"
 
 @interface NSArray (PHAssetResource)
-- (id)vcp_localPhotoResourcesSorted;
+- (float)vcp_getFpsRate;
+- (id)vcp_avAsset:(BOOL)arg1;
+- (id)vcp_localMovieResourcesSorted:(BOOL)arg1;
+- (id)vcp_localPhotoResourcesSorted:(BOOL)arg1;
+- (id)vcp_adjustmentsResource;
+- (id)vcp_originalVideoResource;
+- (id)vcp_originalResource;
+- (id)vcp_smallMovieDerivativeResource;
+- (id)vcp_smallResourceMeetingCriteria:(CDUnknownBlockType)arg1;
 - (id)vcp_thumbnailResource;
+- (BOOL)vcp_hasLocalSlowmo;
+- (BOOL)vcp_hasLocalAdjustments;
+- (BOOL)vcp_hasLocalMovie:(BOOL)arg1;
+- (BOOL)vcp_hasLocalPhoto:(BOOL)arg1;
+- (BOOL)vcp_isOriginalLocal;
 - (id)vcp_resourceWithType:(unsigned long long)arg1;
 @end
 

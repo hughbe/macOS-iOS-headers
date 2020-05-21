@@ -6,28 +6,43 @@
 
 #import "NSObject.h"
 
-@class KCAESGCMDuplexSession, KCSRPClientContext, NSData, NSObject<KCJoiningRequestSecretDelegate>;
+@class KCAESGCMDuplexSession, KCSRPClientContext, NSData, NSMutableDictionary, NSString, OTControl;
 
 @interface KCJoiningRequestSecretSession : NSObject
 {
     int _state;
     KCAESGCMDuplexSession *_session;
-    NSObject<KCJoiningRequestSecretDelegate> *_secretDelegate;
+    id <KCJoiningRequestSecretDelegate> _secretDelegate;
     KCSRPClientContext *_context;
     unsigned long long _dsid;
+    NSString *_piggy_uuid;
+    unsigned long long _piggy_version;
+    unsigned long long _epoch;
     NSData *_challenge;
     NSData *_salt;
+    NSString *_sessionUUID;
+    OTControl *_otControl;
+    NSMutableDictionary *_defaults;
 }
 
 + (id)sessionWithSecretDelegate:(id)arg1 dsid:(unsigned long long)arg2 error:(id *)arg3;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableDictionary *defaults; // @synthesize defaults=_defaults;
+@property(retain, nonatomic) OTControl *otControl; // @synthesize otControl=_otControl;
+@property(retain) NSString *sessionUUID; // @synthesize sessionUUID=_sessionUUID;
 @property(retain) NSData *salt; // @synthesize salt=_salt;
 @property(retain) NSData *challenge; // @synthesize challenge=_challenge;
+@property unsigned long long epoch; // @synthesize epoch=_epoch;
+@property unsigned long long piggy_version; // @synthesize piggy_version=_piggy_version;
+@property(retain) NSString *piggy_uuid; // @synthesize piggy_uuid=_piggy_uuid;
 @property(readonly) int state; // @synthesize state=_state;
 @property(readonly) unsigned long long dsid; // @synthesize dsid=_dsid;
 @property(readonly) KCSRPClientContext *context; // @synthesize context=_context;
-@property(readonly) NSObject<KCJoiningRequestSecretDelegate> *secretDelegate; // @synthesize secretDelegate=_secretDelegate;
+@property __weak id <KCJoiningRequestSecretDelegate> secretDelegate; // @synthesize secretDelegate=_secretDelegate;
 @property(readonly) KCAESGCMDuplexSession *session; // @synthesize session=_session;
-- (void).cxx_destruct;
+- (void)setControlObject:(id)arg1;
+- (id)description;
+- (id)stateString;
 - (id)initWithSecretDelegate:(id)arg1 dsid:(unsigned long long)arg2 rng:(struct ccrng_state *)arg3 error:(id *)arg4;
 - (id)initWithSecretDelegate:(id)arg1 dsid:(unsigned long long)arg2 error:(id *)arg3;
 - (id)processMessage:(id)arg1 error:(id *)arg2;
@@ -40,6 +55,7 @@
 - (_Bool)setupSession:(id *)arg1;
 - (_Bool)isDone;
 - (id)initialMessage:(id *)arg1;
+- (id)createUUID;
 
 @end
 

@@ -34,6 +34,7 @@
     NSData *_remoteSKEData;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL inviteNeedsDelivery; // @synthesize inviteNeedsDelivery=_inviteNeedsDelivery;
 @property(nonatomic) unsigned long long remoteConnectionType; // @synthesize remoteConnectionType=_remoteConnectionType;
 @property(nonatomic) unsigned long long localConnectionType; // @synthesize localConnectionType=_localConnectionType;

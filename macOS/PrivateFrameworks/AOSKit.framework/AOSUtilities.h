@@ -10,12 +10,21 @@
 {
 }
 
++ (BOOL)shouldUpdateAppleAccountForClientID:(id)arg1;
++ (void)updateAppleAccountInfo:(id)arg1 forAccount:(struct AOSAccount *)arg2;
++ (id)appleAccountInfoForAccount:(struct AOSAccount *)arg1;
++ (id)_existingAppleAccountForAccount:(struct AOSAccount *)arg1;
++ (BOOL)_areAppleAccountCallsAllowed;
++ (BOOL)_didLoadAOSAccountsBundle;
++ (BOOL)_didLoadAccountsBundle;
++ (id)dsidFromPushNotification:(id)arg1;
 + (id)generateSignUpSessionInfoForClient:(id)arg1;
 + (void)setCachedSignUpSessionInfo:(id)arg1;
 + (id)cachedSignUpSessionInfo;
 + (id)currentComputerName;
 + (id)machineUDID;
 + (id)machineSerialNumber;
++ (BOOL)shouldPerformDeviceRetryForRequest:(id)arg1;
 + (id)allDecodableClasses;
 + (BOOL)doesAppleIDNeedFixing:(id)arg1;
 + (id)enteredPasswordFromAccount:(struct AOSAccount *)arg1;
@@ -58,6 +67,7 @@
 + (id)makeAgentRequestWithAccount:(struct AOSAccount *)arg1 type:(int)arg2 args:(id)arg3 callback:(struct AOSCallbackInfo *)arg4 maxRetries:(int)arg5;
 + (void)_cacheValidationStatus:(id)arg1 forDomain:(id)arg2;
 + (id)_cachedValidationStatusForDomain:(id)arg1;
++ (BOOL)_isValidChineseHostname:(id)arg1;
 + (BOOL)_isKnownDomain:(id)arg1 usingAccountInfo:(id)arg2;
 + (id)aliasesForAccount:(struct AOSAccount *)arg1 withInfo:(id)arg2;
 + (BOOL)validateURL:(id)arg1 forAccount:(struct AOSAccount *)arg2 withInfo:(id)arg3;

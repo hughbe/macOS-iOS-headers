@@ -10,6 +10,7 @@
 
 @class NSMutableDictionary, NSString, NSXPCConnection;
 
+__attribute__((visibility("hidden")))
 @interface NCServiceController : NSObject <NSXPCListenerDelegate>
 {
     NSXPCConnection *_ncConnection;
@@ -22,11 +23,14 @@
 - (void).cxx_destruct;
 - (void)serviceDismissAlertUUID:(id)arg1;
 - (id)_notificationCenterConnection;
+- (id)_optionsDictionaryForAlert:(id)arg1;
 - (void)_resendExistingAlerts;
 - (void)_reconnect;
 - (void)_installAlertViewInViewService:(id)arg1;
 - (void)_checkAlertAndViewService:(id)arg1;
 - (void)_ncAlive:(id)arg1;
+- (void)releaseKey:(id)arg1;
+- (void)makeAlertKey:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)dismissNCAlert:(id)arg1 animation:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)displayNCAlert:(id)arg1 animated:(_Bool)arg2;
 - (void)registerHostViewService:(id)arg1;

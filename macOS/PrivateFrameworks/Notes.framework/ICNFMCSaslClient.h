@@ -17,6 +17,9 @@
     char *_authenticationPersonID;
     char *_authorizationPersonID;
     char *_appleToken;
+    char *_machineID;
+    char *_oneTimePassword;
+    char *_clientInfo;
     char *_googleToken;
     char *_oauthToken;
     BOOL _excludeAuthorizationName;
@@ -33,6 +36,7 @@
 }
 
 + (id)keyPathsForValuesAffectingLastResponseIncludesPlainTextCredential;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL lastResponseIncludesCredential; // @synthesize lastResponseIncludesCredential=_lastResponseIncludesCredential;
 @property(nonatomic) BOOL mechanismUsesPlainText; // @synthesize mechanismUsesPlainText=_mechanismUsesPlainText;
 @property(readonly, nonatomic) struct sasl_conn *saslConnection; // @synthesize saslConnection=_saslConnection;
@@ -44,7 +48,6 @@
 @property(retain, nonatomic) NSError *saslError; // @synthesize saslError=_saslError;
 @property(nonatomic) long long saslStatus; // @synthesize saslStatus=_saslStatus;
 @property(nonatomic) __weak id <ICNFMCAccount> account; // @synthesize account=_account;
-- (void).cxx_destruct;
 - (void)_handleNeedsUserInteraction:(struct sasl_interact *)arg1;
 - (void)_handleStartFailure:(int)arg1;
 - (BOOL)_logGenericError:(int)arg1 saslConnection:(struct sasl_conn *)arg2 description:(id)arg3 error:(id *)arg4;

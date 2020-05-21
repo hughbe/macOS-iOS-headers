@@ -13,9 +13,10 @@ __attribute__((visibility("hidden")))
 }
 
 - (int)createNewFolder:(const struct TString *)arg1 properties:(const struct TFENodePropertyList *)arg2;
+- (struct TString)authorizationPrompt;
 - (void)reconfigureToRenameNodes:(const struct TFENodeVector *)arg1;
 - (void)configureOperationRecord:(struct TOperationRecord *)arg1 forNode:(const struct TFENode *)arg2;
-- (id)newDelegate;
+- (id)makeDelegate;
 
 @end
 

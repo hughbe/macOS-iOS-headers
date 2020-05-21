@@ -19,9 +19,6 @@ __attribute__((visibility("hidden")))
 - (void)addItem:(id)arg1;
 @property(copy) NSArray *items;
 - (void)removeItems;
-- (void)_windowChangedKeyState;
-- (void)drawRect:(struct CGRect)arg1;
-- (void)drawBaselineSeparatorInRect:(struct CGRect)arg1;
 - (id)accessibilityRoleAttribute;
 - (BOOL)accessibilityIsIgnored;
 

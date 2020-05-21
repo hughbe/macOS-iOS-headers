@@ -6,25 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSSet;
-
 __attribute__((visibility("hidden")))
 @interface VKPolylineOverlayRenderRegion : NSObject
 {
-    NSSet *_tiles;
+    set_8caf8a88 _routeLineDatas;
     Box_3d7e3c2c _visibleRect;
-    vector_b9326b03 _rectsForSnapping;
-    struct vector<VKTileKey, std::__1::allocator<VKTileKey>> _snappedTileKeys;
+    struct MultiRectRegion _snappingRegion;
 }
 
-@property(readonly, nonatomic) Box_3d7e3c2c visibleRect; // @synthesize visibleRect=_visibleRect;
-@property(readonly, nonatomic) NSSet *tiles; // @synthesize tiles=_tiles;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (const vector_b9326b03 *)rectsForSnapping;
+@property(readonly, nonatomic) Box_3d7e3c2c visibleRect; // @synthesize visibleRect=_visibleRect;
+@property(readonly, nonatomic) const set_8caf8a88 *routeLineDatas; // @synthesize routeLineDatas=_routeLineDatas;
 - (BOOL)isEquivalentToNewRegion:(id)arg1;
-- (void)dealloc;
-- (id)initForKeysInView:(id)arg1 tiles:(id)arg2 allowsSnapping:(BOOL)arg3;
+- (const struct MultiRectRegion *)snappingRegion;
+- (id)initForVisibleRect:(const Box_3d7e3c2c *)arg1 snappingRegion:(const struct MultiRectRegion *)arg2 routeLineDatas:(const set_8caf8a88 *)arg3;
 
 @end
 

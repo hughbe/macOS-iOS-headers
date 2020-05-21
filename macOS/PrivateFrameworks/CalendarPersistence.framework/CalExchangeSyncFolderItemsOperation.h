@@ -16,12 +16,13 @@
     NSString *_messageTracerUID;
 }
 
+- (void).cxx_destruct;
 - (id)messageTracerUUID;
 - (id)messageTracerName;
 - (id)debugDescription;
 - (id)debugTitle;
 - (BOOL)executeWithBinding:(id)arg1 inSession:(id)arg2 inContext:(id)arg3 error:(id *)arg4;
-- (void)dealloc;
+- (void)_retrieveUpdatedCreatedAndDeletedIDsFromChanges:(id)arg1 inCalendar:(id)arg2 createdOrUpdatedItemIds:(id)arg3 deletedItemIds:(id)arg4;
 - (id)folderId;
 - (id)initWithSession:(id)arg1 folderId:(id)arg2;
 - (id)initWithSession:(id)arg1 folderId:(id)arg2 messageTracerUID:(id)arg3;

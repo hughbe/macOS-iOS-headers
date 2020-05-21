@@ -58,13 +58,13 @@
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
+- (id)copyAnimationPathForKeyPath:(id)arg1 animation:(id)arg2;
 - (id)presentationGeometry;
-- (struct __C3DGeometry *)__createCFObject;
-- (id)initPresentationTextGeometryWithTextGeometryRef:(struct __C3DTextGeometry *)arg1;
-- (id)initWithTextGeometryRef:(struct __C3DTextGeometry *)arg1;
+-     // Error parsing type: ^{__C3DGeometry={__C3DEntity={__CFRuntimeBase=QAQ}^v^{__CFString}^{__CFString}^{__CFDictionary}^{__C3DScene}q}^{__C3DMesh}^{__C3DMaterial}^{__CFArray}^{__CFSet}^{__CFArray}^{?}b1^?{?=CB{?=BCCC}^{__C3DMeshElement}^{__C3DMeshSource}^{__C3DMesh}^v^v}{?=CfIC(?={?=ff}{?=f}{?=f}{?=Cb1b1})}C}16@0:8, name: __createCFObject
+-     // Error parsing type: @24@0:8^{__C3DTextGeometry={__C3DShapeGeometry={__C3DGeometry={__C3DEntity={__CFRuntimeBase=QAQ}^v^{__CFString}^{__CFString}^{__CFDictionary}^{__C3DScene}q}^{__C3DMesh}^{__C3DMaterial}^{__CFArray}^{__CFSet}^{__CFArray}^{?}b1^?{?=CB{?=BCCC}^{__C3DMeshElement}^{__C3DMeshSource}^{__C3DMesh}^v^v}{?=CfIC(?={?=ff}{?=f}{?=f}{?=Cb1b1})}C}{?=cfffif^{CGPath}^v^{CGPath}^v}^{__C3DMesh}[16C]}{?=^{__CTFrame}^v^viiBBB{CGRect={CGPoint=dd}{CGSize=dd}}}}16, name: initPresentationTextGeometryWithTextGeometryRef:
+-     // Error parsing type: @24@0:8^{__C3DTextGeometry={__C3DShapeGeometry={__C3DGeometry={__C3DEntity={__CFRuntimeBase=QAQ}^v^{__CFString}^{__CFString}^{__CFDictionary}^{__C3DScene}q}^{__C3DMesh}^{__C3DMaterial}^{__CFArray}^{__CFSet}^{__CFArray}^{?}b1^?{?=CB{?=BCCC}^{__C3DMeshElement}^{__C3DMeshSource}^{__C3DMesh}^v^v}{?=CfIC(?={?=ff}{?=f}{?=f}{?=Cb1b1})}C}{?=cfffif^{CGPath}^v^{CGPath}^v}^{__C3DMesh}[16C]}{?=^{__CTFrame}^v^viiBBB{CGRect={CGPoint=dd}{CGSize=dd}}}}16, name: initWithTextGeometryRef:
 - (id)init;
-- (void)_syncObjCModel:(struct __C3DTextGeometry *)arg1;
+-     // Error parsing type: v24@0:8^{__C3DTextGeometry={__C3DShapeGeometry={__C3DGeometry={__C3DEntity={__CFRuntimeBase=QAQ}^v^{__CFString}^{__CFString}^{__CFDictionary}^{__C3DScene}q}^{__C3DMesh}^{__C3DMaterial}^{__CFArray}^{__CFSet}^{__CFArray}^{?}b1^?{?=CB{?=BCCC}^{__C3DMeshElement}^{__C3DMeshSource}^{__C3DMesh}^v^v}{?=CfIC(?={?=ff}{?=f}{?=f}{?=Cb1b1})}C}{?=cfffif^{CGPath}^v^{CGPath}^v}^{__C3DMesh}[16C]}{?=^{__CTFrame}^v^viiBBB{CGRect={CGPoint=dd}{CGSize=dd}}}}16, name: _syncObjCModel:
 
 @end
 

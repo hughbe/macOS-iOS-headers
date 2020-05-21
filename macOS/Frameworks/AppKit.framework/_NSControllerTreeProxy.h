@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <AppKit/NSTreeNode.h>
 
 #import "_NSBindingTree.h"
 
-@interface _NSControllerTreeProxy : NSObject <_NSBindingTree>
+__attribute__((visibility("hidden")))
+@interface _NSControllerTreeProxy : NSTreeNode <_NSBindingTree>
 {
     id _controller;
 }
@@ -24,8 +25,14 @@
 - (BOOL)isExpandableAtArrangedObjectIndexPath:(id)arg1;
 - (unsigned long long)countForIndexPath:(id)arg1;
 - (unsigned long long)count;
+- (id)parentNode;
+- (id)mutableChildNodes;
 - (id)childNodes;
 - (unsigned long long)countOfChildNodes;
+- (void)sortWithSortDescriptors:(id)arg1 recursively:(BOOL)arg2;
+- (BOOL)isLeaf;
+- (id)indexPath;
+- (id)representedObject;
 - (id)initWithController:(id)arg1;
 
 @end

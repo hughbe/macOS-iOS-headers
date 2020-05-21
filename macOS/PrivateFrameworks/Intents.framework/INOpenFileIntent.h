@@ -14,7 +14,14 @@
 {
 }
 
-- (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1;
+- (void)setParametersByName:(id)arg1;
+- (id)parametersByName;
+- (void)setVerb:(id)arg1;
+- (id)verb;
+- (void)setDomain:(id)arg1;
+- (id)domain;
+- (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1 containingAppBundleId:(id)arg2;
+- (id)_dictionaryRepresentation;
 - (void)setScopeEntityName:(id)arg1;
 @property(readonly, copy) NSString *scopeEntityName;
 - (void)setScope:(id)arg1;
@@ -28,6 +35,7 @@
 - (void)setEntityType:(id)arg1;
 @property(readonly, copy) NSString *entityType;
 - (id)initWithEntityType:(id)arg1 entityName:(id)arg2 appId:(id)arg3 properties:(id)arg4 scope:(id)arg5 scopeEntityName:(id)arg6;
+- (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;
 

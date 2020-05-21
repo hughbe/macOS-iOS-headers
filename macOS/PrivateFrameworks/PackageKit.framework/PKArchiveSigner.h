@@ -11,8 +11,7 @@
 @interface PKArchiveSigner : NSObject
 {
     NSString *_algorithmType;
-    struct OpaqueSecKeyRef *_privateKeyRef;
-    unsigned long long _signing_context;
+    struct __SecKey *_privateKeyRef;
     struct _CMSEncoder *_encoder;
     struct __CFDictionary *_tsaContext;
     int _signatureSize;
@@ -22,7 +21,7 @@
 - (void)setSignatureSize:(int)arg1;
 - (int)signatureSize;
 - (void)dealloc;
-- (id)initWithSigningIdentity:(struct OpaqueSecIdentityRef *)arg1 algorithm:(id)arg2 usingTSAIfSupported:(BOOL)arg3;
+- (id)initWithSigningIdentity:(struct __SecIdentity *)arg1 algorithm:(id)arg2 usingTSAIfSupported:(BOOL)arg3;
 
 @end
 

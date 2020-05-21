@@ -21,6 +21,7 @@
     NSString *_nextETag;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *nextETag; // @synthesize nextETag=_nextETag;
 @property(readonly, nonatomic) NSDictionary *responseHeaders; // @synthesize responseHeaders=_responseHeaders;
 @property(retain, nonatomic) NSString *dataContentType; // @synthesize dataContentType=_dataContentType;
@@ -34,7 +35,6 @@
 - (void)_completedMoveTask:(id)arg1;
 - (void)startTaskGroup;
 - (id)description;
-- (void)dealloc;
 - (id)initWithSourceURL:(id)arg1 destinationURL:(id)arg2 AccountInfoProvider:(id)arg3 taskManager:(id)arg4;
 
 @end

@@ -16,13 +16,13 @@
     BOOL _isBlack;
 }
 
+- (void).cxx_destruct;
 @property BOOL isBlack; // @synthesize isBlack=_isBlack;
-@property RBNode *parent; // @synthesize parent=_parent;
+@property __weak RBNode *parent; // @synthesize parent=_parent;
 @property(retain) RBNode *right; // @synthesize right=_right;
 @property(retain) RBNode *left; // @synthesize left=_left;
-@property id value; // @synthesize value=_value;
-@property id key; // @synthesize key=_key;
-- (void)dealloc;
+@property(retain) id value; // @synthesize value=_value;
+@property(retain) id key; // @synthesize key=_key;
 
 @end
 

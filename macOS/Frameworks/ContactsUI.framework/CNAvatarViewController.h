@@ -9,15 +9,20 @@
 #import "CNAvatarEditorDelegate.h"
 #import "CNAvatarEditorViewControllerSettings.h"
 #import "NSImmediateActionGestureRecognizerDelegate.h"
+#import "QLPreviewMenuItemDelegate.h"
 
-@class CNAvatarCache, CNAvatarView<CNAvatarUpdating>, CNAvatarViewModel, CNContact, CNContactStore, CNLikenessEditorPresentationController, CNUIPRLikenessResolver, CNVariableChangeHelper, NSArray, NSLayoutConstraint, NSString, PRLikeness, PRPersonaStore;
+@class CNAvatarCache, CNAvatarView<CNAvatarUpdating>, CNAvatarViewModel, CNContact, CNContactStore, CNLikenessEditorPresentationController, CNVariableChangeHelper, NSArray, NSLayoutConstraint, NSString, PRLikeness, PRPersonaStore;
 
-@interface CNAvatarViewController : NSViewController <CNAvatarEditorDelegate, NSImmediateActionGestureRecognizerDelegate, CNAvatarEditorViewControllerSettings>
+@interface CNAvatarViewController : NSViewController <CNAvatarEditorDelegate, CNAvatarEditorViewControllerSettings, NSImmediateActionGestureRecognizerDelegate, QLPreviewMenuItemDelegate>
 {
+    BOOL _monogramOnly;
     BOOL _isFullAvatar;
     BOOL _overrideIsMe;
+    BOOL _shouldInvalidateCache;
+    BOOL _alwaysAcceptDrop;
     BOOL _directEditing;
     BOOL _userSetup;
+    CNAvatarCache *_avatarCache;
     CNAvatarView<CNAvatarUpdating> *_avatarView;
     NSLayoutConstraint *_avatarHeightConstraint;
     NSLayoutConstraint *_topMarginConstraint;
@@ -25,40 +30,42 @@
     CNLikenessEditorPresentationController *_likenessEditorController;
     NSViewController *_presentingViewController;
     CNVariableChangeHelper *_contactDebouncer;
-    CNUIPRLikenessResolver *_likenessResolver;
     id <CNCancelable> _likenessResolverToken;
     id <CNCancelable> _likenessSaveToken;
     NSArray *_overrideLikenesses;
     long long _displayStyle;
     CNContactStore *_contactStore;
     PRPersonaStore *_personaStore;
-    CNAvatarCache *_avatarCache;
+    unsigned long long _style;
     id <CNAvatarViewDelegate> _delegate;
 }
 
-+ (id)contactCardViewController;
-+ (id)popoverAnimationControllerWithContents:(id)arg1 anchorView:(id)arg2 vibrant:(BOOL)arg3;
++ (id)_quicklookURLForContact:(id)arg1;
++ (id)_popoverAnimationControllerWithContents:(id)arg1 anchorView:(id)arg2 vibrant:(BOOL)arg3;
 + (void)updateContact:(id)arg1 withLikeness:(id)arg2;
-+ (id)backgroundColorForLikeness:(id)arg1;
 + (id)photoDataLikenessForContact:(id)arg1;
++ (BOOL)canCreateMonogramForContact:(id)arg1;
 + (id)_monogramStringForContact:(id)arg1;
 + (id)defaultMonogramLikenessForContact:(id)arg1;
 + (id)defaultMonogramLikenessForFullName:(id)arg1;
++ (id)log;
 + (id)meMonitor;
 + (id)personaStore;
 + (id)contactStore;
 + (id)descriptorForRequiredKeys;
+- (void).cxx_destruct;
 @property __weak id <CNAvatarViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) CNAvatarCache *avatarCache; // @synthesize avatarCache=_avatarCache;
+@property(nonatomic) unsigned long long style; // @synthesize style=_style;
 @property BOOL userSetup; // @synthesize userSetup=_userSetup;
 @property BOOL directEditing; // @synthesize directEditing=_directEditing;
 @property(readonly) PRPersonaStore *personaStore; // @synthesize personaStore=_personaStore;
 @property(readonly) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
 @property(nonatomic) long long displayStyle; // @synthesize displayStyle=_displayStyle;
+@property BOOL alwaysAcceptDrop; // @synthesize alwaysAcceptDrop=_alwaysAcceptDrop;
+@property BOOL shouldInvalidateCache; // @synthesize shouldInvalidateCache=_shouldInvalidateCache;
 @property(retain) NSArray *overrideLikenesses; // @synthesize overrideLikenesses=_overrideLikenesses;
 @property(retain) id <CNCancelable> likenessSaveToken; // @synthesize likenessSaveToken=_likenessSaveToken;
 @property(retain) id <CNCancelable> likenessResolverToken; // @synthesize likenessResolverToken=_likenessResolverToken;
-@property(retain) CNUIPRLikenessResolver *likenessResolver; // @synthesize likenessResolver=_likenessResolver;
 @property(retain) CNVariableChangeHelper *contactDebouncer; // @synthesize contactDebouncer=_contactDebouncer;
 @property(retain) NSViewController *presentingViewController; // @synthesize presentingViewController=_presentingViewController;
 @property(retain) CNLikenessEditorPresentationController *likenessEditorController; // @synthesize likenessEditorController=_likenessEditorController;
@@ -68,18 +75,30 @@
 @property(retain, nonatomic) NSLayoutConstraint *topMarginConstraint; // @synthesize topMarginConstraint=_topMarginConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *avatarHeightConstraint; // @synthesize avatarHeightConstraint=_avatarHeightConstraint;
 @property(retain) CNAvatarView<CNAvatarUpdating> *avatarView; // @synthesize avatarView=_avatarView;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL monogramOnly; // @synthesize monogramOnly=_monogramOnly;
 - (double)desiredHeight;
 - (double)topMargin;
-- (void)updatePresentingViewControllerForCard;
-- (void)updatePresentingViewControllerForDelegate;
-- (id)updatedImmediateActionPopoverAnimationController;
+- (unsigned long long)menuItem:(id)arg1 preferredEdgeForPoint:(struct CGPoint)arg2;
+- (void)menuItemDidClose:(id)arg1;
+- (id)menuItem:(id)arg1 previewItemAtPoint:(struct CGPoint)arg2;
+- (id)_dataDetectorsActionContext;
+- (BOOL)_hasValidDataDetectorsContact;
+- (id)_dataDetectorsMenuItem;
+- (BOOL)_hasValidQuicklookContact;
+- (id)_quicklookMenuItem;
+- (id)_immediateActionAnimationController;
+- (void)immediateActionRecognizerDidCancelAnimation:(id)arg1;
 - (void)immediateActionRecognizerWillPrepare:(id)arg1;
+- (BOOL)_supportsPresentingCustomView;
+- (BOOL)_supportsPresentingCard;
 - (BOOL)gestureRecognizer:(id)arg1 shouldAttemptToRecognizeWithEvent:(id)arg2;
 - (void)saveContact:(id)arg1;
+- (void)addContactImage:(id)arg1;
 - (void)editorDidFinish:(id)arg1 withLikenessResult:(id)arg2 cancelled:(BOOL)arg3;
 - (void)showEditorPopover;
+- (void)showEditorSheetForLikeness:(id)arg1;
 - (void)showEditorSheet;
+- (void)notifyOverlayWasSelectedWithEvent:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)updateViewForCardPopover;
 - (void)updateViewForCard;
@@ -99,15 +118,22 @@
 @property(retain) PRLikeness *likeness;
 - (void)setPlaceholderContactCount:(unsigned long long)arg1;
 @property long long behavior;
+- (void)updateContactThumbnailImageIfNeeded;
 - (void)updateForDirectEditing;
 - (id)overrideLikenessesForContacts:(id)arg1;
-- (BOOL)contactsAreEqualIgnoringIdentifiers:(id)arg1;
+- (void)showDelegateSuppliedLikenessProvidersForContacts:(id)arg1;
+- (void)showUpToDateLikenessProvidersForContacts:(id)arg1;
+- (void)showLastKnownLikenessProvidersForContacts:(id)arg1;
 - (void)resolveLikenessesForContacts:(id)arg1;
 - (void)updateLikenesses;
 - (void)updateViewModelWithContacts:(id)arg1;
 - (void)setLikenessProviders:(id)arg1;
+- (id)likenessedProvidersByFilteringOutInvalidProviders:(id)arg1;
+- (void)logAnyInvalidLikenessProviders:(id)arg1 origin:(id)arg2;
+@property(retain, nonatomic) CNAvatarCache *avatarCache; // @synthesize avatarCache=_avatarCache;
 @property(retain) NSArray *contacts;
 @property(copy) CNContact *contact;
+- (void)dealloc;
 - (void)_commonInit;
 - (id)initWithContactStore:(id)arg1 personaStore:(id)arg2;
 - (id)init;

@@ -6,25 +6,27 @@
 
 #import "NSObject.h"
 
-@class FI_TNodeViewSettings, NSString;
+@class FI_TNodeViewSettings;
 
 __attribute__((visibility("hidden")))
 @interface FI_TViewOptionsSettingsController : NSObject
 {
-    FI_TNodeViewSettings *_targetedViewOptionsSettings;
-    NSString *_viewStyleForViewOptions;
+    struct TNSRef<FI_TNodeViewSettings, void> _targetedViewOptionsSettings;
+    int _viewStyleForViewOptions;
     _Bool _shouldShowLibraryFolderButton;
     _Bool _shouldShowLibraryFolder;
 }
 
-+ (void)tearDownSharedController;
 + (id)sharedController;
++ (void)tearDownSharedController;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(nonatomic) _Bool shouldShowLibraryFolder; // @synthesize shouldShowLibraryFolder=_shouldShowLibraryFolder;
 @property(nonatomic) _Bool shouldShowLibraryFolderButton; // @synthesize shouldShowLibraryFolderButton=_shouldShowLibraryFolderButton;
-@property(nonatomic) NSString *viewStyleForViewOptions; // @synthesize viewStyleForViewOptions=_viewStyleForViewOptions;
-@property(retain, nonatomic) FI_TNodeViewSettings *targetedViewOptionsSettings; // @synthesize targetedViewOptionsSettings=_targetedViewOptionsSettings;
-- (void)dealloc;
-- (id)init;
+@property(nonatomic) int viewStyleForViewOptions; // @synthesize viewStyleForViewOptions=_viewStyleForViewOptions;
+@property(nonatomic) _Bool shouldShowPreviewPane; // @dynamic shouldShowPreviewPane;
+@property(retain, nonatomic) FI_TNodeViewSettings *targetedViewOptionsSettings; // @dynamic targetedViewOptionsSettings;
+- (id)_init;
 
 @end
 

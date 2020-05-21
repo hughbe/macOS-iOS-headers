@@ -6,8 +6,6 @@
 
 #import "NSObject.h"
 
-@class IASUnifiedProgressClient;
-
 @interface OSIPowerController : NSObject
 {
     BOOL _machineHasBattery;
@@ -15,23 +13,32 @@
     BOOL _machineIsLowOnPower;
     BOOL _machineIsCriticallyLowOnPower;
     BOOL _previouslyReleasedSleepAssertion;
+    BOOL _lowBatteryTestMode;
     unsigned int _systemSleepAssertion;
-    IASUnifiedProgressClient *_progressClient;
+    unsigned int _displaySleepAssertion;
+    id <OSIPowerControllerDelegate> _delegate;
+    struct __CFRunLoopSource *_powerSourceRef;
+    struct __CFRunLoop *_powerSourceRunloop;
 }
 
-@property(retain) IASUnifiedProgressClient *progressClient; // @synthesize progressClient=_progressClient;
+@property BOOL lowBatteryTestMode; // @synthesize lowBatteryTestMode=_lowBatteryTestMode;
+@property struct __CFRunLoop *powerSourceRunloop; // @synthesize powerSourceRunloop=_powerSourceRunloop;
+@property struct __CFRunLoopSource *powerSourceRef; // @synthesize powerSourceRef=_powerSourceRef;
 @property BOOL previouslyReleasedSleepAssertion; // @synthesize previouslyReleasedSleepAssertion=_previouslyReleasedSleepAssertion;
+@property unsigned int displaySleepAssertion; // @synthesize displaySleepAssertion=_displaySleepAssertion;
 @property unsigned int systemSleepAssertion; // @synthesize systemSleepAssertion=_systemSleepAssertion;
+@property id <OSIPowerControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property BOOL machineIsCriticallyLowOnPower; // @synthesize machineIsCriticallyLowOnPower=_machineIsCriticallyLowOnPower;
 @property BOOL machineIsLowOnPower; // @synthesize machineIsLowOnPower=_machineIsLowOnPower;
 @property BOOL machineIsPluggedIn; // @synthesize machineIsPluggedIn=_machineIsPluggedIn;
 @property BOOL machineHasBattery; // @synthesize machineHasBattery=_machineHasBattery;
+- (void)_startLowBatteryTestMode;
 - (void)_cacheMachineProperties;
 - (void)_updateState;
 - (void)disableSystemSleep;
 - (void)enableSystemSleep;
 - (void)dealloc;
-- (id)init;
+- (id)initWithDelegate:(id)arg1;
 
 @end
 

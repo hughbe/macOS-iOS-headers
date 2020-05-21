@@ -17,6 +17,7 @@
 
 + (id)setSiriPresentationClientStateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setSiriPresentationClientState;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SASiriPresentationClientState *clientState;
 - (id)encodedClassName;
 - (id)groupIdentifier;

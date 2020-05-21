@@ -7,18 +7,19 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class BRCAccountSession, BRCClientZone, BRCItemID, BRCServerZone, BRCStatInfo, NSNumber;
+@class BRCAccountSession, BRCClientZone, BRCItemID, BRCServerZone, BRCStatInfo, BRCUserRowID;
 
 @protocol BRCItem <NSCopying, NSSecureCoding>
 @property(nonatomic) unsigned long long sharingOptions;
 @property(readonly, nonatomic) BRCClientZone *clientZone;
 @property(readonly, nonatomic) BRCServerZone *serverZone;
 @property(readonly, nonatomic) BRCAccountSession *session;
-@property(readonly, nonatomic) NSNumber *ownerKey;
+@property(readonly, nonatomic) BRCUserRowID *ownerKey;
 @property(readonly, nonatomic) BRCStatInfo *st;
 @property(readonly, nonatomic) BRCItemID *itemID;
 @property(readonly, nonatomic) BOOL isFinderBookmark;
 @property(readonly, nonatomic) BOOL isSymLink;
+@property(readonly, nonatomic) BOOL isZoneRoot;
 @property(readonly, nonatomic) BOOL isFSRoot;
 @property(readonly, nonatomic) BOOL isDirectory;
 @property(readonly, nonatomic) BOOL isDocument;

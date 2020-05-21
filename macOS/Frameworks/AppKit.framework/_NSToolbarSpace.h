@@ -6,13 +6,12 @@
 
 #import <AppKit/NSView.h>
 
-@class NSImage, NSToolbarSpaceItem;
+@class NSToolbarSpaceItem;
 
 @interface _NSToolbarSpace : NSView
 {
     NSToolbarSpaceItem *_spaceItem;
     BOOL _inPalette;
-    NSImage *_configPanelImage;
 }
 
 @property NSToolbarSpaceItem *spaceItem; // @synthesize spaceItem=_spaceItem;
@@ -24,8 +23,10 @@
 - (BOOL)_shouldDrawSpace;
 - (void)_drawToolbarSpaceInRect:(struct CGRect)arg1;
 - (struct __CFString *)_currentCoreUIWidget;
+- (BOOL)allowsVibrancy;
 - (BOOL)preservesContentDuringLiveResize;
 - (BOOL)_drawsNothing;
+- (BOOL)isSpaceItem;
 - (BOOL)inPalette;
 - (void)setInPalette:(BOOL)arg1;
 - (id)initWithSize:(struct CGSize)arg1 forSpaceItem:(id)arg2;

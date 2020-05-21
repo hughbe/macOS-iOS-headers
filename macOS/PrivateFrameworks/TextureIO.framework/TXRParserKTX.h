@@ -4,21 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <TextureIO/TXRParserBase.h>
+#import "NSObject.h"
 
 #import "TXRParser.h"
 
 @class NSDictionary, NSObject<OS_dispatch_queue>, NSString, TXRDeferredTextureInfo, TXRTextureInfo;
 
-@interface TXRParserKTX : TXRParserBase <TXRParser>
+__attribute__((visibility("hidden")))
+@interface TXRParserKTX : NSObject <TXRParser>
 {
     TXRTextureInfo *_textureInfo;
-    BOOL _fileIsLittleEndian;
-    unsigned int _type;
-    unsigned int _typeSize;
-    unsigned int _format;
-    unsigned int _internalFormat;
-    unsigned int _baseInternalFormat;
     unsigned int _bytesOfKeyValueData;
     BOOL _isCompressed;
     NSDictionary *_internalSizedFormatLookup;
@@ -27,15 +22,14 @@
     _Bool _shouldFlipVertically;
 }
 
-+ (BOOL)isKTXFile:(id)arg1;
-@property(readonly, nonatomic) TXRTextureInfo *textureInfo; // @synthesize textureInfo=_textureInfo;
++ (BOOL)exportTexture:(id)arg1 url:(id)arg2 error:(id *)arg3;
++ (BOOL)handlesData:(id)arg1;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) TXRTextureInfo *textureInfo; // @synthesize textureInfo=_textureInfo;
 - (id)parsedImageAtLevel:(unsigned long long)arg1 element:(unsigned long long)arg2 face:(unsigned long long)arg3;
-- (BOOL)determineFormatFromType:(unsigned int)arg1 format:(unsigned int)arg2 internalFormat:(unsigned int)arg3 baseInternalFormat:(unsigned int)arg4 options:(id)arg5;
-- (void)parseImageDataWithOptions:(id)arg1 bufferAllocator:(id)arg2;
+- (unsigned long long)determineFormatFromType:(unsigned int)arg1 format:(unsigned int)arg2 internalFormat:(unsigned int)arg3 baseInternalFormat:(unsigned int)arg4;
+- (void)parseImageData:(id)arg1 WithOptions:(id)arg2 bufferAllocator:(id)arg3;
 - (BOOL)parseData:(id)arg1 bufferAllocator:(id)arg2 options:(id)arg3 error:(id *)arg4;
-- (void)initializeSizedFormatTable;
-- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -10,10 +10,13 @@
 {
 }
 
++ (void)addCalendarObserver:(CDUnknownBlockType)arg1 forObjectLifetime:(id)arg2;
 + (void)addAddressBookObserver:(CDUnknownBlockType)arg1 forObjectLifetime:(id)arg2;
 + (void)_addObserver:(CDUnknownBlockType)arg1 forObjectLifetime:(id)arg2 listenerClass:(Class)arg3;
 + (id)_getListener:(Class)arg1;
 + (id)_getListenerByClassMap;
++ (void)simulateCalendarChange;
++ (void)simulateAddressBookChange;
 
 @end
 

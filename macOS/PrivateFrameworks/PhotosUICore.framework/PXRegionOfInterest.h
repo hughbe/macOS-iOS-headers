@@ -4,39 +4,33 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <PhotosUICore/PXCoordinatedRect.h>
 
 #import "NSCopying.h"
 
-@class NSString, PXImageRequester, PXViewSpec;
+@class NSString, PXImageRequester, PXTitleSubtitleLabelSpec, PXViewSpec;
 
-@interface PXRegionOfInterest : NSObject <NSCopying>
+@interface PXRegionOfInterest : PXCoordinatedRect <NSCopying>
 {
-    id _coordinateSpace;
     PXImageRequester *_imageRequester;
     PXViewSpec *_imageViewSpec;
     NSString *_title;
     NSString *_subtitle;
-    PXViewSpec *_textViewSpec;
+    PXTitleSubtitleLabelSpec *_textViewSpec;
     CDUnknownBlockType _placeholderViewFactory;
-    struct CGRect _rect;
     struct CGRect _imageContentsRect;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType placeholderViewFactory; // @synthesize placeholderViewFactory=_placeholderViewFactory;
-@property(retain, nonatomic) PXViewSpec *textViewSpec; // @synthesize textViewSpec=_textViewSpec;
+@property(retain, nonatomic) PXTitleSubtitleLabelSpec *textViewSpec; // @synthesize textViewSpec=_textViewSpec;
 @property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(retain, nonatomic) PXViewSpec *imageViewSpec; // @synthesize imageViewSpec=_imageViewSpec;
 @property(nonatomic) struct CGRect imageContentsRect; // @synthesize imageContentsRect=_imageContentsRect;
 @property(retain, nonatomic) PXImageRequester *imageRequester; // @synthesize imageRequester=_imageRequester;
-@property(readonly, nonatomic) id coordinateSpace; // @synthesize coordinateSpace=_coordinateSpace;
-@property(readonly, nonatomic) struct CGRect rect; // @synthesize rect=_rect;
-- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (struct CGRect)rectInCoordinateSpace:(id)arg1;
 - (id)initWithRect:(struct CGRect)arg1 inCoordinateSpace:(id)arg2;
-- (id)init;
 
 @end
 

@@ -8,12 +8,11 @@
 
 #import "NSCopying.h"
 
-@class EDBorders, OITSUColor;
+@class OITSUColor;
 
 __attribute__((visibility("hidden")))
 @interface EMBordersProperty : CMProperty <NSCopying>
 {
-    EDBorders *edValue;
     OITSUColor *mBorderColor;
     OITSUColor *mBorderTopColor;
     OITSUColor *mBorderLeftColor;
@@ -23,6 +22,7 @@ __attribute__((visibility("hidden")))
     int mBorderWidth[5];
 }
 
+- (void).cxx_destruct;
 - (id)cssString;
 - (id)cssStringForName:(id)arg1;
 - (void)setNoneAtLocation:(int)arg1;

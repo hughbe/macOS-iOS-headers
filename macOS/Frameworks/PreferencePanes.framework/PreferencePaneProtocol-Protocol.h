@@ -7,10 +7,20 @@
 @class NSData, NSString;
 
 @protocol PreferencePaneProtocol
+- (oneway void)replyToShouldUnselect:(void (^)(BOOL))arg1;
+- (oneway void)shouldUnselect:(void (^)(unsigned long long))arg1;
+- (oneway void)didUnselect;
+- (oneway void)willUnselect;
+- (oneway void)didSelect;
+- (oneway void)willSelectWithReply:(void (^)(void))arg1;
+- (oneway void)willSelect;
+
+@optional
 - (oneway void)authorize;
 - (oneway void)openDocumentAtPath:(NSString *)arg1;
 - (oneway void)revealElementForKey:(NSString *)arg1;
 - (oneway void)handleOpenAEData:(NSData *)arg1;
+- (oneway void)getHasElementForKey:(NSString *)arg1 reply:(void (^)(BOOL))arg2;
 - (oneway void)getHelpMenuItems:(void (^)(NSArray *))arg1;
 - (oneway void)didResignActive;
 - (oneway void)willResignActive;
@@ -20,12 +30,5 @@
 - (oneway void)willUnhide;
 - (oneway void)didHide;
 - (oneway void)willHide;
-- (oneway void)replyToShouldUnselect:(void (^)(BOOL))arg1;
-- (oneway void)shouldUnselect:(void (^)(unsigned long long))arg1;
-- (oneway void)didUnselect;
-- (oneway void)willUnselect;
-- (oneway void)didSelect;
-- (oneway void)willSelectWithReply:(void (^)(void))arg1;
-- (oneway void)willSelect;
 @end
 

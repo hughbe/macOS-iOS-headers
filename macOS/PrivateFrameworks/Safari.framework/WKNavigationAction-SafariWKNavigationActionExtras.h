@@ -8,6 +8,6 @@
 
 @interface WKNavigationAction (SafariWKNavigationActionExtras)
 - (long long)safari_mouseButtonNumber;
-- (BOOL)safari_isNewPopupWindowNavigationAction;
+- (BOOL)safari_isNewWindowNavigationActionSpecifiedByAnchorTargetAttribute;
 @end
 

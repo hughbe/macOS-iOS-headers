@@ -10,7 +10,7 @@
 {
 }
 
-+ (void)showUserNotification:(struct __CFUserNotification *)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
++ (void)showUserNotification:(void *)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 
 @end
 

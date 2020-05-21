@@ -18,6 +18,7 @@
 + (void)popMetricsFromDatabaseAndSendToMessageTracer;
 + (void)persistInMemoryStatisticsToDatabase;
 + (void)setEntityStore:(id)arg1;
++ (void)assetVersion:(long long)arg1;
 + (void)assetVersion;
 + (void)hypotheticalContactSuggestionImpressionsIncludingInsignificant:(int)arg1;
 + (void)contactSuggestionImpressionsViaBanner:(int)arg1;
@@ -69,6 +70,7 @@
 + (void)messagesLost:(unsigned long long)arg1;
 + (void)messagesAdded:(unsigned long long)arg1;
 + (id)aggregateKeyForKeySuffix:(id)arg1;
++ (unsigned long long)twoSigFigs:(id)arg1;
 + (void)platform_flushSynchronously;
 + (void)platform_popMetricsFromDatabaseAndSendToMessageTracer;
 + (void)platform_persistInMemoryStatisticsToDatabase;

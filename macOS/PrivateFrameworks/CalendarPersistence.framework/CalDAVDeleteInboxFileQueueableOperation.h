@@ -16,11 +16,11 @@
     NSString *_inboxPath;
 }
 
+- (void).cxx_destruct;
 - (void)handleRemovalCleanup;
 - (void)task:(id)arg1 didFinishWithError:(id)arg2;
 - (void)useCoreDAV;
 - (void)performOperation;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 inboxPath:(id)arg2 filename:(id)arg3 forSession:(id)arg4;
 
 // Remaining properties

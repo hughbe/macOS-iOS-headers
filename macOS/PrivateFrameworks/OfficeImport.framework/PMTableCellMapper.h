@@ -18,9 +18,9 @@ __attribute__((visibility("hidden")))
     float mWidth;
 }
 
+- (void).cxx_destruct;
 - (float)widthWithState:(id)arg1;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
-- (void)dealloc;
 - (id)initWithOadTableCell:(id)arg1 rowIndex:(unsigned long long)arg2 columnIndex:(int)arg3 parent:(id)arg4;
 - (void)mapCellPropertiesWithState:(id)arg1 textAnchor:(unsigned char)arg2;
 - (void)mapBordersWithState:(id)arg1;

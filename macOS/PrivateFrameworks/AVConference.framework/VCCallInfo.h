@@ -35,9 +35,15 @@ __attribute__((visibility("hidden")))
     double firstDegradedMeasure;
     double videoDegradedThreshold;
     unsigned char u8Version;
+    NSString *_frameworkVersion;
+    NSString *_osVersion;
+    NSString *_deviceType;
 }
 
 + (unsigned char)getVCCurrentVersion;
+@property(copy, nonatomic) NSString *frameworkVersion; // @synthesize frameworkVersion=_frameworkVersion;
+@property(copy, nonatomic) NSString *OSVersion; // @synthesize OSVersion=_osVersion;
+@property(copy, nonatomic) NSString *deviceType; // @synthesize deviceType=_deviceType;
 @property(nonatomic) unsigned char u8Version; // @synthesize u8Version;
 @property(nonatomic) BOOL supportsSKEOptimization; // @synthesize supportsSKEOptimization;
 @property(readonly, nonatomic) BOOL supportsSpecialAACBundle; // @synthesize supportsSpecialAACBundle;

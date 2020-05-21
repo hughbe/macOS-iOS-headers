@@ -16,6 +16,7 @@
 
 + (id)setApplicationContextWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setApplicationContext;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *orderedContext;
 - (id)encodedClassName;
 - (id)groupIdentifier;

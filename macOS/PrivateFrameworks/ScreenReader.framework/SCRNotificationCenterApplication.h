@@ -10,15 +10,24 @@ __attribute__((visibility("hidden")))
 @interface SCRNotificationCenterApplication : SCRApplication
 {
     BOOL _shouldIgnoreKeyboardFocusChangeEvents;
+    long long __currentNumberOfTimesCheckingSiriIsVisible;
 }
 
+@property(nonatomic, setter=_setCurrentNumberTimesCheckingIsSiriVisible:) long long _currentNumberOfTimesCheckingSiriIsVisible; // @synthesize _currentNumberOfTimesCheckingSiriIsVisible=__currentNumberOfTimesCheckingSiriIsVisible;
+- (void)_focusOnTalkToSiriButtonAfterDelay;
+- (void)_focusOnTalkToSiriButton;
+- (void)_replaceNotificationCenterTitleWithSiriTitleForRequest:(id)arg1;
+- (void)_ignoreKeyboardFocusChangeEventsForNotificationCenterTableWindow;
 - (id)_updatedNotificationGuideTitleWithAppName:(id)arg1 title:(id)arg2 subtitle:(id)arg3 body:(id)arg4;
 - (void)_updateNotificationsGuide:(id)arg1 isInLockScreenValue:(id)arg2;
 - (void)_startHandlingKeyboardFocusChangeEvents;
+- (void)_focusOnFaceTimeWindowContent;
+- (void)focusOnFaceTimeWindowContent;
+- (void)dispatchFocusOnTalkToSiriButton;
 - (void)dispatchUpdateNotificationsGuide:(id)arg1 isInLockScreen:(BOOL)arg2;
 - (id)widgetRadioButtonUIElement;
 - (void)_keyboardFocusDidChange:(id)arg1;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 - (void)elementWasDestroyed:(id)arg1;
 - (BOOL)applicationNeedsWindows;
 - (BOOL)isHidden;

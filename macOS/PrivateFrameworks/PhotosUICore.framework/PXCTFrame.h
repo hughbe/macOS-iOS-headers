@@ -11,6 +11,7 @@
 @interface PXCTFrame : NSObject
 {
     BOOL _prepared;
+    BOOL _truncated;
     BOOL _allowTruncation;
     NSArray *_lines;
     const struct __CTFrame *_frame;
@@ -19,13 +20,14 @@
     struct CGPoint _origin;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) struct CGPoint origin; // @synthesize origin=_origin;
 @property(readonly, nonatomic) __weak PXCTFramesetter *framesetter; // @synthesize framesetter=_framesetter;
 @property(readonly, nonatomic) BOOL allowTruncation; // @synthesize allowTruncation=_allowTruncation;
 @property(readonly, nonatomic) unsigned long long maximumLineCount; // @synthesize maximumLineCount=_maximumLineCount;
 @property(readonly, nonatomic) const struct __CTFrame *frame; // @synthesize frame=_frame;
+@property(readonly, nonatomic, getter=isTruncated) BOOL truncated; // @synthesize truncated=_truncated;
 @property(readonly, nonatomic) NSArray *lines; // @synthesize lines=_lines;
-- (void).cxx_destruct;
 - (BOOL)_truncateLine:(inout const struct __CTLine **)arg1 withOrigin:(inout struct CGPoint *)arg2 referenceAttributedString:(inout id *)arg3 bounds:(struct CGRect)arg4;
 - (void)prepare;
 - (void)dealloc;

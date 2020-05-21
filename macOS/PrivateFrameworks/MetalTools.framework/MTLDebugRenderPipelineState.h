@@ -10,14 +10,28 @@
 
 @interface MTLDebugRenderPipelineState : MTLToolsRenderPipelineState
 {
+    unsigned long long _maxVertexCount;
+    unsigned long long _maxInstanceCount;
+    unsigned long long _maxPatchCount;
+    unsigned long long _rasterSampleCount;
+    unsigned long long _colorPixelFormat[8];
+    unsigned long long _depthPixelFormat;
+    unsigned long long _stencilPixelFormat;
+    unsigned long long _vertexDescriptorLayoutCount;
+    struct {
+        unsigned long long bufferIndex;
+        unsigned long long bufferStride;
+    } _vertexDescriptorLayouts[31];
     MTLRenderPipelineDescriptor *_descriptor;
     MTLRenderPipelineReflection *_reflection;
 }
 
 @property(readonly, nonatomic) MTLRenderPipelineReflection *reflection; // @synthesize reflection=_reflection;
 @property(readonly, nonatomic) MTLRenderPipelineDescriptor *descriptor; // @synthesize descriptor=_descriptor;
-- (void).cxx_destruct;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
+- (void)_updateCachedPipelineState:(id)arg1;
+- (void)dealloc;
 - (id)initWithPipelineState:(id)arg1 reflection:(id)arg2 parent:(id)arg3 descriptor:(id)arg4;
 
 @end

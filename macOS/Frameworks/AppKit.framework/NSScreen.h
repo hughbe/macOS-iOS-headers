@@ -6,14 +6,18 @@
 
 #import "NSObject.h"
 
-@class NSColorSpace, NSDictionary;
+@class NSCGSDisplay, NSColorSpace, NSDictionary, NSString, _NSScreenSharedInfo;
 
 @interface NSScreen : NSObject
 {
     struct CGRect _frame;
     int _depth;
-    int _screenNumber;
-    id _auxiliaryStorage;
+    NSCGSDisplay *_display;
+    _NSScreenSharedInfo *_sharedInfo;
+    NSColorSpace *_colorSpace;
+    NSString *_UUIDString;
+    int _displayID;
+    NSString *_cachedDisplayName;
 }
 
 + (struct CGPoint)_cgScreenPointForPoint:(struct CGPoint)arg1;
@@ -22,44 +26,20 @@
 + (BOOL)screensHaveSeparateSpaces;
 + (BOOL)_spacePerDisplay;
 + (double)_backingScaleFactorForScreen:(id)arg1;
-+ (void)_resetCachedGreatestBackingScaleFactor;
-+ (double)_deviceResolutionForScreen:(id)arg1;
 + (id)_screenForScreenNumber:(long long)arg1;
-+ (void)_displayProfileChangedForScreenNumber:(long long)arg1;
 + (id)deepestScreen;
 + (BOOL)_zeroScreenIsNew;
 + (double)_zeroScreenHeight;
-+ (void)_resetSharedInfoForReason:(unsigned long long)arg1;
-+ (void)_setCachedMenuBarHeight:(double)arg1;
-+ (double)_cachedMenuBarHeight;
-+ (unsigned int)_cachedDockOrientation;
-+ (void)_setCachedDockOrientation:(unsigned int)arg1;
-+ (struct CGRect)_cachedDockRect;
-+ (void)_setCachedDockRect:(struct CGRect)arg1;
 + (id)_zeroScreen;
 + (id)mainScreen;
-+ (void)_prepare;
-+ (BOOL)_invalidatePresentationConfigIfNeeded;
-+ (BOOL)_invalidateDockConfigIfNeeded;
-+ (BOOL)_invalidateDisplayConfigIfNeeded;
-+ (BOOL)_invalidateIfNeededForReason:(unsigned long long)arg1;
-+ (BOOL)_resetScreensIfNeededForReason:(unsigned long long)arg1;
-+ (BOOL)_updateSeedsForReason:(unsigned long long)arg1;
-+ (BOOL)_updateDockSeeds;
-+ (BOOL)_updatePresentationSeeds;
-+ (BOOL)_updateDisplaySeeds;
-+ (BOOL)_invalidateDisplayConfig;
-+ (void)_resetScreensForSideEffects;
-+ (void)_resetScreens;
-+ (void)_resetScreensForReason:(unsigned long long)arg1;
-+ (void)_resetScreensSafelyForReason:(unsigned long long)arg1;
-+ (void)_resetScreensUnsafelyForReason:(unsigned long long)arg1;
 + (id)screens;
-+ (void)initialize;
-+ (struct CGRect)_allScreensFrame;
 + (int)_shieldingWindowLevel;
 + (BOOL)_releaseAllCapturedScreens:(id *)arg1;
 + (BOOL)_captureAllScreens:(id *)arg1;
+@property(copy, setter=_setCachedDisplayName:) NSString *_cachedDisplayName; // @synthesize _cachedDisplayName;
+- (id)_hwModel;
+- (id)_localizedName;
+@property(readonly, copy) NSString *localizedName;
 - (BOOL)_isActiveScreen;
 - (unsigned long long)_currentSpace;
 - (id)imageInRect:(struct CGRect)arg1 underWindow:(id)arg2;
@@ -67,43 +47,36 @@
 - (struct CGRect)backingAlignedRect:(struct CGRect)arg1 options:(unsigned long long)arg2;
 - (struct CGRect)convertRectFromBacking:(struct CGRect)arg1;
 - (struct CGRect)convertRectToBacking:(struct CGRect)arg1;
-- (double)userSpaceScaleFactor;
-- (unsigned long long)hash;
-- (BOOL)isEqual:(id)arg1;
-- (long long)_screenNumber;
 @property(readonly) const int *supportedWindowDepths;
-- (id)_snapshot;
-- (void)dealloc;
-- (id)init;
-- (id)initWithDisplayID:(int)arg1;
+- (BOOL)canRepresentDisplayGamut:(long long)arg1;
 @property(readonly, copy) NSDictionary *deviceDescription;
-- (void)_setSharedInfo:(id)arg1;
-- (void)_reset;
-- (id)_UUIDString;
-- (void)_resetUUIDString;
-- (void)_setUUIDString:(id)arg1;
-- (void)_resetResolution;
-- (struct CGSize)_resolution;
 - (struct CGRect)_safeVisibleFrame;
 @property(readonly) struct CGRect visibleFrame;
-- (struct CGRect)_frameByAdjustingFrameForDock:(struct CGRect)arg1;
 - (struct CGRect)_layoutFrame;
 - (double)_menuBarHeight;
+- (struct CGRect)_dockRect;
+- (BOOL)_dockHidden;
+- (unsigned int)_dockOrientation;
+- (id)_UUIDString;
+- (struct CGSize)devicePixelCounts;
+- (struct CGSize)_resolution;
+@property(readonly) double maximumReferenceExtendedDynamicRangeColorComponentValue;
+@property(readonly) double maximumPotentialExtendedDynamicRangeColorComponentValue;
+@property(readonly) double maximumExtendedDynamicRangeColorComponentValue;
+@property(readonly) double backingScaleFactor;
 - (BOOL)_isZeroScreen;
 @property(readonly) struct CGRect frame;
-- (void)_adjustCachedFrameForZeroScreenHeight:(double)arg1;
-- (void)_resetFrame;
-- (double)maximumExtendedDynamicRangeColorComponentValue;
-- (void)_resetMaximumExtendedDynamicRangeColorComponentValue;
-@property(readonly) double backingScaleFactor;
-- (void)_resetDisplayScaleFactor;
 @property(readonly) NSColorSpace *colorSpace;
-- (void)_resetColorSpace;
-- (void)_setColorSpace:(id)arg1;
 @property(readonly) int depth;
-- (void)_resetDepth;
-- (struct CGRect)_dockRect;
-- (unsigned int)_dockOrientation;
+- (int)_displayID;
+- (long long)_screenNumber;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
+- (id)_snapshot;
+- (void)_updateWithDisplay:(id)arg1 sharedInfo:(id)arg2;
+- (void)dealloc;
+- (id)_initWithDisplay:(id)arg1 sharedInfo:(id)arg2;
+- (double)userSpaceScaleFactor;
 - (BOOL)_switchToSetting:(id)arg1 error:(id *)arg2;
 - (id)_bestSettingSimilarToSetting:(id)arg1 exactMatch:(char *)arg2;
 - (id)_bestSettingWithBitsPerPixel:(int)arg1 width:(int)arg2 height:(int)arg3 refreshRate:(double)arg4 exactMatch:(char *)arg5;
@@ -113,10 +86,8 @@
 - (BOOL)_releaseCapture:(id *)arg1;
 - (BOOL)_isCaptured;
 - (BOOL)_capture:(id *)arg1;
-- (unsigned int)_displayID;
 - (id)displayLinkWithHandler:(CDUnknownBlockType)arg1;
 - (id)displayLinkWithTarget:(id)arg1 selector:(SEL)arg2;
-- (void)addUpdateHandler:(CDUnknownBlockType)arg1;
 
 @end
 

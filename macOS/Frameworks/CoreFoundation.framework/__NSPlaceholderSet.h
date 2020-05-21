@@ -12,21 +12,20 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)allocWithZone:(struct _NSZone *)arg1;
-+ (id)mutablePlaceholder;
-+ (id)immutablePlaceholder;
 + (void)initialize;
-- (void)removeObject:(id)arg1;
-- (void)addObject:(id)arg1;
-- (id)objectEnumerator;
-- (id)member:(id)arg1;
-- (unsigned long long)count;
 - (void)dealloc;
 - (unsigned long long)retainCount;
 - (oneway void)release;
 - (id)retain;
 - (id)init;
 - (id)initWithCapacity:(unsigned long long)arg1;
+- (id)initWithSet:(id)arg1 copyItems:(BOOL)arg2;
 - (id)initWithObjects:(const id *)arg1 count:(unsigned long long)arg2;
+- (void)removeObject:(id)arg1;
+- (void)addObject:(id)arg1;
+- (id)objectEnumerator;
+- (id)member:(id)arg1;
+- (unsigned long long)count;
 
 @end
 

@@ -6,17 +6,18 @@
 
 #import "NSObject.h"
 
-@class MKPlaceCardActionsViewController;
+@class MKPlaceActionManager, MKPlaceCardActionsViewController, NSView, _MKUIViewController;
 
 @protocol MKPlaceCardActionControllerDelegate <NSObject>
-- (void)placeCardActionControllerDidSelectReportAProblem:(MKPlaceCardActionsViewController *)arg1;
+- (void)placeCardActionControllerDidSelectReportAProblem:(MKPlaceCardActionsViewController *)arg1 fromView:(NSView *)arg2;
+- (void)placeActionManager:(MKPlaceActionManager *)arg1 didSelectShareFromView:(NSView *)arg2;
 
 @optional
-- (void)placeCardActionControllerDidSelectAddPhoto:(MKPlaceCardActionsViewController *)arg1;
-- (void)placeCardActionControllerDidSelectViewAllPhotos:(MKPlaceCardActionsViewController *)arg1;
+- (void)placeCardActionControllerDidSelectAddPhoto:(MKPlaceCardActionsViewController *)arg1 presentingViewController:(_MKUIViewController *)arg2;
+- (void)placeCardActionControllerDidSelectViewAllPhotos:(MKPlaceCardActionsViewController *)arg1 presentingViewController:(_MKUIViewController *)arg2;
 - (void)placeCardActionControllerDidSelectRemoveFromSuggestedFavorites:(MKPlaceCardActionsViewController *)arg1;
 - (void)placeCardActionControllerDidSelectRemoveFromFavorites:(MKPlaceCardActionsViewController *)arg1;
 - (void)placeCardActionControllerDidSelectAddToFavorites:(MKPlaceCardActionsViewController *)arg1;
-- (void)placeCardActionControllerDidSelectAddToContacts:(MKPlaceCardActionsViewController *)arg1;
+- (void)placeCardActionControllerDidSelectAddToContacts:(MKPlaceCardActionsViewController *)arg1 fromView:(NSView *)arg2;
 @end
 

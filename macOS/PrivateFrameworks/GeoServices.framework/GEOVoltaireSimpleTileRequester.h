@@ -6,20 +6,27 @@
 
 #import <GeoServices/GEOSimpleTileRequester.h>
 
+#import "GEOSimpleTileRequesterSubclass.h"
 #import "NSURLConnectionDelegate.h"
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
-@interface GEOVoltaireSimpleTileRequester : GEOSimpleTileRequester <NSURLConnectionDelegate>
+@interface GEOVoltaireSimpleTileRequester : GEOSimpleTileRequester <NSURLConnectionDelegate, GEOSimpleTileRequesterSubclass>
 {
+    BOOL _hasUpdatedManifestForHTTP410;
 }
 
-- (id)localizationURLForTileKey:(struct _GEOTileKey *)arg1;
-- (id)_localizationURLForTileKey:(struct _GEOTileKey *)arg1;
-- (id)urlForTileKey:(struct _GEOTileKey *)arg1;
-- (unsigned int)tileEditionForKey:(struct _GEOTileKey *)arg1;
-- (int)checksumMethodForIncomingTileDataWithKey:(struct _GEOTileKey *)arg1;
++ (CDStruct_e4886f83 *)newExpiringTilesets;
++ (unsigned long long)expiringTilesetsCount;
+- (void)failedLoadingTileForKey:(struct _GEOTileKey)arg1 baseOperation:(id)arg2 error:(id)arg3;
+- (BOOL)needsLocalizationForKey:(const struct _GEOTileKey *)arg1;
+- (id)localizationURLForTileKey:(const struct _GEOTileKey *)arg1;
+- (id)_localizationURLForTileKey:(const struct _GEOTileKey *)arg1;
+- (id)urlForTileKey:(const struct _GEOTileKey *)arg1;
+- (unsigned int)tileEditionForKey:(const struct _GEOTileKey *)arg1;
+- (BOOL)shouldAllowEmptyDataForTileKey:(const struct _GEOTileKey *)arg1;
+- (int)checksumMethodForIncomingTileDataWithKey:(const struct _GEOTileKey *)arg1;
+- (id)activeTileSetForKey:(const struct _GEOTileKey *)arg1;
 - (unsigned int)tileSetForKey:(const struct _GEOTileKey *)arg1;
 
 // Remaining properties

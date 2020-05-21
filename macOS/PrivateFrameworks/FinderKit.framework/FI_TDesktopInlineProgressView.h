@@ -15,8 +15,8 @@
 __attribute__((visibility("hidden")))
 @interface FI_TDesktopInlineProgressView : FI_TUpdateLayerView <TTrackingAreaOwnerProtocol, CAAnimationDelegate, CALayerDelegate>
 {
-    struct TNSRef<FI_TInlineProgressHostLayer *, void> _inlineProgressHostLayer;
-    function_f9feaa7d _cancelButtonHandler;
+    struct TNSRef<FI_TInlineProgressHostLayer, void> _inlineProgressHostLayer;
+    function_b1fce659 _cancelButtonHandler;
 }
 
 - (id).cxx_construct;
@@ -35,7 +35,7 @@ __attribute__((visibility("hidden")))
 - (id)hitTest:(struct CGPoint)arg1;
 - (BOOL)layer:(id)arg1 shouldInheritContentsScale:(double)arg2 fromWindow:(id)arg3;
 - (void)completeAnimation;
-- (void)setCancelButtonHandler:(const function_f9feaa7d *)arg1;
+- (void)setCancelButtonHandler:(const function_b1fce659 *)arg1;
 - (void)setIconFrame:(const struct CGRect *)arg1 baselineOffset:(double)arg2;
 - (struct CGRect)iconFrame;
 - (double)baselineOffset;
@@ -45,8 +45,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) double percentComplete; // @dynamic percentComplete;
 - (void)initCommon;
 - (void)dealloc;
-- (id)initWithCoder:(id)arg1;
-- (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithFrame:(const struct CGRect *)arg1 canCancel:(_Bool)arg2 initialPercentComplete:(double)arg3;
 
 // Remaining properties

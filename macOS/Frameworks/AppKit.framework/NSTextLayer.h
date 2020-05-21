@@ -4,40 +4,31 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AppKit/_NSBackingLayer.h>
+#import "CALayer.h"
 
-#import "CALinearMaskLayerDelegate.h"
-#import "NSLinearMaskLayerController.h"
+#import "CALayerDelegate.h"
 
-@class CALayer, CALinearMaskLayer, NSColor, NSMapTable, NSMutableArray, NSMutableDictionary, NSString;
+@class NSString;
 
 __attribute__((visibility("hidden")))
-@interface NSTextLayer : _NSBackingLayer <NSLinearMaskLayerController, CALinearMaskLayerDelegate>
+@interface NSTextLayer : CALayer <CALayerDelegate>
 {
-    CALayer *_primaryOverlay;
-    NSColor *_primaryOverlayColor;
-    CDUnknownBlockType _primaryOverlayRenderer;
-    NSMutableArray *_primaryOverlayRenderers;
-    NSMutableDictionary *_layers;
-    NSMapTable *_renderers;
+    CALayer *_foregroundLayer;
+    CALayer *_bezelLayer;
 }
 
-- (void)renderInContext:(struct CGContext *)arg1;
-- (void)drawInContext:(struct CGContext *)arg1;
-- (void)drawInGraphicsContext:(id)arg1;
-- (void)invalidateSublayers;
-- (void)setContentsScale:(double)arg1;
-- (void)dealloc;
+@property(retain) CALayer *bezelLayer;
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
-- (void)drawLayer:(id)arg1 inLinearMaskContext:(struct CALinearMaskContext *)arg2;
-- (id)renderersForLayer:(id)arg1;
-- (void)addRenderer:(CDUnknownBlockType)arg1 forLayer:(id)arg2;
-- (id)layerForColor:(id)arg1;
-@property(retain) NSColor *primaryOverlayColor; // @dynamic primaryOverlayColor;
-@property(copy) CDUnknownBlockType primaryOverlayRenderer; // @dynamic primaryOverlayRenderer;
-@property(retain) CALinearMaskLayer *primaryOverlay; // @dynamic primaryOverlay;
-- (BOOL)NS_needsLinearMaskOverlayForFontSmoothing;
-- (BOOL)NS_usesLinearMaskOverlay;
+- (void)drawLayer:(id)arg1 inContext:(struct CGContext *)arg2;
+- (void)_renderForegroundInContext:(struct CGContext *)arg1;
+- (void)drawInContext:(struct CGContext *)arg1;
+- (void)setSublayerTransform:(struct CATransform3D)arg1;
+- (void)_appkitViewBackingLayerUniqueMethod;
+- (void)_NS_invalidateSuggestedContentsScale;
+- (void)NS_didChangeDefaultContentsScale:(double)arg1;
+- (void)display;
+- (void)dealloc;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

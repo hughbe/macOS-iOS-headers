@@ -11,6 +11,7 @@
 @interface CRBoxLayer : CAReplicatorLayer
 {
     BOOL _customInit;
+    double _frameRatio;
     CAShapeLayer *_reticleLayer;
     CATextLayer *_codeLayer;
     NSMutableArray *_completionBlocks;
@@ -18,12 +19,13 @@
 }
 
 + (id)layer;
+- (void).cxx_destruct;
 @property BOOL customInit; // @synthesize customInit=_customInit;
 @property double demoSpeed; // @synthesize demoSpeed=_demoSpeed;
 @property(retain) NSMutableArray *completionBlocks; // @synthesize completionBlocks=_completionBlocks;
 @property(retain) CATextLayer *codeLayer; // @synthesize codeLayer=_codeLayer;
 @property(retain) CAShapeLayer *reticleLayer; // @synthesize reticleLayer=_reticleLayer;
-- (void).cxx_destruct;
+@property(nonatomic) double frameRatio; // @synthesize frameRatio=_frameRatio;
 - (void)addCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)animatePulseColor:(id)arg1;
 - (void)setString:(id)arg1 mirrored:(BOOL)arg2 inverted:(BOOL)arg3;

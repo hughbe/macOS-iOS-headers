@@ -12,12 +12,14 @@
 {
 }
 
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 + (id)microohms;
 + (id)milliohms;
 + (id)ohms;
 + (id)kiloohms;
 + (id)megaohms;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

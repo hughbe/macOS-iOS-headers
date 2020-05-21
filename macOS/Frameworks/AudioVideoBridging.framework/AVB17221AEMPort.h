@@ -26,6 +26,8 @@
 @property unsigned short numberOfControls; // @synthesize numberOfControls;
 @property unsigned short portFlags; // @synthesize portFlags;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (void)renumberDescriptorWithNextIndexes:(id)arg1;
 - (void)updateDependentContent;
 - (id)validChildrenDescriptorTypes;

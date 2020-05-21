@@ -23,6 +23,7 @@ __attribute__((visibility("hidden")))
     } _flags;
 }
 
+- (void).cxx_destruct;
 @property(readonly) struct CGRect aimFrame; // @synthesize aimFrame=_aimFrame;
 @property(readonly) struct CGRect itemFrame; // @synthesize itemFrame=_itemFrame;
 @property(readonly) id item; // @synthesize item=_item;

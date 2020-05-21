@@ -16,27 +16,29 @@
     BOOL _isUserCentric;
     BOOL _isEphemeral;
     NSString *_key;
-    unsigned long long _deviceID;
+    NSString *_deviceID;
 }
 
 + (BOOL)supportsSecureCoding;
++ (id)remoteKeyPathForKeyPath:(id)arg1 forDeviceID:(id)arg2;
 + (id)remotekeyPathForKeyPath:(id)arg1 forDevice:(unsigned long long)arg2;
 + (id)ephemeralKeyPathWithKey:(id)arg1;
 + (id)keyPathWithKey:(id)arg1;
 + (id)keyPathWithKey:(id)arg1 isUserCentric:(BOOL)arg2;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isEphemeral; // @synthesize isEphemeral=_isEphemeral;
 @property(nonatomic) BOOL isUserCentric; // @synthesize isUserCentric=_isUserCentric;
-@property(nonatomic) unsigned long long deviceID; // @synthesize deviceID=_deviceID;
+@property(retain, nonatomic) NSString *deviceID; // @synthesize deviceID=_deviceID;
 @property(copy, nonatomic) NSString *key; // @synthesize key=_key;
-- (void).cxx_destruct;
-- (unsigned short)characterAtIndex:(unsigned long long)arg1;
-- (unsigned long long)length;
+- (id)forwardingTargetForSelector:(SEL)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (BOOL)isMultiDeviceKeyPath;
+- (id)initWithKey:(id)arg1 forDeviceID:(id)arg2 isUserCentric:(BOOL)arg3 isEphemeral:(BOOL)arg4;
 - (id)initWithKey:(id)arg1 forDevice:(unsigned long long)arg2 isUserCentric:(BOOL)arg3 isEphemeral:(BOOL)arg4;
 - (id)init;
 

@@ -14,6 +14,7 @@
 + (id)blackListedProperties;
 + (id)defaultMonitor;
 - (void)performStartRemindersNotificationCenterWidget;
+- (void)performDeleteMessages:(id)arg1;
 - (void)performDeleteAlarms:(id)arg1;
 - (void)performBookmarkResolution:(id)arg1;
 - (void)performScheduleAlarms:(id)arg1;

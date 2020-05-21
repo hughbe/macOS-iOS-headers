@@ -8,6 +8,7 @@
 
 #import "NSSerializerStream.h"
 
+__attribute__((visibility("hidden")))
 @interface NSAKSerializerStream : NSObject <NSSerializerStream>
 {
     void *memory;

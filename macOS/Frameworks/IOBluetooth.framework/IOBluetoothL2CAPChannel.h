@@ -8,7 +8,7 @@
 
 #import "NSPortDelegate.h"
 
-@class IOBluetoothDevice, NSPort, NSString;
+@class IOBluetoothDevice, IOBluetoothL2CAPChannelExpansion, NSObject<IOBluetoothL2CAPChannelDelegate>, NSPort, NSString;
 
 @interface IOBluetoothL2CAPChannel : IOBluetoothObject <NSPortDelegate>
 {
@@ -16,7 +16,6 @@
     struct _IODataQueueMemory *mIncomingDataQueue;
     IOBluetoothDevice *mDevice;
     BOOL mIncomingChannel;
-    id mL2CAPChannelConnectionHandler;
     CDUnknownFunctionPointerType mIncomingDataListener;
     void *mIncomingDataListenerRefCon;
     CDUnknownFunctionPointerType mEventDataListener;
@@ -26,7 +25,8 @@
     unsigned short mRemoteChannelID;
     BOOL mIsClosed;
     unsigned long long mObjectID;
-    id _mReserved;
+    IOBluetoothL2CAPChannelExpansion *_mReserved;
+    NSObject<IOBluetoothL2CAPChannelDelegate> *_mL2CAPChannelConnectionHandler;
 }
 
 + (id)getKeyForIOService:(unsigned int)arg1;
@@ -35,6 +35,8 @@
 + (id)withL2CAPChannelRef:(struct OpaqueIOBluetoothObjectRef *)arg1;
 + (id)registerForChannelOpenNotifications:(id)arg1 selector:(SEL)arg2 withPSM:(unsigned short)arg3 direction:(int)arg4;
 + (id)registerForChannelOpenNotifications:(id)arg1 selector:(SEL)arg2;
+@property(retain) NSObject<IOBluetoothL2CAPChannelDelegate> *mL2CAPChannelConnectionHandler; // @synthesize mL2CAPChannelConnectionHandler=_mL2CAPChannelConnectionHandler;
+@property(retain) IOBluetoothL2CAPChannelExpansion *mReserved; // @synthesize mReserved=_mReserved;
 @property(readonly) unsigned short localChannelID; // @synthesize localChannelID=mLocalChannelID;
 @property unsigned long long objectID; // @synthesize objectID=mObjectID;
 @property unsigned short PSM; // @synthesize PSM=mChannelPSM;
@@ -48,6 +50,7 @@
 - (BOOL)channelStateIsOpen;
 - (int)startStopFlow:(BOOL)arg1;
 - (int)waitforChanneOpen;
+- (int)configureChannelID:(unsigned short)arg1 local:(_Bool)arg2;
 - (int)configureMTU:(unsigned short)arg1 maxIncomingMTU:(unsigned short)arg2;
 - (int)configureChannel:(id)arg1;
 - (void)dispatchEvent:(struct IOBluetoothL2CAPChannelEvent *)arg1;
@@ -71,6 +74,7 @@
 - (int)registerIncomingDataListener:(CDUnknownFunctionPointerType)arg1 refCon:(void *)arg2;
 - (int)writeSync:(void *)arg1 length:(unsigned short)arg2;
 - (int)writeAsync:(void *)arg1 length:(unsigned short)arg2 refcon:(void *)arg3;
+- (int)writeAsyncTrap:(void *)arg1 length:(unsigned short)arg2 refcon:(void *)arg3;
 - (int)write:(void *)arg1 length:(unsigned short)arg2;
 - (int)requestRemoteMTU:(unsigned short)arg1;
 - (int)closeChannel;

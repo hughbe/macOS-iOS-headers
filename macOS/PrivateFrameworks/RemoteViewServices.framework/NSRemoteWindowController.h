@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSRemoteServiceConnectionDelegate.h"
+
 @class NSLocalWindowWrappingRemoteWindow, NSObject<OS_dispatch_queue>, NSPanel, NSRemoteServiceConnection, NSString;
 
-@interface NSRemoteWindowController : NSObject
+@interface NSRemoteWindowController : NSObject <NSRemoteServiceConnectionDelegate>
 {
     NSRemoteServiceConnection *_connection;
     NSLocalWindowWrappingRemoteWindow *_localProxyWindow;
@@ -21,21 +23,23 @@
     unsigned long long _styleMask;
     BOOL _canBecomeKeyWindow;
     BOOL _canBecomeMainWindow;
-    BOOL _windowRightsGrantRetried;
     NSString *_pendingingWindowRightsGrantToken;
     CDUnknownBlockType _pendingGrantOfferedBlock;
     NSString *_remoteWindowClass;
     unsigned int _remoteOrderPlaceRequestsAccepted:1;
     unsigned int _disableAutomaticTermination:1;
+    unsigned int _requestUpdateSharedWindowFrameInProgress:1;
 }
 
 + (Class)localWindowClass;
+- (void).cxx_destruct;
 @property(copy) NSString *remoteWindowClass; // @synthesize remoteWindowClass=_remoteWindowClass;
 @property unsigned int disableAutomaticTermination; // @synthesize disableAutomaticTermination=_disableAutomaticTermination;
 @property BOOL canBecomeMainWindow; // @synthesize canBecomeMainWindow=_canBecomeMainWindow;
 @property BOOL canBecomeKeyWindow; // @synthesize canBecomeKeyWindow=_canBecomeKeyWindow;
 @property(readonly, retain) NSRemoteServiceConnection *connection; // @synthesize connection=_connection;
 @property BOOL isSheet; // @synthesize isSheet=_isSheet;
+@property(retain) NSObject<OS_dispatch_queue> *delegateQueue; // @synthesize delegateQueue=_delegateQueue;
 @property id delegate; // @synthesize delegate=_delegate;
 @property(readonly, retain) NSPanel *window; // @synthesize window=_localProxyWindow;
 - (int)_completeWindowRightsGrant:(const CDStruct_a41f6e61 *)arg1;
@@ -59,7 +63,6 @@
 - (void)sendEvent:(id)arg1;
 - (void)setFrame:(struct CGRect)arg1;
 - (id)sendSynchronousRequest:(id)arg1;
-@property NSObject<OS_dispatch_queue> *delegateQueue; // @dynamic delegateQueue;
 - (BOOL)initializeRemoteWindow;
 - (void)cleanup;
 - (void)dealloc;

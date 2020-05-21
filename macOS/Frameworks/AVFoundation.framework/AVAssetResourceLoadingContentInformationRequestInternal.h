@@ -6,11 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSDate, NSString;
+@class NSArray, NSDate, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetResourceLoadingContentInformationRequestInternal : NSObject
 {
     NSString *contentType;
+    NSArray *allowedContentTypes;
     long long contentLength;
     BOOL byteRangeAccessSupported;
     NSDate *renewalDate;

@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
 
 @property(nonatomic) unsigned long long _sectionCacheOffset; // @synthesize _sectionCacheOffset=__sectionCacheOffset;
 @property(nonatomic) Class sectionAccessibilityClass; // @synthesize sectionAccessibilityClass=_sectionAccessibilityClass;
+- (void)accessibilitySelectedChildrenDidChange;
 - (id)_dequeueSectionWithIndex:(unsigned long long)arg1;
 - (void)_trimSectionCacheToVisibleSections:(id)arg1;
 @property(readonly, nonatomic) NSMutableArray *_sectionCache;
@@ -27,7 +28,6 @@ __attribute__((visibility("hidden")))
 - (id)accessibilityArrayAttributeValues:(id)arg1 index:(unsigned long long)arg2 maxCount:(unsigned long long)arg3;
 - (unsigned long long)accessibilityArrayAttributeCount:(id)arg1;
 - (unsigned long long)accessibilityIndexOfChild:(id)arg1;
-- (void)accessibilityPostNotification:(id)arg1;
 - (void)setAccessibilitySelectedChildren:(id)arg1;
 - (id)accessibilitySelectedChildren;
 - (id)accessibilityChildren;
@@ -46,7 +46,6 @@ __attribute__((visibility("hidden")))
 - (void)accessibilityPrepareLayout;
 - (void)accessibilityInvalidateLayout;
 - (void)accessibilityDidEndScrolling;
-- (void)accessibilityPrepareForCollectionViewUpdates:(id)arg1;
 @property(readonly, nonatomic) __weak NSCollectionView *collectionView;
 @property(nonatomic) __weak NSCollectionViewLayout *layout;
 - (void)dealloc;

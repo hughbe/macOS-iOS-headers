@@ -16,7 +16,9 @@
 }
 
 - (void).cxx_destruct;
+- (id)objectAtIndexedSubscript:(unsigned long long)arg1;
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
+@property(readonly) unsigned long long count;
 @property(readonly, retain, nonatomic) NSArray *objects;
 - (void)removeObject:(id)arg1;
 - (void)addObject:(id)arg1;

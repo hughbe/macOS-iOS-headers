@@ -6,7 +6,7 @@
 
 #import <CalendarPersistence/CalManagedObject.h>
 
-@class CalManagedPublication, NSColor, NSString;
+@class CalManagedPublication, NSString;
 
 @interface CalManagedNode : CalManagedObject
 {
@@ -26,8 +26,8 @@
 + (id)pathExtension;
 + (id)fetchRequestWithUID:(id)arg1 inManagedObjectContext:(id)arg2;
 + (id)entityName;
+- (void).cxx_destruct;
 - (id)lastOperationError;
-- (void)dealloc;
 @property(readonly) NSString *type;
 - (id)properties;
 - (id)nodesForOrdering;
@@ -47,7 +47,7 @@
 @property(readonly) BOOL keepSyncRecordLocal;
 - (long long)notificationCountForClass:(Class)arg1;
 @property long long checked;
-@property(retain) NSColor *color; // @dynamic color;
+@property(retain) NSString *color; // @dynamic color;
 @property(readonly) NSString *path; // @synthesize path=_path;
 - (id)subscriptionOrPublishURL;
 @property(readonly) BOOL supportsSharing;

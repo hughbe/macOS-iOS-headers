@@ -6,18 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSManagedObjectContext, NSPersistentStoreCoordinator;
+@class ICManagedObjectContextUpdater, NSManagedObjectContext, NSPersistentStoreCoordinator;
 
 @interface NFCrossProcessChangeCoordinator : NSObject
 {
     NSPersistentStoreCoordinator *_sourceCoordinator;
     NSManagedObjectContext *_destinationContext;
+    ICManagedObjectContextUpdater *_contextUpdater;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) ICManagedObjectContextUpdater *contextUpdater; // @synthesize contextUpdater=_contextUpdater;
 @property(retain, nonatomic) NSManagedObjectContext *destinationContext; // @synthesize destinationContext=_destinationContext;
 @property(retain, nonatomic) NSPersistentStoreCoordinator *sourceCoordinator; // @synthesize sourceCoordinator=_sourceCoordinator;
-- (void).cxx_destruct;
-- (id)_changeKeys;
 - (void)_distributedNotificationReceived:(id)arg1;
 - (void)_contextDidSave:(id)arg1;
 - (void)dealloc;

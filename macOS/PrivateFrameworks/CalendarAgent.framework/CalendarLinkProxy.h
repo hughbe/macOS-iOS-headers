@@ -19,16 +19,14 @@
 }
 
 + (BOOL)_validateSelectorName:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_queue> *serialQueue; // @synthesize serialQueue=_serialQueue;
 @property(retain) NSObject<OS_dispatch_group> *delayForCoreDataGroup; // @synthesize delayForCoreDataGroup=_delayForCoreDataGroup;
 @property(retain) CalNWideQueue *nWideQueue; // @synthesize nWideQueue=_nWideQueue;
 @property(retain) NSObject<OS_dispatch_queue> *concurrentQueue; // @synthesize concurrentQueue=_concurrentQueue;
-- (void).cxx_destruct;
 - (void)updateClientSideCacheWithReply:(CDUnknownBlockType)arg1;
 - (void)registerWithAgent;
-- (void)broadcastToOtherClients:(id)arg1 withObject:(id)arg2 withObject:(id)arg3;
-- (void)broadcastToOtherClients:(id)arg1 withObject:(id)arg2;
-- (void)broadcastToOtherClients:(id)arg1;
+- (void)broadcastNotificationToOtherClients:(id)arg1 userInfo:(id)arg2;
 - (id)init;
 
 @end

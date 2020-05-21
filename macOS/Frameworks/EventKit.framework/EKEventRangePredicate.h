@@ -20,8 +20,10 @@
     long long _faultingOption;
 }
 
++ (id)predicateWithStartDate:(id)arg1 endDate:(id)arg2 timeZone:(id)arg3 calendarIdentifiers:(id)arg4 prefetchHint:(long long)arg5 exclusionOptions:(long long)arg6 faultingOption:(long long)arg7;
 + (id)predicateWithStartDate:(id)arg1 endDate:(id)arg2 timeZone:(id)arg3 calendarIdentifiers:(id)arg4 prefetchHint:(long long)arg5 exclusionOptions:(long long)arg6;
 + (id)predicateWithStartDate:(id)arg1 endDate:(id)arg2 timeZone:(id)arg3 calendarIdentifiers:(id)arg4 prefetchHint:(long long)arg5;
++ (id)predicateWithStartDate:(id)arg1 endDate:(id)arg2 timeZone:(id)arg3 calendars:(id)arg4 prefetchHint:(long long)arg5 exclusionOptions:(long long)arg6 faultingOption:(long long)arg7;
 + (id)predicateWithStartDate:(id)arg1 endDate:(id)arg2 timeZone:(id)arg3 calendars:(id)arg4 prefetchHint:(long long)arg5 exclusionOptions:(long long)arg6;
 + (id)predicateWithStartDate:(id)arg1 endDate:(id)arg2 timeZone:(id)arg3 calendars:(id)arg4 prefetchHint:(long long)arg5;
 + (id)predicateWithStartDate:(id)arg1 endDate:(id)arg2 timeZone:(id)arg3 calendars:(id)arg4;

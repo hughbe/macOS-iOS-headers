@@ -8,23 +8,24 @@
 
 @class NSMutableDictionary;
 
+__attribute__((visibility("hidden")))
 @interface CHSharedAddressBook : CHSynchronizedLoggable
 {
-    struct __ABAddressBookRef *_addressBook;
     NSMutableDictionary *_addressBookCache;
 }
 
 + (id)get;
-@property(retain) NSMutableDictionary *addressBookCache; // @synthesize addressBookCache=_addressBookCache;
-@property struct __ABAddressBookRef *addressBook; // @synthesize addressBook=_addressBook;
 - (void).cxx_destruct;
+@property(retain) NSMutableDictionary *addressBookCache; // @synthesize addressBookCache=_addressBookCache;
 - (id)description;
+- (unsigned long long)cachedCount;
 - (id)fetchAddressBookInfoFromCacheForKey:(id)arg1;
 - (void)insertAddressBookInfoIntoCache:(id)arg1 forKey:(id)arg2;
-- (void)performQuery_sync:(CDUnknownBlockType)arg1;
+- (void)insertAddressBookInfoDictionaryIntoCache:(id)arg1;
 - (void)revertAddressBook:(id)arg1;
+- (void)cleanUpAddressBookCache_sync;
 - (void)sendABChangedNotificationSyncWithUserInfo:(id)arg1;
-- (void)createAddressBook;
+- (void)registerForContactsNotifications;
 - (void)dealloc;
 - (id)init;
 

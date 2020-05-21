@@ -8,6 +8,7 @@
 
 @interface NSImage (PRLikenessView)
 + (id)pr_imageWithCGImage:(struct CGImage *)arg1 cropRect:(struct CGRect)arg2;
++ (id)pr_imageWithCGImage:(struct CGImage *)arg1 size:(struct CGSize)arg2 scale:(double)arg3;
 + (id)pr_imageWithCGImage:(struct CGImage *)arg1;
 - (struct CGImage *)pr_imageRef;
 @end

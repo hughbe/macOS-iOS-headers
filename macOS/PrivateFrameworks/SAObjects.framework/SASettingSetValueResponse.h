@@ -16,7 +16,8 @@
 
 + (id)setValueResponseWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setValueResponse;
-@property(retain, nonatomic) SASettingEntity *setting; // @dynamic setting;
+- (BOOL)requiresResponse;
+@property(retain, nonatomic) SASettingEntity *setting;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

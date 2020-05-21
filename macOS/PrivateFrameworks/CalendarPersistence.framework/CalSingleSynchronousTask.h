@@ -14,11 +14,11 @@
     NSError *_error;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSError *error; // @synthesize error=_error;
 @property BOOL completed; // @synthesize completed=_completed;
 - (void)executeTask:(id)arg1 usingTaskManager:(id)arg2;
 - (void)_setCompletionBlockOnTask:(id)arg1;
-- (void)dealloc;
 
 @end
 

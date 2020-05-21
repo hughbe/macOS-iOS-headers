@@ -10,15 +10,16 @@
 
 @class NSSharingAccountConfigurationViewController, NSString;
 
+__attribute__((visibility("hidden")))
 @interface NSSharingContainerViewController : NSViewController <NSExtensionRequestHandling>
 {
     NSSharingAccountConfigurationViewController *_configurationViewController;
     NSViewController *_shareViewController;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSViewController *shareViewController; // @synthesize shareViewController=_shareViewController;
 @property(retain) NSSharingAccountConfigurationViewController *configurationViewController; // @synthesize configurationViewController=_configurationViewController;
-- (void).cxx_destruct;
 - (void)loadView;
 - (void)beginRequestWithExtensionContext:(id)arg1;
 - (id)init;

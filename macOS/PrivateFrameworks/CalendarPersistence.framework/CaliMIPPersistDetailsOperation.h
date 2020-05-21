@@ -19,6 +19,8 @@
     NSString *_organizerName;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain) NSString *organizerName; // @synthesize organizerName=_organizerName;
 @property(retain) NSString *eventTitle; // @synthesize eventTitle=_eventTitle;
 @property(retain) NSTimeZone *eventTimeZone; // @synthesize eventTimeZone=_eventTimeZone;
@@ -28,7 +30,6 @@
 @property(retain) NSData *attachment; // @synthesize attachment=_attachment;
 - (id)attachmentInContext:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithManagedAttendees:(id)arg1;
 

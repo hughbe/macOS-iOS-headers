@@ -23,16 +23,16 @@
 + (id)officeHoursFromICS:(id)arg1;
 + (id)officeHoursFromData:(id)arg1;
 + (void)_updatePrincipal:(id)arg1 withOfficeHours:(id)arg2 fromTaskGroup:(id)arg3;
-+ (void)setOfficeHoursForPrincipalObjectIDString:(id)arg1 officeHours:(id)arg2;
++ (void)setOfficeHoursForPrincipalObjectIDString:(id)arg1 officeHours:(id)arg2 completion:(CDUnknownBlockType)arg3;
 + (void)getOfficeHoursForAccountInfoProvider:(id)arg1 principal:(id)arg2 inboxURL:(id)arg3 taskManager:(id)arg4 andCompletionBlock:(CDUnknownBlockType)arg5;
 + (void)getOfficeHoursForPrincipalObjectIDString:(id)arg1 andCompletionBlock:(CDUnknownBlockType)arg2;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) CALDate *endDate; // @synthesize endDate=_endDate;
 @property(copy) CALDate *startDate; // @synthesize startDate=_startDate;
 @property unsigned long long weekday; // @synthesize weekday=_weekday;
 @property BOOL enabled; // @synthesize enabled=_enabled;
 - (id)description;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 

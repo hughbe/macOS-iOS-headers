@@ -13,14 +13,12 @@
     NSArray *_clippedItems;
     BOOL _cachedMenuIsValid;
     BOOL _returnFocusToWindowAfterClick;
-    id _clippedItemsReservedn8;
 }
 
 + (BOOL)willHaveItemsToDisplayForItemViewers:(id)arg1;
 + (BOOL)isItemShownInPopupIfSoleEntry:(id)arg1;
 + (void)initialize;
 - (BOOL)allowsVibrancy;
-- (void)drawRect:(struct CGRect)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)performClick:(id)arg1;
 - (void)didSendActionNotification:(id)arg1;

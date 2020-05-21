@@ -7,59 +7,65 @@
 #import "NSObject.h"
 
 #import "INIntentResolutionResultDataProviding.h"
+#import "INIntentResolutionResultExport.h"
 
-@class NSArray, NSString;
+@class INIntent, NSArray, NSString;
 
-@interface INIntentResolutionResult : NSObject <INIntentResolutionResultDataProviding>
+@interface INIntentResolutionResult : NSObject <INIntentResolutionResultExport, INIntentResolutionResultDataProviding>
 {
     long long _resolutionResultCode;
     NSArray *_disambiguationItems;
     NSArray *_alternatives;
-    NSString *_conflictingParameterKeyPath;
-    NSArray *_incompleteParameterKeyPaths;
-    NSArray *_neededParameterKeyPaths;
     id _resolvedValue;
-    id _incompleteValue;
     id _itemToConfirm;
-    long long _unsupportedReason;
+    unsigned long long _unsupportedReason;
+    unsigned long long _confirmationReason;
+    INIntent *_intentToExecute;
 }
 
-+ (id)resolutionResultSpecificityNotEnoughForParameters:(id)arg1;
++ (id)_resolutionResultWithData:(id)arg1 slotDescription:(id)arg2;
++ (id)_dataForResolutionMethodUnimplemented;
++ (id)requiresExecutionOfIntent:(id)arg1;
 + (id)resolutionResultNotRequired;
-+ (id)resolutionResultNeedsValueForParameters:(id)arg1;
 + (id)resolutionResultNeedsValue;
-+ (id)resolutionResultUnsupportedDueToConflictWithParameter:(id)arg1 alternateItems:(id)arg2;
-+ (id)resolutionResultUnsupportedWithReason:(long long)arg1 alternativeItems:(id)arg2;
-+ (id)resolutionResultUnsupportedWithReason:(long long)arg1;
-+ (id)resolutionResultNeedsMoreDetailsForParameters:(id)arg1;
-+ (id)resolutionResultNeedsMoreDetailsForValue:(id)arg1;
++ (id)resolutionResultUnsupportedWithReason:(unsigned long long)arg1 alternativeItems:(id)arg2;
++ (id)resolutionResultUnsupportedWithReason:(unsigned long long)arg1;
 + (id)resolutionResultConfirmationRequiredWithItemToConfirm:(id)arg1;
 + (id)resolutionResultDisambiguationWithItemsToDisambiguate:(id)arg1;
 + (id)resolutionResultSuccessWithResolvedValue:(id)arg1;
-+ (id)unsupportedWithReason:(long long)arg1;
++ (id)unsupported;
 + (id)notRequired;
 + (id)needsValue;
-@property(nonatomic) long long unsupportedReason; // @synthesize unsupportedReason=_unsupportedReason;
++ (id)confirmationRequiredWithItemToConfirm:(id)arg1 forReason:(long long)arg2;
++ (id)unsupportedWithReason:(long long)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) INIntent *intentToExecute; // @synthesize intentToExecute=_intentToExecute;
+@property(nonatomic) unsigned long long confirmationReason; // @synthesize confirmationReason=_confirmationReason;
+@property(nonatomic) unsigned long long unsupportedReason; // @synthesize unsupportedReason=_unsupportedReason;
 @property(retain, nonatomic) id itemToConfirm; // @synthesize itemToConfirm=_itemToConfirm;
-@property(retain, nonatomic) id incompleteValue; // @synthesize incompleteValue=_incompleteValue;
 @property(retain, nonatomic) id resolvedValue; // @synthesize resolvedValue=_resolvedValue;
-@property(retain, nonatomic) NSArray *neededParameterKeyPaths; // @synthesize neededParameterKeyPaths=_neededParameterKeyPaths;
-@property(retain, nonatomic) NSArray *incompleteParameterKeyPaths; // @synthesize incompleteParameterKeyPaths=_incompleteParameterKeyPaths;
-@property(retain, nonatomic) NSString *conflictingParameterKeyPath; // @synthesize conflictingParameterKeyPath=_conflictingParameterKeyPath;
 @property(retain, nonatomic) NSArray *alternatives; // @synthesize alternatives=_alternatives;
 @property(retain, nonatomic) NSArray *disambiguationItems; // @synthesize disambiguationItems=_disambiguationItems;
 @property(nonatomic) long long resolutionResultCode; // @synthesize resolutionResultCode=_resolutionResultCode;
-- (void).cxx_destruct;
+- (id)dictionaryRepresentation;
+- (id)_stringForResultCode:(long long)arg1;
+- (id)descriptionAtIndent:(unsigned long long)arg1;
+@property(readonly, copy) NSString *description;
+- (id)_JSONDictionaryRepresentationForIntent:(id)arg1 parameterName:(id)arg2;
+- (id)initWithJSONDictionary:(id)arg1 forIntent:(id)arg2;
+- (id)_initWithIntentSlotResolutionResult:(id)arg1 slotDescription:(id)arg2;
+- (id)_initWithResolutionResult:(id)arg1;
 - (id)_vocabularyValueForObject:(id)arg1 slotDescription:(id)arg2;
 - (id)_intentSlotValueForObject:(id)arg1 slotDescription:(id)arg2;
 - (id)_buildIntentSlotResolutionResultWithIntentSlotDescription:(id)arg1;
 - (id)_dataForIntentSlotDescription:(id)arg1;
-- (id)resolutionResultDataForIntent:(id)arg1 intentSlotDescription:(id)arg2;
+- (void)transformResolutionResultForIntent:(id)arg1 intentSlotDescription:(id)arg2 withOptionsProvider:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (id)resolutionResultDataForIntent:(id)arg1 intentSlotDescription:(id)arg2 error:(id *)arg3;
 - (id)_initWithResultCode:(long long)arg1;
+- (id)_objectForIntentSlotValue:(id)arg1 slotDescription:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

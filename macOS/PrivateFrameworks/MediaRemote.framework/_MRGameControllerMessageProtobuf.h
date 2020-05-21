@@ -8,16 +8,19 @@
 
 #import "NSCopying.h"
 
-@class _MRGameControllerButtonsProtobuf, _MRGameControllerMotionProtobuf;
+@class _MRGameControllerButtonsProtobuf, _MRGameControllerDigitizerProtobuf, _MRGameControllerMotionProtobuf;
 
 @interface _MRGameControllerMessageProtobuf : PBCodable <NSCopying>
 {
     unsigned long long _controllerID;
     _MRGameControllerButtonsProtobuf *_buttons;
+    _MRGameControllerDigitizerProtobuf *_digitizer;
     _MRGameControllerMotionProtobuf *_motion;
     CDStruct_669c4a63 _has;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) _MRGameControllerDigitizerProtobuf *digitizer; // @synthesize digitizer=_digitizer;
 @property(retain, nonatomic) _MRGameControllerButtonsProtobuf *buttons; // @synthesize buttons=_buttons;
 @property(retain, nonatomic) _MRGameControllerMotionProtobuf *motion; // @synthesize motion=_motion;
 @property(nonatomic) unsigned long long controllerID; // @synthesize controllerID=_controllerID;
@@ -30,10 +33,10 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasDigitizer;
 @property(readonly, nonatomic) BOOL hasButtons;
 @property(readonly, nonatomic) BOOL hasMotion;
 @property(nonatomic) BOOL hasControllerID;
-- (void)dealloc;
 
 @end
 

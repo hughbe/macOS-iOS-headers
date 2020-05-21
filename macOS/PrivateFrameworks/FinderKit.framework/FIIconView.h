@@ -10,11 +10,11 @@
 
 @interface FIIconView : NSView
 {
-    struct TNSRef<FI_TNewIconView *, void> _iconView;
+    struct TNSRef<FI_TIconView, void> _iconView;
 }
 
-+ (struct CGSize)idealSizeForTitleFontSize:(double)arg1 iconSize:(unsigned long long)arg2 gridSpacing:(unsigned long long)arg3 isSubtitleEnabled:(BOOL)arg4;
-+ (struct CGSize)idealSizeForTitleFontSize:(double)arg1 iconImageSize:(struct CGSize)arg2 gridSpacing:(unsigned long long)arg3 isSubtitleEnabled:(BOOL)arg4;
++ (struct CGSize)idealSizeForTitleFontSize:(double)arg1 iconImageSize:(struct CGSize)arg2 gridSpacing:(unsigned long long)arg3 isTitleOnBottom:(BOOL)arg4 isTitleEnabled:(BOOL)arg5 isSubtitleEnabled:(BOOL)arg6;
++ (struct CGSize)idealSizeForTitleFontSize:(double)arg1 iconImageSize:(struct CGSize)arg2 gridSpacing:(unsigned long long)arg3 isTitleOnBottom:(BOOL)arg4 isSubtitleEnabled:(BOOL)arg5;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (BOOL)accessibilityIsIgnored;
@@ -24,21 +24,22 @@
 - (id)hitTestInIcon:(struct CGPoint)arg1;
 - (struct CGRect)titleFrame;
 - (struct CGRect)iconFrame;
+@property BOOL useActiveAppearance; // @dynamic useActiveAppearance;
 @property(getter=isDropTarget) BOOL dropTarget; // @dynamic dropTarget;
 @property(getter=isSelected) BOOL selected; // @dynamic selected;
 @property(getter=isSubtitleEnabled) BOOL subtitleEnabled; // @dynamic subtitleEnabled;
+@property(getter=isTitleOnBottom) BOOL titleOnBottom;
 @property unsigned long long gridSpacing; // @dynamic gridSpacing;
 @property(copy) NSColor *subtitleFontColor; // @dynamic subtitleFontColor;
 @property(copy) NSString *subtitleStr; // @dynamic subtitleStr;
 @property(copy) NSColor *titleFontColor; // @dynamic titleFontColor;
 @property double titleFontSize; // @dynamic titleFontSize;
 @property(copy) NSString *titleStr; // @dynamic titleStr;
+@property(getter=isTitleEnabled) _Bool titleEnabled; // @dynamic titleEnabled;
 @property(copy) NSImage *iconImage; // @dynamic iconImage;
-@property unsigned long long iconSize; // @dynamic iconSize;
 @property struct CGSize iconImageSize;
 - (BOOL)wantsUpdateLayer;
 - (BOOL)isFlipped;
-- (BOOL)isOpaque;
 - (void)aboutToTearDown;
 - (void)initCommon;
 - (id)initWithFrame:(struct CGRect)arg1;

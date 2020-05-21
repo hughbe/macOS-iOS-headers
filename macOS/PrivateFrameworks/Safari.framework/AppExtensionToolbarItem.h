@@ -7,13 +7,17 @@
 #import "NSObject.h"
 
 #import "NSPopoverDelegate.h"
+#import "SFSafariExtensionRemoteViewControllerDelegate.h"
 
-@class NSArray, NSImage, NSMapTable, NSString, NSUUID, SFSafariExtensionRemoteViewController;
+@class BrowserWindowController, NSArray, NSImage, NSMapTable, NSPopover, NSString, NSUUID, SFSafariExtensionRemoteViewController;
 
 __attribute__((visibility("hidden")))
-@interface AppExtensionToolbarItem : NSObject <NSPopoverDelegate>
+@interface AppExtensionToolbarItem : NSObject <NSPopoverDelegate, SFSafariExtensionRemoteViewControllerDelegate>
 {
     NSMapTable *_browserWindowControllerToToolbarItemMap;
+    NSPopover *_visiblePopover;
+    id _queuedSender;
+    BrowserWindowController *_queuedBrowserWindowController;
     NSString *_toolbarIdentifier;
     NSString *_toolbarItemUniqueIdentifier;
     NSUUID *_extensionUUID;
@@ -24,6 +28,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)uniqueToolbarItemIdentifier:(id)arg1 toolbarIdentifier:(id)arg2;
+- (void).cxx_destruct;
 @property(retain, nonatomic) SFSafariExtensionRemoteViewController *remotePopoverViewController; // @synthesize remotePopoverViewController=_remotePopoverViewController;
 @property(readonly, copy, nonatomic) NSString *action; // @synthesize action=_action;
 @property(readonly, copy, nonatomic) NSImage *image; // @synthesize image=_image;
@@ -31,10 +36,10 @@ __attribute__((visibility("hidden")))
 @property(readonly, copy, nonatomic) NSUUID *extensionUUID; // @synthesize extensionUUID=_extensionUUID;
 @property(readonly, copy, nonatomic) NSString *toolbarItemUniqueIdentifier; // @synthesize toolbarItemUniqueIdentifier=_toolbarItemUniqueIdentifier;
 @property(readonly, copy, nonatomic) NSString *toolbarIdentifier; // @synthesize toolbarIdentifier=_toolbarIdentifier;
-- (void).cxx_destruct;
+- (void)safariExtensionRemoteViewController:(id)arg1 viewServiceDidTerminateWithError:(id)arg2;
 - (void)popoverDidClose:(id)arg1;
 - (void)popoverWillShow:(id)arg1;
-- (void)_performClickAction:(id)arg1;
+- (void)performClickActionWithSender:(id)arg1 inWindowController:(id)arg2;
 - (void)validateExtensionToolbarItem:(id)arg1;
 - (void)removeFromToolbar;
 - (void)insertIntoToolbar;

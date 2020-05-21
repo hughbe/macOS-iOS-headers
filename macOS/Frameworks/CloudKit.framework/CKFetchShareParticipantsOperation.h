@@ -10,19 +10,17 @@
 
 @interface CKFetchShareParticipantsOperation : CKOperation
 {
-    NSArray *_userIdentityLookupInfos;
     CDUnknownBlockType _shareParticipantFetchedBlock;
     CDUnknownBlockType _fetchShareParticipantsCompletionBlock;
+    NSArray *_userIdentityLookupInfos;
     NSMutableSet *_discoveredUserIdentities;
     NSMutableDictionary *_lookupErrors;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *lookupErrors; // @synthesize lookupErrors=_lookupErrors;
 @property(retain, nonatomic) NSMutableSet *discoveredUserIdentities; // @synthesize discoveredUserIdentities=_discoveredUserIdentities;
-@property(copy, nonatomic) CDUnknownBlockType fetchShareParticipantsCompletionBlock; // @synthesize fetchShareParticipantsCompletionBlock=_fetchShareParticipantsCompletionBlock;
-@property(copy, nonatomic) CDUnknownBlockType shareParticipantFetchedBlock; // @synthesize shareParticipantFetchedBlock=_shareParticipantFetchedBlock;
 @property(copy, nonatomic) NSArray *userIdentityLookupInfos; // @synthesize userIdentityLookupInfos=_userIdentityLookupInfos;
-- (void).cxx_destruct;
 - (id)activityCreate;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
@@ -31,6 +29,8 @@
 - (BOOL)hasCKOperationCallbacksSet;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+@property(copy, nonatomic) CDUnknownBlockType fetchShareParticipantsCompletionBlock; // @synthesize fetchShareParticipantsCompletionBlock=_fetchShareParticipantsCompletionBlock;
+@property(copy, nonatomic) CDUnknownBlockType shareParticipantFetchedBlock; // @synthesize shareParticipantFetchedBlock=_shareParticipantFetchedBlock;
 - (id)initWithUserIdentityLookupInfos:(id)arg1;
 - (id)init;
 

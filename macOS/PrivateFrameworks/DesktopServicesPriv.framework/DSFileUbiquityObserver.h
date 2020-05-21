@@ -9,12 +9,19 @@
 __attribute__((visibility("hidden")))
 @interface DSFileUbiquityObserver : NSObject
 {
-    struct TNSRef<NSMetadataQuery *, void> _query;
+    struct TNSRef<NSMetadataQuery, void> _query;
+    struct TNodePtr fParentNode;
+    _Bool fSelfObserving;
+    struct TKeyValueObserver _resultsObserver;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)resultsChanged:(id)arg1 kind:(unsigned long long)arg2;
+- (void)updateNodes:(id)arg1;
+- (void)updateNodesFromResults;
+- (void)stopObserving;
+- (void)startObserving:(id)arg1;
 
 @end
 

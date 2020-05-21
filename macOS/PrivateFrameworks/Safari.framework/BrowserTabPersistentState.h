@@ -6,17 +6,24 @@
 
 #import "NSObject.h"
 
-@class NSData, NSDate, NSDictionary, NSString, NSURL, NSUUID;
+#import "BrowserPersistentState.h"
+#import "WBSClosedTab.h"
+
+@class BrowserViewController, NSArray, NSData, NSDate, NSDictionary, NSString, NSURL, NSUUID;
 
 __attribute__((visibility("hidden")))
-@interface BrowserTabPersistentState : NSObject
+@interface BrowserTabPersistentState : NSObject <BrowserPersistentState, WBSClosedTab>
 {
-    Vector_81153489 _ancestorTabIdentifiers;
+    BrowserViewController *_browserViewController;
+    Vector_f2f32486 _ancestorTabIdentifiers;
+    id <EncryptionProvider> _encryptionProvider;
+    int _processIdentifier;
+    BOOL _supportsSafeToLoadWebPage;
+    BOOL _safeToLoadWebPage;
     BOOL _disposable;
     BOOL _pinned;
     BOOL _restoredFromPersistentData;
     BOOL _muted;
-    int _processIdentifier;
     unsigned int _tabIdentifier;
     NSURL *_url;
     NSString *_title;
@@ -31,6 +38,10 @@ __attribute__((visibility("hidden")))
     NSString *_pinnedPageTitle;
 }
 
++ (id)_generateSessionDataForBuiltInURL:(id)arg1;
++ (id)sessionDataWithBuiltInURL:(id)arg1;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(readonly, nonatomic, getter=isMuted) BOOL muted; // @synthesize muted=_muted;
 @property(nonatomic) BOOL restoredFromPersistentData; // @synthesize restoredFromPersistentData=_restoredFromPersistentData;
 @property(readonly, copy, nonatomic) NSString *pinnedPageTitle; // @synthesize pinnedPageTitle=_pinnedPageTitle;
@@ -41,27 +52,37 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) unsigned long long tabIndex; // @synthesize tabIndex=_tabIndex;
 @property(readonly, nonatomic) NSDate *dateClosed; // @synthesize dateClosed=_dateClosed;
 @property(readonly, nonatomic) NSUUID *tabUUID; // @synthesize tabUUID=_tabUUID;
-@property(readonly, nonatomic) const Vector_81153489 *ancestorTabIdentifiers; // @synthesize ancestorTabIdentifiers=_ancestorTabIdentifiers;
+@property(readonly, nonatomic) const Vector_f2f32486 *ancestorTabIdentifiers; // @synthesize ancestorTabIdentifiers=_ancestorTabIdentifiers;
 @property(readonly, nonatomic) unsigned int tabIdentifier; // @synthesize tabIdentifier=_tabIdentifier;
 @property(readonly, copy, nonatomic) NSDictionary *queuedNavigation; // @synthesize queuedNavigation=_queuedNavigation;
 @property(readonly, copy, nonatomic) NSData *sessionStateData; // @synthesize sessionStateData=_sessionStateData;
 @property(readonly, nonatomic) double lastVisitTime; // @synthesize lastVisitTime=_lastVisitTime;
-@property(readonly, nonatomic) int processIdentifier; // @synthesize processIdentifier=_processIdentifier;
 @property(readonly, copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(readonly, nonatomic) NSURL *url; // @synthesize url=_url;
-- (id).cxx_construct;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) long long closedItemType;
+@property(readonly, nonatomic) unsigned long long numberOfTabs;
+@property(readonly, copy, nonatomic) NSArray *tabUUIDs;
+- (id)dictionaryRepresentationIncludingSessionState:(BOOL)arg1 forCleanExit:(BOOL)arg2;
+@property(readonly, nonatomic) BrowserTabPersistentState *stateByRemovingPinnedTabData;
 - (void)_setTitleAndURLFromBrowserTabViewItem:(id)arg1;
-- (id)dictionaryRepresentation;
 @property(readonly, nonatomic) BOOL shouldDeferRestorationUntilSelected;
-@property(readonly, nonatomic) NSString *titleForMenu;
+- (BOOL)_safeToLoadWebPageFromCurrentLoadingState;
+@property(readonly, nonatomic, getter=isSafeToLoadWebPage) BOOL safeToLoadWebPage; // @synthesize safeToLoadWebPage=_safeToLoadWebPage;
+@property(readonly, copy, nonatomic) NSString *titleForMenu;
 - (id)browserTabPersistentStateForRegisteringWithUndoForClosingBrowserTabViewItem:(id)arg1;
 - (void)clearSessionState;
+- (id)copyWithNewTabIndex:(unsigned long long)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithPinnedPageURL:(id)arg1 pinnedPageTitle:(id)arg2;
-- (id)initWithDictionaryRepresentation:(id)arg1;
+- (id)initWithDictionaryRepresentation:(id)arg1 encryptionProvider:(id)arg2;
 - (id)initWithURL:(id)arg1 title:(id)arg2;
-- (id)initWithBrowserTabViewItem:(id)arg1;
+- (id)initWithPinnedPageURL:(id)arg1 pinnedPageTitle:(id)arg2 encryptionProvider:(id)arg3;
+- (id)initWithBrowserTabViewItem:(id)arg1 encryptionProvider:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

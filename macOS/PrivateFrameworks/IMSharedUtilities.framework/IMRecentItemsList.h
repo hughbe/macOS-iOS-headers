@@ -26,6 +26,7 @@
 - (void)fetchRecentItemsForDomain:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)fetchRecentStickersWithCompletion:(CDUnknownBlockType)arg1;
 - (void)addRecentItemWithData:(id)arg1 GUID:(id)arg2 infoDictionary:(id)arg3 forDomain:(id)arg4;
+- (void)deleteRecentsInFirstLaunch;
 - (void)deleteAllRecentItemsForDomain:(id)arg1;
 - (void)deleteRecentItemWithData:(id)arg1 GUID:(id)arg2 forDomain:(id)arg3;
 - (void)deleteRecentItemWithFileURL:(id)arg1 GUID:(id)arg2 forDomain:(id)arg3;

@@ -6,29 +6,28 @@
 
 #import "NSObject.h"
 
-@class NSLock;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_nw_path>, NSObject<OS_nw_path_monitor>;
 
 @interface GEONetworkObserver : NSObject
 {
-    NSLock *_lock;
-    unsigned int _networkReachability;
-    struct __SCNetworkReachability *_networkReach;
+    NSObject<OS_dispatch_queue> *_isolationQueue;
+    NSObject<OS_nw_path_monitor> *_monitor;
+    NSObject<OS_nw_path> *_currentPath;
     BOOL _initialized;
-    BOOL _networkNotified;
     BOOL _networkReachable;
+    BOOL _networkConstrained;
 }
 
 + (id)sharedNetworkObserver;
-+ (id)allocWithZone:(struct _NSZone *)arg1;
-- (BOOL)isCellConnection;
+- (void).cxx_destruct;
+@property(readonly, nonatomic, getter=isCellConnection) BOOL cellConnection;
 - (void)removeNetworkReachableObserver:(id)arg1;
 - (void)addNetworkReachableObserver:(id)arg1 selector:(SEL)arg2;
-- (BOOL)isConnectionRequired;
-- (BOOL)isNetworkReachable;
-- (void)_networkReachableFirstCallBack:(id)arg1;
+@property(readonly, nonatomic, getter=isNetworkConstrained) BOOL networkConstrained;
+@property(readonly, nonatomic, getter=isNetworkReachable) BOOL networkReachable;
 - (void)initializeIfNecessary;
-- (void)_networkReachableCallBack:(unsigned int)arg1;
-- (void)_networkObserversInitialize;
+- (void)_networkPathUpdated:(id)arg1;
+- (void)_initializeNetworkMonitor;
 - (void)dealloc;
 - (id)init;
 

@@ -28,6 +28,7 @@
     BOOL _calendarDatePickerShown;
     BOOL _userDismissedCalendarPicker;
     BOOL _openingCalendarPicker;
+    BOOL _makeCalendarPickerKeyOnNextWindowUpdate;
     id <IIDatePickerWithMiniCalDelegate> _delegate;
     double _pixelsBetweenDateAndTime;
     EKViewController *_viewController;
@@ -41,7 +42,9 @@
 + (id)_selectedDurationDescriptions;
 + (id)_durationDescriptions;
 + (id)_timeDescriptionsForDate:(id)arg1 inTimeZone:(id)arg2;
+- (void).cxx_destruct;
 @property(retain) NSArray *horizontalConstraints; // @synthesize horizontalConstraints=_horizontalConstraints;
+@property BOOL makeCalendarPickerKeyOnNextWindowUpdate; // @synthesize makeCalendarPickerKeyOnNextWindowUpdate=_makeCalendarPickerKeyOnNextWindowUpdate;
 @property BOOL openingCalendarPicker; // @synthesize openingCalendarPicker=_openingCalendarPicker;
 @property long long indexOfSelectedTimeSuggestion; // @synthesize indexOfSelectedTimeSuggestion=_indexOfSelectedTimeSuggestion;
 @property BOOL userDismissedCalendarPicker; // @synthesize userDismissedCalendarPicker=_userDismissedCalendarPicker;
@@ -58,10 +61,10 @@
 @property __weak id <IIDatePickerWithMiniCalDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) NSDatePicker *textTimePicker; // @synthesize textTimePicker=_textTimePicker;
 @property(retain) IIDatePicker *textDatePicker; // @synthesize textDatePicker=_textDatePicker;
-- (void).cxx_destruct;
 - (void)_updateSuggestionPanelSize;
 - (void)_setTimeToSuggestionAtIndex:(long long)arg1;
 - (void)_timeSuggestionPicked:(id)arg1;
+- (void)setTouchBar:(id)arg1;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)selectPreviousKeyViewHidingPanel:(id)arg1;
@@ -78,6 +81,9 @@
 - (void)_displayTimeSuggestions;
 - (void)_hideCalendarPickerAndSelectDatePicker;
 - (void)_hideCalendarPicker;
+- (void)windowDidUpdate:(id)arg1;
+- (void)makeCalendarPickerKey;
+- (void)_openCalendarPickerWindowAndConfigureKeyViews;
 - (void)_displayCalendarPicker;
 - (void)_textTimePickerChanged:(id)arg1;
 - (void)_calPickerChanged:(id)arg1;

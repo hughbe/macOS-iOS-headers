@@ -6,25 +6,28 @@
 
 #import "NSViewController.h"
 
+#import "NSControlTextEditingDelegate.h"
 #import "NSPopoverDelegate.h"
 
-@class NSButton, NSPopover, NSString, NSTextField, WebBookmarkLeaf;
+@class BookmarksUndoController, NSButton, NSPopover, NSString, NSTextField, WebBookmarkLeaf;
 
 __attribute__((visibility("hidden")))
-@interface BookmarkAddressEditingPopoverViewController : NSViewController <NSPopoverDelegate>
+@interface BookmarkAddressEditingPopoverViewController : NSViewController <NSPopoverDelegate, NSControlTextEditingDelegate>
 {
     NSPopover *_popover;
     WebBookmarkLeaf *_bookmark;
     BOOL _shouldDiscardChangesWhenDoneEditing;
     CDUnknownBlockType _popoverDidCloseHandler;
+    BookmarksUndoController *_undoController;
     NSTextField *_addressField;
     NSButton *_doneButton;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak NSButton *doneButton; // @synthesize doneButton=_doneButton;
 @property(nonatomic) __weak NSTextField *addressField; // @synthesize addressField=_addressField;
+@property(retain, nonatomic) BookmarksUndoController *undoController; // @synthesize undoController=_undoController;
 @property(copy, nonatomic) CDUnknownBlockType popoverDidCloseHandler; // @synthesize popoverDidCloseHandler=_popoverDidCloseHandler;
-- (void).cxx_destruct;
 - (void)controlTextDidEndEditing:(id)arg1;
 - (void)controlTextDidChange:(id)arg1;
 - (void)doneEditing:(id)arg1;
@@ -33,6 +36,8 @@ __attribute__((visibility("hidden")))
 - (void)showRelativeToBoundsOfView:(id)arg1 preferredEdge:(unsigned long long)arg2;
 - (void)popoverDidClose:(id)arg1;
 - (void)loadView;
+- (id)nibName;
+- (id)initWithBookmark:(id)arg1 nibBundle:(id)arg2;
 - (id)initWithBookmark:(id)arg1;
 
 // Remaining properties

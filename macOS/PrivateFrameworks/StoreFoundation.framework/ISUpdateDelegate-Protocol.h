@@ -4,11 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class CKUpdate, NSError, SSPurchase, SSPurchaseResponse, SUAppStoreUpdate;
+@class CKUpdate, NSError, SSPurchaseResponse;
 
 @protocol ISUpdateDelegate
-- (void)appUpdatePurchase:(SSPurchase *)arg1 didFinishWithSuccess:(BOOL)arg2 response:(SSPurchaseResponse *)arg3 error:(NSError *)arg4;
-- (void)appUpdate:(CKUpdate *)arg1 wasCancelledWithError:(NSError *)arg2;
-- (void)osUpdate:(SUAppStoreUpdate *)arg1 wasCancelledWithError:(NSError *)arg2;
+- (void)appUpdate:(CKUpdate *)arg1 finishedPurchaseWithSuccess:(BOOL)arg2 error:(NSError *)arg3 response:(SSPurchaseResponse *)arg4;
 @end
 

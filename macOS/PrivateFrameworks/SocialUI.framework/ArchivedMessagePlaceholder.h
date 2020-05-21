@@ -6,22 +6,21 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class IMMessage;
 
-@interface ArchivedMessagePlaceholder : NSObject <NSCoding>
+@interface ArchivedMessagePlaceholder : NSObject <NSSecureCoding>
 {
     IMMessage *_message;
 }
 
-+ (void)configureKeyedUnarchiver:(id)arg1;
-+ (void)setupArchivedMessageEncoding;
-+ (void)setupArchivedMessageDecoding;
++ (BOOL)supportsSecureCoding;
++ (id)allowedSecureArchivingClasses_so;
 - (void).cxx_destruct;
+@property(readonly) IMMessage *message; // @synthesize message=_message;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)message;
 - (id)initWithMessage:(id)arg1;
 
 @end

@@ -15,14 +15,15 @@ __attribute__((visibility("hidden")))
 {
     NSObject<OS_dispatch_queue> *_queue;
     id <_GEOCountryConfigurationServerProxyDelegate> _delegate;
-    int _countryCodeChangedToken;
+    NSObject<OS_dispatch_queue> *_delegateQueue;
     int _providersChangedToken;
+    id _countryCodeChangeListener;
 }
 
-@property(nonatomic) id <_GEOCountryConfigurationServerProxyDelegate> delegate; // @synthesize delegate=_delegate;
-- (void)updateCountryCode:(CDUnknownBlockType)arg1;
+- (void).cxx_destruct;
+- (void)updateCountryCodeWithCallbackQueue:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)dealloc;
-- (id)init;
+- (id)initWithDelegate:(id)arg1 delegateQueue:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

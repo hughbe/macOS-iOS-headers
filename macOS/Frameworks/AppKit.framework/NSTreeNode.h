@@ -23,6 +23,7 @@
 }
 
 + (id)treeNodeWithRepresentedObject:(id)arg1;
+- (void).cxx_destruct;
 - (id)objectAtIndexPath:(id)arg1;
 - (id)_descendantNodeWithRepresentedObjectLineage:(id)arg1;
 - (void)sortWithSortDescriptors:(id)arg1 recursively:(BOOL)arg2;
@@ -42,7 +43,7 @@
 @property(readonly) NSMutableArray *mutableChildNodes;
 @property(readonly, copy) NSArray *childNodes;
 - (id)_privateChildNodes;
-@property(readonly) NSTreeNode *parentNode;
+@property(readonly) __weak NSTreeNode *parentNode;
 - (void)setParentNode:(id)arg1;
 - (void)_detachFromParent;
 - (void)setRepresentedObject:(id)arg1;

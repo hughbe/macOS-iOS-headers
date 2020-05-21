@@ -8,20 +8,22 @@
 
 #import "WBSFormAutoFillFeedbackProcessor.h"
 
-@class NSString;
+@class NSObject<OS_dispatch_queue>, NSString, WBSCrowdsourcedFeedbackDomainNormalizer;
 
 @interface WBSFormAutoFillParsecFeedbackProcessor : NSObject <WBSFormAutoFillFeedbackProcessor>
 {
     id <WBSParsecGlobalFeedbackDispatcher> _globalFeedbackDispatcher;
     unsigned long long _autoFillVersion;
+    WBSCrowdsourcedFeedbackDomainNormalizer *_domainNormalizer;
+    NSObject<OS_dispatch_queue> *_internalQueue;
     id <WBSFormAutoFillFeedbackDomainPolicyProvider> _domainPolicyProvider;
 }
 
-@property(retain, nonatomic) id <WBSFormAutoFillFeedbackDomainPolicyProvider> domainPolicyProvider; // @synthesize domainPolicyProvider=_domainPolicyProvider;
 - (void).cxx_destruct;
-- (id)_feedbackWithCorrections:(id)arg1 forFingerprint:(id)arg2 onDomain:(id)arg3 includeOrigin:(BOOL)arg4;
-- (void)_getFeedbackWithCorrections:(id)arg1 forFingerprint:(id)arg2 onDomain:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (void)sendFeedbackWithCorrections:(id)arg1 forFingerprint:(id)arg2 onDomain:(id)arg3;
+@property(retain, nonatomic) id <WBSFormAutoFillFeedbackDomainPolicyProvider> domainPolicyProvider; // @synthesize domainPolicyProvider=_domainPolicyProvider;
+- (id)_feedbackWithCorrectionSet:(id)arg1 includeOrigin:(BOOL)arg2;
+- (void)_getFeedbackWithCorrectionSet:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)sendFeedbackWithCorrectionSet:(id)arg1;
 - (id)initWithGlobalFeedbackDispatcher:(id)arg1 domainPolicyProvider:(id)arg2 autoFillVersion:(unsigned long long)arg3;
 - (id)init;
 

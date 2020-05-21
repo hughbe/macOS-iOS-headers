@@ -6,25 +6,14 @@
 
 #import "NSObject.h"
 
-@class SSBLookupContext;
-
 __attribute__((visibility("hidden")))
 @interface SafeBrowsingController : NSObject
 {
-    SSBLookupContext *_lookupContext;
 }
 
-+ (BOOL)isSafeBrowsingAvailable;
-+ (id)sharedSafeBrowsingController;
-@property(readonly, nonatomic) SSBLookupContext *lookupContext; // @synthesize lookupContext=_lookupContext;
-- (void).cxx_destruct;
-- (void)getLastDatabaseUpdateTimeWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)lookUpURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)_databaseDidUpdate:(id)arg1;
-@property(nonatomic) BOOL safeBrowsingEnabled;
-- (void)_destroyLookupContext;
-- (void)_createLookupContext;
-- (id)init;
++ (void)setSafeBrowsingEnabled:(BOOL)arg1;
++ (id)_safeBrowsingPreferencesPlistURL;
++ (BOOL)isSafeBrowsingEnabled;
 
 @end
 

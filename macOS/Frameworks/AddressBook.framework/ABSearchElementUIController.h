@@ -8,7 +8,7 @@
 
 #import "ABSearchElementRepresentationBuilder.h"
 
-@class ABSearchElementSetView, ABSmartGroup, NSButton, NSMutableArray, NSPopUpButton, NSTextField, NSView, NSWindow;
+@class ABSearchElementSetView, ABSmartGroup, NSBox, NSButton, NSLayoutConstraint, NSMutableArray, NSPopUpButton, NSTextField, NSView, NSWindow;
 
 @interface ABSearchElementUIController : NSObject <ABSearchElementRepresentationBuilder>
 {
@@ -19,8 +19,10 @@
     NSTextField *groupNameField;
     NSView *singleMatchDescription;
     NSView *multipleMatchDescription;
+    NSBox *rulesBox;
     NSPopUpButton *andOrPopUp;
     NSButton *plusMinusTemplate;
+    NSLayoutConstraint *searchElementsSetViewWidthConstraint;
     NSWindow *_docWindow;
     id _delegate;
     SEL _didEndSelector;
@@ -61,7 +63,6 @@
 - (id)name;
 - (void)setName:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (void)awakeFromNib;
 

@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "MCTask.h"
+#import <Mail/MFEWSTask.h>
 
 #import "MFEWSPersistFolderHierarchyTaskOperationDelegate.h"
 #import "MFEWSSyncFolderHierarchyTaskOperationDelegate.h"
 
 @class MFEWSPersistFolderHierarchyTaskOperation, MFEWSPruneFolderHierarchyTaskOperation, MFEWSSyncFolderHierarchyTaskOperation, NSMutableArray, NSMutableSet, NSString;
 
-@interface MFEWSFolderHierarchyReconcileTask : MCTask <MFEWSSyncFolderHierarchyTaskOperationDelegate, MFEWSPersistFolderHierarchyTaskOperationDelegate>
+@interface MFEWSFolderHierarchyReconcileTask : MFEWSTask <MFEWSSyncFolderHierarchyTaskOperationDelegate, MFEWSPersistFolderHierarchyTaskOperationDelegate>
 {
     MFEWSSyncFolderHierarchyTaskOperation *_syncFolderHierarchyTaskOperation;
     MFEWSPersistFolderHierarchyTaskOperation *_persistFolderHierarchyTaskOperation;
@@ -21,9 +21,9 @@
     MFEWSPruneFolderHierarchyTaskOperation *_pruneFolderHierarchyTaskOperation;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) MFEWSPruneFolderHierarchyTaskOperation *pruneFolderHierarchyTaskOperation; // @synthesize pruneFolderHierarchyTaskOperation=_pruneFolderHierarchyTaskOperation;
 @property(copy, nonatomic) NSString *syncStateToReconcile; // @synthesize syncStateToReconcile=_syncStateToReconcile;
-- (void).cxx_destruct;
 - (void)recalculatePriorities;
 - (void)operationFinished:(id)arg1;
 - (void)persistFolderHierarchyOperation:(id)arg1 completedBatch:(id)arg2;
@@ -33,7 +33,7 @@
 @property(retain, nonatomic) MFEWSPersistFolderHierarchyTaskOperation *persistFolderHierarchyTaskOperation;
 @property(retain, nonatomic) MFEWSSyncFolderHierarchyTaskOperation *syncFolderHierarchyTaskOperation;
 - (id)init;
-- (id)initWithInitialSyncState:(id)arg1;
+- (id)initWithInitialSyncState:(id)arg1 accountName:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

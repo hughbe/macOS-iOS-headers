@@ -6,7 +6,7 @@
 
 #import <Safari/PreferencesModule.h>
 
-@class ManagedPlugInsEditor, ManagedWebGLPoliciesEditor, NSButton, NSLayoutConstraint, NSTextField, NSTimer, NSView;
+@class NSButton, NSTextField, NSTimer, NSView;
 
 __attribute__((visibility("hidden")))
 @interface SecurityPreferences : PreferencesModule
@@ -16,61 +16,26 @@ __attribute__((visibility("hidden")))
     NSView *_mainContentView;
     NSButton *_javaScriptEnabledCheckbox;
     NSButton *_blockPopUpsCheckbox;
-    NSButton *_allowPluginsCheckbox;
-    NSButton *_allowWebGLCheckbox;
     NSButton *_antiPhishingCheckbox;
-    NSTextField *_antiPhishingStatusLabel;
-    NSView *_antiPhishingWarningView;
-    NSLayoutConstraint *_antiPhishingWarningViewLeadingAlignmentConstraint;
-    NSLayoutConstraint *_antiPhishingWarningViewTrailingHorizontalSpacingConstraint;
-    NSLayoutConstraint *_antiPhishingWarningViewTopVerticalSpacingConstraint;
-    NSLayoutConstraint *_antiPhishingWarningViewBottomVerticalSpacingConstraint;
-    ManagedPlugInsEditor *_managedPlugInsEditor;
-    NSButton *_managePlugInsBlockingButton;
-    ManagedWebGLPoliciesEditor *_managedWebGLPoliciesEditor;
-    NSButton *_manageWebGLPoliciesButton;
+    NSTextField *_safeBrowsingExplanationLabel;
 }
 
-@property(nonatomic) __weak NSButton *manageWebGLPoliciesButton; // @synthesize manageWebGLPoliciesButton=_manageWebGLPoliciesButton;
-@property(retain, nonatomic) ManagedWebGLPoliciesEditor *managedWebGLPoliciesEditor; // @synthesize managedWebGLPoliciesEditor=_managedWebGLPoliciesEditor;
-@property(nonatomic) __weak NSButton *managePlugInsBlockingButton; // @synthesize managePlugInsBlockingButton=_managePlugInsBlockingButton;
-@property(retain, nonatomic) ManagedPlugInsEditor *managedPlugInsEditor; // @synthesize managedPlugInsEditor=_managedPlugInsEditor;
-@property(retain, nonatomic) NSLayoutConstraint *antiPhishingWarningViewBottomVerticalSpacingConstraint; // @synthesize antiPhishingWarningViewBottomVerticalSpacingConstraint=_antiPhishingWarningViewBottomVerticalSpacingConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *antiPhishingWarningViewTopVerticalSpacingConstraint; // @synthesize antiPhishingWarningViewTopVerticalSpacingConstraint=_antiPhishingWarningViewTopVerticalSpacingConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *antiPhishingWarningViewTrailingHorizontalSpacingConstraint; // @synthesize antiPhishingWarningViewTrailingHorizontalSpacingConstraint=_antiPhishingWarningViewTrailingHorizontalSpacingConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *antiPhishingWarningViewLeadingAlignmentConstraint; // @synthesize antiPhishingWarningViewLeadingAlignmentConstraint=_antiPhishingWarningViewLeadingAlignmentConstraint;
-@property(retain, nonatomic) NSView *antiPhishingWarningView; // @synthesize antiPhishingWarningView=_antiPhishingWarningView;
-@property(nonatomic) __weak NSTextField *antiPhishingStatusLabel; // @synthesize antiPhishingStatusLabel=_antiPhishingStatusLabel;
+- (void).cxx_destruct;
+@property(nonatomic) __weak NSTextField *safeBrowsingExplanationLabel; // @synthesize safeBrowsingExplanationLabel=_safeBrowsingExplanationLabel;
 @property(nonatomic) __weak NSButton *antiPhishingCheckbox; // @synthesize antiPhishingCheckbox=_antiPhishingCheckbox;
-@property(nonatomic) __weak NSButton *allowWebGLCheckbox; // @synthesize allowWebGLCheckbox=_allowWebGLCheckbox;
-@property(nonatomic) __weak NSButton *allowPluginsCheckbox; // @synthesize allowPluginsCheckbox=_allowPluginsCheckbox;
 @property(nonatomic) __weak NSButton *blockPopUpsCheckbox; // @synthesize blockPopUpsCheckbox=_blockPopUpsCheckbox;
 @property(nonatomic) __weak NSButton *javaScriptEnabledCheckbox; // @synthesize javaScriptEnabledCheckbox=_javaScriptEnabledCheckbox;
 @property(nonatomic) __weak NSView *mainContentView; // @synthesize mainContentView=_mainContentView;
-- (void).cxx_destruct;
 - (void)_updateEverything;
-- (void)_hideAntiPhishingStatus;
-- (void)_showAntiPhishingStatus;
-- (id)_antiPhishingStatusConstraints;
 - (void)_updateAntiPhishingViews;
-- (void)_lastSuccessfulUpdateTimeForService:(id)arg1 lastUpdate:(double)arg2;
-- (id)_approximateTimeStringForDuration:(double)arg1;
-- (void)_antiPhishingServiceUpdated:(id)arg1;
-- (void)_updatePlugInsViews;
 - (void)_updateJavaScriptViews;
 - (void)_defaultsChanged:(id)arg1;
-- (void)showManagedWebGLPoliciesDetails:(id)arg1;
-- (void)toggleWebGLAllowed:(id)arg1;
-- (void)showManagedPlugInsDetails:(id)arg1;
-- (void)togglePluginsAllowed:(id)arg1;
-- (void)toggleJavaScriptCanOpenWindows:(id)arg1;
 - (void)toggleJavaScriptEnabled:(id)arg1;
 - (void)toggleAntiPhishingEnabled:(id)arg1;
-- (id)helpAnchor;
+- (id)safariHelpAnchor;
 - (void)moduleWillBeRemoved;
 - (void)moduleWasInstalled;
 - (void)initializeFromDefaults;
-- (void)awakeFromNib;
 
 @end
 

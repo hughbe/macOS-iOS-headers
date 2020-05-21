@@ -8,20 +8,38 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDExternalActionDetail : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSString *_actionLabel;
     NSString *_actionUrlComponent;
     NSString *_actionUrlVerb;
     NSString *_logoId;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_actionLabel:1;
+        unsigned int read_actionUrlComponent:1;
+        unsigned int read_actionUrlVerb:1;
+        unsigned int read_logoId:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_actionLabel:1;
+        unsigned int wrote_actionUrlComponent:1;
+        unsigned int wrote_actionUrlVerb:1;
+        unsigned int wrote_logoId:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *actionUrlVerb; // @synthesize actionUrlVerb=_actionUrlVerb;
-@property(retain, nonatomic) NSString *actionUrlComponent; // @synthesize actionUrlComponent=_actionUrlComponent;
-@property(retain, nonatomic) NSString *logoId; // @synthesize logoId=_logoId;
-@property(retain, nonatomic) NSString *actionLabel; // @synthesize actionLabel=_actionLabel;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -29,13 +47,23 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *actionUrlVerb;
 @property(readonly, nonatomic) BOOL hasActionUrlVerb;
+- (void)_readActionUrlVerb;
+@property(retain, nonatomic) NSString *actionUrlComponent;
 @property(readonly, nonatomic) BOOL hasActionUrlComponent;
+- (void)_readActionUrlComponent;
+@property(retain, nonatomic) NSString *logoId;
 @property(readonly, nonatomic) BOOL hasLogoId;
+- (void)_readLogoId;
+@property(retain, nonatomic) NSString *actionLabel;
 @property(readonly, nonatomic) BOOL hasActionLabel;
-- (void)dealloc;
+- (void)_readActionLabel;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

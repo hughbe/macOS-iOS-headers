@@ -6,7 +6,7 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
-@class NSNumber, NSString, NSURL;
+@class NSArray, NSNumber, NSString, NSURL;
 
 @interface SAMPCreateRadioStation : SABaseClientBoundCommand
 {
@@ -17,7 +17,8 @@
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSURL *stationUrl;
 @property(copy, nonatomic) NSNumber *startPlaying;
-@property(copy, nonatomic) NSString *airplayRouteUID;
+@property(copy, nonatomic) NSArray *hashedRouteUIDs;
+@property(copy, nonatomic) NSString *assetInfo;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

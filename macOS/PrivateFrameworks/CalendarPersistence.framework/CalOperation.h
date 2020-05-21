@@ -14,13 +14,13 @@
     NSManagedObjectID *_sessionIDAsObjectID;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSManagedObjectID *sessionIDAsObjectID; // @synthesize sessionIDAsObjectID=_sessionIDAsObjectID;
 @property(retain) NSString *sessionID; // @synthesize sessionID=_sessionID;
 - (id)session;
 - (id)debugDescription;
 - (id)debugTitle;
 - (BOOL)executeInContext:(id)arg1 error:(id *)arg2;
-- (void)dealloc;
 - (id)initWithSessionID:(id)arg1;
 
 @end

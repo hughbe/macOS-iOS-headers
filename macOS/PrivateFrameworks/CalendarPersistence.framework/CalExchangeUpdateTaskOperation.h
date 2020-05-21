@@ -18,6 +18,7 @@
     NSDictionary *_changedValues;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(readonly) NSManagedObjectID *taskID; // @synthesize taskID=_taskID;
 - (id)messageTracerUUID;
 - (id)messageTracerName;

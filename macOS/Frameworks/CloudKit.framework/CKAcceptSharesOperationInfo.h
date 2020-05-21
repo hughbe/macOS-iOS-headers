@@ -4,22 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <CloudKit/CKOperationInfo.h>
+#import <CloudKit/CKDatabaseOperationInfo.h>
 
 #import "NSSecureCoding.h"
 
 @class NSArray;
 
-@interface CKAcceptSharesOperationInfo : CKOperationInfo <NSSecureCoding>
+@interface CKAcceptSharesOperationInfo : CKDatabaseOperationInfo <NSSecureCoding>
 {
-    BOOL _isUsingLegacyAPI;
     NSArray *_shareMetadatasToAccept;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(nonatomic) BOOL isUsingLegacyAPI; // @synthesize isUsingLegacyAPI=_isUsingLegacyAPI;
-@property(retain, nonatomic) NSArray *shareMetadatasToAccept; // @synthesize shareMetadatasToAccept=_shareMetadatasToAccept;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *shareMetadatasToAccept; // @synthesize shareMetadatasToAccept=_shareMetadatasToAccept;
+- (long long)databaseScope;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 

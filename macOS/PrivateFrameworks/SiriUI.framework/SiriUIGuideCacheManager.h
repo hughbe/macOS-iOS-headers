@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSNumber, NSObject<OS_dispatch_queue>, SAGuidanceGuideSnippet, SAGuidanceGuideUpdate;
+@class NSNumber, NSObject<OS_dispatch_queue>, SAGuidanceGuideSnippet, SAGuidanceGuideUpdate, SAGuidanceSuggestedUtterances;
 
 @interface SiriUIGuideCacheManager : NSObject
 {
@@ -25,6 +25,7 @@
 - (void)updateCacheWithGuideUpdate:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)updateLastCheckedDate;
 - (BOOL)shouldCheckForUpdate;
+@property(readonly, nonatomic) SAGuidanceSuggestedUtterances *cachedSuggestedUtterances;
 @property(readonly, nonatomic) SAGuidanceGuideSnippet *cachedGuideSnippet;
 @property(readonly, nonatomic) NSNumber *cachedGuideTag;
 - (id)init;

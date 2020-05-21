@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSMutableIndexSet, NSMutableRangeArray, _NSTextFinderAsyncSearchOperation, _NSTextFinderImpl;
+@class NSMutableArray, NSMutableIndexSet, NSMutableRangeArray, _NSTextFinderAsyncSearchOperation, _NSTextFinderImpl;
 
 __attribute__((visibility("hidden")))
 @interface NSTextFinderAsyncSearch : NSObject
 {
     _NSTextFinderImpl *_textFinderImpl;
     _NSTextFinderAsyncSearchOperation *_operation;
+    NSMutableArray *_findFirstMatchOperations;
     NSMutableRangeArray *_matchRanges;
     NSMutableIndexSet *_searchedIndexes;
     unsigned long long _firstMatchIndex;

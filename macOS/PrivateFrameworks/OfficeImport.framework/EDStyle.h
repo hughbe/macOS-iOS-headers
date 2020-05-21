@@ -9,7 +9,7 @@
 #import "EDImmutableObject.h"
 #import "NSCopying.h"
 
-@class EDProtection, EDResources, NSString;
+@class EDAlignmentInfo, EDBorders, EDContentFormat, EDFill, EDFont, EDProtection, EDResources, NSString;
 
 __attribute__((visibility("hidden")))
 @interface EDStyle : NSObject <NSCopying, EDImmutableObject>
@@ -24,50 +24,50 @@ __attribute__((visibility("hidden")))
     EDProtection *mProtection;
     unsigned long long mIndex;
     _Bool mContentFormatOverridden;
+    _Bool mContentFormatApplied;
     _Bool mFontOverridden;
+    _Bool mFontApplied;
     _Bool mFillOverridden;
+    _Bool mFillApplied;
     _Bool mAlignmentInfoOverridden;
+    _Bool mAlignmentInfoApplied;
     _Bool mBordersOverridden;
+    _Bool mBordersApplied;
     _Bool mProtectionOverridden;
+    _Bool mProtectionApplied;
     _Bool mDoNotModify;
 }
 
 + (id)styleWithResources:(id)arg1;
+- (void).cxx_destruct;
+@property(getter=isProtectionApplied) _Bool protectionApplied; // @synthesize protectionApplied=mProtectionApplied;
+@property(getter=isBordersApplied) _Bool bordersApplied; // @synthesize bordersApplied=mBordersApplied;
+@property(getter=isAlignmentInfoApplied) _Bool alignmentInfoApplied; // @synthesize alignmentInfoApplied=mAlignmentInfoApplied;
+@property(getter=isFillApplied) _Bool fillApplied; // @synthesize fillApplied=mFillApplied;
+@property(getter=isFontApplied) _Bool fontApplied; // @synthesize fontApplied=mFontApplied;
+@property(getter=isContentFormatApplied) _Bool contentFormatApplied; // @synthesize contentFormatApplied=mContentFormatApplied;
 - (void)setDoNotModify:(_Bool)arg1;
 - (unsigned long long)index;
 - (void)setParent:(id)arg1;
 - (id)parent;
-- (void)setProtection:(id)arg1;
-- (id)protection;
-- (void)setProtectionOverridden:(_Bool)arg1;
-- (_Bool)isProtectionOverridden;
-- (void)setBorders:(id)arg1;
-- (id)borders;
-- (void)setBordersOverridden:(_Bool)arg1;
-- (_Bool)isBordersOverridden;
-- (void)setAlignmentInfo:(id)arg1;
+@property(retain) EDProtection *protection;
+@property(getter=isProtectionOverridden) _Bool protectionOverridden;
+@property(retain) EDBorders *borders;
+@property(getter=isBordersOverridden) _Bool bordersOverridden;
+@property(retain) EDAlignmentInfo *alignmentInfo;
 - (_Bool)isCenterAcrossAligned;
-- (id)alignmentInfo;
-- (void)setAlignmentInfoOverridden:(_Bool)arg1;
-- (_Bool)isAlignmentInfoOverridden;
-- (void)setFill:(id)arg1;
-- (id)fill;
-- (void)setFillOverridden:(_Bool)arg1;
-- (_Bool)isFillOverridden;
-- (void)setFont:(id)arg1;
-- (id)font;
-- (void)setFontOverridden:(_Bool)arg1;
-- (_Bool)isFontOverridden;
-- (void)setContentFormat:(id)arg1;
-- (id)contentFormat;
-- (void)setContentFormatOverridden:(_Bool)arg1;
-- (_Bool)isContentFormatOverridden;
+@property(getter=isAlignmentInfoOverridden) _Bool alignmentInfoOverridden;
+@property(retain) EDFill *fill;
+@property(getter=isFillOverridden) _Bool fillOverridden;
+@property(retain) EDFont *font;
+@property(getter=isFontOverridden) _Bool fontOverridden;
+@property(retain) EDContentFormat *contentFormat;
+@property(getter=isContentFormatOverridden) _Bool contentFormatOverridden;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToStyle:(id)arg1;
 - (BOOL)isEquivalentToStyle:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithResources:(id)arg1;
 @property(readonly, copy) NSString *description;
 - (void)setAlignmentInfoIndex:(unsigned long long)arg1;

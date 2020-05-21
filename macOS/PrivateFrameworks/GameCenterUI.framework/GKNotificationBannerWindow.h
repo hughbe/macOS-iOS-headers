@@ -12,20 +12,28 @@
 {
     NSTextField *label;
     NSImageView *iconView;
+    BOOL _canTransitionToPlayerAvatar;
+    NSView *_iconContainerView;
+    NSImageView *_avatarImageView;
 }
 
 + (id)notificationBannerWithTitle:(id)arg1 message:(id)arg2;
 + (id)semaphore;
 + (id)queue;
+- (void).cxx_destruct;
+@property BOOL canTransitionToPlayerAvatar; // @synthesize canTransitionToPlayerAvatar=_canTransitionToPlayerAvatar;
+@property(retain) NSImageView *avatarImageView; // @synthesize avatarImageView=_avatarImageView;
+@property NSView *iconContainerView; // @synthesize iconContainerView=_iconContainerView;
 @property(retain) NSImageView *iconView; // @synthesize iconView;
 - (void)showWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)showPlayerAvatarAnimationWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)transitionToPlayerAvatar;
+- (void)startLoadingPlayerAvatar;
 - (void)showForDuration:(double)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)sendEvent:(id)arg1;
 - (void)setFrame:(struct CGRect)arg1 display:(BOOL)arg2;
-- (void)awakeFromNib;
 - (id)icon;
 - (void)setIcon:(id)arg1;
-- (void)dealloc;
 
 // Remaining properties
 @property(retain) NSView *contentView; // @dynamic contentView;

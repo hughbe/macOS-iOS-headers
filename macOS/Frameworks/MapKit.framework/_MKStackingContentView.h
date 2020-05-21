@@ -6,11 +6,10 @@
 
 #import <MapKit/_MKUIViewControllerRootView.h>
 
-#import "_MKUILabelDiableFontSmoothing.h"
-
 @class NSLayoutConstraint, NSView;
 
-@interface _MKStackingContentView : _MKUIViewControllerRootView <_MKUILabelDiableFontSmoothing>
+__attribute__((visibility("hidden")))
+@interface _MKStackingContentView : _MKUIViewControllerRootView
 {
     NSLayoutConstraint *_topConstraint;
     NSLayoutConstraint *_middleConstraint;
@@ -19,13 +18,12 @@
     NSView *_bottomView;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSView *bottomView; // @synthesize bottomView=_bottomView;
 @property(retain, nonatomic) NSView *topView; // @synthesize topView=_topView;
-- (void).cxx_destruct;
-- (BOOL)_MKUILabelShouldDisableFontSmoothing;
+- (id)vibrancyGroupName;
 - (void)updateConstraints;
 @property(readonly, nonatomic) NSLayoutConstraint *bottomConstraint;
-- (void)infoCardThemeChanged:(id)arg1;
 - (id)initWithViewController:(id)arg1;
 
 @end

@@ -16,12 +16,12 @@
     double _startTime;
 }
 
+- (void).cxx_destruct;
 @property double startTime; // @synthesize startTime=_startTime;
 @property(retain) AMAction *action; // @synthesize action=_action;
 - (void)cancel;
 - (void)main;
-- (double)duration;
-- (void)dealloc;
+@property(readonly, nonatomic) double duration;
 - (id)initWithAction:(id)arg1;
 
 // Remaining properties

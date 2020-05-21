@@ -32,7 +32,9 @@
     BOOL _workQueueExceededTotalThreadLimit;
     BOOL _isThirdParty;
     BOOL _gatheredNonTimeCriticalAuxiliaryInfoFromLiveSystem;
+    BOOL _gatheredTimeCriticalAuxiliaryInfoFromLiveSystem;
     BOOL _didExec;
+    BOOL _isTranslocated;
     double _mostRecentTimeSamplingOnlyMainThread;
     NSMutableSet *_rootUserFrames;
     PASampleTaskDataPrivateData *_cachedPrivateData;
@@ -43,12 +45,14 @@
 
 + (id)newInstanceWithoutReferencesFromBufferPosition:(const void *)arg1;
 + (id)classDictionaryKey;
+- (void).cxx_destruct;
 @property(readonly) BOOL workQueueExceededTotalThreadLimit; // @synthesize workQueueExceededTotalThreadLimit=_workQueueExceededTotalThreadLimit;
 @property(readonly) BOOL workQueueExceededConstrainedThreadLimit; // @synthesize workQueueExceededConstrainedThreadLimit=_workQueueExceededConstrainedThreadLimit;
 @property(readonly) BOOL isDirty; // @synthesize isDirty=_isDirty;
 @property(readonly) BOOL wqAndDirtyAreStatic; // @synthesize wqAndDirtyAreStatic=_wqAndDirtyAreStatic;
 @property double mostRecentTimeSamplingOnlyMainThread; // @synthesize mostRecentTimeSamplingOnlyMainThread=_mostRecentTimeSamplingOnlyMainThread;
 @property BOOL didExec; // @synthesize didExec=_didExec;
+@property(readonly) BOOL isTranslocated; // @synthesize isTranslocated=_isTranslocated;
 @property(readonly) BOOL isThirdParty; // @synthesize isThirdParty=_isThirdParty;
 @property(readonly) BOOL allowsIdleExit; // @synthesize allowsIdleExit=_allowsIdleExit;
 @property(readonly) BOOL usesSuddenTermination; // @synthesize usesSuddenTermination=_usesSuddenTermination;
@@ -66,14 +70,15 @@
 @property(readonly) int rpid; // @synthesize rpid=_rpid;
 @property(readonly) int ppid; // @synthesize ppid=_ppid;
 @property(readonly) int pid; // @synthesize pid=_pid;
-- (void).cxx_destruct;
 @property(readonly, copy) NSString *debugDescription;
+- (void)addImageInfos:(id)arg1;
 - (BOOL)correspondsToUniquePid:(unsigned long long)arg1 withName:(const char *)arg2 withLoadInfos:(const struct dyld_uuid_info_64 *)arg3 numLoadInfos:(unsigned int)arg4;
 - (BOOL)_matchesName:(const char *)arg1;
 - (BOOL)correspondsToStackshotTask:(id)arg1;
 - (id)addUserStack:(id)arg1;
-- (void)_gatherTimeCriticalAuxiliaryInfoFromLiveSystem;
+- (void)_gatherTimeCriticalAuxiliaryInfoFromLiveSystemIsLate:(BOOL)arg1;
 - (void)_gatherNonTimeCriticalAuxiliaryInfoFromLiveSystemWithSampleTimeSeriesDataStore:(id)arg1;
+- (BOOL)gatherLoadInfoWithSampleTimeSeriesDataStore:(id)arg1;
 - (id)initWithKCDataStackshotDeltaTask:(const struct task_delta_snapshot_v2 *)arg1 withLoadInfos:(const struct dyld_uuid_info_64 *)arg2 numLoadInfos:(unsigned int)arg3 pid:(int)arg4 andMachineArchitecture:(struct _CSArchitecture)arg5;
 - (id)initWithKCDataStackshotTask:(const struct task_snapshot_v2 *)arg1 withLoadInfos:(const struct dyld_uuid_info_64 *)arg2 numLoadInfos:(unsigned int)arg3 andMachineArchitecture:(struct _CSArchitecture)arg4;
 - (id)initWithStackshotTask:(id)arg1 andMachineArchitecture:(struct _CSArchitecture)arg2;
@@ -85,9 +90,9 @@
 - (void)setNameWithCStr:(const char *)arg1;
 - (id)initWithPid:(int)arg1 andUniqueID:(unsigned long long)arg2 andName:(const char *)arg3;
 - (void)populateReferencesUsingBufferPosition:(const void *)arg1 andDeserializationDictionary:(id)arg2 andDataBufferDictionary:(id)arg3;
-- (id)_initWithSerializedTimeInsensitiveTaskData:(const CDStruct_888ff4b4 *)arg1;
+- (id)_initWithSerializedTimeInsensitiveTaskData:(const CDStruct_837e78c1 *)arg1;
 - (void)addSelfToSerializationDictionary:(id)arg1;
-- (BOOL)addSelfToBufferAtPosition:(void *)arg1 withCompletedSerializationDictionary:(struct NSMutableDictionary *)arg2;
+- (BOOL)addSelfToBufferAtPosition:(void *)arg1 withCompletedSerializationDictionary:(id)arg2;
 - (unsigned long long)sizeInBytesForSerializedVersion;
 
 // Remaining properties

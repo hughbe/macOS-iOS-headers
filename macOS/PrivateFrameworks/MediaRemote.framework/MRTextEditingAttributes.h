@@ -17,6 +17,7 @@
     struct _MRTextInputTraits _inputTraits;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) struct _MRTextInputTraits inputTraits; // @synthesize inputTraits=_inputTraits;
 @property(readonly, nonatomic) NSString *prompt; // @synthesize prompt=_prompt;
 @property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
@@ -24,7 +25,6 @@
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)initWithTitle:(id)arg1 prompt:(id)arg2;
 
 @end

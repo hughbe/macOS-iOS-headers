@@ -12,8 +12,8 @@
 }
 
 + (id)sharedManager;
+- (void).cxx_destruct;
 @property(retain, nonatomic) id <GEONavdAnalyticsReporter> analyticsReporter; // @synthesize analyticsReporter=_analyticsReporter;
-- (void)dealloc;
 
 @end
 

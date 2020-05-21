@@ -6,61 +6,65 @@
 
 #import <Safari/PreferencesModule.h>
 
-@class AcceptedSiteDataSheetController, ManagedMediaCapturePoliciesEditor, NSButton, NSTextField;
+@class AcceptedSiteDataSheetController, NSButton, NSLayoutConstraint, NSTextField, NSView;
 
 __attribute__((visibility("hidden")))
 @interface PrivacyPreferences : PreferencesModule
 {
-    NSButton *trackingPolicyCheckbox;
     AcceptedSiteDataSheetController *_siteDataEditor;
     NSButton *_helpButton;
     NSTextField *applePayLabelTextField;
     NSButton *applePayCapabilityDisclosureAllowedCheckbox;
+    NSTextField *_applePaySubtextTextField;
+    NSButton *_policyEnabledButton;
     NSButton *_blockStorageAlwaysButton;
-    NSButton *_blockStorageFromAllThirdPartiesButton;
-    NSButton *_blockStorageFromThirdPartiesThatWereNeverVisitedStorageButton;
-    NSButton *_blockStorageNeverButton;
-    NSButton *_alwaysDenyPermissionLocationButton;
-    NSButton *_promptForPermissionEvery24HoursPerSiteLocationButton;
-    NSButton *_promptForPermissionOncePerSiteLocationButton;
     NSButton *_manageWebsiteDataButton;
-    NSTextField *_mediaCaptureLabel;
-    NSButton *_mediaCaptureSettingsButton;
-    ManagedMediaCapturePoliciesEditor *_managedMediaCapturePoliciesEditor;
-    NSButton *_canPromptForMediaCaptureCheckbox;
+    NSLayoutConstraint *_applePayLabelTrailingAlignmentConstraint;
+    NSLayoutConstraint *_applePayLabelTrailingHorizontalSpacingConstraint;
+    NSLayoutConstraint *_applePayLabelBottomAlignmentConstraint;
+    NSLayoutConstraint *_applePayCheckboxTopVerticalSpacingConstraint;
+    NSLayoutConstraint *_applePayCheckboxBottomVerticalSpacingConstraint;
+    NSLayoutConstraint *_applePayCheckboxTrailingHorizontalSpacingConstraint;
+    NSLayoutConstraint *_applePayCheckboxLeadingAlignmentConstraint;
+    NSLayoutConstraint *_applePaySubtextLeadingAlignmentConstraint;
+    NSLayoutConstraint *_applePaySubtextBottomVerticalSpacingConstraint;
+    NSLayoutConstraint *_applePaySubtextTrailingHorizontalSpacingConstraint;
+    NSView *_mainContentView;
 }
 
-@property(nonatomic) __weak NSButton *canPromptForMediaCaptureCheckbox; // @synthesize canPromptForMediaCaptureCheckbox=_canPromptForMediaCaptureCheckbox;
-@property(retain, nonatomic) ManagedMediaCapturePoliciesEditor *managedMediaCapturePoliciesEditor; // @synthesize managedMediaCapturePoliciesEditor=_managedMediaCapturePoliciesEditor;
-@property(nonatomic) __weak NSButton *mediaCaptureSettingsButton; // @synthesize mediaCaptureSettingsButton=_mediaCaptureSettingsButton;
-@property(nonatomic) __weak NSTextField *mediaCaptureLabel; // @synthesize mediaCaptureLabel=_mediaCaptureLabel;
-@property __weak NSButton *manageWebsiteDataButton; // @synthesize manageWebsiteDataButton=_manageWebsiteDataButton;
-@property(nonatomic) __weak NSButton *promptForPermissionOncePerSiteLocationButton; // @synthesize promptForPermissionOncePerSiteLocationButton=_promptForPermissionOncePerSiteLocationButton;
-@property(nonatomic) __weak NSButton *promptForPermissionEvery24HoursPerSiteLocationButton; // @synthesize promptForPermissionEvery24HoursPerSiteLocationButton=_promptForPermissionEvery24HoursPerSiteLocationButton;
-@property(nonatomic) __weak NSButton *alwaysDenyPermissionLocationButton; // @synthesize alwaysDenyPermissionLocationButton=_alwaysDenyPermissionLocationButton;
-@property(nonatomic) __weak NSButton *blockStorageNeverButton; // @synthesize blockStorageNeverButton=_blockStorageNeverButton;
-@property(nonatomic) __weak NSButton *blockStorageFromThirdPartiesThatWereNeverVisitedStorageButton; // @synthesize blockStorageFromThirdPartiesThatWereNeverVisitedStorageButton=_blockStorageFromThirdPartiesThatWereNeverVisitedStorageButton;
-@property(nonatomic) __weak NSButton *blockStorageFromAllThirdPartiesButton; // @synthesize blockStorageFromAllThirdPartiesButton=_blockStorageFromAllThirdPartiesButton;
-@property(nonatomic) __weak NSButton *blockStorageAlwaysButton; // @synthesize blockStorageAlwaysButton=_blockStorageAlwaysButton;
 - (void).cxx_destruct;
+@property(nonatomic) __weak NSView *mainContentView; // @synthesize mainContentView=_mainContentView;
+@property(retain, nonatomic) NSLayoutConstraint *applePaySubtextTrailingHorizontalSpacingConstraint; // @synthesize applePaySubtextTrailingHorizontalSpacingConstraint=_applePaySubtextTrailingHorizontalSpacingConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *applePaySubtextBottomVerticalSpacingConstraint; // @synthesize applePaySubtextBottomVerticalSpacingConstraint=_applePaySubtextBottomVerticalSpacingConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *applePaySubtextLeadingAlignmentConstraint; // @synthesize applePaySubtextLeadingAlignmentConstraint=_applePaySubtextLeadingAlignmentConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *applePayCheckboxLeadingAlignmentConstraint; // @synthesize applePayCheckboxLeadingAlignmentConstraint=_applePayCheckboxLeadingAlignmentConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *applePayCheckboxTrailingHorizontalSpacingConstraint; // @synthesize applePayCheckboxTrailingHorizontalSpacingConstraint=_applePayCheckboxTrailingHorizontalSpacingConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *applePayCheckboxBottomVerticalSpacingConstraint; // @synthesize applePayCheckboxBottomVerticalSpacingConstraint=_applePayCheckboxBottomVerticalSpacingConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *applePayCheckboxTopVerticalSpacingConstraint; // @synthesize applePayCheckboxTopVerticalSpacingConstraint=_applePayCheckboxTopVerticalSpacingConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *applePayLabelBottomAlignmentConstraint; // @synthesize applePayLabelBottomAlignmentConstraint=_applePayLabelBottomAlignmentConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *applePayLabelTrailingHorizontalSpacingConstraint; // @synthesize applePayLabelTrailingHorizontalSpacingConstraint=_applePayLabelTrailingHorizontalSpacingConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *applePayLabelTrailingAlignmentConstraint; // @synthesize applePayLabelTrailingAlignmentConstraint=_applePayLabelTrailingAlignmentConstraint;
+@property __weak NSButton *manageWebsiteDataButton; // @synthesize manageWebsiteDataButton=_manageWebsiteDataButton;
+@property(nonatomic) __weak NSButton *blockStorageAlwaysButton; // @synthesize blockStorageAlwaysButton=_blockStorageAlwaysButton;
+@property(nonatomic) __weak NSButton *policyEnabledButton; // @synthesize policyEnabledButton=_policyEnabledButton;
 - (void)_updateApplePayCapabilityDisclosureAllowedCheckbox;
-- (void)_updateTrackingPolicyCheckbox;
-- (void)_updateLocationPolicyButtons;
-- (id)_locationPolicyButtons;
-- (int)_geolocationPermissionPolicyForButton:(id)arg1;
-- (id)_buttonForGeolocationPermissionPolicy:(int)arg1;
 - (void)_updateStoragePolicyButtons;
 - (id)_blockStoragePolicyButtons;
-- (int)_blockStoragePolicyForButton:(id)arg1;
-- (id)_buttonForBlockStoragePolicy:(int)arg1;
+@property(readonly, nonatomic) int currentBlockStoragePolicy;
 - (void)takeApplePayCapabilityDisclosureAllowedFrom:(id)arg1;
-- (void)takeTrackingPolicyFrom:(id)arg1;
-- (void)takeLocationPolicyFrom:(id)arg1;
+- (void)_updateBlockStoragePolicyIfNeeded;
 - (void)takeStoragePolicyFrom:(id)arg1;
 - (void)showWebsiteDataDetails:(id)arg1;
-- (id)helpAnchor;
-- (void)initializeFromDefaults;
-- (void)awakeFromNib;
+- (id)safariHelpAnchor;
+- (void)_setApplePaySubtextString;
+- (id)_applePayPreferencesConstraints;
+- (void)_removeApplePayPreferenceIfNecessary;
+- (void)_addApplePayPreferenceIfNecessary;
+- (void)_updateApplePayPreferenceVisibility;
+- (void)_applePayAvailabilityMayHaveChanged:(id)arg1;
+- (void)willBeDisplayed;
+- (void)moduleWillBeRemoved;
+- (void)moduleWasInstalled;
 - (id)imageForPreferenceNamed:(id)arg1;
 
 @end

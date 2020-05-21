@@ -6,68 +6,44 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NWStatisticsManager;
+@class NWStatisticsManager;
 
 @interface NWStatisticsSource : NSObject
 {
     unsigned int _filter;
     struct nstat_counts _last_counts;
-    NSDictionary *_counts;
-    BOOL _removed;
     BOOL _removing;
-    BOOL _hasCounts;
-    BOOL _hasDescriptor;
-    BOOL _hasNewKernelInfo;
-    unsigned long long _rxWiFiBytes;
-    unsigned long long _txWiFiBytes;
+    unsigned int _provider;
     id <NWStatisticsSourceDelegate> _delegate;
     NWStatisticsManager *_manager;
     unsigned long long _reference;
+    unsigned long long _countsSeqno;
+    unsigned long long _descriptorSeqno;
 }
 
 + (id)createSourceForProvider:(unsigned int)arg1 srcRef:(unsigned long long)arg2 manager:(id)arg3;
-@property BOOL hasNewKernelInfo; // @synthesize hasNewKernelInfo=_hasNewKernelInfo;
-@property BOOL hasDescriptor; // @synthesize hasDescriptor=_hasDescriptor;
-@property BOOL hasCounts; // @synthesize hasCounts=_hasCounts;
+- (void).cxx_destruct;
+@property(readonly) unsigned int provider; // @synthesize provider=_provider;
+@property unsigned long long descriptorSeqno; // @synthesize descriptorSeqno=_descriptorSeqno;
+@property unsigned long long countsSeqno; // @synthesize countsSeqno=_countsSeqno;
 @property BOOL removing; // @synthesize removing=_removing;
-@property(getter=isRemoved) BOOL removed; // @synthesize removed=_removed;
 @property unsigned long long reference; // @synthesize reference=_reference;
 @property(readonly) NWStatisticsManager *manager; // @synthesize manager=_manager;
 @property(retain) id <NWStatisticsSourceDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly) unsigned long long txWiFiBytes; // @synthesize txWiFiBytes=_txWiFiBytes;
-@property(readonly) unsigned long long rxWiFiBytes; // @synthesize rxWiFiBytes=_rxWiFiBytes;
-- (void).cxx_destruct;
-- (void)discardCountsDir;
-- (id)createCounts;
+- (id)currentSnapshot;
+- (id)_currentSnapshot;
 - (void)queryUpdate;
 - (void)queryDescription;
 - (void)queryCounts;
-- (id)initWithManager:(id)arg1 source:(unsigned long long)arg2;
+- (id)initWithManager:(id)arg1 source:(unsigned long long)arg2 provider:(unsigned int)arg3;
 - (BOOL)handleMessage:(struct nstat_msg_hdr *)arg1 length:(long long)arg2;
-- (BOOL)_handleDescriptor:(void *)arg1 length:(unsigned long long)arg2;
+- (BOOL)_handleDescriptor:(void *)arg1 length:(unsigned long long)arg2 events:(unsigned long long)arg3;
 - (BOOL)handleCounts:(const struct nstat_counts *)arg1;
-- (BOOL)handleDescriptor:(void *)arg1 length:(unsigned long long)arg2;
+- (int)handleDescriptor:(void *)arg1 length:(unsigned long long)arg2 events:(unsigned long long)arg3;
 @property(readonly) const struct nstat_counts *_nstat_counts;
+@property(readonly) unsigned long long snapshotRevision;
+@property(readonly) unsigned long long sourceIdentifier;
 - (id)init;
-@property(readonly, copy, nonatomic) NSDictionary *counts;
-@property(readonly) double rttVariation;
-@property(readonly) double rttAverage;
-@property(readonly) double rttMinimum;
-@property(readonly) long long connectSuccesses;
-@property(readonly) long long connectAttempts;
-@property(readonly) long long txRetransmittedBytes;
-@property(readonly) unsigned long long txWiredBytes;
-- (unsigned long long)txWifiBytes;
-@property(readonly) unsigned long long txCellularBytes;
-@property(readonly) unsigned long long txBytes;
-@property(readonly) unsigned long long txPackets;
-@property(readonly) long long rxOutOfOrderBytes;
-@property(readonly) long long rxDuplicateBytes;
-@property(readonly) unsigned long long rxWiredBytes;
-- (unsigned long long)rxWifiBytes;
-@property(readonly) unsigned long long rxCellularBytes;
-@property(readonly) unsigned long long rxBytes;
-@property(readonly) unsigned long long rxPackets;
 
 @end
 

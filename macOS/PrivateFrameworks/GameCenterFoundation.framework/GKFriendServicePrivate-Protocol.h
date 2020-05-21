@@ -6,21 +6,18 @@
 
 #import "GKFriendService.h"
 
-@class GKConcernInternal, GKPlayerInternal, NSArray, NSNumber, NSString;
+@class GKConcernInternal, GKPlayerInternal, NSArray, NSString;
 
 @protocol GKFriendServicePrivate <GKFriendService>
 - (oneway void)requestGKPlayerIDforiCloudIDs:(NSArray *)arg1 handler:(void (^)(NSString *, NSError *))arg2;
 - (oneway void)reportConcern:(GKConcernInternal *)arg1 handler:(void (^)(NSError *))arg2;
 - (oneway void)getConcernsForPlayer:(GKPlayerInternal *)arg1 handler:(void (^)(NSArray *, NSError *))arg2;
-- (oneway void)markFriendRecommendations:(NSArray *)arg1 viewed:(BOOL)arg2 handler:(void (^)(void))arg3;
-- (oneway void)dismissFriendRecommendations:(NSArray *)arg1 handler:(void (^)(void))arg2;
-- (oneway void)getFriendRecommendationsWithHandler:(void (^)(NSArray *, NSError *))arg1;
+- (oneway void)removeAllFriendsWithHandler:(void (^)(BOOL))arg1;
 - (oneway void)removeFriendWithPlayer:(GKPlayerInternal *)arg1 handler:(void (^)(NSError *))arg2;
-- (oneway void)declineFriendRequestsFromPlayers:(NSArray *)arg1 handler:(void (^)(NSError *))arg2;
-- (oneway void)acceptFriendRequestsFromPlayers:(NSArray *)arg1 withHandles:(NSArray *)arg2 handler:(void (^)(NSError *))arg3;
-- (oneway void)sendFriendRequestToPlayers:(NSArray *)arg1 emailAddresses:(NSArray *)arg2 aliases:(NSArray *)arg3 twitterScreenNames:(NSArray *)arg4 facebookIDs:(NSArray *)arg5 message:(NSString *)arg6 rid:(NSNumber *)arg7 handler:(void (^)(NSDictionary *, NSError *))arg8;
-- (oneway void)getFriendRequestCountWithHandler:(void (^)(long long, NSError *))arg1;
-- (oneway void)getFriendRequestsWithHandler:(void (^)(NSArray *, NSError *))arg1;
 - (oneway void)getCommonFriendsForPlayer:(GKPlayerInternal *)arg1 handler:(void (^)(NSArray *, NSError *))arg2;
+- (oneway void)acceptFriendRequestWithIdentifier:(NSString *)arg1 handler:(void (^)(NSError *))arg2;
+- (oneway void)cancelFriendRequestWithIdentifier:(NSString *)arg1 handler:(void (^)(NSError *))arg2;
+- (oneway void)createFriendRequestWithIdentifier:(NSString *)arg1 handler:(void (^)(NSString *, NSError *))arg2;
+- (oneway void)getPlayerIDFromFriendCode:(NSString *)arg1 handler:(void (^)(NSString *, NSError *))arg2;
 @end
 

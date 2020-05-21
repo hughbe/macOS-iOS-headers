@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)arrayWithFrames:(void **)arg1 count:(unsigned long long)arg2 symbols:(BOOL)arg3;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)descriptionWithLocale:(id)arg1 indent:(unsigned long long)arg2;
 - (id)objectAtIndex:(unsigned long long)arg1;
 - (unsigned long long)count;

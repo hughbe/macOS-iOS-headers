@@ -6,39 +6,42 @@
 
 #import <MapKit/_MKUILabel.h>
 
-@class MKMapItem, NSArray;
+@class MKArtworkDataSourceCache, NSArray;
 
 @interface MKTransitInfoLabelView : _MKUILabel
 {
-    BOOL _truncateBySwitchingToTextOnly;
-    BOOL _containsText;
-    double _maxWidth;
-    MKMapItem *_mapItem;
-    long long _shieldSize;
     long long _iconSize;
+    double _maxWidth;
+    double _spaceBetweenIcons;
+    CDUnknownBlockType _textForTruncationGenerator;
+    long long _shieldSize;
     NSArray *_labelItems;
     double _spaceBetweenShields;
+    MKArtworkDataSourceCache *_artworkCache;
 }
 
-@property(readonly, nonatomic) BOOL containsText; // @synthesize containsText=_containsText;
++ (id)stringAttributesForFont:(id)arg1 lineBreakMode:(unsigned long long)arg2;
+- (void).cxx_destruct;
+@property(retain, nonatomic) MKArtworkDataSourceCache *artworkCache; // @synthesize artworkCache=_artworkCache;
 @property(nonatomic) double spaceBetweenShields; // @synthesize spaceBetweenShields=_spaceBetweenShields;
 @property(copy, nonatomic) NSArray *labelItems; // @synthesize labelItems=_labelItems;
-@property(nonatomic) long long iconSize; // @synthesize iconSize=_iconSize;
 @property(nonatomic) long long shieldSize; // @synthesize shieldSize=_shieldSize;
-@property(retain, nonatomic) MKMapItem *mapItem; // @synthesize mapItem=_mapItem;
-@property(nonatomic) BOOL truncateBySwitchingToTextOnly; // @synthesize truncateBySwitchingToTextOnly=_truncateBySwitchingToTextOnly;
-@property(nonatomic) double maxWidth; // @synthesize maxWidth=_maxWidth;
-- (void).cxx_destruct;
 - (id)_imageForShieldDataSource:(id)arg1;
 - (id)_imageForArtworkDataSource:(id)arg1;
 - (id)_imageForLabelItem:(id)arg1;
 - (id)_stringAttributes;
-- (id)_generateText:(BOOL)arg1 allowElipsis:(BOOL)arg2;
+- (void)setSpaceBetweenIcons:(double)arg1;
+- (void)setIconSize:(long long)arg1;
+- (id)_generateText;
+- (struct CGSize)intrinsicContentSize;
 - (void)_setupLabelInfo;
+- (void)setMaxWidth:(double)arg1 textForTruncationGenerator:(CDUnknownBlockType)arg2;
+- (void)setMapItem:(id)arg1;
 - (void)dealloc;
-- (id)init;
+- (id)initWithLabelItems:(id)arg1 iconSize:(long long)arg2 shieldSize:(long long)arg3 spaceBetweenShields:(double)arg4 maxWidth:(double)arg5;
 - (id)initWithMapItem:(id)arg1 maxWidth:(double)arg2;
 - (id)initWithMapItem:(id)arg1;
+- (id)init;
 
 @end
 

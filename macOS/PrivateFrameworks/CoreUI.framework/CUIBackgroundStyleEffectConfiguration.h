@@ -12,15 +12,19 @@
 {
     NSString *_backgroundType;
     BOOL _effectShowsValue;
+    int _shouldRespectOutputBlending;
 }
 
 @property(nonatomic) BOOL effectShowsValue; // @synthesize effectShowsValue=_effectShowsValue;
 @property(copy, nonatomic) NSString *backgroundType; // @synthesize backgroundType=_backgroundType;
+- (void)setSelectionType:(long long)arg1;
 - (id)description;
 - (BOOL)shouldRespectOutputBlending;
+- (void)setShouldRespectOutputBlending:(BOOL)arg1;
 - (BOOL)shouldIgnoreForegroundColor;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
+- (id)init;
 
 @end
 

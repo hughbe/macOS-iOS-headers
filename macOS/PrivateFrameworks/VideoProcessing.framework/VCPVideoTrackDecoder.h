@@ -13,7 +13,9 @@
     AVAssetTrack *_track;
 }
 
++ (CDStruct_1ef3fb1f)decodeDimensionsForTrack:(id)arg1;
 - (void).cxx_destruct;
+- (struct opaqueCMSampleBuffer *)getNextCaptureSampleBuffer;
 - (struct opaqueCMSampleBuffer *)copyNextSampleBuffer;
 - (long long)status;
 - (id)settings;

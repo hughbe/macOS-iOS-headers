@@ -4,40 +4,39 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <GeoServices/GEOAbstractTicket.h>
 
 #import "GEOMapServiceProblemReportTicket.h"
 
-@class GEOMapServiceTraits, GEORPProblem, GEORPProblemRequest, NSData, NSString;
+@class GEOMapServiceTraits, GEORPProblem, GEORPProblemRequest, GEORPUserCredentials, NSData, NSString;
 
 __attribute__((visibility("hidden")))
-@interface _GEORPSubmissionTicket : NSObject <GEOMapServiceProblemReportTicket>
+@interface _GEORPSubmissionTicket : GEOAbstractTicket <GEOMapServiceProblemReportTicket>
 {
     NSData *_resubmissionData;
     GEORPProblem *_problem;
     id <GEOMapItem> _place;
-    id <GEOMapItem> _startPlace;
-    id <GEOMapItem> _endPlace;
     GEORPProblemRequest *_problemRequest;
+    GEORPUserCredentials *_userCredentials;
     NSData *_pushToken;
     NSString *_emailAddress;
-    GEOMapServiceTraits *_traits;
     BOOL _started;
-    BOOL _canceled;
 }
 
-@property(readonly, nonatomic) GEOMapServiceTraits *traits; // @synthesize traits=_traits;
+- (void).cxx_destruct;
+- (CDStruct_d1a7ebee)dataRequestKind;
 - (void)submitWithHandler:(CDUnknownBlockType)arg1 networkActivity:(CDUnknownBlockType)arg2;
 - (void)cancel;
-- (void)dealloc;
-- (id)initWithProblem:(id)arg1 placeForProblemContext:(id)arg2 placeForStartDirectionsSearchInput:(id)arg3 placeForEndDirectionsSearchInput:(id)arg4 pushToken:(id)arg5 allowContactBackAtEmailAddress:(id)arg6 traits:(id)arg7;
+- (id)initWithProblem:(id)arg1 placeForProblemContext:(id)arg2 userCredentials:(id)arg3 pushToken:(id)arg4 allowContactBackAtEmailAddress:(id)arg5 traits:(id)arg6;
 - (id)initWithResubmissionData:(id)arg1 traits:(id)arg2;
 
 // Remaining properties
+@property(readonly, nonatomic, getter=isCancelled) BOOL cancelled;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic) GEOMapServiceTraits *traits;
 
 @end
 

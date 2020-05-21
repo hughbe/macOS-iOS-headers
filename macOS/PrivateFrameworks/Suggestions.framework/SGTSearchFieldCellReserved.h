@@ -17,7 +17,7 @@ __attribute__((visibility("hidden")))
     BOOL _cancelInProgress;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 
 @end
 

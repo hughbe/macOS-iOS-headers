@@ -6,19 +6,31 @@
 
 #import "NSTableCellView.h"
 
+#import "NSControlTextEditingDelegate.h"
+
+@class NSString;
+
 __attribute__((visibility("hidden")))
-@interface AnnotatedBookmarksSidebarTableCellView : NSTableCellView
+@interface AnnotatedBookmarksSidebarTableCellView : NSTableCellView <NSControlTextEditingDelegate>
 {
     id <AnnotatedBookmarksSidebarTableCellViewDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <AnnotatedBookmarksSidebarTableCellViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <AnnotatedBookmarksSidebarTableCellViewDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)dealloc;
+- (void)viewDidMoveToWindow;
 - (BOOL)accessibilityPerformShowMenu;
 - (void)controlTextDidEndEditing:(id)arg1;
 - (void)editTitle;
 - (void)didRecognizeLongPress:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

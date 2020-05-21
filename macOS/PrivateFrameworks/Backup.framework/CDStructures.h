@@ -4,18 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class BU_ButtonController, BU_DPRemoteDesktopPicture, BU_TBUStarfieldShadowLayer, BU_TNotificationCenterObserverGlue, BU_TValidatingDateFormatter, CABackdropLayer, CALayer, NSArray, NSDate, NSDateComponents, NSObject, NSObject<OS_dispatch_queue>, NSTimer;
-
-#pragma mark Blocks
-
-typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
+@class BU_ButtonController, BU_DPRemoteDesktopPicture, BU_TBUStarfieldShadowLayer, BU_TNotificationCenterObserverGlue, BU_TRunAfterHelper, BU_TValidatingDateFormatter, CABackdropLayer, CALayer, CAMediaTimingFunction, NSArray, NSDate, NSDateComponents, NSObject, NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>, NSTimer, NSValue;
 
 #pragma mark Named Structures
 
 struct BUTimelinePrivate {
-    struct TNSRef<id<BUStarfieldTimelineDataSource>, void> _field1;
-    struct TNSRef<id<BUStarfieldTimelineDelegate>, void> _field2;
-    struct TNSRef<BU_TMTimeline *, void> _field3;
+    struct TNSRef<NSObject<BUStarfieldTimelineDataSource>, void> _field1;
+    struct TNSRef<NSObject<BUStarfieldTimelineDelegate>, void> _field2;
+    struct TNSRef<BU_TMTimeline, void> _field3;
     id _field4;
     id _field5;
 };
@@ -43,31 +39,24 @@ struct CGSize {
 
 struct IPrefsObserver {
     CDUnknownFunctionPointerType *_field1;
-    struct TNSRef<BU_TPrefsObserverBridge *, void> _field2;
+    struct TNSRef<BU_TPrefsObserverBridge, void> _field2;
 };
 
 struct OpaqueNodeRef;
 
 struct TBackupController {
-    struct TTimeMachineTargetList _field1;
-    struct TNSRef<BU_TBackupWindow *, void> _field2;
-    struct TNSRef<BU_TBackupView *, void> _field3;
-    struct TNSRef<NSMutableDictionary *, void> _field4;
+    vector_c7a9c3f3 _field1;
+    struct TNSRef<BU_TBackupWindow, void> _field2;
+    struct TNSRef<BU_TBackupView, void> _field3;
+    struct TNSRef<NSMutableDictionary, void> _field4;
 };
 
 struct TBackupLayerList {
-    struct TNSRef<BU_TBackupLayer *, void> *_field1;
-    struct TNSRef<BU_TBackupLayer *, void> *_field2;
-    struct __compressed_pair<TNSRef<BU_TBackupLayer *, void>*, std::__1::allocator<TNSRef<BU_TBackupLayer *, void>>> {
-        struct TNSRef<BU_TBackupLayer *, void> *_field1;
+    struct TNSRef<BU_TBackupLayer, void> *_field1;
+    struct TNSRef<BU_TBackupLayer, void> *_field2;
+    struct __compressed_pair<TNSRef<BU_TBackupLayer, void>*, std::__1::allocator<TNSRef<BU_TBackupLayer, void>>> {
+        struct TNSRef<BU_TBackupLayer, void> *_field1;
     } _field3;
-};
-
-struct TColor {
-    double _field1;
-    double _field2;
-    double _field3;
-    double _field4;
 };
 
 struct TDate {
@@ -87,88 +76,100 @@ struct TFENode {
     struct OpaqueNodeRef *_field1;
 };
 
-struct TNSRef<BU_ButtonController *, void> {
+struct TNSRef<BU_ButtonController, void> {
     BU_ButtonController *fRef;
 };
 
-struct TNSRef<BU_DPRemoteDesktopPicture *, void> {
+struct TNSRef<BU_DPRemoteDesktopPicture, void> {
     BU_DPRemoteDesktopPicture *fRef;
 };
 
-struct TNSRef<BU_TBUStarfieldShadowLayer *, void> {
+struct TNSRef<BU_TBUStarfieldShadowLayer, void> {
     BU_TBUStarfieldShadowLayer *fRef;
 };
 
-struct TNSRef<BU_TBackupLayer *, void>;
+struct TNSRef<BU_TBackupLayer, void>;
 
-struct TNSRef<BU_TBackupView *, void> {
+struct TNSRef<BU_TBackupView, void> {
     id _field1;
 };
 
-struct TNSRef<BU_TBackupWindow *, void> {
+struct TNSRef<BU_TBackupWindow, void> {
     id _field1;
 };
 
-struct TNSRef<BU_TMTimeline *, void> {
+struct TNSRef<BU_TMTimeline, void> {
     id _field1;
 };
 
-struct TNSRef<BU_TNotificationCenterObserverGlue *, void> {
+struct TNSRef<BU_TNotificationCenterObserverGlue, void> {
     BU_TNotificationCenterObserverGlue *fRef;
 };
 
-struct TNSRef<BU_TPrefsObserverBridge *, void> {
+struct TNSRef<BU_TPrefsObserverBridge, void> {
     id _field1;
 };
 
-struct TNSRef<BU_TValidatingDateFormatter *, void> {
+struct TNSRef<BU_TRunAfterHelper, void> {
+    BU_TRunAfterHelper *fRef;
+};
+
+struct TNSRef<BU_TValidatingDateFormatter, void> {
     BU_TValidatingDateFormatter *fRef;
 };
 
-struct TNSRef<CABackdropLayer *, void> {
+struct TNSRef<CABackdropLayer, void> {
     CABackdropLayer *fRef;
 };
 
-struct TNSRef<CALayer *, void> {
+struct TNSRef<CALayer, void> {
     CALayer *fRef;
 };
 
-struct TNSRef<NSArray *, void> {
+struct TNSRef<CAMediaTimingFunction, void> {
+    CAMediaTimingFunction *fRef;
+};
+
+struct TNSRef<NSArray, void> {
     NSArray *fRef;
 };
 
-struct TNSRef<NSDate *, void> {
+struct TNSRef<NSDate, void> {
     NSDate *fRef;
 };
 
-struct TNSRef<NSDateComponents *, void> {
+struct TNSRef<NSDateComponents, void> {
     NSDateComponents *fRef;
 };
 
-struct TNSRef<NSMutableDictionary *, void> {
+struct TNSRef<NSMutableDictionary, void> {
     id _field1;
 };
 
-struct TNSRef<NSTimer *, void> {
+struct TNSRef<NSObject<BUStarfieldTimelineDataSource>, void> {
+    id _field1;
+};
+
+struct TNSRef<NSObject<BUStarfieldTimelineDelegate>, void> {
+    id _field1;
+};
+
+struct TNSRef<NSTimer, void> {
     NSTimer *fRef;
 };
 
-struct TNSRef<id<BUStarfieldTimelineDataSource>, void> {
-    id _field1;
+struct TNSRef<NSValue, void> {
+    NSValue *fRef;
 };
 
-struct TNSRef<id<BUStarfieldTimelineDelegate>, void> {
-    id _field1;
-};
-
-struct TNSRef<id<BUStarfieldTimelineItem>, void> {
-    id _field1;
+struct TNSWeakPtr<BU_TRunAfterHelper, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
 };
 
 struct TNotificationCenterObserver {
     NSObject *fObservedObject;
     struct TString fNotificationName;
-    struct TNSRef<BU_TNotificationCenterObserverGlue *, void> fFunctorGlue;
+    struct TNSRef<BU_TNotificationCenterObserverGlue, void> fFunctorGlue;
     _Bool fIsDistributedObserving;
 };
 
@@ -188,12 +189,8 @@ struct TRef<NSObject<OS_dispatch_queue>*, TRetainReleasePolicy<dispatch_queue_t>
     NSObject<OS_dispatch_queue> *fRef;
 };
 
-struct TRef<TSnapshot *, TRetainReleasePolicy<TSnapshot *>> {
-    struct TSnapshot *_field1;
-};
-
-struct TRef<TTimeMachineTarget *, TRetainReleasePolicy<TTimeMachineTarget *>> {
-    struct TTimeMachineTarget *fRef;
+struct TRef<NSObject<OS_xpc_object>*, TRetainReleasePolicy<xpc_object_t>> {
+    NSObject<OS_xpc_object> *fRef;
 };
 
 struct TRef<__CFDictionary *, TRetainReleasePolicy<CFMutableDictionaryRef>> {
@@ -204,93 +201,64 @@ struct TRef<const __CFString *, TRetainReleasePolicy<CFStringRef>> {
     struct __CFString *fRef;
 };
 
-struct TRef<const void *, TRetainReleasePolicy<CFTypeRef>> {
-    void *_field1;
-};
+struct TSnapshot;
 
-struct TSnapshot {
-    CDUnknownFunctionPointerType *_field1;
-    int _field2;
-    struct TFENode _field3;
-    struct TDate _field4;
-    struct TDate _field5;
-    struct TFENode _field6;
-    unsigned long long _field7;
-    _Bool _field8;
-    _Bool _field9;
-    _Bool _field10;
-    _Bool _field11;
+struct TSpinLock {
+    struct os_unfair_lock_s fSpinLock;
 };
 
 struct TString {
     struct TRef<const __CFString *, TRetainReleasePolicy<CFStringRef>> fString;
 };
 
-struct TTimeMachineTarget {
-    CDUnknownFunctionPointerType *_field1;
-    int _field2;
-    _Bool _field3;
-    struct TFENode _field4;
-    struct TString _field5;
-    struct TRef<TSnapshot *, TRetainReleasePolicy<TSnapshot *>> _field6;
-    struct TRef<const void *, TRetainReleasePolicy<CFTypeRef>> _field7;
-    struct TNSRef<id<BUStarfieldTimelineItem>, void> _field8;
-};
-
-struct TTimeMachineTargetList {
-    struct TRef<TTimeMachineTarget *, TRetainReleasePolicy<TTimeMachineTarget *>> *_field1;
-    struct TRef<TTimeMachineTarget *, TRetainReleasePolicy<TTimeMachineTarget *>> *_field2;
-    struct __compressed_pair<TRef<TTimeMachineTarget *, TRetainReleasePolicy<TTimeMachineTarget *>>*, std::__1::allocator<TRef<TTimeMachineTarget *, TRetainReleasePolicy<TTimeMachineTarget *>>>> {
-        struct TRef<TTimeMachineTarget *, TRetainReleasePolicy<TTimeMachineTarget *>> *_field1;
-    } _field3;
-};
+struct TTimeMachineTarget;
 
 struct TTimelineControl {
     CDUnknownFunctionPointerType *_field1;
-    _Bool _field2;
+    struct weak_ptr<TTimelineControl> _field2;
     _Bool _field3;
-    id _field4;
-    _Bool _field5;
-    double _field6;
+    _Bool _field4;
+    id _field5;
+    _Bool _field6;
     double _field7;
     double _field8;
     double _field9;
     double _field10;
-    struct TEase _field11;
-    double _field12;
-    struct TTimeMachineTargetList _field13;
-    struct TRef<__CFDictionary *, TRetainReleasePolicy<CFMutableDictionaryRef>> _field14;
-    int _field15;
+    double _field11;
+    struct TEase _field12;
+    double _field13;
+    vector_c7a9c3f3 _field14;
+    struct TRef<__CFDictionary *, TRetainReleasePolicy<CFMutableDictionaryRef>> _field15;
     int _field16;
-    struct TTimelineItem *_field17;
+    int _field17;
     struct TTimelineItem *_field18;
-    struct vector<TTimelineItem *, std::__1::allocator<TTimelineItem *>> _field19;
-    struct TRef<CGColor *, TRetainReleasePolicy<CGColorRef>> _field20;
+    struct TTimelineItem *_field19;
+    struct vector<TTimelineItem *, std::__1::allocator<TTimelineItem *>> _field20;
     struct TRef<CGColor *, TRetainReleasePolicy<CGColorRef>> _field21;
     struct TRef<CGColor *, TRetainReleasePolicy<CGColorRef>> _field22;
-    double _field23;
+    struct TRef<CGColor *, TRetainReleasePolicy<CGColorRef>> _field23;
     double _field24;
     double _field25;
     double _field26;
     double _field27;
-    struct TRef<CGColorSpace *, TRetainReleasePolicy<CGColorSpaceRef>> _field28;
-    _Bool _field29;
+    double _field28;
+    struct TRef<CGColorSpace *, TRetainReleasePolicy<CGColorSpaceRef>> _field29;
     _Bool _field30;
     _Bool _field31;
-    struct TNSRef<NSTimer *, void> _field32;
-    struct TNSRef<NSTimer *, void> _field33;
-    struct TNSRef<NSTimer *, void> _field34;
-    struct TValidatorItem<TTimelineControl> _field35;
+    _Bool _field32;
+    struct TNSRef<NSTimer, void> _field33;
+    struct TNSRef<NSTimer, void> _field34;
+    struct TNSRef<NSTimer, void> _field35;
     id _field36;
 };
 
 struct TTimelineItem;
 
-struct TValidatorItem<TTimelineControl> {
-    long long _field1;
+struct __hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*> *__next_;
 };
 
-struct __hash_node<NSObject *, void *>;
+struct __shared_weak_count;
 
 struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
     struct __tree_node_base<void *> *__left_;
@@ -308,6 +276,11 @@ struct function<void ()> {
     struct __base<void ()> *__f_;
 };
 
+struct function<void (BU_DPRemoteDesktopPicture *)> {
+    struct type _field1;
+    struct __base<void (BU_DPRemoteDesktopPicture *)> *_field2;
+};
+
 struct function<void (NSAnimation *, float)> {
     struct type __buf_;
     struct __base<void (NSAnimation *, float)> *__f_;
@@ -323,33 +296,37 @@ struct function<void (NSNotification *)> {
     struct __base<void (NSNotification *)> *__f_;
 };
 
-struct set<TString, std::__1::less<TString>, std::__1::allocator<TString>> {
-    struct __tree<TString, std::__1::less<TString>, std::__1::allocator<TString>> {
-        struct __tree_node<TString, void *> *__begin_node_;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<TString, void *>>> {
-            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __first_;
+struct map<TString, TNotificationCenterObserver, std::__1::less<TString>, std::__1::allocator<std::__1::pair<const TString, TNotificationCenterObserver>>> {
+    struct __tree<std::__1::__value_type<TString, TNotificationCenterObserver>, std::__1::__map_value_compare<TString, std::__1::__value_type<TString, TNotificationCenterObserver>, std::__1::less<TString>, true>, std::__1::allocator<std::__1::__value_type<TString, TNotificationCenterObserver>>> {
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<TString, TNotificationCenterObserver>, void *>>> {
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __value_;
         } __pair1_;
-        struct __compressed_pair<unsigned long, std::__1::less<TString>> {
-            unsigned long long __first_;
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<TString, std::__1::__value_type<TString, TNotificationCenterObserver>, std::__1::less<TString>, true>> {
+            unsigned long long __value_;
         } __pair3_;
     } __tree_;
 };
 
-struct set<UDefaults::RegistryID, std::__1::less<UDefaults::RegistryID>, std::__1::allocator<UDefaults::RegistryID>> {
-    struct __tree<UDefaults::RegistryID, std::__1::less<UDefaults::RegistryID>, std::__1::allocator<UDefaults::RegistryID>> {
-        struct __tree_node<UDefaults::RegistryID, void *> *__begin_node_;
-        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<UDefaults::RegistryID, void *>>> {
-            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __first_;
+struct map<UDefaults::RegistryID, TNotificationCenterObserver, std::__1::less<UDefaults::RegistryID>, std::__1::allocator<std::__1::pair<const UDefaults::RegistryID, TNotificationCenterObserver>>> {
+    struct __tree<std::__1::__value_type<UDefaults::RegistryID, TNotificationCenterObserver>, std::__1::__map_value_compare<UDefaults::RegistryID, std::__1::__value_type<UDefaults::RegistryID, TNotificationCenterObserver>, std::__1::less<UDefaults::RegistryID>, true>, std::__1::allocator<std::__1::__value_type<UDefaults::RegistryID, TNotificationCenterObserver>>> {
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<UDefaults::RegistryID, TNotificationCenterObserver>, void *>>> {
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __value_;
         } __pair1_;
-        struct __compressed_pair<unsigned long, std::__1::less<UDefaults::RegistryID>> {
-            unsigned long long __first_;
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<UDefaults::RegistryID, std::__1::__value_type<UDefaults::RegistryID, TNotificationCenterObserver>, std::__1::less<UDefaults::RegistryID>, true>> {
+            unsigned long long __value_;
         } __pair3_;
     } __tree_;
+};
+
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
 };
 
 struct set<double, std::__1::less<double>, std::__1::allocator<double>> {
     struct __tree<double, std::__1::less<double>, std::__1::allocator<double>> {
-        struct __tree_node<double, void *> *_field1;
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
         struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<double, void *>>> {
             struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
         } _field2;
@@ -359,8 +336,23 @@ struct set<double, std::__1::less<double>, std::__1::allocator<double>> {
     } _field1;
 };
 
+struct shared_ptr<TSnapshot> {
+    struct TSnapshot *_field1;
+    struct __shared_weak_count *_field2;
+};
+
+struct shared_ptr<TTimeMachineTarget> {
+    struct TTimeMachineTarget *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
+struct shared_ptr<TTimelineControl> {
+    struct TTimelineControl *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
 struct type {
-    unsigned char __lx[24];
+    unsigned char __lx[32];
 };
 
 struct unique_function<void ()> {
@@ -369,34 +361,32 @@ struct unique_function<void ()> {
 
 struct unique_ptr<fstd::finder_callable_details::callable_holder_base<void>, std::__1::default_delete<fstd::finder_callable_details::callable_holder_base<void>>> {
     struct __compressed_pair<fstd::finder_callable_details::callable_holder_base<void>*, std::__1::default_delete<fstd::finder_callable_details::callable_holder_base<void>>> {
-        struct callable_holder_base<void> *__first_;
+        struct callable_holder_base<void> *__value_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<NSObject *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<NSObject *, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<NSObject *, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<NSObject *, void *>*>>> {
-        struct __hash_node<NSObject *, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<NSObject *, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<NSObject *, void *>*>> {
-                unsigned long long __first_;
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*> **__value_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>> {
+                unsigned long long __value_;
             } __data_;
-        } __second_;
+        } __value_;
     } __ptr_;
 };
 
-struct unordered_set<NSObject *, std::__1::hash<NSObject *>, std::__1::equal_to<NSObject *>, std::__1::allocator<NSObject *>> {
-    struct __hash_table<NSObject *, std::__1::hash<NSObject *>, std::__1::equal_to<NSObject *>, std::__1::allocator<NSObject *>> {
-        struct unique_ptr<std::__1::__hash_node<NSObject *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<NSObject *, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>, std::__1::allocator<std::__1::__hash_node<NSObject *, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<NSObject *, void *>*> {
-                struct __hash_node<NSObject *, void *> *__next_;
-            } __first_;
+struct unordered_set<NSObject *__unsafe_unretained, std::__1::hash<NSObject *__unsafe_unretained>, std::__1::equal_to<NSObject *__unsafe_unretained>, std::__1::allocator<NSObject *__unsafe_unretained>> {
+    struct __hash_table<NSObject *__unsafe_unretained, std::__1::hash<NSObject *__unsafe_unretained>, std::__1::equal_to<NSObject *__unsafe_unretained>, std::__1::allocator<NSObject *__unsafe_unretained>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>, std::__1::allocator<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*> __value_;
         } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::hash<NSObject *>> {
-            unsigned long long __first_;
+        struct __compressed_pair<unsigned long, std::__1::hash<NSObject *__unsafe_unretained>> {
+            unsigned long long __value_;
         } __p2_;
-        struct __compressed_pair<float, std::__1::equal_to<NSObject *>> {
-            float __first_;
+        struct __compressed_pair<float, std::__1::equal_to<NSObject *__unsafe_unretained>> {
+            float __value_;
         } __p3_;
     } __table_;
 };
@@ -405,15 +395,15 @@ struct vector<CGRect, std::__1::allocator<CGRect>> {
     struct CGRect *__begin_;
     struct CGRect *__end_;
     struct __compressed_pair<CGRect *, std::__1::allocator<CGRect>> {
-        struct CGRect *__first_;
+        struct CGRect *__value_;
     } __end_cap_;
 };
 
-struct vector<TNSRef<CALayer *, void>, std::__1::allocator<TNSRef<CALayer *, void>>> {
-    struct TNSRef<CALayer *, void> *__begin_;
-    struct TNSRef<CALayer *, void> *__end_;
-    struct __compressed_pair<TNSRef<CALayer *, void>*, std::__1::allocator<TNSRef<CALayer *, void>>> {
-        struct TNSRef<CALayer *, void> *__first_;
+struct vector<TNSRef<CALayer, void>, std::__1::allocator<TNSRef<CALayer, void>>> {
+    struct TNSRef<CALayer, void> *__begin_;
+    struct TNSRef<CALayer, void> *__end_;
+    struct __compressed_pair<TNSRef<CALayer, void>*, std::__1::allocator<TNSRef<CALayer, void>>> {
+        struct TNSRef<CALayer, void> *__value_;
     } __end_cap_;
 };
 
@@ -421,7 +411,7 @@ struct vector<TNotificationCenterObserver, std::__1::allocator<TNotificationCent
     struct TNotificationCenterObserver *__begin_;
     struct TNotificationCenterObserver *__end_;
     struct __compressed_pair<TNotificationCenterObserver *, std::__1::allocator<TNotificationCenterObserver>> {
-        struct TNotificationCenterObserver *__first_;
+        struct TNotificationCenterObserver *__value_;
     } __end_cap_;
 };
 
@@ -433,37 +423,59 @@ struct vector<TTimelineItem *, std::__1::allocator<TTimelineItem *>> {
     } _field3;
 };
 
+struct vector<std::__1::shared_ptr<TTimeMachineTarget>, std::__1::allocator<std::__1::shared_ptr<TTimeMachineTarget>>> {
+    shared_ptr_253687d6 *_field1;
+    shared_ptr_253687d6 *_field2;
+    struct __compressed_pair<std::__1::shared_ptr<TTimeMachineTarget>*, std::__1::allocator<std::__1::shared_ptr<TTimeMachineTarget>>> {
+        shared_ptr_253687d6 *_field1;
+    } _field3;
+};
+
+struct weak_ptr<TTimelineControl> {
+    struct TTimelineControl *_field1;
+    struct __shared_weak_count *_field2;
+};
+
 #pragma mark Typedef'd Structures
 
 // Template types
+typedef struct TNSWeakPtr<BU_TRunAfterHelper, void> {
+    struct TNSRef<NSValue, void> fWeakObject;
+} TNSWeakPtr_6f98b07a;
+
 typedef struct function<NSComparisonResult (__kindof NSView *, __kindof NSView *)> {
     struct type __buf_;
     struct __base<NSComparisonResult (__kindof NSView *, __kindof NSView *)> *__f_;
-} function_a298a8d2;
+} function_0f3b3c36;
 
 typedef struct function<void ()> {
     struct type __buf_;
     struct __base<void ()> *__f_;
-} function_f9feaa7d;
+} function_b1fce659;
+
+typedef struct function<void (BU_DPRemoteDesktopPicture *)> {
+    struct type _field1;
+    struct __base<void (BU_DPRemoteDesktopPicture *)> *_field2;
+} function_63706baa;
 
 typedef struct function<void (NSAnimation *, float)> {
     struct type __buf_;
     struct __base<void (NSAnimation *, float)> *__f_;
-} function_721cd517;
+} function_07c9e451;
 
 typedef struct function<void (NSDictionary<NSString *, NSObject *>*)> {
     struct type __buf_;
     struct __base<void (NSDictionary<NSString *, NSObject *>*)> *__f_;
-} function_0f2a703c;
+} function_e1076a84;
 
 typedef struct function<void (NSNotification *)> {
     struct type __buf_;
     struct __base<void (NSNotification *)> *__f_;
-} function_5450a8ab;
+} function_afb0e2a8;
 
 typedef struct set<double, std::__1::less<double>, std::__1::allocator<double>> {
     struct __tree<double, std::__1::less<double>, std::__1::allocator<double>> {
-        struct __tree_node<double, void *> *_field1;
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *_field1;
         struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<double, void *>>> {
             struct __tree_end_node<std::__1::__tree_node_base<void *>*> _field1;
         } _field2;
@@ -471,26 +483,42 @@ typedef struct set<double, std::__1::less<double>, std::__1::allocator<double>> 
             unsigned long long _field1;
         } _field3;
     } _field1;
-} set_bb8d1d1f;
+} set_8681f3ab;
+
+typedef struct shared_ptr<TSnapshot> {
+    struct TSnapshot *_field1;
+    struct __shared_weak_count *_field2;
+} shared_ptr_a94acee0;
+
+typedef struct shared_ptr<TTimeMachineTarget> {
+    struct TTimeMachineTarget *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+} shared_ptr_253687d6;
 
 typedef struct unique_function<void ()> {
     struct unique_ptr<fstd::finder_callable_details::callable_holder_base<void>, std::__1::default_delete<fstd::finder_callable_details::callable_holder_base<void>>> fLambdaHolder;
-} unique_function_acfb320d;
+} unique_function_63952f55;
 
-typedef struct unordered_set<NSObject *, std::__1::hash<NSObject *>, std::__1::equal_to<NSObject *>, std::__1::allocator<NSObject *>> {
-    struct __hash_table<NSObject *, std::__1::hash<NSObject *>, std::__1::equal_to<NSObject *>, std::__1::allocator<NSObject *>> {
-        struct unique_ptr<std::__1::__hash_node<NSObject *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<NSObject *, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *, void *>*>, std::__1::allocator<std::__1::__hash_node<NSObject *, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<NSObject *, void *>*> {
-                struct __hash_node<NSObject *, void *> *__next_;
-            } __first_;
+typedef struct unordered_set<NSObject *__unsafe_unretained, std::__1::hash<NSObject *__unsafe_unretained>, std::__1::equal_to<NSObject *__unsafe_unretained>, std::__1::allocator<NSObject *__unsafe_unretained>> {
+    struct __hash_table<NSObject *__unsafe_unretained, std::__1::hash<NSObject *__unsafe_unretained>, std::__1::equal_to<NSObject *__unsafe_unretained>, std::__1::allocator<NSObject *__unsafe_unretained>> {
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*>, std::__1::allocator<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<NSObject *__unsafe_unretained, void *>*> __value_;
         } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::hash<NSObject *>> {
-            unsigned long long __first_;
+        struct __compressed_pair<unsigned long, std::__1::hash<NSObject *__unsafe_unretained>> {
+            unsigned long long __value_;
         } __p2_;
-        struct __compressed_pair<float, std::__1::equal_to<NSObject *>> {
-            float __first_;
+        struct __compressed_pair<float, std::__1::equal_to<NSObject *__unsafe_unretained>> {
+            float __value_;
         } __p3_;
     } __table_;
-} unordered_set_1c20e8cc;
+} unordered_set_e17e8012;
+
+typedef struct vector<std::__1::shared_ptr<TTimeMachineTarget>, std::__1::allocator<std::__1::shared_ptr<TTimeMachineTarget>>> {
+    shared_ptr_253687d6 *_field1;
+    shared_ptr_253687d6 *_field2;
+    struct __compressed_pair<std::__1::shared_ptr<TTimeMachineTarget>*, std::__1::allocator<std::__1::shared_ptr<TTimeMachineTarget>>> {
+        shared_ptr_253687d6 *_field1;
+    } _field3;
+} vector_c7a9c3f3;
 

@@ -8,14 +8,15 @@
 
 @class NSData;
 
+__attribute__((visibility("hidden")))
 @interface TKDataSource : NSObject
 {
     NSData *_data;
     const char *_ptr;
 }
 
-@property(readonly) const char *ptr; // @synthesize ptr=_ptr;
 - (void).cxx_destruct;
+@property(readonly) const char *ptr; // @synthesize ptr=_ptr;
 @property(readonly) NSData *data;
 - (id)fetchDataWithLength:(long long)arg1;
 - (unsigned char)fetchByte;

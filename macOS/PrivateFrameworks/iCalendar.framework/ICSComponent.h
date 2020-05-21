@@ -24,8 +24,8 @@
 + (id)stringFromRelationshipType:(unsigned long long)arg1;
 + (unsigned long long)relationshipTypeFromString:(id)arg1;
 + (id)inheritanceKeywords;
-@property(retain) NSMutableArray *components; // @synthesize components=_components;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *components; // @synthesize components=_components;
 - (BOOL)shouldObscureValue;
 - (id)parametersToObscure;
 - (id)propertiesToObscure;
@@ -53,7 +53,7 @@
 @property(retain) NSString *x_apple_relatedExternalID;
 @property(retain) NSString *x_apple_contactIdentifiers;
 @property(retain) NSString *x_apple_suggestionInfoUniqueKey;
-@property ICSDate *x_apple_suggestionInfoTimestamp;
+@property(retain) ICSDate *x_apple_suggestionInfoTimestamp;
 @property(retain) NSString *x_apple_suggestionInfoOpaqueKey;
 @property unsigned long long x_apple_suggestionInfoChangedFields;
 @property BOOL x_apple_suggestionInfoChangesAcknowledged;

@@ -6,9 +6,11 @@
 
 #import <SAObjects/SAAceClientState.h>
 
-@class NSString, SACalendar;
+#import "SABackgroundContextObject.h"
 
-@interface SADynamiteClientState : SAAceClientState
+@class NSArray, NSNumber, NSString, SACalendar, SAUserState;
+
+@interface SADynamiteClientState : SAAceClientState <SABackgroundContextObject>
 {
 }
 
@@ -18,11 +20,24 @@
 + (id)syncKey;
 + (id)persistencePolicy;
 + (id)deliveryDeadline;
+@property(copy, nonatomic) NSString *xpAbCookie;
 @property(copy, nonatomic) NSString *userToken;
+@property(copy, nonatomic) NSNumber *userHistoryUnmodifiable;
 @property(copy, nonatomic) NSString *status;
+@property(copy, nonatomic) NSArray *inContextUsersStates;
+@property(copy, nonatomic) NSNumber *iCloudMusicLibraryToggle;
 @property(retain, nonatomic) SACalendar *expirationDate;
+@property(retain, nonatomic) SAUserState *defaultUserState;
+@property(nonatomic) BOOL ageVerificationRequired;
+@property(nonatomic) BOOL activeTvUser;
 - (id)encodedClassName;
 - (id)groupIdentifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

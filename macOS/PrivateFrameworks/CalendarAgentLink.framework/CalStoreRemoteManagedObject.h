@@ -17,11 +17,11 @@
 + (id)fetchObjectsWithPredicate:(id)arg1;
 + (id)fetchObjectWithUID:(id)arg1;
 + (id)fetchObjectWithObjectId:(id)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *objectId; // @synthesize objectId=_objectId;
 - (void)encodeWithCoder:(id)arg1;
 - (id)saveWithError:(id *)arg1;
 - (BOOL)removeWithError:(id *)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

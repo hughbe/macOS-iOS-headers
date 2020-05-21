@@ -6,16 +6,17 @@
 
 #import "NSObject.h"
 
+@class NSMutableArray;
+
 __attribute__((visibility("hidden")))
 @interface EDWarnings : NSObject
 {
-    struct __CFArray *mWarnings;
+    NSMutableArray *mWarnings;
 }
 
+- (void).cxx_destruct;
 - (void)reportWarningsWithAssociatedObject:(id)arg1;
-- (void)addWarning:(struct TCTaggedMessageStructure *)arg1;
-- (void)dealloc;
-- (id)init;
+- (void)addWarning:(id)arg1;
 
 @end
 

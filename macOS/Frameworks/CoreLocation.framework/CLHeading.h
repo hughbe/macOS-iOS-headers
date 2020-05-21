@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSDate, NSString;
+@class NSDate;
 
 @interface CLHeading : NSObject <NSCopying, NSSecureCoding>
 {
@@ -25,7 +25,7 @@
 @property(readonly, nonatomic) double trueHeading;
 @property(readonly, nonatomic) double magneticHeading;
 - (id)shortDescription;
-@property(readonly, copy, nonatomic) NSString *description;
+- (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;

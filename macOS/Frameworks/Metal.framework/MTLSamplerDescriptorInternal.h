@@ -9,7 +9,7 @@
 __attribute__((visibility("hidden")))
 @interface MTLSamplerDescriptorInternal : MTLSamplerDescriptor
 {
-    struct MTLSamplerDescriptorPrivate *_private;
+    struct MTLSamplerDescriptorPrivate _private;
 }
 
 - (const struct MTLSamplerDescriptorPrivate *)descriptorPrivate;
@@ -17,8 +17,17 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)hash;
 - (void)setLabel:(id)arg1;
 - (id)label;
+- (void)setResourceIndex:(unsigned long long)arg1;
+- (unsigned long long)resourceIndex;
+- (void)setForceResourceIndex:(BOOL)arg1;
+- (BOOL)forceResourceIndex;
+@property(nonatomic) unsigned long long reductionMode;
+- (void)setSupportArgumentBuffers:(BOOL)arg1;
+- (BOOL)supportArgumentBuffers;
 - (void)setCompareFunction:(unsigned long long)arg1;
 - (unsigned long long)compareFunction;
+- (unsigned long long)pixelFormat;
+- (void)setPixelFormat:(unsigned long long)arg1;
 - (void)setLodBias:(float)arg1;
 - (float)lodBias;
 - (void)setLodMaxClamp:(float)arg1;
@@ -27,6 +36,14 @@ __attribute__((visibility("hidden")))
 - (float)lodMinClamp;
 - (void)setNormalizedCoordinates:(BOOL)arg1;
 - (BOOL)normalizedCoordinates;
+@property(nonatomic) BOOL forceSeamsOnCubemapFiltering;
+@property(nonatomic) unsigned int customBorderColorValue_3;
+@property(nonatomic) unsigned int customBorderColorValue_2;
+@property(nonatomic) unsigned int customBorderColorValue_1;
+@property(nonatomic) unsigned int customBorderColorValue_0;
+@property(nonatomic) unsigned long long borderColorSPI;
+- (void)setBorderColor:(unsigned long long)arg1;
+- (unsigned long long)borderColor;
 - (void)setRAddressMode:(unsigned long long)arg1;
 - (unsigned long long)rAddressMode;
 - (void)setTAddressMode:(unsigned long long)arg1;
@@ -42,6 +59,7 @@ __attribute__((visibility("hidden")))
 - (void)setMinFilter:(unsigned long long)arg1;
 - (unsigned long long)minFilter;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 - (id)init;

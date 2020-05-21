@@ -8,16 +8,26 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader;
 
 @interface GEORPNotification : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     NSString *_localizedText;
     NSString *_localizedTitle;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_localizedText:1;
+        unsigned int read_localizedTitle:1;
+        unsigned int wrote_localizedText:1;
+        unsigned int wrote_localizedTitle:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSString *localizedText; // @synthesize localizedText=_localizedText;
-@property(retain, nonatomic) NSString *localizedTitle; // @synthesize localizedTitle=_localizedTitle;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +35,17 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *localizedText;
 @property(readonly, nonatomic) BOOL hasLocalizedText;
+- (void)_readLocalizedText;
+@property(retain, nonatomic) NSString *localizedTitle;
 @property(readonly, nonatomic) BOOL hasLocalizedTitle;
-- (void)dealloc;
+- (void)_readLocalizedTitle;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

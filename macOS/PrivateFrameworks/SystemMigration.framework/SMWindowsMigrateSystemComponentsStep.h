@@ -13,7 +13,7 @@
 + (unsigned long long)finalSizeWithEngine:(id)arg1;
 - (void)copierStarted:(id)arg1;
 - (id)process;
-- (id)preProcess;
+- (id)prepare;
 
 @end
 

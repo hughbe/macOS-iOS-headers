@@ -20,13 +20,13 @@
 + (void)enumerateBundleComponentsUnderRoot:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 + (BOOL)_enumerateBundleComponentsUnderURL:(id)arg1 relativeToRoot:(id)arg2 parentComponent:(id)arg3 usingBlock:(CDUnknownBlockType)arg4;
 @property int overwriteAction; // @synthesize overwriteAction=_overwriteAction;
-- (id)bundleName;
-- (id)bundlePath;
-- (id)storageType;
+@property(readonly) NSString *bundleName;
+@property(readonly) NSString *bundlePath;
+@property(readonly) NSString *storageType;
 - (id)subpaths;
 - (id)prefixPath;
 - (long long)versionCompare:(id)arg1;
-- (id)bundleVersion;
+@property(readonly) PKBundleComponentVersion *bundleVersion;
 - (void)dealloc;
 - (id)initWithBundleAtPath:(id)arg1 relativeToDestination:(id)arg2;
 - (id)initWithIdentifier:(id)arg1 versionAttributes:(id)arg2 bundlePath:(id)arg3 storageType:(id)arg4;

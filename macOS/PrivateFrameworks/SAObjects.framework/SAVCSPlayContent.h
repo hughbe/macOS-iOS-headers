@@ -6,7 +6,7 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
-@class NSString;
+@class NSString, NSURL;
 
 @interface SAVCSPlayContent : SABaseClientBoundCommand
 {
@@ -16,6 +16,9 @@
 + (id)playContent;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *utsId;
+@property(nonatomic) BOOL playTrailer;
+@property(copy, nonatomic) NSURL *lowresTrailerUri;
+@property(copy, nonatomic) NSURL *hiresTrailerUri;
 @property(copy, nonatomic) NSString *contentType;
 - (id)encodedClassName;
 - (id)groupIdentifier;

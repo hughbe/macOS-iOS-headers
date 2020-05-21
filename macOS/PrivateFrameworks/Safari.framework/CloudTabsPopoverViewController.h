@@ -13,7 +13,7 @@
 #import "NSTableViewDelegate.h"
 #import "RolloverActionButtonTableCellViewDelegate.h"
 
-@class BrowserWindowController, NSArray, NSImageView, NSPopover, NSScrollView, NSString, NSTableView, NSTextField;
+@class BrowserWindowController, NSArray, NSImageView, NSPopover, NSScrollView, NSString, NSTableView, NSTextField, WBSFaviconRequestsController;
 
 __attribute__((visibility("hidden")))
 @interface CloudTabsPopoverViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate, NSPopoverDelegate, CloudTabsPopoverTableViewDelegate, AccessibleRolloverActionButtonTableCellViewDelegate, RolloverActionButtonTableCellViewDelegate>
@@ -28,11 +28,13 @@ __attribute__((visibility("hidden")))
     double _deviceRowHeight;
     double _tabRowHeight;
     BOOL _shouldReloadCloudTabDevicesAndTable;
+    WBSFaviconRequestsController *_requestsController;
     BrowserWindowController *_controller;
 }
 
-@property(retain, nonatomic) BrowserWindowController *controller; // @synthesize controller=_controller;
 - (void).cxx_destruct;
+@property(retain, nonatomic) BrowserWindowController *controller; // @synthesize controller=_controller;
+- (BOOL)tableView:(id)arg1 isGroupRow:(long long)arg2;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (id)tableView:(id)arg1 rowViewForRow:(long long)arg2;
 - (id)tableView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
@@ -49,9 +51,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)goToCloudTabAtRow:(long long)arg1;
 - (BOOL)_shouldDrawSeparatorForRow:(long long)arg1;
 - (BOOL)_shouldDrawBackgroundForRow:(long long)arg1;
-- (void)_didRemoveAllIcons:(id)arg1;
-- (void)_iconDidChange:(id)arg1;
-- (id)_imageForCloudTab:(id)arg1;
 - (id)_cloudTabOrDeviceForIndex:(unsigned long long)arg1;
 - (id)_cloudTabOrDeviceForIndex:(unsigned long long)arg1 owningDevice:(id *)arg2;
 - (void)_syncedCloudTabDevicesDidChange:(id)arg1;

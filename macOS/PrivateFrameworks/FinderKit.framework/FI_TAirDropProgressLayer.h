@@ -10,10 +10,13 @@ __attribute__((visibility("hidden")))
 @interface FI_TAirDropProgressLayer : FI_TLayer
 {
     double _endAngle;
+    _Bool _indeterminate;
 }
 
 + (BOOL)needsDisplayForKey:(id)arg1;
+@property(nonatomic) _Bool indeterminate; // @synthesize indeterminate=_indeterminate;
 @property double endAngle; // @synthesize endAngle=_endAngle;
+- (void)drawProgressRing:(double)arg1;
 - (void)drawInContext:(struct CGContext *)arg1;
 @property(nonatomic) double percentComplete; // @dynamic percentComplete;
 - (void)setEndAngleAnimated:(double)arg1;

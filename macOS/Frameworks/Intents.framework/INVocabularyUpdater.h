@@ -12,7 +12,6 @@
 
 + (void)clearAllCustomVocabulary;
 + (id)_sharedAppInstance;
-+ (void)initialize;
 - (void)setCustomPhotoAlbumNames:(id)arg1;
 - (void)setValidatedVocabulary:(id)arg1 forIntentSlot:(id)arg2 validationCompletion:(CDUnknownBlockType)arg3;
 

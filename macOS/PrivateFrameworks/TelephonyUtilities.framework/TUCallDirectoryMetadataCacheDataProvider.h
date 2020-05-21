@@ -8,10 +8,13 @@
 
 @interface TUCallDirectoryMetadataCacheDataProvider : TUMetadataCacheDataProvider
 {
-    int _identificationEntriesChangedNotifyToken;
+    CDUnknownBlockType _countryDialingCode;
+    CDUnknownBlockType _firstIdentificationEntriesForEnabledExtensions;
 }
 
-@property(nonatomic) int identificationEntriesChangedNotifyToken; // @synthesize identificationEntriesChangedNotifyToken=_identificationEntriesChangedNotifyToken;
+- (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType firstIdentificationEntriesForEnabledExtensions; // @synthesize firstIdentificationEntriesForEnabledExtensions=_firstIdentificationEntriesForEnabledExtensions;
+@property(copy, nonatomic) CDUnknownBlockType countryDialingCode; // @synthesize countryDialingCode=_countryDialingCode;
 - (void)updateCacheWithDestinationIDs:(id)arg1 withGroup:(id)arg2;
 - (void)dealloc;
 - (id)init;

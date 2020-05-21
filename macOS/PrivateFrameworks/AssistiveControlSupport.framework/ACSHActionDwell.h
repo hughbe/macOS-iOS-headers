@@ -15,10 +15,10 @@
 @property(nonatomic) BOOL isSingleAction; // @synthesize isSingleAction=_isSingleAction;
 @property(nonatomic) long long dwellActionType; // @synthesize dwellActionType=_dwellActionType;
 - (id)paramDescription;
-- (void)perform;
+- (void)performWithEventSourceData:(id)arg1;
 - (unsigned long long)hash;
 - (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
+- (void)_configureWithPlistDictionary:(id)arg1;
 - (id)init;
 
 @end

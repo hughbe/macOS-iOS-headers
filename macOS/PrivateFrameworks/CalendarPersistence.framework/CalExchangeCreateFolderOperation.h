@@ -16,6 +16,7 @@
     NSManagedObjectID *_calendarID;
 }
 
++ (BOOL)supportsSecureCoding;
 - (id)messageTracerUUID;
 - (id)messageTracerName;
 - (id)initWithCoder:(id)arg1;

@@ -10,11 +10,13 @@
 #import "NSDraggingInfoPrivate.h"
 #import "NSDraggingInfo_Private.h"
 
-@class NSMutableSet, NSString, NSWindow;
+@class NSImage, NSMutableSet, NSPasteboard, NSString, NSWindow;
 
+__attribute__((visibility("hidden")))
 @interface NSDragDestination : NSObject <NSDraggingInfo, NSDraggingInfoPrivate, NSDraggingInfo_Private>
 {
     NSWindow *_window;
+    void *_windowReference;
     unsigned int _dragID;
     struct OpaqueCoreDragHandler *trackingHandlerRef;
     struct OpaqueCoreDragHandler *receiveHandlerRef;
@@ -66,6 +68,7 @@
     long long _deviceID;
 }
 
+- (void).cxx_destruct;
 @property(setter=_setLastDragLocation:) struct CGPoint _lastDragLocation; // @synthesize _lastDragLocation;
 @property(setter=_setLastDragTimestamp:) double _lastDragTimestamp; // @synthesize _lastDragTimestamp;
 @property(setter=_setDragID:) unsigned int _dragID; // @synthesize _dragID;
@@ -84,6 +87,7 @@
 - (BOOL)_isOnDemandSpringLoadingActivated;
 - (void)_setDragDeepEnabled:(BOOL)arg1;
 - (BOOL)_isDragDeep;
+- (BOOL)_isRelatedToWindow:(id)arg1;
 - (void)_invalidateUpdateDraggingItemTimer;
 - (void)_resetUpdateDraggingItemTimer;
 - (void)enumerateDraggingItemsWithOptions:(unsigned long long)arg1 forView:(id)arg2 classes:(id)arg3 searchOptions:(id)arg4 usingBlock:(CDUnknownBlockType)arg5;
@@ -118,17 +122,17 @@
 @property BOOL animatesToDestination;
 @property long long draggingFormation;
 - (id)namesOfPromisedFilesDroppedAtDestination:(id)arg1;
-- (long long)draggingSequenceNumber;
+@property(readonly) long long draggingSequenceNumber;
 - (long long)_draggingStage;
 - (double)_draggingFargo;
 - (double)_draggingForce;
-- (id)draggingSource;
-- (id)draggingPasteboard;
-- (id)draggedImage;
-- (struct CGPoint)draggedImageLocation;
-- (struct CGPoint)draggingLocation;
-- (unsigned long long)draggingSourceOperationMask;
-- (id)draggingDestinationWindow;
+@property(readonly) id draggingSource;
+@property(readonly) NSPasteboard *draggingPasteboard;
+@property(readonly) NSImage *draggedImage;
+@property(readonly) struct CGPoint draggedImageLocation;
+@property(readonly) struct CGPoint draggingLocation;
+@property(readonly) unsigned long long draggingSourceOperationMask;
+@property(readonly) NSWindow *draggingDestinationWindow;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;
 @property(setter=_setNeedUpdateTimer:) BOOL _needUpdateTimer;

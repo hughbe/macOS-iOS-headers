@@ -10,75 +10,8 @@
 {
 }
 
-+ (void)registerConnectedCarInfoTraits:(id)arg1;
 + (id)sharedManager;
-- (void)captureFailedMsgMetricWithCount:(int)arg1 fromLogFrameworkAdaptor:(BOOL)arg2;
-- (void)captureForcePurgeMetricWithState:(int)arg1 fromLogFrameworkAdaptor:(BOOL)arg2;
-- (void)capturePurgeMetricWithState:(int)arg1 messageCount:(int)arg2 fromLogFrameworkAdaptor:(BOOL)arg3;
-- (void)captureNetworkMetricWithState:(int)arg1 messageCount:(int)arg2 messageSize:(long long)arg3 retryCount:(int)arg4 fromLogFrameworkAdaptor:(BOOL)arg5;
-- (void)captureTimeToLeaveInitialTravelTime:(double)arg1;
-- (void)captureTimeToLeaveHypothesisWithEarlyDepartureDelta:(double)arg1 lateDepartureDelta:(double)arg2 earlyArrivalDelta:(double)arg3 lateArrivalDelta:(double)arg4 rerouteCount:(unsigned long long)arg5 uiNotification:(int)arg6;
-- (BOOL)_isDiagnosticSubmissionEnabled;
-- (void)clearStateTimingData;
 - (void)captureMapsResultsDisplayedFeedbackForQueryString:(id)arg1 resultsArray:(id)arg2;
-- (void)captureStateTransition:(id)arg1 force:(BOOL)arg2;
-- (void)captureTileStateForLoadCoverage:(double)arg1 oldCoverage:(double)arg2 durationInLastState:(double)arg3;
-- (void)captureTileStateForGridCoverage:(double)arg1 oldCoverage:(double)arg2 durationInLastState:(double)arg3;
-- (void)captureTransitAppLaunchSource:(CDStruct_c3b9c2ee)arg1 destination:(CDStruct_c3b9c2ee)arg2 bundleIdentifier:(id)arg3;
-- (void)captureMapsLaunchURLScheme:(id)arg1 sourceApplication:(id)arg2;
-- (void)captureFeedbackForSearchFieldType:(int)arg1 prefix:(id)arg2 displayedResults:(id)arg3 selectedIndex:(int)arg4 traits:(id)arg5;
-- (void)captureFeedbackForSuggestionEntry:(id)arg1 entryListIndex:(int)arg2 entryIndex:(int)arg3 traits:(id)arg4;
-- (void)captureDirectionsFeedbackLogMessage:(id)arg1;
-- (void)captureRequestsForPlaceDataCache:(id)arg1 appIdentifier:(id)arg2;
-- (void)captureCacheHitLogMessageForLocationShiftWithHitCount:(unsigned int)arg1 cacheMissCount:(unsigned int)arg2;
-- (void)captureCacheHitLogMessageForTilesWithTileStyle:(int)arg1 cacheHitCount:(unsigned int)arg2 cacheMissCount:(unsigned int)arg3;
-- (void)captureNetworkUsageForTiles:(id)arg1;
-- (void)_captureNetworUsageLogMessageForService:(int)arg1 requestType:(int)arg2 requestErrorDomain:(id)arg3 requestErrorCode:(long long)arg4 requestErrorDescription:(id)arg5 requestDataSize:(int)arg6 responseDataSize:(int)arg7 responseTime:(int)arg8 traits:(id)arg9 fromLogFrameworkAdaptor:(BOOL)arg10;
-- (void)_captureNetworUsageLogMessageForRequester:(id)arg1 service:(int)arg2 requestType:(int)arg3 requestErrorDomain:(id)arg4 requestErrorCode:(long long)arg5 requestErrorDescription:(id)arg6 traits:(id)arg7 fromLogFrameworkAdaptor:(BOOL)arg8;
-- (void)captureNetworkUsageForRequest:(id)arg1 service:(int)arg2 requestError:(id)arg3;
-- (void)captureNetworkUsageForRequestToService:(int)arg1 requestError:(id)arg2 responseSize:(unsigned long long)arg3 responseTime:(unsigned long long)arg4;
-- (void)captureNetworkUsageForRequestToService:(int)arg1 requestErrorDomain:(id)arg2 requestErrorCode:(long long)arg3 requestErrorDescription:(id)arg4 responseSize:(unsigned long long)arg5 responseTime:(unsigned long long)arg6;
-- (void)captureNetworkUsageForRequest:(id)arg1 service:(int)arg2 requestType:(int)arg3 requestErrorDomain:(id)arg4 requestErrorCode:(long long)arg5 requestErrorDescription:(id)arg6 traits:(id)arg7;
-- (void)captureNetworkUsageForRequest:(id)arg1 service:(int)arg2 requestErrorDomain:(id)arg3 requestErrorCode:(long long)arg4 requestErrorDescription:(id)arg5 fromLogFrameworkAdaptor:(BOOL)arg6;
-- (void)captureNetworkUsageForRequest:(id)arg1 service:(int)arg2 requestErrorDomain:(id)arg3 requestErrorCode:(long long)arg4 requestErrorDescription:(id)arg5;
-- (void)captureNetworkUsageForRequest:(id)arg1 service:(int)arg2 requestType:(int)arg3 traits:(id)arg4;
-- (void)captureNetworkUsageForRequest:(id)arg1 service:(int)arg2 fromLogFrameworkAdaptor:(BOOL)arg3;
-- (void)captureNetworkUsageForRequest:(id)arg1 service:(int)arg2;
-- (BOOL)shouldIgnoreCollectionForCountry;
-- (id)sharedLogMsgStateFactoryInstance;
-- (id)sharedLogMsgEventFactoryInstance;
-- (id)sharedLogManagerInstance;
-- (id)sharedLoggerInstance;
-- (void)dealloc;
-- (id)init;
-- (void)captureMapsWidgetsInteractionForType:(int)arg1 endState:(int)arg2 widgetSpecificObject:(id)arg3 wasLocked:(BOOL)arg4 forDuration:(double)arg5;
-- (void)captureRefineSearchSessionEventWithSearchType:(int)arg1 refineSearchType:(int)arg2 suggestionItems:(id)arg3 searchString:(id)arg4 traits:(id)arg5;
-- (void)captureListInteractionSessionEventWithListType:(int)arg1 listResultItems:(id)arg2 searchString:(id)arg3 traits:(id)arg4;
-- (void)captureTimeToLeaveIntialTravelTimeEventWithTravelTime:(double)arg1 traits:(id)arg2;
-- (void)capturerTimeToLeaveHypothesisEventWithEarlyDepartureDelta:(double)arg1 lateDepartureDelta:(double)arg2 earlyArrivalDelta:(double)arg3 lateArrivalDelta:(double)arg4 rerouteCount:(unsigned long long)arg5 uiNotification:(int)arg6 traits:(id)arg7;
-- (void)captureTransitAppLaunchEventForBundleId:(id)arg1 sourceLocation:(id)arg2 destinationLocation:(id)arg3 traits:(id)arg4;
-- (void)captureDirectionsEventForDirectionsFeedbacks:(id)arg1 finalLocation:(id)arg2 arrivedAtDestination:(BOOL)arg3 navigationAudioFeedback:(struct GEONavigationAudioFeedback)arg4 durationOfTrip:(double)arg5 traits:(id)arg6;
-- (void)captureLogFrameworkEventForMetricType:(int)arg1 metricState:(int)arg2 messageCount:(int)arg3 messageSize:(long long)arg4 retryCount:(int)arg5 traits:(id)arg6;
-- (void)captureCacheHitEventForLocationShiftWithHitCount:(unsigned int)arg1 cacheMissCount:(unsigned int)arg2 traits:(id)arg3;
-- (void)captureCacheHitEventForTileCacheType:(int)arg1 cacheHitCount:(unsigned int)arg2 cacheMissCount:(unsigned int)arg3 traits:(id)arg4;
-- (void)captureNetworkEventForLoadingTiles:(id)arg1 requestDataSize:(int)arg2 responseDataSize:(int)arg3 responseTime:(int)arg4 traits:(id)arg5;
-- (void)captureNetworkEventForService:(int)arg1 requestType:(int)arg2 requestErrorDomain:(id)arg3 requestErrorCode:(long long)arg4 requestErrorDescription:(id)arg5 requestDataSize:(int)arg6 responseDataSize:(int)arg7 responseTime:(int)arg8 traits:(id)arg9 fromLogFrameworkAdaptor:(BOOL)arg10;
-- (void)captureNetworkEventForRequester:(id)arg1 networkService:(int)arg2 requestType:(int)arg3 requestErrorDomain:(id)arg4 requestErrorCode:(long long)arg5 requestErrorDescription:(id)arg6 traits:(id)arg7 fromLogFrameworkAdaptor:(BOOL)arg8;
-- (void)capturePlaceDataCacheEventForPlaceRequest:(id)arg1 requestingAppId:(id)arg2 traits:(id)arg3;
-- (void)captureTileSetStateEventForType:(int)arg1 newCoverage:(double)arg2 oldCoverage:(double)arg3 seconds:(double)arg4 traits:(id)arg5;
-- (void)captureSuggestionsEventForSearchFieldType:(int)arg1 prefix:(id)arg2 displayedResults:(id)arg3 selectedIndex:(int)arg4 traits:(id)arg5;
-- (void)captureSuggestionsEventForEntry:(id)arg1 entryListIndex:(int)arg2 entryIndex:(int)arg3 traits:(id)arg4;
-- (void)captureStateTransitionEventWithStates:(id)arg1 generateOnlyIfStateChanged:(BOOL)arg2 traits:(id)arg3;
-- (void)captureUserActionAsString:(id)arg1 onTarget:(int)arg2 eventValue:(id)arg3 resultsArray:(id)arg4 traits:(id)arg5;
-- (void)captureUserActionAsString:(id)arg1 onTarget:(int)arg2 eventValue:(id)arg3 categoriesMetadataDisplayed:(id)arg4 categoryMetadataSelected:(id)arg5 traits:(id)arg6;
-- (void)captureUserActionAsString:(id)arg1 onTarget:(int)arg2 eventValue:(id)arg3 categoriesDisplayed:(id)arg4 categorySelected:(id)arg5 traits:(id)arg6;
-- (void)captureTransitPlaceCardUserActionAsString:(id)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapItem:(id)arg4 timestamp:(double)arg5 resultIndex:(int)arg6 targetID:(unsigned long long)arg7 providerID:(id)arg8 animationID:(unsigned long long)arg9 transitCardCategory:(int)arg10 transitSystem:(id)arg11 transitDepartureSequence:(id)arg12 transitIncident:(id)arg13 traits:(id)arg14;
-- (void)capturePlaceCardUserActionAsString:(id)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapItem:(id)arg4 timestamp:(double)arg5 resultIndex:(int)arg6 targetID:(unsigned long long)arg7 providerID:(id)arg8 animationID:(unsigned long long)arg9 actionURL:(id)arg10 photoID:(id)arg11 traits:(id)arg12 placeCardType:(int)arg13 unlocalizedMapItemCategory:(id)arg14 availableActions:(id)arg15 unactionableUIElements:(id)arg16;
-- (void)captureUserActionAsString:(id)arg1 onTarget:(int)arg2 eventValue:(id)arg3 routeDetails:(id)arg4 traits:(id)arg5;
-- (void)captureUserActionAsString:(id)arg1 onTarget:(int)arg2 eventValue:(id)arg3 placeActionDetails:(id)arg4 traits:(id)arg5;
-- (void)captureUserActionAsString:(id)arg1 onTarget:(int)arg2 eventValue:(id)arg3 mapRegion:(id)arg4 zoomLevel:(double)arg5 traits:(id)arg6;
-- (void)captureUserActionAsString:(id)arg1 onTarget:(int)arg2 eventValue:(id)arg3 launchUrl:(id)arg4 sourceAppId:(id)arg5 traits:(id)arg6;
-- (void)captureUserActionAsString:(id)arg1 onTarget:(int)arg2 eventValue:(id)arg3 traits:(id)arg4;
 
 @end
 

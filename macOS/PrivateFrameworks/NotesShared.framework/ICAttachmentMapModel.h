@@ -6,23 +6,19 @@
 
 #import <NotesShared/ICAttachmentModel.h>
 
-@class MKMapSnapshotCreator;
-
 @interface ICAttachmentMapModel : ICAttachmentModel
 {
-    MKMapSnapshotCreator *_mapSnapshotCreator;
 }
 
 + (id)contentInfoTextWithAttachmentCount:(unsigned long long)arg1;
-@property(retain) MKMapSnapshotCreator *mapSnapshotCreator; // @synthesize mapSnapshotCreator=_mapSnapshotCreator;
-- (void).cxx_destruct;
-- (void)generatePreviews;
-- (BOOL)generateAsynchronousPreviews;
-- (BOOL)needToGeneratePreviews;
-- (CDUnknownBlockType)genericBrickThumbnailCreator;
-- (CDUnknownBlockType)genericListThumbnailCreator;
-- (BOOL)requiresNetworkToGeneratePreview;
+- (BOOL)shouldSyncPreviewImageToCloud:(id)arg1;
+- (BOOL)canConvertToHTMLForSharing;
+- (id)attributesForSharingHTMLWithTagName:(id *)arg1 textContent:(id *)arg2;
+- (void)addLocation;
+- (id)MKMapItem;
 - (BOOL)hasPreviews;
+- (BOOL)preferLocalPreviewImages;
+- (BOOL)previewsSupportMultipleAppearances;
 
 @end
 

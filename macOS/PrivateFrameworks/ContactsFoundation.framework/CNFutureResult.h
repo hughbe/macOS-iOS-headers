@@ -8,17 +8,18 @@
 
 @class NSError;
 
-__attribute__((visibility("hidden")))
 @interface CNFutureResult : NSObject
 {
     id _result;
     NSError *_error;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSError *error; // @synthesize error=_error;
 @property(retain, nonatomic) id result; // @synthesize result=_result;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)description;
 - (void)setResult:(id)arg1 error:(id)arg2;
-- (void)dealloc;
 
 @end
 

@@ -6,15 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSView, SiriUISuggestionsView;
+@class NSView, SiriUISuggestionsView;
 
 @protocol SiriUISuggestionsViewDelegate <NSObject>
 
 @optional
 - (void)suggestionsView:(SiriUISuggestionsView *)arg1 didHideVibrantView:(NSView *)arg2;
 - (double)statusViewHeightForSuggestionsView:(SiriUISuggestionsView *)arg1;
-- (void)didShowSuggestionsForSuggestionsView:(SiriUISuggestionsView *)arg1;
-- (NSArray *)nextSuggestionsForSuggestionsView:(SiriUISuggestionsView *)arg1 maxSuggestions:(unsigned long long)arg2;
-- (void)getNextSuggestionsForSuggestionsView:(SiriUISuggestionsView *)arg1 maxSuggestions:(unsigned long long)arg2 completion:(void (^)(NSArray *))arg3;
 @end
 

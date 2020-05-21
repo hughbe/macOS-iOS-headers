@@ -14,7 +14,7 @@
 {
     PXSectionedLayoutContent *_layoutContent;
     struct {
-        char layoutGeneratorForSection;
+        char willGenerateLayoutForSection;
     } _delegateRespondsTo;
     BOOL _needsUpdateSeedItem;
     struct _PXLayoutGeometry *_geometryBuffer;
@@ -23,9 +23,9 @@
     struct CGSize _seedSize;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) struct CGSize seedSize; // @synthesize seedSize=_seedSize;
 @property(readonly, nonatomic) long long axis; // @synthesize axis=_axis;
-- (void).cxx_destruct;
 - (id)_emptyLayoutSnapshot;
 - (void)_prepareGeometryBufferForCount:(unsigned long long)arg1;
 - (void)_computeSection:(id)arg1;

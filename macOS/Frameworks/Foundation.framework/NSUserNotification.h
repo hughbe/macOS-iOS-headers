@@ -20,7 +20,10 @@
 + (BOOL)supportsSecureCoding;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)alloc;
-@property(readonly, nonatomic) NSData *_identityImageData;
+- (BOOL)isEqual:(id)arg1;
+- (id)_secureEncodedUserInfo;
+@property(copy, nonatomic) NSData *_contentImageData;
+@property(copy, nonatomic) NSData *_identityImageData;
 - (void)_setIdentityImage:(id)arg1 withIdentifier:(id)arg2;
 @property(readonly, nonatomic) BOOL _hasContentImage;
 @property(copy) NSImage *contentImage; // @dynamic contentImage;
@@ -44,7 +47,7 @@
 @property(copy) NSArray *_alternateActionButtonTitles; // @dynamic _alternateActionButtonTitles;
 @property(readonly) unsigned long long _alternateActionIndex; // @dynamic _alternateActionIndex;
 @property BOOL _alwaysShowAlternateActionMenu; // @dynamic _alwaysShowAlternateActionMenu;
-@property unsigned long long _badgeCount; // @dynamic _badgeCount;
+@property long long _badgeCount; // @dynamic _badgeCount;
 @property BOOL _clearable; // @dynamic _clearable;
 @property(copy) NSString *_dateString; // @dynamic _dateString;
 @property(copy) NSDateComponents *_deliveryExpiration; // @dynamic _deliveryExpiration;

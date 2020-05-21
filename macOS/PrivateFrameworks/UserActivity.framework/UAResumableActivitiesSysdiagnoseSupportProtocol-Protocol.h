@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSDictionary, NSString;
 
 @protocol UAResumableActivitiesSysdiagnoseSupportProtocol <NSObject>
+- (void)doCopyRecentActions:(NSDictionary *)arg1 completionHandler:(void (^)(NSArray *))arg2;
 - (void)doGetSysdiagnoseStringsIncludingPrivateData:(BOOL)arg1 completionHandler:(void (^)(NSArray *))arg2;
 - (void)doNOP:(NSString *)arg1 withCompletionHandler:(void (^)(NSString *, NSError *))arg2;
 @end

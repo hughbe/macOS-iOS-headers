@@ -10,7 +10,6 @@
 
 @class NSButton, NSLayoutConstraint, NSMatrix, NSObject<SSConnectionPromptObserver>, NSProgressIndicator, NSSecureTextField, NSString, NSTextField, NSView;
 
-__attribute__((visibility("hidden")))
 @interface SSConnectionAuthenticationViewController : NSViewController <NSTextFieldDelegate>
 {
     NSObject<SSConnectionPromptObserver> *mPromptObserver;
@@ -30,8 +29,10 @@ __attribute__((visibility("hidden")))
     NSButton *mConnectButton;
     NSProgressIndicator *mConnectingProgressSpinner;
     NSTextField *mConnectingText;
+    NSString *_unlocalizedKeyString;
 }
 
+@property NSString *unlocalizedKeyString; // @synthesize unlocalizedKeyString=_unlocalizedKeyString;
 @property NSTextField *mConnectingText; // @synthesize mConnectingText;
 @property NSProgressIndicator *mConnectingProgressSpinner; // @synthesize mConnectingProgressSpinner;
 @property NSButton *mConnectButton; // @synthesize mConnectButton;
@@ -59,6 +60,7 @@ __attribute__((visibility("hidden")))
 - (void)connectClicked:(id)arg1;
 - (void)radioClicked:(id)arg1;
 - (void)controlTextDidChange:(id)arg1;
+- (BOOL)userPassRadiosVisible;
 - (void)setIsConnecting:(BOOL)arg1;
 - (void)dealloc;
 - (void)awakeFromNib;

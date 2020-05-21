@@ -14,7 +14,8 @@
 {
 }
 
-- (BOOL)isValue:(id)arg1 equivalentToValue:(id)arg2;
+- (id)summarizationKeys;
+- (BOOL)canUnifyValue:(id)arg1 withValue:(id)arg2;
 - (CDUnknownBlockType)fromDictionaryTransform;
 - (CDUnknownBlockType)dictionaryTransform;
 - (Class)labeledValueClass;

@@ -24,7 +24,7 @@ __attribute__((visibility("hidden")))
     NSString *_proxyIdentifier;
     NSString *_responsePlaceholder;
     NSURL *_imageURL;
-    NSData *_encodedUserInfo;
+    NSData *_secureEncodedUserInfo;
     NSData *_encodedResponse;
     NSDate *_deliveryDate;
     NSTimeZone *_deliveryTimeZone;
@@ -47,7 +47,7 @@ __attribute__((visibility("hidden")))
     unsigned long long _style;
     unsigned long long _displayStyle;
     long long _activationType;
-    unsigned long long _badgeCount;
+    long long _badgeCount;
     BOOL _hasActionButton;
     BOOL _presented;
     BOOL _snoozed;
@@ -68,8 +68,6 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)supportsSecureCoding;
-- (void)setPeopleIdentifiers:(id)arg1;
-- (id)peopleIdentifiers;
 - (id)additionalActions;
 - (id)additionalActivationAction;
 - (void)set_alwaysShowAlternateActionMenu:(BOOL)arg1;
@@ -107,8 +105,8 @@ __attribute__((visibility("hidden")))
 - (id)_dateString;
 - (void)set_eventDate:(id)arg1;
 - (id)_eventDate;
-- (void)set_badgeCount:(unsigned long long)arg1;
-- (unsigned long long)_badgeCount;
+- (void)set_badgeCount:(long long)arg1;
+- (long long)_badgeCount;
 - (double)_snoozedDate;
 - (double)_snoozeInterval;
 - (BOOL)_snoozed;
@@ -148,11 +146,14 @@ __attribute__((visibility("hidden")))
 - (id)description;
 - (id)_nextFireDate;
 - (unsigned long long)hash;
-- (BOOL)isEqual:(id)arg1;
+- (void)setPeopleIdentifiers:(id)arg1;
+- (id)peopleIdentifiers;
 - (void)setAdditionalActions:(id)arg1;
 - (void)_setAdditionalActivationAction:(id)arg1;
 - (void)_setAlternateActionIndex:(unsigned long long)arg1;
 - (BOOL)_areIdentifiersEqual:(id)arg1;
+- (void)set_contentImageData:(id)arg1;
+- (id)_contentImageData;
 - (BOOL)_hasContentImage;
 - (id)contentImage;
 - (void)setContentImage:(id)arg1;
@@ -168,10 +169,12 @@ __attribute__((visibility("hidden")))
 - (void)setDeliveryRepeatInterval:(id)arg1;
 - (void)_setResponse:(id)arg1;
 - (id)response;
+- (void)set_identityImageData:(id)arg1;
 - (id)_identityImageData;
 - (id)_identityImage;
 - (void)set_identityImage:(id)arg1;
 - (void)_setIdentityImage:(id)arg1 withIdentifier:(id)arg2;
+- (id)_secureEncodedUserInfo;
 - (void)_setEncodedUserInfo:(id)arg1;
 - (void)setUserInfo:(id)arg1;
 - (id)userInfo;

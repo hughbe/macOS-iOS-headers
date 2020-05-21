@@ -13,7 +13,8 @@
 
 + (id)billowNoiseSourceWithFrequency:(double)arg1 octaveCount:(long long)arg2 persistence:(double)arg3 lacunarity:(double)arg4 seed:(int)arg5;
 @property(nonatomic) double persistence; // @synthesize persistence=_persistence;
-- (struct Module *)__newModule;
+- (id)cloneModule;
+- (double)valueAt: /* Error: Ran out of types for this method. */;
 - (id)initWithFrequency:(double)arg1 octaveCount:(long long)arg2 persistence:(double)arg3 lacunarity:(double)arg4 seed:(int)arg5;
 - (id)init;
 

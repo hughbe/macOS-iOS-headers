@@ -6,33 +6,45 @@
 
 #import <CloudKit/CKDatabaseOperation.h>
 
-@class NSData, NSError, NSString;
+@class NSData, NSError, NSString, NSURL;
 
 @interface CKCodeFunctionInvokeOperation : CKDatabaseOperation
 {
+    BOOL _local;
+    BOOL _shouldFetchAssetContentInMemory;
     CDUnknownBlockType _functionInvokeCompletionBlock;
+    CDUnknownBlockType _perRecordProgressBlock;
     NSString *_serviceName;
     NSString *_functionName;
-    NSData *_serializedParameters;
+    NSData *_serializedRequest;
+    NSURL *_explicitBaseURL;
     NSData *_serializedResponse;
-    NSError *_reponseError;
+    NSError *_responseError;
 }
 
-@property(retain, nonatomic) NSError *reponseError; // @synthesize reponseError=_reponseError;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSError *responseError; // @synthesize responseError=_responseError;
 @property(copy, nonatomic) NSData *serializedResponse; // @synthesize serializedResponse=_serializedResponse;
-@property(copy, nonatomic) NSData *serializedParameters; // @synthesize serializedParameters=_serializedParameters;
+@property(nonatomic) BOOL shouldFetchAssetContentInMemory; // @synthesize shouldFetchAssetContentInMemory=_shouldFetchAssetContentInMemory;
+@property(copy, nonatomic) NSURL *explicitBaseURL; // @synthesize explicitBaseURL=_explicitBaseURL;
+@property(nonatomic) BOOL local; // @synthesize local=_local;
+@property(copy, nonatomic) NSData *serializedRequest; // @synthesize serializedRequest=_serializedRequest;
 @property(copy, nonatomic) NSString *functionName; // @synthesize functionName=_functionName;
 @property(copy, nonatomic) NSString *serviceName; // @synthesize serviceName=_serviceName;
-@property(copy, nonatomic) CDUnknownBlockType functionInvokeCompletionBlock; // @synthesize functionInvokeCompletionBlock=_functionInvokeCompletionBlock;
-- (void).cxx_destruct;
 - (id)activityCreate;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
+- (void)_handleProgressCallback:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)performCKOperation;
 - (BOOL)CKOperationShouldRun:(id *)arg1;
+- (BOOL)hasCKOperationCallbacksSet;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+@property(copy, nonatomic) CDUnknownBlockType perRecordProgressBlock; // @synthesize perRecordProgressBlock=_perRecordProgressBlock;
+@property(copy, nonatomic) CDUnknownBlockType functionInvokeCompletionBlock; // @synthesize functionInvokeCompletionBlock=_functionInvokeCompletionBlock;
 - (id)initWithServiceName:(id)arg1 functionName:(id)arg2 serializedParameters:(id)arg3;
+- (id)initWithServiceName:(id)arg1 functionName:(id)arg2 serializedParameters:(id)arg3 local:(BOOL)arg4;
+- (id)initWithServiceName:(id)arg1 functionName:(id)arg2 serializedRequest:(id)arg3;
+- (id)initWithServiceName:(id)arg1 functionName:(id)arg2 serializedRequest:(id)arg3 local:(BOOL)arg4;
 
 @end
 

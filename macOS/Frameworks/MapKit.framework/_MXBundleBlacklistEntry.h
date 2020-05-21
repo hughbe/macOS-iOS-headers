@@ -8,6 +8,7 @@
 
 @class NSString, _MXVersion;
 
+__attribute__((visibility("hidden")))
 @interface _MXBundleBlacklistEntry : NSObject
 {
     NSString *_bundleIdentifier;

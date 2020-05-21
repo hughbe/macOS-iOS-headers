@@ -7,8 +7,8 @@
 #import "CKUserIdentity.h"
 
 @interface CKUserIdentity (CKDaemonExtensions)
-- (void)_decryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection *)arg1 pcsManager:(id)arg2 participantID:(id)arg3;
-- (void)_encryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection *)arg1 pcsManager:(id)arg2 participantID:(id)arg3;
+- (void)_decryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection *)arg1 participantID:(id)arg2 inShareWithID:(id)arg3 pcsManager:(id)arg4;
+- (void)_encryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection *)arg1 participantID:(id)arg2 inShareWithID:(id)arg3 pcsManager:(id)arg4;
 - (BOOL)hasEncryptedPersonalInfo;
 @end
 

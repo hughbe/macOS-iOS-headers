@@ -11,7 +11,7 @@
 @protocol TKTonePickerContentViewController <NSObject>
 @property(readonly, nonatomic) NSResponder *tonePickerResponder;
 @property(readonly, nonatomic) NSView *tonePickerContentView;
-@property(nonatomic) id <TKTonePickerContentViewControllerDelegate> delegate;
+@property(nonatomic) __weak id <TKTonePickerContentViewControllerDelegate> delegate;
 - (id)initWithTonePickerController:(TKTonePickerController *)arg1;
 @end
 

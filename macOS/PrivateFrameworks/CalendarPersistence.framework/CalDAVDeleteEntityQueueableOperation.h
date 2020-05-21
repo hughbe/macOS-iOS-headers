@@ -17,13 +17,13 @@
     NSString *_scheduleTag;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSString *scheduleTag; // @synthesize scheduleTag=_scheduleTag;
 @property(retain) NSString *eTag; // @synthesize eTag=_eTag;
 - (void)enqueue;
 - (void)deleteTask:(id)arg1 completedWithError:(id)arg2;
 - (void)performOperation:(BOOL)arg1;
 - (id)readableDescription;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 calendarURL:(id)arg2 fromSource:(id)arg3;
 
 // Remaining properties

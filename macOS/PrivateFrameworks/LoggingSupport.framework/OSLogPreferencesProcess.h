@@ -12,13 +12,15 @@
 {
     NSString *_systemPrefsFile;
     NSDictionary *_systemPrefs;
+    NSString *_internalPrefsFile;
+    NSDictionary *_internalPrefs;
     NSString *_prefsFile;
     NSMutableDictionary *_prefs;
     NSString *_bundleID;
 }
 
-@property(readonly, nonatomic) NSString *bundleID; // @synthesize bundleID=_bundleID;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSString *bundleID; // @synthesize bundleID=_bundleID;
 - (void)reset;
 @property(nonatomic) long long persistedLevel;
 @property(nonatomic) long long enabledLevel;

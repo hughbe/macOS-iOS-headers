@@ -6,11 +6,22 @@
 
 #import <FinderKit/FI_TSpotlightMetaDataController.h>
 
+@class FI_TPreviewOptions, FI_TSpotlightMetaDataStackView;
+
 __attribute__((visibility("hidden")))
 @interface FI_TColumnPreviewSpotlightMetaDataController : FI_TSpotlightMetaDataController
 {
+    struct TNSRef<FI_TPreviewOptions, void> _previewOptions;
+    _Bool _onlyShowUserSelected;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(nonatomic) _Bool onlyShowUserSelected; // @synthesize onlyShowUserSelected=_onlyShowUserSelected;
+- (void)updateFilters;
+@property(retain, nonatomic) FI_TPreviewOptions *previewOptions; // @dynamic previewOptions;
+@property(readonly, retain, nonatomic) FI_TSpotlightMetaDataStackView *stackView; // @dynamic stackView;
+- (void)viewLoaded;
 - (void)initCommon;
 
 @end

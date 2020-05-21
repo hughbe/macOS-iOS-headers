@@ -16,7 +16,6 @@
 }
 
 - (void)main;
-- (BOOL)_localizeParentFolderForBundleAtPath:(id)arg1;
 - (BOOL)_moveRelocatedComponentsForPackageSpecifier:(id)arg1 error:(id *)arg2;
 - (id)messageTracerTernarySignature;
 - (id)messageTracerComment;

@@ -25,6 +25,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 - (void)_removeRecord:(id)arg1 fromMemberDictionary:(id)arg2;
 - (void)_removeObject:(id)arg1 withGroup:(id)arg2 fromDictionary:(id)arg3;
 - (void)_mergeDictionary:(id)arg1 withDictionary:(id)arg2;
@@ -64,7 +65,6 @@
 - (void)mergeCache:(id)arg1;
 - (unsigned long long)count;
 - (void)clear;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 

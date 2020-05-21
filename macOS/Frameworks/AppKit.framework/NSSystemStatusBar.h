@@ -8,6 +8,7 @@
 
 @class NSMutableArray, NSMutableSet;
 
+__attribute__((visibility("hidden")))
 @interface NSSystemStatusBar : NSStatusBar
 {
     NSMutableSet *replicantKeys;
@@ -24,10 +25,8 @@
 - (double)_lengthForSize:(struct CGSize)arg1;
 - (void)drawBackgroundInRect:(struct CGRect *)arg1 inView:(id)arg2 highlight:(BOOL)arg3;
 - (double)thickness;
-- (struct CGSize)_initialOffset;
 - (long long)_direction;
 - (long long)_placement;
-- (id)_lockName;
 - (id)_name;
 - (id)_createStatusItemControlInWindow:(id)arg1;
 - (void)dealloc;

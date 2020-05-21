@@ -8,13 +8,14 @@
 
 @interface PASampleAggregatorOptions : NSObject
 {
-    BOOL _displayHeader;
-    BOOL _displayBody;
-    BOOL _displayFooter;
     BOOL _tabDelineateBinaryImageSections;
     BOOL _binaryImagesBeforeStacks;
     BOOL _printSpinSignatureStack;
+    BOOL _printTargetHIDEvent;
     BOOL _printHeavyStacks;
+    BOOL _displayHeader;
+    BOOL _displayBody;
+    BOOL _displayFooter;
     BOOL _displayFrameAddresses;
     BOOL _displaySub1MsCpuTime;
     BOOL _displayStateChangesOnIdleThreads;
@@ -28,8 +29,22 @@
     BOOL _displayBlockedThreads;
     BOOL _displayIdleWorkQueueThreads;
     BOOL _displayAllBinaries;
+    BOOL _displayBlockedReasons;
+    BOOL _displayBlockedReasonsLackingProcessOwners;
+    BOOL _displayAddressesInBlockedReasons;
+    BOOL _displayEmptyBootArgs;
+    BOOL _displayAllHIDEvents;
+    BOOL _aggregateStacksByThread;
+    BOOL _aggregateStacksByProcess;
 }
 
+@property BOOL aggregateStacksByProcess; // @synthesize aggregateStacksByProcess=_aggregateStacksByProcess;
+@property BOOL aggregateStacksByThread; // @synthesize aggregateStacksByThread=_aggregateStacksByThread;
+@property BOOL displayAllHIDEvents; // @synthesize displayAllHIDEvents=_displayAllHIDEvents;
+@property BOOL displayEmptyBootArgs; // @synthesize displayEmptyBootArgs=_displayEmptyBootArgs;
+@property BOOL displayAddressesInBlockedReasons; // @synthesize displayAddressesInBlockedReasons=_displayAddressesInBlockedReasons;
+@property BOOL displayBlockedReasonsLackingProcessOwners; // @synthesize displayBlockedReasonsLackingProcessOwners=_displayBlockedReasonsLackingProcessOwners;
+@property BOOL displayBlockedReasons; // @synthesize displayBlockedReasons=_displayBlockedReasons;
 @property BOOL displayAllBinaries; // @synthesize displayAllBinaries=_displayAllBinaries;
 @property BOOL displayIdleWorkQueueThreads; // @synthesize displayIdleWorkQueueThreads=_displayIdleWorkQueueThreads;
 @property BOOL displayBlockedThreads; // @synthesize displayBlockedThreads=_displayBlockedThreads;
@@ -43,13 +58,15 @@
 @property BOOL displayStateChangesOnIdleThreads; // @synthesize displayStateChangesOnIdleThreads=_displayStateChangesOnIdleThreads;
 @property BOOL displaySub1MsCpuTime; // @synthesize displaySub1MsCpuTime=_displaySub1MsCpuTime;
 @property BOOL displayFrameAddresses; // @synthesize displayFrameAddresses=_displayFrameAddresses;
-@property BOOL printHeavyStacks; // @synthesize printHeavyStacks=_printHeavyStacks;
-@property BOOL printSpinSignatureStack; // @synthesize printSpinSignatureStack=_printSpinSignatureStack;
-@property BOOL binaryImagesBeforeStacks; // @synthesize binaryImagesBeforeStacks=_binaryImagesBeforeStacks;
-@property BOOL tabDelineateBinaryImageSections; // @synthesize tabDelineateBinaryImageSections=_tabDelineateBinaryImageSections;
 @property BOOL displayFooter; // @synthesize displayFooter=_displayFooter;
 @property BOOL displayBody; // @synthesize displayBody=_displayBody;
 @property BOOL displayHeader; // @synthesize displayHeader=_displayHeader;
+@property BOOL printHeavyStacks; // @synthesize printHeavyStacks=_printHeavyStacks;
+@property BOOL printTargetHIDEvent; // @synthesize printTargetHIDEvent=_printTargetHIDEvent;
+@property BOOL printSpinSignatureStack; // @synthesize printSpinSignatureStack=_printSpinSignatureStack;
+@property BOOL binaryImagesBeforeStacks; // @synthesize binaryImagesBeforeStacks=_binaryImagesBeforeStacks;
+@property BOOL tabDelineateBinaryImageSections; // @synthesize tabDelineateBinaryImageSections=_tabDelineateBinaryImageSections;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 @property BOOL verbose;
 - (id)init;
 

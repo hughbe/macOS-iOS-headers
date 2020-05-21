@@ -8,8 +8,15 @@
 
 @interface NSError (SecureBackup)
 - (id)errorByExtendingUserInfoWithDictionary:(id)arg1;
+- (BOOL)isRecoveryPETSoftLimitError;
 - (BOOL)isRecoveryPETHardLimitError;
 - (BOOL)isCoolDownError;
+- (BOOL)isLoginSoftLimit;
+- (BOOL)isLoginHardLimit;
+- (BOOL)isICSCInvalidError;
 - (BOOL)isICSCRecoveryHardLimitError;
+@property(readonly, nonatomic) BOOL isAuthKitUnableToPromptDueToNetworkError;
+@property(readonly, nonatomic) BOOL isAuthKitUnableToPromptError;
+@property(readonly, nonatomic) BOOL isAuthenticationError;
 @end
 

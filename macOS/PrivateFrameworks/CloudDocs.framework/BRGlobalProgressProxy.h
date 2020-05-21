@@ -4,22 +4,28 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSProgress.h"
+#import <CloudDocs/BRProgressProxy.h>
+
+#import "BRProgressProxyDelegate.h"
 
 @class NSString;
 
 __attribute__((visibility("hidden")))
-@interface BRGlobalProgressProxy : NSProgress
+@interface BRGlobalProgressProxy : BRProgressProxy <BRProgressProxyDelegate>
 {
-    id _globalProgressSubscriber;
     NSString *_kind;
 }
 
 - (void).cxx_destruct;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)stop;
-- (void)start;
+- (id)progressProxy:(id)arg1 localizedDescriptionForProgress:(id)arg2;
+- (BOOL)progressProxy:(id)arg1 shouldProxyProgress:(id)arg2;
 - (id)initWithGlobalProgressKind:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -11,7 +11,7 @@
 #import "NSTableViewDelegate.h"
 #import "NSWindowDelegate.h"
 
-@class AMSBTLEAdvertisementManager, AMSBTLEConnectionManager, CABTLEMIDIWindowController, NSBox, NSButton, NSLayoutConstraint, NSMutableArray, NSProgressIndicator, NSString, NSTableView, NSTextField, NSTimer, NSView;
+@class AMSBTLEAdvertisementManager, AMSBTLEConnectionManager, CABTLEMIDIWindowController, NSBox, NSButton, NSLayoutConstraint, NSMutableArray, NSProgressIndicator, NSString, NSTableView, NSTextField, NSTextView, NSTimer, NSView;
 
 __attribute__((visibility("hidden")))
 @interface CABTLEMIDIImpl : NSObject <NSTableViewDataSource, NSTableViewDelegate, BTLEConnectionTable, NSWindowDelegate>
@@ -37,6 +37,8 @@ __attribute__((visibility("hidden")))
     NSView *noBTView;
     NSTextField *noBTTextField;
     NSButton *assistMeButton;
+    NSView *badArchView;
+    NSTextView *badPluginTextView;
     NSView *serviceView;
     NSBox *horizontalSeparator;
     NSView *peripheralView;
@@ -73,6 +75,8 @@ __attribute__((visibility("hidden")))
 - (void)toggleAdvertiseService:(id)arg1;
 - (void)showHelp:(id)arg1;
 - (void)openBTPreferences:(id)arg1;
+- (id)getPathsForPluginWithName:(id)arg1;
+- (void)setBadPluginList:(id)arg1;
 - (void)setUIEnabled:(BOOL)arg1;
 - (void)updateAdvertiseUI;
 - (void)showWindow:(id)arg1;

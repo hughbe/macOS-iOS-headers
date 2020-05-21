@@ -11,6 +11,10 @@
 + (struct USet *)characterSetWithPattern:(id)arg1;
 - (id)scriptType;
 - (unsigned long long)numberForToneMark;
+- (long long)simplifiedChinesePinyinCompare:(id)arg1;
+- (long long)traditionalChinesePinyinCompare:(id)arg1;
+- (long long)traditionalChineseZhuyinCompare:(id)arg1;
+- (long long)compare:(id)arg1 localeString:(id)arg2;
 - (id)stringByTransliteratingToZhuyinAsFamilyName;
 - (id)stringByTransliteratingToZhuyin;
 - (id)stringByTransliteratingToZhuyin:(BOOL)arg1;
@@ -19,7 +23,7 @@
 - (id)stringByTransliteratingToPinyin:(BOOL)arg1;
 - (id)stringByConvertingZhuyinToInternalRepresentation;
 - (id)stringByConvertingZhuyinToDisplayRepresentation;
-- (BOOL)isURISchemePrefix;
+- (BOOL)hasURISchemePrefix;
 - (id)stringByRemovingPinyinToneMarks;
 - (id)stringByConvertingStrokeNumericInputToStrokeSymbols;
 - (id)stringByConvertingPinyinToZhuyin;
@@ -36,5 +40,13 @@
 - (unsigned long long)UTF32Length;
 - (BOOL)isSingleComposedCharacter;
 - (BOOL)contentsExclusivelyInCharacterSet:(struct USet *)arg1;
+- (int)mecabraLanguage;
+- (BOOL)isZhuyinOrZhuyinEten;
+- (BOOL)isWubiXing;
+- (BOOL)isStroke;
+- (BOOL)isShuangpin;
+- (BOOL)isPinyinOrShuangpinTraditional;
+- (BOOL)isPinyinOrShuangpinSimplified;
+- (BOOL)isPinyinOrShuangpin;
 @end
 

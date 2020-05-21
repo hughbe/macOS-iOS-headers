@@ -6,17 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, PHACoalescer;
+@class NSObject<OS_dispatch_queue>, PFCoalescer;
 
 @interface PHADirtyChangeCoalescer : NSObject
 {
     NSObject<OS_dispatch_queue> *_queue;
-    PHACoalescer *_valueCoalescer;
+    PFCoalescer *_valueCoalescer;
     id <PHADirtyChangeCoalescerDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <PHADirtyChangeCoalescerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <PHADirtyChangeCoalescerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)recordDirtyTransitionForAssetIdentifier:(id)arg1 workerType:(short)arg2 workerFlags:(int)arg3;
 - (id)init;
 

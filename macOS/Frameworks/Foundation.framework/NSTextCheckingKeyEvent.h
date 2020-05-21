@@ -39,9 +39,6 @@
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)dealloc;
-- (id)initWithKeyboardType:(unsigned long long)arg1 identifier:(id)arg2 flags:(unsigned long long)arg3 timestamp:(double)arg4 characters:(id)arg5 charactersIgnoringModifiers:(id)arg6;
-- (id)initWithKeyboardLayoutType:(long long)arg1 identifier:(id)arg2 flags:(unsigned long long)arg3 timestamp:(double)arg4 characters:(id)arg5 charactersIgnoringModifiers:(id)arg6;
-- (id)initWithKeyboardLayoutType:(long long)arg1 keyboardType:(unsigned long long)arg2 identifier:(id)arg3 flags:(unsigned long long)arg4 timestamp:(double)arg5 characters:(id)arg6 charactersIgnoringModifiers:(id)arg7;
 - (id)initWithKeyboardLayoutType:(long long)arg1 keyboardType:(unsigned long long)arg2 identifier:(id)arg3 primaryLanguage:(id)arg4 flags:(unsigned long long)arg5 timestamp:(double)arg6 characters:(id)arg7 charactersIgnoringModifiers:(id)arg8;
 
 @end

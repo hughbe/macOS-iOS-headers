@@ -16,6 +16,6 @@
 - (BOOL)validateItemsLoggingToFile:(struct __sFILE *)arg1 db:(PQLConnection *)arg2;
 - (BOOL)validateStructureLoggingToFile:(struct __sFILE *)arg1 db:(PQLConnection *)arg2;
 - (BOOL)dumpStatusToContext:(BRCDumpContext *)arg1 error:(id *)arg2;
-- (BOOL)dumpTablesToContext:(BRCDumpContext *)arg1 error:(id *)arg2;
+- (BOOL)dumpTablesToContext:(BRCDumpContext *)arg1 includeAllItems:(BOOL)arg2 error:(id *)arg3;
 @end
 

@@ -8,7 +8,6 @@
 
 @class NSImageView, NSView, SiriUIKeyline;
 
-__attribute__((visibility("hidden")))
 @interface SiriUIChevronButton : NSButton
 {
     NSImageView *_chevronImageView;
@@ -20,12 +19,12 @@ __attribute__((visibility("hidden")))
     long long _keylineType;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL hasChevron; // @synthesize hasChevron=_hasChevron;
 @property(nonatomic) long long keylineType; // @synthesize keylineType=_keylineType;
 @property(nonatomic) double leftSubviewInset; // @synthesize leftSubviewInset=_leftSubviewInset;
 @property(nonatomic) double chevronRightInset; // @synthesize chevronRightInset=_chevronRightInset;
 @property(retain, nonatomic) NSView *subview; // @synthesize subview=_subview;
-- (void).cxx_destruct;
 - (void)layout;
 - (void)setHighlighted:(BOOL)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

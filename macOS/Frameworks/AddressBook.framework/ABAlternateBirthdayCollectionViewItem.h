@@ -6,15 +6,19 @@
 
 #import <AddressBook/ABDateCollectionViewItem.h>
 
-__attribute__((visibility("hidden")))
 @interface ABAlternateBirthdayCollectionViewItem : ABDateCollectionViewItem
 {
 }
 
++ (void)markCalendarMenuItemAsNotSelected:(id)arg1;
++ (void)markCalendarMenuItemAsSelected:(id)arg1;
 - (void)takeValueFromGregorianBirthday;
 - (id)collectionViewAction;
+- (void)datumView:(id)arg1 textDidChange:(id)arg2;
 - (BOOL)allowsLabelCustomization;
 - (void)setLabel:(id)arg1;
+- (void)labelChanged:(id)arg1;
+- (id)labelForPopup;
 - (void)menuNeedsUpdate:(id)arg1;
 - (BOOL)_validateLabelMenuItem:(id)arg1;
 - (id)_labelMenuItems;

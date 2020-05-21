@@ -7,31 +7,39 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBCondition.h"
 
-@class PBUnknownFields;
+@class NSString;
 
-@interface _INPBCondition : PBCodable <NSCopying>
+@interface _INPBCondition : PBCodable <_INPBCondition, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    int _conditionalOperator;
     struct {
         unsigned int conditionalOperator:1;
     } _has;
+    BOOL __encodeLegacyGloryData;
+    int _conditionalOperator;
 }
 
-+ (id)options;
-- (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
++ (BOOL)supportsSecureCoding;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(nonatomic) int conditionalOperator; // @synthesize conditionalOperator=_conditionalOperator;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
+- (int)StringAsConditionalOperator:(id)arg1;
+- (id)conditionalOperatorAsString:(int)arg1;
 @property(nonatomic) BOOL hasConditionalOperator;
-@property(nonatomic) int conditionalOperator; // @synthesize conditionalOperator=_conditionalOperator;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

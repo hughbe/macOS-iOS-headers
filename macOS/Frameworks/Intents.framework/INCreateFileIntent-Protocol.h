@@ -14,5 +14,6 @@
 @property(copy) NSString *destinationType;
 @property(copy) NSString *entityName;
 @property(copy) NSString *entityType;
+- (id)init;
 @end
 

@@ -17,6 +17,7 @@
 + (id)locationSearchCompletedWithWeatherLocations:(id)arg1;
 + (id)locationSearchCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)locationSearchCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *weatherLocations;
 - (id)initWithWeatherLocations:(id)arg1;
 - (id)encodedClassName;

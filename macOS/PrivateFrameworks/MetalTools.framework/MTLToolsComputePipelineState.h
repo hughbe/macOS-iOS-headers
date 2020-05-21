@@ -8,19 +8,24 @@
 
 #import "MTLComputePipelineStateSPI.h"
 
-@class NSString;
+@class MTLDebugInstrumentationData, NSString;
 
 @interface MTLToolsComputePipelineState : MTLToolsObject <MTLComputePipelineStateSPI>
 {
     id <MTLFunction> _function;
 }
 
-- (void).cxx_destruct;
+@property(readonly, retain, nonatomic) MTLDebugInstrumentationData *debugInstrumentationData;
+@property(readonly) unsigned long long uniqueIdentifier;
+@property(nonatomic) unsigned long long resourceIndex;
+- (unsigned int)getComputeKernelTelemetryID;
 @property(readonly) unsigned long long staticThreadgroupMemoryLength;
 @property(readonly) unsigned long long threadExecutionWidth;
 @property(readonly) unsigned long long maxTotalThreadsPerThreadgroup;
 @property(readonly) id <MTLDevice> device;
+@property(readonly) NSString *label;
 - (void)acceptVisitor:(id)arg1;
+- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

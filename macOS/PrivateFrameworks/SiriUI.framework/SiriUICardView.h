@@ -6,11 +6,22 @@
 
 #import "NSView.h"
 
-__attribute__((visibility("hidden")))
 @interface SiriUICardView : NSView
 {
+    id <SiriUIAccessibilityStashDelegate> _accessibilityStashDelegate;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <SiriUIAccessibilityStashDelegate> accessibilityStashDelegate; // @synthesize accessibilityStashDelegate=_accessibilityStashDelegate;
+- (id)accessibilityLinkedUIElements;
+- (id)accessibilityIdentifier;
+- (void)accessibilityPerformAction:(id)arg1;
+- (id)accessibilityActionDescription:(id)arg1;
+- (id)accessibilityActionNames;
+- (id)accessibilityDescription;
+- (id)accessibilityRoleDescription;
+- (id)accessibilityRole;
+- (BOOL)isAccessibilityElement;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
 

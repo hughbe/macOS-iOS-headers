@@ -6,7 +6,7 @@
 
 #import <SAObjects/SABaseClientBoundCommand.h>
 
-@class NSNumber, NSString;
+@class NSNumber, NSString, SAUIAudioData;
 
 @interface SAUISayIt : SABaseClientBoundCommand
 {
@@ -15,9 +15,16 @@
 + (id)sayItWithDictionary:(id)arg1 context:(id)arg2;
 + (id)sayIt;
 - (BOOL)requiresResponse;
+@property(nonatomic) BOOL repeatable;
 @property(copy, nonatomic) NSString *message;
 @property(copy, nonatomic) NSNumber *listenAfterSpeaking;
+@property(copy, nonatomic) NSString *languageCode;
+@property(copy, nonatomic) NSString *gender;
+@property(copy, nonatomic) NSString *dialogIdentifier;
 @property(retain, nonatomic) id <SAAceSerializable> context;
+@property(nonatomic) BOOL canUseServerTTS;
+@property(copy, nonatomic) NSString *audioDataUrl;
+@property(retain, nonatomic) SAUIAudioData *audioData;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

@@ -11,15 +11,15 @@
 __attribute__((visibility("hidden")))
 @interface CKDContainerSpecificInfoOperation : CKDOperation
 {
-    BOOL _needUserID;
+    BOOL _requireUserIDs;
     CKDContainerInfo *_containerInfo;
     NSObject<OS_dispatch_group> *_infoFetchedGroup;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSObject<OS_dispatch_group> *infoFetchedGroup; // @synthesize infoFetchedGroup=_infoFetchedGroup;
 @property(copy, nonatomic) CKDContainerInfo *containerInfo; // @synthesize containerInfo=_containerInfo;
-@property(nonatomic) BOOL needUserID; // @synthesize needUserID=_needUserID;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL requireUserIDs; // @synthesize requireUserIDs=_requireUserIDs;
 - (void)main;
 - (void)setCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)shouldCheckAppVersion;

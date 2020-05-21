@@ -7,11 +7,11 @@
 #import "NSCollectionView.h"
 
 #import "QLPreviewPanelDataSource.h"
+#import "QLPreviewPanelDelegate.h"
 
-@class NSArray, NSIndexPath, QLPreviewPanel, SiriUIClumpView;
+@class NSArray, NSIndexPath, NSString, QLPreviewPanel, SiriUIClumpView;
 
-__attribute__((visibility("hidden")))
-@interface SiriUIClumpViewCollectionView : NSCollectionView <QLPreviewPanelDataSource>
+@interface SiriUIClumpViewCollectionView : NSCollectionView <QLPreviewPanelDataSource, QLPreviewPanelDelegate>
 {
     BOOL _wasHiddenOnLastSetFrameSize;
     BOOL _acceptsFirstMouse;
@@ -21,13 +21,17 @@ __attribute__((visibility("hidden")))
     NSIndexPath *_overrideItemPath;
 }
 
+- (void).cxx_destruct;
 @property BOOL acceptsFirstMouse; // @synthesize acceptsFirstMouse=_acceptsFirstMouse;
 @property BOOL wasHiddenOnLastSetFrameSize; // @synthesize wasHiddenOnLastSetFrameSize=_wasHiddenOnLastSetFrameSize;
 @property(retain) NSIndexPath *overrideItemPath; // @synthesize overrideItemPath=_overrideItemPath;
 @property(retain) NSArray *previewItems; // @synthesize previewItems=_previewItems;
 @property(retain) QLPreviewPanel *previewPanel; // @synthesize previewPanel=_previewPanel;
 @property __weak SiriUIClumpView *parent; // @synthesize parent=_parent;
-- (void).cxx_destruct;
+- (BOOL)isAccessibilitySelectorAllowed:(SEL)arg1;
+- (id)accessibilityIdentifier;
+- (id)accessibilityLabel;
+- (BOOL)previewPanel:(id)arg1 shouldOpenURL:(id)arg2 forPreviewItem:(id)arg3;
 - (id)previewPanel:(id)arg1 previewItemAtIndex:(long long)arg2;
 - (long long)numberOfPreviewItemsInPreviewPanel:(id)arg1;
 - (void)endPreviewPanelControl:(id)arg1;
@@ -46,6 +50,12 @@ __attribute__((visibility("hidden")))
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

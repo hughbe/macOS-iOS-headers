@@ -15,15 +15,12 @@
     NSDate *_completedDate;
 }
 
-+ (id)task;
-+ (id)exchangeConversionLocalizedPluralInfo;
-+ (id)exchangeConversionLocalizedPluralMessage;
-+ (id)exchangeConversionLocalizedInfo;
-+ (id)exchangeConversionLocalizedMessage;
 + (id)taskFromRemoteManagedObject:(id)arg1;
++ (id)task;
 @property(copy) NSDate *completedDate; // @synthesize completedDate=_completedDate;
 @property unsigned long long priority; // @synthesize priority=_priority;
 @property(copy) NSDate *dueDate; // @synthesize dueDate=_dueDate;
+- (id)remoteManagedTaskFromTask;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
@@ -31,10 +28,7 @@
 - (id)description;
 - (id)nextAlarmDate;
 @property BOOL isCompleted;
-- (void)makeExchangeCompatible;
-- (BOOL)isExchangeCompatible;
 - (id)initWithTitle:(id)arg1 UID:(id)arg2;
-- (id)remoteManagedTaskFromTask;
 
 @end
 

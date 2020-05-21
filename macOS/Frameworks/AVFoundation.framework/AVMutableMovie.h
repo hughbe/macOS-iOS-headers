@@ -13,9 +13,11 @@
     AVMutableMovieInternal *_mutableMovieInternal;
 }
 
++ (BOOL)expectsPropertyRevisedNotifications;
 + (id)movieWithSettingsFromMovie:(id)arg1 options:(id)arg2 error:(id *)arg3;
 + (id)movieWithData:(id)arg1 options:(id)arg2 error:(id *)arg3;
 + (id)movieWithURL:(id)arg1 options:(id)arg2 error:(id *)arg3;
+- (void).cxx_destruct;
 - (id)description;
 @property(copy, nonatomic) AVMediaDataStorage *defaultMediaDataStorage;
 @property(nonatomic) CDStruct_1b6d18a9 interleavingPeriod;
@@ -24,6 +26,7 @@
 @property(nonatomic) float preferredVolume;
 @property(nonatomic) float preferredRate;
 - (CDStruct_1b6d18a9)duration;
+- (void)_signalMetadataUpdated;
 - (void)_signalTracksUpdated;
 - (struct OpaqueFigFormatReader *)_formatReader;
 - (struct OpaqueFigMutableMovie *)_figMutableMovie;
@@ -40,7 +43,6 @@
 - (void)loadValuesAsynchronouslyForKeys:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (long long)statusOfValueForKey:(id)arg1 error:(id *)arg2;
 - (Class)_classForTrackInspectors;
-- (void)finalize;
 - (void)dealloc;
 - (void)_removeFigAssetNotifications;
 - (void)_addFigAssetNotifications;

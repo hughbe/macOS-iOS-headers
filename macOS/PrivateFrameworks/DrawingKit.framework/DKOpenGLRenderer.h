@@ -15,27 +15,22 @@ __attribute__((visibility("hidden")))
     int mBufferSize;
     unsigned int mWetPaintProg;
     unsigned int mDryPaintProg;
-    unsigned int mWetCompositeProg;
-    unsigned int mDryCompositeProg;
+    unsigned int mCompositeProg;
     unsigned int mTextureProg;
     unsigned int mColorProg;
     unsigned int mAttributes;
     unsigned int mVbo;
     struct _NSRange mVertexRange;
-    struct _NSRange mPreviousVertexRange;
-    vector_8a3ef5f6 mContiguousVertexStorage;
+    vector_b8c3c0c5 mContiguousVertexStorage;
     struct vector<VertexGroup, std::__1::allocator<VertexGroup>> mVertexHistory;
     struct vector<std::__1::pair<float __attribute__((ext_vector_type(2))), float __attribute__((ext_vector_type(2)))>, std::__1::allocator<std::__1::pair<float __attribute__((ext_vector_type(2))), float __attribute__((ext_vector_type(2)))>>> mNonCollisionSegments;
     // Error parsing type: , name: U_COLOR
     struct vector<Page, std::__1::allocator<Page>> mPages;
     unsigned int mWetPaintBufferFBO;
-    unsigned int mWetPaintCompositeFBO;
-    unsigned int mWetPaintBufferDB;
-    unsigned int mWetPaintCompositeDB;
     unsigned int mWetPaintBufferT;
-    unsigned int mWetPaintCompositeT;
     // Error parsing type: , name: mWetPaintBufferSize
-    // Error parsing type: , name: mWetPaintCompositeSize
+    BOOL mSharedContext;
+    BOOL mPaperTexIsShared;
     unsigned int mPaperTex;
     // Error parsing type: , name: mWinSize
     // Error parsing type: , name: mCanvasSize
@@ -44,6 +39,15 @@ __attribute__((visibility("hidden")))
     float mTimeWetBecameDirty;
     float mParticleLifespan;
     struct CGRect mDirtyCanvasRegion;
+    int mCompositeProgViewportUniformLocation;
+    int mCompositeColorUniformLocation;
+    int mWetPaintProgTimeUniformLocation;
+    int mWetPaintProgSubtractEndPointsOnlyUniformLocation;
+    int mWetPaintProgLifespanUniformLocation;
+    int mDryPaintProgXCoordOffsetUniformLocation;
+    int mColorProgColorUniformLocation;
+    int mColorProgModelViewProjectionUniformLocation;
+    int mTextureProgModelViewProjectionUniformLocation;
     BOOL _undoEnabled;
     BOOL _ignoreFirstUndoItem;
     BOOL _drawingEnabled;
@@ -51,15 +55,14 @@ __attribute__((visibility("hidden")))
     id <DKOpenGLRendererDelegate> _delegate;
     NSColor *_inkColor;
     double _lineWidthScale;
-    double _contentOffset;
     double _backingScale;
     long long _numPages;
-    double _multiplyBlendFidelity;
     struct CGSize _contentSize;
     struct CGRect _bounds;
 }
 
-@property(nonatomic) double multiplyBlendFidelity; // @synthesize multiplyBlendFidelity=_multiplyBlendFidelity;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(nonatomic) long long numPages; // @synthesize numPages=_numPages;
 @property(nonatomic) BOOL allowWetComposite; // @synthesize allowWetComposite=_allowWetComposite;
 @property(nonatomic) BOOL drawingEnabled; // @synthesize drawingEnabled=_drawingEnabled;
@@ -67,44 +70,34 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL ignoreFirstUndoItem; // @synthesize ignoreFirstUndoItem=_ignoreFirstUndoItem;
 @property(nonatomic, getter=isUndoEnabled) BOOL undoEnabled; // @synthesize undoEnabled=_undoEnabled;
 @property(readonly, nonatomic) struct CGSize contentSize; // @synthesize contentSize=_contentSize;
-@property(nonatomic) double contentOffset; // @synthesize contentOffset=_contentOffset;
 @property(nonatomic) struct CGRect bounds; // @synthesize bounds=_bounds;
 @property(nonatomic) double lineWidthScale; // @synthesize lineWidthScale=_lineWidthScale;
 @property(retain, nonatomic) NSColor *inkColor; // @synthesize inkColor=_inkColor;
 @property(nonatomic) __weak id <DKOpenGLRendererDelegate> delegate; // @synthesize delegate=_delegate;
-- (id).cxx_construct;
-- (void).cxx_destruct;
-- (id)snapshot;
-- (void)updateVertexControllerWithData:(vector_8a3ef5f6)arg1 range:(struct _NSRange)arg2 allowWet:(BOOL)arg3;
+- (id)snapshotImage;
+- (void)updateVertexControllerWithData:(vector_b8c3c0c5)arg1 range:(struct _NSRange)arg2 allowWet:(BOOL)arg3;
 - (void)updateVertexControllerWithDataRange:(struct _NSRange)arg1 allowWet:(BOOL)arg2;
-- (void)clearFIFO;
 - (void)didBeginNewStroke;
 - (void)didCompleteStroke;
-- (void)clearDryPaintComposite;
-- (void)clearWetPaintComposite;
-- (void)clearAllPaintComposites;
+- (void)clearComposite;
 - (void)clearDryPaintBuffer;
 - (void)clearWetPaintBuffer;
-- (void)clearAllPaintBuffers;
-- (void)clearAllFbos;
 - (void)clear;
 - (void)resetRendererState;
 - (BOOL)canvasIsEmpty;
 - (void)drawContiguousVertexStorageImmediatelyWithLayeredBlending:(BOOL)arg1;
 - (void)redrawEntireDrawingImmediatelyWithLayeredBlending:(BOOL)arg1;
 - (void)undo;
-- (void)drawWet;
-- (void)drawDry;
+- (void)drawComposite;
 - (void)draw;
 - (void)updateDryForcefully;
-- (void)renderToDryComposite;
-- (void)renderToWetComposite;
+- (void)renderToComposite:(BOOL)arg1;
 - (void)renderToDryPaintBuffer;
 - (void)renderToWetPaintBufferWithRange:(struct _NSRange)arg1;
 - (void)updateDryCycleIncludingComposite:(BOOL)arg1;
-- (void)updateWetCycleIncludingComposite:(BOOL)arg1;
+- (void)updateWet;
 - (struct CGRect)getVertexBounds;
-- (struct CGRect)regionWithVertices:(vector_8a3ef5f6)arg1 withInflationAmount:(float)arg2 removeContentOffset:(BOOL)arg3;
+- (struct CGRect)regionWithVertices:(vector_b8c3c0c5)arg1 withInflationAmount:(float)arg2;
 - (void)update;
 - (_Bool)detectCollision:: /* Error: Ran out of types for this method. */;
 - (void)addPoints:(id)arg1 withSegmentLength:(unsigned long long)arg2;
@@ -114,10 +107,11 @@ __attribute__((visibility("hidden")))
 - (void)destroyFrameBuffers;
 - (void)didResize;
 - (BOOL)initGL;
+- (void)teardown;
 - (void)dealloc;
 - (id)init;
 - (id)initWithBounds:(struct CGRect)arg1 scale:(double)arg2;
-- (id)initWithBounds:(struct CGRect)arg1 scale:(double)arg2 bufferSize:(int)arg3;
+- (id)initWithBounds:(struct CGRect)arg1 scale:(double)arg2 bufferSize:(int)arg3 sharedContext:(BOOL)arg4;
 
 @end
 

@@ -13,10 +13,10 @@
     NSDictionary *_voiceLanguageDict;
 }
 
++ (void)adjustDownloadedVoiceStatusAfterSiriEnabled:(BOOL)arg1;
 + (id)sharedInstance;
 - (void).cxx_destruct;
 - (long long)preferredGenderForLanguage:(id)arg1;
-- (id)voicesForLanguage:(id)arg1;
 - (id)init;
 
 @end

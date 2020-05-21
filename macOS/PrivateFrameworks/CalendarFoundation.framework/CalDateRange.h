@@ -18,6 +18,12 @@
     NSDate *_endDate;
 }
 
++ (BOOL)rangesIntersectWithStartDate1:(id)arg1 endDate1:(id)arg2 startDate2:(id)arg3 endDate2:(id)arg4 allowSinglePointIntersection:(BOOL)arg5;
++ (BOOL)rangesIntersectWithStartDate1:(id)arg1 endDate1:(id)arg2 startDate2:(id)arg3 endDate2:(id)arg4;
++ (BOOL)range:(id)arg1 intersectsRangeWithStartDate:(id)arg2 endDate:(id)arg3 allowSinglePointIntersection:(BOOL)arg4;
++ (BOOL)range:(id)arg1 intersectsRangeWithStartDate:(id)arg2 endDate:(id)arg3;
++ (BOOL)range:(id)arg1 intersectsRange:(id)arg2 allowSinglePointIntersection:(BOOL)arg3;
++ (BOOL)range:(id)arg1 intersectsRange:(id)arg2;
 + (BOOL)supportsSecureCoding;
 + (id)rangeByExpandingRange:(id)arg1 direction:(long long)arg2 components:(id)arg3 calendar:(id)arg4;
 + (id)rangeByExpandingRange:(id)arg1 direction:(long long)arg2 duration:(double)arg3;
@@ -25,9 +31,9 @@
 + (id)rangeWithRange:(id)arg1;
 + (id)rangeWithStartDate:(id)arg1 duration:(double)arg2;
 + (id)rangeWithStartDate:(id)arg1 endDate:(id)arg2;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDate *endDate; // @synthesize endDate=_endDate;
 @property(retain, nonatomic) NSDate *startDate; // @synthesize startDate=_startDate;
-- (void).cxx_destruct;
 - (id)midnightsForRangeInTimeZoneString:(id)arg1;
 - (id)_calculateMidnightsInCalendar:(id)arg1;
 - (id)midpoint;
@@ -38,6 +44,7 @@
 - (id)unionRange:(id)arg1;
 - (id)intersectionWithRange:(id)arg1;
 - (BOOL)intersectsRangeWithStartDate:(id)arg1 endDate:(id)arg2 allowSinglePointIntersection:(BOOL)arg3;
+- (BOOL)intersectsRangeWithStartDate:(id)arg1 endDate:(id)arg2;
 - (BOOL)intersectsRange:(id)arg1 allowSinglePointIntersection:(BOOL)arg2;
 - (BOOL)intersectsRange:(id)arg1;
 - (BOOL)containsRange:(id)arg1;

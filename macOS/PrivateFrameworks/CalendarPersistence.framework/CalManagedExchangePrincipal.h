@@ -21,8 +21,12 @@
 - (id)typeString;
 - (id)properties;
 - (id)lastOperationError;
+- (BOOL)supportsPush;
+- (BOOL)allowsTasks;
+- (BOOL)allowsEvents;
 - (void)setSupportsDefaultAlarms:(BOOL)arg1;
 - (BOOL)supportsDefaultAlarms;
+- (BOOL)supportsJunkReporting;
 - (BOOL)supportsLikenessPropagation;
 - (BOOL)supportsAttendeeComments;
 - (BOOL)isColorEditable;
@@ -34,6 +38,7 @@
 - (id)fetchRequestForInsertValidation;
 - (BOOL)validateForWrite:(id *)arg1;
 - (id)type;
+- (id)defaultSchedulingCalendar;
 - (void)awakeFromInsert;
 - (id)session;
 - (id)_makeSession;
@@ -44,6 +49,11 @@
 // Remaining properties
 @property(retain) NSString *deletedItemsFolderId; // @dynamic deletedItemsFolderId;
 @property(retain) NSString *deletedItemsFolderSyncState; // @dynamic deletedItemsFolderSyncState;
+@property long long exchangeServerMajorBuildNumber; // @dynamic exchangeServerMajorBuildNumber;
+@property long long exchangeServerMajorVersion; // @dynamic exchangeServerMajorVersion;
+@property long long exchangeServerMinorBuildNumber; // @dynamic exchangeServerMinorBuildNumber;
+@property long long exchangeServerMinorVersion; // @dynamic exchangeServerMinorVersion;
+@property(retain) NSString *exchangeServerVersion; // @dynamic exchangeServerVersion;
 @property(retain) CalManagedExchangeError *lastError; // @dynamic lastError;
 @property(retain) NSString *mailbox; // @dynamic mailbox;
 @property(retain) NSString *rootFolderID; // @dynamic rootFolderID;

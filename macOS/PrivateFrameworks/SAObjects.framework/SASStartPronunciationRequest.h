@@ -14,6 +14,7 @@
 
 + (id)startPronunciationRequestWithDictionary:(id)arg1 context:(id)arg2;
 + (id)startPronunciationRequest;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SASPronunciationContext *context;
 - (id)encodedClassName;
 - (id)groupIdentifier;

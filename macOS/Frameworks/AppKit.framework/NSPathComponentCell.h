@@ -23,7 +23,7 @@
         unsigned int isDropTarget:1;
         unsigned int reserved:27;
     } _flags;
-    id _aux;
+    NSImage *_originalImage;
 }
 
 + (struct CGSize)_iconSizeForControlSize:(unsigned long long)arg1;
@@ -31,6 +31,13 @@
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1 imageRect:(struct CGRect)arg2;
 - (struct CGRect)imageRectForBounds:(struct CGRect)arg1;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (long long)_interiorContentValueInView:(id)arg1;
+- (long long)_interiorContentStateInView:(id)arg1;
+- (BOOL)_shouldDrawHighlightRect;
+- (BOOL)_shouldStyleUneditableTextInView:(id)arg1;
+- (long long)_contentBacking;
+- (id)_effectiveContentStyleForArrowInView:(id)arg1;
+- (id)_appearanceContentStyleInView:(id)arg1;
 - (long long)interiorBackgroundStyle;
 - (BOOL)_shouldDrawRTL;
 - (BOOL)_shouldHighlightDropTarget;
@@ -60,7 +67,7 @@
 - (BOOL)_drawsAsNavigationBar;
 - (void)setBaseWritingDirection:(long long)arg1;
 @property(copy) NSURL *URL;
-@property(copy) NSImage *image;
+@property(retain) NSImage *image;
 - (void)_setIsDropTarget:(BOOL)arg1;
 - (BOOL)_isDropTarget;
 - (id)description;

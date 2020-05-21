@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class AVConferenceXPCClient;
+@class AVConferenceXPCClient, NSObject<OS_dispatch_queue>;
 
 @interface AVCCaptionsClient : NSObject
 {
     long long _streamToken;
-    id <AVCCaptionsClientDelegate> _delegate;
+    id _delegate;
     AVConferenceXPCClient *_connection;
+    NSObject<OS_dispatch_queue> *_callbackQueue;
 }
 
 @property(readonly) long long streamToken; // @synthesize streamToken=_streamToken;

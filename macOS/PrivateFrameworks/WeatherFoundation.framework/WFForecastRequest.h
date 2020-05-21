@@ -20,7 +20,9 @@
     NSString *_trackingParameter;
 }
 
++ (id)forecastRequestForLocation:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 + (id)forecastRequestForLocation:(id)arg1 date:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *trackingParameter; // @synthesize trackingParameter=_trackingParameter;
 @property(retain, nonatomic) NSLocale *locale; // @synthesize locale=_locale;
 @property(retain, nonatomic) NSData *rawAPIData; // @synthesize rawAPIData=_rawAPIData;
@@ -29,8 +31,9 @@
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(copy, nonatomic) NSDateComponents *date; // @synthesize date=_date;
 @property(copy, nonatomic) WFLocation *location; // @synthesize location=_location;
-- (void).cxx_destruct;
 - (id)editLinksForForecast:(id)arg1;
+- (void)cleanup;
+- (void)handleCancellation;
 - (void)handleResponse:(id)arg1;
 - (void)startWithService:(id)arg1;
 - (id)description;

@@ -6,7 +6,7 @@
 
 #import <SAObjects/SAStartRequest.h>
 
-@class NSData;
+@class NSData, NSString;
 
 @interface SARefreshRequest : SAStartRequest
 {
@@ -14,6 +14,8 @@
 
 + (id)refreshRequestWithDictionary:(id)arg1 context:(id)arg2;
 + (id)refreshRequest;
+- (BOOL)requiresResponse;
+@property(copy, nonatomic) NSString *source;
 @property(copy, nonatomic) NSData *serializedIntent;
 @property(copy, nonatomic) NSData *nlResultState;
 - (id)encodedClassName;

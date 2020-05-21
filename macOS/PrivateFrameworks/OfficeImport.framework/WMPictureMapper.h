@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     WDPicture *wdPicture;
 }
 
+- (void).cxx_destruct;
 - (void)setBoundingBox;
 - (void)mapBounds;
 - (void)mapAt:(id)arg1 withState:(id)arg2;

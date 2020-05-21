@@ -7,25 +7,40 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBControlHomeIntentResponse.h"
 
-@class PBUnknownFields;
+@class NSArray, NSString;
 
-@interface _INPBControlHomeIntentResponse : PBCodable <NSCopying>
+@interface _INPBControlHomeIntentResponse : PBCodable <_INPBControlHomeIntentResponse, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
+    NSArray *_entityResponses;
 }
 
-+ (id)options;
++ (BOOL)supportsSecureCoding;
++ (Class)entityResponsesType;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(copy, nonatomic) NSArray *entityResponses; // @synthesize entityResponses=_entityResponses;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
+- (id)entityResponsesAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long entityResponsesCount;
+- (void)addEntityResponses:(id)arg1;
+- (void)clearEntityResponses;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

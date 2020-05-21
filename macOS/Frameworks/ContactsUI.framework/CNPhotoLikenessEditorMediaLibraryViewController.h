@@ -6,31 +6,26 @@
 
 #import "NSViewController.h"
 
-@class IKImageBrowserView, NSLayoutConstraint, NSScrollView, NSTextField, NSView;
+@class CNUIDeprecatedIKImageBrowserView, NSTextField, NSView;
 
 @interface CNPhotoLikenessEditorMediaLibraryViewController : NSViewController
 {
-    IKImageBrowserView *_mediaLibraryView;
-    IKImageBrowserView *_defaultPhotosLibraryView;
-    NSScrollView *_scrollView;
+    CNUIDeprecatedIKImageBrowserView *_mediaLibraryView;
+    CNUIDeprecatedIKImageBrowserView *_defaultPhotosLibraryView;
     NSView *_emptyContentView;
     NSTextField *_emptyContentTextField;
-    NSLayoutConstraint *_emptyContentTextFieldLeadingEdgeConstraint;
 }
 
-@property(retain) NSLayoutConstraint *emptyContentTextFieldLeadingEdgeConstraint; // @synthesize emptyContentTextFieldLeadingEdgeConstraint=_emptyContentTextFieldLeadingEdgeConstraint;
++ (Class)mediaLibraryClass;
+- (void).cxx_destruct;
 @property(retain) NSTextField *emptyContentTextField; // @synthesize emptyContentTextField=_emptyContentTextField;
 @property(retain) NSView *emptyContentView; // @synthesize emptyContentView=_emptyContentView;
-@property(retain) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
-@property(retain) IKImageBrowserView *defaultPhotosLibraryView; // @synthesize defaultPhotosLibraryView=_defaultPhotosLibraryView;
-@property(retain) IKImageBrowserView *mediaLibraryView; // @synthesize mediaLibraryView=_mediaLibraryView;
-- (void).cxx_destruct;
+@property(retain) CNUIDeprecatedIKImageBrowserView *defaultPhotosLibraryView; // @synthesize defaultPhotosLibraryView=_defaultPhotosLibraryView;
+@property(retain) CNUIDeprecatedIKImageBrowserView *mediaLibraryView; // @synthesize mediaLibraryView=_mediaLibraryView;
 - (void)viewWillAppear;
 - (id)createLoadingView;
 - (void)setEmptyContentString:(id)arg1;
 - (void)setLoadingIndicatorHidden:(BOOL)arg1;
-- (void)setHuggingCompressionForView:(id)arg1;
-- (void)imageBrowser:(id)arg1 cellWasDoubleClickedAtIndex:(unsigned long long)arg2;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 @end

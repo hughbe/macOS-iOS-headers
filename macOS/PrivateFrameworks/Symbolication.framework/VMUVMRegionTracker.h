@@ -6,20 +6,30 @@
 
 #import "NSObject.h"
 
+#import "NSSecureCoding.h"
+
 @class NSMutableArray;
 
-@interface VMUVMRegionTracker : NSObject
+@interface VMUVMRegionTracker : NSObject <NSSecureCoding>
 {
     unsigned int _task;
-    struct _CSTypeRef _symbolicator;
+    id <VMUStackLogReader> _stackLogReader;
     NSMutableArray *_regionInfoArray;
 }
 
++ (void)initialize;
++ (void)_claimUnarchivingOfClass:(id)arg1;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 - (id)vmRegionRangeInfoForRange:(struct _VMURange)arg1;
-- (unsigned long long)handleStackLogEvent:(CDStruct_89df7c02)arg1;
+- (void)convertStackIDs:(CDUnknownBlockType)arg1;
+- (unsigned long long)handleStackLogType:(unsigned int)arg1 address:(unsigned long long)arg2 size:(unsigned long long)arg3 stackID:(unsigned long long)arg4;
 - (unsigned long long)_regionIndexForAddress:(unsigned long long)arg1;
-- (void)dealloc;
+@property(readonly) long long regionCount;
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 - (id)initWithTask:(unsigned int)arg1 stackLogReader:(id)arg2;
+- (id)initWithTask:(unsigned int)arg1;
 
 @end
 

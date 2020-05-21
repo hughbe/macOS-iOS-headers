@@ -13,8 +13,12 @@
 }
 
 + (id)defaultManager;
+- (void)synchronouslyGetFileProviderServicesForItemAtURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)getFileProviderServicesForItemAtURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)getFileProviderMessageInterfacesForItemAtURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (id)containerURLForSecurityApplicationGroupIdentifier:(id)arg1;
 - (void)_registerForUbiquityAccountChangeNotifications;
+- (void)_postUbiquityAccountChangeNotification:(id)arg1;
 @property(readonly, copy) id <NSObject><NSCopying><NSCoding> ubiquityIdentityToken;
 - (BOOL)_processCanAccessUbiquityIdentityToken;
 - (BOOL)_processUsesCloudServices;
@@ -48,11 +52,14 @@
 - (BOOL)filesystemItemLinkOperation:(id)arg1 shouldProceedAfterError:(id)arg2 linkingItemAtPath:(id)arg3 toPath:(id)arg4;
 - (BOOL)filesystemItemLinkOperation:(id)arg1 shouldLinkItemAtPath:(id)arg2 toPath:(id)arg3;
 - (BOOL)moveItemAtURL:(id)arg1 toURL:(id)arg2 error:(id *)arg3;
+- (BOOL)moveItemAtURL:(id)arg1 toURL:(id)arg2 options:(unsigned long long)arg3 error:(id *)arg4;
 - (BOOL)moveItemAtPath:(id)arg1 toPath:(id)arg2 error:(id *)arg3;
 - (BOOL)filesystemItemMoveOperation:(id)arg1 shouldProceedAfterError:(id)arg2 movingItemAtPath:(id)arg3 toPath:(id)arg4;
 - (BOOL)filesystemItemMoveOperation:(id)arg1 shouldMoveItemAtPath:(id)arg2 toPath:(id)arg3;
 - (BOOL)copyItemAtURL:(id)arg1 toURL:(id)arg2 error:(id *)arg3;
+- (BOOL)copyItemAtURL:(id)arg1 toURL:(id)arg2 options:(unsigned long long)arg3 error:(id *)arg4;
 - (BOOL)copyItemAtPath:(id)arg1 toPath:(id)arg2 error:(id *)arg3;
+- (BOOL)copyItemAtPath:(id)arg1 toPath:(id)arg2 options:(unsigned long long)arg3 error:(id *)arg4;
 - (BOOL)filesystemItemCopyOperation:(id)arg1 shouldProceedAfterError:(id)arg2 copyingItemAtPath:(id)arg3 toPath:(id)arg4;
 - (BOOL)filesystemItemCopyOperation:(id)arg1 shouldCopyItemAtPath:(id)arg2 toPath:(id)arg3;
 @property id <NSFileManagerDelegate> delegate;
@@ -98,9 +105,9 @@
 - (BOOL)_removeFileAtPath:(id)arg1 handler:(id)arg2 shouldDeleteFork:(BOOL)arg3;
 - (BOOL)_replicatePath:(id)arg1 atPath:(id)arg2 operation:(int)arg3 fileMap:(id)arg4 handler:(id)arg5;
 - (BOOL)_newReplicatePath:(id)arg1 ref:(void *)arg2 atPath:(id)arg3 ref:(void *)arg4 operation:(int)arg5 fileMap:(id)arg6 handler:(id)arg7;
-- (id)_windowsPathComponentsWithPath:(id)arg1;
 - (id)_posixPathComponentsWithPath:(id)arg1;
 - (BOOL)_itemAtURLIsInAnyTrash:(id)arg1;
+- (id)_mountedVolumeURLsWithPhysicalDisksMatchingVolumeAtURL:(id)arg1 error:(id *)arg2;
 - (void)unmountVolumeAtURL:(id)arg1 options:(unsigned long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (BOOL)getRelationship:(long long *)arg1 ofDirectory:(unsigned long long)arg2 inDomain:(unsigned long long)arg3 toItemAtURL:(id)arg4 error:(id *)arg5;
 - (BOOL)getRelationship:(long long *)arg1 ofDirectoryAtURL:(id)arg2 toItemAtURL:(id)arg3 error:(id *)arg4;

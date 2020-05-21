@@ -7,6 +7,6 @@
 #import "NSIndexSet.h"
 
 @interface NSIndexSet (AMCocoaExtensions)
-- (BOOL)isContiguousSet;
+@property(readonly) BOOL isContiguousSet;
 @end
 

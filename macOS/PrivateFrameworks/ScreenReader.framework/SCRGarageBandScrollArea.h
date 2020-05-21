@@ -14,12 +14,11 @@ __attribute__((visibility("hidden")))
     SCRUIElement *_currentTimeLineGroup;
     struct {
         unsigned int containsTimeLineGroups:1;
-        unsigned int reserved:31;
     } _flags;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) SCRUIElement *currentTimeLineGroup; // @synthesize currentTimeLineGroup=_currentTimeLineGroup;
-- (void)dealloc;
 - (BOOL)addSelectionDescriptionToRequest:(id)arg1;
 - (BOOL)moveToLinkedItemWithEvent:(id)arg1 andInteract:(BOOL)arg2 request:(id)arg3;
 - (BOOL)handleNavigationEvent:(id)arg1 request:(id)arg2 commandKey:(id)arg3 selector:(SEL)arg4 canScroll:(BOOL)arg5 canWrap:(BOOL)arg6;

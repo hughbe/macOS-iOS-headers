@@ -13,17 +13,23 @@
     BOOL _isObservingAnnotation;
     BOOL _wasLastDrawingClipped;
     BOOL _lastRedrawWasForDrawingBounds;
+    BOOL _shouldRecalculateLoupeImage;
     AKAnnotation *_annotation;
     AKPageController *_pageController;
+    CALayer *_fastPathLayer;
 }
 
 + (id)newAnnotationLayerForAnnotation:(id)arg1 withPageController:(id)arg2;
+- (void).cxx_destruct;
+@property BOOL shouldRecalculateLoupeImage; // @synthesize shouldRecalculateLoupeImage=_shouldRecalculateLoupeImage;
 @property BOOL lastRedrawWasForDrawingBounds; // @synthesize lastRedrawWasForDrawingBounds=_lastRedrawWasForDrawingBounds;
 @property BOOL wasLastDrawingClipped; // @synthesize wasLastDrawingClipped=_wasLastDrawingClipped;
 @property BOOL isObservingAnnotation; // @synthesize isObservingAnnotation=_isObservingAnnotation;
+@property(retain, nonatomic) CALayer *fastPathLayer; // @synthesize fastPathLayer=_fastPathLayer;
 @property __weak AKPageController *pageController; // @synthesize pageController=_pageController;
 @property(retain) AKAnnotation *annotation; // @synthesize annotation=_annotation;
-- (void).cxx_destruct;
+- (void)_removeDebugVisuals;
+- (void)_addDebugVisuals;
 - (void)_stopObservingAnnotation;
 - (void)_startObservingAnnotation;
 - (void)_updateAnnotationLayerWithLoupeFastPath:(BOOL)arg1;

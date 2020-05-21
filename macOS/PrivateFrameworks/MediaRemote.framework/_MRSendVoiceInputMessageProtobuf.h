@@ -15,6 +15,7 @@
     _MRAudioDataBlockProtobuf *_dataBlock;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) _MRAudioDataBlockProtobuf *dataBlock; // @synthesize dataBlock=_dataBlock;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -26,7 +27,6 @@
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(readonly, nonatomic) BOOL hasDataBlock;
-- (void)dealloc;
 
 @end
 

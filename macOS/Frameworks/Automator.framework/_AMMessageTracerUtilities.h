@@ -10,7 +10,6 @@
 {
 }
 
-+ (void)loadTypesFromAction:(id)arg1 intoDictionary:(id)arg2;
 + (id)identifierForAction:(id)arg1 withResult:(id)arg2;
 + (id)identifierForAction:(id)arg1;
 + (long long)countOfInput:(id)arg1;

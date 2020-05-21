@@ -8,17 +8,26 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDTextBlock : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSString *_text;
     NSString *_title;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    CDStruct_3e4cc335 _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (id)textBlockForPlaceData:(id)arg1;
-@property(retain, nonatomic) NSString *text; // @synthesize text=_text;
-@property(retain, nonatomic) NSString *title; // @synthesize title=_title;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -26,11 +35,17 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *text;
 @property(readonly, nonatomic) BOOL hasText;
+- (void)_readText;
+@property(retain, nonatomic) NSString *title;
 @property(readonly, nonatomic) BOOL hasTitle;
-- (void)dealloc;
+- (void)_readTitle;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

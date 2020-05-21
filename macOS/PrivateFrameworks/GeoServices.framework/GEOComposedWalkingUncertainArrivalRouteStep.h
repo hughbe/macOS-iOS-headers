@@ -15,12 +15,15 @@
     unsigned int _aggregatedStepsDuration;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (unsigned int)_calculateAggregatedStepsDistance;
 - (unsigned int)distance;
 - (unsigned int)_calculateAggregatedStepsDuration;
 - (unsigned int)duration;
 - (BOOL)isUncertainArrival;
-- (void)dealloc;
 - (id)initWithComposedRoute:(id)arg1 aggregatedGEOSteps:(id)arg2 stepIndex:(unsigned long long)arg3 pointRange:(struct _NSRange)arg4 maneuverPointRange:(struct _NSRange)arg5;
 
 @end

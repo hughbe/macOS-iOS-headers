@@ -14,7 +14,11 @@
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property long long updateDelay; // @synthesize updateDelay=_updateDelay;
+@property unsigned long long updateBSCounter; // @synthesize updateBSCounter=_updateBSCounter;
 @property double scrollSpeedRaw;
+@property BOOL momentumScroll; // @dynamic momentumScroll;
 @property long long scrollMode;
 @property long long buttonMode; // @dynamic buttonMode;
 @property long long twoFingerDoubleTap; // @dynamic twoFingerDoubleTap;

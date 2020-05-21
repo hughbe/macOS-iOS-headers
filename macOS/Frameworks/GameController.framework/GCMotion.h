@@ -11,39 +11,45 @@
 @interface GCMotion : NSObject
 {
     CDStruct_31142d93 _gravity;
-    CDStruct_31142d93 _prevGravity;
     CDStruct_31142d93 _userAcceleration;
     struct GCQuaternion _attitude;
+    struct GCQuaternion _prevAttitude;
+    CDStruct_27cd59c8 _eulerAngles;
+    CDStruct_27cd59c8 _prevEulerAngles;
     CDStruct_31142d93 _rotationRate;
     float _tip;
     float _tilt;
     BOOL _motionLite;
+    BOOL _compassEnabled;
     CDUnknownBlockType _valueChangedHandler;
-    CDUnknownBlockType _internalValueChangedHandler;
-    BOOL _emulatedMotionEnabled;
     GCController *_controller;
 }
 
-@property(readonly, nonatomic) __weak GCController *controller; // @synthesize controller=_controller;
 - (void).cxx_destruct;
-- (void)_setRotationRate:(CDStruct_31142d93)arg1;
-- (void)_setAttitude:(struct GCQuaternion)arg1;
-- (void)_setUserAcceleration:(CDStruct_31142d93)arg1;
-- (void)_setGravity:(CDStruct_31142d93)arg1;
-- (BOOL)_isUpdatingDeviceMotion;
+@property(readonly, nonatomic) __weak GCController *controller; // @synthesize controller=_controller;
 - (void)_pauseMotionUpdates:(BOOL)arg1;
+- (void)setStateFromMotion:(id)arg1;
+- (void)setRotationRate:(CDStruct_39925896)arg1;
+- (void)setAttitude:(struct GCQuaternion)arg1;
+- (void)setUserAcceleration:(CDStruct_39925896)arg1;
+- (void)setGravity:(CDStruct_39925896)arg1;
+- (BOOL)_isUpdatingDeviceMotion;
 - (void)_stopDeviceMotionUpdates;
 - (void)_startDeviceMotionUpdates;
+- (void)_setRotationRate:(CDStruct_39925896)arg1;
+- (void)_setAttitude:(struct GCQuaternion)arg1;
+- (void)_setUserAcceleration:(CDStruct_39925896)arg1;
+- (void)_setGravity:(CDStruct_39925896)arg1;
 - (BOOL)isEmulatedMicroGamepad;
-- (void)setInternalValueChangedHandler:(CDUnknownBlockType)arg1;
-- (CDUnknownBlockType)internalValueChangedHandler;
 @property(copy, nonatomic) CDUnknownBlockType valueChangedHandler;
 - (float)_tilt;
 - (float)_tip;
-@property(readonly, nonatomic) CDStruct_31142d93 rotationRate; // @synthesize rotationRate=_rotationRate;
+@property(readonly, nonatomic) CDStruct_39925896 rotationRate; // @synthesize rotationRate=_rotationRate;
 @property(readonly, nonatomic) struct GCQuaternion attitude; // @synthesize attitude=_attitude;
-@property(readonly, nonatomic) CDStruct_31142d93 userAcceleration; // @synthesize userAcceleration=_userAcceleration;
-@property(readonly, nonatomic) CDStruct_31142d93 gravity; // @synthesize gravity=_gravity;
+@property(readonly, nonatomic) BOOL hasAttitudeAndRotationRate;
+- (void)_setCompassEnabled:(BOOL)arg1;
+@property(readonly, nonatomic) CDStruct_39925896 userAcceleration; // @synthesize userAcceleration=_userAcceleration;
+@property(readonly, nonatomic) CDStruct_39925896 gravity; // @synthesize gravity=_gravity;
 - (void)_setMotionLite:(BOOL)arg1;
 - (id)initWithController:(id)arg1;
 

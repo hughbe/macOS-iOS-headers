@@ -10,11 +10,11 @@
 
 @class CIContext, NSDictionary, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVCoreImageFilterCustomVideoCompositor : NSObject <AVVideoCompositing>
 {
     NSObject<OS_dispatch_group> *_filteringRequestsInFlight;
     BOOL _shouldCancelAllRequests;
-    struct CGColorSpace *_dstColorSpace;
     NSObject<OS_dispatch_queue> *_defaultCIContextThreadSafety;
     CIContext *_defaultCIContext;
 }
@@ -29,7 +29,6 @@
 - (void)renderContextChanged:(id)arg1;
 @property(readonly, nonatomic) NSDictionary *requiredPixelBufferAttributesForRenderContext;
 @property(readonly, nonatomic) NSDictionary *sourcePixelBufferAttributes;
-- (void)finalize;
 - (void)dealloc;
 - (void)_willDeallocOrFinalize;
 - (id)init;

@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)sharedClient;
+- (void).cxx_destruct;
 - (void)_recordingStateChangedNotification:(id)arg1;
 - (void)setRecordingStateCallback:(CDUnknownBlockType)arg1 forDeviceID:(unsigned int)arg2;
 - (void)dealloc;

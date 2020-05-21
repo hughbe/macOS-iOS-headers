@@ -8,7 +8,6 @@
 
 @class NSAttributedString, NSTextView;
 
-__attribute__((visibility("hidden")))
 @interface ABShadowTextFieldCell : NSTextFieldCell
 {
     NSTextView *_fieldEditor;
@@ -18,12 +17,12 @@ __attribute__((visibility("hidden")))
     BOOL _ignoredByAccessibility;
 }
 
+- (void).cxx_destruct;
 @property(getter=accessibilityIsIgnored) BOOL ignoredByAccessibility; // @synthesize ignoredByAccessibility=_ignoredByAccessibility;
 @property(nonatomic) BOOL displaysAlternatePlaceholder; // @synthesize displaysAlternatePlaceholder=_displaysAlternatePlaceholder;
 @property(copy) NSAttributedString *alternatePlaceholder; // @synthesize alternatePlaceholder=_alternatePlaceholder;
 @property(copy) NSAttributedString *originalPlaceholder; // @synthesize originalPlaceholder=_originalPlaceholder;
 - (id)fieldEditorForView:(id)arg1;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end

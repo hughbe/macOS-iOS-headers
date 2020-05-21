@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class CKDMMCS, CKSQLitePool, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
+@class CKDMMCS, CKSQLitePool, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString;
 
 @interface CKDAssetCache : NSObject
 {
     BOOL _isUnitTestingAccount;
     BOOL _hasMigrated;
     BOOL _isEvictionScheduled;
+    BOOL _didDrop;
     int _fileDownloadPathFd;
     CKDMMCS *_MMCS;
     CKSQLitePool *_dbPool;
@@ -21,24 +22,31 @@
     NSString *_dbPath;
     NSString *_fileStagingPath;
     NSObject<OS_dispatch_queue> *_queue;
-    NSObject<OS_dispatch_source> *_expiryTimer;
+    NSOperationQueue *_opQueue;
+    long long _checkoutCount;
+    id <NSObject> _assetHandleExpirationNotificationObserver;
     NSMutableDictionary *_volumeUUIDByVolumeIndex;
     NSMutableDictionary *_volumeIndexByVolumeUUID;
     NSMutableSet *_deferredDeletedAssetHandles;
     NSMutableDictionary *_deferredLastUsedTimeByTrackingUUID;
 }
 
++ (void)registerExpirationForAssetHandles;
 + (int)openFdForDownloadPath:(id)arg1 error:(id *)arg2;
 + (id)assetCacheWithApplicationBundleID:(id)arg1 assetDirectoryContext:(id)arg2 didInit:(char *)arg3 error:(id *)arg4;
 + (id)_sharedCachesByPath;
 + (id)_sharedCachesQueue;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *deferredLastUsedTimeByTrackingUUID; // @synthesize deferredLastUsedTimeByTrackingUUID=_deferredLastUsedTimeByTrackingUUID;
 @property(retain, nonatomic) NSMutableSet *deferredDeletedAssetHandles; // @synthesize deferredDeletedAssetHandles=_deferredDeletedAssetHandles;
 @property(retain, nonatomic) NSMutableDictionary *volumeIndexByVolumeUUID; // @synthesize volumeIndexByVolumeUUID=_volumeIndexByVolumeUUID;
 @property(retain, nonatomic) NSMutableDictionary *volumeUUIDByVolumeIndex; // @synthesize volumeUUIDByVolumeIndex=_volumeUUIDByVolumeIndex;
+@property(retain, nonatomic) id <NSObject> assetHandleExpirationNotificationObserver; // @synthesize assetHandleExpirationNotificationObserver=_assetHandleExpirationNotificationObserver;
+@property(nonatomic) long long checkoutCount; // @synthesize checkoutCount=_checkoutCount;
+@property(nonatomic) BOOL didDrop; // @synthesize didDrop=_didDrop;
 @property BOOL isEvictionScheduled; // @synthesize isEvictionScheduled=_isEvictionScheduled;
 @property(nonatomic) int fileDownloadPathFd; // @synthesize fileDownloadPathFd=_fileDownloadPathFd;
-@property(retain, nonatomic) NSObject<OS_dispatch_source> *expiryTimer; // @synthesize expiryTimer=_expiryTimer;
+@property(retain, nonatomic) NSOperationQueue *opQueue; // @synthesize opQueue=_opQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(retain, nonatomic) NSString *fileStagingPath; // @synthesize fileStagingPath=_fileStagingPath;
 @property(retain, nonatomic) NSString *dbPath; // @synthesize dbPath=_dbPath;
@@ -48,14 +56,13 @@
 @property(nonatomic) BOOL isUnitTestingAccount; // @synthesize isUnitTestingAccount=_isUnitTestingAccount;
 @property(readonly, nonatomic) CKSQLitePool *dbPool; // @synthesize dbPool=_dbPool;
 @property(nonatomic) __weak CKDMMCS *MMCS; // @synthesize MMCS=_MMCS;
-- (void).cxx_destruct;
 - (void)setupPersistentStateAtStartup;
 - (void)_resetAssetInflightUsingDB:(id)arg1;
 - (BOOL)initDatabaseWithError:(id *)arg1;
-- (void)expireAssetHandlesIfNecessary;
+- (void)expireAssetHandlesIfNecessaryWithGroup:(id)arg1;
 - (void)_scheduleExpirationForAssetHandles;
-- (void)_expireAssetHandlesWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)_expireAssetHandlesWithExpiryDate:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)_expireAssetHandlesWithGroup:(id)arg1;
+- (void)_expireAssetHandlesWithExpiryDate:(id)arg1 group:(id)arg2;
 - (unsigned long long)predictedEvictedSizeForAllFilesForced:(BOOL)arg1;
 - (unsigned long long)evictAllFilesForced:(BOOL)arg1;
 - (unsigned long long)_evictWithEvictionInfo:(id)arg1;
@@ -65,7 +72,6 @@
 - (id)assetHandleWithCachedPath:(id)arg1;
 - (BOOL)parseCachedPath:(id)arg1 assetHandleUUID:(id *)arg2 assetSignature:(id *)arg3;
 - (BOOL)parseCachedPath:(id)arg1 assetHandleUUIDString:(id *)arg2 assetSignatureString:(id *)arg3;
-- (void)scheduleAssetHandleDeletionForCachedPath:(id)arg1;
 - (void)deferredUpdateLastTimeUsedForUUID:(id)arg1;
 - (id)findAssetHandleForItemID:(unsigned long long)arg1 error:(id *)arg2;
 - (void)stopTrackingAssetHandlesByItemIDs:(id)arg1;
@@ -84,16 +90,17 @@
 - (id)_getAssetHandlesForCachedButNotRegisteredMMCSItems:(id)arg1 error:(id *)arg2;
 - (id)_getAssetHandlesForDownloadedMMCSItems:(id)arg1 error:(id *)arg2;
 - (id)_saveData:(id)arg1 error:(id *)arg2;
-- (void)scheduleUnregisterItemIDsAndDeleteAssetHandlesWithEvictionInfo:(id)arg1;
+- (void)scheduleUnregisterItemIDsAndDeleteAssetHandlesWithEvictionInfo:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)scheduleUnregisterItemsAndDeleteUnregisteredAssetHandlesWithIDs:(id)arg1;
-- (void)scheduleUnregisterItemsAndDeleteUnregisteredAssetHandlesWithIDs:(id)arg1 deleteUnregisteredAssetHandlesWithIDs:(id)arg2;
+- (void)scheduleUnregisterItemsAndDeleteUnregisteredAssetHandlesWithIDs:(id)arg1 deleteUnregisteredAssetHandlesWithIDs:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)unregisterItemIDs:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)showAssetCache;
+- (unsigned long long)countAssetCacheItems;
 - (void)checkAssetHandlesForRegisteredMMCSItems:(id)arg1;
 - (void)clearAssetCache;
 - (void)cancelExpiryTimer;
 - (unsigned long long)clearForced:(BOOL)arg1;
-- (unsigned long long)_clearForced:(BOOL)arg1;
+- (unsigned long long)_clearForced:(BOOL)arg1 group:(id)arg2;
 - (id)existingOrNewVolumeIndexForDeviceID:(id)arg1;
 - (id)existingOrNewVolumeIndexForDeviceID:(id)arg1 usingDB:(id)arg2;
 - (id)deviceIDForVolumeIndex:(id)arg1;
@@ -104,7 +111,9 @@
 - (id)existingOrNewVolumeIndexForVolumeUUID:(id)arg1 usingDB:(id)arg2;
 - (void)_setVolumeIndex:(id)arg1 forVolumeUUID:(id)arg2;
 - (void)dealloc;
-- (id)initWithApplicationBundleID:(id)arg1 assetDirectoryContext:(id)arg2;
+- (void)drop;
+- (void)cleanup;
+- (id)_initWithApplicationBundleID:(id)arg1 assetDirectoryContext:(id)arg2 error:(id *)arg3;
 
 @end
 

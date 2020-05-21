@@ -8,33 +8,15 @@
 
 #import "NSCopying.h"
 
-@class NSNumber, NSString;
-
 __attribute__((visibility("hidden")))
 @interface __NSConcreteURLComponents : NSURLComponents <NSCopying>
 {
-    int _lock;
-    NSString *_urlString;
-    struct _URIParseInfo _parseInfo;
-    unsigned int _schemeComponentValid:1;
-    unsigned int _userComponentValid:1;
-    unsigned int _passwordComponentValid:1;
-    unsigned int _hostComponentValid:1;
-    unsigned int _portComponentValid:1;
-    unsigned int _pathComponentValid:1;
-    unsigned int _queryComponentValid:1;
-    unsigned int _fragmentComponentValid:1;
-    NSString *_schemeComponent;
-    NSString *_userComponent;
-    NSString *_passwordComponent;
-    NSString *_hostComponent;
-    NSNumber *_portComponent;
-    NSString *_pathComponent;
-    NSString *_queryComponent;
-    NSString *_fragmentComponent;
+    struct __CFURLComponents *_components;
 }
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
+- (void)setPercentEncodedQueryItems:(id)arg1;
+- (id)percentEncodedQueryItems;
 - (void)setQueryItems:(id)arg1;
 - (id)queryItems;
 - (struct _NSRange)rangeOfFragment;
@@ -45,7 +27,6 @@ __attribute__((visibility("hidden")))
 - (struct _NSRange)rangeOfPassword;
 - (struct _NSRange)rangeOfUser;
 - (struct _NSRange)rangeOfScheme;
-- (BOOL)parseInfoIsValid;
 - (void)setPercentEncodedFragment:(id)arg1;
 - (id)percentEncodedFragment;
 - (void)setPercentEncodedQuery:(id)arg1;
@@ -85,6 +66,7 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
+- (struct __CFURLComponents *)__cfComponents;
 
 @end
 

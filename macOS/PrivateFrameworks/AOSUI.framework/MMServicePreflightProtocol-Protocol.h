@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSWindow;
+@class NSWindow;
 
 @protocol MMServicePreflightProtocol <NSObject>
 - (BOOL)hasPreflightAction;
 
 @optional
-- (BOOL)preflightForSignout:(id *)arg1 withWindow:(NSWindow *)arg2 andDataclassActions:(NSArray *)arg3;
+- (BOOL)preflightForSignoutWithWindow:(NSWindow *)arg1;
 @end
 

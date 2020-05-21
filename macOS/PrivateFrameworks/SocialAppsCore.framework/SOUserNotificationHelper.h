@@ -14,17 +14,16 @@
 }
 
 + (id)sharedHelper;
-@property(retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
 - (id)subtitleForChatRoom:(id)arg1;
 - (void)postAlertNotificationMentioningMeInChat:(id)arg1 message:(id)arg2;
 - (void)clearAllUserNotificationsForGuid:(id)arg1;
 - (void)postUserNotification:(id)arg1;
 - (id)userNotificationForChat:(id)arg1 sound:(id)arg2;
-- (id)userNotificationForKnockKnockMessage:(id)arg1 chat:(id)arg2 sound:(id)arg3;
-- (id)userNotificationForMessage:(id)arg1 chat:(id)arg2 sound:(id)arg3 buddyImage:(id)arg4 includeReply:(BOOL)arg5;
+- (id)userNotificationForMessage:(id)arg1 chat:(id)arg2 sound:(id)arg3 buddyImage:(id)arg4;
 - (id)_firstImageForMessage:(id)arg1;
-- (id)_userNotificationWithTitle:(id)arg1 subtitle:(id)arg2 infomativeText:(id)arg3 actionButtonTitle:(id)arg4 otherButtonTitle:(id)arg5 userInfo:(id)arg6 identifier:(id)arg7 date:(id)arg8 sound:(id)arg9 peopleIdentifiers:(id)arg10 buddyImage:(id)arg11 attachedImage:(id)arg12 includeReply:(BOOL)arg13 responsePlaceholder:(id)arg14 serviceIsiMessage:(BOOL)arg15 emojiSubstitutionEnabled:(BOOL)arg16;
+- (id)_userNotificationWithTitle:(id)arg1 subtitle:(id)arg2 infomativeText:(id)arg3 actionButtonTitle:(id)arg4 otherButtonTitle:(id)arg5 userInfo:(id)arg6 identifier:(id)arg7 date:(id)arg8 sound:(id)arg9 peopleIdentifiers:(id)arg10 buddyImage:(id)arg11 attachedImage:(id)arg12 responsePlaceholder:(id)arg13 serviceIsiMessage:(BOOL)arg14 emojiSubstitutionEnabled:(BOOL)arg15 isBusiness:(BOOL)arg16;
 - (id)init;
 
 @end

@@ -16,7 +16,6 @@ __attribute__((visibility("hidden")))
 }
 
 - (void)scheduleBarrierBlock:(CDUnknownBlockType)arg1;
-- (void)clearCachedInformationForRequestWithIdentifier:(id)arg1;
 - (void)disconnectAllConnections;
 - (void)setExclusiveLockingMode:(BOOL)arg1;
 - (BOOL)routeStoreRequest:(id)arg1;

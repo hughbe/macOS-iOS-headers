@@ -42,8 +42,7 @@
 - (id)tokenFieldCell:(id)arg1 displayStringForRepresentedObject:(id)arg2;
 - (id)tokenFieldCell:(id)arg1 shouldAddObjects:(id)arg2 atIndex:(unsigned long long)arg3;
 - (id)tokenFieldCell:(id)arg1 completionsForSubstring:(id)arg2 indexOfToken:(long long)arg3 indexOfSelectedItem:(long long *)arg4;
-- (id)delegate;
-- (void)setDelegate:(id)arg1;
+@property __weak id <NSTokenFieldDelegate> delegate;
 - (BOOL)_baselineIsSpecialCasingForMiniFont;
 @property(copy) NSCharacterSet *tokenizingCharacterSet;
 @property double completionDelay;

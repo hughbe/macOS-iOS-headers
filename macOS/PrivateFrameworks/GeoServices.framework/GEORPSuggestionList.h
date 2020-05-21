@@ -8,21 +8,33 @@
 
 #import "NSCopying.h"
 
-@class GEOPDPlaceRequest, GEOPDPlaceResponse, NSMutableArray, NSString;
+@class GEOPDPlaceRequest, GEOPDPlaceResponse, NSMutableArray, NSString, PBDataReader;
 
 @interface GEORPSuggestionList : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     GEOPDPlaceRequest *_autocompleteRequest;
     GEOPDPlaceResponse *_autocompleteResponse;
     NSMutableArray *_entrys;
     NSString *_query;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_autocompleteRequest:1;
+        unsigned int read_autocompleteResponse:1;
+        unsigned int read_entrys:1;
+        unsigned int read_query:1;
+        unsigned int wrote_autocompleteRequest:1;
+        unsigned int wrote_autocompleteResponse:1;
+        unsigned int wrote_entrys:1;
+        unsigned int wrote_query:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)entryType;
-@property(retain, nonatomic) GEOPDPlaceResponse *autocompleteResponse; // @synthesize autocompleteResponse=_autocompleteResponse;
-@property(retain, nonatomic) GEOPDPlaceRequest *autocompleteRequest; // @synthesize autocompleteRequest=_autocompleteRequest;
-@property(retain, nonatomic) NSMutableArray *entrys; // @synthesize entrys=_entrys;
-@property(retain, nonatomic) NSString *query; // @synthesize query=_query;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -30,16 +42,27 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOPDPlaceResponse *autocompleteResponse;
 @property(readonly, nonatomic) BOOL hasAutocompleteResponse;
+- (void)_readAutocompleteResponse;
+@property(retain, nonatomic) GEOPDPlaceRequest *autocompleteRequest;
 @property(readonly, nonatomic) BOOL hasAutocompleteRequest;
+- (void)_readAutocompleteRequest;
 - (id)entryAtIndex:(unsigned long long)arg1;
 - (unsigned long long)entrysCount;
+- (void)_addNoFlagsEntry:(id)arg1;
 - (void)addEntry:(id)arg1;
 - (void)clearEntrys;
+@property(retain, nonatomic) NSMutableArray *entrys;
+- (void)_readEntrys;
+@property(retain, nonatomic) NSString *query;
 @property(readonly, nonatomic) BOOL hasQuery;
-- (void)dealloc;
+- (void)_readQuery;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

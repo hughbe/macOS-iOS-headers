@@ -18,6 +18,7 @@
 + (id)propertiesUnavailableForPartialObjects;
 + (BOOL)hasMatchForPredicate:(id)arg1 inManagedObjectContext:(id)arg2;
 + (id)fetchRequestWithPredicate:(id)arg1 inManagedObjectContext:(id)arg2;
++ (id)insertNewObjectInContext:(id)arg1 obtainPermanentID:(BOOL)arg2;
 + (id)entityName;
 - (id)additionalFrozenProperties;
 @property(readonly, nonatomic) NSDictionary *preFrozenRelationshipObjects;
@@ -27,6 +28,7 @@
 - (BOOL)isNew;
 - (BOOL)isFrozen;
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;
+- (void)warnIfManagedObjectContextIsNil;
 - (id)enclosingSources;
 - (id)enclosingSource;
 - (id)objectIDAsString;

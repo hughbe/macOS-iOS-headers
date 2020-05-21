@@ -9,7 +9,14 @@
 @interface NSError (CKUtilsAdditions)
 + (id)CKErrorFromErrno;
 + (id)CKErrorWithPOSIXCode:(int)arg1;
-- (id)CKPropertiesToDescribe:(BOOL)arg1;
+- (id)CKDescriptionPropertiesWithPublic:(BOOL)arg1 private:(BOOL)arg2 shouldExpand:(BOOL)arg3;
 - (BOOL)CKIsPOSIXErrorCode:(long long)arg1;
+@property(readonly, nonatomic, getter=isComparisonError) BOOL comparisonError;
+- (BOOL)CKHasTopLevelUnderlyingError;
+- (BOOL)CKHasCKErrorInChildChain;
+- (BOOL)CKIsCKError;
+- (BOOL)CKIsNotFoundError;
+- (id)CKClientSuitableUnderlyingError;
+- (id)CKClientSuitableError;
 @end
 

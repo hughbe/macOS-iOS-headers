@@ -6,26 +6,34 @@
 
 #import "NSManagedObject.h"
 
-@class CKRecordZoneID, CKServerChangeToken, ICAccount, NSString;
+#import "ICLoggable.h"
 
-@interface ICServerChangeToken : NSManagedObject
+@class CKRecordZoneID, CKServerChangeToken, ICAccount, NSData, NSString;
+
+@interface ICServerChangeToken : NSManagedObject <ICLoggable>
 {
     CKRecordZoneID *_zoneID;
+    CKServerChangeToken *_ckServerChangeToken;
 }
 
 + (id)serverChangeTokensMatchingPredicate:(id)arg1 inContext:(id)arg2;
 + (id)serverChangeTokenForAccount:(id)arg1 zoneID:(id)arg2 databaseScope:(long long)arg3 context:(id)arg4;
 + (id)addServerChangeTokenForAccount:(id)arg1 ckServerChangeToken:(id)arg2 zoneID:(id)arg3 databaseScope:(long long)arg4 context:(id)arg5;
 - (void).cxx_destruct;
-- (id)loggingDescription;
+- (id)ic_loggingValues;
 @property(readonly, nonatomic) CKRecordZoneID *zoneID; // @synthesize zoneID=_zoneID;
-- (void)willTurnIntoFault;
+- (void)didTurnIntoFault;
 @property(nonatomic) long long databaseScope; // @dynamic databaseScope;
+@property(retain, nonatomic) CKServerChangeToken *ckServerChangeToken; // @synthesize ckServerChangeToken=_ckServerChangeToken;
 
 // Remaining properties
 @property(retain, nonatomic) ICAccount *account; // @dynamic account;
-@property(retain, nonatomic) CKServerChangeToken *ckServerChangeToken; // @dynamic ckServerChangeToken;
+@property(retain, nonatomic) NSData *ckServerChangeTokenData; // @dynamic ckServerChangeTokenData;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(retain, nonatomic) NSString *ownerName; // @dynamic ownerName;
+@property(readonly) Class superclass;
 @property(retain, nonatomic) NSString *zoneName; // @dynamic zoneName;
 
 @end

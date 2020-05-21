@@ -16,10 +16,14 @@ __attribute__((visibility("hidden")))
 {
     DownloadTableView *_tableView;
     NSMutableArray *_downloadEntries;
+    id <DownloadViewControllerDataSource> _dataSource;
+    id <DownloadViewControllerDelegate> _delegate;
 }
 
-@property(retain, nonatomic) NSMutableArray *downloadEntries; // @synthesize downloadEntries=_downloadEntries;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableArray *downloadEntries; // @synthesize downloadEntries=_downloadEntries;
+@property(nonatomic) __weak id <DownloadViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <DownloadViewControllerDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (BOOL)accessibilityPerformShowMenuForTableView:(id)arg1;
 - (id)tableView:(id)arg1 menuForEvent:(id)arg2;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
@@ -27,7 +31,6 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)draggingEntered:(id)arg1;
 - (void)paste:(id)arg1;
 - (BOOL)_canPaste;
-- (void)_downloadURLs:(id)arg1;
 - (void)cut:(id)arg1;
 - (void)delete:(id)arg1;
 - (void)keyDown:(id)arg1;
@@ -81,6 +84,7 @@ __attribute__((visibility("hidden")))
 - (void)dealloc;
 - (BOOL)tableView:(id)arg1 writeRowsWithIndexes:(id)arg2 toPasteboard:(id)arg3;
 - (void)awakeFromNib;
+- (void)reloadDownloadsView;
 - (void)_addAllEntries;
 - (void)_insertEntry:(id)arg1 atIndex:(unsigned int)arg2;
 

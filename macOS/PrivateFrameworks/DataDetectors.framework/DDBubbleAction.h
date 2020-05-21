@@ -17,7 +17,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)runForResult:(struct __DDResult *)arg1 textCheckingResult:(id)arg2 URL:(id)arg3 context:(id)arg4;
 - (id)menuItemForResult:(struct __DDResult *)arg1 textCheckingResult:(id)arg2 URL:(id)arg3 uiReady:(BOOL)arg4 context:(id)arg5 actionTarget:(id)arg6;
 - (BOOL)displaysUI;
-- (void)dealloc;
 - (id)initWithDict:(id)arg1 bundle:(id)arg2;
 
 @end

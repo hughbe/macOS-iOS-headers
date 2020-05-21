@@ -20,6 +20,7 @@
     NSMutableDictionary *_contentTypes;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *contentTypes; // @synthesize contentTypes=_contentTypes;
 @property(retain) NSMutableDictionary *attachments; // @synthesize attachments=_attachments;
 @property(retain) NSMutableSet *attendeePrincipalURLs; // @synthesize attendeePrincipalURLs=_attendeePrincipalURLs;
@@ -32,13 +33,12 @@
 - (void)performOperation;
 - (void)taskGroup:(id)arg1 didFinishWithError:(id)arg2;
 - (void)_addDetailsForAttachmentWithFilename:(id)arg1;
-- (id)_fileNamesToUpload;
-- (void)_updateAttachments;
+- (id)_fileNamesToUploadInContext:(id)arg1;
+- (void)_updateAttachmentsInContext:(id)arg1;
 - (id)_serverURLForPath:(id)arg1;
 - (void)_cacheEtag:(id)arg1 filename:(id)arg2;
-- (id)_buildCustomErrorFromError:(id)arg1 withStatusCode:(int)arg2 dataLength:(id)arg3;
-- (id)_managedItem;
-- (void)dealloc;
+- (id)_buildCustomErrorFromError:(id)arg1 withStatusCode:(long long)arg2 dataLength:(id)arg3 inContext:(id)arg4;
+- (id)_managedItemInContext:(id)arg1;
 - (id)initWithChangeRequest:(id)arg1 attachmentName:(id)arg2 entity:(id)arg3 fromSource:(id)arg4;
 
 // Remaining properties

@@ -19,7 +19,7 @@ __attribute__((visibility("hidden")))
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)reportWorksheetWarning:(struct TCTaggedMessageStructure *)arg1;
+- (void)reportWorksheetWarning:(id)arg1;
 - (unsigned long long)nextChartIndex;
 - (void)setSharedFormulaIndex:(unsigned long long)arg1 forRowCol:(int)arg2;
 - (unsigned long long)sharedFormulaIndexForRowCol:(int)arg1;
@@ -29,7 +29,6 @@ __attribute__((visibility("hidden")))
 - (id)workbook;
 - (struct XlBinaryReader *)xlReader;
 - (id)readerState;
-- (void)dealloc;
 - (id)initWithReaderState:(id)arg1;
 
 @end

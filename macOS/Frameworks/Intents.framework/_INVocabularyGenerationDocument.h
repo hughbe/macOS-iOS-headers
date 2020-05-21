@@ -23,6 +23,7 @@
     NSArray *_vocabularyItems;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL haveAssignedAllSiriIDs; // @synthesize haveAssignedAllSiriIDs=_haveAssignedAllSiriIDs;
 @property(copy, nonatomic) NSArray *vocabularyItems; // @synthesize vocabularyItems=_vocabularyItems;
 @property(copy, nonatomic) NSString *thisGeneration; // @synthesize thisGeneration=_thisGeneration;
@@ -30,11 +31,10 @@
 @property(copy, nonatomic) NSString *intentSlot; // @synthesize intentSlot=_intentSlot;
 @property(copy, nonatomic) NSString *appBundleID; // @synthesize appBundleID=_appBundleID;
 @property(nonatomic) BOOL resetOnNextSync; // @synthesize resetOnNextSync=_resetOnNextSync;
-- (void).cxx_destruct;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithContentsOfFile:(id)arg1;
-- (id)writeToFile:(id)arg1;
+- (id)writeToFile:(id)arg1 createIntermediateDirectories:(BOOL)arg2;
 - (id)_initWithDictionary:(id)arg1;
 - (void)_takeValuesFromDictionary:(id)arg1;
 - (id)_dictionaryRepresentation;

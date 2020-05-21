@@ -6,23 +6,39 @@
 
 #import "NSObject.h"
 
+@class NSDate, NSString;
+
 @interface SUOSNotificationBundleHandler : NSObject
 {
-    BOOL _notificationBundleExists;
     BOOL _mdmInitiatedNotificationBundleInstall;
+    BOOL _notificationPending;
+    BOOL _notificationBundleExists;
     CDUnknownBlockType _notificationBundleDidChangeHandler;
+    NSString *_notificationBundlePath;
+    NSDate *_deferralDate;
 }
 
 + (id)sharedNotificationBundleHandler;
-@property(copy) CDUnknownBlockType notificationBundleDidChangeHandler; // @synthesize notificationBundleDidChangeHandler=_notificationBundleDidChangeHandler;
+@property(nonatomic) BOOL notificationBundleExists; // @synthesize notificationBundleExists=_notificationBundleExists;
+@property(retain) NSDate *deferralDate; // @synthesize deferralDate=_deferralDate;
+@property(readonly) NSString *notificationBundlePath; // @synthesize notificationBundlePath=_notificationBundlePath;
+@property(nonatomic) BOOL notificationPending; // @synthesize notificationPending=_notificationPending;
+@property(copy, nonatomic) CDUnknownBlockType notificationBundleDidChangeHandler; // @synthesize notificationBundleDidChangeHandler=_notificationBundleDidChangeHandler;
 @property BOOL mdmInitiatedNotificationBundleInstall; // @synthesize mdmInitiatedNotificationBundleInstall=_mdmInitiatedNotificationBundleInstall;
 - (id)osNotificationBundlePath;
 - (id)getOSNotificationBundleProperties;
 - (void)listenForNotificationBundleChanges;
 - (void)_listenForNotificationInfoPlistChangesIfExists;
-- (void)_notifyOSXAvailableWatchingForInfo:(BOOL)arg1;
-- (BOOL)notificationBundleExists;
+- (void)_handleMajorOSBundleInstalled:(BOOL)arg1;
+- (void)sendMajorOSAvailableNotification;
+- (void)_notificationDeferralDate:(CDUnknownBlockType)arg1;
+- (id)_subundleFromSUTags;
+- (void)shouldNotifyForMajorOSAvailable:(CDUnknownBlockType)arg1;
+- (void)clearNotificationPending;
 - (id)init;
+- (void)dealloc;
+- (void)archiveToCoder:(id)arg1;
+- (void)restoreFromCoder:(id)arg1;
 
 @end
 

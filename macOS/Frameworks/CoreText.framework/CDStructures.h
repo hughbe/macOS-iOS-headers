@@ -35,13 +35,28 @@ struct GlyphStackEntry {
     struct CGPoint _field6;
 };
 
+struct TTraitsValues {
+    unsigned int _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+};
+
+struct TUnfairLock {
+    struct os_unfair_lock_s fLock;
+};
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
 };
 
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
+};
+
 struct type {
-    unsigned char __lx[216];
+    unsigned char __lx[16];
 };
 
 #pragma mark Typedef'd Structures

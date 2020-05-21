@@ -13,12 +13,12 @@
     NSString *_toolTipString;
 }
 
+- (unsigned long long)shadowOptions;
 - (float)_backdropBleedAmount;
 - (void)_setLevelToShowAboveWindow:(id)arg1;
 - (BOOL)ignoresMouseEvents;
 - (BOOL)canBecomeVisibleWithoutLogin;
-- (void)setToolTipString:(id)arg1;
-- (id)toolTipString;
+@property(retain, nonatomic) NSString *toolTipString;
 - (BOOL)hasShadow;
 - (void)dealloc;
 - (void)accessibilityPostNotification:(id)arg1;

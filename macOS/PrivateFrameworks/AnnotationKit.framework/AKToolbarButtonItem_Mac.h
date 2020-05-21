@@ -6,14 +6,14 @@
 
 #import "NSView.h"
 
-@class NSButton<AKUserInterfaceItem>, NSImage, NSImageView, NSLayoutConstraint, NSString;
+@class NSButton<AKUserInterfaceItem>, NSImage, NSLayoutConstraint, NSPulldownIndicatorImageView, NSString;
 
 @interface AKToolbarButtonItem_Mac : NSView
 {
     NSLayoutConstraint *_buttonWidthConstraint;
     NSLayoutConstraint *_buttonHeightConstraint;
     NSLayoutConstraint *_pulldownIndicatorWidthConstraint;
-    NSImageView *_pulldownIndicatorView;
+    NSPulldownIndicatorImageView *_pulldownIndicatorView;
     BOOL _showsPulldown;
     BOOL _enabled;
     unsigned long long _displayMode;
@@ -21,11 +21,11 @@
 }
 
 + (id)_sharedMenuIndicatorImage;
+- (void).cxx_destruct;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 @property(nonatomic) BOOL showsPulldown; // @synthesize showsPulldown=_showsPulldown;
 @property(readonly, nonatomic) NSButton<AKUserInterfaceItem> *button; // @synthesize button=_button;
 @property(nonatomic) unsigned long long displayMode; // @synthesize displayMode=_displayMode;
-- (void).cxx_destruct;
 - (void)mouseDown:(id)arg1;
 @property(nonatomic) unsigned long long buttonType;
 @property(copy, nonatomic) NSImage *alternateImage;

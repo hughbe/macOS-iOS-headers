@@ -4,36 +4,56 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <FinderKit/FI_TDrawRectView.h>
+#import <FinderKit/FI_TUpdateLayerView.h>
 
-@class NSImage;
+#import "NSAccessibilityImage.h"
+
+@class NSImage, NSString;
 
 __attribute__((visibility("hidden")))
-@interface FI_TBasicImageView : FI_TDrawRectView
+@interface FI_TBasicImageView : FI_TUpdateLayerView <NSAccessibilityImage>
 {
-    struct TNSRef<NSImage *, void> _imageForDrawing;
-    struct TNSRef<NSImage *, void> _imageForComparison;
+    struct TNSRef<NSImage, void> _imageForDrawing;
+    struct TNSRef<NSImage, void> _imageForComparison;
     _Bool _isDimmed;
+    struct TNSRef<NSArray<CAFilter *>, void> _dimmedFilters;
     _Bool _acceptsFirstMouse;
     struct TriStateBool _animatingFrameSizeLarger;
     unsigned long long _animatingFrameSizeCount;
 }
 
-@property _Bool acceptsFirstMouse; // @synthesize acceptsFirstMouse=_acceptsFirstMouse;
-@property(nonatomic, getter=isDimmed) _Bool dimmed; // @synthesize dimmed=_isDimmed;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)drawRect:(struct CGRect)arg1;
+@property _Bool acceptsFirstMouse; // @synthesize acceptsFirstMouse=_acceptsFirstMouse;
+@property(nonatomic, getter=isDimmed) _Bool dimmed; // @synthesize dimmed=_isDimmed;
+- (id)accessibilityHitTest:(struct CGPoint)arg1;
+- (BOOL)accessibilityEnabled;
+- (id)accessibilityLabel;
+- (id)accessibilityRoleDescription;
+- (id)accessibilityRole;
+- (void)updateLayer;
+- (void)viewDidChangeEffectiveAppearance;
+- (id)dimmedFilters;
 - (void)setBoundsSize:(struct CGSize)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
-- (void)setFrameOrBoundsSizeHelper:(const struct CGSize *)arg1 oldSize:(const struct CGSize *)arg2 sizeChangerBlock:(CDUnknownBlockType)arg3;
+- (void)_setSuperFrameSize:(struct CGSize)arg1;
+- (void)_setSuperBoundsSize:(struct CGSize)arg1;
+- (void)setFrameOrBoundsSizeHelper:(const struct CGSize *)arg1 oldSize:(const struct CGSize *)arg2 sizeChangerBlock:(const function_96ce23bb *)arg3;
 - (void)setNeedsDisplayInRect:(struct CGRect)arg1;
-- (_Bool)intersectsOpaquePixels:(struct CGRect)arg1;
+- (_Bool)intersectsOpaquePixels:(const struct CGRect *)arg1;
+- (_Bool)pointInOpaquePixels:(const struct CGPoint *)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
-- (id)imageForDrawing;
+- (void)viewDidChangeBackingProperties;
+- (void)updateImageSize:(const struct CGSize *)arg1 forceRedraw:(_Bool)arg2;
 @property(retain, nonatomic) NSImage *image; // @dynamic image;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)initCommon;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

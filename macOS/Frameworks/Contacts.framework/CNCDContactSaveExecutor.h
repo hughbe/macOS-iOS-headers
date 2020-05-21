@@ -14,18 +14,24 @@ __attribute__((visibility("hidden")))
     CNCDSaveContext *_saveContext;
 }
 
++ (id)contactsLinkedToContact:(id)arg1 inSaveContext:(id)arg2;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) CNCDSaveContext *saveContext; // @synthesize saveContext=_saveContext;
 - (void)enumerateAddedContacts:(CDUnknownBlockType)arg1;
 - (void)updateContactSnapshots;
 - (void)deleteContacts;
+- (void)updateMeContact;
 - (void)applyDiff:(id)arg1 toUnifiedContact:(id)arg2 withIdentifierMap:(id)arg3;
 - (void)updateUnifiedContacts:(id)arg1;
 - (void)updateNonUnifiedContacts:(id)arg1;
 - (void)updateContacts;
+- (void)unlinkContacts;
+- (void)linkContacts;
+- (void)updateCacheWithAddedContacts;
 - (void)addContacts;
 - (void)saveContacts;
 - (id)insertedContactIdentifiers;
 - (id)allContactIdentifiers;
-- (void)dealloc;
 - (id)initWithSaveContext:(id)arg1;
 
 @end

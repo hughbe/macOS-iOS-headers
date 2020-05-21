@@ -21,13 +21,13 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)descriptionWithFetchRequest:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly) BOOL unifyResults; // @synthesize unifyResults=_unifyResults;
 @property(readonly, copy) CDUnknownBlockType contactsByNameComparator; // @synthesize contactsByNameComparator=_contactsByNameComparator;
 @property(readonly, copy) NSArray *effectiveKeysToFetch; // @synthesize effectiveKeysToFetch=_effectiveKeysToFetch;
 @property(readonly, copy) NSArray *sortDescriptors; // @synthesize sortDescriptors=_sortDescriptors;
 @property(readonly, copy) NSArray *relationshipKeyPaths; // @synthesize relationshipKeyPaths=_relationshipKeyPaths;
 - (id)validatedPredicateWithError:(id *)arg1;
-- (void)dealloc;
 - (id)initWithBuilder:(id)arg1;
 
 @end

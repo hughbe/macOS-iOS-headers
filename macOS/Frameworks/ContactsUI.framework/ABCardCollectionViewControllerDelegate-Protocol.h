@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSColor, NSString;
+@class ABCardCollectionViewController, NSColor, NSString;
 
 @protocol ABCardCollectionViewControllerDelegate <NSObject>
+- (void)cardCollectionViewControllerKeyViewLoopNeedsUpdate:(ABCardCollectionViewController *)arg1;
 - (id <CNUIUserActionListDataSource>)userActionListDataSource;
 - (void)cardViewNoteDidChange;
 - (NSColor *)colorForProperty:(NSString *)arg1 identifier:(NSString *)arg2;
 - (void)editExistingKey:(NSString *)arg1 identifier:(NSString *)arg2 yOffset:(double)arg3;
-- (double)firstColumnWidth;
 - (id <ABCardViewDelegate>)delegate;
 - (void)notifyDelegateActionWasPerformed;
 - (BOOL)isSelectable;

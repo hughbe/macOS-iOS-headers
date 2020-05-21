@@ -4,44 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSRemoteViewController.h"
+#import <PhotosUI/PHExtensionRemoteViewController.h>
 
-#import "PHEditingHostViewProtocol.h"
-
-@class NSExtension, NSString, NSUUID, PHEditingHostViewPreferredSizes, PUEditingExtensionHostContext;
-
-@interface PHEditingRemoteViewController : NSRemoteViewController <PHEditingHostViewProtocol>
+@interface PHEditingRemoteViewController : PHExtensionRemoteViewController
 {
-    id <PHEditingRemoteViewControllerDelegate> _delegate;
-    NSExtension *_extension;
-    NSUUID *_sessionUUID;
-    PHEditingHostViewPreferredSizes *_preferredSizes;
 }
 
-+ (void)requestViewControllerFromExtension:(id)arg1 connectionHandler:(CDUnknownBlockType)arg2;
-@property(retain, nonatomic) PHEditingHostViewPreferredSizes *preferredSizes; // @synthesize preferredSizes=_preferredSizes;
-@property(copy, nonatomic) NSUUID *sessionUUID; // @synthesize sessionUUID=_sessionUUID;
-@property(retain, nonatomic) NSExtension *extension; // @synthesize extension=_extension;
-@property(nonatomic) __weak id <PHEditingRemoteViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
-- (struct CGSize)preferredMaximumSize;
-- (struct CGSize)preferredMinimumSize;
-- (void)updatePreferredSizes:(id)arg1;
-- (void)updateViewConstraints;
-- (id)exportedObject;
-- (id)exportedInterface;
-- (void)viewServiceDidTerminateWithError:(id)arg1;
-- (id)serviceViewControllerInterface;
-- (void)disconnect;
-@property(readonly, nonatomic) id <PUEditingExtensionVendor> vendorProxy;
-@property(readonly, nonatomic) PUEditingExtensionHostContext *hostContext;
-- (void)connectToExtension:(id)arg1 withSessionID:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
++ (id)serviceViewControllerClassName;
 
 @end
 

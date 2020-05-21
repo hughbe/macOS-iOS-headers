@@ -14,15 +14,19 @@
     double _params[9];
     double _radius;
     BOOL _shouldUsePolyShiftFunction;
+    unsigned int _version;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(nonatomic) CDStruct_c3b9c2ee originalCoordinate; // @synthesize originalCoordinate=_originalCoordinate;
+@property(readonly, nonatomic) unsigned int version; // @synthesize version=_version;
+@property(readonly, nonatomic) double radius; // @synthesize radius=_radius;
+@property(readonly, nonatomic) CDStruct_c3b9c2ee originalCoordinate; // @synthesize originalCoordinate=_originalCoordinate;
+- (BOOL)isEqual:(id)arg1;
 - (BOOL)isValidForCoordinate:(CDStruct_c3b9c2ee)arg1;
 - (CDStruct_c3b9c2ee)shiftedCoordinateForCoordinate:(CDStruct_c3b9c2ee)arg1 accuracy:(double *)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithPolyLocationShiftResponse:(id)arg1 originalCoordinate:(CDStruct_c3b9c2ee)arg2;
+- (id)initWithPolyLocationShiftResponse:(id)arg1 originalCoordinate:(CDStruct_c3b9c2ee)arg2 version:(unsigned int)arg3;
 
 @end
 

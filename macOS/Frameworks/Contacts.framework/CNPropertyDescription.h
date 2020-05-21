@@ -22,11 +22,15 @@
 }
 
 + (BOOL)supportsSecureCoding;
++ (void)computeDiffFromContact:(id)arg1 toContact:(id)arg2 andApplyToCoreDataContact:(id)arg3;
++ (id)propertyDescriptionLog;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL isNonnull; // @synthesize isNonnull=_isNonnull;
 @property(readonly, copy, nonatomic) CDUnknownBlockType valueForKeyTransform; // @synthesize valueForKeyTransform=_valueForKeyTransform;
 @property(readonly, nonatomic) SEL writeSelector; // @synthesize writeSelector=_writeSelector;
 @property(readonly, nonatomic) SEL readSelector; // @synthesize readSelector=_readSelector;
 @property(readonly, copy, nonatomic) NSString *key; // @synthesize key=_key;
+- (void)resetGuardianManagedValueOnContact:(id)arg1;
 - (id)stringForIndexingForContact:(id)arg1;
 - (id)CNValueForContact:(id)arg1;
 - (void)setCNValue:(id)arg1 onContact:(id)arg2;
@@ -34,10 +38,11 @@
 - (void)assertValueType:(id)arg1;
 - (void)decodeUsingCoder:(id)arg1 contact:(id)arg2;
 - (void)encodeUsingCoder:(id)arg1 contact:(id)arg2;
-- (BOOL)isValue:(id)arg1 preferredToEquivalentValue:(id)arg2;
-- (BOOL)isValue:(id)arg1 equivalentToValue:(id)arg2;
+- (BOOL)isValue:(id)arg1 preferredToUnifiedValue:(id)arg2;
+- (BOOL)canUnifyValue:(id)arg1 withValue:(id)arg2;
+- (BOOL)isValue:(id)arg1 equalToEmptyEquivalentOrValue:(id)arg2;
 - (id)valueWithResetIdentifiers:(id)arg1;
-- (id)equivalentLabelsForLabel:(id)arg1;
+- (id)unifiableLabelsForLabel:(id)arg1;
 - (BOOL)isEqualIgnoringIdentifiersForContact:(id)arg1 other:(id)arg2;
 @property(readonly, nonatomic) NSArray *equivalentLabelSets;
 @property(readonly, nonatomic) id nilValue;
@@ -46,7 +51,6 @@
 @property(readonly, nonatomic) BOOL isWritable;
 @property(readonly, nonatomic) Class valueClass;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithKey:(id)arg1 readSelector:(SEL)arg2 writeSelector:(SEL)arg3;

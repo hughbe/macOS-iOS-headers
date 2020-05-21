@@ -27,18 +27,18 @@
 + (id)_staticRepresentationCacheURL;
 + (id)_applicationCacheDirectory;
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property BOOL renderIfNeeded; // @synthesize renderIfNeeded=_renderIfNeeded;
 @property BOOL useFilesystem; // @synthesize useFilesystem=_useFilesystem;
 @property BOOL useMemory; // @synthesize useMemory=_useMemory;
 @property(retain) NSURL *cacheDirectory; // @synthesize cacheDirectory=_cacheDirectory;
-- (void).cxx_destruct;
 - (void)_fetchWithReadBlock:(CDUnknownBlockType)arg1 writeBlock:(CDUnknownBlockType)arg2 renderBlock:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
-- (void)_renderImageForLikeness:(id)arg1 desiredCacheSize:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
-- (void)_fetchFromFilesystem:(id)arg1 desiredCacheSize:(unsigned long long)arg2 renderBlock:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
-- (void)_fetchFromMemory:(id)arg1 desiredCacheSize:(unsigned long long)arg2 renderBlock:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
-- (void)imageForLikeness:(id)arg1 desiredCacheSize:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
-- (id)_cacheURLForLikeness:(id)arg1 cacheSize:(unsigned long long)arg2;
-- (id)_cacheKeyForLikeness:(id)arg1 cacheSize:(unsigned long long)arg2;
+- (void)_renderImageForLikeness:(id)arg1 context:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_fetchFromFilesystem:(id)arg1 context:(id)arg2 renderBlock:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)_fetchFromMemory:(id)arg1 context:(id)arg2 renderBlock:(CDUnknownBlockType)arg3 completion:(CDUnknownBlockType)arg4;
+- (void)imageForLikeness:(id)arg1 context:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)_cacheURLForLikeness:(id)arg1 context:(id)arg2;
+- (id)_cacheKeyForLikeness:(id)arg1 context:(id)arg2;
 - (id)init;
 
 @end

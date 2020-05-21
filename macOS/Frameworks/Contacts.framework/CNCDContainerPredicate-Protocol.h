@@ -12,5 +12,8 @@
 - (NSFetchRequest *)cn_persistenceFilterRequest;
 - (NSPredicate *)cn_topLevelFilter;
 - (NSPredicate *)cn_coreDataPredicate;
+
+@optional
+- (NSPredicate *)cn_secondaryRecursePredicate;
 @end
 

@@ -6,12 +6,11 @@
 
 #import "NSObject.h"
 
-@class ACDDatabase, NSMutableDictionary, NSNumber, NSString, NSXPCConnection;
+@class ACDAccountStoreFilter, NSMutableDictionary, NSNumber, NSString, NSXPCConnection;
 
 @interface ACDClient : NSObject
 {
     NSXPCConnection *_connection;
-    ACDDatabase *_database;
     struct __CFBundle *_bundle;
     NSString *_bundleID;
     BOOL _didManuallySetBundleID;
@@ -19,18 +18,16 @@
     NSString *_localizedAppName;
     NSString *_name;
     NSMutableDictionary *_entitlementChecks;
+    ACDAccountStoreFilter *_filter;
 }
 
 + (id)_bundleForPID:(int)arg1;
 + (id)_bundleIDForPID:(int)arg1;
 + (id)_bundleForNonPlugInPID:(int)arg1;
 + (id)clientWithBundleID:(id)arg1;
-@property(readonly) ACDDatabase *database; // @synthesize database=_database;
-@property(readonly) NSXPCConnection *connection; // @synthesize connection=_connection;
 - (void).cxx_destruct;
-- (id)longDebugDescription;
-- (id)shortDebugDescription;
-- (id)debugDescription;
+@property(retain) ACDAccountStoreFilter *filter; // @synthesize filter=_filter;
+@property(readonly) NSXPCConnection *connection; // @synthesize connection=_connection;
 - (id)description;
 - (BOOL)hasEntitlement:(id)arg1;
 @property(readonly) struct __CFBundle *bundle;
@@ -41,8 +38,8 @@
 @property(retain) NSString *bundleID;
 @property(readonly) NSNumber *pid;
 - (void)dealloc;
-- (id)initWithConnection:(id)arg1 database:(id)arg2;
 - (id)initWithConnection:(id)arg1;
+- (id)init;
 
 @end
 

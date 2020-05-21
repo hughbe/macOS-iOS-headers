@@ -18,16 +18,17 @@
     unsigned long long _fFlags;
     id _statusItemMenu;
     NSMutableDictionary *_replicants;
-    id _fReserved;
     NSString *_displayIdentifier;
 }
 
 + (id)_itemInStatusBar:(id)arg1 withLength:(double)arg2 withPriority:(long long)arg3 systemInsertOrder:(long long)arg4;
 + (void)_statusItems:(id)arg1 setHidden:(BOOL)arg2;
+- (void)setAllowsVibrancy:(BOOL)arg1;
+- (BOOL)allowsVibrancy;
 - (void)setDelegate:(id)arg1;
 - (id)delegate;
 - (BOOL)_allowReplication;
-- (void)_windowDidFlush:(id)arg1;
+- (void)_windowNeedsReplicantUpdate:(id)arg1;
 - (void)_enableStatusItemImageReplication;
 - (void)_disableStatusItemImageReplication;
 - (void)_updateReplicantsUnlessMenuIsTracking:(id)arg1;
@@ -48,7 +49,9 @@
 - (void)_swapScreensWithReplicant:(id)arg1;
 - (void)_rawSetDisplayIdentifier:(id)arg1;
 - (void)_updateReplicants;
+- (BOOL)_drawingReplicantViewWithoutSideEffects;
 - (BOOL)_drawingReplicantView;
+- (void)_recursiveSetNeedsDisplayWithoutDirtyingReplicantForView:(id)arg1;
 - (void)_updateReplicant:(id)arg1;
 - (void)_removeReplicantForKey:(id)arg1;
 - (void)_setBackgroundStyle:(long long)arg1;
@@ -63,6 +66,7 @@
 - (BOOL)_isDragging;
 - (void)_completeStatusItemDrag;
 - (void)_startStatusItemDrag;
+- (void)_noteDraggedLongEnoughToAllowRemoval;
 - (id)_navigationController;
 - (BOOL)_terminateOnRemoval;
 - (BOOL)_allowsUserRemoval;
@@ -76,6 +80,8 @@
 - (void)_restorePreferencesFromAutosaveName;
 - (BOOL)_allowItemDragging;
 - (void)_autosavePosition;
+- (void)_itemMovedDuringDrag;
+- (void)_cleanUpDragCursorIfNeeded;
 - (BOOL)_isInstalled;
 - (void)_uninstall;
 - (void)_install;
@@ -131,7 +137,7 @@
 @property double length;
 - (void)_setSystemInsertOrder:(long long)arg1;
 - (long long)_systemInsertOrder;
-@property(readonly) NSStatusBar *statusBar;
+@property(readonly) __weak NSStatusBar *statusBar;
 - (void)dealloc;
 - (id)_accessibilityContainer;
 

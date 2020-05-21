@@ -22,13 +22,14 @@
 }
 
 + (id)_remoteInterface;
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType locationInformationChangedBlock; // @synthesize locationInformationChangedBlock=_locationInformationChangedBlock;
 @property(copy, nonatomic) CDUnknownBlockType connectionResetBlock; // @synthesize connectionResetBlock=_connectionResetBlock;
-- (void).cxx_destruct;
 - (id)serviceAccountTypeIdentifier;
 - (void)acceptLocationUpdate:(id)arg1;
 - (void)getPermaLinkFromLastStatusUpdate:(CDUnknownBlockType)arg1;
 - (void)showSettingsIfNeeded;
+- (void)logDidSendStatusWithText:(id)arg1 attachments:(id)arg2 locationAttached:(BOOL)arg3 fromProcessWithPID:(int)arg4;
 - (void)sendStatus:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (long long)characterCountForText:(id)arg1 shortenedURLCost:(long long)arg2;
 - (void)setGeotagAccountSetting:(BOOL)arg1;

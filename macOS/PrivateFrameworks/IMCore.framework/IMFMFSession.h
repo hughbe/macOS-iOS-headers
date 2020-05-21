@@ -15,13 +15,15 @@
     NSString *_establishingAccountID;
     FMFSession *_session;
     FMFDevice *_activeDevice;
+    unsigned long long _fmfProvisionedState;
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property(nonatomic) unsigned long long fmfProvisionedState; // @synthesize fmfProvisionedState=_fmfProvisionedState;
 @property(retain, nonatomic) NSString *establishingAccountID; // @synthesize establishingAccountID=_establishingAccountID;
 @property(retain, nonatomic) FMFDevice *activeDevice; // @synthesize activeDevice=_activeDevice;
 @property(retain, nonatomic) FMFSession *session; // @synthesize session=_session;
-- (void).cxx_destruct;
 - (id)fmfGroupIdGroup;
 - (id)fmfGroupIdOneToOne;
 - (Class)__FMFSessionClass;
@@ -29,7 +31,6 @@
 - (void)_postRelationshipStatusDidChangeNotificationWithHandle:(id)arg1;
 - (id)_callerIDForChat:(id)arg1;
 - (void)_stopSharingWithFMFHandles:(id)arg1 inChat:(id)arg2;
-- (void)_startSharingWithFMFHandles:(id)arg1 inChat:(id)arg2 untilDate:(id)arg3 groupID:(id)arg4 oneToOneID:(id)arg5;
 - (void)_startSharingWithFMFHandles:(id)arg1 inChat:(id)arg2 untilDate:(id)arg3;
 - (id)_bestAccountForAddresses:(id)arg1;
 - (void)didUpdateHidingStatus:(BOOL)arg1;
@@ -59,7 +60,6 @@
 - (id)locationForFMFHandle:(id)arg1;
 - (id)locationForHandle:(id)arg1;
 - (void)stopSharingWithChat:(id)arg1;
-- (void)startSharingWithChat:(id)arg1 untilDate:(id)arg2 groupID:(id)arg3 oneToOneID:(id)arg4;
 - (void)startSharingWithChat:(id)arg1 untilDate:(id)arg2;
 - (void)stopSharingWithHandle:(id)arg1 inChat:(id)arg2;
 - (void)startSharingWithHandle:(id)arg1 inChat:(id)arg2 untilDate:(id)arg3;
@@ -70,6 +70,9 @@
 - (void)sendMappingPacket:(id)arg1 toHandle:(id)arg2;
 - (id)allSiblingFMFHandlesForChat:(id)arg1;
 - (id)fmfHandlesForChat:(id)arg1;
+- (void)_accountStoreDidChangeNotification:(id)arg1;
+- (id)_accountStore;
+- (BOOL)imIsProvisionedForLocationSharing;
 @property(readonly, nonatomic) BOOL disableLocationSharing;
 @property(readonly, nonatomic) BOOL restrictLocationSharing;
 - (id)init;

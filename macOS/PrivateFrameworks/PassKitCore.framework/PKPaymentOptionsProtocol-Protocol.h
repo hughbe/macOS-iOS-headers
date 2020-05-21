@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CNContact, NSDictionary, PKPaymentPass;
+@class CNContact, NSDictionary, PKPaymentPass, PKRemotePaymentInstrument;
 
 @protocol PKPaymentOptionsProtocol <NSObject>
 @property(retain, nonatomic) CNContact *defaultContactName;
@@ -14,7 +14,9 @@
 @property(retain, nonatomic) CNContact *defaultContactEmail;
 @property(readonly, nonatomic) NSDictionary *defaultBillingAddresses;
 @property(retain, nonatomic) CNContact *defaultShippingAddress;
+- (void)setDefaultBillingAddress:(CNContact *)arg1 forRemotePaymentInstrument:(PKRemotePaymentInstrument *)arg2;
 - (void)setDefaultBillingAddress:(CNContact *)arg1 forPaymentPass:(PKPaymentPass *)arg2;
+- (CNContact *)defaultBillingAddressForRemotePaymentInstrument:(PKRemotePaymentInstrument *)arg1;
 - (CNContact *)defaultBillingAddressForPaymentPass:(PKPaymentPass *)arg1;
 @end
 

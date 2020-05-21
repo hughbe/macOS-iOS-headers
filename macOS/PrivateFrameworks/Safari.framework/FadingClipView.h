@@ -14,6 +14,9 @@ __attribute__((visibility("hidden")))
 - (void)setLayer:(id)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (void)updateFadeForDocumentViewPosition;
+- (void)_commonInit;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithFrame:(struct CGRect)arg1;
 
 @end
 

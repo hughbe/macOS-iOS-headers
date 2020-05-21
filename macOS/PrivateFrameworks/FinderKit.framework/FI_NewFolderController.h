@@ -6,18 +6,20 @@
 
 #import "NSWindowController.h"
 
-@class NSButton, NSSavePanel, NSTextField;
+@class FI_TTextField, NSButton, NSSavePanel, NSTextField;
 
 __attribute__((visibility("hidden")))
 @interface FI_NewFolderController : NSWindowController
 {
     NSSavePanel *_savePanel;
+    FI_TTextField *_promptField;
     NSTextField *_folderNameField;
     NSTextField *_errorMessage;
     NSButton *_cancelButton;
     NSButton *_okButton;
 }
 
+- (void).cxx_destruct;
 - (void)cancel:(id)arg1;
 - (void)ok:(id)arg1;
 - (_Bool)legalNameCheck:(const struct TString *)arg1;
@@ -26,6 +28,7 @@ __attribute__((visibility("hidden")))
 - (id)_defaultNewFolderName;
 - (void)controlTextDidChange:(id)arg1;
 - (void)_updateOkButtonEnabledStateAndErrorMessage;
+- (struct TString)parentName;
 - (struct TString)_folderPath;
 - (id)init;
 

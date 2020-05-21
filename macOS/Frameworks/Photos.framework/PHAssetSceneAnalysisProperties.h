@@ -6,31 +6,22 @@
 
 #import <Photos/PHAssetPropertySet.h>
 
-#import "PHAssetPropertySet.h"
+@class NSData, NSDate;
 
-@class NSData, NSDate, NSMutableSet, NSSet, PHAsset, RDVersion;
-
-@interface PHAssetSceneAnalysisProperties : PHAssetPropertySet <PHAssetPropertySet>
+@interface PHAssetSceneAnalysisProperties : PHAssetPropertySet
 {
-    NSMutableSet *_sceneClassifications;
+    unsigned long long _sceneAnalysisVersion;
     NSDate *_sceneAnalysisTimestamp;
-    RDVersion *_version;
+    NSData *_distanceIdentity;
 }
 
-+ (void)fetchPropertiesForObjects:(id)arg1 photoLibrary:(id)arg2;
-+ (id)propertiesToLoadFromPhotoLibrary:(id)arg1;
-@property(retain, nonatomic) RDVersion *version; // @synthesize version=_version;
-@property(readonly, copy, nonatomic) NSSet *sceneClassifications; // @synthesize sceneClassifications=_sceneClassifications;
-@property(readonly, nonatomic) NSDate *sceneAnalysisTimestamp; // @synthesize sceneAnalysisTimestamp=_sceneAnalysisTimestamp;
++ (id)propertiesToFetch;
++ (id)propertySetName;
 - (void).cxx_destruct;
-- (void)addSceneClassification:(id)arg1;
-@property(readonly, nonatomic) NSData *distanceIdentity;
-@property(readonly, nonatomic) unsigned long long sceneAnalysisVersion;
-- (id)initWithAsset:(id)arg1 version:(id)arg2 sceneClassifications:(id)arg3;
-- (id)initWithAsset:(id)arg1;
-
-// Remaining properties
-@property(readonly, nonatomic) __weak PHAsset *asset;
+@property(readonly, nonatomic) NSData *distanceIdentity; // @synthesize distanceIdentity=_distanceIdentity;
+@property(readonly, nonatomic) NSDate *sceneAnalysisTimestamp; // @synthesize sceneAnalysisTimestamp=_sceneAnalysisTimestamp;
+@property(readonly, nonatomic) unsigned long long sceneAnalysisVersion; // @synthesize sceneAnalysisVersion=_sceneAnalysisVersion;
+- (id)initWithFetchDictionary:(id)arg1 asset:(id)arg2 prefetched:(BOOL)arg3;
 
 @end
 

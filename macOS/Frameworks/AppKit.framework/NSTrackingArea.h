@@ -27,6 +27,7 @@
 + (void)_retainTrackingTag:(long long)arg1;
 + (BOOL)_isTrackingAreaObject:(id)arg1;
 + (void)initialize;
+- (void).cxx_destruct;
 - (void)setGestureBehaviors:(id)arg1;
 - (id)gestureBehaviors;
 - (id)pressureConfigurations;
@@ -64,7 +65,7 @@
 @property(readonly) unsigned long long options;
 - (void *)_userInfo;
 @property(readonly, copy) NSDictionary *userInfo;
-@property(readonly) id owner;
+@property(readonly) __weak id owner;
 - (void)_setRect:(struct CGRect)arg1;
 @property(readonly) struct CGRect rect;
 - (id)description;

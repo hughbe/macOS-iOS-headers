@@ -6,40 +6,48 @@
 
 #import "NSObject.h"
 
-#import "_KSTextReplacementStoreProtocol.h"
 #import "_KSTextReplacementSyncProtocol.h"
 
-@class NSObject<_KSTextReplacementStoreProtocol>, NSString, _KSTextReplacementCKStore, _KSTextReplacementLegacyStore;
+@class NSObject<OS_dispatch_queue>, NSObject<_KSTextReplacementSyncProtocol>, NSString, _KSTextReplacementCKStore, _KSTextReplacementLegacyStore;
 
-@interface _KSTextReplacementManager : NSObject <_KSTextReplacementStoreProtocol, _KSTextReplacementSyncProtocol>
+@interface _KSTextReplacementManager : NSObject <_KSTextReplacementSyncProtocol>
 {
-    BOOL _forceCloudKit;
-    BOOL _legacyStoreDidSwitchToContainer;
+    NSObject<OS_dispatch_queue> *_migrationQueue;
+    BOOL _didMigrateForCurrentAccount;
+    BOOL _deviceDidMigrateOnCloud;
+    BOOL _didCheckMigrationOnCloud;
     _KSTextReplacementCKStore *_ckStore;
     _KSTextReplacementLegacyStore *_legacyStore;
-    NSObject<_KSTextReplacementStoreProtocol> *_textReplacementStore;
+    NSObject<_KSTextReplacementSyncProtocol> *_textReplacementStore;
+    NSString *_directoryPath;
+    id <_KSMigrationDelegate> _delegate;
 }
 
-@property(nonatomic) BOOL legacyStoreDidSwitchToContainer; // @synthesize legacyStoreDidSwitchToContainer=_legacyStoreDidSwitchToContainer;
-@property(retain, nonatomic) NSObject<_KSTextReplacementStoreProtocol> *textReplacementStore; // @synthesize textReplacementStore=_textReplacementStore;
++ (id)textReplacementStoreWithTestDirectory:(id)arg1 withDelegate:(id)arg2 forceMigration:(BOOL)arg3 forceCloudKitSync:(BOOL)arg4;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <_KSMigrationDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) BOOL didCheckMigrationOnCloud; // @synthesize didCheckMigrationOnCloud=_didCheckMigrationOnCloud;
+@property(nonatomic) BOOL deviceDidMigrateOnCloud; // @synthesize deviceDidMigrateOnCloud=_deviceDidMigrateOnCloud;
+@property(nonatomic) BOOL didMigrateForCurrentAccount; // @synthesize didMigrateForCurrentAccount=_didMigrateForCurrentAccount;
+@property(copy, nonatomic) NSString *directoryPath; // @synthesize directoryPath=_directoryPath;
+@property(retain, nonatomic) NSObject<_KSTextReplacementSyncProtocol> *textReplacementStore; // @synthesize textReplacementStore=_textReplacementStore;
 @property(retain, nonatomic) _KSTextReplacementLegacyStore *legacyStore; // @synthesize legacyStore=_legacyStore;
 @property(retain, nonatomic) _KSTextReplacementCKStore *ckStore; // @synthesize ckStore=_ckStore;
-@property(nonatomic) BOOL forceCloudKit; // @synthesize forceCloudKit=_forceCloudKit;
-- (void).cxx_destruct;
-- (void)requestSyncShouldPull:(BOOL)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
+- (void)recordSyncStatus;
+- (double)minimumUptimeRemaining;
+- (void)requestSync:(unsigned long long)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)requestSyncWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)forwardingTargetForSelector:(SEL)arg1;
-- (BOOL)forceCloudKitSync;
 - (BOOL)deviceDidMigrate;
 - (void)respondToMigrationCompletion;
+- (void)_migrateEntriesSinceDate:(id)arg1 repeatCount:(unsigned long long)arg2;
 - (void)migrateLegacyStore;
-- (void)migrateLocallyCheckCompatibility:(BOOL)arg1;
 - (void)checkForMigration;
 - (void)notifyTextReplacementDidChange;
 - (void)dealloc;
-- (void)setupAssistaceDidComplete;
-- (void)legacyStoreDidImportChanges;
 - (void)pushAllLocalRecordsOnceIfNeeded;
-- (void)respondToLegacyStoreNotif:(id)arg1;
+- (void)resetMigrationState;
+- (void)accountDidChange:(id)arg1;
 - (id)initWithDirectoryPath:(id)arg1;
 
 // Remaining properties

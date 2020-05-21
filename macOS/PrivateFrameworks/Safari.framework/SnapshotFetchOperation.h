@@ -14,7 +14,7 @@ __attribute__((visibility("hidden")))
 @interface SnapshotFetchOperation : WBSSiteMetadataFetchOperation <SiteMetadataFetcherClient>
 {
     CDUnknownBlockType _completionHandler;
-    struct RefPtr<Safari::SiteMetadataFetcher> _fetcher;
+    struct RefPtr<Safari::SiteMetadataFetcher, WTF::DumbPtrTraits<Safari::SiteMetadataFetcher>> _fetcher;
 }
 
 - (id).cxx_construct;

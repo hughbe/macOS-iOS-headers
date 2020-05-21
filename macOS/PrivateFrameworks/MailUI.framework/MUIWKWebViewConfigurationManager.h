@@ -8,25 +8,25 @@
 
 #import "WKScriptMessageHandler.h"
 
-@class NSString, WKWebViewConfiguration;
+@class NSString, WKWebViewConfiguration, _WKUserStyleSheet;
 
 @interface MUIWKWebViewConfigurationManager : NSObject <WKScriptMessageHandler>
 {
     WKWebViewConfiguration *_configuration;
+    _WKUserStyleSheet *_userStyleSheet;
 }
 
 + (id)sharedInstance;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 - (void).cxx_destruct;
-- (id)_defaultUserStyleSheetString;
-- (id)_userStyleSheetString;
-- (id)_userScripts;
 @property(readonly, copy, nonatomic) NSString *effectiveUserStyle;
+- (id)_userScripts;
 @property(readonly, nonatomic) WKWebViewConfiguration *configuration;
 - (void)userContentController:(id)arg1 didReceiveScriptMessage:(id)arg2;
 - (void)_updateStyleSheets;
 - (void)_updateFontPreferences;
 - (void)_updateDebuggingPreferences;
+- (void)handleAccessibilityDisplayChange:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)dealloc;
 - (id)init;

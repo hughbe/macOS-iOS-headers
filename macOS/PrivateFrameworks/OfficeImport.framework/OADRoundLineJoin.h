@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)defaultProperties;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithDefaults;
 - (id)copyWithZone:(struct _NSZone *)arg1;

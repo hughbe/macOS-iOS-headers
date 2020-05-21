@@ -16,6 +16,7 @@
 
 + (id)metricsWithDictionary:(id)arg1 context:(id)arg2;
 + (id)metrics;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSDictionary *timings;
 @property(copy, nonatomic) NSString *originalCommandId;
 @property(copy, nonatomic) NSDictionary *eventInformation;

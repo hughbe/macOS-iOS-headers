@@ -19,9 +19,9 @@
 + (void)addErrorFreeBusySpanToDictionary:(id)arg1 recipient:(id)arg2 range:(id)arg3 type:(int)arg4;
 + (void)addSuccessFreeBusySpansToDictionary:(id)arg1 fromICS:(id)arg2;
 + (id)calculateFreeBusySpansWithProperties:(id)arg1;
-+ (id)freeBusySpanForPeriod:(id)arg1 type:(int)arg2;
++ (id)freeBusySpanForPeriod:(id)arg1 type:(unsigned long long)arg2;
+- (void).cxx_destruct;
 - (id)freeBusySpans;
-- (void)dealloc;
 - (id)initWithRange:(id)arg1;
 
 @end

@@ -13,9 +13,10 @@
     NSArray *_flightResults;
 }
 
-+ (id)responseFromReply:(id)arg1 session:(id)arg2;
-@property(readonly, nonatomic) NSArray *flightResults; // @synthesize flightResults=_flightResults;
++ (id)responseFromReply:(id)arg1;
++ (id)_debugResponseFromReply:(id)arg1;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *flightResults; // @synthesize flightResults=_flightResults;
 - (id)description;
 
 @end

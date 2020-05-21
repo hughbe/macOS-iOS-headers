@@ -8,16 +8,12 @@
 
 #import "NSCopying.h"
 
-@class NSString;
-
+__attribute__((visibility("hidden")))
 @interface GEOPerformanceLogMessage : PBCodable <NSCopying>
 {
-    NSString *_perfEventKey;
-    NSString *_perfEventValue;
 }
 
-@property(retain, nonatomic) NSString *perfEventValue; // @synthesize perfEventValue=_perfEventValue;
-@property(retain, nonatomic) NSString *perfEventKey; // @synthesize perfEventKey=_perfEventKey;
++ (BOOL)isValid:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,11 +21,9 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-@property(readonly, nonatomic) BOOL hasPerfEventValue;
-@property(readonly, nonatomic) BOOL hasPerfEventKey;
-- (void)dealloc;
 
 @end
 

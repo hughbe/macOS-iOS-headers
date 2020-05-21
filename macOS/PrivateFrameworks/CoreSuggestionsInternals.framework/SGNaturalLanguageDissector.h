@@ -13,12 +13,13 @@
     NSMutableDictionary *_conversations;
 }
 
-+ (id)ipsosMessageWithEntity:(id)arg1;
++ (id)ipsosMessageWithEntity:(id)arg1 store:(id)arg2;
 + (BOOL)allowNaturalLanguageDissector;
-+ (id)sharedInstance;
 - (void).cxx_destruct;
 - (void)dissectInternal:(id)arg1 inContext:(id)arg2;
-- (void)addEnrichmentForEvents:(id)arg1 toEntity:(id)arg2;
+- (id)conversationWithIdentifier:(id)arg1;
+- (void)addEnrichmentForEvents:(id)arg1 forMessage:(id)arg2 toEntity:(id)arg3;
+- (id)initWithoutSharedInstance;
 - (id)init;
 
 @end

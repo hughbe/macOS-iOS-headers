@@ -6,11 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString;
+@class NSArray;
 
 @protocol TUIDSLookup <NSObject>
 @property(readonly) NSArray *idsCanonicalDestinations;
-@property(readonly) NSString *idsCanonicalDestination;
-@property(readonly) NSString *idsUniqueId;
 @end
 

@@ -27,6 +27,7 @@ __attribute__((visibility("hidden")))
 - (id)valueForKey:(id)arg1;
 - (void)setValue:(id)arg1 forKey:(id)arg2;
 - (id)animator;
+- (void)dealloc;
 - (id)initWithTarget:(id)arg1;
 
 @end

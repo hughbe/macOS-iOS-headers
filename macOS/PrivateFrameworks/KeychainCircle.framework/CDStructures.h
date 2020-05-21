@@ -4,6 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#pragma mark Blocks
+
+typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
+
 #pragma mark Named Structures
 
 struct __va_list_tag {
@@ -11,6 +15,13 @@ struct __va_list_tag {
     unsigned int _field2;
     void *_field3;
     void *_field4;
+};
+
+struct ccdh_gp {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    struct cczp_funcs *_field3;
+    unsigned long long _field4[0];
 };
 
 struct ccdigest_info {
@@ -42,49 +53,24 @@ struct ccrng_state {
 };
 
 struct ccsrp_ctx {
-    struct ccsrp_ctx_header _field1;
-};
-
-struct ccsrp_ctx_header {
     struct ccdigest_info *_field1;
-    CDUnion_089e675c _field2;
+    struct ccdh_gp *_field2;
+    struct ccrng_state *_field3;
     struct {
         unsigned int :1;
         unsigned int :1;
         unsigned int :1;
         unsigned int :16;
-    } _field3;
-    unsigned char _field4[15];
-    unsigned long long _field5[1];
+    } _field4;
+    unsigned char _field5[7];
+    unsigned long long _field6[1];
 };
 
-struct cczp;
+struct cczp_funcs;
 
 #pragma mark Typedef'd Structures
 
 typedef struct {
     unsigned char _field1[16];
 } CDStruct_60067b7e;
-
-typedef struct CDStruct_183601bc;
-
-#pragma mark Typedef'd Unions
-
-typedef union {
-    unsigned long long *_field1;
-    struct cczp *_field2;
-} CDUnion_1ea3dc14;
-
-typedef union {
-    union {
-        unsigned long long *_field1;
-        struct cczp *_field2;
-        CDUnion_1ea3dc14 _field3;
-    } _field1;
-    CDStruct_183601bc *_field2;
-    union {
-        CDUnion_1ea3dc14 _field1;
-        CDStruct_183601bc *_field2;
-    } _field3;
-} CDUnion_089e675c;
 

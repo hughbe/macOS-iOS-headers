@@ -9,6 +9,7 @@
 @class CPProfile, NSDictionary, NSMutableArray, NSString;
 
 @protocol CPProfileMissingFieldHelperProtocol <NSObject>
+- (void)setTopPrompt:(NSString *)arg1;
 - (id)initForPayload:(NSDictionary *)arg1 forProfile:(CPProfile *)arg2 intoResults:(NSMutableArray *)arg3;
 - (void)addMissingField:(NSString *)arg1 forKey:(NSString *)arg2 isRequired:(BOOL)arg3 useSecureEntry:(BOOL)arg4 options:(NSDictionary *)arg5;
 - (void)addMissingField:(NSString *)arg1 forKey:(NSString *)arg2 isRequired:(BOOL)arg3 useSecureEntry:(BOOL)arg4;

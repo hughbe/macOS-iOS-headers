@@ -6,19 +6,22 @@
 
 #import <AssistiveControlSupport/ACSHView.h>
 
+@class NSArray;
+
 @interface ACSHResizeHandlesView : ACSHView
 {
-    id *_resizeHandles;
+    NSArray *__resizeHandles;
 }
 
 + (void)initialize;
 + (double)handleSize;
-- (void)dealloc;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *_resizeHandles; // @synthesize _resizeHandles=__resizeHandles;
 - (id)hitTest:(struct CGPoint)arg1;
 - (BOOL)isFlipped;
 - (void)resumeTracking;
 - (void)suspendTracking;
-- (int)resizeTypeForView:(id)arg1;
+- (long long)resizeTypeForView:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)initView;
 - (BOOL)wantsUpdateLayer;

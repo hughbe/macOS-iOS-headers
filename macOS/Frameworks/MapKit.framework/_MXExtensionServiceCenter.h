@@ -6,30 +6,22 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_queue>, _MXExtensionProvider;
+@class NSDictionary, NSObject<OS_dispatch_queue>, _MXExtensionProvider;
 
 @interface _MXExtensionServiceCenter : NSObject
 {
-    NSObject<OS_dispatch_queue> *_servicelock;
     NSObject<OS_dispatch_queue> *_extlock;
-    NSMutableDictionary *_handlers;
-    NSMutableDictionary *_backupHandlers;
     NSDictionary *_extensions;
     NSDictionary *_mapsExtensions;
     NSDictionary *_containingAppProxies;
     _MXExtensionProvider *_extensionProvider;
 }
 
-@property(readonly, nonatomic) __weak _MXExtensionProvider *extensionProvider; // @synthesize extensionProvider=_extensionProvider;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) __weak _MXExtensionProvider *extensionProvider; // @synthesize extensionProvider=_extensionProvider;
 @property(copy, nonatomic) NSDictionary *containingAppProxies;
 @property(copy, nonatomic) NSDictionary *mapsExtensions;
 @property(copy, nonatomic) NSDictionary *extensions;
-- (void)_registerRequestIdentifier:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
-- (void)_beginExtensionServiceWithExtension:(id)arg1 inputItems:(id)arg2 remoteViewControllerInstantiationCompletion:(CDUnknownBlockType)arg3 serviceCompletion:(CDUnknownBlockType)arg4;
-- (void)_beginExtensionServiceWithExtension:(id)arg1 inputItems:(id)arg2 beginCompletion:(CDUnknownBlockType)arg3 serviceCompletion:(CDUnknownBlockType)arg4;
-- (void)_invokeHandlerWithRequestIdentifier:(id)arg1 returnItems:(id)arg2 error:(id)arg3;
-- (void)_addExtension:(id)arg1;
 - (id)_siblingExtensionsWithContainingAppIdentifer:(id)arg1;
 - (void)_clearExtensions;
 - (id)_extensionWithIdentifier:(id)arg1;

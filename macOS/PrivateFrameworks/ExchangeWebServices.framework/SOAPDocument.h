@@ -12,12 +12,12 @@
 
 @interface SOAPDocument : SOAPBaseDocument <XSDefinitionProvider>
 {
-    SOAPEnvelope *_envelope;
+    SOAPEnvelope *_Envelope;
 }
 
 + (id)definition;
-@property(retain, nonatomic) SOAPEnvelope *Envelope; // @synthesize Envelope=_envelope;
 - (void).cxx_destruct;
+@property(retain, nonatomic) SOAPEnvelope *Envelope; // @synthesize Envelope=_Envelope;
 - (void)_XMLStringWithOptions:(unsigned long long)arg1 appendingToString:(id)arg2;
 - (void)_XMLStringWithComplexType:(id)arg1 options:(unsigned long long)arg2 appendingToString:(id)arg3;
 - (void)_XMLAttributesStringWithComplexType:(id)arg1 options:(unsigned long long)arg2 appendingToString:(id)arg3;

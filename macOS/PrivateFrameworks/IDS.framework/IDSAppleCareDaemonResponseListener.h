@@ -16,11 +16,11 @@
     CDUnknownBlockType _disconnectedBlock;
 }
 
+- (void).cxx_destruct;
 - (void)daemonDisconnected;
 - (void)applecareResponseForRequestID:(id)arg1 withError:(id)arg2;
 - (id)initWithDisconnectedBlockAndNoTimeout:(CDUnknownBlockType)arg1;
 - (id)initWithRequestTimer:(id)arg1;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

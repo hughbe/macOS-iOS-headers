@@ -13,7 +13,7 @@ __attribute__((visibility("hidden")))
 
 + (BOOL)isCalendar:(id)arg1 equivalentToCalendar:(id)arg2;
 + (BOOL)isComponent:(long long)arg1 equivalentToComponent:(long long)arg2;
-+ (BOOL)areComponents:(id)arg1 equivalentToComponents:(id)arg2;
++ (BOOL)canUnifyComponents:(id)arg1 withComponents:(id)arg2;
 
 @end
 

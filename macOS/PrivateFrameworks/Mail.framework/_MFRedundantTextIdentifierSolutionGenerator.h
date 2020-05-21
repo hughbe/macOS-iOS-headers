@@ -14,17 +14,17 @@
     CDStruct_f9502b4c *_originalBuffer;
     long long _replyLength;
     long long _originalLength;
-    NSDictionary *_replyAttachmentContextsByURL;
     NSDictionary *_originalAttachmentContextsByURL;
+    NSDictionary *_replyAttachmentContextsByURL;
 }
 
-@property(readonly, copy, nonatomic) NSDictionary *originalAttachmentContextsByURL; // @synthesize originalAttachmentContextsByURL=_originalAttachmentContextsByURL;
+- (void).cxx_destruct;
 @property(readonly, copy, nonatomic) NSDictionary *replyAttachmentContextsByURL; // @synthesize replyAttachmentContextsByURL=_replyAttachmentContextsByURL;
+@property(readonly, copy, nonatomic) NSDictionary *originalAttachmentContextsByURL; // @synthesize originalAttachmentContextsByURL=_originalAttachmentContextsByURL;
 @property(readonly, nonatomic) long long originalLength; // @synthesize originalLength=_originalLength;
 @property(readonly, nonatomic) long long replyLength; // @synthesize replyLength=_replyLength;
 @property(readonly, nonatomic) CDStruct_f9502b4c *originalBuffer; // @synthesize originalBuffer=_originalBuffer;
 @property(readonly, nonatomic) CDStruct_f9502b4c *replyBuffer; // @synthesize replyBuffer=_replyBuffer;
-- (void).cxx_destruct;
 - (id)generateBestSolutionInForwardDirection:(BOOL)arg1 replyStartIndex:(long long)arg2 originalStartIndex:(long long)arg3;
 - (id)generateBestSolution;
 - (id)init;

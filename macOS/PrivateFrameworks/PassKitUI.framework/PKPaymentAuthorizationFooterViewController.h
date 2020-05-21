@@ -6,52 +6,78 @@
 
 #import "NSViewController.h"
 
-@class NSImage, NSImageView, NSLayoutConstraint, NSString, NSTextField, PKGlyphView, PKPaymentAuthorizationLayout;
+@class NSArray, NSImage, NSImageView, NSLayoutConstraint, NSString, NSTextField, PKGlyphView, PKPaymentAuthorizationLayout, PKPaymentAuthorizationPasswordEntryViewController;
 
 @interface PKPaymentAuthorizationFooterViewController : NSViewController
 {
-    PKPaymentAuthorizationLayout *_paymentAuthorizationLayout;
+    BOOL _useAlternatePhoneImage;
     long long _style;
+    PKPaymentAuthorizationLayout *_paymentAuthorizationLayout;
     long long _state;
+    long long _deviceType;
+    id <PKPaymentAuthorizationFooterViewControllerDelegate> _delegate;
+    PKPaymentAuthorizationPasswordEntryViewController *_passwordEntryViewController;
+    NSImageView *_keyboardView;
     PKGlyphView *_glyphView;
     NSImageView *_deviceView;
     NSTextField *_statusTextField;
     NSLayoutConstraint *_deviceViewTopConstraint;
     NSLayoutConstraint *_deviceToStatusTextFirstBaselineConstraint;
     NSLayoutConstraint *_glyphToStatusTextFirstBaselineConstraint;
+    NSArray *_deviceViewConstraints;
+    NSArray *_glyphViewConstraints;
+    NSArray *_keyboardViewConstraints;
+    NSLayoutConstraint *_keyboardToStatusTextFirstBaselineConstraint;
+    NSArray *_passwordViewConstraints;
     NSImage *_phoneImage;
     NSImage *_watchImage;
     NSImage *_failureImage;
-    long long _deviceType;
+    NSImage *_alternatePhoneImage;
     NSString *_deviceName;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *deviceName; // @synthesize deviceName=_deviceName;
-@property(nonatomic) long long deviceType; // @synthesize deviceType=_deviceType;
+@property(retain, nonatomic) NSImage *alternatePhoneImage; // @synthesize alternatePhoneImage=_alternatePhoneImage;
+@property(nonatomic) BOOL useAlternatePhoneImage; // @synthesize useAlternatePhoneImage=_useAlternatePhoneImage;
 @property(retain, nonatomic) NSImage *failureImage; // @synthesize failureImage=_failureImage;
 @property(retain, nonatomic) NSImage *watchImage; // @synthesize watchImage=_watchImage;
 @property(retain, nonatomic) NSImage *phoneImage; // @synthesize phoneImage=_phoneImage;
+@property(retain, nonatomic) NSArray *passwordViewConstraints; // @synthesize passwordViewConstraints=_passwordViewConstraints;
+@property(retain, nonatomic) NSLayoutConstraint *keyboardToStatusTextFirstBaselineConstraint; // @synthesize keyboardToStatusTextFirstBaselineConstraint=_keyboardToStatusTextFirstBaselineConstraint;
+@property(retain, nonatomic) NSArray *keyboardViewConstraints; // @synthesize keyboardViewConstraints=_keyboardViewConstraints;
+@property(retain, nonatomic) NSArray *glyphViewConstraints; // @synthesize glyphViewConstraints=_glyphViewConstraints;
+@property(retain, nonatomic) NSArray *deviceViewConstraints; // @synthesize deviceViewConstraints=_deviceViewConstraints;
 @property(retain, nonatomic) NSLayoutConstraint *glyphToStatusTextFirstBaselineConstraint; // @synthesize glyphToStatusTextFirstBaselineConstraint=_glyphToStatusTextFirstBaselineConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *deviceToStatusTextFirstBaselineConstraint; // @synthesize deviceToStatusTextFirstBaselineConstraint=_deviceToStatusTextFirstBaselineConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *deviceViewTopConstraint; // @synthesize deviceViewTopConstraint=_deviceViewTopConstraint;
 @property(retain, nonatomic) NSTextField *statusTextField; // @synthesize statusTextField=_statusTextField;
 @property(retain, nonatomic) NSImageView *deviceView; // @synthesize deviceView=_deviceView;
 @property(retain, nonatomic) PKGlyphView *glyphView; // @synthesize glyphView=_glyphView;
+@property(retain, nonatomic) NSImageView *keyboardView; // @synthesize keyboardView=_keyboardView;
+@property(retain, nonatomic) PKPaymentAuthorizationPasswordEntryViewController *passwordEntryViewController; // @synthesize passwordEntryViewController=_passwordEntryViewController;
+@property(nonatomic) __weak id <PKPaymentAuthorizationFooterViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) long long deviceType; // @synthesize deviceType=_deviceType;
 @property(nonatomic) long long state; // @synthesize state=_state;
-@property(nonatomic) long long style; // @synthesize style=_style;
 @property(retain, nonatomic) PKPaymentAuthorizationLayout *paymentAuthorizationLayout; // @synthesize paymentAuthorizationLayout=_paymentAuthorizationLayout;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) long long style; // @synthesize style=_style;
 - (id)_blueColor;
-- (id)_tintColorForStyle:(long long)arg1 state:(long long)arg2;
-- (id)_tintColorForStyle:(long long)arg1;
 - (id)_statusTextForState:(long long)arg1;
 - (void)_applyRemoteDevice;
+- (void)_removePasswordViewFromHierarchy;
+- (void)_addPasswordViewToHierarchy;
+- (id)_sendWillPresentPasswordEntry;
+- (void)_prepareConstraints;
+- (void)_createSubviews;
+- (void)backgroundViewClicked:(id)arg1;
 - (void)updateViewConstraints;
 - (void)setState:(long long)arg1 text:(id)arg2 animated:(BOOL)arg3;
 - (void)setRemoteDeviceType:(long long)arg1 name:(id)arg2;
 - (void)setRemoteDevice:(id)arg1;
 - (void)viewDidLoad;
 - (void)loadView;
+- (id)initWithStyle:(long long)arg1;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)init;
 
 @end

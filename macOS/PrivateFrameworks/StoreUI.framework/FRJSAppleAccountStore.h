@@ -6,18 +6,35 @@
 
 #import "FRJSObject.h"
 
-@class FRJSAccount, NSArray;
+#import "CKAccountObserver.h"
 
-@interface FRJSAppleAccountStore : FRJSObject
+@class CKAccountStore, CKStoreAccount, FRJSAccount, NSArray, NSString;
+
+@interface FRJSAppleAccountStore : FRJSObject <CKAccountObserver>
 {
-    FRJSAccount *_primaryAccount;
+    CKAccountStore *_accountStore;
+    CKStoreAccount *_primaryStoreAccount;
 }
 
-@property(readonly, nonatomic) FRJSAccount *primaryAccount; // @synthesize primaryAccount=_primaryAccount;
 - (void).cxx_destruct;
+@property(readonly) CKStoreAccount *primaryStoreAccount; // @synthesize primaryStoreAccount=_primaryStoreAccount;
+@property(readonly) CKAccountStore *accountStore; // @synthesize accountStore=_accountStore;
+- (void)accountStore:(id)arg1 primaryAccountChanged:(id)arg2;
+- (id)_accountForDSID:(id)arg1;
+- (id)_getAccounts;
+- (id)_getPrimaryAppleAccount;
 - (id)getProperty:(id)arg1;
-- (id)init;
+- (id)callFunction:(id)arg1 withArguments:(id)arg2;
+- (id)accountForDSID:(id)arg1;
 @property(readonly, nonatomic) NSArray *accounts;
+@property(readonly, nonatomic) FRJSAccount *primaryAccount;
+- (id)initWithAccountStore:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class IMKCandidateController, IMKCandidateUIString, IMKDocumentView, NSArray, NSMutableArray, NSMutableDictionary, NSScrollView;
+@class IMKCandidateController, IMKCandidateUIString, IMKDocumentView, IMKUITextField, NSArray, NSMutableArray, NSMutableDictionary, NSScrollView;
 
 @interface IMKCandidateView : NSView
 {
@@ -20,14 +20,16 @@
     IMKCandidateController *_candidateController;
     struct CGSize _documentSize;
     IMKCandidateUIString *_message;
+    IMKUITextField *_messageTextField;
     BOOL _respondsToMouseInteraction;
     unsigned long long _topVisibleLine;
 }
 
 @property(nonatomic) BOOL respondsToMouseInteraction; // @synthesize respondsToMouseInteraction=_respondsToMouseInteraction;
+@property(retain, nonatomic) IMKUITextField *messageTextField; // @synthesize messageTextField=_messageTextField;
 @property(retain, nonatomic) IMKCandidateUIString *message; // @synthesize message=_message;
 @property(nonatomic) struct CGSize documentSize; // @synthesize documentSize=_documentSize;
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
+@property(nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
 @property(nonatomic) BOOL canScroll; // @synthesize canScroll=_canScroll;
 @property(retain, nonatomic) NSMutableDictionary *selectionKeyToCandidateMapping; // @synthesize selectionKeyToCandidateMapping=_selectionKeyToCandidateMapping;
 @property(retain, nonatomic) NSMutableArray *currentLinesWithSelectionKeys; // @synthesize currentLinesWithSelectionKeys=_currentLinesWithSelectionKeys;
@@ -41,16 +43,18 @@
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityAttributeNames;
 - (BOOL)accessibilityIsIgnored;
+@property(readonly, nonatomic) NSView *accessibilitySizeComparisonView;
 - (id)visibleCandidates;
+@property(readonly, nonatomic) NSArray *visibleCandidatesFromTopLine;
 - (id)allCandidates;
 - (id)UIElementsFromDefinitionUnits:(id)arg1;
+- (id)UIElementFromDefinitionUnit:(id)arg1;
 - (id)selectedCandidateView;
 @property(readonly, nonatomic) double scrollerThickness;
 @property(readonly, nonatomic) BOOL showsLegacyScroller;
 - (id)viewForUniqueKey:(id)arg1;
 - (void)flashScrollers;
 - (id)unitForSelectionKey:(id)arg1;
-- (void)drawRect:(struct CGRect)arg1;
 - (void)setVerticallyAlignedSelectionKeys;
 - (void)setVerticalSelectionKeys;
 - (void)setHorizontalSelectionKeysWithHighlighted:(BOOL)arg1;
@@ -76,11 +80,10 @@
 - (id)linesToAddFromNew:(id)arg1 existing:(id)arg2;
 - (id)linesToRemoveFromNew:(id)arg1 existing:(id)arg2;
 - (id)visibleAreasForFrame:(struct CGRect)arg1;
-@property(readonly, nonatomic) long long alignment;
 - (void)setFrame:(struct CGRect)arg1;
 - (BOOL)isFlipped;
 - (void)dealloc;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (id)initWithFrame:(struct CGRect)arg1 scrollable:(BOOL)arg2;
 
 @end
 

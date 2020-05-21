@@ -6,14 +6,15 @@
 
 #import <AppKit/NSResponder.h>
 
-#import "NSCoding.h"
+#import "NSEditor.h"
 #import "NSExtensionRequestHandling.h"
+#import "NSNibFinishedLoadingDependent.h"
 #import "NSSeguePerforming.h"
 #import "NSUserInterfaceItemIdentification.h"
 
 @class NSArray, NSBundle, NSExtensionContext, NSPointerArray, NSString, NSView;
 
-@interface NSViewController : NSResponder <NSExtensionRequestHandling, NSCoding, NSSeguePerforming, NSUserInterfaceItemIdentification>
+@interface NSViewController : NSResponder <NSExtensionRequestHandling, NSNibFinishedLoadingDependent, NSEditor, NSSeguePerforming, NSUserInterfaceItemIdentification>
 {
     NSString *_nibName;
     NSBundle *_nibBundle;
@@ -28,10 +29,12 @@
     unsigned int _viewIsAppearing:1;
     unsigned int _delayViewDidAppear:1;
     unsigned int _isContentViewController:1;
-    unsigned int _reserved:29;
+    unsigned int _shouldDirtyLayoutOnSizeChanges:1;
+    unsigned int _reserved:28;
 }
 
 + (BOOL)requiresConstraintBasedLayout;
++ (Class)_classToCheckForRequiresConstraintBasedLayout;
 @property(copy) NSString *title; // @synthesize title=_title;
 @property(retain) id representedObject; // @synthesize representedObject=_representedObject;
 - (void)endAppearanceTransition;
@@ -143,7 +146,10 @@
 - (void)_sendViewDidLoad;
 - (BOOL)_viewControllerSupports10_10Features;
 @property(copy) NSString *identifier;
-- (void)_finishedMakingConnections;
+@property(readonly, copy) NSArray *_nibLoadingDependencies;
+- (void)_finishedLoadingNibDependencies;
+- (BOOL)_shouldDirtyLayoutOnSizeChanges;
+- (void)_commonPostInit;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)init;
@@ -161,6 +167,7 @@
 - (void)dismissWindowController:(id)arg1;
 - (void)presentWindowControllerAsModalWindow:(id)arg1;
 - (void)presentWindowControllerAsSheet:(id)arg1;
+- (id)_responderDebugDescription;
 - (void)_setApplicationExtensionSession:(id)arg1;
 - (id)_applicationExtensionSession;
 - (id)applicationExtensionSession;
@@ -169,6 +176,7 @@
 - (id)_persistentUIWindow;
 
 // Remaining properties
+@property struct NSEdgeInsets additionalSafeAreaInsets; // @dynamic additionalSafeAreaInsets;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;

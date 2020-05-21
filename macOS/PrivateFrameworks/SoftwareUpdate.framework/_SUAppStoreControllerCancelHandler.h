@@ -15,6 +15,7 @@
     NSObject<OS_dispatch_queue> *_syncQueue;
 }
 
+- (id)description;
 - (void)cancelUsingConnection:(id)arg1;
 - (void)setProductKeys:(id)arg1;
 - (BOOL)isCancelled;

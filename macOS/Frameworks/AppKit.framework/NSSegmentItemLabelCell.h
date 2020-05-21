@@ -6,19 +6,21 @@
 
 #import <AppKit/NSTextFieldCell.h>
 
-@class NSString;
-
 __attribute__((visibility("hidden")))
 @interface NSSegmentItemLabelCell : NSTextFieldCell
 {
-    NSString *_widgetName;
+    id <NSContentStyle> _contentStyleOverride;
 }
 
 + (id)_getParentSegmentedControlViewFromView:(id)arg1;
-@property(retain, nonatomic) NSString *widgetName; // @synthesize widgetName=_widgetName;
+@property(copy, nonatomic, setter=_setContentStyleOverride:) id <NSContentStyle> _contentStyleOverride; // @synthesize _contentStyleOverride;
+- (int)_vibrancyBlendModeForControlView:(id)arg1;
+- (BOOL)accessibilityIsIgnored;
+- (void)dealloc;
+- (id)_textAttributes;
+- (id)_effectiveContentStyleForTextInView:(id)arg1;
 - (BOOL)_shouldUseStyledTextInView:(id)arg1;
 - (long long)interiorBackgroundStyle;
-- (struct __CFString *)_coreUIWidgetName;
 
 @end
 

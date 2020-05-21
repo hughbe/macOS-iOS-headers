@@ -10,13 +10,14 @@
 {
     long long mButton;
     int mState;
-    void *mReservedForInstanceVariablesMouseButton;
+    long long mClickCount;
 }
 
-+ (id)mouseButtonEventWithCoordinates:(struct SSPoint)arg1 withButton:(long long)arg2 withState:(int)arg3;
++ (id)mouseButtonEventWithCoordinates:(struct SSPoint)arg1 withButton:(long long)arg2 withState:(int)arg3 withClickCount:(long long)arg4;
+@property(readonly) long long clickCount; // @synthesize clickCount=mClickCount;
 @property(readonly) int state; // @synthesize state=mState;
 @property(readonly) long long button; // @synthesize button=mButton;
-- (id)initWithCoordinates:(struct SSPoint)arg1 withButton:(long long)arg2 withState:(int)arg3;
+- (id)initWithCoordinates:(struct SSPoint)arg1 withButton:(long long)arg2 withState:(int)arg3 withClickCount:(long long)arg4;
 
 @end
 

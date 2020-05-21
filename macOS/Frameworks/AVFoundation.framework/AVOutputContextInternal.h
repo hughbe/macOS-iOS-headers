@@ -6,18 +6,20 @@
 
 #import "NSObject.h"
 
-@class AVWeakReference, NSObject<OS_dispatch_queue>;
+@class NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVOutputContextInternal : NSObject
 {
-    NSObject<OS_dispatch_queue> *pickerQueue;
-    struct OpaqueFigEndpointPicker *endpointPicker;
-    struct __CFString *contextUUID;
-    BOOL isSystemPicker;
-    unsigned long long pickerFeature;
-    AVWeakReference *weakReference;
+    NSObject<OS_dispatch_queue> *ivarAccessQueue;
+    id <AVOutputContextImpl> impl;
+    unsigned long long outputDeviceFeatures;
     int applicationPID;
+    BOOL applicationPIDWasSet;
+    id <AVOutputContextCommunicationChannelDelegate> communicationChannelDelegate;
 }
+
+- (void).cxx_destruct;
 
 @end
 

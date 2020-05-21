@@ -9,29 +9,23 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSData;
-
 @interface SGRecordId : NSObject <NSCopying, NSSecureCoding>
 {
     long long _internalEntityId;
-    NSData *_foreignHash;
 }
 
 + (id)recordIdWithNumericValue:(long long)arg1;
-+ (id)recordIdWithInternalEntityId:(long long)arg1 foreignHash:(id)arg2;
 + (id)recordIdWithInternalEntityId:(long long)arg1;
 + (BOOL)supportsSecureCoding;
-- (void).cxx_destruct;
 - (id)description;
 - (BOOL)isEqualToRecordId:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (id)foreignHash;
 - (long long)numericValue;
 - (long long)internalEntityId;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithInternalEntityId:(long long)arg1 foreignHash:(id)arg2;
+- (id)initWithInternalEntityId:(long long)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end

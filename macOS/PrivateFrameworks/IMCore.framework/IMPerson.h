@@ -14,12 +14,18 @@
     ABPerson *_abPerson;
     ABAddressBook *_customBook;
     NSString *_uniqueID;
+    NSString *_cachedFirstName;
+    NSString *_cachedLastName;
+    NSString *_cachedFullName;
+    NSString *_cachedCompanyName;
+    NSString *_cachedNickName;
     CNContact *_cnContact;
 }
 
 + (void)_setCachedQueriesEnabled:(BOOL)arg1;
 + (id)_initialABPropertyLabelForProperty:(id)arg1;
 + (id)personWithABPerson:(id)arg1;
++ (BOOL)shouldPurgeCacheForIMPerson:(id)arg1;
 + (id)existingABPeopleWithInstantMessageAddress:(id)arg1 onServices:(id)arg2 allowSubstringMatch:(BOOL)arg3;
 + (id)existingABPersonWithInstantMessageAddress:(id)arg1 onServices:(id)arg2 allowSubstringMatch:(BOOL)arg3;
 + (id)existingABPersonWithFirstName:(id)arg1 andLastName:(id)arg2 andNickName:(id)arg3 orEmail:(id)arg4 orNumber:(id)arg5;
@@ -30,12 +36,17 @@
 + (id)existingABPersonWithFirstName:(id)arg1 andLastName:(id)arg2 orEmail:(id)arg3;
 + (id)existingABPersonWithFirstName:(id)arg1 lastName:(id)arg2;
 + (id)allPeople;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CNContact *cnContact; // @synthesize cnContact=_cnContact;
 @property(readonly, nonatomic) BOOL _registered; // @synthesize _registered;
+@property(retain, nonatomic) NSString *cachedNickName; // @synthesize cachedNickName=_cachedNickName;
+@property(retain, nonatomic) NSString *cachedCompanyName; // @synthesize cachedCompanyName=_cachedCompanyName;
+@property(retain, nonatomic) NSString *cachedFullName; // @synthesize cachedFullName=_cachedFullName;
+@property(retain, nonatomic) NSString *cachedLastName; // @synthesize cachedLastName=_cachedLastName;
+@property(retain, nonatomic) NSString *cachedFirstName; // @synthesize cachedFirstName=_cachedFirstName;
 @property(retain, nonatomic, setter=_setUniqueID:) NSString *uniqueID; // @synthesize uniqueID=_uniqueID;
 @property(retain, nonatomic, setter=_setCustomBook:) ABAddressBook *_customBook; // @synthesize _customBook;
 @property(readonly, nonatomic) ABPerson *_abPerson; // @synthesize _abPerson;
-- (void).cxx_destruct;
 - (unsigned long long)hash;
 @property(readonly, nonatomic) unsigned long long status;
 @property(readonly, nonatomic) NSData *imageDataWithoutLoading;
@@ -72,12 +83,12 @@
 @property(readonly, nonatomic) NSString *companyName;
 @property(readonly, nonatomic) BOOL isCompany;
 - (void)dealloc;
-- (void)finalize;
+- (void)updateCNContact:(id)arg1;
+- (id)cnContactWithKeys:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *cnContactID;
 @property(readonly, nonatomic) ABPerson *abPerson;
 - (id)initWithABPerson:(id)arg1;
 - (id)init;
-- (id)imHandleRegistrarGUID;
 - (id)idsAddresses;
 
 @end

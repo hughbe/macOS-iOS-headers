@@ -17,6 +17,7 @@
 + (void)releaseConnectionForOperation:(id)arg1;
 + (void)setConnectionForOperation:(id)arg1;
 + (id)sharedInstance;
+- (void).cxx_destruct;
 - (void)_releaseConnectionForOperation:(id)arg1;
 - (void)_setConnectionForOperation:(id)arg1;
 - (void)_interruptAllOperations;

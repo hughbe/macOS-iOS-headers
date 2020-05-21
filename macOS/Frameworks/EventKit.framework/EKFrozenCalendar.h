@@ -6,11 +6,11 @@
 
 #import <EventKit/EKFrozenObject.h>
 
-#import "EKProtocolCalendar.h"
+#import "EKCalendarProtocol.h"
 
 @class NSDictionary, NSManagedObjectID, NSSet, NSString, NSURL;
 
-@interface EKFrozenCalendar : EKFrozenObject <EKProtocolCalendar>
+@interface EKFrozenCalendar : EKFrozenObject <EKCalendarProtocol>
 {
     BOOL allowsContentModifications;
     BOOL allowEvents;
@@ -31,18 +31,21 @@
     BOOL isSubscribed;
     BOOL isSubscribedHolidayCalendar;
     BOOL isSuggestedEventCalendar;
+    BOOL isNaturalLanguageSuggestedEventCalendar;
     BOOL isAffectingAvailability;
     BOOL _suppressEventSchedulingNotifications;
     int displayOrder;
     NSString *calendarIdentifier;
     NSString *colorString;
-    id <EKProtocolCalendarSource> containerSource;
+    id <CalendarSourceModelProtocol> containerSource;
     NSSet *defaultAlarmsForAllDayEvents;
     NSSet *defaultAlarmsForTimedEvents;
     NSURL *defaultOrganizerAddressForNewItems;
     NSString *defaultOrganizerEmailForNewItems;
     NSString *defaultOrganizerEncodedLikenessDataForNewItems;
     NSString *defaultOrganizerNameForNewItems;
+    NSString *defaultOrganizerPhoneNumberForNewItems;
+    long long maxAttendees;
     NSString *notes;
     NSString *path;
     NSURL *prePublishURL;
@@ -62,7 +65,9 @@
 
 + (Class)meltedClass;
 + (id)propertiesUnavailableForPartialObjects;
-@property(retain) NSDictionary *cachedPreFrozenRelationshipObjects; // @synthesize cachedPreFrozenRelationshipObjects=_cachedPreFrozenRelationshipObjects;
++ (id)frozenObjectForObject:(id)arg1 createPartialObject:(BOOL)arg2 preFrozenRelationshipObjects:(id)arg3 forceUpdate:(BOOL)arg4;
+- (void).cxx_destruct;
+@property(readonly) NSDictionary *cachedPreFrozenRelationshipObjects; // @synthesize cachedPreFrozenRelationshipObjects=_cachedPreFrozenRelationshipObjects;
 @property(readonly, nonatomic) BOOL suppressEventSchedulingNotifications; // @synthesize suppressEventSchedulingNotifications=_suppressEventSchedulingNotifications;
 @property(readonly, nonatomic) BOOL isAffectingAvailability; // @synthesize isAffectingAvailability;
 @property(readonly, nonatomic) NSSet *alarms; // @synthesize alarms;
@@ -79,6 +84,7 @@
 @property(readonly, nonatomic) NSURL *prePublishURL; // @synthesize prePublishURL;
 @property(readonly, nonatomic) NSString *path; // @synthesize path;
 @property(readonly, copy, nonatomic) NSString *notes; // @synthesize notes;
+@property(readonly, nonatomic) BOOL isNaturalLanguageSuggestedEventCalendar; // @synthesize isNaturalLanguageSuggestedEventCalendar;
 @property(readonly, nonatomic) BOOL isSuggestedEventCalendar; // @synthesize isSuggestedEventCalendar;
 @property(readonly, nonatomic) BOOL isSubscribedHolidayCalendar; // @synthesize isSubscribedHolidayCalendar;
 @property(readonly, nonatomic) BOOL isSubscribed; // @synthesize isSubscribed;
@@ -86,6 +92,7 @@
 @property(readonly, nonatomic) BOOL isColorEditable; // @synthesize isColorEditable;
 @property(readonly, nonatomic) BOOL isRenameable; // @synthesize isRenameable;
 @property(readonly, nonatomic) BOOL isFacebookBirthdayCalendar; // @synthesize isFacebookBirthdayCalendar;
+@property(readonly) long long maxAttendees; // @synthesize maxAttendees;
 @property(readonly) BOOL isMarkedImmutableSharees; // @synthesize isMarkedImmutableSharees;
 @property(readonly) BOOL isMarkedUndeletable; // @synthesize isMarkedUndeletable;
 @property(readonly, nonatomic) BOOL isFamilyCalendar; // @synthesize isFamilyCalendar;
@@ -93,6 +100,7 @@
 @property(readonly, nonatomic) BOOL isDefaultSchedulingCalendar; // @synthesize isDefaultSchedulingCalendar;
 @property(readonly, nonatomic) BOOL ignoreAlarms; // @synthesize ignoreAlarms;
 @property(readonly, nonatomic) int displayOrder; // @synthesize displayOrder;
+@property(readonly, nonatomic) NSString *defaultOrganizerPhoneNumberForNewItems; // @synthesize defaultOrganizerPhoneNumberForNewItems;
 @property(readonly, nonatomic) NSString *defaultOrganizerNameForNewItems; // @synthesize defaultOrganizerNameForNewItems;
 @property(readonly, nonatomic) NSString *defaultOrganizerEncodedLikenessDataForNewItems; // @synthesize defaultOrganizerEncodedLikenessDataForNewItems;
 @property(readonly, nonatomic) NSString *defaultOrganizerEmailForNewItems; // @synthesize defaultOrganizerEmailForNewItems;
@@ -100,15 +108,20 @@
 @property(readonly, nonatomic) NSURL *defaultOrganizerAddressForNewItems; // @synthesize defaultOrganizerAddressForNewItems;
 @property(readonly, nonatomic) NSSet *defaultAlarmsForTimedEvents; // @synthesize defaultAlarmsForTimedEvents;
 @property(readonly, nonatomic) NSSet *defaultAlarmsForAllDayEvents; // @synthesize defaultAlarmsForAllDayEvents;
-@property(readonly, copy, nonatomic) id <EKProtocolCalendarSource> containerSource; // @synthesize containerSource;
+@property(readonly, copy, nonatomic) id <CalendarSourceModelProtocol> containerSource; // @synthesize containerSource;
 @property(readonly, copy, nonatomic) NSString *colorString; // @synthesize colorString;
 @property(readonly, nonatomic) NSString *calendarIdentifier; // @synthesize calendarIdentifier;
 @property(readonly, nonatomic) BOOL cachedHasSharees; // @synthesize cachedHasSharees;
 @property(readonly, nonatomic) BOOL allowsScheduling; // @synthesize allowsScheduling;
 @property(readonly, nonatomic) BOOL allowReminders; // @synthesize allowReminders;
 @property(readonly, nonatomic) BOOL allowEvents; // @synthesize allowEvents;
+@property(readonly, nonatomic) long long type;
+@property(readonly, nonatomic) unsigned long long supportedEventAvailabilities;
+@property(readonly, nonatomic) unsigned long long sharingStatus;
+@property(readonly, nonatomic) BOOL isBirthday;
+@property(readonly, nonatomic) BOOL eligibleForDefaultSchedulingCalendar;
 @property(readonly, nonatomic) BOOL allowsContentModifications; // @synthesize allowsContentModifications;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long allowedEntityTypes;
 - (id)color;
 @property(readonly, nonatomic) NSDictionary *preFrozenRelationshipObjects;
 - (void)_handlePreFrozenRelationshipObjects:(id)arg1 forCalendar:(id)arg2;

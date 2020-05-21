@@ -6,7 +6,6 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface ABActionPhoneDial : NSObject
 {
 }
@@ -15,6 +14,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldEnableActionForPerson:(id)arg1 identifier:(id)arg2;
 - (id)actionProperty;
 - (id)titleForPerson:(id)arg1 identifier:(id)arg2;
+- (id)unlocalizedTitle;
 - (void)performActionForPerson:(id)arg1 identifier:(id)arg2;
 
 @end

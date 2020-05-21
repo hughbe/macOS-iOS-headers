@@ -17,9 +17,11 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *propertiesByIdentifier; // @synthesize propertiesByIdentifier=_propertiesByIdentifier;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)_cn_ignorableKeys;
+- (id)_cn_optionalKeys;
 - (id)_cn_requiredKeys;
 - (void)_cn_executeGetterForRepresentedKeys:(CDUnknownBlockType)arg1;
 - (void)setKeysToFetch:(id)arg1 forContactIdentifier:(id)arg2;

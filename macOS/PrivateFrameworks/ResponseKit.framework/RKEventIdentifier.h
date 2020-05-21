@@ -6,22 +6,23 @@
 
 #import "NSObject.h"
 
-@class RKMontrealModel;
+@class RKMontrealModel, RKNLEventTokenizer;
 
 @interface RKEventIdentifier : NSObject
 {
     RKMontrealModel *_model;
-    struct Tokenizer *_tokenizer;
+    RKNLEventTokenizer *_tokenizer;
     const struct IOMappings *_ioMappings;
-    int _outputPermutation[9];
+    int _outputPermutation[5];
 }
 
 - (void).cxx_destruct;
+- (id)identifyMessage:(id)arg1;
 - (id)identifyText:(id)arg1;
 - (id)identifyStrings:(id)arg1;
 - (id)_identifyStrings:(id)arg1 otherDateCount:(unsigned long long)arg2 otherDates:(struct RKEventIdentifierRange *)arg3;
-- (id)_identifyOwnedTokenSequences:(vector_ae35c5ca *)arg1;
-- (void)dealloc;
+- (id)_identifyOwnedTokenSequences:(id)arg1;
+- (void)resetEventIdentifierModel;
 - (id)initWithLanguageID:(id)arg1;
 - (id)init;
 

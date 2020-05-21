@@ -13,9 +13,9 @@
     id _objectToExport;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id objectToExport; // @synthesize objectToExport=_objectToExport;
 - (BOOL)view:(id)arg1 shouldResize:(struct CGSize)arg2;
-- (BOOL)advanceToRunPhaseIfNeeded;
 - (id)serviceSubclassName;
 - (id)serviceName;
 - (id)serviceViewControllerInterface;

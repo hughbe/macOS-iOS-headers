@@ -19,6 +19,7 @@
 
 + (id)clientInfoForNavdPredictions;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *uniqueClientId; // @synthesize uniqueClientId=_uniqueClientId;
 @property(copy, nonatomic) NSString *canonicalName; // @synthesize canonicalName=_canonicalName;
 - (id)description;
@@ -30,7 +31,6 @@
 - (id)initWithCanonicalName:(id)arg1 instanceId:(unsigned long long)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
 
 @end
 

@@ -6,18 +6,26 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString;
+@class NSArray, NSDictionary, NSString;
 
 @protocol _DASActivitySchedulerIntrospectingServer <NSObject>
+- (void)pauseWithParameters:(NSDictionary *)arg1 handler:(void (^)(BOOL))arg2;
+- (void)enterTestModeWithParameters:(NSDictionary *)arg1;
+- (void)blockingPoliciesWithParameters:(id)arg1 handler:(void (^)(NSArray *))arg2;
+- (void)policiesWithHandler:(void (^)(NSArray *))arg1;
+- (void)setCapacity:(double)arg1 forBudgetWithName:(NSString *)arg2;
+- (void)setBalance:(double)arg1 forBudgetWithName:(NSString *)arg2;
+- (void)remainingBalanceForBudgetWithName:(NSString *)arg1 withHandler:(void (^)(double))arg2;
+- (void)currentPredictionsWithHandler:(void (^)(NSDictionary *))arg1;
+- (void)delayedStartActivities:(NSArray *)arg1;
 - (void)startedActivities:(NSArray *)arg1;
 - (void)forceRunActivities:(NSArray *)arg1;
 - (void)activityRunStatisticsWithHandler:(void (^)(NSDictionary *))arg1;
 - (void)scoresForActivityWithName:(NSString *)arg1 withHandler:(void (^)(NSArray *))arg2;
+- (void)deferActivities:(NSArray *)arg1 withHandler:(void (^)(BOOL))arg2;
 - (void)runningGroupActivitiesWithHandler:(void (^)(NSArray *))arg1;
 - (void)runningActivitiesWithHandler:(void (^)(NSArray *))arg1;
+- (void)delayedRunningActivitiesWithHandler:(void (^)(NSArray *))arg1;
 - (void)submittedActivitiesWithHandler:(void (^)(NSArray *))arg1;
-
-@optional
-- (void)cancelActivities:(NSArray *)arg1;
 @end
 

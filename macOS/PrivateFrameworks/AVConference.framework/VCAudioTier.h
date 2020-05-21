@@ -6,24 +6,32 @@
 
 #import "NSObject.h"
 
-@class VCAudioPayload;
+@class VCAudioPayloadConfig;
 
 __attribute__((visibility("hidden")))
 @interface VCAudioTier : NSObject
 {
     unsigned int networkBitrate;
-    unsigned int audioBitrate;
+    unsigned int audioCodecBitrate;
     unsigned int packetsPerBundle;
-    VCAudioPayload *payload;
+    unsigned int redNumPayloads;
+    unsigned int redMaxDelay20ms;
+    VCAudioPayloadConfig *payloadConfig;
+    int _operatingMode;
+    BOOL _bundlingAppliedByCodec;
 }
 
-@property(readonly) VCAudioPayload *payload; // @synthesize payload;
++ (BOOL)bundlingAppliedByCodecForPayload:(int)arg1 operatingMode:(int)arg2;
++ (id)newAudioTierForPayloadConfig:(id)arg1 operatingMode:(int)arg2 audioCodecBitrate:(unsigned int)arg3 packetsPerBundle:(unsigned int)arg4 redNumPayloads:(unsigned int)arg5 headerSize:(unsigned int)arg6;
+@property(readonly) VCAudioPayloadConfig *payloadConfig; // @synthesize payloadConfig;
+@property(readonly) unsigned int redMaxDelay20ms; // @synthesize redMaxDelay20ms;
+@property(readonly) unsigned int redNumPayloads; // @synthesize redNumPayloads;
 @property(readonly) unsigned int packetsPerBundle; // @synthesize packetsPerBundle;
-@property(readonly) unsigned int audioBitrate; // @synthesize audioBitrate;
+@property(readonly) unsigned int audioCodecBitrate; // @synthesize audioCodecBitrate;
 @property(readonly) unsigned int networkBitrate; // @synthesize networkBitrate;
 - (BOOL)isEqualTo:(id)arg1;
 - (id)description;
-- (id)initWithNetworkBitrate:(unsigned int)arg1 audioBitrate:(unsigned int)arg2 packetsPerBundle:(unsigned int)arg3 payload:(id)arg4;
+- (id)initWithNetworkBitrate:(unsigned int)arg1 operatingMode:(int)arg2 audioCodecBitrate:(unsigned int)arg3 packetsPerBundle:(unsigned int)arg4 redNumPayloads:(unsigned int)arg5 payloadConfig:(id)arg6;
 
 @end
 

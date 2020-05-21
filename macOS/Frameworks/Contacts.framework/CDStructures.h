@@ -25,6 +25,15 @@ struct CGSize {
     double height;
 };
 
+struct _NSRange {
+    unsigned long long location;
+    unsigned long long length;
+};
+
+struct os_unfair_lock_s {
+    unsigned int _os_unfair_lock_opaque;
+};
+
 #pragma mark Typedef'd Structures
 
 typedef struct {

@@ -11,6 +11,8 @@ __attribute__((visibility("hidden")))
 {
 }
 
+- (id)menuForEvent:(id)arg1;
+- (BOOL)isFlipped;
 - (BOOL)acceptsFirstResponder;
 
 @end

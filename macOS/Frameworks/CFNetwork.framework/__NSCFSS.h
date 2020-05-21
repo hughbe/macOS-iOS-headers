@@ -6,7 +6,6 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface __NSCFSS : NSObject
 {
     CDUnknownBlockType _capturedStreams;

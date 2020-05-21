@@ -6,17 +6,18 @@
 
 #import "NSObject.h"
 
-@class NSData, NSString;
+@class NSData, NSObject<OS_os_log>, NSString;
 
 @protocol CoreDAVLogDelegate <NSObject>
 - (void)coreDAVTransmittedDataFinished;
 - (void)coreDAVLogTransmittedDataPartial:(NSData *)arg1;
 - (BOOL)shouldLogTransmittedData;
+
+@optional
 - (void)coreDAVLogDiagnosticMessage:(NSString *)arg1 atLevel:(long long)arg2;
 - (long long)coreDAVOutputLevel;
 - (long long)coreDAVLogLevel;
-
-@optional
+- (NSObject<OS_os_log> *)logHandle;
 - (void)coreDAVLogResponseBody:(NSData *)arg1;
 - (void)coreDAVLogRequestBody:(NSData *)arg1;
 @end

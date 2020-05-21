@@ -11,7 +11,10 @@ __attribute__((visibility("hidden")))
 {
 }
 
++ (void)setCurrentClearColor;
 + (BOOL)gpuAvailable;
++ (void)_postGLInactiveNotification;
++ (void)_postGLActiveNotification;
 + (BOOL)setCurrentGLContext:(id)arg1;
 + (id)createPlatformGLContext;
 + (id)snapshotImageOfFrameBufferWithID:(unsigned int)arg1 bufferSize:(struct CGSize)arg2 displayScale:(double)arg3;
@@ -27,6 +30,7 @@ __attribute__((visibility("hidden")))
 + (void)createFBO:(unsigned int *)arg1 depthRB:(unsigned int *)arg2 texture:(unsigned int *)arg3 width:(int)arg4 height:(int)arg5 format:(unsigned int)arg6;
 + (unsigned int)compileShader:(id)arg1 ofType:(id)arg2;
 + (id)pathForResource:(id)arg1 ofType:(id)arg2;
++ (void)initialize;
 
 @end
 

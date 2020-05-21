@@ -6,8 +6,10 @@
 
 #import <Foundation/NSHashTable.h>
 
+#import "NSSecureCoding.h"
+
 __attribute__((visibility("hidden")))
-@interface NSConcreteHashTable : NSHashTable
+@interface NSConcreteHashTable : NSHashTable <NSSecureCoding>
 {
     struct NSSlice slice;
     unsigned long long count;
@@ -16,6 +18,7 @@ __attribute__((visibility("hidden")))
     unsigned long long mutations;
 }
 
++ (BOOL)supportsSecureCoding;
 - (id)objectEnumerator;
 - (id)description;
 - (void)dealloc;
@@ -39,7 +42,6 @@ __attribute__((visibility("hidden")))
 - (id)pointerFunctions;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (Class)classForCoder;
 - (id)initWithPointerFunctions:(id)arg1 capacity:(unsigned long long)arg2;
 - (id)initWithOptions:(unsigned long long)arg1 capacity:(unsigned long long)arg2;
 - (id)copy;

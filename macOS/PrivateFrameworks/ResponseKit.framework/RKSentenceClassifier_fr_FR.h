@@ -12,6 +12,7 @@
 
 - (id)classifySentence;
 - (void)analyzeSentence;
+- (id)lexicalEntitiesFromString:(id)arg1;
 - (id)alternativeConjunctions;
 
 @end

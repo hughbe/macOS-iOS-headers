@@ -6,26 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSLock, NSMutableSet, NSThread, NSView;
+@class NSMutableSet, NSTimer;
 
 @interface NSUIHeartBeat : NSObject
 {
-    CDStruct_d41e72e8 _times;
-    NSLock *_drawingThreadLock;
-    NSLock *_blockLock;
-    NSLock *_clientsLock;
+    double _currentDate;
+    double _birthDate;
+    double _lastDate;
     NSMutableSet *_clients;
-    NSThread *_heartBeatThread;
-    NSView *_currentView;
+    NSTimer *_heartBeatTimer;
+    unsigned short _disableCount;
     struct {
-        unsigned int _isDrawingLocked:1;
-        unsigned int _isClientsChanged:1;
-        unsigned int _lockedByClient:1;
         unsigned int _sessionIsActive:1;
-        unsigned int _registeredForNotifications:1;
-        unsigned int _pendingClientUnlock:1;
-        unsigned int _queueState:2;
-        unsigned int _reserved:24;
+        unsigned int _reserved:31;
     } _hbFlags;
 }
 
@@ -33,11 +26,8 @@
 + (void)setHeartBeatCycle:(double)arg1;
 + (double)heartBeatCycle;
 + (id)sharedHeartBeat;
-+ (void)initialize;
 - (double)_startFrameTime;
 - (double)_currentFrameTime;
-- (void)unlockFocusInRect:(struct CGRect)arg1;
-- (BOOL)lockFocusForView:(id)arg1 inRect:(struct CGRect)arg2 needsTranslation:(BOOL)arg3;
 - (void)reenableHeartBeating:(BOOL)arg1;
 - (void)disableHeartBeating;
 - (void)updateHeartBeatState;
@@ -46,13 +36,9 @@
 - (void)addHeartBeatView:(id)arg1;
 - (void)dealloc;
 - (id)init;
-- (void)_unregisterForSessionNotifications;
-- (void)_registerForSessionNotifications;
 - (void)_sessionDidResignActive;
 - (void)_sessionDidBecomeActive;
-- (void)_heartBeatThread:(id)arg1;
-- (BOOL)_isBlocked;
-- (BOOL)_isSpinning;
+- (void)_heartBeatViews;
 
 @end
 

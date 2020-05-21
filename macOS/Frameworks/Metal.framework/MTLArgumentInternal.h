@@ -6,7 +6,7 @@
 
 #import <Metal/MTLArgument.h>
 
-@class NSString;
+@class MTLStructType, MTLType, NSString;
 
 __attribute__((visibility("hidden")))
 @interface MTLArgumentInternal : MTLArgument
@@ -16,25 +16,36 @@ __attribute__((visibility("hidden")))
     unsigned long long _access;
     unsigned long long _index;
     BOOL _active;
+    unsigned long long _arrayLength;
+    MTLType *_typeInfo;
 }
 
+- (unsigned long long)arrayLength;
 - (BOOL)isActive;
 - (unsigned long long)index;
 - (unsigned long long)access;
 - (unsigned long long)type;
 - (id)name;
 - (id)description;
-- (id)describe;
+- (id)formattedDescription:(unsigned long long)arg1;
+- (id)dataTypeDescription;
 - (unsigned long long)textureDataType;
 - (unsigned long long)textureType;
 - (unsigned long long)threadgroupMemoryDataSize;
 - (unsigned long long)threadgroupMemoryAlignment;
+- (id)bufferPointerType;
 - (id)bufferStructType;
+- (id)bufferIndirectArgumentType;
+- (unsigned long long)indirectConstantDataType;
+- (unsigned long long)indirectConstantDataSize;
+- (unsigned long long)indirectConstantAlignment;
 - (unsigned long long)bufferDataType;
 - (unsigned long long)bufferDataSize;
 - (unsigned long long)bufferAlignment;
 - (void)dealloc;
-- (id)initWithName:(id)arg1 type:(unsigned long long)arg2 access:(unsigned long long)arg3 index:(unsigned long long)arg4 active:(BOOL)arg5;
+@property(readonly) MTLStructType *structType; // @dynamic structType;
+- (id)initWithName:(id)arg1 type:(unsigned long long)arg2 access:(unsigned long long)arg3 index:(unsigned long long)arg4 active:(BOOL)arg5 arrayLength:(unsigned long long)arg6 typeDescription:(id)arg7;
+- (id)initWithName:(id)arg1 type:(unsigned long long)arg2 access:(unsigned long long)arg3 index:(unsigned long long)arg4 active:(BOOL)arg5 arrayLength:(unsigned long long)arg6;
 
 @end
 

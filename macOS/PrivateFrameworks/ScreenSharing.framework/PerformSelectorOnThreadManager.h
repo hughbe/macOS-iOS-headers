@@ -10,7 +10,6 @@
 
 @class NSArray, NSMutableArray, NSMutableDictionary, NSString, RDMutex;
 
-__attribute__((visibility("hidden")))
 @interface PerformSelectorOnThreadManager : NSObject <NSMachPortDelegate>
 {
     NSMutableDictionary *_threadToPortMap;

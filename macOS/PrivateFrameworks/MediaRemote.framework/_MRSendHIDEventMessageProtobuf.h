@@ -15,6 +15,7 @@
     NSData *_hidEventData;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSData *hidEventData; // @synthesize hidEventData=_hidEventData;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -26,7 +27,6 @@
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(readonly, nonatomic) BOOL hasHidEventData;
-- (void)dealloc;
 
 @end
 

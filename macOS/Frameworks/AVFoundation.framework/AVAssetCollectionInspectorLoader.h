@@ -11,6 +11,7 @@
 
 @class AVAssetCollectionInspector, AVWeakReference, NSMutableArray, NSObject<OS_dispatch_queue>, NSString, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetCollectionInspectorLoader : NSObject <NSCopying, AVAsynchronousKeyValueLoading>
 {
     AVWeakReference *_weakReference;
@@ -39,7 +40,6 @@
 - (struct OpaqueFigAsset *)copyFigAssetAtIndex:(unsigned long long)arg1 options:(id)arg2 figErr:(int *)arg3;
 @property(readonly, nonatomic) unsigned long long assetCount;
 @property(readonly, nonatomic) NSString *type;
-- (void)finalize;
 - (void)dealloc;
 - (void)_cleanUpUncollectables;
 - (id)initWithFigCollectionAtURL:(id)arg1;

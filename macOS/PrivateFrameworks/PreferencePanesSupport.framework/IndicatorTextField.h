@@ -16,15 +16,13 @@
 }
 
 + (id)_indicatorImage;
-- (void)setNoteField:(id)arg1;
-- (id)noteField;
+- (void).cxx_destruct;
+@property(retain) NSTextField *noteField; // @synthesize noteField=mNoteField;
 - (void)setShowIndicator:(BOOL)arg1 noteString:(id)arg2;
 - (void)setShowIndicator:(BOOL)arg1;
 - (BOOL)isShowingIndicator;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)becomeFirstResponder;
-- (void)dealloc;
-- (void)awakeFromNib;
 
 @end
 

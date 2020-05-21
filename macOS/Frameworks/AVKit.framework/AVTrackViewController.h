@@ -6,25 +6,29 @@
 
 #import "NSViewController.h"
 
-@class AVPlayerController, AVTrackView;
+@class AVPlayerController, AVPlayerLayer, AVTrackView;
 
 __attribute__((visibility("hidden")))
 @interface AVTrackViewController : NSViewController
 {
     AVPlayerController *_playerController;
     BOOL _showsAlternateMediaTrackPreview;
+    BOOL _updatesDuringLiveResize;
     AVTrackView *_trackView;
+    AVPlayerLayer *_trimThumbnailPlayerLayer;
     BOOL _showsAudioTrackPreview;
 }
 
-@property(readonly) BOOL showsAudioTrackPreview; // @synthesize showsAudioTrackPreview=_showsAudioTrackPreview;
 - (void).cxx_destruct;
+@property(readonly) BOOL showsAudioTrackPreview; // @synthesize showsAudioTrackPreview=_showsAudioTrackPreview;
 - (void)zoomWithInfo:(CDStruct_ef34d2b9)arg1;
 - (void)startThumbnailGenerationWithZoomInfo:(CDStruct_ef34d2b9)arg1;
 - (void)updateTrackViewIfNeeded;
 - (void)loadView;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 @property(readonly) double allowedScrollAmount;
+@property(retain) AVPlayerLayer *trimThumbnailPlayerLayer;
+@property BOOL updatesDuringLiveResize;
 @property BOOL showsAlternateMediaTrackPreview;
 @property __weak AVPlayerController *playerController;
 - (void)dealloc;

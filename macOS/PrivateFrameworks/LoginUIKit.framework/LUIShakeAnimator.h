@@ -6,13 +6,15 @@
 
 #import "NSAnimation.h"
 
-@class NSView;
+@class NSLayoutConstraint, NSView;
 
 @interface LUIShakeAnimator : NSAnimation
 {
     NSView *_originalView;
     struct CGRect _startViewFrame;
     double _amplitude;
+    NSLayoutConstraint *_centerXConstraint;
+    double _centerXConstraintConstant;
 }
 
 + (void)shakeView:(id)arg1;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSSQLEntity;
+@class NSArray, NSSQLEntity;
 
 __attribute__((visibility("hidden")))
 @interface NSSQLIntermediate : NSObject
@@ -21,7 +21,7 @@ __attribute__((visibility("hidden")))
 - (id)_generateSQLForSubqueryExpression:(id)arg1 trailingKeypath:(id)arg2 inContext:(id)arg3;
 - (id)_generateSQLForFetchExpression:(id)arg1 allowToMany:(BOOL)arg2 inContext:(id)arg3;
 - (BOOL)_canDoASubselectForExpression:(id)arg1 inContext:(id)arg2;
-- (id)_generateSQLForConstantCollection:(id)arg1 inContext:(id)arg2;
+- (id)_generateSQLForConstantCollection:(id)arg1 reboundFrom:(id)arg2 inContext:(id)arg3;
 - (id)_generateSQLForExpressionCollection:(id)arg1 allowToMany:(BOOL)arg2 inContext:(id)arg3;
 - (id)_generateSQLForVariableExpression:(id)arg1 allowToMany:(BOOL)arg2 inContext:(id)arg3;
 - (id)_generateSQLForKeyPathExpression:(id)arg1 allowToMany:(BOOL)arg2 inContext:(id)arg3;
@@ -35,8 +35,11 @@ __attribute__((visibility("hidden")))
 - (void)_promoteJoinsForFunctionExpression:(id)arg1;
 - (void)_promoteJoinsForSubqueryScopedKeypath:(id)arg1;
 - (void)_promoteJoinsForKeypathExpression:(id)arg1;
+- (void)_setEntitySpecificationKeypath:(id)arg1;
+- (id)_entitySpecificationKeypath;
 - (id)_lastScopedItem;
 - (BOOL)keypathExpressionIsSafeLHSForIn:(id)arg1;
+- (id)governingEntity;
 - (id)governingEntityForKeypathExpression:(id)arg1;
 - (id)governingAliasForKeypathExpression:(id)arg1;
 - (id)governingAlias;
@@ -46,7 +49,12 @@ __attribute__((visibility("hidden")))
 - (BOOL)expressionIsBasicKeypath:(id)arg1;
 - (id)fetchIntermediateForKeypathExpression:(id)arg1;
 - (id)fetchIntermediate;
-@property(nonatomic) NSSQLEntity *disambiguatingEntity;
+- (void)setDisambiguatingEntity:(id)arg1 withKeypath:(id)arg2 hasToMany:(BOOL)arg3;
+@property(readonly, nonatomic) BOOL disambiguationKeypathHasToMany;
+@property(readonly, nonatomic) NSArray *disambiguationKeypath;
+@property(readonly, nonatomic) NSSQLEntity *disambiguatingEntity;
+- (BOOL)isIndexExpressionScoped;
+- (BOOL)isIndexScoped;
 - (BOOL)isUpdateColumnsScoped;
 - (BOOL)isWhereScoped;
 - (BOOL)isUpdateScoped;

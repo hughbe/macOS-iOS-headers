@@ -4,17 +4,27 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <CoreData/NSStoreMapping.h>
+#import "NSObject.h"
 
-@class NSPropertyDescription, NSSQLEntity, NSString;
+@class NSPropertyDescription, NSSQLEntity;
 
 __attribute__((visibility("hidden")))
-@interface NSSQLProperty : NSStoreMapping
+@interface NSSQLProperty : NSObject
 {
-    NSString *_name;
     NSPropertyDescription *_propertyDescription;
     NSSQLEntity *_entity;
-    unsigned int _propertyType;
+    unsigned char _propertyType;
+    unsigned char _sqlType;
+    unsigned short _fetchIndex;
+    unsigned short _slot;
+    struct _sqlColumnFlags {
+        unsigned int _allowAliasing:1;
+        unsigned int _unique:1;
+        unsigned int _constrained:1;
+        unsigned int _backedByTrigger:1;
+        unsigned int _isDerivedAttribute:1;
+        unsigned int _reservedFlags:11;
+    } _flags;
 }
 
 - (void)setEntityForReadOnlyFetch:(id)arg1;
@@ -24,6 +34,8 @@ __attribute__((visibility("hidden")))
 - (id)entity;
 - (id)propertyDescription;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isUnique;
+@property(nonatomic, getter=isConstrained) BOOL constrained;
 - (BOOL)isManyToMany;
 - (BOOL)isToMany;
 - (BOOL)isToOne;
@@ -36,8 +48,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)isPrimaryKey;
 - (BOOL)isAttribute;
 - (BOOL)isColumn;
-- (unsigned int)propertyType;
-- (void)_setName:(id)arg1;
+- (unsigned char)sqlType;
+- (unsigned char)propertyType;
 - (id)name;
 - (id)externalName;
 - (id)columnName;

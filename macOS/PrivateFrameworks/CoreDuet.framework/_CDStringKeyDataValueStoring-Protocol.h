@@ -10,6 +10,7 @@
 - (NSArray *)allKeys;
 - (BOOL)removeDataForKeys:(NSArray *)arg1;
 - (BOOL)removeDataForKey:(NSString *)arg1;
+- (BOOL)setData:(NSData *)arg1 forKey:(NSString *)arg2 completionBlock:(void (^)(BOOL, NSError *))arg3;
 - (BOOL)setData:(NSData *)arg1 forKey:(NSString *)arg2;
 - (NSData *)dataForKey:(NSString *)arg1;
 @end

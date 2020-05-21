@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSNumber, NSString, _DPPrivacyBudget, _DPValueRange;
+@class NSDictionary, NSNumber, NSString, _DPPrivacyBudget, _DPValueRange;
 
 @interface _DPKeyProperties : NSObject
 {
+    BOOL _keyPatternsAllowed;
     NSString *_propertiesName;
     _DPValueRange *_possibleRange;
     NSNumber *_acceptableError;
@@ -20,18 +21,24 @@
     unsigned long long _fragmentWidth;
     unsigned long long _fragmentCount;
     NSString *_serverAlgorithmString;
+    NSDictionary *_parameterDictionary;
+    unsigned long long _submissionPriority;
     unsigned long long _dataAlgorithm;
     unsigned long long _privatizationAlgorithm;
     unsigned long long _transport;
 }
 
 + (id)propertiesFromFile:(id)arg1;
-+ (id)defaultPropertiesWithKey:(id)arg1;
-+ (id)keyPropertiesForKey:(id)arg1;
++ (id)keyPropertiesForName:(id)arg1;
 + (id)keyPropertiesFromDictionary:(id)arg1;
++ (void)initialize;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long transport; // @synthesize transport=_transport;
 @property(readonly, nonatomic) unsigned long long privatizationAlgorithm; // @synthesize privatizationAlgorithm=_privatizationAlgorithm;
 @property(readonly, nonatomic) unsigned long long dataAlgorithm; // @synthesize dataAlgorithm=_dataAlgorithm;
+@property(readonly, nonatomic) unsigned long long submissionPriority; // @synthesize submissionPriority=_submissionPriority;
+@property(readonly, nonatomic) BOOL keyPatternsAllowed; // @synthesize keyPatternsAllowed=_keyPatternsAllowed;
+@property(readonly, nonatomic) NSDictionary *parameterDictionary; // @synthesize parameterDictionary=_parameterDictionary;
 @property(readonly, copy, nonatomic) NSString *serverAlgorithmString; // @synthesize serverAlgorithmString=_serverAlgorithmString;
 @property(readonly, nonatomic) unsigned long long fragmentCount; // @synthesize fragmentCount=_fragmentCount;
 @property(readonly, nonatomic) unsigned long long fragmentWidth; // @synthesize fragmentWidth=_fragmentWidth;
@@ -42,7 +49,6 @@
 @property(readonly, nonatomic) NSNumber *acceptableError; // @synthesize acceptableError=_acceptableError;
 @property(readonly, nonatomic) _DPValueRange *possibleRange; // @synthesize possibleRange=_possibleRange;
 @property(readonly, copy, nonatomic) NSString *propertiesName; // @synthesize propertiesName=_propertiesName;
-- (void).cxx_destruct;
 - (id)privatizationAlgorithmString;
 - (id)description;
 - (id)initWithDictionary:(id)arg1;

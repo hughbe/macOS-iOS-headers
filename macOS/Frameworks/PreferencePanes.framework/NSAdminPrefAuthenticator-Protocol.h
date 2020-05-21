@@ -4,11 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class SFAuthorization;
+#import "NSObject.h"
 
-@protocol NSAdminPrefAuthenticator
+@class NSString, SFAuthorization;
+
+@protocol NSAdminPrefAuthenticator <NSObject>
 - (BOOL)isAuthenticated;
 - (void)deauthenticate;
+- (void)authenticateUsingAuthorization:(SFAuthorization *)arg1 userName:(NSString *)arg2 password:(NSString *)arg3;
 - (void)authenticateUsingAuthorization:(SFAuthorization *)arg1;
+- (BOOL)wantsClearTextAuthentication;
 @end
 

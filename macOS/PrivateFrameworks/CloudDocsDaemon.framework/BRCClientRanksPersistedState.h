@@ -4,24 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
-
-#import "NSSecureCoding.h"
-
-@class BRCAccountSession;
+#import <CloudDocsDaemon/BRCPersistedState.h>
 
 __attribute__((visibility("hidden")))
-@interface BRCClientRanksPersistedState : NSObject <NSSecureCoding>
+@interface BRCClientRanksPersistedState : BRCPersistedState
 {
-    BRCAccountSession *_session;
     unsigned long long _nextItemRowID;
     unsigned long long _nextNotifRank;
     unsigned long long _nextPackageItemRank;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)loadFromClientStateInSession:(id)arg1;
-- (void).cxx_destruct;
++ (id)loadFromClientStateInSession:(id)arg1 options:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;

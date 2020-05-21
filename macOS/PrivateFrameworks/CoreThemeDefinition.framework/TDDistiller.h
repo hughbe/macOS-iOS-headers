@@ -16,6 +16,7 @@
     NSArray *_changedProductions;
     NSArray *_mainThreadPerformRunLoopModes;
     int _fileCompression;
+    BOOL _dontPackRenditionsBeforeDistilling;
     BOOL _incremental;
     BOOL _cancelled;
     BOOL _successful;
@@ -25,15 +26,14 @@
     TDLogger *_logger;
     NSString *_accumulatedErrorDescription;
     NSThread *_callbackThread;
-    CDUnknownBlockType _oldCompletionHandler;
     CDUnknownBlockType _completionHandler;
 }
 
 @property(copy) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
-@property(copy) CDUnknownBlockType oldCompletionHandler; // @synthesize oldCompletionHandler=_oldCompletionHandler;
 @property(retain) NSThread *callbackThread; // @synthesize callbackThread=_callbackThread;
 @property(retain, nonatomic) NSString *accumulatedErrorDescription; // @synthesize accumulatedErrorDescription=_accumulatedErrorDescription;
 @property(getter=isFinished) BOOL finished; // @synthesize finished=_finished;
+@property(nonatomic) BOOL dontPackRenditionsBeforeDistilling; // @synthesize dontPackRenditionsBeforeDistilling=_dontPackRenditionsBeforeDistilling;
 @property(retain) TDLogger *logger; // @synthesize logger=_logger;
 @property(getter=isSuccessful) BOOL successful; // @synthesize successful=_successful;
 @property(getter=isCancelled) BOOL cancelled; // @synthesize cancelled=_cancelled;
@@ -45,8 +45,6 @@
 - (void)waitTimerDidFire:(id)arg1;
 - (void)waitUntilFinished;
 - (void)saveAndDistillWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)distillWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)beginDistillWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_distill:(id)arg1;
 - (BOOL)assetStoreWriteToDisk;
 - (void)setAssetColorSpaceID:(unsigned int)arg1;
@@ -61,15 +59,12 @@
 - (void)setAssetStoreRenditionCount:(unsigned int)arg1;
 - (void)removeRenditionsFromAssetStoreWithKey:(id)arg1;
 - (void)_distillChanges:(id)arg1;
+- (id)dateOfLastDistill;
 - (void)_resetDocumentUuid:(id)arg1;
 - (void)markDistillationAsFinished;
 - (void)finishDistillationWithSuccess:(BOOL)arg1;
 - (BOOL)distillCursorFacetDefinitions;
 - (BOOL)_distillCursorFacetDefinitions:(id)arg1;
-- (BOOL)distillZeroCodeArtworkElementAndPartIdentifiers;
-- (BOOL)distillZeroCodeArtworkInfoOfType:(long long)arg1;
-- (BOOL)distillZeroCodeArtworkInfo:(id)arg1 ofType:(long long)arg2;
-- (id)zeroCodeArtworkInfoOfType:(long long)arg1 error:(id *)arg2;
 - (BOOL)distillNamedElements;
 - (BOOL)_distillNamedElements:(id)arg1;
 - (id)_copyStandardEffectDefinitions;
@@ -79,11 +74,14 @@
 - (BOOL)distillCustomColors;
 - (BOOL)_distillColorDefinitions:(id)arg1;
 - (BOOL)distillCatalogGlobals;
+- (BOOL)distillLocalizationss;
+- (BOOL)distillThemeAppearances;
 - (BOOL)distillRenditions;
 - (BOOL)_recordRenditionEntryFromRendition:(id)arg1;
 - (id)_productionForRenditionSpec:(id)arg1;
 - (BOOL)sortAndStoreRenditions;
-- (void)_storeRenditions;
+- (BOOL)_storeRenditions;
+- (void)_binaryInsertList:(id)arg1;
 - (unsigned long long)_removeRenditionsWithKeySpecs:(id)arg1;
 - (BOOL)_sortRenditionEntries;
 - (void)setAsset:(id)arg1 withKey:(const struct _renditionkeytoken *)arg2 fromRenditionSpec:(id)arg3;

@@ -12,6 +12,7 @@
 {
     NSDictionary *_catalogDictionary;
     NSURL *_finalURL;
+    NSURL *_setCatalogURL;
     NSString *_previousEntityTag;
     BOOL _skipIfUnchanged;
     NSString *_currentEntityTag;
@@ -20,6 +21,7 @@
     NSError *_error;
 }
 
++ (id)preferredCatalogURLsWithExtendedValidationEnforcement:(id *)arg1;
 + (BOOL)_isAppleSeedCatalogURL;
 + (BOOL)isUsingAppleSeedCatalogURL;
 + (id)defaultAppleCatalogURL;
@@ -30,16 +32,17 @@
 - (id)catalogEntityTag;
 - (BOOL)isCatalogChanged;
 - (BOOL)isAppleSeedCatalogURL;
+- (BOOL)isEVProtected;
 - (BOOL)isDefaultAppleProductionCatalogURL;
 - (BOOL)isDefaultAppleCatalogURL;
+- (id)systemConfiguredCatalogURL;
 - (id)finalURL;
 - (id)catalogDictionary;
 - (void)dealloc;
 - (id)init;
 - (id)initWithURL:(id)arg1 previousEntityTag:(id)arg2 skipIfUnchanged:(BOOL)arg3;
-- (id)_fetchCatalogDictionaryReturningError:(id *)arg1 finalURL:(id *)arg2 isAppleDefault:(char *)arg3 isAppleProductionDefault:(char *)arg4 usingURL:(id)arg5;
-- (id)_fetchAppleCatalogDictionaryReturningError:(id *)arg1 finalURL:(id *)arg2 isAppleProductionDefault:(char *)arg3;
-- (BOOL)_isEVCheckDisabled;
+- (id)_fetchCatalogDictionaryReturningError:(id *)arg1 finalURL:(id *)arg2 setURL:(id *)arg3 isAppleDefault:(char *)arg4 isAppleProductionDefault:(char *)arg5 usingURL:(id)arg6;
+- (id)_fetchAppleCatalogDictionaryReturningError:(id *)arg1 finalURL:(id *)arg2 setURL:(id *)arg3 isAppleProductionDefault:(char *)arg4;
 - (id)_fetchDictionaryFromURL:(id)arg1 returningError:(id *)arg2;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class CKDPAsset, CKDPDate, CKDPLocationCoordinate, CKDPPackage, CKDPRecordReference, NSData, NSMutableArray, NSString;
+@class CKDPAsset, CKDPDate, CKDPLocationCoordinate, CKDPPackage, CKDPRecordReference, CKDPStreamingAsset, NSData, NSMutableArray, NSString;
 
 @interface CKDPRecordFieldValue : PBCodable <NSCopying>
 {
@@ -21,16 +21,22 @@
     CKDPLocationCoordinate *_locationValue;
     CKDPPackage *_packageValue;
     CKDPRecordReference *_referenceValue;
+    CKDPStreamingAsset *_streamingAssetValue;
     NSString *_stringValue;
     int _type;
+    BOOL _isEncrypted;
     struct {
         unsigned int doubleValue:1;
         unsigned int signedValue:1;
         unsigned int type:1;
+        unsigned int isEncrypted:1;
     } _has;
 }
 
 + (Class)listValueType;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL isEncrypted; // @synthesize isEncrypted=_isEncrypted;
+@property(retain, nonatomic) CKDPStreamingAsset *streamingAssetValue; // @synthesize streamingAssetValue=_streamingAssetValue;
 @property(retain, nonatomic) CKDPPackage *packageValue; // @synthesize packageValue=_packageValue;
 @property(retain, nonatomic) NSMutableArray *listValues; // @synthesize listValues=_listValues;
 @property(retain, nonatomic) CKDPAsset *assetValue; // @synthesize assetValue=_assetValue;
@@ -41,7 +47,6 @@
 @property(nonatomic) double doubleValue; // @synthesize doubleValue=_doubleValue;
 @property(nonatomic) long long signedValue; // @synthesize signedValue=_signedValue;
 @property(retain, nonatomic) NSData *bytesValue; // @synthesize bytesValue=_bytesValue;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -51,6 +56,8 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasIsEncrypted;
+@property(readonly, nonatomic) BOOL hasStreamingAssetValue;
 @property(readonly, nonatomic) BOOL hasPackageValue;
 - (id)listValueAtIndex:(unsigned long long)arg1;
 - (unsigned long long)listValuesCount;

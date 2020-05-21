@@ -14,12 +14,12 @@ __attribute__((visibility("hidden")))
     NSString *_previousFocusedChildWindowType;
 }
 
+- (void).cxx_destruct;
 - (BOOL)shouldPromoteUIElement:(id)arg1;
 - (BOOL)outputVirtualNavigationWithEvent:(id)arg1 commandString:(id)arg2 request:(id)arg3 keyboardSynched:(BOOL)arg4 allowScrolling:(BOOL)arg5;
 - (void)setFocusedChild:(id)arg1;
 - (void)_resetToItemInDirection:(id)arg1;
 - (void)_describeFocusedChild;
-- (void)dealloc;
 
 @end
 

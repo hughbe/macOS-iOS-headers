@@ -17,8 +17,8 @@
     id <CNContactPickerViewControllerDelegate> _delegate;
 }
 
-@property __weak id <CNContactPickerViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property __weak id <CNContactPickerViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)registerSectionsForDraggedTypes:(id)arg1;
 - (void)selectSectionWithIdentifier:(id)arg1;
 - (void)addSection:(id)arg1;
@@ -26,7 +26,7 @@
 - (void)didSearchForString:(id)arg1;
 - (void)didSelectContact:(id)arg1 key:(id)arg2 value:(id)arg3 identifier:(id)arg4;
 @property(getter=isSearchFieldVisible) BOOL searchFieldVisible;
-@property(copy) NSArray *displayedKeys; // @synthesize displayedKeys=_displayedKeys;
+@property(copy, nonatomic) NSArray *displayedKeys; // @synthesize displayedKeys=_displayedKeys;
 - (id)view;
 - (id)init;
 

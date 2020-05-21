@@ -14,6 +14,7 @@
 
 + (id)flowCommandWithDictionary:(id)arg1 context:(id)arg2;
 + (id)flowCommand;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSDictionary *jsDialogScripts;
 - (id)encodedClassName;

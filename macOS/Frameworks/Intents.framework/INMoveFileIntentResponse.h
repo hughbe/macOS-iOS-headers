@@ -6,32 +6,44 @@
 
 #import <Intents/INIntentResponse.h>
 
-@class NSArray, NSNumber, NSSet, NSString, _INPBMoveFileIntentResponse;
+#import "INMoveFileIntentResponseExport.h"
 
-@interface INMoveFileIntentResponse : INIntentResponse
+@class NSArray, NSNumber, NSSet, NSString;
+
+@interface INMoveFileIntentResponse : INIntentResponse <INMoveFileIntentResponseExport>
 {
-    _INPBMoveFileIntentResponse *_responseMessagePBRepresentation;
-    NSArray *_entityNames;
 }
 
++ (BOOL)_appLaunchRequestedFromCode:(long long)arg1;
 + (int)_errorCodeFromCode:(long long)arg1;
-+ (long long)_codeFromErrorCode:(int)arg1;
++ (int)_typeFromCode:(long long)arg1;
++ (long long)_codeFromType:(int)arg1 errorCode:(int)arg2 appLaunchRequested:(BOOL)arg3;
 + (BOOL)supportsSecureCoding;
-@property(copy) NSArray *entityNames; // @synthesize entityNames=_entityNames;
-- (void).cxx_destruct;
+- (void)setPropertiesByName:(id)arg1;
+- (id)propertiesByName;
+- (id)_dictionaryRepresentation;
 @property(copy) NSString *destinationName;
 @property(copy) NSString *sourceName;
-- (void)setEntityName:(id)arg1;
-@property(copy) NSSet *entityTypeSet;
+@property(copy) NSArray *entityNames;
+@property unsigned long long entityTypes;
 @property(copy) NSNumber *success;
 @property(copy) NSNumber *overwrite;
-- (id)_responseMessagePBRepresentation;
+- (long long)_codeWithName:(id)arg1;
+- (long long)_intentResponseCode;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 @property(readonly) long long code;
 - (id)initWithBackingStore:(id)arg1;
+- (id)_initWithCode:(long long)arg1 userActivity:(id)arg2;
 - (id)initWithCode:(long long)arg1 userActivity:(id)arg2;
 - (id)init;
+@property(copy) NSSet *entityTypeSet;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

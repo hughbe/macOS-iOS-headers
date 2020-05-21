@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface _MKMagnificationGestureRecognizer : NSObject
 {
     id _target;
@@ -16,10 +17,10 @@
     double _magnification;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) long long state; // @synthesize state=_state;
 @property(readonly, nonatomic) double magnification; // @synthesize magnification=_magnification;
 @property(nonatomic) BOOL enabled; // @synthesize enabled=_enabled;
-- (void).cxx_destruct;
 - (struct CGPoint)locationInView:(id)arg1;
 - (void)magnifyWithEvent:(id)arg1;
 - (void)_setState:(long long)arg1;

@@ -38,7 +38,7 @@
 - (void)setNeedsDisplayInRect:(struct CGRect)arg1 levelOfDetail:(int)arg2 options:(id)arg3;
 
 // Remaining properties
-@property __weak id delegate;
+@property __weak id <CATiledLayerDelegate><CALayerDelegate> delegate;
 
 @end
 

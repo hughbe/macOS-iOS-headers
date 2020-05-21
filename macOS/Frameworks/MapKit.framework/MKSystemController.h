@@ -8,12 +8,21 @@
 
 @interface MKSystemController : NSObject
 {
+    id <MKSystemControllerOpenURLDelegate> _openURLDelegate;
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <MKSystemControllerOpenURLDelegate> openURLDelegate; // @synthesize openURLDelegate=_openURLDelegate;
+- (BOOL)shouldCaptureMapViewGestureAnalytics;
 - (BOOL)overrideBlurStyle;
+- (void)openUserActivity:(id)arg1 withApplicationProxy:(id)arg2 requireOptionKeyPromptUnlockDevice:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)placeDialRequest:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (id)_transformURLIfNecessary:(id)arg1;
 - (void)openURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)openURL:(id)arg1;
+- (BOOL)_openURLsOnBackgroundThread;
+- (id)_defaultOpenURLOptions;
 - (BOOL)reduceMotionEnabled;
 - (BOOL)requiresRTT;
 - (BOOL)supports3DImagery;
@@ -24,6 +33,7 @@
 - (BOOL)isHiDPI;
 - (struct CGSize)screenSize;
 - (double)screenScale;
+- (BOOL)shouldUseDarkAppearanceForAppearance:(id)arg1;
 
 @end
 

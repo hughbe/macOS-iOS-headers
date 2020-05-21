@@ -6,7 +6,11 @@
 
 #import <NotesShared/TTMergeableUndoString.h>
 
-@interface TTMergeableAttributedString : TTMergeableUndoString
+#import "CRCoding.h"
+
+@class NSString;
+
+@interface TTMergeableAttributedString : TTMergeableUndoString <CRCoding>
 {
 }
 
@@ -28,7 +32,17 @@
 - (void)saveDeltaSinceTimestamp:(id)arg1 toArchive:(struct String *)arg2;
 - (id)serialize;
 - (void)saveToArchive:(struct String *)arg1;
-- (id)initWithArchive:(const struct String *)arg1 andReplicaID:(id)arg2;
+- (id)initWithArchive:(const struct String *)arg1 andReplicaID:(id)arg2 withOrderedSubstrings:(vector_c5c053b6 *)arg3 timestamp:(id)arg4;
+- (void)encodeWithCRCoder:(id)arg1 string:(struct String *)arg2;
+- (void)encodeWithCRCoder:(id)arg1;
+- (id)initWithCRCoder:(id)arg1 string:(const struct String *)arg2;
+- (id)initWithCRCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

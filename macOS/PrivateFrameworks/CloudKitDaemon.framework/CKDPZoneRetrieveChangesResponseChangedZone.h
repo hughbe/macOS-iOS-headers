@@ -8,18 +8,24 @@
 
 #import "NSCopying.h"
 
-@class CKDPRecordZoneIdentifier;
+@class CKDPRecordZoneIdentifier, CKDPZoneCapabilities;
 
 __attribute__((visibility("hidden")))
 @interface CKDPZoneRetrieveChangesResponseChangedZone : PBCodable <NSCopying>
 {
+    CKDPZoneCapabilities *_capabilities;
     int _changeType;
+    int _deleteType;
     CKDPRecordZoneIdentifier *_zoneIdentifier;
-    CDStruct_f5f6ac14 _has;
+    struct {
+        unsigned int changeType:1;
+        unsigned int deleteType:1;
+    } _has;
 }
 
-@property(retain, nonatomic) CKDPRecordZoneIdentifier *zoneIdentifier; // @synthesize zoneIdentifier=_zoneIdentifier;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CKDPZoneCapabilities *capabilities; // @synthesize capabilities=_capabilities;
+@property(retain, nonatomic) CKDPRecordZoneIdentifier *zoneIdentifier; // @synthesize zoneIdentifier=_zoneIdentifier;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -29,6 +35,11 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(readonly, nonatomic) BOOL hasCapabilities;
+- (int)StringAsDeleteType:(id)arg1;
+- (id)deleteTypeAsString:(int)arg1;
+@property(nonatomic) BOOL hasDeleteType;
+@property(nonatomic) int deleteType; // @synthesize deleteType=_deleteType;
 - (int)StringAsChangeType:(id)arg1;
 - (id)changeTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasChangeType;

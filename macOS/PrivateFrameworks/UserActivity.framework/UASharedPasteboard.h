@@ -13,8 +13,11 @@
     UASharedPasteboardManager *_manager;
 }
 
++ (void)stopPreventingPasteboardSharing;
++ (void)startPreventingPasteboardSharing;
 + (id)remotePasteboard;
 + (void)localPasteboardDidPasteGeneration:(unsigned long long)arg1;
++ (void)clearLocalPasteboardInformation;
 + (void)localPasteboardDidAddItems:(id)arg1 forGeneration:(unsigned long long)arg2;
 + (void)localPasteboardDidAddData:(id)arg1 toItemAtIndex:(unsigned long long)arg2 generation:(unsigned long long)arg3;
 + (void)initialize;
@@ -22,6 +25,7 @@
 - (void)prefetchRemotePasteboardTypes:(id)arg1;
 - (void)requestRemotePasteboardDataForProcess:(int)arg1 withCompletion:(CDUnknownBlockType)arg2;
 - (void)requestRemotePasteboardTypesForProcess:(int)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (BOOL)returnPasteboardDataBeforeArchives;
 
 @end
 

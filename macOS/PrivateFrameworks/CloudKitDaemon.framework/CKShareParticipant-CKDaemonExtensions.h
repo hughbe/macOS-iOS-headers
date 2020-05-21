@@ -7,8 +7,8 @@
 #import "CKShareParticipant.h"
 
 @interface CKShareParticipant (CKDaemonExtensions)
-- (void)_decryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection *)arg1 pcsManager:(id)arg2;
-- (void)_encryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection *)arg1 pcsManager:(id)arg2;
+- (void)_decryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection *)arg1 inShareWithID:(id)arg2 pcsManager:(id)arg3;
+- (void)_encryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection *)arg1 inShareWithID:(id)arg2 pcsManager:(id)arg3;
 - (BOOL)hasEncryptedPersonalInfo;
 @end
 

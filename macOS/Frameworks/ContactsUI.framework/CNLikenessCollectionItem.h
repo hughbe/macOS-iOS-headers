@@ -6,17 +6,25 @@
 
 #import "NSCollectionViewItem.h"
 
-@class CNRecentLikenessesViewController;
+@class CNLikenessSelectionView, CNRecentLikenessesViewController, NSTextField;
 
 @interface CNLikenessCollectionItem : NSCollectionViewItem
 {
     CNRecentLikenessesViewController *_recentsViewController;
+    NSTextField *_label;
+    CNLikenessSelectionView *_selectionView;
 }
 
-@property __weak CNRecentLikenessesViewController *recentsViewController; // @synthesize recentsViewController=_recentsViewController;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CNLikenessSelectionView *selectionView; // @synthesize selectionView=_selectionView;
+@property __weak NSTextField *label; // @synthesize label=_label;
+@property __weak CNRecentLikenessesViewController *recentsViewController; // @synthesize recentsViewController=_recentsViewController;
+- (id)accessibilityLabel;
+- (struct CGRect)accessibilityFrame;
+- (BOOL)accessibilityPerformPress;
 - (void)mouseDown:(id)arg1;
 - (id)contentView;
+- (void)showSelectionImage:(id)arg1;
 - (void)loadView;
 
 @end

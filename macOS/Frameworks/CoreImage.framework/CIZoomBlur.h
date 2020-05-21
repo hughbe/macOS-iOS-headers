@@ -23,6 +23,7 @@ __attribute__((visibility("hidden")))
 - (id)outputImage;
 - (BOOL)_isIdentity;
 - (id)_blur:(id)arg1 pass:(int)arg2 weightsFactor:(float)arg3;
+- (id)_kernelNew;
 - (id)_kernel;
 
 @end

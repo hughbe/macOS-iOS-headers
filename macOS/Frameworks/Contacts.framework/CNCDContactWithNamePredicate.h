@@ -16,8 +16,9 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)nameFieldsToCheck;
-+ (id)operatorForOptions:(unsigned long long)arg1;
-+ (id)predicateFormatStringForOptions:(unsigned long long)arg1;
++ (id)patternSubjectForString:(id)arg1 options:(unsigned long long)arg2;
++ (id)sensitivityModifierForOptions:(unsigned long long)arg1;
++ (id)predicateWithField:(id)arg1 string:(id)arg2 options:(unsigned long long)arg3;
 + (id)predicateWithNameComponent:(id)arg1 options:(unsigned long long)arg2;
 - (id)cn_coreDataPredicate;
 

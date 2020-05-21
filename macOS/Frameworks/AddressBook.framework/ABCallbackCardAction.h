@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCallbackCardAction : NSObject <ABActionDelegate>
 {
     CDStruct_014ac2ec _callbacks;
@@ -19,6 +18,7 @@ __attribute__((visibility("hidden")))
 - (void)performActionForPerson:(id)arg1 identifier:(id)arg2;
 - (BOOL)shouldEnableActionForPerson:(id)arg1 identifier:(id)arg2;
 - (id)titleForPerson:(id)arg1 identifier:(id)arg2;
+- (id)unlocalizedTitle;
 @property(readonly) NSString *actionProperty;
 - (id)initWithCallbacks:(CDStruct_014ac2ec)arg1;
 

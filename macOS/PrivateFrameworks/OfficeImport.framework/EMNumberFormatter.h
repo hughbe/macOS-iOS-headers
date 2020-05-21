@@ -8,23 +8,24 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface EMNumberFormatter : NSObject
 {
     struct __CFNumberFormatter *_genericFormatter;
     struct __CFNumberFormatter *_doubleFormatter;
     struct __CFNumberFormatter *_percentFormatter;
     struct __CFNumberFormatter *_bigNumberFormatter;
-    struct __CFNumberFormatter *_smallNumberFormatter;
     struct __CFNumberFormatter *_currencyFormatter;
     struct __CFDateFormatter *_dateFormatter;
     NSString *_excelFormatString;
     NSString *_baseICUFormatString;
-    _Bool _isNegativeRed;
-    unsigned short _currencySymbol;
+    BOOL _isNegativeRed;
+    BOOL _hasLocales;
     int _formatType;
 }
 
 + (id)formatterForFormat:(id)arg1;
+- (void).cxx_destruct;
 - (id)formatValue:(double)arg1 inWorkbook:(id)arg2;
 - (void)_parseExcelFormatString:(id)arg1;
 - (id)convertedGenericNumberFormatWithFormat:(id)arg1;
@@ -32,6 +33,8 @@
 - (id)formatDate:(id)arg1;
 - (id)formatCurrency:(double)arg1;
 - (id)formatDefault:(double)arg1;
+- (id)formatDefault:(double)arg1 showingNumberOfDigits:(unsigned long long)arg2;
+- (unsigned long long)optimalNumberOfDigitsForValue:(double)arg1;
 - (id)formatPercent:(double)arg1;
 - (id)formatDoubleValue:(double)arg1;
 - (id)_icuFormatStringForCurrencyFormat;
@@ -44,11 +47,10 @@
 - (struct __CFDateFormatter *)_dateFormatter;
 - (struct __CFNumberFormatter *)_percentFormatter;
 - (struct __CFNumberFormatter *)_doubleFormatter;
-- (struct __CFNumberFormatter *)_smallNumberFormatter;
 - (struct __CFNumberFormatter *)_bigNumberFormatter;
-- (struct __CFNumberFormatter *)_genericFormatter;
+- (struct __CFNumberFormatter *)_genericFormatterForNumberOfSignificantDigits:(unsigned long long)arg1;
 - (void)dealloc;
-- (id)initWithDefaultFormatString;
+- (id)initForGeneralFormatting;
 - (id)initWithExcelFormatString:(id)arg1;
 
 @end

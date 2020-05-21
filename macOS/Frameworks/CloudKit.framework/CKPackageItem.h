@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSData, NSNumber, NSURL;
+@class NSData, NSNumber, NSString, NSURL;
 
 @interface CKPackageItem : NSObject
 {
@@ -21,8 +21,11 @@
     NSNumber *_fileID;
     NSNumber *_generationID;
     NSData *_wrappedAssetKey;
+    NSString *_itemTypeHint;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *itemTypeHint; // @synthesize itemTypeHint=_itemTypeHint;
 @property(retain, nonatomic) NSData *wrappedAssetKey; // @synthesize wrappedAssetKey=_wrappedAssetKey;
 @property(retain, nonatomic) NSNumber *generationID; // @synthesize generationID=_generationID;
 @property(retain, nonatomic) NSNumber *fileID; // @synthesize fileID=_fileID;
@@ -34,7 +37,6 @@
 @property(nonatomic) unsigned long long itemID; // @synthesize itemID=_itemID;
 @property(retain, nonatomic) NSURL *fileURL; // @synthesize fileURL=_fileURL;
 @property(nonatomic) long long packageIndex; // @synthesize packageIndex=_packageIndex;
-- (void).cxx_destruct;
 - (id)description;
 - (id)CKPropertiesDescription;
 - (id)initWithDeviceID:(id)arg1 fileID:(id)arg2 generationID:(id)arg3;

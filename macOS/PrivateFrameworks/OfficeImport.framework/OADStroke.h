@@ -33,6 +33,7 @@ __attribute__((visibility("hidden")))
 + (id)defaultProperties;
 + (id)blackStroke;
 + (id)nullStroke;
+- (void).cxx_destruct;
 @property(retain, nonatomic) OADLineEnd *tail; // @synthesize tail=mTail;
 @property(retain, nonatomic) OADLineEnd *head; // @synthesize head=mHead;
 - (BOOL)isEqual:(id)arg1;
@@ -69,7 +70,6 @@ __attribute__((visibility("hidden")))
 - (void)fixPropertiesForChangingParentPreservingEffectiveValues:(id)arg1;
 - (BOOL)isAnythingOverridden;
 - (id)initWithDefaults;
-- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 

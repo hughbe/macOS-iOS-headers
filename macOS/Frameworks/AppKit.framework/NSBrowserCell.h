@@ -25,7 +25,6 @@
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)_drawFillWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)_drawHighlightWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (void)_drawLiveResizeHighlightWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (id)highlightColorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (id)highlightColorInView:(id)arg1;
 - (BOOL)_checkLoaded:(id)arg1 rect:(const struct CGRect *)arg2 highlight:(long long)arg3;
@@ -59,7 +58,6 @@
 - (id)_enclosingBrowserForControlView:(id)arg1;
 - (BOOL)_branchImageEnabled;
 - (void)_setBranchImageEnabled:(BOOL)arg1;
-- (struct CGSize)labelSizeForBounds:(struct CGRect)arg1;
 
 @end
 

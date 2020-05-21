@@ -7,10 +7,11 @@
 #import "NSView.h"
 
 #import "AVCaptureControllerDelegate.h"
+#import "NSTouchBarProvider.h"
 
-@class AVCameraDisabledView, AVCaptureController, AVCaptureControlsViewController, AVCaptureDevice, AVCaptureFileOutput, AVCaptureSession, AVCaptureVideoPreviewLayer, AVControlsContainerViewController, AVLoadingIndicatorView, NSArray, NSObject<OS_dispatch_semaphore>, NSString, NSTimer, NSTrackingArea;
+@class AVCameraDisabledView, AVCaptureController, AVCaptureControlsViewController, AVCaptureDevice, AVCaptureFileOutput, AVCaptureSession, AVCaptureVideoPreviewLayer, AVControlsContainerViewController, AVLoadingIndicatorView, NSArray, NSObject<OS_dispatch_semaphore>, NSString, NSTimer, NSTouchBar, NSTrackingArea;
 
-@interface AVCaptureView : NSView <AVCaptureControllerDelegate>
+@interface AVCaptureView : NSView <AVCaptureControllerDelegate, NSTouchBarProvider>
 {
     NSObject<OS_dispatch_semaphore> *_propertySemaphore;
     id <AVCaptureViewDelegate> _delegate;
@@ -42,14 +43,15 @@
 + (BOOL)automaticallyNotifiesObserversOfFileOutput;
 + (id)keyPathsForValuesAffectingSession;
 + (BOOL)automaticallyNotifiesObserversOfSession;
++ (id)keyPathsForValuesAffectingTouchBar;
 + (void)initialize;
 + (id)keyPathsForValuesAffectingAudioDevice;
 + (id)keyPathsForValuesAffectingVideoDevice;
 + (id)keyPathsForValuesAffectingSelectedCompressionOptionsIdentifier;
 + (id)keyPathsForValuesAffectingPrefersUnobscuredContent;
+- (void).cxx_destruct;
 @property(retain) AVCaptureController *captureController; // @synthesize captureController=_captureController;
 @property long long controlsStyle; // @synthesize controlsStyle=_controlsStyle;
-- (void).cxx_destruct;
 - (void)captureController:(id)arg1 startRecordingToFileOutput:(id)arg2;
 - (void)_showOrHideControls;
 @property(readonly) AVCaptureFileOutput *fileOutput;
@@ -107,6 +109,7 @@
 - (void)_setupLoadingIndicatorView;
 - (void)_setupControlsContainerView;
 @property(retain) AVCaptureControlsViewController *captureControlsViewController;
+@property(readonly) NSTouchBar *touchBar;
 - (void)viewDidMoveToWindow;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

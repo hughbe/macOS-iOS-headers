@@ -11,11 +11,20 @@
 }
 
 + (id)sharedInstance;
+@property(readonly, nonatomic) BOOL transitListInstructionTimeText;
+@property(readonly, nonatomic) BOOL transitTextInPlanningArtwork;
+@property(readonly, nonatomic) unsigned long long maxRandomJitterForHypothesisWakeup;
+@property(readonly, nonatomic) unsigned long long minRandomJitterForHypothesisWakeup;
 @property(readonly, nonatomic) double fastWalkingSpeed;
 @property(readonly, nonatomic) double slowWalkingSpeed;
 @property(readonly, nonatomic) double averageWalkingSpeed;
+@property(readonly, nonatomic) BOOL transitTTLSupported;
 @property(readonly, nonatomic) BOOL shouldUseServerSideETAs;
 @property(readonly, nonatomic) double exitRegionSize;
+@property(readonly, nonatomic) unsigned long long maximumTraceFileCount;
+@property(readonly, nonatomic) double maximumUserRoutingPreferencesAge;
+@property(readonly, nonatomic) BOOL useConservativeDepartureForRefreshTimer;
+@property(readonly, nonatomic) double updateTimeout;
 @property(readonly, nonatomic) unsigned long long maximumNumberOfLeechedLocations;
 @property(readonly, nonatomic) double ageForRefresh;
 @property(readonly, nonatomic) double minimumExpirationOffset;
@@ -25,9 +34,9 @@
 @property(readonly, nonatomic) double refreshTimeIntervalBackoffBase;
 @property(readonly, nonatomic) double minimumTimerTimeStampFudge;
 @property(readonly, nonatomic) double maximumRefreshIntervalLeeway;
-@property(readonly, nonatomic) unsigned long long refreshEquationConstC;
-@property(readonly, nonatomic) unsigned long long refreshEquationConstB;
-@property(readonly, nonatomic) unsigned long long refreshEquationConstA;
+@property(readonly, nonatomic) unsigned long long refreshEquationHighestFrequency;
+@property(readonly, nonatomic) unsigned long long refreshEquationLowestFrequencyTransit;
+@property(readonly, nonatomic) unsigned long long refreshEquationLowestFrequency;
 @property(readonly, nonatomic) double refreshTimeIntervalToUseIfError;
 @property(readonly, nonatomic) unsigned long long maximumNumberOfProcessingLoopRepeats;
 @property(readonly, nonatomic) unsigned long long accessValueThresholdToUpdateCacheEntries;
@@ -47,13 +56,27 @@
 @property(readonly, nonatomic) double extraLocationWaitTimeInterval;
 @property(readonly, nonatomic) double staleLocationUseTimerInterval;
 @property(readonly, nonatomic) double locationUpdateTimerInterval;
+@property(readonly, nonatomic) double locationUpdatesDesiredAccuracyForTransit;
 @property(readonly, nonatomic) double locationUpdatesDesiredAccuracyForDriving;
 @property(readonly, nonatomic) double locationUpdatesDesiredAccuracyForWalking;
+@property(readonly, nonatomic) double locationUpdatesDesiredAccuracyWhileStationaryForTransit;
 @property(readonly, nonatomic) double locationUpdatesDesiredAccuracyWhileStationaryForWalking;
 @property(readonly, nonatomic) double locationUpdatesDesiredAccuracyWhileStationaryForDriving;
+@property(readonly, nonatomic) double minimumTimeIntervalToConsiderLeechedLocationInSeconds;
+@property(readonly, nonatomic) double minimumDistanceToConsiderLeechedLocationInMeters;
 @property(readonly, nonatomic) double minimumDistanceToGetLocationUpdatesInMeters;
+@property(readonly, nonatomic) BOOL shouldSnapToParkingLotSegments;
+@property(readonly, nonatomic) BOOL shouldMatchToLAR;
+@property(readonly, nonatomic) double maxDistanceFromOriginToSuppressReroute;
+@property(readonly, nonatomic) double automaticTrafficIncidentRerouteDelay;
+@property(readonly, nonatomic) BOOL shouldAutomaticallyRerouteTrafficIncidents;
+@property(readonly, nonatomic) int endValidDistanceOffset;
+@property(readonly, nonatomic) int startValidDistanceOffset;
+@property(readonly, nonatomic) BOOL shouldRequestInlineShields;
+@property(readonly, nonatomic) BOOL shouldRequestLaneGuidance;
+@property(readonly, nonatomic) BOOL shouldUseGuidanceEventManager;
 @property(readonly, nonatomic) BOOL shouldLazyLoadRoutes;
-@property(readonly, nonatomic) BOOL shouldRunLegacyNavigation;
+@property(readonly, nonatomic) BOOL shouldShowServiceErrorAlert;
 @property(readonly, nonatomic) BOOL shouldRunNavigationInDaemon;
 
 @end

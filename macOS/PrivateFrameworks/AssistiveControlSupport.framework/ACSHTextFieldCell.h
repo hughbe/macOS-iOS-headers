@@ -8,12 +8,19 @@
 
 @interface ACSHTextFieldCell : NSTextFieldCell
 {
-    int _verticalTextPlacement;
+    BOOL _shouldUseAccessibilityUISubrole;
+    unsigned long long _verticalTextPlacement;
 }
 
-@property(nonatomic) int verticalTextPlacement; // @synthesize verticalTextPlacement=_verticalTextPlacement;
+@property(nonatomic) BOOL shouldUseAccessibilityUISubrole; // @synthesize shouldUseAccessibilityUISubrole=_shouldUseAccessibilityUISubrole;
+@property(nonatomic) unsigned long long verticalTextPlacement; // @synthesize verticalTextPlacement=_verticalTextPlacement;
 - (id)accessibilitySubrole;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (void)_updateVerticalCentering;
+- (void)_commonInit;
+- (id)initWithCoder:(id)arg1;
+- (id)init;
+- (id)initTextCell:(id)arg1;
 
 @end
 

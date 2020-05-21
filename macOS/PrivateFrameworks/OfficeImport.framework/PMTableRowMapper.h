@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     unsigned long long mRowIndex;
 }
 
+- (void).cxx_destruct;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (unsigned long long)cellCount;
 - (float)height;

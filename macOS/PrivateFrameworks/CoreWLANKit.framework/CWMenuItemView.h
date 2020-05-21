@@ -8,6 +8,7 @@
 
 @class NSArray, NSMenuItem;
 
+__attribute__((visibility("hidden")))
 @interface CWMenuItemView : NSView
 {
     NSMenuItem *_menuItem;
@@ -15,9 +16,11 @@
     BOOL _isPopupMenuItem;
 }
 
++ (unsigned long long)idealMenuItemWidthWithTitle:(id)arg1 images:(id)arg2 isPopupMenuItem:(BOOL)arg3;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)__drawLTRRect:(struct CGRect)arg1;
 - (void)__drawRTLRect:(struct CGRect)arg1;
+- (id)__flipImage:(id)arg1;
 - (unsigned long long)idealMenuItemWidth;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 menuItem:(id)arg2 images:(id)arg3 isPopupMenuItem:(BOOL)arg4;

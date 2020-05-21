@@ -7,32 +7,40 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBDouble.h"
 
-@class NSMutableArray, PBUnknownFields;
+@class NSArray, NSString;
 
-@interface _INPBDouble : PBCodable <NSCopying>
+@interface _INPBDouble : PBCodable <_INPBDouble, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    NSMutableArray *_values;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
+    NSArray *_values;
 }
 
++ (BOOL)supportsSecureCoding;
 + (Class)valueType;
-+ (id)options;
-@property(retain, nonatomic) NSMutableArray *values; // @synthesize values=_values;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(copy, nonatomic) NSArray *values; // @synthesize values=_values;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
 - (id)valueAtIndex:(unsigned long long)arg1;
-- (unsigned long long)valuesCount;
+@property(readonly, nonatomic) unsigned long long valuesCount;
 - (void)addValue:(id)arg1;
 - (void)clearValues;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

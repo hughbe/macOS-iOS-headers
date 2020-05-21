@@ -7,7 +7,9 @@
 @class NSRemoteServiceConnection, NSRemoteServiceRequest;
 
 @protocol NSRemoteServiceConnectionDelegate
-- (void)connection:(NSRemoteServiceConnection *)arg1 didReceiveError:(id)arg2;
 - (void)connection:(NSRemoteServiceConnection *)arg1 didReceiveRequest:(NSRemoteServiceRequest *)arg2;
+
+@optional
+- (void)connection:(NSRemoteServiceConnection *)arg1 didReceiveError:(id)arg2;
 @end
 

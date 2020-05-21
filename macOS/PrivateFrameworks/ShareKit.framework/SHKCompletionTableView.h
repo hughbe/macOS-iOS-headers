@@ -6,6 +6,7 @@
 
 #import "NSTableView.h"
 
+__attribute__((visibility("hidden")))
 @interface SHKCompletionTableView : NSTableView
 {
     BOOL _lastMousePositionWasOverList;

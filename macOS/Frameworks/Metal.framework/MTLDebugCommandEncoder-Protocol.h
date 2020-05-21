@@ -15,8 +15,18 @@
 - (void)kprintf:(NSString *)arg1;
 
 @optional
+- (void)postFinishEvent;
 - (void)postFinishEvent:(const char *)arg1;
+- (void)dumpTexture:(id <MTLTexture>)arg1;
 - (void)dumpTexture:(id <MTLTexture>)arg1 name:(const char *)arg2;
+- (void)dumpTexture:(id <MTLTexture>)arg1 name:(const char *)arg2 glMode:(BOOL)arg3;
+- (void)dumpBuffer:(id <MTLBuffer>)arg1;
 - (void)dumpBuffer:(id <MTLBuffer>)arg1 name:(const char *)arg2;
+- (unsigned int)getLastStartStopCaptureResult;
+- (void)stopCapture;
+- (void)stopCapture:(const char *)arg1;
+- (void)startCapture;
+- (void)startCaptureWithSettings:(const char *)arg1;
+- (void)startCaptureWithSettings:(const char *)arg1 from:(const char *)arg2;
 @end
 

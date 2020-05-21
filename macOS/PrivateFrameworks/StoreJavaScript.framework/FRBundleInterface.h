@@ -10,10 +10,11 @@
 #import "FRJSObjectDelegate.h"
 #import "NSKeyedUnarchiverDelegate.h"
 
-@class FRJSObject, NSArray, NSMutableDictionary, NSString;
+@class CKStoreClient, FRJSObject, NSArray, NSMutableDictionary, NSString;
 
 @interface FRBundleInterface : NSObject <NSKeyedUnarchiverDelegate, FRJSMessagingDelegate, FRJSObjectDelegate>
 {
+    CKStoreClient *_storeClient;
     struct OpaqueWKBundle *_bundle;
     struct OpaqueWKBundlePage *_page;
     struct OpaqueWKBundleFrame *_frame;
@@ -28,6 +29,7 @@
 }
 
 + (id)allowedMessageClasses;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *activeContextMenu; // @synthesize activeContextMenu=_activeContextMenu;
 @property(readonly, nonatomic) NSMutableDictionary *contextMenus; // @synthesize contextMenus=_contextMenus;
 @property(readonly, nonatomic) NSMutableDictionary *eventListeners; // @synthesize eventListeners=_eventListeners;
@@ -39,10 +41,10 @@
 @property(readonly, nonatomic) struct OpaqueWKBundleFrame *frame; // @synthesize frame=_frame;
 @property(readonly, nonatomic) struct OpaqueWKBundlePage *page; // @synthesize page=_page;
 @property(readonly, nonatomic) struct OpaqueWKBundle *bundle; // @synthesize bundle=_bundle;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) CKStoreClient *storeClient; // @synthesize storeClient=_storeClient;
 - (void)contextMenuDismissed;
 - (void)contextMenuItemClicked:(id)arg1;
-- (struct OpaqueWKArray *)contextMenuItemsForJSContextMenuNamed:(id)arg1 withDOMElement:(struct OpaqueJSValue *)arg2 context:(struct OpaqueJSContext *)arg3;
+- (struct OpaqueWKArray *)_contextMenuItemsForJSContextMenuNamed:(id)arg1 appendingDefaultMenu:(struct OpaqueWKArray *)arg2 withDOMElement:(struct OpaqueJSValue *)arg3 context:(struct OpaqueJSContext *)arg4;
 - (Class)unarchiver:(id)arg1 cannotDecodeObjectOfClassName:(id)arg2 originalClasses:(id)arg3;
 - (id)object:(id)arg1 callFunction:(id)arg2 withArguments:(id)arg3;
 - (BOOL)hasFunction:(id)arg1 forObject:(id)arg2;

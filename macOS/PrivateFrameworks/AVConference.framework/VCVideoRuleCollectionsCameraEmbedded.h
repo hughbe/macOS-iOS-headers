@@ -14,11 +14,16 @@ __attribute__((visibility("hidden")))
 
 + (id)sharedInstance;
 - (BOOL)setupRules;
+- (BOOL)setupHEVCRules;
+- (BOOL)supportsHEVCWifiEncoding;
+- (BOOL)supportsHEVCWifiDecoding;
+- (struct _VCBitrateConfiguration *)bitrateConfiguration;
 - (BOOL)setupH264Rules;
-- (BOOL)setupH264WifiRulesWithEncodingType:(unsigned char)arg1 formatList:(struct _VCVideoFormat *)arg2 formatListCount:(unsigned int)arg3 preferredFormat:(id)arg4 supportsHighDef:(char *)arg5;
-- (struct _VCHardwareConfiguration *)hardwareConfiguration;
+- (BOOL)setupVideoRulesForPayload:(int)arg1 transportType:(unsigned char)arg2 encodingType:(unsigned char)arg3 formatList:(struct _VCVideoFormat *)arg4 formatListCount:(unsigned int)arg5 preferredFormat:(id)arg6 supportsHighDef:(char *)arg7;
+- (struct _VCHardwareConfiguration *)hardwareConfigurationForPayload:(int)arg1 transportType:(unsigned char)arg2;
 - (double)preferredAspectRatio;
 - (void)initSupportedPayloads;
+- (id)description;
 - (void)dealloc;
 - (id)initWithHardwareSettings:(id)arg1;
 

@@ -14,24 +14,30 @@ __attribute__((visibility("hidden")))
     CALayer *_shadowLayer;
     CALayer *_shadowMask;
     CALayer *_imageLayer;
+    CALayer *_backgroundLayer;
     CALayer *_selectionOverlayLayer;
     NSShadow *_adjustedImageShadow;
     BOOL _usesCustomContentsRect;
     BOOL _roundsImage;
+    BOOL _usesAutomaticImageInset;
+    BOOL _preserveAspectRatio;
     NSShadow *_imageShadow;
     NSImage *_image;
     NSColor *_backgroundColor;
     long long _highlightState;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL preserveAspectRatio; // @synthesize preserveAspectRatio=_preserveAspectRatio;
+@property(nonatomic) BOOL usesAutomaticImageInset; // @synthesize usesAutomaticImageInset=_usesAutomaticImageInset;
 @property(nonatomic) BOOL roundsImage; // @synthesize roundsImage=_roundsImage;
 @property(nonatomic) long long highlightState; // @synthesize highlightState=_highlightState;
 @property(nonatomic) BOOL usesCustomContentsRect; // @synthesize usesCustomContentsRect=_usesCustomContentsRect;
 @property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 @property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
 @property(retain, nonatomic) NSShadow *imageShadow; // @synthesize imageShadow=_imageShadow;
-- (void).cxx_destruct;
 - (void)_updateCustomContentsRectIfNeeded;
+- (struct CGRect)_imageViewFrame;
 - (struct CGRect)_insetBounds;
 - (void)applyIconTreatment;
 - (void)layout;
@@ -42,8 +48,14 @@ __attribute__((visibility("hidden")))
 - (void)_updateSelectionOverlayTint;
 - (void)_setUpSelectionOverlayLayer;
 - (void)_createShadowLayerIfNeededUsingDebugColors:(BOOL)arg1;
+- (void)_applyImageShadowToLayer:(id)arg1 useShadowDebugColors:(BOOL)arg2;
 - (void)_createAdjustedImageShadowIfNeededUsingDebugColors:(BOOL)arg1;
+- (void)_setUpBackgroundLayer;
 - (void)_setUpImageLayer;
+- (void)updateLayer;
+- (BOOL)wantsUpdateLayer;
+- (void)_updateBackgroundColor;
+- (void)_updateImageLayerMasksToBounds;
 - (void)_applyImageToLayer;
 - (id)initWithFrame:(struct CGRect)arg1;
 

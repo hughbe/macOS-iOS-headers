@@ -16,14 +16,21 @@
 }
 
 @property(readonly, nonatomic) MTLToolsPointerArray *functions; // @synthesize functions=_functions;
-- (void).cxx_destruct;
+@property(readonly) unsigned long long type;
+@property(readonly) NSArray *externFunctionNames;
 @property(readonly) NSArray *functionNames;
+- (id)newFunctionWithName:(id)arg1 constantValues:(id)arg2 functionCache:(id)arg3 error:(id *)arg4;
+- (void)newFunctionWithName:(id)arg1 constantValues:(id)arg2 pipelineLibrary:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)newFunctionWithName:(id)arg1 constantValues:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (id)newFunctionWithName:(id)arg1 constantValues:(id)arg2 pipelineLibrary:(id)arg3 error:(id *)arg4;
 - (id)newFunctionWithName:(id)arg1 constantValues:(id)arg2 error:(id *)arg3;
+- (id)newExternFunctionWithName:(id)arg1;
 - (id)newFunctionWithName:(id)arg1;
 @property(readonly) id <MTLDevice> device;
 @property(copy) NSString *label;
+@property(copy) NSString *overrideTriple;
 - (void)acceptVisitor:(id)arg1;
+- (void)dealloc;
 - (id)initWithBaseObject:(id)arg1 parent:(id)arg2;
 
 // Remaining properties

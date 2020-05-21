@@ -9,6 +9,7 @@
 @class NSString, WBSFormAutoFillCorrectionManager, WBSFormFieldClassificationCorrector;
 
 @protocol WBSFormFieldClassificationCorrectorDelegate <NSObject>
+- (BOOL)formFieldClassificationCorrector:(WBSFormFieldClassificationCorrector *)arg1 hasAddressBookDataForAddressBookLabel:(NSString *)arg2;
 - (WBSFormAutoFillCorrectionManager *)formAutoFillCorrectionManagerForFormFieldClassificationCorrector:(WBSFormFieldClassificationCorrector *)arg1;
 - (NSString *)formFieldClassificationCorrector:(WBSFormFieldClassificationCorrector *)arg1 bestAddressBookLabelForControlValue:(NSString *)arg2;
 @end

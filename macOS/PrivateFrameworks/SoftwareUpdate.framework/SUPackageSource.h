@@ -9,7 +9,7 @@
 #import "NSSecureCoding.h"
 #import "PKPackageSource.h"
 
-@class SUCatalog;
+@class NSArray, SUCatalog;
 
 @interface SUPackageSource : NSObject <NSSecureCoding, PKPackageSource>
 {
@@ -20,7 +20,7 @@
 + (BOOL)supportsSecureCoding;
 @property(retain) SUCatalog *catalog; // @synthesize catalog=_catalog;
 @property BOOL packageSourceIsValid; // @synthesize packageSourceIsValid=_packageSourceIsValid;
-- (id)allPackageReferences;
+@property(readonly) NSArray *allPackageReferences;
 - (id)digestForPackageAtURLPath:(id)arg1;
 - (BOOL)registerProduct:(id)arg1;
 - (void)dealloc;

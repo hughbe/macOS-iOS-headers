@@ -6,11 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSString, SFSafariPage, SFSafariWindow;
+@class NSArray, NSDictionary, NSString, NSURL, SFSafariPage, SFSafariWindow;
 
 @protocol SFSafariExtensionVendorProtocol <NSObject>
+- (void)page:(SFSafariPage *)arg1 willNavigateToURL:(NSURL *)arg2;
+- (void)contentBlockerWithIdentifier:(NSString *)arg1 blockedResourcesWithURLs:(NSArray *)arg2 onPage:(SFSafariPage *)arg3;
+- (void)additionalRequestHeadersForURL:(NSURL *)arg1 completionHandler:(void (^)(NSDictionary *))arg2;
+- (void)messageReceivedFromContainingAppWithName:(NSString *)arg1 userInfo:(NSDictionary *)arg2;
 - (void)popoverDidCloseInWindow:(SFSafariWindow *)arg1;
 - (void)popoverWillShowInWindow:(SFSafariWindow *)arg1;
+- (void)validateContextMenuItemWithCommand:(NSString *)arg1 inPage:(SFSafariPage *)arg2 userInfo:(NSDictionary *)arg3 validationHandler:(void (^)(BOOL, NSString *))arg4;
 - (void)contextMenuItemSelectedWithCommand:(NSString *)arg1 inPage:(SFSafariPage *)arg2 userInfo:(NSDictionary *)arg3;
 - (void)toolbarItemClickedInWindow:(SFSafariWindow *)arg1;
 - (void)validateToolbarItemInWindow:(SFSafariWindow *)arg1 validationHandler:(void (^)(BOOL, NSString *))arg2;

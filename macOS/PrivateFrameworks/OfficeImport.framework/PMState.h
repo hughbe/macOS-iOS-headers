@@ -15,10 +15,10 @@ __attribute__((visibility("hidden")))
     OADTablePartStyle *mCurrentRowStyle;
 }
 
+- (void).cxx_destruct;
 - (id)currentRowStyle;
 - (void)setCurrentRowStyle:(id)arg1;
 - (id)listState;
-- (void)dealloc;
 - (id)init;
 
 @end

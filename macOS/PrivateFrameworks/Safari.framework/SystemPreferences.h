@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
 + (BOOL)_openPreferencePaneAtPath:(id)arg1 subsection:(id)arg2;
 + (BOOL)openSecurityAndPrivacyPreferences:(id)arg1;
 + (BOOL)openNetworkPreferences:(id)arg1;
++ (BOOL)openDateAndTimePreferences;
 + (BOOL)openInternetAccountsPreferences;
 + (BOOL)openNotificationsPreferences;
 

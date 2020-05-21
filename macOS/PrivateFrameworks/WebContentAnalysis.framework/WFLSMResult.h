@@ -6,26 +6,25 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSNumber;
+@class NSMutableArray;
 
 @interface WFLSMResult : NSObject
 {
     NSMutableArray *categoryJudgements;
-    NSNumber *threshold;
+    float _threshold;
 }
 
-+ (id)LSMResultWithLSMResultRef:(struct __LSMResult *)arg1 threshold:(id)arg2;
++ (id)LSMResultWithLSMResultRef:(struct __LSMResult *)arg1 threshold:(float)arg2;
 + (id)extractScoresFromLSMResults:(struct __LSMResult *)arg1;
-@property(copy) NSNumber *threshold; // @synthesize threshold;
-- (void)dealloc;
-- (id)description;
 - (BOOL)isRestricted;
 - (id)debugDescription;
 - (void)setScore:(float)arg1 forCategory:(long long)arg2;
 - (float)scoreForCategory:(long long)arg1;
 - (long long)bestMatchingCategory;
 - (long long)numberOfCategories;
-- (id)initWithLSMResultRef:(struct __LSMResult *)arg1 threshold:(id)arg2;
+- (id)description;
+- (void)dealloc;
+- (id)initWithLSMResultRef:(struct __LSMResult *)arg1 threshold:(float)arg2;
 
 @end
 

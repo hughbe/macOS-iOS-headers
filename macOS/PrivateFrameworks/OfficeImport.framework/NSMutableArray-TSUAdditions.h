@@ -7,6 +7,7 @@
 #import "NSMutableArray.h"
 
 @interface NSMutableArray (TSUAdditions)
+- (unsigned long long)tsu_insertObject:(id)arg1 usingComparator:(CDUnknownBlockType)arg2;
 - (void)tsu_trimObjectsFromIndex:(unsigned long long)arg1;
 - (void)tsu_removeObjectsIdenticalToObjectsInArray:(id)arg1;
 - (void)tsu_addObjectsFromNonNilArray:(id)arg1;

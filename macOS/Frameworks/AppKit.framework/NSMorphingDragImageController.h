@@ -8,7 +8,7 @@
 
 #import "NSTearOffTabWindowDelegate.h"
 
-@class NSAnimation, NSImage, NSMorphingDragImageView, NSString, NSTearOffTabWindow, NSTimer, NSView, NSWindow, NSWindowTabViewItem;
+@class NSAnimation, NSImage, NSMorphingDragImageView, NSString, NSTabBarItem, NSTearOffTabWindow, NSTimer, NSView, NSWindow;
 
 __attribute__((visibility("hidden")))
 @interface NSMorphingDragImageController : NSObject <NSTearOffTabWindowDelegate>
@@ -17,7 +17,7 @@ __attribute__((visibility("hidden")))
     NSImage *_windowDragImage;
     struct CGSize _maxImageSize;
     struct CGSize _originalViewOffset;
-    NSWindowTabViewItem *_dragItem;
+    NSTabBarItem *_dragItem;
     id <NSMorphingDragImageControllerDragSource> _dragSource;
     NSView *_sourceView;
     NSMorphingDragImageView *_dragImageView;
@@ -36,8 +36,8 @@ __attribute__((visibility("hidden")))
 }
 
 + (void)dragTabWithDraggingItem:(id)arg1 tabButtonImage:(id)arg2 pinnedTabButtonImage:(id)arg3 windowImage:(id)arg4 fromView:(id)arg5 at:(struct CGPoint)arg6 source:(id)arg7;
-@property(readonly, nonatomic) NSTearOffTabWindow *dragWindow; // @synthesize dragWindow=_dragWindow;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSTearOffTabWindow *dragWindow; // @synthesize dragWindow=_dragWindow;
 - (id)detachWindowForTearOffTabWindow:(id)arg1;
 - (void)_morphToDragImage:(id)arg1;
 - (void)_updateDragImageForCurrentDragState;

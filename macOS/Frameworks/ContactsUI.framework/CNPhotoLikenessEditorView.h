@@ -10,17 +10,17 @@
 #import "NSOutlineViewDelegate.h"
 #import "NSTextFieldDelegate.h"
 
-@class CALayer, CNPhotoLikenessBuddyControlsViewController, CNPhotoLikenessEditorViewController, CNPhotoLikenessEditorZoomSliderController, IKImageBrowserView, NSLayoutConstraint, NSMutableDictionary, NSOutlineView, NSString, NSTableColumn, NSTextField;
+@class CALayer, CNPhotoLikenessBuddyControlsViewController, CNPhotoLikenessEditorViewController, CNPhotoLikenessEditorZoomSliderController, CNPhotoLikenessMaskView, CNUIDeprecatedIKImageBrowserView, NSLayoutConstraint, NSMutableDictionary, NSOutlineView, NSString, NSTableColumn;
 
 @interface CNPhotoLikenessEditorView : NSView <NSOutlineViewDelegate, CNPhotoLikenessEditorZoomDelegate, NSTextFieldDelegate>
 {
     BOOL _showViewFinder;
+    BOOL _ignoreOutlineViewSelectionChangeNotifications;
     CNPhotoLikenessEditorViewController *_viewController;
     long long _displayMode;
     NSOutlineView *_sourcesTable;
     NSTableColumn *_tableColumn;
     double _photoHeight;
-    NSView *_sourcesTableParentView;
     NSView *_sourceDisplayView;
     NSMutableDictionary *_sourceViewControllers;
     NSView *_currentSourceView;
@@ -30,7 +30,6 @@
     NSLayoutConstraint *_zoomSliderBottomConstraint;
     NSLayoutConstraint *_sidebarWidthConstraint;
     CALayer *_maskLayer;
-    NSTextField *_faceAlignmentLabel;
     NSLayoutConstraint *_heightConstraint;
     NSLayoutConstraint *_sourceDisplayViewTopConstraint;
     NSLayoutConstraint *_sourceDisplayViewBottomConstraint;
@@ -40,9 +39,13 @@
     NSLayoutConstraint *_sourceDisplayViewCenterXConstraint;
     double _viewFinderOffset;
     double _viewFinderCornerRadius;
+    CNPhotoLikenessMaskView *_maskView;
 }
 
 + (id)viewControllerForSourceType:(long long)arg1;
++ (id)os_log;
+- (void).cxx_destruct;
+@property(retain) CNPhotoLikenessMaskView *maskView; // @synthesize maskView=_maskView;
 @property double viewFinderCornerRadius; // @synthesize viewFinderCornerRadius=_viewFinderCornerRadius;
 @property double viewFinderOffset; // @synthesize viewFinderOffset=_viewFinderOffset;
 @property(retain) NSLayoutConstraint *sourceDisplayViewCenterXConstraint; // @synthesize sourceDisplayViewCenterXConstraint=_sourceDisplayViewCenterXConstraint;
@@ -52,7 +55,6 @@
 @property(retain) NSLayoutConstraint *sourceDisplayViewBottomConstraint; // @synthesize sourceDisplayViewBottomConstraint=_sourceDisplayViewBottomConstraint;
 @property(retain) NSLayoutConstraint *sourceDisplayViewTopConstraint; // @synthesize sourceDisplayViewTopConstraint=_sourceDisplayViewTopConstraint;
 @property(retain) NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
-@property(retain) NSTextField *faceAlignmentLabel; // @synthesize faceAlignmentLabel=_faceAlignmentLabel;
 @property(retain) CALayer *maskLayer; // @synthesize maskLayer=_maskLayer;
 @property(retain) NSLayoutConstraint *sidebarWidthConstraint; // @synthesize sidebarWidthConstraint=_sidebarWidthConstraint;
 @property(retain) NSLayoutConstraint *zoomSliderBottomConstraint; // @synthesize zoomSliderBottomConstraint=_zoomSliderBottomConstraint;
@@ -62,11 +64,10 @@
 @property(retain) NSView *currentSourceView; // @synthesize currentSourceView=_currentSourceView;
 @property(retain) NSMutableDictionary *sourceViewControllers; // @synthesize sourceViewControllers=_sourceViewControllers;
 @property(retain) NSView *sourceDisplayView; // @synthesize sourceDisplayView=_sourceDisplayView;
-@property(retain) NSView *sourcesTableParentView; // @synthesize sourcesTableParentView=_sourcesTableParentView;
+@property BOOL ignoreOutlineViewSelectionChangeNotifications; // @synthesize ignoreOutlineViewSelectionChangeNotifications=_ignoreOutlineViewSelectionChangeNotifications;
 @property double photoHeight; // @synthesize photoHeight=_photoHeight;
 @property(retain) NSTableColumn *tableColumn; // @synthesize tableColumn=_tableColumn;
 @property(retain) NSOutlineView *sourcesTable; // @synthesize sourcesTable=_sourcesTable;
-- (void).cxx_destruct;
 - (void)setZoomFraction:(double)arg1;
 - (void)displayViewFinderMask;
 - (void)layout;
@@ -78,8 +79,8 @@
 - (BOOL)outlineView:(id)arg1 shouldShowOutlineCellForItem:(id)arg2;
 - (BOOL)itemHasChildren:(id)arg1;
 - (void)setZoomPosition:(double)arg1;
-@property(readonly) IKImageBrowserView *defaultPhotosLibraryView;
-@property(readonly) IKImageBrowserView *mediaLibraryView;
+@property(readonly) CNUIDeprecatedIKImageBrowserView *defaultPhotosLibraryView;
+@property(readonly) CNUIDeprecatedIKImageBrowserView *mediaLibraryView;
 - (id)cameraViewController;
 - (id)croppingViewController;
 - (id)defaultsLibraryViewController;

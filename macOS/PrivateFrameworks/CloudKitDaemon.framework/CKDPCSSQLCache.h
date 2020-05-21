@@ -16,12 +16,18 @@ __attribute__((visibility("hidden")))
     unsigned long long _cacheHitCount;
 }
 
++ (void)_evictPCSSQLCachesForAppContainerAccountTuples:(id)arg1;
++ (void)evictPCSSQLCachesForKnownClientContexts;
++ (void)registerPCSSQLCacheEvictionActivity;
++ (id)globalPCSSQLCacheEvictionQueue;
++ (id)pathForContext:(id)arg1;
+- (void).cxx_destruct;
 @property unsigned long long cacheHitCount; // @synthesize cacheHitCount=_cacheHitCount;
 @property unsigned long long cacheRequestCount; // @synthesize cacheRequestCount=_cacheRequestCount;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *recordQueue; // @synthesize recordQueue=_recordQueue;
-- (void).cxx_destruct;
 - (id)CKStatusReportArray;
-- (void)clearCacheWithCompletion:(CDUnknownBlockType)arg1;
+- (void)clearInvalidatedCacheEntriesWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)clearCache;
 - (void)removePCSDataForItemsInShareWithID:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)removePCSDataForItemsInZoneWithID:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)setSharePCSData:(id)arg1 forShareWithID:(id)arg2 databaseScope:(long long)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
@@ -34,9 +40,11 @@ __attribute__((visibility("hidden")))
 - (void)fetchPCSDataForRecordWithID:(id)arg1 databaseScope:(long long)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (id)_lockedFetchPCSDataForID:(id)arg1 databaseScope:(long long)arg2 itemType:(unsigned long long)arg3 ofClass:(Class)arg4;
 @property(readonly, nonatomic) double earliestValidDate;
-- (id)upgradeInfoForVersion:(unsigned long long)arg1;
+- (id)infoToUpgradeFromVersion:(unsigned long long)arg1;
 - (id)createInitialTablesSQL;
 - (id)path;
+- (void)dealloc;
+- (id)_initWithClientContext:(id)arg1;
 
 @end
 

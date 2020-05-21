@@ -17,8 +17,10 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *mColors;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *name; // @synthesize name=mName;
 - (id)description;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)validateColorScheme;
 - (_Bool)isEmpty;
@@ -27,7 +29,6 @@ __attribute__((visibility("hidden")))
 - (id)colorForIndex:(int)arg1;
 - (unsigned long long)colorCount;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

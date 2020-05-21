@@ -6,40 +6,37 @@
 
 #import "NSObject.h"
 
-@class CNContact, CNContactStore, NSNotificationCenter;
+@class CNContactStore, NSArray, NSNotificationCenter;
 
 @interface CNUIMeContactMonitor : NSObject
 {
-    BOOL _hasRegistered;
-    BOOL _meContactIsUpToDate;
     id <CNMeContactComparisonStrategy> _strategy;
-    CNContactStore *_store;
+    CNContactStore *_contactStore;
     NSNotificationCenter *_notificationCenter;
-    CNContact *_meContact;
-    id <CNScheduler> _lock;
+    id <CNReaderWriterScheduler> _lock;
     id <CNCancelable> _meNotificationToken;
 }
 
++ (id)makeUnifiedMeContactMonitor;
 + (id)unifiedMeContactMonitor;
++ (id)makeMeContactMonitor;
 + (id)meContactMonitor;
-@property(nonatomic) BOOL meContactIsUpToDate; // @synthesize meContactIsUpToDate=_meContactIsUpToDate;
-@property(nonatomic) BOOL hasRegistered; // @synthesize hasRegistered=_hasRegistered;
-@property(retain, nonatomic) id <CNCancelable> meNotificationToken; // @synthesize meNotificationToken=_meNotificationToken;
-@property(retain, nonatomic) id <CNScheduler> lock; // @synthesize lock=_lock;
-@property(retain, nonatomic) CNContact *meContact; // @synthesize meContact=_meContact;
-@property(retain, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
-@property(retain, nonatomic) CNContactStore *store; // @synthesize store=_store;
-@property(retain, nonatomic) id <CNMeContactComparisonStrategy> strategy; // @synthesize strategy=_strategy;
 - (void).cxx_destruct;
-- (void)_updateMeContact;
+@property(retain, nonatomic) id <CNCancelable> meNotificationToken; // @synthesize meNotificationToken=_meNotificationToken;
+@property(retain, nonatomic) id <CNReaderWriterScheduler> lock; // @synthesize lock=_lock;
+@property(retain, nonatomic) NSNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
+@property(retain, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
+@property(retain, nonatomic) id <CNMeContactComparisonStrategy> strategy; // @synthesize strategy=_strategy;
 - (void)meChanged:(id)arg1;
+@property(readonly, nonatomic) NSArray *meContactIdentifiers;
 - (BOOL)isMeContact:(id)arg1;
+- (void)startMonitoring;
 - (void)dealloc;
+- (id)initWithComparisonStrategy:(id)arg1 contactStore:(id)arg2 notificationCenter:(id)arg3 schedulerProvider:(id)arg4;
+- (id)initWithComparisonStrategy:(id)arg1 contactStore:(id)arg2;
+- (id)initWithComparisonStrategy:(id)arg1;
 - (id)initWithContactStore:(id)arg1;
 - (id)init;
-- (id)initWithComparisonStrategy:(id)arg1;
-- (id)initWithComparisonStrategy:(id)arg1 contactStore:(id)arg2;
-- (id)initWithComparisonStrategy:(id)arg1 contactStore:(id)arg2 notificationCenter:(id)arg3;
 
 @end
 

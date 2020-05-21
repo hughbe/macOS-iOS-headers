@@ -8,23 +8,43 @@
 
 #import "NSCopying.h"
 
-@class GEOPDDeparturePredicate, NSMutableArray;
+@class GEOPDDeparturePredicate, NSMutableArray, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDTransitSchedule : PBCodable <NSCopying>
 {
-    struct GEOPDTimeRange _operatingHoursRange;
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     GEOPDDeparturePredicate *_departurePredicateCountdown;
     GEOPDDeparturePredicate *_departurePredicateStamp;
     NSMutableArray *_departureSequences;
-    CDStruct_65124bb5 _has;
+    struct GEOPDTimeRange _operatingHoursRange;
+    unsigned long long _ttlSeconds;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int has_operatingHoursRange:1;
+        unsigned int has_ttlSeconds:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_departurePredicateCountdown:1;
+        unsigned int read_departurePredicateStamp:1;
+        unsigned int read_departureSequences:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_departurePredicateCountdown:1;
+        unsigned int wrote_departurePredicateStamp:1;
+        unsigned int wrote_departureSequences:1;
+        unsigned int wrote_operatingHoursRange:1;
+        unsigned int wrote_ttlSeconds:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)departureSequenceType;
 + (id)transitScheduleForPlaceData:(id)arg1;
-@property(nonatomic) struct GEOPDTimeRange operatingHoursRange; // @synthesize operatingHoursRange=_operatingHoursRange;
-@property(retain, nonatomic) GEOPDDeparturePredicate *departurePredicateStamp; // @synthesize departurePredicateStamp=_departurePredicateStamp;
-@property(retain, nonatomic) GEOPDDeparturePredicate *departurePredicateCountdown; // @synthesize departurePredicateCountdown=_departurePredicateCountdown;
-@property(retain, nonatomic) NSMutableArray *departureSequences; // @synthesize departureSequences=_departureSequences;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -32,16 +52,28 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasTtlSeconds;
+@property(nonatomic) unsigned long long ttlSeconds;
 @property(nonatomic) BOOL hasOperatingHoursRange;
+@property(nonatomic) struct GEOPDTimeRange operatingHoursRange;
+@property(retain, nonatomic) GEOPDDeparturePredicate *departurePredicateStamp;
 @property(readonly, nonatomic) BOOL hasDeparturePredicateStamp;
+- (void)_readDeparturePredicateStamp;
+@property(retain, nonatomic) GEOPDDeparturePredicate *departurePredicateCountdown;
 @property(readonly, nonatomic) BOOL hasDeparturePredicateCountdown;
+- (void)_readDeparturePredicateCountdown;
 - (id)departureSequenceAtIndex:(unsigned long long)arg1;
 - (unsigned long long)departureSequencesCount;
+- (void)_addNoFlagsDepartureSequence:(id)arg1;
 - (void)addDepartureSequence:(id)arg1;
 - (void)clearDepartureSequences;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *departureSequences;
+- (void)_readDepartureSequences;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

@@ -6,21 +6,22 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class CMNumberFormatter, NSString;
 
 __attribute__((visibility("hidden")))
 @interface WMListLevelTextToken : NSObject
 {
-    NSString *m_string;
-    int m_level;
+    NSString *_string;
+    int _level;
+    CMNumberFormatter *_formatter;
 }
 
-+ (id)tokenWithString:(id)arg1 andLevel:(int)arg2;
-- (int)level;
-- (id)stringForIndex:(unsigned long long)arg1 withFormat:(int)arg2 orNumberFormatter:(void **)arg3 initialNumber:(unsigned long long)arg4;
-- (id)string;
-- (void)dealloc;
-- (id)initWithString:(id)arg1 andLevel:(int)arg2;
++ (id)tokenWithString:(id)arg1 level:(int)arg2 formatter:(id)arg3;
+- (void).cxx_destruct;
+@property(readonly) int level; // @synthesize level=_level;
+@property(readonly) NSString *string; // @synthesize string=_string;
+- (id)stringForIndex:(unsigned long long)arg1;
+- (id)initWithString:(id)arg1 level:(int)arg2 formatter:(id)arg3;
 
 @end
 

@@ -24,29 +24,23 @@
 
 + (id)outputConnectionPointWithAction:(id)arg1;
 + (id)inputConnectionPointWithAction:(id)arg1;
-- (BOOL)isValid;
+- (void).cxx_destruct;
+@property(retain) AMActionConnector *_runtimeConnector; // @synthesize _runtimeConnector;
+@property(retain) NSDictionary *runtimeTypeDictionary; // @synthesize runtimeTypeDictionary=_runtimeTypeDictionary;
+@property(copy, nonatomic) NSString *typeDisplayName; // @synthesize typeDisplayName=_typeDisplayName;
+@property(retain) NSPredicate *predicate; // @synthesize predicate=_predicate;
+@property(nonatomic) __weak AMAction *action; // @synthesize action=_action;
+@property __weak AMActionConnector *connector; // @synthesize connector=_connector;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 - (id)description;
 - (void)resetToDefaultOnMainThread;
 - (void)resetToDefault;
 - (void)generateUTITypes;
-- (void)setRuntimeTypeDictionary:(id)arg1;
-- (id)runtimeTypeDictionary;
-- (id)typeDictionary;
-- (void)setTypeDisplayName:(id)arg1;
-- (id)typeDisplayName;
-- (void)setPredicate:(id)arg1;
-- (id)predicate;
-- (void)setUTIType:(id)arg1;
-- (id)UTIType;
-- (void)setAction:(id)arg1;
-- (id)action;
-- (void)setRuntimeConnector:(id)arg1;
-- (id)runtimeConnector;
-- (void)setConnector:(id)arg1;
-- (id)connector;
-- (id)UUID;
+@property(readonly, nonatomic) NSDictionary *typeDictionary;
+@property(retain, nonatomic) NSString *UTIType;
+@property(retain, nonatomic) AMActionConnector *runtimeConnector;
+@property(readonly, nonatomic) NSString *UUID;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithAction:(id)arg1 isInput:(BOOL)arg2;
 
 @end

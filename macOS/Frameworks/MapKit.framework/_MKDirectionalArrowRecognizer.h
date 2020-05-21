@@ -6,6 +6,7 @@
 
 #import "NSObject.h"
 
+__attribute__((visibility("hidden")))
 @interface _MKDirectionalArrowRecognizer : NSObject
 {
     id _target;
@@ -15,10 +16,10 @@
     long long _lastArrows;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) long long lastArrows; // @synthesize lastArrows=_lastArrows;
 @property(readonly, nonatomic) long long arrows; // @synthesize arrows=_arrows;
 @property(nonatomic) long long state; // @synthesize state=_state;
-- (void).cxx_destruct;
 - (void)handleArrowMask:(long long)arg1;
 - (void)keyUp:(id)arg1;
 - (void)keyDown:(id)arg1;

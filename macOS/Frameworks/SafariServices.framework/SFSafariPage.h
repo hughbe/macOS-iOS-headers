@@ -6,29 +6,33 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class NSExtensionContext, NSUUID;
 
-@interface SFSafariPage : NSObject <NSSecureCoding>
+@interface SFSafariPage : NSObject <NSCopying, NSSecureCoding>
 {
     NSUUID *_uuid;
     NSExtensionContext *__extensionContext;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain, nonatomic) NSExtensionContext *_extensionContext; // @synthesize _extensionContext=__extensionContext;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSExtensionContext *_extensionContext; // @synthesize _extensionContext=__extensionContext;
 - (void)getURLWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)getTitleWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)getIsPrivateWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)getIsActiveWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)getScreenshotOfVisibleAreaWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)getContainingTabWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)getPagePropertiesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)reload;
 - (void)dispatchMessageToScriptWithName:(id)arg1 userInfo:(id)arg2;
 - (id)_remoteObjectProxy;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 @property(readonly, nonatomic) NSUUID *_uuid;

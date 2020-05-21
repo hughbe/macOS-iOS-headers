@@ -8,21 +8,23 @@
 
 #import "NSCopying.h"
 
-@class WDCharacterProperties, WDDocument;
+@class WDCharacterProperties, WDDocument, WDParagraphPropertiesValues;
 
 __attribute__((visibility("hidden")))
 @interface WDParagraphProperties : NSObject <NSCopying>
 {
-    WDDocument *mDocument;
     WDCharacterProperties *mCharacterProperties;
-    unsigned int mCharacterPropertiesOverridden:1;
+    BOOL mCharacterPropertiesOverridden;
     unsigned int mOriginal:1;
     unsigned int mTracked:1;
     unsigned int mResolved:1;
-    CDStruct_8641e206 *mOriginalProperties;
-    CDStruct_8641e206 *mTrackedProperties;
+    WDParagraphPropertiesValues *mOriginalProperties;
+    WDParagraphPropertiesValues *mTrackedProperties;
+    WDDocument *mDocument;
 }
 
+- (void).cxx_destruct;
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (void)copyPropertiesInto:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isContextualSpacingOverridden;
@@ -34,6 +36,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)isFormattingChangedOverridden;
 - (void)setFormattingChanged:(int)arg1;
 - (int)formattingChanged;
+- (void)removeTabStopDeletedPosition:(short)arg1;
 - (void)addTabStopDeletedPosition:(short)arg1;
 - (short)tabStopDeletedPositionAt:(unsigned long long)arg1;
 - (void)setTabStopDeletedPositionCount:(unsigned long long)arg1;
@@ -84,18 +87,23 @@ __attribute__((visibility("hidden")))
 - (BOOL)isLeftIndentCharsOverridden;
 - (void)setLeftIndentChars:(short)arg1;
 - (short)leftIndentChars;
+- (void)clearFirstLineIndent;
 - (BOOL)isFirstLineIndentOverridden;
 - (void)setFirstLineIndent:(short)arg1;
 - (short)firstLineIndent;
+- (void)clearRightIndent;
 - (BOOL)isRightIndentOverridden;
 - (void)setRightIndent:(short)arg1;
 - (short)rightIndent;
+- (void)clearFollowingIndent;
 - (BOOL)isFollowingIndentOverridden;
 - (void)setFollowingIndent:(short)arg1;
 - (short)followingIndent;
+- (void)clearLeadingIndent;
 - (BOOL)isLeadingIndentOverridden;
 - (void)setLeadingIndent:(short)arg1;
 - (short)leadingIndent;
+- (void)clearLeftIndent;
 - (BOOL)isLeftIndentOverridden;
 - (void)setLeftIndent:(short)arg1;
 - (short)leftIndent;
@@ -175,8 +183,8 @@ __attribute__((visibility("hidden")))
 - (void)setWidth:(long long)arg1;
 - (long long)width;
 - (BOOL)isDropCapOverridden;
-- (void)setDropCap:(CDStruct_5c52f79b)arg1;
-- (CDStruct_5c52f79b)dropCap;
+- (void)setDropCap:(CDStruct_8835774c)arg1;
+- (CDStruct_8835774c)dropCap;
 - (BOOL)isListIndexOverridden;
 - (void)setListIndex:(unsigned long long)arg1;
 - (unsigned long long)listIndex;
@@ -199,11 +207,9 @@ __attribute__((visibility("hidden")))
 - (void)setCharacterProperties:(id)arg1;
 - (id)mutableCharacterProperties;
 - (id)characterProperties;
-- (id)document;
-- (void)dealloc;
 - (id)initWithDocument:(id)arg1;
 - (id)description;
-- (BOOL)isAnythingOverriddenIn:(CDStruct_8641e206 *)arg1;
+- (BOOL)isAnythingOverriddenIn:(id)arg1;
 
 @end
 

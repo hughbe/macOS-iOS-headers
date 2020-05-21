@@ -11,6 +11,7 @@
 @protocol OutlineViewPlusDelegate <NSOutlineViewDelegate>
 
 @optional
+- (BOOL)outlineView:(NSOutlineView *)arg1 wantsDFRAccessoriesForEditedRow:(long long)arg2 tableColumn:(NSTableColumn *)arg3;
 - (NSMenu *)outlineView:(NSOutlineView *)arg1 menuForEvent:(NSEvent *)arg2 inRow:(long long)arg3 tableColumn:(NSTableColumn *)arg4;
 - (NSImage *)outlineView:(NSOutlineView *)arg1 dragImageForRowsWithIndexes:(NSIndexSet *)arg2 tableColumns:(NSArray *)arg3 event:(NSEvent *)arg4 offset:(struct CGPoint *)arg5;
 - (BOOL)outlineView:(NSOutlineView *)arg1 keyDown:(NSEvent *)arg2;

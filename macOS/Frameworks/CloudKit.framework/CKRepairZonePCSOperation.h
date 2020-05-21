@@ -10,19 +10,19 @@
 
 @interface CKRepairZonePCSOperation : CKDatabaseOperation
 {
-    NSArray *_zoneIDs;
     CDUnknownBlockType _zoneRepairedBlock;
+    NSArray *_zoneIDs;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType zoneRepairedBlock; // @synthesize zoneRepairedBlock=_zoneRepairedBlock;
-@property(retain, nonatomic) NSArray *zoneIDs; // @synthesize zoneIDs=_zoneIDs;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *zoneIDs; // @synthesize zoneIDs=_zoneIDs;
 - (void)_handleProgressCallback:(id)arg1;
 - (void)performCKOperation;
 - (BOOL)hasCKOperationCallbacksSet;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
 - (id)activityCreate;
+@property(copy, nonatomic) CDUnknownBlockType zoneRepairedBlock; // @synthesize zoneRepairedBlock=_zoneRepairedBlock;
 - (id)initWithZoneIDsToRepair:(id)arg1;
 
 @end

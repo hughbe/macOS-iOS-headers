@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSValue;
+@class NSString, NSValue;
 
 @interface NSAccessibilityCustomChooserItemResult : NSObject
 {
     id <NSObject> _targetElement;
     NSValue *_targetRange;
+    NSString *_descriptionOverride;
 }
 
+@property(copy, nonatomic) NSString *descriptionOverride; // @synthesize descriptionOverride=_descriptionOverride;
 @property(retain, nonatomic) NSValue *targetRange; // @synthesize targetRange=_targetRange;
 @property(nonatomic) __weak id <NSObject> targetElement;
 - (void)dealloc;

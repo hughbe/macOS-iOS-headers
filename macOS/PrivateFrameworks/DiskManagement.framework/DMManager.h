@@ -13,10 +13,13 @@
 
 + (id)sharedManagerForThread;
 + (id)sharedManager;
++ (BOOL)daemonRunning;
 + (BOOL)systemResourcesSufficient;
 + (void)initialize;
 - (void)dealloc;
 - (void)done;
+- (int)clientInfos:(id *)arg1;
+- (void)stopDiskManagementLog;
 - (int)setUserID:(id)arg1 groupID:(id)arg2;
 - (void)setLanguage:(id)arg1;
 - (const struct AuthorizationOpaqueRef *)authorization;
@@ -26,6 +29,8 @@
 - (struct __DASession *)defaultDASession;
 - (void)setDefaultDASession:(struct __DASession *)arg1;
 - (id)init;
+- (id)dmManagerPrivVars;
+- (double)timeoutHint:(id)arg1;
 - (struct __DASession *)obtainedClientDASession:(struct __DADisk *)arg1;
 - (void)getSessionUUID:(char *)arg1 f2tPort:(unsigned int *)arg2 t2fPort:(unsigned int *)arg3 clientDefaultDASession:(struct __DASession **)arg4;
 - (void)stopInstanceAsNeeded;
@@ -34,6 +39,8 @@
 - (void)setClientDelegate:(id)arg1;
 - (BOOL)isAPFSVolumeDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)isAPFSPhysicalStoreDisk:(struct __DADisk *)arg1 error:(int *)arg2;
+- (BOOL)isAPFSContainerSchemeDisk:(struct __DADisk *)arg1 error:(int *)arg2;
+- (BOOL)isAPFSContainerReferenceDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)coreStorageStatusSummaryForDisk:(struct __DADisk *)arg1 orForCSUUID:(id)arg2 error:(int *)arg3;
 - (BOOL)isDisallowedCoreStorageOperationsForLogicalVolumeDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)needsRebootToBeginCoreStorageConversion:(struct __DADisk *)arg1 checkRoot:(BOOL)arg2 error:(int *)arg3;
@@ -65,7 +72,10 @@
 - (id)ioContentToHuman:(id)arg1 context:(id)arg2 error:(int *)arg3;
 - (BOOL)canRepairPermissions:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)permissionsEnabledForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
+- (struct __DADisk *)copyRecoveryDiskForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (struct __DADisk *)copyBooterDiskForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
+- (BOOL)isRecoveryDisk:(struct __DADisk *)arg1 error:(int *)arg2;
+- (BOOL)isBooterDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)isRecoveryBooterPartitionDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)isBooterPartitionDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)isLiveResizablePartitionForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
@@ -93,7 +103,9 @@
 - (id)mediaTypeForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)isAppleDiskImage:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)bayNameForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
+- (BOOL)isAESHardwareDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)isErasableOpticalMedia:(struct __DADisk *)arg1 error:(int *)arg2;
+- (id)opticalMediaUserVisibleNameForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)opticalMediaTypeForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)opticalDeviceTypeForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)isDVD:(struct __DADisk *)arg1 error:(int *)arg2;
@@ -125,15 +137,20 @@
 - (id)partitionIdentifierForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)wholeDiskIdentifierForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)diskIdentifierForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
+- (id)ioKitNameForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)mediaNameForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)deviceNameForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)diskUUIDForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)volumeUUIDForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (id)uuidForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
+- (BOOL)isSiblingDisks:(struct __DADisk *)arg1 anotherDisk:(struct __DADisk *)arg2 reflexive:(BOOL)arg3 error:(int *)arg4;
+- (BOOL)isChildOfWholeDisk:(struct __DADisk *)arg1 wholeDisk:(struct __DADisk *)arg2 error:(int *)arg3;
 - (BOOL)isPartitionDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)isChildDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (BOOL)isWholeDisk:(struct __DADisk *)arg1 error:(int *)arg2;
+- (BOOL)isEqualDisks:(struct __DADisk *)arg1 anotherDisk:(struct __DADisk *)arg2 error:(int *)arg3;
 - (id)descriptionForDisk:(struct __DADisk *)arg1;
+- (struct __DADisk *)copyDiskForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (struct __DADisk *)copyDiskForPartitionIdentifier:(id)arg1 forWholeDisk:(struct __DADisk *)arg2 error:(int *)arg3;
 - (struct __DADisk *)copyDiskForVolumeUUID:(id)arg1 error:(int *)arg2;
 - (struct __DADisk *)copyDiskForDiskUUID:(id)arg1 error:(int *)arg2;
@@ -157,17 +174,19 @@
 - (struct __DADisk *)diskForPath:(id)arg1 error:(int *)arg2;
 - (struct __DADisk *)copyDiskForPath:(id)arg1 error:(int *)arg2;
 - (struct __DADisk *)copyDiskForArgumentName:(id)arg1 timeout:(double)arg2 complete:(char *)arg3;
-- (int)renameDisk:(struct __DADisk *)arg1 toName:(id)arg2 errorDict:(id *)arg3;
 - (int)renameDisk:(struct __DADisk *)arg1 toName:(id)arg2;
+- (int)renameDisk:(struct __DADisk *)arg1 toName:(id)arg2 errorDict:(id *)arg3;
 - (int)unmountEFISystemPartition:(struct __DADisk *)arg1 options:(id)arg2;
 - (int)mountEFISystemPartition:(struct __DADisk *)arg1 options:(id)arg2 espDisk:(struct __DADisk **)arg3 espMountPoint:(id *)arg4;
-- (BOOL)mountDisk:(struct __DADisk *)arg1 entireDisk:(BOOL)arg2 atPath:(id)arg3 readOnly:(BOOL)arg4 otherArguments:(id)arg5 errorDict:(id *)arg6;
-- (BOOL)mountDisk:(struct __DADisk *)arg1 entireDisk:(BOOL)arg2 atPath:(id)arg3 readOnly:(BOOL)arg4 otherArguments:(id)arg5;
-- (BOOL)ejectDisk:(struct __DADisk *)arg1 errorDict:(id *)arg2;
+- (int)ejectDiskOnly:(struct __DADisk *)arg1 errorDict:(id *)arg2;
 - (BOOL)ejectDisk:(struct __DADisk *)arg1;
+- (BOOL)ejectDisk:(struct __DADisk *)arg1 errorDict:(id *)arg2;
+- (int)unmountDisksDeepForPartitionMap:(struct __DADisk *)arg1 force:(BOOL)arg2 timeout:(double)arg3;
+- (BOOL)unmountDisk:(struct __DADisk *)arg1 entireDisk:(BOOL)arg2 force:(BOOL)arg3;
 - (BOOL)unmountDisk:(struct __DADisk *)arg1 entireDisk:(BOOL)arg2 force:(BOOL)arg3 errorDict:(id *)arg4;
 - (BOOL)unmountVolumePath:(id)arg1 force:(BOOL)arg2 errorDict:(id *)arg3;
-- (BOOL)unmountDisk:(struct __DADisk *)arg1 entireDisk:(BOOL)arg2 force:(BOOL)arg3;
+- (BOOL)mountDisk:(struct __DADisk *)arg1 entireDisk:(BOOL)arg2 atPath:(id)arg3 readOnly:(BOOL)arg4 otherArguments:(id)arg5;
+- (BOOL)mountDisk:(struct __DADisk *)arg1 entireDisk:(BOOL)arg2 atPath:(id)arg3 readOnly:(BOOL)arg4 otherArguments:(id)arg5 errorDict:(id *)arg6;
 - (BOOL)doMountDisk:(struct __DADisk *)arg1 atPath:(id)arg2 readOnly:(BOOL)arg3 otherArguments:(id)arg4 errorDict:(id *)arg5;
 - (int)makeVolumeCaseSensitive:(struct __DADisk *)arg1;
 - (int)volumeInfoForUnmountedDisk:(struct __DADisk *)arg1 info:(id *)arg2;
@@ -176,6 +195,7 @@
 - (int)moveJournalInternal:(struct __DADisk *)arg1;
 - (int)upgradeDisk:(struct __DADisk *)arg1 enablePermissions:(BOOL)arg2;
 - (int)findBooterDiskContainingBaseSystemForDisk:(struct __DADisk *)arg1;
+- (int)updateBootFirmwareLabelsForAllInternalOrGivenMacOSDisks:(id)arg1 options:(id)arg2;
 - (int)makeLegacyBootable:(struct __DADisk *)arg1 partitionDataRuns:(id)arg2 MBRHeaderDataRun:(id)arg3 setActive:(unsigned char)arg4 updateBootIni:(BOOL)arg5 options:(id)arg6;
 - (int)recoveryPartitionInfoForVolume:(struct __DADisk *)arg1 what:(id)arg2 info:(id *)arg3;
 - (int)replaceDiagnosticsForVolume:(struct __DADisk *)arg1 diagnosticsDiskImageFile:(id)arg2 diagnosticsChunkListFile:(id)arg3 verifyImage:(BOOL)arg4 allowGrowth:(BOOL)arg5 diagnosticsMachineBlacklistInhibit:(BOOL)arg6;
@@ -201,6 +221,7 @@
 - (int)setWindowsUEFIDiskForBootPreference:(struct __DADisk *)arg1 withDriveHint:(struct __DADisk *)arg2;
 - (int)setLegacyDiskForNextOnlyBootPreference:(struct __DADisk *)arg1 withDriveHint:(struct __DADisk *)arg2;
 - (int)setLegacyDiskForBootPreference:(struct __DADisk *)arg1 withDriveHint:(struct __DADisk *)arg2;
+- (int)setDiskForBootPreference:(struct __DADisk *)arg1 atFolderLocation:(id)arg2 personalize:(BOOL)arg3;
 - (int)setDiskForBootPreference:(struct __DADisk *)arg1 atFolderLocation:(id)arg2 isOS9:(BOOL)arg3;
 - (int)getNetBootPreference:(unsigned int *)arg1 withServer:(id *)arg2 forInterface:(id *)arg3;
 - (int)setNextOnlyNetBootPreference:(unsigned int)arg1 withServer:(id)arg2 forInterface:(id)arg3;
@@ -212,11 +233,14 @@
 - (int)preBootEnvironment;
 - (int)checkBootabilityOnThisMachine_actualsimplepartition_:(struct __DADisk *)arg1 isBootable:(char *)arg2;
 - (int)checkAbilityToMakeBootable_actualsimplepartition_:(struct __DADisk *)arg1 onAnyMachine:(BOOL)arg2 atAll:(char *)arg3 yesButDestructively:(char *)arg4;
-- (int)partitionMapTypeForDisk:(id)arg1;
-- (id)directChildrenOfDisk:(id)arg1;
-- (id)rootDisk;
-- (id)diskWithIdentifier:(id)arg1;
-- (void)waitForAppearanceOfDiskNodes;
+- (int)cryptoStateForDisk:(struct __DADisk *)arg1 options:(id)arg2 details:(id *)arg3;
+- (int)decryptDisk:(struct __DADisk *)arg1 options:(id)arg2 details:(id *)arg3;
+- (int)encryptDisk:(struct __DADisk *)arg1 user:(id)arg2 passdata:(id)arg3 hint:(id)arg4 options:(id)arg5 details:(id *)arg6;
+- (int)isDiskSuitableForDecryption:(struct __DADisk *)arg1 options:(id)arg2 suitable:(char *)arg3 details:(id *)arg4;
+- (int)isDiskSuitableForEncryption:(struct __DADisk *)arg1 options:(id)arg2 suitable:(char *)arg3 details:(id *)arg4;
+- (int)isSuitableTransformForLOG:(struct DMUDSPrivRec *)arg1 transform:(id)arg2 suitable:(char *)arg3 plan:(id *)arg4 details:(id)arg5;
+- (void)cryptoStatusForLOG:(struct DMUDSPrivRec *)arg1 inSS:(id)arg2 yesInfoFileVaulted:(char *)arg3 yesInfoFullyEncrypted:(char *)arg4 yesInfoBusy:(char *)arg5 yesInfoDirection:(char *)arg6 yesInfoLocked:(char *)arg7 nonNilInfoProgress:(id *)arg8;
+- (int)cryptoMigrationPlanForLOG:(struct DMUDSPrivRec *)arg1 transform:(id)arg2 currentOldSS:(id *)arg3 supported:(char *)arg4 planScript:(id *)arg5 plannedNewSS:(id *)arg6 plannedChangeSS:(char *)arg7 plannedChangeLOG:(char *)arg8;
 
 @end
 

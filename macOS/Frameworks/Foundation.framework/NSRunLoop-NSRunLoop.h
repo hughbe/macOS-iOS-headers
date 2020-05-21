@@ -10,6 +10,8 @@
 + (id)mainRunLoop;
 + (id)currentRunLoop;
 + (id)_new:(id)arg1;
+- (void)performBlock:(CDUnknownBlockType)arg1;
+- (void)performInModes:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void)configureAsServer;
 - (BOOL)runBeforeDate:(id)arg1;
 - (void)runUntilDate:(id)arg1;
@@ -40,5 +42,8 @@
 - (BOOL)_containsPort:(id)arg1 forMode:(id)arg2;
 - (void)_portInvalidated:(id)arg1;
 - (void)_enumerateInfoPairsWithBlock:(CDUnknownBlockType)arg1;
+- (void)cancelPerformSelectorsWithTarget:(id)arg1;
+- (void)cancelPerformSelector:(SEL)arg1 target:(id)arg2 argument:(id)arg3;
+- (void)performSelector:(SEL)arg1 target:(id)arg2 argument:(id)arg3 order:(unsigned long long)arg4 modes:(id)arg5;
 @end
 

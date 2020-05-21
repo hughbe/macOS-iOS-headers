@@ -24,6 +24,7 @@
 - (BOOL)canVerifyStoragesystemFilesystemForDisk:(struct __DADisk *)arg1 error:(int *)arg2;
 - (int)beginResetUserPermissionsForDisk:(struct __DADisk *)arg1 forUID:(long long)arg2 level:(long long)arg3;
 - (id)userAccountsForDisk:(struct __DADisk *)arg1 getError:(int *)arg2;
+@property BOOL kextcacheEnabled;
 - (void)cancelCurrentOperation;
 - (void)dealloc;
 - (id)initWithManager:(id)arg1;

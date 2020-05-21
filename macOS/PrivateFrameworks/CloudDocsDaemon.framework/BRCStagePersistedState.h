@@ -4,30 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
-
-#import "NSSecureCoding.h"
-
-@class BRCAccountSession, NSObject<OS_dispatch_queue>, brc_task_tracker;
+#import <CloudDocsDaemon/BRCPersistedState.h>
 
 __attribute__((visibility("hidden")))
-@interface BRCStagePersistedState : NSObject <NSSecureCoding>
+@interface BRCStagePersistedState : BRCPersistedState
 {
     long long _latestGCStartTime;
-    BRCAccountSession *_session;
-    brc_task_tracker *_tracker;
-    NSObject<OS_dispatch_queue> *_queue;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)loadFromClientStateInSession:(id)arg1 tracker:(id)arg2;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
-- (void).cxx_destruct;
++ (id)loadFromClientStateInSession:(id)arg1 options:(id)arg2;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)setLatestGCStartTime:(long long)arg1;
 - (long long)timeSinceLatestGCStartTime;
+- (id)initWithLatestGCStartTime:(long long)arg1;
 - (id)init;
 
 @end

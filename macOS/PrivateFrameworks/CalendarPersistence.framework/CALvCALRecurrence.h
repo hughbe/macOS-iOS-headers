@@ -23,6 +23,7 @@
     CALDate *_end_date;
 }
 
+- (void).cxx_destruct;
 - (BOOL)decode_digits:(const char **)arg1 withResult:(long long *)arg2;
 - (BOOL)decode_duration:(const char **)arg1;
 - (BOOL)decode_daylist:(const char **)arg1;
@@ -38,7 +39,6 @@
 - (BOOL)decode_weekly:(const char **)arg1;
 - (BOOL)decode_daily:(const char **)arg1;
 - (int)type;
-- (void)dealloc;
 - (id)initWithStr:(const char *)arg1 withGlobalTz:(id)arg2;
 - (id)init;
 

@@ -10,7 +10,6 @@
 
 @class NSData, NSString, NSXPCConnection, NSXPCInterface;
 
-__attribute__((visibility("hidden")))
 @interface NSURLStorage_CacheClient : NSObject <NSURLStorageCacheClient>
 {
     NSXPCInterface *_netStoreInterface;
@@ -22,11 +21,12 @@ __attribute__((visibility("hidden")))
     BOOL _networkStorageConnectionInterrupted;
 }
 
-@property BOOL networkStorageConnectionInterrupted; // @synthesize networkStorageConnectionInterrupted=_networkStorageConnectionInterrupted;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property BOOL networkStorageConnectionInterrupted; // @synthesize networkStorageConnectionInterrupted=_networkStorageConnectionInterrupted;
 - (void)notifyCacheClientOfTimeRelativeResponses:(id)arg1;
 - (void)notifyCachedURLResponseBecameFileBacked:(id)arg1 filePath:(id)arg2 forUUID:(id)arg3;
+- (void)flushWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)setMinSizeForVMCachedResource:(long long)arg1;
 - (long long)currentDiskUsage;
 - (void)copyAllPartitionNamesWithCompletionHandler:(CDUnknownBlockType)arg1;
@@ -37,6 +37,7 @@ __attribute__((visibility("hidden")))
 - (void)deleteResponseForRequestWithKey:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)addCachedResponseWithDictionary:(id)arg1 key:(id)arg2;
 - (BOOL)createStorageTaskManagerForPath:(id)arg1 maxSize:(long long)arg2 extension:(id)arg3;
+- (void)performSchemaCheckAndUpdate;
 - (void)setMaxSize:(long long)arg1;
 - (BOOL)ensureNetworkStorageDaemonConnection;
 - (id)getPath;

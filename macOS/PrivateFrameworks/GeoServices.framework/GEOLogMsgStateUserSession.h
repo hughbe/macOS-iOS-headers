@@ -8,27 +8,27 @@
 
 #import "NSCopying.h"
 
+@class GEOLocalTime;
+
 @interface GEOLogMsgStateUserSession : PBCodable <NSCopying>
 {
     struct GEOSessionID _navSessionId;
     struct GEOSessionID _sessionId;
+    GEOLocalTime *_eventTime;
     double _navSessionRelativeTimestamp;
     double _relativeTimestamp;
     unsigned int _sequenceNumber;
     struct {
-        unsigned int navSessionId:1;
-        unsigned int sessionId:1;
-        unsigned int navSessionRelativeTimestamp:1;
-        unsigned int relativeTimestamp:1;
-        unsigned int sequenceNumber:1;
-    } _has;
+        unsigned int has_navSessionId:1;
+        unsigned int has_sessionId:1;
+        unsigned int has_navSessionRelativeTimestamp:1;
+        unsigned int has_relativeTimestamp:1;
+        unsigned int has_sequenceNumber:1;
+    } _flags;
 }
 
-@property(nonatomic) double navSessionRelativeTimestamp; // @synthesize navSessionRelativeTimestamp=_navSessionRelativeTimestamp;
-@property(nonatomic) struct GEOSessionID navSessionId; // @synthesize navSessionId=_navSessionId;
-@property(nonatomic) double relativeTimestamp; // @synthesize relativeTimestamp=_relativeTimestamp;
-@property(nonatomic) unsigned int sequenceNumber; // @synthesize sequenceNumber=_sequenceNumber;
-@property(nonatomic) struct GEOSessionID sessionId; // @synthesize sessionId=_sessionId;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -36,13 +36,21 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOLocalTime *eventTime;
+@property(readonly, nonatomic) BOOL hasEventTime;
 @property(nonatomic) BOOL hasNavSessionRelativeTimestamp;
+@property(nonatomic) double navSessionRelativeTimestamp;
 @property(nonatomic) BOOL hasNavSessionId;
+@property(nonatomic) struct GEOSessionID navSessionId;
 @property(nonatomic) BOOL hasRelativeTimestamp;
+@property(nonatomic) double relativeTimestamp;
 @property(nonatomic) BOOL hasSequenceNumber;
+@property(nonatomic) unsigned int sequenceNumber;
 @property(nonatomic) BOOL hasSessionId;
+@property(nonatomic) struct GEOSessionID sessionId;
 
 @end
 

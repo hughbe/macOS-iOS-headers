@@ -22,7 +22,7 @@ __attribute__((visibility("hidden")))
 - (void)removeObject:(id)arg1;
 - (void)addObject:(id)arg1;
 - (id)objectEnumerator;
-- (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
+- (unsigned long long)countByEnumeratingWithState:(CDStruct_58648341 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 - (unsigned long long)_trueCount;
 - (id)member:(id)arg1;
 - (unsigned long long)count;

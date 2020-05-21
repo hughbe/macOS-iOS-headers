@@ -6,6 +6,8 @@
 
 #import "NSPopUpButton.h"
 
+@class NSString;
+
 @interface _AMVariablePopUpButton : NSPopUpButton
 {
     id _delegate;
@@ -14,6 +16,9 @@
 
 + (Class)cellClass;
 + (void)initialize;
+- (void).cxx_destruct;
+@property BOOL isMenuVisible; // @synthesize isMenuVisible=_isMenuVisible;
+@property(nonatomic) __weak id delegate; // @synthesize delegate=_delegate;
 - (void)mouseDown:(id)arg1;
 - (void)popUpButtonWillPopUp:(id)arg1;
 - (void)AMVariableInWorkflowDidChange:(id)arg1;
@@ -24,7 +29,7 @@
 - (id)variableUUIDsInMenu;
 - (id)selectedVariableUUID;
 - (id)parameterKeyDictionary;
-- (id)observedParameterKey;
+@property(readonly, nonatomic) NSString *observedParameterKey;
 - (void)selectVariableMenuItemWithUUID:(id)arg1;
 - (void)selectMenuItemWithRepresentedObject:(id)arg1;
 - (BOOL)selectItemWithTag:(long long)arg1;
@@ -56,13 +61,8 @@
 - (id)variablesToAddToMenu;
 - (void)createVariablesSection;
 - (id)itemArrayWithTag:(long long)arg1;
-- (void)setIsMenuVisible:(BOOL)arg1;
-- (BOOL)isMenuVisible;
 - (void)setMenu:(id)arg1;
-- (void)setDelegate:(id)arg1;
-- (id)delegate;
 - (void)awakeFromNib;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (void)concludeDragOperation:(id)arg1;
 - (BOOL)performDragOperation:(id)arg1;

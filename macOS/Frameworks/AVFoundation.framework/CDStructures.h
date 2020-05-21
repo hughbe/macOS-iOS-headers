@@ -27,6 +27,7 @@ struct AVMediaFileSegmenterInternal {
     CDUnknownBlockType _field12;
     CDStruct_1b6d18a9 _field13;
     id _field14;
+    char _field15;
 };
 
 struct AudioChannelDescription {
@@ -60,22 +61,22 @@ struct AudioValueRange {
 };
 
 struct CATransform3D {
-    double m11;
-    double m12;
-    double m13;
-    double m14;
-    double m21;
-    double m22;
-    double m23;
-    double m24;
-    double m31;
-    double m32;
-    double m33;
-    double m34;
-    double m41;
-    double m42;
-    double m43;
-    double m44;
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+    double _field5;
+    double _field6;
+    double _field7;
+    double _field8;
+    double _field9;
+    double _field10;
+    double _field11;
+    double _field12;
+    double _field13;
+    double _field14;
+    double _field15;
+    double _field16;
 };
 
 struct CGAffineTransform {
@@ -116,9 +117,7 @@ struct CVSMPTETime {
 
 struct OpaqueFigMediaFileSegmenter;
 
-struct OpaqueFigPlaylist;
-
-struct OpaqueFigPlaylistItem;
+struct OpaqueFigSimpleMutex;
 
 struct _NSRange {
     unsigned long long _field1;
@@ -130,6 +129,13 @@ struct os_unfair_lock_s {
 };
 
 #pragma mark Typedef'd Structures
+
+typedef struct {
+    unsigned long long _field1;
+    id *_field2;
+    unsigned long long *_field3;
+    unsigned long long _field4[5];
+} CDStruct_70511ce9;
 
 typedef struct {
     char _field1;
@@ -147,6 +153,11 @@ typedef struct {
 } CDStruct_550fdc95;
 
 typedef struct {
+    char _field1;
+    long long _field2;
+} CDStruct_56eee5a4;
+
+typedef struct {
     double left;
     double top;
     double right;
@@ -154,10 +165,15 @@ typedef struct {
 } CDStruct_1edcc8d7;
 
 typedef struct {
-    int _field1;
-    int _field2;
-    void *_field3;
-} CDStruct_da23731b;
+    float _field1;
+    float _field2;
+    float _field3;
+} CDStruct_869f9c67;
+
+typedef struct {
+    float _field1;
+    float _field2;
+} CDStruct_b2fbf00d;
 
 typedef struct {
     int width;
@@ -207,15 +223,14 @@ typedef struct {
 } CDStruct_e83c9415;
 
 typedef struct {
-    int _field1;
-    union {
-        struct OpaqueFigPlaylist *_field1;
-        struct OpaqueFigPlaylistItem *_field2;
-    } _field2;
-} CDStruct_2bd8379f;
-
-typedef struct {
     CDStruct_e83c9415 source;
     CDStruct_e83c9415 target;
 } CDStruct_82206317;
+
+#pragma mark Typedef'd Unions
+
+typedef union {
+    float relativeToEnclosingRegion;
+    long long cell;
+} CDUnion_4a99137e;
 

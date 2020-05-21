@@ -7,12 +7,15 @@
 #import <AppKit/NSColorPicker.h>
 
 #import "NSColorPickingCustom.h"
+#import "NSTableViewDataSource.h"
+#import "NSTableViewDelegate.h"
 
-@class NSArray, NSButton, NSColorList, NSLayoutConstraint, NSMutableDictionary, NSPageableTableView, NSPanel, NSPopUpButton, NSSearchField, NSString, NSTextField, NSView;
+@class NSAppearance, NSArray, NSButton, NSColorList, NSLayoutConstraint, NSMutableDictionary, NSPageableTableView, NSPanel, NSPopUpButton, NSSearchField, NSString, NSTextField, NSView;
 
-@interface NSColorPickerPageableNameList : NSColorPicker <NSColorPickingCustom>
+__attribute__((visibility("hidden")))
+@interface NSColorPickerPageableNameList : NSColorPicker <NSTableViewDelegate, NSTableViewDataSource, NSColorPickingCustom>
 {
-    NSView *listPickerView;
+    NSView *_listPickerView;
     NSPopUpButton *listPopUp;
     NSTextField *renamePrompt;
     NSTextField *renameString;
@@ -29,6 +32,7 @@
     NSArray *_sortedColorListNames;
     NSPageableTableView *_tableView;
     NSButton *removeColorButton;
+    NSAppearance *_appearanceForRenderingColor;
     unsigned int _showingError:1;
     unsigned int _selectionDidChangeHappened:1;
     unsigned int _ui_is_built:1;
@@ -36,6 +40,7 @@
 }
 
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
+@property(retain) NSView *listPickerView; // @synthesize listPickerView=_listPickerView;
 - (BOOL)tableView:(id)arg1 acceptDrop:(id)arg2 row:(long long)arg3 dropOperation:(unsigned long long)arg4;
 - (unsigned long long)tableView:(id)arg1 validateDrop:(id)arg2 proposedRow:(long long)arg3 proposedDropOperation:(unsigned long long)arg4;
 - (BOOL)tableView:(id)arg1 writeRowsWithIndexes:(id)arg2 toPasteboard:(id)arg3;
@@ -58,7 +63,6 @@
 - (void)controlTextDidChange:(id)arg1;
 - (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
 - (void)removeList:(id)arg1;
-- (void)removeListSheetDidEnd:(id)arg1 returnCode:(long long)arg2 context:(void *)arg3;
 - (void)removeColor:(id)arg1;
 - (void)_removeCurrentColor;
 - (id)_currentSelectedColorListColorName;
@@ -107,6 +111,7 @@
 - (struct CGSize)minContentSize;
 - (double)_insertionOrder;
 - (id)provideNewButtonImage;
+@property(retain) NSAppearance *appearanceForRenderingColor;
 - (void)setColor:(id)arg1;
 - (void)_selectColorInTableView;
 - (long long)_colorIndexInTableView;
@@ -119,6 +124,12 @@
 - (long long)_currentColorIndex;
 - (void)awakeFromNib;
 - (void)dealloc;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

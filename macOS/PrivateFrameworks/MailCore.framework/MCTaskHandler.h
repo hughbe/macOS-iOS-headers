@@ -13,24 +13,25 @@
     MCTaskHandlerOperation *_operation;
     BOOL _isCleaningUp;
     id <MCHandlerDelegate> _delegate;
-    NSOperationQueue *_queue;
     long long _priority;
     NSDate *_cancelTime;
+    NSOperationQueue *_queue;
 }
 
 + (id)keyPathsForValuesAffectingPriority;
 + (id)log;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSOperationQueue *queue; // @synthesize queue=_queue;
 @property(retain, nonatomic) NSDate *cancelTime; // @synthesize cancelTime=_cancelTime;
 @property(nonatomic) BOOL isCleaningUp; // @synthesize isCleaningUp=_isCleaningUp;
 @property(nonatomic) long long priority; // @synthesize priority=_priority;
-@property(readonly, nonatomic) NSOperationQueue *queue; // @synthesize queue=_queue;
 @property(nonatomic) __weak id <MCHandlerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+@property(readonly, nonatomic) NSOperationQueue *serializationQueue;
 - (id)newCleanUpOperation;
 - (void)cleanUp;
 - (void)_operationDidFinish:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (long long)_determineQOSForOperation:(id)arg1;
+@property(readonly, nonatomic) long long qualityOfService;
 @property(retain, nonatomic) MCTaskHandlerOperation *operation;
 - (void)dealloc;
 - (id)init;

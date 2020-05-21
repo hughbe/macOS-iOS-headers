@@ -8,13 +8,14 @@
 
 #import "CoreDAVDeleteTaskDelegate.h"
 #import "CoreDAVMkcolTaskDelegate.h"
+#import "CoreDAVMoveTaskDelegate.h"
 #import "CoreDAVPropPatchTaskDelegate.h"
 #import "CoreDAVPutTaskDelegate.h"
 #import "CoreDAVTaskGroupDelegate.h"
 
 @class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSURL;
 
-@interface CoreDAVRecursiveContainerSyncTaskGroup : CoreDAVTaskGroup <CoreDAVDeleteTaskDelegate, CoreDAVPutTaskDelegate, CoreDAVTaskGroupDelegate, CoreDAVMkcolTaskDelegate, CoreDAVPropPatchTaskDelegate>
+@interface CoreDAVRecursiveContainerSyncTaskGroup : CoreDAVTaskGroup <CoreDAVDeleteTaskDelegate, CoreDAVPutTaskDelegate, CoreDAVTaskGroupDelegate, CoreDAVMkcolTaskDelegate, CoreDAVPropPatchTaskDelegate, CoreDAVMoveTaskDelegate>
 {
     int _phase;
     NSURL *_folderURL;
@@ -39,6 +40,7 @@
     BOOL _preflightCTag;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *nextCTag; // @synthesize nextCTag=_nextCTag;
 @property(readonly, nonatomic) NSDictionary *folderURLToChildrenURLOrder; // @synthesize folderURLToChildrenURLOrder=_folderURLToChildrenURLOrder;
 @property(retain, nonatomic) NSString *previousSyncToken; // @synthesize previousSyncToken=_previousSyncToken;
@@ -55,6 +57,7 @@
 - (void)propFindTask:(id)arg1 parsedResponses:(id)arg2 error:(id)arg3;
 - (void)_syncReportTask:(id)arg1 didFinishWithError:(id)arg2;
 - (void)deleteTask:(id)arg1 completedWithError:(id)arg2;
+- (void)moveTask:(id)arg1 parsedResponses:(id)arg2 error:(id)arg3;
 - (void)task:(id)arg1 didFinishWithError:(id)arg2;
 - (void)propPatchTask:(id)arg1 parsedResponses:(id)arg2 error:(id)arg3;
 - (void)mkcolTask:(id)arg1 parsedPropStats:(id)arg2 error:(id)arg3;
@@ -76,12 +79,11 @@
 - (void)_tearDownAllUnsubmittedTasks;
 - (void)taskGroupWillCancelWithError:(id)arg1;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)initWithFolderURL:(id)arg1 previousCTag:(id)arg2 previousPTag:(id)arg3 previousSyncToken:(id)arg4 actions:(id)arg5 syncItemOrder:(BOOL)arg6 context:(id)arg7 accountInfoProvider:(id)arg8 taskManager:(id)arg9;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(nonatomic) id <CoreDAVLocalDBTreeInfoProvider> delegate; // @dynamic delegate;
+@property(nonatomic) __weak id <CoreDAVLocalDBTreeInfoProvider> delegate; // @dynamic delegate;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

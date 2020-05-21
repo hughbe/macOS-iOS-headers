@@ -6,48 +6,21 @@
 
 #import "NSObject.h"
 
-@class AMApplicationStubPrivateData;
+@class AMApplicationStubController;
 
 @interface AMApplicationStub : NSObject
 {
-    AMApplicationStubPrivateData *runner;
+    id _applicationStubController;
 }
 
-- (void)connectionDidDie:(id)arg1;
-- (void)ownerIsAnApplicationStubDelegateAndWorkflowRunnerDidFinish:(id)arg1;
-- (void)workflowRunner:(id)arg1 didError:(id)arg2;
-- (void)workflowRunnerDidStop:(id)arg1;
-- (void)workflowRunnerDidFinish:(id)arg1;
-- (void)_forceMeToQuit;
-- (void)workflowRunnerDidRun:(id)arg1;
-- (void)workflowRunner:(id)arg1 progressDidChange:(id)arg2 forAction:(id)arg3;
-- (void)workflowRunner:(id)arg1 didRunAction:(id)arg2;
-- (void)workflowRunner:(id)arg1 willRunAction:(id)arg2;
-- (void)workflowRunnerWillRun:(id)arg1;
-- (BOOL)runWorkflowWithInput:(id)arg1 error:(id *)arg2;
-- (BOOL)runWorkflowWithPropertyList:(id)arg1 fromPath:(id)arg2 withInput:(id)arg3 error:(id *)arg4;
+- (void).cxx_destruct;
+@property(retain) AMApplicationStubController *applicationStubController; // @synthesize applicationStubController=_applicationStubController;
 - (BOOL)runWorkflowAtPath:(id)arg1 withInput:(id)arg2 error:(id *)arg3;
-- (void)runDelayedInputForRunner:(id)arg1;
 - (BOOL)loadWorkflowAtPath:(id)arg1 error:(id *)arg2;
-- (void)connectToLauncher;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (BOOL)stayOpen;
-- (BOOL)isApplet;
-- (void)setLauncherConnection:(id)arg1;
-- (id)launcherConnection;
-- (void)setLauncher:(id)arg1;
-- (id)launcher;
-- (void)setDisplayInMenuBar:(BOOL)arg1;
-- (BOOL)displayInMenuBar;
-- (void)setRunner:(id)arg1;
-- (id)runner;
-- (void)setWorkflow:(id)arg1;
-- (id)workflow;
-- (void)dealloc;
+- (void)_presentRecoverableErrorAndTerminateIfNeeded:(id)arg1;
+@property(readonly, nonatomic) BOOL stayOpen;
+@property(nonatomic) BOOL displayInMenuBar;
 - (id)init;
-- (void)launchWithDictionary:(id)arg1;
-- (BOOL)loadWorkflowWithPropertyList:(id)arg1 error:(id *)arg2;
-- (id)loadBundlesAtPath:(id)arg1;
 
 @end
 

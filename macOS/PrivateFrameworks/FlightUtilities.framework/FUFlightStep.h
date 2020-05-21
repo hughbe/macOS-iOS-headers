@@ -6,38 +6,45 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class FUAirport, NSDate, NSNumber, NSString;
+@class FUAirport, FUStepTime, NSNumber, NSString;
 
-@interface FUFlightStep : NSObject <NSSecureCoding>
+@interface FUFlightStep : NSObject <NSSecureCoding, NSCopying>
 {
+    NSNumber *_delayFromSchedule;
+    BOOL _departure;
     FUAirport *_airport;
     NSString *_gate;
     NSString *_terminal;
     long long _legStatus;
-    NSDate *_actualTime;
-    NSDate *_scheduledTime;
-    NSDate *_plannedTime;
-    NSDate *_estimatedTime;
+    FUStepTime *_scheduledTime;
+    FUStepTime *_estimatedTime;
+    FUStepTime *_actualTime;
+    FUStepTime *_runwayTime;
+    FUStepTime *_plannedTime;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain) NSDate *estimatedTime; // @synthesize estimatedTime=_estimatedTime;
-@property(retain) NSDate *plannedTime; // @synthesize plannedTime=_plannedTime;
-@property(retain) NSDate *scheduledTime; // @synthesize scheduledTime=_scheduledTime;
-@property(retain) NSDate *actualTime; // @synthesize actualTime=_actualTime;
+- (void).cxx_destruct;
+@property(retain) FUStepTime *plannedTime; // @synthesize plannedTime=_plannedTime;
+@property BOOL departure; // @synthesize departure=_departure;
+@property(retain) FUStepTime *runwayTime; // @synthesize runwayTime=_runwayTime;
+@property(retain) FUStepTime *actualTime; // @synthesize actualTime=_actualTime;
+@property(retain) FUStepTime *estimatedTime; // @synthesize estimatedTime=_estimatedTime;
+@property(retain) FUStepTime *scheduledTime; // @synthesize scheduledTime=_scheduledTime;
 @property long long legStatus; // @synthesize legStatus=_legStatus;
 @property(retain) NSString *terminal; // @synthesize terminal=_terminal;
 @property(retain) NSString *gate; // @synthesize gate=_gate;
 @property(retain) FUAirport *airport; // @synthesize airport=_airport;
-- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)description;
 @property(readonly, nonatomic) unsigned long long status;
-@property(readonly, nonatomic) NSNumber *delayFromSchedule;
-@property(readonly) NSDate *time;
+@property(retain, nonatomic) NSNumber *delayFromSchedule;
+@property(readonly) FUStepTime *time;
+@property(readonly) BOOL taxiing;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
 

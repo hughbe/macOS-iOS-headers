@@ -14,6 +14,7 @@
 
 + (id)getMultipleClientStatesWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getMultipleClientStates;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *clientStateGetters;
 - (id)encodedClassName;

@@ -13,6 +13,7 @@
 @optional
 - (struct CGRect)clumpView:(SiriUIClumpView *)arg1 frameOnScreenForItem:(id <QLPreviewItem>)arg2;
 - (id <QLPreviewItem>)clumpView:(SiriUIClumpView *)arg1 previewForItemAtIndexPath:(NSIndexPath *)arg2;
+- (void)returnKeyActionForClumpView:(SiriUIClumpView *)arg1;
 - (void)clumpView:(SiriUIClumpView *)arg1 didDoubleClickItemAtIndexPath:(NSIndexPath *)arg2;
 - (void)clumpView:(SiriUIClumpView *)arg1 didClickItemAtIndexPath:(NSIndexPath *)arg2;
 @end

@@ -7,46 +7,56 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBIntentSlotResolutionResult.h"
 
-@class PBUnknownFields, _INPBPayloadConfirmation, _INPBPayloadNeedsDisambiguation, _INPBPayloadNeedsValue, _INPBPayloadNotSpecificEnough, _INPBPayloadSuccess, _INPBPayloadUnsupported;
+@class NSString, _INPBPayloadConfirmation, _INPBPayloadNeedsDisambiguation, _INPBPayloadNeedsExecuteIntent, _INPBPayloadNeedsValue, _INPBPayloadSuccess, _INPBPayloadUnsupported;
 
-@interface _INPBIntentSlotResolutionResult : PBCodable <NSCopying>
+@interface _INPBIntentSlotResolutionResult : PBCodable <_INPBIntentSlotResolutionResult, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    _INPBPayloadConfirmation *_PayloadConfirmation;
-    _INPBPayloadNeedsDisambiguation *_PayloadNeedsDisambiguation;
-    _INPBPayloadNeedsValue *_PayloadNeedsValue;
-    _INPBPayloadNotSpecificEnough *_PayloadNotSpecificEnough;
-    _INPBPayloadSuccess *_PayloadSuccess;
-    _INPBPayloadUnsupported *_PayloadUnsupported;
-    int _type;
     CDStruct_f953fb60 _has;
+    BOOL __encodeLegacyGloryData;
+    int _type;
+    _INPBPayloadConfirmation *_payloadConfirmation;
+    _INPBPayloadNeedsDisambiguation *_payloadNeedsDisambiguation;
+    _INPBPayloadNeedsExecuteIntent *_payloadNeedsExecuteIntent;
+    _INPBPayloadNeedsValue *_payloadNeedsValue;
+    _INPBPayloadSuccess *_payloadSuccess;
+    _INPBPayloadUnsupported *_payloadUnsupported;
 }
 
-@property(retain, nonatomic) _INPBPayloadConfirmation *PayloadConfirmation; // @synthesize PayloadConfirmation=_PayloadConfirmation;
-@property(retain, nonatomic) _INPBPayloadNotSpecificEnough *PayloadNotSpecificEnough; // @synthesize PayloadNotSpecificEnough=_PayloadNotSpecificEnough;
-@property(retain, nonatomic) _INPBPayloadNeedsDisambiguation *PayloadNeedsDisambiguation; // @synthesize PayloadNeedsDisambiguation=_PayloadNeedsDisambiguation;
-@property(retain, nonatomic) _INPBPayloadNeedsValue *PayloadNeedsValue; // @synthesize PayloadNeedsValue=_PayloadNeedsValue;
-@property(retain, nonatomic) _INPBPayloadUnsupported *PayloadUnsupported; // @synthesize PayloadUnsupported=_PayloadUnsupported;
-@property(retain, nonatomic) _INPBPayloadSuccess *PayloadSuccess; // @synthesize PayloadSuccess=_PayloadSuccess;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(nonatomic) int type; // @synthesize type=_type;
+@property(retain, nonatomic) _INPBPayloadUnsupported *payloadUnsupported; // @synthesize payloadUnsupported=_payloadUnsupported;
+@property(retain, nonatomic) _INPBPayloadSuccess *payloadSuccess; // @synthesize payloadSuccess=_payloadSuccess;
+@property(retain, nonatomic) _INPBPayloadNeedsValue *payloadNeedsValue; // @synthesize payloadNeedsValue=_payloadNeedsValue;
+@property(retain, nonatomic) _INPBPayloadNeedsExecuteIntent *payloadNeedsExecuteIntent; // @synthesize payloadNeedsExecuteIntent=_payloadNeedsExecuteIntent;
+@property(retain, nonatomic) _INPBPayloadNeedsDisambiguation *payloadNeedsDisambiguation; // @synthesize payloadNeedsDisambiguation=_payloadNeedsDisambiguation;
+@property(retain, nonatomic) _INPBPayloadConfirmation *payloadConfirmation; // @synthesize payloadConfirmation=_payloadConfirmation;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-@property(readonly, nonatomic) BOOL hasPayloadConfirmation;
-@property(readonly, nonatomic) BOOL hasPayloadNotSpecificEnough;
-@property(readonly, nonatomic) BOOL hasPayloadNeedsDisambiguation;
-@property(readonly, nonatomic) BOOL hasPayloadNeedsValue;
+- (int)StringAsType:(id)arg1;
+- (id)typeAsString:(int)arg1;
+@property(nonatomic) BOOL hasType;
 @property(readonly, nonatomic) BOOL hasPayloadUnsupported;
 @property(readonly, nonatomic) BOOL hasPayloadSuccess;
-@property(nonatomic) BOOL hasType;
-@property(nonatomic) int type; // @synthesize type=_type;
+@property(readonly, nonatomic) BOOL hasPayloadNeedsValue;
+@property(readonly, nonatomic) BOOL hasPayloadNeedsExecuteIntent;
+@property(readonly, nonatomic) BOOL hasPayloadNeedsDisambiguation;
+@property(readonly, nonatomic) BOOL hasPayloadConfirmation;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

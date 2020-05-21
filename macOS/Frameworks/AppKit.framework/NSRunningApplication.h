@@ -10,7 +10,6 @@
 
 @interface NSRunningApplication : NSObject
 {
-    id _superReserved;
     void *_asn;
     void **_helpers;
     id _obsInfo;
@@ -38,12 +37,12 @@
         unsigned int activationPolicy:3;
         unsigned int reserved1:19;
     } _aflags;
-    id _appReserved;
 }
 
 + (void)terminateAutomaticallyTerminableApplications;
 + (BOOL)_deactivateCurrentAppAndCheckIfFrontReservationIsAvailable;
 + (id)currentApplication;
++ (id)runningApplicationWithAuditToken:(CDStruct_4c969caf)arg1;
 + (id)runningApplicationWithProcessIdentifier:(int)arg1;
 + (id)runningApplicationsWithBundleIdentifier:(id)arg1;
 + (id)_TALTerminatedApplications;
@@ -107,7 +106,6 @@
 - (void)_changeObservingNotificationMask:(unsigned long long)arg1 to:(BOOL)arg2;
 - (void)_observeChangeInKey:(int)arg1 withDataRef:(void *)arg2;
 - (void)_postWillOrDidChangeNotificationsForKeyIndex:(int)arg1 isWill:(BOOL)arg2;
-- (id)_URLForDeletingRestorableState;
 
 @end
 

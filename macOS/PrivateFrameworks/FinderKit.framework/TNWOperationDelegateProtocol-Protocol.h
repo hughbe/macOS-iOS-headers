@@ -11,6 +11,7 @@
 @protocol TNWOperationDelegateProtocol <NSObject>
 
 @optional
+- (void)nwOperationEventConverting:(NSDictionary *)arg1 opController:(struct INWOperationController *)arg2;
 - (void)nwOperationEventBlocked:(NSDictionary *)arg1 opController:(struct INWOperationController *)arg2;
 - (void)nwOperationEventConflict:(NSDictionary *)arg1 opController:(struct INWOperationController *)arg2;
 - (void)nwOperationEventInformation:(NSDictionary *)arg1 opController:(struct INWOperationController *)arg2;

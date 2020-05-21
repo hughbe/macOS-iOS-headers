@@ -14,11 +14,12 @@
 
 @interface CNLabeledValue : NSObject <CNSuggested, NSCopying, NSSecureCoding>
 {
-    NSString *_identifier;
     CNLabelValuePair *_labelValuePair;
+    NSString *_identifier;
     NSString *_storeIdentifier;
     NSDictionary *_storeInfo;
     NSSet *_linkedIdentifiers;
+    BOOL _isValueMutable;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -32,11 +33,14 @@
 + (id)entryWithIdentifier:(id)arg1 label:(id)arg2 value:(id)arg3;
 + (id)valueForIdentifier:(id)arg1 inArray:(id)arg2;
 + (id)labelForIdentifier:(id)arg1 inArray:(id)arg2;
++ (id)propertyDescriptionOwnersByLabel;
++ (id)propertyDescriptionLocalizationForLabel:(id)arg1;
 + (id)localizedStringForLabel:(id)arg1;
 + (id)entryForIdentifier:(id)arg1 inArray:(id)arg2;
 + (CDUnknownBlockType)testMatchingIdentifier:(id)arg1;
 + (id)makeIdentifier;
 + (id)identifierProvider;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSSet *linkedIdentifiers; // @synthesize linkedIdentifiers=_linkedIdentifiers;
 @property(copy, nonatomic) NSDictionary *storeInfo; // @synthesize storeInfo=_storeInfo;
 @property(copy, nonatomic) NSString *storeIdentifier; // @synthesize storeIdentifier=_storeIdentifier;
@@ -50,15 +54,18 @@
 @property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)addStoreInfo:(id)arg1;
 - (id)labeledValueBySettingLabel:(id)arg1 value:(id)arg2;
 - (id)labeledValueBySettingValue:(id)arg1;
 - (id)labeledValueBySettingLabel:(id)arg1;
 @property(readonly, copy) id <NSCopying><NSSecureCoding> value;
 @property(readonly, copy) NSString *label;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
+- (id)primitiveInitWithIdentifier:(id)arg1 label:(id)arg2 value:(id)arg3;
 - (id)initWithIdentifier:(id)arg1 label:(id)arg2 value:(id)arg3;
 - (id)initWithLabel:(id)arg1 value:(id)arg2;
+- (id)init;
+- (id)valueOrigin;
 @property(readonly, nonatomic) NSString *suggestionFoundInBundleId;
 @property(readonly, nonatomic) SGRecordId *suggestionRecordId;
 @property(readonly, nonatomic, getter=isSuggested) BOOL suggested;

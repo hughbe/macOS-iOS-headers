@@ -14,10 +14,15 @@
 {
 }
 
++ (id)_supportedEvents;
+- (void)_logUnsignedIntegerValue:(unsigned long long)arg1 forEvent:(id)arg2 featureId:(id)arg3 stringifiedProperties:(id)arg4;
 - (void)logErrorForEvent:(id)arg1 featureId:(id)arg2 reason:(id)arg3;
 - (void)logDoubleValue:(double)arg1 forEvent:(id)arg2 featureId:(id)arg3 stringifiedProperties:(id)arg4 metaData:(id)arg5;
+- (void)setUnsignedIntegerValue:(unsigned long long)arg1 forEvent:(id)arg2 featureId:(id)arg3 stringifiedProperties:(id)arg4 metaData:(id)arg5;
 - (void)logUnsignedIntegerValue:(unsigned long long)arg1 forEvent:(id)arg2 featureId:(id)arg3 stringifiedProperties:(id)arg4 metaData:(id)arg5;
 - (void)_setKeyValuePairsForMessage:(struct __asl_object_s *)arg1 withStringifiedPairs:(id)arg2;
+- (id)_filterEvent:(id)arg1 properties:(id)arg2;
+- (BOOL)_isFeatureSupported:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

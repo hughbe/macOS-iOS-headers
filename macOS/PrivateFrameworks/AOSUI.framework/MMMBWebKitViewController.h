@@ -12,8 +12,6 @@
 
 @interface MMMBWebKitViewController : NSObject <MMWebKitControllerDelegate>
 {
-    id <MBUIDelegate> _mbUIDelegate;
-    id <MBWebKitViewControllerDelegate> _mbWebKitViewControllerDelegate;
     MMWebKitController *_webKitController;
     NSView *_parentView;
     MMJSDialogController *_mmJSDialogController;
@@ -23,6 +21,7 @@
     NSDictionary *_authenticationResults;
     struct OpaqueJSValue *_leftButtonCallback;
     struct OpaqueJSValue *_rightButtonCallback;
+    struct OpaqueJSValue *_alternateButtonCallback;
     BOOL _supportsWindowResize;
     struct {
         unsigned int delegateSetWindowTitle:1;
@@ -31,6 +30,8 @@
         unsigned int delegateSetLeftButtonEnabled:1;
         unsigned int delegateSetRightButtonTitle:1;
         unsigned int delegateSetRightButtonEnabled:1;
+        unsigned int delegateSetAlternateButtonTitle:1;
+        unsigned int delegateSetAlternateButtonEnabled:1;
         unsigned int delegateSaveFile:1;
         unsigned int delegateSaveFileWithName:1;
         unsigned int delegateShowTerms:1;
@@ -40,12 +41,16 @@
         unsigned int delegateDidFinishLoading:1;
         unsigned int delegateDidFail:1;
         unsigned int delegateDidReceiveResponse:1;
-        unsigned int padding:4;
+        unsigned int padding:2;
     } _flags;
+    id <MBUIDelegate> _mbUIDelegate;
+    id <MBWebKitViewControllerDelegate> _mbWebKitViewControllerDelegate;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSDictionary *authenticationResults; // @synthesize authenticationResults=_authenticationResults;
 @property(nonatomic) BOOL supportsWindowResize; // @synthesize supportsWindowResize=_supportsWindowResize;
+@property(nonatomic) struct OpaqueJSValue *alternateButtonCallback; // @synthesize alternateButtonCallback=_alternateButtonCallback;
 @property(nonatomic) struct OpaqueJSValue *rightButtonCallback; // @synthesize rightButtonCallback=_rightButtonCallback;
 @property(nonatomic) struct OpaqueJSValue *leftButtonCallback; // @synthesize leftButtonCallback=_leftButtonCallback;
 @property(copy, nonatomic) NSDictionary *delegatePlist; // @synthesize delegatePlist=_delegatePlist;
@@ -57,6 +62,7 @@
 @property(nonatomic) id <MBWebKitViewControllerDelegate> mbWebKitViewControllerDelegate; // @synthesize mbWebKitViewControllerDelegate=_mbWebKitViewControllerDelegate;
 @property(nonatomic) id <MBUIDelegate> mbUIDelegate; // @synthesize mbUIDelegate=_mbUIDelegate;
 - (id)mmWebKitControllerWindow;
+- (void)mmWebKitControllerWillSendRequest:(id)arg1 willSendRequest:(id)arg2;
 - (void)mmWebKitControllerDidReceiveResponse:(id)arg1 didReceiveResponse:(id)arg2;
 - (void)mmWebKitControllerDidFinishLoading:(id)arg1;
 - (void)mmWebKitControllerDidFailLoading:(id)arg1 error:(id)arg2;
@@ -65,11 +71,12 @@
 - (void)mmWebKitControllerConfigureForFrame:(id)arg1;
 - (void)mmWebView:(id)arg1 setFrame:(struct CGRect)arg2;
 - (void)_window:(id)arg1 setFrame:(struct CGRect)arg2;
-- (void)dealloc;
+- (void)alternateNavigationButtonClicked:(id)arg1;
 - (void)rightNavigationButtonClicked:(id)arg1;
 - (void)leftNavigationButtonClicked:(id)arg1;
 @property(readonly, nonatomic) WebView *webView;
 - (void)loadURLRequest:(id)arg1;
+- (void)dealloc;
 - (id)initMBWebKitViewControllerInView:(id)arg1 mbUIDelegate:(id)arg2 authenticationResults:(id)arg3;
 - (id)initMBWebKitViewControllerInView:(id)arg1 mbUIDelegate:(id)arg2;
 

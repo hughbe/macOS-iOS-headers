@@ -29,6 +29,7 @@ __attribute__((visibility("hidden")))
     struct CGSize _contentSize;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
 @property(nonatomic) BOOL presentsCentered; // @synthesize presentsCentered=_presentsCentered;
 @property(nonatomic) BOOL roundsCorners; // @synthesize roundsCorners=_roundsCorners;
@@ -36,7 +37,6 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSView *contentView; // @synthesize contentView=_contentView;
 @property(readonly, nonatomic) CompletionWindow *completionWindow; // @synthesize completionWindow=_completionWindow;
 @property(nonatomic) __weak id <CompletionUIPresentationControllerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)_parentWindowWillMove:(id)arg1;
 - (void)_ensureFinalAnimationState;
 - (void)_updateCompletionWindowAppearanceForAnimationProgress:(double)arg1 shouldStop:(char *)arg2;
@@ -59,6 +59,7 @@ __attribute__((visibility("hidden")))
 - (void)presentCompletionUIRelativeToRectInScreenCoordinates:(struct CGRect)arg1 animated:(BOOL)arg2;
 @property(readonly, nonatomic, getter=isShowingCompletionUI) BOOL showingCompletionUI;
 @property(readonly, nonatomic) struct NSEdgeInsets contentInset;
+- (void)setContentSize:(struct CGSize)arg1 animate:(BOOL)arg2;
 - (void)setContentView:(id)arg1 includeTopContentInset:(BOOL)arg2 includeBottomContentInset:(BOOL)arg3;
 @property(readonly, nonatomic) struct CGRect sourceRectInScreenCoordinates;
 - (void)dealloc;

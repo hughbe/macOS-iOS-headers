@@ -6,6 +6,7 @@
 
 #import "NSDictionary.h"
 
+__attribute__((visibility("hidden")))
 @interface NSSimpleAttributeDictionary : NSDictionary
 {
     unsigned int numElements;

@@ -12,9 +12,9 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVItem *prop; // @synthesize prop=_prop;
 - (id)description;
-- (void)dealloc;
 - (id)init;
 
 @end

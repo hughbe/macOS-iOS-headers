@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSFont, NSFontPanel;
+#import "NSMenuItemValidation.h"
 
-@interface NSFontManager : NSObject
+@class NSArray, NSFont, NSFontPanel, NSString;
+
+@interface NSFontManager : NSObject <NSMenuItemValidation>
 {
     NSFontPanel *_panel;
     SEL _action;
@@ -28,7 +30,6 @@
 + (void)setFontManagerFactory:(Class)arg1;
 + (void)setFontPanelFactory:(Class)arg1;
 + (id)sharedFontManager;
-+ (void)initialize;
 - (id)_collectionWithName:(id)arg1;
 - (id)_createFontPanelRepFromCollection:(id)arg1 removingHidden:(BOOL)arg2;
 - (long long)_renameCollection:(id)arg1 to:(id)arg2;
@@ -135,6 +136,12 @@
 - (id)init;
 - (oneway void)release;
 - (id)_init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

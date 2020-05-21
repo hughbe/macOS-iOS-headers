@@ -6,9 +6,81 @@
 
 #import <SearchFoundation/SFTableRowCardSection.h>
 
-@interface SFTableHeaderRowCardSection : SFTableRowCardSection
+#import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "SFTableHeaderRowCardSection.h"
+
+@class NSArray, NSData, NSDictionary, NSString, SFCard, SFColor, SFTableAlignmentSchema, SFUserReportRequest;
+
+@interface SFTableHeaderRowCardSection : SFTableRowCardSection <SFTableHeaderRowCardSection, NSSecureCoding, NSCopying>
 {
+    CDStruct_dff33cb6 _has;
+    BOOL _canBeHidden;
+    BOOL _hasTopPadding;
+    BOOL _hasBottomPadding;
+    BOOL _isSubHeader;
+    BOOL _reducedRowHeight;
+    BOOL _alignRowsToHeader;
+    int _separatorStyle;
+    int _verticalAlign;
+    NSArray *_punchoutOptions;
+    NSString *_punchoutPickerTitle;
+    NSString *_punchoutPickerDismissText;
+    NSString *_type;
+    SFColor *_backgroundColor;
+    NSString *_tableIdentifier;
+    SFTableAlignmentSchema *_alignmentSchema;
+    NSArray *_data;
+    NSString *_tabGroupIdentifier;
 }
+
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL alignRowsToHeader;
+@property(nonatomic) int verticalAlign;
+@property(nonatomic) BOOL reducedRowHeight;
+@property(copy, nonatomic) NSString *tabGroupIdentifier;
+@property(nonatomic) BOOL isSubHeader;
+@property(copy, nonatomic) NSArray *data;
+@property(retain, nonatomic) SFTableAlignmentSchema *alignmentSchema;
+@property(copy, nonatomic) NSString *tableIdentifier;
+@property(retain, nonatomic) SFColor *backgroundColor;
+@property(nonatomic) int separatorStyle;
+@property(copy, nonatomic) NSString *type;
+@property(nonatomic) BOOL hasBottomPadding;
+@property(nonatomic) BOOL hasTopPadding;
+@property(nonatomic) BOOL canBeHidden;
+@property(copy, nonatomic) NSString *punchoutPickerDismissText;
+@property(copy, nonatomic) NSString *punchoutPickerTitle;
+@property(copy, nonatomic) NSArray *punchoutOptions;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) NSData *jsonData;
+@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (BOOL)hasAlignRowsToHeader;
+- (BOOL)hasVerticalAlign;
+- (BOOL)hasReducedRowHeight;
+- (BOOL)hasIsSubHeader;
+- (BOOL)hasSeparatorStyle;
+- (BOOL)hasHasBottomPadding;
+- (BOOL)hasHasTopPadding;
+- (BOOL)hasCanBeHidden;
+- (id)initWithProtobuf:(id)arg1;
+
+// Remaining properties
+@property(copy, nonatomic) NSString *cardSectionId;
+@property(copy, nonatomic) NSArray *commands;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(nonatomic) BOOL hideDivider;
+@property(retain, nonatomic) SFCard *nextCard;
+@property(copy, nonatomic) NSArray *parameterKeyPaths;
+@property(copy, nonatomic) NSString *resultIdentifier;
+@property(copy, nonatomic) NSArray *richData;
+@property(readonly) Class superclass;
+@property(retain, nonatomic) SFUserReportRequest *userReportRequest;
 
 @end
 

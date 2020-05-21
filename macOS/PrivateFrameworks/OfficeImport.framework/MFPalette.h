@@ -17,11 +17,11 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)paletteWithColours:(id)arg1;
+- (void).cxx_destruct;
 - (id)getColour:(int)arg1;
 - (BOOL)resize:(int)arg1;
-- (BOOL)setEntries:(int)arg1:(id)arg2;
+- (BOOL)setEntries:(int)arg1 in_colours:(id)arg2;
 - (int)selectInto:(id)arg1;
-- (void)dealloc;
 - (id)initWithColours:(id)arg1;
 - (id)init;
 

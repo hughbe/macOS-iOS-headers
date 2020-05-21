@@ -6,30 +6,28 @@
 
 #import <MapKit/_MKTableViewController.h>
 
-@class NSArray, NSPopover;
+@class NSArray;
 
 @interface MKTransitIncidentsViewController : _MKTableViewController
 {
     NSArray *_incidents;
-    NSPopover *_containingPopover;
 }
 
-@property(nonatomic) __weak NSPopover *containingPopover; // @synthesize containingPopover=_containingPopover;
-@property(copy, nonatomic) NSArray *incidents; // @synthesize incidents=_incidents;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSArray *incidents; // @synthesize incidents=_incidents;
 - (BOOL)selectionShouldChangeInTableView:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
 - (id)_cellForRow:(long long)arg1 inSection:(long long)arg2;
-- (void)viewDidLayout;
-- (void)viewDidAppear;
 - (struct CGSize)viewIntrinsicContentSize;
 - (void)dealloc;
 - (void)_localeDidChange;
 - (void)_updateTitle;
+- (void)infoCardThemeChanged;
 - (void)viewDidLoad;
 - (id)initWithIncidents:(id)arg1;
+- (BOOL)_canShowWhileLocked;
 
 @end
 

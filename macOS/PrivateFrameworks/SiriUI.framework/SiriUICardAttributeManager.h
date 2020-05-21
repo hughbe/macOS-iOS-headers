@@ -12,20 +12,26 @@
 {
     NSMutableDictionary *_groupMap;
     NSMutableDictionary *_iconMap;
+    NSDictionary *_appPluginMap;
     NSDictionary *_ncIconMap;
     NSDictionary *_socialIconMap;
 }
 
 + (id)sharedManager;
+- (void).cxx_destruct;
 @property(readonly) NSDictionary *socialIconMap; // @synthesize socialIconMap=_socialIconMap;
 @property(readonly) NSDictionary *ncIconMap; // @synthesize ncIconMap=_ncIconMap;
+@property(readonly) NSDictionary *appPluginMap; // @synthesize appPluginMap=_appPluginMap;
 @property(readonly) NSMutableDictionary *iconMap; // @synthesize iconMap=_iconMap;
 @property(readonly) NSMutableDictionary *groupMap; // @synthesize groupMap=_groupMap;
-- (void).cxx_destruct;
 - (BOOL)shouldAllowSnippetStashingForAceObject:(id)arg1;
+- (id)localizedIconForIdentifier:(id)arg1;
 - (id)localizedIconPathForIdentifier:(id)arg1;
+- (id)bundlePathForIdentifier:(id)arg1;
 - (id)bundlePathForSocialIconWithIdentifier:(id)arg1;
+- (id)appexIconRelativeToBundle:(id)arg1 withIdentifier:(id)arg2;
 - (id)bundlePathForNCIconWithIdentifier:(id)arg1;
+- (id)bundlePathForAppPluginIconWithIdentifier:(id)arg1;
 - (id)localizedNameForAceObject:(id)arg1;
 - (id)init;
 

@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)weakObjectValue;
+- (void)getValue:(void *)arg1 size:(unsigned long long)arg2;
 - (void)getValue:(void *)arg1;
 - (id)nonretainedObjectValue;
 - (const char *)objCType;

@@ -8,11 +8,13 @@
 
 @class NSColorSpace, NSImage;
 
+__attribute__((visibility("hidden")))
 @interface NSColorPickerWheelView : NSView
 {
-    NSImage *displayWheelImage;
+    BOOL _wheelImageIsValid;
+    NSImage *_wheelImage;
     struct CGPoint currentPt;
-    BOOL tracking;
+    BOOL _isTracking;
     id colorPanel;
     id controllingPicker;
     double _brightness;
@@ -26,6 +28,8 @@
 @property(readonly, retain) NSColorSpace *effectiveDisplayColorSpace;
 @property(retain) NSColorSpace *preferredDisplayColorSpace;
 - (void)mouseDown:(id)arg1;
+- (BOOL)isTracking;
+- (void)_setPointerKeyboardFocusNeedsDisplay;
 - (BOOL)mouseDownCanMoveWindow;
 - (id)_colorFromPoint:(struct CGPoint)arg1;
 - (id)_brightColorFromPoint:(struct CGPoint)arg1 fullBrightness:(BOOL)arg2;
@@ -36,9 +40,9 @@
 - (void)viewSizeChanged:(id)arg1;
 - (struct CGPoint)_pointFromColor:(id)arg1;
 - (BOOL)_pointInPicker:(struct CGPoint *)arg1;
-- (void)_compositeImage;
+- (id)_wheelImage;
+- (void)_invalidateWheelImage;
 - (void)setBrightness:(double)arg1;
-- (BOOL)isTracking;
 - (id)brightColor;
 - (id)color;
 - (void)setColor:(id)arg1;

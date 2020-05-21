@@ -20,7 +20,6 @@
 - (NSMutableArray *)_chatItems;
 - (void)_setItems:(NSArray *)arg1;
 - (NSArray *)_items;
-- (void)_invalidate;
 - (id)_initWithChat:(IMChat *)arg1;
 @end
 

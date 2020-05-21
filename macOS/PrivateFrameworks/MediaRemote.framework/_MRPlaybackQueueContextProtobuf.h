@@ -15,6 +15,7 @@
     NSString *_revision;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *revision; // @synthesize revision=_revision;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -26,7 +27,6 @@
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(readonly, nonatomic) BOOL hasRevision;
-- (void)dealloc;
 
 @end
 

@@ -47,7 +47,7 @@
 - (void)endTurnWithNextParticipants:(id)arg1 turnTimeout:(double)arg2 matchData:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)indexesForParticipants:(id)arg1;
 - (void)endTurnWithNextParticipant:(id)arg1 matchData:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)reserveShareParticipantSlots:(long long)arg1 andInvitePlayers:(id)arg2 withMessage:(id)arg3 handler:(CDUnknownBlockType)arg4;
+- (void)reserveShareParticipantSlots:(long long)arg1 minPlayerCount:(long long)arg2 maxPlayerCount:(long long)arg3 andInvitePlayers:(id)arg4 withMessage:(id)arg5 handler:(CDUnknownBlockType)arg6;
 - (void)loadURLWithMatchRequest:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)loadMatchDataWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)removeWithCompletionHandler:(CDUnknownBlockType)arg1;
@@ -100,6 +100,8 @@
 @property(copy) NSDate *lastTurnDate; // @dynamic lastTurnDate;
 @property(readonly, retain) NSData *matchData; // @dynamic matchData;
 @property(readonly, retain) NSString *matchID; // @dynamic matchID;
+@property(readonly) long long platform; // @dynamic platform;
+@property(retain) NSString *shortBundleVersion; // @dynamic shortBundleVersion;
 @property(readonly) Class superclass;
 @property(readonly) long long turnNumber; // @dynamic turnNumber;
 

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, _MXExtensionDispatchCenter, _MXExtensionMatchingMerger, _MXExtensionServiceCenter;
+@class NSArray, _MXAssetStorage, _MXExtensionDispatchCenter, _MXExtensionMatchingMerger, _MXExtensionServiceCenter;
 
 @interface _MXExtensionProvider : NSObject
 {
@@ -17,17 +17,17 @@
     _MXExtensionMatchingMerger *_merger;
     _MXExtensionDispatchCenter *_dispatchCenter;
     _MXExtensionServiceCenter *_serviceCenter;
+    _MXAssetStorage *_assetStorage;
 }
 
 + (id)sharedProvider;
+- (void).cxx_destruct;
+@property(retain, nonatomic) _MXAssetStorage *assetStorage; // @synthesize assetStorage=_assetStorage;
 @property(retain, nonatomic) _MXExtensionServiceCenter *serviceCenter; // @synthesize serviceCenter=_serviceCenter;
 @property(retain, nonatomic) _MXExtensionDispatchCenter *dispatchCenter; // @synthesize dispatchCenter=_dispatchCenter;
 @property(retain, nonatomic) _MXExtensionMatchingMerger *merger; // @synthesize merger=_merger;
-- (void).cxx_destruct;
 - (BOOL)_disableExtension:(id)arg1 error:(id *)arg2;
 - (BOOL)_enableExtension:(id)arg1 error:(id *)arg2;
-- (void)_beginExtensionServiceWithExtension:(id)arg1 inputItems:(id)arg2 remoteViewControllerInstantiationCompletion:(CDUnknownBlockType)arg3 serviceCompletion:(CDUnknownBlockType)arg4;
-- (void)_beginExtensionServiceWithExtension:(id)arg1 inputItems:(id)arg2 beginCompletion:(CDUnknownBlockType)arg3 serviceCompletion:(CDUnknownBlockType)arg4;
 - (id)siblingExtensionsWithContainingAppIdentifer:(id)arg1;
 - (id)_extensionWithIdentifier:(id)arg1;
 - (id)_currentExtensions;

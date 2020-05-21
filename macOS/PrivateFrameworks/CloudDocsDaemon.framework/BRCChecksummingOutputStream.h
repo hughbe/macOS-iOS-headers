@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
 
 + (id)checksummingOutputStreamWithTag:(unsigned char)arg1;
 - (long long)write:(const char *)arg1 maxLength:(unsigned long long)arg2;
+- (unsigned long long)streamStatus;
 - (void)close;
 - (void)open;
 - (BOOL)hasSpaceAvailable;

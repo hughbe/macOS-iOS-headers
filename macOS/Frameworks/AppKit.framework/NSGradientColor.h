@@ -8,6 +8,7 @@
 
 @class NSGradient;
 
+__attribute__((visibility("hidden")))
 @interface NSGradientColor : NSColor
 {
     NSGradient *_gradient;
@@ -20,6 +21,8 @@
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
+- (id)colorUsingType:(long long)arg1;
+- (long long)type;
 - (id)colorSpaceName;
 - (id)colorUsingColorSpaceName:(id)arg1 device:(id)arg2;
 - (void)setStroke;

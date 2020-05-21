@@ -8,21 +8,24 @@
 
 #import "NSCopying.h"
 
-@class GEOLatLng, NSString;
+@class GEOLatLng, NSString, PBDataReader;
 
+__attribute__((visibility("hidden")))
 @interface GEOTransitAppLaunchFeedbackCollection : PBCodable <NSCopying>
 {
-    double _timestamp;
+    PBDataReader *_reader;
     NSString *_bundleIdentifier;
     GEOLatLng *_destination;
     GEOLatLng *_source;
-    CDStruct_b5306035 _has;
+    double _timestamp;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    CDStruct_ea2c3af7 _flags;
 }
 
-@property(nonatomic) double timestamp; // @synthesize timestamp=_timestamp;
-@property(retain, nonatomic) GEOLatLng *destination; // @synthesize destination=_destination;
-@property(retain, nonatomic) GEOLatLng *source; // @synthesize source=_source;
-@property(retain, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -30,13 +33,22 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(nonatomic) BOOL hasTimestamp;
+@property(nonatomic) double timestamp;
+@property(retain, nonatomic) GEOLatLng *destination;
 @property(readonly, nonatomic) BOOL hasDestination;
+- (void)_readDestination;
+@property(retain, nonatomic) GEOLatLng *source;
 @property(readonly, nonatomic) BOOL hasSource;
+- (void)_readSource;
+@property(retain, nonatomic) NSString *bundleIdentifier;
 @property(readonly, nonatomic) BOOL hasBundleIdentifier;
-- (void)dealloc;
+- (void)_readBundleIdentifier;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

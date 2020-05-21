@@ -8,6 +8,7 @@
 
 @class NSString, NSWindow, SMSystem_Client_TMSparseBundle;
 
+__attribute__((visibility("hidden")))
 @interface SMAuthenticatedMountWindowController : NSWindowController
 {
     SMSystem_Client_TMSparseBundle *lockedSystem;
@@ -15,10 +16,10 @@
     NSWindow *_sheetWindow;
 }
 
+- (void).cxx_destruct;
 @property NSWindow *sheetWindow; // @synthesize sheetWindow=_sheetWindow;
 @property(retain) NSString *password; // @synthesize password=_password;
 @property(retain) SMSystem_Client_TMSparseBundle *lockedSystem; // @synthesize lockedSystem;
-- (void).cxx_destruct;
 - (void)pressedUnlock:(id)arg1;
 - (void)pressedCancel:(id)arg1;
 - (void)dismissWindow;

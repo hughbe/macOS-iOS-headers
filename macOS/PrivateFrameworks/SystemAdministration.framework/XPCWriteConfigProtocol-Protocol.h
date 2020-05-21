@@ -6,7 +6,7 @@
 
 #import "XPCWriteConfigSync.h"
 
-@class NSArray, NSData, NSDictionary, NSString, NSURL;
+@class NSArray, NSData, NSDictionary, NSString;
 
 @protocol XPCWriteConfigProtocol <XPCWriteConfigSync>
 
@@ -19,14 +19,11 @@
 - (oneway void)setAutologinPassword:(NSString *)arg1 accountName:(NSString *)arg2 keychainPath:(NSString *)arg3 _withAuthorization:(NSData *)arg4;
 - (oneway void)setGuestPassword:(NSString *)arg1 accountName:(NSString *)arg2 _withAuthorization:(NSData *)arg3;
 - (oneway void)setODSDPassword:(NSString *)arg1 accountName:(NSString *)arg2 _withAuthorization:(NSData *)arg3;
-- (oneway void)overwriteGatekeeperForURL:(NSURL *)arg1 _withAuthorization:(NSData *)arg2;
 - (oneway void)setKeyForDomain:(NSDictionary *)arg1 _withAuthorization:(NSData *)arg2;
-- (oneway void)setRestrictAppInstallations:(BOOL)arg1 allowCaspianIdentifiedApps:(BOOL)arg2 _withAuthorization:(NSData *)arg3;
+- (oneway void)setRestrictAppInstallations:(unsigned long long)arg1 _withAuthorization:(NSData *)arg2;
 - (oneway void)suspendPerUserLaunchd:(unsigned long long)arg1 suspend:(BOOL)arg2 _withAuthorization:(NSData *)arg3;
 - (oneway void)runKextcacheWithAuthorization:(NSData *)arg1 result:(void (^)(long long))arg2;
 - (oneway void)touchEFIResourceBuilder_withAuthorization:(NSData *)arg1;
-- (oneway void)resetFDERecoveryPassword:(NSString *)arg1 existing:(NSString *)arg2 new:(NSString *)arg3 _withAuthorization:(NSData *)arg4;
-- (oneway void)setMasterPassword:(NSString *)arg1 _withAuthorization:(NSData *)arg2;
 - (oneway void)setStartupFromNetBootImage:(NSDictionary *)arg1 reportSuccessTo:(id)arg2 _withAuthorization:(NSData *)arg3;
 - (oneway void)setStartupFromNetBootImage:(NSDictionary *)arg1 _withAuthorization:(NSData *)arg2;
 - (oneway void)issueNVRAMCommand:(NSArray *)arg1 _withAuthorization:(NSData *)arg2;
@@ -52,6 +49,7 @@
 - (oneway void)writePowerManagerActivityProfile:(NSDictionary *)arg1 _withAuthorization:(NSData *)arg2;
 - (oneway void)setXServeLockEnclosureState:(BOOL)arg1 _withAuthorization:(NSData *)arg2;
 - (oneway void)setLockSecurePrefs:(BOOL)arg1 authStrings:(NSArray *)arg2 _withAuthorization:(NSData *)arg3;
+- (oneway void)setAutomaticTimeEnabled:(BOOL)arg1 _withAuthorization:(NSData *)arg2;
 - (oneway void)setTime:(long long)arg1 _withAuthorization:(NSData *)arg2;
 - (oneway void)setTimeZone:(NSString *)arg1 _withAuthorization:(NSData *)arg2;
 - (oneway void)setNTPServers:(NSArray *)arg1 _withAuthorization:(NSData *)arg2;

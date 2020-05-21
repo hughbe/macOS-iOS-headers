@@ -18,6 +18,7 @@
     long long _sandboxHandle;
 }
 
+- (void).cxx_destruct;
 - (void)cleanupStagingPath:(id)arg1;
 - (BOOL)isStagedPath:(id)arg1;
 - (id)stagingPathforCreatingAdditionWithError:(id *)arg1;

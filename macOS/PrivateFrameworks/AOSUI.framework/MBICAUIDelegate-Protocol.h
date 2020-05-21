@@ -9,10 +9,9 @@
 @class JSValue, NSArray, NSString;
 
 @protocol MBICAUIDelegate <NSObject>
-- (void)validateLocalPasswordForStingrayWithCompletion:(JSValue *)arg1;
-- (void)getStingrayDisableEligibilityWithCompletion:(JSValue *)arg1;
-- (void)getStringrayStatusWithCompletion:(JSValue *)arg1;
-- (void)setStingrayState:(BOOL)arg1 callback:(JSValue *)arg2;
+- (void)validateLocalPasswordWithTitle:(NSString *)arg1 forcingReprompt:(BOOL)arg2 callback:(JSValue *)arg3;
+- (void)validateLocalPasswordWithCompletion:(JSValue *)arg1;
+- (void)setTermsConfirmDialogTitle:(NSString *)arg1;
 - (void)skipSignIn;
 - (void)dismiss:(NSString *)arg1;
 - (void)showTermsAndConditions:(NSArray *)arg1 callback:(JSValue *)arg2;

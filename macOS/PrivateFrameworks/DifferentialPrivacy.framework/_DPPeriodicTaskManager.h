@@ -6,19 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary;
-
 @interface _DPPeriodicTaskManager : NSObject
 {
-    NSMutableDictionary *_allTasks;
 }
 
-+ (id)sharedInstance;
-@property(retain, nonatomic) NSMutableDictionary *allTasks; // @synthesize allTasks=_allTasks;
-- (void).cxx_destruct;
-- (void)unregisterTask:(id)arg1;
-- (void)registerTask:(id)arg1;
-- (id)init;
++ (void)unregisterTask:(id)arg1;
++ (void)registerTask:(id)arg1;
 
 @end
 

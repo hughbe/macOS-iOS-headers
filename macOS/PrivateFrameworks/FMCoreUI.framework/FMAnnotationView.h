@@ -6,7 +6,7 @@
 
 #import "MKAnnotationView.h"
 
-@class CALayer, CAShapeLayer;
+@class CALayer, CAShapeLayer, NSColor;
 
 @interface FMAnnotationView : MKAnnotationView
 {
@@ -22,12 +22,17 @@
     CALayer *_locationInnerLayer;
     CALayer *_smallPersonImageLayer;
     CALayer *_largePersonImageLayer;
+    NSColor *_tintColor;
 }
 
 + (BOOL)_followsTerrain;
 + (void)setShouldMaskLayer:(BOOL)arg1;
++ (void)setThickAnnotationBorder:(BOOL)arg1;
 + (void)setLargeAnnotationBorderVisible:(BOOL)arg1;
 + (void)setImagePadding:(double)arg1;
++ (void)preloadAssets;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSColor *tintColor; // @synthesize tintColor=_tintColor;
 @property(nonatomic) BOOL hasPhotoImage; // @synthesize hasPhotoImage=_hasPhotoImage;
 @property(nonatomic) BOOL isShowingLargeSelectedAnnotation; // @synthesize isShowingLargeSelectedAnnotation=_isShowingLargeSelectedAnnotation;
 @property(retain, nonatomic) CALayer *largePersonImageLayer; // @synthesize largePersonImageLayer=_largePersonImageLayer;
@@ -40,7 +45,7 @@
 @property(retain, nonatomic) CAShapeLayer *smallRingLayer; // @synthesize smallRingLayer=_smallRingLayer;
 @property(nonatomic) BOOL isDelayed; // @synthesize isDelayed=_isDelayed;
 @property(nonatomic) BOOL shouldPreventLargeAnnotationState; // @synthesize shouldPreventLargeAnnotationState=_shouldPreventLargeAnnotationState;
-- (void).cxx_destruct;
+- (void)invertColorStatusDidChange:(id)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
 @property(retain, nonatomic) id <FMAnnotation><MKAnnotation> annotation; // @dynamic annotation;
 - (void)_setupSpringActions;
@@ -48,12 +53,14 @@
 - (void)_transitionToNewSize:(BOOL)arg1;
 - (void)_selectionWasUpdated:(BOOL)arg1;
 - (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)setTintColor:(id)arg1;
 - (void)animateDelayedAnimation;
 - (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2 delay:(double)arg3;
 - (void)updateStyleForAnnotation:(id)arg1;
 - (void)prepareForReuse;
+- (void)updateLayer;
+- (void)dealloc;
 - (id)initWithAnnotation:(id)arg1 reuseIdentifier:(id)arg2 tintColor:(id)arg3;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithAnnotation:(id)arg1 reuseIdentifier:(id)arg2;
 
 @end

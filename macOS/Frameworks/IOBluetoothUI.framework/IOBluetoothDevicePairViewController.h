@@ -19,6 +19,7 @@
     IOBluetoothDevicePairViewControllerExpansion *_expansion;
 }
 
+- (void).cxx_destruct;
 @property NSString *PINCode; // @synthesize PINCode=_PINCode;
 @property(retain) IOBluetoothPasskeyDisplay *passkeyDisplay; // @synthesize passkeyDisplay=_passkeyDisplay;
 @property(retain) IOBluetoothDevicePair *devicePair; // @synthesize devicePair=_devicePair;

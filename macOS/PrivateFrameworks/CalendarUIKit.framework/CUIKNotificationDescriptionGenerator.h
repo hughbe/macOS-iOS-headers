@@ -19,6 +19,7 @@
 + (id)comment:(id)arg1 withInsertedAutoCommentForDate:(id)arg2;
 + (id)stringWithOnlyAutoComment:(id)arg1;
 + (id)stringWithAutoCommentRemoved:(id)arg1;
++ (BOOL)stringHasAutoCommentPrefix:(id)arg1;
 + (id)autoCommentForProposedTime:(id)arg1;
 + (id)autoCommentPrefix;
 + (id)sharedGenerator;

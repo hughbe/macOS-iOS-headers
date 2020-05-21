@@ -6,16 +6,15 @@
 
 #import <AppKit/NSView.h>
 
-@class CALayer, NSToolbarFullScreenWindowManager;
+@class CALayer, _NSFullScreenDetachedToolbarMenuBarCompanionController;
 
 __attribute__((visibility("hidden")))
 @interface NSToolbarFullScreenContentView : NSView
 {
     double _revealProgress;
-    double _auxMinHeight;
     double _toolbarViewHeight;
     double shadowWeight;
-    NSToolbarFullScreenWindowManager *manager;
+    _NSFullScreenDetachedToolbarMenuBarCompanionController *_companionController;
     CALayer *_shadowLayer;
     CALayer *textureGradientLayer;
     CALayer *northeastCorner;
@@ -26,7 +25,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) double shadowWeight; // @synthesize shadowWeight;
 @property(nonatomic) double toolbarViewHeight; // @synthesize toolbarViewHeight=_toolbarViewHeight;
 @property(nonatomic) double revealProgress; // @synthesize revealProgress=_revealProgress;
-@property(readonly) NSToolbarFullScreenWindowManager *manager; // @synthesize manager;
+@property(readonly) _NSFullScreenDetachedToolbarMenuBarCompanionController *companionController; // @synthesize companionController=_companionController;
 - (void)mouseDown:(id)arg1;
 - (BOOL)isFlipped;
 - (BOOL)isOpaque;
@@ -40,12 +39,14 @@ __attribute__((visibility("hidden")))
 - (void)createLayers;
 - (void)_createCornerLayers;
 - (void)refreshLayerContents;
+- (void)refreshLayerVisibility;
+- (void)viewDidChangeEffectiveAppearance;
 - (void)destroyToolbarLayers;
 - (id)getShadowImage;
 - (struct NSToolbarFullScreenContentViewLayout_t)getToolbarLayout;
 @property(nonatomic) double cornerRoundness;
-- (void)clearManager;
-- (id)initWithFrame:(struct CGRect)arg1 manager:(id)arg2;
+- (void)clearCompanionController;
+- (id)initWithFrame:(struct CGRect)arg1 companionController:(id)arg2;
 
 @end
 

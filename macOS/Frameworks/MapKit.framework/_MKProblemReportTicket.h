@@ -10,6 +10,7 @@
 
 @class GEOMapServiceTraits, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _MKProblemReportTicket : NSObject <MKMapServiceProblemReportTicket>
 {
     id <GEOMapServiceProblemReportTicket> _ticket;

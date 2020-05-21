@@ -31,8 +31,6 @@
 @property(readonly) long long minRequiredConnectionState;
 @property(readonly) BOOL shouldSendAgainOnError;
 @property(readonly) BOOL alwaysAllowToComplete;
-- (void)dealloc;
-- (id)init;
 
 @end
 

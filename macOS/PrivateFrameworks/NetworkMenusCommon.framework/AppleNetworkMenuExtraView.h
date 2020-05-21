@@ -24,7 +24,9 @@
     NSTimer *mStateTimer;
     NSTimer *mSizeTimer;
     NSTimer *mConnectedTimer;
+    NSDate *mStateReferenceTime;
     NSDate *mSizeStartTime;
+    NSDate *mLastIconChangeTime;
     long long mFrameNumber;
     long long mFrameCount;
     double mMaxWidth;

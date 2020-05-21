@@ -22,6 +22,7 @@
 
 + (id)parseRuleCache;
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL useCDATA; // @synthesize useCDATA=_useCDATA;
 @property(retain, nonatomic) NSData *payload; // @synthesize payload=_payload;
 @property(retain, nonatomic) NSMutableArray *extraChildItems; // @synthesize extraChildItems=_extraChildItems;
@@ -31,6 +32,7 @@
 - (id)generateXMLString;
 - (void)parserSuggestsBaseURL:(id)arg1;
 - (void)setPayloadAsString:(id)arg1;
+- (long long)payloadAsNSInteger;
 - (id)payloadAsString;
 - (BOOL)validate;
 - (void)write:(id)arg1;
@@ -41,7 +43,6 @@
 - (id)copyParseRules;
 - (id)hashString;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)initWithNameSpace:(id)arg1 andName:(id)arg2;
 - (id)init;
 

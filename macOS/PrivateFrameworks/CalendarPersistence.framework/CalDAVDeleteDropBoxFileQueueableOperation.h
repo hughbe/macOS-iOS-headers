@@ -14,9 +14,9 @@
     CALEntity *_masterEntity;
 }
 
+- (void).cxx_destruct;
 - (void)performOperation;
 - (id)masterEntity;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 attachmentName:(id)arg2 entity:(id)arg3 fromSource:(id)arg4;
 
 @end

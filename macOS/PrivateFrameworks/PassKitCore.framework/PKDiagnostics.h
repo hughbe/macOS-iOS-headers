@@ -10,6 +10,7 @@
 {
 }
 
++ (void)saveTransitState:(id)arg1 forPaymentApplication:(id)arg2;
 + (id)_metadataForCardAtURL:(id)arg1;
 + (id)_allPasses;
 + (id)_secureElementData;

@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSMutableArray, NSMutableDictionary, NSString, SKTileGroupRule;
 
-@interface SKTileDefinition : NSObject <NSCopying, NSCoding>
+@interface SKTileDefinition : NSObject <NSCopying, NSSecureCoding>
 {
     NSMutableArray *_textures;
     NSMutableArray *_normals;
@@ -35,6 +35,8 @@
 + (id)tileDefinitionWithTexture:(id)arg1 normalTexture:(id)arg2 size:(struct CGSize)arg3;
 + (id)tileDefinitionWithTexture:(id)arg1 size:(struct CGSize)arg2;
 + (id)tileDefinitionWithTexture:(id)arg1;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL nextFrameAffectsVertexBuffer; // @synthesize nextFrameAffectsVertexBuffer=_nextFrameAffectsVertexBuffer;
 @property(nonatomic) BOOL frameDidChange; // @synthesize frameDidChange=_frameDidChange;
 @property(nonatomic) float currentFrameTime; // @synthesize currentFrameTime=_currentFrameTime;
@@ -47,7 +49,6 @@
 @property(nonatomic) struct CGSize size; // @synthesize size=_size;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain, nonatomic) NSMutableDictionary *userData; // @synthesize userData=_userData;
-- (void).cxx_destruct;
 - (id)initWithTextures:(id)arg1 normalTextures:(id)arg2 size:(struct CGSize)arg3 timePerFrame:(double)arg4;
 - (id)initWithTextures:(id)arg1 size:(struct CGSize)arg2 timePerFrame:(double)arg3;
 - (id)initWithTexture:(id)arg1 normalTexture:(id)arg2 size:(struct CGSize)arg3;
@@ -58,6 +59,7 @@
 - (void)setDataWithTexture:(id)arg1 normalTexture:(id)arg2 tileName:(id)arg3 size:(struct CGSize)arg4;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copy;
+- (BOOL)isEqualToNode:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 @property(copy, nonatomic) NSArray *normalTextures;

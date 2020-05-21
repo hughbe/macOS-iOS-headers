@@ -7,7 +7,7 @@
 #import "JSExport.h"
 #import "NSObject.h"
 
-@class NSArray, NSSet, NSString;
+@class NSArray, NSString;
 
 @protocol INMoveFileIntent <NSObject, JSExport>
 @property(copy) NSArray *properties;
@@ -16,6 +16,7 @@
 @property(copy) NSString *sourceName;
 @property(copy) NSString *sourceType;
 @property(copy) NSArray *entityNames;
-@property(copy) NSSet *entityTypeSet;
+@property unsigned long long entityTypes;
+- (id)init;
 @end
 

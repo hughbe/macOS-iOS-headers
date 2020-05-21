@@ -38,10 +38,10 @@
     GEOLocationShifter *_locationShifter;
     CLHeading *_throttledHeading;
     CLHeading *_heading;
+    NSTimer *_headingThrottlingTimer;
     CDUnknownBlockType _networkActivity;
     BOOL _enabled;
     BOOL _useCourseForHeading;
-    BOOL _logStartStopLocationUpdates;
     double _lastVehicleHeading;
     double _lastVehicleSpeed;
     double _lastVehicleHeadingUpdateTime;
@@ -59,14 +59,16 @@
     _MKWiFiObserver *_wifiObserver;
     BOOL _hasCustomDesiredAccuracy;
     BOOL _continuesWhileInactive;
+    BOOL _logStartStopLocationUpdates;
     NSError *_locationError;
 }
 
 + (id)timeoutError;
 + (id)sharedLocationManager;
 + (void)setCanMonitorWiFiStatus:(BOOL)arg1;
-@property(nonatomic) double minimumLocationUpdateInterval; // @synthesize minimumLocationUpdateInterval=_minimumLocationUpdateInterval;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL logStartStopLocationUpdates; // @synthesize logStartStopLocationUpdates=_logStartStopLocationUpdates;
+@property(nonatomic) double minimumLocationUpdateInterval; // @synthesize minimumLocationUpdateInterval=_minimumLocationUpdateInterval;
 @property(nonatomic) BOOL allowOldLocations; // @synthesize allowOldLocations=_allowOldLocations;
 @property(readonly, nonatomic, getter=wasLastLocationPushed) BOOL lastLocationPushed; // @synthesize lastLocationPushed=_lastLocationPushed;
 @property(copy, nonatomic) CDUnknownBlockType locationCorrector; // @synthesize locationCorrector=_locationCorrector;
@@ -80,7 +82,6 @@
 @property(copy, nonatomic) CDUnknownBlockType networkActivity; // @synthesize networkActivity=_networkActivity;
 @property(readonly, nonatomic) NSError *locationError; // @synthesize locationError=_locationError;
 @property(readonly, nonatomic) BOOL isLastLocationStale; // @synthesize isLastLocationStale=_isLastLocationStale;
-- (void).cxx_destruct;
 - (void)stopVehicleHeadingUpdate;
 - (void)startVehicleHeadingUpdate;
 - (void)stopVehicleSpeedUpdate;
@@ -93,7 +94,8 @@
 - (id)singleLocationUpdateWithDesiredAccuracy:(double)arg1 handler:(CDUnknownBlockType)arg2;
 - (id)singleLocationUpdateWithHandler:(CDUnknownBlockType)arg1;
 - (void)_waitForAccurateLocationsTimerFired:(id)arg1;
-- (void)waitForAccurateLocationWithHandler:(CDUnknownBlockType)arg1;
+- (void)waitForAccurateLocationWithTimeout:(double)arg1 handler:(CDUnknownBlockType)arg2;
+- (id)observersDescription;
 - (void)stopLocationUpdateWithObserver:(id)arg1;
 - (void)startLocationUpdateWithObserver:(id)arg1;
 - (void)_startLocationUpdateWithObserver:(id)arg1 desiredAccuracy:(double)arg2;

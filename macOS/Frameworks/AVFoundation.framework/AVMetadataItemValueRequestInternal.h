@@ -6,12 +6,14 @@
 
 #import "NSObject.h"
 
-@class AVWeakReference, NSError;
+@class AVWeakReference, NSError, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVMetadataItemValueRequestInternal : NSObject
 {
     AVWeakReference *weakReferenceToMetadataItem;
     id <NSObject><NSCopying> value;
+    NSString *dataType;
     NSError *error;
 }
 

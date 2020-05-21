@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class NSData, NSDictionary, NSUUID, SFDevice, SFSession;
+@class NSData, NSDictionary, NSSet, NSUUID, SFDevice, SFSession;
 
 @interface SFMessage : NSObject <NSSecureCoding>
 {
@@ -19,9 +19,12 @@
     CDUnknownBlockType _completionHandler;
     NSDictionary *_headerFields;
     SFSession *_session;
+    NSSet *_deviceIDs;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSSet *deviceIDs; // @synthesize deviceIDs=_deviceIDs;
 @property(retain, nonatomic) SFSession *session; // @synthesize session=_session;
 @property(retain, nonatomic) SFDevice *peerDevice; // @synthesize peerDevice=_peerDevice;
 @property(copy, nonatomic) NSUUID *identifier; // @synthesize identifier=_identifier;
@@ -29,7 +32,6 @@
 @property(nonatomic) BOOL expectsResponse; // @synthesize expectsResponse=_expectsResponse;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(copy, nonatomic) NSData *bodyData; // @synthesize bodyData=_bodyData;
-- (void).cxx_destruct;
 - (void)invalidate;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;

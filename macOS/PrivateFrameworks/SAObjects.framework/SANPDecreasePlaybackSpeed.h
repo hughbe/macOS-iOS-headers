@@ -6,6 +6,8 @@
 
 #import <SAObjects/SADomainCommand.h>
 
+@class NSArray;
+
 @interface SANPDecreasePlaybackSpeed : SADomainCommand
 {
 }
@@ -13,6 +15,7 @@
 + (id)decreasePlaybackSpeedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)decreasePlaybackSpeed;
 - (BOOL)requiresResponse;
+@property(copy, nonatomic) NSArray *hashedRouteUIDs;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

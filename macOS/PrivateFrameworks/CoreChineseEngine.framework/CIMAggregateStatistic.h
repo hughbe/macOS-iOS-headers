@@ -6,6 +6,8 @@
 
 #import "NSObject.h"
 
+@class NSMutableDictionary;
+
 @interface CIMAggregateStatistic : NSObject
 {
     float _candidateLengthStatisticAverage;
@@ -14,16 +16,20 @@
     unsigned long long _candidateSelectedStatisticTotal;
     unsigned long long _partialCandidateSelectedStatisticTotal;
     unsigned long long _latinScriptCandidateSelectedStatisticTotal;
+    NSMutableDictionary *_selectionMethodAggregates;
 }
 
 + (id)aggregateStatistic;
+- (void).cxx_destruct;
+@property(retain) NSMutableDictionary *selectionMethodAggregates; // @synthesize selectionMethodAggregates=_selectionMethodAggregates;
 @property unsigned long long latinScriptCandidateSelectedStatisticTotal; // @synthesize latinScriptCandidateSelectedStatisticTotal=_latinScriptCandidateSelectedStatisticTotal;
 @property unsigned long long partialCandidateSelectedStatisticTotal; // @synthesize partialCandidateSelectedStatisticTotal=_partialCandidateSelectedStatisticTotal;
 @property unsigned long long candidateSelectedStatisticTotal; // @synthesize candidateSelectedStatisticTotal=_candidateSelectedStatisticTotal;
 @property unsigned long long candidateLengthStatisticTotal; // @synthesize candidateLengthStatisticTotal=_candidateLengthStatisticTotal;
 @property unsigned long long candidateLengthStatisticMaximum; // @synthesize candidateLengthStatisticMaximum=_candidateLengthStatisticMaximum;
 @property float candidateLengthStatisticAverage; // @synthesize candidateLengthStatisticAverage=_candidateLengthStatisticAverage;
-- (void)addDataPointForCandidate:(id)arg1 partial:(BOOL)arg2;
+- (void)addDataPointForCandidate:(id)arg1 partial:(BOOL)arg2 selectionMethod:(id)arg3;
+- (id)init;
 
 @end
 

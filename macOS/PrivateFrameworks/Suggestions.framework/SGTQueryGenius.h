@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSHashTable, NSString, SGTQueryGeniusReserved;
+@class NSArray, NSDate, NSDictionary, NSHashTable, NSObject<OS_dispatch_queue>, NSString, SGTQueryGeniusReserved;
 
 @interface SGTQueryGenius : NSObject
 {
@@ -15,7 +15,7 @@
     NSArray *scopeOrder;
     NSHashTable *registeredSuggesters;
     BOOL usesSimpleTokens;
-    void *q;
+    NSObject<OS_dispatch_queue> *q;
     SGTQueryGeniusReserved *_reserved;
 }
 
@@ -31,9 +31,13 @@
 + (id)scopeOrderForSentMailbox;
 + (id)geniusForMails;
 + (id)geniusForFiles;
+- (void).cxx_destruct;
 @property(readonly) BOOL usesSimpleTokens; // @synthesize usesSimpleTokens;
 @property(copy) NSArray *scopeOrder; // @synthesize scopeOrder;
 @property(readonly) NSArray *allAttributeNames; // @synthesize allAttributeNames;
+- (void)_parseInputString:(id)arg1 withGroup:(id)arg2;
+- (id)_parseResultForGroup:(id)arg1 queryCanceled:(char *)arg2;
+@property(retain, setter=_setOverrideDate:) NSDate *overrideDate;
 - (id)rawQueryStringFromInputString:(id)arg1;
 - (id)_searchPaths;
 - (id)uniquifierStringForSuggestion:(id)arg1 inCategory:(id)arg2;
@@ -52,6 +56,7 @@
 - (id)scopeMenuForSuggestion:(id)arg1;
 - (id)queryScopesForSuggestions:(id)arg1;
 - (id)searchPhraseForSuggestions:(id)arg1;
+- (id)queryDisplayCriteriaForSuggestions:(id)arg1;
 - (id)queryStringForSuggestions:(id)arg1;
 - (id)filterQueryStringForSuggestions:(id)arg1;
 - (id)_shorterDisplayNameForSuggestionWithCache:(id)arg1;
@@ -74,11 +79,19 @@
 - (id)attributesForShortName:(id)arg1;
 @property(readonly) NSString *identifier;
 @property(readonly, nonatomic) BOOL offerDidYouMeanSuggestion;
-- (void)finalize;
 - (void)dealloc;
 - (void)_waitForAttributeMappingToBeReady;
+- (void)commonInitWithAttributeNames:(id)arg1 canUseSimpleTokens:(BOOL)arg2;
 - (id)initWithAttributeNames:(id)arg1;
+- (id)init;
 - (id)overridenAttributes;
+- (void)suggesterBecomesIdle:(id)arg1;
+- (void)suggester:(id)arg1 didFinishProcessingResultsForInput:(id)arg2;
+- (id)suggester:(id)arg1 filterSuggestions:(id)arg2 forInput:(id)arg3;
+- (id)suggester:(id)arg1 filterSuggestion:(id)arg2 fromItem:(id)arg3 forInput:(id)arg4;
+- (id)suggester:(id)arg1 additionalSuggestionsForInput:(id)arg2;
+- (void)suggester:(id)arg1 willStartProcessingResultsForInput:(id)arg2;
+- (void)suggester:(id)arg1 willStartSearchingSuggestionsForInput:(id)arg2;
 - (void)suggesterBecomesIdle:(id)arg1;
 - (void)suggester:(id)arg1 didFinishProcessingResultsForInput:(id)arg2;
 - (id)suggester:(id)arg1 filterSuggestions:(id)arg2 forInput:(id)arg3;

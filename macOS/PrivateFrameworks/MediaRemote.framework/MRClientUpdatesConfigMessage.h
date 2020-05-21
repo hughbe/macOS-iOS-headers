@@ -12,11 +12,12 @@ __attribute__((visibility("hidden")))
 }
 
 - (unsigned long long)type;
+@property(readonly, nonatomic) BOOL outputDeviceUpdates;
 @property(readonly, nonatomic) BOOL keyboardUpdates;
 @property(readonly, nonatomic) BOOL volumeUpdates;
 @property(readonly, nonatomic) BOOL artworkUpdates;
 @property(readonly, nonatomic) BOOL nowPlayingUpdates;
-- (id)initWithNowPlayingUpdates:(BOOL)arg1 artworkUpdates:(BOOL)arg2 volumeUpdates:(BOOL)arg3 keyboardUpdates:(BOOL)arg4;
+- (id)initWithNowPlayingUpdates:(BOOL)arg1 artworkUpdates:(BOOL)arg2 volumeUpdates:(BOOL)arg3 keyboardUpdates:(BOOL)arg4 outputDeviceUpdates:(BOOL)arg5;
 
 @end
 

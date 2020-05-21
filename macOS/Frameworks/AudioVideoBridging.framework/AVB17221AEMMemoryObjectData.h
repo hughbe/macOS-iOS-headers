@@ -15,7 +15,13 @@
 
 @property(copy) NSData *data; // @synthesize data;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)xmlRepresentation;
+- (BOOL)updateWithXML:(id)arg1;
+- (id)plistRepresentation;
+- (BOOL)updateWithPlistEntry:(id)arg1;
 
 @end
 

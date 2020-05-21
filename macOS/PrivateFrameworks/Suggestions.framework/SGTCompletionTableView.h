@@ -19,6 +19,7 @@
 - (id)accessibilityAttributeNames;
 - (BOOL)_accessibilityWantsToBeList;
 - (void)drawRow:(long long)arg1 clipRect:(struct CGRect)arg2;
+- (void)moveSelectionUpwards:(BOOL)arg1;
 - (BOOL)_rowIsSelectableByUser:(long long)arg1;
 - (long long)_rowFromMouseEvent:(id)arg1;
 - (void)_performCancelForCell:(id)arg1;

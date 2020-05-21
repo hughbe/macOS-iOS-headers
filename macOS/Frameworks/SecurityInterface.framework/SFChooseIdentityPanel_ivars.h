@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSBox, NSButton, NSMutableArray, NSString, NSTableView, NSTextField, NSWindow, SFCertificateGroupView, SFCertificateView, SFIconView;
+@class NSArray, NSBox, NSButton, NSLayoutConstraint, NSMutableArray, NSString, NSTableView, NSTextField, NSWindow, SFCertificateGroupView, SFCertificateView, SFIconView;
 
 __attribute__((visibility("hidden")))
 @interface SFChooseIdentityPanel_ivars : NSObject
@@ -35,8 +35,8 @@ __attribute__((visibility("hidden")))
     NSBox *_aboveContentBox;
     NSBox *_discloseContentBox;
     NSBox *_bottomContentBox;
+    NSLayoutConstraint *_aboveContentHeightConstraint;
     NSButton *_showCertButton;
-    float _minAboveContentHeight;
     float _minWindowWidth;
     struct CGRect _lastDiscloseRect;
     int _indexOfChosenIdentity;

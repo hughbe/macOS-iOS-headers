@@ -6,29 +6,27 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
-
 @interface SFWirelessSettingsController : NSObject
 {
     id _delegate;
     BOOL _wifiEnabled;
+    BOOL _airplaneModeEnabled;
     BOOL _bluetoothEnabled;
     BOOL _deviceSupportsWAPI;
     BOOL _firstCallbackCompleted;
     BOOL _wirelessCarPlayEnabled;
     BOOL _wirelessAccessPointEnabled;
     struct __SFOperation *_information;
-    NSObject<OS_dispatch_queue> *_informationQueue;
-    NSObject<OS_dispatch_semaphore> *_firstCallBackSemaphore;
 }
 
-@property __weak id <SFWirelessSettingsControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property __weak id <SFWirelessSettingsControllerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)invalidate;
 - (void)dealloc;
 @property(readonly, getter=isWirelessCarPlayEnabled) BOOL wirelessCarPlayEnabled;
-@property(readonly, getter=isWirelessAccessPointEnabled) BOOL wirelessAccessPointEnabled;
+@property(getter=isWirelessAccessPointEnabled) BOOL wirelessAccessPointEnabled;
 @property(readonly) BOOL deviceSupportsWAPI;
-- (void)repairAppleID;
+@property(getter=isAirplaneModeEnabled) BOOL airplaneModeEnabled;
 @property(getter=isBluetoothEnabled) BOOL bluetoothEnabled;
 @property(getter=isWifiEnabled) BOOL wifiEnabled;
 - (void)handleOperationCallback:(struct __SFOperation *)arg1 event:(long long)arg2 withResults:(id)arg3;

@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSArray, NSDictionary, NSString;
 
-@interface SKTextureAtlas : NSObject <NSCoding>
+@interface SKTextureAtlas : NSObject <NSSecureCoding>
 {
     NSDictionary *_textureDict;
     NSString *_atlasName;
@@ -24,6 +24,7 @@
 + (id)atlasNamed:(id)arg1;
 + (id)atlasWithDictionary:(id)arg1;
 + (BOOL)canUseObjectForAtlas:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (id)lookupCachedTextureNamed:(id)arg1;
 + (id)findTextureNamed:(id)arg1;
 + (id)getSupportedPostfixes;
@@ -38,10 +39,13 @@
 - (id)description;
 - (void)preloadWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)loadTexturesFromCUIImageAtlas:(id)arg1;
+- (id)createSubTextureFromTexture:(id)arg1 andCUINamedImage:(id)arg2 andOrigin:(struct CGPoint)arg3;
+- (id)createTextureFromProvider:(struct CGImageProvider *)arg1 andSource:(struct CGImage *)arg2;
 - (void)loadTextures;
 - (void)parseAtlasPropertyList:(id)arg1 withPath:(id)arg2;
-- (void)encodeWithCoder:(id)arg1;
 @property(readonly, nonatomic) NSArray *textureNames;
+- (BOOL)isEqualToTextureAtlas:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 - (void)commonInit;

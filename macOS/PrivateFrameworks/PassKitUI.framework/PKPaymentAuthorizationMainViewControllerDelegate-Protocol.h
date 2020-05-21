@@ -4,13 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+@class NSViewController, PKPaymentAuthorizationMainViewController;
 
-@class PKPaymentAuthorizationMainViewController;
-
-@protocol PKPaymentAuthorizationMainViewControllerDelegate <NSObject>
-- (void)paymentAuthorizationMainViewController:(PKPaymentAuthorizationMainViewController *)arg1 willAddNewShippingContactWithCompletion:(void (^)(BOOL, CNContact *))arg2;
-- (void)paymentAuthorizationMainViewController:(PKPaymentAuthorizationMainViewController *)arg1 willAddNewShippingAddressWithCompletion:(void (^)(BOOL, CNContact *))arg2;
+@protocol PKPaymentAuthorizationMainViewControllerDelegate
+- (void)dismissPassphraseViewController;
+- (void)presentPassphraseViewController:(NSViewController *)arg1 completion:(void (^)(BOOL))arg2 reply:(void (^)(BOOL, NSData *))arg3;
+- (NSViewController *)passphraseViewController;
 - (void)paymentAuthorizationMainViewControllerDidCancel:(PKPaymentAuthorizationMainViewController *)arg1;
 @end
 

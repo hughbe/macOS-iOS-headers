@@ -8,7 +8,7 @@
 
 #import "VCConnectionProtocol.h"
 
-@class NSString;
+@class NSString, NSUUID;
 
 __attribute__((visibility("hidden")))
 @interface VCConnectionLegacy : NSObject <VCConnectionProtocol>
@@ -26,9 +26,13 @@ __attribute__((visibility("hidden")))
 @property(readonly) NSString *remoteInterfaceTypeString;
 @property(readonly) NSString *localInterfaceTypeString;
 - (BOOL)matchesSourceDestinationInfo:(struct tagVCSourceDestinationInfo *)arg1;
+- (struct tagIPPORT)IPPortForNWConnection:(id)arg1;
 - (void)getSourceDestinationInfo:(struct tagVCSourceDestinationInfo *)arg1;
-@property(readonly) unsigned int cellularUniqueTag;
-@property int cellularMTU;
+@property unsigned int uplinkBitrateCap;
+@property unsigned int downlinkBitrateCap;
+@property(readonly) NSUUID *connectionUUID;
+@property int connectionMTU;
+- (int)cellularMTU;
 @property int remoteCellTech;
 @property int localCellTech;
 @property(readonly) int remoteConnectionType;
@@ -36,7 +40,9 @@ __attribute__((visibility("hidden")))
 @property(readonly) unsigned short relayChannelNumber;
 @property(readonly) BOOL isReplaceOnly;
 @property(readonly) BOOL isUpgraded;
+@property(readonly) BOOL serverIsDegraded;
 @property(readonly) BOOL isVPN;
+@property(readonly) int connectionId;
 @property(readonly) BOOL isRelay;
 @property(readonly) BOOL isIPv6;
 @property(readonly) BOOL isRemoteOnCellular;

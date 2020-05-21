@@ -6,23 +6,28 @@
 
 #import "NSManagedObject.h"
 
-@class CLPlacemark, NSString;
+@class CLPlacemark, NSData, NSString;
 
 @interface ICLocation : NSManagedObject
 {
     BOOL updatingPlace;
+    CLPlacemark *_placemark;
 }
 
 + (id)searchStringsForPlacemark:(id)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL updatingPlace; // @synthesize updatingPlace;
+- (void)didTurnIntoFault;
+- (void)setLocationFromPlacemark:(id)arg1;
 - (void)setLocationFromURL:(id)arg1;
 @property(readonly, nonatomic) NSString *formattedAddress;
 - (id)searchStrings;
+@property(retain, nonatomic) CLPlacemark *placemark; // @synthesize placemark=_placemark;
 
 // Remaining properties
 @property(nonatomic) double latitude; // @dynamic latitude;
 @property(nonatomic) double longitude; // @dynamic longitude;
-@property(retain, nonatomic) CLPlacemark *placemark; // @dynamic placemark;
+@property(retain, nonatomic) NSData *placemarkData; // @dynamic placemarkData;
 
 @end
 

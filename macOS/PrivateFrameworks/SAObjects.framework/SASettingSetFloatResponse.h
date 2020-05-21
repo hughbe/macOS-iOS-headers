@@ -12,6 +12,7 @@
 
 + (id)setFloatResponseWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setFloatResponse;
+- (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

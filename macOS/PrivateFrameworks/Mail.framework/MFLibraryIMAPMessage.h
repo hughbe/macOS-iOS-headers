@@ -18,7 +18,7 @@
 - (void)setDataSource:(id)arg1;
 - (id)dataSource;
 - (void)setHeaders:(id)arg1;
-- (id)headers;
+- (id)headersFetchIfNotAvailable:(BOOL)arg1;
 
 @end
 

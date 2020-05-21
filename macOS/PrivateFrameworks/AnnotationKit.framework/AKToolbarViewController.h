@@ -13,17 +13,20 @@
     AKController *_controller;
 }
 
++ (BOOL)isOptionKeyPressed;
 + (unsigned long long)buttonTypeForToolbarButtonItemOfType:(unsigned long long)arg1;
 + (id)alternateImageForToolbarButtonItemOfType:(unsigned long long)arg1;
 + (id)imageForToolbarButtonItemOfType:(unsigned long long)arg1;
 + (id)_imageNameForToolbarButtonItemOfType:(unsigned long long)arg1;
 + (id)titleForToolbarButtonItemOfType:(unsigned long long)arg1;
-@property __weak AKController *controller; // @synthesize controller=_controller;
++ (struct CGSize)minimumSize;
 - (void).cxx_destruct;
+@property __weak AKController *controller; // @synthesize controller=_controller;
 - (id)_toolbarButtonItemOfType:(unsigned long long)arg1 style:(unsigned long long)arg2;
 - (void)setStrokeColorUIDisplayToColor:(id)arg1;
 - (void)setFillColorUIDisplayToColor:(id)arg1;
 - (void)revalidateItems;
+@property(readonly) BOOL isPresentingPopover;
 - (void)teardown;
 - (id)initWithController:(id)arg1;
 

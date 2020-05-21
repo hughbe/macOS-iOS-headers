@@ -14,12 +14,12 @@
 }
 
 + (BOOL)canHandleURL:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) CalFTPOperation *ftpOperation; // @synthesize ftpOperation=_ftpOperation;
 - (void)abortOperation;
 - (void)ftpOperationDidFinish:(id)arg1;
 - (void)unpublishDataWithAutomatic:(BOOL)arg1;
 - (void)publishData:(id)arg1 automatic:(BOOL)arg2;
-- (void)dealloc;
 
 @end
 

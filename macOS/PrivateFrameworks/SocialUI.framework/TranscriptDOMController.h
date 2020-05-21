@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class ChatItemDOMProvider, DOMDocument, DOMHTMLBodyElement, FileTransferDOMProvider, FileTransferEventHandler, IMMessage, IMTranscriptChatItem, NSMutableDictionary, TranscriptDOMEventHandler, TranscriptStyleController;
+@class ChatItemDOMProvider, DOMDocument, DOMHTMLBodyElement, FileTransferDOMProvider, FileTransferEventHandler, IMMessage, IMTranscriptChatItem, NSAppearance, NSMutableDictionary, TranscriptDOMEventHandler, TranscriptStyleController;
 
 @interface TranscriptDOMController : NSObject
 {
     BOOL _isAnimatingReceipt;
     BOOL _allowsPlugins;
+    id <TranscriptDOMControllerDelegate> _delegate;
     DOMDocument *_DOM;
     DOMHTMLBodyElement *_body;
     ChatItemDOMProvider *_domProvider;
@@ -24,6 +25,7 @@
     NSMutableDictionary *_chatItemGUIDToDDElement;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *chatItemGUIDToDDElement; // @synthesize chatItemGUIDToDDElement=_chatItemGUIDToDDElement;
 @property(nonatomic) BOOL allowsPlugins; // @synthesize allowsPlugins=_allowsPlugins;
 @property(nonatomic) BOOL isAnimatingReceipt; // @synthesize isAnimatingReceipt=_isAnimatingReceipt;
@@ -36,7 +38,10 @@
 @property(retain, nonatomic) ChatItemDOMProvider *domProvider; // @synthesize domProvider=_domProvider;
 @property(retain, nonatomic) DOMHTMLBodyElement *body; // @synthesize body=_body;
 @property(retain, nonatomic) DOMDocument *DOM; // @synthesize DOM=_DOM;
-- (void).cxx_destruct;
+@property(nonatomic) __weak id <TranscriptDOMControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) NSAppearance *effectiveAppearance;
+- (void)visitAllDOMElements:(CDUnknownBlockType)arg1;
+- (void)_visitDOMNode:(id)arg1 stop:(char *)arg2 visitor:(CDUnknownBlockType)arg3;
 - (struct CGRect)rectOfChatItemWithGUID:(id)arg1;
 - (void)dateFormatDidChange;
 - (void)emptyBody;
@@ -48,13 +53,13 @@
 - (void)showMyPicture;
 - (void)showPictures;
 - (void)showNamesAndPictures;
-- (void)rebuildChatItem:(id)arg1;
+- (void)rebuildChatItem:(id)arg1 chat:(id)arg2;
 - (void)updateOldElement:(id)arg1 toMatchNewElement:(id)arg2;
 - (void)removeChatItemWithGUID:(id)arg1;
 - (void)removeChatItem:(id)arg1;
-- (void)insertChatItem:(id)arg1 betweenPreviousItem:(id)arg2 andNextItem:(id)arg3;
+- (void)insertChatItem:(id)arg1 betweenPreviousItem:(id)arg2 andNextItem:(id)arg3 chat:(id)arg4;
 - (void)moveChatItemGUID:(id)arg1 toBetweenPreviousItem:(id)arg2 andNextItem:(id)arg3;
-- (void)appendChatItem:(id)arg1;
+- (void)appendChatItem:(id)arg1 chat:(id)arg2;
 - (void)_setChatItemGroupAttributes:(id)arg1;
 - (void)_anonymizeChatWindow:(id)arg1;
 - (void)dealloc;

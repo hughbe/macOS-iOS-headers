@@ -18,6 +18,7 @@
 }
 
 + (id)descriptionForRange:(struct _VMURange)arg1 inSortedRegions:(id)arg2 options:(unsigned long long)arg3;
+- (void).cxx_destruct;
 - (id)descriptionForRegionTotalsWithOptions:(unsigned long long)arg1 memorySizeDivisor:(unsigned int)arg2;
 - (id)descriptionForRegionTotalsWithOptions:(unsigned long long)arg1;
 - (id)descriptionForMallocZoneTotalsWithOptions:(unsigned long long)arg1 memorySizeDivisor:(unsigned int)arg2;
@@ -27,8 +28,8 @@
 - (id)descriptionForRange:(struct _VMURange)arg1;
 - (int)_recordRegionsAroundAddress:(unsigned long long)arg1 regionDescriptionOptions:(unsigned long long)arg2;
 - (BOOL)hasFractionalPageSizes;
+- (id)nonSubmapRegionContainingAddress:(unsigned long long)arg1;
 - (id)regions;
-- (void)dealloc;
 - (id)initWithGraph:(id)arg1 options:(unsigned long long)arg2;
 - (id)initWithTask:(unsigned int)arg1;
 - (id)initWithTask:(unsigned int)arg1 options:(unsigned long long)arg2;

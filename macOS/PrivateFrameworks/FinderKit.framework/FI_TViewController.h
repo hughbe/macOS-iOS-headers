@@ -18,9 +18,10 @@ __attribute__((visibility("hidden")))
 - (_Bool)applyExtraKeyboardShortcuts:(id)arg1;
 - (id)viewNoLoad;
 - (void)viewLoaded;
-- (void)setViewDuringTeardown:(id)arg1;
 - (void)setView:(id)arg1;
 - (void)loadView;
+- (void)menuDidClose:(id)arg1;
+- (void)menuWillOpen:(id)arg1;
 - (BOOL)_viewControllerSupports10_10Features;
 - (id)nibBundle;
 - (void)awakeFromNib;

@@ -9,35 +9,44 @@
 #import "NSTextStorageDelegate.h"
 #import "NSTextViewDelegate.h"
 
-@class AKAnnotation<AKTextAnnotationProtocol>, AKController, AKPageController, NSString, NSTextStorage, NSTextView, NSUndoManager;
+@class AKAnnotation<AKTextAnnotationProtocol>, AKController, AKPageController, CALayer, NSString, NSTextStorage, NSTextView, NSUndoManager, NSView;
 
 @interface AKTextEditorController : NSObject <NSTextStorageDelegate, NSTextViewDelegate>
 {
-    BOOL _inEndEditing;
+    BOOL _isInEndEditing;
+    BOOL _isInAdjustAnnotationFrameToFitText;
     NSTextView *_textView;
     AKAnnotation<AKTextAnnotationProtocol> *_annotation;
     AKController *_controller;
     AKPageController *_pageController;
+    CALayer *_textViewMaskLayer;
+    NSView *_textViewContainer;
     NSTextStorage *_textStorage;
     double _renderingTextStorageScaleFactor;
+    double _modelToEditorScaleFactor;
+    double _handleCompensatingScaleFactor;
     NSUndoManager *_textViewUndoManager;
-    struct CGPoint _startingContentInset;
 }
 
-@property(getter=isInEndEditing) BOOL inEndEditing; // @synthesize inEndEditing=_inEndEditing;
-@property struct CGPoint startingContentInset; // @synthesize startingContentInset=_startingContentInset;
+- (void).cxx_destruct;
+@property BOOL isInAdjustAnnotationFrameToFitText; // @synthesize isInAdjustAnnotationFrameToFitText=_isInAdjustAnnotationFrameToFitText;
+@property BOOL isInEndEditing; // @synthesize isInEndEditing=_isInEndEditing;
 @property(retain) NSUndoManager *textViewUndoManager; // @synthesize textViewUndoManager=_textViewUndoManager;
+@property double handleCompensatingScaleFactor; // @synthesize handleCompensatingScaleFactor=_handleCompensatingScaleFactor;
+@property double modelToEditorScaleFactor; // @synthesize modelToEditorScaleFactor=_modelToEditorScaleFactor;
 @property double renderingTextStorageScaleFactor; // @synthesize renderingTextStorageScaleFactor=_renderingTextStorageScaleFactor;
 @property(retain) NSTextStorage *textStorage; // @synthesize textStorage=_textStorage;
+@property(retain) NSView *textViewContainer; // @synthesize textViewContainer=_textViewContainer;
+@property(retain) CALayer *textViewMaskLayer; // @synthesize textViewMaskLayer=_textViewMaskLayer;
 @property __weak AKPageController *pageController; // @synthesize pageController=_pageController;
 @property __weak AKController *controller; // @synthesize controller=_controller;
 @property __weak AKAnnotation<AKTextAnnotationProtocol> *annotation; // @synthesize annotation=_annotation;
 @property(retain) NSTextView *textView; // @synthesize textView=_textView;
-- (void).cxx_destruct;
 - (void)_updateTextView:(id)arg1 withFrame:(struct CGRect)arg2 andOrientation:(long long)arg3 additionalRotation:(double)arg4;
 - (struct CGRect)_editorFrameForTextBoundsInModel:(struct CGRect)arg1;
 - (void)_adjustEditorToFitAnnotation:(id)arg1 withText:(id)arg2;
 - (void)_adjustAnnotationFrameToFitText;
+- (id)_newScaledPaths:(id)arg1 withScaleFactor:(double)arg2 aboutCenter:(struct CGPoint)arg3;
 - (void)_performBlockOnMainThread:(CDUnknownBlockType)arg1;
 - (id)undoManagerForTextView:(id)arg1;
 - (void)textViewDidChangeTypingAttributes:(id)arg1;

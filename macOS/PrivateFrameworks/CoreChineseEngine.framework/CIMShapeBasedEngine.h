@@ -29,6 +29,7 @@
     CIMCandidate *_selectedMecabraCandidate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL shouldGroupWindowMovement; // @synthesize shouldGroupWindowMovement=_shouldGroupWindowMovement;
 @property(retain, nonatomic) CIMCandidate *selectedMecabraCandidate; // @synthesize selectedMecabraCandidate=_selectedMecabraCandidate;
 @property(nonatomic) BOOL punctuationWindowIsTabbed; // @synthesize punctuationWindowIsTabbed=_punctuationWindowIsTabbed;
@@ -39,11 +40,11 @@
 @property(readonly, nonatomic) NSDictionary *keyMappings; // @synthesize keyMappings=_keyMappings;
 @property(readonly, nonatomic) unsigned long long analysisOptions; // @synthesize analysisOptions=_analysisOptions;
 @property(retain, nonatomic) CIMMecabraShapeBasedEngine *mecabraEngine; // @synthesize mecabraEngine=_mecabraEngine;
-- (void).cxx_destruct;
+- (Class)onscreenCandidateWindowClass;
+- (BOOL)supportsSubstitutionCandidates;
 - (id)mecabraEnvironment;
 - (id)currentInlineText;
 - (BOOL)shouldOptimizeLayoutForFixedSize;
-- (long long)windowType;
 - (id)higherOrderDataProvider;
 - (BOOL)inputModeShowsDynamicCandidates;
 - (id)inputString;
@@ -51,7 +52,7 @@
 - (BOOL)candidateIsPhonetic:(id)arg1;
 - (id)readingStringFromReading:(id)arg1;
 - (BOOL)sendsSelectionKeyEventsToCandidateWindow;
-- (id)candidatesForSortingMethod:(id)arg1;
+- (id)candidateListDictionaryWithSortingMethod:(id)arg1;
 - (id)getCharacterCodeForCharacter:(id)arg1;
 @property(readonly, nonatomic) BOOL updateMarkedTextOnSelectionChange;
 - (BOOL)inlineBeginsWithWildcard;
@@ -66,8 +67,8 @@
 @property(readonly, nonatomic) unsigned long long mecabraCreationOptions; // @synthesize mecabraCreationOptions=_mecabraCreationOptions;
 @property(readonly, nonatomic) BOOL characterBeforeCaretIsNumber;
 - (double)numberOfVisibleCandidatesAtOutsetForOrientation:(unsigned long long)arg1;
-- (void)didHandleCandidateSelectionChanged:(id)arg1;
-- (void)didHandleCandidateSelected:(id)arg1;
+- (void)didHandleCandidateSelectionChanged:(id)arg1 candidateController:(id)arg2;
+- (void)didHandleCandidateSelected:(id)arg1 candidateController:(id)arg2;
 - (void)reset;
 - (void)endSession;
 - (BOOL)isInlineEmpty;
@@ -96,7 +97,7 @@
 - (BOOL)handleEvent:(id)arg1 client:(id)arg2;
 - (void)showAssociatedWords:(id)arg1;
 - (BOOL)validateInlineText;
-- (BOOL)handleSpaceForSpecialWindowState;
+- (BOOL)handleSpaceForAssociatedWordsShownInlineState;
 - (BOOL)handleSpaceForNormalInlineState;
 - (BOOL)handleSpaceForNormalInlineStateWithDynamicPrompt;
 - (BOOL)handleSpaceForNormalInlineStateWithNonDynamicPrompt;

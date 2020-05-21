@@ -9,12 +9,12 @@
 __attribute__((visibility("hidden")))
 @interface MFPRedEyeCorrectionEffect : MFPEffect
 {
-    vector_b8c73e0a *mAreas;
+    vector_a9587b3d *mAreas;
 }
 
 + (id)GUID;
 - (void)dealloc;
-- (id)initWithAreas:(const vector_b8c73e0a *)arg1;
+- (id)initWithAreas:(const vector_a9587b3d *)arg1;
 
 @end
 

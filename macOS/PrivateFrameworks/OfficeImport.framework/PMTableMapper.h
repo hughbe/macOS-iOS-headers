@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     OADOrientedBounds *mBounds;
 }
 
+- (void).cxx_destruct;
 - (unsigned long long)rowCount;
 - (id)tableBorderStyle;
 - (id)defaultCellFillForRow:(unsigned long long)arg1 withState:(id)arg2;
@@ -24,7 +25,6 @@ __attribute__((visibility("hidden")))
 - (float)columnWidthAtIndex:(unsigned long long)arg1 state:(id)arg2;
 - (id)grid;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
-- (void)dealloc;
 - (id)initWithOadTable:(id)arg1 bounds:(id)arg2 parent:(id)arg3;
 - (id)cellStyle;
 - (void)mapColumnGridAt:(id)arg1 withState:(id)arg2;

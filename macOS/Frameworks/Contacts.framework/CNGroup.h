@@ -10,7 +10,7 @@
 #import "NSMutableCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSDate, NSString;
+@class NSData, NSDate, NSString;
 
 @interface CNGroup : NSObject <NSCopying, NSMutableCopying, NSSecureCoding>
 {
@@ -19,6 +19,10 @@
     CNGroup *_snapshot;
     NSDate *_creationDate;
     NSDate *_modificationDate;
+    NSString *_externalIdentifier;
+    NSData *_externalRepresentation;
+    NSString *_externalModificationTag;
+    NSString *_externalUUID;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -32,17 +36,22 @@
 + (id)predicateForGroupsWithNameMatching:(id)arg1;
 + (id)_predicateForNonHiddenGroups;
 + (id)predicateForAllGroups;
+- (void).cxx_destruct;
 @property(readonly, copy) NSDate *modificationDate; // @synthesize modificationDate=_modificationDate;
 @property(readonly, copy) NSDate *creationDate; // @synthesize creationDate=_creationDate;
+@property(readonly, copy) NSString *externalUUID; // @synthesize externalUUID=_externalUUID;
+@property(readonly, copy) NSString *externalModificationTag; // @synthesize externalModificationTag=_externalModificationTag;
+@property(readonly, copy) NSData *externalRepresentation; // @synthesize externalRepresentation=_externalRepresentation;
+@property(readonly, copy) NSString *externalIdentifier; // @synthesize externalIdentifier=_externalIdentifier;
 @property(readonly, copy) NSString *name; // @synthesize name=_name;
 @property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, copy) NSString *externalURI;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
 @property(readonly, copy, nonatomic) CNGroup *snapshot;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithGroup:(id)arg1;

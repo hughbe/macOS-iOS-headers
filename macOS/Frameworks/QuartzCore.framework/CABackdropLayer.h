@@ -18,14 +18,21 @@
 + (id)CA_attributes;
 + (void)initialize;
 @property BOOL ignoresOffscreenGroups;
+@property BOOL disablesOccludedBackdropBlurs;
+@property(getter=isInverseMeshed) BOOL inverseMeshed;
 @property BOOL windowServerAware;
 @property double bleedAmount;
 @property double statisticsInterval;
 @property(copy) NSString *statisticsType;
-@property BOOL disablesOccludedBackdropBlurs;
+@property BOOL ignoresScreenClip;
+@property BOOL reducesCaptureBitDepth;
+@property BOOL allowsInPlaceFiltering;
+@property BOOL captureOnly;
 @property double marginWidth;
+@property double zoom;
 @property struct CGRect backdropRect;
 @property double scale;
+@property BOOL usesGlobalGroupNamespace;
 @property(copy) NSString *groupName;
 @property(getter=isEnabled) BOOL enabled;
 - (unsigned int)_renderLayerPropertyAnimationFlags:(unsigned int)arg1;
@@ -36,7 +43,7 @@
 - (void)layerDidBecomeVisible:(BOOL)arg1;
 
 // Remaining properties
-@property __weak id delegate; // @dynamic delegate;
+@property __weak id <CABackdropLayerDelegate><CALayerDelegate> delegate; // @dynamic delegate;
 
 @end
 

@@ -14,11 +14,9 @@
     struct _CGSDisplayModeDescription _desc;
     NSString *_rateString;
     unsigned int _tvMode;
-    NSString *_modeSizeString;
 }
 
 + (id)modeWithDescription:(struct _CGSDisplayModeDescription *)arg1 forDisplay:(id)arg2;
-@property(readonly) NSString *modeSizeString; // @synthesize modeSizeString=_modeSizeString;
 @property(readonly) MPDisplay *display; // @synthesize display=_display;
 @property(readonly) NSString *refreshString;
 @property(readonly) NSString *resolutionString;
@@ -40,7 +38,7 @@
 @property(readonly) BOOL isHiDPI;
 @property(readonly) BOOL isRetina;
 @property(readonly) NSNumber *scanRate;
-@property(readonly) long long roundedScanRate;
+@property(readonly) int roundedScanRate;
 @property(readonly) float scale;
 @property(readonly) float aspectRatio;
 @property(readonly) int fixPtRefreshRate;

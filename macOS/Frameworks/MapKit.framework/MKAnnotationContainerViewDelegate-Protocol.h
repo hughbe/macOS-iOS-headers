@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class MKAnnotationContainerView, NSView;
+@class MKAnnotationContainerView, MKAnnotationView, NSArray, NSView;
 
 @protocol MKAnnotationContainerViewDelegate <NSObject>
+- (BOOL)annotationContainer:(MKAnnotationContainerView *)arg1 isAnnotationView:(MKAnnotationView *)arg2 validForDisplayAtPoint:(struct CGPoint)arg3;
 - (struct CGRect)annotationContainerVisibleRect:(MKAnnotationContainerView *)arg1;
 - (struct CGPoint)convertCoordinate:(struct CLLocationCoordinate2D)arg1 toPointToView:(NSView *)arg2;
 - (struct CLLocationCoordinate2D)convertPoint:(struct CGPoint)arg1 toCoordinateFromView:(NSView *)arg2;
@@ -21,6 +22,9 @@
 - (void)annotationContainerWillAnimateBubble:(MKAnnotationContainerView *)arg1;
 - (double)annotationContainer:(MKAnnotationContainerView *)arg1 pinDropDistanceForCoordinate:(struct CLLocationCoordinate2D)arg2 maxDistance:(double *)arg3;
 - (void)annotationContainer:(MKAnnotationContainerView *)arg1 scrollToRevealCalloutWithOffset:(struct CGPoint)arg2 annotationCoordinate:(struct CLLocationCoordinate2D)arg3 completionHandler:(void (^)(void))arg4;
+- (void)annotationContainer:(MKAnnotationContainerView *)arg1 calloutPrimaryActionTriggeredForAnnotationView:(MKAnnotationView *)arg2;
+- (void)annotationContainer:(MKAnnotationContainerView *)arg1 requestRemovingClusterAnnotationView:(MKAnnotationView *)arg2 updateVisible:(BOOL)arg3;
+- (MKAnnotationView *)annotationContainer:(MKAnnotationContainerView *)arg1 requestAddingClusterForAnnotationViews:(NSArray *)arg2;
 - (BOOL)annotationContainerIsRotated:(MKAnnotationContainerView *)arg1;
 - (BOOL)annotationContainerShouldAlignToPixels:(MKAnnotationContainerView *)arg1;
 

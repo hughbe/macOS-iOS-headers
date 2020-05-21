@@ -18,10 +18,10 @@ __attribute__((visibility("hidden")))
 + (id)CNToVCardSocialProfileConstantsMapping;
 + (id)vCardToCNInstantMessageConstantsMapping;
 + (id)CNToVCardInstantMessageConstantsMapping;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDictionary *mapping; // @synthesize mapping=_mapping;
 - (id)mappedConstant:(id)arg1;
 - (id)invertedMapping;
-- (void)dealloc;
 - (id)initWithMapping:(id)arg1;
 
 @end

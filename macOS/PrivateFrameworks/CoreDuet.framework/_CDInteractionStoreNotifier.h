@@ -6,20 +6,22 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>;
+@class NSObject<OS_dispatch_queue>, _CDInteractionStore;
 
 @interface _CDInteractionStoreNotifier : NSObject
 {
     int _notifierToken;
     NSObject<OS_dispatch_queue> *_queue;
+    _CDInteractionStore *_interactionStore;
 }
 
 - (void).cxx_destruct;
+@property(readonly, nonatomic) __weak _CDInteractionStore *interactionStore; // @synthesize interactionStore=_interactionStore;
 - (void)deleted;
 - (void)recorded:(id)arg1;
 - (void)postPackedMechanisms:(unsigned long long)arg1;
 - (void)dealloc;
-- (id)init;
+- (id)initWithInteractionStore:(id)arg1;
 
 @end
 

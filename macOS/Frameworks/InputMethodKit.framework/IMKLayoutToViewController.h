@@ -13,9 +13,8 @@
     IMKCandidateController *_controller;
 }
 
-@property(retain, nonatomic) IMKCandidateController *controller; // @synthesize controller=_controller;
+@property(nonatomic) IMKCandidateController *controller; // @synthesize controller=_controller;
 - (id)viewFromLayoutUnit:(id)arg1;
-- (void)dealloc;
 
 @end
 

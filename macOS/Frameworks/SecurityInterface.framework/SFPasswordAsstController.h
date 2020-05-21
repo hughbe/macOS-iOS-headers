@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSBox, NSButton, NSComboBox, NSMatrix, NSPopUpButton, NSProgressIndicator, NSSlider, NSTableView, NSTextField, NSTextView, NSView, SFEntropyBarView, SFPasswordAsstModel, SFPasswordErrorSource;
+@class NSBox, NSButton, NSComboBox, NSMatrix, NSPopUpButton, NSProgressIndicator, NSSlider, NSTableView, NSTextField, NSView, SFEntropyBarView, SFPasswordAsstModel, SFPasswordErrorSource;
 
 @interface SFPasswordAsstController : NSObject
 {
@@ -26,11 +26,9 @@
     NSTextField *lengthDisplayField;
     NSComboBox *choicesCombo;
     NSButton *suggestDiscloseButton;
-    NSTextView *hintsTextView;
     NSTableView *_tableView;
     int desiredLength;
     int previousDesiredLength;
-    int desiredAlgorithm;
     int previousAlgorithmIndex;
     struct CGRect originalWindowFrame;
     BOOL _closingAssistant;
@@ -61,6 +59,7 @@
 - (void)setPasswordFields:(id)arg1 verify:(id)arg2 original:(id)arg3;
 - (id)model;
 - (id)passphrase;
+- (int)desiredAlgorithm;
 - (void)controlTextDidChange:(id)arg1;
 - (void)removeObserverTextField:(id)arg1;
 - (void)addObserverTextField:(id)arg1;

@@ -6,13 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSImage, NSView;
+@class NSImage;
 
 @protocol MKArtworkImageSource <NSObject>
-- (NSImage *)badgeImageToDisplayInView:(NSView *)arg1;
-- (NSImage *)imageToDisplayInView:(NSView *)arg1;
-
-@optional
-@property(readonly, nonatomic) BOOL shouldHighlight;
+- (NSImage *)badgeImageToDisplayWithScreenScale:(double)arg1 nightMode:(BOOL)arg2;
+- (NSImage *)imageToDisplayWithScreenScale:(double)arg1 nightMode:(BOOL)arg2;
 @end
 

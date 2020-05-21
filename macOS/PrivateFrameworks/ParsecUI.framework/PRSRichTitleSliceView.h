@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class NSArray, NSAttributedString, NSImage, NSLayoutConstraint, NSString, NSTextField, PRSCardSection, PRSImageView, PRSTextField;
+@class NSArray, NSAttributedString, NSImage, NSLayoutConstraint, NSString, NSTextField, PRSCardSection, PRSImageView;
 
 @interface PRSRichTitleSliceView : NSView
 {
@@ -20,7 +20,6 @@
     unsigned long long _moreGlyphsPlacement;
     NSArray *_moreGlyphs;
     BOOL _needsRoundedImage;
-    BOOL _shouldAllowVibrancy;
     BOOL _overlayPositionedAtBottomRightCornerOfImage;
     double _roundingRadius;
     PRSCardSection *_cardSection;
@@ -30,9 +29,10 @@
     NSTextField *_descriptionTextField;
     NSTextField *_auxiliaryTopText;
     NSTextField *_auxiliaryMiddleText;
-    PRSTextField *_auxiliaryBottomText;
+    NSTextField *_auxiliaryBottomText;
     NSLayoutConstraint *_titleToImageConstraint;
     NSLayoutConstraint *_titleToSuperViewLeadingConstraint;
+    NSLayoutConstraint *_imageTopToTitleTopConstraint;
     NSLayoutConstraint *_imageToSuperviewConstraint;
     NSLayoutConstraint *_imageToSuperViewBottomConstraint;
     NSLayoutConstraint *_constraintMiddleTextInView;
@@ -41,6 +41,7 @@
     NSLayoutConstraint *_constraintBottomTextInView;
     NSLayoutConstraint *_constraintTitleWidth;
     NSLayoutConstraint *_constraintDescriptionWidth;
+    NSLayoutConstraint *_constraintDescriptionSpaceToTitle;
     NSLayoutConstraint *_constraintDescriptionToBottom;
     NSLayoutConstraint *_constraintTitleMaxHeight;
     NSLayoutConstraint *_constraintDescriptionMaxHeight;
@@ -54,6 +55,7 @@
     NSAttributedString *_fullDescriptionTextAttributedString;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSAttributedString *fullDescriptionTextAttributedString; // @synthesize fullDescriptionTextAttributedString=_fullDescriptionTextAttributedString;
 @property __weak NSLayoutConstraint *overlayBottomAlignedToImage; // @synthesize overlayBottomAlignedToImage=_overlayBottomAlignedToImage;
 @property __weak NSLayoutConstraint *overlayRightAlignedToImage; // @synthesize overlayRightAlignedToImage=_overlayRightAlignedToImage;
@@ -66,6 +68,7 @@
 @property __weak NSLayoutConstraint *constraintDescriptionMaxHeight; // @synthesize constraintDescriptionMaxHeight=_constraintDescriptionMaxHeight;
 @property __weak NSLayoutConstraint *constraintTitleMaxHeight; // @synthesize constraintTitleMaxHeight=_constraintTitleMaxHeight;
 @property __weak NSLayoutConstraint *constraintDescriptionToBottom; // @synthesize constraintDescriptionToBottom=_constraintDescriptionToBottom;
+@property __weak NSLayoutConstraint *constraintDescriptionSpaceToTitle; // @synthesize constraintDescriptionSpaceToTitle=_constraintDescriptionSpaceToTitle;
 @property __weak NSLayoutConstraint *constraintDescriptionWidth; // @synthesize constraintDescriptionWidth=_constraintDescriptionWidth;
 @property __weak NSLayoutConstraint *constraintTitleWidth; // @synthesize constraintTitleWidth=_constraintTitleWidth;
 @property __weak NSLayoutConstraint *constraintBottomTextInView; // @synthesize constraintBottomTextInView=_constraintBottomTextInView;
@@ -74,25 +77,24 @@
 @property __weak NSLayoutConstraint *constraintMiddleTextInView; // @synthesize constraintMiddleTextInView=_constraintMiddleTextInView;
 @property __weak NSLayoutConstraint *imageToSuperViewBottomConstraint; // @synthesize imageToSuperViewBottomConstraint=_imageToSuperViewBottomConstraint;
 @property __weak NSLayoutConstraint *imageToSuperviewConstraint; // @synthesize imageToSuperviewConstraint=_imageToSuperviewConstraint;
+@property __weak NSLayoutConstraint *imageTopToTitleTopConstraint; // @synthesize imageTopToTitleTopConstraint=_imageTopToTitleTopConstraint;
 @property __weak NSLayoutConstraint *titleToSuperViewLeadingConstraint; // @synthesize titleToSuperViewLeadingConstraint=_titleToSuperViewLeadingConstraint;
 @property __weak NSLayoutConstraint *titleToImageConstraint; // @synthesize titleToImageConstraint=_titleToImageConstraint;
-@property __weak PRSTextField *auxiliaryBottomText; // @synthesize auxiliaryBottomText=_auxiliaryBottomText;
+@property __weak NSTextField *auxiliaryBottomText; // @synthesize auxiliaryBottomText=_auxiliaryBottomText;
 @property __weak NSTextField *auxiliaryMiddleText; // @synthesize auxiliaryMiddleText=_auxiliaryMiddleText;
 @property __weak NSTextField *auxiliaryTopText; // @synthesize auxiliaryTopText=_auxiliaryTopText;
 @property __weak NSTextField *descriptionTextField; // @synthesize descriptionTextField=_descriptionTextField;
 @property __weak NSTextField *titleTextField; // @synthesize titleTextField=_titleTextField;
 @property __weak PRSImageView *overlayImageView; // @synthesize overlayImageView=_overlayImageView;
 @property __weak PRSImageView *imageView; // @synthesize imageView=_imageView;
-@property(retain) PRSCardSection *cardSection; // @synthesize cardSection=_cardSection;
+@property PRSCardSection *cardSection; // @synthesize cardSection=_cardSection;
 @property(readonly) NSArray *moreGlyphs; // @synthesize moreGlyphs=_moreGlyphs;
-@property BOOL shouldAllowVibrancy; // @synthesize shouldAllowVibrancy=_shouldAllowVibrancy;
 @property double roundingRadius; // @synthesize roundingRadius=_roundingRadius;
 @property BOOL needsRoundedImage; // @synthesize needsRoundedImage=_needsRoundedImage;
-- (void).cxx_destruct;
 - (void)setContraint:(id)arg1 attached:(BOOL)arg2 toView:(id)arg3;
 - (void)addBuyOptions:(id)arg1 addActionButton:(id)arg2 locallyAvailable:(BOOL)arg3 forCardSection:(id)arg4;
 - (void)openURL:(id)arg1;
-- (void)alignTitle:(unsigned long long)arg1;
+- (void)alignTitle:(long long)arg1;
 - (void)processChanges;
 - (void)setAuxiliaryInfoWithTopText:(id)arg1 middleText:(id)arg2 bottomText:(id)arg3 color:(id)arg4;
 - (void)setOverlayImage:(id)arg1;
@@ -111,10 +113,10 @@
 @property NSImage *image;
 - (id)fullDescriptionAttributedString;
 - (long long)getHeightForText:(id)arg1 maxSize:(long long)arg2 font:(id)arg3;
+- (BOOL)accessibilityPerformPress;
+- (BOOL)isAccessibilityElement;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)awakeFromNib;
-- (id)initWithFrame:(struct CGRect)arg1;
-- (BOOL)allowsVibrancy;
 
 @end
 

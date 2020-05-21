@@ -13,14 +13,13 @@
 
 @interface TKTonePickerPopUpButtonViewController : NSViewController <TKTonePickerControllerDelegate, TKTonePickerContentViewController>
 {
-    id <TKTonePickerContentViewControllerDelegate> _delegate;
     TKPickerPopUpButton *_popUpButton;
     TKTonePickerController *_tonePickerController;
+    id <TKTonePickerContentViewControllerDelegate> _delegate;
 }
 
-@property(retain, nonatomic, setter=_setTonePickerController:) TKTonePickerController *_tonePickerController; // @synthesize _tonePickerController;
-@property(retain, nonatomic, setter=_setPopUpButton:) TKPickerPopUpButton *_popUpButton; // @synthesize _popUpButton;
-@property(nonatomic) id <TKTonePickerContentViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <TKTonePickerContentViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)tonePickerControllerDidReloadTones:(id)arg1;
 - (void)tonePickerController:(id)arg1 selectedToneWithIdentifier:(id)arg2;
 - (BOOL)validateMenuItem:(id)arg1;

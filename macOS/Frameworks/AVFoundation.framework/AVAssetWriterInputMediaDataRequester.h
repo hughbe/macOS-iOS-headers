@@ -8,6 +8,7 @@
 
 @class AVWeakReference, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterInputMediaDataRequester : NSObject
 {
     NSObject<OS_dispatch_queue> *_requestQueue;
@@ -19,7 +20,6 @@
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *requestQueue; // @synthesize requestQueue=_requestQueue;
 - (void)requestMediaDataIfNecessary;
 @property __weak id <AVAssetWriterInputMediaDataRequesterDelegate> delegate;
-- (void)finalize;
 - (void)dealloc;
 - (void)_collectUncollectables_invokedFromDeallocAndFinalize;
 - (id)init;

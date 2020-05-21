@@ -6,9 +6,10 @@
 
 #import "_CDLocalContext.h"
 
-@class NSArray, _CDContextualPredicate;
+@class NSArray, NSDictionary, _CDContextualPredicate;
 
 @protocol _CDUserContext <_CDLocalContext>
+- (NSDictionary *)valuesForKeyPaths:(NSArray *)arg1;
 - (NSArray *)valuesForKeyPaths:(NSArray *)arg1 inContextsMatchingPredicate:(_CDContextualPredicate *)arg2;
 - (id <_CDLocalContext>)localContext;
 @end

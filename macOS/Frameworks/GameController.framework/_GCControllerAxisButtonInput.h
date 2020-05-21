@@ -4,26 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <GameController/_GCControllerButtonInput.h>
+#import <GameController/GCControllerButtonInput.h>
 
-@class _GCControllerAxisInput;
+@class GCControllerAxisInput;
 
-@interface _GCControllerAxisButtonInput : _GCControllerButtonInput
+@interface _GCControllerAxisButtonInput : GCControllerButtonInput
 {
-    _GCControllerAxisInput *_axis;
     BOOL _positive;
+    GCControllerAxisInput *_axis;
 }
 
-@property(readonly, nonatomic, getter=isPositive) BOOL positive; // @synthesize positive=_positive;
-@property(nonatomic) __weak _GCControllerAxisInput *axis; // @synthesize axis=_axis;
 - (void).cxx_destruct;
+@property(readonly, nonatomic, getter=isPositive) BOOL positive; // @synthesize positive=_positive;
+@property(nonatomic) __weak GCControllerAxisInput *axis; // @synthesize axis=_axis;
 - (float)value;
 - (BOOL)_setValue:(float)arg1 queue:(id)arg2;
 - (BOOL)_setValue:(float)arg1;
 - (BOOL)_setValueFromAxisButton:(float)arg1 queue:(id)arg2;
 - (BOOL)_setValueFromAxisButton:(float)arg1;
-- (BOOL)setHIDValue:(struct __IOHIDValue *)arg1 queue:(id)arg2;
-- (BOOL)setHIDValue:(struct __IOHIDValue *)arg1;
 - (BOOL)isAnalog;
 - (id)description;
 - (id)collection;

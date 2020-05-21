@@ -6,15 +6,13 @@
 
 #import "NSObject.h"
 
-@class ABAddressBook, ABGroupEntriesList, ABPersonListController, NSMutableArray;
+@class ABAddressBook, ABGroupEntriesList, ABPersonListController;
 
-__attribute__((visibility("hidden")))
 @interface ABPeoplePickerLocalNotificationWatcher : NSObject
 {
     ABAddressBook *_addressBook;
     ABGroupEntriesList *_groupEntriesList;
     ABPersonListController *_personListController;
-    NSMutableArray *_observers;
 }
 
 - (BOOL)anyGroupChanged:(id)arg1;
@@ -26,6 +24,7 @@ __attribute__((visibility("hidden")))
 - (id)identifiersForRecords:(id)arg1;
 - (void)managedObjectContextDidSave:(id)arg1;
 - (void)invalidate;
+- (void)unregisterForNotifications;
 - (void)registerForNotifications;
 - (void)dealloc;
 - (id)initWithAddressBook:(id)arg1 groupEntriesList:(id)arg2 personListController:(id)arg3;

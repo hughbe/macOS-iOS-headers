@@ -6,13 +6,16 @@
 
 #import <Symbolication/VMUAbstractSerializer.h>
 
+@class NSData;
+
 __attribute__((visibility("hidden")))
 @interface VMUSimpleDeserializer : VMUAbstractSerializer
 {
     void *_cache;
-    CDUnknownBlockType _destructor;
+    NSData *_data;
 }
 
+- (void).cxx_destruct;
 - (unsigned int *)_deserializeValues:(unsigned int)arg1;
 - (const char *)copyDeserializedNullTerminatedBytes;
 - (id)copyDeserializedString;
@@ -21,7 +24,7 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)deserialize64;
 - (unsigned int)deserialize32;
 - (void)dealloc;
-- (id)initWithBuffer:(const void *)arg1 length:(unsigned int)arg2 destructor:(CDUnknownBlockType)arg3;
+- (id)initWithData:(id)arg1;
 
 @end
 

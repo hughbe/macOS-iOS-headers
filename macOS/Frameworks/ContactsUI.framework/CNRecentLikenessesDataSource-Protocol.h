@@ -6,15 +6,17 @@
 
 #import "NSObject.h"
 
-@class CNContact, CNObservable, PRLikeness;
+@class CNContact, CNLikeness, CNObservable;
 
 @protocol CNRecentLikenessesDataSource <NSObject>
 - (void)commitEditing;
-- (void)setAsCurrentLikeness:(PRLikeness *)arg1;
-- (void)saveLikeness:(PRLikeness *)arg1;
-- (void)deleteLikeness:(PRLikeness *)arg1;
+- (void)setAsCurrentLikeness:(CNLikeness *)arg1;
+- (void)updateLikeness:(CNLikeness *)arg1;
+- (void)deleteLikeness:(CNLikeness *)arg1;
+- (void)addNewLikeness:(CNLikeness *)arg1;
 - (CNObservable *)contactLikenessModelObservable;
 - (void)setLikenessMutatorFactory:(id <CNContactLikenessMutatorFactory>)arg1;
 - (void)setContact:(CNContact *)arg1;
+- (CNLikeness *)currentLikeness;
 @end
 

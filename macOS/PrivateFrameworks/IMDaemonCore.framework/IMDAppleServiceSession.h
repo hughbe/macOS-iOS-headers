@@ -14,13 +14,10 @@
     NSString *_GUID;
 }
 
++ (id)idsAccounts;
 @property(readonly, retain, nonatomic) NSString *GUID; // @synthesize GUID=_GUID;
-@property(readonly, nonatomic) NSString *serviceType;
-@property(readonly, retain, nonatomic) NSString *callerID;
-- (void)clearCallerIDForAccount:(id)arg1;
-- (void)clearCallerID;
-- (id)certForURI:(id)arg1;
-- (id)idsAccountForURI:(id)arg1;
+- (id)idsAccountForFromURI:(id)arg1 toURI:(id)arg2;
+- (id)idsAccountForURI:(id)arg1 IDSServiceName:(id)arg2;
 - (id)callerURIForIDSAccount:(id)arg1;
 @property(readonly, retain, nonatomic) NSString *callerURI;
 - (long long)validationStatusForAlias:(id)arg1 onAccount:(id)arg2;
@@ -31,7 +28,7 @@
 - (void)reregister;
 - (void)activeDevicesUpdated;
 - (void)refreshRegistration;
-- (id)certForURI:(id)arg1 onIDSAccount:(id)arg2;
+- (void)resetCallerIDForIDSAccount:(id)arg1;
 - (void)validateProfileWithAccount:(id)arg1;
 - (void)unvalidateAliases:(id)arg1 account:(id)arg2;
 - (void)validateAliases:(id)arg1 account:(id)arg2;
@@ -55,7 +52,6 @@
 - (BOOL)_isDeviceRegistered;
 @property(readonly, nonatomic) NSArray *registeredURIs;
 - (id)imdAccountForIDSAccount:(id)arg1;
-@property(readonly, retain, nonatomic) NSArray *idsAccounts;
 @property(readonly, retain, nonatomic) IDSAccount *idsAccount;
 - (void)dealloc;
 - (id)initWithAccount:(id)arg1 service:(id)arg2;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CDSession, NSDate, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class CDSession, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface CDAttribute : NSObject
 {
@@ -26,7 +26,6 @@
     int revocationToken;
     unsigned short _admissionMask;
     NSMutableDictionary *costCache;
-    NSDate *lastUpdate;
     BOOL delayedUpdatePending;
     NSMutableDictionary *tokenCache;
     NSMutableDictionary *dateCache;
@@ -38,6 +37,7 @@
     CDSession *_sessionWeak;
 }
 
+- (void).cxx_destruct;
 @property(readonly) unsigned long long integerId; // @synthesize integerId=_integerId;
 @property(readonly) NSObject<OS_dispatch_queue> *deferredRequestsQ; // @synthesize deferredRequestsQ=_deferredRequestsQ;
 @property(readonly) __weak CDSession *sessionWeak; // @synthesize sessionWeak=_sessionWeak;
@@ -45,7 +45,6 @@
 @property(readonly) long long type; // @synthesize type=_type;
 @property(readonly) NSString *fullName; // @synthesize fullName=_fullName;
 @property(readonly) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (BOOL)requestStatisticFromDevice:(id)arg1 statistic:(long long)arg2 forHistoryWindow:(id)arg3 error:(id *)arg4 handler:(CDUnknownBlockType)arg5;
 - (BOOL)requestPeerForecastFromDevice:(id)arg1 withValue:(id)arg2 forHistoryWindow:(id)arg3 forecastType:(long long)arg4 error:(id *)arg5 handler:(CDUnknownBlockType)arg6;
@@ -68,8 +67,8 @@
 - (unsigned long long)meteringIsActive:(id)arg1;
 - (void)meteringInsertCachedToken:(id)arg1 meteringToken:(unsigned long long)arg2;
 - (id)meteringLookupCachedToken:(id)arg1;
-- (void)updateDuetWithCost;
-- (id)updateCostOnDownload:(id)arg1 meteringToken:(unsigned long long)arg2 date:(id)arg3;
+- (void)reportAccumulatedCost;
+- (BOOL)accumulateCostDictionary:(id)arg1 meteringToken:(unsigned long long)arg2 date:(id)arg3;
 - (id)fullNameFromString:(id)arg1 clientId:(unsigned long long)arg2 error:(id *)arg3;
 - (BOOL)setResourceAvailabilityBlockWithError:(id *)arg1 handler:(CDUnknownBlockType)arg2;
 - (BOOL)setAdmissionRevocationBlockWithError:(id *)arg1 handler:(CDUnknownBlockType)arg2;

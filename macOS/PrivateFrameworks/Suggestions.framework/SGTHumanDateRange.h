@@ -19,13 +19,13 @@ __attribute__((visibility("hidden")))
     long long _deltaTo;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *rangeString; // @synthesize rangeString=_rangeString;
 @property(readonly, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic, getter=isFuture) BOOL future;
 - (id)description;
 - (id)dateComponentsRange;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 displayName:(id)arg2 unit:(unsigned long long)arg3 deltaFrom:(long long)arg4 deltaTo:(long long)arg5;
 
 @end

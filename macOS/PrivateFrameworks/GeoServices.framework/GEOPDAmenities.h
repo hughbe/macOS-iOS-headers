@@ -8,14 +8,21 @@
 
 #import "NSCopying.h"
 
+@class PBUnknownFields;
+
 @interface GEOPDAmenities : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     struct GEOPDAmenityValue *_amenitys;
     unsigned long long _amenitysCount;
     unsigned long long _amenitysSpace;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (id)amentiesForPlaceData:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -23,6 +30,7 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (void)setAmenitys:(struct GEOPDAmenityValue *)arg1 count:(unsigned long long)arg2;

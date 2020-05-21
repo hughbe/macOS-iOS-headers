@@ -8,12 +8,14 @@
 
 @class AVAsset, AVWeakReference, NSError, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetReaderInternal : NSObject
 {
     AVWeakReference *weakReference;
     AVAsset *asset;
     struct OpaqueFigAssetReader *figAssetReader;
     CDStruct_e83c9415 timeRange;
+    BOOL readSingleSample;
     NSMutableArray *outputs;
     NSMutableSet *outputFinishedCallbackInvokers;
     long long status;

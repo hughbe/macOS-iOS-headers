@@ -14,7 +14,6 @@ __attribute__((visibility("hidden")))
 - (id)description;
 - (BOOL)hasContent;
 - (int)runType;
-- (void)dealloc;
 
 @end
 

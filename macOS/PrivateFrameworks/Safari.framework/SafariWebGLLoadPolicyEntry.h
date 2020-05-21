@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class NSDate, NSString;
 
 __attribute__((visibility("hidden")))
-@interface SafariWebGLLoadPolicyEntry : NSObject
+@interface SafariWebGLLoadPolicyEntry : NSObject <NSCopying>
 {
     BOOL _webPageIsOpen;
     BOOL _explicitlySetByUser;
@@ -25,6 +27,7 @@ __attribute__((visibility("hidden")))
 
 + (int)policyFromString:(id)arg1;
 + (id)stringFromPolicy:(int)arg1;
+- (void).cxx_destruct;
 @property(nonatomic, getter=isManagedByAdmin) BOOL managedByAdmin; // @synthesize managedByAdmin=_managedByAdmin;
 @property(nonatomic) BOOL didShowSecurityAlertDialog; // @synthesize didShowSecurityAlertDialog=_didShowSecurityAlertDialog;
 @property(nonatomic, getter=isExplicitlySetByAdmin) BOOL explicitlySetByAdmin; // @synthesize explicitlySetByAdmin=_explicitlySetByAdmin;
@@ -35,8 +38,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSString *host; // @synthesize host=_host;
 @property(retain, nonatomic) NSDate *date; // @synthesize date=_date;
 @property(nonatomic) int loadPolicy; // @synthesize loadPolicy=_loadPolicy;
-- (void).cxx_destruct;
-- (id)iconForPageRunningWebGL;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionaryRepresentation:(id)arg1 host:(id)arg2;

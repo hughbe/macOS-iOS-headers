@@ -6,42 +6,37 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_xpc_object>, NSRecursiveLock;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>;
 
+__attribute__((visibility("hidden")))
 @interface CBXpcConnection : NSObject
 {
     id <CBXpcConnectionDelegate> _delegate;
-    NSObject<OS_dispatch_queue> *_queue;
+    NSObject<OS_dispatch_queue> *_eventQueue;
     NSMutableDictionary *_options;
-    int _type;
-    NSRecursiveLock *_delegateLock;
-    NSObject<OS_dispatch_semaphore> *_xpcSendBarrier;
+    int _sessionType;
+    NSObject<OS_dispatch_queue> *_xpcQueue;
     NSObject<OS_xpc_object> *_xpcConnection;
-    BOOL _xpcIsFinalizing;
+    BOOL _uiAppIsBackgrounded;
 }
 
-@property(nonatomic) id <CBXpcConnectionDelegate> delegate; // @synthesize delegate=_delegate;
-- (id)nsDictionaryFromXpcDictionary:(id)arg1;
-- (id)nsArrayWithXpcArray:(id)arg1;
-- (id)nsObjectWithXpcObject:(id)arg1;
-- (id)allocXpcDictionaryWithNSDictionary:(id)arg1;
-- (id)allocXpcArrayWithNSArray:(id)arg1;
-- (id)allocXpcObjectWithNSObject:(id)arg1;
-- (void)handleConnectionEvent:(id)arg1;
-- (void)handleFinalized;
-- (void)handleInvalid;
-- (void)handleReset;
-- (void)handleMsg:(int)arg1 args:(id)arg2;
-- (id)sendSyncMsg:(int)arg1 args:(id)arg2;
-- (void)sendMsg:(int)arg1 args:(id)arg2;
-- (void)sendAsyncMsg:(int)arg1 args:(id)arg2;
-- (id)allocXpcMsg:(int)arg1 args:(id)arg2;
-- (void)checkOut;
-- (void)checkIn;
-- (BOOL)isMainQueue;
+- (void).cxx_destruct;
+- (void)_applicationWillEnterForegroundNotification;
+- (void)_applicationDidEnterBackgroundNotification;
+- (void)_handleConnectionEvent:(id)arg1;
+- (void)_handleFinalized;
+- (void)_handleInvalid;
+- (void)_handleReset;
+- (void)_handleMsg:(id)arg1;
+- (id)_allocXpcMsg:(unsigned short)arg1 args:(id)arg2;
+- (id)_nameForMessage:(unsigned short)arg1;
+- (void)_sendBarrier;
+- (void)_checkOut;
+- (void)_checkIn;
+- (void)setTargetQueue:(id)arg1;
 - (void)disconnect;
-- (BOOL)bluetoothExists;
-- (void)dealloc;
+- (id)sendSyncMsg:(unsigned short)arg1 args:(id)arg2;
+- (void)sendMsg:(unsigned short)arg1 args:(id)arg2;
 - (id)initWithDelegate:(id)arg1 queue:(id)arg2 options:(id)arg3 sessionType:(int)arg4;
 
 @end

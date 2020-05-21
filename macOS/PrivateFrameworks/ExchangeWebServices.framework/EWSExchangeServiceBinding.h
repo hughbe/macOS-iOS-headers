@@ -8,7 +8,7 @@
 
 #import "NSURLSessionDataDelegate.h"
 
-@class ACAccount, EWSServerVersionInfo, NSMutableDictionary, NSMutableSet, NSString, NSURL, NSURLSession;
+@class ACAccount, EWSServerVersionInfo, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSURL, NSURLSession;
 
 @interface EWSExchangeServiceBinding : NSObject <NSURLSessionDataDelegate>
 {
@@ -19,29 +19,44 @@
     BOOL _isValid;
     NSURL *_preferredURL;
     NSMutableSet *_attemptedURLs;
+    NSMutableArray *_frozenTasks;
+    NSDate *_unfreezeDate;
+    NSMutableArray *_pendingOAuthTasks;
+    NSDate *_tokenRefreshDate;
     BOOL _logsActivity;
+    BOOL _isRefreshingOAuthToken;
+    EWSServerVersionInfo *_serverInfo;
     NSURL *_URL;
     NSURLSession *_session;
     ACAccount *_account;
     id <EWSExchangeServiceBindingDelegate> _delegate;
-    EWSServerVersionInfo *_serverInfo;
 }
 
 + (BOOL)shouldAutodiscoverUponResponseCode:(long long)arg1;
 + (id)protectionSpaceForURL:(id)arg1;
 + (id)testMessage;
++ (id)log;
 + (void)initialize;
-@property(retain) EWSServerVersionInfo *serverInfo; // @synthesize serverInfo=_serverInfo;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) __weak id <EWSExchangeServiceBindingDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) ACAccount *account; // @synthesize account=_account;
 @property(readonly, nonatomic) NSURLSession *session; // @synthesize session=_session;
-@property BOOL logsActivity; // @synthesize logsActivity=_logsActivity;
 @property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
-- (void).cxx_destruct;
+@property(readonly) BOOL isRefreshingOAuthToken; // @synthesize isRefreshingOAuthToken=_isRefreshingOAuthToken;
+@property BOOL logsActivity; // @synthesize logsActivity=_logsActivity;
+@property(retain) EWSServerVersionInfo *serverInfo; // @synthesize serverInfo=_serverInfo;
 - (void)_clearRequestIfNeeded:(id)arg1;
 - (id)_exchangeServiceErrorFromSOAPError:(id)arg1 dataTask:(id)arg2;
-- (id)_bindingTask:(id)arg1 dataTaskWithData:(id)arg2 timeout:(double)arg3;
+- (void)_continuePendingOAuthTasks;
+- (void)_cancelBindingTask:(id)arg1;
+- (void)_tryUnfreeze;
+- (void)_backOffForTime:(double)arg1;
+- (id)_dataTaskForBindingTask:(id)arg1;
+- (void)_continueSendingRequestForBindingTask:(id)arg1;
+- (void)_sendRequestForBindingTask:(id)arg1;
 - (BOOL)_shouldFallbackFromError:(id)arg1;
+- (id)_errorFromTask:(id)arg1;
+- (void)_renewOAuthTokenWithTask:(id)arg1;
 - (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3;
 - (void)URLSession:(id)arg1 task:(id)arg2 didReceiveChallenge:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
@@ -53,8 +68,10 @@
 - (id)newTaskWithRequest:(id)arg1;
 - (void)sendMessage:(id)arg1;
 - (id)sendSynchronousMessage:(id)arg1 error:(id *)arg2;
+@property(readonly) BOOL isValid;
 - (void)invalidateAndCancel;
 - (void)finishMessagesAndInvalidate;
+- (id)cachedAccountStore;
 - (void)_exchangeServiceBindingCommonInitWithAccount:(id)arg1;
 - (id)init;
 - (id)initWithAccount:(id)arg1;

@@ -20,6 +20,7 @@
     struct NSEdgeInsets _edgeInsets;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL didPrepareConstraints; // @synthesize didPrepareConstraints=_didPrepareConstraints;
 @property(retain, nonatomic) NSTextField *detailTextLabel; // @synthesize detailTextLabel=_detailTextLabel;
 @property(retain, nonatomic) NSTextField *textLabel; // @synthesize textLabel=_textLabel;
@@ -28,13 +29,14 @@
 @property(nonatomic) struct NSEdgeInsets edgeInsets; // @synthesize edgeInsets=_edgeInsets;
 @property(copy, nonatomic) PKPaymentAuthorizationItemValue *value; // @synthesize value=_value;
 @property(retain, nonatomic) PKPaymentAuthorizationLayout *paymentAuthorizationLayout; // @synthesize paymentAuthorizationLayout=_paymentAuthorizationLayout;
-- (void).cxx_destruct;
 - (id)_valueDetailTextAttributedStringWithString:(id)arg1 mode:(long long)arg2;
+- (double)_textToDetailTextMargin;
 - (id)_textColorForMode:(long long)arg1;
 - (id)_valueTextAttributedStringWithString:(id)arg1 mode:(long long)arg2;
 - (void)_prepareConstraints;
 - (void)_createSubviews;
 - (void)updateConstraints;
+- (void)setAccessibilityTitleForTextFields:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 

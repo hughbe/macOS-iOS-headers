@@ -14,13 +14,8 @@
 
 @interface MMCSCRecoveryController : NSObject <MMCSCPinRecoveryViewControllerDelegate, MMCSCPassPhraseRecoveryViewControllerDelegate, MMCSCSMSTargetRecoveryViewControllerDelegate>
 {
-    id <MMCSCRecoveryControllerDelegate> _delegate;
-    NSWindow *_dialog;
     NSWindow *_parentWindow;
-    MMCSCPinRecoveryViewController *_cscPinVC;
     int _pinLength;
-    MMCSCPassPhraseRecoveryViewController *_cscPassPhraseVC;
-    MMCSCSMSTargetRecoveryViewController *_cscSMSTargetVC;
     NSString *_accountID;
     NSString *_passPhrase;
     NSString *_verificationToken;
@@ -31,8 +26,14 @@
     BOOL _needsVerification;
     BOOL _usesRandomPassphrase;
     NSMutableDictionary *_recoveryContext;
+    id <MMCSCRecoveryControllerDelegate> _delegate;
+    NSWindow *_dialog;
+    MMCSCPinRecoveryViewController *_cscPinVC;
+    MMCSCPassPhraseRecoveryViewController *_cscPassPhraseVC;
+    MMCSCSMSTargetRecoveryViewController *_cscSMSTargetVC;
 }
 
+- (void).cxx_destruct;
 @property(retain) MMCSCSMSTargetRecoveryViewController *cscSMSTargetVC; // @synthesize cscSMSTargetVC=_cscSMSTargetVC;
 @property(retain) MMCSCPassPhraseRecoveryViewController *cscPassPhraseVC; // @synthesize cscPassPhraseVC=_cscPassPhraseVC;
 @property(retain) MMCSCPinRecoveryViewController *cscPinVC; // @synthesize cscPinVC=_cscPinVC;
@@ -41,7 +42,7 @@
 @property(copy) NSString *smsTargetCountryCode; // @synthesize smsTargetCountryCode=_smsTargetCountryCode;
 @property(copy) NSString *verificationToken; // @synthesize verificationToken=_verificationToken;
 @property(copy) NSString *passPhrase; // @synthesize passPhrase=_passPhrase;
-@property(retain) NSWindow *dialog; // @synthesize dialog=_dialog;
+@property __weak NSWindow *dialog; // @synthesize dialog=_dialog;
 @property(retain) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
 @property BOOL needsVerification; // @synthesize needsVerification=_needsVerification;
 @property BOOL usesRandomPassphrase; // @synthesize usesRandomPassphrase=_usesRandomPassphrase;
@@ -65,7 +66,6 @@
 - (void)modalDialogCancelled;
 - (void)endModalDialog;
 - (void)beginDialogWithParentWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)dealloc;
 - (id)init;
 
 // Remaining properties

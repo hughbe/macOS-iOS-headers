@@ -15,19 +15,26 @@
     BOOL _removeSpaceBefore;
     BOOL _removeSpaceAfter;
     NSString *_text;
+    NSString *_phoneSequence;
+    NSString *_ipaPhoneSequence;
     long long _confidenceScore;
     double _startTime;
+    double _silenceStartTime;
     double _endTime;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL removeSpaceAfter; // @synthesize removeSpaceAfter=_removeSpaceAfter;
 @property(nonatomic) BOOL removeSpaceBefore; // @synthesize removeSpaceBefore=_removeSpaceBefore;
 @property(nonatomic) double endTime; // @synthesize endTime=_endTime;
+@property(nonatomic) double silenceStartTime; // @synthesize silenceStartTime=_silenceStartTime;
 @property(nonatomic) double startTime; // @synthesize startTime=_startTime;
 @property(nonatomic) long long confidenceScore; // @synthesize confidenceScore=_confidenceScore;
+@property(copy, nonatomic) NSString *ipaPhoneSequence; // @synthesize ipaPhoneSequence=_ipaPhoneSequence;
+@property(copy, nonatomic) NSString *phoneSequence; // @synthesize phoneSequence=_phoneSequence;
 @property(copy, nonatomic) NSString *text; // @synthesize text=_text;
-- (void).cxx_destruct;
+- (id)aceToken;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)description;

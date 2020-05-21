@@ -6,24 +6,26 @@
 
 #import "NSObject.h"
 
-#import "MKUserLocationAnnotation.h"
+#import "MKAnnotationPrivate.h"
 
-@class NSString;
+@class CLLocation, NSString;
 
-@interface MKUserLocationAnnotation : NSObject <MKUserLocationAnnotation>
+__attribute__((visibility("hidden")))
+@interface MKUserLocationAnnotation : NSObject <MKAnnotationPrivate>
 {
     struct CLLocationCoordinate2D _coordinate;
-    double _accuracy;
+    CLLocation *_location;
 }
 
-@property(nonatomic) double accuracy; // @synthesize accuracy=_accuracy;
-@property(readonly, nonatomic) struct CLLocationCoordinate2D coordinate;
-- (void)setCoordinate:(struct CLLocationCoordinate2D)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CLLocation *location; // @synthesize location=_location;
+@property(nonatomic) struct CLLocationCoordinate2D coordinate; // @synthesize coordinate=_coordinate;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) long long representation;
 @property(readonly, copy, nonatomic) NSString *subtitle;
 @property(readonly) Class superclass;
 @property(readonly, copy, nonatomic) NSString *title;

@@ -6,11 +6,11 @@
 
 #import <vCard/CNVCardLine.h>
 
-@class NSString;
+@class NSData;
 
 @interface CNVCardLiteralLine : CNVCardLine
 {
-    NSString *_literalValue;
+    NSData *_literalValue;
 }
 
 + (id)lineWithLiteralValue:(id)arg1;

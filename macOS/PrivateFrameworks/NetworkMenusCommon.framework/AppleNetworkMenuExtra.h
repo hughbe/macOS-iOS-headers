@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate.h"
 
-@class AppleNetworkMenuExtraView, NSArray, NSBundle, NSFileHandle, NSMenu, NSMenuItem, NSMutableArray, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString;
+@class AppleNetworkMenuExtraView, NSArray, NSBundle, NSFileHandle, NSMenu, NSMenuItem, NSMutableArray, NSOperationQueue, NSString;
 
 @interface AppleNetworkMenuExtra : NSMenuExtra <NSMenuDelegate>
 {
@@ -23,18 +23,18 @@
     struct __CFRunLoopSource *mRunLoopSource;
     NSFileHandle *mFileHandle;
     AppleNetworkMenuExtraView *mMenuBarView;
-    NSMutableArray *mControllers;
+    NSArray *mControllers;
     BOOL mProcessingPrefChanges;
     NSOperationQueue *mRefreshQueue;
-    NSObject<OS_dispatch_queue> *neServiceQueue;
-    NSMutableArray *mSCServices;
-    NSMutableArray *mNEServices;
+    NSMutableArray *mUnprocessedSCControllers;
+    NSMutableArray *mUnprocessedNEControllers;
+    NSArray *mNEControllers;
 }
 
-+ (id)SCLock;
-- (void)reloadAllNetworkExtensionServicesWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)reloadSCServices;
-- (id)allServices;
++ (id)sharedNetworkExtensionServiceQueue;
+- (void)reloadNetworkExtensionControllers;
+- (void)reloadSystemConfigurationControllers;
+- (id)systemConfigurationRawServices;
 - (BOOL)supportsNetworkExtension;
 - (BOOL)supportsInterfaceSubtype:(id)arg1;
 - (BOOL)supportsInterfaceType:(id)arg1;
@@ -71,7 +71,6 @@
 - (void)a_showSpecificTimeInMenuBar:(id)arg1;
 - (void)a_showTimeInMenuBar:(id)arg1;
 - (void)handleDynamicStoreChangedNotification:(id)arg1;
-- (void)handleNetworkExtensionChangeQueueNotification:(id)arg1;
 - (void)refreshForPreferencesChange:(id)arg1;
 - (void)registerForPrefsFileChangeNotifications;
 - (void)initializeDynamicStoreMonitoring;
@@ -83,10 +82,10 @@
 - (id)AXValue;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)menu:(id)arg1 willHighlightItem:(id)arg2;
-- (void)dealloc;
 - (BOOL)convertedForNewUI;
 - (id)menu;
 - (void)willUnload;
+- (void)dealloc;
 - (id)initWithBundle:(id)arg1;
 
 // Remaining properties

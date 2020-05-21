@@ -12,18 +12,16 @@ __attribute__((visibility("hidden")))
 @interface _GEOSearchAttributionListener : NSObject
 {
     NSString *_identifier;
-    unsigned int _version;
     NSMutableArray *_completionHandlers;
     NSMutableArray *_errorHandlers;
 }
 
-@property(readonly, nonatomic) unsigned int version; // @synthesize version=_version;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void)handleError:(id)arg1;
-- (void)handleInfo:(id)arg1 updatedManifest:(BOOL)arg2;
+- (void)handleInfo:(id)arg1;
 - (void)addCompletionHandler:(CDUnknownBlockType)arg1 errorHandler:(CDUnknownBlockType)arg2;
-- (void)dealloc;
-- (id)initWithIdentifier:(id)arg1 version:(unsigned int)arg2;
+- (id)initWithIdentifier:(id)arg1;
 
 @end
 

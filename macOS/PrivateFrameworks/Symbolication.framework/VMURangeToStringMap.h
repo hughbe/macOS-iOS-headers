@@ -21,10 +21,13 @@
 + (void)initialize;
 + (void)_claimUnarchivingOfClass:(id)arg1;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+- (id)stringForIndex:(unsigned int)arg1;
+- (struct _VMURange)rangeForString:(id)arg1 startingAtAddress:(unsigned long long)arg2;
 - (struct _VMURange)rangeContainingAddress:(unsigned long long)arg1;
 - (id)stringForAddress:(unsigned long long)arg1;
 - (void)setString:(id)arg1 forRange:(struct _VMURange)arg2;
-- (unsigned int)_indexForString:(id)arg1;
+- (unsigned int)indexForString:(id)arg1 insertIfMissing:(BOOL)arg2;
 - (void)sort;
 - (unsigned int)uniquedStringCount;
 - (unsigned int)count;

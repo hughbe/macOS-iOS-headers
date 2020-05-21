@@ -4,32 +4,31 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <CoreBluetooth/CBAttribute.h>
 
-@class CBPeripheral, CBUUID, NSArray, NSNumber;
+@class CBPeripheral, NSArray, NSNumber;
 
-@interface CBService : NSObject
+@interface CBService : CBAttribute
 {
-    CBPeripheral *_peripheral;
-    CBUUID *_UUID;
     BOOL _isPrimary;
+    CBPeripheral *_peripheral;
     NSArray *_includedServices;
     NSArray *_characteristics;
     NSNumber *_startHandle;
     NSNumber *_endHandle;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSNumber *endHandle; // @synthesize endHandle=_endHandle;
 @property(readonly, nonatomic) NSNumber *startHandle; // @synthesize startHandle=_startHandle;
 @property(retain) NSArray *characteristics; // @synthesize characteristics=_characteristics;
 @property(retain) NSArray *includedServices; // @synthesize includedServices=_includedServices;
-@property(readonly, nonatomic) BOOL isPrimary; // @synthesize isPrimary=_isPrimary;
-@property(readonly, nonatomic) CBUUID *UUID; // @synthesize UUID=_UUID;
+@property(nonatomic) BOOL isPrimary; // @synthesize isPrimary=_isPrimary;
 @property(readonly, nonatomic) CBPeripheral *peripheral; // @synthesize peripheral=_peripheral;
 - (id)handleCharacteristicsDiscovered:(id)arg1;
 - (id)handleIncludedServicesDiscovered:(id)arg1;
 - (void)invalidate;
-- (void)dealloc;
+- (id)description;
 - (id)initWithPeripheral:(id)arg1 dictionary:(id)arg2;
 
 @end

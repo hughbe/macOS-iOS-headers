@@ -15,27 +15,26 @@
 {
     unsigned long long _filteringOption;
     id <ACUIAccountsTableViewControllerDelegate> _delegate;
-    NSArray *_accounts;
     ACAccount *_selectedAccount;
+    NSArray *_accountRowItems;
     NSOperationQueue *_operationQueue;
-    long long _queuedRefreshCount;
     ACAccountStore *_store;
     NSTableView *_tableview;
     NSTextField *_noAccountsLabel;
     ACAccount *_autoSelectAccount;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) ACAccount *autoSelectAccount; // @synthesize autoSelectAccount=_autoSelectAccount;
 @property(retain) NSTextField *noAccountsLabel; // @synthesize noAccountsLabel=_noAccountsLabel;
 @property(retain) NSTableView *tableview; // @synthesize tableview=_tableview;
 @property(retain) ACAccountStore *store; // @synthesize store=_store;
-@property long long queuedRefreshCount; // @synthesize queuedRefreshCount=_queuedRefreshCount;
 @property(retain) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
+@property(retain) NSArray *accountRowItems; // @synthesize accountRowItems=_accountRowItems;
 @property(retain, nonatomic) ACAccount *selectedAccount; // @synthesize selectedAccount=_selectedAccount;
-@property(retain) NSArray *accounts; // @synthesize accounts=_accounts;
 @property __weak id <ACUIAccountsTableViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) unsigned long long filteringOption; // @synthesize filteringOption=_filteringOption;
-- (void).cxx_destruct;
+- (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (id)nibBundle;
@@ -43,7 +42,8 @@
 - (void)_reloadAccounts:(id)arg1;
 - (BOOL)_shouldUseAccount:(id)arg1;
 - (id)_dataclassMatchingFilteringOption;
-- (id)_sortAccountsArray:(id)arg1;
+- (id)_sortedAccountRowItemsArray:(id)arg1;
+@property(readonly) NSArray *accounts;
 - (void)viewDidLoad;
 - (id)init;
 

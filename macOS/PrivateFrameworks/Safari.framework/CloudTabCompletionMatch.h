@@ -4,25 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "WBSURLCompletionMatch.h"
+#import "WBSTabCompletionMatch.h"
 
-@class NSString, WBSCloudTab;
+@class WBSCloudTab;
 
 __attribute__((visibility("hidden")))
-@interface CloudTabCompletionMatch : WBSURLCompletionMatch
+@interface CloudTabCompletionMatch : WBSTabCompletionMatch
 {
-    NSString *_originalURLString;
     WBSCloudTab *_cloudTab;
 }
 
-+ (long long)matchLocationForString:(id)arg1 inCloudTab:(id)arg2;
-@property(readonly, nonatomic) WBSCloudTab *cloudTab; // @synthesize cloudTab=_cloudTab;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) WBSCloudTab *cloudTab; // @synthesize cloudTab=_cloudTab;
 - (id)parsecDomainIdentifier;
-- (id)userVisibleURLString;
-- (id)originalURLString;
-- (id)title;
-- (id)initWithCloudTab:(id)arg1 matchLocation:(long long)arg2;
+- (id)initWithCloudTab:(id)arg1 userInput:(id)arg2 forQueryID:(long long)arg3;
+- (id)init;
 
 @end
 

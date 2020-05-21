@@ -7,6 +7,6 @@
 #import "NSBezierPath.h"
 
 @interface NSBezierPath (AMCocoaExtensions)
-+ (id)bezierPathWithRect:(struct CGRect)arg1 cornerRadius:(double)arg2;
++ (id)am_bezierPathWithRect:(struct CGRect)arg1 cornerRadius:(double)arg2;
 @end
 

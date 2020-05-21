@@ -8,16 +8,19 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray;
+@class NSMutableArray, PBUnknownFields;
 
-__attribute__((visibility("hidden")))
 @interface GEOVersionManifest : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_serviceVersions;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)serviceVersionType;
-@property(retain, nonatomic) NSMutableArray *serviceVersions; // @synthesize serviceVersions=_serviceVersions;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -25,13 +28,14 @@ __attribute__((visibility("hidden")))
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)serviceVersionAtIndex:(unsigned long long)arg1;
 - (unsigned long long)serviceVersionsCount;
 - (void)addServiceVersion:(id)arg1;
 - (void)clearServiceVersions;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *serviceVersions;
 
 @end
 

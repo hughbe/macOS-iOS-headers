@@ -16,6 +16,5 @@
 - (void)stop;
 - (void)abort;
 - (void)submitAssetCollectionsForPublication:(NSArray *)arg1 skipAssetCollections:(NSArray *)arg2;
-- (void)submitAssetCollectionsForPublication:(NSArray *)arg1;
 @end
 

@@ -8,7 +8,7 @@
 
 #import "AVAssetResourceLoaderRequest.h"
 
-@class AVAssetResourceLoadingContentInformationRequest, AVAssetResourceLoadingDataRequest, AVAssetResourceLoadingRequestInternal, NSString, NSURLRequest, NSURLResponse;
+@class AVAssetResourceLoadingContentInformationRequest, AVAssetResourceLoadingDataRequest, AVAssetResourceLoadingRequestInternal, AVAssetResourceLoadingRequestor, NSString, NSURLRequest, NSURLResponse;
 
 @interface AVAssetResourceLoadingRequest : NSObject <AVAssetResourceLoaderRequest>
 {
@@ -16,22 +16,27 @@
 }
 
 + (SEL)_selectorForInformingDelegateOfCancellationByFig;
-- (void)_removeFigAssetListeners;
-- (void)_addFigAssetListeners;
-- (void)_removeFigAssetImageGeneratorListeners;
-- (void)_addFigAssetImageGeneratorListeners;
-- (void)_removeFigPlaybackItemListeners;
-- (void)_addFigPlaybackItemListeners;
+@property(readonly, nonatomic) AVAssetResourceLoadingRequestor *requestor;
 - (id)persistentContentKeyFromKeyVendorResponse:(id)arg1 options:(id)arg2 error:(id *)arg3;
 - (void)generateStreamingContentKeyRequestDataAsynchronouslyForApp:(id)arg1 contentIdentifier:(id)arg2 options:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)streamingContentKeyRequestDataForApp:(id)arg1 contentIdentifier:(id)arg2 options:(id)arg3 error:(id *)arg4;
+- (struct OpaqueFigCustomURLHandler *)_contentKeySessionCustomURLHandler;
+- (BOOL)_contentKeySessionIsAttached;
+- (id)keyRequestDataUsingCryptorForApp:(id)arg1 contentIdentifier:(id)arg2 options:(id)arg3 performAsync:(BOOL)arg4 error:(id *)arg5;
 - (void)finishLoadingWithResponse:(id)arg1 data:(id)arg2 redirect:(id)arg3;
 - (void)finishLoadingWithError:(id)arg1;
 - (void)finishLoading;
-- (void)_sendDataIncrementally:(id)arg1 data:(id)arg2;
-- (void)_sendDictionaryForURLRequest:(id)arg1 context:(id)arg2;
+- (void)forwardRequestToContentKeySession;
+- (void)_sendFinishLoadingToCustomURLHandler;
+- (void)_sendFinishLoadingToCustomURLHandlerWithError:(id)arg1;
+- (void)_sendDataToCustomURLHandler:(id)arg1;
+- (void)_ensureResponseInfoSentToCustomURLHandler;
+- (void)_sendResponseInfoToCustomURLHandler;
 - (id)serializableRepresentation;
 @property(copy, nonatomic) NSURLRequest *redirect;
+- (BOOL)_isRequestForContentKey;
+- (void)_cacheContentInformation:(id)arg1;
+- (BOOL)_canSetOrUseCachedContentInformation;
 - (void)_appendToCachedData:(id)arg1;
 - (id)_getAndClearCachedData;
 @property(copy, nonatomic) NSURLResponse *response;
@@ -45,14 +50,17 @@
 - (BOOL)_tryToMarkAsCancelled;
 - (BOOL)finished;
 @property(readonly, nonatomic, getter=isFinished) BOOL finished;
+- (unsigned long long)_requestID;
 @property(readonly, nonatomic) NSURLRequest *request;
-- (id)_requestDictionary;
+- (struct __CFDictionary *)_requestInfo;
+- (struct OpaqueFigCustomURLLoader *)_customURLLoader;
+- (struct OpaqueFigCustomURLHandler *)_customURLHandler;
 - (id)_resourceLoader;
 - (id)_weakReference;
 @property(readonly, copy) NSString *description;
-- (void)finalize;
 - (void)dealloc;
-- (id)initWithResourceLoader:(id)arg1 requestDictionary:(id)arg2;
+- (id)initWithResourceLoader:(id)arg1 URL:(id)arg2 httpRequestHeaders:(id)arg3 requestOffset:(id)arg4 requestLength:(id)arg5 allowedContentTypes:(id)arg6 figCryptor:(struct OpaqueFigCPECryptor *)arg7 cryptorKeyRequestID:(unsigned long long)arg8;
+- (id)initWithResourceLoader:(id)arg1 requestInfo:(struct __CFDictionary *)arg2 requestID:(unsigned long long)arg3;
 - (id)init;
 
 // Remaining properties

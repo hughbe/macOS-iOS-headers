@@ -18,6 +18,7 @@
 - (id)designatedFocusRingView;
 - (void)setShouldSmoothFonts:(BOOL)arg1;
 - (BOOL)shouldSmoothFonts;
+- (id)_placeholderTextColor;
 - (id)_textColor;
 
 @end

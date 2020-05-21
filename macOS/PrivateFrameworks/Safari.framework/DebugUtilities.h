@@ -23,8 +23,6 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)sharedDebugUtilities;
-+ (void)overrideSystemHTTPProxy:(id)arg1 HTTPSProxy:(id)arg2;
-+ (void)overrideSystemProxiesIfNeeded;
 + (void)startLaunchTimeLoggingIfNeeded;
 - (void).cxx_destruct;
 - (id)watchdog;
@@ -38,7 +36,10 @@ __attribute__((visibility("hidden")))
 - (void)menuNeedsUpdate:(id)arg1;
 - (void)createDebugMenu;
 - (void)_populateDebugMenu;
+- (id)_tabFeaturesSubmenuItem;
+- (id)_tabOrderManagmentSubmenuItem;
 - (id)_worldLeaksSubmenuItem;
+- (id)_internalDebugFeaturesSubmenuItem;
 - (id)_miscellaneousFlagsSubmenuItem;
 - (id)_layoutFlagsSubmenuItem;
 - (id)_debugOverlaysFlagsSubmenuItem;

@@ -28,7 +28,7 @@ __attribute__((visibility("hidden")))
 @property(readonly) unsigned char type; // @synthesize type=_type;
 @property BOOL isResumed; // @synthesize isResumed=_isResumed;
 - (void)dealloc;
-- (void)sendData:(const void *)arg1 size:(unsigned int)arg2 error:(id *)arg3;
+- (BOOL)sendData:(const void *)arg1 size:(unsigned int)arg2 error:(id *)arg3;
 - (void)readyToRead;
 - (int)stop;
 - (int)start;

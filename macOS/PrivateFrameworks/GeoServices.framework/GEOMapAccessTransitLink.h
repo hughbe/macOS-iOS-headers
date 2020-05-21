@@ -19,16 +19,15 @@ __attribute__((visibility("hidden")))
     id <GEOMapTransitStop> _stopTo;
 }
 
-@property(readonly, nonatomic) id <GEOMapTransitStop> stopTo; // @synthesize stopTo=_stopTo;
-@property(readonly, nonatomic) id <GEOMapTransitStop> stopFrom; // @synthesize stopFrom=_stopFrom;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) id <GEOMapTransitStop> stopTo; // @synthesize stopTo=_stopTo;
+@property(readonly, nonatomic) id <GEOMapTransitStop> stopFrom; // @synthesize stopFrom=_stopFrom;
 - (double)distanceInMetersFrom:(CDStruct_c3b9c2ee)arg1 outClosestCoordinateOnLine:(CDStruct_c3b9c2ee *)arg2;
 @property(readonly, copy) NSString *description;
 @property(readonly, nonatomic) unsigned int minimumTravelTime;
 @property(readonly, nonatomic) NSString *internalLineName;
 @property(readonly, nonatomic) unsigned long long transitLineID;
-- (void)dealloc;
 - (id)initWithMap:(id)arg1 transitEdge:(shared_ptr_24ebf3c0)arg2;
 
 // Remaining properties

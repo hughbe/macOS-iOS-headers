@@ -26,17 +26,22 @@
 + (Class)frozenClass;
 + (id)uniqueIdentifierForObject:(id)arg1;
 + (unsigned long long)hashForObject:(id)arg1;
-+ (id)shareeWithEmailAddress:(id)arg1 name:(id)arg2;
++ (id)shareeWithName:(id)arg1 url:(id)arg2;
++ (id)shareeWithName:(id)arg1 phoneNumber:(id)arg2;
++ (id)shareeWithName:(id)arg1 emailAddress:(id)arg2 phoneNumber:(id)arg3;
++ (id)shareeWithName:(id)arg1 emailAddress:(id)arg2;
+- (void).cxx_destruct;
 - (void)setManagedObjectID:(id)arg1;
 @property(readonly, nonatomic) NSManagedObjectID *managedObjectID;
-- (void).cxx_destruct;
 - (id)ABPersonInAddressBook:(id)arg1;
-@property(readonly, nonatomic) NSPredicate *contactPredicate;
+- (id)existingContact;
+- (id)newContact;
 @property(nonatomic) unsigned long long shareeAccessLevel;
 @property(nonatomic) unsigned long long shareeStatus;
-@property(copy, nonatomic) NSString *emailAddress;
-@property(readonly) BOOL isCurrentUserForScheduling;
-@property(readonly) BOOL isCurrentUserForSharing;
+@property(readonly, nonatomic) NSString *phoneNumber;
+@property(readonly, nonatomic) NSString *emailAddress;
+@property(readonly, nonatomic) BOOL isCurrentUserForScheduling;
+@property(readonly, nonatomic) BOOL isCurrentUserForSharing;
 - (void)setURL:(id)arg1;
 @property(readonly, copy, nonatomic) NSURL *URL;
 - (void)setAccessLevel:(id)arg1;
@@ -46,7 +51,10 @@
 @property(copy, nonatomic) NSString *name;
 - (id)backingSharee;
 - (id)initWithObject:(id)arg1 createPartialBackingObject:(BOOL)arg2 keepBackingObject:(BOOL)arg3 preFrozenRelationshipObjects:(id)arg4 additionalFrozenProperties:(id)arg5;
-- (id)initWithEmailAddress:(id)arg1 name:(id)arg2;
+- (id)initWithName:(id)arg1 url:(id)arg2;
+- (id)lastName;
+- (id)firstName;
+@property(readonly, nonatomic) NSPredicate *contactPredicate; // @dynamic contactPredicate;
 
 // Remaining properties
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;

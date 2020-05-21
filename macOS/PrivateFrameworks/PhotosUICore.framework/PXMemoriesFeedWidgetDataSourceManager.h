@@ -8,14 +8,16 @@
 
 @interface PXMemoriesFeedWidgetDataSourceManager : PXMemoriesFeedDataSourceManagerBase
 {
+    BOOL _onlyFavorites;
     unsigned long long _maxCount;
 }
 
+@property(nonatomic) BOOL onlyFavorites; // @synthesize onlyFavorites=_onlyFavorites;
 @property(nonatomic) unsigned long long maxCount; // @synthesize maxCount=_maxCount;
 - (void)handleChangedKeyAssetsForMemories:(id)arg1;
 - (void)handleNonIncrementalFetchResultChange:(id)arg1;
 - (void)handleIncrementalFetchResultChange:(id)arg1 updatedFetchResultsForMemoriesWithChangedKeyAssets:(id)arg2;
-- (void)_regenerateMemories;
+- (void)_regenerateMemoriesWithChange:(id)arg1;
 - (id)_generateEntryFromMemories:(id)arg1;
 - (void)generateAdditionalEntriesIfPossible;
 - (void)startGeneratingMemories;

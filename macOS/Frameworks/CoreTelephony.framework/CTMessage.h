@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CTPhoneNumber, NSArray, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<CTMessageAddress><NSCopying>, NSString, NSUUID;
+@class CTPhoneNumber, CTXPCServiceSubscriptionContext, NSArray, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<CTMessageAddress><NSCopying>, NSString, NSUUID;
 
 @interface CTMessage : NSObject
 {
@@ -24,8 +24,12 @@
     unsigned int _replaceMessage;
     NSString *_countryCode;
     NSUUID *_uuid;
+    BOOL _bypassSupportedMessageModesCheck;
+    CTXPCServiceSubscriptionContext *_context;
 }
 
+@property(copy, nonatomic) CTXPCServiceSubscriptionContext *context; // @synthesize context=_context;
+@property(nonatomic) BOOL bypassSupportedMessageModesCheck; // @synthesize bypassSupportedMessageModesCheck=_bypassSupportedMessageModesCheck;
 @property(retain, nonatomic) NSUUID *uniqueIdentifier; // @synthesize uniqueIdentifier=_uuid;
 @property(readonly, copy, nonatomic) NSString *countryCode; // @synthesize countryCode=_countryCode;
 @property(readonly) unsigned int replaceMessage; // @synthesize replaceMessage=_replaceMessage;

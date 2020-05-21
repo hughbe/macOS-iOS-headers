@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
 
 + (id)cleanStringValueFromAttributedString:(id)arg1;
 + (void)initialize;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL programmaticTextChange; // @synthesize programmaticTextChange;
 - (void)_sgt_invalidateLayout;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;

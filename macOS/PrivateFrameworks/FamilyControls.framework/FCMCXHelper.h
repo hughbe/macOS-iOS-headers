@@ -6,22 +6,27 @@
 
 #import "NSObject.h"
 
-@class MCXPrefObject;
+@class ADMUser, MCXPrefObject;
 
 @interface FCMCXHelper : NSObject
 {
+    ADMUser *_admUser;
     MCXPrefObject *_mcxManager;
-    FCMCXHelper *_mcxHelper;
 }
 
++ (id)mcxHelperForUser:(id)arg1;
 + (id)mcxHelperForManager:(id)arg1;
+- (void)synchronizePrefs;
+- (void)readSettings;
 - (id)MCXRAWDict;
 - (BOOL)hasSettingsForDomains:(id)arg1;
 - (void)setForcedPrefsDictionary:(id)arg1 inDomain:(id)arg2;
+- (id)forcedPrefsDictionaryForDomain:(id)arg1;
 - (void)removeForcedPrefsObjectForKey:(id)arg1 inDomain:(id)arg2;
 - (void)setForcedPrefsObject:(id)arg1 forKey:(id)arg2 inDomain:(id)arg3;
 - (id)forcedPrefsObjectForKey:(id)arg1 inDomain:(id)arg2;
 - (void)removeForcedPrefsDictionaryForDomains:(id)arg1;
+- (id)initWithUser:(id)arg1;
 - (id)initWithMCXManager:(id)arg1;
 - (void)dealloc;
 

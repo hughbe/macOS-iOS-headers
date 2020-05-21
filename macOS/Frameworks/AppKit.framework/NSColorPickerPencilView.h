@@ -25,7 +25,6 @@ __attribute__((visibility("hidden")))
     unsigned int _reservedFlags:31;
 }
 
-+ (id)_representativePencilImage;
 - (void)_updateFramesForPencils:(id)arg1 duration:(double)arg2;
 - (void)_removeAllPencilLayers;
 - (void)_setLayer:(id)arg1 forPencil:(id)arg2;

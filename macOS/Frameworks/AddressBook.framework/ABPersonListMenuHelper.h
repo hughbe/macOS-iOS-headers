@@ -10,7 +10,6 @@
 
 @class ABPersonListController, ABPersonListSharingHelper, NSMenu, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABPersonListMenuHelper : NSObject <NSMenuDelegate>
 {
     ABPersonListController *_personListController;
@@ -18,17 +17,19 @@ __attribute__((visibility("hidden")))
     NSMenu *_contextMenu;
 }
 
+- (void).cxx_destruct;
 @property(readonly) NSMenu *contextMenu; // @synthesize contextMenu=_contextMenu;
+- (id)contactsForDonatedEntries:(id)arg1;
+- (id)contactsForCuratedEntries:(id)arg1;
 - (id)contactsForEntries:(id)arg1;
 - (id)makeFindInSpotlightMenuItemWithEntries:(id)arg1;
 - (id)makeDeleteSelectedEntriesMenuItemWithEntries:(id)arg1;
 - (id)makeEditEntryMenuItemWithEntries:(id)arg1;
-- (id)makeExportVCardMenuItemWithRecords:(id)arg1;
+- (id)makeExportVCardMenuItemWithPeople:(id)arg1;
 - (id)makeShareMenuItemWithEntries:(id)arg1;
 - (id)peopleForIdentifiers:(id)arg1;
 - (id)menuItemsForContextMenuWithEntries:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
-- (void)dealloc;
 - (id)initWithPersonListController:(id)arg1;
 
 // Remaining properties

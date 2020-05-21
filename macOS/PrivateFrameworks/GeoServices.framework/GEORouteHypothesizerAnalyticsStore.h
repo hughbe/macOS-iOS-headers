@@ -25,6 +25,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL etaUpdatesWereReported; // @synthesize etaUpdatesWereReported=_etaUpdatesWereReported;
 @property(nonatomic) unsigned long long etaUpdatesAfterEventStart; // @synthesize etaUpdatesAfterEventStart=_etaUpdatesAfterEventStart;
 - (id)initWithCoder:(id)arg1;

@@ -6,7 +6,6 @@
 
 #import <ContactsFoundation/CNObservable.h>
 
-__attribute__((visibility("hidden")))
 @interface _CNDistinctUntilChangedObservable : CNObservable
 {
     id <CNObservable> _observable;

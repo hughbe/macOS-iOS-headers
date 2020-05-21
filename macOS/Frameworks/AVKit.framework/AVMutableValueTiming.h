@@ -6,7 +6,6 @@
 
 #import <AVKit/AVValueTiming.h>
 
-__attribute__((visibility("hidden")))
 @interface AVMutableValueTiming : AVValueTiming
 {
 }

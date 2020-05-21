@@ -15,12 +15,14 @@
     NSDate *_lastUpdatedOutputVolume;
     IOBluetoothHostController *_hostController;
     BOOL _disconnectAfterDisconnectingSCO;
+    BOOL _xaplSent;
     unsigned short _SCOConnectionHandle;
     unsigned char _codecID;
 }
 
 @property unsigned char codecID; // @synthesize codecID=_codecID;
 @property unsigned short SCOConnectionHandle; // @synthesize SCOConnectionHandle=_SCOConnectionHandle;
+@property BOOL xaplSent; // @synthesize xaplSent=_xaplSent;
 @property BOOL disconnectAfterDisconnectingSCO; // @synthesize disconnectAfterDisconnectingSCO=_disconnectAfterDisconnectingSCO;
 @property(retain) IOBluetoothHostController *hostController; // @synthesize hostController=_hostController;
 @property(retain) NSDate *lastUpdatedOutputVolume; // @synthesize lastUpdatedOutputVolume=_lastUpdatedOutputVolume;

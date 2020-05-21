@@ -11,8 +11,8 @@
 @interface SMFDEManagementViewController : NSWindowController
 {
     BOOL _simpleMode;
+    BOOL _tokenOnlyMode;
     BOOL _continueEnabled;
-    BOOL _existingUsersMode;
     BOOL _diskPasswordOnly;
     NSLayoutConstraint *_diskPassToButtonConstraint;
     NSLayoutConstraint *_userTableToButtonConstraint;
@@ -24,20 +24,19 @@
 }
 
 + (id)keyPathsForValuesAffectingCollectingDiskPassword;
-+ (id)keyPathsForValuesAffectingPasswordButtonLabel;
 + (id)keyPathsForValuesAffectingInstructionText;
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property __weak NSWindow *sheetWindow; // @synthesize sheetWindow=_sheetWindow;
 @property(retain) NSArray *incomingUsers; // @synthesize incomingUsers=_incomingUsers;
 @property BOOL diskPasswordOnly; // @synthesize diskPasswordOnly=_diskPasswordOnly;
-@property BOOL existingUsersMode; // @synthesize existingUsersMode=_existingUsersMode;
 @property BOOL continueEnabled; // @synthesize continueEnabled=_continueEnabled;
 @property(retain) NSString *fdePassword; // @synthesize fdePassword=_fdePassword;
+@property BOOL tokenOnlyMode; // @synthesize tokenOnlyMode=_tokenOnlyMode;
 @property BOOL simpleMode; // @synthesize simpleMode=_simpleMode;
 @property(retain) NSArray *userList; // @synthesize userList=_userList;
 @property NSLayoutConstraint *userTableToButtonConstraint; // @synthesize userTableToButtonConstraint=_userTableToButtonConstraint;
 @property NSLayoutConstraint *diskPassToButtonConstraint; // @synthesize diskPassToButtonConstraint=_diskPassToButtonConstraint;
-- (void).cxx_destruct;
 - (void)pressedAuthorizeDiskPassword:(id)arg1;
 - (void)pressedPasswordButton:(id)arg1;
 - (void)pressedCancel:(id)arg1;
@@ -45,7 +44,6 @@
 @property(readonly) BOOL collectingDiskPassword;
 @property(readonly) NSString *passwordButtonLabel;
 @property(readonly) NSString *instructionText;
-- (void)switchToNewUsersMode;
 - (void)dismissWindow;
 - (void)showForIncomingUsers:(id)arg1 overWindow:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (id)init;

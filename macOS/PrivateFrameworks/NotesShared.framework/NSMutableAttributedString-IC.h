@@ -7,7 +7,6 @@
 #import "NSMutableAttributedString.h"
 
 @interface NSMutableAttributedString (IC)
-- (void)setParagraphStyleForWritingDirection:(long long)arg1 andAlignment:(BOOL)arg2;
 - (void)appendAttributedSubstring:(id)arg1 fromRange:(struct _NSRange)arg2;
 - (void)replaceCharactersInRange:(struct _NSRange)arg1 withAttributedSubstring:(id)arg2 fromRange:(struct _NSRange)arg3;
 - (void)appendString:(id)arg1;

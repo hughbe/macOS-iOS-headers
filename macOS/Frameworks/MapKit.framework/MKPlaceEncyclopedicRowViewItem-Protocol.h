@@ -9,7 +9,7 @@
 @class NSString;
 
 @protocol MKPlaceEncyclopedicRowViewItem <NSObject>
-@property(readonly, nonatomic) id value;
+@property(readonly, nonatomic) NSString *value;
 @property(readonly, nonatomic) NSString *label;
 @end
 

@@ -6,26 +6,18 @@
 
 #import "NSObject.h"
 
-#import "GEOMapAccessRestrictions.h"
-
-@class GEOMapAccess, NSString;
+@class GEOMapFeatureAccess;
 
 __attribute__((visibility("hidden")))
-@interface GEORouteRoadMatcher : NSObject <GEOMapAccessRestrictions>
+@interface GEORouteRoadMatcher : NSObject
 {
-    GEOMapAccess *_mapAccess;
+    GEOMapFeatureAccess *_mapFeatureAccess;
 }
 
-@property(readonly, nonatomic) BOOL allowsNetworkTileLoad;
-- (CDStruct_ffa96740 *)findRoadOnCoordinate:(CDStruct_c3b9c2ee)arg1 withCourse:(double)arg2;
-- (void)dealloc;
+- (void).cxx_destruct;
+- (BOOL)allowsNetworkTileLoad;
+- (CDStruct_f2d78687 *)findRoadOnCoordinate:(CDStruct_c3b9c2ee)arg1 withCourse:(double)arg2;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

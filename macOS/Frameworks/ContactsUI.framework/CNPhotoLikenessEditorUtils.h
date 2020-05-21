@@ -13,6 +13,10 @@
 + (void)saveImage:(id)arg1 atPath:(id)arg2;
 + (struct CGRect)invertCropRect:(struct CGRect)arg1 forImage:(struct CGImage *)arg2;
 + (id)imageWithPhotoLikeness:(id)arg1 size:(struct CGSize)arg2;
++ (struct CGRect)cropRectForImageRef:(struct CGImage *)arg1 fittingToSize:(struct CGSize)arg2 fittingZoom:(double *)arg3 minZoom:(double *)arg4;
++ (BOOL)isBadCropRect:(struct CGRect)arg1 forCGImageRef:(struct CGImage *)arg2;
++ (BOOL)isCGFloatValueApproximateZero:(double)arg1;
++ (BOOL)shouldDebugReloadSidebarPeriodically;
 
 @end
 

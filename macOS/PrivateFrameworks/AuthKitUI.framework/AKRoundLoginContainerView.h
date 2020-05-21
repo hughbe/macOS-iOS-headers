@@ -9,8 +9,10 @@
 @interface AKRoundLoginContainerView : NSView
 {
     BOOL _usesDarkMode;
+    BOOL _shouldHideCenterLine;
 }
 
+@property BOOL shouldHideCenterLine; // @synthesize shouldHideCenterLine=_shouldHideCenterLine;
 @property BOOL usesDarkMode; // @synthesize usesDarkMode=_usesDarkMode;
 - (void)drawRect:(struct CGRect)arg1;
 

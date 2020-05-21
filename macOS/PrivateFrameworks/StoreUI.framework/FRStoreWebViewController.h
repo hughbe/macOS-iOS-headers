@@ -6,34 +6,81 @@
 
 #import <StoreUI/FRContentViewController.h>
 
-@class FRWKView;
+#import "CKAccountObserver.h"
 
-@interface FRStoreWebViewController : FRContentViewController
+@class CKBag, CKStoreClient, FRSuggester, FRWKView, FRWindowBackgroundView, NSArray, NSMutableArray, NSMutableDictionary, NSString;
+
+@interface FRStoreWebViewController : FRContentViewController <CKAccountObserver>
 {
     FRWKView *_webView;
+    FRWindowBackgroundView *_splashView;
+    CKStoreClient *_storeClient;
+    id <FRStoreWebViewControllerDelegate> _delegate;
+    CKBag *_bag;
+    NSString *_storefrontBagKey;
+    NSMutableArray *_pendingURLs;
+    FRSuggester *_hintsSuggester;
+    NSMutableDictionary *_iconRequests;
+    NSArray *_bagTabs;
+    NSArray *_pendingBagTabs;
+    NSMutableDictionary *_pageState;
+    NSMutableDictionary *_redirectedURLs;
 }
 
-@property(readonly, nonatomic) FRWKView *webView; // @synthesize webView=_webView;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableDictionary *redirectedURLs; // @synthesize redirectedURLs=_redirectedURLs;
+@property(retain, nonatomic) NSMutableDictionary *pageState; // @synthesize pageState=_pageState;
+@property(retain, nonatomic) NSArray *pendingBagTabs; // @synthesize pendingBagTabs=_pendingBagTabs;
+@property(retain, nonatomic) NSArray *bagTabs; // @synthesize bagTabs=_bagTabs;
+@property(retain, nonatomic) NSMutableDictionary *iconRequests; // @synthesize iconRequests=_iconRequests;
+@property(retain, nonatomic) FRSuggester *hintsSuggester; // @synthesize hintsSuggester=_hintsSuggester;
+@property(retain, nonatomic) NSMutableArray *pendingURLs; // @synthesize pendingURLs=_pendingURLs;
+@property(copy) NSString *storefrontBagKey; // @synthesize storefrontBagKey=_storefrontBagKey;
+@property(readonly) CKBag *bag; // @synthesize bag=_bag;
+@property __weak id <FRStoreWebViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly) CKStoreClient *storeClient; // @synthesize storeClient=_storeClient;
+@property(readonly) FRWindowBackgroundView *splashView; // @synthesize splashView=_splashView;
+@property(readonly) FRWKView *webView; // @synthesize webView=_webView;
+- (id)_comparisonDictionaryFromURL:(id)arg1;
+- (id)_tabBarIdentifierForURL:(id)arg1;
+- (void)webViewFinishedLoadingURL:(id)arg1 withError:(id)arg2;
+- (void)webViewURL:(id)arg1 redirectedToURL:(id)arg2;
+- (void)webViewStartedLoadingURL:(id)arg1;
+- (void)selectTabBarItem:(id)arg1;
 - (void)goBack;
 - (BOOL)canGoBack;
 - (void)goForward;
 - (BOOL)canGoForward;
-- (id)replaceURLSchemeWithSecureURLScheme:(id)arg1;
+- (id)_storeSecureURLWithURL:(id)arg1;
 - (BOOL)loadURL:(id)arg1 referrer:(id)arg2;
+- (void)loadPendingURL;
+- (void)delayLoadURL:(id)arg1 referrer:(id)arg2;
+- (BOOL)canLoadURL:(id)arg1;
 - (BOOL)loadRequest:(id)arg1;
 - (void)clearHistory;
 - (void)reload;
 - (id)activeURL;
 - (void)setTopContentInset:(double)arg1;
-- (void)updateWithBag:(id)arg1;
+- (void)_reachabilityChanged:(id)arg1;
+- (void)_fetchIconAtURL:(id)arg1 withIdentifier:(id)arg2;
+- (BOOL)isTabEnabled:(id)arg1;
+- (void)_updateTabsWithToolbarInfo:(id)arg1;
+- (void)_bagUpdateFailedWithError:(id)arg1;
+- (void)_updateFromStoreClient;
+- (void)accountStore:(id)arg1 primaryAccountChanged:(id)arg2;
+- (id)navigationTabs;
+- (void)setNavigationController:(id)arg1;
 - (void)loadView;
+- (void)dealloc;
+- (id)initWithStoreClient:(id)arg1 defaultTabBarItems:(id)arg2;
+- (id)initWithStoreClient:(id)arg1;
 - (id)init;
-- (BOOL)canLoadURL:(id)arg1;
-- (void)webViewFinishedLoadingURL:(id)arg1 withError:(id)arg2;
-- (void)webViewURL:(id)arg1 redirectedToURL:(id)arg2;
-- (void)webViewCancelledLoadingURL:(id)arg1;
-- (void)webViewStartedLoadingURL:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

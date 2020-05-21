@@ -7,13 +7,22 @@
 @class NSString;
 
 @protocol VCHardwareSettingsMacProtocol
+@property(readonly, nonatomic) BOOL supportsHEIFEncoding;
+@property(readonly, nonatomic) BOOL isDeviceLargeScreen;
+@property(readonly, nonatomic) unsigned int maxActiveVideoDecoders;
+@property(readonly, nonatomic) unsigned int maxActiveVideoEncoders;
+@property(readonly, nonatomic) unsigned int hwEncoderEnterBitrate;
+@property(readonly, nonatomic) unsigned int hwEncoderExitBitrate;
 @property(readonly, nonatomic) BOOL useSoftFramerateSwitching;
 @property(readonly, nonatomic) BOOL isIMac;
 @property(readonly, nonatomic) BOOL isMacPro;
 @property(readonly, nonatomic) BOOL isMacBookWVGA;
+@property(readonly, nonatomic) BOOL canDoHEVC;
 @property(readonly, nonatomic) BOOL canDoHiDefDecoding;
 @property(readonly, nonatomic) BOOL canDoHiDefEncoding;
 @property(readonly, nonatomic) int hardwareScore;
 @property(readonly, nonatomic) NSString *machineName;
+@property(readonly, nonatomic) BOOL vcpSupportsHEVCEncoder;
+@property(readonly, nonatomic) BOOL supportHEVC;
 @end
 

@@ -14,6 +14,8 @@
 + (id)keyPathsForValuesAffectingBaseFrequency;
 + (id)keyPathsForValuesAffectingPull;
 @property unsigned int samplingRate; // @synthesize samplingRate=_samplingRate;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (BOOL)validControlValueType:(unsigned short)arg1;
 - (id)objectsForSetCommandValuesData:(id)arg1;
 - (id)debugLogStringWithIndentation:(id)arg1;

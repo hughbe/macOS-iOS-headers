@@ -15,6 +15,7 @@
 
 + (id)availableOutputFileTypes;
 + (id)_avMetadataToID3Metadata:(id)arg1;
++ (id)new;
 + (void)initialize;
 - (CDStruct_1b6d18a9)_syncTime;
 - (int)_compressorDidRenderConnection:(id)arg1 busNumber:(unsigned int)arg2 processHints:(unsigned int *)arg3 sampleBuffer:(struct opaqueCMSampleBuffer **)arg4;

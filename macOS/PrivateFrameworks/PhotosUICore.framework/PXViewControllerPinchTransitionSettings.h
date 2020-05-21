@@ -8,6 +8,7 @@
 
 @interface PXViewControllerPinchTransitionSettings : PXSettings
 {
+    BOOL _allowPinchTransitions;
     double _transitionDuration;
     double _backgroundScale;
     double _backgroundParallax;
@@ -25,7 +26,9 @@
 @property(nonatomic) double backgroundParallax; // @synthesize backgroundParallax=_backgroundParallax;
 @property(nonatomic) double backgroundScale; // @synthesize backgroundScale=_backgroundScale;
 @property(nonatomic) double transitionDuration; // @synthesize transitionDuration=_transitionDuration;
+@property(nonatomic) BOOL allowPinchTransitions; // @synthesize allowPinchTransitions=_allowPinchTransitions;
 - (void)setDefaultValues;
+- (id)parentSettings;
 
 @end
 

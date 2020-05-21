@@ -8,15 +8,16 @@
 
 @class NSMapTable;
 
+__attribute__((visibility("hidden")))
 @interface _NSPasteboardItemCollection : NSObject
 {
     NSMapTable *_sparsePasteboardItems;
     long long _cachedItemGenerationCount;
 }
 
-- (id)_pasteboardItemsWithItemCount:(unsigned long long)arg1 pasteboard:(id)arg2 generationCount:(long long)arg3;
-- (id)_pasteboardItemAtIndex:(unsigned long long)arg1 pasteboard:(id)arg2 generationCount:(long long)arg3;
-- (void)_addPasteboardItem:(id)arg1 atIndex:(unsigned long long)arg2 generationCount:(long long)arg3;
+- (id)pasteboardItemsWithItemCount:(unsigned long long)arg1 pasteboard:(id)arg2 generationCount:(long long)arg3;
+- (id)pasteboardItemAtIndex:(unsigned long long)arg1 pasteboard:(id)arg2 generationCount:(long long)arg3;
+- (void)addPasteboardItem:(id)arg1 atIndex:(unsigned long long)arg2 generationCount:(long long)arg3;
 - (void)dealloc;
 - (id)init;
 

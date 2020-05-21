@@ -6,13 +6,13 @@
 
 #import <CalendarPersistence/CalManagedObject.h>
 
-#import "EKProtocolOccurrence.h"
 #import "ETagObject.h"
+#import "OccurrenceModelProtocol.h"
 #import "StoresUnrecognizedICS.h"
 
-@class CalManagedCalendar, CalManagedICSElementProperties, CalManagedLocation, CalManagedRecurrenceSet, NSDate, NSDictionary, NSManagedObjectID, NSMutableSet, NSNumber, NSString, NSTimeZone, NSURL;
+@class CalManagedCalendar, CalManagedICSElementProperties, CalManagedLocation, CalManagedRecurrenceSet, NSData, NSDate, NSDictionary, NSManagedObjectID, NSMutableSet, NSNumber, NSString, NSTimeZone, NSURL;
 
-@interface CalManagedCalendarItem : CalManagedObject <ETagObject, EKProtocolOccurrence, StoresUnrecognizedICS>
+@interface CalManagedCalendarItem : CalManagedObject <ETagObject, OccurrenceModelProtocol, StoresUnrecognizedICS>
 {
     NSString *_path;
     BOOL _currentlyModifyingDefaultAlarms;
@@ -45,6 +45,7 @@
 + (id)icsDateForDate:(id)arg1 timeZone:(id)arg2 allDay:(BOOL)arg3;
 + (id)calendarItemUIDFromCalendarItemPath:(id)arg1;
 + (id)_icsStringForDateTime:(id)arg1 floating:(BOOL)arg2;
+- (void).cxx_destruct;
 - (id)_nsCalendar;
 - (void)setRelatedExternalID:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *relatedExternalID;
@@ -57,6 +58,8 @@
 - (void)setDefaultAlarmWasDeleted:(BOOL)arg1;
 @property(readonly, nonatomic) BOOL defaultAlarmWasDeleted;
 @property(readonly, nonatomic) BOOL organizedByMe;
+- (void)setOrganizerPhoneNumber:(id)arg1;
+@property(readonly, copy, nonatomic) NSString *organizerPhoneNumber;
 - (void)setOrganizerEncodedLikenessData:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *organizerEncodedLikenessData;
 - (void)setOrganizerEmail:(id)arg1;
@@ -72,8 +75,6 @@
 - (BOOL)allDay;
 - (void)setStartDateUnadjustedFromUTC:(id)arg1;
 @property(readonly, copy, nonatomic) NSDate *startDateUnadjustedFromUTC;
-- (void)setLastModifiedDate:(id)arg1;
-@property(readonly, copy, nonatomic) NSDate *lastModifiedDate;
 - (void)setRecurrenceRuleString:(id)arg1;
 - (void)setScheduleAgentString:(id)arg1;
 @property(readonly, copy, nonatomic) NSString *scheduleAgentString;
@@ -97,7 +98,7 @@
 - (id)priorityNumber;
 - (void)setEkStructuredLocation:(id)arg1;
 @property(readonly, copy, nonatomic) id <EKProtocolStructuredLocation> ekStructuredLocation;
-@property(readonly, copy, nonatomic) id <EKProtocolCalendar> container;
+@property(readonly, retain, nonatomic) id <CalendarModelProtocol> container;
 - (id)committedMasterItem;
 - (id)masterItem;
 @property(retain) NSDate *creationDate; // @dynamic creationDate;
@@ -140,13 +141,13 @@
 - (id)relationshipsToCompareForMerge;
 - (id)attributesToCompareForMerge;
 - (BOOL)shouldWarnUserOnMoveToExchangeCalendar:(id)arg1;
+- (id)exchangeAlarm;
 - (void)makeExchangeCompatible;
 - (id)_makeExchangeCompatible;
 - (BOOL)isExchangeCompatible;
 - (void)refreshRelationships;
 - (id)computeChecksum;
 - (void)refreshObjects:(id)arg1;
-- (void)dealloc;
 - (void)updateAlarmDerivedProperties;
 - (void)_updateAlarmDerivedPropertiesForSave;
 - (void)willSave;
@@ -165,13 +166,14 @@
 @property(retain) NSURL *dropBoxLocationOverrideBaseURL;
 @property(retain) NSDate *startDate; // @dynamic startDate;
 @property(retain) NSURL *url;
+- (id)rawTitle;
 - (void)willRefresh:(BOOL)arg1;
 - (id)contextForValidationError;
 - (id)keysOnlyRelevantToNetworkDetails;
 - (void)prepareForDeletion;
 - (id)_iCalendarElementWithOptions:(unsigned long long)arg1;
-- (void)importiCalendarComponent:(id)arg1 occurrences:(id)arg2 fromDocument:(id)arg3 inCalendar:(id)arg4 options:(unsigned long long)arg5;
-- (void)importiCalendarComponent:(id)arg1 occurrences:(id)arg2 fromDocument:(id)arg3 inCalendar:(id)arg4 options:(unsigned long long)arg5 deletionBlock:(CDUnknownBlockType)arg6;
+- (BOOL)importiCalendarComponent:(id)arg1 occurrences:(id)arg2 fromDocument:(id)arg3 inCalendar:(id)arg4 options:(unsigned long long)arg5 deletionBlock:(CDUnknownBlockType)arg6;
+- (BOOL)importiCalendarComponent:(id)arg1 occurrences:(id)arg2 fromDocument:(id)arg3 inCalendar:(id)arg4 options:(unsigned long long)arg5;
 - (void)importManagedAttachmentsFromComponent:(id)arg1 fromDocument:(id)arg2 inCalendar:(id)arg3;
 - (void)_importNonManagedAttachmentsFromComponent:(id)arg1 fromDocument:(id)arg2 inCalendar:(id)arg3;
 - (void)_importNonManagedAttachment:(id)arg1 fromComponent:(id)arg2 fromDocument:(id)arg3 inCalendar:(id)arg4 withOldAttachments:(id)arg5;
@@ -187,7 +189,6 @@
 - (void)_updateWithEntity:(id)arg1 alarms:(BOOL)arg2 omitSyncRecord:(BOOL)arg3 inCalendar:(id)arg4 processChanges:(BOOL)arg5;
 - (void)updateWithEntity:(id)arg1 alarms:(BOOL)arg2 inCalendar:(id)arg3;
 - (void)updateWithEntity:(id)arg1 inCalendar:(id)arg2;
-- (id)occurrenceIDFromCommittedValues;
 - (id)occurrenceID;
 - (Class)entityClass;
 - (void)processForType:(int)arg1 forParentCR:(id)arg2 inManagedObjectContext:(id)arg3;
@@ -224,7 +225,9 @@
 @property BOOL isAllDay; // @dynamic isAllDay;
 @property(readonly, nonatomic) BOOL isPartialObject;
 @property(retain) NSString *itemID; // @dynamic itemID;
+@property(retain) NSDate *lastModifiedDate; // @dynamic lastModifiedDate;
 @property(retain) NSMutableSet *localDefaultAlarms; // @dynamic localDefaultAlarms;
+@property(copy, nonatomic) NSData *localStructuredData; // @dynamic localStructuredData;
 @property(retain) NSString *localUID; // @dynamic localUID;
 @property(readonly, nonatomic) NSManagedObjectID *managedObjectID;
 @property BOOL needsServerConfirmation; // @dynamic needsServerConfirmation;
@@ -241,6 +244,7 @@
 @property(retain) NSMutableSet *serverDefaultAlarms; // @dynamic serverDefaultAlarms;
 @property(retain) NSString *sharedUID; // @dynamic sharedUID;
 @property(retain) NSString *status; // @dynamic status;
+@property(copy, nonatomic) NSData *structuredData; // @dynamic structuredData;
 @property(retain) CalManagedLocation *structuredLocation; // @dynamic structuredLocation;
 @property(readonly) Class superclass;
 @property(retain) NSDate *syncMalfunctionDetected; // @dynamic syncMalfunctionDetected;

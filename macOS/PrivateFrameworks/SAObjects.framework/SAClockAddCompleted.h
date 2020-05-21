@@ -16,6 +16,7 @@
 
 + (id)addCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)addCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSURL *worldClockId;
 @property(nonatomic) BOOL alreadyExists;
 - (id)encodedClassName;

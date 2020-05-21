@@ -18,7 +18,6 @@
     struct __CFRunLoopSource *mRunLoopSource;
     struct __CFMachPort *mCFMachPort;
     unsigned long long mLastModifierFlags;
-    void *mReservedForInstanceVariables;
     RDSemaphore *mRFBEventHelperdLaunchSemaphore;
 }
 

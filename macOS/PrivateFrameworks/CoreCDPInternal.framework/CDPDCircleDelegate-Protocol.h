@@ -4,10 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class CDPContext, CDPDCircleController;
+@class CDPContext, CDPDCircleController, CDPDSecureChannelContext;
 
 @protocol CDPDCircleDelegate
+- (CDPDSecureChannelContext *)secureChannelContextForController:(CDPDCircleController *)arg1;
 - (CDPContext *)contextForController:(CDPDCircleController *)arg1;
-- (void)circleController:(CDPDCircleController *)arg1 secureBackupRecordsArePresentWithCompletion:(void (^)(BOOL, NSError *))arg2;
+- (void)circleController:(CDPDCircleController *)arg1 secureBackupRecordsArePresentWithCompletion:(void (^)(BOOL, BOOL, NSError *))arg2;
 @end
 

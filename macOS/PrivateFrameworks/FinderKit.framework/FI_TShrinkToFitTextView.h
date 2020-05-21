@@ -11,20 +11,21 @@
 __attribute__((visibility("hidden")))
 @interface FI_TShrinkToFitTextView : FI_TTextView
 {
-    struct TNSRef<FI_TShrinkToFitWindow *, void> _stfWindow;
-    struct TNSRef<NSWindow *, void> _parentWindow;
+    struct TNSRef<FI_TShrinkToFitWindow, void> _stfWindow;
+    struct TNSRef<NSWindow, void> _parentWindow;
     struct CGRect _maxGlobalFrame;
+    _Bool _textGrowsUpwards;
     unsigned long long _maxUniChars;
     long long _maxNumLines;
-    FI_TShrinkToFitController *_controller;
+    struct TNSWeakPtr<FI_TShrinkToFitController, void> _weakSTFController;
 }
 
-@property(nonatomic) FI_TShrinkToFitController *controller; // @synthesize controller=_controller;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(nonatomic) _Bool textGrowsUpwards; // @synthesize textGrowsUpwards=_textGrowsUpwards;
 @property(nonatomic) long long maxNumLines; // @synthesize maxNumLines=_maxNumLines;
 @property(nonatomic) unsigned long long maxUniChars; // @synthesize maxUniChars=_maxUniChars;
 @property(nonatomic) struct CGRect maxGlobalFrame; // @synthesize maxGlobalFrame=_maxGlobalFrame;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (void)quickLookWithEvent:(id)arg1;
 - (id)_immediateActionAnimationControllerForCharacterAtIndex:(unsigned long long)arg1 withRecognizer:(id)arg2;
 - (id)accessibilityActionNames;
@@ -42,6 +43,7 @@ __attribute__((visibility("hidden")))
 - (void)setString:(id)arg1;
 - (void)setConstrainedFrameSize:(struct CGSize)arg1;
 - (void)configureAttributes;
+@property(nonatomic) __weak FI_TShrinkToFitController *stfController; // @dynamic stfController;
 @property(retain, nonatomic) NSWindow *parentWindow;
 - (void)dealloc;
 - (id)init;

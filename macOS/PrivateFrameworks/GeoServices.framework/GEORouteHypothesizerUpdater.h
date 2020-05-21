@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class GEOCommonOptions, GEOComposedRoute, GEOComposedWaypoint, GEODirectionsRequest, GEODirectionsRequestFeedback, GEOLocation, GEOMapRegion, GEORouteAttributes, GEORouteMatch, NSDate, NSLock, NSMutableArray;
+@class GEOCommonOptions, GEOComposedRoute, GEOComposedWaypoint, GEODirectionsRequest, GEODirectionsRequestFeedback, GEOLocation, GEOMapRegion, GEORouteAttributes, GEORouteMatch, NSDate, NSMutableArray;
 
 __attribute__((visibility("hidden")))
 @interface GEORouteHypothesizerUpdater : NSObject <NSSecureCoding>
@@ -32,11 +32,12 @@ __attribute__((visibility("hidden")))
     BOOL _shouldThrottleReroutes;
     NSDate *_lastRerouteDate;
     unsigned long long _numThrottledReroutes;
-    NSLock *_requestLock;
+    struct os_unfair_lock_s _requestLock;
     BOOL _isNavd;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isNavd; // @synthesize isNavd=_isNavd;
 @property(readonly, nonatomic) GEORouteAttributes *routeAttributes; // @synthesize routeAttributes=_routeAttributes;
 @property(readonly, nonatomic) BOOL hasArrived; // @synthesize hasArrived=_hasArrived;
@@ -53,7 +54,7 @@ __attribute__((visibility("hidden")))
 - (void)_requestNewRouteFromLocation:(id)arg1 usualRouteData:(id)arg2;
 - (void)cancelCurrentRequest;
 - (void)updateForLocation:(id)arg1;
-- (void)startUpdatingFromLocation:(id)arg1 existingRoute:(id)arg2 usualRouteData:(id)arg3;
+- (void)startUpdatingFromLocation:(id)arg1 usualRouteData:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;

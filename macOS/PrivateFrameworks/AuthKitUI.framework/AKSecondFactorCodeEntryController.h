@@ -7,10 +7,11 @@
 #import "NSViewController.h"
 
 #import "AKPinFieldViewDelegate.h"
+#import "NSTouchBarProvider.h"
 
-@class AKNoCodeReceivedController, AKPinFieldView, NSButton, NSImage, NSImageCell, NSLayoutConstraint, NSNumber, NSObject<AKSecondFactorCodeEntryDelegate>, NSProgressIndicator, NSString, NSTextField, NSView;
+@class AKNoCodeReceivedController, AKPinFieldView, AKTouchBarController, NSButton, NSImage, NSImageCell, NSLayoutConstraint, NSNumber, NSObject<AKSecondFactorCodeEntryDelegate>, NSProgressIndicator, NSString, NSTextField, NSTouchBar, NSView;
 
-@interface AKSecondFactorCodeEntryController : NSViewController <AKPinFieldViewDelegate>
+@interface AKSecondFactorCodeEntryController : NSViewController <NSTouchBarProvider, AKPinFieldViewDelegate>
 {
     BOOL _isCodeEditable;
     NSView *_mainView;
@@ -34,8 +35,11 @@
     NSString *_code;
     NSNumber *_pinCodeLength;
     AKNoCodeReceivedController *_noCodeRecievedController;
+    AKTouchBarController *_touchBarController;
 }
 
+- (void).cxx_destruct;
+@property(retain) AKTouchBarController *touchBarController; // @synthesize touchBarController=_touchBarController;
 @property(retain) AKNoCodeReceivedController *noCodeRecievedController; // @synthesize noCodeRecievedController=_noCodeRecievedController;
 @property(retain) NSNumber *pinCodeLength; // @synthesize pinCodeLength=_pinCodeLength;
 @property(retain) NSString *code; // @synthesize code=_code;
@@ -58,7 +62,6 @@
 @property(retain) NSView *pinContainerView; // @synthesize pinContainerView=_pinContainerView;
 @property(retain) NSObject<AKSecondFactorCodeEntryDelegate> *delegate; // @synthesize delegate=_delegate;
 @property(readonly) NSView *mainView; // @synthesize mainView=_mainView;
-- (void).cxx_destruct;
 - (void)doneButtonPressed:(id)arg1;
 - (void)cancelButtonPressed:(id)arg1;
 - (void)noCodeButtonPressed:(id)arg1;
@@ -70,7 +73,9 @@
 - (void)showError:(id)arg1;
 - (void)setFocusToPinView;
 @property(readonly) NSNumber *enteredPin;
+- (void)setMessage:(id)arg1;
 - (void)setCodeLength:(id)arg1;
+@property(readonly) NSTouchBar *touchBar;
 - (void)awakeFromNib;
 - (id)init;
 

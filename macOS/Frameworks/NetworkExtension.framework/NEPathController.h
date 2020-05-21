@@ -23,12 +23,12 @@
 
 + (id)copyAggregatePathRules;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy) NSArray *payloadAppRules; // @synthesize payloadAppRules=_payloadAppRules;
 @property(copy) NSArray *pathRules; // @synthesize pathRules=_pathRules;
 @property long long cellularFallbackFlags; // @synthesize cellularFallbackFlags=_cellularFallbackFlags;
 @property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
-- (void).cxx_destruct;
-@property(readonly) BOOL hasNonDefaultRules;
+@property(readonly, nonatomic) BOOL hasNonDefaultRules;
 - (id)copyPathRuleSigningIdentifiers;
 - (BOOL)removePathRuleBySigningIdentifier:(id)arg1;
 - (id)copyPathRuleBySigningIdentifier:(id)arg1;

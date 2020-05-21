@@ -14,14 +14,19 @@
     _NSFlowLayoutRow *_rowObject;
     struct CGRect _itemFrame;
     struct {
+        unsigned int sizeEstimated:1;
         unsigned int positionEstimated:1;
+        unsigned int sizeHasBeenSet:1;
     } _itemFlags;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak _NSFlowLayoutRow *rowObject; // @synthesize rowObject=_rowObject;
+@property(nonatomic) __weak _NSFlowLayoutSection *section; // @synthesize section=_section;
 @property(nonatomic) struct CGRect itemFrame; // @synthesize itemFrame=_itemFrame;
-@property(nonatomic) _NSFlowLayoutRow *rowObject; // @synthesize rowObject=_rowObject;
-@property(nonatomic) _NSFlowLayoutSection *section; // @synthesize section=_section;
+@property(nonatomic) BOOL sizeHasBeenSet;
 @property(nonatomic, getter=isPositionEstimated) BOOL positionEstimated;
+@property(nonatomic, getter=isSizeEstimated) BOOL sizeEstimated;
 - (id)copy;
 
 @end

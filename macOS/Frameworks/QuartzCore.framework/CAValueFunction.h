@@ -6,18 +6,18 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSString;
 
-@interface CAValueFunction : NSObject <NSCoding>
+@interface CAValueFunction : NSObject <NSSecureCoding>
 {
     NSString *_string;
     void *_impl;
 }
 
-+ (void)CAMLParserEndElement:(id)arg1 content:(id)arg2;
 + (void)CAMLParserStartElement:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (id)functionWithName:(id)arg1;
 - (void)encodeWithCAMLWriter:(id)arg1;
 - (id)initWithCoder:(id)arg1;

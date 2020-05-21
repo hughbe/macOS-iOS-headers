@@ -13,7 +13,7 @@
 @optional
 @property(nonatomic) __weak id <SiriUIPresentationDelegate> delegate;
 @property(nonatomic) __weak id <SiriUIPresentationDataSource> dataSource;
-- (void)didChangeWindowHeight;
+- (void)didChangeWindowHeight:(BOOL)arg1;
 - (double)contentHeight;
 - (void)presentationStateDidChangeForItemsAtIndexPaths:(NSArray *)arg1;
 - (void)removeItemsWithIdentifiers:(NSArray *)arg1 atIndexPaths:(NSArray *)arg2;
@@ -25,6 +25,8 @@
 - (void)didReceiveDismissalAction:(void (^)(void))arg1;
 - (void)displayUtteranceWithTitle:(NSString *)arg1 subtitle:(NSString *)arg2;
 - (BOOL)supportsSpeechSynthesis;
+- (void)siriDidStopSpeakingWithIdentifier:(NSString *)arg1 speechQueueIsEmpty:(BOOL)arg2;
+- (void)siriDidStartSpeakingWithIdentifier:(NSString *)arg1;
 - (void)acousticIDRequestDidFinishWithSuccess:(BOOL)arg1;
 - (void)acousticIDRequestWillStart;
 - (void)siriDidDetectMusic;
@@ -36,13 +38,12 @@
 - (void)speechRecordingDidCancelForRequest:(SiriUIRequestOptions *)arg1 onAVRecordRoute:(NSString *)arg2;
 - (void)speechRecordingDidEndForRequest:(SiriUIRequestOptions *)arg1 onAVRecordRoute:(NSString *)arg2;
 - (void)siriSessionAvailabilityStateDidChange;
-- (void)updateSuggestedUtterances:(NSArray *)arg1 forLanguage:(NSString *)arg2;
 - (NSArray *)requestContext;
 - (void)setScreenSupportsTouchInteraction:(BOOL)arg1;
+- (BOOL)shouldDeepFreezeSpeechForIdling;
 - (BOOL)shouldDismissForIdling;
 - (double)idleTimerInterval;
 - (void)didPresentCreateBugTemplateWithConfirm:(BOOL)arg1 values:(NSDictionary *)arg2;
-- (void)didReceiveBugButtonLongPress;
 - (void)didReceiveReportBugAction;
 - (void)didReceiveHelpAction;
 - (SiriUIRequestOptions *)siriWillStartRequestWithOptions:(SiriUIRequestOptions *)arg1;

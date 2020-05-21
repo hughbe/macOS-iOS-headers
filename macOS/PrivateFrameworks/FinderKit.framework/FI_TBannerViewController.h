@@ -8,7 +8,7 @@
 
 #import "TCoalescingNodeObserverProtocol.h"
 
-@class NSString;
+@class NSButton, NSString;
 
 __attribute__((visibility("hidden")))
 @interface FI_TBannerViewController : FI_TViewController <TCoalescingNodeObserverProtocol>
@@ -17,23 +17,24 @@ __attribute__((visibility("hidden")))
     struct TString _text;
     struct TString _buttonTitle;
     _Bool _isButtonEnabled;
-    struct TCoalescingNodeObserverCocoaBridge *_nodeObserver;
+    struct shared_ptr<TCoalescingNodeObserverCocoaBridge> _nodeObserver;
     struct TFENode _observedNode;
     struct TNotificationCenterObserver _finderPrefsChangedObserver;
+    NSButton *_learnMoreButton;
 }
 
-@property(nonatomic) int type; // @synthesize type=_type;
-@property(getter=isButtonEnabled) _Bool buttonEnabled; // @synthesize buttonEnabled=_isButtonEnabled;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const struct TFENodeUpdateList *)arg2 inObservedNode:(const struct TFENode *)arg3;
+@property(nonatomic) int type; // @synthesize type=_type;
+@property(getter=isButtonEnabled) _Bool buttonEnabled; // @synthesize buttonEnabled=_isButtonEnabled;
+- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const vector_614ab7ad *)arg2 inObservedNode:(const struct TFENode *)arg3;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 openSyncCompleted:(const struct TFENode *)arg2;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesDeleted:(const struct TFENodeVector *)arg2 fromObservedNode:(const struct TFENode *)arg3;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesAdded:(const struct TFENodeVector *)arg2 toObservedNode:(const struct TFENode *)arg3;
 - (void)populationChangedInContainerNode:(const struct TFENode *)arg1;
 - (void)stopObservingTargetNode;
 - (void)startObservingTargetNode;
-- (void)upgradeToICloudDrive;
+- (void)upgradeToICloudDrive:(_Bool)arg1;
 - (void)emptyTrash;
 - (struct TString)buttonTitleForTrashFolder;
 - (_Bool)buttonEnabledStateForTrashFolder;

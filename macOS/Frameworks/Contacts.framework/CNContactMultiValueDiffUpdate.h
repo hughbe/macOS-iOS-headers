@@ -15,11 +15,11 @@ __attribute__((visibility("hidden")))
     CNMultiValueDiff *_diff;
 }
 
+- (void).cxx_destruct;
 @property(readonly) CNMultiValueDiff *diff; // @synthesize diff=_diff;
 @property(readonly) CNMultiValuePropertyDescription *property; // @synthesize property=_property;
 - (id)description;
 - (void)applyToMutableContact:(id)arg1 withIdentifierMap:(id)arg2;
-- (void)dealloc;
 - (id)initWithProperty:(id)arg1 diff:(id)arg2;
 - (void)applyToABCDContact:(id)arg1;
 

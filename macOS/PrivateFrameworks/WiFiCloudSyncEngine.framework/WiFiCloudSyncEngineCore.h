@@ -18,16 +18,18 @@
 }
 
 @property BOOL iCloudSyncingEnabled; // @synthesize iCloudSyncingEnabled;
-@property(retain) NSThread *clientThread; // @synthesize clientThread;
+@property NSThread *clientThread; // @synthesize clientThread;
 @property CDUnknownFunctionPointerType callback; // @synthesize callback;
 @property void *context; // @synthesize context;
-@property(retain) NSUbiquitousKeyValueStore *keyValueStore; // @synthesize keyValueStore;
+@property NSUbiquitousKeyValueStore *keyValueStore; // @synthesize keyValueStore;
 - (void)relayKeychainSyncState:(id)arg1;
 - (void)queryKeychainSyncState;
 - (void)synchronizeAndCallMergeNetworks;
 - (void)relayMergeNetworks:(id)arg1;
 - (void)relayCloudCleanUpEvent;
 - (void)relayCloudEvent:(id)arg1;
+- (void)pruneKVSStore;
+- (void)relayPruneKVSStore:(id)arg1;
 - (void)unSubscribeKVStoreNotfications;
 - (void)subscribeKVStoreNotficationsForBundleId:(id)arg1;
 - (void)enableIcloudSyncing:(BOOL)arg1 ForBundleId:(id)arg2;

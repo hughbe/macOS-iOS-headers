@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSDictionary, NSMutableDictionary, NSNumber, NSString, PKPackage, PKPackageRequirements;
+@class NSData, NSDictionary, NSMutableDictionary, NSNumber, NSString, PKPackage, PKPackageRequirements;
 
 @interface PKPackageSpecifier : NSObject <NSSecureCoding, NSCopying>
 {
@@ -19,10 +19,12 @@
     long long _options;
     NSString *_displayName;
     NSString *_displayVersion;
+    NSNumber *_installEnvironment;
     NSString *_externalRootPath;
     NSMutableDictionary *_userPathByComponentIdent;
     NSDictionary *_resolvedPathByComponentIdent;
     NSDictionary *_installPathByComponentIdent;
+    NSData *_validatedDigest;
     NSString *_packageUniqueHash;
     PKPackage *_package;
     PKPackageRequirements *_requirements;
@@ -35,11 +37,12 @@
 @property long long options; // @synthesize options=_options;
 @property(copy) NSString *displayVersion; // @synthesize displayVersion=_displayVersion;
 @property(copy) NSString *displayName; // @synthesize displayName=_displayName;
-@property(copy) NSString *prefixPath; // @synthesize prefixPath=_prefixPath;
+@property(retain) NSString *prefixPath; // @synthesize prefixPath=_prefixPath;
 - (id)_packageUniqueHash;
 - (BOOL)_refersToSamePackage:(id)arg1;
+@property(copy) NSNumber *installEnvironment; // @synthesize installEnvironment=_installEnvironment;
 @property(copy) NSNumber *authLevel; // @synthesize authLevel=_authLevel;
-- (id)package;
+@property(readonly) PKPackage *package;
 @property(retain) id <PKPackageReferable> packageReference; // @synthesize packageReference=_packageReference;
 - (void)setUserPath:(id)arg1 forComponentIdentifier:(id)arg2;
 - (id)userPathForComponentIdentifier:(id)arg1;

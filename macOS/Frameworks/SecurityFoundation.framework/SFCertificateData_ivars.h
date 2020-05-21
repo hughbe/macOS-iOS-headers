@@ -23,7 +23,7 @@ __attribute__((visibility("hidden")))
     BOOL _isRoot;
     BOOL _isLeaf;
     BOOL _trustChanged;
-    struct OpaqueSecCertificateRef *_certRef;
+    struct __SecCertificate *_certRef;
     struct cssm_data _certData;
     long long _clHandle;
     NSMutableArray *_policies;
@@ -47,6 +47,8 @@ __attribute__((visibility("hidden")))
     BOOL _hasResponder;
     BOOL _hasCRL;
     SFOidParser *_oidParser;
+    unsigned long long _keyAlgId;
+    unsigned long long _keySizeInBits;
 }
 
 - (void)setOidParser:(id)arg1;

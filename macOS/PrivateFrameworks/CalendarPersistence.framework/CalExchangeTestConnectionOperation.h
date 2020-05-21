@@ -15,6 +15,7 @@
 
 + (id)testConnectionOperationWithAccountInfoProvider:(id)arg1;
 + (id)testConnectionOperationWithSessionID:(id)arg1;
+- (void).cxx_destruct;
 - (id)accountInfoProvider;
 - (BOOL)executeInContext:(id)arg1 error:(id *)arg2;
 - (BOOL)_testURL:(id)arg1 withSession:(id)arg2 account:(id)arg3 error:(id *)arg4;

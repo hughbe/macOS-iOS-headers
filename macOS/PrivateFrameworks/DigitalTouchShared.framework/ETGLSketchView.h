@@ -39,19 +39,21 @@
     ETPointFIFO *_secondaryPointFIFO;
     unsigned long long _vertexOffset;
     double _delayBetweenStrokes;
-    vector_32896a2d _vertexBatches;
-    vector_761af77e _controlBatches;
-    vector_88016b54 _vertexBatchCount;
-    vector_88016b54 _secondaryVertexBatchCount;
+    vector_c2d99b46 _vertexBatches;
+    vector_e654105b _controlBatches;
+    vector_06e666a8 _vertexBatchCount;
+    vector_06e666a8 _secondaryVertexBatchCount;
 }
 
 + (Class)layerClass;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 @property(nonatomic) double delayBetweenStrokes; // @synthesize delayBetweenStrokes=_delayBetweenStrokes;
 @property(nonatomic) unsigned long long vertexOffset; // @synthesize vertexOffset=_vertexOffset;
-@property(nonatomic) vector_88016b54 secondaryVertexBatchCount; // @synthesize secondaryVertexBatchCount=_secondaryVertexBatchCount;
-@property(nonatomic) vector_88016b54 vertexBatchCount; // @synthesize vertexBatchCount=_vertexBatchCount;
-@property(nonatomic) vector_b97278d5 controlBatches; // @synthesize controlBatches=_controlBatches;
-@property(nonatomic) vector_32896a2d vertexBatches; // @synthesize vertexBatches=_vertexBatches;
+@property(nonatomic) vector_06e666a8 secondaryVertexBatchCount; // @synthesize secondaryVertexBatchCount=_secondaryVertexBatchCount;
+@property(nonatomic) vector_06e666a8 vertexBatchCount; // @synthesize vertexBatchCount=_vertexBatchCount;
+@property(nonatomic) vector_80ea899f controlBatches; // @synthesize controlBatches=_controlBatches;
+@property(nonatomic) vector_c2d99b46 vertexBatches; // @synthesize vertexBatches=_vertexBatches;
 @property(nonatomic) float unitSize; // @synthesize unitSize=_unitSize;
 @property(retain, nonatomic) ETPointFIFO *secondaryPointFIFO; // @synthesize secondaryPointFIFO=_secondaryPointFIFO;
 @property(retain, nonatomic) ETBoxcarFilterPointFIFO *secondarySmoothingFIFO; // @synthesize secondarySmoothingFIFO=_secondarySmoothingFIFO;
@@ -68,8 +70,6 @@
 @property(nonatomic, getter=isPaused) BOOL paused; // @synthesize paused=_paused;
 @property(nonatomic, getter=isPlaying) BOOL playing; // @synthesize playing=_playing;
 @property(retain, nonatomic) ETSketchMessage *messageData; // @synthesize messageData=_messageData;
-- (id).cxx_construct;
-- (void).cxx_destruct;
 - (void)sketchRendererDidReachVertexLimit:(id)arg1;
 - (void)clearAllPoints;
 - (void)didCompleteStroke;

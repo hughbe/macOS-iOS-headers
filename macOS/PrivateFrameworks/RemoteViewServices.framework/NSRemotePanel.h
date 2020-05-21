@@ -8,10 +8,11 @@
 
 #import "NSRemoteServiceConnectionDelegate.h"
 
-@class NSError, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSRemotePanelOrderingContext, NSRemoteServiceConnection, NSRemoteWindowController, NSString;
+@class NSError, NSObject<NSAppearanceCustomization>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSRemotePanelOrderingContext, NSRemoteServiceConnection, NSRemoteWindowController, NSString;
 
 @interface NSRemotePanel : NSObject <NSRemoteServiceConnectionDelegate>
 {
+    NSObject<NSAppearanceCustomization> *_appearanceCustomizer;
     NSRemoteWindowController *_windowController;
     NSRemoteServiceConnection *_serviceConnection;
     unsigned long long _state;
@@ -38,6 +39,7 @@
 
 + (id)getURLsForCompletionHandlerRequest:(id)arg1;
 + (id)keyPathsForPanelSettings;
+- (void).cxx_destruct;
 @property(retain, setter=_setAlertInformativeMessage:) NSString *alertInformationMessage; // @synthesize alertInformationMessage=_alertInformationMessage;
 @property(retain, setter=_setAlertMessage:) NSString *alertMessage; // @synthesize alertMessage=_alertMessage;
 @property(copy) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
@@ -55,7 +57,7 @@
 - (void)_handlePerformKeyEquivalent:(id)arg1;
 - (void)_handlePanelWillExpandDelegate:(id)arg1;
 - (void)_attemptRecoveryFromErrorForRequest:(id)arg1;
-- (void)_didPresentErrorWithRecovery:(BOOL)arg1 contextInfo:(void *)arg2;
+- (void)_didPresentErrorWithRecovery:(BOOL)arg1 contextInfo:(id)arg2;
 - (void)_handleShouldEnableURLDelegate:(id)arg1;
 - (void)_handlePanelComplete:(id)arg1;
 - (void)panelCompletedWithNewDocumentRequest;
@@ -71,7 +73,7 @@
 - (long long)runModal;
 - (void)beginWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)beginSheetModalForWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)_runOrderingOperationWithContext:(id)arg1;
+- (int)_runOrderingOperationWithContext:(id)arg1;
 - (void)sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(id)arg3;
 - (void)cancel:(id)arg1;
 - (void)ok:(id)arg1;
@@ -83,7 +85,6 @@
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)dictionaryForObservedValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)getObservedkeyPathsForPanelSettings;
-- (void)tellRemotePanelAccessoryViewBecameFirstResponder;
 @property(getter=_useAlertStyle, setter=_setUseAlertStyle:) BOOL useAlertStyle;
 - (void)setMainThreadKVOActive:(BOOL)arg1;
 - (BOOL)mainThreadKVOActive;

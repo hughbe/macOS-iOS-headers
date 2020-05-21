@@ -6,15 +6,12 @@
 
 #import <CalendarUI/EKUIGadget.h>
 
-@class NSArray;
-
 @interface EKUISingleViewGadget : EKUIGadget
 {
-    NSArray *_singleViewConstraints;
+    BOOL _hasAddedControlViewConstraints;
 }
 
-@property(retain) NSArray *singleViewConstraints; // @synthesize singleViewConstraints=_singleViewConstraints;
-- (void).cxx_destruct;
+@property BOOL hasAddedControlViewConstraints; // @synthesize hasAddedControlViewConstraints=_hasAddedControlViewConstraints;
 - (double)bottomPadding;
 - (double)horizontalPadding;
 - (void)addSubviewsIfNeeded;

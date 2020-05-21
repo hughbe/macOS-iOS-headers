@@ -13,6 +13,7 @@
     _IDSBatchIDQueryController *_internal;
 }
 
+- (void).cxx_destruct;
 - (void)invalidate;
 - (void)setDestinations:(id)arg1;
 - (void)dealloc;

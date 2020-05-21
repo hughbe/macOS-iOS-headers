@@ -11,21 +11,18 @@
 __attribute__((visibility("hidden")))
 @interface BookmarkImportInfo : NSObject
 {
-    BOOL _testDriveBookmark;
-    long long _importOrigin;
+    unsigned long long _importOrigin;
     NSString *_importOriginUUID;
 }
 
-@property(readonly, nonatomic, getter=isTestDriveBookmark) BOOL testDriveBookmark; // @synthesize testDriveBookmark=_testDriveBookmark;
-@property(readonly, copy, nonatomic) NSString *importOriginUUID; // @synthesize importOriginUUID=_importOriginUUID;
-@property(readonly, nonatomic) long long importOrigin; // @synthesize importOrigin=_importOrigin;
 - (void).cxx_destruct;
-- (id)_initWithImportOrigin:(long long)arg1 originUUID:(id)arg2 forTestDrive:(BOOL)arg3;
+@property(readonly, copy, nonatomic) NSString *importOriginUUID; // @synthesize importOriginUUID=_importOriginUUID;
+@property(readonly, nonatomic) unsigned long long importOrigin; // @synthesize importOrigin=_importOrigin;
+- (id)_initWithImportOrigin:(unsigned long long)arg1 originUUID:(id)arg2;
 @property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithImportInfo:(id)arg1 testDriveStatus:(BOOL)arg2;
-- (id)initForTestDriveWithImportOrigin:(long long)arg1 originUUID:(id)arg2;
-- (id)initWithImportOrigin:(long long)arg1 originUUID:(id)arg2;
+- (id)initWithImportInfo:(id)arg1;
+- (id)initWithImportOrigin:(unsigned long long)arg1 originUUID:(id)arg2;
 - (id)initFromDictionary:(id)arg1;
 - (id)init;
 

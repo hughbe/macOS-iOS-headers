@@ -23,6 +23,7 @@
     NSString *_phoneNumber;
 }
 
+- (void).cxx_destruct;
 @property(copy) NSString *phoneNumber; // @synthesize phoneNumber=_phoneNumber;
 @property(copy) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
 @property(copy) NSString *fullname; // @synthesize fullname=_fullname;
@@ -34,11 +35,13 @@
 @property(readonly) BOOL localFallback; // @synthesize localFallback=_localFallback;
 @property(readonly, copy) NSString *memberHashedDSID; // @synthesize memberHashedDSID=_memberHashedDSID;
 @property(readonly, copy) NSNumber *memberDSID; // @synthesize memberDSID=_memberDSID;
-- (void).cxx_destruct;
 - (void)startRequestWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)requestOptions;
+- (id)initWithConnectionProvider:(id)arg1;
 - (id)init;
+- (id)initWithFamilyMemberHashedDSID:(id)arg1 size:(unsigned long long)arg2 localFallback:(BOOL)arg3 connectionProvider:(id)arg4;
 - (id)initWithFamilyMemberHashedDSID:(id)arg1 size:(unsigned long long)arg2 localFallback:(BOOL)arg3;
+- (id)initWithFamilyMemberDSID:(id)arg1 size:(unsigned long long)arg2 localFallback:(BOOL)arg3 connectionProvider:(id)arg4;
 - (id)initWithFamilyMemberDSID:(id)arg1 size:(unsigned long long)arg2 localFallback:(BOOL)arg3;
 
 @end

@@ -10,19 +10,24 @@
 
 @interface CIMIssueReporterCandidateState : NSObject
 {
+    BOOL _fuzzyPinyinEnabled;
+    int _shuangpinLayout;
+    NSString *_inputModeName;
     NSString *_markedText;
     NSArray *_candidates;
     NSDictionary *_sessionLog;
-    NSArray *_userDictionaryEntries;
-    NSArray *_addressBookEntries;
+    NSDictionary *_showCharsInScriptSetting;
 }
 
-@property(retain) NSArray *addressBookEntries; // @synthesize addressBookEntries=_addressBookEntries;
-@property(retain) NSArray *userDictionaryEntries; // @synthesize userDictionaryEntries=_userDictionaryEntries;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSDictionary *showCharsInScriptSetting; // @synthesize showCharsInScriptSetting=_showCharsInScriptSetting;
+@property(nonatomic) int shuangpinLayout; // @synthesize shuangpinLayout=_shuangpinLayout;
+@property(nonatomic) BOOL fuzzyPinyinEnabled; // @synthesize fuzzyPinyinEnabled=_fuzzyPinyinEnabled;
 @property(copy) NSDictionary *sessionLog; // @synthesize sessionLog=_sessionLog;
 @property(copy) NSArray *candidates; // @synthesize candidates=_candidates;
 @property(copy) NSString *markedText; // @synthesize markedText=_markedText;
-- (void).cxx_destruct;
+@property(copy) NSString *inputModeName; // @synthesize inputModeName=_inputModeName;
+@property(readonly, retain) NSString *topCandidatesText;
 @property(readonly, retain) NSArray *textOnlyCandidates;
 
 @end

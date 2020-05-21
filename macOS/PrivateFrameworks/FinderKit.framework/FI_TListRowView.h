@@ -6,24 +6,27 @@
 
 #import "NSTableRowView.h"
 
-@class FI_TListViewController;
+@class NSObject<TListRowViewDelegate>;
 
 __attribute__((visibility("hidden")))
 @interface FI_TListRowView : NSTableRowView
 {
     struct TFENode _node;
-    FI_TListViewController *_listViewController;
+    struct TNSWeakPtr<NSObject<TListRowViewDelegate>, void> _weakDelegate;
+    _Bool _iconDimmed;
+    _Bool _textDimmed;
 }
 
-@property(nonatomic) FI_TListViewController *listViewController; // @synthesize listViewController=_listViewController;
-@property(nonatomic) struct TFENode node; // @synthesize node=_node;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(nonatomic, getter=isTextDimmed) _Bool textDimmed; // @synthesize textDimmed=_textDimmed;
+@property(nonatomic, getter=isIconDimmed) _Bool iconDimmed; // @synthesize iconDimmed=_iconDimmed;
+@property(nonatomic) struct TFENode node; // @synthesize node=_node;
 - (void)openNode;
-- (void)setEmphasized:(BOOL)arg1;
 - (void)didAddSubview:(id)arg1;
+@property(nonatomic) __weak NSObject<TListRowViewDelegate> *delegate; // @dynamic delegate;
+- (void)prepareForReuse;
 - (void)dealloc;
-- (id)initWithCoder:(id)arg1;
 
 @end
 

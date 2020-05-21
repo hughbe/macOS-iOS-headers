@@ -6,18 +6,19 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSPasteboardReading.h"
 #import "NSPasteboardWriting.h"
+#import "NSSecureCoding.h"
+#import "NSSoundEngineDelegate.h"
 
 @class NSString;
 
-@interface NSSound : NSObject <NSCopying, NSCoding, NSPasteboardReading, NSPasteboardWriting>
+@interface NSSound : NSObject <NSSoundEngineDelegate, NSCopying, NSSecureCoding, NSPasteboardReading, NSPasteboardWriting>
 {
-    id _delegate;
+    id <NSSoundDelegate> _delegate;
     id _info;
-    id _reserved[6];
+    id _reserved[4];
     unsigned int _sFlags;
 }
 
@@ -34,20 +35,26 @@
 + (id)soundUnfilteredPasteboardTypes;
 + (id)soundUnfilteredFileTypes;
 + (id)soundUnfilteredTypes;
++ (BOOL)supportsSecureCoding;
 + (void)initialize;
+- (void).cxx_destruct;
+- (BOOL)shouldLoopForSoundEngine:(id)arg1;
+- (double)volumeForSoundEngine:(id)arg1;
+- (id)channelMappingForSoundEngine:(id)arg1;
+- (id)deviceUIDForSoundEngine:(id)arg1;
+- (id)dataForSoundEngine:(id)arg1;
+- (id)URLForSoundEngine:(id)arg1;
+- (void)soundEngineDidFinishPlaying:(id)arg1;
 - (unsigned int)_systemSoundIDCreateIfNecessary:(BOOL)arg1;
 - (void)writeToPasteboard:(id)arg1;
 - (id)initWithPasteboard:(id)arg1;
 - (id)pasteboardPropertyListForType:(id)arg1;
 - (id)writableTypesForPasteboard:(id)arg1;
 - (id)initWithPasteboardPropertyList:(id)arg1 ofType:(id)arg2;
-- (void)_qtMovieDidEnd:(id)arg1;
 @property double currentTime;
 @property(readonly) double duration;
 @property BOOL loops;
 @property float volume;
-- (void)_updateSoundShouldLoopByStoredLoopFlag;
-- (void)_updateVolumeByStoredVolume;
 - (BOOL)stop;
 - (BOOL)play;
 - (BOOL)resume;
@@ -55,9 +62,7 @@
 @property(readonly, getter=isPlaying) BOOL playing;
 - (id)channelMapping;
 - (void)setChannelMapping:(id)arg1;
-- (BOOL)_setChannelMapping:(id)arg1 error:(id *)arg2;
 @property(copy) NSString *playbackDeviceIdentifier;
-- (BOOL)_setAudioDeviceUID:(id)arg1 channels:(id)arg2 error:(id *)arg3;
 - (void)_setPlayingAndRetainIfUnset;
 - (BOOL)_unsetPlayingReturningIfWasSet;
 - (BOOL)_registersName;
@@ -66,7 +71,8 @@
 @property(readonly, copy) NSString *name;
 - (id)url;
 - (id)_url;
-@property id <NSSoundDelegate> delegate;
+@property __weak id <NSSoundDelegate> delegate;
+- (BOOL)_isValidDecodedChannelMap:(id)arg1 error:(id *)arg2;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -76,7 +82,6 @@
 - (BOOL)_allocateExtraFields;
 - (void)dealloc;
 - (id)init;
-- (void)_postInitialization;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

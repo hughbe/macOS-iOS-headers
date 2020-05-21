@@ -23,13 +23,11 @@
 - (void)removeInputUnitsForInputPort:(id)arg1 fromGraph:(struct OpaqueCMIOGraph *)arg2 ofCaptureSession:(id)arg3;
 - (BOOL)addInputUnitsForInputPort:(id)arg1 toGraph:(struct OpaqueCMIOGraph *)arg2 ofCaptureSession:(id)arg3 error:(id *)arg4;
 - (id)notReadyError;
-- (id)defaultPortForMediaType:(id)arg1;
-- (id)portsForMediaType:(id)arg1;
 - (void)setSession:(id)arg1;
 - (id)session;
 @property(readonly, nonatomic) NSArray *ports;
 - (void)dealloc;
-- (id)init;
+- (id)initSubclass;
 
 @end
 

@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     SCNView *_scnView;
 }
 
+- (void).cxx_destruct;
 - (void)launchMonitor:(id)arg1;
 - (void)setSCNView:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;

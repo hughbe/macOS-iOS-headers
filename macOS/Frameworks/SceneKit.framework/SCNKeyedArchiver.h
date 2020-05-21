@@ -8,13 +8,14 @@
 
 @class NSDictionary;
 
-__attribute__((visibility("hidden")))
 @interface SCNKeyedArchiver : NSKeyedArchiver
 {
+    BOOL skipMorphTargets;
     NSDictionary *options;
 }
 
 + (id)archivedDataWithRootObject:(id)arg1 options:(id)arg2;
+@property(nonatomic) BOOL skipMorphTargets; // @synthesize skipMorphTargets;
 @property(copy, nonatomic) NSDictionary *options; // @synthesize options;
 - (void)dealloc;
 

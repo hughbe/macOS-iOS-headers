@@ -10,11 +10,16 @@
 {
 }
 
-+ (id)getAttributedTokenForText:(id)arg1 forLanguage:(id)arg2;
-+ (void *)getChineseTokenizer:(id)arg1;
-+ (void *)getLanguageModel:(id)arg1;
-+ (BOOL)supportsLanguage:(id)arg1;
++ (id)getEntities:(id)arg1;
++ (id)getOTAPathForRKBundle:(id)arg1;
++ (id)sharedManager;
+- (id)copyAttributedTokenForText:(id)arg1 forLanguageModel:(void *)arg2 withLanguageCode:(id)arg3;
+- (id)copyAttributedTokenForText:(id)arg1 forLanguage:(id)arg2;
+- (id)getEquivalenceClass:(id)arg1;
+- (void *)chineseTokenizer;
+- (void *)getLanguageModel:(id)arg1;
 - (void)dealloc;
+- (id)init;
 
 @end
 

@@ -8,41 +8,39 @@
 
 #import "NSWindowDelegate.h"
 #import "RWIDebugger.h"
+#import "_WKRemoteWebInspectorViewControllerDelegate.h"
 
-@class NSString, RWIDebuggable, RWIInspectorFrontendHost, RWIInspectorWindowController, RWIManager;
+@class NSString, RWIDebuggable, RWIManager, _WKRemoteWebInspectorViewController;
 
-@interface RWIInspector : NSObject <NSWindowDelegate, RWIDebugger>
+@interface RWIInspector : NSObject <NSWindowDelegate, _WKRemoteWebInspectorViewControllerDelegate, RWIDebugger>
 {
-    id <RWIInspectorDelegate> _delegate;
-    BOOL _autoPause;
-    NSString *_uuid;
+    _WKRemoteWebInspectorViewController *_remoteInspectorViewController;
+    BOOL _pauseImmediately;
     RWIDebuggable *_debuggable;
     RWIManager *_manager;
-    RWIInspectorFrontendHost *_inspectorFrontendHost;
-    RWIInspectorWindowController *_windowController;
-    struct OpaqueJSContext *_globalContextRef;
+    NSString *_uuid;
 }
 
-@property(retain, nonatomic) RWIInspectorFrontendHost *inspectorFrontendHost; // @synthesize inspectorFrontendHost=_inspectorFrontendHost;
-@property(nonatomic) struct OpaqueJSContext *globalContextRef; // @synthesize globalContextRef=_globalContextRef;
-@property(nonatomic) BOOL autoPause; // @synthesize autoPause=_autoPause;
+- (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
 @property(readonly, nonatomic) RWIManager *manager; // @synthesize manager=_manager;
 @property(readonly, nonatomic) RWIDebuggable *debuggable; // @synthesize debuggable=_debuggable;
-@property(readonly, copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
-@property(nonatomic) __weak id <RWIInspectorDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)windowWillClose:(id)arg1;
+- (void)inspectorViewControllerInspectorDidClose:(id)arg1;
+- (void)inspectorViewController:(id)arg1 sendMessageToBackend:(id)arg2;
+- (id)_backendCommandsURL;
+- (long long)_debuggableType;
+- (void)_updateWindowTitle;
+- (void)debuggableDidChange:(id)arg1;
+- (void)close;
 - (void)sendMessageToBackend:(id)arg1;
 - (void)sendMessageToFrontend:(id)arg1;
-- (id)window;
-- (void)updateWindowTitleWithURLComponents:(id)arg1;
 - (void)loadAndShow;
-@property(readonly, nonatomic) NSString *mainResourcePath;
-- (void)close;
-- (void)_close;
+- (void)_closeInternal;
 - (void)show;
-- (void)dealloc;
-- (id)initWithManager:(id)arg1 debuggable:(id)arg2;
+- (id)diagnosticLoggingDelegate;
+- (void)setDiagnosticLoggingDelegate:(id)arg1;
+- (id)initWithManager:(id)arg1 debuggable:(id)arg2 pauseImmediately:(BOOL)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

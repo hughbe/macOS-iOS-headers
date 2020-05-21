@@ -15,11 +15,11 @@
     BOOL _drawBackground;
 }
 
-- (void)setOverlayString:(id)arg1;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSDictionary *attributes; // @synthesize attributes=_attributes;
+@property(copy, nonatomic) NSString *overlayString; // @synthesize overlayString=_overlayString;
+@property(nonatomic) BOOL drawBackground; // @synthesize drawBackground=_drawBackground;
 - (void)drawRect:(struct CGRect)arg1;
-- (void)setDrawBackground:(BOOL)arg1;
-- (BOOL)drawBackground;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

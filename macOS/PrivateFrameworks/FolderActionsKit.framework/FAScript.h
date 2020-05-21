@@ -6,9 +6,11 @@
 
 #import <FolderActionsKit/FAScriptableObject.h>
 
+#import "NSSecureCoding.h"
+
 @class NSData, NSNumber, NSString, NSURL;
 
-@interface FAScript : FAScriptableObject
+@interface FAScript : FAScriptableObject <NSSecureCoding>
 {
     NSURL *_url;
     NSNumber *_enabled;
@@ -22,18 +24,18 @@
 + (id)scriptWithURL:(id)arg1 enabled:(id)arg2;
 + (BOOL)supportsSecureCoding;
 + (id)keyInContainer;
+- (void).cxx_destruct;
 @property BOOL propagateChangesToFolderActionsDispatcher; // @synthesize propagateChangesToFolderActionsDispatcher=_propagateChangesToFolderActionsDispatcher;
 @property BOOL isWorkflow; // @synthesize isWorkflow=_isWorkflow;
 @property(retain) NSData *bookmark; // @synthesize bookmark=_bookmark;
-- (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)deleteVerb:(id)arg1;
 - (void)updateName;
 - (void)propagateNewURLOrSetScriptError:(id)arg1;
-@property(retain) NSString *posixPath;
-@property(retain) NSString *hfsPath;
-@property(retain) NSNumber *enabled;
-@property(retain) NSURL *url;
+@property(retain, nonatomic) NSString *posixPath;
+@property(retain, nonatomic) NSString *hfsPath;
+@property(retain, nonatomic) NSNumber *enabled;
+@property(retain, nonatomic) NSURL *url;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 

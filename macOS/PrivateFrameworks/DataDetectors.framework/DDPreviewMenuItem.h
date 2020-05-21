@@ -17,6 +17,7 @@
     id <QLPreviewItem> _ddPreviewItem;
 }
 
+- (void).cxx_destruct;
 - (void)menuItemDidClose:(id)arg1;
 - (void)menuItemWillAppear:(id)arg1;
 - (struct CGSize)menuItem:(id)arg1 maxSizeForPoint:(struct CGPoint)arg2;

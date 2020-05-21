@@ -8,23 +8,32 @@
 
 @class NSMutableArray;
 
+__attribute__((visibility("hidden")))
 @interface ICDClientResourceManager : NSObject
 {
+    BOOL _clientAdded;
     NSMutableArray *_clientResources;
+    struct os_unfair_lock_s _clientResourcesLock;
+    id _delegate;
 }
 
 @property(retain) NSMutableArray *clientResources; // @synthesize clientResources=_clientResources;
 - (id)clientsInterestedInNotification:(id)arg1;
+- (void)setClientWithPID:(id)arg1 usingDevice:(BOOL)arg2;
+- (id)clientUsingDevice;
+- (void)invalidateAllClients;
 - (unsigned int)invalidateAndRemoveClientWithPID:(id)arg1;
+- (void)setCallbackInfo:(id)arg1 forClientWithPID:(id)arg2 andTransactionID:(id)arg3;
 - (void)remNotificationsFromClientWithPID:(id)arg1 withNoteDictionary:(id)arg2;
 - (void)addNotificationsToClientWithPID:(id)arg1 fromNoteDictionary:(id)arg2;
 - (void)sendMessage:(id)arg1 withConnection:(id)arg2;
 - (void)sendMessage:(id)arg1 forClientWithPID:(id)arg2;
 - (id)findClientResourceWithPID:(id)arg1;
 - (unsigned int)currentClientCount;
-- (void)addNewClientResourceWithPID:(id)arg1 andConnection:(id)arg2;
+- (id)clientResourcesArray;
+- (void)addNewClientResourceConnection:(id)arg1;
 - (void)dealloc;
-- (id)init;
+- (id)initWithDelegate:(id)arg1;
 
 @end
 

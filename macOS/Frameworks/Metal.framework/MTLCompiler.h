@@ -12,33 +12,54 @@
 {
     _MTLDevice *_device;
     NSString *_pluginPath;
-    CDStruct_41a22ec7 _cacheUUID;
     NSObject<OS_dispatch_queue> *_compilerQueue;
     struct MTLCompilerConnectionManager *_compilerConnectionManager;
     unsigned int _compilerId;
     unsigned long long _compilerFlags;
-    struct MTLCompilerCache *_functionCache;
+    struct MTLCompilerCache *_shaderCache;
 }
 
 @property(readonly) unsigned long long compilerFlags; // @synthesize compilerFlags=_compilerFlags;
-@property unsigned int compilerId; // @synthesize compilerId=_compilerId;
-@property struct MTLCompilerConnectionManager *compilerConnectionManager; // @synthesize compilerConnectionManager=_compilerConnectionManager;
+@property(readonly) unsigned int compilerId; // @synthesize compilerId=_compilerId;
+@property(readonly) struct MTLCompilerConnectionManager *compilerConnectionManager; // @synthesize compilerConnectionManager=_compilerConnectionManager;
 @property(readonly) NSObject<OS_dispatch_queue> *compilerQueue; // @synthesize compilerQueue=_compilerQueue;
-@property(readonly) CDStruct_41a22ec7 cacheUUID; // @synthesize cacheUUID=_cacheUUID;
 @property(readonly, copy) NSString *pluginPath; // @synthesize pluginPath=_pluginPath;
+- (id)newComputePipelineStateWithDescriptorInternal:(id)arg1 options:(unsigned long long)arg2 pipelineCache:(id)arg3 destinationBinaryLibrary:(id)arg4 reflection:(id *)arg5 error:(id *)arg6 completionHandler:(CDUnknownBlockType)arg7;
+- (id)pipelineStateWithVariant:(struct VariantEntry *)arg1 descriptor:(id)arg2 options:(unsigned long long)arg3 computeProgram:(struct MTLProgramObject *)arg4 kernelDriverCompileTimeData:(id)arg5 serializedComputeDataDescriptor:(id)arg6 compileTimeStatistics:(id)arg7 reflection:(id *)arg8 error:(id *)arg9 completionHandler:(CDUnknownBlockType)arg10;
+- (struct VariantEntry *)computeVariantEntryWithDescriptor:(id)arg1 options:(unsigned long long)arg2 serializedComputeDataDescriptor:(id)arg3 asyncCompile:(_Bool)arg4 pipelineCache:(id)arg5 destinationBinaryLibrary:(id)arg6 computeProgram:(struct MTLProgramObject **)arg7 kernelDriverCompileTimeData:(id *)arg8 compileTimeStatistics:(id)arg9;
+- (BOOL)addFunctionFromCacheToBinaryLibrary:(id)arg1 request:(struct MTLCompileFunctionRequestData)arg2 options:(unsigned long long)arg3;
+- (BOOL)addComputePipelineStateWithDescriptor:(id)arg1 destinationBinaryLibrary:(id)arg2 error:(id *)arg3;
+- (id)compileDynamicLibrary:(id)arg1 computePipelineDescriptor:(id)arg2 error:(id *)arg3;
 - (id)newComputePipelineStateWithDescriptor:(id)arg1 options:(unsigned long long)arg2 reflection:(id *)arg3 error:(id *)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)newPrecompiledComputePipelineStateWithDescriptor:(id)arg1 options:(unsigned long long)arg2 pipelineCache:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)newRenderPipelineStateWithDescriptor:(id)arg1 options:(unsigned long long)arg2 reflection:(id *)arg3 error:(id *)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)reflectionWithFunction:(id)arg1 options:(unsigned long long)arg2 sync:(BOOL)arg3 pipelineLibrary:(id)arg4 binaryLibraries:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
+- (void)reflectionWithFunction:(id)arg1 options:(unsigned long long)arg2 sync:(BOOL)arg3 pipelineLibrary:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)reflectionWithFunction:(id)arg1 options:(unsigned long long)arg2 sync:(BOOL)arg3 binaryLibraries:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)reflectionWithFunction:(id)arg1 options:(unsigned long long)arg2 sync:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)reflectionWithFunction:(id)arg1 options:(unsigned long long)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (void)compileFunction:(id)arg1 stateData:(id)arg2 options:(unsigned long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (void)compileFragmentFunction:(id)arg1 serializedPixelFormat:(id)arg2 stateData:(id)arg3 options:(unsigned long long)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (void)compileVertexFunction:(id)arg1 serializedPipelineDescriptorData:(id)arg2 stateData:(id)arg3 options:(unsigned long long)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (void)compileFunction:(id)arg1 serializedPipelineData:(id)arg2 stateData:(id)arg3 linkDataSize:(unsigned long long)arg4 frameworkLinking:(BOOL)arg5 options:(unsigned int)arg6 completionHandler:(CDUnknownBlockType)arg7;
+- (void)compileFunction:(id)arg1 serializedData:(id)arg2 stateData:(id)arg3 options:(unsigned long long)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)compileFunction:(id)arg1 frameworkData:(id)arg2 driverKeyData:(id)arg3 options:(unsigned long long)arg4 pipelineCache:(id)arg5 sync:(_Bool)arg6 completionHandler:(CDUnknownBlockType)arg7;
+- (void)compileFunction:(id)arg1 frameworkData:(id)arg2 driverKeyData:(id)arg3 options:(unsigned long long)arg4 pipelineCache:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
+- (void)compileFunction:(id)arg1 serializedPipelineData:(id)arg2 stateData:(id)arg3 linkDataSize:(unsigned long long)arg4 frameworkLinking:(BOOL)arg5 options:(unsigned int)arg6 pipelineCache:(id)arg7 sync:(_Bool)arg8 completionHandler:(CDUnknownBlockType)arg9;
+- (void)compileFunction:(id)arg1 serializedPipelineData:(id)arg2 stateData:(id)arg3 linkDataSize:(unsigned long long)arg4 frameworkLinking:(BOOL)arg5 options:(unsigned int)arg6 sync:(_Bool)arg7 completionHandler:(CDUnknownBlockType)arg8;
+- (void)compileLibraryRequest:(struct MTLCompileLibraryRequestData)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)compileFunctionRequest:(struct MTLCompileFunctionRequestData)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)compileFunctionRequestInternal:(struct MTLCompileFunctionRequestData)arg1 frameworkLinking:(BOOL)arg2 linkDataSize:(unsigned long long)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)addCompiledOutput:(id)arg1 cachedCompiledOutput:(id)arg2 hashKey:(const CDStruct_41a22ec7 *)arg3 functionCache:(const struct MultiLevelPipelineCache *)arg4;
+- (void)addBinary:(id)arg1 withKey:(CDStruct_41a22ec7)arg2 toBinaryLibrary:(id)arg3;
+- (CDStruct_41a22ec7)hashKeyForFunctionRequest:(struct MTLCompileFunctionRequestData *)arg1 options:(unsigned long long)arg2;
+- (CDStruct_41a22ec7)hashKeyForLibraryRequest:(struct MTLCompileLibraryRequestData *)arg1;
+- (BOOL)validateLanguageAndAIRVersionForFunction:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)compileRequest:(id)arg1 pipelineCache:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)compileRequest:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)compileRequest:(id)arg1 pipelineCache:(id)arg2 sync:(_Bool)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)dealloc;
 - (CDStruct_c0454aff)pipelineCacheStats;
 - (CDStruct_c0454aff)libraryCacheStats;
+- (BOOL)copyShaderCacheToPath:(id)arg1;
+- (void *)getShaderCacheKeys;
 - (void)unloadShaderCaches;
-@property(readonly) struct MTLCompilerCache *functionCache; // @synthesize functionCache=_functionCache;
 - (id)initWithTargetData:(id)arg1 cacheUUID:(CDStruct_41a22ec7 *)arg2 pluginPath:(id)arg3 device:(id)arg4 compilerFlags:(unsigned long long)arg5;
 
 @end

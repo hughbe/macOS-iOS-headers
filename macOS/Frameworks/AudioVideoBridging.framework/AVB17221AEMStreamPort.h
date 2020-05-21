@@ -29,6 +29,8 @@
 @property unsigned short baseCluster; // @synthesize baseCluster;
 @property unsigned short numberOfClusters; // @synthesize numberOfClusters;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (void)renumberDescriptorWithNextIndexes:(id)arg1;
 - (void)updateDependentContent;
 - (id)debugLogStringWithIndentation:(id)arg1;

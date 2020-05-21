@@ -9,10 +9,10 @@
 @class VisualTabPickerTileContainerView;
 
 @protocol VisualTabPickerTileContainerDelegate <NSObject>
-- (void)visualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1 didToggleMuteButtonOnTileAtIndex:(unsigned long long)arg2;
-- (void)didRequestNewTabForVisualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1;
-- (void)visualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1 didSelectTileAtIndex:(unsigned long long)arg2;
-- (void)visualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1 closeTileAtIndex:(unsigned long long)arg2;
-- (BOOL)canCloseVisualTabPickerTileContainerView:(VisualTabPickerTileContainerView *)arg1;
+- (void)visualTabPickerTileContainerViewDidToggleMuteButton:(VisualTabPickerTileContainerView *)arg1;
+- (void)visualTabPickerTileContainerViewDidRequestNewTab:(VisualTabPickerTileContainerView *)arg1;
+- (void)visualTabPickerTileContainerViewDidSelect:(VisualTabPickerTileContainerView *)arg1;
+- (void)visualTabPickerTileContainerViewDidClose:(VisualTabPickerTileContainerView *)arg1;
+- (BOOL)visualTabPickerTileContainerViewCanClose:(VisualTabPickerTileContainerView *)arg1;
 @end
 

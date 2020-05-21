@@ -14,12 +14,15 @@ __attribute__((visibility("hidden")))
     double edValue;
     EDStyle *edStyle;
     EDWorkbook *workbook;
+    double _columnWidth;
 }
 
+- (void).cxx_destruct;
+@property double columnWidth; // @synthesize columnWidth=_columnWidth;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (id)insertRedSpanIfNegativeAt:(id)arg1;
 - (id)formatValueAsNumber;
-- (id)initWithDoubleValue:(double)arg1 style:(id)arg2 workbook:(id)arg3 parent:(id)arg4;
+- (id)initWithDoubleValue:(double)arg1 style:(id)arg2 columnWidth:(double)arg3 workbook:(id)arg4 parent:(id)arg5;
 
 @end
 

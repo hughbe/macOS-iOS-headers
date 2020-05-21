@@ -10,8 +10,30 @@
 {
 }
 
-+ (BOOL)stopAutomationAnReblessOSOnSource;
-+ (BOOL)promoteImgsrcDisk:(id)arg1;
++ (void)takeRecoveryDiagnose;
++ (BOOL)forceAttributesOfSrcPath:(id)arg1 toDstPath:(id)arg2;
++ (void)forceNVRAMSync;
++ (BOOL)unsupportedInstallEnvironmentForGatheringDiagnosticsWithError:(id *)arg1;
++ (id)parseFirmlinkManifestForVolume:(id)arg1 withError:(id *)arg2;
++ (id)masterBOMSystemPath;
++ (id)mapMountPointToROSVPath:(id)arg1;
++ (id)mapPathToROSV:(id)arg1;
++ (void)setUseROSVPaths:(BOOL)arg1;
++ (id)systemVersionForMountPoint:(id)arg1;
++ (id)systemVersionForDisk:(id)arg1;
++ (BOOL)shouldAllowInsecureCollections;
++ (BOOL)isNetBooted;
++ (id)mountDiskImageWithPath:(id)arg1 withError:(id *)arg2;
++ (void)rebootNow;
++ (void)enableDarkReboot;
++ (void)muteBootChimeForNextReboot;
++ (id)allDiskUUIDs:(id)arg1;
++ (BOOL)stopAutomationOnDisk:(id)arg1 reblessUUID:(id)arg2;
++ (int)promoteImgsrcDisk:(id)arg1;
++ (id)getEFIVersion;
++ (BOOL)isCSFusion:(id)arg1;
++ (BOOL)isAPFSFusion:(id)arg1;
++ (BOOL)isVirtualMachine;
 
 @end
 

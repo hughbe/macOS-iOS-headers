@@ -12,15 +12,19 @@
 {
     struct __IOAccelCommandQueue *_commandQueue;
     MTLIOAccelDevice<MTLDevice> *_device;
-    struct IOAccelCommandQueueSetPriorityAndBackgroundArgs _PriorityArgs;
+    unsigned long long _priority;
+    unsigned long long _backgroundPriority;
 }
 
 @property(readonly) id <MTLDevice> device; // @synthesize device=_device;
 - (void)submitCommandBuffers:(id *)arg1 count:(unsigned long long)arg2;
 - (BOOL)setBackgroundGPUPriority:(unsigned long long)arg1 offset:(unsigned short)arg2;
 - (BOOL)setBackgroundGPUPriority:(unsigned long long)arg1;
+- (unsigned long long)getBackgroundGPUPriority;
 - (BOOL)setGPUPriority:(unsigned long long)arg1 offset:(unsigned short)arg2;
 - (BOOL)setGPUPriority:(unsigned long long)arg1;
+- (unsigned long long)getGPUPriority;
+- (BOOL)_setGPUPriority:(unsigned long long)arg1 backgroundPriority:(unsigned long long)arg2;
 - (void)setCompletionQueue:(id)arg1;
 - (void)dealloc;
 - (void)setLabel:(id)arg1;

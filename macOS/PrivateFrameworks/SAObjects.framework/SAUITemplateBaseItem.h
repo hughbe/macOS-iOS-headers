@@ -16,11 +16,12 @@
 
 + (id)baseItemWithDictionary:(id)arg1 context:(id)arg2;
 + (id)baseItem;
-@property(nonatomic) BOOL shouldBeOffscreenInPartial; // @dynamic shouldBeOffscreenInPartial;
-@property(copy, nonatomic) NSArray *presentationOptions; // @dynamic presentationOptions;
-@property(retain, nonatomic) SAUITemplateEdgeInsets *padding; // @dynamic padding;
-@property(retain, nonatomic) SAUITemplateEdgeInsets *fullScreenPaddingDelta; // @dynamic fullScreenPaddingDelta;
-@property(copy, nonatomic) NSArray *communicationOptions; // @dynamic communicationOptions;
+@property(nonatomic) BOOL shouldBeOffscreenInPartial;
+@property(copy, nonatomic) NSArray *presentationOptions;
+@property(retain, nonatomic) SAUITemplateEdgeInsets *padding;
+@property(nonatomic) BOOL hasPriorityLayout;
+@property(retain, nonatomic) SAUITemplateEdgeInsets *fullScreenPaddingDelta;
+@property(copy, nonatomic) NSArray *communicationOptions;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

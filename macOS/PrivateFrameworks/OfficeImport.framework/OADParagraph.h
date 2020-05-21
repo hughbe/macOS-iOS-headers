@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     OADCharacterProperties *mParagraphEndCharacterProperties;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (id)plainText;
 - (BOOL)isSimilarToParagraph:(id)arg1;
@@ -40,7 +41,6 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)characterCount;
 - (BOOL)isEmpty;
 - (id)properties;
-- (void)dealloc;
 - (id)init;
 - (id)findFirstTextRunOfClass:(Class)arg1;
 - (id)addSlideNumberField;

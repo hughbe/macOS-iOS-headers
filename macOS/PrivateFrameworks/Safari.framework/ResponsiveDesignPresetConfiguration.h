@@ -21,22 +21,23 @@ __attribute__((visibility("hidden")))
     NSString *_userAgent;
     unsigned long long _pixelRatio;
     ResponsiveDesignPresetConfiguration *_nextConfiguration;
-    struct CGSize _browserSize;
+    struct CGSize _screenSize;
 }
 
 + (id)keyPathsForValuesAffectingRotatedBrowserSize;
+- (void).cxx_destruct;
 @property(retain, nonatomic) ResponsiveDesignPresetConfiguration *nextConfiguration; // @synthesize nextConfiguration=_nextConfiguration;
-@property(nonatomic) BOOL rotated; // @synthesize rotated=_rotated;
 @property(nonatomic) unsigned long long pixelRatio; // @synthesize pixelRatio=_pixelRatio;
-@property(nonatomic) struct CGSize browserSize; // @synthesize browserSize=_browserSize;
+@property(nonatomic) struct CGSize screenSize; // @synthesize screenSize=_screenSize;
+@property(nonatomic) BOOL rotated; // @synthesize rotated=_rotated;
 @property(copy, nonatomic) NSString *userAgent; // @synthesize userAgent=_userAgent;
 @property(copy, nonatomic) NSString *landscapeImageName; // @synthesize landscapeImageName=_landscapeImageName;
 @property(copy, nonatomic) NSString *portraitImageName; // @synthesize portraitImageName=_portraitImageName;
 @property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(nonatomic) unsigned long long type; // @synthesize type=_type;
-- (void).cxx_destruct;
 - (void)_updateDisplayNameIfNeeded;
 @property(readonly, nonatomic) struct CGSize rotatedBrowserSize;
+@property(readonly, nonatomic) struct CGSize browserSize;
 @property(readonly, nonatomic) NSDictionary *dictionary;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isSimilar:(id)arg1;

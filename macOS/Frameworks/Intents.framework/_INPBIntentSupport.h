@@ -7,38 +7,53 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBIntentSupport.h"
 
-@class NSMutableArray, PBUnknownFields;
+@class NSArray, NSString;
 
-@interface _INPBIntentSupport : PBCodable <NSCopying>
+@interface _INPBIntentSupport : PBCodable <_INPBIntentSupport, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    NSMutableArray *_intentsRestrictedWhileLockeds;
-    NSMutableArray *_intentsSupporteds;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
+    NSArray *_intentsRestrictedWhileLockeds;
+    NSArray *_intentsSupporteds;
+    NSArray *_supportedMediaCategories;
 }
 
-+ (Class)intentsRestrictedWhileLockedType;
++ (BOOL)supportsSecureCoding;
 + (Class)intentsSupportedType;
-@property(retain, nonatomic) NSMutableArray *intentsRestrictedWhileLockeds; // @synthesize intentsRestrictedWhileLockeds=_intentsRestrictedWhileLockeds;
-@property(retain, nonatomic) NSMutableArray *intentsSupporteds; // @synthesize intentsSupporteds=_intentsSupporteds;
++ (Class)intentsRestrictedWhileLockedType;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(copy, nonatomic) NSArray *supportedMediaCategories; // @synthesize supportedMediaCategories=_supportedMediaCategories;
+@property(copy, nonatomic) NSArray *intentsSupporteds; // @synthesize intentsSupporteds=_intentsSupporteds;
+@property(copy, nonatomic) NSArray *intentsRestrictedWhileLockeds; // @synthesize intentsRestrictedWhileLockeds=_intentsRestrictedWhileLockeds;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-- (id)intentsRestrictedWhileLockedAtIndex:(unsigned long long)arg1;
-- (unsigned long long)intentsRestrictedWhileLockedsCount;
-- (void)addIntentsRestrictedWhileLocked:(id)arg1;
-- (void)clearIntentsRestrictedWhileLockeds;
+- (id)supportedMediaCategoriesAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long supportedMediaCategoriesCount;
+- (void)addSupportedMediaCategories:(id)arg1;
+- (void)clearSupportedMediaCategories;
 - (id)intentsSupportedAtIndex:(unsigned long long)arg1;
-- (unsigned long long)intentsSupportedsCount;
+@property(readonly, nonatomic) unsigned long long intentsSupportedsCount;
 - (void)addIntentsSupported:(id)arg1;
 - (void)clearIntentsSupporteds;
+- (id)intentsRestrictedWhileLockedAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long intentsRestrictedWhileLockedsCount;
+- (void)addIntentsRestrictedWhileLocked:(id)arg1;
+- (void)clearIntentsRestrictedWhileLockeds;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

@@ -14,10 +14,10 @@
 }
 
 + (id)sharedManager;
+- (void).cxx_destruct;
 - (void)reset;
 - (void)setEnabled:(BOOL)arg1 forSubTestWithName:(id)arg2;
 - (BOOL)isEnabledForSubTestWithName:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

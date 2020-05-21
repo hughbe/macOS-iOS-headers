@@ -18,14 +18,13 @@
 + (float)scoreWithHistoryItemForVisitScoring:(id)arg1 historyItemForURLScoring:(id)arg2 atTime:(double)arg3 withMinimumVisitCount:(unsigned long long)arg4;
 + (float)scoreWithHistoryItemForVisitScoring:(id)arg1 historyItemForURLScoring:(id)arg2 atTime:(double)arg3;
 + (float)scoreForHistoryItem:(id)arg1 atTime:(double)arg2 withMinimumVisitCount:(unsigned long long)arg3;
-+ (float)scoreForHistoryItemOnHistoryQueue:(id)arg1 atTime:(double)arg2;
 + (float)scoreForHistoryItem:(id)arg1 atTime:(double)arg2;
 - (void).cxx_destruct;
 - (void)_postFrequentlyVisitedSitesDidChangeNotification;
 - (BOOL)_saveFrequentlyVisitedSites:(id)arg1;
 - (id)_canonicalizedFavoritesURLStringSet;
 - (void)_updateFrequentlyVisitedSitesWithCandidates:(id)arg1;
-- (float)_scoreForHistoryItemOnHistoryQueue:(id)arg1;
+- (float)_scoreForHistoryItem:(id)arg1;
 - (id)_computeFrequentlyVisitedSiteCandidates;
 - (void)_recomputeFrequentlyVisitedSitesNow;
 - (void)clearFrequentlyVisitedSites;

@@ -14,13 +14,10 @@
 {
 }
 
-- (BOOL)hasPreflightAction;
 - (BOOL)_isABSyncInProgress;
 - (BOOL)isDataService;
-- (BOOL)hasDataToMerge;
-- (void)setEnabled:(BOOL)arg1 creating:(BOOL)arg2 withWindow:(id)arg3;
+- (void)setEnabled:(BOOL)arg1 creating:(BOOL)arg2 withWindow:(id)arg3 completion:(CDUnknownBlockType)arg4;
 - (id)icon;
-- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -4,24 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IASLocalSecretPrompt.h"
+#import "NSObject.h"
 
 #import "IASLocalSecretDelegate.h"
 
-@class NSString;
+@class IASLocalSecretPrompt, NSString;
 
-@interface MMPromptForLocalSecret : IASLocalSecretPrompt <IASLocalSecretDelegate>
+@interface MMPromptForLocalSecret : NSObject <IASLocalSecretDelegate>
 {
-    long long _onceToken;
-    NSString *_cachedFullUserName;
+    IASLocalSecretPrompt *_promptController;
 }
 
-+ (void)getLocalSecretWithWindow:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
-@property(copy) NSString *cachedFullUserName; // @synthesize cachedFullUserName=_cachedFullUserName;
-@property long long onceToken; // @synthesize onceToken=_onceToken;
+- (void).cxx_destruct;
 - (id)userFullName;
 - (void)secretEntered:(id)arg1;
 - (void)secretEntryCancelled;
+- (void)getLocalSecretWithWindow:(id)arg1 withTitle:(id)arg2 withMessage:(id)arg3 withSheetIcon:(id)arg4 withCompletion:(CDUnknownBlockType)arg5;
+- (void)getLocalSecretWithWindow:(id)arg1 withTitle:(id)arg2 withMessage:(id)arg3 withCompletion:(CDUnknownBlockType)arg4;
+- (void)getLocalSecretWithWindow:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

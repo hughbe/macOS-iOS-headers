@@ -18,8 +18,8 @@
 - (BOOL)isValidMultiValueValue:(id)arg1 error:(id *)arg2;
 - (Class)labeledValueClass;
 - (id)standardLabels;
-- (BOOL)isValue:(id)arg1 preferredToEquivalentValue:(id)arg2;
-- (BOOL)isValue:(id)arg1 equivalentToValue:(id)arg2;
+- (BOOL)isValue:(id)arg1 preferredToUnifiedValue:(id)arg2;
+- (BOOL)canUnifyValue:(id)arg1 withValue:(id)arg2;
 - (void)setCNValue:(id)arg1 onContact:(id)arg2;
 - (id)CNValueForContact:(id)arg1;
 - (BOOL)isNonnull;

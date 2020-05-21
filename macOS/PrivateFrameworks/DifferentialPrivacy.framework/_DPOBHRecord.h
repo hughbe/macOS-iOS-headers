@@ -17,17 +17,22 @@
     BOOL _submitted;
     NSString *_key;
     double _creationDate;
+    long long _reportVersion;
     NSManagedObjectID *_objectId;
 }
 
-+ (BOOL)supportsSecureCoding;
 + (id)entityName;
 + (id)createRecordFromManagedObject:(id)arg1;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSManagedObjectID *objectId; // @synthesize objectId=_objectId;
+@property(nonatomic) long long reportVersion; // @synthesize reportVersion=_reportVersion;
 @property(nonatomic) BOOL submitted; // @synthesize submitted=_submitted;
 @property(nonatomic) double creationDate; // @synthesize creationDate=_creationDate;
 @property(copy, nonatomic) NSString *key; // @synthesize key=_key;
-- (void).cxx_destruct;
+- (BOOL)copyFromManagedObject:(id)arg1;
+- (BOOL)copyToManagedObject:(id)arg1;
+- (id)entityName;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToOBHRecord:(id)arg1;
@@ -35,10 +40,8 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)jsonString;
 - (id)initWithKey:(id)arg1 creationDate:(double)arg2 submitted:(BOOL)arg3 objectId:(id)arg4;
-- (BOOL)copyFromManagedObject:(id)arg1;
-- (BOOL)copyToManagedObject:(id)arg1;
-- (id)entityName;
 
 @end
 

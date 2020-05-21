@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     id <NSObject> _notificationToken;
 }
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (id)initWithMapItem:(id)arg1 mapItemStorage:(id)arg2;
 

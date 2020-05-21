@@ -6,19 +6,25 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSImage, PHPerson;
 
 @interface PXPersonItem : NSObject
 {
-    NSString *_name;
-    unsigned long long _photosCount;
-    id _modelObject;
+    int _faceImageRequestID;
+    PHPerson *_modelObject;
+    CDUnknownBlockType _faceImageLoadingCompletionBlock;
+    CDUnknownBlockType _fastDisplayBlock;
+    NSImage *_faceImage;
 }
 
-@property(retain, nonatomic) id modelObject; // @synthesize modelObject=_modelObject;
-@property(nonatomic) unsigned long long photosCount; // @synthesize photosCount=_photosCount;
-@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+@property __weak NSImage *faceImage; // @synthesize faceImage=_faceImage;
+@property(copy) CDUnknownBlockType fastDisplayBlock; // @synthesize fastDisplayBlock=_fastDisplayBlock;
+@property(copy) CDUnknownBlockType faceImageLoadingCompletionBlock; // @synthesize faceImageLoadingCompletionBlock=_faceImageLoadingCompletionBlock;
+@property int faceImageRequestID; // @synthesize faceImageRequestID=_faceImageRequestID;
+@property(retain, nonatomic) PHPerson *modelObject; // @synthesize modelObject=_modelObject;
+- (void)updateWithModel:(id)arg1;
+- (id)initWithPerson:(id)arg1;
 
 @end
 

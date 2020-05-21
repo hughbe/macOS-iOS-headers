@@ -7,6 +7,8 @@
 #import "NSIndexPath.h"
 
 @interface NSIndexPath (NSBrowserIndexPath)
++ (id)parentIndexPathForIndexPaths:(id)arg1;
 - (id)_safeIndexPathByRemovingLastIndex;
+- (BOOL)descendsFrom:(id)arg1;
 @end
 

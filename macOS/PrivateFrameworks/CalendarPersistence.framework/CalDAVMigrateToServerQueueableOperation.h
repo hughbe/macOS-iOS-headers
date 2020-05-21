@@ -6,7 +6,7 @@
 
 #import <CalendarPersistence/CalDAVQueueableOperation.h>
 
-@class CalDAVBulkUploadTaskGroup, CalManagedCalDAVCalendar, CalManagedGroup, CalManagedObjectContext, LocalCalendarDetails, NSArray, NSMutableArray, NSString;
+@class CalManagedCalDAVCalendar, CalManagedGroup, CalManagedObjectContext, LocalCalendarDetails, NSArray, NSMutableArray, NSString;
 
 @interface CalDAVMigrateToServerQueueableOperation : CalDAVQueueableOperation
 {
@@ -28,7 +28,6 @@
     NSMutableArray *_plansToMoveLocal;
     unsigned long long _indexNotFaultedOut;
     CalManagedGroup *_failGroup;
-    CalDAVBulkUploadTaskGroup *_bulkUploadTaskGroup;
     long long _bulkSimpleMaxResources;
     long long _bulkSimpleMaxSize;
     long long _bulkCrudMaxResources;
@@ -38,7 +37,7 @@
 + (id)plansForEventsInCalendar:(id)arg1 toCalendar:(id)arg2;
 + (id)plansForTasksInCalendar:(id)arg1 toCalendar:(id)arg2;
 + (id)plansForEventsOrTasksInCalendar:(id)arg1 toCalendar:(id)arg2 tasksOnly:(BOOL)arg3;
-@property(retain) CalDAVBulkUploadTaskGroup *bulkUploadTaskGroup; // @synthesize bulkUploadTaskGroup=_bulkUploadTaskGroup;
+- (void).cxx_destruct;
 @property(retain) NSMutableArray *plansToMoveLocal; // @synthesize plansToMoveLocal=_plansToMoveLocal;
 @property(retain) NSMutableArray *plansToPostProcess; // @synthesize plansToPostProcess=_plansToPostProcess;
 @property(retain) NSArray *inProgressPlans; // @synthesize inProgressPlans=_inProgressPlans;
@@ -88,7 +87,6 @@
 - (void)_storeAndUpdateFailedPlansWithUIDs:(id)arg1;
 - (void)_markPlanAsFailed:(id)arg1;
 - (void)_faultOutPostProcessedToIndex:(unsigned long long)arg1;
-- (void)_determineAndSetCurrentRemoteSubscribedCalendar;
 - (void)_determineAndSetCurrentRemoteCalendar;
 - (id)_determineRemoteCalendarsForLocalCalendars:(id)arg1 includeSubscribed:(BOOL)arg2 tasks:(BOOL)arg3;
 - (BOOL)_localSubscribedCalendar:(id)arg1 matchesRemoteCalendar:(id)arg2;
@@ -100,7 +98,6 @@
 - (void)_finishWithError:(id)arg1 state:(int)arg2;
 - (void)migrate;
 - (void)_setupBackgroundThread;
-- (void)dealloc;
 - (BOOL)suppressErrorDialog;
 - (void)retryTimerFired:(id)arg1;
 - (void)migrateOperationDone:(id)arg1;

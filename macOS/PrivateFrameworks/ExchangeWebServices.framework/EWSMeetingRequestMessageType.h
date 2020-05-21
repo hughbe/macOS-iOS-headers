@@ -35,6 +35,7 @@
     long long _AdjacentMeetingCount;
     NSArray *_ConflictingMeetings;
     NSArray *_AdjacentMeetings;
+    NSString *_Duration;
     NSString *_TimeZone;
     NSDateComponents *_AppointmentReplyTime;
     long long _AppointmentSequenceNumber;
@@ -48,11 +49,10 @@
     long long _ConferenceType;
     NSString *_MeetingWorkspaceUrl;
     NSString *_NetShowUrl;
-    NSString *_Duration;
 }
 
 + (id)definition;
-@property(copy, nonatomic) NSString *Duration; // @synthesize Duration=_Duration;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *NetShowUrl; // @synthesize NetShowUrl=_NetShowUrl;
 @property(copy, nonatomic) NSString *MeetingWorkspaceUrl; // @synthesize MeetingWorkspaceUrl=_MeetingWorkspaceUrl;
 @property(nonatomic) BOOL IsOnlineMeeting; // @synthesize IsOnlineMeeting=_IsOnlineMeeting;
@@ -68,6 +68,7 @@
 @property(nonatomic) long long AppointmentSequenceNumber; // @synthesize AppointmentSequenceNumber=_AppointmentSequenceNumber;
 @property(retain, nonatomic) NSDateComponents *AppointmentReplyTime; // @synthesize AppointmentReplyTime=_AppointmentReplyTime;
 @property(copy, nonatomic) NSString *TimeZone; // @synthesize TimeZone=_TimeZone;
+@property(copy, nonatomic) NSString *Duration; // @synthesize Duration=_Duration;
 @property(copy, nonatomic) NSArray *AdjacentMeetings; // @synthesize AdjacentMeetings=_AdjacentMeetings;
 @property(copy, nonatomic) NSArray *ConflictingMeetings; // @synthesize ConflictingMeetings=_ConflictingMeetings;
 @property(nonatomic) long long AdjacentMeetingCount; // @synthesize AdjacentMeetingCount=_AdjacentMeetingCount;
@@ -91,7 +92,6 @@
 @property(retain, nonatomic) NSDateComponents *Start; // @synthesize Start=_Start;
 @property(nonatomic) long long IntendedFreeBusyStatus; // @synthesize IntendedFreeBusyStatus=_IntendedFreeBusyStatus;
 @property(nonatomic) long long MeetingRequestType; // @synthesize MeetingRequestType=_MeetingRequestType;
-- (void).cxx_destruct;
 
 @end
 

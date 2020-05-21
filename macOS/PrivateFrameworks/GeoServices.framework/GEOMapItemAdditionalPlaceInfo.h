@@ -13,12 +13,12 @@
     GEOPlace *_place;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) GEOMapRegion *mapRegion;
 @property(readonly, nonatomic) CDStruct_c3b9c2ee coordinate;
 @property(readonly, nonatomic) double areaInMeters;
 @property(readonly, nonatomic) int placeType;
 @property(readonly, nonatomic) NSString *name;
-- (void)dealloc;
 - (id)initWithName:(id)arg1 placeType:(int)arg2 areaInMeters:(double)arg3;
 - (id)initWithPlace:(id)arg1;
 

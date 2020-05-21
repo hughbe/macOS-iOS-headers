@@ -9,10 +9,12 @@
 __attribute__((visibility("hidden")))
 @interface FI_TListTextField : FI_TTextField
 {
+    _Bool _dimmed;
 }
 
-+ (Class)cellClass;
+@property(nonatomic, getter=isDimmed) _Bool dimmed; // @synthesize dimmed=_dimmed;
 - (void)_windowChangedKeyState;
+- (void)updateTextColor;
 - (void)initCommon;
 
 @end

@@ -15,6 +15,7 @@
 - (void)postHSA2PasswordChangeForAppleID:(NSString *)arg1 completion:(void (^)(unsigned long long, NSError *))arg2;
 - (void)postHSA2LoginCode:(NSNumber *)arg1 withNotification:(FLHSA2LoginNotification *)arg2 completion:(void (^)(unsigned long long, NSError *))arg3;
 - (void)postHSA2LoginNotification:(FLHSA2LoginNotification *)arg1 completion:(void (^)(unsigned long long, NSError *))arg2;
+- (void)clearNotificationForItem:(FLFollowUpItem *)arg1 completion:(void (^)(BOOL, NSError *))arg2;
 - (void)clearPendingFollowUpItemsForClientIdentifier:(NSString *)arg1 uniqueIdentifiers:(NSArray *)arg2 completion:(void (^)(BOOL, NSError *))arg3;
 - (void)clearPendingFollowUpItemsForClientIdentifier:(NSString *)arg1 completion:(void (^)(BOOL, NSError *))arg2;
 - (void)pendingFollowUpItemsForClientIdentifier:(NSString *)arg1 completion:(void (^)(NSArray *, NSError *))arg2;

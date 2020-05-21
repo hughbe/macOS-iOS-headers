@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class GEOCommonOptions, GEOComposedRoute, GEOComposedWaypoint, GEOETATrafficUpdateRequest, GEOLocation, GEORouteAttributes, GEORouteMatch, NSData, NSTimer;
+@class GEOApplicationAuditToken, GEOCommonOptions, GEOComposedRoute, GEOComposedRouteStep, GEOComposedWaypoint, GEOETATrafficUpdateRequest, GEOLocation, GEORouteAttributes, GEORouteMatch, NSData, NSString, NSTimer;
 
 @interface GEOETAUpdater : NSObject
 {
     id <GEOETAUpdaterDelegate> _delegate;
+    NSString *_requestingAppIdentifier;
     GEOETATrafficUpdateRequest *_currentETARequest;
     GEOLocation *_userLocation;
     GEORouteMatch *_routeMatch;
@@ -25,10 +26,17 @@
     NSTimer *_etaIdleTimer;
     double _lastETARequestTime;
     double _debugTimeWindowDuration;
+    unsigned long long _maxAlternateRoutesCount;
     NSData *_directionsResponseID;
     GEOCommonOptions *_commonOptions;
+    GEOApplicationAuditToken *_auditToken;
+    GEOComposedRouteStep *_currentStepAtRequestStart;
+    double _percentageOfCurrentStepRemainingAtRequestStart;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) GEOApplicationAuditToken *auditToken; // @synthesize auditToken=_auditToken;
+@property(nonatomic) unsigned long long maxAlternateRoutesCount; // @synthesize maxAlternateRoutesCount=_maxAlternateRoutesCount;
 @property(nonatomic) double debugTimeWindowDuration; // @synthesize debugTimeWindowDuration=_debugTimeWindowDuration;
 @property(nonatomic) double requestInterval; // @synthesize requestInterval=_requestInterval;
 @property(nonatomic) BOOL shouldUpdateTrafficOnRoute; // @synthesize shouldUpdateTrafficOnRoute=_shouldUpdateTrafficOnRoute;
@@ -40,7 +48,8 @@
 @property(retain, nonatomic) GEOLocation *userLocation; // @synthesize userLocation=_userLocation;
 @property(retain, nonatomic) GEORouteMatch *routeMatch; // @synthesize routeMatch=_routeMatch;
 @property(retain, nonatomic) GEOComposedRoute *route; // @synthesize route=_route;
-@property(nonatomic) id <GEOETAUpdaterDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) NSString *requestingAppIdentifier; // @synthesize requestingAppIdentifier=_requestingAppIdentifier;
+@property(nonatomic) __weak id <GEOETAUpdaterDelegate> delegate; // @synthesize delegate=_delegate;
 - (BOOL)_updateRouteWithETATrafficUpdateResponse:(id)arg1;
 - (BOOL)updateRouteWithETATrafficUpdateResponse:(id)arg1 step:(id)arg2 percentOfStepRemaining:(double)arg3;
 - (id)routesForETAUpdateRequest;
@@ -49,19 +58,21 @@
 - (BOOL)_shouldStartConditionalETARequest;
 - (void)_continueUpdateRequests;
 - (double)_calculateNextTransitionTime;
-- (BOOL)_sendETARequest:(id)arg1 isUpdate:(BOOL)arg2;
+- (void)_trafficRequest:(id)arg1 finished:(id)arg2;
+- (void)_sendRequest:(id)arg1;
+- (id)_updateOrCreateRequest:(id)arg1;
 - (BOOL)_updateETAResponse:(id)arg1 withRemainingDistanceFromRequest:(id)arg2;
 - (void)_startConditionalConnectionETARequest;
+- (double)_currentTime;
 - (void)_startStateWaitingForBestTimeStart:(id)arg1;
-- (void)_createETARequest;
-- (void)_updateCurrentETARequest;
+- (void)_updateRequest:(id)arg1;
 - (void)stopUpdateRequests;
 - (void)startUpdateRequests;
 - (void)cancelRequest;
 - (void)requestUpdate;
-- (void)_clearCurrentETARequest;
 - (void)_clearTimer;
 - (void)reset;
+@property(readonly, nonatomic) BOOL requestInProgress;
 - (void)dealloc;
 - (id)initWithRoute:(id)arg1 destination:(id)arg2 routeAttributes:(id)arg3;
 - (id)init;

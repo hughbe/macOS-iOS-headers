@@ -12,7 +12,7 @@
 
 + (void)_haltNetworkingForPrincipal:(id)arg1;
 + (id)_eventsWithAttachmentsInPrincipal:(id)arg1;
-+ (void)migrateToLocalPreAccountDeletionForPrincipal:(id)arg1 includeEvents:(BOOL)arg2 includeReminders:(BOOL)arg3;
++ (void)migrateToLocalPreAccountDeletionForPrincipal:(id)arg1 includeEvents:(BOOL)arg2 includeReminders:(BOOL)arg3 inContext:(id)arg4;
 + (void)moveCalendarsIntoMigrationGroup:(id)arg1 fromPrincipal:(id)arg2 includeEvents:(BOOL)arg3 includeReminders:(BOOL)arg4;
 + (id)_mastersOrPhantomEventsFromEvents:(id)arg1;
 + (void)_removeAttendeesFromEvent:(id)arg1;
@@ -22,10 +22,14 @@
 + (id)_existingMatchUIDsInLocalCalendarsForItems:(id)arg1 inContext:(id)arg2;
 + (id)_serverToLocalMigrationGroupsInContext:(id)arg1;
 + (void)_processMigrationGroups;
++ (void)_processMigrationGroupsInContext:(id)arg1;
 + (id)_limitingQueue;
 + (id)_localCalendarCreationQueue;
 + (id)_asyncWorkQueue;
 + (void)processMigrationGroups;
++ (id)migrationLogHandle;
++ (id)toServerMigrationLogHandle;
++ (id)toLocalMigrationLogHandle;
 
 @end
 

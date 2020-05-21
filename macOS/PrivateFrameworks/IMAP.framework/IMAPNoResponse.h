@@ -12,7 +12,7 @@
 
 + (BOOL)handlesResponseWithName:(const char *)arg1 ofLength:(unsigned long long)arg2;
 - (const char *)_responseName;
-- (id)description;
+- (BOOL)descriptionIncludesUserString;
 
 @end
 

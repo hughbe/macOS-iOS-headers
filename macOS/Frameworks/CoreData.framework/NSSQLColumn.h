@@ -12,12 +12,6 @@ __attribute__((visibility("hidden")))
 @interface NSSQLColumn : NSSQLProperty
 {
     NSString *_columnName;
-    int _sqlType;
-    unsigned int _precision;
-    int _scale;
-    unsigned int _fetchIndex;
-    unsigned int _slot;
-    unsigned int _allowAliasing;
 }
 
 - (void)copyValuesForReadOnlyFetch:(id)arg1;
@@ -29,17 +23,13 @@ __attribute__((visibility("hidden")))
 - (unsigned int)slot;
 - (void)_setFetchIndex:(unsigned int)arg1;
 - (unsigned int)fetchIndex;
-- (void)_setSQLType:(unsigned int)arg1;
+- (void)_setSQLType:(unsigned char)arg1;
 - (unsigned int)roughSizeEstimate;
-- (unsigned int)sqlType;
-- (void)setScale:(int)arg1;
-- (int)scale;
-- (void)setPrecision:(unsigned int)arg1;
-- (unsigned int)precision;
+- (unsigned char)sqlType;
 - (void)_setColumnName:(id)arg1;
 - (id)description;
 - (void)dealloc;
-- (id)initWithColumnName:(id)arg1 sqlType:(unsigned int)arg2;
+- (id)initWithColumnName:(id)arg1 sqlType:(unsigned char)arg2;
 - (id)initWithEntity:(id)arg1 propertyDescription:(id)arg2;
 - (id)initForReadOnlyFetching;
 

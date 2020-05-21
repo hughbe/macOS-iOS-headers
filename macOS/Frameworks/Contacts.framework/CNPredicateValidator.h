@@ -19,6 +19,7 @@
     NSError *_error;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(nonatomic) BOOL validated; // @synthesize validated=_validated;
 @property(retain, nonatomic) NSMutableSet *usedKeysSet; // @synthesize usedKeysSet=_usedKeysSet;
@@ -31,7 +32,6 @@
 - (void)visitPredicateExpression:(id)arg1;
 @property(retain, nonatomic) NSArray *allowedKeys;
 - (BOOL)validateWithError:(id *)arg1;
-- (void)dealloc;
 
 @end
 

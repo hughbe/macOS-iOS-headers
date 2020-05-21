@@ -8,7 +8,6 @@
 
 @class NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>, NSString;
 
-__attribute__((visibility("hidden")))
 @interface SYDClient : NSObject
 {
     NSObject<OS_dispatch_queue> *_queue;

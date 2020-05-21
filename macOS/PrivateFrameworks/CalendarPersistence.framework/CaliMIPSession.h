@@ -14,6 +14,7 @@
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property(retain) CalOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
 - (double)timeSinceLastSync;
 - (void)systemWillSleep;
@@ -25,7 +26,6 @@
 - (void)deletePersistedErrorAndNotify;
 - (void)deactivate;
 - (BOOL)activate;
-- (void)dealloc;
 
 @end
 

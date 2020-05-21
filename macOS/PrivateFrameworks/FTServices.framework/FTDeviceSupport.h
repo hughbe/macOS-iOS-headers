@@ -6,9 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSString;
+#import "CoreTelephonyClientCarrierBundleDelegate.h"
+#import "CoreTelephonyClientPNRDelegate.h"
+#import "CoreTelephonyClientSubscriberDelegate.h"
 
-@interface FTDeviceSupport : NSObject
+@class CoreTelephonyClient, FTSelectedPNRSubscription, NSDictionary, NSString;
+
+@interface FTDeviceSupport : NSObject <CoreTelephonyClientCarrierBundleDelegate, CoreTelephonyClientSubscriberDelegate, CoreTelephonyClientPNRDelegate>
 {
     NSString *_number;
     BOOL _blockPost;
@@ -18,29 +22,33 @@
     BOOL _supportsSMS;
     BOOL _supportsMMS;
     BOOL _mmsConfigured;
-    BOOL _supportsApplePay;
+    long long _supportsApplePayState;
+    long long _supportsKeySharingState;
     BOOL _supportsHandoff;
     BOOL _supportsTethering;
     BOOL _supportsFT;
     BOOL _supportsFTA;
+    BOOL _supportsFTMW;
     BOOL _supportsWiFi;
     BOOL _supportsWLAN;
     BOOL _supportsNonWiFiFaceTime;
     BOOL _supportsCellularData;
-    BOOL _shouldUseSIMState;
-    BOOL _commCenterDead;
     BOOL _simBecameNotReady;
-    BOOL _simInserted;
-    int _carrierBundleSupported;
-    int _iMessageAllowedToken;
+    long long _simInserted;
+    long long _isPNRSupportedCachedValue;
     BOOL _faceTimeBlocked;
     BOOL _iMessageBlocked;
     BOOL _accountModificationRestricted;
-    BOOL _supportsRegistrationControl;
+    BOOL _isGreenTea;
     long long _performanceClass;
+    CoreTelephonyClient *_coreTelephonyClient;
+    FTSelectedPNRSubscription *_selectedPNRSubscription;
+    BOOL _commCenterDead;
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL commCenterDead; // @synthesize commCenterDead=_commCenterDead;
 @property(readonly, nonatomic) BOOL mmsConfigured; // @synthesize mmsConfigured=_mmsConfigured;
 @property(readonly, nonatomic) BOOL supportsMMS; // @synthesize supportsMMS=_supportsMMS;
 @property(readonly, nonatomic) BOOL supportsSMS; // @synthesize supportsSMS=_supportsSMS;
@@ -51,10 +59,16 @@
 @property(readonly, nonatomic) BOOL supportsFrontFacingCamera; // @synthesize supportsFrontFacingCamera=_supportsFrontCamera;
 @property(readonly, nonatomic) BOOL supportsTethering; // @synthesize supportsTethering=_supportsTethering;
 @property(readonly, nonatomic) BOOL supportsHandoff; // @synthesize supportsHandoff=_supportsHandoff;
-@property(readonly, nonatomic) BOOL supportsApplePay; // @synthesize supportsApplePay=_supportsApplePay;
-@property(readonly, nonatomic) BOOL supportsRegistrationControl; // @synthesize supportsRegistrationControl=_supportsRegistrationControl;
+@property(readonly, nonatomic) BOOL isGreenTea; // @synthesize isGreenTea=_isGreenTea;
+@property(readonly, nonatomic) BOOL supportsFunCam;
+@property(readonly, nonatomic) BOOL lowRAMDevice;
+- (int)cpuFamily;
+@property(readonly, nonatomic) BOOL slowCPUDevice;
+@property(readonly, nonatomic) BOOL supportsKeySharing;
+@property(readonly, nonatomic) BOOL supportsApplePay;
 @property(readonly, nonatomic) BOOL isInMultiUserMode;
 @property(readonly, nonatomic) BOOL nonWifiCallingAvailable;
+- (BOOL)nonBluetoothAvailableForBundleId:(id)arg1;
 - (BOOL)wifiAllowedForBundleId:(id)arg1;
 - (BOOL)nonWifiAvailableForBundleId:(id)arg1;
 @property(readonly, nonatomic) BOOL nonWifiFaceTimeAvailable;
@@ -63,6 +77,7 @@
 - (void)_registerForLockdownNotifications;
 - (void)_lockdownStateChanged:(id)arg1;
 @property(readonly, nonatomic) NSString *deviceInformationString;
+@property(readonly, nonatomic) NSString *productOSVersion;
 @property(readonly, nonatomic) NSString *productBuildVersion;
 @property(readonly, nonatomic) NSString *productVersion;
 @property(readonly, nonatomic) NSString *productName;
@@ -70,15 +85,28 @@
 @property(readonly, nonatomic) NSString *telephoneNumber;
 @property(readonly, nonatomic) BOOL isTelephonyDevice;
 @property(readonly, nonatomic) BOOL supportsAppleIDIdentification;
+- (BOOL)_legacy_supportsSMSIdentification;
 @property(readonly, nonatomic) BOOL supportsSMSIdentification;
+- (void)_updateCTNetworkDictionary:(id)arg1 key:(id)arg2 withTelephonyNetworkValue:(id)arg3 telephonyError:(id)arg4;
 @property(readonly, nonatomic) NSDictionary *CTNetworkInformation;
-- (void)_handlePhoneNumberRegistrationStateChanged:(id)arg1;
-- (void)_handleTechnologyChange:(id)arg1;
-- (void)_simStatusChanged:(id)arg1;
+- (void)_handlePotentialPhoneNumberRegistrationStateChanged;
+- (void)_invalidateValuesCachedForSelectedPhoneNumberRegistration;
+- (void)noteSelectedPhoneNumberRegistrationSubscriptionDidChange;
+- (void)_handleCarrierSettingsChanged;
+- (void)_handleSIMStatusChangedToStatus:(id)arg1;
+- (void)simStatusDidChange:(id)arg1 status:(id)arg2;
+- (void)operatorBundleChange:(id)arg1;
+- (void)carrierBundleChange:(id)arg1;
+- (void)phoneNumberChanged:(id)arg1;
+- (void)pnrReadyStateNotification:(id)arg1 regState:(BOOL)arg2;
+- (id)registrationState;
+- (BOOL)isInDualPhoneIdentityMode;
 @property(readonly, nonatomic) NSString *enclosureColor;
 @property(readonly, nonatomic) NSString *deviceColor;
 @property(readonly, nonatomic) NSString *deviceName;
+@property(readonly, nonatomic) NSString *deviceRegionInfo;
 @property(readonly, nonatomic) BOOL wantsBreakBeforeMake;
+- (void)_initializeSIMInsertedCachedValue;
 @property(readonly, nonatomic) BOOL SIMInserted;
 @property(readonly, nonatomic) BOOL supportsSimultaneousVoiceAndDataRightNow;
 @property(readonly, nonatomic) BOOL isC2KEquipment;
@@ -100,31 +128,36 @@
 @property(readonly, nonatomic) BOOL iMessageSupported;
 @property(readonly, nonatomic) BOOL iMessageBlocked;
 @property(readonly, nonatomic) BOOL iMessageAvailable;
+- (BOOL)inProcess_isCallingSupported;
 @property(readonly, nonatomic) BOOL callingSupported;
 @property(readonly, nonatomic) BOOL callingBlocked;
+@property(readonly, nonatomic) BOOL multiwaySupported;
+@property(readonly, nonatomic) BOOL multiwayBlocked;
+@property(readonly, nonatomic) BOOL multiwayAvailable;
 @property(readonly, nonatomic) BOOL callingAvailable;
 @property(readonly, nonatomic) BOOL madridSupported;
 @property(readonly, nonatomic) BOOL madridBlocked;
 @property(readonly, nonatomic) BOOL madridAvailable;
-@property(readonly, nonatomic) BOOL commCenterDead;
-- (void)_unregisterForCoreTelephonyNotifications;
 - (void)_registerForInternalCoreTelephonyNotifications;
-- (void)_registerForCoreTelephonyNotifications;
-- (void)_carrierChanged;
-- (void)_operatorChanged;
+- (void)_registerForCarrierNotifications;
 - (void)_unregisterForCommCenterReadyNotifications;
 - (void)_registerForCommCenterReadyNotifications;
 - (void)_updateCapabilities;
-- (void)carrierSettingsChanged:(id)arg1;
-- (void)_unregisterForCarrierNotifications;
-- (void)_registerForCarrierNotifications;
 - (void)_registerForCapabilityNotifications;
+- (void)_unregisterForServiceStatusNotifications;
+- (void)_registerForServiceStatusNotifications;
+- (id)_serviceStatus;
 - (void)_updateManagedConfigurationSettings;
 - (void)_unregisterForManagedConfigurationNotifications;
 - (void)_registerForManagedConfigurationNotifications;
-- (void)_watchNotifyTokens;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

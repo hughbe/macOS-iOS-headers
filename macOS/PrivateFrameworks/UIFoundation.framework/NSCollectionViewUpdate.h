@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSCollectionViewData, NSMutableArray, NSMutableDictionary, NSMutableIndexSet, _NSCollectionViewCore;
+@class NSArray, NSCollectionViewData, NSCollectionViewIndexMapper, NSIndexPath, NSMutableArray, NSMutableDictionary, _NSCollectionViewCore;
 
 @interface NSCollectionViewUpdate : NSObject
 {
@@ -16,14 +16,8 @@
     NSCollectionViewData *_newModel;
     struct CGRect _oldVisibleBounds;
     struct CGRect _newVisibleBounds;
-    NSMutableIndexSet *_movedItems;
-    NSMutableIndexSet *_movedSections;
-    NSMutableIndexSet *_deletedSections;
-    NSMutableIndexSet *_insertedSections;
-    long long *_oldSectionMap;
-    long long *_newSectionMap;
-    long long *_oldGlobalItemMap;
-    long long *_newGlobalItemMap;
+    NSCollectionViewIndexMapper *_globalIndexMap;
+    NSCollectionViewIndexMapper *_sectionMap;
     NSMutableArray *_deletedSupplementaryIndexesSectionArray;
     NSMutableArray *_insertedSupplementaryIndexesSectionArray;
     NSMutableDictionary *_deletedSupplementaryTopLevelIndexesDict;
@@ -32,12 +26,16 @@
     id *_animatedHeaders;
     id *_animatedFooters;
     NSMutableArray *_viewAnimations;
-    NSMutableArray *_gaps;
+    NSIndexPath *_oldFocusedIndexPath;
+    NSIndexPath *_newFocusedIndexPath;
+    long long _oldFocusedViewType;
+    long long _newFocusedViewType;
 }
 
+- (void).cxx_destruct;
+- (void)getNewSectionCount:(long long *)arg1 newSectionSourceIndexes:(long long **)arg2 newSectionItemCounts:(long long **)arg3 newGlobalItemCount:(long long *)arg4 newGlobalItemSourceIndexes:(long long **)arg5;
 - (id)oldIndexPathForSupplementaryElementOfKind:(id)arg1 newIndexPath:(id)arg2;
 - (id)newIndexPathForSupplementaryElementOfKind:(id)arg1 oldIndexPath:(id)arg2;
-- (void)_computeGaps;
 - (void)_computeSupplementaryUpdates;
 - (void)_computeItemUpdates;
 - (void)_computeSectionUpdates;

@@ -17,17 +17,18 @@ __attribute__((visibility("hidden")))
     NSMutableArray *mLevelOverrides;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) int listDefinitionId; // @synthesize listDefinitionId=mListDefinitionId;
 @property(readonly, nonatomic) int listId; // @synthesize listId=mListId;
 - (id)description;
 - (id)initWithDocument:(id)arg1 listId:(int)arg2 listDefinitionId:(int)arg3;
 - (BOOL)isAnyListLevelOverridden;
 - (id)levelOverrides;
+- (void)removeLevelOverride:(id)arg1;
 - (id)addLevelOverrideWithLevel:(unsigned char)arg1;
 - (id)levelOverrideForLevel:(unsigned char)arg1;
 - (id)levelOverrideAt:(unsigned long long)arg1;
 - (unsigned long long)levelOverrideCount;
-- (void)dealloc;
 
 @end
 

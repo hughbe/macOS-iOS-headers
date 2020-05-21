@@ -26,11 +26,12 @@
     NSTextField *_addMemberNoChildAddFamilMemberLabel;
     NSTextField *_addMemberNoChildEnterFamilyLabel;
     int _viewType;
-    id <iCloudAddFamilyMemberDelegate> _delegate;
     NSString *_accountID;
     NSDictionary *_membershipInfo;
+    id <iCloudAddFamilyMemberDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSDictionary *membershipInfo; // @synthesize membershipInfo=_membershipInfo;
 @property(retain) NSString *accountID; // @synthesize accountID=_accountID;
 @property id <iCloudAddFamilyMemberDelegate> delegate; // @synthesize delegate=_delegate;
@@ -43,6 +44,7 @@
 - (BOOL)isAddFamilySelected;
 - (void)enterFamilyButtonPressed:(id)arg1;
 - (void)createNewButtonPressed:(id)arg1;
+- (void)setEnterFamilyButtonLabel:(id)arg1;
 - (void)resetSelections;
 - (unsigned long long)tokenField:(id)arg1 styleForRepresentedObject:(id)arg2;
 - (id)tokenField:(id)arg1 shouldAddObjects:(id)arg2 atIndex:(unsigned long long)arg3;

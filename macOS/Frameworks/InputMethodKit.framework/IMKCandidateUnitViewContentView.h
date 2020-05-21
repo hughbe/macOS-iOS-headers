@@ -11,13 +11,18 @@
 @interface IMKCandidateUnitViewContentView : IMKUIView
 {
     NSColor *_backgroundColor;
+    BOOL _drawsBackgroundColor;
 }
 
+@property(nonatomic) BOOL drawsBackgroundColor; // @synthesize drawsBackgroundColor=_drawsBackgroundColor;
 @property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+- (id)accessibilityHitTest:(struct CGPoint)arg1;
+- (void)shouldUpdateForPressAndHold:(id)arg1 position:(struct CGPoint)arg2 with:(long long)arg3;
 - (void)touchesEnded:(id)arg1 position:(struct CGPoint)arg2;
 - (void)scrubbed:(id)arg1 position:(struct CGPoint)arg2;
 - (void)tapped:(id)arg1 position:(struct CGPoint)arg2;
 - (void)drawRect:(struct CGRect)arg1;
+- (BOOL)isFlipped;
 - (void)dealloc;
 
 @end

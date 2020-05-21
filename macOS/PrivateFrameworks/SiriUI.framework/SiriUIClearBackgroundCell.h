@@ -9,40 +9,33 @@
 #import "NSCollectionViewElement.h"
 #import "SiriUIReusableView.h"
 
-@class NSString, SiriUICollectionItemBorderView, SiriUICollectionItemHighlightView, SiriUISnippetViewController;
+@class NSString, NSValue, SiriUISnippetViewController;
 
-__attribute__((visibility("hidden")))
 @interface SiriUIClearBackgroundCell : NSView <NSCollectionViewElement, SiriUIReusableView>
 {
     BOOL _selected;
     NSView *_backgroundView;
-    long long _highlightState;
-    SiriUICollectionItemHighlightView *_highlightView;
-    SiriUICollectionItemBorderView *_borderView;
+    NSView *_selectedBackgroundView;
+    NSValue *_selectionFrameValue;
     long long _highlightStyle;
 }
 
 + (id)elementKind;
 + (double)defaultHeight;
 + (id)reuseIdentifier;
-@property long long highlightStyle; // @synthesize highlightStyle=_highlightStyle;
-@property(retain) SiriUICollectionItemBorderView *borderView; // @synthesize borderView=_borderView;
-@property(retain) SiriUICollectionItemHighlightView *highlightView; // @synthesize highlightView=_highlightView;
-@property(retain) NSView *backgroundView; // @synthesize backgroundView=_backgroundView;
 - (void).cxx_destruct;
+@property long long highlightStyle; // @synthesize highlightStyle=_highlightStyle;
+- (void)updateSelectionBackground;
+@property struct CGRect selectionFrame;
+- (void)setSelectedBackgroundView:(id)arg1;
+- (id)selectedBackgroundView;
+@property(retain) NSView *backgroundView;
+@property(getter=isSelected) BOOL selected;
 - (void)prepareForReuse;
-- (void)dealloc;
-- (void)updateBorderViewWithFillPreference:(BOOL)arg1;
-- (void)updateHighlightView;
-- (void)updateHighlightAppearance;
-@property long long highlightState; // @synthesize highlightState=_highlightState;
-@property(getter=isSelected) BOOL selected; // @synthesize selected=_selected;
+- (void)layout;
 - (BOOL)isFlipped;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
-- (void)commitInit;
-- (id)initWithCoder:(id)arg1;
-- (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

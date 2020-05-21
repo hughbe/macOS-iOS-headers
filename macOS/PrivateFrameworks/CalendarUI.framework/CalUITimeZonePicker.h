@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSPopUpButton.h"
+#import <CalendarUI/CalUICustomAppearancePopUpButton.h>
 
-@interface CalUITimeZonePicker : NSPopUpButton
+@interface CalUITimeZonePicker : CalUICustomAppearancePopUpButton
 {
     BOOL _supportsFloating;
     BOOL _includeGMT;
@@ -14,11 +14,11 @@
     id <CalUITimeZonePickerDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property BOOL useShortenedLabels; // @synthesize useShortenedLabels=_useShortenedLabels;
 @property BOOL includeGMT; // @synthesize includeGMT=_includeGMT;
 @property BOOL supportsFloating; // @synthesize supportsFloating=_supportsFloating;
 @property __weak id <CalUITimeZonePickerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)saveRecentlyUsedTimeZone:(id)arg1;
 - (id)recentlyUsedTimeZones;
 - (void)otherSelected;

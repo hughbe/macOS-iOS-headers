@@ -14,7 +14,6 @@
     NSMutableSet *_imageGUIDsWritingToDisk;
     NSMutableSet *_imageGUIDsNotWorthScaling;
     NSObject<OS_dispatch_queue> *_scalingQueue;
-    NSObject<OS_dispatch_queue> *_diskWritingQueue;
     NSMutableDictionary *_passURLToPKPassMap;
     NSMutableDictionary *_passGUIDToURLMap;
     NSObject<OS_dispatch_queue> *_mapLoadingQueue;
@@ -26,6 +25,7 @@
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *mapGUIDtoMapFileURLMap; // @synthesize mapGUIDtoMapFileURLMap=_mapGUIDtoMapFileURLMap;
 @property(retain, nonatomic) NSMutableDictionary *mapURLtoRenderedImageMap; // @synthesize mapURLtoRenderedImageMap=_mapURLtoRenderedImageMap;
 @property(retain, nonatomic) NSMutableDictionary *fileURLToMapURLMap; // @synthesize fileURLToMapURLMap=_fileURLToMapURLMap;
@@ -34,12 +34,10 @@
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *mapLoadingQueue; // @synthesize mapLoadingQueue=_mapLoadingQueue;
 @property(retain, nonatomic) NSMutableDictionary *passGUIDToURLMap; // @synthesize passGUIDToURLMap=_passGUIDToURLMap;
 @property(retain, nonatomic) NSMutableDictionary *passURLToPKPassMap; // @synthesize passURLToPKPassMap=_passURLToPKPassMap;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *diskWritingQueue; // @synthesize diskWritingQueue=_diskWritingQueue;
-@property(retain, nonatomic) NSObject<OS_dispatch_queue> *scalingQueue; // @synthesize scalingQueue=_scalingQueue;
-@property(retain, nonatomic) NSMutableSet *imageGUIDsNotWorthScaling; // @synthesize imageGUIDsNotWorthScaling=_imageGUIDsNotWorthScaling;
-@property(retain, nonatomic) NSMutableSet *imageGUIDsWritingToDisk; // @synthesize imageGUIDsWritingToDisk=_imageGUIDsWritingToDisk;
-@property(retain, nonatomic) NSMutableDictionary *imageGUIDToScaledDownPath; // @synthesize imageGUIDToScaledDownPath=_imageGUIDToScaledDownPath;
-- (void).cxx_destruct;
+@property(retain) NSObject<OS_dispatch_queue> *scalingQueue; // @synthesize scalingQueue=_scalingQueue;
+@property(retain) NSMutableSet *imageGUIDsNotWorthScaling; // @synthesize imageGUIDsNotWorthScaling=_imageGUIDsNotWorthScaling;
+@property(retain) NSMutableSet *imageGUIDsWritingToDisk; // @synthesize imageGUIDsWritingToDisk=_imageGUIDsWritingToDisk;
+@property(retain) NSMutableDictionary *imageGUIDToScaledDownPath; // @synthesize imageGUIDToScaledDownPath=_imageGUIDToScaledDownPath;
 - (void)postMapLoadComplete:(id)arg1;
 - (id)renderedMapImageForMapFileURL:(id)arg1;
 - (id)renderedMapImageForGUID:(id)arg1;
@@ -51,12 +49,10 @@
 - (id)loadPassForGUID:(id)arg1 atURL:(id)arg2;
 - (id)passForGUID:(id)arg1;
 - (void)_blurImageFileTransfer:(id)arg1 toMaxSize:(double)arg2 saveToLocation:(id)arg3 blocking:(BOOL)arg4;
-- (struct CGImage *)CGImageWithOrientation:(id)arg1;
 - (id)CIImageWithOrientation:(id)arg1;
-- (id)blurredImagePathForFileTransfer:(id)arg1 blocking:(BOOL)arg2;
+- (id)blurredImagePathForFileTransfer:(id)arg1;
 - (id)_blurredImageGUID:(id)arg1;
-- (void)_scaleImageFileTransfer:(id)arg1 toMaxSize:(double)arg2 saveToLocation:(id)arg3 blocking:(BOOL)arg4;
-- (id)scaledImagePathForFileTransfer:(id)arg1 blocking:(BOOL)arg2;
+- (void)_scaleImageFileTransfer:(id)arg1 toMaxSize:(double)arg2 saveToLocation:(id)arg3;
 - (id)scaledImagePathForFileTransfer:(id)arg1;
 - (id)init;
 

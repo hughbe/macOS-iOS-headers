@@ -22,6 +22,8 @@
 @property unsigned short signalOutput; // @synthesize signalOutput;
 @property unsigned short signalIndex; // @synthesize signalIndex;
 @property unsigned short signalType; // @synthesize signalType;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)_allSourceObjects;
 - (void)appendFixedDescriptorContentToString:(id)arg1 withIndent:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;

@@ -13,12 +13,7 @@
 
 @interface AKICAWebKitViewController : NSObject <AKWebKitControllerDelegate, InternetAccountExportsAuthKit>
 {
-    id <AKICAUIDelegate> _icaUIDelegate;
-    id <AKICAWebKitViewControllerDelegate> _icaWebKitViewControllerDelegate;
-    id <AKMBICAUIDelegate> _icaMBUIDelegate;
     AKWebKitController *_webKitController;
-    NSView *_parentView;
-    NSWindow *_parentWindow;
     JSContext *_jsContext;
     NSString *_accountID;
     NSString *_location;
@@ -35,11 +30,17 @@
         unsigned int delegateDidFail:1;
         unsigned int delegateDidChangePassword:1;
         unsigned int delegateSignRequest:1;
-        unsigned int delegateIsFinalResponse:1;
+        unsigned int delegateDidReceiveResponse:1;
         unsigned int padding:4;
     } _flags;
+    id <AKICAUIDelegate> _icaUIDelegate;
+    id <AKICAWebKitViewControllerDelegate> _icaWebKitViewControllerDelegate;
+    id <AKMBICAUIDelegate> _icaMBUIDelegate;
+    NSView *_parentView;
+    NSWindow *_parentWindow;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSMutableDictionary *authKitData; // @synthesize authKitData=_authKitData;
 @property(retain) NSImage *displayImage; // @synthesize displayImage=_displayImage;
 @property(retain, nonatomic) NSDictionary *workflowDict; // @synthesize workflowDict=_workflowDict;
@@ -47,16 +48,18 @@
 @property(nonatomic) BOOL supportsWindowResize; // @synthesize supportsWindowResize=_supportsWindowResize;
 @property(copy, nonatomic) NSString *location; // @synthesize location=_location;
 @property(copy, nonatomic) NSString *accountID; // @synthesize accountID=_accountID;
-@property(nonatomic) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
-@property(nonatomic) NSView *parentView; // @synthesize parentView=_parentView;
+@property(retain, nonatomic) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
+@property(retain, nonatomic) NSView *parentView; // @synthesize parentView=_parentView;
 @property(retain, nonatomic) JSContext *jsContext; // @synthesize jsContext=_jsContext;
 @property(retain) AKWebKitController *webKitController; // @synthesize webKitController=_webKitController;
-@property(nonatomic) id <AKMBICAUIDelegate> icaMBUIDelegate; // @synthesize icaMBUIDelegate=_icaMBUIDelegate;
-@property(nonatomic) id <AKICAWebKitViewControllerDelegate> icaWebKitViewControllerDelegate; // @synthesize icaWebKitViewControllerDelegate=_icaWebKitViewControllerDelegate;
-@property(nonatomic) id <AKICAUIDelegate> icaUIDelegate; // @synthesize icaUIDelegate=_icaUIDelegate;
+@property(nonatomic) __weak id <AKMBICAUIDelegate> icaMBUIDelegate; // @synthesize icaMBUIDelegate=_icaMBUIDelegate;
+@property(nonatomic) __weak id <AKICAWebKitViewControllerDelegate> icaWebKitViewControllerDelegate; // @synthesize icaWebKitViewControllerDelegate=_icaWebKitViewControllerDelegate;
+@property(nonatomic) __weak id <AKICAUIDelegate> icaUIDelegate; // @synthesize icaUIDelegate=_icaUIDelegate;
+- (void)validateLocalPassword:(id)arg1;
 - (void)runAppleIDOptOut:(id)arg1;
 - (void)obtainAuthRight:(id)arg1;
 - (void)setAuthKitDataValue:(id)arg1 forKey:(id)arg2;
+- (void)triggerAKAction:(id)arg1;
 - (void)skipAndContinueSignIn;
 - (void)skipSignIn;
 - (void)dismiss:(id)arg1;
@@ -89,6 +92,8 @@
 - (id)displayImageString;
 - (id)theme;
 - (id)dateFieldsOrder;
+- (id)currentApplicationVersion;
+- (id)currentApplicationIdentifier;
 - (id)clientVersion;
 - (id)client;
 - (id)osBuild;
@@ -96,8 +101,7 @@
 - (int)osMinorVersion;
 - (int)osMajorVersion;
 @property(readonly, nonatomic) unsigned long long protocolVersion; // @dynamic protocolVersion;
-- (void)akWebKitControllerSendFinalResponse:(id)arg1;
-- (BOOL)akWebKitControllerIsFinalResponse:(id)arg1;
+- (void)akWebKitControllerDidReceiveResponse:(id)arg1;
 - (void)akWebKitControllerSignRequest:(id)arg1;
 - (void)akWebKitControllerDidFinishLoading:(id)arg1;
 - (void)akWebKitControllerDidFailLoading:(id)arg1 error:(id)arg2;

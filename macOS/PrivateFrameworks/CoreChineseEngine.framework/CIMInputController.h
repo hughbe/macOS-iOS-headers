@@ -6,72 +6,60 @@
 
 #import "IMKCandidateBasedInputController.h"
 
-@class CIMBaseEngine, IMKTouchButton, NSString;
+#import "CIMMenuControllerDataSource.h"
 
-@interface CIMInputController : IMKCandidateBasedInputController
+@class CIMBaseEngine, IMKKeyboardInputController, NSString;
+
+@interface CIMInputController : IMKCandidateBasedInputController <CIMMenuControllerDataSource>
 {
-    id _client;
+    IMKKeyboardInputController *_keyboardInputController;
     Class _engineClass;
-    NSString *_inputModeName;
     CIMBaseEngine *_inputModeEngine;
-    BOOL _isUsingIncrementalSearch;
-    BOOL _isIncrementalSearchInputContext;
-    unsigned long long _incrementalSearchClientGeometry;
-    IMKTouchButton *_languageSwitchButton;
 }
 
-@property(retain, nonatomic) IMKTouchButton *languageSwitchButton; // @synthesize languageSwitchButton=_languageSwitchButton;
-@property(nonatomic) unsigned long long incrementalSearchClientGeometry; // @synthesize incrementalSearchClientGeometry=_incrementalSearchClientGeometry;
-@property(nonatomic) BOOL isIncrementalSearchInputContext; // @synthesize isIncrementalSearchInputContext=_isIncrementalSearchInputContext;
-@property(readonly) BOOL isUsingIncrementalSearch; // @synthesize isUsingIncrementalSearch=_isUsingIncrementalSearch;
-@property(retain, nonatomic) CIMBaseEngine *inputModeEngine; // @synthesize inputModeEngine=_inputModeEngine;
-@property(copy, nonatomic) NSString *inputModeName; // @synthesize inputModeName=_inputModeName;
-@property(retain, nonatomic) Class engineClass; // @synthesize engineClass=_engineClass;
-@property(nonatomic) __weak id client; // @synthesize client=_client;
 - (void).cxx_destruct;
-- (id)environmentDebuggingInformation;
-- (void)switchLanguages:(id)arg1;
-- (void)handleCandidateSelected:(id)arg1 candidateController:(id)arg2;
-- (void)handleCandidateSelectionChanged:(id)arg1 candidateController:(id)arg2;
-- (id)candidateDataForDisplayMethod:(id)arg1 candidateController:(id)arg2;
-- (id)secondaryCandidates;
-- (BOOL)automaticallyRestrictLayoutToPrimaryCandidateControllerLayout;
-- (id)candidateController;
-- (void)checkPreferenceGlobalSettings;
-- (id)selectionKeyValueForKeyCode:(short)arg1;
-- (BOOL)insertTextFromPalette:(id)arg1;
-- (BOOL)insertText:(id)arg1;
-- (unsigned long long)recognizedEvents:(id)arg1;
-- (void)setValue:(id)arg1 forTag:(long long)arg2 client:(id)arg3;
+@property(retain, nonatomic) CIMBaseEngine *inputModeEngine; // @synthesize inputModeEngine=_inputModeEngine;
+@property(retain, nonatomic) Class engineClass; // @synthesize engineClass=_engineClass;
+@property(retain, nonatomic) IMKKeyboardInputController *keyboardInputController; // @synthesize keyboardInputController=_keyboardInputController;
+- (void)radarButtonPressed;
+- (void)setInputMode:(id)arg1 client:(id)arg2;
+- (void)menuItemAction:(id)arg1;
+@property(readonly) unsigned long long scriptType;
+- (id)inlineText;
+- (void)didSelectSortingMode:(id)arg1 candidateController:(id)arg2;
+- (void)candidateSelectionChanged:(id)arg1 candidateController:(id)arg2;
+- (void)candidateSelected:(id)arg1 candidateController:(id)arg2;
+@property(readonly, nonatomic) BOOL windowIsHorizontal;
+- (unsigned long long)optionsForMenuController:(id)arg1;
+- (id)selectedStringForMenuController:(id)arg1;
+- (BOOL)selectionShouldBeReflectedInTouchBar;
+- (void)didHideCandidates:(id)arg1;
+- (id)makeScrubbingCandidateController;
+- (void)updateCandidateController:(id)arg1;
+- (id)makeCandidateController;
 - (BOOL)mouseMovedOnCharacterIndex:(unsigned long long)arg1 coordinate:(struct CGPoint)arg2 withModifier:(unsigned long long)arg3 client:(id)arg4;
 - (BOOL)mouseUpOnCharacterIndex:(unsigned long long)arg1 coordinate:(struct CGPoint)arg2 withModifier:(unsigned long long)arg3 client:(id)arg4;
 - (BOOL)mouseDownOnCharacterIndex:(unsigned long long)arg1 coordinate:(struct CGPoint)arg2 withModifier:(unsigned long long)arg3 continueTracking:(char *)arg4 client:(id)arg5;
-- (id)originalString:(id)arg1;
-- (id)candidates:(id)arg1;
-- (BOOL)didCommandBySelector:(SEL)arg1 client:(id)arg2;
-- (id)composedString:(id)arg1;
-- (void)commitComposition:(id)arg1;
-- (BOOL)handleEvent:(id)arg1 client:(id)arg2;
+- (unsigned long long)recognizedEvents:(id)arg1;
+- (void)setValue:(id)arg1 forTag:(long long)arg2 client:(id)arg3;
 - (void)deactivateServer:(id)arg1;
 - (void)activateServer:(id)arg1;
-@property(readonly) unsigned long long scriptType;
-- (void)logPreferenceStatistics:(id)arg1;
-- (void)setInputMode:(id)arg1 client:(id)arg2;
-- (void)requestRadar:(id)arg1;
-- (void)enterStrokeSequence:(id)arg1;
-- (void)showCIMHelp:(id)arg1;
-- (void)selectNextTone:(id)arg1;
-- (void)selectPreviousTone:(id)arg1;
-- (void)showCompositionCandidates:(id)arg1;
-- (void)forgetSelectedWord:(id)arg1;
-- (void)showFacemarksAndPunctuationCandidates:(id)arg1;
-- (void)selectNextSortingMethod:(id)arg1;
-- (void)selectPreviousSortingMethod:(id)arg1;
-- (void)findInputCode:(id)arg1;
-- (void)annotationSelected:(id)arg1 forCandidate:(id)arg2;
+- (id)candidates:(id)arg1;
+- (void)commitComposition:(id)arg1;
+- (BOOL)handleEvent:(id)arg1 client:(id)arg2;
+- (BOOL)inputText:(id)arg1 client:(id)arg2;
+- (BOOL)didCommandBySelector:(SEL)arg1 client:(id)arg2;
+- (BOOL)isUsingSortingBar;
+- (id)informationView;
+- (BOOL)automaticallyRestrictLayoutToPrimaryCandidateControllerLayout;
+- (void)inputControllerWillClose;
 - (id)menu;
-- (void)dealloc;
-- (void)endCandidateSession;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

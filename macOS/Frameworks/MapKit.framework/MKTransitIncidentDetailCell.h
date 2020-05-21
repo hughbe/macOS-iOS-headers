@@ -10,6 +10,7 @@
 
 @class MKIncidentTextView, NSDate, NSLayoutConstraint, NSString, _MKUILabel;
 
+__attribute__((visibility("hidden")))
 @interface MKTransitIncidentDetailCell : MKTableViewCell <MKMultiLineLabelContainer>
 {
     MKIncidentTextView *_descriptionLabel;
@@ -21,14 +22,14 @@
     NSDate *_lastUpdated;
 }
 
-@property(retain, nonatomic) NSDate *lastUpdated; // @synthesize lastUpdated=_lastUpdated;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSDate *lastUpdated; // @synthesize lastUpdated=_lastUpdated;
 - (id)multilineTextFieldsWithinContainer;
 - (void)_updateLastUpdatedLabel;
 @property(copy, nonatomic) NSString *incidentDescription;
 - (void)updateConstraints;
 - (void)_setConstraints;
-- (void)updateLayoutWithWidth:(double)arg1;
+- (void)infoCardThemeChanged;
 - (id)initWithReuseIdentifier:(id)arg1;
 
 // Remaining properties

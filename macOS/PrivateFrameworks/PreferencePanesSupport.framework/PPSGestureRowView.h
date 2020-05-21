@@ -14,6 +14,7 @@
     NSButton *_checkbox;
 }
 
+- (void).cxx_destruct;
 - (void)mouseDown:(id)arg1;
 
 @end

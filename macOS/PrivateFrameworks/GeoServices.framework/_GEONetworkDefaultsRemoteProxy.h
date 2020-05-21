@@ -8,19 +8,21 @@
 
 #import "_GEONetworkDefaultsServerProxy.h"
 
-@class NSLock, NSMutableArray, NSString;
+@class NSMutableArray, NSString, geo_isolater;
 
 __attribute__((visibility("hidden")))
 @interface _GEONetworkDefaultsRemoteProxy : NSObject <_GEONetworkDefaultsServerProxy>
 {
     id <_GEONetworkDefaultsServerProxyDelegate> _delegate;
-    NSLock *_lock;
+    geo_isolater *_isolation;
     NSMutableArray *_updateCompletionHandlers;
     int _configChangedToken;
 }
 
-@property(nonatomic) id <_GEONetworkDefaultsServerProxyDelegate> delegate; // @synthesize delegate=_delegate;
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <_GEONetworkDefaultsServerProxyDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)updateNetworkDefaults:(CDUnknownBlockType)arg1;
+- (void)_networkDefaultsDidChange;
 - (void)dealloc;
 - (id)init;
 

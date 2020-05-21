@@ -6,18 +6,24 @@
 
 #import "NSObject.h"
 
-#import "ACDAccountStoreProtocol.h"
+#import "ACRemoteAccountStoreProtocol.h"
 
 @class ACDAccountStore, NSString;
 
-@interface ACDAccountStoreFilter : NSObject <ACDAccountStoreProtocol>
+__attribute__((visibility("hidden")))
+@interface ACDAccountStoreFilter : NSObject <ACRemoteAccountStoreProtocol>
 {
     ACDAccountStore *_backingAccountStore;
 }
 
 + (id)_whiteList;
-@property(retain) ACDAccountStore *backingAccountStore; // @synthesize backingAccountStore=_backingAccountStore;
++ (id)new;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) ACDAccountStore *backingAccountStore; // @synthesize backingAccountStore=_backingAccountStore;
+- (void)resetDatabaseToVersion:(id)arg1 withCompletion:(CDUnknownBlockType)arg2;
+- (void)scheduleBackupIfNonexistent:(CDUnknownBlockType)arg1;
+- (void)reportTelemetryForLandmarkEvent:(CDUnknownBlockType)arg1;
+- (void)triggerKeychainMigrationIfNecessary:(CDUnknownBlockType)arg1;
 - (void)removeAccountsFromPairedDeviceWithCompletion:(CDUnknownBlockType)arg1;
 - (void)saveAccount:(id)arg1 toPairedDeviceWithOptions:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)notifyRemoteDevicesOfModifiedAccount:(id)arg1 withChangeType:(id)arg2 completion:(CDUnknownBlockType)arg3;
@@ -55,6 +61,7 @@
 - (void)isPerformingDataclassActionsForAccount:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)dataclassActionsForAccountDeletion:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)dataclassActionsForAccountSave:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)preloadDataclassOwnersWithCompletion:(CDUnknownBlockType)arg1;
 - (void)syncableDataclassesForAccountType:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)supportedDataclassesForAccountType:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)dataclassesWithHandler:(CDUnknownBlockType)arg1;
@@ -78,6 +85,7 @@
 - (void)childAccountsForAccountWithIdentifier:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)parentAccountForAccountWithIdentifier:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)accountsOnPairedDeviceWithAccountType:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)accountsWithAccountType:(id)arg1 options:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)accountsWithAccountType:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)accountWithIdentifier:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)accountTypesWithHandler:(CDUnknownBlockType)arg1;
@@ -90,8 +98,11 @@
 - (id)_appPermissionsForAccountTypeIdentifier:(id)arg1;
 - (BOOL)_wildCardAuthorizationMatchingForAccountTypeIdentifier:(id)arg1;
 - (BOOL)_isClientPermittedToAccessAccountTypeWithIdentifier:(id)arg1;
+- (BOOL)isClientEntitledToAccessAccountTypeWithIdentifier:(id)arg1;
 - (BOOL)_accessGrantedForBundleID:(id)arg1 onAccountTypeID:(id)arg2;
 - (BOOL)_accessGrantedForClient:(id)arg1 onAccountTypeID:(id)arg2;
+- (id)initWithBackingAccountStore:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

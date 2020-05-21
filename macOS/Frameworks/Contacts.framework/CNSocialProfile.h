@@ -24,8 +24,10 @@
 }
 
 + (BOOL)supportsSecureCoding;
++ (id)socialProfileWithDictionaryRepresentation:(id)arg1;
 + (id)localizedStringForService:(id)arg1;
 + (id)localizedStringForKey:(id)arg1;
+- (void).cxx_destruct;
 @property(copy) NSArray *bundleIdentifiers; // @synthesize bundleIdentifiers=_bundleIdentifiers;
 @property(copy) NSString *teamIdentifier; // @synthesize teamIdentifier=_teamIdentifier;
 @property(copy) NSString *displayname; // @synthesize displayname=_displayname;
@@ -35,16 +37,17 @@
 @property(copy) NSString *urlString; // @synthesize urlString=_urlString;
 - (BOOL)isValid:(id *)arg1;
 @property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1 ignoreURLs:(BOOL)arg2;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithUrlString:(id)arg1 username:(id)arg2 userIdentifier:(id)arg3 service:(id)arg4 displayname:(id)arg5 teamIdentifier:(id)arg6 bundleIdentifiers:(id)arg7;
 - (id)initWithUrlString:(id)arg1 username:(id)arg2 userIdentifier:(id)arg3 service:(id)arg4 displayname:(id)arg5;
 - (id)initWithUrlString:(id)arg1 username:(id)arg2 userIdentifier:(id)arg3 service:(id)arg4;
+- (id)dictionaryRepresentation;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

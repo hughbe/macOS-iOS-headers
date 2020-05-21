@@ -6,27 +6,38 @@
 
 #import "NSObject.h"
 
+#import "INCodableAttributeRelationComparing.h"
+#import "INCurrencyAmountExport.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class NSDecimalNumber, NSString;
 
-@interface INCurrencyAmount : NSObject <NSCopying, NSSecureCoding>
+@interface INCurrencyAmount : NSObject <INCodableAttributeRelationComparing, INCurrencyAmountExport, NSCopying, NSSecureCoding>
 {
     NSDecimalNumber *_amount;
     NSString *_currencyCode;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, copy) NSString *currencyCode; // @synthesize currencyCode=_currencyCode;
 @property(readonly, copy) NSDecimalNumber *amount; // @synthesize amount=_amount;
-- (void).cxx_destruct;
+- (id)_dictionaryRepresentation;
+- (id)descriptionAtIndent:(unsigned long long)arg1;
+@property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)initWithAmount:(id)arg1 currencyCode:(id)arg2;
+- (id)_intents_readableDescriptionWithLocalizer:(id)arg1 metadata:(id)arg2;
+- (BOOL)_intents_compareValue:(id)arg1 relation:(unsigned long long)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

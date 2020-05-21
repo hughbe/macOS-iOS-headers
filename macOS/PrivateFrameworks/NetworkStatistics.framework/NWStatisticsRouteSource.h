@@ -12,23 +12,14 @@
 {
     struct nstat_route_descriptor _descriptor;
     NSData *_destination;
-    NSData *_mask;
-    NSData *_gateway;
 }
 
-@property(retain) NSData *gateway; // @synthesize gateway=_gateway;
-@property(retain) NSData *mask; // @synthesize mask=_mask;
-@property(retain) NSData *destination; // @synthesize destination=_destination;
 - (void).cxx_destruct;
+@property(retain) NSData *destination; // @synthesize destination=_destination;
 - (id)initWithManager:(id)arg1 destination:(const struct sockaddr *)arg2 mask:(const struct sockaddr *)arg3 interface:(unsigned int)arg4;
 - (id)description;
-- (BOOL)handleDescriptor:(void *)arg1 length:(unsigned long long)arg2;
-- (id)createCounts;
-@property(readonly) unsigned long long flags;
-@property(readonly) long long interface;
-@property(readonly) unsigned long long gatewayID;
-@property(readonly) unsigned long long parentID;
-@property(readonly) unsigned long long routeID;
+- (id)_currentSnapshot;
+- (int)handleDescriptor:(void *)arg1 length:(unsigned long long)arg2 events:(unsigned long long)arg3;
 
 @end
 

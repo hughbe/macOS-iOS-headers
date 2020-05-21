@@ -30,6 +30,7 @@
 - (BOOL)wantsUpdateLayer;
 - (BOOL)isOpaque;
 - (void)setFrameSize:(struct CGSize)arg1;
+- (void)setFrameOrigin:(struct CGPoint)arg1;
 - (BOOL)preservesContentDuringLiveResize;
 - (id)_enclosingBrowserView;
 - (id)hitTest:(struct CGPoint)arg1;

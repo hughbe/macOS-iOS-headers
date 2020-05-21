@@ -12,6 +12,7 @@
 
 + (id)cancelSucceededWithDictionary:(id)arg1 context:(id)arg2;
 + (id)cancelSucceeded;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -6,10 +6,11 @@
 
 #import <SiriUI/SiriUIClearBackgroundCell.h>
 
-@class NSView, SiriUIAceObjectViewController;
+#import "CAAnimationDelegate.h"
 
-__attribute__((visibility("hidden")))
-@interface SiriUIAceObjectControllerCell : SiriUIClearBackgroundCell
+@class NSString, NSView, SiriUIAceObjectViewController;
+
+@interface SiriUIAceObjectControllerCell : SiriUIClearBackgroundCell <CAAnimationDelegate>
 {
     NSView *_animationView;
     SiriUIAceObjectViewController *_aceViewController;
@@ -19,11 +20,11 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)reuseIdentifier;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSView *replacedView; // @synthesize replacedView=_replacedView;
 @property(nonatomic) long long replacementAnimationType; // @synthesize replacementAnimationType=_replacementAnimationType;
 @property(nonatomic) long long insertionAnimationType; // @synthesize insertionAnimationType=_insertionAnimationType;
 @property(retain, nonatomic) SiriUIAceObjectViewController *aceViewController; // @synthesize aceViewController=_aceViewController;
-- (void).cxx_destruct;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
 - (BOOL)isFlipped;
@@ -39,6 +40,12 @@ __attribute__((visibility("hidden")))
 - (void)layout;
 - (void)prepareForReuse;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,7 +6,6 @@
 
 #import <ContactsFoundation/CNObservedResult.h>
 
-__attribute__((visibility("hidden")))
 @interface CNObservedFailureResult : CNObservedResult
 {
 }

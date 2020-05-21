@@ -15,6 +15,9 @@ __attribute__((visibility("hidden")))
 }
 
 + (void)initialize;
+- (id)newSQLStatmentForBinaryIndex:(id)arg1 inStore:(id)arg2;
+- (id)initializeContextForIndexGeneration:(id)arg1 inStore:(id)arg2;
+- (id)newSQLStatementForChangeRequest:(id)arg1;
 - (id)newSQLStatementForUpdateRequest:(id)arg1;
 - (id)newSQLStatementForFetchRequest:(id)arg1 ignoreInheritance:(BOOL)arg2 countOnly:(BOOL)arg3 nestingLevel:(unsigned int)arg4 nestIsWhereScoped:(BOOL)arg5 requestContext:(id)arg6;
 - (id)newSQLStatementForRequest:(id)arg1 ignoreInheritance:(BOOL)arg2 countOnly:(BOOL)arg3 nestingLevel:(unsigned int)arg4 nestIsWhereScoped:(BOOL)arg5 requestContext:(id)arg6;

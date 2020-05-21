@@ -6,20 +6,26 @@
 
 #import <AppKit/NSView.h>
 
-@class NSThemeFrame;
+@class NSThemeFrame, _NSTitlebarDecorationView;
 
 __attribute__((visibility("hidden")))
 @interface NSTitlebarContainerView : NSView
 {
     NSThemeFrame *_associatedThemeFrame;
     BOOL _transparent;
+    BOOL _transparencyAllowedInFullScreen;
     BOOL _shouldRoundCorners;
     BOOL _maskSet;
+    _NSTitlebarDecorationView *_decorationView;
+    NSView *_nonRootLayerBackedWindowChromeBackstopRenderingView;
 }
 
+@property BOOL transparencyAllowedInFullScreen; // @synthesize transparencyAllowedInFullScreen=_transparencyAllowedInFullScreen;
+@property(retain) _NSTitlebarDecorationView *decorationView; // @synthesize decorationView=_decorationView;
 @property double buttonRevealAmount; // @dynamic buttonRevealAmount;
 @property(readonly) double titleHeightToHideInFullScreen; // @dynamic titleHeightToHideInFullScreen;
 - (BOOL)layer:(id)arg1 shouldInheritContentsScale:(double)arg2 fromWindow:(id)arg3;
+- (void)_updateNonRootLayerBackedWindowChromeBackstopRenderingView;
 - (void)updateLayer;
 - (void)_setCornerMaskIfNeeded;
 - (void)_clearCornerMaskIfNeeded;
@@ -31,8 +37,14 @@ __attribute__((visibility("hidden")))
 @property NSThemeFrame *associatedThemeFrame; // @synthesize associatedThemeFrame=_associatedThemeFrame;
 - (id)_themeFrame;
 @property BOOL shouldRoundCorners; // @synthesize shouldRoundCorners=_shouldRoundCorners;
+- (void)layout;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)dealloc;
 @property BOOL transparent;
+- (void)_refreshLayerHitTesting;
+@property BOOL drawsBottomSeparator;
+- (void)setFrameSize:(struct CGSize)arg1;
+- (id)initWithFrame:(struct CGRect)arg1;
 
 @end
 

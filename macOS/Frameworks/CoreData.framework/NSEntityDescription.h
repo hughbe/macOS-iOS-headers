@@ -9,10 +9,11 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSFastEnumeration.h"
+#import "NSSecureCoding.h"
 
-@class NSArray, NSData, NSDictionary, NSManagedObjectModel, NSMutableDictionary, NSString;
+@class NSArray, NSData, NSDictionary, NSExpression, NSManagedObjectModel, NSMutableDictionary, NSString;
 
-@interface NSEntityDescription : NSObject <NSCoding, NSCopying, NSFastEnumeration>
+@interface NSEntityDescription : NSObject <NSSecureCoding, NSCoding, NSCopying, NSFastEnumeration>
 {
     int _cd_rc;
     id _snapshotClass;
@@ -40,16 +41,20 @@
         unsigned int _hasAttributesWithExternalDataReferences:1;
         unsigned int _hasNonstandardPrimitiveProperties:2;
         unsigned int _hasUniqueProperties:1;
+        unsigned int _hasChildrenWithUniqueProperties:1;
         unsigned int _validationUniqueProperties:1;
-        unsigned int _reservedEntityDescription:19;
+        unsigned int _isPersistentHistoryEntity:1;
+        unsigned int _hasAttributesWithFileBackedFutures:1;
+        unsigned int _reservedEntityDescription:16;
     } _entityDescriptionFlags;
-    void *_extraIvars;
+    struct _ExtraEntityIVars *_extraIvars;
     NSMutableDictionary *_userInfo;
     id _flattenedSubentities;
     id **_kvcPropertyAccessors;
     long long _modelsReferenceIDForEntity;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)insertNewObjectForEntityForName:(id)arg1 inManagedObjectContext:(id)arg2;
 + (id)entityForName:(id)arg1 inManagedObjectContext:(id)arg2;
 + (void)initialize;
@@ -60,59 +65,76 @@
 - (unsigned long long)retainCount;
 - (oneway void)release;
 - (id)retain;
+- (void)_setUniquenessConstraints:(id)arg1;
 @property(retain) NSArray *uniquenessConstraints;
 - (id)_checkForNonCascadeNoInverses;
 @property(retain) NSArray *compoundIndexes;
+@property(copy) NSArray *indexes;
+- (void)_validateIndex:(id)arg1;
 @property(copy) NSString *versionHashModifier;
 @property(readonly, copy) NSData *versionHash;
 - (id)_newVersionHashInStyle:(unsigned long long)arg1;
 @property(copy) NSString *name;
 @property(getter=isAbstract) BOOL abstract;
 @property(copy) NSString *managedObjectClassName;
+@property(retain, nonatomic) NSExpression *coreSpotlightDisplayNameExpression;
 @property(readonly, copy) NSDictionary *propertiesByName;
 @property(retain) NSArray *properties;
+- (void)_setProperties:(id)arg1 preserveIndices:(BOOL)arg2;
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
-- (id)inverseForRelationshipKey:(id)arg1;
 - (id)relationshipsWithDestinationEntity:(id)arg1;
-- (id)toOneRelationshipKeys;
-- (id)toManyRelationshipKeys;
 @property(readonly) NSManagedObjectModel *managedObjectModel;
 @property(readonly, copy) NSDictionary *subentitiesByName;
 @property(retain) NSArray *subentities;
+- (void)_setSubentities:(id)arg1 preserveIndices:(BOOL)arg2;
 @property(readonly) NSEntityDescription *superentity;
 - (BOOL)isKindOfEntity:(id)arg1;
 @property(retain, nonatomic) NSDictionary *userInfo;
 @property(readonly, copy) NSDictionary *relationshipsByName;
 @property(readonly, copy) NSDictionary *attributesByName;
-- (id)attributeKeys;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)_setIndexesFromJSONObject:(id)arg1 supplemental:(BOOL)arg2;
+- (id)_indexDescriptionFromJSONArray:(id)arg1;
+- (id)_indexElementFromJSONArray:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (struct _ExtraEntityIVars *)_extraIVars;
+- (void)_initializeExtraIVars;
 - (void)dealloc;
-- (void)finalize;
 - (id)init;
-- (id)_propertyWithRenamingIdentifier:(id)arg1;
-- (id)knownKeysMappingStrategy;
 - (void)_addProperty:(id)arg1;
 - (void)_addSubentity:(id)arg1;
+- (id)keypathsToPrefetchForDeletePropagation;
 - (id)elementID;
 - (void)setElementID:(id)arg1;
 - (void)_writeIntoData:(id)arg1 propertiesDict:(id)arg2 uniquedPropertyNames:(id)arg3 uniquedStrings:(id)arg4 uniquedData:(id)arg5 uniquedMappings:(id)arg6 entities:(id)arg7;
-- (BOOL)_hasUniquedAttributeWithName:(id)arg1;
+- (BOOL)_isSchemaEqual:(id)arg1;
+- (BOOL)_hasUniquedPropertyNamed:(id)arg1;
 - (id)_extensionsOfParentConstraint:(id)arg1;
 - (BOOL)_constraintIsExtension:(id)arg1;
 - (id)_uniquenessConstraints;
 - (BOOL)_hasUniqueProperties;
-- (BOOL)_hasUniquePropertiesUncached;
+- (void)_setHasUniquePropertiesUpInheritanceHierachy;
+- (void)_setHasUniqueProperties:(BOOL)arg1;
+- (void)_setValidationRequiredUniquePropertiesUpInheritanceHierachy;
 - (BOOL)_isPathologicalForConstraintMerging:(id *)arg1;
-- (BOOL)_hasUniquePropertiesDownInheritanceHiearchy;
-- (id)_compoundIndexes;
+- (void)_finalizeIndexes;
+- (void)_removeIndexForProperty:(id)arg1;
+- (void)_addIndexForProperty:(id)arg1;
+- (BOOL)_hasIndexForProperty:(id)arg1;
+- (void)_setIndexes:(id)arg1;
+- (void)_addSupplementalIndexes:(id)arg1;
+- (id)_propertiesOnlySubsetFromIndexes:(id)arg1;
+- (void)_validateIndexNameChangeFrom:(id)arg1 to:(id)arg2;
+- (id)_oldCompoundIndexStyleIndexes;
+- (void)_dropIndexes;
 - (BOOL)_hasPropertiesStoredInTruthFile;
 - (BOOL)_hasPropertiesIndexedBySpotlight;
 - (BOOL)_hasAttributesWithExternalDataReferences;
+- (BOOL)_hasAttributesWithFileBackedFutures;
 - (void)_restoreValidation;
 - (BOOL)_skipValidation;
 - (void)_stripForMigration;
@@ -146,16 +168,24 @@
 - (void)_setSuperentity:(id)arg1;
 - (id)_subentityNamed:(id)arg1;
 - (void)_throwIfNotEditable;
+- (unsigned long long)_inheritanceDepth;
 - (BOOL)_isEditable;
 - (void)_setIsEditable:(BOOL)arg1;
 - (id)_relationshipNamed:(id)arg1;
+- (id)_localPropertyDescriptionNamed:(id)arg1;
 - (id)_localRelationshipNamed:(id)arg1;
 - (id)_attributeNamed:(id)arg1;
 - (BOOL)_hasCustomPrimitiveProperties;
 - (Class)_entityClass;
 - (Class)_snapshotClass;
+- (id)inverseForRelationshipKey:(id)arg1;
+- (id)toOneRelationshipKeys;
+- (id)toManyRelationshipKeys;
+- (id)attributeKeys;
 - (id)_relationshipNamesByType:(BOOL)arg1;
+- (BOOL)_propertyKeys:(id)arg1 matchingBlock:(CDUnknownBlockType)arg2;
 - (id)_propertiesOfType:(unsigned long long)arg1;
+- (id)_propertiesMatchingBlock:(CDUnknownBlockType)arg1;
 - (void)_setManagedObjectModel:(id)arg1;
 - (id)_initWithName:(id)arg1;
 - (id)_newMappingForPropertiesOfRange:(unsigned int)arg1;
@@ -163,6 +193,13 @@
 - (id)_keypathsToPrefetchForDeletePropagation;
 - (id)_keypathsToPrefetchForDeletePropagationPrefixedWith:(id)arg1 toDepth:(long long)arg2 processedEntities:(id)arg3;
 - (void)_nukeMOClassName__;
+- (id)knownKeysMappingStrategy;
+- (id)_propertyWithRenamingIdentifier:(id)arg1;
+- (id)_uniquenessConstraintsAsFetchIndexes;
+- (id)_constraintAsIndex:(id)arg1;
+- (void)_addFactoryToRetainList:(id)arg1;
+- (id)_checkSelfForNonCascadeNoInverses;
+- (BOOL)_hasUniquePropertiesRaw;
 
 @end
 

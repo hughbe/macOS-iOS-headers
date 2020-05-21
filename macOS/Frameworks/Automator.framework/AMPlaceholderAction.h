@@ -10,28 +10,37 @@
 
 @interface AMPlaceholderAction : AMBundleAction
 {
-    NSError *_loadingError;
-    NSTextField *_descriptionTextField;
-    NSTextField *_errorRecoveryTextField;
-    NSView *_placeHolderView;
-    NSDictionary *_actionDictionary;
-    NSButton *_openSecurityPrefButton;
-    NSButton *_approveActionButton;
-    NSButton *_okQuarantineButton;
+    NSError *__loadingError;
+    NSDictionary *__actionDictionary;
+    NSTextField *__descriptionTextField;
+    NSTextField *__errorRecoveryTextField;
+    NSView *__placeHolderView;
+    NSButton *__openSecurityPrefButton;
+    NSButton *__approveActionButton;
+    NSButton *__okQuarantineButton;
+    NSButton *__thirdPartyActionsButton;
 }
 
-- (void)setUserApprovedQuarantineFlag:(id)arg1;
-- (void)reloadAction;
-- (void)displayApproveActionSheet;
-- (void)openSecurityPref;
++ (id)placeholderActionWithLoadingError:(id)arg1 actionDictionary:(id)arg2;
+- (void).cxx_destruct;
+@property(retain) NSButton *_thirdPartyActionsButton; // @synthesize _thirdPartyActionsButton=__thirdPartyActionsButton;
+@property(retain) NSButton *_okQuarantineButton; // @synthesize _okQuarantineButton=__okQuarantineButton;
+@property(retain) NSButton *_approveActionButton; // @synthesize _approveActionButton=__approveActionButton;
+@property(retain) NSButton *_openSecurityPrefButton; // @synthesize _openSecurityPrefButton=__openSecurityPrefButton;
+@property(retain) NSView *_placeHolderView; // @synthesize _placeHolderView=__placeHolderView;
+@property(retain) NSTextField *_errorRecoveryTextField; // @synthesize _errorRecoveryTextField=__errorRecoveryTextField;
+@property(retain) NSTextField *_descriptionTextField; // @synthesize _descriptionTextField=__descriptionTextField;
+@property(retain) NSDictionary *actionDictionary; // @synthesize actionDictionary=__actionDictionary;
+@property(retain) NSError *loadingError; // @synthesize loadingError=__loadingError;
+- (void)_reloadAction;
+- (void)_removeQuarantineAndReloadAction;
+- (void)removeQuarantineAndReloadAction:(id)arg1;
+- (void)showThirdPartyActionsAndReloadAction:(id)arg1;
+- (void)displayGatekeeperApprovalActionSheet:(id)arg1;
+- (void)openSecurityPref:(id)arg1;
 - (id)runWithInput:(id)arg1 error:(id *)arg2;
 - (id)view;
 - (void)viewFrameDidChange:(id)arg1;
-- (void)setActionDictionary:(id)arg1;
-- (id)actionDictionary;
-- (void)setLoadingError:(id)arg1;
-- (id)loadingError;
-- (void)dealloc;
 
 @end
 

@@ -25,6 +25,7 @@
 @property(nonatomic) BOOL allocatedControllerEntityID; // @synthesize allocatedControllerEntityID=_allocatedControllerEntityID;
 @property(readonly, nonatomic) unsigned long long controllerEntityID; // @synthesize controllerEntityID=_controllerEntityID;
 - (void)dealloc;
+- (Class)entityClassForEntity:(id)arg1;
 - (Class)entityClass;
 - (void)didChangeEntity:(id)arg1 controlWithIndex:(unsigned short)arg2 toValue:(id)arg3 forTargetEntityID:(unsigned long long)arg4;
 - (void)didChangeEntity:(id)arg1 clockDomainWithIndex:(unsigned short)arg2 toClockSourceWithIndex:(unsigned short)arg3 forTargetEntityID:(unsigned long long)arg4;
@@ -36,6 +37,7 @@
 - (void)didChangeEntity:(id)arg1 setVideoClusterWithIndex:(unsigned short)arg2 toFormatSpecific:(id)arg3 aspectRatio:(id)arg4 colorSpace:(unsigned short)arg5 andFrameSize:(id)arg6 forTargetEntityID:(unsigned long long)arg7;
 - (void)didChangeEntity:(id)arg1 descriptorOfType:(unsigned short)arg2 withIndex:(unsigned short)arg3 toStreamFormat:(id)arg4 forTargetEntityID:(unsigned long long)arg5;
 - (void)didChangeEntity:(id)arg1 toConfiguration:(unsigned short)arg2 forTargetEntityID:(unsigned long long)arg3;
+- (void)didAcquireEntity:(id)arg1 withFlags:(unsigned int)arg2 byOwner:(unsigned long long)arg3 forTargetEntityID:(unsigned long long)arg4;
 - (void)controllerRequestToChangeEntity:(id)arg1 controlWithIndex:(unsigned short)arg2 toValue:(id)arg3 forTargetEntityID:(unsigned long long)arg4;
 - (void)controllerRequestToChangeEntity:(id)arg1 clockDomainWithIndex:(unsigned short)arg2 toClockSourceWithIndex:(unsigned short)arg3 forTargetEntityID:(unsigned long long)arg4;
 - (void)controllerRequestToChangeEntity:(id)arg1 sensorClusterWithIndex:(unsigned short)arg2 toSamplingRate:(id)arg3 forTargetEntityID:(unsigned long long)arg4;
@@ -79,6 +81,7 @@
 - (BOOL)handleSetVideoFormatUnsolicitedResponse:(id)arg1 forEntity:(id)arg2;
 - (BOOL)handleSetStreamFormatUnsolicitedResponse:(id)arg1 forEntity:(id)arg2;
 - (BOOL)handleSetConfigurationUnsolicitedResponse:(id)arg1 forEntity:(id)arg2;
+- (BOOL)handleAcquireEntityUnsolicitedResponse:(id)arg1 forEntity:(id)arg2;
 - (BOOL)AECPDidReceiveCommand:(id)arg1 onInterface:(id)arg2;
 - (void)didRemoveAECP:(id)arg1 onInterface:(id)arg2;
 - (void)didAddAECP:(id)arg1 onInterface:(id)arg2;

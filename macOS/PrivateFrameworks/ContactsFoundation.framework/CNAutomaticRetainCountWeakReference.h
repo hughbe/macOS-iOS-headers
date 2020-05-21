@@ -6,7 +6,6 @@
 
 #import <ContactsFoundation/CNWeakReference.h>
 
-__attribute__((visibility("hidden")))
 @interface CNAutomaticRetainCountWeakReference : CNWeakReference
 {
     id _object;

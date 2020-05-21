@@ -15,7 +15,7 @@
 @property(readonly, nonatomic) BOOL isLocal;
 @property(readonly, nonatomic) BOOL isPlaceholder;
 @property(readonly, copy, nonatomic) NSString *accountURLString;
-@property(readonly, nonatomic) BOOL isSmartMailbox;
+@property(readonly, nonatomic) BOOL isSpotlightMailbox;
 @property(readonly, nonatomic) BOOL isStore;
 @property(readonly, copy) NSArray *children;
 @property(readonly) BOOL hasChildren;
@@ -24,7 +24,7 @@
 @property(readonly, nonatomic) BOOL isContainer;
 @property(readonly, copy, nonatomic) NSString *extendedDisplayName;
 @property(readonly, copy, nonatomic) NSString *displayName;
-@property(readonly, copy, nonatomic) NSString *persistentID;
+@property(readonly, copy, nonatomic) NSString *persistentUIIdentifier;
 @property(readonly) BOOL isVisibleFlaggedMailbox;
 @property int mailboxType;
 - (BOOL)isDescendantOfMailboxWithType:(int)arg1;

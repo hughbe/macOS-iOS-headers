@@ -16,6 +16,7 @@
 }
 
 + (id)secureCodedPropertyKeys;
++ (BOOL)supportsSecureCoding;
 @property(nonatomic) unsigned int concernID; // @synthesize concernID=_concernID;
 @property(copy, nonatomic) NSString *message; // @synthesize message=_message;
 @property(retain, nonatomic) GKPlayerInternal *player; // @synthesize player=_player;

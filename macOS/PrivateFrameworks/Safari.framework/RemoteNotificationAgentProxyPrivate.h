@@ -15,7 +15,6 @@ __attribute__((visibility("hidden")))
 
 - (void)agentDidUnregisterForRemoteNotifications:(unsigned long long)arg1 disallowedDomains:(id)arg2;
 - (void)agentDidRegisterForRemoteNotifications:(unsigned long long)arg1 allowedDomains:(id)arg2 deviceToken:(id)arg3;
-- (void)agentDidVerifyRemoteNotificationProviderRequest:(unsigned long long)arg1 withResult:(int)arg2 websiteName:(id)arg3 lowResIcon:(id)arg4 highResIcon:(id)arg5;
 - (void)agentDidVerifyRemoteNotificationProviderRequest:(unsigned long long)arg1 withResult:(int)arg2 websiteName:(id)arg3 lowResIcon:(id)arg4 highResIcon:(id)arg5 errorMessages:(id)arg6;
 
 @end

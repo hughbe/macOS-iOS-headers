@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSDate, NSDictionary, NSMutableDictionary, NSString;
 
-@interface PXFeedbackEntry : NSObject <NSCoding>
+@interface PXFeedbackEntry : NSObject <NSSecureCoding>
 {
     NSDictionary *_feedbackItemDetails;
     BOOL _alreadyCollected;
@@ -23,17 +23,22 @@
 
 + (id)createFakeTestFeedbackDictionary;
 + (id)createFakeTestEntry;
++ (id)negativeFeedbackForImageQualityKeys;
++ (id)positiveFeedbackForImageQualityKeys;
++ (id)negativeFeedbackForAutoLoopKeys;
++ (id)positiveFeedbackForAutoLoopKeys;
 + (id)negativeFeedbackForMemoriesKeys;
 + (id)positiveFeedbackForMemoriesKeys;
 + (id)negativeFeedbackForMemoryDetailsKeys;
 + (id)positiveFeedbackForMemoryDetailsKeys;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *appVersion; // @synthesize appVersion=_appVersion;
 @property(nonatomic) BOOL alreadyCollected; // @synthesize alreadyCollected=_alreadyCollected;
 @property(retain, nonatomic) NSDate *timestamp; // @synthesize timestamp=_timestamp;
 @property(copy, nonatomic) NSString *systemID; // @synthesize systemID=_systemID;
 @property(nonatomic) long long generalFeedback; // @synthesize generalFeedback=_generalFeedback;
 @property(retain, nonatomic) NSMutableDictionary *feedbackItemsDict; // @synthesize feedbackItemsDict=_feedbackItemsDict;
-- (void).cxx_destruct;
 - (id)longDescription;
 - (id)asTextForItemKey:(id)arg1;
 - (id)osKeyForItemKey:(id)arg1;

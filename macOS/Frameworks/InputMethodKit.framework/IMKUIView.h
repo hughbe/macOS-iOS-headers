@@ -20,10 +20,10 @@
 
 @property(nonatomic, getter=isTrackingMouseMovement) BOOL trackingMouseMovement; // @synthesize trackingMouseMovement=_trackingMouseMovement;
 @property(retain, nonatomic) NSTrackingArea *trackingArea; // @synthesize trackingArea=_trackingArea;
-@property(retain, nonatomic) IMKUIProperties *properties; // @synthesize properties=_properties;
 @property(retain, nonatomic) NSTimer *pressingTimer; // @synthesize pressingTimer=_pressingTimer;
-@property(nonatomic) double intervalSinceLastTouchBegan; // @synthesize intervalSinceLastTouchBegan=_intervalSinceLastTouchBegan;
+@property(readonly, nonatomic) IMKUIProperties *properties; // @synthesize properties=_properties;
 @property(nonatomic) BOOL inScrubbingMode; // @synthesize inScrubbingMode=_inScrubbingMode;
+- (void)shouldUpdateForPressAndHold:(id)arg1 position:(struct CGPoint)arg2 with:(long long)arg3;
 - (void)touchesEnded:(id)arg1 position:(struct CGPoint)arg2;
 - (void)scrubbed:(id)arg1 position:(struct CGPoint)arg2;
 - (void)tapped:(id)arg1 position:(struct CGPoint)arg2;
@@ -33,6 +33,7 @@
 - (struct CGPoint)locationInViewWithEvent:(id)arg1;
 - (void)touchesBeganWithEvent:(id)arg1;
 - (void)timerFired:(id)arg1;
+- (void)_setPressingTimer:(id)arg1;
 - (void)stopAndInvalidatePressingTimer;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 properties:(id)arg2;

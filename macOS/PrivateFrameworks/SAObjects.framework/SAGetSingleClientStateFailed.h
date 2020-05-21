@@ -18,6 +18,7 @@
 + (id)getSingleClientStateFailedWithErrorCode:(long long)arg1;
 + (id)getSingleClientStateFailedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getSingleClientStateFailed;
+- (BOOL)requiresResponse;
 @property(retain, nonatomic) SAAceClientState *attemptedClientState;
 @property(copy, nonatomic) NSString *reason;
 @property(nonatomic) long long errorCode;

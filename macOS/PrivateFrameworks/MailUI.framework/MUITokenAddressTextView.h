@@ -13,8 +13,10 @@
     MUIAddressField *_addressField;
 }
 
-@property(nonatomic) __weak MUIAddressField *addressField; // @synthesize addressField=_addressField;
 - (void).cxx_destruct;
+@property(nonatomic) __weak MUIAddressField *addressField; // @synthesize addressField=_addressField;
+- (void)mouseUp:(id)arg1;
+- (void)mouseDown:(id)arg1;
 - (void)noteFocusRingMaskChanged;
 - (id)designatedFocusRingView;
 - (BOOL)performDragOperation:(id)arg1;

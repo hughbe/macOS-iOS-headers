@@ -5,10 +5,13 @@
 //
 
 #import "IMKTextInput.h"
+#import "IMKTextInput_AutoCorrection.h"
+#import "IMKTextInput_FunctionRowUI.h"
+#import "IMKTextInput_NSAppearance.h"
 #import "IMKUnicodeTextInput.h"
 #import "IMKXPCSupport.h"
 #import "IMTSMSupport.h"
 
-@protocol IMKTextInput_Full <IMKTextInput, IMKUnicodeTextInput, IMTSMSupport, IMKXPCSupport>
+@protocol IMKTextInput_Full <IMKTextInput, IMKUnicodeTextInput, IMTSMSupport, IMKXPCSupport, IMKTextInput_FunctionRowUI, IMKTextInput_AutoCorrection, IMKTextInput_NSAppearance>
 @end
 

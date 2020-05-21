@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class MCPeerID, NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
+@class MCPeerID, NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface MCSession : NSObject
 {
-    id <MCSessionDelegate> _delegate;
-    id <MCSessionPrivateDelegate> _privateDelegate;
     BOOL _AWDLDisabled;
+    id <MCSessionDelegate> _delegate;
+    BOOL _preferNCMOverEthernet;
+    id <MCSessionPrivateDelegate> _privateDelegate;
     unsigned int _gckPID;
     MCPeerID *_myPeerID;
     NSArray *_securityIdentity;
@@ -25,12 +26,15 @@
     NSMutableDictionary *_connectionPendingPeerEvents;
     NSObject<OS_dispatch_queue> *_callbackQueue;
     unsigned long long _stateHandle;
+    NSString *_sessionID;
+    unsigned long long _maxPeers;
 }
 
 + (id)stringForMCSessionSendDataMode:(long long)arg1;
 + (id)stringForSessionState:(long long)arg1;
+@property(nonatomic) unsigned long long maxPeers; // @synthesize maxPeers=_maxPeers;
+@property(retain, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
 @property(nonatomic) unsigned long long stateHandle; // @synthesize stateHandle=_stateHandle;
-@property(nonatomic, getter=isAWDLDisabled) BOOL AWDLDisabled; // @synthesize AWDLDisabled=_AWDLDisabled;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *callbackQueue; // @synthesize callbackQueue=_callbackQueue;
 @property(retain, nonatomic) NSMutableDictionary *connectionPendingPeerEvents; // @synthesize connectionPendingPeerEvents=_connectionPendingPeerEvents;
 @property(retain, nonatomic) NSMutableDictionary *peerStates; // @synthesize peerStates=_peerStates;
@@ -42,6 +46,9 @@
 @property(readonly) long long encryptionPreference; // @synthesize encryptionPreference=_encryptionPreference;
 @property(readonly) NSArray *securityIdentity; // @synthesize securityIdentity=_securityIdentity;
 @property(readonly) MCPeerID *myPeerID; // @synthesize myPeerID=_myPeerID;
+- (void)syncLogMaxConnectedPeers;
+- (void)syncLogConnectedPeers;
+- (void)logSessionInfo;
 - (id)startStreamWithName:(id)arg1 toPeer:(id)arg2 error:(id *)arg3;
 - (void)syncStartStreamWithName:(id)arg1 toPeer:(id)arg2 mcFD:(int)arg3 isResource:(BOOL)arg4;
 - (void)disconnect;
@@ -70,8 +77,8 @@
 - (struct os_state_data_s *)syncStateCapture;
 - (id)syncDetailedDescription;
 - (void)syncCloseStreamsForPeer:(id)arg1;
-- (void)syncCloseOutgoingStream:(id)arg1 forPeer:(id)arg2 state:(id)arg3 error:(id)arg4 removeObserver:(BOOL)arg5;
-- (void)syncCloseIncomingStream:(id)arg1 forPeer:(id)arg2 state:(id)arg3 error:(id)arg4 reason:(int)arg5 removeObserver:(BOOL)arg6;
+- (void)syncCloseOutgoingStream:(id)arg1 forPeer:(id)arg2 state:(id)arg3 error:(id)arg4 shouldTriggerCancelProgress:(BOOL)arg5;
+- (void)syncCloseIncomingStream:(id)arg1 forPeer:(id)arg2 state:(id)arg3 error:(id)arg4 reason:(int)arg5 shouldTriggerCancelProgress:(BOOL)arg6;
 - (void)syncSendXDataConnectionBlobPushToPID:(unsigned int)arg1 connectionBlob:(id)arg2;
 - (void)syncSendXDataPeerIDPushToPID:(unsigned int)arg1;
 - (void)syncSendXDataStreamCloseFromReceiverToPID:(unsigned int)arg1 streamID:(unsigned int)arg2 closeReason:(unsigned short)arg3;
@@ -82,6 +89,8 @@
 - (id)description;
 @property(nonatomic) id <MCSessionPrivateDelegate> privateDelegate;
 @property __weak id <MCSessionDelegate> delegate;
+@property(nonatomic) BOOL preferNCMOverEthernet;
+@property(nonatomic, getter=isAWDLDisabled) BOOL AWDLDisabled;
 - (void)setHeartbeatTimeout:(unsigned long long)arg1;
 - (long long)connectedInterfacesForPeer:(id)arg1;
 - (void)peerDidDeclineInvitation:(id)arg1;

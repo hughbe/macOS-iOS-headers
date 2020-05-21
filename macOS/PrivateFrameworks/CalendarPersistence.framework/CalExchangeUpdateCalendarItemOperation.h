@@ -19,6 +19,8 @@
     BOOL _shouldSendInvitation;
 }
 
++ (BOOL)supportsSecureCoding;
++ (void)addSetItemFieldWithExtendedPropertyName:(id)arg1 forEvent:(id)arg2 locationValue:(id)arg3 to:(id)arg4;
 @property(readonly) NSManagedObjectID *eventID; // @synthesize eventID=_eventID;
 - (id)messageTracerUUID;
 - (id)messageTracerName;
@@ -28,6 +30,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)shouldDeletePendingOperation:(id)arg1;
 - (id)createRevertOperationInContext:(id)arg1 inSession:(id)arg2;
+- (BOOL)changesShouldBeSentToAllAttendees;
 - (BOOL)executeWithBinding:(id)arg1 inSession:(id)arg2 inContext:(id)arg3 error:(id *)arg4;
 - (BOOL)_shouldUpdateRecurrence;
 - (void)dealloc;

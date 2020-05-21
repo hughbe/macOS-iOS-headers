@@ -6,14 +6,16 @@
 
 #import <CFNetwork/__NSCFURLLocalStreamTaskWork.h>
 
-__attribute__((visibility("hidden")))
 @interface __NSCFURLLocalStreamTaskWorkBlockOp : __NSCFURLLocalStreamTaskWork
 {
     CDUnknownBlockType _block;
+    _Bool _shouldWaitForTls;
 }
 
 + (id)opWithBlock:(CDUnknownBlockType)arg1 description:(const char *)arg2;
 - (void)dealloc;
+- (void)markBlockAsWaitingOnTls:(BOOL)arg1;
+- (BOOL)shouldWaitForTLS;
 - (void)executeBlock;
 
 @end

@@ -16,6 +16,7 @@
     struct _DNSServiceRef_t *_advertiseRef;
     CDUnknownBlockType _browseCallback;
     CDUnknownBlockType _connectionCallback;
+    CDUnknownBlockType _collisionCallback;
     CDUnknownBlockType _serviceNameCollisionCallback;
     NSMutableArray *_launchdSources;
     int _listeningPort;
@@ -24,7 +25,7 @@
 }
 
 @property(copy, nonatomic) CDUnknownBlockType serviceNameCollisionCallback; // @synthesize serviceNameCollisionCallback=_serviceNameCollisionCallback;
-@property(nonatomic) NSObject<OS_dispatch_queue> *resolveContainersSyncQueue; // @synthesize resolveContainersSyncQueue=_resolveContainersSyncQueue;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *resolveContainersSyncQueue; // @synthesize resolveContainersSyncQueue=_resolveContainersSyncQueue;
 @property(copy, nonatomic) CDUnknownBlockType connectionCallback; // @synthesize connectionCallback=_connectionCallback;
 @property(copy, nonatomic) CDUnknownBlockType browseCallback; // @synthesize browseCallback=_browseCallback;
 @property(retain, nonatomic) NSMutableDictionary *resolveContainers; // @synthesize resolveContainers=_resolveContainers;

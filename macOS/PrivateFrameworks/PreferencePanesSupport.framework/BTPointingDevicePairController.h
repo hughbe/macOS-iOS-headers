@@ -31,6 +31,7 @@
     long long mDevicePairAttemptsCount;
 }
 
+- (void).cxx_destruct;
 - (void)deviceInquiryComplete:(id)arg1 error:(int)arg2 aborted:(BOOL)arg3;
 - (void)deviceInquiryDeviceNameUpdated:(id)arg1 device:(id)arg2 devicesRemaining:(unsigned int)arg3;
 - (void)deviceInquiryUpdatingDeviceNamesStarted:(id)arg1 devicesRemaining:(unsigned int)arg2;

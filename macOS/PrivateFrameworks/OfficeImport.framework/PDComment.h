@@ -16,10 +16,13 @@ __attribute__((visibility("hidden")))
     unsigned long long mAuthorId;
     NSDate *mDate;
     unsigned int mIndex;
+    PDComment *parent;
     NSString *_author;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *author; // @synthesize author=_author;
+@property(retain) PDComment *parent; // @synthesize parent;
 - (id)description;
 - (void)setIndex:(unsigned int)arg1;
 - (unsigned int)index;
@@ -31,7 +34,6 @@ __attribute__((visibility("hidden")))
 - (id)text;
 - (void)setPosition:(struct CGPoint)arg1;
 - (struct CGPoint)position;
-- (void)dealloc;
 - (id)init;
 
 @end

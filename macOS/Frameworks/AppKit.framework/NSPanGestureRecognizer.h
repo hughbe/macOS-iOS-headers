@@ -8,23 +8,35 @@
 
 #import "NSCoding.h"
 
+@class NSArray, NSMutableArray, _NS2DVelocityFilter;
+
 @interface NSPanGestureRecognizer : NSGestureRecognizer <NSCoding>
 {
     struct CGPoint _location;
     struct CGPoint _translation;
     unsigned long long _buttonMask;
     long long _buttonCount;
-    id _velocityFilter;
-    double private0;
-    double private1;
-    struct __pgrFlags {
-        unsigned int reserved0:1;
-        unsigned int reserved:31;
-    } __pgrFlags;
-    id _reserved0;
-    id _reserved1;
+    _NS2DVelocityFilter *_velocityFilter;
+    double _timestamp;
+    unsigned long long _modifierFlags;
+    struct CGPoint _locationInWindow;
+    long long _numberOfTouchesRequired;
+    long long _activeTouchCount;
+    NSMutableArray *_trackingTouchIdentities;
+    NSArray *_currentTouches;
+    BOOL _translatesContextOrigin;
 }
 
+@property long long numberOfTouchesRequired; // @synthesize numberOfTouchesRequired=_numberOfTouchesRequired;
+- (unsigned long long)_modifierFlags;
+- (double)_timestamp;
+- (struct CGPoint)_locationInWindow;
+- (void)touchesCancelledWithEvent:(id)arg1;
+- (void)touchesEndedWithEvent:(id)arg1;
+- (void)touchesMovedWithEvent:(id)arg1;
+- (void)touchesBeganWithEvent:(id)arg1;
+- (void)_setTranslatesContextOrigin:(BOOL)arg1;
+- (BOOL)_translatesContextOrigin;
 - (void)otherMouseUp:(id)arg1;
 - (void)otherMouseDragged:(id)arg1;
 - (void)otherMouseDown:(id)arg1;
@@ -36,17 +48,15 @@
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)_noteStateChanged;
-- (id)_panAuxiliary;
-- (void)_updatePropertiesWithEvent:(id)arg1;
+- (void)_updatePropertiesWithLocation:(struct CGPoint)arg1 event:(id)arg2;
 - (void)_updateForMouseDownWithEvent:(id)arg1;
 - (double)timestamp;
 - (void)reset;
+- (id)touches;
 - (struct CGPoint)velocityInView:(id)arg1;
 - (void)setTranslation:(struct CGPoint)arg1 inView:(id)arg2;
 - (struct CGPoint)translationInView:(id)arg1;
 - (struct CGPoint)locationInView:(id)arg1;
-- (void)setNumberOfTouchesRequired:(long long)arg1;
-- (long long)numberOfTouchesRequired;
 @property unsigned long long buttonMask;
 - (void)_appendSubclassDescription:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -54,9 +64,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithTarget:(id)arg1 action:(SEL)arg2;
 - (void)_commonInit;
-- (struct CGPoint)_auxLocationInWindow;
-- (unsigned long long)_auxModifierFlags;
-- (double)_auxTimestamp;
+- (id)_descriptionForTouchBarLogging;
 
 @end
 

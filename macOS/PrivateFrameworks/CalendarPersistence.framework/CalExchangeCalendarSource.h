@@ -17,6 +17,7 @@
     BOOL _isEditable;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSManagedObjectID *sessionID; // @synthesize sessionID=_sessionID;
 @property(retain) CALAddress *meForSource; // @synthesize meForSource=_meForSource;
 @property BOOL isDelegate; // @synthesize isDelegate=_isDelegate;

@@ -8,6 +8,7 @@
 
 @class AVAsset, AVWeakReference, NSDictionary, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVPlayerItemTrackInternal : NSObject
 {
     AVWeakReference *weakReferenceToPlayerItem;
@@ -22,6 +23,10 @@
     BOOL enabledWasSet;
     BOOL disableColorMatching;
     BOOL disableColorMatchingWasSet;
+    long long activeHapticChannelIndex;
+    BOOL activeHapticChannelIndexWasSet;
+    float hapticVolume;
+    BOOL hapticVolumeWasSet;
 }
 
 @end

@@ -16,11 +16,17 @@ __attribute__((visibility("hidden")))
     unsigned long long _messageCode;
     NSData *_messageBody;
     NSString *_token;
+    NSString *_contextName;
+    NSString *_contextTransactionAuthor;
+    NSString *_processName;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain) NSString *token; // @synthesize token=_token;
-@property(retain) NSData *messageBody; // @synthesize messageBody=_messageBody;
+@property(retain, nonatomic) NSString *processName; // @synthesize processName=_processName;
+@property(retain, nonatomic) NSString *contextTransactionAuthor; // @synthesize contextTransactionAuthor=_contextTransactionAuthor;
+@property(retain, nonatomic) NSString *contextName; // @synthesize contextName=_contextName;
+@property(retain, nonatomic) NSString *token; // @synthesize token=_token;
+@property(retain, nonatomic) NSData *messageBody; // @synthesize messageBody=_messageBody;
 @property unsigned long long messageCode; // @synthesize messageCode=_messageCode;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

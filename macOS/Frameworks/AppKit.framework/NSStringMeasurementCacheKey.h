@@ -8,12 +8,13 @@
 
 #import "NSCopying.h"
 
-@class NSAttributedString;
+@class NSAppearance, NSAttributedString;
 
 __attribute__((visibility("hidden")))
 @interface NSStringMeasurementCacheKey : NSObject <NSCopying>
 {
     NSAttributedString *_string;
+    NSAppearance *_appearance;
     struct CGSize _size;
     unsigned long long _options;
     unsigned long long _maximumNumberOfLines;
@@ -23,7 +24,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (void)dealloc;
-- (void)setAttributedString:(id)arg1 size:(struct CGSize)arg2 options:(unsigned long long)arg3 maximumNumberOfLines:(unsigned long long)arg4;
+- (void)setAttributedString:(id)arg1 size:(struct CGSize)arg2 options:(unsigned long long)arg3 maximumNumberOfLines:(unsigned long long)arg4 appearance:(id)arg5;
 
 @end
 

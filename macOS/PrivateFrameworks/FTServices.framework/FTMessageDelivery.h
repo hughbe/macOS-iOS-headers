@@ -13,7 +13,6 @@
 @interface FTMessageDelivery : NSObject <FTMessageQueueDelegate>
 {
     unsigned int _retries;
-    NSNumber *_protocolVersion;
     FTMessageQueue *_queue;
     NSString *_userAgent;
     unsigned long long _maxConcurrentMessages;
@@ -26,11 +25,11 @@
 + (id)alloc;
 + (Class)APNSMessageDeliveryClass;
 + (Class)HTTPMessageDeliveryClass;
+- (void).cxx_destruct;
 @property BOOL retryInAirplaneMode; // @synthesize retryInAirplaneMode=_retryInAirplaneMode;
 @property unsigned long long maxConcurrentMessages; // @synthesize maxConcurrentMessages=_maxConcurrentMessages;
 @property BOOL logToRegistration; // @synthesize logToRegistration=_logToRegistration;
 @property(copy) NSString *userAgent; // @synthesize userAgent=_userAgent;
-@property(copy) NSNumber *protocolVersion; // @synthesize protocolVersion=_protocolVersion;
 - (void)_signMessage:(id)arg1 useDataSignatures:(BOOL)arg2 body:(id)arg3 queryString:(id)arg4 intoDictionary:(id)arg5;
 - (void)networkStateChanged;
 @property(readonly) long long maxLargeMessageSize;
@@ -50,6 +49,7 @@
 - (BOOL)_sendMessageAsynchronously:(id)arg1 error:(id *)arg2;
 - (void)_informDelegateAboutMessage:(id)arg1 error:(id)arg2 result:(id)arg3 resultCode:(long long)arg4;
 - (void)invalidate;
+@property(copy) NSNumber *protocolVersion;
 - (void)dealloc;
 - (id)init;
 

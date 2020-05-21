@@ -6,7 +6,7 @@
 
 #import <SAObjects/SAUITemplateBaseItem.h>
 
-@class SAUITemplateAttributedString;
+@class NSDictionary, SAUITemplateAttributedString;
 
 @interface SAUITemplateLabel : SAUITemplateBaseItem
 {
@@ -15,6 +15,7 @@
 + (id)labelWithDictionary:(id)arg1 context:(id)arg2;
 + (id)label;
 @property(retain, nonatomic) SAUITemplateAttributedString *text;
+@property(copy, nonatomic) NSDictionary *attributedTexts;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

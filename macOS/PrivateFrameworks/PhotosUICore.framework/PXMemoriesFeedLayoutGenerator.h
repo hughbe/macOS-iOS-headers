@@ -11,13 +11,15 @@
 @interface PXMemoriesFeedLayoutGenerator : PXLayoutGenerator
 {
     BOOL _includeDateHeader;
+    BOOL _isFirstHeader;
 }
 
+@property(nonatomic) BOOL isFirstHeader; // @synthesize isFirstHeader=_isFirstHeader;
 @property(nonatomic) BOOL includeDateHeader; // @synthesize includeDateHeader=_includeDateHeader;
 - (id)initWithMetrics:(id)arg1;
 
 // Remaining properties
-@property(readonly, copy, nonatomic) PXMemoriesFeedLayoutMetrics *metrics; // @dynamic metrics;
+@property(copy, nonatomic) PXMemoriesFeedLayoutMetrics *metrics; // @dynamic metrics;
 
 @end
 

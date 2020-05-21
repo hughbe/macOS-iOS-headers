@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSSet;
+@class INCache, NSSet;
 
 @protocol INCacheableContainer <NSObject>
-- (NSSet *)cacheableObjects;
+- (void)_intents_updateContainerWithCache:(INCache *)arg1;
+- (NSSet *)_intents_cacheableObjects;
 @end
 

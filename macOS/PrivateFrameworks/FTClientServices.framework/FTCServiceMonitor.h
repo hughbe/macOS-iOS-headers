@@ -15,7 +15,6 @@
 
 @property(readonly, nonatomic) long long serviceType;
 - (long long)serviceAvailability;
-- (void)handleActiveAccountsChanged:(id)arg1;
 - (void)updateAvailability;
 - (void)_updateAvailability;
 - (void)_postAvailability:(long long)arg1;

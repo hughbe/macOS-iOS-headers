@@ -11,7 +11,8 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (id)plugInBundleIdentifierForURL:(id)arg1;
++ (id)plugInBundleIdentifierForPlugInVendorURL:(id)arg1;
++ (id)plugInBundleIdentifierForDownloadURL:(id)arg1;
 + (long long)plugInDownloadLinkTypeForURL:(id)arg1;
 
 @end

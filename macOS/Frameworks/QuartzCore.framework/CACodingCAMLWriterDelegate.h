@@ -8,18 +8,26 @@
 
 #import "CAMLWriterDelegate.h"
 
-@class NSString;
+@class NSDictionary, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CACodingCAMLWriterDelegate : NSObject <CAMLWriterDelegate>
 {
-    NSString *_resource_dir;
+    NSString *_resourceDir;
     int _serial;
+    NSString *_imageFormat;
+    NSDictionary *_imageEncodeOptions;
+    BOOL _skipHiddenLayers;
 }
 
+@property BOOL skipHiddenLayers; // @synthesize skipHiddenLayers=_skipHiddenLayers;
+@property(copy) NSDictionary *imageEncodeOptions; // @synthesize imageEncodeOptions=_imageEncodeOptions;
+@property(copy) NSString *imageFormat; // @synthesize imageFormat=_imageFormat;
+- (_Bool)CAMLWriter:(id)arg1 shouldEncodeObject:(id)arg2;
 - (id)CAMLWriter:(id)arg1 URLForResource:(id)arg2;
 - (id)CAMLWriter:(id)arg1 typeForObject:(id)arg2;
 - (id)initWithResourceDir:(id)arg1;
+- (void)dealloc;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

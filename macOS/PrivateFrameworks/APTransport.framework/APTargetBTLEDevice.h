@@ -12,12 +12,16 @@
 {
     BOOL _isSoloCapable;
     BOOL _supportsMediaControlPort;
+    BOOL _isFirmwareTracked;
+    BOOL _requestedTracking;
     int _lastRSSI;
     CDStruct_b2d45402 _lastData;
     NSUUID *_deviceID;
     unsigned long long _lastBeaconTicks;
 }
 
+@property(nonatomic) BOOL requestedTracking; // @synthesize requestedTracking=_requestedTracking;
+@property(nonatomic) BOOL isFirmwareTracked; // @synthesize isFirmwareTracked=_isFirmwareTracked;
 @property(nonatomic) int lastRSSI; // @synthesize lastRSSI=_lastRSSI;
 @property(nonatomic) unsigned long long lastBeaconTicks; // @synthesize lastBeaconTicks=_lastBeaconTicks;
 @property(nonatomic) CDStruct_b2d45402 lastData; // @synthesize lastData=_lastData;

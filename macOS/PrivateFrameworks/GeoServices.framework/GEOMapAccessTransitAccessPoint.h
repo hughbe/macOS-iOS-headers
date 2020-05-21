@@ -36,7 +36,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) NSString *internalName;
 @property(readonly, nonatomic) unsigned long long transitID;
 @property(readonly, nonatomic) CDStruct_c3b9c2ee coordinate;
-- (void)dealloc;
 - (id)initWithMap:(id)arg1 accessPoint:(shared_ptr_4792c490)arg2;
 
 // Remaining properties

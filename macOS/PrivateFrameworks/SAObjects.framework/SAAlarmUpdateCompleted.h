@@ -16,6 +16,7 @@
 
 + (id)updateCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)updateCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *alarmIds;
 @property(copy, nonatomic) NSURL *alarmId;
 - (id)encodedClassName;

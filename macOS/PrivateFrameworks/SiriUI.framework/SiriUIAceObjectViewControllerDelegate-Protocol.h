@@ -14,9 +14,11 @@
 - (void)siriViewController:(id <SiriUIViewController>)arg1 addSelectionResponse:(SAUIListItem *)arg2;
 - (SAUIListItem *)siriViewController:(id <SiriUIViewController>)arg1 listItemToPickInAutodisambiguationForListItems:(NSArray *)arg2;
 - (SiriUIDisambiguationItem *)siriViewController:(id <SiriUIViewController>)arg1 disambiguationItemForListItem:(SAUIListItem *)arg2 disambiguationKey:(NSString *)arg3;
+- (NSArray *)siriViewController:(id <SiriUIViewController>)arg1 filteredDisambiguationListItems:(NSArray *)arg2;
 - (void)siriViewController:(id <SiriUIViewController>)arg1 setContentOffset:(double)arg2;
 - (void)siriViewControllerHeightDidChange:(id <SiriUIViewController>)arg1 pinTopOfSnippet:(BOOL)arg2;
 - (void)siriViewControllerHeightDidChange:(id <SiriUIViewController>)arg1;
+- (struct NSEdgeInsets)siriViewControllerTranscriptInsets:(id <SiriUIViewController>)arg1;
 - (struct NSEdgeInsets)siriViewControllerBackgroundInsets:(id <SiriUIViewController>)arg1;
 - (struct CGSize)siriViewControllerVisibleContentArea:(id <SiriUIViewController>)arg1;
 - (double)siriViewControllerExpectedWidth:(id <SiriUIViewController>)arg1;
@@ -26,5 +28,8 @@
 - (void)siriViewControllerDidPunchout;
 - (void)siriViewController:(id <SiriUIViewController>)arg1 openURL:(NSURL *)arg2 completion:(void (^)(BOOL))arg3;
 - (void)siriViewController:(id <SiriUIViewController>)arg1 performAceCommands:(NSArray *)arg2;
+
+@optional
+- (void)siriViewController:(id <SiriUIViewController>)arg1 didOpenPunchout:(NSURL *)arg2;
 @end
 

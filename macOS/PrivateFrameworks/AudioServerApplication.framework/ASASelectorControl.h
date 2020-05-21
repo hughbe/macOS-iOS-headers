@@ -10,8 +10,10 @@
 
 @interface ASASelectorControl : ASAControl
 {
+    NSArray *_currentItems;
 }
 
+@property(nonatomic) NSArray *currentItems; // @synthesize currentItems=_currentItems;
 - (id)coreAudioClassName;
 - (id)diagnosticDescriptionWithIndent:(id)arg1 walkTree:(BOOL)arg2;
 - (id)nameForItem:(unsigned int)arg1;

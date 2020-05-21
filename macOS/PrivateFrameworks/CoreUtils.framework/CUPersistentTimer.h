@@ -32,6 +32,7 @@
     CDUnknownBlockType _timerHandler;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL wakeSystem; // @synthesize wakeSystem=_wakeSystem;
 @property(nonatomic) BOOL useXPC; // @synthesize useXPC=_useXPC;
 @property(copy, nonatomic) CDUnknownBlockType timerHandler; // @synthesize timerHandler=_timerHandler;
@@ -39,9 +40,8 @@
 @property(copy, nonatomic) CDUnknownBlockType invalidationHandler; // @synthesize invalidationHandler=_invalidationHandler;
 @property(nonatomic) double leeway; // @synthesize leeway=_leeway;
 @property(nonatomic) double interval; // @synthesize interval=_interval;
-@property(retain, nonatomic) NSDate *date; // @synthesize date=_date;
+@property(copy, nonatomic) NSDate *date; // @synthesize date=_date;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *dispatchQueue; // @synthesize dispatchQueue=_dispatchQueue;
-- (void).cxx_destruct;
 - (void)_xpcTimerFired:(id)arg1;
 - (void)_pcTimerFired:(id)arg1;
 - (void)_startXPCActivity;
@@ -51,7 +51,6 @@
 - (void)_invalidate;
 - (void)invalidate;
 - (void)dealloc;
-- (id)init;
 - (id)initWithIdentifier:(id)arg1;
 
 @end

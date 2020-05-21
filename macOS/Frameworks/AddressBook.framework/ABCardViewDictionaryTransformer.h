@@ -8,19 +8,18 @@
 
 @class NSDictionary, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewDictionaryTransformer : NSValueTransformer
 {
-    NSString *_valueKey;
     NSDictionary *_currentDictionary;
+    NSString *_valueKey;
 }
 
 + (BOOL)allowsReverseTransformation;
-@property(copy, nonatomic) NSString *valueKey; // @synthesize valueKey=_valueKey;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *valueKey; // @synthesize valueKey=_valueKey;
 @property(retain, nonatomic) NSDictionary *currentDictionary; // @synthesize currentDictionary=_currentDictionary;
 - (id)reverseTransformedValue:(id)arg1;
 - (id)transformedValue:(id)arg1;
-- (void)dealloc;
 - (id)initWithValueKey:(id)arg1;
 
 @end

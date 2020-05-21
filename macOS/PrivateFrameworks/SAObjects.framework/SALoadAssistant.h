@@ -16,12 +16,18 @@
 
 + (id)loadAssistantWithDictionary:(id)arg1 context:(id)arg2;
 + (id)loadAssistant;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *speechId;
+@property(copy, nonatomic) NSString *sharedUserId;
 @property(copy, nonatomic) NSData *sessionValidationData;
+@property(copy, nonatomic) NSString *loggableSharedUserId;
+@property(copy, nonatomic) NSString *loggableAssistantId;
 @property(copy, nonatomic) NSString *linkedSpeechId;
 @property(copy, nonatomic) NSData *linkedSessionValidationData;
 @property(copy, nonatomic) NSString *linkedAssistantId;
+@property(copy, nonatomic) NSString *lastKnownAceHostOfCompanion;
 @property(copy, nonatomic) NSString *language;
+@property(copy, nonatomic) NSString *dataSharingOptInStatus;
 @property(copy, nonatomic) NSString *connectionType;
 @property(copy, nonatomic) NSString *connectionMode;
 @property(copy, nonatomic) NSString *assistantId;

@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSError, NSNumber, NSString, NSURL;
+@class NSError, NSNumber, NSString, NSURL, SKPaymentTransaction;
 
+__attribute__((visibility("hidden")))
 @interface SKDownloadInternal : NSObject
 {
-    NSString *_assetID;
+    NSNumber *_downloadID;
     NSString *_productID;
     long long _state;
     float _progress;
@@ -19,17 +20,9 @@
     double _timeRemaining;
     NSNumber *_contentLength;
     NSString *_contentVersion;
+    SKPaymentTransaction *_transaction;
 }
 
-@property(retain, nonatomic) NSString *contentVersion; // @synthesize contentVersion=_contentVersion;
-@property(retain, nonatomic) NSNumber *contentLength; // @synthesize contentLength=_contentLength;
-@property(retain, nonatomic) NSString *productID; // @synthesize productID=_productID;
-@property(nonatomic) double timeRemaining; // @synthesize timeRemaining=_timeRemaining;
-@property(retain, nonatomic) NSURL *contentURL; // @synthesize contentURL=_contentURL;
-@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
-@property(nonatomic) float progress; // @synthesize progress=_progress;
-@property(nonatomic) long long state; // @synthesize state=_state;
-@property(retain, nonatomic) NSString *asset; // @synthesize asset=_assetID;
 - (void).cxx_destruct;
 
 @end

@@ -19,13 +19,13 @@
 - (void)sortUsingComparator:(CDUnknownBlockType)arg1;
 - (void)sortWithOptions:(unsigned long long)arg1 usingComparator:(CDUnknownBlockType)arg2;
 - (void)sortRange:(struct _NSRange)arg1 options:(unsigned long long)arg2 usingComparator:(CDUnknownBlockType)arg3;
+- (id)sortedArrayFromRange:(struct _NSRange)arg1 options:(unsigned long long)arg2 usingComparator:(CDUnknownBlockType)arg3;
 - (void)setSet:(id)arg1;
 - (void)setOrderedSet:(id)arg1;
-- (void)setArray:(id)arg1;
 - (void)setObject:(id)arg1;
 - (void)setObject:(id)arg1 atIndexedSubscript:(unsigned long long)arg2;
 - (void)setObject:(id)arg1 atIndex:(unsigned long long)arg2;
-- (void)rollObjectsInRange:(struct _NSRange)arg1 by:(long long)arg2;
+- (void)setArray:(id)arg1;
 - (void)replaceObjectsInRange:(struct _NSRange)arg1 withObjectsFromSet:(id)arg2;
 - (void)replaceObjectsInRange:(struct _NSRange)arg1 withObjectsFromOrderedSet:(id)arg2;
 - (void)replaceObjectsInRange:(struct _NSRange)arg1 withObjectsFromOrderedSet:(id)arg2 range:(struct _NSRange)arg3;

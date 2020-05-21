@@ -6,10 +6,18 @@
 
 #import "NSRemoteViewController.h"
 
+@class NSPopover;
+
 @interface SFSafariExtensionRemoteViewController : NSRemoteViewController
 {
+    id <SFSafariExtensionRemoteViewControllerDelegate> _delegate;
+    NSPopover *_popover;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak NSPopover *popover; // @synthesize popover=_popover;
+@property(nonatomic) __weak id <SFSafariExtensionRemoteViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)viewServiceDidTerminateWithError:(id)arg1;
 - (id)serviceViewControllerInterface;
 
 @end

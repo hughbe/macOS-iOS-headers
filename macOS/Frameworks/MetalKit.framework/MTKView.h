@@ -9,7 +9,7 @@
 #import "CALayerDelegate.h"
 #import "NSCoding.h"
 
-@class CAMetalLayer, MTLRenderPassDescriptor, NSMutableArray, NSObject<OS_dispatch_source>, NSString;
+@class CAMetalLayer, MTKOffscreenDrawable, MTLRenderPassDescriptor, NSObject<OS_dispatch_source>, NSString;
 
 @interface MTKView : NSView <NSCoding, CALayerDelegate>
 {
@@ -24,15 +24,32 @@
     CDUnknownFunctionPointerType _drawRectSubIMP;
     BOOL _subClassOverridesDrawRect;
     BOOL _deviceReset;
+    BOOL _doesNotifyOnRecommendedSizeUpdate;
     id <MTLTexture> _depthStencilTexture;
     id <MTLTexture> _multisampleColorTexture;
+    BOOL _framebufferOnly;
+    unsigned long long _depthStencilTextureUsage;
+    unsigned long long _multisampleColorTextureUsage;
     unsigned long long _drawableAttachmentIndex;
     long long _nominalFramesPerSecond;
     long long _maxValidAttachmentIndex;
-    NSMutableArray *_colorPixelFormats;
-    NSMutableArray *_multisampleColorTextures;
-    NSMutableArray *_colorTextures;
+    unsigned long long _colorPixelFormats[8];
+    id <MTLTexture> _multisampleColorTextures[8];
+    id <MTLTexture> _colorTextures[8];
+    MTKOffscreenDrawable *_offscreenSwapChain[3];
+    unsigned long long _drawableIdx;
     int _renderAttachmentDirtyState;
+    unsigned long long _terminateAfterFrame;
+    unsigned long long _terminateAfterSeconds;
+    unsigned long long _measureAfterFrame;
+    unsigned long long _measureAfterSeconds;
+    unsigned long long _dumpFrameAtFrame;
+    unsigned long long _dumpFrameAtSeconds;
+    NSString *_dumpPath;
+    BOOL _dumpFirstFrame;
+    BOOL _drawOffscreen;
+    double _startTime;
+    unsigned int _frameNum;
     BOOL _enableSetNeedsDisplay;
     BOOL _autoResizeDrawable;
     BOOL _paused;
@@ -47,7 +64,9 @@
     CDStruct_3ead2808 _clearColor;
 }
 
++ (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
 + (Class)layerClass;
+- (void).cxx_destruct;
 @property(nonatomic, getter=isPaused) BOOL paused; // @synthesize paused=_paused;
 @property(nonatomic) struct CGSize drawableSize; // @synthesize drawableSize=_drawableSize;
 @property(nonatomic) BOOL autoResizeDrawable; // @synthesize autoResizeDrawable=_autoResizeDrawable;
@@ -60,18 +79,27 @@
 @property(nonatomic) unsigned long long depthStencilPixelFormat; // @synthesize depthStencilPixelFormat=_depthStencilPixelFormat;
 @property(retain, nonatomic) id <MTLDevice> device; // @synthesize device=_device;
 @property(nonatomic) __weak id <MTKViewDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+- (void)addObserver:(id)arg1 forKeyPath:(id)arg2 options:(unsigned long long)arg3 context:(void *)arg4;
 - (struct CGSize)convertSizeToBacking:(struct CGSize)arg1;
 - (struct CGSize)convertSizeFromBacking:(struct CGSize)arg1;
 - (struct CGPoint)convertPointToBacking:(struct CGPoint)arg1;
 - (struct CGPoint)convertPointFromBacking:(struct CGPoint)arg1;
 @property(nonatomic) BOOL presentsWithTransaction;
 @property(nonatomic) BOOL framebufferOnly;
+@property(nonatomic) unsigned long long multisampleColorAttachmentTextureUsage;
+@property(nonatomic) unsigned long long depthStencilAttachmentTextureUsage;
+- (void)setNilValueForKey:(id)arg1;
 - (void)viewDidChangeBackingProperties;
 - (void)setBoundsSize:(struct CGSize)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
+- (void)_resizeMetalLayerDrawable;
 - (void)_resizeDrawable;
+@property(readonly) id <MTLDevice> preferredDevice;
+@property(readonly, nonatomic) struct CGSize preferredDrawableSize;
+- (void)drawLayer:(id)arg1 inContext:(struct CGContext *)arg2;
 - (void)displayLayer:(id)arg1;
+- (void)viewDidMoveToWindow;
+- (void)_updateToNativeScale;
 - (struct CGSize)_pixelSizeFromPointSize:(struct CGSize)arg1;
 - (void)draw;
 @property(readonly, nonatomic) MTLRenderPassDescriptor *currentRenderPassDescriptor;
@@ -81,19 +109,31 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 device:(id)arg2;
+- (void)_createCVDisplayLink;
 - (long long)_calculateRefeshesPerSecond;
 - (void)setNominalFramesPerSecond:(long long)arg1;
 - (long long)nominalFramesPerSecond;
 @property(readonly, nonatomic) id <CAMetalDrawable> currentDrawable; // @synthesize currentDrawable=_currentDrawable;
 @property(readonly, nonatomic) id <MTLTexture> multisampleColorTexture;
-- (id)colorTextures;
-- (id)multisampleColorTextures;
+- (const id *)colorTexturesForceUpdate:(BOOL)arg1;
+- (const id *)colorTextures;
+- (const id *)multisampleColorTexturesForceUpdate:(BOOL)arg1;
+- (const id *)multisampleColorTextures;
 @property(readonly, nonatomic) id <MTLTexture> depthStencilTexture;
+- (void)createDepthStencilTexture;
 - (void)_windowWillClose:(id)arg1;
+- (unsigned long long)drawableAttachmentIndex;
 - (void)setDrawableAttachmentIndex:(unsigned long long)arg1;
 @property(nonatomic) unsigned long long colorPixelFormat;
+@property(nonatomic) struct CGColorSpace *colorspace;
 - (void)setColorPixelFormat:(unsigned long long)arg1 atIndex:(unsigned long long)arg2;
-- (void)initCommon;
+- (void)_dumpFrameImageWithFilename:(id)arg1;
+- (void)_dumpFramerate:(double)arg1 withFilename:(id)arg2;
+- (unsigned long long)drawNumber;
+- (double)startTime;
+- (BOOL)exportToTargaAtLocation:(id)arg1 width:(unsigned long long)arg2 height:(unsigned long long)arg3 size:(unsigned long long)arg4 bytes:(void *)arg5;
+- (void)getEnvironmentSettings;
+- (void)__initCommon;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

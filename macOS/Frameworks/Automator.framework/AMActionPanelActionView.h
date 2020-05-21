@@ -6,11 +6,13 @@
 
 #import "NSView.h"
 
+@class AMBundleAction;
+
 @interface AMActionPanelActionView : NSView
 {
 }
 
-- (id)action;
+@property(readonly, nonatomic) AMBundleAction *action;
 
 @end
 

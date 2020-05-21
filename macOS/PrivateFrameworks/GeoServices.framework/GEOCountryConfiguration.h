@@ -9,15 +9,17 @@
 #import "GEOResourceManifestTileGroupObserver.h"
 #import "_GEOCountryConfigurationServerProxyDelegate.h"
 
-@class NSLock, NSMutableArray, NSMutableDictionary, NSString;
+@class NSMutableArray, NSMutableDictionary, NSString, geo_isolater;
 
 @interface GEOCountryConfiguration : NSObject <GEOResourceManifestTileGroupObserver, _GEOCountryConfigurationServerProxyDelegate>
 {
+    geo_isolater *_isolater;
     NSString *_countryCode;
-    NSLock *_countryCodeLock;
     NSMutableArray *_updateCompletionHandlers;
-    NSLock *_supportedFeaturesLock;
     NSMutableDictionary *_supportedFeatures;
+    geo_isolater *_currentCountrySupportsNavigationIsolater;
+    BOOL _currentCountrySupportsNavigation;
+    BOOL _determinedCurrentCountrySupportsNavigation;
     double _urlAuthenticationTimeToLive;
     BOOL _hasURLAuthenticationTimeToLive;
     id <_GEOCountryConfigurationServerProxy> _serverProxy;
@@ -26,16 +28,21 @@
 + (id)sharedConfiguration;
 + (void)setUseLocalProxy:(BOOL)arg1;
 + (void)disableServerConnection;
+- (void).cxx_destruct;
 - (void)serverProxy:(id)arg1 countryCodeDidChange:(id)arg2;
 - (void)serverProxyProvidersDidChange:(id)arg1;
 - (void)resourceManifestManagerDidChangeActiveTileGroup:(id)arg1;
 - (void)resourceManifestManagerWillChangeActiveTileGroup:(id)arg1;
-- (id)_countryDefaultForKey:(id)arg1 inCountry:(id)arg2 sourcePtr:(long long *)arg3;
+- (id)_countryDefaultForKey:(id)arg1 inCountry:(id)arg2 sourcePtr:(long long *)arg3 decoder:(CDUnknownBlockType)arg4;
+- (id)defaultForKey:(id)arg1 defaultValue:(id)arg2 decoder:(CDUnknownBlockType)arg3;
 - (id)defaultForKey:(id)arg1 defaultValue:(id)arg2;
 - (id)defaultForKey:(id)arg1 defaultValue:(id)arg2 sourcePtr:(long long *)arg3;
-- (id)_defaultForKey:(id)arg1 inCountry:(id)arg2 defaultValue:(id)arg3 sourcePtr:(long long *)arg4;
-@property(copy, nonatomic) NSString *countryCode;
+- (id)defaultForKey:(id)arg1 defaultValue:(id)arg2 sourcePtr:(long long *)arg3 decoder:(CDUnknownBlockType)arg4;
+- (id)_defaultForKey:(id)arg1 inCountry:(id)arg2 defaultValue:(id)arg3 sourcePtr:(long long *)arg4 decoder:(CDUnknownBlockType)arg5;
+- (id)_countryCodeOnIsolationQueue;
+@property(readonly, copy, nonatomic) NSString *countryCode;
 @property(readonly, nonatomic) double urlAuthenticationTimeToLive;
+@property(readonly, nonatomic) BOOL currentCountrySupportsCommute;
 @property(readonly, nonatomic) BOOL currentCountrySupportsCarIntegration;
 @property(readonly, nonatomic) BOOL currentCountrySupportsRouteGenius;
 @property(readonly, nonatomic) BOOL currentCountrySupportsTraffic;
@@ -44,12 +51,14 @@
 - (BOOL)currentCountrySupportsFeature:(long long)arg1;
 - (BOOL)countryCode:(id)arg1 supportsFeature:(long long)arg2;
 - (void)_resetSupportedFeatures;
-- (void)_updateCountryConfiguration:(CDUnknownBlockType)arg1 callbackQueue:(id)arg2;
 - (void)updateCountryConfiguration:(CDUnknownBlockType)arg1 callbackQueue:(id)arg2;
 - (void)updateCountryConfiguration:(CDUnknownBlockType)arg1;
 - (void)updateProvidersForCurrentCountry;
 - (void)dealloc;
 - (id)init;
+@property(readonly, nonatomic) BOOL zilchPointsSupported;
+@property(readonly, nonatomic) BOOL shouldUseGuidanceEventManager;
+@property(readonly, nonatomic) BOOL shouldRequestLaneGuidance;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,7 +8,7 @@
 
 #import "NSProgressPublisher.h"
 
-@class NSDictionary, NSLock, NSMutableDictionary, NSMutableSet, NSString;
+@class NSDictionary, NSLock, NSMutableDictionary, NSMutableSet, NSNumber, NSString, NSURL;
 
 @interface NSProgress : NSObject <NSProgressPublisher>
 {
@@ -20,7 +20,6 @@
     CDUnknownBlockType _pausingHandler;
     CDUnknownBlockType _prioritizationHandler;
     unsigned long long _flags;
-    id _userInfoProxy;
     NSString *_publisherID;
     id _reserved5;
     long long _reserved6;
@@ -29,10 +28,13 @@
     NSMutableDictionary *_acknowledgementHandlersByLowercaseBundleID;
     NSMutableDictionary *_lastNotificationTimesByKey;
     NSMutableDictionary *_userInfoLastNotificationTimesByKey;
-    NSLock *_lock;
     NSMutableSet *_children;
+    id _userInfoProxy;
+    NSLock *_lock;
 }
 
++ (id)_addSubscriberForFileURL:(id)arg1 withPublishingHandler:(CDUnknownBlockType)arg2;
++ (void)_removeSubscriber:(id)arg1;
 + (id)_serverConnection;
 + (id)_registrarInterface;
 + (id)_subscriberInterface;
@@ -40,9 +42,7 @@
 + (id)_addSubscriberForFileURL:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 + (id)addSubscriberForFileURL:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 + (id)_addSubscriberForCategory:(id)arg1 usingPublishingHandler:(CDUnknownBlockType)arg2;
-+ (void)_removeSubscriber:(id)arg1;
 + (void)removeSubscriber:(id)arg1;
-+ (id)_addSubscriberForFileURL:(id)arg1 withPublishingHandler:(CDUnknownBlockType)arg2;
 + (id)addSubscriberForFileURL:(id)arg1 withPublishingHandler:(CDUnknownBlockType)arg2;
 + (id)keyPathsForValuesAffectingLocalizedAdditionalDescription;
 + (id)keyPathsForValuesAffectingLocalizedDescription;
@@ -51,7 +51,14 @@
 + (id)discreteProgressWithTotalUnitCount:(long long)arg1;
 + (id)progressWithTotalUnitCount:(long long)arg1;
 + (id)currentProgress;
-- (void)_setRemoteValue:(id)arg1 forKey:(id)arg2 inUserInfo:(BOOL)arg3;
+- (void).cxx_destruct;
+- (void)_setAcknowledgementHandler:(CDUnknownBlockType)arg1 forAppBundleIdentifier:(id)arg2;
+- (void)_unpublish;
+- (void)_publish;
+- (CDUnknownBlockType)_acknowledgementHandlerForAppBundleIdentifier:(id)arg1;
+- (double)_remoteFractionCompleted;
+- (void)_setRemoteValues:(id)arg1 forKeys:(id)arg2;
+- (void)_setRemoteUserInfoValue:(id)arg1 forKey:(id)arg2;
 - (id)_initWithValues:(id)arg1;
 - (void)handleAcknowledgementByAppWithBundleIdentifier:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (oneway void)prioritize;
@@ -63,15 +70,21 @@
 @property(readonly, getter=isOld) BOOL old;
 - (void)acknowledgeWithSuccess:(BOOL)arg1;
 - (oneway void)appWithBundleID:(id)arg1 didAcknowledgeWithSuccess:(BOOL)arg2;
-- (CDUnknownBlockType)_acknowledgementHandlerForAppBundleIdentifier:(id)arg1;
 - (CDUnknownBlockType)acknowledgementHandlerForAppBundleIdentifier:(id)arg1;
-- (void)_setAcknowledgementHandler:(CDUnknownBlockType)arg1 forAppBundleIdentifier:(id)arg2;
 - (void)setAcknowledgementHandler:(CDUnknownBlockType)arg1 forAppBundleIdentifier:(id)arg2;
-- (void)_unpublish;
 - (void)unpublish;
-- (void)_publish;
 - (void)publish;
 @property(copy) NSString *kind;
+- (void)setByteCompletedCount:(id)arg1;
+- (id)byteCompletedCount;
+- (void)setByteTotalCount:(id)arg1;
+- (id)byteTotalCount;
+@property(copy) NSNumber *fileCompletedCount;
+@property(copy) NSNumber *fileTotalCount;
+@property(copy) NSURL *fileURL;
+@property(copy) NSString *fileOperationKind;
+@property(copy) NSNumber *throughput;
+@property(copy) NSNumber *estimatedTimeRemaining;
 - (id)ownedDictionaryObjectForKey:(id)arg1;
 - (id)ownedDictionaryKeyEnumerator;
 - (unsigned long long)ownedDictionaryCount;
@@ -92,21 +105,22 @@
 @property(readonly, getter=isCancelled) BOOL cancelled;
 @property(getter=isPausable) BOOL pausable;
 @property(getter=isCancellable) BOOL cancellable;
-- (BOOL)isFinished;
+@property(readonly, getter=isFinished) BOOL finished;
 @property(copy) NSString *localizedAdditionalDescription;
 @property(copy) NSString *localizedDescription;
 @property long long completedUnitCount;
-- (void)_updateChild:(id)arg1 fraction:(id)arg2 portion:(long long)arg3;
+- (void)_updateChild:(id)arg1 fraction:(struct _NSProgressFractionTuple)arg2 portion:(long long)arg3;
 - (void)_setCompletedUnitCount:(long long)arg1 totalUnitCount:(long long)arg2;
 - (void)_addCompletedUnitCount:(long long)arg1;
 @property long long totalUnitCount;
-- (void)_updateFractionCompleted:(id)arg1;
-- (id)_setValueForKeys:(CDUnknownBlockType)arg1 settingBlock:(CDUnknownBlockType)arg2;
-- (void)_notifyRemoteObserversOfValueForKey:(id)arg1 inUserInfo:(BOOL)arg2;
-- (void)__notifyRemoteObserversOfValueForKey:(id)arg1 inUserInfo:(BOOL)arg2;
+- (void)_updateFractionCompleted:(struct _NSProgressFractionTuple)arg1;
+- (void)_setValueForKeys:(CDUnknownBlockType)arg1 settingBlock:(CDUnknownBlockType)arg2;
+- (void)_notifyRemoteObserversOfValueForKeys:(id)arg1;
+- (void)_notifyRemoteObserversOfUserInfoValueForKey:(id)arg1;
 - (void)set_adoptChildUserInfo:(BOOL)arg1;
 - (BOOL)_adoptChildUserInfo;
 - (void)becomeCurrentWithPendingUnitCount:(long long)arg1 inBlock:(CDUnknownBlockType)arg2;
+- (void)performAsCurrentWithPendingUnitCount:(long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)resignCurrent;
 - (void)_addImplicitChild:(id)arg1;
 - (void)addChild:(id)arg1 withPendingUnitCount:(long long)arg2;

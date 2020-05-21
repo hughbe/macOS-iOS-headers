@@ -8,23 +8,25 @@
 
 #import "SMWindowsArchiveStreamDelegate.h"
 
-@class NSObject, SMWindowsComponent;
+@class NSNumber, NSObject;
 
 @interface SMNWindowsCopyAction : SMNAction <SMWindowsArchiveStreamDelegate>
 {
-    SMWindowsComponent *component;
+    NSNumber *componentIdentifier;
+    NSNumber *componentSize;
     NSObject *retryContext;
     unsigned long long totalWrittenLength;
     id <SMNWindowsCopyActionDelegate> delegate;
 }
 
-+ (BOOL)needsDirectAccessToSendOrReceiveResult;
++ (BOOL)streamsResults;
 + (int)actionID;
+- (void).cxx_destruct;
 @property id <SMNWindowsCopyActionDelegate> delegate; // @synthesize delegate;
 @property unsigned long long totalWrittenLength; // @synthesize totalWrittenLength;
 @property(retain) NSObject *retryContext; // @synthesize retryContext;
-@property(retain) SMWindowsComponent *component; // @synthesize component;
-- (void).cxx_destruct;
+@property(retain) NSNumber *componentSize; // @synthesize componentSize;
+@property(retain) NSNumber *componentIdentifier; // @synthesize componentIdentifier;
 - (void)finishedFile:(id)arg1 length:(unsigned long long)arg2;
 - (void)updatedFile:(id)arg1 partialLength:(unsigned long long)arg2;
 - (id)localPathForFile:(id)arg1;
@@ -33,7 +35,7 @@
 - (id)result;
 - (BOOL)receiveResultOnFd:(int)arg1 errorIsFatal:(char *)arg2;
 - (id)description;
-- (id)initWithComponent:(id)arg1;
+- (id)initWithComponentIdentifier:(id)arg1 andSize:(id)arg2;
 
 @end
 

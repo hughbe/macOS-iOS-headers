@@ -8,7 +8,6 @@
 
 @class ODNode, ODRecord;
 
-__attribute__((visibility("hidden")))
 @interface ODHelper : NSObject
 {
     ODNode *searchNode;

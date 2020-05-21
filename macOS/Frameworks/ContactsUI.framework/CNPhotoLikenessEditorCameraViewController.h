@@ -6,40 +6,51 @@
 
 #import "NSViewController.h"
 
-@class AVCaptureConnection, AVCaptureDeviceInput, AVCaptureSession, AVCaptureStillImageOutput, AVCaptureVideoPreviewLayer, NSImageView;
+#import "CNPhotoLikenessEditorCameraViewDelegate.h"
 
-@interface CNPhotoLikenessEditorCameraViewController : NSViewController
+@class AVCaptureConnection, AVCaptureDeviceInput, AVCaptureStillImageOutput, AVCaptureVideoPreviewLayer, CNCameraChangeWatcher, NSImageView, NSString, _CNCameraSessionState;
+
+@interface CNPhotoLikenessEditorCameraViewController : NSViewController <CNPhotoLikenessEditorCameraViewDelegate>
 {
-    BOOL _sessionRunning;
-    BOOL _sessionInited;
     double _viewFinderCornerRadius;
-    AVCaptureSession *_session;
+    _CNCameraSessionState *_sessionState;
     AVCaptureDeviceInput *_videoDeviceInput;
     AVCaptureStillImageOutput *_stillImageOutput;
     AVCaptureConnection *_videoConnection;
     AVCaptureVideoPreviewLayer *_videoPreviewLayer;
     long long _setupResult;
+    CNCameraChangeWatcher *_cameraWatcher;
     NSImageView *_cameraOff;
 }
 
++ (id)os_log;
+- (void).cxx_destruct;
 @property(retain) NSImageView *cameraOff; // @synthesize cameraOff=_cameraOff;
-@property BOOL sessionInited; // @synthesize sessionInited=_sessionInited;
-@property(nonatomic, getter=isSessionRunning) BOOL sessionRunning; // @synthesize sessionRunning=_sessionRunning;
+@property(retain, nonatomic) CNCameraChangeWatcher *cameraWatcher; // @synthesize cameraWatcher=_cameraWatcher;
 @property(nonatomic) long long setupResult; // @synthesize setupResult=_setupResult;
 @property(retain, nonatomic) AVCaptureVideoPreviewLayer *videoPreviewLayer; // @synthesize videoPreviewLayer=_videoPreviewLayer;
 @property(retain) AVCaptureConnection *videoConnection; // @synthesize videoConnection=_videoConnection;
 @property(retain, nonatomic) AVCaptureStillImageOutput *stillImageOutput; // @synthesize stillImageOutput=_stillImageOutput;
 @property(retain, nonatomic) AVCaptureDeviceInput *videoDeviceInput; // @synthesize videoDeviceInput=_videoDeviceInput;
-@property(retain, nonatomic) AVCaptureSession *session; // @synthesize session=_session;
-- (void).cxx_destruct;
+@property(retain, nonatomic) _CNCameraSessionState *sessionState; // @synthesize sessionState=_sessionState;
+- (BOOL)nts_updateVideoInputForDevice:(id)arg1;
+- (void)captureDeviceDidChange:(id)arg1;
 - (void)takePhotoWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)dealloc;
 @property double viewFinderCornerRadius; // @synthesize viewFinderCornerRadius=_viewFinderCornerRadius;
-- (void)initCaptureSession;
+- (void)nts_initCaptureSession;
+- (void)teardownCaptureSession;
+- (void)cameraView:(id)arg1 didHide:(BOOL)arg2;
+- (void)cameraView:(id)arg1 willMoveToWindow:(id)arg2;
 - (void)viewWillAppear;
-- (void)viewWillDisappear;
 - (void)viewDidLayout;
+- (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

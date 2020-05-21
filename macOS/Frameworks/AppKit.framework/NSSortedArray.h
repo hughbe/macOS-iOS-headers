@@ -6,6 +6,7 @@
 
 #import "NSMutableArray.h"
 
+__attribute__((visibility("hidden")))
 @interface NSSortedArray : NSMutableArray
 {
     NSMutableArray *_array;
@@ -24,7 +25,7 @@
 - (void)replaceObjectAtIndex:(unsigned long long)arg1 withObject:(id)arg2;
 - (void)addObject:(id)arg1;
 - (id)objectAtIndex:(unsigned long long)arg1;
-@property(readonly) unsigned long long count;
+- (unsigned long long)count;
 - (void)_insertObjectInSortOrder:(id)arg1;
 - (void)dealloc;
 - (BOOL)conformsToProtocol:(id)arg1;

@@ -10,19 +10,29 @@
 
 @interface NSOperation : NSObject
 {
-    id _private;
-    int _private1;
-    int _private1b;
+    // Error parsing type: {?="__prevOp"@"NSOperation""__nextOp"@"NSOperation""__nextPriOp"@"NSOperation""__queue"@"NSOperationQueue""__dependencies"@"NSMutableArray""__down_dependencies"@"NSHashTable""__unfinished_deps"q"__completion"@?"__obsInfo"^v"__implicitObsInfo"^v"__thread_prio"d"__nameBuffer"*"_voucher"@"NSObject<OS_voucher>""__schedule"@?"__wait_mutex"{_opaque_pthread_mutex_t="__sig"q"__opaque"[56c]}"__wait_cond"{_opaque_pthread_cond_t="__sig"q"__opaque"[40c]}"__lock"{os_unfair_lock_s="_os_unfair_lock_opaque"I}"_shouldRemoveDependenciesAfterFinish"c"__state"AC"__prio"c"__cached_isReady"Ac"__isCancelled"Ac"__propertyQoS"AC"__isExecutingObserverCount"AC"__isFinishedObserverCount"AC"__isReadyObserverCount"AC"__isCancelledObserverCount"AC}, name: _iop
 }
 
++ (BOOL)_removesDependenciesAfterFinish;
 + (id)currentOperation;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
-- (id)_activity;
-- (id)__;
++ (id)keyPathsForValuesAffectingIsCancelled;
++ (id)keyPathsForValuesAffectingCancelled;
++ (id)keyPathsForValuesAffectingIsExecuting;
++ (id)keyPathsForValuesAffectingExecuting;
++ (id)keyPathsForValuesAffectingIsReady;
++ (id)keyPathsForValuesAffectingReady;
++ (id)keyPathsForValuesAffectingIsFinished;
++ (id)keyPathsForValuesAffectingFinished;
+- (id)__graphDescription:(unsigned long long)arg1;
+- (id)debugDescription;
+- (void)removeObserver:(id)arg1 forKeyPath:(id)arg2;
+- (void)addObserver:(id)arg1 forKeyPath:(id)arg2 options:(unsigned long long)arg3 context:(void *)arg4;
 - (id)description;
 - (void)start;
 - (void)main;
 @property(readonly, copy) NSArray *dependencies;
+- (void)removeAllDependencies;
 - (void)removeDependency:(id)arg1;
 - (void)addDependency:(id)arg1;
 - (void)waitUntilFinishedOrTimeout:(double)arg1;
@@ -45,7 +55,6 @@
 - (void)setObservationInfo:(void *)arg1;
 - (void *)observationInfo;
 - (id)_implicitObservationInfo;
-- (long long)_effQoS;
 
 @end
 

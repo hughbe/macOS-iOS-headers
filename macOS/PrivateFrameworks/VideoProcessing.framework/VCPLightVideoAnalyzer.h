@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class AVAsset, NSArray, NSMutableDictionary;
+@class AVAsset, NSArray, NSDictionary, NSMutableDictionary;
 
 @interface VCPLightVideoAnalyzer : NSObject
 {
@@ -14,11 +14,15 @@
     AVAsset *_avAsset;
     struct CGAffineTransform _transform;
     NSArray *_metaTracks;
-    NSMutableDictionary *_results;
+    NSMutableDictionary *_publicMutableResults;
+    NSMutableDictionary *_privateMutableResults;
 }
 
 - (void).cxx_destruct;
-- (id)analyzeAsset:(CDUnknownBlockType)arg1 flags:(unsigned long long *)arg2;
+@property(readonly, nonatomic) NSDictionary *privateResults;
+@property(readonly, nonatomic) NSDictionary *publicResults;
+- (int)analyzeAsset:(CDUnknownBlockType)arg1 flags:(unsigned long long *)arg2;
+- (int)checkTimeRangeConsistency;
 - (int)processMetaTrackForType:(id)arg1 cancel:(CDUnknownBlockType)arg2 flags:(unsigned long long *)arg3;
 - (id)findMetaTrackforType:(id)arg1;
 - (id)initWithAVAsset:(id)arg1 forAnalysisTypes:(unsigned long long)arg2;

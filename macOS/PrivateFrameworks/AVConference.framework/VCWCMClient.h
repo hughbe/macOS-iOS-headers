@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>, NSObject<WCMClientDelegate>;
 
 __attribute__((visibility("hidden")))
 @interface VCWCMClient : NSObject
 {
     NSObject<OS_xpc_object> *connection;
     NSObject<OS_dispatch_queue> *connectionQueue;
-    id <WCMClientDelegate> wcmClientDelegate;
+    NSObject<WCMClientDelegate> *wcmClientDelegate;
 }
 
 @property(retain, nonatomic) id <WCMClientDelegate> wcmClientDelegate; // @synthesize wcmClientDelegate;

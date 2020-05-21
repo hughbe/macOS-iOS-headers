@@ -22,7 +22,8 @@ __attribute__((visibility("hidden")))
     CDUnknownBlockType _finished;
 }
 
-@property(readonly, nonatomic) CDUnknownBlockType callback; // @synthesize callback=_callback;
+- (void).cxx_destruct;
+@property(copy, nonatomic) CDUnknownBlockType callback; // @synthesize callback=_callback;
 @property(copy, nonatomic) CDUnknownBlockType finished; // @synthesize finished=_finished;
 @property(copy, nonatomic) CDUnknownBlockType error; // @synthesize error=_error;
 @property(copy, nonatomic) CDUnknownBlockType progress; // @synthesize progress=_progress;

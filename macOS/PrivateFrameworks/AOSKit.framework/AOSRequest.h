@@ -28,8 +28,10 @@
     struct __CFHTTPMessage *_responseMsg;
     NSMutableDictionary *_requestInfo;
     NSString *_clientID;
+    int _akRetryCount;
 }
 
++ (id)defaultHeadersWithClientID:(id)arg1 includingAnisette:(BOOL)arg2;
 + (id)defaultHeadersWithClientID:(id)arg1;
 + (id)defaultHeaders;
 + (id)timezoneString;
@@ -40,8 +42,10 @@
 + (id)_hardwareInfo;
 + (id)clientInfoWithID:(id)arg1;
 + (id)authStringForAccount:(struct AOSAccount *)arg1;
++ (BOOL)_didLoadAuthKit;
++ (id)authKitHeadersForURLRequest:(id)arg1;
++ (id)_createAuthKitSession;
 + (void)initialize;
-- (BOOL)_didLoadAuthKit;
 - (void)processAuthKitResponse;
 - (void)applyAuthKitHeaders;
 - (BOOL)applyOTPHeadersForDSID:(id)arg1;
@@ -58,6 +62,7 @@
 - (id)_urlRequest;
 - (struct _CFURLRequest *)_cfURLRequest;
 - (void)setUsername:(id)arg1 andPassword:(id)arg2;
+- (void)removeHeader:(id)arg1;
 - (void)addHeaders:(id)arg1;
 - (void)setValue:(id)arg1 forHeader:(id)arg2;
 - (void)setClientID:(id)arg1;
@@ -65,7 +70,6 @@
 - (int)httpStatusCode;
 - (void)_runRequestThread;
 - (void)sendSynchronously;
-- (void)sendAsynchronously;
 - (BOOL)requestCompleted;
 - (void)_setRequestCompleted:(BOOL)arg1;
 - (BOOL)requestStarted;
@@ -87,6 +91,7 @@
 - (id)url;
 - (id)method;
 - (id)messageBody;
+- (void)setMessageBody:(id)arg1;
 - (void)reset;
 - (void)finalize;
 - (void)dealloc;

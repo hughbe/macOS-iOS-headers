@@ -6,7 +6,7 @@
 
 #import <MailCore/MCActivity.h>
 
-@class MCDiscretionaryWorkScheduler, MCProgressGroup, NSCondition, NSMutableSet;
+@class MCDiscretionaryWorkScheduler, MCProgressGroup, NSCondition, NSMutableSet, NSString;
 
 @interface MCTask : MCActivity
 {
@@ -16,15 +16,17 @@
     long long _networkPriority;
     long long _persistencePriority;
     MCProgressGroup *_progressGroup;
+    NSString *_logPrefix;
     NSCondition *_finishedCondition;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isCancelled; // @synthesize isCancelled=_isCancelled;
 @property(retain) NSCondition *finishedCondition; // @synthesize finishedCondition=_finishedCondition;
+@property(copy) NSString *logPrefix; // @synthesize logPrefix=_logPrefix;
 @property(readonly, nonatomic) MCProgressGroup *progressGroup; // @synthesize progressGroup=_progressGroup;
 @property(nonatomic) long long persistencePriority; // @synthesize persistencePriority=_persistencePriority;
 @property(nonatomic) long long networkPriority; // @synthesize networkPriority=_networkPriority;
-- (void).cxx_destruct;
 - (void)cancel;
 - (void)waitUntilFinished;
 - (void)end;

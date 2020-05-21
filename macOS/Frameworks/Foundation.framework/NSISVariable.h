@@ -8,10 +8,14 @@
 
 #import "NSCoding.h"
 
+@class NSArray, NSISEngine, NSMapTable;
+
 @interface NSISVariable : NSObject <NSCoding>
 {
     id <NSISVariableDelegate> _delegate;
-    int _refCount;
+    NSMapTable *_overflowEngines;
+    NSISEngine *_engines[3];
+    CDStruct_fcd6c539 _engineVarIndexes[3];
     unsigned int _ident;
 }
 
@@ -20,11 +24,6 @@
 + (id)variableMarkingConstraint:(id)arg1 valueRestriction:(int)arg2 shouldBeMinimized:(BOOL)arg3;
 + (id)variableWithDelegate:(id)arg1 valueRestriction:(int)arg2 shouldBeMinimized:(BOOL)arg3;
 @property id <NSISVariableDelegate> delegate; // @synthesize delegate=_delegate;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 - (id)markedConstraint;
 @property(readonly) BOOL shouldBeMinimized;
 @property(readonly) int valueRestriction;
@@ -32,10 +31,17 @@
 - (BOOL)markedConstraintIsEligibleForIntegralizationAdjustment;
 - (double)allowedMagnitudeForIntegralizationAdjustmentOfMarkedConstraint;
 - (BOOL)shouldBeIntegral;
+@property(readonly) int orientationHint;
 - (id)description;
+- (id)descriptionInEngine:(id)arg1;
+- (id)_delegateDescription;
+- (CDStruct_fcd6c539)overflowEngineVarIndexForEngine:(id)arg1;
+- (void)_enumerateEngines:(CDUnknownBlockType)arg1;
+@property(readonly) NSArray *engines;
 - (unsigned long long)hash;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)dealloc;
 - (id)init;
 
 @end

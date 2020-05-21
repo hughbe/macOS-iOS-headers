@@ -10,6 +10,7 @@
 {
 }
 
++ (CDUnknownBlockType)personaLikenessesLastComparator;
 + (CDUnknownBlockType)creationDateNewestToOldestComparator;
 + (CDUnknownBlockType)currentLikenessesFirstComparator;
 + (CDUnknownBlockType)standardSorting;

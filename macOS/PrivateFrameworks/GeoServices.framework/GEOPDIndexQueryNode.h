@@ -8,21 +8,28 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray, NSString;
+@class NSMutableArray, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDIndexQueryNode : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSString *_field;
     NSMutableArray *_operands;
-    int _type;
     NSString *_value;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    int _type;
+    CDStruct_24aeab2f _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)operandType;
-@property(retain, nonatomic) NSMutableArray *operands; // @synthesize operands=_operands;
-@property(retain, nonatomic) NSString *value; // @synthesize value=_value;
-@property(retain, nonatomic) NSString *field; // @synthesize field=_field;
-@property(nonatomic) int type; // @synthesize type=_type;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -30,17 +37,27 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)operandAtIndex:(unsigned long long)arg1;
 - (unsigned long long)operandsCount;
+- (void)_addNoFlagsOperand:(id)arg1;
 - (void)addOperand:(id)arg1;
 - (void)clearOperands;
+@property(retain, nonatomic) NSMutableArray *operands;
+- (void)_readOperands;
+@property(retain, nonatomic) NSString *value;
 @property(readonly, nonatomic) BOOL hasValue;
+- (void)_readValue;
+@property(retain, nonatomic) NSString *field;
 @property(readonly, nonatomic) BOOL hasField;
+- (void)_readField;
 - (int)StringAsType:(id)arg1;
 - (id)typeAsString:(int)arg1;
-- (void)dealloc;
+@property(nonatomic) int type;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

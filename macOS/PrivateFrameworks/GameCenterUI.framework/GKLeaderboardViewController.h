@@ -6,22 +6,21 @@
 
 #import <GameCenterUI/GKGameCenterViewController.h>
 
-#import "GKRestrictedViewController.h"
-
 @class NSString;
 
-@interface GKLeaderboardViewController : GKGameCenterViewController <GKRestrictedViewController>
+@interface GKLeaderboardViewController : GKGameCenterViewController
 {
-    id <GKLeaderboardViewControllerDelegate> _leaderboardDelegate;
     NSString *_category;
     long long _timeScope;
+    id <GKLeaderboardViewControllerDelegate> _leaderboardDelegate;
 }
 
-@property id <GKLeaderboardViewControllerDelegate> leaderboardDelegate; // @synthesize leaderboardDelegate=_leaderboardDelegate;
-- (id)_gkInGameUIUnavailableAlertWithDismissHandler:(CDUnknownBlockType)arg1;
+- (void).cxx_destruct;
+@property __weak id <GKLeaderboardViewControllerDelegate> leaderboardDelegate; // @synthesize leaderboardDelegate=_leaderboardDelegate;
 - (BOOL)remoteViewControllerRequestingDismiss:(id)arg1;
-@property long long timeScope;
-@property(copy) NSString *category;
+@property long long timeScope; // @synthesize timeScope=_timeScope;
+@property(copy) NSString *category; // @synthesize category=_category;
+- (void)dealloc;
 - (id)init;
 
 @end

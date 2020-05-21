@@ -18,6 +18,7 @@
     struct btC3DDebugDraw *_debugDrawer;
     struct c3dAether _aether;
     BOOL _hasActiveFields;
+    BOOL _firstSimulationDone;
     id <SCNPhysicsContactDelegate> _contactDelegate;
     SCNPhysicsContact *_contact;
     SCNScene *_scene;
@@ -28,6 +29,8 @@
     NSMutableArray *_fields;
     double _elapsedTime;
     NSMutableArray *_behaviors;
+    NSArray *_activeBehaviors;
+    BOOL _activeBehaviorsValid;
     NSMutableSet *_bodies;
 }
 
@@ -49,6 +52,7 @@
 - (struct btDynamicsWorld *)_handle;
 - (struct btVehicleRaycaster *)_defaultVehicleRayCaster;
 - (void)_step:(double)arg1;
+- (void)_updatePhysicsFieldsTransforms;
 - (struct c3dAether *)_aetherHandle;
 - (void)_removeFieldFromWorld:(id)arg1;
 - (void)_addFieldToWorld:(id)arg1;
@@ -63,16 +67,20 @@
 - (id)_rayTestWithSegmentFromPoint:(struct btVector3)arg1 toPoint:(struct btVector3)arg2 options:(id)arg3;
 - (id)rayTestWithSegmentFromPoint:(struct SCNVector3)arg1 toPoint:(struct SCNVector3)arg2 options:(id)arg3;
 @property(readonly, nonatomic) NSArray *allBehaviors;
+- (id)valueForUndefinedKey:(id)arg1;
+- (BOOL)parseSpecialKey:(id)arg1 withPath:(id)arg2 intoDestination:(id *)arg3;
+- (id)objectInAllBehaviorsAtIndex:(unsigned long long)arg1;
 - (void)removeAllBehaviors;
 - (void)removeBehavior:(id)arg1;
 - (void)addBehavior:(id)arg1;
-@property id <SCNPhysicsContactDelegate> contactDelegate;
+@property __weak id <SCNPhysicsContactDelegate> contactDelegate;
 @property(nonatomic) double timeStep;
 - (double)scale;
 - (void)setScale:(double)arg1;
 @property(nonatomic) double speed;
 @property(nonatomic) struct SCNVector3 gravity;
 - (void)wakeUpAllBodies;
+- (BOOL)_isDefault;
 - (void)sceneWillDie;
 - (void)dealloc;
 - (id)initWithScene:(id)arg1;

@@ -26,10 +26,11 @@
     NSURL *_baseURL;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSURL *baseURL; // @synthesize baseURL=_baseURL;
 @property(nonatomic) BOOL checkedElementValidityIfRootElement; // @synthesize checkedElementValidityIfRootElement=_checkedElementValidityIfRootElement;
 @property(retain, nonatomic) NSDictionary *cachedElementParseRules; // @synthesize cachedElementParseRules=_cachedElementParseRules;
-@property(nonatomic) CoreDAVXMLElementGenerator *parentGenerator; // @synthesize parentGenerator=_parentGenerator;
+@property(nonatomic) __weak CoreDAVXMLElementGenerator *parentGenerator; // @synthesize parentGenerator=_parentGenerator;
 @property(retain, nonatomic) CoreDAVItem *element; // @synthesize element=_element;
 @property(retain, nonatomic) CoreDAVXMLElementGenerator *currentlyParsingSubItem; // @synthesize currentlyParsingSubItem=_currentlyParsingSubItem;
 @property(retain, nonatomic) NSMutableData *cDATA; // @synthesize cDATA=_cDATA;
@@ -49,7 +50,6 @@
 - (BOOL)isExpectedNameSpace:(id)arg1 andElementName:(id)arg2;
 - (void)notifyElement:(id)arg1 ofAttributesFound:(id)arg2;
 - (BOOL)tracksRootElement;
-- (void)dealloc;
 - (id)initWithParser:(id)arg1 parentGenerator:(id)arg2 parentElementSetter:(SEL)arg3 element:(id)arg4;
 - (id)initWithParser:(id)arg1 baseURL:(id)arg2 rootElementNameSpace:(id)arg3 elementName:(id)arg4 parseClass:(Class)arg5;
 

@@ -16,8 +16,8 @@ __attribute__((visibility("hidden")))
     NSString *_suffix;
 }
 
+- (void).cxx_destruct;
 - (id)makeIdentifier;
-- (void)dealloc;
 - (id)initWithSuffix:(id)arg1;
 
 // Remaining properties

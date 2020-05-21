@@ -12,6 +12,7 @@
 {
 }
 
++ (id)_measurementWithNaturalScale:(id)arg1 system:(unsigned long long)arg2;
 + (id)poundsForcePerSquareInch;
 + (id)millimetersOfMercury;
 + (id)millibars;
@@ -23,6 +24,7 @@
 + (id)gigapascals;
 + (id)newtonsPerMetersSquared;
 + (id)baseUnit;
++ (void)initialize;
 
 @end
 

@@ -20,6 +20,7 @@
     BOOL _isLastInBatch;
 }
 
+- (void).cxx_destruct;
 @property BOOL isLastInBatch; // @synthesize isLastInBatch=_isLastInBatch;
 @property BOOL isUserRequested; // @synthesize isUserRequested=_isUserRequested;
 @property(retain) NSFileHandle *destFileHandle; // @synthesize destFileHandle=_destFileHandle;
@@ -27,7 +28,7 @@
 - (BOOL)_isLowPriority;
 - (void)performOperation;
 - (void)_doFetchAtNextURL;
-- (id)_popNextURLToTry;
+- (id)_popNextURLWrapperToTry;
 - (void)_addURLToTry:(id)arg1;
 - (void)_handleDownloadResponseHeaders:(id)arg1 url:(id)arg2 error:(id)arg3;
 - (void)_processFileWithContentType:(id)arg1 etag:(id)arg2;
@@ -35,7 +36,6 @@
 - (void)setQuarantineProperties;
 - (id)extraUserInfoForRebuiltError;
 - (id)masterEntity;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 attachmentName:(id)arg2 etag:(id)arg3 entity:(id)arg4 dropBoxURL:(id)arg5 fromSource:(id)arg6;
 
 @end

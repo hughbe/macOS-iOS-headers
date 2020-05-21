@@ -7,7 +7,7 @@
 #import "PHMemoryChangeRequest.h"
 
 @interface PHMemoryChangeRequest (PhotosUICore)
-+ (id)px_creationRequestForAssetCollection:(id)arg1 people:(id)arg2;
++ (id)px_creationRequestForAssetCollection:(id)arg1 displayTitleInfo:(id)arg2 people:(id)arg3;
 + (id)px_creationRequestForAssetCollection:(id)arg1;
 @end
 

@@ -8,15 +8,20 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray;
+@class NSMutableArray, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDSimpleRestaurantMenuText : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_menuGroups;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)menuGroupType;
-@property(retain, nonatomic) NSMutableArray *menuGroups; // @synthesize menuGroups=_menuGroups;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -24,13 +29,14 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)menuGroupAtIndex:(unsigned long long)arg1;
 - (unsigned long long)menuGroupsCount;
 - (void)addMenuGroup:(id)arg1;
 - (void)clearMenuGroups;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *menuGroups;
 
 @end
 

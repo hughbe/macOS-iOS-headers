@@ -6,9 +6,11 @@
 
 #import <IMCore/IMTranscriptChatItem.h>
 
-@class NSDate, NSString;
+#import "IMChatTranscriptStatusItem.h"
 
-@interface IMMessageStatusChatItem : IMTranscriptChatItem
+@class IMHandle, IMServiceImpl, NSAttributedString, NSDate, NSString;
+
+@interface IMMessageStatusChatItem : IMTranscriptChatItem <IMChatTranscriptStatusItem>
 {
     long long _statusType;
     NSDate *_time;
@@ -18,22 +20,34 @@
     unsigned long long _count;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long count; // @synthesize count=_count;
 @property(readonly, nonatomic) long long expireStatusType; // @synthesize expireStatusType=_expireStatusType;
 @property(readonly, nonatomic) NSDate *time; // @synthesize time=_time;
 @property(readonly, nonatomic) long long statusType; // @synthesize statusType=_statusType;
-- (void).cxx_destruct;
 - (id)_initWithItem:(id)arg1 statusType:(long long)arg2 time:(id)arg3 count:(unsigned long long)arg4 expireStatusType:(long long)arg5;
 - (id)_initWithItem:(id)arg1 expireStatusType:(long long)arg2 count:(unsigned long long)arg3;
 - (id)_initWithItem:(id)arg1 statusType:(long long)arg2 time:(id)arg3 count:(unsigned long long)arg4;
 @property(readonly, nonatomic) long long messageStatusType;
 @property(readonly, nonatomic) NSString *errorText;
-@property(readonly, nonatomic) BOOL isFromMe;
+@property(readonly, nonatomic, getter=isFromMe) BOOL fromMe;
 - (void)_setTimeAdded:(id)arg1;
 - (id)_timeAdded;
 - (id)_timeStale;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)description;
+@property(readonly, nonatomic) NSDate *dateOfStatus;
+@property(readonly, copy) NSString *description;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, nonatomic) IMHandle *handle;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) BOOL isFromMe;
+@property(readonly, nonatomic) IMServiceImpl *service;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic) NSDate *transcriptDate;
+@property(readonly, copy, nonatomic) NSAttributedString *transcriptText;
+@property(readonly, nonatomic) BOOL wantsTail;
 
 @end
 

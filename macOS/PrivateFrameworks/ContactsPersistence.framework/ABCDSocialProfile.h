@@ -29,7 +29,7 @@
 - (BOOL)_synthesizeURLFromUserIdentifier;
 - (BOOL)_synthesizeURLFromUserName;
 - (void)_synthesizeURL;
-@property(copy) NSURL *url;
+@property(retain, nonatomic) NSURL *url;
 - (void)willSave;
 - (void)_normalizeValues;
 - (void)_makeSureItsLabeled;

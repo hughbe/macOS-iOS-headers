@@ -6,8 +6,9 @@
 
 #import "NSView.h"
 
-@class NSArray, NSMapTable, NSMutableArray, NSMutableOrderedSet;
+@class MKMapView, NSArray, NSMapTable, NSMutableArray, NSMutableOrderedSet;
 
+__attribute__((visibility("hidden")))
 @interface MKOverlayContainerView : NSView
 {
     NSMutableOrderedSet *_overlays[2];
@@ -16,15 +17,18 @@
     NSMutableArray *_vkOverlays[2];
     id <MKOverlayContainerViewDelegate> _delegate;
     double _mapZoomScale;
+    MKMapView *_mapView;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak MKMapView *mapView; // @synthesize mapView=_mapView;
 @property(nonatomic) double mapZoomScale; // @synthesize mapZoomScale=_mapZoomScale;
 @property(nonatomic) __weak id <MKOverlayContainerViewDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)viewDidChangeBackingProperties;
 - (void)_insertDrawable:(id)arg1 forOverlay:(id)arg2 atIndex:(long long)arg3 level:(long long)arg4;
 - (void)_updateContentScale:(id)arg1;
 - (void)_removeDrawable:(id)arg1 forOverlay:(id)arg2 level:(long long)arg3;
+@property(readonly, nonatomic) NSArray *allDrawables;
 - (id)drawableForOverlay:(id)arg1;
 - (id)overlaysInLevel:(long long)arg1;
 @property(readonly, nonatomic) NSArray *overlays;

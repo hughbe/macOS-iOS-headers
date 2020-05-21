@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSView.h"
+#import "NSTableCellView.h"
 
 @class ABCardCollectionView, CNContactListCellViewController, NSArray, NSTextField;
 
-@interface CNContactListCellView : NSView
+@interface CNContactListCellView : NSTableCellView
 {
     CNContactListCellViewController *_controller;
     ABCardCollectionView *_collectionView;
@@ -16,11 +16,11 @@
     NSArray *_customConstraints;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSArray *customConstraints; // @synthesize customConstraints=_customConstraints;
 @property(retain) NSTextField *nameView; // @synthesize nameView=_nameView;
-@property __weak ABCardCollectionView *collectionView; // @synthesize collectionView=_collectionView;
+@property(readonly) ABCardCollectionView *collectionView; // @synthesize collectionView=_collectionView;
 @property(retain) CNContactListCellViewController *controller; // @synthesize controller=_controller;
-- (void).cxx_destruct;
 - (BOOL)accessibilityPerformPress;
 - (id)metrics;
 - (id)views;

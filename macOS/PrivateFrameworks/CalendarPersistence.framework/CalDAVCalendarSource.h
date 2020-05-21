@@ -17,7 +17,8 @@
     CalDAVSession *_session;
 }
 
-@property(readonly) CalDAVSession *session; // @synthesize session=_session;
+- (void).cxx_destruct;
+@property(readonly) __weak CalDAVSession *session; // @synthesize session=_session;
 @property(readonly, retain) NSString *uid; // @synthesize uid=_uid;
 @property(readonly, retain) NSSet *capabilities; // @synthesize capabilities=_capabilities;
 @property(readonly, retain) NSString *path; // @synthesize path=_path;
@@ -29,7 +30,6 @@
 - (void)processResourcesFromServer:(id)arg1 failedResources:(id)arg2 inManagedObjectContext:(id)arg3;
 - (void)processResourcesFromServer:(id)arg1 inManagedObjectContext:(id)arg2;
 - (void)setupCapabilitiesForSession:(id)arg1 calendar:(id)arg2;
-- (void)dealloc;
 - (id)initWithSession:(id)arg1 calendar:(id)arg2;
 
 @end

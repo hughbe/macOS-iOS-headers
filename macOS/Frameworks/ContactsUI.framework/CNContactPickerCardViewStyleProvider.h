@@ -11,10 +11,11 @@
 }
 
 - (double)nameViewPhotoInsetLeading;
+- (BOOL)reducedLabelTrailingInset;
 - (double)collectionSeparatorInsetTrailing;
 - (double)collectionSeparatorInsetLeading;
 - (double)collectionViewLeftMargin;
-- (id)datumValueMouseOverValueTextColor;
+- (id)datumValueMouseOverTextColor;
 - (id)datumValueTextColor;
 - (double)cardViewTopMargin;
 - (double)interPropertyPadding;

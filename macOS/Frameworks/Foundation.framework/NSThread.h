@@ -14,6 +14,7 @@
     unsigned char _bytes[44];
 }
 
++ (void)detachNewThreadWithBlock:(CDUnknownBlockType)arg1;
 + (void)detachNewThreadSelector:(SEL)arg1 toTarget:(id)arg2 withObject:(id)arg3;
 + (BOOL)isDying;
 + (void)exit;
@@ -47,6 +48,7 @@
 - (void)dealloc;
 - (id)initWithTarget:(id)arg1 selector:(SEL)arg2 object:(id)arg3;
 - (id)init;
+- (id)initWithBlock:(CDUnknownBlockType)arg1;
 - (BOOL)isDying;
 - (id)runLoop;
 

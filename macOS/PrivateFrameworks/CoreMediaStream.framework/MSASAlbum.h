@@ -7,11 +7,13 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class NSDate, NSDictionary, NSString;
 
-@interface MSASAlbum : NSObject <NSCopying>
+@interface MSASAlbum : NSObject <NSCopying, NSSecureCoding>
 {
+    BOOL _ownerIsWhitelisted;
     BOOL _isFamilySharedAlbum;
     int _relationshipState;
     NSString *_ownerEmail;
@@ -32,6 +34,7 @@
 + (id)albumWithAlbum:(id)arg1;
 + (BOOL)supportsSecureCoding;
 + (id)album;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isFamilySharedAlbum; // @synthesize isFamilySharedAlbum=_isFamilySharedAlbum;
 @property(retain, nonatomic) id context; // @synthesize context=_context;
 @property(retain, nonatomic) NSDictionary *metadata; // @synthesize metadata=_metadata;
@@ -42,12 +45,12 @@
 @property(retain, nonatomic) NSString *ctag; // @synthesize ctag=_ctag;
 @property(retain, nonatomic) NSString *GUID; // @synthesize GUID=_GUID;
 @property(retain, nonatomic) NSDate *subscriptionDate; // @synthesize subscriptionDate=_subscriptionDate;
+@property(nonatomic) BOOL ownerIsWhitelisted; // @synthesize ownerIsWhitelisted=_ownerIsWhitelisted;
 @property(retain, nonatomic) NSString *ownerLastName; // @synthesize ownerLastName=_ownerLastName;
 @property(retain, nonatomic) NSString *ownerFirstName; // @synthesize ownerFirstName=_ownerFirstName;
 @property(retain, nonatomic) NSString *ownerFullName; // @synthesize ownerFullName=_ownerFullName;
 @property(retain, nonatomic) NSString *ownerPersonID; // @synthesize ownerPersonID=_ownerPersonID;
 @property(retain, nonatomic) NSString *ownerEmail; // @synthesize ownerEmail=_ownerEmail;
-- (void).cxx_destruct;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

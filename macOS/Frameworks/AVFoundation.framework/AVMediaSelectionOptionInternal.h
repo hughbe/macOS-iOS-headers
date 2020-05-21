@@ -6,15 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString;
+@class AVDispatchOnce, NSArray, NSString;
 
+__attribute__((visibility("hidden")))
 @interface AVMediaSelectionOptionInternal : NSObject
 {
     NSString *_displayName;
     NSString *_displayNameLocaleIdentifier;
     NSArray *_groupMediaCharacteristics;
     NSArray *_optionMediaCharacteristics;
-    long long _synthesizeMediaCharacteristicsOnce;
+    AVDispatchOnce *_synthesizeMediaCharacteristicsOnce;
 }
 
 @end

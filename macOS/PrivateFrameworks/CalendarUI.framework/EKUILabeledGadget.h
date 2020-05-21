@@ -6,18 +6,18 @@
 
 #import <CalendarUI/EKUIGadget.h>
 
-@class NSArray, NSTextField, NSView;
+@class NSTextField, NSView;
 
 @interface EKUILabeledGadget : EKUIGadget
 {
     NSView *_controlView;
+    BOOL _hasAddedControlViewConstraints;
     NSTextField *_label;
-    NSArray *_labelConstraints;
 }
 
-@property(retain) NSArray *labelConstraints; // @synthesize labelConstraints=_labelConstraints;
-@property(retain) NSTextField *label; // @synthesize label=_label;
 - (void).cxx_destruct;
+@property BOOL hasAddedControlViewConstraints; // @synthesize hasAddedControlViewConstraints=_hasAddedControlViewConstraints;
+@property(retain) NSTextField *label; // @synthesize label=_label;
 - (void)addSubviewsIfNeeded;
 - (id)getAlignmentLabelAndAddToSubviewsIfNeeded;
 - (id)controlView;

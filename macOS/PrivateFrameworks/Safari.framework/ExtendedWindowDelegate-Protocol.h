@@ -11,6 +11,7 @@
 @protocol ExtendedWindowDelegate <NSWindowDelegate>
 
 @optional
+- (BOOL)window:(NSWindow *)arg1 willHandleMouseDraggedEvent:(NSEvent *)arg2;
 - (BOOL)window:(NSWindow *)arg1 willHandleMouseDownEvent:(NSEvent *)arg2;
 - (BOOL)window:(NSWindow *)arg1 willHandleKeyEvent:(NSEvent *)arg2;
 - (BOOL)window:(NSWindow *)arg1 performKeyEquivalent:(NSEvent *)arg2;

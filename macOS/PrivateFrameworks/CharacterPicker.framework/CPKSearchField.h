@@ -6,19 +6,33 @@
 
 #import "NSSearchField.h"
 
-__attribute__((visibility("hidden")))
-@interface CPKSearchField : NSSearchField
+#import "CPKNavigationSender.h"
+
+@class NSString;
+
+@interface CPKSearchField : NSSearchField <CPKNavigationSender>
 {
-    CPKSearchField *_altSearchField;
-    BOOL _alreadyFocused;
+    BOOL _hasActiveNavigationTarget;
+    BOOL _hasKeyFocus;
+    id <CPKNavigationDelegate> _navigationDelegate;
 }
 
 + (Class)cellClass;
-@property(retain) CPKSearchField *altSearchField; // @synthesize altSearchField=_altSearchField;
+@property BOOL hasKeyFocus; // @synthesize hasKeyFocus=_hasKeyFocus;
+@property(readonly, nonatomic) id <CPKNavigationDelegate> navigationDelegate; // @synthesize navigationDelegate=_navigationDelegate;
+@property(readonly, nonatomic) BOOL hasActiveNavigationTarget; // @synthesize hasActiveNavigationTarget=_hasActiveNavigationTarget;
+- (void)_changeHavingKeyFocus:(BOOL)arg1;
+- (BOOL)resignFirstResponder;
 - (BOOL)becomeFirstResponder;
 - (void)setStringValue:(id)arg1;
-- (void)dealloc;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (void)setHasActiveNavigationTarget:(BOOL)arg1;
+- (void)setNavigationDelegate:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

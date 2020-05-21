@@ -11,26 +11,30 @@
 __attribute__((visibility("hidden")))
 @interface HostOrService : NSObject
 {
+    unsigned int _window;
     HostAndService *_hostAndService;
     NSXPCConnection *_connection;
     NSDictionary *_secBundleInfo;
     long long _secBundleInfoOnce;
-    unsigned int _isMidTunnel:1;
+    unsigned int _didBeginTransaction:1;
 }
 
+@property(readonly) unsigned int window; // @synthesize window=_window;
 @property(readonly) NSXPCConnection *connection; // @synthesize connection=_connection;
 @property HostAndService *hostAndService; // @synthesize hostAndService=_hostAndService;
+- (void)dealloc;
+- (BOOL)colorHasMeaningfulAlpha:(id)arg1;
+- (int)owningProcessForWindow:(unsigned int)arg1;
+- (void)invalidate:(id)arg1;
 - (void)post:(struct __CGEvent *)arg1;
 - (id)secBundleIdentifier;
 @property(readonly) NSDictionary *secBundleInfo;
 @property(readonly) struct __LSASN *applicationSerialNumber;
-- (void)joinPair:(id)arg1 isMidTunnel:(BOOL)arg2 reply:(CDUnknownBlockType)arg3 configure:(CDUnknownBlockType)arg4;
+- (void)joinPair:(id)arg1 reply:(CDUnknownBlockType)arg2 configure:(CDUnknownBlockType)arg3;
 - (void)forEvent:(struct __CGEvent *)arg1 invokeWithFlatEvent:(CDUnknownBlockType)arg2;
-- (id)initWithWeakConnection:(id)arg1;
-@property(readonly) BOOL isMidTunnel;
+- (id)initWithConnection:(id)arg1;
 - (id)quickDescription;
 - (id)description;
-- (void)dealloc;
 
 @end
 

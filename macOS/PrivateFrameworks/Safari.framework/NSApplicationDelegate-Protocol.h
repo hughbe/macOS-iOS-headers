@@ -26,7 +26,8 @@
 - (void)applicationWillHide:(NSNotification *)arg1;
 - (void)applicationDidFinishLaunching:(NSNotification *)arg1;
 - (void)applicationWillFinishLaunching:(NSNotification *)arg1;
-- (void)application:(NSApplication *)arg1 userAcceptedCloudKitShareWithMetadata:(CKShareMetadata *)arg2;
+- (BOOL)application:(NSApplication *)arg1 delegateHandlesKey:(NSString *)arg2;
+- (void)application:(NSApplication *)arg1 userDidAcceptCloudKitShareWithMetadata:(CKShareMetadata *)arg2;
 - (void)application:(NSApplication *)arg1 didUpdateUserActivity:(NSUserActivity *)arg2;
 - (void)application:(NSApplication *)arg1 didFailToContinueUserActivityWithType:(NSString *)arg2 error:(NSError *)arg3;
 - (BOOL)application:(NSApplication *)arg1 continueUserActivity:(NSUserActivity *)arg2 restorationHandler:(void (^)(NSArray *))arg3;
@@ -48,6 +49,7 @@
 - (BOOL)application:(NSApplication *)arg1 openTempFile:(NSString *)arg2;
 - (void)application:(NSApplication *)arg1 openFiles:(NSArray *)arg2;
 - (BOOL)application:(NSApplication *)arg1 openFile:(NSString *)arg2;
+- (void)application:(NSApplication *)arg1 openURLs:(NSArray *)arg2;
 - (unsigned long long)applicationShouldTerminate:(NSApplication *)arg1;
 @end
 

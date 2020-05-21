@@ -82,7 +82,6 @@ struct tagCONNRESULT {
     int bIfRemoteCellularQoS;
     int iLocalCellTech;
     int iRemoteCellTech;
-    unsigned int dwCellularUniqueTag;
     unsigned short wCellularMTU;
     int bIfUpgrade;
     int bIfPrimary;

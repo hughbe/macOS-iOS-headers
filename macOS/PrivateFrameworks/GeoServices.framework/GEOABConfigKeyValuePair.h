@@ -8,20 +8,35 @@
 
 #import "NSCopying.h"
 
-@class GEOABConfigValue, NSString;
+@class GEOABConfigValue, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOABConfigKeyValuePair : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSString *_abConfigKey;
     GEOABConfigValue *_abConfigValue;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     int _abConfigValueType;
     struct {
-        unsigned int abConfigValueType:1;
-    } _has;
+        unsigned int has_abConfigValueType:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_abConfigKey:1;
+        unsigned int read_abConfigValue:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_abConfigKey:1;
+        unsigned int wrote_abConfigValue:1;
+        unsigned int wrote_abConfigValueType:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOABConfigValue *abConfigValue; // @synthesize abConfigValue=_abConfigValue;
-@property(retain, nonatomic) NSString *abConfigKey; // @synthesize abConfigKey=_abConfigKey;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -29,15 +44,21 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOABConfigValue *abConfigValue;
 @property(readonly, nonatomic) BOOL hasAbConfigValue;
+- (void)_readAbConfigValue;
 - (int)StringAsAbConfigValueType:(id)arg1;
 - (id)abConfigValueTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasAbConfigValueType;
-@property(nonatomic) int abConfigValueType; // @synthesize abConfigValueType=_abConfigValueType;
+@property(nonatomic) int abConfigValueType;
+@property(retain, nonatomic) NSString *abConfigKey;
 @property(readonly, nonatomic) BOOL hasAbConfigKey;
-- (void)dealloc;
+- (void)_readAbConfigKey;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

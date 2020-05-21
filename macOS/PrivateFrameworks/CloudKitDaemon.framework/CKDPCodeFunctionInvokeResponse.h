@@ -8,19 +8,18 @@
 
 #import "NSCopying.h"
 
-@class NSData, NSMutableArray;
+@class CKDPCodeFunctionInvokeResponseAttestationResponse, NSData;
 
 __attribute__((visibility("hidden")))
 @interface CKDPCodeFunctionInvokeResponse : PBCodable <NSCopying>
 {
-    NSMutableArray *_recordResults;
+    CKDPCodeFunctionInvokeResponseAttestationResponse *_attestationResponse;
     NSData *_serializedResult;
 }
 
-+ (Class)recordResultsType;
-@property(retain, nonatomic) NSMutableArray *recordResults; // @synthesize recordResults=_recordResults;
-@property(retain, nonatomic) NSData *serializedResult; // @synthesize serializedResult=_serializedResult;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CKDPCodeFunctionInvokeResponseAttestationResponse *attestationResponse; // @synthesize attestationResponse=_attestationResponse;
+@property(retain, nonatomic) NSData *serializedResult; // @synthesize serializedResult=_serializedResult;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -30,10 +29,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-- (id)recordResultsAtIndex:(unsigned long long)arg1;
-- (unsigned long long)recordResultsCount;
-- (void)addRecordResults:(id)arg1;
-- (void)clearRecordResults;
+@property(readonly, nonatomic) BOOL hasAttestationResponse;
 @property(readonly, nonatomic) BOOL hasSerializedResult;
 
 @end

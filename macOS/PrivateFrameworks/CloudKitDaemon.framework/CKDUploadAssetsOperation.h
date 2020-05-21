@@ -6,36 +6,45 @@
 
 #import <CloudKitDaemon/CKDDatabaseOperation.h>
 
-@class CKDCancelTokenGroup, NSArray, NSMapTable, NSMutableArray, NSObject<OS_dispatch_queue>;
+@class CKDAssetRequestPlanner, CKDCancelTokenGroup, NSArray, NSDictionary, NSMapTable, NSMutableArray, NSObject<OS_dispatch_queue>;
 
 __attribute__((visibility("hidden")))
 @interface CKDUploadAssetsOperation : CKDDatabaseOperation
 {
+    BOOL _atomic;
+    BOOL _temporary;
     CDUnknownBlockType _uploadPreparationBlock;
     CDUnknownBlockType _uploadProgressBlock;
     CDUnknownBlockType _uploadCompletionBlock;
     NSObject<OS_dispatch_queue> *_queue;
     NSArray *_assetsToUpload;
-    NSMutableArray *_MMCSItemsToUpload;
     NSMapTable *_uploadTasksByPackages;
     NSMutableArray *_packageManifests;
     NSMutableArray *_openedPackages;
     CKDCancelTokenGroup *_cancelTokens;
     unsigned long long _maxPackageUploadsPerBatch;
+    CKDAssetRequestPlanner *_assetRequestPlanner;
+    NSDictionary *_assetUUIDToExpectedProperties;
+    NSDictionary *_packageUUIDToExpectedProperties;
 }
 
++ (long long)isPredominatelyDownload;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL temporary; // @synthesize temporary=_temporary;
+@property(retain, nonatomic) NSDictionary *packageUUIDToExpectedProperties; // @synthesize packageUUIDToExpectedProperties=_packageUUIDToExpectedProperties;
+@property(retain, nonatomic) NSDictionary *assetUUIDToExpectedProperties; // @synthesize assetUUIDToExpectedProperties=_assetUUIDToExpectedProperties;
+@property(retain, nonatomic) CKDAssetRequestPlanner *assetRequestPlanner; // @synthesize assetRequestPlanner=_assetRequestPlanner;
 @property(nonatomic) unsigned long long maxPackageUploadsPerBatch; // @synthesize maxPackageUploadsPerBatch=_maxPackageUploadsPerBatch;
 @property(retain, nonatomic) CKDCancelTokenGroup *cancelTokens; // @synthesize cancelTokens=_cancelTokens;
 @property(retain, nonatomic) NSMutableArray *openedPackages; // @synthesize openedPackages=_openedPackages;
 @property(retain, nonatomic) NSMutableArray *packageManifests; // @synthesize packageManifests=_packageManifests;
 @property(retain, nonatomic) NSMapTable *uploadTasksByPackages; // @synthesize uploadTasksByPackages=_uploadTasksByPackages;
-@property(retain, nonatomic) NSMutableArray *MMCSItemsToUpload; // @synthesize MMCSItemsToUpload=_MMCSItemsToUpload;
 @property(retain, nonatomic) NSArray *assetsToUpload; // @synthesize assetsToUpload=_assetsToUpload;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
+@property(nonatomic) BOOL atomic; // @synthesize atomic=_atomic;
 @property(copy, nonatomic) CDUnknownBlockType uploadCompletionBlock; // @synthesize uploadCompletionBlock=_uploadCompletionBlock;
 @property(copy, nonatomic) CDUnknownBlockType uploadProgressBlock; // @synthesize uploadProgressBlock=_uploadProgressBlock;
 @property(copy, nonatomic) CDUnknownBlockType uploadPreparationBlock; // @synthesize uploadPreparationBlock=_uploadPreparationBlock;
-- (void).cxx_destruct;
 - (void)main;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)finishWithError:(id)arg1;
@@ -57,9 +66,13 @@ __attribute__((visibility("hidden")))
 - (void)_didUploadMMCSSectionItems:(id)arg1 task:(id)arg2 error:(id)arg3;
 - (void)_didUploadMMCSSectionItem:(id)arg1 task:(id)arg2 error:(id)arg3;
 - (BOOL)_fetchUploadTokens;
-- (void)_didFechUploadTokensForMMCSItems:(id)arg1 error:(id)arg2;
+- (BOOL)_didFetchUploadTokensForAssetTokenRequest:(id)arg1 error:(id)arg2 newError:(id *)arg3;
+- (void)_failAllItemsInAssetBatch:(id)arg1 error:(id)arg2;
 - (BOOL)_prepareForUpload;
-- (void)_didPrepareMMCSItems:(id)arg1 uploadTasksByPackages:(id)arg2 error:(id)arg3;
+- (BOOL)_fetchAssetRereferenceRecords;
+- (void)_didPrepareAssetBatch:(id)arg1 error:(id)arg2;
+- (void)_didPutChunkKeysForAssetBatch:(id)arg1 error:(id)arg2;
+- (void)_didGetChunkKeysForAssetBatch:(id)arg1 error:(id)arg2;
 - (BOOL)_planSectionsForPackage:(id)arg1 error:(id *)arg2;
 - (void)_didUploadAsset:(id)arg1 error:(id)arg2;
 - (void)_didMakeProgressForAsset:(id)arg1 progress:(double)arg2;
@@ -70,7 +83,7 @@ __attribute__((visibility("hidden")))
 - (id)nameForState:(unsigned long long)arg1;
 - (BOOL)makeStateTransition;
 - (id)CKStatusReportLogGroups;
-- (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2 assetsToUpload:(id)arg3;
+- (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2;
 
 @end
 

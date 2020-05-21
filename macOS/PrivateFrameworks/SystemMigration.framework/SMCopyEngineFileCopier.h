@@ -16,14 +16,14 @@
     NSSet *_relativeExcludedPaths;
 }
 
+- (void).cxx_destruct;
 @property BOOL ignoreBundleVersion; // @synthesize ignoreBundleVersion=_ignoreBundleVersion;
 @property BOOL copyAsMove; // @synthesize copyAsMove=_copyAsMove;
 @property(retain) NSSet *relativeExcludedPaths; // @synthesize relativeExcludedPaths=_relativeExcludedPaths;
 @property __weak SMMacUser_Daemon *remoteUser; // @synthesize remoteUser=_remoteUser;
-- (void).cxx_destruct;
 @property(readonly) BOOL hasExcludedPaths;
 @property(readonly) NSSet *excludedPaths;
-- (void)finishedFileAtCPath:(const char *)arg1;
+- (void)updateCompletedFilePermissions:(id)arg1;
 - (void)finishedFileAtPath:(id)arg1;
 - (BOOL)postProcessReturningError:(id *)arg1;
 - (BOOL)preProcessReturningError:(id *)arg1;

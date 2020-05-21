@@ -25,7 +25,10 @@
 + (void)addFilePresenter:(id)arg1;
 + (void)_getDebugInfoWithCompletionHandler:(CDUnknownBlockType)arg1;
 + (void)_printDebugInfo;
++ (id)_currentClaimPurposeIdentifier;
 + (id)_currentFileCoordinator;
++ (BOOL)_itemHasPresentersAtURL:(id)arg1;
++ (void)_setAutomaticFileProviderReregistrationDisabled:(BOOL)arg1;
 + (id)_fileProviders;
 + (void)_removeFileProvider:(id)arg1;
 + (void)_addFileProvider:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
@@ -39,21 +42,37 @@
 + (void)__itemAtURL:(id)arg1 didReconnectWithPurposeID:(id)arg2;
 + (void)__itemAtURL:(id)arg1 didDisconnectWithPurposeID:(id)arg2;
 + (void)__itemAtURL:(id)arg1 didMoveToURL:(id)arg2 purposeID:(id)arg3;
++ (void)_setNextClaimIdentifier:(id)arg1;
++ (id)_nextClaimIdentifier;
 + (BOOL)_skipCoordinationWork;
++ (void)_performBarrierAsync:(CDUnknownBlockType)arg1;
++ (void)_performBarrier;
++ (id)_endpointForInProcessFileCoordinationServer;
++ (void)_adoptFCDEndpointForTest:(id)arg1;
 + (id)_createConnectionToProgressRegistrar;
 + (id)_createConnectionToFileAccessArbiterForQueue:(id)arg1;
 + (void)_stopInProcessFileCoordinationAndProgressServers;
++ (id)_inProcessFileAccessArbiter;
 + (void)_startInProcessFileCoordinationAndProgressServers;
 + (id)_fileAccessArbiterInterface;
++ (id)_fileProviderInterface;
++ (id)_filePresenterInterface;
++ (id)_createIdentifierForNewClaim;
++ (void)_setCurrentClaimPurposeIdentifier:(id)arg1;
++ (void)_setKernelMaterializationOperation:(unsigned int)arg1;
 + (void)_setReadingOptions:(unsigned long long)arg1;
-+ (void)_removeProcessIdentifierForID:(id)arg1;
-+ (void)_addProcessIdentifier:(int)arg1 forID:(id)arg2;
-+ (void)_accessProcessIdentifiersUsingBlock:(CDUnknownBlockType)arg1;
++ (void)_removeInfoForID:(id)arg1;
++ (void)_addProcessIdentifier:(int)arg1 observedUbiquityAttributes:(id)arg2 forID:(id)arg3;
++ (void)_accessPresenterInfoUsingBlock:(CDUnknownBlockType)arg1;
++ (unsigned int)_kernelMaterializationOperation;
 + (unsigned long long)_readingOptions;
 + (BOOL)_provideRecursively;
++ (id)_observedUbiquityAttributesForPresenterWithID:(id)arg1;
 + (int)_processIdentifierForID:(id)arg1;
 + (unsigned long long)_responsesForPresenter:(id)arg1;
 - (void)cancel;
+- (void)itemAtURL:(id)arg1 didChangeUbiquityAttributes:(id)arg2;
+- (BOOL)_isValidUbiquityAttribute:(id)arg1;
 - (void)itemAtURL:(id)arg1 didMoveToURL:(id)arg2;
 - (void)itemAtURL:(id)arg1 willMoveToURL:(id)arg2;
 - (void)prepareForReadingItemsAtURLs:(id)arg1 options:(unsigned long long)arg2 writingItemsAtURLs:(id)arg3 options:(unsigned long long)arg4 error:(id *)arg5 byAccessor:(CDUnknownBlockType)arg6;
@@ -80,6 +99,7 @@
 - (void)__coordinateReadingItemAtURL:(id)arg1 options:(unsigned long long)arg2 purposeID:(id)arg3 byAccessor:(CDUnknownBlockType)arg4;
 - (void)_itemDidChangeAtURL:(id)arg1;
 - (void)_itemDidDisappearAtURL:(id)arg1;
+- (void)sharingDidChangeForItemAtURL:(id)arg1;
 - (void)_ubiquityDidChangeForItemAtURL:(id)arg1;
 - (void)_itemAtURL:(id)arg1 didMoveToURL:(id)arg2;
 - (void)_itemAtURL:(id)arg1 willMoveToURL:(id)arg2;
@@ -88,12 +108,13 @@
 - (void)_coordinateReadingItemAtURL:(id)arg1 options:(unsigned long long)arg2 writingItemAtURL:(id)arg3 options:(unsigned long long)arg4 error:(id *)arg5 byAccessor:(CDUnknownBlockType)arg6;
 - (void)_coordinateWritingItemAtURL:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3 byAccessor:(CDUnknownBlockType)arg4;
 - (void)_coordinateReadingItemAtURL:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3 byAccessor:(CDUnknownBlockType)arg4;
-- (void)_invokeAccessor:(CDUnknownBlockType)arg1 orDont:(BOOL)arg2 andRelinquishAccessClaim:(id)arg3;
+- (void)_withAccessArbiter:(id)arg1 invokeAccessor:(CDUnknownBlockType)arg2 orDont:(BOOL)arg3 andRelinquishAccessClaim:(id)arg4;
 - (void)_didEndWrite:(id)arg1;
 - (id)_willStartWriteWithIntents:(id)arg1 async:(BOOL)arg2;
-- (void)_blockOnAccessClaim:(id)arg1;
+- (void)_blockOnAccessClaim:(id)arg1 withAccessArbiter:(id)arg2;
 - (void)_forgetAccessClaimForID:(id)arg1;
 - (void)_requestAccessClaim:(id)arg1 withProcedure:(CDUnknownBlockType)arg2;
+- (void)_cancelClaimWithIdentifier:(id)arg1;
 
 @end
 

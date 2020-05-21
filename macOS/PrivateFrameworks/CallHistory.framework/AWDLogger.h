@@ -8,14 +8,15 @@
 
 @class AWDServerConnection;
 
+__attribute__((visibility("hidden")))
 @interface AWDLogger : CHLogger
 {
     AWDServerConnection *_awdServer;
 }
 
 + (id)instance;
-@property(retain, nonatomic) AWDServerConnection *awdServer; // @synthesize awdServer=_awdServer;
 - (void).cxx_destruct;
+@property(retain, nonatomic) AWDServerConnection *awdServer; // @synthesize awdServer=_awdServer;
 - (void)gizmoDatabaseMigrationFailure;
 - (void)bootstrapGizmo:(unsigned long long)arg1;
 - (void)uninitializedDatabaseSave;

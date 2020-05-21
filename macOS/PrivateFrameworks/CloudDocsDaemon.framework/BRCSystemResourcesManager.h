@@ -8,7 +8,7 @@
 
 #import "BRReachabilityObserver.h"
 
-@class BRReachabilityMonitor, NSHashTable, NSMapTable, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
+@class BRReachabilityMonitor, NSDate, NSHashTable, NSMapTable, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, br_pacer;
 
 __attribute__((visibility("hidden")))
 @interface BRCSystemResourcesManager : NSObject <BRReachabilityObserver>
@@ -17,18 +17,21 @@ __attribute__((visibility("hidden")))
     BOOL _invalidated;
     NSHashTable *_reachabilityObservers;
     BRReachabilityMonitor *_reachabilityMonitor;
-    BOOL _isNetworkReachable;
-    NSObject<OS_dispatch_source> *_isNetworkReachableTimer;
+    unsigned int _reachabilityFlags;
+    NSObject<OS_dispatch_source> *_reachabilityFlagsTimer;
     NSHashTable *_powerObservers;
     int _powerNotifyToken;
     BOOL _powerLevelOK;
     NSObject<OS_dispatch_source> *_powerLevelOKTimer;
+    BOOL _connectedToPowerSource;
+    NSDate *_connectedToPowerSourceCheckedDate;
     NSMutableSet *_lowDiskSet;
     NSMutableDictionary *_lowDiskDict;
     NSObject<OS_dispatch_source> *_lowDiskSource;
     NSObject<OS_dispatch_source> *_lowDiskTimer;
     NSHashTable *_lowMemoryObservers;
     NSObject<OS_dispatch_source> *_memoryNotificationEventSource;
+    br_pacer *_memoryNotificationCoalescePacer;
     NSMapTable *_processObservers;
     NSHashTable *_appListObservers;
 }
@@ -58,6 +61,7 @@ __attribute__((visibility("hidden")))
 - (void)_resetLowDiskManager;
 - (void)_invalidateLowDiskManager;
 - (void)_initLowDiskManager;
+- (BOOL)connectedToPowerSource;
 - (void)removePowerObserver:(id)arg1;
 - (void)addPowerObserver:(id)arg1;
 - (void)_setPowerLevel:(BOOL)arg1;
@@ -68,12 +72,15 @@ __attribute__((visibility("hidden")))
 - (void)_initPowerManager;
 - (void)removeReachabilityObserver:(id)arg1;
 - (void)addReachabilityObserver:(id)arg1;
-- (void)_setNetworkReachable:(BOOL)arg1;
-- (void)_setNetworkReachableWithCoalescing:(BOOL)arg1;
+- (void)_setReachabilityFlags:(unsigned int)arg1;
+@property(readonly) unsigned int reachabilityFlags;
 @property(readonly) BOOL isNetworkReachable;
+- (void)_setReachabilityFlagsWithCoalescing:(unsigned int)arg1;
 - (void)_invalidateReachability;
 - (void)_resetReachability;
+- (void)__resetReachability;
 - (void)_initReachability;
+- (void)reachabilityMonitor:(id)arg1 didChangeReachabilityFlagsTo:(unsigned int)arg2;
 - (void)reachabilityMonitor:(id)arg1 didChangeReachabilityStatusTo:(BOOL)arg2;
 - (void)reset;
 - (void)suspend;

@@ -6,44 +6,26 @@
 
 #import "NSObject.h"
 
-@class CKContainerID, CKDMescalSession, CKDServerConfiguration, CKDURLRequest, NSArray, NSBundle, NSDictionary, NSString, NSURL;
+@class CKAccountOverrideInfo, NSString;
 
 @protocol CKDAccountInfoProvider <NSObject>
-@property(readonly, nonatomic) BOOL canAccessAccount;
+@property(readonly, nonatomic) CKAccountOverrideInfo *fakeAccountInfo;
+@property(readonly, nonatomic) BOOL isFakeAccount;
+@property(readonly, nonatomic) NSString *displayedHostname;
+@property(readonly, nonatomic) NSString *serverPreferredPushEnvironment;
+@property(readonly, nonatomic) BOOL isiCloudDevEnvironmentAccount;
+@property(readonly, nonatomic) BOOL isCarryAccount;
 @property(readonly, nonatomic) BOOL accountWantsPushRegistration;
 @property(readonly, nonatomic) BOOL isUnitTestingAccount;
 @property(readonly, nonatomic) BOOL isAnonymousAccount;
-- (NSString *)trafficContainerIdentifier;
-- (BOOL)shouldFailAllTasks;
-- (void)renewAuthTokenWithReason:(NSString *)arg1 completionHandler:(void (^)(BOOL, NSError *))arg2;
-- (NSString *)cloudKitAuthToken;
-- (NSString *)iCloudAuthToken;
-- (NSArray *)enabledKeyboards;
-- (NSString *)regionCode;
-- (NSString *)languageCode;
-- (NSString *)serverPreferredPushEnvironment;
-- (NSString *)deviceName;
-- (NSString *)hardwareID;
-- (NSBundle *)applicationBundle;
-- (NSString *)bundleID;
-- (CKContainerID *)containerID;
-- (NSString *)containerScopedUserID;
+@property(readonly, nonatomic) NSString *accountIdentifier;
+- (void)renewiCloudAuthTokenWithReason:(NSString *)arg1 shouldForce:(BOOL)arg2 accessProvider:(id <CKDAccountAccessInfoProvider>)arg3 failedToken:(NSString *)arg4 completionHandler:(void (^)(BOOL, NSError *))arg5;
+- (NSString *)iCloudAuthTokenWithAccessProvider:(id <CKDAccountAccessInfoProvider>)arg1 error:(id *)arg2;
+- (void)iCloudAuthTokenWithAccessProvider:(id <CKDAccountAccessInfoProvider>)arg1 completionHandler:(void (^)(NSString *, NSError *))arg2;
+- (void)renewCloudKitAuthTokenWithReason:(NSString *)arg1 shouldForce:(BOOL)arg2 accessProvider:(id <CKDAccountAccessInfoProvider>)arg3 failedToken:(NSString *)arg4 completionHandler:(void (^)(BOOL, NSError *))arg5;
+- (NSString *)cloudKitAuthTokenWithAccessProvider:(id <CKDAccountAccessInfoProvider>)arg1 error:(id *)arg2;
+- (void)cloudKitAuthTokenWithAccessProvider:(id <CKDAccountAccessInfoProvider>)arg1 completionHandler:(void (^)(NSString *, NSError *))arg2;
+- (NSString *)sharingURLHostname;
 - (NSString *)dsid;
-- (void)renewMescalSessionForRequest:(CKDURLRequest *)arg1 withCompletionHandler:(void (^)(BOOL, NSError *))arg2;
-- (void)resetMescalSession;
-- (CKDMescalSession *)mescalSession;
-- (void)fetchDeviceIDUsingBackgroundSession:(BOOL)arg1 allowsCellularAccess:(BOOL)arg2 withCompletionHandler:(void (^)(NSString *, NSError *))arg3;
-- (void)fetchContainerScopedUserIDUsingBackgroundSession:(BOOL)arg1 allowsCellularAccess:(BOOL)arg2 withCompletionHandler:(void (^)(NSString *, NSError *))arg3;
-- (void)fetchPublicURLUsingBackgroundSession:(BOOL)arg1 allowsCellularAccess:(BOOL)arg2 serverType:(long long)arg3 completionHandler:(void (^)(NSURL *, NSError *))arg4;
-- (void)fetchConfigurationUsingBackgroundSession:(BOOL)arg1 allowsCellularAccess:(BOOL)arg2 withCompletionHandler:(void (^)(CKDServerConfiguration *, NSError *))arg3;
-- (CKDServerConfiguration *)config;
-- (NSURL *)baseURLForServerType:(long long)arg1 partitionType:(long long)arg2;
-
-@optional
-- (void)noteTimeSpentInNetworking:(double)arg1;
-- (void)noteFailedProtocolRequest;
-- (void)noteFailedNetworkRequest;
-- (void)noteSuccessfulRequestWithNumDownloadedElements:(long long)arg1;
-- (NSDictionary *)additionalHeaderValues;
 @end
 

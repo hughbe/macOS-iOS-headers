@@ -14,8 +14,7 @@
 {
     _Bool _pluginUsing;
     NSUUID *_extensionRequestIdentifier;
-    _Bool _isSnippet;
-    _Bool _darkAppearance;
+    BOOL _isSnippet;
     _Bool _outOfBundle;
     id <NCRemotePlugInClient> _delegate;
     unsigned long long _activationType;
@@ -27,17 +26,21 @@
     NSString *_imageBundlePath;
     double _defaultHeight;
     NSString *_configurationDescription;
+    unsigned long long _appearance;
+    long long _compatibilityMode;
     NSDate *_modificationDate;
     NSExtensionContext<NCRemoteViewExtensionContextProtocol> *_extensionContext;
     struct CGSize _maxSize;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSExtensionContext<NCRemoteViewExtensionContextProtocol> *extensionContext; // @synthesize extensionContext=_extensionContext;
 @property(nonatomic) struct CGSize maxSize; // @synthesize maxSize=_maxSize;
 @property(readonly) _Bool outOfBundle; // @synthesize outOfBundle=_outOfBundle;
 @property(readonly) NSDate *modificationDate; // @synthesize modificationDate=_modificationDate;
-@property(readonly) _Bool darkAppearance; // @synthesize darkAppearance=_darkAppearance;
-@property(readonly) _Bool isSnippet; // @synthesize isSnippet=_isSnippet;
+@property(readonly) long long compatibilityMode; // @synthesize compatibilityMode=_compatibilityMode;
+@property(readonly) unsigned long long appearance; // @synthesize appearance=_appearance;
+@property(readonly) BOOL isSnippet; // @synthesize isSnippet=_isSnippet;
 @property(readonly) NSString *configurationDescription; // @synthesize configurationDescription=_configurationDescription;
 @property(readonly) double defaultHeight; // @synthesize defaultHeight=_defaultHeight;
 @property(readonly) NSString *imageBundlePath; // @synthesize imageBundlePath=_imageBundlePath;
@@ -46,7 +49,6 @@
 @property(readonly) NSString *name; // @synthesize name=_name;
 @property(readonly) NSString *containerIdentifier; // @synthesize containerIdentifier=_containerIdentifier;
 @property(readonly) NSExtension *extension; // @synthesize extension=_extension;
-- (void).cxx_destruct;
 - (void)_serviceDied;
 - (void)_serviceAlive;
 - (void)_notifyDelegateOfActiveStateChange:(_Bool)arg1;

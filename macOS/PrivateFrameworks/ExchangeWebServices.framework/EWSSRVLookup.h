@@ -10,16 +10,16 @@
 
 @interface EWSSRVLookup : NSObject
 {
-    NSString *_servicePrefix;
     NSString *_host;
+    NSString *_servicePrefix;
     NSArray *_discoveredRecords;
 }
 
 + (void)initialize;
-@property(copy, nonatomic) NSArray *discoveredRecords; // @synthesize discoveredRecords=_discoveredRecords;
-@property(readonly, copy, nonatomic) NSString *host; // @synthesize host=_host;
-@property(readonly, copy, nonatomic) NSString *servicePrefix; // @synthesize servicePrefix=_servicePrefix;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSArray *discoveredRecords; // @synthesize discoveredRecords=_discoveredRecords;
+@property(readonly, copy, nonatomic) NSString *servicePrefix; // @synthesize servicePrefix=_servicePrefix;
+@property(readonly, copy, nonatomic) NSString *host; // @synthesize host=_host;
 - (BOOL)lookup;
 - (id)init;
 - (id)initWithServicePrefix:(id)arg1 onHost:(id)arg2;

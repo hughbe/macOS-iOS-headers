@@ -4,6 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+@class NSString, NSXPCListenerEndpoint;
+
 @protocol AuxiliaryCallsClient
+
+@optional
+- (void)retrievePreviewEndpoint:(void (^)(NSError *, NSXPCListenerEndpoint *))arg1;
+- (void)addFreeWindow:(CDStruct_5d2c0651)arg1 identifier:(NSString *)arg2 listenerEndpoint:(NSXPCListenerEndpoint *)arg3 reply:(void (^)(NSError *, struct CGRect))arg4;
 @end
 

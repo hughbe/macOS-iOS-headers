@@ -14,15 +14,16 @@
     CDUnknownBlockType _eventHandler;
 }
 
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType eventHandler; // @synthesize eventHandler=_eventHandler;
 @property struct network_config_cellular_blocked_observer_s *wifiBlockedObserver; // @synthesize wifiBlockedObserver=_wifiBlockedObserver;
 @property struct network_config_cellular_blocked_observer_s *cellFailedObserver; // @synthesize cellFailedObserver=_cellFailedObserver;
 @property struct network_config_cellular_blocked_observer_s *cellBlockedObserver; // @synthesize cellBlockedObserver=_cellBlockedObserver;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (void)cancel;
 - (id)initWithQueue:(id)arg1 eventHandler:(CDUnknownBlockType)arg2;
-- (void)handleEvent:(long long)arg1 forUUID:(id)arg2;
+- (void)handleEvent:(long long)arg1 forPID:(id)arg2 UUID:(id)arg3;
+- (id)stringForEvent:(long long)arg1;
 - (id)init;
 
 @end

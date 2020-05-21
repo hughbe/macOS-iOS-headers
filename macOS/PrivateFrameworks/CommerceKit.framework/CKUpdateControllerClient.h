@@ -17,14 +17,13 @@
     CDUnknownBlockType _osUpdateScanObserverBlock;
 }
 
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType osUpdateScanObserverBlock; // @synthesize osUpdateScanObserverBlock=_osUpdateScanObserverBlock;
 @property(copy) CDUnknownBlockType availableUpdatesObserverBlock; // @synthesize availableUpdatesObserverBlock=_availableUpdatesObserverBlock;
 @property(copy) CDUnknownBlockType osUpdateProgressHandler; // @synthesize osUpdateProgressHandler=_osUpdateProgressHandler;
-- (void).cxx_destruct;
-- (void)osUpdateScanDidProgressWithPercentComplete:(float)arg1 isFinished:(BOOL)arg2 error:(id)arg3;
+- (void)osUpdateScanForTags:(id)arg1 didProgressWithPercentComplete:(float)arg2 isFinished:(BOOL)arg3 error:(id)arg4;
 - (void)availableUpdatesDidChangedWithUpdates:(id)arg1 osUpdates:(id)arg2 badgeCount:(unsigned long long)arg3;
-- (void)osUpdates:(id)arg1 didFailWithError:(id)arg2;
-- (void)osUpdates:(id)arg1 didProgressWithState:(long long)arg2 percentComplete:(double)arg3 statusInfo:(id)arg4 includesCriticalUpdates:(BOOL)arg5 canCancel:(BOOL)arg6;
+- (void)osUpdates:(id)arg1 changedProgress:(id)arg2;
 
 @end
 

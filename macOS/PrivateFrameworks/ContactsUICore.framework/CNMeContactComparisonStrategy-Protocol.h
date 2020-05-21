@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class CNContact;
+@class CNContact, CNContactStore, NSArray;
 
 @protocol CNMeContactComparisonStrategy <NSObject>
-- (BOOL)isContact:(CNContact *)arg1 equivalentToMeContact:(CNContact *)arg2;
+- (BOOL)isMeContact:(CNContact *)arg1;
+- (NSArray *)meContactIdentifiers;
+- (void)meContactChangedInStore:(CNContactStore *)arg1;
 @end
 

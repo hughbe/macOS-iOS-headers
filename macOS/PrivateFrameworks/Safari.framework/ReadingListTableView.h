@@ -20,12 +20,12 @@ __attribute__((visibility("hidden")))
     id <ReadingListTableViewLiveResizeDelegate> _liveResizeDelegate;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <ReadingListTableViewLiveResizeDelegate> liveResizeDelegate; // @synthesize liveResizeDelegate=_liveResizeDelegate;
 @property(nonatomic, getter=isHandlingMouseDown) BOOL handlingMouseDown; // @synthesize handlingMouseDown=_handlingMouseDown;
 @property(readonly, nonatomic) long long highlightedRowIndex; // @synthesize highlightedRowIndex=_highlightedRowIndex;
-- (void).cxx_destruct;
 - (double)_totalHeightOfTableView;
-- (id)accessibilityAttributeValue:(id)arg1;
+- (struct CGRect)accessibilityFrame;
 - (void)scrollView:(id)arg1 didScrollToPoint:(struct CGPoint)arg2;
 @property(readonly, retain, nonatomic) SidebarSearchFieldView *searchFieldView;
 @property(readonly, retain, nonatomic) NSSearchField *searchField;

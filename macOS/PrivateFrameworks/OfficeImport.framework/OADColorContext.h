@@ -17,12 +17,13 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)colorContextWithScheme:(id)arg1 map:(id)arg2 palette:(id)arg3;
+- (void).cxx_destruct;
 @property(retain, nonatomic) id <OADColorPalette> palette; // @synthesize palette=mPalette;
 @property(readonly, nonatomic) OADColorMap *map; // @synthesize map=mMap;
 @property(readonly, nonatomic) OADColorScheme *scheme; // @synthesize scheme=mScheme;
 - (void)applyThemeOverrides:(id)arg1 colorMapOverride:(id)arg2;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (void)dealloc;
 - (id)initWithScheme:(id)arg1 map:(id)arg2 palette:(id)arg3;
 
 @end

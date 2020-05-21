@@ -10,12 +10,16 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABEditButton : NSButton <NSAccessibilityButton>
 {
 }
 
 - (id)accessibilityTitle;
+- (void)setUpAlternateTitle;
+- (void)setUpTitle;
+- (void)setUpTitleAndAlternateTitle;
+- (id)initWithFrame:(struct CGRect)arg1;
+- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

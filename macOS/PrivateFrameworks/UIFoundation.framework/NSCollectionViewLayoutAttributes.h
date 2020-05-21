@@ -27,20 +27,22 @@
         unsigned int isHidden:1;
         unsigned int isClone:1;
         unsigned int isInterItemGap:1;
+        unsigned int isInterSectionGap:1;
+        unsigned int isHorizontalGap:1;
     } _layoutFlags;
     long long _zIndex;
 }
 
 + (id)layoutAttributesForDecorationViewOfKind:(id)arg1 withIndexPath:(id)arg2;
 + (id)layoutAttributesForSupplementaryViewOfKind:(id)arg1 withIndexPath:(id)arg2;
++ (id)layoutAttributesForInterSectionGapBeforeIndexPath:(id)arg1;
 + (id)layoutAttributesForInterItemGapBeforeIndexPath:(id)arg1;
 + (id)layoutAttributesForItemWithIndexPath:(id)arg1;
-@property(retain, nonatomic) NSIndexPath *indexPath; // @synthesize indexPath=_indexPath;
-@property(nonatomic) long long zIndex; // @synthesize zIndex=_zIndex;
-@property(nonatomic) double alpha; // @synthesize alpha=_alpha;
-@property(nonatomic) struct CATransform3D transform3D; // @synthesize transform3D=_transform;
-@property(readonly, nonatomic) NSString *representedElementKind;
-@property(readonly, nonatomic) unsigned long long representedElementCategory;
+- (void).cxx_destruct;
+@property long long zIndex; // @synthesize zIndex=_zIndex;
+@property double alpha; // @synthesize alpha=_alpha;
+@property(readonly) NSString *representedElementKind;
+@property(readonly) long long representedElementCategory;
 - (BOOL)_isSupplementaryView;
 - (BOOL)_isDecorationView;
 - (BOOL)_isCell;
@@ -51,25 +53,35 @@
 - (id)description;
 - (void)setFloating:(BOOL)arg1;
 - (BOOL)isFloating;
+- (void)setDistanceIntoEndZone:(double)arg1;
+- (double)distanceIntoEndZone;
 - (void)setFractionIntoEndZone:(double)arg1;
 - (double)fractionIntoEndZone;
-@property(nonatomic) struct CGAffineTransform transform;
-@property(nonatomic) struct CGPoint center;
-@property(nonatomic) struct CGSize size;
-@property(nonatomic) struct CGRect frame;
+- (struct CGAffineTransform)transform;
+- (void)setTransform:(struct CGAffineTransform)arg1;
+- (void)setTransform3D:(struct CATransform3D)arg1;
+- (struct CATransform3D)transform3D;
+- (void)setCenter:(struct CGPoint)arg1;
+- (struct CGPoint)center;
+@property struct CGSize size;
+@property struct CGRect frame;
 - (void)setBounds:(struct CGRect)arg1;
 - (struct CGRect)bounds;
 - (id)initialLayoutAttributesForInsertedDecorationElementOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+@property(retain) NSIndexPath *indexPath;
 - (id)_reuseIdentifier;
 - (void)_setReuseIdentifier:(id)arg1;
 - (id)_elementKind;
 - (void)_setElementKind:(id)arg1;
 - (BOOL)_isClone;
 - (void)_setIsClone:(BOOL)arg1;
-@property(nonatomic, getter=isHidden) BOOL hidden;
-- (void)dealloc;
+@property(getter=isHidden) BOOL hidden;
 - (id)init;
+- (void)_setIsHorizontalGap:(BOOL)arg1;
+- (BOOL)_isHorizontalGap;
+- (id)__indexPath;
+- (id)__elementKind;
 
 @end
 

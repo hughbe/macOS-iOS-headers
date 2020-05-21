@@ -9,22 +9,24 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 #import "SCNAnimatable.h"
-#import "SCNTechniqueSupport.h"
 
-@class NSArray, NSData, NSString, NSURL, SCNMaterialProperty, SCNOrderedDictionary, SCNTechnique;
+@class NSArray, NSData, NSMutableDictionary, NSString, NSURL, SCNMaterialProperty, SCNOrderedDictionary, SCNTechnique;
 
-@interface SCNLight : NSObject <SCNAnimatable, SCNTechniqueSupport, NSCopying, NSSecureCoding>
+@interface SCNLight : NSObject <SCNAnimatable, NSCopying, NSSecureCoding>
 {
     struct __C3DLight *_light;
     unsigned int _isPresentationInstance:1;
-    unsigned int _goboProjectShadows:1;
     unsigned int _castsShadow:1;
     unsigned int _usesDeferredShadows:1;
     unsigned int _usesModulatedMode:1;
     unsigned int _baked:1;
     unsigned int _shouldBakeDirectLighting:1;
     unsigned int _shouldBakeIndirectLighting:1;
+    unsigned int _automaticallyAdjustsShadowProjection:1;
+    unsigned int _forcesBackFaceCasters:1;
+    unsigned int _sampleDistributedShadowMaps:1;
     SCNOrderedDictionary *_animations;
+    NSMutableDictionary *_bindings;
     NSString *_name;
     NSString *_type;
     id _color;
@@ -33,12 +35,23 @@
     double _intensity;
     double _temperature;
     double _orthographicScale;
-    unsigned long long _shadowSampleCount;
     struct CGSize _shadowMapSize;
     unsigned long long _categoryBitMask;
+    unsigned char _shadowSampleCount;
+    unsigned char _shadowCascadeCount;
+    double _maximumShadowDistance;
+    double _shadowCascadeSplittingFactor;
+    double _cascadeDebugFactor;
     double _zNear;
     double _zFar;
     double _shadowBias;
+    long long _probeType;
+    long long _probeUpdateType;
+    BOOL _parallaxCorrectionEnabled;
+    // Error parsing type: , name: _probeExtents
+    // Error parsing type: , name: _probeOffset
+    // Error parsing type: , name: _parallaxExtentsFactor
+    // Error parsing type: , name: _parallaxCenterOffset
     float _attenuationStartDistance;
     float _attenuationEndDistance;
     float _attenuationFalloffExponent;
@@ -46,11 +59,15 @@
     float _spotOuterAngle;
     float _spotFalloffExponent;
     SCNMaterialProperty *_gobo;
-    SCNMaterialProperty *_ies;
     NSURL *_IESProfileURL;
     SCNTechnique *_technique;
     NSData *_sphericalHarmonics;
-    id <MTLTexture> _probeTexture;
+    SCNMaterialProperty *_probeEnvironment;
+    long long _areaType;
+    // Error parsing type: , name: _areaExtents
+    NSArray *_areaPolygonVertices;
+    BOOL _drawsArea;
+    BOOL _doubleSided;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -58,14 +75,56 @@
 + (id)light;
 + (id)lightWithMDLLightProbe:(id)arg1;
 + (id)lightWithMDLLight:(id)arg1;
++ (id)SCNUID_additionalProperties;
++ (id)SCNUID_instanciateWithOption:(id)arg1;
++ (id)SCNUID_creationOptions;
++ (id)SCNUID_propertyOrdering;
++ (id)SCNUID_constantToStringForProperty:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)_didDecodeSCNLight:(id)arg1;
 - (void)_customDecodingOfSCNLight:(id)arg1;
 - (void)_customEncodingOfSCNLight:(id)arg1;
 @property(retain, nonatomic) NSURL *IESProfileURL;
+- (void)setIESProfileURL:(id)arg1 resolvedURL:(id)arg2;
 @property(readonly, nonatomic) SCNMaterialProperty *gobo;
+- (BOOL)hasGobo;
+@property(copy, nonatomic) NSArray *areaPolygonVertices;
+@property(nonatomic) BOOL doubleSided;
+@property(nonatomic) BOOL drawsArea;
+// Error parsing type for property areaExtents:
+// Property attributes: T,N
+
+@property(nonatomic) long long areaType;
+@property(readonly, nonatomic) SCNMaterialProperty *probeEnvironment;
+// Error parsing type for property probeOffset:
+// Property attributes: T,N
+
+// Error parsing type for property probeExtents:
+// Property attributes: T,N
+
+// Error parsing type for property parallaxExtentsFactor:
+// Property attributes: T,N
+
+// Error parsing type for property parallaxCenterOffset:
+// Property attributes: T,N
+
+@property(nonatomic) BOOL parallaxCorrectionEnabled;
+@property(nonatomic) long long probeUpdateType;
+@property(nonatomic) long long probeType;
 @property(nonatomic) long long shadowMode;
+- (void)set_shadowCascadeDebugFactor:(double)arg1;
+- (double)_shadowCascadeDebugFactor;
+@property(nonatomic) double shadowCascadeSplittingFactor;
+@property(nonatomic) BOOL sampleDistributedShadowMaps;
+@property(nonatomic) BOOL forcesBackFaceCasters;
+@property(nonatomic) double maximumShadowDistance;
+@property(nonatomic) BOOL automaticallyAdjustsShadowProjection;
+- (void)setAdjustsShadowProjection:(BOOL)arg1;
+- (BOOL)adjustsShadowProjection;
+- (void)setForceBackFaceCasters:(BOOL)arg1;
+- (BOOL)forceBackFaceCasters;
+@property(nonatomic) unsigned long long shadowCascadeCount;
 @property(nonatomic) double zNear;
 @property(nonatomic) double zFar;
 - (void)setUsesModulatedMode:(BOOL)arg1;
@@ -73,8 +132,10 @@
 - (void)setUsesDeferredShadows:(BOOL)arg1;
 - (BOOL)usesDeferredShadows;
 @property(copy, nonatomic) NSString *type;
+- (void)_resyncObjCModelOfPerTypeParameters;
 @property(nonatomic) double temperature;
-@property(copy, nonatomic) SCNTechnique *technique;
+- (void)setTechnique:(id)arg1;
+- (id)technique;
 @property(nonatomic) double spotOuterAngle;
 @property(nonatomic) double spotInnerAngle;
 - (void)setSpotFalloffExponent:(double)arg1;
@@ -98,24 +159,30 @@
 - (BOOL)shouldBakeIndirectLighting;
 - (void)setShouldBakeDirectLighting:(BOOL)arg1;
 - (BOOL)shouldBakeDirectLighting;
+- (void)setSphericalHarmonicsCoefficients:(id)arg1;
+@property(readonly, copy, nonatomic) NSData *sphericalHarmonicsCoefficients;
 - (void)set_sphericalHarmonics:(id)arg1;
 - (id)_sphericalHarmonics;
-- (void)set_probeTexture:(id)arg1;
-- (id)_probeTexture;
 - (id)attributeForKey:(id)arg1;
 - (void)setAttribute:(id)arg1 forKey:(id)arg2;
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
+- (id)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)removeAllBindings;
 - (void)unbindAnimatablePath:(id)arg1;
 - (void)bindAnimatablePath:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
+- (id)_scnBindings;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
 - (void)setSpeed:(double)arg1 forAnimationKey:(id)arg2;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
+- (void)removeAnimationForKey:(id)arg1 blendOutDuration:(double)arg2;
 - (void)resumeAnimationForKey:(id)arg1;
 - (void)pauseAnimationForKey:(id)arg1;
-- (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2;
+- (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2 pausedByNode:(BOOL)arg3;
+- (id)animationPlayerForKey:(id)arg1;
+- (void)_copyAnimationsFrom:(id)arg1;
+- (id)_scnAnimationForKey:(id)arg1;
 - (id)animationForKey:(id)arg1;
 - (void)_syncObjCAnimations;
 @property(readonly) NSArray *animationKeys;
@@ -123,9 +190,10 @@
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
+- (void)addAnimationPlayer:(id)arg1 forKey:(id)arg2;
 - (BOOL)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 property:(id)arg2;
+- (id)copyAnimationChannelForKeyPath:(id)arg1 property:(id)arg2;
 - (const void *)__CFObject;
 - (id)scene;
 - (struct __C3DScene *)sceneRef;

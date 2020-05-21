@@ -6,17 +6,18 @@
 
 #import <SAObjects/AceObject.h>
 
-#import "SASTTemplateItem.h"
+#import "SASTActionableTemplateItem.h"
 
 @class NSString;
 
-@interface SASTApplicationBannerItem : AceObject <SASTTemplateItem>
+@interface SASTApplicationBannerItem : AceObject <SASTActionableTemplateItem>
 {
 }
 
 + (id)applicationBannerItemWithDictionary:(id)arg1 context:(id)arg2;
 + (id)applicationBannerItem;
 @property(copy, nonatomic) NSString *bundleId;
+@property(retain, nonatomic) id <SASTTemplateAction> action; // @dynamic action;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

@@ -24,6 +24,7 @@
 @property NSLayoutConstraint *firstColumnWidth; // @synthesize firstColumnWidth=_firstColumnWidth;
 @property NSTextField *columnTwoTextField; // @synthesize columnTwoTextField=_columnTwoTextField;
 @property NSTextField *columnOneTextField; // @synthesize columnOneTextField=_columnOneTextField;
+- (BOOL)isAccessibilityElement;
 - (void)setConstraintsForFirstColumnWidth:(unsigned long long)arg1 columnToViewTopSpacing:(unsigned long long)arg2 columnToViewBottomSpacing:(unsigned long long)arg3;
 - (id)columnTextFieldAtIndex:(unsigned long long)arg1;
 - (unsigned long long)columnCount;

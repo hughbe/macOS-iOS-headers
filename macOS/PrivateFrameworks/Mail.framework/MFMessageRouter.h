@@ -21,13 +21,12 @@
     BOOL _routingThreadShouldQuit;
     BOOL _isUserAction;
     MFMessageStore *_store;
-    unsigned long long _numMessagesRoutedSoFar;
     unsigned long long _estimatedNumberOfMessagesToRoute;
+    unsigned long long _numMessagesRoutedSoFar;
 }
 
 + (void)saveRulesIfNeeded;
 + (void)addInvitationsToCalendarFromMessages:(id)arg1;
-+ (BOOL)_addCalendarRule;
 + (void)setAddInvitationsToCalendarAutomatically:(BOOL)arg1;
 + (BOOL)addInvitationsToCalendarAutomatically;
 + (void)applyRulesAsynchronouslyToMailboxes:(id)arg1;
@@ -38,6 +37,8 @@
 + (void)setJunkMailEvaluationAfterRules:(BOOL)arg1;
 + (BOOL)junkMailEvaluationAfterRules;
 + (void)reloadRules;
++ (id)calendarRule;
++ (id)blockedSenderRule;
 + (id)_safeToMarkAsNotJunkRule;
 + (void)setJunkMailRule:(id)arg1;
 + (id)junkMailRule;
@@ -54,6 +55,8 @@
 + (void)tryToReconnectAutoDeactivatedRules;
 + (void)_updateUnrecognizedRulesAfterRemovingIndex:(unsigned long long)arg1;
 + (void)_updateUnrecognizedRulesAfterAddingIndex:(unsigned long long)arg1;
++ (unsigned long long)numberOfDefaultRules;
++ (id)defaultRules;
 + (void)removeRule:(id)arg1;
 + (void)addRule:(id)arg1;
 + (void)insertRule:(id)arg1 atIndex:(unsigned long long)arg2;
@@ -70,15 +73,12 @@
 + (id)_setupSortRules;
 + (id)_sortRuleDictionaryRepresentationsIncludingPII:(BOOL)arg1;
 + (id)_sortRulesFromDictionaryRepresentations:(id)arg1;
-+ (BOOL)_setCalendarRule:(id)arg1;
-+ (id)_calendarRule;
 + (id)_defaultSortRules;
 + (id)defaultAppleEmailAddresses;
 + (void)_mailboxWasRenamed:(id)arg1;
 + (void)_accountWillBeDeleted:(id)arg1;
 + (void)_mailboxBecameInvalid:(id)arg1;
 + (void)mailboxWillBeRenamedOrInvalidated;
-+ (BOOL)_skipAOSJunkFilter;
 + (void)ruleDidChange:(id)arg1;
 + (void)ruleAffectingColorsDidChange:(id)arg1;
 + (BOOL)colorsUpdateDynamically;
@@ -92,13 +92,14 @@
 + (void)_unScheduleWriteRules;
 + (void)scheduleWriteRules;
 + (void)_setWriteRulesTimer:(id)arg1;
++ (id)writeRulesScheduler;
 + (void)initialize;
 + (id)log;
-@property(nonatomic) BOOL isUserAction; // @synthesize isUserAction=_isUserAction;
-@property(nonatomic) unsigned long long estimatedNumberOfMessagesToRoute; // @synthesize estimatedNumberOfMessagesToRoute=_estimatedNumberOfMessagesToRoute;
-@property(nonatomic) unsigned long long numMessagesRoutedSoFar; // @synthesize numMessagesRoutedSoFar=_numMessagesRoutedSoFar;
-@property(nonatomic) __weak MFMessageStore *store; // @synthesize store=_store;
 - (void).cxx_destruct;
+@property(nonatomic) unsigned long long numMessagesRoutedSoFar; // @synthesize numMessagesRoutedSoFar=_numMessagesRoutedSoFar;
+@property(nonatomic) unsigned long long estimatedNumberOfMessagesToRoute; // @synthesize estimatedNumberOfMessagesToRoute=_estimatedNumberOfMessagesToRoute;
+@property(nonatomic) __weak MFMessageStore *store; // @synthesize store=_store;
+@property(nonatomic) BOOL isUserAction; // @synthesize isUserAction=_isUserAction;
 - (void)waitForRoutingToFinish;
 - (void)_routeQueuedMessages;
 - (void)asynchronouslyRouteMessages:(id)arg1;
@@ -110,7 +111,6 @@
 @property(readonly, copy) NSString *description;
 @property(readonly, copy, nonatomic) NSString *displayName;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) BOOL isSmartMailbox;
 @property(readonly) Class superclass;
 
 @end

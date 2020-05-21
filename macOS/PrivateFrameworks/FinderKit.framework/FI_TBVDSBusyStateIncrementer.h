@@ -9,14 +9,13 @@
 __attribute__((visibility("hidden")))
 @interface FI_TBVDSBusyStateIncrementer : NSObject
 {
-    struct TNSRef<FI_TBrowserViewDataSource *, void> _dataSource;
+    struct TNSWeakPtr<FI_TBrowserViewDataSource, void> _weakDataSource;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)aboutToTearDown;
-- (id)init;
 - (id)initWithDataSource:(id)arg1;
 
 @end

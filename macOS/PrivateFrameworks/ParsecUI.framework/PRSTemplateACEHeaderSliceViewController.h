@@ -12,6 +12,7 @@
 {
 }
 
+- (id)customViewImage;
 - (id)richTitleSliceView;
 - (void)syncAttributes;
 - (double)height;

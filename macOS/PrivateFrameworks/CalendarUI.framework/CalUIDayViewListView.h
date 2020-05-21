@@ -23,6 +23,7 @@
 }
 
 + (id)viewWithEvent:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) CalUILabel *locationField; // @synthesize locationField=_locationField;
 @property(retain) CalUILabel *titleField; // @synthesize titleField=_titleField;
 @property(retain) CalUILayerBackedView *eventView; // @synthesize eventView=_eventView;
@@ -30,11 +31,11 @@
 @property(retain) CalUILabel *endTimeField; // @synthesize endTimeField=_endTimeField;
 @property(retain) CalUILabel *startTimeField; // @synthesize startTimeField=_startTimeField;
 @property(retain) CalUILayerBackedView *timeView; // @synthesize timeView=_timeView;
+@property(nonatomic) BOOL dimmed; // @synthesize dimmed=_dimmed;
+@property(nonatomic) BOOL selected; // @synthesize selected=_selected;
 @property(retain) EKEvent *event; // @synthesize event=_event;
-- (void).cxx_destruct;
+- (void)updateLayer;
 - (struct CGSize)intrinsicContentSize;
-@property BOOL dimmed;
-@property BOOL selected;
 - (void)updateWithEvent:(id)arg1;
 - (id)initWithEvent:(id)arg1 showCalendarColor:(BOOL)arg2 showTimes:(BOOL)arg3 showLocation:(BOOL)arg4;
 - (id)initWithEvent:(id)arg1;

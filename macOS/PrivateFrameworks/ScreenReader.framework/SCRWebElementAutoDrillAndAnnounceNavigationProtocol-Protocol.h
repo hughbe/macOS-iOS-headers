@@ -14,9 +14,5 @@
 - (BOOL)webElementSuperInteractUpWithEvent:(SCREvent *)arg1 request:(SCROutputRequest *)arg2;
 - (void)addEndBookendToRequest:(SCROutputRequest *)arg1;
 - (void)addStartBookendToRequest:(SCROutputRequest *)arg1;
-- (void)setFocusArrivedFromFront:(BOOL)arg1;
-- (BOOL)focusArrivedFromFront;
-- (void)setFocusIsOnElement:(BOOL)arg1;
-- (BOOL)focusIsOnElement;
 @end
 

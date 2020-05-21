@@ -14,7 +14,7 @@
 - (struct NSEdgeInsets)alignmentRectInsets;
 @property BOOL flippedHorizontally;
 - (void)setColor:(id)arg1;
-- (void)setDrawsTrackAsColorScaleType:(int)arg1;
+- (void)setDrawsTrackAsColorScaleType:(long long)arg1;
 
 @end
 

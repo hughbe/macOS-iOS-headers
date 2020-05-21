@@ -8,5 +8,6 @@
 
 @interface CNContact (MKExtras)
 + (id)mapsContactKeys;
+- (BOOL)_maps_isEqualToContact:(id)arg1;
 @end
 

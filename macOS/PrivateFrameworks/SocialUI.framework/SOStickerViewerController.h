@@ -6,39 +6,54 @@
 
 #import "NSViewController.h"
 
+#import "NSPopoverDelegate.h"
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class NSArray, NSLayoutConstraint, NSPopover, NSString, NSTableView;
+@class IMMessagePartChatItem, NSLayoutConstraint, NSMenuItem, NSMutableArray, NSMutableSet, NSPopover, NSString, NSTableView;
 
-@interface SOStickerViewerController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
+@interface SOStickerViewerController : NSViewController <NSTableViewDataSource, NSTableViewDelegate, NSPopoverDelegate>
 {
+    id <SOStickerViewerControllerDelegate> _delegate;
+    IMMessagePartChatItem *_chatItem;
     NSPopover *_popover;
-    NSArray *_stickers;
+    NSMutableArray *_stickers;
+    NSMutableSet *_stickerTransferGUIDsToDelete;
     NSTableView *_stickerTableView;
     NSLayoutConstraint *_preferredScrollViewHeightConstraint;
+    NSMenuItem *_deleteStickersMenuItem;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSMenuItem *deleteStickersMenuItem; // @synthesize deleteStickersMenuItem=_deleteStickersMenuItem;
 @property(retain) NSLayoutConstraint *preferredScrollViewHeightConstraint; // @synthesize preferredScrollViewHeightConstraint=_preferredScrollViewHeightConstraint;
 @property(retain) NSTableView *stickerTableView; // @synthesize stickerTableView=_stickerTableView;
-@property(retain, nonatomic) NSArray *stickers; // @synthesize stickers=_stickers;
+@property(retain, nonatomic) NSMutableSet *stickerTransferGUIDsToDelete; // @synthesize stickerTransferGUIDsToDelete=_stickerTransferGUIDsToDelete;
+@property(retain, nonatomic) NSMutableArray *stickers; // @synthesize stickers=_stickers;
 @property(retain, nonatomic) NSPopover *popover; // @synthesize popover=_popover;
-- (void).cxx_destruct;
+@property(retain, nonatomic) IMMessagePartChatItem *chatItem; // @synthesize chatItem=_chatItem;
+@property(nonatomic) __weak id <SOStickerViewerControllerDelegate> delegate; // @synthesize delegate=_delegate;
+- (BOOL)validateMenuItem:(id)arg1;
 - (void)viewDidDisappear;
-- (void)viewWillAppear;
 - (double)_preferredScrollViewHeightConstraintConstant;
-- (struct CGSize)_preferredScrollViewSize;
+- (void)viewWillAppear;
+- (id)_stickerChatItemForRow:(long long)arg1;
+- (id)stickerTableRowsToActOn;
+- (void)enqueueStickersToDeleteForTableRows:(id)arg1;
+- (void)delete:(id)arg1;
+- (id)tableView:(id)arg1 rowActionsForRow:(long long)arg2 edge:(long long)arg3;
 - (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
-- (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
+- (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
+- (void)popoverDidClose:(id)arg1;
+- (void)popoverWillClose:(id)arg1;
+- (void)popoverWillShow:(id)arg1;
 - (void)setRepresentedObject:(id)arg1;
 - (BOOL)popoverIsShown;
 - (void)displayStickerViewerForChatItem:(id)arg1 relativeToRect:(struct CGRect)arg2 ofView:(id)arg3 preferredEdge:(unsigned long long)arg4;
 - (void)dismissPopover;
-- (void)setPopoverDelegate:(id)arg1;
-- (void)createPopoverIfNeeded;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

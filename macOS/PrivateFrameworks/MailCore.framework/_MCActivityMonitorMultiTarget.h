@@ -16,8 +16,8 @@
     id <MCActivityTarget> _primaryTarget;
 }
 
-@property(retain, nonatomic) id <MCActivityTarget> primaryTarget; // @synthesize primaryTarget=_primaryTarget;
 - (void).cxx_destruct;
+@property(retain, nonatomic) id <MCActivityTarget> primaryTarget; // @synthesize primaryTarget=_primaryTarget;
 @property(readonly, copy, nonatomic) NSString *displayName;
 @property(readonly, copy, nonatomic) NSArray *allTargets;
 - (BOOL)removeActivityTarget:(id)arg1;
@@ -27,7 +27,6 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) BOOL isSmartMailbox;
 @property(readonly) Class superclass;
 
 @end

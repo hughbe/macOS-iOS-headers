@@ -13,6 +13,7 @@
     CALDate *_calDate;
 }
 
+- (void).cxx_destruct;
 - (double)timeIntervalSinceReferenceDate;
 - (void)setCalDate:(id)arg1;
 

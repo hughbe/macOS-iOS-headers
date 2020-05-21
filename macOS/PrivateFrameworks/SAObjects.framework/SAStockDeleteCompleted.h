@@ -16,6 +16,7 @@
 
 + (id)deleteCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)deleteCompleted;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *stocks;
 @property(copy, nonatomic) NSArray *results;
 - (id)encodedClassName;

@@ -6,7 +6,7 @@
 
 #import <Safari/PreferencesModule.h>
 
-@class NSButton, NSPopUpButton, WebsiteSpecificSearchEditor;
+@class NSButton, NSPopUpButton, NSTextField, WebsiteSpecificSearchEditor;
 
 __attribute__((visibility("hidden")))
 @interface SearchPreferences : PreferencesModule
@@ -14,12 +14,18 @@ __attribute__((visibility("hidden")))
     WebsiteSpecificSearchEditor *_websiteSpecificSearchEditor;
     NSPopUpButton *_defaultSearchEnginePopUpButton;
     NSButton *_enableParsecCheckbox;
+    NSButton *_showFavoritesCheckbox;
+    NSTextField *_searchEngineLabel;
+    NSTextField *_smartSearchFieldLabel;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak NSTextField *smartSearchFieldLabel; // @synthesize smartSearchFieldLabel=_smartSearchFieldLabel;
+@property(nonatomic) __weak NSTextField *searchEngineLabel; // @synthesize searchEngineLabel=_searchEngineLabel;
+@property(nonatomic) __weak NSButton *showFavoritesCheckbox; // @synthesize showFavoritesCheckbox=_showFavoritesCheckbox;
 @property(nonatomic) __weak NSButton *enableParsecCheckbox; // @synthesize enableParsecCheckbox=_enableParsecCheckbox;
 @property(nonatomic) __weak NSPopUpButton *defaultSearchEnginePopUpButton; // @synthesize defaultSearchEnginePopUpButton=_defaultSearchEnginePopUpButton;
 @property(retain, nonatomic) WebsiteSpecificSearchEditor *websiteSpecificSearchEditor; // @synthesize websiteSpecificSearchEditor=_websiteSpecificSearchEditor;
-- (void).cxx_destruct;
 - (void)_updateParsecCheckboxState;
 - (void)changeDefaultSearchEngine:(id)arg1;
 - (void)_updateDefaultSearchEngineMenu;
@@ -28,7 +34,7 @@ __attribute__((visibility("hidden")))
 - (void)moduleWillBeRemoved;
 - (void)moduleWasInstalled;
 - (void)initializeFromDefaults;
-- (id)helpAnchor;
+- (id)safariHelpAnchor;
 - (id)imageForPreferenceNamed:(id)arg1;
 
 @end

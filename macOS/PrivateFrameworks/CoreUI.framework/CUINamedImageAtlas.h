@@ -15,6 +15,7 @@
     struct __CFArray *_atlasImages;
 }
 
+@property(readonly, nonatomic) BOOL completeTextureExtrusion;
 @property(readonly, nonatomic) NSArray *imageNames;
 - (id)imageWithName:(id)arg1;
 @property(readonly, nonatomic) double scale;

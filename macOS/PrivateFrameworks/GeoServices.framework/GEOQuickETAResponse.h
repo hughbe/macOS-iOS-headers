@@ -6,9 +6,8 @@
 
 #import "NSObject.h"
 
-@class GEOLocation, GEOQuickETATransitDeparturesInfo, NSMutableArray;
+@class GEOLocation, GEOQuickETATransitDeparturesInfo, NSMutableArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface GEOQuickETAResponse : NSObject
 {
     GEOLocation *_sourceLocation;
@@ -16,22 +15,24 @@ __attribute__((visibility("hidden")))
     unsigned int _responseETASeconds;
     unsigned int _baselineETASeconds;
     double _distance;
+    NSString *_routeDescription;
     GEOQuickETATransitDeparturesInfo *_transitDeparturesInfo;
     double _distanceToDepartureStop;
     double _walkingDurationToDepartureStop;
     NSMutableArray *_sortedETAs;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSMutableArray *sortedETAs; // @synthesize sortedETAs=_sortedETAs;
 @property(readonly, nonatomic) double walkingDurationToDepartureStop; // @synthesize walkingDurationToDepartureStop=_walkingDurationToDepartureStop;
 @property(readonly, nonatomic) double distanceToDepartureStop; // @synthesize distanceToDepartureStop=_distanceToDepartureStop;
 @property(readonly, nonatomic) GEOQuickETATransitDeparturesInfo *transitDeparturesInfo; // @synthesize transitDeparturesInfo=_transitDeparturesInfo;
+@property(readonly, nonatomic) NSString *routeDescription; // @synthesize routeDescription=_routeDescription;
 @property(readonly, nonatomic) double distance; // @synthesize distance=_distance;
 @property(readonly, nonatomic) unsigned int baselineETASeconds; // @synthesize baselineETASeconds=_baselineETASeconds;
 @property(readonly, nonatomic) unsigned int responseETASeconds; // @synthesize responseETASeconds=_responseETASeconds;
 @property(readonly, nonatomic) GEOLocation *destinationLocation; // @synthesize destinationLocation=_destinationLocation;
 @property(readonly, nonatomic) GEOLocation *sourceLocation; // @synthesize sourceLocation=_sourceLocation;
-- (void)dealloc;
 - (id)initWithDirectionsResponse:(id)arg1 fromRequest:(id)arg2;
 - (id)initWithETAResult:(id)arg1 fromRequest:(id)arg2;
 

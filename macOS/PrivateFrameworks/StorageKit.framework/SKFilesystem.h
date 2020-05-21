@@ -11,6 +11,7 @@
 @interface SKFilesystem : NSObject
 {
     BOOL _isEncrypted;
+    BOOL _defaultEffaceable;
     BOOL _isCaseSensitive;
     BOOL _isJournaled;
     BOOL _shouldShow;
@@ -25,17 +26,18 @@
 + (BOOL)_shouldShowFilesystem:(id)arg1;
 + (id)_skfilesystemTypeWithPersonality:(id)arg1;
 + (id)filesystemsWithDMFilesystem:(id)arg1;
+- (void).cxx_destruct;
 @property int sortPriority; // @synthesize sortPriority=_sortPriority;
 @property(retain) NSString *localizedKey; // @synthesize localizedKey=_localizedKey;
 @property unsigned long long minimumSize; // @synthesize minimumSize=_minimumSize;
 @property BOOL shouldShow; // @synthesize shouldShow=_shouldShow;
 @property BOOL isJournaled; // @synthesize isJournaled=_isJournaled;
 @property BOOL isCaseSensitive; // @synthesize isCaseSensitive=_isCaseSensitive;
+@property BOOL defaultEffaceable; // @synthesize defaultEffaceable=_defaultEffaceable;
 @property BOOL isEncrypted; // @synthesize isEncrypted=_isEncrypted;
 @property(retain) NSString *dmPersonality; // @synthesize dmPersonality=_dmPersonality;
 @property(retain) NSString *type; // @synthesize type=_type;
 @property(retain) NSString *localizedName; // @synthesize localizedName=_localizedName;
-- (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (id)dicationaryRepresentation;

@@ -11,13 +11,15 @@
 __attribute__((visibility("hidden")))
 @interface AVTrackView : NSView
 {
+    BOOL _updatesDuringLiveResize;
     AVPlayerController *_playerController;
     double _allowedScrollAmount;
 }
 
-@property(readonly) double allowedScrollAmount; // @synthesize allowedScrollAmount=_allowedScrollAmount;
-@property __weak AVPlayerController *playerController; // @synthesize playerController=_playerController;
 - (void).cxx_destruct;
+@property BOOL updatesDuringLiveResize; // @synthesize updatesDuringLiveResize=_updatesDuringLiveResize;
+@property(readonly) double allowedScrollAmount; // @synthesize allowedScrollAmount=_allowedScrollAmount;
+@property(retain) AVPlayerController *playerController; // @synthesize playerController=_playerController;
 - (void)zoomWithInfo:(CDStruct_ef34d2b9)arg1;
 - (void)startThumbnailGenerationWithZoomInfo:(CDStruct_ef34d2b9)arg1;
 

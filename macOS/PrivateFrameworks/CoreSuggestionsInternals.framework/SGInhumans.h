@@ -12,13 +12,14 @@
 
 + (BOOL)areHumanHeaders:(id)arg1;
 + (BOOL)isInhumanBody:(id)arg1;
++ (BOOL)hasTooManyLongNumbers:(id)arg1;
++ (BOOL)isInhumanPhoneNumber:(id)arg1;
 + (BOOL)isInhumanPerson:(id)arg1 inContext:(id)arg2;
 + (BOOL)isInhuman:(id)arg1 inContext:(id)arg2;
 + (BOOL)isInhumanEmailAddress:(id)arg1 inContext:(id)arg2;
 + (BOOL)isInhumanEmailAddress:(id)arg1;
 + (BOOL)_isInhumanEmailAddressPatternMatch:(id)arg1;
 + (BOOL)isInhumanName:(id)arg1;
-+ (void)initialize;
 
 @end
 

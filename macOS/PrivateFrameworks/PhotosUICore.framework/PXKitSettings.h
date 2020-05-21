@@ -9,23 +9,40 @@
 @interface PXKitSettings : PXSettings
 {
     BOOL _defaultAsyncTextRenderingEnabled;
+    BOOL _defaultUseShapeLayerForText;
     BOOL _defaultTextAutoscalingEnabled;
     BOOL _defaultTextTruncationEnabled;
     BOOL _allowCapitalization;
+    BOOL _allowFontFallback;
     BOOL _simulateSlowTextTypesetting;
     BOOL _drawTypographicGuidelines;
+    BOOL _useFancyDarkening;
+    long long _defaultLabelTypesettingMode;
     double _defaultTextMinimumScaleFactor;
+    double _defaultTruncatedTextMinimumScaleFactor;
+    double _textAutoscalingPrecision;
+    long long _deviceGraphicsQuality;
+    double _simulatedSafeAreaHorizontalInsets;
 }
 
 + (id)sharedInstance;
+@property(nonatomic) double simulatedSafeAreaHorizontalInsets; // @synthesize simulatedSafeAreaHorizontalInsets=_simulatedSafeAreaHorizontalInsets;
+@property(nonatomic) long long deviceGraphicsQuality; // @synthesize deviceGraphicsQuality=_deviceGraphicsQuality;
+@property(nonatomic) BOOL useFancyDarkening; // @synthesize useFancyDarkening=_useFancyDarkening;
 @property(nonatomic) BOOL drawTypographicGuidelines; // @synthesize drawTypographicGuidelines=_drawTypographicGuidelines;
 @property(nonatomic) BOOL simulateSlowTextTypesetting; // @synthesize simulateSlowTextTypesetting=_simulateSlowTextTypesetting;
+@property(nonatomic) BOOL allowFontFallback; // @synthesize allowFontFallback=_allowFontFallback;
 @property(nonatomic) BOOL allowCapitalization; // @synthesize allowCapitalization=_allowCapitalization;
+@property(nonatomic) double textAutoscalingPrecision; // @synthesize textAutoscalingPrecision=_textAutoscalingPrecision;
+@property(nonatomic) double defaultTruncatedTextMinimumScaleFactor; // @synthesize defaultTruncatedTextMinimumScaleFactor=_defaultTruncatedTextMinimumScaleFactor;
 @property(nonatomic) BOOL defaultTextTruncationEnabled; // @synthesize defaultTextTruncationEnabled=_defaultTextTruncationEnabled;
 @property(nonatomic) double defaultTextMinimumScaleFactor; // @synthesize defaultTextMinimumScaleFactor=_defaultTextMinimumScaleFactor;
 @property(nonatomic) BOOL defaultTextAutoscalingEnabled; // @synthesize defaultTextAutoscalingEnabled=_defaultTextAutoscalingEnabled;
+@property(nonatomic) BOOL defaultUseShapeLayerForText; // @synthesize defaultUseShapeLayerForText=_defaultUseShapeLayerForText;
+@property(nonatomic) long long defaultLabelTypesettingMode; // @synthesize defaultLabelTypesettingMode=_defaultLabelTypesettingMode;
 @property(nonatomic) BOOL defaultAsyncTextRenderingEnabled; // @synthesize defaultAsyncTextRenderingEnabled=_defaultAsyncTextRenderingEnabled;
 - (void)setDefaultValues;
+- (id)parentSettings;
 
 @end
 

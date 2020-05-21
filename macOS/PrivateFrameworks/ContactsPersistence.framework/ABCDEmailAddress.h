@@ -6,11 +6,17 @@
 
 #import <ContactsPersistence/ABCDOwnedObject.h>
 
+@class NSString;
+
 @interface ABCDEmailAddress : ABCDOwnedObject
 {
 }
 
-- (void)setAddress:(id)arg1;
+@property(retain, nonatomic) NSString *address; // @dynamic address;
+
+// Remaining properties
+@property(retain, nonatomic) NSString *addressNormalized; // @dynamic addressNormalized;
+@property(retain, nonatomic) NSString *primitiveAddress; // @dynamic primitiveAddress;
 
 @end
 

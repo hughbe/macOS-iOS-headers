@@ -6,20 +6,17 @@
 
 #import <OSInstaller/OSIInstallQueueElement.h>
 
-@class NSString;
-
 @interface OSIInstallRecoverySystemElement : OSIInstallQueueElement
 {
-    NSString *_distPath;
+    BOOL _installRecoveryDMGs;
 }
 
-@property(copy) NSString *distPath; // @synthesize distPath=_distPath;
+@property BOOL installRecoveryDMGs; // @synthesize installRecoveryDMGs=_installRecoveryDMGs;
 - (double)estimatedTimeToComplete;
 - (id)localizedStatusString;
 - (id)operationName;
 - (BOOL)runReturningError:(id *)arg1;
-- (void)dealloc;
-- (id)initWithOptions:(id)arg1 distPath:(id)arg2;
+- (id)initWithOptions:(id)arg1 installRecoveryDMGs:(BOOL)arg2;
 
 @end
 

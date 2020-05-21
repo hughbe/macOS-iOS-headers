@@ -11,30 +11,38 @@
 __attribute__((visibility("hidden")))
 @interface BRCPQLConnection : PQLConnection
 {
-    unsigned int _retryCount;
     br_pacer *_batchingPacer;
     int _changeCount;
     double _flushInterval;
+    BOOL _flushImmediately;
+    BOOL _autovacuumInProgress;
+    long long _changesOverride;
+    unsigned long long _vmStepsExecuted;
 }
 
 - (void).cxx_destruct;
-- (long long)guaranteedReclaimableSizeInBytes;
+@property(readonly, nonatomic) unsigned long long vmStepsExecuted; // @synthesize vmStepsExecuted=_vmStepsExecuted;
+- (void)autovacuumIfNeeded;
+- (BOOL)needsAutovacuum;
 - (long long)sizeInBytes;
 - (void)brc_close;
-- (void)usePacedBatchingWithInterval:(double)arg1 changeCount:(int)arg2;
+- (void)usePacedBatchingOnTargetQueue:(id)arg1 withInterval:(double)arg2 changeCount:(int)arg3;
 - (BOOL)_shouldFlushWithChangeCount:(int)arg1;
 - (void)disableProfilingForQueriesInBlock:(CDUnknownBlockType)arg1;
 - (BOOL)executeWithErrorHandler:(CDUnknownBlockType)arg1 sql:(id)arg2;
 - (BOOL)executeWithSlowStatementRadar:(id)arg1 sql:(id)arg2;
+- (BOOL)executeWithExpectedIndex:(id)arg1 sql:(id)arg2;
+- (id)fetchWithSlowStatementRadar:(id)arg1 objectOfClass:(Class)arg2 sql:(id)arg3;
 - (id)fetchWithSlowStatementRadar:(id)arg1 sql:(id)arg2;
-- (void)setPostFlushHook:(CDUnknownBlockType)arg1;
 - (void)setProfilingHook:(CDUnknownBlockType)arg1;
+- (void)flushToMakeEditsVisibleToIPCReaders;
 - (BOOL)attachDBAtPath:(id)arg1 as:(id)arg2 error:(id *)arg3;
 @property(nonatomic) BOOL profilingEnabled;
+- (long long)changes;
 - (BOOL)openAtURL:(id)arg1 withFlags:(int)arg2 error:(id *)arg3;
 - (void)_setLockedHandler;
-- (void)_setErrorHandlerWithDBCorruptionHandler:(id)arg1;
-- (id)initWithLabel:(id)arg1 dbCorruptionHandler:(id)arg2;
+- (void)_setErrorHandlerWithDBCorruptionHandler:(CDUnknownBlockType)arg1;
+- (id)initWithLabel:(id)arg1 dbCorruptionHandler:(CDUnknownBlockType)arg2;
 - (id)init;
 
 // Remaining properties

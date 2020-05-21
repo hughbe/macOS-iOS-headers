@@ -16,5 +16,6 @@
 - (void)readerControllerDidActivate:(const struct ReaderController *)arg1;
 - (void)readerControllerWillActivate:(const struct ReaderController *)arg1;
 - (BOOL)readerControllerShouldAnimateActivationIfPossible:(const struct ReaderController *)arg1;
+- (BOOL)readerControllerShouldDeactivateFromUserAction:(const struct ReaderController *)arg1;
 @end
 

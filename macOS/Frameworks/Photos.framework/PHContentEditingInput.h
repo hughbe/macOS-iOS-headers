@@ -6,45 +6,70 @@
 
 #import "NSObject.h"
 
-@class AVAsset, CLLocation, NSDate, NSImage, NSString, NSURL, PHAdjustmentData, PHLivePhoto;
+@class AVAsset, CLLocation, NSDate, NSImage, NSMutableArray, NSNumber, NSObject<OS_dispatch_queue>, NSString, NSURL, PHAdjustmentData, PHLivePhoto;
 
 @interface PHContentEditingInput : NSObject
 {
+    NSObject<OS_dispatch_queue> *_avAssetIsolationQueue;
+    NSMutableArray *_sandboxExtensionHandles;
     int _fullSizeImageOrientation;
+    AVAsset *_avAsset;
     long long _mediaType;
     unsigned long long _mediaSubtypes;
     NSDate *_creationDate;
     CLLocation *_location;
     NSString *_uniformTypeIdentifier;
+    long long _playbackStyle;
     PHAdjustmentData *_adjustmentData;
     NSImage *_displaySizeImage;
     NSURL *_fullSizeImageURL;
-    AVAsset *_avAsset;
-    AVAsset *_audiovisualAsset;
     PHLivePhoto *_livePhoto;
-    NSURL *_outputURL;
-    NSURL *_outputLivePhotoImageURL;
-    NSURL *_outputLivePhotoVideoURL;
-    NSImage *_placeholderImage;
+    long long _baseVersion;
+    NSNumber *_originalResourceChoice;
+    NSURL *_videoURL;
+    NSURL *_overCapturePhotoURL;
+    NSURL *_overCaptureVideoURL;
+    NSURL *_frontSwappingImageRenderURL;
+    NSURL *_backSwappingImageRenderURL;
+    NSURL *_frontSwappingVideoRenderURL;
+    NSURL *_backSwappingVideoRenderURL;
+    PHAdjustmentData *_originalAdjustmentData;
 }
 
-@property(retain) NSImage *placeholderImage; // @synthesize placeholderImage=_placeholderImage;
-@property(retain) NSURL *outputLivePhotoVideoURL; // @synthesize outputLivePhotoVideoURL=_outputLivePhotoVideoURL;
-@property(retain) NSURL *outputLivePhotoImageURL; // @synthesize outputLivePhotoImageURL=_outputLivePhotoImageURL;
-@property(copy) NSURL *outputURL; // @synthesize outputURL=_outputURL;
-@property(retain) PHLivePhoto *livePhoto; // @synthesize livePhoto=_livePhoto;
-@property(retain, setter=setAudiovisualAsset:) AVAsset *audiovisualAsset; // @synthesize audiovisualAsset=_audiovisualAsset;
-@property(readonly) AVAsset *avAsset; // @synthesize avAsset=_avAsset;
-@property int fullSizeImageOrientation; // @synthesize fullSizeImageOrientation=_fullSizeImageOrientation;
-@property(copy) NSURL *fullSizeImageURL; // @synthesize fullSizeImageURL=_fullSizeImageURL;
-@property(retain) NSImage *displaySizeImage; // @synthesize displaySizeImage=_displaySizeImage;
-@property(retain) PHAdjustmentData *adjustmentData; // @synthesize adjustmentData=_adjustmentData;
-@property(copy) NSString *uniformTypeIdentifier; // @synthesize uniformTypeIdentifier=_uniformTypeIdentifier;
-@property(copy) CLLocation *location; // @synthesize location=_location;
-@property(copy) NSDate *creationDate; // @synthesize creationDate=_creationDate;
-@property unsigned long long mediaSubtypes; // @synthesize mediaSubtypes=_mediaSubtypes;
-@property long long mediaType; // @synthesize mediaType=_mediaType;
 - (void).cxx_destruct;
+@property(retain, nonatomic) PHAdjustmentData *originalAdjustmentData; // @synthesize originalAdjustmentData=_originalAdjustmentData;
+@property(copy, nonatomic) NSURL *backSwappingVideoRenderURL; // @synthesize backSwappingVideoRenderURL=_backSwappingVideoRenderURL;
+@property(copy, nonatomic) NSURL *frontSwappingVideoRenderURL; // @synthesize frontSwappingVideoRenderURL=_frontSwappingVideoRenderURL;
+@property(copy, nonatomic) NSURL *backSwappingImageRenderURL; // @synthesize backSwappingImageRenderURL=_backSwappingImageRenderURL;
+@property(copy, nonatomic) NSURL *frontSwappingImageRenderURL; // @synthesize frontSwappingImageRenderURL=_frontSwappingImageRenderURL;
+@property(copy, nonatomic) NSURL *overCaptureVideoURL; // @synthesize overCaptureVideoURL=_overCaptureVideoURL;
+@property(copy, nonatomic) NSURL *overCapturePhotoURL; // @synthesize overCapturePhotoURL=_overCapturePhotoURL;
+@property(copy, nonatomic) NSURL *videoURL; // @synthesize videoURL=_videoURL;
+@property(retain, nonatomic) NSNumber *originalResourceChoice; // @synthesize originalResourceChoice=_originalResourceChoice;
+@property(nonatomic) long long baseVersion; // @synthesize baseVersion=_baseVersion;
+@property(retain, nonatomic) PHLivePhoto *livePhoto; // @synthesize livePhoto=_livePhoto;
+@property(nonatomic) int fullSizeImageOrientation; // @synthesize fullSizeImageOrientation=_fullSizeImageOrientation;
+@property(copy, nonatomic) NSURL *fullSizeImageURL; // @synthesize fullSizeImageURL=_fullSizeImageURL;
+@property(retain, nonatomic) NSImage *displaySizeImage; // @synthesize displaySizeImage=_displaySizeImage;
+@property(retain, nonatomic) PHAdjustmentData *adjustmentData; // @synthesize adjustmentData=_adjustmentData;
+@property(nonatomic) long long playbackStyle; // @synthesize playbackStyle=_playbackStyle;
+@property(copy, nonatomic) NSString *uniformTypeIdentifier; // @synthesize uniformTypeIdentifier=_uniformTypeIdentifier;
+@property(copy, nonatomic) CLLocation *location; // @synthesize location=_location;
+@property(copy, nonatomic) NSDate *creationDate; // @synthesize creationDate=_creationDate;
+@property(nonatomic) unsigned long long mediaSubtypes; // @synthesize mediaSubtypes=_mediaSubtypes;
+@property(nonatomic) long long mediaType; // @synthesize mediaType=_mediaType;
+- (id)description;
+- (void)_invalidateAVAsset;
+@property(readonly) AVAsset *audiovisualAsset; // @synthesize audiovisualAsset=_avAsset;
+@property(readonly) AVAsset *avAsset;
+- (void)consumeSandboxExtensionToken:(id)arg1;
+- (void)requestFullSizeImageURLWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)videoComposition;
+- (id)audioMix;
+- (void)loadFullSizeImageDataWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (BOOL)isMediaSubtype:(unsigned long long)arg1;
+- (void)dealloc;
+- (id)init;
 
 @end
 

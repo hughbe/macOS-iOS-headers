@@ -6,15 +6,15 @@
 
 #import "NSObject.h"
 
-@class AVPlayerItem, AVWeakReference, NSError;
+@class AVWeakReference, NSError;
 
+__attribute__((visibility("hidden")))
 @interface AVPlayerConnection : NSObject
 {
     AVWeakReference *_playerReference;
     AVWeakReference *_playerItemReference;
     long long _status;
     NSError *_error;
-    AVPlayerItem *_previousPlayerItem;
 }
 
 - (id)error;

@@ -22,6 +22,9 @@
     id _reserved10;
 }
 
++ (BOOL)isPropertyOfColumnLocalizable:(id)arg1;
++ (BOOL)isTitleOfColumnAlreadyLocalized:(id)arg1;
++ (id)titleOfColumn:(id)arg1;
 + (Class)_controllerClass;
 - (id)_uiController;
 - (void)_postSearchUpdateNotifications;
@@ -74,9 +77,9 @@
 - (void)_openSelectionInAddressBook:(BOOL)arg1;
 - (void)printDescription:(id)arg1;
 - (id)controller;
-- (void)_commonInit;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
+- (void)dealloc;
+- (void)_commonInit;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)selectInAddressBook:(id)arg1;

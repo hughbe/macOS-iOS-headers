@@ -14,7 +14,6 @@
 + (BOOL)supportsSecureCoding;
 @property(nonatomic) BOOL isDelegate; // @synthesize isDelegate=_isDelegate;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

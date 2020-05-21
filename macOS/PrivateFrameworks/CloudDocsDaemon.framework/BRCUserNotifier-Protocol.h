@@ -9,20 +9,17 @@
 @class BRCAccountSession, CKShareMetadata, NSURL;
 
 @protocol BRCUserNotifier <NSObject>
-- (void)showCompletionFallbackWithUserReplyBlock:(void (^)(void))arg1;
-- (void)updateUndeterminedProgressCancelBlock:(void (^)(void))arg1;
-- (void)showShareDownloadingUndeterminedProgressWithUserCancelReplyBlock:(void (^)(void))arg1;
-- (void)showShareOpenDialogForShareMetadata:(CKShareMetadata *)arg1 session:(BRCAccountSession *)arg2 userReplyBlock:(void (^)(BOOL, NSError *))arg3;
-- (void)showShareConnectingUndeterminedProgressWithUserCancelReplyBlock:(void (^)(void))arg1;
-- (void)showErrorItemIsNoLongerSharedForShareURL:(NSURL *)arg1 userReplyBlock:(void (^)(void))arg2;
-- (void)showErroriCloudNotReachableForShareURL:(NSURL *)arg1 userReplyBlock:(void (^)(void))arg2;
-- (void)showErrorDeviceOfflineForShareURL:(NSURL *)arg1 userReplyBlock:(void (^)(void))arg2;
-- (void)showErrorParticipantLimitReachedForShareURL:(NSURL *)arg1 userReplyBlock:(void (^)(BOOL))arg2;
-- (void)showErrorApplicationNotInstalledForShareMetadata:(CKShareMetadata *)arg1 userReplyBlock:(void (^)(BOOL, BOOL))arg2;
-- (void)showErrorTurnOniCloudDriveForShareURL:(NSURL *)arg1 userReplyBlock:(void (^)(BOOL, BOOL))arg2;
-- (void)showErrorSetupiCloudForShareURL:(NSURL *)arg1 userReplyBlock:(void (^)(BOOL, BOOL))arg2;
-- (void)showErrorApplicationProfileDisabledForShareURL:(NSURL *)arg1 userReplyBlock:(void (^)(BOOL))arg2;
-- (void)showGenericErrorForURL:(NSURL *)arg1 userReplyBlock:(void (^)(void))arg2;
+- (void)showErrorDocumentsAppNotVisibleForShareURL:(NSURL *)arg1 reply:(void (^)(void))arg2;
+- (void)showErrorParticipantLimitReachedForShareMetadata:(CKShareMetadata *)arg1 reply:(void (^)(BOOL))arg2;
+- (void)showErrorItemUnavailableOrAccessRestrictedForShareMetadata:(CKShareMetadata *)arg1 reply:(void (^)(void))arg2;
+- (void)showErrorServerNotReachableForShareMetadata:(CKShareMetadata *)arg1 reply:(void (^)(void))arg2;
+- (void)showErrorDeviceOfflineForShareMetadata:(CKShareMetadata *)arg1 reply:(void (^)(void))arg2;
+- (void)showErrorReasonUnknownForShareMetadata:(CKShareMetadata *)arg1 reply:(void (^)(void))arg2;
+- (void)showErrorNativeAppDisabledByProfileForShareMetadata:(CKShareMetadata *)arg1 reply:(void (^)(BOOL, NSError *))arg2;
+- (void)showErrorInstallNativeAppForShareMetadata:(CKShareMetadata *)arg1 reply:(void (^)(BOOL, BOOL, NSError *))arg2;
+- (void)showErrorTurnOniCloudDriveForShareMetadata:(CKShareMetadata *)arg1 reply:(void (^)(BOOL, BOOL, NSError *))arg2;
+- (void)showErrorSignInToiCloudForShareMetadata:(CKShareMetadata *)arg1 reply:(void (^)(BOOL, BOOL, NSError *))arg2;
+- (void)showJoinDialogForShareMetadata:(CKShareMetadata *)arg1 session:(BRCAccountSession *)arg2 reply:(void (^)(BOOL, NSError *))arg3;
 - (void)close;
 - (void)moveToFront;
 @end

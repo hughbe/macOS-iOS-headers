@@ -8,7 +8,7 @@
 
 @interface WBSBookmarkAndHistoryCompletionMatch : WBSURLCompletionMatch
 {
-    struct RefPtr<SafariShared::BookmarkAndHistoryCompletionMatch> _match;
+    struct RefPtr<SafariShared::BookmarkAndHistoryCompletionMatch, WTF::DumbPtrTraits<SafariShared::BookmarkAndHistoryCompletionMatch>> _match;
 }
 
 - (id).cxx_construct;
@@ -19,8 +19,8 @@
 - (id)title;
 - (id)originalURLString;
 @property(readonly, nonatomic) id <WBSURLCompletionMatchData> data;
-- (id)initWithWBSBookmarkAndHistoryCompletionMatch:(id)arg1;
-- (id)initWithBookmarkAndHistoryCompletionMatch:(PassRefPtr_8dece646)arg1;
+- (id)initWithWBSBookmarkAndHistoryCompletionMatch:(id)arg1 userInput:(id)arg2 forQueryID:(long long)arg3;
+- (id)initWithBookmarkAndHistoryCompletionMatch:(Ref_a2762e75 *)arg1 userInput:(id)arg2 forQueryID:(long long)arg3;
 
 @end
 

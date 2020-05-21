@@ -8,20 +8,39 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray, NSString;
+@class GEOPDMapsIdentifier, NSMutableArray, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDTransitConnection : PBCodable <NSCopying>
 {
-    unsigned long long _muid;
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSString *_entityNameString;
+    GEOPDMapsIdentifier *_mapsId;
+    unsigned long long _muid;
     NSMutableArray *_transitLabels;
-    CDStruct_e99c65f7 _has;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int has_muid:1;
+        unsigned int read_unknownFields:1;
+        unsigned int read_entityNameString:1;
+        unsigned int read_mapsId:1;
+        unsigned int read_transitLabels:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_entityNameString:1;
+        unsigned int wrote_mapsId:1;
+        unsigned int wrote_muid:1;
+        unsigned int wrote_transitLabels:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)transitLabelType;
-@property(retain, nonatomic) NSString *entityNameString; // @synthesize entityNameString=_entityNameString;
-@property(retain, nonatomic) NSMutableArray *transitLabels; // @synthesize transitLabels=_transitLabels;
-@property(nonatomic) unsigned long long muid; // @synthesize muid=_muid;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -29,15 +48,26 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOPDMapsIdentifier *mapsId;
+@property(readonly, nonatomic) BOOL hasMapsId;
+- (void)_readMapsId;
+@property(retain, nonatomic) NSString *entityNameString;
 @property(readonly, nonatomic) BOOL hasEntityNameString;
+- (void)_readEntityNameString;
 - (id)transitLabelAtIndex:(unsigned long long)arg1;
 - (unsigned long long)transitLabelsCount;
+- (void)_addNoFlagsTransitLabel:(id)arg1;
 - (void)addTransitLabel:(id)arg1;
 - (void)clearTransitLabels;
+@property(retain, nonatomic) NSMutableArray *transitLabels;
+- (void)_readTransitLabels;
 @property(nonatomic) BOOL hasMuid;
-- (void)dealloc;
+@property(nonatomic) unsigned long long muid;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

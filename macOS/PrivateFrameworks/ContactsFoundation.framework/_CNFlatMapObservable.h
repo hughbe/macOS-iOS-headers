@@ -6,7 +6,6 @@
 
 #import <ContactsFoundation/CNObservable.h>
 
-__attribute__((visibility("hidden")))
 @interface _CNFlatMapObservable : CNObservable
 {
     CNObservable *_observable;
@@ -17,10 +16,10 @@ __attribute__((visibility("hidden")))
 + (id)observableWithObservable:(id)arg1 transform:(CDUnknownBlockType)arg2 decoratorGenerator:(CDUnknownBlockType)arg3 schedulerProvider:(id)arg4;
 + (id)flatMapWithObservable:(id)arg1 transform:(CDUnknownBlockType)arg2 schedulerProvider:(id)arg3;
 + (id)concatMapWithObservable:(id)arg1 transform:(CDUnknownBlockType)arg2 schedulerProvider:(id)arg3;
+- (void).cxx_destruct;
 @property(readonly) id <CNSchedulerProvider> schedulerProvider; // @synthesize schedulerProvider=_schedulerProvider;
 @property(readonly, copy) CDUnknownBlockType decoratorGenerator; // @synthesize decoratorGenerator=_decoratorGenerator;
 @property(readonly) CNObservable *observable; // @synthesize observable=_observable;
-- (void).cxx_destruct;
 - (id)subscribeInnerObservable:(id)arg1 observer:(id)arg2 context:(id)arg3;
 - (id)subscribe:(id)arg1;
 - (id)initWithObservable:(id)arg1 transform:(CDUnknownBlockType)arg2 decoratorGenerator:(CDUnknownBlockType)arg3 schedulerProvider:(id)arg4;

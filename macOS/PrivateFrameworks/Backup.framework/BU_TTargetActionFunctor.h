@@ -9,16 +9,16 @@
 __attribute__((visibility("hidden")))
 @interface BU_TTargetActionFunctor : NSObject
 {
-    function_f9feaa7d _functor;
-    long long _ownerValidatorID;
+    unique_function_63952f55 _functor;
 }
 
-+ (id)targetActionFunctor:(const function_f9feaa7d *)arg1;
-@property long long ownerValidatorID; // @synthesize ownerValidatorID=_ownerValidatorID;
++ (id)targetActionGlue:(unique_function_63952f55 *)arg1;
++ (id)targetActionGlue:(id)arg1 withFunctor:(unique_function_63952f55 *)arg2;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)action:(id)arg1;
-- (id)initWithFunctor:(const function_f9feaa7d *)arg1;
+- (id)initWithFunctor:(unique_function_63952f55 *)arg1;
+- (void)bindTarget:(id)arg1;
 
 @end
 

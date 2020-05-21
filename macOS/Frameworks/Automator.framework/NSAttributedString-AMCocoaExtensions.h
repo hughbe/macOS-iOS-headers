@@ -6,9 +6,12 @@
 
 #import "NSAttributedString.h"
 
+@class NSArray, NSString;
+
 @interface NSAttributedString (AMCocoaExtensions)
-- (id)stringIncludingAttachmentsAsArray;
-- (id)stringIncludingAttachments;
-- (struct _NSRange)rangeOfAttachment:(id)arg1;
+@property(readonly) NSArray *am_stringIncludingAttachmentsAsArray;
+@property(readonly) NSString *am_stringIncludingAttachments;
+@property(readonly, nonatomic) NSArray *am_attachments;
+- (struct _NSRange)am_rangeOfAttachment:(id)arg1;
 @end
 

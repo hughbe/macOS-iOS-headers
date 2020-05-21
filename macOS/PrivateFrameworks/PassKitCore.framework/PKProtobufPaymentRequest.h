@@ -12,6 +12,7 @@
 
 @interface PKProtobufPaymentRequest : PBRequest <NSCopying>
 {
+    unsigned int _apiType;
     NSData *_applicationData;
     NSData *_billingContact;
     NSString *_countryCode;
@@ -21,14 +22,18 @@
     PKProtobufPaymentMerchantSession *_merchantSession;
     NSString *_originatingURL;
     unsigned int _requiredBillingAddressFields;
+    NSMutableArray *_requiredBillingContactFields;
     unsigned int _requiredShippingAddressFields;
+    NSMutableArray *_requiredShippingContactFields;
     NSData *_shippingContact;
     NSMutableArray *_shippingMethods;
     NSMutableArray *_summaryItems;
+    NSMutableArray *_supportedCountries;
     NSMutableArray *_supportedNetworks;
     NSMutableArray *_thumbnailURLs;
     BOOL _expectsMerchantSession;
     struct {
+        unsigned int apiType:1;
         unsigned int merchantCapabilities:1;
         unsigned int requiredBillingAddressFields:1;
         unsigned int requiredShippingAddressFields:1;
@@ -36,10 +41,18 @@
     } _has;
 }
 
++ (Class)supportedCountriesType;
++ (Class)requiredBillingContactFieldsType;
++ (Class)requiredShippingContactFieldsType;
 + (Class)thumbnailURLsType;
 + (Class)shippingMethodsType;
 + (Class)summaryItemsType;
 + (Class)supportedNetworksType;
+- (void).cxx_destruct;
+@property(nonatomic) unsigned int apiType; // @synthesize apiType=_apiType;
+@property(retain, nonatomic) NSMutableArray *supportedCountries; // @synthesize supportedCountries=_supportedCountries;
+@property(retain, nonatomic) NSMutableArray *requiredBillingContactFields; // @synthesize requiredBillingContactFields=_requiredBillingContactFields;
+@property(retain, nonatomic) NSMutableArray *requiredShippingContactFields; // @synthesize requiredShippingContactFields=_requiredShippingContactFields;
 @property(nonatomic) BOOL expectsMerchantSession; // @synthesize expectsMerchantSession=_expectsMerchantSession;
 @property(retain, nonatomic) NSMutableArray *thumbnailURLs; // @synthesize thumbnailURLs=_thumbnailURLs;
 @property(retain, nonatomic) PKProtobufPaymentMerchantSession *merchantSession; // @synthesize merchantSession=_merchantSession;
@@ -56,7 +69,6 @@
 @property(retain, nonatomic) NSString *currencyCode; // @synthesize currencyCode=_currencyCode;
 @property(retain, nonatomic) NSString *countryCode; // @synthesize countryCode=_countryCode;
 @property(retain, nonatomic) NSString *merchantIdentifier; // @synthesize merchantIdentifier=_merchantIdentifier;
-- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -66,6 +78,19 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(nonatomic) BOOL hasApiType;
+- (id)supportedCountriesAtIndex:(unsigned long long)arg1;
+- (unsigned long long)supportedCountriesCount;
+- (void)addSupportedCountries:(id)arg1;
+- (void)clearSupportedCountries;
+- (id)requiredBillingContactFieldsAtIndex:(unsigned long long)arg1;
+- (unsigned long long)requiredBillingContactFieldsCount;
+- (void)addRequiredBillingContactFields:(id)arg1;
+- (void)clearRequiredBillingContactFields;
+- (id)requiredShippingContactFieldsAtIndex:(unsigned long long)arg1;
+- (unsigned long long)requiredShippingContactFieldsCount;
+- (void)addRequiredShippingContactFields:(id)arg1;
+- (void)clearRequiredShippingContactFields;
 @property(nonatomic) BOOL hasExpectsMerchantSession;
 - (id)thumbnailURLsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)thumbnailURLsCount;

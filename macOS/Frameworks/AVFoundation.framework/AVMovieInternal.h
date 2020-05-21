@@ -6,8 +6,9 @@
 
 #import "NSObject.h"
 
-@class AVAssetInspectorLoader, NSArray, NSData, NSDictionary, NSURL;
+@class AVAssetInspectorLoader, AVDispatchOnce, NSArray, NSData, NSDictionary, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface AVMovieInternal : NSObject
 {
     AVAssetInspectorLoader *loader;
@@ -15,8 +16,10 @@
     NSData *data;
     NSDictionary *initializationOptions;
     NSArray *tracks;
-    long long makeTracksArrayOnce;
+    AVDispatchOnce *makeTracksArrayOnce;
 }
+
+- (void).cxx_destruct;
 
 @end
 

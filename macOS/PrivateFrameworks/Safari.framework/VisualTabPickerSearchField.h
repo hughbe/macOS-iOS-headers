@@ -11,7 +11,6 @@ __attribute__((visibility("hidden")))
 {
 }
 
-+ (void)initialize;
 - (void)_searchTextDidChange:(id)arg1;
 - (BOOL)acceptsFirstResponder;
 - (id)initWithFrame:(struct CGRect)arg1;

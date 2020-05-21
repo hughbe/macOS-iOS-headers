@@ -6,25 +6,27 @@
 
 #import "NSObject.h"
 
-@class AVWeakReference, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
+@class AVVideoOutputSettings, AVWeakReference, AVWeakReferencingDelegateStorage, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
 
+__attribute__((visibility("hidden")))
 @interface AVPlayerItemVideoOutputInternal : NSObject
 {
     struct OpaqueCMTimebase *timebase;
     double currentRate;
     struct OpaqueFigVisualContext *vc;
     AVWeakReference *playerItemWeakReference;
+    AVWeakReferencingDelegateStorage *delegateStorage;
     struct OpaqueVTPixelBufferConformer *pixelBufferConformer;
-    id <AVPlayerItemOutputPullDelegate> delegate;
     NSObject<OS_dispatch_queue> *stateQueue;
-    NSObject<OS_dispatch_queue> *delegateQueue;
     NSObject<OS_dispatch_source> *delegateWakeupSource;
     double advanceWakeUpInterval;
     BOOL advanceWakeUpIntervalIsValid;
     CDStruct_1b6d18a9 wakeUpImageTime;
+    BOOL immediateWakeUp;
+    long long clientStateOnRequestedMediaDataChangeNotification;
     BOOL suppressesPlayerRendering;
     BOOL shouldTagBuffersWithInfo;
-    BOOL allowWideColor;
+    AVVideoOutputSettings *videoSettings;
 }
 
 @end

@@ -18,7 +18,6 @@ __attribute__((visibility("hidden")))
 + (id)sharedInstance;
 - (void).cxx_destruct;
 - (void)_postNetworkChangeNotification:(id)arg1;
-- (BOOL)launchNetworkDiagnosticsForUnreachableURL:(id)arg1;
 - (id)init;
 - (void)dealloc;
 

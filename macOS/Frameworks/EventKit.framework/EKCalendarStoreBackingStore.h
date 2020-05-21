@@ -6,7 +6,7 @@
 
 #import <EventKit/EKBackingStore.h>
 
-@class CalAccumulatingQueue, EKBackingStoreAccounting, NSDate;
+@class CalAccumulatingQueue, CalAgentLinkQueueStatusOperation, EKBackingStoreAccounting, NSDate, NSObject<OS_dispatch_queue>;
 
 @interface EKCalendarStoreBackingStore : EKBackingStore
 {
@@ -15,6 +15,10 @@
     EKBackingStoreAccounting *_accounting;
     CalAccumulatingQueue *_externalChangeQueue;
     NSDate *__creationTimestamp;
+    NSObject<OS_dispatch_queue> *_queueStatusQueue;
+    CalAgentLinkQueueStatusOperation *_queueStatusOperation;
+    NSDate *_lastExternalChangeProcessed;
+    double _ensureExternalUpdateInterval;
 }
 
 + (id)_readOnlyContextToleratingInaccessibleFault;
@@ -28,17 +32,25 @@
 + (id)_predicateForEventsInFuture;
 + (void)_addPrefetchRelationshipsForCalendarItemFetch:(id)arg1 prefetchItemsThatSupportFaulting:(BOOL)arg2;
 + (void)_addPrefetchRelationshipsForCalendarItemFetch:(id)arg1;
++ (double)defaultUpdateIntervalForBundleIdentifier:(id)arg1;
++ (id)externalChangesLogHandle;
++ (id)backingStoreLogHandle;
+- (void).cxx_destruct;
+@property double ensureExternalUpdateInterval; // @synthesize ensureExternalUpdateInterval=_ensureExternalUpdateInterval;
+@property(retain) NSDate *lastExternalChangeProcessed; // @synthesize lastExternalChangeProcessed=_lastExternalChangeProcessed;
+@property(retain) CalAgentLinkQueueStatusOperation *queueStatusOperation; // @synthesize queueStatusOperation=_queueStatusOperation;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *queueStatusQueue; // @synthesize queueStatusQueue=_queueStatusQueue;
 @property(retain) NSDate *_creationTimestamp; // @synthesize _creationTimestamp=__creationTimestamp;
 @property(retain) CalAccumulatingQueue *externalChangeQueue; // @synthesize externalChangeQueue=_externalChangeQueue;
 @property BOOL persistenceAvailable; // @synthesize persistenceAvailable=_persistenceAvailable;
 @property BOOL isPrefetching; // @synthesize isPrefetching=_isPrefetching;
 @property(retain) EKBackingStoreAccounting *accounting; // @synthesize accounting=_accounting;
-- (void).cxx_destruct;
 - (id)_managedObjectsForClass:(Class)arg1 withManagedObjectIDs:(id)arg2 managedObjectContext:(id)arg3;
 - (void)_forceUpdateBackingStoreSourcesWithObjectIDs:(id)arg1;
 - (void)_forceUpdateBackingStoreCalendarsWithObjectIDs:(id)arg1 inContext:(id)arg2;
 - (void)_forceUpdateBackingStoreCalendarsWithObjectIDs:(id)arg1;
-- (void)_removeManagedObjectIDsFromCache:(id)arg1;
+- (id)_forceUpdateBackingStoreItemsWithObjectIDs:(id)arg1 inContext:(id)arg2 withChangedCalendarItems:(id)arg3 alwaysAddObjectsToCache:(BOOL)arg4 createPartialObject:(BOOL)arg5 error:(id *)arg6;
+- (id)_forceUpdateBackingStoreItemsWithObjectIDs:(id)arg1 inContext:(id)arg2 withChangedCalendarItems:(id)arg3 error:(id *)arg4;
 - (id)_forceUpdateBackingStoreItemsWithObjectIDs:(id)arg1 inContext:(id)arg2;
 - (id)_forceUpdateBackingStoreItemsWithObjectIDs:(id)arg1;
 - (void)refreshSources;
@@ -54,13 +66,24 @@
 - (void)_queueRetryForOldReceipt:(long long)arg1 currentReceipt:(long long)arg2 tags:(id)arg3 backoff:(unsigned long long)arg4;
 - (BOOL)_queueRetryIfReceiptIsStale:(long long)arg1 tags:(id)arg2;
 - (BOOL)_objectIsDeletedInCoreData:(id)arg1;
+- (BOOL)addEventAndAnyExceptionsForEvent:(id)arg1 withManagedObject:(id)arg2 toAddedEvents:(id)arg3 alwaysAddObjectsToCache:(BOOL)arg4;
+- (BOOL)addReminder:(id)arg1 toAddedReminders:(id)arg2 alwaysAddObjectsToCache:(BOOL)arg3;
+- (id)_createFrozenItemForManagedItem:(id)arg1 createPartialObject:(BOOL)arg2;
+- (void)_deleteManagedObjectIDsFromCache:(id)arg1 withItemsToDelete:(id)arg2;
 - (BOOL)_processExternalChangeHelperUpdateBackingStoreWithTags:(id)arg1 changedBackingSources:(id)arg2 changedBackingCalendars:(id)arg3 changedBackingCalendarItems:(id)arg4 newBackingSources:(id)arg5 newBackingCalendars:(id)arg6 newBackingCalendarItems:(id)arg7 accountingReceiptGeneration:(long long)arg8 copiedBackingStore:(id)arg9;
 - (void)_processExternalChangeWithTags:(id)arg1 context:(id)arg2;
+- (void)_retryUpdateForDatabaseChanged;
+- (void)_doQueueStatusCheck;
+- (BOOL)_shouldExecuteBlockImmediately;
 - (id)_updateTagsForNotification:(id)arg1 contextForTags:(id *)arg2;
 - (BOOL)_shouldHandleNotification:(id)arg1;
+- (BOOL)_notificationTagsIndicateCacheReset:(id)arg1;
 - (void)_databaseChangedExternally:(id)arg1;
+- (id)_changedCalendarItemIdentifiersForChangedCalendarItemsInSet:(id)arg1;
 - (id)_changedCalendarItemIdentifiersForChangedCalendarItems:(id)arg1;
+- (id)_setOfObjectsFromCalendarItemDictionary:(id)arg1;
 - (BOOL)_changedCalendarItemsContainsSuggestedEvent:(id)arg1;
+- (BOOL)_changedCalendarItemsContainsSuggestedEventInSet:(id)arg1;
 - (void)_handleLocaleChange:(id)arg1;
 - (void)_handleTimeZoneChange:(id)arg1;
 - (BOOL)_changeShareesOnCalManagedCalendar:(id)arg1 fromEKCalendar:(id)arg2 error:(id *)arg3;
@@ -77,11 +100,15 @@
 - (BOOL)_updateMultiValueRelationshipObjectsOnCalManagedObject:(id)arg1 fromEKObject:(id)arg2 usingRelationKey:(id)arg3 uniqueIdentifierKeyForRelationshipObject:(id)arg4 createNewManagedObjectBlock:(CDUnknownBlockType)arg5 applyChangesFromEKObjectToCalManagedObjectBlock:(CDUnknownBlockType)arg6 removeAndAddNewlyCreatedObjectBlock:(CDUnknownBlockType)arg7 deleteManagedObjectBlock:(CDUnknownBlockType)arg8 context:(id)arg9 error:(id *)arg10;
 - (BOOL)_moveItem:(id)arg1 withItem:(id)arg2 toCalendar:(id)arg3;
 - (void)_registerForCreatingChangeRequestsWithCalendar:(id)arg1;
+- (BOOL)_removeItem:(id)arg1 withItem:(id)arg2 error:(id *)arg3;
 - (BOOL)_changeTask:(id)arg1 withReminder:(id)arg2 error:(id *)arg3;
 - (BOOL)_changeEvent:(id)arg1 withEvent:(id)arg2 error:(id *)arg3;
 - (BOOL)_changeItem:(id)arg1 withItem:(id)arg2 error:(id *)arg3;
+- (BOOL)_removeCalendar:(id)arg1 withCalendar:(id)arg2 error:(id *)arg3;
 - (BOOL)_changeCalendar:(id)arg1 withCalendar:(id)arg2 error:(id *)arg3;
+- (BOOL)_removeGroup:(id)arg1 withSource:(id)arg2 error:(id *)arg3;
 - (BOOL)_changeGroup:(id)arg1 withSource:(id)arg2 error:(id *)arg3;
+- (void)_notifySuggestionsFromContext:(id)arg1;
 - (void)_updateNotificationsFromContext:(id)arg1;
 - (BOOL)_persistMovedNotificationsInContext:(id)arg1 error:(id *)arg2;
 - (BOOL)_persistUpdatedNotificationsInContext:(id)arg1 error:(id *)arg2;
@@ -94,10 +121,10 @@
 - (BOOL)_isSuggestedEventCalendarChangeOriginalItem:(id)arg1 changedItem:(id)arg2;
 - (BOOL)_notifySuggestionsOfSuggestedEventDeletionForEvent:(id)arg1;
 - (BOOL)_notifySuggestionsOfSuggestedEventCalendarChangeForEvent:(id)arg1;
-- (BOOL)_notifySuggestionsHelperForEvent:(id)arg1 eventKitAction:(id)arg2 actionBlock:(CDUnknownBlockType)arg3;
+- (BOOL)_notifySuggestionsHelperForEvent:(id)arg1 eventKitAction:(id)arg2 loggingObject:(id)arg3 actionBlock:(CDUnknownBlockType)arg4;
 - (BOOL)_persistExceptionsInContext:(id)arg1 error:(id *)arg2;
 - (BOOL)_persistDeletedItemsInContext:(id)arg1 error:(id *)arg2;
-- (BOOL)_persistUpdatedItemsInContext:(id)arg1 error:(id *)arg2 confirmedSuggestedEvents:(id)arg3;
+- (BOOL)_persistUpdatedItemsInContext:(id)arg1 error:(id *)arg2;
 - (BOOL)_persistCreatedItemsInContext:(id)arg1 error:(id *)arg2;
 - (id)_sortedCreatedItems:(id)arg1;
 - (BOOL)_persistItemsInContext:(id)arg1 error:(id *)arg2;
@@ -117,23 +144,34 @@
 - (BOOL)_commit:(id *)arg1;
 - (void)_processErrorChange:(id)arg1;
 - (id)_coreDataSourcesFromSourceIdentifiers:(id)arg1 inContext:(id)arg2;
+- (id)_createBirthdayCalendarSource;
+- (id)_createSubscribedCalendarSource;
 - (id)_coreDataEventCalendarsFromCalendarIdentifiers:(id)arg1 inContext:(id)arg2;
 - (id)_coreDataCalendarsFromCalendarIdentifiers:(id)arg1 inContext:(id)arg2;
 - (id)_calendarPredicateWithCalendarIdentifiers:(id)arg1;
 - (id)_calendarPredicateWithCalendar:(id)arg1;
+- (void)insertNaturalLanguageSuggestedEventCalendar;
 - (void)insertSuggestedEventCalendar;
+- (id)naturalLanguageSuggestedEventCalendar;
 - (id)suggestedEventCalendar;
-- (id)_firstWriteableCalendarPreferringServerBasedSupportingEntityType:(unsigned long long)arg1;
+- (void)_setDefaultCalendar:(id)arg1 forEntityType:(unsigned long long)arg2;
 - (void)setDefaultCalendarForNewReminders:(id)arg1;
 - (void)setDefaultCalendarForNewEvents:(id)arg1;
-- (id)defaultCalendarForNewReminders;
-- (id)defaultCalendarForNewEvents;
+- (id)_createLocalCalendarForType:(unsigned long long)arg1 title:(id)arg2 commit:(BOOL)arg3;
+- (id)_createLocalDefaultCalendarForType:(unsigned long long)arg1;
+- (id)_firstWriteableCalendarPreferringServerBasedSupportingEntityType:(unsigned long long)arg1;
+- (id)_getDefaultCalendarIdentifierForEntityType:(unsigned long long)arg1;
+- (id)_defaultCalendarForEntityType:(unsigned long long)arg1 createIfNone:(BOOL)arg2;
+- (id)defaultCalendarForEntityType:(unsigned long long)arg1;
+- (id)acquireDefaultCalendarForEntityType:(unsigned long long)arg1;
 - (id)_fetchFrozenRemindersWithCalendarIdentifiers:(id)arg1;
 - (id)_fetchFrozenRemindersInCalendars:(id)arg1;
 - (id)_predicateForEventsInRange:(id)arg1 calendars:(id)arg2;
 - (id)_fetchFrozenMasterOrDetachedEventsInRange:(id)arg1 inCalendars:(id)arg2 forceNonPartial:(BOOL)arg3;
 - (id)_fetchFrozenMasterOrDetachedEventsInRange:(id)arg1 inCalendars:(id)arg2;
 - (id)_fetchFrozenMasterOrDetachedEventsInRange:(id)arg1;
+- (id)_fetchFrozenCalendarItemsOfType:(unsigned long long)arg1 withCoreDataPredicate:(id)arg2 withCalendarPredicate:(id)arg3 withFetchLimit:(id)arg4 forceNonPartial:(BOOL)arg5;
+- (id)_fetchFrozenCalendarItemsOfType:(unsigned long long)arg1 withCoreDataPredicate:(id)arg2 withCalendarPredicate:(id)arg3 withFetchLimit:(id)arg4;
 - (id)_fetchFrozenCalendarItemsOfType:(unsigned long long)arg1 withCoreDataPredicate:(id)arg2 withCalendarPredicate:(id)arg3;
 - (id)_fetchFrozenCalendarItemsOfType:(unsigned long long)arg1 withCoreDataPredicate:(id)arg2;
 - (id)_predicateForBackingCalendars;
@@ -148,6 +186,12 @@
 - (id)_reminderPredicateWithAnyCompletionDate;
 - (id)_reminderPredicateWithAnyDueDate;
 - (id)_calendarItemPredicateWithCalendarIdentifiers:(id)arg1;
+- (id)_eventItemPredicateEventsWhereMyAttendeeInvitedContactInfo:(id)arg1 withOrganizerField:(id)arg2 attendeeField:(id)arg3;
+- (id)_eventItemPredicateEventsWhereMyAttendeeInvitedPhoneNumber:(id)arg1;
+- (id)_eventItemPredicateEventsWhereMyAttendeeInvitedEmail:(id)arg1;
+- (id)_eventItemPredicateWhereMyAttendeePositivelyRepliedToEventWithContactInfo:(id)arg1 withOrganizerField:(id)arg2 attendeeField:(id)arg3;
+- (id)_eventItemPredicateWhereMyAttendeePositivelyRepliedToEventWithPhoneNumber:(id)arg1;
+- (id)_eventItemPredicateWhereMyAttendeePositivelyRepliedToEventWithEmail:(id)arg1;
 - (id)_calendarItemPredicateWithExternalIdentifiers:(id)arg1;
 - (id)_calendarItemPredicateWithItemIdentifiers:(id)arg1 calendarIdentifiers:(id)arg2;
 - (id)_calendarItemPredicateWithItemIdentifiers:(id)arg1;
@@ -159,6 +203,8 @@
 - (id)_expandGeneralLookupPredicate:(id)arg1;
 - (id)_fetchEventsWithGeneralLookupPredicate:(id)arg1;
 - (id)lookupItemsWithExternalIdentifier:(id)arg1 type:(unsigned long long)arg2;
+- (BOOL)shouldWhitelistOrganizerPhoneNumberFromJunkChecks:(id)arg1;
+- (BOOL)shouldWhitelistOrganizerEmailFromJunkChecks:(id)arg1;
 - (id)lookupItemsWithIdentifiers:(id)arg1 type:(unsigned long long)arg2;
 - (id)remindersWithIsCompleted:(BOOL)arg1 maxResults:(unsigned long long)arg2 withCalendarIdentifiers:(id)arg3;
 - (id)remindersWithContactIdentifier:(id)arg1;
@@ -169,6 +215,7 @@
 - (id)allReminders;
 - (id)allEvents;
 - (void)refreshBackingStore;
+- (void)pruneCacheForDisjointRange:(id)arg1 occurrencesToKeep:(id)arg2;
 - (void)pruneCacheForDisjointRange:(id)arg1;
 - (void)pruneCacheForRange:(id)arg1;
 - (id)cachedRange;
@@ -176,6 +223,8 @@
 - (void)_updatePersistenceAvailability;
 - (void)dealloc;
 - (void)_doBackgroundInitializationWork;
+- (void)_reminderBecameOverdue:(id)arg1;
+- (void)_reminderAlertFired:(id)arg1;
 - (id)initWithSourceFilters:(id)arg1 options:(unsigned long long)arg2 accessRequestedForEvents:(BOOL)arg3 accessRequestedForReminders:(BOOL)arg4 asyncWithCompletion:(CDUnknownBlockType)arg5 orWithExistingStore:(id)arg6;
 - (id)initWithSourceFilters:(id)arg1 options:(unsigned long long)arg2 asyncWithCompletion:(CDUnknownBlockType)arg3 orWithExistingStore:(id)arg4;
 - (id)backingStoreAvailableGroup;

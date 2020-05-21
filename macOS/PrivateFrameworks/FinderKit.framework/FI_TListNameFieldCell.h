@@ -4,16 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <FinderKit/FI_TListTextCell.h>
+#import <FinderKit/FI_TTextCell.h>
 
 __attribute__((visibility("hidden")))
-@interface FI_TListNameFieldCell : FI_TListTextCell
+@interface FI_TListNameFieldCell : FI_TTextCell
 {
 }
 
 - (void)accessibilityPerformAction:(id)arg1;
 - (id)accessibilityActionDescription:(id)arg1;
 - (id)accessibilityActionNames;
+- (BOOL)_accessibilityUseConvenienceAPI;
 - (_Bool)isSelected;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityAttributeNames;

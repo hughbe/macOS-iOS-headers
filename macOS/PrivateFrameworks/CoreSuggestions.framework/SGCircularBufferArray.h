@@ -19,6 +19,7 @@
 }
 
 - (void).cxx_destruct;
+- (unsigned long long)count;
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 - (id)allObjects;
 - (void)addObject:(id)arg1;

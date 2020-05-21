@@ -25,6 +25,8 @@
 
 + (id)sharedActionRegistry;
 + (void)rebuildCache;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL shouldFilterActions; // @synthesize shouldFilterActions=_shouldFilterActions;
 @property(retain) NSMutableArray *internalConversionActions; // @synthesize internalConversionActions=_internalConversionActions;
 @property(retain) NSMutableArray *applicationDefinitionActions; // @synthesize applicationDefinitionActions=_applicationDefinitionActions;
 @property(retain) NSMutableDictionary *explicitlyLoadedActionsByBundleIdentifier; // @synthesize explicitlyLoadedActionsByBundleIdentifier=_explicitlyLoadedActionsByBundleIdentifier;
@@ -32,12 +34,11 @@
 @property(retain) AMActionMetadataStore *actionMetadataCache; // @synthesize actionMetadataCache=_actionMetadataStore;
 @property BOOL didLoadAllConversionActions; // @synthesize didLoadAllConversionActions=_didLoadAllConversionActions;
 @property BOOL didLoadAllRegularActions; // @synthesize didLoadAllRegularActions=_didLoadAllRegularActions;
-@property(retain) AMApplicationDefinition *applicationDefinitionAsActionFilter; // @synthesize applicationDefinitionAsActionFilter=_applicationDefinitionAsActionFilter;
+@property(retain, nonatomic) AMApplicationDefinition *applicationDefinitionAsActionFilter; // @synthesize applicationDefinitionAsActionFilter=_applicationDefinitionAsActionFilter;
 @property(retain) NSMutableArray *cachesInResolutionOrder; // @synthesize cachesInResolutionOrder=_cachesInResolutionOrder;
 @property(retain) NSMutableArray *customActions; // @synthesize customActions=_customActions;
 - (id)actionNamesWithBundleIdentifiers:(id)arg1;
-@property BOOL shouldFilterActions;
-@property(readonly) BOOL isFilteringActions;
+@property(readonly, nonatomic) BOOL isFilteringActions;
 - (id)dateAddedForActionWithBundleIdentifier:(id)arg1;
 - (unsigned long long)useCountForActionWithBundleIdentifier:(id)arg1;
 - (void)incrementUseCountForActionWithBundleIdenifier:(id)arg1;
@@ -49,8 +50,10 @@
 - (id)loadActionWithURL:(id)arg1 replaceExisting:(BOOL)arg2 error:(id *)arg3;
 - (id)importActionWithURL:(id)arg1 replaceExisting:(BOOL)arg2 error:(id *)arg3;
 - (id)regularActionWithBundleIdentifier:(id)arg1;
-@property(readonly, retain) NSArray *conversionActions;
-@property(readonly, retain) NSArray *regularActions;
+@property(readonly, nonatomic) NSArray *conversionActions;
+- (id)genericActionBundleForIdentifier:(id)arg1;
+- (id)genericActionFromCacheForIdentifier:(id)arg1;
+@property(readonly, nonatomic) NSArray *regularActions;
 - (void)_addExplicitlyLoadedActionsIntoArray:(id)arg1;
 - (void)_loadAllRegularActionsIfNeeded;
 - (void)_loadAllConversionActionsIfNeeded;
@@ -61,7 +64,6 @@
 - (id)_allCachesInResolutionOrder;
 - (void)loadDefinitionFileActions;
 - (void)writeCache;
-- (void)dealloc;
 
 @end
 

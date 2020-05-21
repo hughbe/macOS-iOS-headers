@@ -11,7 +11,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
-- (void)_performClickAsynchronouslySpeakAfterPerformed:(BOOL)arg1 isEnabled:(BOOL)arg2;
+- (void)_performClickAsynchronouslyWithFeedback:(long long)arg1 isEnabled:(BOOL)arg2;
 
 @end
 

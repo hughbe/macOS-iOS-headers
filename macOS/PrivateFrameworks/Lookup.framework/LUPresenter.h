@@ -21,6 +21,7 @@
 
 + (id)animationControllerForTerm:(id)arg1 relativeToRect:(struct CGRect)arg2 ofView:(id)arg3 options:(id)arg4;
 + (id)animationControllerForTerm:(id)arg1 atLocation:(struct CGPoint)arg2 options:(id)arg3;
++ (id)animationControllerForTerm:(id)arg1 atLocation:(struct CGPoint)arg2 positioningView:(id)arg3 options:(id)arg4;
 + (id)addressInString:(id)arg1 range:(struct _NSRange)arg2;
 + (void)positioningView:(id *)arg1 andRect:(struct CGRect *)arg2 forTerm:(id)arg3 atLocation:(struct CGPoint)arg4 options:(id)arg5;
 + (BOOL)windowIsPopover:(id)arg1;
@@ -28,11 +29,11 @@
 + (BOOL)windowIsMain:(id)arg1;
 + (id)windowAtScreenLocation:(struct CGPoint)arg1;
 + (id)sharedPresenter;
-+ (void)initialize;
-@property struct CGPoint displayedTermOrigin; // @synthesize displayedTermOrigin=_displayedTermOrigin;
-@property(retain) NSAttributedString *displayedTerm; // @synthesize displayedTerm=_displayedTerm;
-@property(retain) NSPopover *resultsPopover; // @synthesize resultsPopover=_resultsPopover;
-@property(retain) LUSearchTermIndicator *searchTermIndicator; // @synthesize searchTermIndicator=_searchTermIndicator;
+- (void).cxx_destruct;
+@property(nonatomic) struct CGPoint displayedTermOrigin; // @synthesize displayedTermOrigin=_displayedTermOrigin;
+@property(retain, nonatomic) NSAttributedString *displayedTerm; // @synthesize displayedTerm=_displayedTerm;
+@property(retain, nonatomic) NSPopover *resultsPopover; // @synthesize resultsPopover=_resultsPopover;
+@property(retain, nonatomic) LUSearchTermIndicator *searchTermIndicator; // @synthesize searchTermIndicator=_searchTermIndicator;
 - (void)dataDetectorsUIActionWillStart;
 - (void)dataDetectorsUIActionDidEnd;
 - (void)popoverDidClose:(id)arg1;
@@ -45,10 +46,10 @@
 - (unsigned long long)preferredEdgeOfPopover:(id)arg1 relativeToRect:(struct CGRect)arg2 ofView:(id)arg3;
 - (void)showDefinitionForTerm:(id)arg1 relativeToRect:(struct CGRect)arg2 ofView:(id)arg3 options:(id)arg4;
 - (void)showDefinitionForTerm:(id)arg1 atLocation:(struct CGPoint)arg2 options:(id)arg3;
+- (void)showDefinitionForTerm:(id)arg1 atLocation:(struct CGPoint)arg2 positioningView:(id)arg3 options:(id)arg4;
 - (id)animationControllerForTerm:(id)arg1 relativeToRect:(struct CGRect)arg2 ofView:(id)arg3 options:(id)arg4;
 - (void)postPopoverWillCloseNotification;
 - (void)commonLUPresenterTeardown;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

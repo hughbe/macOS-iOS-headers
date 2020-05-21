@@ -8,18 +8,34 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray, NSString;
+@class NSMutableArray, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDPhoto : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSString *_photoId;
     NSMutableArray *_photoVersions;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_photoId:1;
+        unsigned int read_photoVersions:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_photoId:1;
+        unsigned int wrote_photoVersions:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)photoVersionType;
 + (id)photosForPlaceData:(id)arg1;
-@property(retain, nonatomic) NSMutableArray *photoVersions; // @synthesize photoVersions=_photoVersions;
-@property(retain, nonatomic) NSString *photoId; // @synthesize photoId=_photoId;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -27,14 +43,21 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)photoVersionAtIndex:(unsigned long long)arg1;
 - (unsigned long long)photoVersionsCount;
+- (void)_addNoFlagsPhotoVersion:(id)arg1;
 - (void)addPhotoVersion:(id)arg1;
 - (void)clearPhotoVersions;
+@property(retain, nonatomic) NSMutableArray *photoVersions;
+- (void)_readPhotoVersions;
+@property(retain, nonatomic) NSString *photoId;
 @property(readonly, nonatomic) BOOL hasPhotoId;
-- (void)dealloc;
+- (void)_readPhotoId;
+- (id)initWithData:(id)arg1;
+- (id)init;
 - (id)bestURL;
 
 @end

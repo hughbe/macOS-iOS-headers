@@ -14,7 +14,7 @@ __attribute__((visibility("hidden")))
     unsigned short _textureDataType;
 }
 
-- (id)describe;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (unsigned long long)textureDataType;
 - (BOOL)isDepthTexture;
 - (unsigned long long)textureType;

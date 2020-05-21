@@ -33,9 +33,6 @@
 + (BOOL)hasBattery;
 + (void)enableControls:(BOOL)arg1 inView:(id)arg2 deep:(BOOL)arg3;
 + (id)sharedPrefPaneUtils;
-- (void)stopKeyboardMonitor;
-- (void)startKeyboardMonitor;
-- (void)dealloc;
 
 @end
 

@@ -8,16 +8,21 @@
 
 @class NSSplitView, NSToolbarItem;
 
+__attribute__((visibility("hidden")))
 @interface _NSToolbarSplitViewPartitionAdapter : NSObject
 {
     NSSplitView *_splitView;
     NSToolbarItem *_toolbarItem;
     long long _dividerIndex;
     struct CGRect _dividerFrame;
+    BOOL _inManualResize;
 }
 
 @property(nonatomic) NSToolbarItem *toolbarItem; // @synthesize toolbarItem=_toolbarItem;
 - (void)dealloc;
+- (void)_setListenToViewGeometryInWindowDidChange:(BOOL)arg1 forView:(id)arg2;
+- (void)splitViewGeometryInWindowDidChange:(id)arg1;
+- (void)_geometryInWindowDidChangeForView:(id)arg1;
 - (BOOL)getRectToExclude:(struct CGRect *)arg1 inWindowCoordinatesForWindow:(id)arg2;
 - (void)_splitViewDidResize:(id)arg1;
 @property(nonatomic) NSSplitView *splitView;

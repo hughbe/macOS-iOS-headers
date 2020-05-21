@@ -8,22 +8,22 @@
 
 #import "APSConnectionDelegate.h"
 
-@class APSConnection, IMMacNotificationCenterManager, NSData, NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
+@class APSConnection, NSData, NSMapTable, NSMutableSet, NSRecursiveLock, NSString;
 
 @interface IDSPushHandler : NSObject <APSConnectionDelegate>
 {
     APSConnection *_apsConnection;
     NSData *_cachedPushToken;
-    Class _APSConnectionClass;
     NSMutableSet *_topicsCache;
     NSMapTable *_handlerMap;
-    IMMacNotificationCenterManager *_ncHandler;
-    NSObject<OS_dispatch_queue> *_ivarQueue;
+    id _ncHandler;
+    NSRecursiveLock *_recursiveLock;
     BOOL _shouldWaitToSetTopics;
 }
 
 + (id)sharedInstanceWithPortName:(id)arg1;
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL shouldWaitToSetTopics; // @synthesize shouldWaitToSetTopics=_shouldWaitToSetTopics;
 - (void)connection:(id)arg1 didChangeConnectedStatus:(BOOL)arg2;
 - (void)connectionDidReconnect:(id)arg1;
@@ -32,14 +32,19 @@
 - (void)connection:(id)arg1 didReceiveIncomingMessage:(id)arg2;
 - (void)connection:(id)arg1 didReceivePublicToken:(id)arg2;
 - (void)configureAsMacNotificationCenterObserver:(id)arg1;
+- (void)configureAsMacNotificationCenterObserver:(id)arg1 withPushToWakeTopics:(id)arg2;
+- (struct __SecIdentity *)copyPushIdentity;
+@property(readonly, nonatomic) NSData *pushToken;
+- (id)_apsConnectionPushToken;
 - (void)setCommands:(id)arg1 forListener:(id)arg2;
 - (void)setTopics:(id)arg1 forListener:(id)arg2;
 - (void)removeListener:(id)arg1;
 - (void)addListener:(id)arg1 topics:(id)arg2 commands:(id)arg3 queue:(id)arg4;
-- (void)_recalculateTopicsCacheOnIvarQueue;
-- (void)_updateTopicsOnIvarQueue;
+- (void)_recalculateTopicsCache;
+- (void)_updateTopics;
+- (id)_getValidPushHandlersWithSelector:(SEL)arg1 topic:(id)arg2 command:(id)arg3;
+- (BOOL)_validateHandler:(id)arg1 withSelector:(SEL)arg2 topic:(id)arg3 command:(id)arg4;
 @property(readonly, nonatomic) BOOL isConnected;
-@property(readonly, nonatomic) NSData *pushToken;
 - (void)dealloc;
 - (id)initWithPort:(id)arg1;
 - (id)init;

@@ -6,10 +6,15 @@
 
 #import <CloudKitDaemon/CKDDiscoverUserIdentitiesOperation.h>
 
+@class NSMutableDictionary;
+
 @interface CKDDiscoverAllUserIdentitiesOperation : CKDDiscoverUserIdentitiesOperation
 {
+    NSMutableDictionary *_contactIdentifiersByLookupInfo;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableDictionary *contactIdentifiersByLookupInfo; // @synthesize contactIdentifiersByLookupInfo=_contactIdentifiersByLookupInfo;
 - (void)_handleDiscoveredIdentity:(id)arg1 lookupInfo:(id)arg2 responseCode:(id)arg3;
 - (void)main;
 - (void)_discoverIdentitiesBatched:(id)arg1;

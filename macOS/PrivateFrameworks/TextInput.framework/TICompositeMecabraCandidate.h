@@ -16,6 +16,7 @@
 
 + (int)type;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSArray *autoconvertedCandidatePointerValues; // @synthesize autoconvertedCandidatePointerValues=_autoconvertedCandidatePointerValues;
 @property(copy, nonatomic) NSString *remainderCandidateString; // @synthesize remainderCandidateString=_remainderCandidateString;
 - (void)encodeWithCandidateResultSetCoder:(id)arg1;
@@ -24,7 +25,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)label;
-- (void)dealloc;
 
 @end
 

@@ -6,12 +6,16 @@
 
 #import "NSObject.h"
 
+@class NSDictionary;
+
 @interface VCPVideoMetaAnalyzer : NSObject
 {
 }
 
 + (id)analyzerForTrackType:(id)arg1 withTransform:(struct CGAffineTransform)arg2;
-- (id)results;
+@property(readonly, retain, nonatomic) NSDictionary *privateResults;
+@property(readonly, retain, nonatomic) NSDictionary *publicResults;
+- (int)finalizeAnalysis;
 - (int)processMetadataGroup:(id)arg1 flags:(unsigned long long *)arg2;
 
 @end

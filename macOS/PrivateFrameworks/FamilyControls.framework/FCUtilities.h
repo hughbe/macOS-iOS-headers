@@ -12,10 +12,7 @@
 
 + (void)kickMCXDForUID:(unsigned int)arg1;
 + (void)fcdListeningStatusChanged;
-+ (void)fcdSaveUsageDataFor:(unsigned int)arg1;
 + (void)fcdReadSettingsFor:(unsigned int)arg1;
-+ (void)fcdResetUsageDataFor:(unsigned int)arg1;
-+ (void)fcdReadOverridesFor:(unsigned int)arg1;
 + (id)timeStringWithHourIndex:(int)arg1 minuteIndex:(int)arg2 twentyFour:(BOOL)arg3;
 + (id)timeStringWithHourIndex:(int)arg1;
 + (id)shortTimeDurationStringForSeconds:(int)arg1 includeSeconds:(BOOL)arg2;

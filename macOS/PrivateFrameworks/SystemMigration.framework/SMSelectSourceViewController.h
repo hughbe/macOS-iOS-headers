@@ -70,6 +70,7 @@
 + (id)keyPathsForValuesAffectingHeadingText;
 + (id)keyPathsForValuesAffectingStatusText;
 + (id)keyPathsForValuesAffectingShouldShowStatus;
+- (void).cxx_destruct;
 @property __weak SMSystem_Client *finalSelectedSystem; // @synthesize finalSelectedSystem=_finalSelectedSystem;
 @property(getter=isWaitingForBenchmarking) BOOL waitingForBenchmarking; // @synthesize waitingForBenchmarking=_waitingForBenchmarking;
 @property(getter=isWaitingForNetworkSourceConnection) BOOL waitingForNetworkSourceConnection; // @synthesize waitingForNetworkSourceConnection=_waitingForNetworkSourceConnection;
@@ -117,7 +118,6 @@
 @property NSObject<SMSelectSourceDelegate> *delegate; // @synthesize delegate=_delegate;
 @property NSView *selectSystemViewContainer; // @synthesize selectSystemViewContainer=_selectSystemViewContainer;
 @property unsigned long long migrateMode; // @synthesize migrateMode=_migrateMode;
-- (void).cxx_destruct;
 - (void)daemonConnectionLost;
 - (void)pressedEditWifi:(id)arg1;
 - (void)clickConnectOtherCancel;
@@ -125,6 +125,7 @@
 - (void)displayConnectOtherShowMessage:(id)arg1;
 - (void)pressedConnectOther:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)establishNetworkSourceConnectionStateForSystem:(id)arg1;
 - (void)systemScannerSystemChanged:(id)arg1 onSystem:(id)arg2;
 - (void)systemScannerRemovedSystem:(id)arg1;
 - (void)systemScannerFoundHandoffResponse:(id)arg1;
@@ -137,6 +138,7 @@
 - (BOOL)shouldUpdateToMatchSourceSystem:(id)arg1;
 - (id)oneDecimalVersion:(id)arg1;
 - (void)presentNeedsUpdateAlertForSystem:(id)arg1;
+- (BOOL)presentServerDeprecationAlertForSystem:(id)arg1;
 - (void)recalculateDetailTableViewWidthForTab:(unsigned long long)arg1;
 @property(readonly) unsigned long long detailViewTabIndex;
 @property(readonly) BOOL selectActionAvailable;
@@ -144,6 +146,7 @@
 @property(readonly) NSString *headingText;
 @property(readonly) BOOL atLeastOneSource;
 - (BOOL)pressedBackButton:(id)arg1;
+- (void)selectNetworkSystem:(id)arg1;
 - (BOOL)pressedSelectButton:(id)arg1;
 - (void)signalSelectionImmediate:(id)arg1;
 - (void)signalSelection:(id)arg1;

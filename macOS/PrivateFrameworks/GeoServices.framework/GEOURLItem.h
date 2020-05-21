@@ -8,21 +8,30 @@
 
 #import "NSCopying.h"
 
-@class GEOMapItemStorage, GEOPlace;
+@class GEOMapItemStorage, GEOPlace, PBDataReader;
 
+__attribute__((visibility("hidden")))
 @interface GEOURLItem : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
     GEOMapItemStorage *_mapItemStorage;
     GEOPlace *_place;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
     BOOL _currentLocation;
     struct {
-        unsigned int currentLocation:1;
-    } _has;
+        unsigned int has_currentLocation:1;
+        unsigned int read_mapItemStorage:1;
+        unsigned int read_place:1;
+        unsigned int wrote_mapItemStorage:1;
+        unsigned int wrote_place:1;
+        unsigned int wrote_currentLocation:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) GEOMapItemStorage *mapItemStorage; // @synthesize mapItemStorage=_mapItemStorage;
-@property(nonatomic) BOOL currentLocation; // @synthesize currentLocation=_currentLocation;
-@property(retain, nonatomic) GEOPlace *place; // @synthesize place=_place;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -30,12 +39,19 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) GEOMapItemStorage *mapItemStorage;
 @property(readonly, nonatomic) BOOL hasMapItemStorage;
+- (void)_readMapItemStorage;
 @property(nonatomic) BOOL hasCurrentLocation;
+@property(nonatomic) BOOL currentLocation;
+@property(retain, nonatomic) GEOPlace *place;
 @property(readonly, nonatomic) BOOL hasPlace;
-- (void)dealloc;
+- (void)_readPlace;
+- (id)initWithData:(id)arg1;
+- (id)init;
 - (void)setMapItem:(id)arg1;
 - (id)mapItem;
 

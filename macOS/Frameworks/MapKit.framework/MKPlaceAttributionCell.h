@@ -6,32 +6,40 @@
 
 #import <MapKit/MKPlaceSectionRowView.h>
 
-@class NSArray, NSButton, NSLayoutConstraint, _MKUILabel;
+#import "MKPlaceAttributionCellButtonDelegate.h"
 
-@interface MKPlaceAttributionCell : MKPlaceSectionRowView
+@class MKPlaceAttributionCellButton, NSArray, NSLayoutConstraint, _MKUILabel;
+
+__attribute__((visibility("hidden")))
+@interface MKPlaceAttributionCell : MKPlaceSectionRowView <MKPlaceAttributionCellButtonDelegate>
 {
     NSArray *_visibleConstraints;
     NSLayoutConstraint *_collapsedConstraint;
+    BOOL _highlighted;
     _MKUILabel *_label;
-    NSButton *_labelButton;
+    MKPlaceAttributionCellButton *_labelButton;
     NSLayoutConstraint *_labelBaselineToTop;
     NSLayoutConstraint *_labelLastBaselineToBottom;
     id <MKPlaceAttributionCellDelegate> _cellDelegate;
 }
 
 + (id)fontForLabel;
+- (void).cxx_destruct;
 @property(nonatomic) __weak id <MKPlaceAttributionCellDelegate> cellDelegate; // @synthesize cellDelegate=_cellDelegate;
 @property(retain, nonatomic) NSLayoutConstraint *labelLastBaselineToBottom; // @synthesize labelLastBaselineToBottom=_labelLastBaselineToBottom;
 @property(retain, nonatomic) NSLayoutConstraint *labelBaselineToTop; // @synthesize labelBaselineToTop=_labelBaselineToTop;
-@property(retain, nonatomic) NSButton *labelButton; // @synthesize labelButton=_labelButton;
+@property(retain, nonatomic) MKPlaceAttributionCellButton *labelButton; // @synthesize labelButton=_labelButton;
+- (void)setHighlighted:(BOOL)arg1;
+- (BOOL)isHighlighted;
 @property(retain, nonatomic) _MKUILabel *label; // @synthesize label=_label;
-- (void).cxx_destruct;
+- (void)viewDidChangeEffectiveAppearance;
+- (void)attributionCellButton:(id)arg1 isHighighted:(BOOL)arg2 executeAction:(BOOL)arg3;
+- (double)currentHeight;
 - (void)setAttributionString:(id)arg1;
 - (void)attributionClicked;
 - (void)_contentSizeDidChange;
 - (void)updateConstraints;
 - (void)createConstraints;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

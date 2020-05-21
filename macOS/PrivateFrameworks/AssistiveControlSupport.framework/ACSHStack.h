@@ -6,21 +6,26 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class NSMutableArray;
 
-@interface ACSHStack : NSObject
+@interface ACSHStack : NSObject <NSCopying>
 {
-    NSMutableArray *_queue;
     BOOL _pushMovesDuplicatesToTop;
+    NSMutableArray *__queue;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSMutableArray *_queue; // @synthesize _queue=__queue;
 @property(nonatomic) BOOL pushMovesDuplicatesToTop; // @synthesize pushMovesDuplicatesToTop=_pushMovesDuplicatesToTop;
-- (void)dealloc;
+- (void)clear;
 - (id)description;
 - (void)push:(id)arg1;
 - (id)pop;
 - (id)peek;
 - (unsigned long long)count;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 
 @end

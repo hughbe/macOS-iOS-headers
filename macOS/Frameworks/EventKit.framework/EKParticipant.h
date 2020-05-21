@@ -14,10 +14,10 @@
 
 @interface EKParticipant : EKObject <EKIdentityProtocol, EKProtocolMutableParticipant, NSCopying>
 {
-    NSString *comment;
-    NSString *name;
-    NSString *scheduleStatusString;
-    NSURL *URL;
+    NSString *_comment;
+    NSString *_name;
+    NSString *_scheduleStatusString;
+    NSURL *_URL;
 }
 
 + (void)_ensureSubclass;
@@ -36,28 +36,33 @@
 + (Class)frozenClass;
 + (id)participantWithParticipant:(id)arg1 newURL:(id)arg2;
 + (id)participantWithParticipant:(id)arg1;
++ (id)participantWithName:(id)arg1 emailAddress:(id)arg2 phoneNumber:(id)arg3 url:(id)arg4;
 + (id)participantWithName:(id)arg1 url:(id)arg2;
-@property(readonly, nonatomic) NSURL *URL; // @synthesize URL;
-@property(readonly, nonatomic) NSString *scheduleStatusString; // @synthesize scheduleStatusString;
-@property(readonly, nonatomic) NSString *name; // @synthesize name;
-@property(readonly, nonatomic) NSString *comment; // @synthesize comment;
++ (Class)classForParticipantInstance;
 - (void).cxx_destruct;
-- (void)_decodeValueForKey:(id)arg1 withCoder:(id)arg2;
+@property(readonly, nonatomic) NSURL *URL; // @synthesize URL=_URL;
+@property(readonly, nonatomic) NSString *scheduleStatusString; // @synthesize scheduleStatusString=_scheduleStatusString;
+@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
+@property(readonly, nonatomic) NSString *comment; // @synthesize comment=_comment;
 - (BOOL)isLocationRoom;
 @property(readonly, nonatomic) long long participantScheduleStatus;
+@property(copy, nonatomic) NSString *phoneNumber;
 @property(copy, nonatomic) NSString *emailAddress;
+- (id)nameUsingAddressAsBackup;
 - (id)nameUsingEmailAsBackup;
 - (id)contactIdentifier;
 - (id)ABPersonInAddressBook:(id)arg1;
-@property(readonly, nonatomic) NSPredicate *contactPredicate;
+- (id)existingContact;
+- (id)newContact;
 - (id)nameComponents;
 - (BOOL)isEqualToParticipant:(id)arg1;
+- (id)summary;
 @property(readonly, copy) NSString *description;
 @property(readonly, nonatomic) long long participantRole;
 @property(readonly, nonatomic) long long participantStatus;
 @property(readonly, nonatomic) long long participantType;
-@property(readonly) BOOL isCurrentUserForSharing;
-@property(readonly) BOOL isCurrentUserForScheduling;
+@property(readonly, nonatomic) BOOL isCurrentUserForSharing;
+@property(readonly, nonatomic) BOOL isCurrentUserForScheduling;
 - (void)setCurrentUser:(BOOL)arg1;
 @property(readonly, nonatomic, getter=isCurrentUser) BOOL currentUser;
 @property(nonatomic) int type;
@@ -73,15 +78,18 @@
 - (id)status;
 - (void)setReplyRequested:(BOOL)arg1;
 - (BOOL)replyRequested;
-@property(copy, nonatomic) NSURL *addressURL;
+@property(nonatomic) int proposedStartDateStatus;
 - (void)setProposalStatusString:(id)arg1;
 - (id)proposalStatusString;
+- (void)setProposedEndDateUnadjustedFromUTC:(id)arg1;
+- (id)proposedEndDateUnadjustedFromUTC;
+- (void)setProposedEndDate:(id)arg1 forEvent:(id)arg2;
+- (id)proposedEndDateForEvent:(id)arg1;
 - (void)setProposedStartDateUnadjustedFromUTC:(id)arg1;
 - (id)proposedStartDateUnadjustedFromUTC;
 - (void)setProposedStartDate:(id)arg1 forEvent:(id)arg2;
 - (id)proposedStartDateForEvent:(id)arg1;
 @property(copy, nonatomic) NSString *inviterNameString;
-@property(copy, nonatomic) NSString *email;
 - (void)setParticipantType:(long long)arg1;
 - (void)setParticipantStatus:(long long)arg1;
 - (void)setParticipantRole:(long long)arg1;
@@ -90,7 +98,9 @@
 - (BOOL)hasParticipantStatusChange;
 - (id)initWithParticipant:(id)arg1 newURL:(id)arg2;
 - (id)initWithObject:(id)arg1 createPartialBackingObject:(BOOL)arg2 keepBackingObject:(BOOL)arg3 preFrozenRelationshipObjects:(id)arg4 additionalFrozenProperties:(id)arg5;
+- (id)initWithName:(id)arg1 emailAddress:(id)arg2 phoneNumber:(id)arg3 url:(id)arg4;
 - (id)initWithName:(id)arg1 url:(id)arg2;
+@property(readonly, nonatomic) NSPredicate *contactPredicate; // @dynamic contactPredicate;
 
 // Remaining properties
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;

@@ -12,6 +12,7 @@
 
 + (id)rollbackSucceededWithDictionary:(id)arg1 context:(id)arg2;
 + (id)rollbackSucceeded;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;

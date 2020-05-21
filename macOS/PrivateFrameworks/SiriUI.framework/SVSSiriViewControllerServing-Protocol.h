@@ -11,7 +11,7 @@
 @class NSDictionary, NSString, SiriUIRequestOptions;
 
 @protocol SVSSiriViewControllerServing <NSObject, AFUISiriSessionDelegate, AFUISpeechSynthesisDelegate>
-- (void)didChangeWindowHeight;
+- (void)didChangeWindowHeight:(BOOL)arg1;
 - (double)contentHeight;
 - (void)didPresentCreateBugTemplateWithConfirm:(BOOL)arg1 values:(NSDictionary *)arg2;
 - (void)didReceiveReportBugAction;

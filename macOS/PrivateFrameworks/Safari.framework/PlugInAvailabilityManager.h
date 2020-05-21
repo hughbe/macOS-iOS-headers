@@ -6,14 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSURL;
-
 __attribute__((visibility("hidden")))
 @interface PlugInAvailabilityManager : NSObject
 {
-    NSURL *_plistURL;
     BOOL _isUnitTesting;
-    BOOL _needsTurnOffOffByDefaultPlugIns;
+    id <PlugInAvailabilityManagerDelegate> _delegate;
 }
 
 + (BOOL)test_plugInInitializedAsEnabled:(id)arg1;
@@ -22,11 +19,10 @@ __attribute__((visibility("hidden")))
 + (id)test_plugInStateModifiedDateKey;
 + (id)test_disabledPlugInVersionStringKey;
 + (id)test_disabledPlugInDisableDateKey;
-+ (id)sharedManager;
-@property(nonatomic) BOOL needsTurnOffOffByDefaultPlugIns; // @synthesize needsTurnOffOffByDefaultPlugIns=_needsTurnOffOffByDefaultPlugIns;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <PlugInAvailabilityManagerDelegate> delegate; // @synthesize delegate=_delegate;
 - (BOOL)test_shouldDisablePlugIn:(id)arg1 updateInfo:(id)arg2;
-- (id)test_updatePlugInInfo:(id)arg1 plugInInfo:(id)arg2 getNameOfNewlyInstalledPlugIn:(id *)arg3;
+- (id)test_updatePlugInInfo:(id)arg1 plugInInfo:(id)arg2 getNameOfNewlyInstalledPlugIn:(id *)arg3 andBundleIdentifier:(id *)arg4;
 - (BOOL)test_shouldEnablePlugInWhenMigratingFromDisabledDictionaryToAllPlugInsDictionary:(id)arg1;
 - (void)test_removePlugInWithBundleIdentifier:(id)arg1;
 - (id)test_migratedPlugInDictionaryForPlugins:(id)arg1 withDisabledPlugInInfo:(id)arg2;
@@ -36,8 +32,9 @@ __attribute__((visibility("hidden")))
 - (id)test_disabledPlugInInfoByEnablingPlugInWithBundleIdentifier:(id)arg1 inExistingDisabledPlugInInfo:(id)arg2;
 - (id)test_disabledPlugInInfoByDisablingPlugInWithBundleIdentifier:(id)arg1 versionString:(id)arg2 inExistingDisabledPlugInInfo:(id)arg3;
 - (void)test_addPlugIn:(id)arg1 onState:(BOOL)arg2;
-- (id)test_initWithUpdateInfoPlistURL:(id)arg1;
-- (id)_updatePlugInInfo:(id)arg1 plugInInfo:(id)arg2 getNameOfNewlyInstalledPlugIn:(id *)arg3;
+- (id)test_init;
+- (void)applicationWasTerminated:(id)arg1;
+- (id)_updatePlugInInfo:(id)arg1 plugInInfo:(id)arg2 getNameOfNewlyInstalledPlugIn:(id *)arg3 andBundleIdentifier:(id *)arg4;
 - (id)_versionStringForPlugInWithBundleIdentifier:(id)arg1 fromDisabledPlugInInfo:(id)arg2;
 - (id)_disableDateForPlugInWithBundleIdentifier:(id)arg1 fromDisabledPlugInInfo:(id)arg2;
 - (id)_lastPlugInEnabledStateModifiedDateForPlugInWithBundleIdentifier:(id)arg1 fromUpdateInfoDictionary:(id)arg2;
@@ -49,20 +46,21 @@ __attribute__((visibility("hidden")))
 - (id)_lastModifiedDateForPlugInWithBundleAtPath:(id)arg1;
 - (id)_disabledPlugInInfoByEnablingPlugInWithBundleIdentifier:(id)arg1 inExistingDisabledPlugInInfo:(id)arg2;
 - (id)_disabledPlugInInfoByDisablingPlugInWithBundleIdentifier:(id)arg1 versionString:(id)arg2 inExistingDisabledPlugInInfo:(id)arg3;
-- (void)_loadPlugInUserUpdateInfoWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)_plugInInfoFromCurrentUser;
 - (id)_persistedPlugInInfo;
 - (void)_plugInWasUpdatedByUser:(id)arg1;
-- (void)updatePlugInsStateIfNeeded;
-- (void)migrateToListAllPlugInsInDictionaryIfNecessary;
+- (void)updatePlugInsStateIfNeededShowingNewlyInstalledDialogIfNeeded:(id)arg1;
+- (BOOL)updatePlugInsStateIfNeededShowingNewlyInstalledDialog:(BOOL)arg1 plugIns:(id)arg2;
+- (void)migrateToListPlugInsInDictionaryIfNecessary:(id)arg1;
 - (id)_migratedPlugInDictionaryForPlugins:(id)arg1 withDisabledPlugInInfo:(id)arg2;
 - (BOOL)_shouldEnablePlugInWhenMigratingFromDisabledDictionaryToAllPlugInsDictionary:(id)arg1;
-- (void)turnOffPlugInsIfNeeded;
-- (BOOL)_showNewlyInstalledPlugInDialogWithPlugInName:(id)arg1;
+- (BOOL)_showNewlyInstalledPlugInDialogWithPlugInName:(id)arg1 bundleIdentifier:(id)arg2;
 - (BOOL)_shouldDisablePlugIn:(id)arg1 updateInfo:(id)arg2;
-- (void)turnOnPlugInWithBundleIdentifier:(id)arg1 versionString:(id)arg2 notifyManagedPlugInsController:(BOOL)arg3;
+- (void)turnOnPlugInWithBundleIdentifier:(id)arg1 versionString:(id)arg2;
 - (void)turnOffPlugInWithBundleIdentifier:(id)arg1 versionString:(id)arg2;
 - (BOOL)isPlugInEnabled:(id)arg1;
-- (id)_initWithUpdateInfoPlistURL:(id)arg1;
+- (void)dealloc;
+- (id)init;
 
 @end
 

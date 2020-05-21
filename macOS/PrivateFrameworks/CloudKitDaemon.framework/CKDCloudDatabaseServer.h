@@ -6,33 +6,40 @@
 
 #import "NSObject.h"
 
-#import "NSXPCListenerDelegate.h"
+@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSOperationQueue, NSXPCListener;
 
-@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_source>, NSOperationQueue, NSString, NSXPCListener;
-
-@interface CKDCloudDatabaseServer : NSObject <NSXPCListenerDelegate>
+@interface CKDCloudDatabaseServer : NSObject
 {
-    NSXPCListener *_anonymousListener;
+    int _tccToken;
     NSXPCListener *_xpcListener;
     NSMutableArray *_connectedClients;
     NSMutableDictionary *_recentClientsByProcessName;
     NSObject<OS_dispatch_source> *_sighandlerSource;
     NSOperationQueue *_clientTeardownQueue;
     unsigned long long _stateHandle;
+    NSObject<OS_dispatch_source> *_statusReportRequestSource;
+    NSObject<OS_dispatch_queue> *_statusReportQueue;
+    NSObject<OS_dispatch_queue> *_statusReportCallbackQueue;
+    NSMutableArray *_statusReportCallbacks;
 }
 
 + (id)sharedServer;
+- (void).cxx_destruct;
+@property(nonatomic) int tccToken; // @synthesize tccToken=_tccToken;
+@property(retain, nonatomic) NSMutableArray *statusReportCallbacks; // @synthesize statusReportCallbacks=_statusReportCallbacks;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *statusReportCallbackQueue; // @synthesize statusReportCallbackQueue=_statusReportCallbackQueue;
+@property(retain, nonatomic) NSObject<OS_dispatch_queue> *statusReportQueue; // @synthesize statusReportQueue=_statusReportQueue;
+@property(retain, nonatomic) NSObject<OS_dispatch_source> *statusReportRequestSource; // @synthesize statusReportRequestSource=_statusReportRequestSource;
 @property(nonatomic) unsigned long long stateHandle; // @synthesize stateHandle=_stateHandle;
 @property(retain, nonatomic) NSOperationQueue *clientTeardownQueue; // @synthesize clientTeardownQueue=_clientTeardownQueue;
 @property(retain, nonatomic) NSObject<OS_dispatch_source> *sighandlerSource; // @synthesize sighandlerSource=_sighandlerSource;
 @property(retain, nonatomic) NSMutableDictionary *recentClientsByProcessName; // @synthesize recentClientsByProcessName=_recentClientsByProcessName;
 @property(retain, nonatomic) NSMutableArray *connectedClients; // @synthesize connectedClients=_connectedClients;
 @property(retain, nonatomic) NSXPCListener *xpcListener; // @synthesize xpcListener=_xpcListener;
-@property(retain, nonatomic) NSXPCListener *anonymousListener; // @synthesize anonymousListener=_anonymousListener;
-- (void).cxx_destruct;
 - (void)kickOffPendingLongLivedOperations;
-- (void)statusReport;
+- (void)statusReportWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)dumpStatusReportToFileHandle:(id)arg1;
+- (void)_dumpStatusReportToFileHandle:(id)arg1;
 - (void)_dumpStatusReportArrayToOsTrace:(id)arg1;
 - (id)CKStatusReportArray;
 - (void)_cleanRecentClients;
@@ -40,12 +47,6 @@
 - (void)resume;
 - (void)dealloc;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

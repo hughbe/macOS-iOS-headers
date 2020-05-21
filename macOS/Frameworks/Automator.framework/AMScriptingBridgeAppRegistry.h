@@ -6,11 +6,8 @@
 
 #import "NSObject.h"
 
-@class NSCache;
-
 @interface AMScriptingBridgeAppRegistry : NSObject
 {
-    NSCache *_scriptingAppsByURL;
 }
 
 + (id)sharedAppRegistry;

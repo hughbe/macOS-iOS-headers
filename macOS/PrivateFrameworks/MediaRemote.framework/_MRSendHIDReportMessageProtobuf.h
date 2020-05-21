@@ -16,6 +16,7 @@
     NSString *_virtualDeviceID;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSData *report; // @synthesize report=_report;
 @property(retain, nonatomic) NSString *virtualDeviceID; // @synthesize virtualDeviceID=_virtualDeviceID;
 - (void)mergeFrom:(id)arg1;
@@ -29,7 +30,6 @@
 - (id)description;
 @property(readonly, nonatomic) BOOL hasReport;
 @property(readonly, nonatomic) BOOL hasVirtualDeviceID;
-- (void)dealloc;
 
 @end
 

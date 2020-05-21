@@ -6,36 +6,64 @@
 
 #import <FinderKit/FI_TTableViewController.h>
 
+#import "TMarkTornDown.h"
+
+@class FI_TTouchBarScrollingStackViewController, NSString;
+
 __attribute__((visibility("hidden")))
-@interface FIAirDropListViewController : FI_TTableViewController
+@interface FIAirDropListViewController : FI_TTableViewController <TMarkTornDown>
 {
-    function_35ade228 _clickHandler;
-    struct TNSRef<NSTimer *, void> _scrollTimer;
+    function_0beffb83 _clickHandler;
     struct vector<TNotificationCenterObserver, std::__1::allocator<TNotificationCenterObserver>> _notificationObservers;
-    _Bool _shouldIgnoreClicks;
-    struct TNSRef<CNAvatarCache *, void> _avatarCache;
+    struct CGRect _hoverOverCellRect;
+    double _establishedHoverOverCellAt;
+    double _lastUpdatedDataSourceAt;
+    struct TNSRef<CNAvatarCache, void> _avatarCache;
+    struct TNSRef<NSTrackingArea, void> _trackingArea;
+    _Bool _repopulating;
+    FI_TTouchBarScrollingStackViewController *_weakTouchBarAirDropParticipantsViewController;
+    struct TNSRef<NSImage, void> _closeImage;
+    struct TNSRef<NSImage, void> _blankImage;
+    _Bool tornDown;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)scrollDidEnd;
+@property(getter=isTornDown) _Bool tornDown; // @synthesize tornDown;
+- (void)updateTouchBarAirDropParticipantsStackView;
+- (id)_airDropParticipantsViewControllerNoLoad;
+@property(readonly, nonatomic) __weak FI_TTouchBarScrollingStackViewController *airDropParticipantsViewController; // @synthesize airDropParticipantsViewController=_weakTouchBarAirDropParticipantsViewController;
 - (void)clipViewBoundsDidChange;
-- (void)startIgnoringClicks;
-- (_Bool)canScroll;
-- (void)calculateRow;
-- (void)scrollTableToCorrectOffset:(id)arg1;
+- (void)scrollHoverOverRowToCorrectOffset;
+- (void)resetContentInsetsIfNeeded;
+- (void)resetContentInsets;
+- (void)scrollRowForNode:(const struct TFENode *)arg1 to:(struct CGRect)arg2 squeezeOutContentInsetsOnly:(_Bool)arg3;
+- (void)flashOverlayScroller;
+- (struct CGSize)rowBoundingRectSize:(id)arg1;
 - (BOOL)selectionShouldChangeInTableView:(id)arg1;
 - (void)tableView:(id)arg1 didRemoveRowView:(id)arg2 forRow:(long long)arg3;
+- (void)tableView:(id)arg1 didAddRowView:(id)arg2 forRow:(long long)arg3;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
-- (BOOL)acceptsFirstResponder;
+- (void)mouseExited:(id)arg1;
+- (void)mouseEntered:(id)arg1;
+- (void)mouseMoved:(id)arg1;
+- (void)reestablishHoverOverRow;
+- (long long)hoveringOverRow;
+- (long long)rowForNode:(const struct TFENode *)arg1;
+- (struct TFENode)nodeForRow:(long long)arg1;
 - (void)tableViewDidMoveToWindow;
-- (void)setClickHandler:(const function_35ade228 *)arg1;
-- (function_35ade228)clickHandler;
+- (void)setClickHandler:(const function_0beffb83 *)arg1;
+- (function_0beffb83)clickHandler;
 - (Class)dataSourceClass;
 - (void)aboutToTearDown;
-- (void)dealloc;
 - (void)viewLoaded;
 - (void)initCommon;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

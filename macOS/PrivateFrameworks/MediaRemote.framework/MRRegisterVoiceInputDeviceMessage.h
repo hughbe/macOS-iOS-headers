@@ -13,9 +13,9 @@
     MRVirtualVoiceInputDeviceDescriptor *_descriptor;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) MRVirtualVoiceInputDeviceDescriptor *descriptor;
 - (unsigned long long)type;
-- (void)dealloc;
 - (id)initWithDescriptor:(id)arg1;
 
 @end

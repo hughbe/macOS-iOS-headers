@@ -18,8 +18,8 @@ __attribute__((visibility("hidden")))
 }
 
 - (id).cxx_construct;
+- (void).cxx_destruct;
 - (BOOL)updateRouteMatch:(id)arg1 previousRouteMatch:(id)arg2 forLocation:(id)arg3;
-- (void)dealloc;
 - (id)initWithRoute:(id)arg1 arrivalStep:(id)arg2;
 
 @end

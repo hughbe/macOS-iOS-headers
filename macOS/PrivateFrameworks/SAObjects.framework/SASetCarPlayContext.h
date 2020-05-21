@@ -16,6 +16,7 @@
 
 + (id)setCarPlayContextWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setCarPlayContext;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *objects;
 - (id)encodedClassName;
 - (id)groupIdentifier;

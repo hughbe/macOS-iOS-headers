@@ -7,17 +7,17 @@
 #import "NSObject.h"
 
 #import "CIMHigherOrderIMInfoProviderProtocol.h"
+#import "CIMMecabraEngineSubstitution.h"
 #import "TIMecabraEnvironmentProvider.h"
 
 @class CIMCandidate, CIMStrokeEngine, NSArray, NSMutableArray, NSMutableString, NSOperationQueue, NSString, TIMecabraEnvironment, _KSTextReplacementClientStore;
 
-@interface CIMMecabraEngine : NSObject <CIMHigherOrderIMInfoProviderProtocol, TIMecabraEnvironmentProvider>
+@interface CIMMecabraEngine : NSObject <CIMHigherOrderIMInfoProviderProtocol, CIMMecabraEngineSubstitution, TIMecabraEnvironmentProvider>
 {
     BOOL _adjustsWordFrequency;
     BOOL _autocorrectionEnabled;
-    BOOL _shuangpinModeEnabled;
+    int _shuangpinLayout;
     BOOL _fuzzyPinyinEnabled;
-    BOOL _addSpacesForLatinWords;
     BOOL _URLPunctuationEntered;
     unsigned long long _numFullStops;
     NSArray *_fuzzyPinyinPairs;
@@ -39,7 +39,6 @@
     NSString *_composedTextForCommitting;
     BOOL _hasStrokeCandidates;
     BOOL _shouldAutomaticallyCommitSelectedCandidate;
-    BOOL _supportsPunctuation;
     BOOL _canApplyToneFilter;
     struct __Mecabra *_pinyinEngine;
     CIMStrokeEngine *_strokeEngine;
@@ -61,12 +60,15 @@
     NSArray *_candidateContext;
     NSString *_stringContext;
     NSString *_composedShuangpinString;
+    NSString *_inputModeName;
     TIMecabraEnvironment *_mecabraEnvironment;
 }
 
 + (id)pinyinSyllables;
+- (void).cxx_destruct;
 @property(retain, nonatomic) TIMecabraEnvironment *mecabraEnvironment; // @synthesize mecabraEnvironment=_mecabraEnvironment;
 @property(retain, nonatomic) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
+@property(retain, nonatomic) NSString *inputModeName; // @synthesize inputModeName=_inputModeName;
 @property(copy, nonatomic) NSString *composedShuangpinString; // @synthesize composedShuangpinString=_composedShuangpinString;
 @property(retain, nonatomic) NSString *stringContext; // @synthesize stringContext=_stringContext;
 @property(retain, nonatomic) NSArray *candidateContext; // @synthesize candidateContext=_candidateContext;
@@ -96,15 +98,14 @@
 @property(copy, nonatomic) NSArray *additionalDictionaryPaths; // @synthesize additionalDictionaryPaths=_additionalDictionaryPaths;
 @property(nonatomic) BOOL showCompletionCandidates; // @synthesize showCompletionCandidates=_showCompletionCandidates;
 @property(copy, nonatomic) NSArray *fuzzyPinyinPairs; // @synthesize fuzzyPinyinPairs=_fuzzyPinyinPairs;
-@property(nonatomic) BOOL addSpacesForLatinWords; // @synthesize addSpacesForLatinWords=_addSpacesForLatinWords;
 @property(nonatomic) BOOL fuzzyPinyinEnabled; // @synthesize fuzzyPinyinEnabled=_fuzzyPinyinEnabled;
-@property(nonatomic) BOOL shuangpinModeEnabled; // @synthesize shuangpinModeEnabled=_shuangpinModeEnabled;
+@property(nonatomic) int shuangpinLayout; // @synthesize shuangpinLayout=_shuangpinLayout;
 @property(nonatomic) BOOL autocorrectionEnabled; // @synthesize autocorrectionEnabled=_autocorrectionEnabled;
 @property(nonatomic) BOOL adjustsWordFrequency; // @synthesize adjustsWordFrequency=_adjustsWordFrequency;
-- (void).cxx_destruct;
+- (id)candidatesForInputString:(id)arg1;
+- (id)inputStringForCharacters:(id)arg1;
 @property(readonly, nonatomic) BOOL isApplyingToneFilter;
 @property(readonly, nonatomic) BOOL canApplyToneFilter; // @synthesize canApplyToneFilter=_canApplyToneFilter;
-@property(readonly, nonatomic) BOOL supportsPunctuation; // @synthesize supportsPunctuation=_supportsPunctuation;
 @property(readonly, nonatomic) BOOL shouldAutomaticallyCommitSelectedCandidate; // @synthesize shouldAutomaticallyCommitSelectedCandidate=_shouldAutomaticallyCommitSelectedCandidate;
 @property(readonly, nonatomic) NSString *composedTextForCommitting; // @synthesize composedTextForCommitting=_composedTextForCommitting;
 @property(readonly, nonatomic) struct _NSRange convertedTextRange; // @synthesize convertedTextRange=_convertedTextRange;
@@ -118,7 +119,6 @@
 @property(readonly, retain, nonatomic) _KSTextReplacementClientStore *textReplacementController; // @synthesize textReplacementController=_textReplacementController;
 @property(readonly, nonatomic) struct __Mecabra *pinyinEngine; // @synthesize pinyinEngine=_pinyinEngine;
 @property(readonly, nonatomic) int inputMethodType;
-@property(readonly, retain, nonatomic) NSString *inputModeName;
 - (void)deleteEntryFromLearningDictionaryForCandidate:(id)arg1;
 - (void)reset;
 - (void)selectNextTone;
@@ -149,10 +149,11 @@
 - (void)updateInputTextConvertedEndPosition;
 - (void)resetToneFilter;
 - (void)resetAnalysisOptions;
+- (void)updateShuangpinType;
 - (void)adjustFuzzyPinyinPairs;
 - (unsigned long long)defaultAnalysisOptions;
 - (void)dealloc;
-- (id)initWithScriptType:(unsigned long long)arg1;
+- (id)initWithInputModeName:(id)arg1 scriptType:(unsigned long long)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

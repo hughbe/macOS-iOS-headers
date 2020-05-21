@@ -16,6 +16,7 @@
 
 + (id)navigationPromptManeuverCompletedWithDictionary:(id)arg1 context:(id)arg2;
 + (id)navigationPromptManeuverCompleted;
+- (BOOL)requiresResponse;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

@@ -24,6 +24,7 @@
 + (void)disableNotifications;
 + (BOOL)enableNotifications;
 + (id)sharedNotifier;
+- (void).cxx_destruct;
 - (BOOL)isHostReachable:(id)arg1;
 - (BOOL)isNetworkUp;
 - (void)dealloc;

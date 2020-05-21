@@ -8,7 +8,6 @@
 
 @class NSButton, NSMatrix, NSProgressIndicator, NSString, NSTextField, NSWindow;
 
-__attribute__((visibility("hidden")))
 @interface SSSessionSelectViewController : NSViewController
 {
     NSString *displayIsBusyDescriptiveText;

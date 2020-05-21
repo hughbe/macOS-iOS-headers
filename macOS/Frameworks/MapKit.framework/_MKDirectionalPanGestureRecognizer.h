@@ -6,6 +6,7 @@
 
 #import <MapKit/_MKConditionalPanGestureRecognizer.h>
 
+__attribute__((visibility("hidden")))
 @interface _MKDirectionalPanGestureRecognizer : _MKConditionalPanGestureRecognizer
 {
     long long _direction;
@@ -15,7 +16,10 @@
 
 @property(nonatomic) long long direction; // @synthesize direction=_direction;
 - (double)directionalTranslationInView:(id)arg1;
+- (void)rightMouseDragged:(id)arg1;
+- (void)otherMouseDragged:(id)arg1;
 - (void)mouseDragged:(id)arg1;
+- (void)_handleMouseDragged:(id)arg1;
 - (void)otherMouseDown:(id)arg1;
 - (void)rightMouseDown:(id)arg1;
 - (void)mouseDown:(id)arg1;

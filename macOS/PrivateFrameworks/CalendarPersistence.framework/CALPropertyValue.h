@@ -25,6 +25,7 @@
 + (id)propertyValueWithValue:(id)arg1 withType:(int)arg2;
 + (id)propertyValueWithValue:(id)arg1;
 + (id)propertyValue;
+- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)restoreAsClean;
 - (BOOL)parameterChanged:(id)arg1;
@@ -44,7 +45,6 @@
 - (void)removeParameter:(id)arg1;
 - (void)addParameter:(id)arg1 withValue:(id)arg2;
 - (void)addParameters:(id)arg1;
-- (void)dealloc;
 - (id)initWithValue:(id)arg1 withType:(int)arg2;
 - (id)initWithValue:(id)arg1;
 - (id)init;

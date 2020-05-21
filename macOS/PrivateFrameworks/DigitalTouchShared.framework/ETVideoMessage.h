@@ -13,6 +13,7 @@
     NSMutableArray *_playingMessages;
     double _compressedTimeTotal;
     double _compressedTimeLastEventTime;
+    double _messageDuration;
     BOOL _pauseTimeCompression;
     NSURL *_mediaURL;
     NSImage *_stillImage;
@@ -21,12 +22,13 @@
 }
 
 + (unsigned short)messageType;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL pauseTimeCompression; // @synthesize pauseTimeCompression=_pauseTimeCompression;
 @property(nonatomic) unsigned long long mediaType; // @synthesize mediaType=_mediaType;
 @property(retain, nonatomic) ETSketchMessage *introMessage; // @synthesize introMessage=_introMessage;
 @property(retain, nonatomic) NSImage *stillImage; // @synthesize stillImage=_stillImage;
 @property(retain, nonatomic) NSURL *mediaURL; // @synthesize mediaURL=_mediaURL;
-- (void).cxx_destruct;
+- (double)messageDuration;
 - (BOOL)isAnimated;
 - (double)compressTimeSinceStartOfMessage:(double)arg1;
 @property(readonly, nonatomic) BOOL canCompressTime;

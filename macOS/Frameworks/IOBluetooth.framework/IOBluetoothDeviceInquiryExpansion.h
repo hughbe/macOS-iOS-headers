@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class NSArray, NSXPCConnection;
 
 @interface IOBluetoothDeviceInquiryExpansion : NSObject
 {
@@ -14,12 +14,17 @@
     int searchType;
     BOOL joinedToDaemon;
     BOOL rssiThreshold;
+    BOOL supportsSecureCoding;
+    NSXPCConnection *xpcConnection;
 }
 
++ (BOOL)supportsSecureCoding;
+@property BOOL supportsSecureCoding; // @synthesize supportsSecureCoding;
 @property BOOL rssiThreshold; // @synthesize rssiThreshold;
 @property BOOL joinedToDaemon; // @synthesize joinedToDaemon;
 @property int searchType; // @synthesize searchType;
 @property(copy) NSArray *searchUUIDs; // @synthesize searchUUIDs=_searchUUIDs;
+@property(retain) NSXPCConnection *xpcConnection; // @synthesize xpcConnection;
 - (void)dealloc;
 
 @end

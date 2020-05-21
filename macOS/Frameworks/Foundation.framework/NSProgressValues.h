@@ -8,14 +8,15 @@
 
 #import "NSSecureCoding.h"
 
-@class NSMutableDictionary, NSString, _NSProgressFraction;
+@class NSMutableDictionary, NSString;
 
 __attribute__((visibility("hidden")))
 @interface NSProgressValues : NSObject <NSSecureCoding>
 {
     NSMutableDictionary *_userInfo;
-    _NSProgressFraction *_selfFraction;
-    _NSProgressFraction *_childFraction;
+    struct _NSProgressFraction _selfFraction;
+    struct _NSProgressFraction _childFraction;
+    double _remoteFractionCompleted;
     NSString *_localizedDescription;
     NSString *_localizedAdditionalDescription;
     BOOL _isCancellable;
@@ -31,8 +32,7 @@ __attribute__((visibility("hidden")))
 + (id)decodableClasses;
 + (BOOL)supportsSecureCoding;
 + (id)_importantKeys;
-+ (id)_derivedKeys;
-- (id)overallFraction;
+- (struct _NSProgressFraction)overallFraction;
 - (void)setTotalUnitCount:(long long)arg1;
 - (long long)totalUnitCount;
 - (void)setCompletedUnitCount:(long long)arg1;

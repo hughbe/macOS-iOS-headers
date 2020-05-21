@@ -30,7 +30,9 @@
 @property struct CGSize clippingSize; // @dynamic clippingSize;
 @property struct CGPoint constrainedClippingOrigin; // @dynamic constrainedClippingOrigin;
 @property double decelerationRate; // @dynamic decelerationRate;
+@property double horizontalScrollDecelerationFactor; // @dynamic horizontalScrollDecelerationFactor;
 @property struct CGPoint initialVelocity; // @dynamic initialVelocity;
+@property double verticalScrollDecelerationFactor; // @dynamic verticalScrollDecelerationFactor;
 
 @end
 

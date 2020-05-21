@@ -7,17 +7,32 @@
 #import "NSObject.h"
 
 #import "NSCoding.h"
+#import "NSDynamicPropertyContainer.h"
+#import "NSTouchBarProvider.h"
+#import "NSTouchBarProviderContainer.h"
 #import "NSUIActivityProvider.h"
+#import "_NSQuickActionItemSource.h"
 
-@class NSMenu, NSString, NSUserActivity;
+@class NSKeyValueDependencyInfo, NSMenu, NSString, NSTouchBar, NSUserActivity;
 
-@interface NSResponder : NSObject <NSUIActivityProvider, NSCoding>
+@interface NSResponder : NSObject <NSTouchBarProviderContainer, NSUIActivityProvider, NSTouchBarProvider, _NSQuickActionItemSource, NSDynamicPropertyContainer, NSCoding>
 {
     id _nextResponder;
+    // Error parsing type: AI, name: _rc
+    NSKeyValueDependencyInfo *_dependencyInfo;
 }
 
-+ (void)initialize;
++ (BOOL)automaticallyTracksDependenciesOnValueForKey:(id)arg1;
 + (id)restorableStateKeyPaths;
++ (BOOL)automaticallyNotifiesObserversOfTouchBar;
++ (BOOL)automaticallyNotifiesObserversOfServicesRequestor;
+- (unsigned long long)retainCount;
+@property(readonly) BOOL _isDeallocating;
+- (oneway void)release;
+- (BOOL)_tryRetain;
+- (id)retain;
+- (void)_dealloc;
+- (void)_detach;
 - (BOOL)_ignoreBadFirstResponders;
 - (BOOL)accessibilityPerformShowMenu;
 - (BOOL)accessibilityPerformShowDefaultUI;
@@ -30,6 +45,8 @@
 - (BOOL)accessibilityPerformDecrement;
 - (BOOL)accessibilityPerformConfirm;
 - (BOOL)accessibilityPerformCancel;
+- (void)setAccessibilityOverridesAlwaysTakePrecedence:(BOOL)arg1;
+- (BOOL)accessibilityOverridesAlwaysTakePrecedence;
 - (void)setAccessibilityContentSiblingBelow:(id)arg1;
 - (id)accessibilityContentSiblingBelow;
 - (void)setAccessibilityContentSiblingAbove:(id)arg1;
@@ -216,6 +233,8 @@
 - (id)accessibilityHandles;
 - (void)setAccessibilityGrowArea:(id)arg1;
 - (id)accessibilityGrowArea;
+- (void)setAccessibilityFunctionRowTopLevelElements:(id)arg1;
+- (id)accessibilityFunctionRowTopLevelElements;
 - (void)setAccessibilityFullScreenButton:(id)arg1;
 - (id)accessibilityFullScreenButton;
 - (void)setAccessibilityFrontmost:(BOOL)arg1;
@@ -255,8 +274,12 @@
 - (id)accessibilityDefaultButton;
 - (void)setAccessibilityDecrementButton:(id)arg1;
 - (id)accessibilityDecrementButton;
+- (void)setAccessibilityCustomRotors:(id)arg1;
+- (id)accessibilityCustomRotors;
 - (void)setAccessibilityCustomChoosers:(id)arg1;
 - (id)accessibilityCustomChoosers;
+- (void)setAccessibilityCustomActions:(id)arg1;
+- (id)accessibilityCustomActions;
 - (void)setAccessibilityCriticalValue:(id)arg1;
 - (id)accessibilityCriticalValue;
 - (void)setAccessibilityContents:(id)arg1;
@@ -346,6 +369,7 @@
 - (unsigned long long)gestureEventMask;
 @property(readonly) BOOL acceptsFirstResponder;
 - (void)noResponderFor:(SEL)arg1;
+- (void)changeModeWithEvent:(id)arg1;
 - (void)pressureChangeWithEvent:(id)arg1;
 - (void)navigateWithEvent:(id)arg1;
 - (void)quickLookPreviewItemsAtWindowLocation:(struct CGPoint)arg1;
@@ -387,13 +411,22 @@
 - (void)mouseDown:(id)arg1;
 - (BOOL)performMnemonic:(id)arg1;
 - (BOOL)performKeyEquivalent:(id)arg1;
+- (void)invalidateRequestor;
 - (id)validRequestorForSendType:(id)arg1 returnType:(id)arg2;
 - (BOOL)tryToPerform:(SEL)arg1 with:(id)arg2;
+@property(retain) NSKeyValueDependencyInfo *dependencyInfo;
 @property NSResponder *nextResponder;
 - (id)_nextResponderForEvent:(id)arg1;
 - (id)colorFactory;
 - (void)setInterfaceStyle:(unsigned long long)arg1;
 - (unsigned long long)interfaceStyle;
+- (id)NS_touchBarProvidersKeyPaths;
+- (id)NS_touchBarProviders;
+- (id)_eventResponderChainDescription;
+@property(readonly) NSString *_responderDebugDescription;
+- (BOOL)_hasDependent:(id)arg1 forKey:(id)arg2 currentlyValid:(char *)arg3;
+- (void)_invalidateDependenciesOnValueForKey:(id)arg1;
+- (void)_addDependencyOnValueForKey:(id)arg1;
 - (id)presentationWindowForError:(id)arg1 originatedInWindow:(id)arg2;
 - (void)_cleanUpUserActivity;
 - (void)_didRestoreUserActivity:(id)arg1;
@@ -409,6 +442,7 @@
 - (void)_restorePersistentState:(id)arg1;
 - (void)_encodeObjectIntoRestorableState:(id)arg1 forKey:(id)arg2;
 - (void)restoreStateWithCoder:(id)arg1;
+- (void)encodeRestorableStateWithCoder:(id)arg1 backgroundQueue:(id)arg2;
 - (void)encodeRestorableStateWithCoder:(id)arg1;
 - (void)_markAsEverHavingInvalidRestorableState;
 - (BOOL)_hasEverHadInvalidRestorableState;
@@ -418,7 +452,14 @@
 - (unsigned int)_persistentUIWindowID;
 - (id)_persistentUIWindow;
 - (id)_copyPersistentUIChildren;
+- (id)makeTouchBar;
+@property(retain) NSTouchBar *touchBar;
 - (id)ns_widgetType;
+@property(readonly) __weak id <NSServicesRequestor> servicesRequestor;
+@property(readonly) id <_NSQuickActionItemSource> additionalQuickActionItemSource;
+- (id)quickAction:(id)arg1 anchoringViewForRequestor:(id)arg2 showRelativeToRect:(struct CGRect *)arg3 preferredEdge:(unsigned long long *)arg4;
+- (id)quickAction:(id)arg1 sourceWindowForRequestor:(id)arg2;
+- (void)quickAction:(id)arg1 didFailWithRequestor:(id)arg2 error:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -13,9 +13,11 @@
     PKArchive *_archive;
     NSDictionary *_metadata;
     BOOL _performsAssessment;
+    unsigned long long _options;
 }
 
 @property BOOL performsAssessmentIfNeeded; // @synthesize performsAssessmentIfNeeded=_performsAssessment;
+@property unsigned long long options; // @synthesize options=_options;
 - (void)cancelOperation:(id)arg1;
 - (id)startUnarchivingAtPath:(id)arg1 notifyOnQueue:(id)arg2 progress:(CDUnknownBlockType)arg3 finish:(CDUnknownBlockType)arg4;
 - (void)_startUnarchivingAtPath:(id)arg1 cancelHandler:(id)arg2 notifyOnQueue:(id)arg3 progress:(CDUnknownBlockType)arg4 finish:(CDUnknownBlockType)arg5;

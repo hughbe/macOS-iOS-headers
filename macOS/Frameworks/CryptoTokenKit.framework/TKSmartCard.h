@@ -30,28 +30,26 @@
 }
 
 + (BOOL)decodeResponse:(id)arg1 sw:(unsigned short *)arg2 appendTo:(id)arg3 error:(id *)arg4;
++ (id)_localizedString:(id)arg1;
+- (void).cxx_destruct;
 @property unsigned long long currentProtocol; // @synthesize currentProtocol=_currentProtocol;
 @property unsigned long long allowedProtocols; // @synthesize allowedProtocols=_allowedProtocols;
 @property BOOL valid; // @synthesize valid=_valid;
 @property(readonly, nonatomic) TKSmartCardSlot *slot; // @synthesize slot=_slot;
-- (void).cxx_destruct;
 - (BOOL)selectApplication:(id)arg1 error:(id *)arg2;
 - (id)sendIns:(unsigned char)arg1 p1:(unsigned char)arg2 p2:(unsigned char)arg3 data:(id)arg4 le:(id)arg5 sw:(unsigned short *)arg6 error:(id *)arg7;
-- (BOOL)inSessionWithError:(id *)arg1 executeBlock:(CDUnknownBlockType)arg2;
 - (void)sendIns:(unsigned char)arg1 p1:(unsigned char)arg2 p2:(unsigned char)arg3 data:(id)arg4 le:(id)arg5 reply:(CDUnknownBlockType)arg6;
 - (void)transmitChunkedIns:(unsigned char)arg1 p1:(unsigned char)arg2 p2:(unsigned char)arg3 data:(id)arg4 fromOffset:(unsigned long long)arg5 realLe:(unsigned long long)arg6 chained:(BOOL)arg7 isCase4:(BOOL)arg8 reply:(CDUnknownBlockType)arg9;
 - (id)buildIns:(unsigned char)arg1 p1:(unsigned char)arg2 p2:(unsigned char)arg3 data:(id)arg4 range:(struct _NSRange)arg5 le:(id)arg6 protocol:(unsigned long long)arg7 chained:(BOOL)arg8 extended:(char *)arg9 realLe:(unsigned long long *)arg10;
 - (void)encodeLength:(unsigned long long)arg1 into:(id)arg2 sized:(long long)arg3;
 - (void)handleApduResponse:(id)arg1 body:(id)arg2 le:(unsigned long long)arg3 isCase4:(BOOL)arg4 error:(id)arg5 reply:(CDUnknownBlockType)arg6;
+- (BOOL)checkAPDUResponse:(id)arg1 error:(id *)arg2;
 - (void)setUseCommandChaining:(BOOL)arg1;
 - (BOOL)useCommandChaining;
 - (void)setUseExtendedLength:(BOOL)arg1;
 - (BOOL)useExtendedLength;
 - (void)setCla:(unsigned char)arg1;
 - (unsigned char)cla;
-- (void)endSessionWithReply:(CDUnknownBlockType)arg1;
-- (void)setSessionEndPolicy:(long long)arg1;
-- (long long)sessionEndPolicy;
 - (BOOL)revalidate;
 - (void)unreserve;
 - (void)reserveExclusive:(BOOL)arg1 reply:(CDUnknownBlockType)arg2;
@@ -63,7 +61,13 @@
 @property(retain) id context;
 - (void)transmitRequest:(id)arg1 reply:(CDUnknownBlockType)arg2;
 - (void)endSession;
+- (void)endSessionWithReply:(CDUnknownBlockType)arg1;
+- (void)setSessionEndPolicy:(long long)arg1;
+- (long long)sessionEndPolicy;
+- (BOOL)inSessionWithError:(id *)arg1 executeBlock:(CDUnknownBlockType)arg2;
+- (BOOL)beginSessionWithError:(id *)arg1;
 - (void)beginSessionWithReply:(CDUnknownBlockType)arg1;
+- (void)querySessionWithReply:(CDUnknownBlockType)arg1;
 - (void)sessionRequested;
 - (void)releaseSessionWithReply:(CDUnknownBlockType)arg1;
 - (BOOL)synchronous;

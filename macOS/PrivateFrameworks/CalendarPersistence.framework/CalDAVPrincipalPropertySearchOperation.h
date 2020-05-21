@@ -20,12 +20,12 @@
 }
 
 + (void)submitSearchForPrincipal:(id)arg1 forStrings:(id)arg2 ofType:(id)arg3 withReply:(CDUnknownBlockType)arg4;
+- (void).cxx_destruct;
 @property(readonly) NSArray *results; // @synthesize results=_results;
 - (void)processCompletedRequest:(id)arg1;
 - (void)performSynchronousSearch;
-- (void)dealloc;
 - (id)initWithSession:(id)arg1 forStrings:(id)arg2 ofTypes:(id)arg3;
-- (id)managedPrincipal;
+- (id)managedPrincipalInContext:(id)arg1;
 
 @end
 

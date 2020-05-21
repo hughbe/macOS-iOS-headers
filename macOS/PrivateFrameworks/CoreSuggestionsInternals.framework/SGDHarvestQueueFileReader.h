@@ -15,11 +15,11 @@
     int _fileId;
 }
 
-@property(readonly, nonatomic) int fileId; // @synthesize fileId=_fileId;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) int fileId; // @synthesize fileId=_fileId;
 - (void)read:(CDStruct_beb4cc23)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)dealloc;
-- (id)initWithDirectory:(id)arg1 fileId:(int)arg2;
+- (id)initWithDirectory:(id)arg1 fileId:(int)arg2 tryLater:(char *)arg3;
 
 @end
 

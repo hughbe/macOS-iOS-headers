@@ -11,9 +11,7 @@
 @interface SMMessageTracing : NSObject
 {
     BOOL _success;
-    BOOL _shownSimpleCustomize;
     BOOL _migratedMultipleUsers;
-    BOOL _shownFDEUpsell;
     BOOL _engineWaitedOnPather;
     BOOL _attemptedSWAP;
     BOOL _systemConnected;
@@ -37,18 +35,22 @@
     unsigned long long _numberOfDisconnects;
 }
 
++ (id)stringForPathDescription:(unsigned long long)arg1;
 + (id)stringForWirelessError:(id)arg1;
 + (id)stringForMigrationClientError:(id)arg1;
 + (id)mediaTypeForSystem:(id)arg1;
 + (id)mediumTypeForSystem:(id)arg1;
 + (id)versionForSystem:(id)arg1;
 + (void)addCommonKeysToMessage:(struct __asl_object_s *)arg1 migrationRequest:(id)arg2;
++ (void)messageTraceWindowsProfileInformation:(unsigned long long)arg1 isMigrationBuddy:(BOOL)arg2 sourcePathDescription:(unsigned long long)arg3 targetPathDescription:(unsigned long long)arg4;
 + (void)messageTraceDeletedUserProperty:(id)arg1;
 + (void)messageTraceOriginatingApplication:(id)arg1;
 + (void)messageTraceQuarantinedPath:(id)arg1;
 + (void)messageTraceForcedShutdown;
 + (void)messageTraceFatalBOMError:(int)arg1;
++ (void)messageTraceCustomizeMode:(BOOL)arg1 eligibleForFDE:(BOOL)arg2 fdeReason:(id)arg3;
 + (id)sharedInstance;
+- (void).cxx_destruct;
 @property unsigned long long numberOfDisconnects; // @synthesize numberOfDisconnects=_numberOfDisconnects;
 @property unsigned long long numberOfNetworkChanges; // @synthesize numberOfNetworkChanges=_numberOfNetworkChanges;
 @property unsigned long long numberOfNetworkConfigurationChanges; // @synthesize numberOfNetworkConfigurationChanges=_numberOfNetworkConfigurationChanges;
@@ -69,12 +71,9 @@
 @property unsigned long long quantityOfData; // @synthesize quantityOfData=_quantityOfData;
 @property double fractionCompleted; // @synthesize fractionCompleted=_fractionCompleted;
 @property(retain) NSError *error; // @synthesize error=_error;
-@property BOOL shownFDEUpsell; // @synthesize shownFDEUpsell=_shownFDEUpsell;
 @property BOOL migratedMultipleUsers; // @synthesize migratedMultipleUsers=_migratedMultipleUsers;
-@property BOOL shownSimpleCustomize; // @synthesize shownSimpleCustomize=_shownSimpleCustomize;
 @property BOOL success; // @synthesize success=_success;
 @property(retain) SMMigrationRequest *request; // @synthesize request=_request;
-- (void).cxx_destruct;
 - (void)messageTraceMigrationCancelled;
 - (void)messageTraceMigrationFinished;
 - (BOOL)usedSWAP;

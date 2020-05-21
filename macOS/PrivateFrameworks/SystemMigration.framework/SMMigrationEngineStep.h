@@ -8,7 +8,7 @@
 
 #import "SMCopyEngineDelegate.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, SMMigrateEngine;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSProgress, SMMigrateEngine;
 
 @interface SMMigrationEngineStep : NSObject <SMCopyEngineDelegate>
 {
@@ -17,23 +17,26 @@
     unsigned long long _totalSize;
     unsigned long long _deletedSize;
     unsigned long long _completedSize;
-    double _progressPercentage;
+    NSProgress *_parentProgress;
+    NSProgress *_progress;
     NSMutableDictionary *_progressPercentages;
     SMMigrateEngine *_engine;
     NSMutableArray *_errors;
 }
 
++ (id)stringForPhase:(unsigned long long)arg1;
 + (unsigned long long)finalSizeWithEngine:(id)arg1;
+- (void).cxx_destruct;
 @property(retain) NSMutableArray *errors; // @synthesize errors=_errors;
 @property __weak SMMigrateEngine *engine; // @synthesize engine=_engine;
 @property(retain) NSMutableDictionary *progressPercentages; // @synthesize progressPercentages=_progressPercentages;
-@property double progressPercentage; // @synthesize progressPercentage=_progressPercentage;
+@property(retain) NSProgress *progress; // @synthesize progress=_progress;
+@property(retain) NSProgress *parentProgress; // @synthesize parentProgress=_parentProgress;
 @property unsigned long long completedSize; // @synthesize completedSize=_completedSize;
 @property unsigned long long deletedSize; // @synthesize deletedSize=_deletedSize;
 @property unsigned long long totalSize; // @synthesize totalSize=_totalSize;
 @property(retain) NSMutableArray *warnings; // @synthesize warnings=_warnings;
 @property unsigned long long lastCompletedPhase; // @synthesize lastCompletedPhase=_lastCompletedPhase;
-- (void).cxx_destruct;
 - (void)copyFailedToCopyFile:(id)arg1;
 @property(readonly) BOOL preflightOnly;
 - (void)addProgress:(id)arg1 forKey:(id)arg2;

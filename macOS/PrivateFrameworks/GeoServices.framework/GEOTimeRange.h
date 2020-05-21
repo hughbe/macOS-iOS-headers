@@ -8,21 +8,24 @@
 
 #import "NSCopying.h"
 
+@class PBUnknownFields;
+
+__attribute__((visibility("hidden")))
 @interface GEOTimeRange : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     unsigned int _from;
     unsigned int _to;
-    BOOL _allDay;
     struct {
-        unsigned int from:1;
-        unsigned int to:1;
-        unsigned int allDay:1;
-    } _has;
+        unsigned int has_from:1;
+        unsigned int has_to:1;
+    } _flags;
 }
 
-@property(nonatomic) BOOL allDay; // @synthesize allDay=_allDay;
-@property(nonatomic) unsigned int to; // @synthesize to=_to;
-@property(nonatomic) unsigned int from; // @synthesize from=_from;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -30,11 +33,13 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-@property(nonatomic) BOOL hasAllDay;
 @property(nonatomic) BOOL hasTo;
+@property(nonatomic) unsigned int to;
 @property(nonatomic) BOOL hasFrom;
+@property(nonatomic) unsigned int from;
 - (id)initWithPlaceDataTimeRange:(struct GEOPDLocalTimeRange *)arg1;
 
 @end

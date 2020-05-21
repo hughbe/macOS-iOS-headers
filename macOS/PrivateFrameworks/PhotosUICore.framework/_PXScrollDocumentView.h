@@ -10,10 +10,8 @@
 {
 }
 
-- (id)description;
-- (BOOL)clipsToBounds;
 - (BOOL)isFlipped;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (BOOL)acceptsFirstResponder;
 
 @end
 

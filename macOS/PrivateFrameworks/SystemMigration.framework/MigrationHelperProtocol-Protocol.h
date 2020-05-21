@@ -9,7 +9,7 @@
 @protocol MigrationHelperProtocol
 - (void)removeAllDeliveredNotificationsWithReply:(void (^)(void))arg1;
 - (void)showNotificationWithTitle:(NSString *)arg1 informativeText:(NSString *)arg2 actionButtonTitle:(NSString *)arg3 action:(long long)arg4 reply:(void (^)(void))arg5;
-- (void)encryptDiskWithiCloudUser:(NSString *)arg1 iCloudPassword:(NSString *)arg2 localUser:(NSString *)arg3 localPassword:(NSString *)arg4 andBag:(NSDictionary *)arg5 reply:(void (^)(BOOL))arg6;
+- (void)encryptDiskWithiCloudUser:(NSString *)arg1 iCloudPassword:(NSString *)arg2 localUser:(NSString *)arg3 localPassword:(NSString *)arg4 andBag:(NSDictionary *)arg5 reply:(void (^)(BOOL, NSError *))arg6;
 - (void)doImportWithParameters:(NSDictionary *)arg1 pathMap:(SMWindowsMacPathMapper *)arg2 reply:(void (^)(BOOL, NSError *))arg3;
 - (void)setMigrationRequestUUID:(NSString *)arg1;
 @end

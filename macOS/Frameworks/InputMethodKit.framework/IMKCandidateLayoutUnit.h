@@ -35,7 +35,7 @@
 @property(nonatomic) struct CGRect frame; // @synthesize frame=_frame;
 @property(retain, nonatomic) IMKCandidateDisplayArray *displayArray; // @synthesize displayArray=_displayArray;
 @property(retain, nonatomic) IMKCandidateDefinitionUnit *definitionUnit; // @synthesize definitionUnit=_definitionUnit;
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
+@property(nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
 - (id)displayArrayWithAttributedString:(id)arg1 titleMargin:(double)arg2 attributedAnnotation:(id)arg3 annotationMargin:(double)arg4;
 - (id)displayArrayWithAttributedString:(id)arg1;
 - (id)displayArrayWithTitle:(id)arg1 annotation:(id)arg2;
@@ -44,6 +44,7 @@
 - (void)dealloc;
 - (struct CGSize)preferredSize;
 - (void)createLayoutWithPaddingOnBothSides:(double)arg1;
+- (void)createCenteredLayoutWithWidth:(double)arg1;
 - (void)createLayout;
 
 // Remaining properties

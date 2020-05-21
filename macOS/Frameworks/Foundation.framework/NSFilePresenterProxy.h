@@ -6,7 +6,7 @@
 
 #import <Foundation/NSFileReactorProxy.h>
 
-@class NSFileAccessProcessManager, NSFilePresenterXPCMessenger, NSFileWatcher, NSMutableArray, NSObject<OS_dispatch_queue>;
+@class NSFileAccessProcessManager, NSFilePresenterXPCMessenger, NSFileWatcher, NSMutableArray, NSObject<OS_dispatch_queue>, NSSet;
 
 __attribute__((visibility("hidden")))
 @interface NSFilePresenterProxy : NSFileReactorProxy
@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
     id _currentWriterPurposeID;
     NSMutableArray *_previousWriterPurposeIDs;
     NSFileAccessProcessManager *_processManager;
+    NSSet *_observedUbiquityAttributes;
     unsigned long long _filePresenterResponses;
     BOOL _didObserveMovingByWriter;
     BOOL _didObserveVersionChangingByWriter;
@@ -30,6 +31,7 @@ __attribute__((visibility("hidden")))
 
 + (id)urlWithItemURL:(id)arg1 subitemPath:(id)arg2;
 @property(nonatomic) unsigned long long filePresenterResponses; // @synthesize filePresenterResponses=_filePresenterResponses;
+@property(copy) NSSet *observedUbiquityAttributes; // @synthesize observedUbiquityAttributes=_observedUbiquityAttributes;
 @property BOOL usesMainThreadDuringReliquishing; // @synthesize usesMainThreadDuringReliquishing=_usesMainThreadDuringRelinquishing;
 @property BOOL inSubarbiter; // @synthesize inSubarbiter=_inSubarbiter;
 - (void)localFileWasEvicted;
@@ -37,9 +39,13 @@ __attribute__((visibility("hidden")))
 @property(readonly) BOOL disconnected;
 - (void)disconnect;
 - (void)forwardRelinquishmentForWritingClaim:(BOOL)arg1 withID:(id)arg2 purposeID:(id)arg3 subitemURL:(id)arg4 options:(unsigned long long)arg5 completionHandler:(CDUnknownBlockType)arg6;
+- (void)observeNewProvider:(id)arg1;
+- (void)observePresenterChange:(BOOL)arg1 atSubitemURL:(id)arg2;
 - (void)observeVersionChangeOfKind:(id)arg1 withClientID:(id)arg2 name:(id)arg3 subitemPath:(id)arg4;
 - (void)observeChangeAtSubitemPath:(id)arg1;
 - (void)observeDisappearanceAtSubitemPath:(id)arg1;
+- (void)observeChangeOfUbiquityAttributes:(id)arg1;
+- (void)observeSharingChangeAtSubitemPath:(id)arg1 withPhysicalURL:(id)arg2;
 - (void)observeUbiquityChangeAtSubitemPath:(id)arg1 withPhysicalURL:(id)arg2;
 - (void)observeReconnectionByWriterWithPurposeID:(id)arg1;
 - (void)observeDisconnectionByWriterWithPurposeID:(id)arg1;
@@ -53,6 +59,7 @@ __attribute__((visibility("hidden")))
 - (void)startObservingApplicationStateWithQueue:(id)arg1;
 - (void)startWatchingWithQueue:(id)arg1 lastEventID:(id)arg2 unannouncedMoveHandler:(CDUnknownBlockType)arg3;
 - (void)_settleNonCoordinatedChanges;
+- (BOOL)allowedForURL:(id)arg1;
 - (void)invalidate;
 - (void)forwardUsingProxy:(id)arg1;
 - (BOOL)shouldSendObservationMessageWithPurposeID:(id)arg1;

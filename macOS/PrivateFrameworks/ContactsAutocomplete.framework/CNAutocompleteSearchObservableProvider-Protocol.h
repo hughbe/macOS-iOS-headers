@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class CNObservable;
+@class CNObservable, NSArray;
 
 @protocol CNAutocompleteSearchObservableProvider <NSObject>
 - (CNObservable *)calendarServersSearchObservable;
 - (CNObservable *)directoryServersSearchObservable;
+- (NSArray *)localExtensionSearchObservables;
 - (CNObservable *)predictionsSearchObservableWithUnfilteredResultPromise:(id <CNPromise>)arg1;
 - (CNObservable *)suggestionsSearchObservable;
 - (CNObservable *)recentsSearchObservable;

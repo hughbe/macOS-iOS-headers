@@ -8,7 +8,7 @@
 
 #import "OADDrawableContainer.h"
 
-@class CHDDefaultTextProperties, CHDLegend, CHDPlotArea, CHDTitle, CHDView3D, EDSheet, EDWorkbook, NSMutableArray, NSString, OADGraphicProperties;
+@class CHDDefaultTextProperties, CHDLegend, CHDPlotArea, CHDTitle, CHDView3D, EDSheet, EDWorkbook, NSMutableArray, NSString, OADGraphicProperties, OADThemeOverrides;
 
 __attribute__((visibility("hidden")))
 @interface CHDChart : OADGraphic <OADDrawableContainer>
@@ -35,9 +35,11 @@ __attribute__((visibility("hidden")))
     int mChartDirection;
     struct CGRect mLogicalBounds;
     NSMutableArray *mDrawables;
+    OADThemeOverrides *mThemeOverrides;
 }
 
 + (id)binaryEffects:(BOOL)arg1;
+- (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (void)setVisibleSeriesNames:(_Bool)arg1;
 - (_Bool)hasVisibleSeriesNames;
@@ -51,6 +53,8 @@ __attribute__((visibility("hidden")))
 - (unsigned long long)seriesCount;
 - (_Bool)isBinary;
 - (_Bool)isScatterOrBubble;
+- (_Bool)supportsMarkers;
+- (_Bool)isArea;
 - (_Bool)isPie;
 - (_Bool)is3D;
 - (id)mainType;
@@ -67,6 +71,8 @@ __attribute__((visibility("hidden")))
 - (void)setParentTextListStyle:(id)arg1;
 - (void)removeChild:(id)arg1;
 - (void)replaceChild:(id)arg1 with:(id)arg2;
+- (void)setThemeOverrides:(id)arg1;
+- (id)themeOverrides;
 - (id)children;
 - (id)childAtIndex:(unsigned long long)arg1;
 - (void)addChildren:(id)arg1;
@@ -108,7 +114,6 @@ __attribute__((visibility("hidden")))
 - (id)workbook;
 - (void)setSheet:(id)arg1;
 - (id)sheet;
-- (void)dealloc;
 - (id)init;
 
 // Remaining properties

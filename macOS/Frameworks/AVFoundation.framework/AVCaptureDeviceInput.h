@@ -11,23 +11,25 @@
 @interface AVCaptureDeviceInput : AVCaptureInput
 {
     AVCaptureDeviceInputInternal *_internal;
+    BOOL _unifiedAutoExposureDefaultsEnabled;
 }
 
 + (id)deviceInputWithDevice:(id)arg1 error:(id *)arg2;
 + (void)initialize;
+@property(nonatomic) BOOL unifiedAutoExposureDefaultsEnabled; // @synthesize unifiedAutoExposureDefaultsEnabled=_unifiedAutoExposureDefaultsEnabled;
+- (BOOL)_authorizedToUseDeviceAndRequestIfNecessary:(id)arg1;
 - (struct OpaqueCMClock *)inputClock;
 - (void)sessionWillUseOutputDecompressionOptions:(id)arg1 forPort:(id)arg2;
-- (void)setAutomaticallyConfiguresDevice:(BOOL)arg1;
-- (BOOL)automaticallyConfiguresDevice;
 - (int)clockProviderNodeForInputPort:(id)arg1;
 - (unsigned int)unitOutputNumberForInputPort:(id)arg1;
 - (int)graphNodeForInputPort:(id)arg1;
 - (void)removeInputUnitsForInputPort:(id)arg1 fromGraph:(struct OpaqueCMIOGraph *)arg2 ofCaptureSession:(id)arg3;
 - (BOOL)addInputUnitsForInputPort:(id)arg1 toGraph:(struct OpaqueCMIOGraph *)arg2 ofCaptureSession:(id)arg3 error:(id *)arg4;
+@property(nonatomic) CDStruct_1b6d18a9 videoMinFrameDurationOverride;
+- (id)portsWithMediaType:(id)arg1 sourceDeviceType:(id)arg2 sourceDevicePosition:(long long)arg3;
 - (id)ports;
 - (id)notReadyError;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (BOOL)_setDevice:(id)arg1 exceptionReason:(id *)arg2;
 @property(readonly, nonatomic) AVCaptureDevice *device;
 - (void)dealloc;
 - (id)init;

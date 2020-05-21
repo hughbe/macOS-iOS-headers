@@ -8,6 +8,8 @@
 
 @interface AVB17221AEMLocalModelMaker : AVB17221AEMModelMaker
 {
+    unsigned short _inputClusterCount;
+    unsigned short _outputClusterCount;
 }
 
 + (id)localEntityModelForEntityModel:(id)arg1 onInterface:(id)arg2 usingRemoteMACAddress:(id)arg3 generatedControllerMappings:(id *)arg4;

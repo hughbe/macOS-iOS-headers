@@ -10,17 +10,19 @@
 
 @interface PHAAnalysisWorkerJob : PHAAssetProcessingJob
 {
+    BOOL _persistsAnalysisState;
     BOOL _canUseNetwork;
     BOOL _shouldBackoffForFailedNoResourceErrors;
     NSDictionary *_workerFlagsByAssetLocalIdentifier;
     NSMutableDictionary *_ignoreUntilDatesByAssetLocalIdentifier;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSMutableDictionary *ignoreUntilDatesByAssetLocalIdentifier; // @synthesize ignoreUntilDatesByAssetLocalIdentifier=_ignoreUntilDatesByAssetLocalIdentifier;
 @property(readonly, nonatomic) NSDictionary *workerFlagsByAssetLocalIdentifier; // @synthesize workerFlagsByAssetLocalIdentifier=_workerFlagsByAssetLocalIdentifier;
 @property(readonly, nonatomic) BOOL shouldBackoffForFailedNoResourceErrors; // @synthesize shouldBackoffForFailedNoResourceErrors=_shouldBackoffForFailedNoResourceErrors;
 @property(readonly, nonatomic) BOOL canUseNetwork; // @synthesize canUseNetwork=_canUseNetwork;
-- (void).cxx_destruct;
+@property(nonatomic) BOOL persistsAnalysisState; // @synthesize persistsAnalysisState=_persistsAnalysisState;
 - (id)ignoreUntilDateForAssetLocalIdentifier:(id)arg1;
 - (void)setIgnoreUntilDate:(id)arg1 forAssetLocalIdentifier:(id)arg2;
 - (int)workerFlagsForAssetLocalIdentifier:(id)arg1;
@@ -35,6 +37,7 @@
 - (id)_resultsDescription;
 - (void)_processFailures;
 - (void)_markAssetsPending;
+- (id)_fetchAllAssetsForLocalIdentifiers:(id)arg1;
 
 @end
 

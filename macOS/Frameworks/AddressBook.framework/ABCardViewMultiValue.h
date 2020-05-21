@@ -10,7 +10,6 @@
 
 @class ABCardViewPersonMapper, NSArray, NSMutableArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewMultiValue : NSObject <ABCardViewMultiValue>
 {
     NSMutableArray *_entries;
@@ -21,6 +20,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)multiValueWithLabel:(id)arg1 value:(id)arg2 property:(id)arg3;
+- (void).cxx_destruct;
 @property(retain, nonatomic) ABCardViewPersonMapper *personMapper; // @synthesize personMapper=_personMapper;
 @property(readonly, copy) NSString *description;
 - (BOOL)isEqual:(id)arg1;
@@ -66,7 +66,6 @@ __attribute__((visibility("hidden")))
 - (id)labels;
 - (id)identifiers;
 - (unsigned long long)count;
-- (void)dealloc;
 - (id)initWithMultiValue:(id)arg1;
 - (id)initWithProperty:(id)arg1;
 

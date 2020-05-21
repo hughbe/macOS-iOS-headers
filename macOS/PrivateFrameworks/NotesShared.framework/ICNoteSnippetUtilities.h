@@ -12,6 +12,8 @@
 
 + (id)stringByRemovingTitle:(id)arg1 fromString:(id)arg2;
 + (id)snippetForContent:(id)arg1;
++ (id)titleForContent:(id)arg1 truncated:(char *)arg2;
++ (struct _NSRange)rangeForTitleInContent:(id)arg1 truncated:(char *)arg2;
 + (id)snippetAndTitleTrimCharacterSet;
 
 @end

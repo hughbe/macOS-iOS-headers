@@ -12,6 +12,7 @@
 @property(nonatomic) BOOL shouldBeOffscreenInPartial;
 @property(copy, nonatomic) NSArray *presentationOptions;
 @property(retain, nonatomic) SAUITemplateEdgeInsets *padding;
+@property(nonatomic) BOOL hasPriorityLayout;
 @property(retain, nonatomic) SAUITemplateEdgeInsets *fullScreenPaddingDelta;
 @property(copy, nonatomic) NSArray *communicationOptions;
 @end

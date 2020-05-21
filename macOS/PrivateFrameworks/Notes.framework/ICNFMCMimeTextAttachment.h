@@ -14,12 +14,10 @@
 }
 
 + (id)attachmentWithInternalAppleAttachmentData:(id)arg1 mimeBody:(id)arg2;
-@property(retain, nonatomic) ICNFMCMimePart *mimePart; // @synthesize mimePart=_mimePart;
 - (void).cxx_destruct;
-- (BOOL)shouldDownloadAttachmentOnDisplay;
-- (BOOL)hasBeenDownloaded;
-- (BOOL)isPlaceholder;
-- (unsigned long long)approximateSize;
+@property(retain, nonatomic) ICNFMCMimePart *mimePart; // @synthesize mimePart=_mimePart;
+- (BOOL)ic_isPlaceholder;
+- (unsigned long long)ic_approximateSize;
 - (id)fileWrapperForcingDownloadEvenIfExternalBody:(BOOL)arg1;
 @property(readonly, nonatomic) NSFileWrapper *fileWrapperForcingDownload;
 - (id)initWithMimePart:(id)arg1;

@@ -19,13 +19,13 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)fetchObjectsWithPredicate:(id)arg1;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CalStoreRemoteManagedMigrationGroup *migrationGroup; // @synthesize migrationGroup=_migrationGroup;
 @property(nonatomic) BOOL isManuallyConfigured; // @synthesize isManuallyConfigured=_isManuallyConfigured;
 @property(nonatomic) BOOL isDelegate; // @synthesize isDelegate=_isDelegate;
 @property(retain, nonatomic) NSString *fullName; // @synthesize fullName=_fullName;
 @property(retain, nonatomic) CalStoreRemoteManagedAccount *account; // @synthesize account=_account;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

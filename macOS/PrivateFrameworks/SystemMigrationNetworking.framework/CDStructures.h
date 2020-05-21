@@ -53,6 +53,7 @@ struct BOMSys {
     CDUnknownFunctionPointerType _field40;
     CDUnknownFunctionPointerType _field41;
     CDUnknownFunctionPointerType _field42;
+    CDUnknownFunctionPointerType _field43;
 };
 
 struct sockaddr {
@@ -65,4 +66,69 @@ struct timeval {
     long long tv_sec;
     int tv_usec;
 };
+
+#pragma mark Typedef'd Structures
+
+typedef struct {
+    int _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    int _field4;
+    char _field5[256];
+} CDStruct_f9f9ee5f;
+
+typedef struct {
+    struct {
+        unsigned int :1;
+        unsigned int :1;
+        unsigned int :1;
+        unsigned int :1;
+    } _field1;
+    unsigned int _field2;
+    unsigned int _field3;
+    unsigned int _field4;
+    unsigned int _field5;
+} CDStruct_1210889d;
+
+typedef struct {
+    union {
+        struct {
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+            unsigned int :1;
+        } _field1;
+        unsigned int _field2;
+    } _field1;
+    int _field2;
+    unsigned int _field3;
+    unsigned int _field4;
+    unsigned int _field5;
+    unsigned int _field6;
+    unsigned int _field7;
+    unsigned long long _field8;
+    unsigned long long _field9;
+    unsigned long long _field10[2];
+    unsigned long long _field11;
+    unsigned long long _field12;
+    unsigned long long _field13;
+    unsigned char _field14[4];
+    unsigned char _field15[20];
+    unsigned char _field16[32];
+    char _field17[1024];
+    char _field18[1024];
+} CDStruct_743dcad3;
 

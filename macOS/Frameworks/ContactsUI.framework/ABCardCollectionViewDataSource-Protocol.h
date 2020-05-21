@@ -9,6 +9,8 @@
 @class ABCollectionViewItem, NSArray, NSString;
 
 @protocol ABCardCollectionViewDataSource <NSObject>
+- (void)buildActionGlyphsForItem:(ABCollectionViewItem *)arg1;
+- (void)buildVisibleViewForItem:(ABCollectionViewItem *)arg1;
 - (NSArray *)collectionItems;
 
 @optional

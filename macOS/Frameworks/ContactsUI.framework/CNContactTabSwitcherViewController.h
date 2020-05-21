@@ -19,17 +19,18 @@
     double _cachedHeight;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) double cachedHeight; // @synthesize cachedHeight=_cachedHeight;
 @property(nonatomic) unsigned long long state; // @synthesize state=_state;
 @property(nonatomic) BOOL inEditMode; // @synthesize inEditMode=_inEditMode;
 @property(retain, nonatomic) CNTabSegmentedControl *segmentedControl; // @synthesize segmentedControl=_segmentedControl;
 @property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
-- (void).cxx_destruct;
 @property(nonatomic) unsigned long long tabState;
 - (void)setEditMode:(BOOL)arg1;
 - (void)didSelectSegment:(id)arg1;
 - (unsigned long long)segmentForState:(unsigned long long)arg1;
 - (unsigned long long)stateForSegment:(unsigned long long)arg1;
+- (BOOL)shouldBeIncludedInKeyViewLoop;
 - (double)desiredHeight;
 - (void)viewWillAppear;
 - (void)createViewHierarchy;

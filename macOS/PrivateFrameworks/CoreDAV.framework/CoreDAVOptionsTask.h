@@ -15,7 +15,7 @@
 - (id)httpMethod;
 
 // Remaining properties
-@property(nonatomic) id <CoreDAVOptionsTaskDelegate> delegate; // @dynamic delegate;
+@property(nonatomic) __weak id <CoreDAVOptionsTaskDelegate> delegate; // @dynamic delegate;
 
 @end
 

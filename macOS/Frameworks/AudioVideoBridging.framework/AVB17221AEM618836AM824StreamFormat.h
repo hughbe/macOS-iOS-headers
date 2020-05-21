@@ -14,6 +14,9 @@
 + (id)keyPathsForValuesAffectingMidiCnt;
 + (id)keyPathsForValuesAffectingMblaCnt;
 + (id)keyPathsForValuesAffectingIec60958Cnt;
+- (id)streamFormatCompatibleWithTalkerFormat:(id)arg1;
+- (BOOL)isPotentiallyCompatibleAsListenerForFormat:(id)arg1;
+- (BOOL)isCompatibleAsListenerForFormat:(id)arg1;
 - (BOOL)isControlFormat;
 - (BOOL)isMIDIFormat;
 - (BOOL)isSMPTEFormat;

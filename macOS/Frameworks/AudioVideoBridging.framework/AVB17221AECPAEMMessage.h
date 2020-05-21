@@ -14,6 +14,7 @@
     NSData *commandSpecificData;
 }
 
++ (id)errorForStatusCode:(unsigned char)arg1;
 + (id)responseMessage;
 + (id)commandMessage;
 + (id)keyPathsForValuesAffectingControllerRequest;

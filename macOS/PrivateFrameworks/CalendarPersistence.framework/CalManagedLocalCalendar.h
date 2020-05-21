@@ -30,7 +30,8 @@
 - (long long)notificationCountForClass:(Class)arg1;
 - (BOOL)isMigrateable;
 - (id)properties;
-@property BOOL isSuggestedEventCalendar;
+@property(nonatomic) BOOL isNaturalLanguageSuggestedEventCalendar;
+@property(nonatomic) BOOL isSuggestedEventCalendar;
 - (BOOL)isLocal;
 - (BOOL)supportsPublishing;
 - (BOOL)isWritable;

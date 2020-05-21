@@ -17,6 +17,7 @@
     CDStruct_669c4a63 _has;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) _MRGameControllerPropertiesProtobuf *properties; // @synthesize properties=_properties;
 @property(nonatomic) unsigned long long controllerID; // @synthesize controllerID=_controllerID;
 - (void)mergeFrom:(id)arg1;
@@ -30,7 +31,6 @@
 - (id)description;
 @property(readonly, nonatomic) BOOL hasProperties;
 @property(nonatomic) BOOL hasControllerID;
-- (void)dealloc;
 
 @end
 

@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSSecureCoding.h"
+
 @class NSEntityDescription, NSPropertyDescription;
 
 __attribute__((visibility("hidden")))
-@interface _NSPropertyDescriptionProxy : NSObject
+@interface _NSPropertyDescriptionProxy : NSObject <NSSecureCoding>
 {
     id _sourceBuffer;
     NSPropertyDescription *_underlyingProperty;
@@ -18,12 +20,15 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)resolveInstanceMethod:(SEL)arg1;
++ (BOOL)supportsSecureCoding;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (id)forwardingTargetForSelector:(SEL)arg1;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (Class)class;
 - (void)_versionHash:(char *)arg1 inStyle:(unsigned long long)arg2;
 - (BOOL)isKindOfClass:(Class)arg1;
+- (void)_setEntityAndMaintainIndices:(id)arg1;
 - (void)_setEntity:(id)arg1;
 - (void)_createCachesAndOptimizeState;
 - (id)entity;

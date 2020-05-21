@@ -15,6 +15,7 @@
     BOOL _showGroupingPreview;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL showGroupingPreview; // @synthesize showGroupingPreview=_showGroupingPreview;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (void)accessibilitySetValue:(id)arg1 forAttribute:(id)arg2;
@@ -22,11 +23,11 @@
 - (id)accessibilityAttributeNames;
 - (BOOL)accessibilityIsIgnored;
 - (void)dealloc;
-- (void)setFocused:(BOOL)arg1;
+- (void)setEditorFocused:(BOOL)arg1;
 - (void)setSelected:(BOOL)arg1;
 - (void)_updateOutlineViewVisibility;
 - (BOOL)supportsResizeHandleDrawing;
-- (id)hitTest:(struct CGPoint)arg1;
+- (id)hitTest:(struct CGPoint)arg1 allowingGroupViews:(BOOL)arg2;
 - (void)addSubview:(id)arg1;
 - (void)_setShowOutlineView:(BOOL)arg1;
 - (void)_updateOutlineColor;

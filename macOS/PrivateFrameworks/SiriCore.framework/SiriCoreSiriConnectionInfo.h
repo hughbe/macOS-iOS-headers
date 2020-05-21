@@ -6,13 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSError, NSString, NSURL, SAConnectionPolicyRoute;
+@class NSError, NSString, NSURL, SAConnectionPolicy, SAConnectionPolicyRoute;
 
 @interface SiriCoreSiriConnectionInfo : NSObject
 {
     BOOL _prefersWWAN;
     BOOL _skipPeer;
-    BOOL _skipEdge;
+    BOOL _useWiFiHint;
+    BOOL _forceReconnect;
+    BOOL _imposePolicyBan;
+    BOOL _requiresURLSession;
+    BOOL _enableSiriServerLogging;
     NSURL *_url;
     SAConnectionPolicyRoute *_connectionPolicyRoute;
     NSString *_aceHost;
@@ -21,20 +25,28 @@
     double _timeout;
     NSString *_assistantIdentifier;
     NSString *_peerAssistantIdentifier;
+    NSString *_connectionId;
+    SAConnectionPolicy *_connectionPolicy;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic, getter=isSiriServerLoggingEnabled) BOOL enableSiriServerLogging; // @synthesize enableSiriServerLogging=_enableSiriServerLogging;
+@property(copy, nonatomic) SAConnectionPolicy *connectionPolicy; // @synthesize connectionPolicy=_connectionPolicy;
+@property(nonatomic) BOOL requiresURLSession; // @synthesize requiresURLSession=_requiresURLSession;
+@property(nonatomic) BOOL imposePolicyBan; // @synthesize imposePolicyBan=_imposePolicyBan;
+@property(copy, nonatomic) NSString *connectionId; // @synthesize connectionId=_connectionId;
 @property(copy, nonatomic) NSString *peerAssistantIdentifier; // @synthesize peerAssistantIdentifier=_peerAssistantIdentifier;
 @property(copy, nonatomic) NSString *assistantIdentifier; // @synthesize assistantIdentifier=_assistantIdentifier;
 @property(nonatomic) double timeout; // @synthesize timeout=_timeout;
+@property(nonatomic) BOOL forceReconnect; // @synthesize forceReconnect=_forceReconnect;
 @property(copy, nonatomic) NSError *skipPeerErrorReason; // @synthesize skipPeerErrorReason=_skipPeerErrorReason;
-@property(nonatomic) BOOL skipEdge; // @synthesize skipEdge=_skipEdge;
+@property(nonatomic) BOOL useWiFiHint; // @synthesize useWiFiHint=_useWiFiHint;
 @property(nonatomic) BOOL skipPeer; // @synthesize skipPeer=_skipPeer;
 @property(nonatomic) BOOL prefersWWAN; // @synthesize prefersWWAN=_prefersWWAN;
 @property(copy, nonatomic) NSString *languageCode; // @synthesize languageCode=_languageCode;
 @property(copy, nonatomic) NSString *aceHost; // @synthesize aceHost=_aceHost;
 @property(copy, nonatomic) SAConnectionPolicyRoute *connectionPolicyRoute; // @synthesize connectionPolicyRoute=_connectionPolicyRoute;
 @property(copy, nonatomic) NSURL *url; // @synthesize url=_url;
-- (void).cxx_destruct;
 - (id)description;
 - (void)_appendPotentiallyNilString:(id)arg1 toMutableString:(id)arg2;
 

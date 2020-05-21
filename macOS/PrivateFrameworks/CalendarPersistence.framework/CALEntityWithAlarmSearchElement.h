@@ -15,10 +15,10 @@
 
 + (id)entityWithAlarmSearchElementWithinRange:(id)arg1;
 + (id)entityWithAlarmSearchElement;
+- (void).cxx_destruct;
 - (BOOL)matchesEntity:(id)arg1;
 - (void)setTimeRange:(id)arg1;
 - (id)timeRange;
-- (void)dealloc;
 - (id)initWithinRange:(id)arg1;
 
 @end

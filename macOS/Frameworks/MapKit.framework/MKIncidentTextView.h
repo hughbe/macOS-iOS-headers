@@ -6,14 +6,25 @@
 
 #import "NSTextView.h"
 
-@interface MKIncidentTextView : NSTextView
+#import "MKMultilineText.h"
+
+@class NSString;
+
+__attribute__((visibility("hidden")))
+@interface MKIncidentTextView : NSTextView <MKMultilineText>
 {
-    double _encloserWidth;
+    double _preferredMaxLayoutWidth;
 }
 
-@property(nonatomic) double encloserWidth; // @synthesize encloserWidth=_encloserWidth;
-- (double)heightForStringDrawing:(double)arg1;
+@property(nonatomic) double preferredMaxLayoutWidth; // @synthesize preferredMaxLayoutWidth=_preferredMaxLayoutWidth;
 - (struct CGSize)intrinsicContentSize;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property struct CGRect frame;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

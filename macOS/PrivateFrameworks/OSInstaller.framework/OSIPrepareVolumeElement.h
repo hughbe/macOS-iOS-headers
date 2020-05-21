@@ -8,21 +8,20 @@
 
 @interface OSIPrepareVolumeElement : OSIInstallQueueElement
 {
+    BOOL _skipActivateVM;
 }
 
 + (id)virtualMemoryFolderName;
+@property BOOL skipActivateVM; // @synthesize skipActivateVM=_skipActivateVM;
 - (double)estimatedTimeToComplete;
 - (id)_getBoardID;
 - (void)_setSyrahBlackIfAppropriate;
-- (BOOL)_enableCoreDumps;
 - (BOOL)_activateVMOnDiskWithMountPoint:(id)arg1;
-- (void)_cleanUpOSInstallSandbox;
 - (BOOL)_enableJournalingOnDiskIfDiskAllowsJournaling;
 - (BOOL)_enablePermissions;
 - (void)_fixUpACLs;
 - (id)operationName;
 - (BOOL)runReturningError:(id *)arg1;
-- (void)dealloc;
 
 @end
 

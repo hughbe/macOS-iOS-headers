@@ -14,7 +14,7 @@ __attribute__((visibility("hidden")))
     NSArray *attributeNames;
     NSString *baseQuery;
     NSObject<OS_dispatch_queue> *queryQueue;
-    long long queryID;
+    unsigned long long queryID;
     struct __MDQuery *query;
     struct __MDQuery *warmingQuery;
     NSObject<OS_dispatch_source> *warmingQueryTimer;
@@ -26,9 +26,10 @@ __attribute__((visibility("hidden")))
     BOOL matchesFinderFilesOnly;
     BOOL matchesSupportFiles;
     BOOL runWarmingQuery;
+    BOOL canGenerateTopHits;
 }
 
-- (void)finalize;
+- (void).cxx_destruct;
 - (void)dealloc;
 
 @end

@@ -6,14 +6,12 @@
 
 #import <AppKit/NSCell.h>
 
+__attribute__((visibility("hidden")))
 @interface _NSToolbarItemViewerLabelCell : NSCell
 {
 }
 
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (BOOL)_needRedrawOnWindowChangedKeyState;
-- (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (BOOL)canSmoothFontsInFrame:(struct CGRect)arg1 forLayerBackedView:(id)arg2;
 
 @end
 

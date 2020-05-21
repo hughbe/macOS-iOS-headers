@@ -31,10 +31,11 @@ __attribute__((visibility("hidden")))
 - (void)cancel;
 - (void)stopWithError:(id)arg1;
 @property(readonly, nonatomic) NSError *error; // @synthesize error=_error;
-- (void)startWithParentOperation:(struct _BRCOperation *)arg1;
+- (void)startWithParentOperation:(id)arg1;
 - (void)waitUntilRecordsAreFetched;
 @property(readonly, nonatomic) NSDictionary *recordsByID; // @synthesize recordsByID=_recordsByID;
 - (void)removeAllRecords;
+- (void)removeRecordByID:(id)arg1;
 - (void)addRecord:(id)arg1;
 - (BOOL)shouldRetryForError:(id)arg1;
 - (id)createActivity;

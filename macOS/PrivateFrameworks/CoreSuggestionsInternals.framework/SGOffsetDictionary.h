@@ -18,7 +18,7 @@
 
 - (id)fullMappingFromFile:(id)arg1;
 - (id)stringValueForKey:(const char *)arg1 fromFile:(id)arg2;
-- (long long)payloadCountForKey:(const char *)arg1;
+- (int)payloadCountForKey:(const char *)arg1;
 - (unsigned long long)seekLocationForKey:(const char *)arg1;
 - (unsigned long long)payloadLengthForKey:(const char *)arg1;
 - (CDStruct_e59a5d79 *)carrierEntryForKey:(const char *)arg1;

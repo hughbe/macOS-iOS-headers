@@ -6,15 +6,18 @@
 
 #import "NSObject.h"
 
-@class AceObject, NSString;
+@class AFAnalyticsTurnBasedInstrumentationContext, AceObject, NSString;
 
 @protocol SiriUIViewController <NSObject>
+@property(retain, nonatomic) AFAnalyticsTurnBasedInstrumentationContext *instrumentationTurnContext;
 @property(retain, nonatomic) AceObject *aceObject;
 - (void)wasAddedToTranscript;
 - (void)siriDidDeactivate;
 - (void)siriWillActivateFromSource:(long long)arg1;
 
 @optional
+- (void)siriDidStopSpeakingWithIdentifier:(NSString *)arg1 speechQueueIsEmpty:(BOOL)arg2;
+- (void)siriDidStartSpeakingWithIdentifier:(NSString *)arg1;
 - (void)endEditingAndCorrect:(BOOL)arg1;
 - (NSString *)navigationTitle;
 - (double)desiredHeightForWidth:(double)arg1;

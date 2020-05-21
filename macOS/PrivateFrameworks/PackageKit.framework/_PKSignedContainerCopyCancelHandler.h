@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, PKPayloadCopier;
+#import "PKSignedContainerUnarchivalOperationToken.h"
 
-@interface _PKSignedContainerCopyCancelHandler : NSObject
+@class NSObject<OS_dispatch_queue>, NSString, PKPayloadCopier;
+
+@interface _PKSignedContainerCopyCancelHandler : NSObject <PKSignedContainerUnarchivalOperationToken>
 {
     PKPayloadCopier *_copier;
     BOOL _isCancelled;
@@ -20,6 +22,12 @@
 - (BOOL)isCancelled;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,6 +6,7 @@
 
 #import "NSImageCell.h"
 
+__attribute__((visibility("hidden")))
 @interface SLXImageCellNoAccessibility : NSImageCell
 {
 }

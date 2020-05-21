@@ -23,10 +23,13 @@ __attribute__((visibility("hidden")))
 - (void)enumerateIndexRangesBySectionWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)enumerateIndexSetsBySectionWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)enumerateIndexPathsWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (id)indexPathGreaterThan:(id)arg1;
+- (id)indexPathLessThan:(id)arg1;
 - (id)itemIndexesInSection:(unsigned long long)arg1;
 - (BOOL)containsItemIndexes:(id)arg1 inSection:(unsigned long long)arg2;
 - (BOOL)containsItemIndex:(unsigned long long)arg1 inSection:(unsigned long long)arg2;
 - (BOOL)containsIndexPath:(id)arg1;
+- (id)sectionIndexes;
 - (id)allIndexPaths;
 - (void)removeObject:(id)arg1;
 - (void)addObject:(id)arg1;

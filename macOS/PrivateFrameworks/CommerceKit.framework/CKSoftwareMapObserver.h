@@ -6,17 +6,19 @@
 
 #import "NSObject.h"
 
+#import "ISSoftwareMapObserver.h"
+
 @class NSObject<OS_dispatch_queue>;
 
-@interface CKSoftwareMapObserver : NSObject
+@interface CKSoftwareMapObserver : NSObject <ISSoftwareMapObserver>
 {
     CDUnknownBlockType _block;
     NSObject<OS_dispatch_queue> *_queue;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(copy) CDUnknownBlockType block; // @synthesize block=_block;
-- (void).cxx_destruct;
 - (void)softwareProduct:(id)arg1 updatedState:(long long)arg2;
 
 @end

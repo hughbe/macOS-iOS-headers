@@ -23,6 +23,8 @@ __attribute__((visibility("hidden")))
     struct CGImage *_fillImage;
 }
 
+- (void).cxx_destruct;
+@property __weak CMDrawableMapper *mapper; // @synthesize mapper=_mapper;
 - (void)_restoreLastTransform;
 - (void)_addTransform:(id)arg1;
 - (void)_applyTransform:(id)arg1;
@@ -44,8 +46,6 @@ __attribute__((visibility("hidden")))
 - (id)copyPDF;
 - (struct CGRect)pdfFrame;
 - (struct CGRect)frame;
-- (id)mapper;
-- (void)setMapper:(id)arg1;
 - (struct CGContext *)_cgContext;
 - (void)_closeContext;
 - (void)_copyCGContext;

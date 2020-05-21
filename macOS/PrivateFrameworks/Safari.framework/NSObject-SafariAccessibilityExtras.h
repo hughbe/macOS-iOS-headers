@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @interface NSObject (SafariAccessibilityExtras)
+- (void)safari_requestVoiceOverPlaySound;
 - (void)safari_postDidFinishShowingModalDialogNotification;
 - (void)safari_postDidShowModalDialogNotification;
 - (void)safari_requestVoiceOverAnnouncement:(id)arg1;

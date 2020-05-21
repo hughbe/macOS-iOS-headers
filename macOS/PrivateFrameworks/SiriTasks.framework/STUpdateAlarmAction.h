@@ -6,19 +6,19 @@
 
 #import <SiriTasks/STAlarmAction.h>
 
-@class STAlarmModification;
+@class NSArray;
 
 @interface STUpdateAlarmAction : STAlarmAction
 {
-    STAlarmModification *_modification;
+    NSArray *_modifications;
 }
 
 + (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (id)modification;
-- (id)_initWithModification:(id)arg1;
+- (id)modifications;
+- (id)_initWithModifications:(id)arg1;
 
 @end
 

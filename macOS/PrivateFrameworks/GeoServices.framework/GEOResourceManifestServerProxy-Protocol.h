@@ -6,20 +6,24 @@
 
 #import "NSObject.h"
 
-@class GEOActiveTileGroup, GEOResourceManifestConfiguration, NSNumber, NSObject<OS_dispatch_queue>, NSString;
+@class GEOActiveTileGroup, GEOResourceManifestConfiguration, NSNumber, NSObject<OS_dispatch_queue>, NSProgress, NSString;
 
 @protocol GEOResourceManifestServerProxy <NSObject>
 @property(readonly, nonatomic) GEOActiveTileGroup *activeTileGroup;
-@property(nonatomic) id <GEOResourceManifestServerProxyDelegate> delegate;
+@property(nonatomic) __weak id <GEOResourceManifestServerProxyDelegate> delegate;
 - (void)getResourceManifestWithHandler:(void (^)(GEOResourceManifestDownload *, NSError *))arg1;
 - (oneway void)resetActiveTileGroup;
+- (void)setActiveTileGroupIdentifier:(NSNumber *)arg1 updateType:(long long)arg2 completionHandler:(void (^)(NSError *))arg3;
 - (oneway void)setActiveTileGroupIdentifier:(NSNumber *)arg1;
+- (unsigned long long)maximumZoomLevelForStyle:(int)arg1 scale:(int)arg2;
+- (NSProgress *)updateProgress;
 - (void)deactivateResourceScenario:(int)arg1;
 - (void)activateResourceScenario:(int)arg1;
 - (void)deactivateResourceScale:(int)arg1;
 - (void)activateResourceScale:(int)arg1;
 - (void)performOpportunisticResourceLoading;
-- (void)forceUpdate:(void (^)(NSError *))arg1;
+- (void)cancelCurrentManifestUpdate;
+- (void)forceUpdate:(long long)arg1 completionHandler:(void (^)(NSError *))arg2;
 - (void)updateIfNecessary:(void (^)(NSError *))arg1;
 - (void)setManifestToken:(NSString *)arg1 completionHandler:(void (^)(NSError *))arg2;
 - (GEOResourceManifestConfiguration *)configuration;

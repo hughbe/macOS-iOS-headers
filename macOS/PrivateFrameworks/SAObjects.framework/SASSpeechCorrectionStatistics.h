@@ -16,6 +16,7 @@
 
 + (id)speechCorrectionStatisticsWithDictionary:(id)arg1 context:(id)arg2;
 + (id)speechCorrectionStatistics;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *sessionId;
 @property(copy, nonatomic) NSString *interactionId;
 @property(copy, nonatomic) NSString *correctionText;

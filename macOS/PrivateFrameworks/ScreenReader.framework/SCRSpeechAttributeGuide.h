@@ -6,28 +6,49 @@
 
 #import <ScreenReader/SCRGuide.h>
 
-@class NSLock, NSString;
+#import "AXEEventTapListener.h"
+
+@class NSArray, NSDictionary, NSString;
 
 __attribute__((visibility("hidden")))
-@interface SCRSpeechAttributeGuide : SCRGuide
+@interface SCRSpeechAttributeGuide : SCRGuide <AXEEventTapListener>
 {
-    NSString *_category;
-    BOOL _shouldOutputTitle;
-    NSLock *_speechGuideLock;
+    long long __currentAttributeIndex;
+    NSArray *__orderedSpeechAttributeTypes;
+    NSDictionary *__attributeTypeToKeyNames;
+    NSArray *__percentValueGuideItems;
+    NSArray *__voiceGuideItems;
 }
 
-- (id)attributeGuideView;
-- (void)setShouldOutputTitle:(BOOL)arg1;
-- (BOOL)shouldOutputTitle;
-- (void)setCategory:(id)arg1;
-- (id)category;
-- (void)_sendBrailleLine;
-- (void)updateVoiceRotorList;
-- (void)close;
-- (void)open;
-- (void)setView:(id)arg1;
++ (long long)_currentSpeechAttributeTypeFromPreferences;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *_voiceGuideItems; // @synthesize _voiceGuideItems=__voiceGuideItems;
+@property(readonly, nonatomic) NSArray *_percentValueGuideItems; // @synthesize _percentValueGuideItems=__percentValueGuideItems;
+@property(readonly, nonatomic) NSDictionary *_attributeTypeToKeyNames; // @synthesize _attributeTypeToKeyNames=__attributeTypeToKeyNames;
+@property(readonly, nonatomic) NSArray *_orderedSpeechAttributeTypes; // @synthesize _orderedSpeechAttributeTypes=__orderedSpeechAttributeTypes;
+@property(nonatomic, setter=_setCurrentAttributeIndex:) long long _currentAttributeIndex; // @synthesize _currentAttributeIndex=__currentAttributeIndex;
 - (void)dealloc;
-- (id)init;
+- (void)_removeSpeechAttributeGuideObservers;
+- (void)_closeSpeechAttributeRotor;
+- (id)_buildSpeechAttributeVoiceGuideItems;
+- (id)_buildSpeechAttributePercentValueGuideItems;
+- (double)_valueAsPercentForAttribute:(long long)arg1;
+- (void)_persistCurrentAttributeValueToUserDefaults;
+- (unsigned long long)_indexOfGuideItemMatchingCurrentSettingsValueForAttribute:(long long)arg1;
+- (void)eventTapManager:(id)arg1 passivelyTappedEvent:(struct __CGEvent *)arg2 type:(unsigned int)arg3 withProxy:(struct __CGEventTapProxy *)arg4;
+- (void)_closeWithOutputRequest:(id)arg1;
+- (void)_addDescriptionToOutputRequest:(id)arg1;
+- (void)selectItemAtIndex:(unsigned long long)arg1 indexForView:(unsigned long long)arg2;
+- (BOOL)handleEvent:(id)arg1 request:(id)arg2;
+- (void)openWithSelectionIndex:(unsigned long long)arg1;
+@property(nonatomic) long long currentAttributeType;
+- (id)initWithMenuWindow:(id)arg1 cursor:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

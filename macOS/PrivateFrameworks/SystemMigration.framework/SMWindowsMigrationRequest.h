@@ -12,17 +12,18 @@
 
 @interface SMWindowsMigrationRequest : SMMigrationRequest <NSSecureCoding>
 {
+    BOOL _copiesCustomFiles;
     NSString *_destinationPath;
     NSMutableArray *_systemComponentDicts;
     NSMutableArray *_otherDiskComponentDicts;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property BOOL copiesCustomFiles; // @synthesize copiesCustomFiles=_copiesCustomFiles;
 @property(retain) NSMutableArray *otherDiskComponentDicts; // @synthesize otherDiskComponentDicts=_otherDiskComponentDicts;
 @property(retain) NSMutableArray *systemComponentDicts; // @synthesize systemComponentDicts=_systemComponentDicts;
 @property(copy) NSString *destinationPath; // @synthesize destinationPath=_destinationPath;
-- (void).cxx_destruct;
-- (id)replacementObjectForPortCoder:(id)arg1;
 - (void)updateAutoLoginUser;
 - (id)description;
 - (id)exportXPCDict;

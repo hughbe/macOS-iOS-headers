@@ -17,8 +17,10 @@ __attribute__((visibility("hidden")))
     struct __QLThumbnail *_thumbnail;
     NSImage *_thumbnailImage;
     BOOL _showName;
+    BOOL _documentIsShared;
 }
 
+@property BOOL documentIsShared; // @synthesize documentIsShared=_documentIsShared;
 @property BOOL showName; // @synthesize showName=_showName;
 @property(copy) NSImage *thumbnail; // @synthesize thumbnail=_thumbnailImage;
 @property(retain) NSFileVersion *version; // @synthesize version=_version;

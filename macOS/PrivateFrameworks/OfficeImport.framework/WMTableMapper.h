@@ -18,11 +18,11 @@ __attribute__((visibility("hidden")))
 }
 
 + (BOOL)isTableDeleted:(id)arg1;
+- (void).cxx_destruct;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (void)setInsideBorders:(id)arg1;
 - (id)columnInfo;
 - (id)insideBorders;
-- (void)dealloc;
 - (id)initWithWDTable:(id)arg1 parent:(id)arg2;
 - (id)copyStopArrayForRow:(unsigned long long)arg1;
 - (id)copyColumnInfo;

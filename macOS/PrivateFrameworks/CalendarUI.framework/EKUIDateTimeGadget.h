@@ -12,16 +12,14 @@
 
 @interface EKUIDateTimeGadget : EKUILabeledGadget <IIDatePickerWithMiniCalDelegate>
 {
-    BOOL _forceOpenMiniCal;
     BOOL _shouldSuppressMiniCal;
     IIDatePickerWithMiniCal *_datePicker;
 }
 
 + (id)interestedChangeKeys;
-@property BOOL shouldSuppressMiniCal; // @synthesize shouldSuppressMiniCal=_shouldSuppressMiniCal;
-@property BOOL forceOpenMiniCal; // @synthesize forceOpenMiniCal=_forceOpenMiniCal;
-@property(retain) IIDatePickerWithMiniCal *datePicker; // @synthesize datePicker=_datePicker;
 - (void).cxx_destruct;
+@property BOOL shouldSuppressMiniCal; // @synthesize shouldSuppressMiniCal=_shouldSuppressMiniCal;
+@property(retain) IIDatePickerWithMiniCal *datePicker; // @synthesize datePicker=_datePicker;
 - (double)preferredControlWidth;
 - (double)baselineOffset;
 - (double)pixelsBetweenLabelAndControl;
@@ -32,7 +30,6 @@
 - (BOOL)datePickerShouldDisplayMiniCal:(id)arg1;
 - (void)setExpanded:(BOOL)arg1;
 - (id)startDate;
-- (void)selectDatePicker;
 - (void)datePickerChangedToDate:(id)arg1;
 - (void)updateDatePickerWithDate:(id)arg1;
 - (void)updateWithChanges:(id)arg1;

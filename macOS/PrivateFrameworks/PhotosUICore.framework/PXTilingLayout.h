@@ -20,6 +20,7 @@
     struct NSEdgeInsets _contentInset;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) PXTilingCoordinateSpace *coordinateSpace; // @synthesize coordinateSpace=_coordinateSpace;
 @property(nonatomic) __weak id <PXTilingLayoutObserver> observer; // @synthesize observer=_observer;
 @property(readonly, nonatomic) void *coordinateSpaceIdentifier; // @synthesize coordinateSpaceIdentifier=_coordinateSpaceIdentifier;
@@ -28,7 +29,6 @@
 @property(nonatomic) struct NSEdgeInsets contentInset; // @synthesize contentInset=_contentInset;
 @property(nonatomic) struct CGSize visibleSize; // @synthesize visibleSize=_visibleSize;
 @property(nonatomic) struct CGSize referenceSize; // @synthesize referenceSize=_referenceSize;
-- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL shouldFlipHorizontally;
 @property(readonly, nonatomic) BOOL allowHorizontalFlip;
 - (void)invalidateLayoutWithContext:(id)arg1;

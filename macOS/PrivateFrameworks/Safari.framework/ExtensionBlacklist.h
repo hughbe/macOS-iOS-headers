@@ -6,12 +6,10 @@
 
 #import "NSObject.h"
 
-#import "RemoteConfigurationConsumer.h"
-
-@class NSArray, NSDate, NSString, NSTimer, NSURL;
+@class NSArray, NSDate, NSTimer, NSURL;
 
 __attribute__((visibility("hidden")))
-@interface ExtensionBlacklist : NSObject <RemoteConfigurationConsumer>
+@interface ExtensionBlacklist : NSObject
 {
     NSArray *_appExtensionEntries;
     NSArray *_extensionEntries;
@@ -24,21 +22,14 @@ __attribute__((visibility("hidden")))
 + (id)sharedBlacklist;
 - (void).cxx_destruct;
 - (id)test_initWithXProtectURL:(id)arg1 finishedLoadingHandler:(CDUnknownBlockType)arg2;
-- (BOOL)remoteConfigurationsController:(id)arg1 didReceiveNewConfiguration:(id)arg2 forKey:(id)arg3;
 - (void)_updateBlacklists:(id)arg1;
 - (void)_updateLegacyExtensionBlacklist:(id)arg1;
 - (BOOL)containsAppExtensionWithDeveloperIdentifier:(id)arg1 bundleIdentifier:(id)arg2 version:(id)arg3;
-- (BOOL)containsExtensionWithDeveloperIdentifier:(id)arg1 bundleIdentifier:(id)arg2 version:(id)arg3;
+- (BOOL)containsLegacyExtensionWithDeveloperIdentifier:(id)arg1 bundleIdentifier:(id)arg2 version:(id)arg3;
 - (void)_updateFromXProtectIfNecessary:(id)arg1;
 - (void)_readBlacklist:(int)arg1 finishedLoadingHandler:(CDUnknownBlockType)arg2;
 - (void)dealloc;
 - (id)initWithXProtectURL:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     id _sourceData;
 }
 
++ (Class)classForKeyedUnarchiver;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)alloc;
 + (BOOL)accessInstanceVariablesDirectly;
@@ -21,11 +22,16 @@ __attribute__((visibility("hidden")))
 - (BOOL)isEqualToString:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
+- (const char *)cStringUsingEncoding:(unsigned long long)arg1;
 - (unsigned long long)cStringLength;
 - (void)getCString:(char *)arg1;
 - (const char *)UTF8String;
+- (const unsigned short *)_fastCharacterContents;
 - (const char *)_fastCStringContents:(BOOL)arg1;
 - (const char *)cString;
+- (BOOL)_isCString;
+- (unsigned long long)smallestEncoding;
+- (unsigned long long)fastestEncoding;
 - (void)getCharacters:(unsigned short *)arg1 range:(struct _NSRange)arg2;
 - (void)getCharacters:(unsigned short *)arg1;
 - (unsigned short)characterAtIndex:(unsigned long long)arg1;
@@ -33,7 +39,8 @@ __attribute__((visibility("hidden")))
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copy;
-- (void)encodeWithCoder:(id)arg1;
+- (Class)classForArchiver;
+- (Class)classForCoder;
 - (BOOL)_isDeallocating;
 - (BOOL)_tryRetain;
 - (unsigned long long)retainCount;

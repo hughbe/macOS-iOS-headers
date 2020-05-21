@@ -13,7 +13,6 @@ __attribute__((visibility("hidden")))
     unsigned int _state;
     int _flatProgressVariant;
     _Bool _selected;
-    _Bool _keepingAnimationAlive;
     long long _userInterfaceLayoutDirection;
 }
 
@@ -23,7 +22,6 @@ __attribute__((visibility("hidden")))
 @property int flatProgressVariant; // @synthesize flatProgressVariant=_flatProgressVariant;
 @property unsigned int state; // @synthesize state=_state;
 @property double percentComplete; // @synthesize percentComplete=_percentComplete;
-- (void)keepAnimationAlive;
 - (void)drawInContext:(struct CGContext *)arg1;
 - (void)setPercentCompleteAnimated:(double)arg1;
 - (id)initWithLayer:(id)arg1;

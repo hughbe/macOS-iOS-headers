@@ -6,7 +6,7 @@
 
 #import <Backup/BU_TViewController.h>
 
-@class BU_Button, BU_DateText, BU_TBackupView, NSLayoutConstraint;
+@class BU_Button, BU_DateText, BU_TBackupView, NSLayoutConstraint, NSVisualEffectView;
 
 __attribute__((visibility("hidden")))
 @interface BU_ButtonController : BU_TViewController
@@ -17,6 +17,8 @@ __attribute__((visibility("hidden")))
     BU_Button *_previousButton;
     BU_Button *_nextButton;
     BU_DateText *_dateText;
+    NSVisualEffectView *_bottomButtonsVisualEffectView;
+    NSVisualEffectView *_sideButtonsVisualEffectView;
     NSLayoutConstraint *_previousXConstraint;
     NSLayoutConstraint *_previousYConstraint;
     NSLayoutConstraint *_restoreXConstraint;
@@ -26,6 +28,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)arrowImageUpOrDown:(_Bool)arg1;
+- (void).cxx_destruct;
 @property(nonatomic) BU_DateText *dateText; // @synthesize dateText=_dateText;
 @property(nonatomic) BU_Button *nextButton; // @synthesize nextButton=_nextButton;
 @property(nonatomic) BU_Button *previousButton; // @synthesize previousButton=_previousButton;

@@ -7,10 +7,16 @@
 #import "NSObject.h"
 
 @protocol WBSFormAutoFillNode <NSObject>
+- (long long)htmlInputElementLastAutoFillButtonType;
+- (long long)htmlInputElementAutoFillButtonType;
+- (void)setHTMLInputElementAutoFilledWithAutomaticStrongPassword:(BOOL)arg1;
 - (BOOL)isHTMLTextAreaElementUserEdited;
 - (BOOL)isHTMLInputElementUserEdited;
 - (void)setHTMLInputElementAutofilled:(BOOL)arg1;
 - (struct CGRect)elementBounds;
 - (id)initWithJSWrapper:(struct OpaqueJSValue *)arg1 inContext:(struct OpaqueJSContext *)arg2;
+
+@optional
+- (void)setHTMLInputElementSpellCheckEnabled:(BOOL)arg1;
 @end
 

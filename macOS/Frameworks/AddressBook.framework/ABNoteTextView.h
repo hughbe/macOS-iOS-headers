@@ -6,16 +6,13 @@
 
 #import "NSTextView.h"
 
-__attribute__((visibility("hidden")))
 @interface ABNoteTextView : NSTextView
 {
     BOOL _needsCardViewBorderDrawing;
 }
 
 @property(nonatomic) BOOL needsCardViewBorderDrawing; // @synthesize needsCardViewBorderDrawing=_needsCardViewBorderDrawing;
-- (struct CGSize)intrinsicContentSize;
 - (BOOL)resignFirstResponder;
-- (struct NSEdgeInsets)alignmentRectInsets;
 - (BOOL)becomeFirstResponder;
 - (BOOL)allowsVibrancy;
 - (void)insertBacktab:(id)arg1;

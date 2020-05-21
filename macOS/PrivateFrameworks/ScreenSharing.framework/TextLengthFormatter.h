@@ -6,7 +6,6 @@
 
 #import "NSFormatter.h"
 
-__attribute__((visibility("hidden")))
 @interface TextLengthFormatter : NSFormatter
 {
     int mMaxCharacters;

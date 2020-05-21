@@ -8,34 +8,48 @@
 
 @class ABPersonListController, CNPublishingSubject, NSDictionary;
 
-__attribute__((visibility("hidden")))
 @interface ABPersonListSearchHelper : NSObject
 {
-    ABPersonListController *_personListController;
     NSDictionary *_cachedPersonEntriesByIdentifier;
     NSDictionary *_cachedSuggestionEntriesByIdentifier;
-    CDUnknownBlockType _entryHandler;
+    ABPersonListController *_personListController;
+    CDUnknownBlockType _resultHandler;
     CNPublishingSubject *_searchObservable;
-    id <CNCancelable> _localSubscription;
-    id <CNCancelable> _suggestionSubscription;
+    id <CNCancelable> _localSearchSubscription;
+    id <CNCancelable> _suggestionSearchSubscription;
+    BOOL _includeSuggestions;
 }
 
 + (id)uniqueSuggestedEntries:(id)arg1 givenCuratedEntries:(id)arg2;
-@property(copy) NSDictionary *cachedSuggestionEntriesByIdentifier; // @synthesize cachedSuggestionEntriesByIdentifier=_cachedSuggestionEntriesByIdentifier;
-@property(copy) NSDictionary *cachedPersonEntriesByIdentifier; // @synthesize cachedPersonEntriesByIdentifier=_cachedPersonEntriesByIdentifier;
-@property(copy) CDUnknownBlockType entryHandler; // @synthesize entryHandler=_entryHandler;
++ (BOOL)isDisplayingTopLevelGroupInPersonListController:(id)arg1;
++ (BOOL)isDisplayingAllContactsGroupInPersonListController:(id)arg1;
++ (BOOL)shouldIncludeDonatedMeCardForPersonListController:(id)arg1;
++ (BOOL)shouldIncludeSuggestionsForPersonListController:(id)arg1;
++ (void)removeAllRecordsFromAddressBook:(id)arg1;
++ (id)suggestedMeEntryInEntries:(id)arg1;
++ (BOOL)entriesContainMeEntry:(id)arg1;
+- (void).cxx_destruct;
+@property(nonatomic) BOOL includeSuggestions; // @synthesize includeSuggestions=_includeSuggestions;
+@property(retain, nonatomic) id <CNCancelable> suggestionSearchSubscription; // @synthesize suggestionSearchSubscription=_suggestionSearchSubscription;
+@property(retain, nonatomic) id <CNCancelable> localSearchSubscription; // @synthesize localSearchSubscription=_localSearchSubscription;
+@property(retain, nonatomic) CNPublishingSubject *searchObservable; // @synthesize searchObservable=_searchObservable;
+@property(copy, nonatomic) CDUnknownBlockType resultHandler; // @synthesize resultHandler=_resultHandler;
+@property(nonatomic) __weak ABPersonListController *personListController; // @synthesize personListController=_personListController;
+@property(retain, nonatomic) NSDictionary *cachedSuggestionEntriesByIdentifier; // @synthesize cachedSuggestionEntriesByIdentifier=_cachedSuggestionEntriesByIdentifier;
+@property(retain, nonatomic) NSDictionary *cachedPersonEntriesByIdentifier; // @synthesize cachedPersonEntriesByIdentifier=_cachedPersonEntriesByIdentifier;
 - (void)removeEntries:(id)arg1;
-- (BOOL)shouldIncludeSuggestions;
-- (void)removeAllRecordsFromAddressBook:(id)arg1;
+- (void)cleaupPreviousSuggestions;
 - (id)fetchSuggestedEntriesByUID;
-- (void)performEntryHandler;
-- (void)performSuggestionSearch:(id)arg1;
-- (void)performLocalSearch:(id)arg1;
-- (void)searchForString:(id)arg1;
+- (id)fetchSuggestedMeEntryByUID;
+- (id)augmentEntriesWithDonatedMeEntryIfFound:(id)arg1;
 - (id)fetchPersonEntriesByUID;
 - (void)fetchLocalContacts;
-- (void)dealloc;
-- (id)initWithPersonListController:(id)arg1;
+- (void)performEntryHandler;
+- (void)performSuggestionSearch:(id)arg1;
+- (void)expandPersonEntriesCacheWithEntry:(id)arg1;
+- (void)performLocalSearch:(id)arg1;
+- (void)searchForString:(id)arg1;
+- (id)initWithPersonListController:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
 
 @end
 

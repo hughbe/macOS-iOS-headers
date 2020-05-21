@@ -6,7 +6,7 @@
 
 #import <AudioServerDriver/ASDObject.h>
 
-@class NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString;
 
 @interface ASDClockDevice : ASDObject
 {
@@ -19,23 +19,53 @@
     NSObject<OS_dispatch_queue> *_ioReferenceQueue;
     NSString *_deviceName;
     unsigned int _timestampPeriod;
+    unsigned int _transportType;
+    unsigned int _clockDomain;
+    unsigned int _clockAlgorithm;
+    BOOL _clockIsStable;
+    NSObject<OS_dispatch_semaphore> *_wakeSemaphore;
     BOOL _isAlive;
     BOOL _isRunning;
     unsigned int _inputLatency;
     unsigned int _outputLatency;
+    CDUnknownBlockType _getZeroTimestampBlockUnretained;
+    CDUnknownBlockType _beginIOOperationBlockUnretained;
+    CDUnknownBlockType _endIOOperationBlockUnretained;
     BOOL _hidden;
     BOOL _canChangeDeviceName;
     NSString *_deviceUID;
+    NSString *_modelUID;
     NSString *_manufacturerName;
     NSString *_modelName;
+    CDUnknownBlockType _getZeroTimestampBlock;
+    CDUnknownBlockType _beginIOOperationBlock;
+    CDUnknownBlockType _endIOOperationBlock;
+    id <ASDDeviceConfigurationChangeDelegate> _configurationChangeDelegate;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) __weak id <ASDDeviceConfigurationChangeDelegate> configurationChangeDelegate; // @synthesize configurationChangeDelegate=_configurationChangeDelegate;
+@property(copy, nonatomic) CDUnknownBlockType endIOOperationBlock; // @synthesize endIOOperationBlock=_endIOOperationBlock;
+@property(copy, nonatomic) CDUnknownBlockType beginIOOperationBlock; // @synthesize beginIOOperationBlock=_beginIOOperationBlock;
+@property(copy, nonatomic) CDUnknownBlockType getZeroTimestampBlock; // @synthesize getZeroTimestampBlock=_getZeroTimestampBlock;
 @property(nonatomic) BOOL canChangeDeviceName; // @synthesize canChangeDeviceName=_canChangeDeviceName;
 @property(nonatomic, getter=isHidden) BOOL hidden; // @synthesize hidden=_hidden;
-@property(retain, nonatomic) NSString *modelName; // @synthesize modelName=_modelName;
-@property(retain, nonatomic) NSString *manufacturerName; // @synthesize manufacturerName=_manufacturerName;
-@property(retain, nonatomic) NSString *deviceUID; // @synthesize deviceUID=_deviceUID;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *modelName; // @synthesize modelName=_modelName;
+@property(copy, nonatomic) NSString *manufacturerName; // @synthesize manufacturerName=_manufacturerName;
+@property(copy, nonatomic) NSString *modelUID; // @synthesize modelUID=_modelUID;
+@property(readonly, copy, nonatomic) NSString *deviceUID; // @synthesize deviceUID=_deviceUID;
+- (id)driverClassName;
+- (id)diagnosticDescriptionWithIndent:(id)arg1 walkTree:(BOOL)arg2;
+- (void)dealloc;
+- (void)systemHasPoweredOn;
+- (void)systemWillSleep;
+@property(readonly, nonatomic) CDUnknownBlockType *endIOOperationBlockUnretainedPtr;
+@property(readonly, nonatomic) CDUnknownBlockType *beginIOOperationBlockUnretainedPtr;
+@property(readonly, nonatomic) CDUnknownBlockType *getZeroTimestampBlockUnretainedPtr;
+@property(nonatomic) unsigned int transportType; // @dynamic transportType;
+@property(nonatomic) BOOL clockIsStable; // @dynamic clockIsStable;
+@property(nonatomic) unsigned int clockAlgorithm; // @dynamic clockAlgorithm;
+@property(nonatomic) unsigned int clockDomain; // @dynamic clockDomain;
 @property(nonatomic) unsigned int outputLatency;
 @property(nonatomic) unsigned int inputLatency;
 @property(readonly, retain, nonatomic) NSObject<OS_dispatch_queue> *ioReferenceQueue; // @dynamic ioReferenceQueue;
@@ -44,10 +74,10 @@
 - (void)_updateSafetyOffsets:(double)arg1;
 - (void)_updateTimestampPeriod:(double)arg1;
 @property(nonatomic) unsigned int timestampPeriod; // @dynamic timestampPeriod;
-- (void)changeDeviceName:(id)arg1;
-@property(retain, nonatomic) NSString *deviceName; // @dynamic deviceName;
+- (BOOL)changeDeviceName:(id)arg1;
+@property(copy, nonatomic) NSString *deviceName; // @dynamic deviceName;
 @property(copy, nonatomic) NSArray *samplingRates; // @dynamic samplingRates;
-- (void)changeSamplingRate:(double)arg1;
+- (BOOL)changeSamplingRate:(double)arg1;
 @property(nonatomic) double samplingRate; // @dynamic samplingRate;
 - (int)performStopIO;
 - (int)performStartIO;
@@ -62,10 +92,9 @@
 - (void)addControl:(id)arg1;
 - (BOOL)setProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 qualifierData:(const void *)arg3 dataSize:(unsigned int)arg4 andData:(const void *)arg5 forClient:(int)arg6;
 - (BOOL)isPropertySettable:(const struct AudioObjectPropertyAddress *)arg1;
-- (BOOL)getProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 qualifierData:(const void *)arg3 dataSize:(unsigned int *)arg4 andData:(const void *)arg5 forClient:(int)arg6;
+- (BOOL)getProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 qualifierData:(const void *)arg3 dataSize:(unsigned int *)arg4 andData:(void *)arg5 forClient:(int)arg6;
 - (unsigned int)dataSizeForProperty:(const struct AudioObjectPropertyAddress *)arg1 withQualifierSize:(unsigned int)arg2 andQualifierData:(const void *)arg3;
 - (BOOL)hasProperty:(const struct AudioObjectPropertyAddress *)arg1;
-@property(readonly, nonatomic) unsigned int transportType; // @dynamic transportType;
 - (unsigned int)objectClass;
 - (id)initWithDeviceUID:(id)arg1 withPlugin:(id)arg2;
 - (id)initWithPlugin:(id)arg1;

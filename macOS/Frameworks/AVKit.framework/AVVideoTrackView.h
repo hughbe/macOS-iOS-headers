@@ -6,27 +6,29 @@
 
 #import <AVKit/AVTrackView.h>
 
-#import "CALayerDelegate.h"
-
-@class AVAssetImageGenerator, AVPlayerController, AVPlayerControllerTimeResolver, AVPlayerLayer, AVVideoTrackThumbnailManager, NSMutableDictionary, NSString;
+@class AVAssetImageGenerator, AVPlayerController, AVPlayerControllerTimeResolver, AVPlayerLayer, AVTimer, AVVideoTrackThumbnailManager, NSMutableDictionary;
 
 __attribute__((visibility("hidden")))
-@interface AVVideoTrackView : AVTrackView <CALayerDelegate>
+@interface AVVideoTrackView : AVTrackView
 {
     AVPlayerController *_playerController;
     CDStruct_ef34d2b9 _zoomInfo;
     AVAssetImageGenerator *_imageGenerator;
     AVVideoTrackThumbnailManager *_thumbnailManager;
     NSMutableDictionary *_thumbnailLayers;
-    AVPlayerLayer *_thumbnailPlayerLayer;
+    struct CGSize _lastThumbnailGenerationSize;
+    AVPlayerLayer *_trimThumbnailPlayerLayer;
     AVPlayerControllerTimeResolver *_timeResolver;
     BOOL _didStartThumbnailGeneration;
+    AVTimer *_startThumbnailGenerationAndLayoutTimer;
 }
 
 - (void).cxx_destruct;
-- (void)layoutSublayersOfLayer:(id)arg1;
+- (void)layout;
 - (void)viewDidEndLiveResize;
 - (void)setFrame:(struct CGRect)arg1;
+- (void)removeFromSuperview;
+- (BOOL)wantsUpdateLayer;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (struct CGSize)_thumbnailSizeForContainerSize:(struct CGSize)arg1 andPlayerController:(id)arg2;
 - (struct CGSize)_mediaCompositionNaturalSizeForPlayerController:(id)arg1;
@@ -38,18 +40,13 @@ __attribute__((visibility("hidden")))
 - (struct CGSize)_thumbnailSizeForThumbnail:(id)arg1 zoomInfo:(CDStruct_ef34d2b9)arg2 thumbnailSize:(struct CGSize)arg3 containerSize:(struct CGSize)arg4;
 - (struct CGPoint)_thumbnailPlayerPositionForTime:(double)arg1 zoomInfo:(CDStruct_ef34d2b9)arg2 previewLayerSize:(struct CGSize)arg3 thumbnailSize:(struct CGSize)arg4;
 - (void)_updateThumbnailPlayerLayerPositionForPreviewLayerSize:(struct CGSize)arg1 thumbnailSize:(struct CGSize)arg2;
+- (void)_startThumbnailGenerationAndLayout;
 - (void)startThumbnailGenerationWithZoomInfo:(CDStruct_ef34d2b9)arg1;
 - (void)zoomWithInfo:(CDStruct_ef34d2b9)arg1;
 - (double)allowedScrollAmount;
+@property(retain) AVPlayerLayer *trimThumbnailPlayerLayer;
 @property __weak AVPlayerController *playerController;
-- (void)removeFromSuperview;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

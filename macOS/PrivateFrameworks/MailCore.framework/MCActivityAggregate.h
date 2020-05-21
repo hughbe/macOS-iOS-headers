@@ -23,12 +23,12 @@
     double _estimatedTimeRemaining;
     BOOL _isResetting;
     long long _activityType;
-    NSString *_bkItemDescription;
-    NSString *_status;
-    double _startTime;
-    NSDate *_lastUpdateTimestamp;
     NSString *_nameSingular;
     NSString *_namePlural;
+    NSString *_status;
+    NSString *_bkItemDescription;
+    NSDate *_lastUpdateTimestamp;
+    double _startTime;
 }
 
 + (double)updateDelay;
@@ -37,15 +37,15 @@
 + (BOOL)automaticallyNotifiesObserversOfProgress;
 + (BOOL)automaticallyNotifiesObserversOfIsProgressing;
 + (BOOL)automaticallyNotifiesObserversOfCanCancel;
+- (void).cxx_destruct;
+@property(nonatomic) double startTime; // @synthesize startTime=_startTime;
+@property BOOL isResetting; // @synthesize isResetting=_isResetting;
+@property(retain) NSDate *lastUpdateTimestamp; // @synthesize lastUpdateTimestamp=_lastUpdateTimestamp;
+@property(copy) NSString *bkItemDescription; // @synthesize bkItemDescription=_bkItemDescription;
+@property(copy) NSString *status; // @synthesize status=_status;
 @property(copy) NSString *namePlural; // @synthesize namePlural=_namePlural;
 @property(copy) NSString *nameSingular; // @synthesize nameSingular=_nameSingular;
-@property(retain) NSDate *lastUpdateTimestamp; // @synthesize lastUpdateTimestamp=_lastUpdateTimestamp;
-@property(nonatomic) double startTime; // @synthesize startTime=_startTime;
-@property(copy) NSString *status; // @synthesize status=_status;
-@property BOOL isResetting; // @synthesize isResetting=_isResetting;
-@property(copy) NSString *bkItemDescription; // @synthesize bkItemDescription=_bkItemDescription;
 @property long long activityType; // @synthesize activityType=_activityType;
-- (void).cxx_destruct;
 - (void)signalCancel:(id)arg1;
 - (id)description;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;

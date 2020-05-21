@@ -18,14 +18,19 @@
     int _departure;
     unsigned int _numberOfReroutes;
     int _ttlUiNotificationShown;
-    CDStruct_90e5f431 _has;
+    struct {
+        unsigned int has_earliestArrivalOffset:1;
+        unsigned int has_earliestDepartureOffset:1;
+        unsigned int has_latestArrivalOffset:1;
+        unsigned int has_latestDepartureOffset:1;
+        unsigned int has_arrival:1;
+        unsigned int has_departure:1;
+        unsigned int has_numberOfReroutes:1;
+        unsigned int has_ttlUiNotificationShown:1;
+    } _flags;
 }
 
-@property(nonatomic) double latestArrivalOffset; // @synthesize latestArrivalOffset=_latestArrivalOffset;
-@property(nonatomic) double earliestArrivalOffset; // @synthesize earliestArrivalOffset=_earliestArrivalOffset;
-@property(nonatomic) double latestDepartureOffset; // @synthesize latestDepartureOffset=_latestDepartureOffset;
-@property(nonatomic) double earliestDepartureOffset; // @synthesize earliestDepartureOffset=_earliestDepartureOffset;
-@property(nonatomic) unsigned int numberOfReroutes; // @synthesize numberOfReroutes=_numberOfReroutes;
++ (BOOL)isValid:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -33,25 +38,31 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(nonatomic) BOOL hasLatestArrivalOffset;
+@property(nonatomic) double latestArrivalOffset;
 @property(nonatomic) BOOL hasEarliestArrivalOffset;
+@property(nonatomic) double earliestArrivalOffset;
 @property(nonatomic) BOOL hasLatestDepartureOffset;
+@property(nonatomic) double latestDepartureOffset;
 @property(nonatomic) BOOL hasEarliestDepartureOffset;
+@property(nonatomic) double earliestDepartureOffset;
 - (int)StringAsTtlUiNotificationShown:(id)arg1;
 - (id)ttlUiNotificationShownAsString:(int)arg1;
 @property(nonatomic) BOOL hasTtlUiNotificationShown;
-@property(nonatomic) int ttlUiNotificationShown; // @synthesize ttlUiNotificationShown=_ttlUiNotificationShown;
+@property(nonatomic) int ttlUiNotificationShown;
 @property(nonatomic) BOOL hasNumberOfReroutes;
+@property(nonatomic) unsigned int numberOfReroutes;
 - (int)StringAsArrival:(id)arg1;
 - (id)arrivalAsString:(int)arg1;
 @property(nonatomic) BOOL hasArrival;
-@property(nonatomic) int arrival; // @synthesize arrival=_arrival;
+@property(nonatomic) int arrival;
 - (int)StringAsDeparture:(id)arg1;
 - (id)departureAsString:(int)arg1;
 @property(nonatomic) BOOL hasDeparture;
-@property(nonatomic) int departure; // @synthesize departure=_departure;
+@property(nonatomic) int departure;
 
 @end
 

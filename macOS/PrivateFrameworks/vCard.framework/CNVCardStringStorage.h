@@ -21,6 +21,7 @@
 - (unsigned long long)estimatedDataLength;
 - (id)insertionMarker;
 - (unsigned long long)currentLength;
+- (void)appendData:(id)arg1;
 - (void)appendFormat:(id)arg1;
 - (void)appendString:(id)arg1 usingEncoding:(unsigned long long)arg2;
 - (void)appendString:(id)arg1;

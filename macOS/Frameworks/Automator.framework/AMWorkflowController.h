@@ -6,42 +6,20 @@
 
 #import "NSController.h"
 
-@class AMWorkflow, AMWorkflowView;
+#import "AMRunnerControllerDelegate.h"
 
-@interface AMWorkflowController : NSController
+@class AMWorkflow, AMWorkflowView, NSString, NSUndoManager, NSWindow;
+
+@interface AMWorkflowController : NSController <AMRunnerControllerDelegate>
 {
     AMWorkflowView *workflowView;
     AMWorkflow *_workflow;
     id _runner;
     id _runnerInterface;
     id _eventMonitor;
-    id _delegate;
-    struct __AMWorkflowControllerFlags {
-        unsigned int shouldRunLocally:1;
-        unsigned int isRunningLocally:1;
-        unsigned int shouldDisplayProgressInMenuBar:1;
-        unsigned int reserved:29;
-    } _flags;
-    struct __AMWorkflowControllerDelegateRespondTo {
-        unsigned int workflowControllerDidAddWorkflow:1;
-        unsigned int workflowControllerDidRemoveWorkflow:1;
-        unsigned int workflowControllerWillRun:1;
-        unsigned int workflowControllerWillStep:1;
-        unsigned int workflowControllerWillStop:1;
-        unsigned int workflowControllerWillPause:1;
-        unsigned int workflowControllerDidRun:1;
-        unsigned int workflowControllerDidStep:1;
-        unsigned int workflowControllerDidStop:1;
-        unsigned int workflowControllerDidPause:1;
-        unsigned int workflowControllerWillRunAction:1;
-        unsigned int workflowControllerDidRunAction:1;
-        unsigned int workflowControllerDidError:1;
-        unsigned int workflowControllerDidLogMessageOfTypeFromAction:1;
-        unsigned int workflowControllerWillRunConversion:1;
-        unsigned int workflowControllerDidRunConversion:1;
-        unsigned int workflowControllerDidResumeWithAction:1;
-        unsigned int reserved:19;
-    } _delegateRespondTo;
+    id <AMWorkflowControllerDelegate> _delegate;
+    struct __AMWorkflowControllerFlags _flags;
+    struct __AMWorkflowControllerDelegateRespondTo _delegateRespondTo;
     id _future;
     id _future2;
     id _future3;
@@ -49,7 +27,15 @@
 }
 
 + (id)pasteboardTypes;
-- (id)_undoManager;
+- (void).cxx_destruct;
+@property(retain) id <AMRunnerController> runnerController; // @synthesize runnerController=_runner;
+@property struct __AMWorkflowControllerFlags flags; // @synthesize flags=_flags;
+@property struct __AMWorkflowControllerDelegateRespondTo delegateRespondTo; // @synthesize delegateRespondTo=_delegateRespondTo;
+@property(retain, nonatomic) AMWorkflow *workflow; // @synthesize workflow=_workflow;
+@property(nonatomic) __weak id <AMWorkflowControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) AMWorkflowView *workflowView; // @synthesize workflowView;
+@property(readonly, nonatomic) NSUndoManager *_undoManager;
+- (void)updateCanRun;
 - (id)_addActionWithBundleIdentifier:(id)arg1;
 - (void)_insertActions:(id)arg1 atIndex:(unsigned long long)arg2 displayWarnings:(BOOL)arg3 refuseDeprecatedActions:(BOOL)arg4;
 - (void)_insertActionsWithSettingsDictionary:(id)arg1;
@@ -59,21 +45,21 @@
 - (void)_displayWarningsForActions:(id)arg1 toInsertAtIndex:(unsigned long long)arg2;
 - (BOOL)_shouldDisplayWarningForAction:(id)arg1 givenPreviousAction:(id)arg2;
 - (void)_showDeprecatedSheetForAction:(id)arg1;
-- (void)workflowRunnerDidFinish:(id)arg1;
-- (void)workflowRunner:(id)arg1 didRunConversion:(id)arg2;
-- (void)workflowRunner:(id)arg1 willRunConversion:(id)arg2;
-- (void)workflowRunner:(id)arg1 didLogMessage:(id)arg2 ofType:(unsigned long long)arg3 fromAction:(id)arg4;
-- (void)workflowRunner:(id)arg1 didError:(id)arg2;
-- (void)workflowRunner:(id)arg1 didRunAction:(id)arg2;
-- (void)workflowRunner:(id)arg1 progressDidChange:(id)arg2 forAction:(id)arg3;
-- (void)workflowRunner:(id)arg1 willRunAction:(id)arg2;
-- (void)workflowRunner:(id)arg1 didResumeWithAction:(id)arg2;
-- (void)workflowRunnerDidPause:(id)arg1;
-- (void)workflowRunnerDidStop:(id)arg1;
-- (void)workflowRunnerDidRun:(id)arg1;
-- (void)workflowRunnerWillPause:(id)arg1;
-- (void)workflowRunnerWillStop:(id)arg1;
-- (void)workflowRunnerWillRun:(id)arg1;
+- (void)runnerControllerDidFinish:(id)arg1;
+- (void)runnerController:(id)arg1 didRunConversion:(id)arg2;
+- (void)runnerController:(id)arg1 willRunConversion:(id)arg2;
+- (void)runnerController:(id)arg1 didLogMessage:(id)arg2 ofType:(unsigned long long)arg3 fromAction:(id)arg4;
+- (void)runnerController:(id)arg1 didError:(id)arg2;
+- (void)runnerController:(id)arg1 didRunAction:(id)arg2;
+- (void)runnerController:(id)arg1 progressDidChange:(id)arg2 forAction:(id)arg3;
+- (void)runnerController:(id)arg1 willRunAction:(id)arg2;
+- (void)runnerController:(id)arg1 didResumeWithAction:(id)arg2;
+- (void)runnerControllerDidPause:(id)arg1;
+- (void)runnerControllerDidStop:(id)arg1;
+- (void)runnerControllerDidRun:(id)arg1;
+- (void)runnerControllerWillPause:(id)arg1;
+- (void)runnerControllerWillStop:(id)arg1;
+- (void)runnerControllerWillRun:(id)arg1;
 - (void)workflowViewSelectionDidChange:(id)arg1;
 - (void)workflowWasModified;
 - (void)actionWasRenamed:(id)arg1;
@@ -99,34 +85,19 @@
 - (void)pause:(id)arg1;
 - (void)step:(id)arg1;
 - (void)stop:(id)arg1;
-- (void)stopWithError:(id)arg1;
-- (void)runWithEventData:(id)arg1;
 - (void)run:(id)arg1;
 - (void)_runWarningAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (BOOL)_shouldRunAfterShowingWarning;
-- (void)_run:(id)arg1;
-- (id)_localAMApplicationStub;
-- (void)_createLocalAMApplicationStub;
-- (id)localActionForAction:(id)arg1;
-- (id)runningActionForAction:(id)arg1;
-- (void)setShouldDisplayProgressInMenuBar:(BOOL)arg1;
-- (BOOL)shouldDisplayProgressInMenuBar;
-- (BOOL)isRunningLocally;
-- (void)setRunLocally:(BOOL)arg1;
-- (BOOL)shouldRunLocally;
+- (void)_runSteppingInitially:(BOOL)arg1;
+@property(readonly, nonatomic) __weak id <AMWorkflowControllerDelegatePrivate> privateDelegate;
+@property(nonatomic) BOOL shouldDisplayProgressInMenuBar;
+@property(readonly, nonatomic, getter=isRunningLocally) BOOL runninglocally;
+@property(nonatomic, getter=shouldRunLocally, setter=setRunLocally:) BOOL shouldRunLocally;
 - (id)UUID;
-- (id)window;
-@property(readonly, getter=isPaused) BOOL paused;
-- (BOOL)isActionRunning:(id)arg1;
-@property(readonly, getter=isRunning) BOOL running;
-@property(readonly) BOOL canRun;
-- (void)nullifyRunner;
-- (void)setRunner:(id)arg1;
-- (id)runner;
-- (id)runnerInterface;
-@property(retain) AMWorkflowView *workflowView;
-@property id delegate;
-@property(retain) AMWorkflow *workflow;
+@property(readonly, nonatomic) NSWindow *window;
+@property(readonly, nonatomic, getter=isPaused) BOOL paused;
+@property(readonly, nonatomic, getter=isRunning) BOOL running;
+@property(readonly, nonatomic) BOOL canRun;
 - (void)dealloc;
 - (id)init;
 - (void)addActionsWithDataFromPasteboard:(id)arg1 withIndex:(unsigned long long)arg2;
@@ -138,6 +109,12 @@
 - (void)addSpecifiedItemsActionWithBundleID:(id)arg1 atIndex:(unsigned long long)arg2 withItemsFromPasteboard:(id)arg3;
 - (void)addSpecifiedItemsActionWithBundleID:(id)arg1 atIndex:(unsigned long long)arg2 withItems:(id)arg3;
 - (id)addActionWithBundleID:(id)arg1 atIndex:(unsigned long long)arg2 withParameters:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

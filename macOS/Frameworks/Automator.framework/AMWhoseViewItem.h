@@ -10,6 +10,8 @@
 
 @interface AMWhoseViewItem : NSObject
 {
+    NSButton *_addButton;
+    NSButton *_removeButton;
     NSView *_view;
     NSPopUpButton *_propertyPopUpButton;
     NSPopUpButton *_qualifierPopUpButton;
@@ -17,8 +19,6 @@
     NSPopUpButton *_sizeValuePopUpButton;
     NSTextField *_valueTextField;
     NSTextField *_sizeValueTextField;
-    NSButton *_addButton;
-    NSButton *_removeButton;
     NSProgressIndicator *_progressIndicator;
     NSDatePicker *_datePicker;
     AMLevelIndicator *_ratingIndicator;
@@ -32,6 +32,27 @@
     NSArray *_topLevelObjects;
 }
 
+- (void).cxx_destruct;
+@property __weak AMLevelIndicator *_ratingIndicator; // @synthesize _ratingIndicator;
+@property __weak NSDatePicker *_datePicker; // @synthesize _datePicker;
+@property __weak NSProgressIndicator *_progressIndicator; // @synthesize _progressIndicator;
+@property __weak NSTextField *_sizeValueTextField; // @synthesize _sizeValueTextField;
+@property __weak NSTextField *_valueTextField; // @synthesize _valueTextField;
+@property __weak NSPopUpButton *_sizeValuePopUpButton; // @synthesize _sizeValuePopUpButton;
+@property __weak NSPopUpButton *_valuePopUpButton; // @synthesize _valuePopUpButton;
+@property __weak NSPopUpButton *_qualifierPopUpButton; // @synthesize _qualifierPopUpButton;
+@property __weak NSPopUpButton *_propertyPopUpButton; // @synthesize _propertyPopUpButton;
+@property(retain) NSArray *_topLevelObjects; // @synthesize _topLevelObjects;
+@property(copy) NSArray *valueNames; // @synthesize valueNames=_valueNames;
+@property(retain, nonatomic) NSArray *qualifierNames; // @synthesize qualifierNames=_qualifierNames;
+@property(retain, nonatomic) NSArray *propertyNames; // @synthesize propertyNames=_propertyNames;
+@property(retain) NSBundle *bundle; // @synthesize bundle=_bundle;
+@property(retain) AMApplicationDefinition *applicationDefinition; // @synthesize applicationDefinition=_applicationDefinition;
+@property(retain, nonatomic) NSMutableDictionary *settings; // @synthesize settings=_settings;
+@property(retain, nonatomic) NSArray *properties; // @synthesize properties=_properties;
+@property(retain) NSButton *removeButton; // @synthesize removeButton=_removeButton;
+@property(retain) NSButton *addButton; // @synthesize addButton=_addButton;
+@property(nonatomic) __weak NSView *view; // @synthesize view=_view;
 - (void)changeValue:(id)arg1;
 - (void)changeQualifier:(id)arg1;
 - (void)changeProperty:(id)arg1;
@@ -40,26 +61,6 @@
 - (id)_propertyWithName:(id)arg1;
 - (id)_qualifiersNamesForType:(id)arg1;
 - (id)_qualifiers;
-- (void)setValueNames:(id)arg1;
-- (id)valueNames;
-- (void)setQualifierNames:(id)arg1;
-- (id)qualifierNames;
-- (void)setPropertyNames:(id)arg1;
-- (id)propertyNames;
-- (void)setBundle:(id)arg1;
-- (id)bundle;
-- (void)setApplicationDefinition:(id)arg1;
-- (id)applicationDefinition;
-- (void)setSettings:(id)arg1;
-- (id)settings;
-- (void)setProperties:(id)arg1;
-- (id)properties;
-- (void)setRemoveButton:(id)arg1;
-- (id)removeButton;
-- (void)setAddButton:(id)arg1;
-- (id)addButton;
-- (void)setView:(id)arg1;
-- (id)view;
 - (void)_releaseTopLevelObjects;
 - (void)dealloc;
 - (void)awakeFromNib;

@@ -14,10 +14,9 @@ __attribute__((visibility("hidden")))
     CKDServerConfiguration *_configuration;
 }
 
-@property(retain, nonatomic) CKDServerConfiguration *configuration; // @synthesize configuration=_configuration;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CKDServerConfiguration *configuration; // @synthesize configuration=_configuration;
 - (void)requestDidParsePlistObject:(id)arg1;
-- (Class)expectedResponseClass;
 - (BOOL)hasRequestBody;
 - (id)httpMethod;
 - (id)url;
@@ -25,7 +24,6 @@ __attribute__((visibility("hidden")))
 - (long long)serverType;
 - (id)additionalHeaderValues;
 - (BOOL)allowsAnonymousAccount;
-- (BOOL)requiresSignature;
 - (BOOL)requiresDeviceID;
 - (BOOL)requiresConfiguration;
 

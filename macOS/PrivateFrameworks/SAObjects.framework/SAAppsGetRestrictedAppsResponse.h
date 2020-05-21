@@ -16,6 +16,7 @@
 
 + (id)getRestrictedAppsResponseWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getRestrictedAppsResponse;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *restrictedApps;
 @property(copy, nonatomic) NSDictionary *appToItsRestrictionsMap;
 - (id)encodedClassName;

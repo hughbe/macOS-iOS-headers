@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     EDReference *_baseFormulaRange;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) EDReference *baseFormulaRange; // @synthesize baseFormulaRange=_baseFormulaRange;
 @property(nonatomic) int columnBaseOrOffset; // @synthesize columnBaseOrOffset=_columnBaseOrOffset;
 @property(nonatomic) int rowBaseOrOffset; // @synthesize rowBaseOrOffset=_rowBaseOrOffset;
@@ -29,7 +30,6 @@ __attribute__((visibility("hidden")))
 - (_Bool)isBaseFormula;
 - (id)baseFormulaWithRowBlocks:(id)arg1;
 - (_Bool)convertTokensToShared;
-- (void)dealloc;
 - (id)init;
 - (id)initWithFormula:(id)arg1;
 - (void)updateBaseFormulaRangeWithRow:(int)arg1 column:(int)arg2;

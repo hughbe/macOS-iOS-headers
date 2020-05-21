@@ -13,6 +13,7 @@
     NSString *_linkIdentifier;
     NSString *_recordIdentifier;
     SGRecordId *_suggestionIdentifier;
+    BOOL _isSuggested;
     NSString *_name;
     NSString *_firstName;
     NSString *_lastName;
@@ -31,6 +32,7 @@
     NSArray *_linkedRecordIdentifiers;
     NSURL *_metadataFileUrl;
     BOOL _isMe;
+    BOOL _isRestricted;
 }
 
 + (id)sortingCompanyNameFromRecord:(id)arg1;
@@ -39,9 +41,13 @@
 + (id)personEntryForLinkedContacts:(id)arg1;
 + (id)personEntryForRecord:(id)arg1;
 + (id)personEntryForPerson:(id)arg1;
++ (BOOL)isContactRestricted:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, copy) NSArray *pickerPropertyObjects; // @synthesize pickerPropertyObjects=_pickerPropertyObjects;
 @property(readonly, copy) NSString *sectionKey; // @synthesize sectionKey=_sectionKey;
 @property(readonly) struct _NSRange nameEmphasisRange; // @synthesize nameEmphasisRange=_nameEmphasisRange;
+@property(readonly) BOOL isSuggested; // @synthesize isSuggested=_isSuggested;
+@property(readonly) BOOL isRestricted; // @synthesize isRestricted=_isRestricted;
 @property(readonly) BOOL isMe; // @synthesize isMe=_isMe;
 @property(readonly, copy) NSURL *metadataFileUrl; // @synthesize metadataFileUrl=_metadataFileUrl;
 @property(readonly, copy) SGRecordId *suggestionIdentifier; // @synthesize suggestionIdentifier=_suggestionIdentifier;
@@ -70,9 +76,8 @@
 @property(readonly) BOOL isCompany;
 @property(readonly) BOOL isPerson;
 - (id)description;
-- (void)dealloc;
 - (id)initWithLinkedContacts:(id)arg1 withFactory:(id)arg2;
-- (id)initWithRecord:(id)arg1 suggestionIdentifier:(id)arg2 withFactory:(id)arg3;
+- (id)initWithRecord:(id)arg1 suggestionIdentifier:(id)arg2 isMe:(BOOL)arg3 withFactory:(id)arg4;
 - (id)initWithRecord:(id)arg1 withFactory:(id)arg2;
 - (id)makeSortingLastNameFromEntry:(id)arg1;
 - (id)makeSortingFirstNameFromEntry:(id)arg1;

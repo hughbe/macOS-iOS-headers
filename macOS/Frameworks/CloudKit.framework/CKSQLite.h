@@ -20,17 +20,20 @@
     NSString *_schemaVersion;
     NSString *_objectClassPrefix;
     long long _synchronousMode;
+    id <CKSQLiteDelegate> _delegate;
     struct sqlite3 *_db;
     unsigned long long _openCount;
     NSMutableDictionary *_statementsBySQL;
     NSDateFormatter *_dateFormatter;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSDateFormatter *dateFormatter; // @synthesize dateFormatter=_dateFormatter;
 @property(readonly, nonatomic) NSMutableDictionary *statementsBySQL; // @synthesize statementsBySQL=_statementsBySQL;
 @property(nonatomic) BOOL corrupt; // @synthesize corrupt=_corrupt;
 @property(nonatomic) unsigned long long openCount; // @synthesize openCount=_openCount;
 @property(nonatomic) struct sqlite3 *db; // @synthesize db=_db;
+@property(retain, nonatomic) id <CKSQLiteDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) BOOL traced; // @synthesize traced=_traced;
 @property(nonatomic) BOOL shouldVacuum; // @synthesize shouldVacuum=_shouldVacuum;
 @property(readonly, nonatomic) BOOL hasMigrated; // @synthesize hasMigrated=_hasMigrated;
@@ -40,7 +43,6 @@
 @property(readonly, nonatomic) NSString *schemaVersion; // @synthesize schemaVersion=_schemaVersion;
 @property(readonly, nonatomic) NSString *schema; // @synthesize schema=_schema;
 @property(readonly, nonatomic) NSString *path; // @synthesize path=_path;
-- (void).cxx_destruct;
 - (int)dbUserVersion;
 - (id)_boxedValue:(id)arg1 forObjcCProperty:(id)arg2;
 - (id)_boxedPropertyDictionary:(id)arg1 forObjCClass:(id)arg2;
@@ -56,14 +58,18 @@
 - (id)_tableNameForClass:(Class)arg1;
 - (void)deleteFrom:(id)arg1 where:(id)arg2 bindings:(id)arg3;
 - (void)deleteFrom:(id)arg1 matchingValues:(id)arg2;
+- (long long)upsertInto:(id)arg1 values:(id)arg2 onConflict:(id)arg3 doUpdate:(id)arg4 where:(id)arg5;
 - (long long)insertOrReplaceInto:(id)arg1 values:(id)arg2;
 - (unsigned long long)selectCountFrom:(id)arg1 where:(id)arg2 bindings:(id)arg3;
 - (id)selectAllFrom:(id)arg1 where:(id)arg2 bindings:(id)arg3;
 - (void)update:(id)arg1 set:(id)arg2 where:(id)arg3 bindings:(id)arg4 limit:(id)arg5;
 - (id)selectFrom:(id)arg1 where:(id)arg2 bindings:(id)arg3 limit:(id)arg4;
 - (void)selectFrom:(id)arg1 where:(id)arg2 bindings:(id)arg3 orderBy:(id)arg4 limit:(id)arg5 block:(CDUnknownBlockType)arg6;
+- (void)select:(id)arg1 from:(id)arg2 where:(id)arg3 bindings:(id)arg4 orderBy:(id)arg5 limit:(id)arg6 block:(CDUnknownBlockType)arg7;
+- (id)select:(id)arg1 from:(id)arg2 where:(id)arg3 bindings:(id)arg4 orderBy:(id)arg5;
 - (id)select:(id)arg1 from:(id)arg2 where:(id)arg3 bindings:(id)arg4;
 - (id)select:(id)arg1 from:(id)arg2;
+- (id)columnNamesForTable:(id)arg1;
 - (id)creationDate;
 - (void)removePropertyForKey:(id)arg1;
 - (void)setDateProperty:(id)arg1 forKey:(id)arg2;

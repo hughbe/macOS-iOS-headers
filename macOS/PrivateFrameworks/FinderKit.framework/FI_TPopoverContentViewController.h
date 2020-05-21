@@ -6,17 +6,25 @@
 
 #import <FinderKit/FI_TViewController.h>
 
-@class FI_TPopoverController;
+@class FI_TPopoverController, NSStackView;
 
 __attribute__((visibility("hidden")))
 @interface FI_TPopoverContentViewController : FI_TViewController
 {
-    FI_TPopoverController *_popoverController;
+    struct TNSWeakPtr<FI_TPopoverController, void> _weakPopoverController;
+    NSStackView *_stackView;
+    struct TNSRef<NSLayoutConstraint, void> _widthConstraint;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
+- (void)removeSubview:(id)arg1;
+- (void)addSubview:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)performClose:(id)arg1;
-- (id)initWithPopover:(id)arg1;
+- (void)setPopoverController:(id)arg1;
+@property(readonly, nonatomic) __weak FI_TPopoverController *popoverController;
+@property double width; // @dynamic width;
 
 @end
 

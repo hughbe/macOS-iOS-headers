@@ -8,6 +8,7 @@
 
 @class AVWeakReference;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterFigAssetWriterNotificationHandler : NSObject
 {
     struct OpaqueFigAssetWriter *_figAssetWriter;
@@ -22,7 +23,6 @@
 - (void)_handleCompletedWritingNotification;
 - (void)_teardownNotificationHandlers;
 - (void)_callDelegateIfNotCalledWithSuccess:(BOOL)arg1 error:(id)arg2;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithFigAssetWriter:(struct OpaqueFigAssetWriter *)arg1;
 @property __weak id <AVAssetWriterFigAssetWriterNotificationHandlerDelegate> delegate;

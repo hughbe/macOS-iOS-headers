@@ -12,29 +12,30 @@
 
 @interface EKFrozenReminder : EKFrozenCalendarItem <EKProtocolReminderOccurrence>
 {
-    BOOL statusCompleteNotByDate;
-    BOOL canEditRecurrence;
-    BOOL cachedHasLocationAlarm;
-    NSDate *dueDateUnadjustedFromUTC;
-    NSDate *completionDate;
-    NSNumber *orderNumber;
-    NSURL *action;
-    NSData *appLink;
-    NSDate *_dueDate;
+    BOOL _cachedHasLocationAlarm;
+    BOOL _canEditRecurrence;
+    BOOL _statusCompleteNotByDate;
+    NSURL *_action;
+    NSData *_appLink;
+    NSDate *_completionDate;
+    NSDate *_dueDateUnadjustedFromUTC;
+    NSNumber *_orderNumber;
+    NSDate *_cachedAdjustedDueDate;
 }
 
 + (Class)meltedClass;
-@property(readonly, nonatomic) NSDate *dueDate; // @synthesize dueDate=_dueDate;
-@property(readonly, copy, nonatomic) NSData *appLink; // @synthesize appLink;
-@property(readonly, copy, nonatomic) NSURL *action; // @synthesize action;
-@property(readonly, nonatomic) BOOL cachedHasLocationAlarm; // @synthesize cachedHasLocationAlarm;
-@property(readonly, nonatomic) BOOL canEditRecurrence; // @synthesize canEditRecurrence;
-@property(readonly, nonatomic) BOOL statusCompleteNotByDate; // @synthesize statusCompleteNotByDate;
-@property(readonly, copy, nonatomic) NSNumber *orderNumber; // @synthesize orderNumber;
-@property(readonly, copy, nonatomic) NSDate *completionDate; // @synthesize completionDate;
-@property(readonly, copy, nonatomic) NSDate *dueDateUnadjustedFromUTC; // @synthesize dueDateUnadjustedFromUTC;
 - (void).cxx_destruct;
+@property(readonly) NSDate *cachedAdjustedDueDate; // @synthesize cachedAdjustedDueDate=_cachedAdjustedDueDate;
+@property(readonly, nonatomic) BOOL statusCompleteNotByDate; // @synthesize statusCompleteNotByDate=_statusCompleteNotByDate;
+@property(readonly, copy, nonatomic) NSNumber *orderNumber; // @synthesize orderNumber=_orderNumber;
+@property(readonly, copy, nonatomic) NSDate *dueDateUnadjustedFromUTC; // @synthesize dueDateUnadjustedFromUTC=_dueDateUnadjustedFromUTC;
+@property(readonly, copy, nonatomic) NSDate *completionDate; // @synthesize completionDate=_completionDate;
+@property(readonly, nonatomic) BOOL canEditRecurrence; // @synthesize canEditRecurrence=_canEditRecurrence;
+@property(readonly, nonatomic) BOOL cachedHasLocationAlarm; // @synthesize cachedHasLocationAlarm=_cachedHasLocationAlarm;
+@property(readonly, copy, nonatomic) NSData *appLink; // @synthesize appLink=_appLink;
+@property(readonly, copy, nonatomic) NSURL *action; // @synthesize action=_action;
 - (BOOL)isReminder;
+@property(readonly, nonatomic) NSDate *dueDate;
 - (id)initWithObject:(id)arg1 createPartialObject:(BOOL)arg2 preFrozenRelationshipObjects:(id)arg3;
 
 // Remaining properties
@@ -46,19 +47,20 @@
 @property(readonly, nonatomic) NSNumber *calendarItemPermissionNumber;
 @property(readonly, nonatomic) BOOL canBeConvertedToFullObject;
 @property(readonly, copy, nonatomic) NSString *contactIdentifiersString;
-@property(readonly, copy, nonatomic) id <EKProtocolCalendar> container;
+@property(readonly, retain, nonatomic) id <CalendarModelProtocol> container;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, nonatomic) BOOL defaultAlarmWasDeleted;
 @property(readonly, copy) NSString *description;
 @property(readonly, copy, nonatomic) id <EKProtocolStructuredLocation> ekStructuredLocation;
 @property(readonly) unsigned long long hash;
 @property(readonly, nonatomic) BOOL isPartialObject;
-@property(readonly, copy, nonatomic) NSDate *lastModifiedDate;
+@property(readonly, copy, nonatomic) NSData *localStructuredData;
 @property(readonly, nonatomic) NSManagedObjectID *managedObjectID;
 @property(readonly, nonatomic) BOOL organizedByMe;
 @property(readonly, copy, nonatomic) NSString *organizerEmail;
 @property(readonly, copy, nonatomic) NSString *organizerEncodedLikenessData;
 @property(readonly, copy, nonatomic) NSString *organizerName;
+@property(readonly, copy, nonatomic) NSString *organizerPhoneNumber;
 @property(readonly, copy, nonatomic) NSURL *organizerURL;
 @property(readonly, copy, nonatomic) id <EKProtocolParticipant> participantForMe;
 @property(readonly, nonatomic) NSDictionary *preFrozenRelationshipObjects;
@@ -68,6 +70,7 @@
 @property(readonly, copy, nonatomic) NSString *relatedExternalID;
 @property(readonly, copy, nonatomic) NSString *scheduleAgentString;
 @property(readonly, copy, nonatomic) NSDate *startDateUnadjustedFromUTC;
+@property(readonly, copy, nonatomic) NSData *structuredData;
 @property(readonly) Class superclass;
 @property(readonly, copy, nonatomic) NSTimeZone *timeZoneObject;
 

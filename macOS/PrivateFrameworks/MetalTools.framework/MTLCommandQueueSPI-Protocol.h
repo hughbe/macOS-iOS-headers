@@ -10,10 +10,13 @@
 
 @protocol MTLCommandQueueSPI <MTLCommandQueue>
 @property(getter=isProfilingEnabled) BOOL profilingEnabled;
+@property BOOL isOpenGLQueue;
 @property BOOL executionEnabled;
 @property BOOL skipRender;
-@property(readonly) long long qosRelativePriority;
-@property(readonly) unsigned long long qosClass;
+@property(readonly) NSObject<OS_dispatch_queue> *completionQueue;
+@property(readonly) BOOL commitSynchronously;
+@property(readonly) NSObject<OS_dispatch_queue> *commitQueue;
+@property(readonly) unsigned long long qosLevel;
 @property(readonly) unsigned long long maxCommandBufferCount;
 @property int backgroundTrackingPID;
 - (void)finish;
@@ -21,8 +24,10 @@
 - (void)setSubmissionQueue:(NSObject<OS_dispatch_queue> *)arg1;
 - (BOOL)setBackgroundGPUPriority:(unsigned long long)arg1 offset:(unsigned short)arg2;
 - (BOOL)setBackgroundGPUPriority:(unsigned long long)arg1;
+- (unsigned long long)getBackgroundGPUPriority;
 - (BOOL)setGPUPriority:(unsigned long long)arg1 offset:(unsigned short)arg2;
 - (BOOL)setGPUPriority:(unsigned long long)arg1;
+- (unsigned long long)getGPUPriority;
 
 @optional
 @property(retain, getter=counterInfo) NSMutableDictionary *counterInfo;
@@ -38,6 +43,7 @@
 - (NSArray *)getRequestedCounters;
 - (int)requestCounters:(NSArray *)arg1 withIndex:(unsigned long long)arg2;
 - (int)requestCounters:(NSArray *)arg1;
+- (NSArray *)availableCountersAndDict;
 - (NSArray *)availableCounters;
 @end
 

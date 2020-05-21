@@ -11,19 +11,22 @@
 @interface AFConversation : NSObject
 {
     NSMutableDictionary *_additionalInterpretationsForRefId;
+    NSMutableDictionary *_updatedUserUtteranceForRefId;
     BOOL _synchronizedWithServer;
     NSUUID *_identifier;
     NSString *_languageCode;
     id <AFConversationDelegate> _delegate;
     AFTreeNode *_rootNode;
+    id <AFConversationStorable> _lastRestoredItem;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic, setter=_setLastRestoredItem:) id <AFConversationStorable> lastRestoredItem; // @synthesize lastRestoredItem=_lastRestoredItem;
 @property(retain, nonatomic, getter=_rootNode, setter=_setRootNode:) AFTreeNode *rootNode; // @synthesize rootNode=_rootNode;
 @property(nonatomic) __weak id <AFConversationDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic, getter=isSynchronizedWithServer) BOOL synchronizedWithServer; // @synthesize synchronizedWithServer=_synchronizedWithServer;
 @property(readonly, copy, nonatomic) NSString *languageCode; // @synthesize languageCode=_languageCode;
 @property(readonly, copy, nonatomic) NSUUID *identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
 - (id)initWithPropertyListRepresentation:(id)arg1;
 - (id)propertyListRepresentation;
 - (void)_changePresentationStateForNodes:(id)arg1;
@@ -49,6 +52,7 @@
 - (id)identifierOfItemAtIndexPath:(id)arg1;
 - (BOOL)containsItemWithIdentifier:(id)arg1;
 - (void)cancelItemWithIdentifier:(id)arg1;
+- (void)removeTransientItems;
 - (void)removeItemsFollowingItemAtIndexPath:(id)arg1;
 - (void)removeItemsAtIndexPaths:(id)arg1;
 - (void)removeItemsWithIdentifiers:(id)arg1;
@@ -57,15 +61,19 @@
 - (void)addItemForMusicStartSessionCommand:(id)arg1;
 - (void)addItemsForShowHelpCommand:(id)arg1;
 - (void)addItemForPartialResultCommand:(id)arg1;
+- (id)updatedUserUtteranceForRefId:(id)arg1;
+- (void)addRecognitionUpdateWithPhrases:(id)arg1 utterances:(id)arg2 refId:(id)arg3;
 - (id)additionalSpeechInterpretationsForRefId:(id)arg1;
 - (void)addAdditionalSpeechInterpretation:(id)arg1 refId:(id)arg2;
 - (void)addItemForSpeechRecognizedCommand:(id)arg1;
-- (void)addItemsForAddViewsCommand:(id)arg1;
-- (void)addItemsForAceViews:(id)arg1 withDialogPhase:(id)arg2 asChildrenOfItemWithIdentifier:(id)arg3;
 - (void)addItemsForAceObjects:(id)arg1 type:(long long)arg2 dialogPhase:(id)arg3 asChildrenOfItemWithIdentifier:(id)arg4;
 - (void)_addItemsForAceObjects:(id)arg1 type:(long long)arg2 aceCommandIdentifier:(id)arg3 dialogPhase:(id)arg4 asChildrenOfItemWithIdentifier:(id)arg5;
-- (id)_indexPathsForAddingItemsWithCount:(long long)arg1 asChildrenOfItemWithIdentifier:(id)arg2;
+- (void)addItemsForAddViewsCommand:(id)arg1;
+- (void)addItemsForAceViews:(id)arg1 withDialogPhase:(id)arg2 asChildrenOfItemWithIdentifier:(id)arg3;
 - (void)insertItemsForAceViews:(id)arg1 withDialogPhase:(id)arg2 atIndexPaths:(id)arg3;
+- (void)_addItemsForAceViews:(id)arg1 withDialogPhase:(id)arg2 fromCommandWithIdentifier:(id)arg3 asChildrenOfItemWithIdentifier:(id)arg4;
+- (id)_indexPathsForAddingItemsWithCount:(long long)arg1 asChildrenOfItemWithIdentifier:(id)arg2;
+- (void)_addItemsForAceViews:(id)arg1 withDialogPhase:(id)arg2 fromCommandWithIdentifier:(id)arg3 atIndexPaths:(id)arg4;
 - (void)_processInsertions:(id)arg1 inDialogPhase:(id)arg2;
 - (id)_childOfNode:(id)arg1 withItemWhichCanBeUpdatedWithAceObject:(id)arg2 inDialogPhase:(id)arg3;
 - (void)_removeNodes:(id)arg1;

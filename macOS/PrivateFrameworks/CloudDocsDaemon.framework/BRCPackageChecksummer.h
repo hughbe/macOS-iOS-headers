@@ -15,7 +15,7 @@
 
 - (void).cxx_destruct;
 - (void)done;
-- (void)addItem:(id)arg1;
+- (BOOL)addItem:(id)arg1 error:(id *)arg2;
 - (id)init;
 @property(readonly, nonatomic) NSData *signature;
 

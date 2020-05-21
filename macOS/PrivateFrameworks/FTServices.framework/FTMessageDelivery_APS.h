@@ -9,15 +9,13 @@
 #import "APSConnectionDelegate.h"
 #import "FTMessageQueueDelegate.h"
 
-@class APSConnection, NSMutableArray, NSMutableDictionary, NSString;
+@class NSMutableArray, NSMutableDictionary, NSString;
 
 @interface FTMessageDelivery_APS : FTMessageDelivery <FTMessageQueueDelegate, APSConnectionDelegate>
 {
-    Class _APSConnectionClass;
+    id <FTMessageDeliveryAPSConnection> _connection;
+    id <FTMessageDeliveryAPSMobileNetworkManager> _mobileNetworkManager;
     Class _APSOutgoingMessageClass;
-    APSConnection *_connection;
-    long long _messageSize;
-    long long _largeMessageSize;
     NSMutableArray *_enabledTopics;
     NSMutableDictionary *_ftMessageMap;
     NSMutableDictionary *_startDateMap;
@@ -29,6 +27,7 @@
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 - (long long)maxLargeMessageSize;
 - (long long)maxMessageSize;
 - (void)connection:(id)arg1 didFailToSendOutgoingMessage:(id)arg2 error:(id)arg3;
@@ -44,7 +43,7 @@
 - (void)_dequeueIfNeeded;
 - (BOOL)_sendMessageAsynchronously:(id)arg1 error:(id *)arg2;
 - (void)invalidate;
-- (void)_notifyDelegateAboutError:(id)arg1 forMessage:(id)arg2;
+- (void)_notifyDelegateAboutError:(id)arg1 resultCode:(long long)arg2 forMessage:(id)arg3;
 - (id)connection;
 - (void)_powerLogEvent:(id)arg1 dictionary:(id)arg2;
 - (id)_apsMessageForMessage:(id)arg1 body:(id)arg2;
@@ -77,6 +76,7 @@
 - (void)_setEnabledTopics:(id)arg1;
 - (void)dealloc;
 - (id)init;
+- (id)initWithAPSConnection:(id)arg1 mobileNetworkManager:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,7 +8,7 @@
 
 #import "NSAnimationDelegate.h"
 
-@class NSBundle, NSControl, NSIndexSet, NSMutableArray, NSMutableDictionary, NSMutableIndexSet, NSString, NSTableRowView, NSTableSwipeData, NSTableUpdateData, NSTableView, NSTableViewDropFeedbackData, NSView, _NSTableGroupRowSupport;
+@class NSBundle, NSControl, NSIndexSet, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableIndexSet, NSMutableSet, NSString, NSTableRowView, NSTableSwipeData, NSTableUpdateData, NSTableView, NSTableViewDropFeedbackData, NSView, _NSTableGroupRowSupport;
 
 __attribute__((visibility("hidden")))
 @interface NSTableRowData : NSObject <NSAnimationDelegate>
@@ -20,7 +20,7 @@ __attribute__((visibility("hidden")))
     long long _firstResponderRow;
     NSControl *_firstResponder;
     NSView *_delayedFirstResponder;
-    NSMutableDictionary *_reusueQueue;
+    NSMutableDictionary *_reuseQueue;
     NSBundle *_nibBundle;
     NSString *_nibPath;
     NSTableViewDropFeedbackData *_dropFeedbackData;
@@ -36,7 +36,11 @@ __attribute__((visibility("hidden")))
     long long _reuseQueueUpperSize;
     struct CGRect _suggestedContentRect;
     NSTableSwipeData *_swipeData;
+    NSView *_preferredReuseView;
     CDUnknownBlockType _animationCompletionHandler;
+    NSMutableIndexSet *_changedAutomaticRowHeights;
+    NSMapTable *_cachedAutomaticRowHeights;
+    NSMutableSet *_rowViewPurgatory;
     unsigned int _updatingVisibleRows:1;
     unsigned int _animateFrames:1;
     unsigned int _updatingColumnWidths:1;
@@ -61,21 +65,27 @@ __attribute__((visibility("hidden")))
     unsigned int _implicitAnimationsWereEnabled:1;
     unsigned int _ignoreTrackingAreas:1;
     unsigned int _scheduledCullOfViews:1;
+    unsigned int _keyViewLoopIsDirty:1;
+    unsigned int _rowViewPurgatoryEnabled:1;
+    unsigned int _rowViewsBeingAnimatedOffPurgeInProgress:1;
+    unsigned int _rowViewsDereferenceImminent:1;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSMutableIndexSet *mutableHiddenRowIndexes; // @synthesize mutableHiddenRowIndexes=_hiddenRowIndexes;
 @property(copy) CDUnknownBlockType animationCompletionHandler; // @synthesize animationCompletionHandler=_animationCompletionHandler;
+@property(retain, nonatomic) NSView *preferredReuseView; // @synthesize preferredReuseView=_preferredReuseView;
 @property(retain) NSMutableDictionary *rowViewsBeingAnimatedOff; // @synthesize rowViewsBeingAnimatedOff=_rowViewsBeingAnimatedOff;
 @property(nonatomic) long long firstResponderRow; // @synthesize firstResponderRow=_firstResponderRow;
 @property(readonly) NSTableViewDropFeedbackData *dropFeedbackData; // @synthesize dropFeedbackData=_dropFeedbackData;
-@property(nonatomic) NSTableView *tableView; // @synthesize tableView=_tableView;
+@property(nonatomic) __weak NSTableView *tableView; // @synthesize tableView=_tableView;
 @property(readonly, nonatomic) NSTableSwipeData *swipeData; // @synthesize swipeData=_swipeData;
 @property(nonatomic) struct CGSize targetTableFrameSize; // @synthesize targetTableFrameSize=_targetTableFrameSize;
 @property(copy) CDUnknownBlockType delayEditBlock; // @synthesize delayEditBlock=_delayEditBlock;
 - (void)_animateSwipeToDeleteWithGestureAmount:(double)arg1 velocity:(double)arg2 stiffness:(double)arg3;
 - (void)_trackSwipeToDeleteFromEvent:(id)arg1;
 - (double)_rubberBandGestureAmount:(double)arg1;
-- (void)_doSwipeToDeleteConsumeAnimationWithRowAction:(id)arg1;
+- (void)_doSwipeToDeleteConsumeAnimationWithRowAction:(id)arg1 fromSwipe:(BOOL)arg2;
 - (void)_releaseSwipeToDeleteScaneLineView;
 - (void)_animateSwipeToDeleteScanLineView;
 - (void)_setupDeleteScanLineViewWithRowAction:(id)arg1;
@@ -85,12 +95,11 @@ __attribute__((visibility("hidden")))
 - (void)_setSwipeToDeleteRow:(long long)arg1 editActions:(id)arg2 edge:(unsigned long long)arg3;
 - (void)_actionButtonClicked:(id)arg1;
 - (void)_updateActionButtonPositionsForRowView:(id)arg1 edge:(unsigned long long)arg2 exposedPercentage:(double)arg3;
-- (CDStruct_c3b9c2ee)_getSwipeButtonPercentageForRowView:(id)arg1 exposedPercentage:(double)arg2 consumingPercentage:(double)arg3;
+- (CDStruct_6b6ad735)_getSwipeButtonPercentageForRowView:(id)arg1 exposedPercentage:(double)arg2 consumingPercentage:(double)arg3;
 - (double)_consumeButtonPercentageForExposedCellPercentage:(double)arg1 consumingPercentage:(double)arg2;
-- (id)_makeGrayViewForBehindButtonsWithFrame:(struct CGRect)arg1;
 - (void)_setupEditActionsButtonsForActions:(id)arg1 edge:(unsigned long long)arg2;
 - (void)_updateSwipeToDeleteRowButtonsIfNeeded;
-- (void)_setSwipeToDeleteAmount:(double)arg1;
+- (void)_setSwipeToDeleteAmount:(double)arg1 fromSwipe:(BOOL)arg2;
 - (BOOL)_swipeToDeleteRowIsConsuming;
 - (BOOL)_swipeToDeleteIsConsumingValue:(double)arg1;
 - (void)animation:(id)arg1 didReachProgressMark:(float)arg2;
@@ -153,7 +162,7 @@ __attribute__((visibility("hidden")))
 - (void)_ensureDropFeedbackData;
 - (void)draggingAccepted;
 - (void)draggingExited;
-- (void)draggingSession:(id)arg1 endedAtPoint:(struct CGPoint)arg2 operation:(unsigned long long)arg3;
+- (void)draggingSessionEndedAtPoint:(struct CGPoint)arg1 operation:(unsigned long long)arg2;
 - (void)_doDraggingEndedForGapStyleWithFeedbackData:(id)arg1;
 @property(readonly, nonatomic) BOOL dragActive; // @dynamic dragActive;
 - (void)draggingBeginWithRowIndexes:(id)arg1 startRow:(long long)arg2;
@@ -163,6 +172,8 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) NSIndexSet *hiddenRowIndexes; // @dynamic hiddenRowIndexes;
 - (void)viewWillStartLiveResize;
 - (void)viewDidEndLiveResize;
+- (void)removeFromReuseQueue:(id)arg1;
+- (BOOL)reuseQueueContainsView:(id)arg1;
 - (void)clearReusueQueue;
 - (void)_cacheReusableView:(id)arg1;
 - (void)cacheReusableView:(id)arg1;
@@ -199,6 +210,7 @@ __attribute__((visibility("hidden")))
 - (long long)_firstChangedColumn;
 - (void)_updateOutlineColumnWidthForRowView:(id)arg1 atRow:(long long)arg2;
 - (BOOL)_columnWidthsNeedUpdate;
+- (void)selectionColorChanged;
 - (void)selectionShouldUsePrimaryColorChanged;
 - (void)setSelectionShouldUsePrimaryColor:(BOOL)arg1;
 - (void)enumerateAvailableRowViewsUsingBlock:(CDUnknownBlockType)arg1;
@@ -207,7 +219,7 @@ __attribute__((visibility("hidden")))
 - (void)didSelectRow:(long long)arg1;
 - (void)_setRow:(long long)arg1 toSelected:(BOOL)arg2;
 - (void)forceUpdateSelectedRows;
-- (void)changeSelectedRowIndexesFrom:(id)arg1 to:(id)arg2;
+- (void)changeSelectedRowIndexesTo:(id)arg1;
 - (void)_setRowView:(id)arg1 atRow:(long long)arg2 toSelected:(BOOL)arg3;
 - (void)_recacheAllCellsForRowView:(id)arg1 row:(long long)arg2;
 - (void)setFirstResponderRowView:(id)arg1 atRow:(long long)arg2;
@@ -219,10 +231,17 @@ __attribute__((visibility("hidden")))
 - (void)_updateVisibleRowFrames;
 - (void)didRemoveTableColumnAtIndex:(long long)arg1;
 - (void)didAddTableColumn:(id)arg1;
+- (void)_updateConstraintsForRowView:(id)arg1 atRow:(long long)arg2;
+- (void)_updateConstraintsAtColumn:(long long)arg1 row:(long long)arg2 rowView:(id)arg3;
+- (id)_makeCellConstraintsAtColumn:(long long)arg1 row:(long long)arg2 rowView:(id)arg3 cellView:(id)arg4;
+- (struct CGRect)_cellOffsetConstraintConstantsForColumn:(long long)arg1 row:(long long)arg2;
 - (void)setColumnHidden:(BOOL)arg1 atColumnIndex:(long long)arg2;
 - (void)updateVisibleRowViews;
+- (void)_automaticRowHeightsUpdateVisibleRowViews;
+- (void)_handleChangedAutomaticRowHeights;
+- (void)_keepTopRowStable:(BOOL)arg1 andDoWorkUntilDone:(CDUnknownBlockType)arg2;
 - (void)cacheExistingSubviews;
-- (void)_unsafeUpdateVisibleRowEntries;
+- (void)_updateVisibleRowEntries;
 - (void)_updatePreparedContentRect;
 - (struct CGRect)_currentPreparedContentRect;
 - (void)_updateFloatingGroupRowView;
@@ -242,8 +261,6 @@ __attribute__((visibility("hidden")))
 - (long long)_computeCurrentFloatingGroupRow;
 - (long long)_computeFloatingGroupRowFromIndex:(long long)arg1 inVisibleRange:(struct _NSRange)arg2;
 @property(retain, nonatomic) NSTableRowView *floatingGroupRowView; // @dynamic floatingGroupRowView;
-- (void)_updateClipPathIfNeeded;
-- (BOOL)needsClipPath;
 @property(nonatomic) long long floatingGroupRow; // @dynamic floatingGroupRow;
 @property(retain, nonatomic) NSMutableIndexSet *groupRowIndexes; // @dynamic groupRowIndexes;
 - (void)ensureGroupRowIndexes;
@@ -252,6 +269,7 @@ __attribute__((visibility("hidden")))
 - (void)reloadDataForRowIndexes:(id)arg1 columnIndexes:(id)arg2;
 - (void)reloadData;
 - (void)removeAllKnownSubviews;
+- (void)_removeReuseViewsIfNecessary;
 - (void)_clearUpdateData;
 - (void)_removeBackgroundView;
 - (void)_removeFloatingGroupRowView;
@@ -274,9 +292,10 @@ __attribute__((visibility("hidden")))
 - (long long)_numberOfColumnsForRowView:(id)arg1 atRow:(long long)arg2;
 - (id)_makeTemporaryPreparedRowViewForRow:(long long)arg1;
 - (id)preparedRowViewForOutlineView;
-- (id)_extractViewFromDictionary:(id)arg1 atRow:(long long)arg2;
+- (id)_preparedRowViewForRow:(long long)arg1 storageHandler:(CDUnknownBlockType)arg2;
 - (void)_setPropertiesForRowView:(id)arg1 atRow:(long long)arg2;
-- (void)_setupLayoutEngineView:(id)arg1;
+- (void)_setupLayoutPropertiesForCellView:(id)arg1;
+- (void)_setupLayoutHostingEngineForView:(id)arg1;
 - (BOOL)_needsIndividualLayoutEngine;
 - (unsigned long long)_gridStyleMaskForRow:(long long)arg1 isGroupRow:(BOOL)arg2;
 - (BOOL)_isVisibleRow:(long long)arg1;
@@ -291,6 +310,7 @@ __attribute__((visibility("hidden")))
 - (void)_endAnimationGrouping;
 - (void)_beginAnimationGroupingWithDuration:(double)arg1;
 - (void)beginAnimationGroupingIfNeeded;
+- (double)_animationGroupAnimationDuration;
 - (void)_removeViewsBeingAnimatedAwayForReuse;
 - (void)_cullAllReusableViews;
 - (void)_cullReusableViewsArray:(id)arg1;
@@ -308,11 +328,24 @@ __attribute__((visibility("hidden")))
 - (void)removeTemporaryViews;
 - (double)_currentAnimationDuration;
 - (void)_removeViewAndAddToReuse:(id)arg1 forRow:(long long)arg2;
-- (void)_removeOrHideView:(id)arg1;
 - (void)_addViewsToRowView:(id)arg1 atRow:(long long)arg2;
-- (void)_doLayoutIfNeededToRowView:(id)arg1;
+- (void)updateKeyViewLoopIfNeeded;
+- (void)_markUpdateKeyViewLoopDirtyForRowView:(id)arg1;
+- (void)_doLayoutIfNeededToRowView:(id)arg1 row:(long long)arg2;
+- (BOOL)_doAutomaticRowHeightsForRows:(id)arg1;
+- (BOOL)_doAutomaticRowHeightForRowView:(id)arg1 row:(long long)arg2;
+- (void)_addTemporaryConstraintsForView:(id)arg1 toParentColumnView:(id)arg2;
+- (void)_reactivateConstraintsForColumn:(long long)arg1 rowView:(id)arg2;
+- (void)_ensureConstraintsAtColumn:(long long)arg1 row:(long long)arg2 rowView:(id)arg3;
+- (void)_setupAndActivateConstraintsForRowView:(id)arg1 row:(long long)arg2;
+- (void)_setupAndActivateConstraintsAtColumn:(long long)arg1 row:(long long)arg2 rowView:(id)arg3;
+- (double)automaticRowHeightMinWidthForColumn:(long long)arg1;
+- (BOOL)_doAutomaticRowHeightForRow:(long long)arg1;
+- (double)automaticRowHeightForRow:(long long)arg1;
+- (void)_invalidateCachedRowHeightForRowView:(id)arg1;
 - (BOOL)_isFullWidthRowView:(id)arg1 atRow:(long long)arg2;
 - (void)_updateKeyViewLoopforRowView:(id)arg1;
+- (void)ensureValidKeyViewLoopForRowView:(id)arg1;
 - (void)updateKeyViewLoopForAllRows;
 - (id)_addViewToRowView:(id)arg1 atColumn:(long long)arg2 row:(long long)arg3;
 - (long long)_effectiveRowSizeStyleInRowView:(id)arg1;
@@ -325,6 +358,11 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) BOOL updatingVisibleRows; // @dynamic updatingVisibleRows;
 - (void)beginUpdates;
 - (void)_updateVisibleViewsBasedOnUpdateItems;
+- (id)_doAutomaticRowHeightsForInsertedAndVisibleRows;
+- (double)_updateItemsAnimateOffExtraViewsWithLastTop:(double)arg1 lastClipView:(id)arg2 colors:(id)arg3;
+- (void)_updateFloatingGroupRowForUpdateItemsIfNeeded:(id)arg1 priorFloatingGroupRow:(long long)arg2 colors:(id)arg3;
+- (void)_cacheGroupRowsForUpdateItemsIfNeeded;
+- (void)_growVisibleRowsForUpdateItemsIfNeeded;
 - (void)_setFloating:(BOOL)arg1 forRowView:(id)arg2 atRow:(long long)arg3;
 @property(nonatomic) BOOL animateSelection; // @dynamic animateSelection;
 - (void)_setupBackgroundFillerAnimationToLastTopY:(double)arg1 bottomYOfSlideRemoveClipView:(double)arg2;
@@ -346,9 +384,10 @@ __attribute__((visibility("hidden")))
 - (void)markNeedingFramesUpdated;
 - (double)_removeDeletedViews;
 - (void)_dropAllVisibleRows;
-- (void)_slideInsertRow:(long long)arg1 intoClipView:(id)arg2;
+- (void)_slideInsertRow:(long long)arg1 intoClipView:(id)arg2 withPriorView:(id)arg3;
 - (void)_updateColumnWidthsForNewRow:(long long)arg1 rowView:(id)arg2;
 - (void)_animateInsertingOfClipView:(id)arg1 rowAnimation:(unsigned long long)arg2;
+- (BOOL)_shouldFlipRowClipViewSubviews;
 - (id)_makeClipViewWithFrame:(struct CGRect)arg1 rowAnimation:(unsigned long long)arg2 fromRow:(long long)arg3;
 - (void)_cleanupAnimationClipView:(id)arg1;
 - (id)_slideRemoveRowViews:(id)arg1 originalRow:(long long)arg2 withAnimation:(unsigned long long)arg3;
@@ -371,6 +410,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL callingHeightOfRow; // @dynamic callingHeightOfRow;
 - (void)dealloc;
 - (void)removeAllObjects;
+- (void)_check_rowViewsOkToClear;
 - (void)_pullExistingSubviewsOnTopAnimated:(BOOL)arg1;
 - (void)_setExistingSubviews:(id)arg1;
 - (id)_existingSubviews;

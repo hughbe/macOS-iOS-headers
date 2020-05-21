@@ -6,24 +6,17 @@
 
 #import "FRJSObject.h"
 
-@class ISStoreAccount, NSNumber, NSString;
+@class CKStoreAccount;
 
 @interface FRJSAccount : FRJSObject
 {
-    BOOL _primaryAccount;
-    ISStoreAccount *_storeAccount;
-    NSNumber *_dsID;
-    NSString *_identifier;
+    CKStoreAccount *_storeAccount;
 }
 
-@property(readonly, nonatomic, getter=isPrimaryAccount) BOOL primaryAccount; // @synthesize primaryAccount=_primaryAccount;
-@property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-@property(readonly, nonatomic) NSNumber *dsID; // @synthesize dsID=_dsID;
-@property(readonly, nonatomic) ISStoreAccount *storeAccount; // @synthesize storeAccount=_storeAccount;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) CKStoreAccount *storeAccount; // @synthesize storeAccount=_storeAccount;
 - (id)callFunction:(id)arg1 withArguments:(id)arg2;
 - (id)initWithStoreAccount:(id)arg1;
-- (BOOL)primaryAccount;
 
 @end
 

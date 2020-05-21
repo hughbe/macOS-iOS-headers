@@ -14,7 +14,8 @@ __attribute__((visibility("hidden")))
     EXReadState *mEXReadState;
 }
 
-- (id)exState;
+- (void).cxx_destruct;
+@property(readonly) __weak EXReadState *exState; // @synthesize exState=mEXReadState;
 - (id)initWithEXReadState:(id)arg1 packagePart:(id)arg2;
 
 @end

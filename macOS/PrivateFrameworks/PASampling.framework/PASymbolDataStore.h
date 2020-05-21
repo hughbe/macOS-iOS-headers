@@ -8,7 +8,7 @@
 
 #import "PASerializable.h"
 
-@class NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, PAImageInfo;
+@class NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, PABinaryLocator, PAImageInfo;
 
 @interface PASymbolDataStore : NSObject <PASerializable>
 {
@@ -17,39 +17,49 @@
     NSMutableSet *_sharedCacheUUIDsAlreadySearchedFor;
     NSMutableDictionary *_uuidToCSSymbolOwnerCache;
     NSMutableDictionary *_pidToCSSymbolicatorCache;
-    PAImageInfo *_sharedCache64bit;
-    PAImageInfo *_sharedCache32bit;
+    PAImageInfo *_systemSharedCache;
+    PAImageInfo *_nonSystemSharedCache;
+    PAImageInfo *_kernelCache;
     NSString *_dscSymDir;
     NSMutableArray *_dsymPaths;
+    PABinaryLocator *_binaryLocator;
     BOOL _shouldSymbolicate;
     BOOL _shouldUseDsymForUUIDToFindBinaries;
-    struct _CSRange _sharedCache64bitRange;
-    struct _CSRange _sharedCache32bitRange;
+    struct _CSRange _systemSharedCacheRange;
+    struct _CSRange _nonSystemSharedCacheRange;
+    NSMutableSet *_pidsUsingNonSystemSharedCache;
 }
 
++ (void)takeOwnershipOfCoreSymbolicationCachingPolicies;
 + (id)newInstanceWithoutReferencesFromBufferPosition:(const void *)arg1;
 + (id)classDictionaryKey;
-@property(retain) NSString *dscSymDir; // @synthesize dscSymDir=_dscSymDir;
-@property(retain) PAImageInfo *sharedCache32bit; // @synthesize sharedCache32bit=_sharedCache32bit;
-@property(retain) PAImageInfo *sharedCache64bit; // @synthesize sharedCache64bit=_sharedCache64bit;
-@property BOOL shouldUseDsymForUUIDToFindBinaries; // @synthesize shouldUseDsymForUUIDToFindBinaries=_shouldUseDsymForUUIDToFindBinaries;
-@property BOOL shouldSymbolicate; // @synthesize shouldSymbolicate=_shouldSymbolicate;
 - (void).cxx_destruct;
+@property(retain) NSString *dscSymDir; // @synthesize dscSymDir=_dscSymDir;
+@property(retain) PAImageInfo *kernelCache; // @synthesize kernelCache=_kernelCache;
+@property(retain) NSMutableSet *pidsUsingNonSystemSharedCache; // @synthesize pidsUsingNonSystemSharedCache=_pidsUsingNonSystemSharedCache;
+@property(retain) PAImageInfo *nonSystemSharedCache; // @synthesize nonSystemSharedCache=_nonSystemSharedCache;
+@property(retain) PAImageInfo *systemSharedCache; // @synthesize systemSharedCache=_systemSharedCache;
+@property BOOL shouldUseDsymForUUIDToFindBinaries; // @synthesize shouldUseDsymForUUIDToFindBinaries=_shouldUseDsymForUUIDToFindBinaries;
 - (id)symbolHandleForAddress:(unsigned long long)arg1 withSymbolicator:(struct _CSTypeRef)arg2;
 - (BOOL)_isLikelyToBeKernelAddress:(unsigned long long)arg1;
 - (id)copyImageInfosForLivingPid:(int)arg1;
 - (id)symbolHandleForAddress:(unsigned long long)arg1 inLivingPid:(int)arg2;
+- (void)dealloc;
 - (id)init;
+@property BOOL shouldSymbolicate; // @synthesize shouldSymbolicate=_shouldSymbolicate;
+- (void)flushSymbolOwnerCache;
+- (void)flushCachedSymbolOwnerForUUID:(id)arg1;
 - (void)flushSymbolicatorCache;
 - (void)flushCachedSymbolicatorForPid:(int)arg1;
 - (void)cacheSymbolicatorForPid:(int)arg1;
 - (struct _CSTypeRef)csSymbolicatorForPid:(int)arg1;
+- (id)symbolHandleForOffset:(unsigned long long)arg1 inBinary:(id)arg2 inLivingPid:(int)arg3;
 - (id)symbolHandleForOffset:(unsigned long long)arg1 inBinaryWithUUID:(id)arg2 inSampleTask:(id)arg3 isLiving:(BOOL)arg4;
 - (id)symbolHandleForOffset:(unsigned long long)arg1 inBinaryWithUUID:(id)arg2 withBinaryOffsetInTask:(unsigned long long)arg3 inLivingPid:(int)arg4;
 - (id)symbolHandleForOffset:(unsigned long long)arg1 inBinaryWithUUID:(id)arg2 inLivingPid:(int)arg3;
 - (id)symbolHandleForAddress:(unsigned long long)arg1 inSampleTask:(id)arg2 isLiving:(BOOL)arg3;
-- (struct _CSRange)rangeOfSharedCacheWithArchitecture:(struct _CSArchitecture)arg1;
-- (id)sharedCacheForArch:(struct _CSArchitecture)arg1;
+- (struct _CSRange)rangeOfSharedCacheWithPid:(int)arg1;
+- (id)sharedCacheForPid:(int)arg1;
 - (id)_symbolHandleForOffsetIntoSymbolOwner:(unsigned long long)arg1 withSymbolOwner:(id)arg2 andSymbolOwnerBaseAddress:(unsigned long long)arg3 andPidHint:(int)arg4;
 - (id)_symbolHandleForOffsetInBinary:(unsigned long long)arg1 inImageUUID:(id)arg2 andImageMappingSlide:(unsigned long long)arg3 andPidHint:(int)arg4;
 - (id)_symbolHandleForAddress:(unsigned long long)arg1 withImageUUIDMappings:(id)arg2 andImageMappingSlide:(unsigned long long)arg3 andPidHint:(int)arg4;

@@ -8,16 +8,21 @@
 
 #import "SCRLocaleInfoProviding.h"
 
-@class NSString;
+@class NSArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface SCRLocaleCommon : NSObject <SCRLocaleInfoProviding>
 {
-    unsigned long long _characterDirection;
+    unsigned long long characterDirection;
+    NSArray *preferredLanguages;
+    NSString *preferredLanguage;
 }
 
-@property(readonly, nonatomic) unsigned long long characterDirection; // @synthesize characterDirection=_characterDirection;
-@property(readonly, nonatomic) BOOL isLocaleCharacterDirectionRightToLeft;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSString *preferredLanguage; // @synthesize preferredLanguage;
+@property(readonly, nonatomic) NSArray *preferredLanguages; // @synthesize preferredLanguages;
+@property(readonly, nonatomic) unsigned long long characterDirection; // @synthesize characterDirection;
+@property(readonly, nonatomic) BOOL isLocaleCharacterDirectionRightToLeft; // @dynamic isLocaleCharacterDirectionRightToLeft;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

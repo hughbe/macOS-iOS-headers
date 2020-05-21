@@ -6,30 +6,25 @@
 
 #import "NSObject.h"
 
-@class NSString, SFAutoUnlockDevice;
+@class NSData, NSString, SFAutoUnlockDevice;
 
 @protocol SFUnlockProtocol <NSObject>
 
 @optional
 - (void)unlockStateForDevice:(NSString *)arg1 completionHandler:(void (^)(SFUnlockState *, NSError *))arg2;
+- (void)establishStashBagWithManifest:(NSData *)arg1 completionHandler:(void (^)(BOOL, NSError *))arg2;
 - (void)establishStashBagWithCompletionHandler:(void (^)(BOOL, NSError *))arg1;
 - (void)unlockEnabledWithDevice:(NSString *)arg1 completionHandler:(void (^)(BOOL, NSError *))arg2;
 - (void)disableUnlockWithDevice:(NSString *)arg1 completionHandler:(void (^)(BOOL, NSError *))arg2;
 - (void)enableUnlockWithDevice:(NSString *)arg1 fromKey:(BOOL)arg2 withPasscode:(NSString *)arg3 completionHandler:(void (^)(BOOL, NSError *))arg4;
-- (void)removeAllFakeDevices;
-- (void)removeFakeAutoUnlockDevice:(NSString *)arg1;
-- (void)addFakeAutoUnlockDevice:(SFAutoUnlockDevice *)arg1;
-- (void)cancelFakeAutoUnlock;
-- (void)attemptFakeAutoUnlockWithClientProxy:(id <SFUnlockClientProtocol>)arg1;
-- (void)disableFakeAutoUnlockForDevice:(SFAutoUnlockDevice *)arg1 completionHandler:(void (^)(BOOL, NSError *))arg2;
-- (void)enableFakeAutoUnlockWithDevice:(SFAutoUnlockDevice *)arg1 passcode:(NSString *)arg2 completionHandler:(void (^)(BOOL, NSError *))arg3;
-- (void)fakeEligibleAutoUnlockDevicesWithCompletionHandler:(void (^)(NSSet *, NSError *))arg1;
+- (void)authPromptInfoWithCompletionHandler:(void (^)(NSDictionary *, NSError *))arg1;
 - (void)autoUnlockStateWithCompletionHandler:(void (^)(NSNumber *, NSError *))arg1;
 - (void)cancelAutoUnlock;
 - (void)attemptAutoUnlockWithClientProxy:(id <SFUnlockClientProtocol>)arg1;
 - (void)disableAutoUnlockForDevice:(SFAutoUnlockDevice *)arg1 completionHandler:(void (^)(BOOL, NSError *))arg2;
-- (void)enableAutoUnlockWithDevice:(SFAutoUnlockDevice *)arg1 passcode:(NSString *)arg2 completionHandler:(void (^)(BOOL, NSError *))arg3;
+- (void)cancelEnablingAutoUnlockForDevice:(SFAutoUnlockDevice *)arg1;
 - (void)enableAutoUnlockWithDevice:(SFAutoUnlockDevice *)arg1 passcode:(NSString *)arg2 clientProxy:(id <SFUnlockClientProtocol>)arg3;
 - (void)eligibleAutoUnlockDevicesWithCompletionHandler:(void (^)(NSSet *, NSError *))arg1;
+- (void)repairCloudPairing;
 @end
 

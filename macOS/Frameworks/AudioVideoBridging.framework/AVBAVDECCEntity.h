@@ -12,6 +12,7 @@
 {
     BOOL _acquired;
     BOOL _connected;
+    BOOL _acquiredByAnotherController;
     int _acquireCount;
     NSMutableArray *_interfaces;
     AVB17221AEMEntity *_entityModel;
@@ -19,6 +20,7 @@
     AVB17221Entity *_activeEntity;
     AVBAVDECCController *_entityController;
     NSObject<OS_dispatch_queue> *_controllerQueue;
+    unsigned long long _acquiredControllerEntityID;
     NSObject<OS_dispatch_queue> *_aecpQueue;
     NSObject<OS_dispatch_semaphore> *_aecpLimiter;
     NSObject<OS_dispatch_queue> *_acquireQueue;
@@ -32,6 +34,8 @@
 @property(nonatomic) NSObject<OS_dispatch_queue> *acquireQueue; // @synthesize acquireQueue=_acquireQueue;
 @property(nonatomic) NSObject<OS_dispatch_semaphore> *aecpLimiter; // @synthesize aecpLimiter=_aecpLimiter;
 @property(nonatomic) NSObject<OS_dispatch_queue> *aecpQueue; // @synthesize aecpQueue=_aecpQueue;
+@property(nonatomic) unsigned long long acquiredControllerEntityID; // @synthesize acquiredControllerEntityID=_acquiredControllerEntityID;
+@property(nonatomic) BOOL acquiredByAnotherController; // @synthesize acquiredByAnotherController=_acquiredByAnotherController;
 @property(nonatomic) NSObject<OS_dispatch_queue> *controllerQueue; // @synthesize controllerQueue=_controllerQueue;
 @property(nonatomic, getter=isConnected) BOOL connected; // @synthesize connected=_connected;
 @property(nonatomic, getter=isAcquired) BOOL acquired; // @synthesize acquired=_acquired;
@@ -42,9 +46,18 @@
 @property(retain, nonatomic) NSMutableArray *interfaces; // @synthesize interfaces=_interfaces;
 - (void)dealloc;
 @property(readonly, nonatomic, getter=isDirectlyConnected) BOOL directlyConnected;
+- (void)logReadDescriptorFailureOfType:(unsigned short)arg1 withError:(unsigned char)arg2 fromMethodName:(const char *)arg3;
+- (BOOL)localInterfaceMatchesRemoteInterfaceObject:(id)arg1;
+- (BOOL)localInterfaceMatchesRemoteInterfaceDescriptorWithID:(unsigned short)arg1 inConfiguration:(unsigned short)arg2;
+- (unsigned short)numberOfAVBInterfacesFromConfigurationID:(unsigned short)arg1;
+- (CDUnion_abb5f99a *)descriptorFieldsFromAEMResponse:(id)arg1 descriptorLength:(unsigned short)arg2;
+- (void)directReadDescriptorOfType:(unsigned short)arg1 withID:(unsigned short)arg2 inConfiguration:(unsigned short)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
 - (BOOL)sendACMPMessage:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
-- (BOOL)disconnectOutputStreamStateWithUniqueIndex:(unsigned short)arg1 fromListenerEntityID:(unsigned long long)arg2 uniqueID:(unsigned short)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
-- (BOOL)disconnectInputStreamStateWithUniqueIndex:(unsigned short)arg1 fromTalkerEntityID:(unsigned long long)arg2 uniqueID:(unsigned short)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
+- (BOOL)connectOutputStreamWithUniqueIndex:(unsigned short)arg1 toListenerEntityID:(unsigned long long)arg2 uniqueID:(unsigned short)arg3 streamingWait:(BOOL)arg4 classB:(BOOL)arg5 withCompletionHandler:(CDUnknownBlockType)arg6;
+- (BOOL)connectInputStreamWithUniqueIndex:(unsigned short)arg1 toTalkerEntityID:(unsigned long long)arg2 uniqueID:(unsigned short)arg3 streamingWait:(BOOL)arg4 classB:(BOOL)arg5 withCompletionHandler:(CDUnknownBlockType)arg6;
+- (BOOL)_connectListenerEntityID:(unsigned long long)arg1 uniqueID:(unsigned short)arg2 fromTalkerEntityID:(unsigned long long)arg3 uniqueID:(unsigned short)arg4 streamingWait:(BOOL)arg5 classB:(BOOL)arg6 withCompletionHandler:(CDUnknownBlockType)arg7;
+- (BOOL)disconnectOutputStreamWithUniqueIndex:(unsigned short)arg1 fromListenerEntityID:(unsigned long long)arg2 uniqueID:(unsigned short)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
+- (BOOL)disconnectInputStreamWithUniqueIndex:(unsigned short)arg1 fromTalkerEntityID:(unsigned long long)arg2 uniqueID:(unsigned short)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
 - (BOOL)_disconnectListenerEntityID:(unsigned long long)arg1 uniqueID:(unsigned short)arg2 fromTalkerEntityID:(unsigned long long)arg3 uniqueID:(unsigned short)arg4 withCompletionHandler:(CDUnknownBlockType)arg5;
 - (BOOL)getOutputStreamConnectionWithUniqueIndex:(unsigned short)arg1 andConnectionIndex:(unsigned short)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (BOOL)getOutputStreamStateWithUniqueIndex:(unsigned short)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
@@ -72,7 +85,7 @@
 - (BOOL)startInputStreamWithIndex:(unsigned short)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)setObjectOfType:(unsigned short)arg1 withIndex:(unsigned short)arg2 inConfiguration:(unsigned short)arg3 toName:(id)arg4 atIndex:(unsigned short)arg5 withCompletionHandler:(CDUnknownBlockType)arg6;
 - (BOOL)deregisterForUnsolicitedNotificationsWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (BOOL)registerForUnsolcitiedNotificationsWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (BOOL)registerForUnsolicitedNotificationsWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (BOOL)entityAvailableWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (BOOL)acquireEntityObjectOfType:(unsigned short)arg1 withIndex:(unsigned short)arg2 andFlags:(unsigned int)arg3 withCompletionHandler:(CDUnknownBlockType)arg4;
 - (BOOL)relinquish;

@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @protocol CNCancelationToken <NSObject>
+- (void)performBlock:(void (^)(void))arg1;
 - (BOOL)isCanceled;
 @end
 

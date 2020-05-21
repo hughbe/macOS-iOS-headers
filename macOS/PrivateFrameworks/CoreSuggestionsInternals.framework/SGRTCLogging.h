@@ -6,50 +6,101 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
-@class NSMutableArray, NSNumber, NSString, NSThread, NSTimer;
+@class NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
-@interface SGRTCLogging : NSObject <NSCoding>
+@interface SGRTCLogging : NSObject <NSSecureCoding>
 {
-    NSString *_path;
-    NSMutableArray *_loggedEvents;
-    long long _loggedEventsCount;
     struct _opaque_pthread_mutex_t _lock;
-    NSTimer *_persistenceTimer;
-    NSThread *_persistenceTimerThread;
+    NSString *_path;
+    NSMutableArray *_loggedExtractions;
+    NSMutableArray *_loggedInteractions;
+    NSMutableArray *_loggedInteractionsSummary;
+    long long _loggedExtractionsEventsCount;
+    NSObject<OS_dispatch_source> *_persistenceTimerSource;
     double _storeCreationDate;
-    NSNumber *_version;
+    NSObject<OS_dispatch_queue> *_interactionsWriteQueue;
 }
 
-+ (id)inMemoryLogger;
++ (BOOL)supportsSecureCoding;
 + (BOOL)_createEmptyFileAtPath:(id)arg1;
 + (id)defaultLogger;
++ (id)dateByAppendingDaysToCurrentDate:(double)arg1;
++ (id)locationTypeForRealtimeEvent:(id)arg1;
++ (id)locationTypeForEntity:(id)arg1;
++ (id)locationTypeForHandle:(id)arg1 latitude:(double)arg2 longitude:(double)arg3 airportCode:(id)arg4 address:(id)arg5 label:(id)arg6;
++ (unsigned long long)launchCountForApp:(id)arg1 afterDate:(id)arg2 lowerBucket:(unsigned long long)arg3 bucketSize:(unsigned long long)arg4 bucketLimit:(unsigned long long)arg5;
++ (unsigned long long)numberOfDaysBetweenDate:(id)arg1 andDate:(id)arg2;
++ (double)round:(double)arg1 toSignificantFigures:(long long)arg2;
++ (unsigned long long)bucketizeInteger:(unsigned long long)arg1 withBucketSize:(unsigned long long)arg2 limit:(unsigned long long)arg3;
++ (id)describeReminderExtractionStatus:(unsigned char)arg1;
 - (void).cxx_destruct;
-- (id)metricNameForShortName:(id)arg1;
-- (id)shortNameForMetricNamed:(id)arg1;
-- (id)getLoggingString;
-- (int)version;
-- (void)enumerateLoggedEvents:(CDUnknownBlockType)arg1;
+- (id)_descriptionForBundleId:(id)arg1;
+- (id)descriptionForEntityType:(long long)arg1;
+- (id)descriptionForSGRTCCategory:(unsigned short)arg1;
+- (id)_descriptionForActionType:(unsigned short)arg1;
+- (id)_descriptionForInterface:(unsigned short)arg1;
+- (id)_descriptionForExtractionStatus:(unsigned short)arg1;
+- (id)interactionsWriteQueue;
+- (id)loggedInteractionsSummaryDescription;
+- (id)loggedInteractionsDescription;
+- (id)loggedExtractionsDescription;
 - (double)storeAge;
 - (BOOL)storeToDisk;
+- (BOOL)removeInteractionsSummaryLogsFromLogs:(id)arg1;
+- (BOOL)resetInteractionsLogs;
+- (BOOL)resetInteractionsSummaryLogs;
+- (BOOL)resetExtractionLogs;
 - (BOOL)resetLogs;
-- (BOOL)sendLogsUsingRTC;
-- (void)_sendMessageToRTC:(id)arg1 category:(unsigned short)arg2 payload:(id)arg3;
-- (void)logOutputIssueFromTemplate:(id)arg1 latencyInMs:(unsigned long long)arg2 emailDateReceived:(id)arg3 outputIssueTypes:(id)arg4 outputInfos:(id)arg5 jsMessageLogs:(id)arg6 jsOutputLogs:(id)arg7;
-- (void)logExceptionFromTemplate:(id)arg1 templateExceptionMessage:(id)arg2 emailDateReceived:(id)arg3 jsMessageLogs:(id)arg4 jsOutputLogs:(id)arg5;
-- (void)logEventResponseWithTemplateShortName:(id)arg1 latencyInMs:(unsigned long long)arg2 emailDateReceived:(id)arg3 outputIssueTypes:(id)arg4 outputInfos:(id)arg5 jsMessageLogs:(id)arg6 jsOutputLogs:(id)arg7;
-- (void)_logKeyValuesFromDictionary:(id)arg1;
-- (void)_persistLogs;
+- (void)sendRTCLogsWithCompletion:(CDUnknownBlockType)arg1;
+- (id)_createRTCReporting;
+- (id)logsToSend;
+- (id)whitelistedLogFromLog:(id)arg1;
+- (void)logAggregateSummaryForInteraction:(id)arg1;
+- (void)logEventInteractionForRealtimeEvent:(id)arg1 parentEntity:(id)arg2 interface:(unsigned short)arg3 actionType:(unsigned short)arg4;
+- (void)logEventInteractionForRealtimeEventSync:(id)arg1 parentEntity:(id)arg2 interface:(unsigned short)arg3 actionType:(unsigned short)arg4;
+- (void)logEventInteractionForEntitySync:(id)arg1 interface:(unsigned short)arg2 actionType:(unsigned short)arg3;
+- (id)interactionKeyForCategory:(unsigned short)arg1 interface:(unsigned short)arg2 actionType:(unsigned short)arg3;
+- (id)interactionKeyForInterface:(unsigned short)arg1 actionType:(unsigned short)arg2;
+- (void)logEventInteractionForEntity:(id)arg1 interface:(unsigned short)arg2 actionType:(unsigned short)arg3;
+- (void)logEventExtractionForTemplateName:(id)arg1 extractionStatus:(unsigned short)arg2 outputExceptions:(id)arg3 outputInfos:(id)arg4 jsMessageLogs:(id)arg5 jsOutputLogs:(id)arg6 timingProcessing:(unsigned long long)arg7;
+- (id)_eventExtractionDictionaryLogForTemplateName:(id)arg1 extractionStatus:(unsigned short)arg2 outputExceptions:(id)arg3 outputInfos:(id)arg4 jsMessageLogs:(id)arg5 jsOutputLogs:(id)arg6 timingProcessing:(unsigned long long)arg7;
+- (void)logNewInteractionWithDictionary:(id)arg1;
+- (void)logNewInteractionSummaryWithDictionary:(id)arg1;
+- (void)logAndIncrementEventCountForDictionary:(id)arg1;
+- (void)_updateLocationTypeFromInteractionsSummaryForEventKey:(id)arg1 locationType:(id)arg2;
+- (BOOL)incrementAndUpgradeInteractionSummaryForEventKey:(id)arg1 interactionKey:(id)arg2 parentEntity:(id)arg3;
+- (void)_enrichLogWithAppsUsage:(id)arg1;
+- (void)enrichInteractionSummaryLog:(id)arg1;
+- (id)launchCountMessageAfterDate:(id)arg1;
+- (id)bucketizedRemindersCreatedAfterDate:(id)arg1 endDate:(id)arg2;
+- (void)enrichAggregateSummaryLog:(id)arg1;
+- (void)enrichReminderInteractionSummaryLog:(id)arg1;
+- (id)createInteractionSummaryForEventKey:(id)arg1 expirationDate:(id)arg2 interactionKey:(id)arg3 interactionAttributes:(id)arg4 rtcCategory:(unsigned short)arg5;
+- (id)_createInteractionForEventWithStartTime:(id)arg1 interactionKey:(id)arg2 interactionAttributes:(id)arg3;
+- (id)_interactionAttributesForEntity:(id)arg1 parentEntity:(id)arg2;
+- (id)_interactionAttributesForRealtimeEvent:(id)arg1 parentEntity:(id)arg2;
+- (id)_interactionAttributesForTags:(id)arg1 parentEntity:(id)arg2;
+- (id)baseInteractionDictionaryForInterface:(unsigned short)arg1 actionType:(unsigned short)arg2;
 - (void)updateAndScheduleDiskWrite;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (unsigned long long)loggedEventsCount;
-- (id)loggedEvents;
+- (unsigned long long)loggedExtractionsEventsCount;
+- (id)loggedInteractionsSummary;
+- (id)loggedInteractions;
+- (id)loggedExtractions;
 - (void)dealloc;
 - (id)initWithFilename:(id)arg1;
-- (id)initWithInMemoryStore;
 - (id)init;
+- (id)_interactionDictionaryForDueLocation:(id)arg1 dueDateComponents:(id)arg2;
+- (id)_baseInteractionAttributesForReminder:(id)arg1;
+- (id)_interactionSummaryForReminder:(id)arg1 interface:(unsigned short)arg2 actionType:(unsigned short)arg3;
+- (id)_eventKeyforReminder:(id)arg1;
+- (void)logReminderExtractionFromEntity:(id)arg1 interface:(unsigned short)arg2 actionType:(unsigned short)arg3 dueLocation:(id)arg4 dueDateComponents:(id)arg5 extractionStatus:(unsigned char)arg6 timingProcessing:(double)arg7;
+- (void)_logReminderInteractionSummaryForReminder:(id)arg1 interface:(unsigned short)arg2 actionType:(unsigned short)arg3;
+- (void)logReminderInteractionFromReminder:(id)arg1 interface:(unsigned short)arg2 actionType:(unsigned short)arg3;
+- (void)logReminderInteractionFromEntity:(id)arg1 usingStore:(id)arg2 interface:(unsigned short)arg3 actionType:(unsigned short)arg4;
 
 @end
 

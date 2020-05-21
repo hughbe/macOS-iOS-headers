@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
     NSView *menu;
 }
 
+- (void).cxx_destruct;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -24,7 +25,6 @@ __attribute__((visibility("hidden")))
 - (id)accessibilityAttributeNames;
 - (id)accessibilityActionNames;
 - (BOOL)accessibilityIsAttributeSettable:(id)arg1;
-- (void)dealloc;
 - (id)initWithParent:(id)arg1 menu:(id)arg2;
 
 @end

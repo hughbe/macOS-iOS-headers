@@ -16,6 +16,7 @@
 }
 
 + (struct CGPoint)alignmentDeltaFromMatches:(id)arg1;
+- (void).cxx_destruct;
 @property __weak id <NSInputAlignmentControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)clearAlignmentStateForItem:(id)arg1;
 - (void)setAlignmentGuides:(id)arg1 affectingItem:(id)arg2;

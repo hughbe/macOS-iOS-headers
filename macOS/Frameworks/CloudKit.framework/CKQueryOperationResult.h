@@ -16,12 +16,12 @@
 }
 
 + (BOOL)supportsSecureCoding;
-@property(retain, nonatomic) CKQueryCursor *cursor; // @synthesize cursor=_cursor;
 - (void).cxx_destruct;
+@property(retain, nonatomic) CKQueryCursor *cursor; // @synthesize cursor=_cursor;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)description;
-- (id)CKPropertiesDescription;
+- (id)CKDescriptionPropertiesWithPublic:(BOOL)arg1 private:(BOOL)arg2 shouldExpand:(BOOL)arg3;
 
 @end
 

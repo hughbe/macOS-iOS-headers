@@ -14,7 +14,14 @@
 {
 }
 
-- (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1;
+- (void)setParametersByName:(id)arg1;
+- (id)parametersByName;
+- (void)setVerb:(id)arg1;
+- (id)verb;
+- (void)setDomain:(id)arg1;
+- (id)domain;
+- (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1 containingAppBundleId:(id)arg2;
+- (id)_dictionaryRepresentation;
 - (void)setRecipients:(id)arg1;
 @property(readonly, copy) NSArray *recipients;
 - (void)setEntityNames:(id)arg1;
@@ -22,6 +29,9 @@
 - (void)setShareMode:(id)arg1;
 @property(readonly, copy) NSString *shareMode;
 - (id)initWithShareMode:(id)arg1 entityNames:(id)arg2 recipients:(id)arg3;
+- (id)_categoryVerb;
+- (long long)_intentCategory;
+- (void)_setMetadata:(id)arg1;
 - (id)_metadata;
 - (id)_typedBackingStore;
 

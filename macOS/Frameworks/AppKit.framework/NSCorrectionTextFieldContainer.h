@@ -15,8 +15,10 @@ __attribute__((visibility("hidden")))
     unsigned long long selectedCandidate;
     NSMutableDictionary *textAttributes;
     long long correctionPanelType;
+    unsigned long long dismissButtonLocation;
 }
 
+@property(readonly) unsigned long long dismissButtonLocation; // @synthesize dismissButtonLocation;
 - (void)accessibilitySetValue:(id)arg1 forAttribute:(id)arg2;
 - (BOOL)accessibilityIsAttributeSettable:(id)arg1;
 - (BOOL)accessibilityIsWindowAttributeSettable;
@@ -34,6 +36,7 @@ __attribute__((visibility("hidden")))
 @property(readonly) BOOL hasSelection; // @dynamic hasSelection;
 - (void)setSelectedCandidate:(unsigned long long)arg1;
 - (unsigned long long)indexOfCandidateContainingPoint:(struct CGPoint)arg1;
+- (void)setDismissButtonLocation:(unsigned long long)arg1;
 - (void)setCandidates:(id)arg1 andCorrectionPanelType:(long long)arg2;
 - (void)setTextAttributes:(id)arg1;
 - (id)correction;

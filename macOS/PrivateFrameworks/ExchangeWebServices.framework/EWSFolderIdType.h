@@ -6,21 +6,22 @@
 
 #import <ExchangeWebServices/EWSBaseFolderIdType.h>
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 #import "XSDefinitionProvider.h"
 
 @class NSString;
 
-@interface EWSFolderIdType : EWSBaseFolderIdType <XSDefinitionProvider, NSCoding>
+@interface EWSFolderIdType : EWSBaseFolderIdType <XSDefinitionProvider, NSSecureCoding>
 {
     NSString *_Id;
     NSString *_ChangeKey;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)definition;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *ChangeKey; // @synthesize ChangeKey=_ChangeKey;
 @property(copy, nonatomic) NSString *Id; // @synthesize Id=_Id;
-- (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

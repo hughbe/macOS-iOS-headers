@@ -11,7 +11,6 @@ __attribute__((visibility("hidden")))
 {
 }
 
-- (BOOL)isInternalBuild;
 - (id)deviceModelName;
 - (id)deviceName;
 - (id)osVersion;

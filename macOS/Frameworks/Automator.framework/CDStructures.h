@@ -35,8 +35,51 @@ struct CGSize {
 struct OpaqueAEDataStorageType;
 
 struct _NSRange {
-    unsigned long long _field1;
-    unsigned long long _field2;
+    unsigned long long location;
+    unsigned long long length;
+};
+
+struct __AMLibraryViewFlags {
+    unsigned int viewMode:1;
+    unsigned int draggingOutsideLibrary:1;
+    unsigned int acceptedDraggedAssets:1;
+    unsigned int isEditingNewSmartGroup:1;
+    unsigned int hasShownVariables:1;
+    unsigned int reserved:27;
+};
+
+struct __AMWorkflowControllerDelegateRespondTo {
+    unsigned int workflowControllerDidAddWorkflow:1;
+    unsigned int workflowControllerDidRemoveWorkflow:1;
+    unsigned int workflowControllerWillRun:1;
+    unsigned int workflowControllerWillStep:1;
+    unsigned int workflowControllerWillStop:1;
+    unsigned int workflowControllerWillPause:1;
+    unsigned int workflowControllerDidRun:1;
+    unsigned int workflowControllerDidStep:1;
+    unsigned int workflowControllerDidStop:1;
+    unsigned int workflowControllerDidPause:1;
+    unsigned int workflowControllerWillRunAction:1;
+    unsigned int workflowControllerDidRunAction:1;
+    unsigned int workflowControllerDidError:1;
+    unsigned int workflowControllerDidLogMessageOfTypeFromAction:1;
+    unsigned int workflowControllerWillRunConversion:1;
+    unsigned int workflowControllerDidRunConversion:1;
+    unsigned int workflowControllerDidResumeWithAction:1;
+    unsigned int reserved:19;
+};
+
+struct __AMWorkflowControllerFlags {
+    unsigned int shouldRunLocally:1;
+    unsigned int isRunningLocally:1;
+    unsigned int shouldDisplayProgressInMenuBar:1;
+    unsigned int reserved:29;
+};
+
+struct __AMWorkflowViewFlags {
+    unsigned int ignoreSubviewFrameChanges:1;
+    unsigned int editingEnabled:1;
+    unsigned int reserved:30;
 };
 
 #pragma mark Typedef'd Structures

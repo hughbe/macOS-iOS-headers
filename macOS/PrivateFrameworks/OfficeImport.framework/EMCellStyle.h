@@ -17,14 +17,14 @@ __attribute__((visibility("hidden")))
     int _edCellType;
     double _columnWidth;
     double _contentWidth;
-    BOOL _isRowZero;
-    BOOL _isColumnZero;
     BOOL _truncateContents;
     BOOL _resolvedProperties;
 }
 
 + (id)_parseFontName:(id)arg1 nameContainsBold:(char *)arg2 nameContainsItalic:(char *)arg3;
++ (double)contentWidthForColumnWidth:(double)arg1;
 + (id)styleForFont:(id)arg1;
+- (void).cxx_destruct;
 - (id)cacheFriendlyCSSStyleString;
 - (id)cssStyleString;
 - (BOOL)isEqual:(id)arg1;
@@ -34,10 +34,9 @@ __attribute__((visibility("hidden")))
 - (void)addBordersStyle:(id)arg1;
 - (void)addFillStyle:(id)arg1;
 - (void)addFontStyle:(id)arg1;
-- (void)resolveBorders;
 - (void)resolveContentWidth;
 - (void)resolveFormatType;
-- (id)initWithEDStyle:(id)arg1 type:(int)arg2 rowIndex:(unsigned long long)arg3 columnIndex:(unsigned long long)arg4 columnWidth:(unsigned long long)arg5 contentWidth:(unsigned long long)arg6 truncateContents:(BOOL)arg7;
+- (id)initWithEDStyle:(id)arg1 type:(int)arg2 columnWidth:(unsigned long long)arg3 contentWidth:(unsigned long long)arg4 truncateContents:(BOOL)arg5;
 
 @end
 

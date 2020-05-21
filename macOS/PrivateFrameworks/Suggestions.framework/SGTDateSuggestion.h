@@ -23,8 +23,9 @@
 + (id)_dateComponentsMatchingMonthAndYear:(id)arg1 formatter:(id)arg2;
 + (id)_humanDateRangeWithName:(id)arg1;
 + (id)_humanDateRangesMatchingInput:(id)arg1 prefersFuture:(BOOL)arg2;
-+ (long long)_minimalUsefulDateLength;
++ (unsigned long long)_minimalUsefulDateLength;
 + (void)initialize;
+- (void).cxx_destruct;
 - (id)description;
 - (id)_propertyListRepresentation;
 - (id)_identifier;
@@ -35,7 +36,6 @@
 - (id)displayNameForScope:(long long)arg1;
 - (id)scopes;
 - (id)queryStringFragment;
-- (void)dealloc;
 - (id)_shorterDisplayName;
 - (id)initWithDateComponents:(id)arg1 scope:(long long)arg2 attributeNames:(id)arg3;
 - (id)initWithHumanDateRange:(id)arg1 scope:(long long)arg2 attributeNames:(id)arg3;

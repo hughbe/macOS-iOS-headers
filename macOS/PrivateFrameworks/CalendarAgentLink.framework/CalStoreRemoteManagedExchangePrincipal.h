@@ -15,10 +15,10 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *rootFolderID; // @synthesize rootFolderID=_rootFolderID;
 @property(retain, nonatomic) NSString *mailbox; // @synthesize mailbox=_mailbox;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

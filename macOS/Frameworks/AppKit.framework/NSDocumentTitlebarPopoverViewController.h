@@ -21,7 +21,6 @@ __attribute__((visibility("hidden")))
     CDUnknownBlockType advanceToRunPhaseWaiter;
     CDUnknownBlockType cleanupKVOBlock;
     CDUnknownBlockType invalidationHandler;
-    id mouseDownMonitor;
 }
 
 + (void)warmup;
@@ -39,6 +38,7 @@ __attribute__((visibility("hidden")))
 - (void)viewDidInvalidate:(id)arg1;
 - (void)viewDidAdvanceToRunPhase:(id)arg1;
 - (void)prepareViewThenContinue:(CDUnknownBlockType)arg1;
+- (BOOL)_setupBridge;
 - (void)dealloc;
 - (id)initWithDocument:(id)arg1;
 

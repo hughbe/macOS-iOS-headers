@@ -6,17 +6,19 @@
 
 #import "NSObject.h"
 
-@class ABAddressBook, ABCNContactStore, NSMutableArray, NSMutableDictionary;
+@class ABAddressBook, CNContactStore, NSMutableArray, NSMutableDictionary;
 
 @interface ABDeleteRecordsCommandBuilder : NSObject
 {
     NSMutableArray *_deletedRecords;
     ABAddressBook *_legacyAddressBook;
-    ABCNContactStore *_addressBook;
+    CNContactStore *_contactStore;
     NSMutableDictionary *_removeMemberBuilders;
+    BOOL _ignoresGuardianRestrictions;
 }
 
-+ (id)builderWithAddressBook:(id)arg1;
++ (id)builderWithAddressBook:(id)arg1 ignoresGuardianRestrictions:(BOOL)arg2;
+- (void).cxx_destruct;
 - (void)_deleteGroupsWithBuilder:(id)arg1;
 - (void)_buildDeleteCommandsForPeopleUIDs:(id)arg1 withBuilder:(id)arg2;
 - (void)_deletePeopleWithBuilder:(id)arg1;
@@ -27,8 +29,7 @@
 - (id)_makeBuilder;
 - (id)build;
 - (void)deleteRecord:(id)arg1;
-- (void)dealloc;
-- (id)initWithAddressBook:(id)arg1;
+- (id)initWithAddressBook:(id)arg1 ignoresGuardianRestrictions:(BOOL)arg2;
 
 @end
 

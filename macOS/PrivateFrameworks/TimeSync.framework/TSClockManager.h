@@ -12,6 +12,7 @@
 {
     unsigned int _connection;
     NSMutableArray *_clockPersonalities;
+    struct mach_timebase_info _timebaseInfo;
     unsigned long long _machAbsoluteNanosecondClockIdentifier;
 }
 
@@ -19,15 +20,20 @@
 + (id)diagnosticDescriptionForService:(unsigned int)arg1 withIndent:(id)arg2;
 + (id)defaultClockPersonalities;
 + (id)clockManager;
++ (id)sharedClockManagerSyncWithTimeout:(unsigned long long)arg1;
 + (id)sharedClockManager;
 + (id)timeSyncAudioClockDeviceUIDForClockIdentifier:(unsigned long long)arg1;
-+ (void)loadClockManagerNub;
++ (void)notifyWhenClockManagerIsAvailable:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) unsigned long long machAbsoluteNanosecondClockIdentifier; // @synthesize machAbsoluteNanosecondClockIdentifier=_machAbsoluteNanosecondClockIdentifier;
 - (void)dealloc;
+- (unsigned long long)nanosecondsToMachAbsolute:(unsigned long long)arg1;
+- (unsigned long long)machAbsoluteToNanoseconds:(unsigned long long)arg1;
 - (BOOL)removeUserFilteredClockWithIdentifier:(unsigned long long)arg1 error:(id *)arg2;
 - (unsigned long long)addUserFilteredClockWithMachInterval:(unsigned long long)arg1 domainInterval:(unsigned long long)arg2 usingFilterShift:(unsigned char)arg3 isAdaptive:(BOOL)arg4 error:(id *)arg5;
 - (id)clockWithClockIdentifier:(unsigned long long)arg1;
 - (id)availableClockIdentifiers;
+- (BOOL)removeTSNCaptureServicesWithError:(id *)arg1;
+- (BOOL)addTSNCaptureServicesWithError:(id *)arg1;
 - (BOOL)removegPTPServicesWithError:(id *)arg1;
 - (BOOL)addgPTPServicesWithError:(id *)arg1;
 - (BOOL)removeMappingFromClockIDToCoreAudioClockDomainForClockID:(unsigned long long)arg1 error:(id *)arg2;

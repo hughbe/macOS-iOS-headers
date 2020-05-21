@@ -7,6 +7,7 @@
 @class NSString, NSXPCListenerEndpoint;
 
 @protocol ABPersonViewClientProtocol
+- (void)desiredHeightChangedTo:(double)arg1;
 - (void)headerWasClicked;
 - (void)startSharingSessionForServiceNamed:(NSString *)arg1 listenerEndpoint:(NSXPCListenerEndpoint *)arg2;
 @end

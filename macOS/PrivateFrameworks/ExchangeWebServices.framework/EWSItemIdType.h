@@ -17,10 +17,11 @@
     NSString *_ChangeKey;
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)definition;
+- (void).cxx_destruct;
 @property(copy) NSString *ChangeKey; // @synthesize ChangeKey=_ChangeKey;
 @property(copy) NSString *Id; // @synthesize Id=_Id;
-- (void).cxx_destruct;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

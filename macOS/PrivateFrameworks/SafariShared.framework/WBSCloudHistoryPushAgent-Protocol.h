@@ -9,6 +9,7 @@
 @protocol WBSCloudHistoryPushAgent <NSObject>
 - (void)clearAcknowledgedPushNotifications;
 - (void)acknowledgePendingPushNotifications;
+- (void)queryMemoryFootprint:(void (^)(WBSMemoryFootprint *, NSError *))arg1;
 - (void)getPushNotifications:(void (^)(_Bool, _Bool))arg1;
 @end
 

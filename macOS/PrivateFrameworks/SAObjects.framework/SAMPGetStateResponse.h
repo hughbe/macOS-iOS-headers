@@ -16,10 +16,12 @@
 
 + (id)getStateResponseWithDictionary:(id)arg1 context:(id)arg2;
 + (id)getStateResponse;
+- (BOOL)requiresResponse;
 @property(nonatomic) int state;
 @property(copy, nonatomic) NSString *source;
 @property(copy, nonatomic) NSNumber *listeningToMusicApplication;
 @property(retain, nonatomic) SAMPMediaItem *listeningToItem;
+@property(copy, nonatomic) NSString *hashedGroupID;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

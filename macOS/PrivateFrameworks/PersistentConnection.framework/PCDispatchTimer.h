@@ -19,6 +19,7 @@
     BOOL _isValid;
 }
 
+- (void).cxx_destruct;
 - (void)invalidate;
 @property(retain, nonatomic) NSDate *fireDate;
 - (void)start;

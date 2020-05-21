@@ -8,37 +8,36 @@
 
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
+#import "PQLValuable.h"
 
-@class NSNumber;
+@class NSNumber, NSString;
 
-@interface BRFileObjectID : NSObject <NSSecureCoding, NSCopying>
+@interface BRFileObjectID : NSObject <NSSecureCoding, NSCopying, PQLValuable>
 {
-    union {
-        unsigned long long folderID;
-        unsigned int docID;
-    } _value;
-    _Bool _isDocumentID;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)fileObjectIDForURL:(id)arg1 allocateDocID:(BOOL)arg2;
-+ (id)fileObjectIDWithFolderOrAliasID:(unsigned long long)arg1;
-+ (id)fileObjectIDWithDocumentID:(unsigned int)arg1;
-- (unsigned long long)hash;
++ (id)fileObjectIDForURL:(id)arg1 allocateDocID:(BOOL)arg2 error:(id *)arg3;
++ (id)newFromSqliteValue:(struct sqlite3_value *)arg1;
++ (id)fileObjectIDWithString:(id)arg1;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToFileObjectID:(id)arg1;
-- (id)initWithFileObjectID:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 @property(readonly, nonatomic) unsigned long long rawID;
+@property(readonly, nonatomic) NSString *asString;
 @property(readonly, nonatomic) NSNumber *documentID;
 @property(readonly, nonatomic) NSNumber *folderID;
 @property(readonly, nonatomic) BOOL isDocumentID;
 @property(readonly, nonatomic) BOOL isFolderOrAliasID;
-- (id)description;
-- (id)initWithFolderOrAliasID:(unsigned long long)arg1;
-- (id)initWithDocID:(unsigned int)arg1;
+- (void)sqliteBind:(struct sqlite3_stmt *)arg1 index:(int)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

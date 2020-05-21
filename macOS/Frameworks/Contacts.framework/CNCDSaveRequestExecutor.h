@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CNCDContactSaveExecutor, CNCDGroupMembershipSaveExecutor, CNCDGroupSaveExecutor, CNCDSaveContext;
+@class CNCDContactSaveExecutor, CNCDContainerSaveExecutor, CNCDGroupMembershipSaveExecutor, CNCDGroupSaveExecutor, CNCDSaveContext;
 
 @interface CNCDSaveRequestExecutor : NSObject
 {
@@ -14,17 +14,20 @@
     CNCDContactSaveExecutor *_contactSaveExecutor;
     CNCDGroupSaveExecutor *_groupSaveExecutor;
     CNCDGroupMembershipSaveExecutor *_groupMembershipSaveExecutor;
+    CNCDContainerSaveExecutor *_containerSaveExecutor;
 }
 
 + (BOOL)executeSaveRequest:(id)arg1 inPersistenceStack:(id)arg2 error:(id *)arg3;
+- (void).cxx_destruct;
 - (BOOL)updateGroupsCache:(id *)arg1;
 - (id)allGroupIdentifiers;
 - (BOOL)loadGroupsCache:(id *)arg1;
 - (BOOL)updateContactsCache:(id *)arg1;
 - (id)allContactIdentifiers;
 - (BOOL)loadContactsCache:(id *)arg1;
+- (id)contactsErrorFromCoreDataError:(id)arg1;
+- (id)recordsForErrorFromIdentifiers:(id)arg1;
 - (BOOL)executeSaveRequest:(id *)arg1;
-- (void)dealloc;
 - (id)initWithSaveRequest:(id)arg1 persistenceContext:(id)arg2 context:(id)arg3;
 - (id)init;
 

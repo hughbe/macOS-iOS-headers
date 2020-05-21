@@ -32,6 +32,7 @@ __attribute__((visibility("hidden")))
 - (void)setBlendingEnabled:(BOOL)arg1;
 - (BOOL)isBlendingEnabled;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;

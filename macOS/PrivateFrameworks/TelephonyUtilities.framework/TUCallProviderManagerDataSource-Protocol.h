@@ -6,13 +6,18 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, TUCallProvider;
+@class NSDictionary, NSString, NSURL, TUDialRequest;
 
 @protocol TUCallProviderManagerDataSource <NSObject>
 @property(nonatomic) __weak id <TUCallProviderManagerDataSourceDelegate> delegate;
+@property(readonly, copy, nonatomic) NSDictionary *pairedHostDeviceProvidersByIdentifier;
+@property(readonly, copy, nonatomic) NSDictionary *localProvidersByIdentifier;
 @property(readonly, copy, nonatomic) NSDictionary *providersByIdentifier;
+@property(readonly, nonatomic) BOOL currentProcessCanAccessInitialState;
 - (void)invalidate;
 - (void)blockUntilInitialStateReceived;
-- (void)setEnabled:(BOOL)arg1 forProvider:(TUCallProvider *)arg2 completion:(void (^)(void))arg3;
+- (void)launchAppForDialRequest:(TUDialRequest *)arg1 completion:(void (^)(NSError *))arg2;
+- (void)donateUserIntentForProviderWithIdentifier:(NSString *)arg1;
+- (BOOL)openURL:(NSURL *)arg1 isSensitive:(BOOL)arg2 error:(id *)arg3;
 @end
 

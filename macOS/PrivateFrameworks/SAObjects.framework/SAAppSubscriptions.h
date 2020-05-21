@@ -4,20 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <SAObjects/AceObject.h>
+#import <SAObjects/SADomainObject.h>
 
 #import "SABackgroundContextObject.h"
 
 @class NSArray, NSString;
 
-@interface SAAppSubscriptions : AceObject <SABackgroundContextObject>
+@interface SAAppSubscriptions : SADomainObject <SABackgroundContextObject>
 {
 }
 
 + (id)appSubscriptionsWithDictionary:(id)arg1 context:(id)arg2;
 + (id)appSubscriptions;
 @property(copy, nonatomic) NSArray *activeSubscriptions;
-@property(copy, nonatomic) NSArray *activeSubscriptionBundleIds;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

@@ -12,7 +12,7 @@
 
 + (struct __WBSFieldLabelPatternMatcherArray *)emailFieldLabelPatternMatchers;
 + (struct __WBSFieldLabelPatternMatcherArray *)addressBookFieldLabelPatternMatchers;
-+ (unsigned long long)indexOfBestMatchForString:(id)arg1 inArray:(id)arg2;
++ (unsigned long long)indexOfBestMatchForString:(id)arg1 inArray:(id)arg2 startingPosition:(unsigned long long *)arg3;
 + (id)specifierForAutocompleteToken:(id)arg1;
 + (id)specifierForLabel:(id)arg1;
 + (id)allSynonymsForMatch:(id)arg1 formAppearsToBeChinese:(BOOL)arg2;

@@ -15,11 +15,11 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVItemWithNoChildren *unauthenticated; // @synthesize unauthenticated=_unauthenticated;
 @property(retain, nonatomic) NSMutableSet *emailAddresses; // @synthesize emailAddresses=_emailAddresses;
 - (void)addEmailAddress:(id)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)init;
 
 @end

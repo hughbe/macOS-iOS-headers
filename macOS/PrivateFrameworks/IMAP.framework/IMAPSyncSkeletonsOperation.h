@@ -19,22 +19,21 @@
     id <IMAPSyncSkeletonsOperationDelegate> _delegate;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) __weak id <IMAPSyncSkeletonsOperationDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly, nonatomic) BOOL includeLabels; // @synthesize includeLabels=_includeLabels;
 @property(readonly, nonatomic) BOOL useUIDs; // @synthesize useUIDs=_useUIDs;
 @property(readonly, copy, nonatomic) NSIndexSet *messageNumbers; // @synthesize messageNumbers=_messageNumbers;
-- (void).cxx_destruct;
 - (id)_findFetchResponseWithMessageNumber:(unsigned long long)arg1 inIndexRange:(struct _NSRange)arg2;
 - (id)_findFetchResponseWithMessageNumber:(unsigned long long)arg1;
 - (BOOL)handleResponse:(id)arg1 forCommand:(id)arg2;
 - (void)main;
-- (id)_descriptionHidingPII:(BOOL)arg1;
 @property(readonly, copy) NSString *description;
-@property(readonly, copy) NSString *debugDescription;
 - (id)initWithMailboxName:(id)arg1;
 - (id)initWithMessageNumbers:(id)arg1 useUIDsInstead:(BOOL)arg2 includeLabels:(BOOL)arg3 mailboxName:(id)arg4 delegate:(id)arg5;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

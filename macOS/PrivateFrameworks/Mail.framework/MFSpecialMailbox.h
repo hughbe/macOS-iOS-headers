@@ -10,6 +10,7 @@
 {
 }
 
++ (void)readFlagMailboxesFromDiskForFlagMailboxes:(id)arg1;
 + (id)visibleFlagMailboxes;
 + (void)updateVisibleFlagMailboxes;
 + (id)flagMailboxes;
@@ -29,7 +30,8 @@
 - (void)saveUserInfo;
 - (id)_loadUserInfo;
 - (id)_viewerAttributesKey;
-- (id)tildeAbbreviatedPath;
+- (id)persistentUIIdentifier;
+- (id)_specialMailboxIdentifier;
 - (void)setAllCriteriaMustBeSatisfied:(BOOL)arg1;
 - (BOOL)allCriteriaMustBeSatisfied;
 - (void)setCriteria:(id)arg1;
@@ -41,11 +43,13 @@
 - (unsigned long long)numberOfSortedChildrenHidingGmail:(BOOL)arg1;
 - (unsigned long long)numberOfVisibleChildrenHidingGmail:(BOOL)arg1;
 - (unsigned long long)numberOfChildren;
+- (void)enumerateVisibleChildrenHidingGmail:(BOOL)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (id)visibleChildAtIndex:(unsigned long long)arg1;
 - (id)childAtIndex:(unsigned long long)arg1;
 - (id)mutableCopyOfChildrenIncludingHiddenChildren:(BOOL)arg1 hidingGmail:(BOOL)arg2;
 - (id)childEnumeratorIncludingHiddenChildren:(BOOL)arg1;
 - (id)children;
+- (BOOL)hasMessages;
 - (id)account;
 - (id)displayName;
 - (id)criterion;

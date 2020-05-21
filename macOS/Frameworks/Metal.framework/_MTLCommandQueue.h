@@ -4,12 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Metal/_MTLObjectWithLabel.h>
 
 @class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>, NSString, _MTLDevice;
 
-__attribute__((visibility("hidden")))
-@interface _MTLCommandQueue : NSObject
+@interface _MTLCommandQueue : _MTLObjectWithLabel
 {
     _MTLDevice *_dev;
     NSMutableArray *_pendingQueue;
@@ -21,7 +20,6 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_queue> *_completionQueueDispatch;
     NSObject<OS_dispatch_source> *_commandQueueEventSource;
     NSObject<OS_dispatch_semaphore> *_commandBufferSemaphore;
-    NSString *_label;
     int _backgroundTrackingPID;
     unsigned long long _globalTraceObjectID;
     unsigned long long _labelTraceID;
@@ -36,17 +34,27 @@ __attribute__((visibility("hidden")))
     unsigned long long _numInternalSampleCounters;
     NSMutableDictionary *_counterInfo;
     unsigned long long _maxCommandBufferCount;
-    unsigned long long _qosClass;
-    long long _qosRelativePriority;
+    unsigned long long _qosLevel;
+    NSObject<OS_dispatch_queue> *_commitQueue;
+    BOOL _commitSynchronously;
+    NSObject<OS_dispatch_queue> *_completionQueue;
     BOOL _executionEnabled;
     BOOL _skipRender;
+    BOOL _openGLQueue;
+    struct MessageTracerBacktraceInfo _commandQueueBacktraceInfo;
+    BOOL _hasLoggedTelemetry;
+    NSObject<OS_dispatch_semaphore> *_presentScheduledSemaphore;
+    BOOL _forceImmediateSubmissionOnCommitThread;
 }
 
+@property(readonly) BOOL isOpenGLQueue; // @synthesize isOpenGLQueue=_openGLQueue;
 @property(readonly) unsigned long long globalTraceObjectID; // @synthesize globalTraceObjectID=_globalTraceObjectID;
 @property int backgroundTrackingPID; // @synthesize backgroundTrackingPID=_backgroundTrackingPID;
 @property BOOL executionEnabled; // @synthesize executionEnabled=_executionEnabled;
-@property(readonly) long long qosRelativePriority; // @synthesize qosRelativePriority=_qosRelativePriority;
-@property(readonly) unsigned long long qosClass; // @synthesize qosClass=_qosClass;
+@property(readonly) NSObject<OS_dispatch_queue> *completionQueue; // @synthesize completionQueue=_completionQueue;
+@property(readonly) BOOL commitSynchronously; // @synthesize commitSynchronously=_commitSynchronously;
+@property(readonly) NSObject<OS_dispatch_queue> *commitQueue; // @synthesize commitQueue=_commitQueue;
+@property(readonly) unsigned long long qosLevel; // @synthesize qosLevel=_qosLevel;
 @property(readonly) unsigned long long maxCommandBufferCount; // @synthesize maxCommandBufferCount=_maxCommandBufferCount;
 @property(retain, getter=counterInfo) NSMutableDictionary *counterInfo; // @synthesize counterInfo=_counterInfo;
 @property(nonatomic, getter=numInternalSampleCounters) unsigned long long numInternalSampleCounters; // @synthesize numInternalSampleCounters=_numInternalSampleCounters;
@@ -58,7 +66,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic, getter=isStatEnabled) BOOL StatEnabled; // @synthesize StatEnabled=_StatEnabled;
 @property(getter=isProfilingEnabled) BOOL profilingEnabled; // @synthesize profilingEnabled=_profilingEnabled;
 @property BOOL skipRender; // @synthesize skipRender=_skipRender;
-@property(copy) NSString *label; // @synthesize label=_label;
+- (unsigned long long)internalCounterSampleSize;
 - (id)subdivideCounterList:(id)arg1;
 - (int)requestCounters:(id)arg1 withIndex:(unsigned long long)arg2;
 - (unsigned long long)StatLocations;
@@ -69,13 +77,17 @@ __attribute__((visibility("hidden")))
 - (void)availableCounters;
 - (void)insertDebugCaptureBoundary;
 - (void)finish;
+@property(copy) NSString *label; // @dynamic label;
+- (void)createTelemetryWithLabel:(id)arg1;
 - (void)commandBufferDidComplete:(id)arg1 startTime:(unsigned long long)arg2 completionTime:(unsigned long long)arg3 error:(id)arg4;
+- (BOOL)submitCommandBuffer:(id)arg1;
 - (void)commitCommandBuffer:(id)arg1 wake:(BOOL)arg2;
 - (void)submitCommandBuffers:(const id *)arg1 count:(unsigned long long)arg2;
 - (void)completeCommandBuffers:(id *)arg1 count:(unsigned long long)arg2;
-- (void)_submitAvailableCommandBuffers;
+- (BOOL)_submitAvailableCommandBuffers;
 - (void)enqueueCommandBuffer:(id)arg1;
 - (id)description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (void)dealloc;
 - (void)setSubmissionQueue:(id)arg1;
 - (id)initWithDevice:(id)arg1 descriptor:(id)arg2;

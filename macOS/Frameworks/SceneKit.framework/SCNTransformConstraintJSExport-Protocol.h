@@ -7,6 +7,8 @@
 #import "JSExport.h"
 
 @protocol SCNTransformConstraintJSExport <JSExport>
++ (id)orientationConstraintInWorldSpace:(BOOL)arg1 withBlock:(struct SCNVector4 (^)(SCNNode *, struct SCNVector4))arg2;
++ (id)positionConstraintInWorldSpace:(BOOL)arg1 withBlock:(struct SCNVector3 (^)(SCNNode *, struct SCNVector3))arg2;
 + (id)transformConstraintInWorldSpace:(BOOL)arg1 withBlock:(struct CATransform3D (^)(SCNNode *, struct CATransform3D))arg2;
 @end
 

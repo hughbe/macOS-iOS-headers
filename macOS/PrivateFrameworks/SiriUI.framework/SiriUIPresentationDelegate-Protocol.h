@@ -14,16 +14,11 @@
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 stashSnippetControllerCard:(SiriUICard *)arg2;
 - (void)siriPresentationClearContext:(id <SiriUIPresentation>)arg1;
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 didChangePeekMode:(unsigned long long)arg2;
-- (void)siriPresentationMicButtonLongPressEnded:(id <SiriUIPresentation>)arg1;
-- (void)siriPresentationMicButtonLongPressBegan:(id <SiriUIPresentation>)arg1;
-- (void)siriPresentationMicButtonWasTapped:(id <SiriUIPresentation>)arg1;
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 didShowSnippetWithIdentifier:(NSUUID *)arg2 metricsContext:(NSString *)arg3 forInterval:(double)arg4;
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 didScrollForInterval:(double)arg2;
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 didEditSpeechRecognized:(SASSpeechRecognized *)arg2 forInterval:(double)arg3;
 - (void)siriPresentationDidPresentUserInterface:(id <SiriUIPresentation>)arg1;
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 showBugTemplateWithInformation:(NSDictionary *)arg2;
-- (void)siriPresentationDidDismissBugReporter:(id <SiriUIPresentation>)arg1;
-- (void)siriPresentationDidPresentBugReporter:(id <SiriUIPresentation>)arg1;
 - (void)siriPresentationContentHeightDidChange:(id <SiriUIPresentation>)arg1;
 - (void)siriPresentationPulseHelpButton:(id <SiriUIPresentation>)arg1;
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 setBugReportingAvailable:(BOOL)arg2;
@@ -31,7 +26,6 @@
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 willDismissViewController:(NSViewController *)arg2;
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 willPresentViewController:(NSViewController *)arg2;
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 setStatusViewDisabled:(BOOL)arg2;
-- (void)siriPresentation:(id <SiriUIPresentation>)arg1 setStatusViewUserInteractionEnabled:(BOOL)arg2;
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 setStatusViewHidden:(BOOL)arg2;
 - (void)siriPresentationRemoveAcousticIDSpinner:(id <SiriUIPresentation>)arg1;
 - (void)siriPresentationPresentAcousticIDSpinner:(id <SiriUIPresentation>)arg1;
@@ -59,6 +53,7 @@
 - (void)cancelRequestForSiriPresentation:(id <SiriUIPresentation>)arg1;
 - (void)stopRecordingSpeechForSiriPresentation:(id <SiriUIPresentation>)arg1;
 - (void)siriPresentation:(id <SiriUIPresentation>)arg1 startRequestWithOptions:(SiriUIRequestOptions *)arg2;
+- (double)windowWidthForForSiriPresentation:(id <SiriUIPresentation>)arg1;
 - (double)contentWidthForForSiriPresentation:(id <SiriUIPresentation>)arg1;
 @end
 

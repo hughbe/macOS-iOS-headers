@@ -19,6 +19,8 @@
 + (struct CGRect)_alignedStableRectForRect:(struct CGRect)arg1 alignToContent:(BOOL)arg2 alignToScreenUsingPageController:(id)arg3 orAlignToBitmapContext:(struct CGContext *)arg4 usingAnnotation:(id)arg5;
 + (struct CGRect)renderingAlignedTextRectForRect:(struct CGRect)arg1 alignToScreenUsingPageController:(id)arg2 orAlignToContext:(struct CGContext *)arg3 usingAnnotation:(id)arg4;
 + (struct CGRect)renderingStrokeAlignedRectForRect:(struct CGRect)arg1 withStrokeWidth:(double)arg2 alignToScreenUsingPageController:(id)arg3 orAlignToContext:(struct CGContext *)arg4 usingAnnotation:(id)arg5;
++ (struct CGRect)convertRect:(struct CGRect)arg1 fromScreenPointsToView:(id)arg2;
++ (struct CGRect)convertRect:(struct CGRect)arg1 fromViewToScreenPixels:(id)arg2 useNativeScale:(BOOL)arg3;
 + (struct CGRect)boundsOfRotatedRectangle:(struct CGRect)arg1 angle:(double)arg2;
 + (id)_cornersOfRotatedRectangle:(struct CGRect)arg1 angle:(double)arg2;
 + (struct CGAffineTransform)rotationTransformAroundPoint:(struct CGPoint)arg1 withAngle:(double)arg2;
@@ -79,15 +81,18 @@
 + (struct CGPoint)projectVector:(struct CGPoint)arg1 ontoAspectVector:(struct CGPoint)arg2;
 + (struct CGPoint)snapVector:(struct CGPoint)arg1 toDiagonalForAspectRatio:(double)arg2 ignoreWidth:(BOOL)arg3 ignoreHeight:(BOOL)arg4;
 + (struct CGPoint)snapVectorTo45Degrees:(struct CGPoint)arg1;
++ (struct CGRect)constrainRect:(struct CGRect)arg1 withinRect:(struct CGRect)arg2;
 + (struct CGPoint)centerOfRect:(struct CGRect)arg1;
 + (struct CGRect)rectForSize:(struct CGSize)arg1 inRect:(struct CGRect)arg2;
 + (struct CGRect)rectWithSize:(struct CGSize)arg1 centeredAtPoint:(struct CGPoint)arg2;
 + (struct CGRect)stableIntegralRectForRect:(struct CGRect)arg1;
 + (struct CGRect)integralRect:(struct CGRect)arg1 withOptions:(unsigned long long)arg2;
 + (BOOL)isUnpresentablePoint:(struct CGPoint)arg1;
++ (BOOL)isUnpresentableSize:(struct CGSize)arg1;
++ (BOOL)rectHasZeroSize:(struct CGRect)arg1;
 + (BOOL)isUnpresentableRect:(struct CGRect)arg1;
-@property __weak AKPageController *pageController; // @synthesize pageController=_pageController;
 - (void).cxx_destruct;
+@property __weak AKPageController *pageController; // @synthesize pageController=_pageController;
 - (BOOL)_shouldAlignToScreen;
 - (BOOL)_shouldAlignToContent;
 - (id)_rootLayer;

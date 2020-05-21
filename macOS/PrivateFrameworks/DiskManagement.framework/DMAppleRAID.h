@@ -23,6 +23,7 @@
 - (int)enableRAIDSetWithDisk:(struct __DADisk *)arg1 setType:(id)arg2 options:(id)arg3;
 - (int)createRAIDSetWithDisks:(id)arg1 setType:(id)arg2 name:(id)arg3 format:(id)arg4 options:(id)arg5;
 - (id)childrenOfRAID:(struct __DADisk *)arg1;
+- (id)directRAIDLevelForSetUUID:(id)arg1;
 - (id)directRAIDLevelForSet:(struct __DADisk *)arg1;
 - (BOOL)isRAIDMember:(struct __DADisk *)arg1;
 - (BOOL)isRAIDSet:(struct __DADisk *)arg1;

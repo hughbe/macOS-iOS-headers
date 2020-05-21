@@ -8,7 +8,7 @@
 
 #import "WBSQuickWebsiteSearchProviderDelegate.h"
 
-@class NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL;
+@class NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL, WBSCoalescedAsynchronousWriter;
 
 @interface WBSQuickWebsiteSearchController : NSObject <WBSQuickWebsiteSearchProviderDelegate>
 {
@@ -18,14 +18,13 @@
     NSMutableDictionary *_quickWebsiteSearchProvidersByHost;
     NSMutableDictionary *_openSearchDescriptionsByDescriptionDocumentURLString;
     NSMutableDictionary *_hostSetsByOpenSearchDescriptionDocumentURLString;
-    struct unique_ptr<SafariShared::CoalescedAsynchronousWriter, std::__1::default_delete<SafariShared::CoalescedAsynchronousWriter>> _writer;
+    WBSCoalescedAsynchronousWriter *_writer;
     BOOL _quickWebsiteSearchProvidersLoadedFromDisk;
 }
 
 + (id)sharedController;
-@property BOOL quickWebsiteSearchProvidersLoadedFromDisk; // @synthesize quickWebsiteSearchProvidersLoadedFromDisk=_quickWebsiteSearchProvidersLoadedFromDisk;
-- (id).cxx_construct;
 - (void).cxx_destruct;
+@property BOOL quickWebsiteSearchProvidersLoadedFromDisk; // @synthesize quickWebsiteSearchProvidersLoadedFromDisk=_quickWebsiteSearchProvidersLoadedFromDisk;
 - (void)_resetCachedDataWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_didCollectOpenSearchDescription:(id)arg1;
 - (void)_didFinishLoadingFromDisk;

@@ -6,23 +6,29 @@
 
 #import "NSObject.h"
 
-#import "CHSynchronizableProtocol.h"
+#import "CHSynchronizable.h"
 
-@class NSObject<OS_dispatch_queue>;
+@class NSObject<OS_dispatch_queue>, NSString;
 
-@interface CHSynchronizable : NSObject <CHSynchronizableProtocol>
+@interface CHSynchronizable : NSObject <CHSynchronizable>
 {
     NSObject<OS_dispatch_queue> *_queue;
 }
 
-@property(readonly) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
+@property(readonly) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (BOOL)executeSyncWithBOOL:(CDUnknownBlockType)arg1;
 - (id)executeSyncWithResult:(CDUnknownBlockType)arg1;
 - (void)executeSync:(CDUnknownBlockType)arg1;
 - (void)execute:(CDUnknownBlockType)arg1;
 - (id)initWithQueue:(id)arg1;
-- (id)initWithName:(id)arg1;
+- (id)initWithName:(const char *)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

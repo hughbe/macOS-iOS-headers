@@ -10,7 +10,6 @@ __attribute__((visibility("hidden")))
 @interface NSTitlebarFloatingWindow : NSWindow
 {
     NSWindow *_originalWindow;
-    void *_evtHandler;
 }
 
 + (Class)frameViewClassForStyleMask:(unsigned long long)arg1;
@@ -31,7 +30,7 @@ __attribute__((visibility("hidden")))
 - (id)representedURL;
 - (id)representedFilename;
 - (BOOL)_titleMightBeEditable;
-- (void)_setMenuBarRevealedValue:(double)arg1;
+- (void)setMenuBarRevealedValue:(double)arg1;
 - (void)dealloc;
 - (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4;
 

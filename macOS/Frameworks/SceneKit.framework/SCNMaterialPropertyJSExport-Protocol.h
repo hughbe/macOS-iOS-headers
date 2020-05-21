@@ -11,6 +11,7 @@
 @protocol SCNMaterialPropertyJSExport <JSExport>
 + (id)materialPropertyWithContents:(id)arg1;
 @property(nonatomic) double maxAnisotropy;
+@property(nonatomic) long long textureComponents;
 @property(nonatomic) long long mappingChannel;
 @property(retain, nonatomic) id borderColor;
 @property(nonatomic) long long wrapT;

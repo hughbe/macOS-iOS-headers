@@ -9,7 +9,7 @@
 #import "IDDiagnosticsProtocol.h"
 #import "NSXPCListenerDelegate.h"
 
-@class IDDiagnosticsStore, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, NSXPCListener;
+@class IDDiagnosticsStore, NSMutableArray, NSObject<OS_dispatch_queue>, NSString, NSXPCListener;
 
 @interface IDDiagnosticsServer : NSObject <NSXPCListenerDelegate, IDDiagnosticsProtocol>
 {
@@ -17,21 +17,22 @@
     NSXPCListener *_listener;
     NSMutableArray *_clientConnections;
     NSObject<OS_dispatch_queue> *_connectionQueue;
-    NSObject<OS_dispatch_semaphore> *_authSemaphore;
     IDDiagnosticsStore *_store;
 }
 
 + (id)sharedServer;
+- (void).cxx_destruct;
 @property(retain) IDDiagnosticsStore *store; // @synthesize store=_store;
 @property(readonly) BOOL installFinished; // @synthesize installFinished=_installFinished;
-@property(retain) NSObject<OS_dispatch_semaphore> *authSemaphore; // @synthesize authSemaphore=_authSemaphore;
 @property(retain) NSObject<OS_dispatch_queue> *connectionQueue; // @synthesize connectionQueue=_connectionQueue;
 @property(retain) NSMutableArray *clientConnections; // @synthesize clientConnections=_clientConnections;
 @property(retain) NSXPCListener *listener; // @synthesize listener=_listener;
-- (void).cxx_destruct;
-- (void)clearDiagnosticMessages;
-- (void)clearSingleDiagnosticMessage:(long long)arg1;
-- (void)recordDiagnosticMessage:(long long)arg1 withData:(id)arg2;
+- (void)clearDiagnosticMessages:(CDUnknownBlockType)arg1;
+- (void)clearSingleDiagnosticMessage:(long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)recordDiagnosticMessage:(long long)arg1 withData:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)finishMessageTransport;
+- (void)startMessageTransport;
+- (void)finishInstall;
 - (void)startNewInstall;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (void)startServer;

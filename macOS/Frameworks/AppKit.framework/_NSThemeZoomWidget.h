@@ -13,7 +13,8 @@ __attribute__((visibility("hidden")))
 
 + (id)zoomWidgetInView:(id)arg1 withButtonID:(long long)arg2 action:(SEL)arg3;
 + (void)initialize;
-- (void)mouseDown:(id)arg1;
+- (void)flagsChanged;
+- (BOOL)worksWhenModal;
 
 @end
 

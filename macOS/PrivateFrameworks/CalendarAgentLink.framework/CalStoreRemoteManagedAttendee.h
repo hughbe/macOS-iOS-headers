@@ -17,12 +17,12 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) int type; // @synthesize type=_type;
 @property(retain, nonatomic) NSString *status; // @synthesize status=_status;
 @property(retain, nonatomic) NSString *commonName; // @synthesize commonName=_commonName;
 @property(retain, nonatomic) NSURL *address; // @synthesize address=_address;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

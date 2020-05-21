@@ -17,12 +17,12 @@ __attribute__((visibility("hidden")))
     SGTSearchField *field;
 }
 
+- (void).cxx_destruct;
 @property(retain) SGTSearchField *field; // @synthesize field;
 - (id)windowFrameAutosaveName;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
 - (void)showWindow:(id)arg1;
 - (BOOL)windowShouldClose:(id)arg1;
-- (void)dealloc;
 - (id)initWithSearchField:(id)arg1;
 
 // Remaining properties

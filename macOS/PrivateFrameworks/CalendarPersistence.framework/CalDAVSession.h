@@ -13,12 +13,12 @@
     NSMutableDictionary *_calendarSources;
     CalDAVOperationQueue *_queue;
     NSString *_pushToken;
-    BOOL _pushActive;
     BOOL _isDelegate;
     NSDate *_fullRefreshDate;
     CalDAVAccountInfoProvider *_accountInfoProvider;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSDate *fullRefreshDate; // @synthesize fullRefreshDate=_fullRefreshDate;
 @property BOOL isDelegate; // @synthesize isDelegate=_isDelegate;
 @property(retain) NSMutableDictionary *calendarSources; // @synthesize calendarSources=_calendarSources;
@@ -31,6 +31,7 @@
 - (void)systemNetworkDidChange;
 - (id)managedPrincipalInContext:(id)arg1;
 - (BOOL)attemptAutomaticConnect;
+- (BOOL)_isTransientNetworkError:(id)arg1;
 - (void)deletePersistedErrorAndNotify;
 - (BOOL)persistError:(id)arg1 forChangeRequestID:(id)arg2;
 - (BOOL)persistErrorAndNotify;
@@ -59,7 +60,6 @@
 - (void)reactivate;
 - (BOOL)activate;
 - (void)deactivate;
-- (void)dealloc;
 - (id)initWithObjectID:(id)arg1;
 
 @end

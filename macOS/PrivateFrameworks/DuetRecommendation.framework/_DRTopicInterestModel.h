@@ -23,15 +23,16 @@
 + (id)topicPresentedCategory;
 + (id)topicActionCategoryType;
 + (id)newsStorageDirectory;
+- (void).cxx_destruct;
 @property(retain) _DKKnowledgeStorage *storage; // @synthesize storage=_storage;
 @property(retain) NSObject<OS_dispatch_queue> *syncQueue; // @synthesize syncQueue=_syncQueue;
-- (void).cxx_destruct;
 - (void)purgeEntriesWithPrefix:(id)arg1 earlierThanDate:(id)arg2;
 - (void)purgeEntriesEarlierThanDate:(id)arg1;
 - (id)computeSummaryWithFilter:(id)arg1;
 - (void)enumerateTopicCountsWithFilter:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void)recordSelectionOfTopics:(id)arg1 onDate:(id)arg2;
 - (void)recordPresentationOfTopics:(id)arg1 onDate:(id)arg2;
+- (id)initWithStorageDirectory:(id)arg1 localOnly:(BOOL)arg2;
 - (id)initWithStorageDirectory:(id)arg1;
 - (id)init;
 

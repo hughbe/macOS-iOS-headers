@@ -6,7 +6,6 @@
 
 #import <ContactsFoundation/CNUserDefaults.h>
 
-__attribute__((visibility("hidden")))
 @interface _CNInMemoryUserDefaults : CNUserDefaults
 {
 }

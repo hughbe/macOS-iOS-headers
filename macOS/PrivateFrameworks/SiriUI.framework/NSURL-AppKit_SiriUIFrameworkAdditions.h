@@ -6,7 +6,10 @@
 
 #import "NSURL.h"
 
+@class NSString;
+
 @interface NSURL (AppKit_SiriUIFrameworkAdditions)
+@property(readonly) NSString *siriui_simplifiedBingPath;
 @property(readonly) NSURL *siriui_bingForwardedURL;
 @end
 

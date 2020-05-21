@@ -11,8 +11,14 @@
 __attribute__((visibility("hidden")))
 @interface SCRNotificationCenterWindow : SCRWindow <SCRApplicationDirectChildProtocol>
 {
+    BOOL _isSiriWindow;
+    BOOL _isFaceTimeWindow;
 }
 
+@property(readonly, nonatomic) BOOL isFaceTimeWindow; // @synthesize isFaceTimeWindow=_isFaceTimeWindow;
+@property(readonly, nonatomic) BOOL isSiriWindow; // @synthesize isSiriWindow=_isSiriWindow;
+- (id)faceTimeElementToInitiallyFocusOn;
+- (id)siriElementToInitiallyFocusOn;
 - (id)onlyChildForFocusingIntoInArray:(id)arg1;
 - (BOOL)shouldFocusOntoChild:(id)arg1;
 - (id)alternateOrderedChildrenForMappedChildren:(id)arg1;
@@ -22,10 +28,12 @@ __attribute__((visibility("hidden")))
 - (id)nameForGuide;
 - (BOOL)showInGuide;
 - (void)setKeyboardChild:(id)arg1 force:(BOOL)arg2;
+- (void)addItemDescriptionForBrailleToRequest:(id)arg1;
 - (void)addItemNameDescriptionToRequest:(id)arg1;
 - (id)_orderedElementsToDescribe:(id)arg1;
 - (id)captionDescriptionContainsUserLabel:(char *)arg1 containsAncestorLabel:(char *)arg2;
 - (BOOL)allowAlternateSpeechToTitle;
+- (id)initWithUIElement:(id)arg1 parent:(id)arg2;
 
 @end
 

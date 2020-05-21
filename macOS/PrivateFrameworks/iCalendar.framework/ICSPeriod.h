@@ -6,17 +6,18 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class ICSDateValue, ICSDuration;
 
-@interface ICSPeriod : NSObject <NSCoding>
+@interface ICSPeriod : NSObject <NSSecureCoding>
 {
     ICSDateValue *_start;
     ICSDateValue *_end;
     ICSDuration *_duration;
 }
 
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

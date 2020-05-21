@@ -11,16 +11,17 @@
 __attribute__((visibility("hidden")))
 @interface _NSAccessoryAnimationData : NSObject
 {
-    id _animationContextResumeKey;
+    id <NSAnimationContextCompletionHandlerSuspension> _animationContextResumeKey;
     NSAnimation *_visibilityAnimation;
     id _animator;
     NSDictionary *_animationsDictionary;
 }
 
+- (void).cxx_destruct;
 @property(copy) NSDictionary *animationsDictionary; // @synthesize animationsDictionary=_animationsDictionary;
-@property(retain) id animator; // @synthesize animator=_animator;
+@property __weak id animator; // @synthesize animator=_animator;
 @property(retain) NSAnimation *visibilityAnimation; // @synthesize visibilityAnimation=_visibilityAnimation;
-@property(retain) id animationContextResumeKey; // @synthesize animationContextResumeKey=_animationContextResumeKey;
+@property(retain) id <NSAnimationContextCompletionHandlerSuspension> animationContextResumeKey; // @synthesize animationContextResumeKey=_animationContextResumeKey;
 - (void)dealloc;
 
 @end

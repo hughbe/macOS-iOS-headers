@@ -6,7 +6,6 @@
 
 #import <CFNetwork/NSURLSessionTaskHTTPAuthenticator.h>
 
-__attribute__((visibility("hidden")))
 @interface NSURLSessionTaskLocalHTTPAuthenticator : NSURLSessionTaskHTTPAuthenticator
 {
     id <NSURLSessionAppleIDContext> _externalAuthenticator;

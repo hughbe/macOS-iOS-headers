@@ -7,28 +7,40 @@
 #import "NSObject.h"
 
 #import "NSImmediateActionAnimationController.h"
+#import "PagePreviewViewControllerDelegate.h"
 
-@class NSImmediateActionGestureRecognizer, NSPopover, NSPopoverAnimationController, NSString, NSTimer, NSURL, PagePreviewViewController, SearchableWKView;
+@class NSImmediateActionGestureRecognizer, NSPopover, NSPopoverAnimationController, NSString, NSTimer, NSURL, NSView, NSViewController, PagePreviewViewController;
 
 __attribute__((visibility("hidden")))
-@interface PagePreviewAnimationController : NSObject <NSImmediateActionAnimationController>
+@interface PagePreviewAnimationController : NSObject <PagePreviewViewControllerDelegate, NSImmediateActionAnimationController>
 {
     BOOL _shouldShowPreviewWhenLoadedOrAnimationCompletes;
     BOOL _hasFinishedLoading;
-    SearchableWKView *_wkView;
-    NSURL *_url;
     NSPopover *_previewPopover;
-    struct CGRect _popoverOriginRect;
     PagePreviewViewController *_previewViewController;
     struct CGPoint _eventLocationInView;
     NSPopoverAnimationController *_popoverAnimationController;
     NSImmediateActionGestureRecognizer *_recognizer;
     BOOL _didCompleteAnimation;
     NSTimer *_previewWatchdogTimer;
+    id <PagePreviewAnimationControllerDelegate> _delegate;
+    NSViewController *_parentViewController;
+    NSURL *_url;
+    NSView *_view;
+    struct CGRect _originRect;
 }
 
 - (void).cxx_destruct;
-- (void)didClosePagePreviewViewController:(id)arg1;
+@property(readonly, nonatomic) struct CGRect originRect; // @synthesize originRect=_originRect;
+@property(readonly, nonatomic) __weak NSView *view; // @synthesize view=_view;
+@property(readonly, nonatomic) NSURL *url; // @synthesize url=_url;
+@property(nonatomic) __weak NSViewController *parentViewController; // @synthesize parentViewController=_parentViewController;
+@property(nonatomic) __weak id <PagePreviewAnimationControllerDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)dismissPagePreviewViewController:(id)arg1;
+- (void)pagePreviewViewController:(id)arg1 addURLToReadingList:(id)arg2;
+- (void)pagePreviewViewController:(id)arg1 handleClickInPreviewBrowserViewController:(id)arg2;
+- (void)pagePreviewViewController:(id)arg1 didFinishPreviewWithBrowserViewController:(id)arg2;
+- (id)makePreviewBrowserViewControllerForPagePreviewViewController:(id)arg1;
 - (void)recognizerDidDismissAnimation:(id)arg1;
 - (void)recognizerDidCompleteAnimation:(id)arg1;
 - (void)recognizerDidCancelAnimation:(id)arg1;

@@ -14,13 +14,13 @@
 }
 
 - (void)respondWithData:(id)arg1;
+- (struct __CFDictionary *)_requestInfo;
 - (id)_loadingRequest;
 @property(readonly, nonatomic) long long currentOffset;
 @property(readonly, nonatomic) BOOL requestsAllDataToEndOfResource;
 @property(readonly, nonatomic) long long requestedLength;
 @property(readonly, nonatomic) long long requestedOffset;
 - (id)description;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithLoadingRequest:(id)arg1 requestedOffset:(long long)arg2 requestedLength:(long long)arg3 requestsAllDataToEndOfResource:(BOOL)arg4 canSupplyIncrementalDataImmediately:(BOOL)arg5;
 - (id)init;

@@ -10,11 +10,20 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct AWDObserverConnection;
+
 struct AWDServerConnection {
     struct shared_ptr<awd::ServerConnectionInfo> _field1;
 };
 
 struct ServerConnectionInfo;
+
+struct __shared_weak_count;
+
+struct shared_ptr<AWDObserverConnection> {
+    struct AWDObserverConnection *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
 
 struct shared_ptr<awd::ServerConnectionInfo> {
     struct ServerConnectionInfo *_field1;

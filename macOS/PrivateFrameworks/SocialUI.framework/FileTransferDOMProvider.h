@@ -15,10 +15,12 @@
     NSMutableSet *_guidsForAllOwnedTransfers;
 }
 
+- (void).cxx_destruct;
 @property BOOL singleOptionPressed; // @synthesize singleOptionPressed=_singleOptionPressed;
 @property BOOL altFunction; // @synthesize altFunction=_altFunction;
 @property(retain) NSMutableSet *guidsForAllOwnedTransfers; // @synthesize guidsForAllOwnedTransfers=_guidsForAllOwnedTransfers;
-- (void).cxx_destruct;
+- (void)updateDOMElement:(id)arg1 forDarkAppearance:(BOOL)arg2;
+- (BOOL)isThemeableTranscriptResource:(id)arg1;
 - (void)_flagsChanged:(id)arg1;
 - (void)_userVisiblePathCreated:(id)arg1;
 - (void)updateClassName:(id)arg1 forTransfer:(id)arg2;
@@ -30,9 +32,10 @@
 - (void)fileTransferUpdated:(id)arg1 inlineMedia:(BOOL)arg2;
 - (void)setSourceForInlineMedia:(id)arg1 forFileTransfer:(id)arg2;
 - (void)_configureImageSource:(id)arg1 forFileTransfer:(id)arg2;
+- (void)_setThemeableSrcURL:(id)arg1 forElement:(id)arg2;
+- (BOOL)isDarkMode;
 - (BOOL)isResponsibleForTransfer:(id)arg1;
 - (void)dealloc;
-- (void)cacheImages;
 - (id)initWithController:(id)arg1;
 @property(readonly, nonatomic) __weak DOMDocument *DOM; // @dynamic DOM;
 

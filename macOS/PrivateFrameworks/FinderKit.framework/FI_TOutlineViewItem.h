@@ -11,13 +11,13 @@
 __attribute__((visibility("hidden")))
 @interface FI_TOutlineViewItem : FI_TTableViewItem
 {
-    struct TNSRef<NSMutableArray *, void> _children;
+    struct TNSRef<NSMutableArray, void> _children;
     _Bool _isLeaf;
 }
 
-@property _Bool isLeaf; // @synthesize isLeaf=_isLeaf;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property _Bool isLeaf; // @synthesize isLeaf=_isLeaf;
 - (id)flattenedChildren;
 @property(readonly, retain, nonatomic) NSArray *children; // @dynamic children;
 - (id)copyWithZone:(struct _NSZone *)arg1;

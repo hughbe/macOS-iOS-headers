@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class GEOCityPickerView, IGPopupWindowController, NSComboBox, NSWindow;
+@class GEOCityPickerView, IGPopupWindowController, NSArray, NSComboBox, NSWindow;
 
 @interface CalUITimeZoneCityPickerController : NSObject
 {
@@ -14,10 +14,12 @@
     GEOCityPickerView *tzView;
     NSComboBox *_comboBox;
     IGPopupWindowController *_popup;
+    NSArray *_topLevelObjects;
 }
 
 + (id)sharedInstance;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *topLevelObjects; // @synthesize topLevelObjects=_topLevelObjects;
 - (void)clearDelegates;
 - (BOOL)popupOnView:(id)arg1;
 - (id)popup;

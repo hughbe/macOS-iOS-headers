@@ -10,18 +10,19 @@
 
 @interface _NSWindowTransformAnimation : NSAnimation
 {
-    NSWindow *_window;
+    NSWindow *_animatingWindow;
     NSWindow *_originalWindow;
-    NSWindow *_originalParentWindow;
+    CDUnknownBlockType _animateToProgress;
     double _currentAnimationAlpha;
     unsigned long long _type;
     struct CGPoint _startPoint;
     struct CGPoint _anchorPoint;
-    struct CGRect _originalWindowFrame;
+    id _space;
     CDUnknownBlockType _completionBlock;
     double _scaleAmount;
     unsigned int _animateAlpha:1;
-    unsigned int _windowTransformAnimationReservedFlags:31;
+    unsigned int _originalHasParentWindow:1;
+    unsigned int _windowTransformAnimationReservedFlags:30;
 }
 
 + (id)windowTransformAnimationWithWindow:(id)arg1 type:(long long)arg2 interruptingAnimation:(id)arg3;
@@ -44,12 +45,15 @@
 - (void)_cleanUpAnimation;
 - (void)setCurrentProgress:(float)arg1;
 - (void)startAnimation;
+- (void)finishConfiguration;
+- (CDUnknownBlockType)_configureAnimationBlock;
+- (id)_windowBaseAlphas;
+- (id)_windowTransformAnchors;
+- (void)_gatherChildWindowAnchors:(id)arg1 forWindow:(id)arg2 anchorPoint:(struct CGPoint)arg3;
 - (id)_stringForAnimationType;
 @property(readonly) NSWindow *window;
+- (void)setWindowSendDocmentUpTranslationProgress:(double)arg1;
 - (void)setWindowShakeProgress:(double)arg1;
-- (void)setWindowFallOutTranslationProgress:(double)arg1;
-- (void)setWindowFlyInTranslationProgress:(double)arg1;
-- (void)setWindowMagnification:(double)arg1 forProgress:(double)arg2;
 - (void)setAnimationAlphaValue:(double)arg1;
 - (BOOL)isOrderOutAnimation;
 - (BOOL)isOrderFrontAnimation;

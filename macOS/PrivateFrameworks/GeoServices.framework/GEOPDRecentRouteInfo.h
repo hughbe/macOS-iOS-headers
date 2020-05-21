@@ -8,18 +8,35 @@
 
 #import "NSCopying.h"
 
-@class NSData;
+@class NSData, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDRecentRouteInfo : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSData *_routeId;
     NSData *_sessionState;
     NSData *_zilchPoints;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_routeId:1;
+        unsigned int read_sessionState:1;
+        unsigned int read_zilchPoints:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_routeId:1;
+        unsigned int wrote_sessionState:1;
+        unsigned int wrote_zilchPoints:1;
+    } _flags;
 }
 
-@property(retain, nonatomic) NSData *routeId; // @synthesize routeId=_routeId;
-@property(retain, nonatomic) NSData *sessionState; // @synthesize sessionState=_sessionState;
-@property(retain, nonatomic) NSData *zilchPoints; // @synthesize zilchPoints=_zilchPoints;
++ (BOOL)isValid:(id)arg1;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -27,12 +44,20 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSData *routeId;
 @property(readonly, nonatomic) BOOL hasRouteId;
+- (void)_readRouteId;
+@property(retain, nonatomic) NSData *sessionState;
 @property(readonly, nonatomic) BOOL hasSessionState;
+- (void)_readSessionState;
+@property(retain, nonatomic) NSData *zilchPoints;
 @property(readonly, nonatomic) BOOL hasZilchPoints;
-- (void)dealloc;
+- (void)_readZilchPoints;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

@@ -13,10 +13,6 @@
 @interface NSMeasurementFormatter : NSFormatter <NSSecureCoding>
 {
     void *_formatter;
-    unsigned long long _unitOptions;
-    long long _unitStyle;
-    NSLocale *_locale;
-    NSNumberFormatter *_numberFormatter;
 }
 
 + (BOOL)supportsSecureCoding;

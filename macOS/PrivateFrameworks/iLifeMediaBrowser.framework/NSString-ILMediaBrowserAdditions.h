@@ -8,5 +8,7 @@
 
 @interface NSString (ILMediaBrowserAdditions)
 - (long long)_ILMediaObjectPropertyCompare:(id)arg1;
+- (long long)_ILMediaObjectiTunesStringCompare:(id)arg1;
+- (long long)ilmbVersionStringCompare:(id)arg1;
 @end
 

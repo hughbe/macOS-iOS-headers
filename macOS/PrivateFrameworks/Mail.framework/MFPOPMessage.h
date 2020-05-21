@@ -10,17 +10,17 @@
 
 @interface MFPOPMessage : MCMessage
 {
-    unsigned long long _messageNumber;
     NSString *_messageID;
+    unsigned long long _messageNumber;
     NSData *_messageData;
 }
 
-@property(copy, nonatomic) NSData *messageData; // @synthesize messageData=_messageData;
-@property(copy, nonatomic) NSString *messageID; // @synthesize messageID=_messageID;
-@property(nonatomic) unsigned long long messageNumber; // @synthesize messageNumber=_messageNumber;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSData *messageData; // @synthesize messageData=_messageData;
+@property(nonatomic) unsigned long long messageNumber; // @synthesize messageNumber=_messageNumber;
+@property(copy, nonatomic) NSString *messageID; // @synthesize messageID=_messageID;
 - (id)remoteMailboxURLString;
-- (id)messageDataIncludingFromSpace:(BOOL)arg1 newDocumentID:(id)arg2 fetchIfNotAvailable:(BOOL)arg3;
+- (id)messageDataFetchIfNotAvailable:(BOOL)arg1 newDocumentID:(id)arg2;
 - (unsigned long long)messageSize;
 - (void)setDataSource:(id)arg1;
 - (id)dataSource;

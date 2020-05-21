@@ -17,10 +17,14 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)predicateForContactsWithFormat:(id)arg1;
++ (id)predicateForContactsMatchingMapsDataString:(id)arg1;
++ (id)predicateForContactMatcingURLString:(id)arg1;
++ (id)predicateForContactMatcingSocialProfile:(id)arg1;
++ (id)predicateForContactMatchingInstantMessageAddress:(id)arg1;
 + (id)predicateForContactsWithOrganizationName:(id)arg1;
+- (void).cxx_destruct;
 - (id)cn_coreDataPredicate;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
 - (id)initWithCoreDataPredicate:(id)arg1;
 
 // Remaining properties

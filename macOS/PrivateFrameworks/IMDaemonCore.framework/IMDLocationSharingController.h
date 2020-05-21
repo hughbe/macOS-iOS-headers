@@ -13,6 +13,8 @@
     FMFSession *_session;
 }
 
++ (void)_addLocationShareItemToMatchingChats:(id)arg1 handleID:(id)arg2 hasStoredItem:(BOOL)arg3 broadcastChanges:(BOOL)arg4;
++ (void)addLocationShareItemToMatchingChats:(id)arg1;
 + (id)sharedInstance;
 - (void)_forwardMappingPacket:(id)arg1 toID:(id)arg2 account:(id)arg3;
 - (void)receivedIncomingLocationSharePacket:(id)arg1;

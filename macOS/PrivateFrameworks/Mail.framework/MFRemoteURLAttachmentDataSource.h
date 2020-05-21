@@ -15,7 +15,7 @@
 }
 
 - (void)_persistDownloadedFileWrapper:(id)arg1 originalContentsURL:(id)arg2;
-- (void)fetchAttachmentMimePartNumber:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)fetchAttachmentForAccessLevel:(long long)arg1 mimePartNumber:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

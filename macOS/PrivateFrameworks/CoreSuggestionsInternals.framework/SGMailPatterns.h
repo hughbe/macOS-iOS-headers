@@ -16,7 +16,6 @@
 + (id)headerPattern;
 + (id)headerPattern:(id)arg1;
 + (id)replyAttributionPattern;
-+ (void)initialize;
 
 @end
 

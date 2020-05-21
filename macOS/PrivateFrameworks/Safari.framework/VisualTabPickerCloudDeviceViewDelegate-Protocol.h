@@ -11,5 +11,8 @@
 @protocol VisualTabPickerCloudDeviceViewDelegate <NSObject>
 - (void)visualTabPickerCloudDeviceView:(VisualTabPickerCloudDeviceView *)arg1 didRemoveCloudTabAtIndex:(unsigned long long)arg2;
 - (void)visualTabPickerCloudDeviceView:(VisualTabPickerCloudDeviceView *)arg1 didSelectCloudTabAtIndex:(unsigned long long)arg2;
+
+@optional
+- (void)didRemoveAllCloudTabsForVisualTabPickerCloudDeviceView:(VisualTabPickerCloudDeviceView *)arg1;
 @end
 

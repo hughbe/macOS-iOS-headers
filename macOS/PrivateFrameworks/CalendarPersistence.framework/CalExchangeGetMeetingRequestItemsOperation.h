@@ -18,7 +18,7 @@
 @property(retain) NSArray *itemIds; // @synthesize itemIds=_itemIds;
 @property(retain) NSArray *requestMessages; // @synthesize requestMessages=_requestMessages;
 @property(retain) EWSItemIdType *associatedCalendarItemID; // @synthesize associatedCalendarItemID=_associatedCalendarItemID;
-- (id)_getItemsResponseShape;
+- (id)_getItemsResponseShape:(BOOL)arg1;
 - (id)_findItemsResponseShape;
 - (id)_findMeetingRequestItemsWithBinding:(id)arg1 session:(id)arg2 context:(id)arg3 error:(id *)arg4;
 - (BOOL)executeWithBinding:(id)arg1 inSession:(id)arg2 inContext:(id)arg3 error:(id *)arg4;

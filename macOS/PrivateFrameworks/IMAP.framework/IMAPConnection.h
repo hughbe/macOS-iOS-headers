@@ -31,7 +31,7 @@
     BOOL _canStartIdle;
     BOOL _sentID;
     id <IMAPConnectionResponseDelegate> _responseDelegate;
-    IMAPMailbox *_selectedIMAPMailboxForLogging;
+    NSString *_selectedMailboxNameForLogging;
 }
 
 + (BOOL)automaticallyNotifiesObserversOfSelectedMailboxName;
@@ -39,11 +39,11 @@
 + (id)capabilityNameForCapability:(unsigned long long)arg1;
 + (BOOL)_defaultsToBackground;
 + (id)log;
-@property(retain, nonatomic) IMAPMailbox *selectedIMAPMailboxForLogging; // @synthesize selectedIMAPMailboxForLogging=_selectedIMAPMailboxForLogging;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *selectedMailboxNameForLogging; // @synthesize selectedMailboxNameForLogging=_selectedMailboxNameForLogging;
 @property BOOL sentID; // @synthesize sentID=_sentID;
 @property(nonatomic) BOOL canStartIdle; // @synthesize canStartIdle=_canStartIdle;
 @property __weak id <IMAPConnectionResponseDelegate> responseDelegate; // @synthesize responseDelegate=_responseDelegate;
-- (void).cxx_destruct;
 - (BOOL)_readDataWithRemainingByteCount:(long long)arg1 intoData:(id)arg2 error:(id *)arg3;
 - (BOOL)_recordMailboxResponse:(id)arg1 forCommand:(id)arg2 exists:(unsigned long long *)arg3 receivedExists:(char *)arg4 fromIDLE:(BOOL)arg5;
 - (BOOL)_recordMailboxResponse:(id)arg1 forCommand:(id)arg2;
@@ -54,13 +54,12 @@
 - (id)_responseFromSendingCommand:(id)arg1 receivedExists:(char *)arg2;
 - (BOOL)_correctMailboxIsSelectedForCommand:(id)arg1;
 - (id)description;
-- (id)debugDescription;
-- (id)_stateStringIncludingPII:(BOOL)arg1;
+- (id)_stateString;
 - (BOOL)executeFetch:(id)arg1;
 @property(nonatomic) unsigned int readBufferSize;
 - (BOOL)executeNamespace:(id)arg1;
 - (BOOL)executeAppend:(id)arg1;
-- (BOOL)executeUIDCopy:(id)arg1;
+- (BOOL)executeUIDCopyOrMove:(id)arg1;
 - (id)_responseFromSendingCommand:(id)arg1 tryCreate:(char *)arg2 receivedExists:(char *)arg3;
 - (BOOL)executeUIDStore:(id)arg1;
 - (BOOL)executeUIDSearch:(id)arg1;
@@ -89,7 +88,7 @@
 - (BOOL)executeStartTLS:(id)arg1;
 - (BOOL)_startTLS;
 - (BOOL)executeAuthenticate:(id)arg1;
-- (BOOL)_authenticateWithSaslClient:(id)arg1;
+- (BOOL)_authenticateWithSASLClient:(id)arg1;
 - (void)_enableCapabilities;
 - (BOOL)authenticate;
 - (id)authenticationMechanisms;
@@ -104,7 +103,6 @@
 - (void)_fetchCapabilitiesIfNeeded;
 - (void)_addToCapabilities:(id)arg1;
 - (void)_clearCapabilities;
-- (void)updateCanStartIdle:(BOOL)arg1;
 - (BOOL)supportsCapability:(unsigned long long)arg1;
 @property(readonly, copy) NSArray *capabilities;
 - (id)_errorForResponse:(id)arg1 command:(id)arg2;

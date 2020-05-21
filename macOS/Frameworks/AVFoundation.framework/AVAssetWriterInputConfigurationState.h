@@ -8,6 +8,7 @@
 
 @class AVOutputSettings, NSArray, NSDictionary, NSString, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface AVAssetWriterInputConfigurationState : NSObject
 {
     NSString *_mediaType;
@@ -32,12 +33,14 @@
     CDStruct_1b6d18a9 _chunkDuration;
     long long _chunkAlignment;
     long long _chunkSize;
-    BOOL _writesMediaDataToBeginningOfFile;
+    NSString *_mediaDataLocation;
     NSURL *_sampleReferenceBaseURL;
+    BOOL _maximizePowerEfficiency;
 }
 
+@property(nonatomic) BOOL maximizePowerEfficiency; // @synthesize maximizePowerEfficiency=_maximizePowerEfficiency;
 @property(copy, nonatomic) NSURL *sampleReferenceBaseURL; // @synthesize sampleReferenceBaseURL=_sampleReferenceBaseURL;
-@property(nonatomic) BOOL writesMediaDataToBeginningOfFile; // @synthesize writesMediaDataToBeginningOfFile=_writesMediaDataToBeginningOfFile;
+@property(copy, nonatomic) NSString *mediaDataLocation; // @synthesize mediaDataLocation=_mediaDataLocation;
 @property(nonatomic) long long preferredMediaChunkSize; // @synthesize preferredMediaChunkSize=_chunkSize;
 @property(nonatomic) long long preferredMediaChunkAlignment; // @synthesize preferredMediaChunkAlignment=_chunkAlignment;
 @property(nonatomic) CDStruct_1b6d18a9 preferredMediaChunkDuration; // @synthesize preferredMediaChunkDuration=_chunkDuration;

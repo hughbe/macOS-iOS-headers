@@ -6,17 +6,19 @@
 
 #import "NSObject.h"
 
+#import "ECMessageHeaders.h"
 #import "NSCopying.h"
 #import "NSMutableCopying.h"
 
-@class ECEncodedWordDecoder, NSArray, NSAttributedString, NSData, NSString;
+@class ECEncodedWordDecoder, NSArray, NSAttributedString, NSData, NSDate, NSNumber, NSString;
 
-@interface MCMessageHeaders : NSObject <NSCopying, NSMutableCopying>
+@interface MCMessageHeaders : NSObject <ECMessageHeaders, NSCopying, NSMutableCopying>
 {
     id _sender;
-    unsigned long long _encodingHint;
-    NSData *_headerData;
     ECEncodedWordDecoder *_encodedWordDecoder;
+    unsigned long long _encodingHint;
+    NSNumber *_primitiveMessageIsFromMicrosoft;
+    NSData *_headerData;
 }
 
 + (id)headerKeysFromLocalizedHeaders:(id)arg1;
@@ -25,6 +27,7 @@
 + (id)_localizedHeadersForKeys;
 + (id)localizedHeaderForKey:(id)arg1;
 + (id)localizedHeaders;
++ (id)_removeAngleBracketFromArray:(id)arg1;
 + (void)setCustomDisplayedHeaders:(id)arg1;
 + (BOOL)_customHeadersEnabled;
 + (id)customHeadersIgnoringDisabledState;
@@ -35,15 +38,18 @@
 + (BOOL)isMessageIDHeaderKey:(id)arg1;
 + (BOOL)isAddressHeaderKey:(id)arg1;
 + (void)initialize;
-@property(readonly, nonatomic) ECEncodedWordDecoder *encodedWordDecoder; // @synthesize encodedWordDecoder=_encodedWordDecoder;
-@property(readonly, copy, nonatomic) NSData *headerData; // @synthesize headerData=_headerData;
-@property(readonly, nonatomic) unsigned long long encodingHint; // @synthesize encodingHint=_encodingHint;
 - (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSData *headerData; // @synthesize headerData=_headerData;
+@property(retain) NSNumber *primitiveMessageIsFromMicrosoft; // @synthesize primitiveMessageIsFromMicrosoft=_primitiveMessageIsFromMicrosoft;
+@property(readonly, nonatomic) unsigned long long encodingHint; // @synthesize encodingHint=_encodingHint;
 - (void)_appendAddressList:(id)arg1 toData:(id)arg2 forKey:(id)arg3;
-- (id)description;
+@property(readonly, copy) NSString *description;
+- (void)_appendEncodedHeadersToData:(id)arg1;
 - (void)appendHeaderData:(id)arg1 recipients:(id)arg2 recipientsByHeaderKey:(id)arg3 expandGroups:(BOOL)arg4 includeComment:(BOOL)arg5;
 - (void)appendHeaderData:(id)arg1 recipients:(id)arg2;
-- (id)encodedHeadersIncludingFromSpace:(BOOL)arg1;
+@property(readonly, copy, nonatomic) NSData *encodedHeaders;
+@property(readonly, nonatomic) NSDate *dateSent;
+@property(readonly, nonatomic) NSDate *dateReceived;
 @property(readonly, nonatomic) BOOL messageIsFromMicrosoft;
 @property(readonly, copy, nonatomic) NSString *mailVersion;
 - (id)_rfc2047DecodedStringWithSender:(id)arg1 headerData:(id)arg2 headerBytes:(const char *)arg3 start:(const char *)arg4 end:(const char *)arg5 detectOtherEncodings:(BOOL)arg6;
@@ -60,6 +66,8 @@
 - (id)firstAddressForKey:(id)arg1;
 - (id)addressListForKey:(id)arg1;
 - (id)_newHeaderValueForKey:(id)arg1 offset:(unsigned long long *)arg2;
+- (id)listUnsubscribeCommands;
+- (id)firstSenderAddress;
 - (id)firstHeaderForKey:(id)arg1;
 - (id)_headersForKey:(id)arg1;
 - (id)headersForKey:(id)arg1;
@@ -69,6 +77,7 @@
 @property(readonly, copy, nonatomic) NSArray *allHeaderKeys;
 - (void)_resetSender;
 - (id)_sender;
+- (id)headersDictionary;
 - (id)headersDictionaryForMessageType:(BOOL)arg1;
 - (id)_attributedStringForHeaders:(id)arg1;
 @property(readonly, copy, nonatomic) NSAttributedString *attributedStringForAllHeaders;
@@ -79,8 +88,14 @@
 - (id)_headersToDisplayFromHeaderKeys:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)initWithASCIIHeaderString:(id)arg1;
 - (id)init;
 - (id)initWithHeaderData:(id)arg1 encodingHint:(unsigned long long)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,6 @@
 
 @class NSArray, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewMultiValueEntry : NSObject
 {
     NSString *_identifier;
@@ -24,6 +23,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (id)entryWithIdentifier:(id)arg1 label:(id)arg2 value:(id)arg3;
+- (void).cxx_destruct;
 @property(copy) NSArray *multiValueIdentifiers; // @synthesize multiValueIdentifiers=_multiValueIdentifiers;
 @property(copy) NSArray *personIdentifiers; // @synthesize personIdentifiers=_personIdentifiers;
 @property(retain) id suggestedValue; // @synthesize suggestedValue=_suggestedValue;
@@ -40,7 +40,6 @@ __attribute__((visibility("hidden")))
 - (id)description;
 @property(readonly) BOOL isSuggested;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithIdentifier:(id)arg1 label:(id)arg2 value:(id)arg3;
 
 @end

@@ -9,9 +9,9 @@
 @class VKAnimation, VKPuckAnimator;
 
 @protocol VKPuckAnimatorDelegate <NSObject>
-- (void)puckAnimator:(VKPuckAnimator *)arg1 updatedTargetPosition:(Matrix_6e1d3589)arg2;
+- (void)puckAnimator:(VKPuckAnimator *)arg1 updatedTargetPosition:(const Coordinate3D_bc242218 *)arg2;
 - (void)puckAnimatorDidStop:(VKPuckAnimator *)arg1;
-- (void)puckAnimator:(VKPuckAnimator *)arg1 updatedPosition:(const Mercator3_d8bb135c *)arg2 course:(double)arg3;
+- (void)puckAnimator:(VKPuckAnimator *)arg1 updatedPosition:(const Coordinate3D_bc242218 *)arg2 course:(const Unit_3d259e8a *)arg3;
 - (void)puckAnimator:(VKPuckAnimator *)arg1 runAnimation:(VKAnimation *)arg2;
 @end
 

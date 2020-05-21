@@ -11,7 +11,6 @@
     unsigned long long _k;
 }
 
-+ (id)defaultPuzzleBox;
 + (id)puzzleBoxWithDimensionality:(unsigned long long)arg1;
 @property(readonly, nonatomic) unsigned long long k; // @synthesize k=_k;
 - (id)puzzlePieceFor:(id)arg1;

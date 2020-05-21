@@ -15,6 +15,7 @@
     NSMutableString *_plistKeyPathMutableString;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSMutableString *plistKeyPathMutableString; // @synthesize plistKeyPathMutableString=_plistKeyPathMutableString;
 @property(retain) NSData *propertyListData; // @synthesize propertyListData=_propertyListData;
 - (BOOL)needsWrite;
@@ -26,7 +27,6 @@
 - (id)_actionBundleIDListForActionType:(id)arg1;
 - (id)initWithURL:(id)arg1 propertyListData:(id)arg2;
 - (id)_dateFromPropertyListData:(id)arg1 forKey:(id)arg2;
-- (void)dealloc;
 
 @end
 

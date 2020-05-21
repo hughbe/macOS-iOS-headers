@@ -16,7 +16,6 @@
 + (id)sharedInstance;
 - (void).cxx_destruct;
 - (void)queueURL:(id)arg1 forSize:(double)arg2 withDelegate:(id)arg3;
-- (void)queueURL:(id)arg1 bookmark:(id)arg2 forSize:(double)arg3 withDelegate:(id)arg4;
 - (void)cancelNotificationsForDelegate:(id)arg1;
 - (void)dealloc;
 - (id)init;

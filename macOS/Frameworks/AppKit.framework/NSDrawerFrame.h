@@ -6,15 +6,12 @@
 
 #import <AppKit/NSFrameView.h>
 
-@class NSColor;
-
 @interface NSDrawerFrame : NSFrameView
 {
-    NSColor *drawerBackground;
     long long trackingTag;
     unsigned long long drawerEdge;
     BOOL registeredForEdgeChanges;
-    BOOL shouldInvalidateShadow;
+    BOOL _unused;
 }
 
 + (double)minFrameWidthWithTitle:(id)arg1 styleMask:(unsigned long long)arg2;
@@ -42,13 +39,12 @@
 - (void)_drawFrameRects:(struct CGRect)arg1;
 - (void)drawFrame:(struct CGRect)arg1;
 - (void)drawRect:(struct CGRect)arg1;
+- (void)setLayer:(id)arg1;
 - (struct CGRect)resizeIndicatorRect;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (struct CGRect)contentRect;
 - (struct CGSize)minFrameSize;
-- (long long)_shadowTypeForActiveAppearance:(BOOL)arg1;
-- (BOOL)_shouldInvalidateShadow;
-- (void)_setShouldInvalidateShadow:(BOOL)arg1;
+- (unsigned long long)shadowOptions;
 - (void)shapeWindow;
 - (void)registerForEdgeChanges:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 owner:(id)arg3;

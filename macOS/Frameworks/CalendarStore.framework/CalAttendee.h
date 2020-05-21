@@ -19,7 +19,6 @@
     NSString *_status;
 }
 
-+ (id)attendeeWithAddress:(id)arg1 commonName:(id)arg2;
 @property(readonly) NSString *status; // @synthesize status=_status;
 @property(readonly) NSString *commonName; // @synthesize commonName=_commonName;
 @property(readonly) NSURL *address; // @synthesize address=_address;
@@ -28,8 +27,7 @@
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
-- (void)setStatus:(id)arg1;
-- (id)initWithAddress:(id)arg1 commonName:(id)arg2;
+- (id)initWithAddress:(id)arg1 commonName:(id)arg2 status:(id)arg3;
 
 @end
 

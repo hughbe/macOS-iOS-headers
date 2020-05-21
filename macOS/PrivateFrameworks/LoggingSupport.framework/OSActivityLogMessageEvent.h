@@ -16,11 +16,11 @@
     unsigned long long _senderProgramCounter;
 }
 
-@property(readonly) unsigned char messageType; // @synthesize messageType=_messageType;
-@property(readonly) unsigned long long senderProgramCounter; // @synthesize senderProgramCounter=_senderProgramCounter;
-@property(readonly, copy) NSString *category; // @synthesize category=_category;
-@property(readonly, copy) NSString *subsystem; // @synthesize subsystem=_subsystem;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned char messageType; // @synthesize messageType=_messageType;
+@property(readonly, nonatomic) unsigned long long senderProgramCounter; // @synthesize senderProgramCounter=_senderProgramCounter;
+@property(readonly, copy, nonatomic) NSString *category; // @synthesize category=_category;
+@property(readonly, copy, nonatomic) NSString *subsystem; // @synthesize subsystem=_subsystem;
 - (void)_addProperties:(id)arg1;
 - (id)initWithEntry:(struct os_activity_stream_entry_s *)arg1;
 

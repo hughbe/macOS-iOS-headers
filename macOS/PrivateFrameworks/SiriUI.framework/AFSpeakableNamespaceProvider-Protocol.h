@@ -16,5 +16,6 @@
 - (void)setAssistantBulletin:(AFBulletin *)arg1;
 - (NSString *)identifier;
 - (id)initWithAceObject:(AceObject *)arg1;
+- (NSString *)stringForExpression:(NSString *)arg1 containsPrivacySensitiveContents:(char *)arg2;
 @end
 

@@ -9,12 +9,12 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 
-@class NSGraphicsContext, NSString, NSTrackingArea, NSWindow;
+@class NSDictionary, NSGraphicsContext, NSSet, NSString, NSTouchDevice, NSTrackingArea, NSWindow;
 
 @interface NSEvent : NSObject <NSCopying, NSCoding>
 {
-    unsigned long long _type;
     struct CGPoint _location;
+    unsigned long long _type;
     unsigned int _modifierFlags;
     id _WSTimestamp;
     double _timestamp;
@@ -81,6 +81,11 @@
     void *_eventRef;
     void *reserved1;
     void *reserved2;
+    struct __CGEvent *_cgEventRef;
+    NSSet *_touches;
+    long long _touchContextId;
+    NSTouchDevice *_touchDevice;
+    NSDictionary *_previousCoalescedTouches;
 }
 
 + (id)_touchesFromSet:(id)arg1 matchingPhase:(unsigned long long)arg2 inView:(id)arg3 includeResting:(BOOL)arg4;
@@ -92,6 +97,7 @@
 + (id)_delayedEventMatchingMask:(unsigned long long)arg1 pull:(BOOL)arg2;
 + (void)_discardCursorEventsForWindowNumber:(long long)arg1 criteria:(long long)arg2;
 + (void)_discardEventsForTrackingArea:(id)arg1 window:(id)arg2;
++ (void)_discardTrackingAndCursorEventsIfNeeded;
 + (void)_discardEventsForTrackingArea:(id)arg1;
 + (void)_discardEventsWithMask:(unsigned long long)arg1 eventTime:(unsigned long long)arg2;
 + (void)_discardEventsFromSubthread:(id)arg1;
@@ -99,6 +105,7 @@
 + (void)_resetDiscardMask;
 + (float)standardRotationThreshold;
 + (double)standardMagnificationThreshold;
++ (void)_setFakeForceForXCTestEnabled:(BOOL)arg1;
 + (void)_resetDeviceCapabilityCaches;
 + (void)_resetDefaults;
 + (BOOL)isMouseCoalescingEnabled;
@@ -106,7 +113,7 @@
 + (id)eventWithCGEvent:(struct __CGEvent *)arg1;
 + (id)eventWithEventRef:(const void *)arg1;
 + (id)_eventWithEventRefInternal:(const void *)arg1;
-+ (id)_eventWithCGSEvent:(struct _CGSEventRecord)arg1;
++ (id)_eventWithCGSEvent:(void *)arg1;
 + (void)removeMonitor:(id)arg1;
 + (id)_sendEventToObservers:(id)arg1;
 + (id)addLocalMonitorForEventsMatchingMask:(unsigned long long)arg1 handler:(CDUnknownBlockType)arg2;
@@ -119,6 +126,9 @@
 + (unsigned long long)modifierFlags;
 + (struct CGPoint)mouseLocation;
 + (void)_clearCancelledTouches;
++ (void)_setSuppressesDirectTouchRouting:(BOOL)arg1;
++ (void)_clearDFRTouches;
++ (id)_eventWithTouches:(id)arg1;
 + (id)_eventsCancellingTouchesForWindow:(id)arg1;
 + (id)otherEventWithType:(unsigned long long)arg1 location:(struct CGPoint)arg2 modifierFlags:(unsigned long long)arg3 timestamp:(double)arg4 windowNumber:(long long)arg5 context:(id)arg6 subtype:(short)arg7 data1:(long long)arg8 data2:(long long)arg9;
 + (id)enterExitEventWithType:(unsigned long long)arg1 location:(struct CGPoint)arg2 modifierFlags:(unsigned long long)arg3 timestamp:(double)arg4 windowNumber:(long long)arg5 context:(id)arg6 eventNumber:(long long)arg7 trackingNumber:(long long)arg8 userData:(void *)arg9;
@@ -136,11 +146,13 @@
 + (void)_startConcurrentEventProcessing;
 + (BOOL)_isConcurrentEventProcessingSupported:(id *)arg1;
 + (BOOL)_mouseButtonIsDown;
+- (void).cxx_destruct;
 @property(readonly) unsigned long long associatedEventsMask;
 - (BOOL)_isTouchesEnded;
 - (id)coalescedTouchesForTouch:(id)arg1;
 - (id)touchesForView:(id)arg1;
 - (id)allTouches;
+- (id)_touchesMatchingIdentities:(id)arg1;
 - (id)touchesMatchingPhase:(unsigned long long)arg1 inView:(id)arg2;
 - (id)_touchesMatchingPhase:(unsigned long long)arg1 inView:(id)arg2 includeResting:(BOOL)arg3;
 @property(readonly, getter=isEnteringProximity) BOOL enteringProximity;
@@ -166,6 +178,7 @@
 - (id)_eventRemovingTouchIdentities:(id)arg1;
 - (id)_eventCancellingTouchIdentities:(id)arg1;
 - (id)_eventCancellingTouches;
+- (id)_currentEventWithLocationInWindow:(struct CGPoint)arg1 modifiers:(unsigned long long)arg2;
 - (id)_eventRelativeToWindow:(id)arg1;
 - (struct CGSize)_velocity;
 - (struct CGSize)velocity;
@@ -212,6 +225,10 @@
 - (void)_setEventRef:(void *)arg1;
 - (BOOL)_isDeadkey;
 @property(readonly, copy) NSString *charactersIgnoringModifiers;
+- (id)_commandModifiedCharacters;
+- (id)_unmodifiedCharacters;
+- (id)_charactersApplyingModifiers:(unsigned long long)arg1 carbonModifiers:(unsigned int)arg2;
+- (id)charactersByApplyingModifiers:(unsigned long long)arg1;
 - (BOOL)_matchesKeyEquivalent:(id)arg1 modifierMask:(unsigned long long)arg2;
 @property(readonly, copy) NSString *characters;
 @property(readonly) double magnification;
@@ -222,6 +239,7 @@
 - (double)_unacceleratedScrollingDeltaX;
 @property(readonly) double scrollingDeltaY;
 @property(readonly) double scrollingDeltaX;
+- (BOOL)_hasAcceleratedScrollingDeltas;
 @property(readonly) BOOL hasPreciseScrollingDeltas;
 @property(readonly) double deltaZ;
 @property(readonly) double deltaX;
@@ -233,15 +251,16 @@
 @property(readonly) long long eventNumber;
 @property(readonly) NSGraphicsContext *context;
 @property(readonly) long long windowNumber;
-@property(readonly) NSWindow *window;
+@property(readonly) __weak NSWindow *window;
 @property(readonly) double timestamp;
 @property(readonly) unsigned long long modifierFlags;
 @property(readonly) struct CGPoint locationInWindow;
 @property(readonly) unsigned long long type;
-- (struct _CGSEventRecord)_cgsEventRecord;
+- (CDStruct_e834ef07)_cgsEventRecord;
 - (id)_initWithCGEvent:(struct __CGEvent *)arg1 eventRef:(void *)arg2;
+- (void)_initDigitizerTouchesFromIOHidEvent:(struct __IOHIDEvent *)arg1 window:(id)arg2 contextID:(long long)arg3;
+- (id)_initCoalescingTouchEvents:(id)arg1;
 - (void)_initMTTouchesFromIOHidEvent:(struct __IOHIDEvent *)arg1;
-- (void)_initAuxiliaryData;
 @property(readonly) struct __CGEvent *CGEvent;
 @property(readonly) const void *eventRef;
 - (const void *)_eventRefInternal;
@@ -250,6 +269,7 @@
 - (BOOL)_isSynthesizedKeyEvent;
 - (void)_fixCommandAlphaShifts;
 - (long long)command;
+- (BOOL)_hasOptionKeyModifier;
 - (BOOL)_isVerticalWheelEvent;
 - (BOOL)_isWheelEvent;
 - (BOOL)_isMiddleButtonEvent;

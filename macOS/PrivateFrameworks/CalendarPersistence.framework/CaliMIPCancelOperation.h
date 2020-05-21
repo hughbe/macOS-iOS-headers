@@ -15,13 +15,14 @@
 
 + (int)icsMethod;
 + (BOOL)iMIPSchedulingWillResultFromChangesToManagedEvent:(id)arg1 ignoreiMIPSuppression:(BOOL)arg2;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(retain) NSArray *attendeeEmails; // @synthesize attendeeEmails=_attendeeEmails;
 - (id)emailSubjectInContext:(id)arg1;
 - (id)emailRecipientsInContext:(id)arg1;
 - (id)emailBodyInContext:(id)arg1;
 - (id)attachmentName;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithManagedAttendees:(id)arg1;
 

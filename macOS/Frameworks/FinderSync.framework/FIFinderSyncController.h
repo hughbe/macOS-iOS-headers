@@ -12,7 +12,13 @@
 {
 }
 
++ (void)showExtensionManagementInterface;
++ (BOOL)isExtensionEnabled;
 + (id)defaultController;
+- (void)setTagData:(id)arg1 forItemWithURL:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)tagDataForItemWithURL:(id)arg1;
+- (void)setLastUsedDate:(id)arg1 forItemWithURL:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)lastUsedDateForItemWithURL:(id)arg1;
 - (id)selectedItemURLs;
 - (id)targetedURL;
 @property(copy) NSSet *directoryURLs; // @dynamic directoryURLs;

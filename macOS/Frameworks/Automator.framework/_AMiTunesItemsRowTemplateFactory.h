@@ -10,6 +10,7 @@
 {
 }
 
++ (id)validKeyPathsForPredicate;
 + (id)sharedInstance;
 - (id)sampleRateRowTemplatesWithName:(id)arg1 andKeyPath:(id)arg2;
 - (id)bitRateRowTemplatesWithName:(id)arg1 andKeyPath:(id)arg2;

@@ -14,6 +14,10 @@
 {
 }
 
+- (void)installedBundlesToRegisterWithLaunchServices:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)updatesQueuedForLaterDidChange;
+- (void)hiddenUpdatesDidChange;
+- (void)catalogURLDidChange;
 - (void)authChallengeWasReceived:(id)arg1 handled:(char *)arg2;
 - (void)installStateDidChange:(id)arg1 forUpdateWithProductKey:(id)arg2;
 - (void)availableUpdatesDidChange;

@@ -26,6 +26,7 @@
 - (unsigned long long)controlSize;
 - (void)stopAnimation:(id)arg1;
 - (void)startAnimation:(id)arg1;
+- (struct CGSize)intrinsicContentSize;
 - (void)_installHeartBeat:(BOOL)arg1;
 - (void)heartBeat:(CDStruct_fadd2e06 *)arg1;
 - (id)_imageForIndex:(unsigned long long)arg1;

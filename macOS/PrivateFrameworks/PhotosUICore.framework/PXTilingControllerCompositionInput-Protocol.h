@@ -9,6 +9,7 @@
 @class NSArray, PXTilingController, PXTilingScrollInfo;
 
 @protocol PXTilingControllerCompositionInput <NSObject>
+@property(readonly, nonatomic) NSArray *invalidationContexts;
 @property(readonly, nonatomic) NSArray *tilingControllersRequestingFocus;
 @property(readonly, nonatomic) struct NSEdgeInsets contentInset;
 @property(readonly, nonatomic) struct CGSize referenceSize;

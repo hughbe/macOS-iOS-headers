@@ -8,20 +8,29 @@
 
 @interface CNTCC : NSObject
 {
-    long long _simulateType;
     BOOL _simulateAccessPrompt;
     BOOL _simulateAccessPromptGranted;
-    unsigned int _simulateAccessPromptDelay;
+    id <CNContactsLogger> _logger;
+    long long _simulateType;
+    double _simulateAccessPromptDelay;
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property(nonatomic) double simulateAccessPromptDelay; // @synthesize simulateAccessPromptDelay=_simulateAccessPromptDelay;
+@property(nonatomic) BOOL simulateAccessPromptGranted; // @synthesize simulateAccessPromptGranted=_simulateAccessPromptGranted;
+@property(nonatomic) BOOL simulateAccessPrompt; // @synthesize simulateAccessPrompt=_simulateAccessPrompt;
+@property(nonatomic) long long simulateType; // @synthesize simulateType=_simulateType;
+@property(readonly, nonatomic) id <CNContactsLogger> logger; // @synthesize logger=_logger;
 - (id)_simulateQueue;
-- (void)simulateIfAccessPromptDisplayedThenUserGrantedAccess:(BOOL)arg1 withDelay:(unsigned int)arg2;
+- (void)simulateIfAccessPromptDisplayedThenUserGrantedAccess:(BOOL)arg1 withDelay:(double)arg2;
 - (void)simulate:(long long)arg1;
 - (unsigned char)checkAuditToken:(CDStruct_6ad76789)arg1;
 - (void)accessRequestWithCompletion:(CDUnknownBlockType)arg1;
 - (unsigned char)isAccessRestricted;
 - (int)accessPreflight;
+- (id)initWithEnvironment:(id)arg1;
+- (id)init;
 
 @end
 

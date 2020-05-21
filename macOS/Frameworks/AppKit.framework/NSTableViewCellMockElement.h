@@ -10,6 +10,7 @@
 
 @class NSString, NSTableColumn;
 
+__attribute__((visibility("hidden")))
 @interface NSTableViewCellMockElement : NSObject <NSTableViewCellElement>
 {
     NSTableColumn *_tableColumn;
@@ -19,9 +20,10 @@
 
 + (id)cellForRow:(long long)arg1 tableColumn:(id)arg2;
 + (id)cellForRow:(long long)arg1 column:(long long)arg2 tableView:(id)arg3;
-- (void)accessibilityPerformAction:(id)arg1;
+- (id)deepestAccessibilityDescendants;
+- (id)_accessibilityActionDelegate;
+- (id)accessibilityCustomActions;
 - (id)accessibilityActionDescription:(id)arg1;
-- (id)accessibilityActionNames;
 - (void)accessibilitySetValue:(id)arg1 forAttribute:(id)arg2;
 - (BOOL)accessibilityIsAttributeSettable:(id)arg1;
 - (id)accessibilityAttributeValue:(id)arg1;

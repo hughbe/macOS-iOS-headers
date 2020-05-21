@@ -8,10 +8,11 @@
 
 #import "IDSDaemonListenerProtocol.h"
 
-@class NSHashTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSProtocolChecker, NSString;
+@class IDSInternalQueueController, NSHashTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSProtocolChecker, NSString;
 
 @interface IDSDaemonListener : NSObject <IDSDaemonListenerProtocol>
 {
+    IDSInternalQueueController *_internalQueueController;
     NSObject<OS_dispatch_queue> *_ivarQueue;
     NSHashTable *_handlers;
     NSProtocolChecker *_protocol;
@@ -19,6 +20,7 @@
     NSMutableDictionary *_topicToEnabledAccounts;
     NSMutableDictionary *_accountToDevices;
     NSMutableDictionary *_accountToActiveDeviceUniqueID;
+    NSMutableDictionary *_serviceToActiveDeviceUniqueID;
     NSString *_deviceIdentifier;
     BOOL _setupComplete;
     BOOL _postedSetupComplete;
@@ -27,6 +29,7 @@
     BOOL _hidingDisconnect;
 }
 
+- (void).cxx_destruct;
 - (void)deviceIdentifierDidChange:(id)arg1;
 - (void)continuityDidDisconnectFromPeer:(id)arg1 withError:(id)arg2;
 - (void)continuityDidConnectToPeer:(id)arg1 withError:(id)arg2;
@@ -36,10 +39,11 @@
 - (void)continuityDidStopScanningForType:(long long)arg1;
 - (void)continuityDidStartScanningForType:(long long)arg1;
 - (void)continuityDidFailToStartAdvertisingOfType:(long long)arg1 withError:(id)arg2;
+- (void)continuityDidStopAdvertisingOfType:(long long)arg1 withError:(id)arg2;
 - (void)continuityDidStopAdvertisingOfType:(long long)arg1;
 - (void)continuityDidStartAdvertisingOfType:(long long)arg1;
 - (void)continuityDidLosePeer:(id)arg1;
-- (void)continuityDidUpdateState:(long long)arg1;
+- (void)continuityDidUpdateStateToState:(long long)arg1;
 - (void)forwardInvocation:(id)arg1;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (void)xpcObject:(id)arg1 objectContext:(id)arg2;
@@ -51,6 +55,7 @@
 - (void)switchActivePairedDevice:(id)arg1 forAccount:(id)arg2;
 - (void)_internalDidSwitchActivePairedDevice:(id)arg1 forService:(id)arg2;
 - (void)didSwitchActivePairedDevice:(id)arg1;
+- (void)didGetIdentities:(id)arg1 error:(id)arg2;
 - (void)device:(id)arg1 nsuuidChanged:(id)arg2;
 - (id)dependentDevicesForAccount:(id)arg1;
 - (void)refreshRegistrationForAccount:(id)arg1;
@@ -66,6 +71,7 @@
 - (void)account:(id)arg1 aliasesChanged:(id)arg2;
 - (void)account:(id)arg1 registrationStatusInfoChanged:(id)arg2;
 - (void)account:(id)arg1 accountInfoChanged:(id)arg2;
+- (void)updateAccount:(id)arg1 withAccountInfo:(id)arg2;
 - (void)accountDisabled:(id)arg1 onService:(id)arg2;
 - (void)accountEnabled:(id)arg1 onService:(id)arg2;
 - (void)accountRemoved:(id)arg1;
@@ -79,12 +85,13 @@
 - (void)_callHandlersWithBlockOnIvarQueue:(CDUnknownBlockType)arg1 cleanup:(CDUnknownBlockType)arg2;
 - (void)removeHandler:(id)arg1;
 - (void)addHandler:(id)arg1;
+- (void)_performSyncBlock:(CDUnknownBlockType)arg1;
 @property(nonatomic, setter=_setHidingDisconnect:) BOOL _hidingDisconnect;
-@property(readonly, retain, nonatomic) NSString *deviceIdentifier;
+@property(readonly, nonatomic) NSString *deviceIdentifier;
 @property(readonly, nonatomic) BOOL hasPostedSetupComplete;
 @property(readonly, nonatomic) BOOL isSetupComplete;
 - (void)_noteDisconnected;
-- (void)dealloc;
+- (id)initWithQueueController:(id)arg1 ivarQueue:(id)arg2;
 - (id)init;
 
 // Remaining properties

@@ -9,7 +9,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class NSString, NSUUID, TIDocumentState, TIInputContextHistory, TIKeyboardCandidate, TIKeyboardLayout, TIKeyboardLayoutState, TIKeyboardSecureCandidateRenderTraits, TITextInputTraits;
+@class NSArray, NSDictionary, NSString, NSUUID, TIDocumentState, TIInputContextHistory, TIKeyboardCandidate, TIKeyboardLayout, TIKeyboardLayoutState, TIKeyboardSecureCandidateRenderTraits, TITextInputTraits;
 
 @interface TIKeyboardState : NSObject <NSCopying, NSSecureCoding>
 {
@@ -23,12 +23,18 @@
             unsigned int keyboardEventsLagging:1;
             unsigned int hardwareKeyboardMode:1;
             unsigned int splitKeyboardMode:1;
+            unsigned int floatingKeyboardMode:1;
             unsigned int wordLearningEnabled:1;
             unsigned int autocorrectionEnabled:1;
             unsigned int shortcutConversionEnabled:1;
             unsigned int candidateSelectionPredictionEnabled:1;
             unsigned int autocapitalizationEnabled:1;
             unsigned int canSendCurrentLocation:1;
+            unsigned int isScreenLocked:1;
+            unsigned int longPredictionListEnabled:1;
+            unsigned int needAutofill:1;
+            unsigned int needOneTimeCodeAutofill:1;
+            unsigned int landscapeOrientation:1;
         } fields;
     } _mask;
     union {
@@ -42,6 +48,7 @@
     NSUUID *_documentIdentifier;
     NSString *_clientIdentifier;
     NSString *_inputMode;
+    NSArray *_auxiliaryInputModeLanguages;
     NSString *_recipientIdentifier;
     TIInputContextHistory *_inputContextHistory;
     TIKeyboardLayout *_keyLayout;
@@ -53,9 +60,16 @@
     TIKeyboardCandidate *_currentCandidate;
     TITextInputTraits *_textInputTraits;
     NSString *_responseContext;
+    unsigned long long _autofillMode;
+    NSDictionary *_autofillContext;
+    NSArray *_supportedPayloadIds;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(copy, nonatomic) NSArray *supportedPayloadIds; // @synthesize supportedPayloadIds=_supportedPayloadIds;
+@property(retain, nonatomic) NSDictionary *autofillContext; // @synthesize autofillContext=_autofillContext;
+@property(nonatomic) unsigned long long autofillMode; // @synthesize autofillMode=_autofillMode;
 @property(copy, nonatomic) NSString *responseContext; // @synthesize responseContext=_responseContext;
 @property(retain, nonatomic) TITextInputTraits *textInputTraits; // @synthesize textInputTraits=_textInputTraits;
 @property(retain, nonatomic) TIKeyboardCandidate *currentCandidate; // @synthesize currentCandidate=_currentCandidate;
@@ -68,14 +82,20 @@
 @property(retain, nonatomic) TIKeyboardLayout *keyLayout; // @synthesize keyLayout=_keyLayout;
 @property(retain, nonatomic) TIInputContextHistory *inputContextHistory; // @synthesize inputContextHistory=_inputContextHistory;
 @property(copy, nonatomic) NSString *recipientIdentifier; // @synthesize recipientIdentifier=_recipientIdentifier;
+@property(copy, nonatomic) NSArray *auxiliaryInputModeLanguages; // @synthesize auxiliaryInputModeLanguages=_auxiliaryInputModeLanguages;
 @property(copy, nonatomic) NSString *inputMode; // @synthesize inputMode=_inputMode;
 @property(copy, nonatomic) NSString *clientIdentifier; // @synthesize clientIdentifier=_clientIdentifier;
 @property(retain, nonatomic) NSUUID *documentIdentifier; // @synthesize documentIdentifier=_documentIdentifier;
+- (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
+@property(readonly, nonatomic) BOOL shouldOutputFullwidthSpace;
+@property(nonatomic) BOOL needOneTimeCodeAutofill;
+@property(nonatomic) BOOL needAutofill;
+@property(nonatomic) BOOL longPredictionListEnabled;
+@property(nonatomic) BOOL isScreenLocked;
 @property(nonatomic) BOOL canSendCurrentLocation;
 @property(nonatomic) BOOL autocorrectionListUIAutoDisplayMode;
 @property(nonatomic) BOOL autocorrectionListUIDisplayed;
@@ -88,6 +108,8 @@
 @property(nonatomic) BOOL shortcutConversionEnabled;
 @property(nonatomic) BOOL autocorrectionEnabled;
 @property(nonatomic) BOOL wordLearningEnabled;
+@property(nonatomic) BOOL landscapeOrientation;
+@property(nonatomic) BOOL floatingKeyboardMode;
 @property(nonatomic) BOOL splitKeyboardMode;
 @property(nonatomic) BOOL hardwareKeyboardMode;
 @property(nonatomic) BOOL keyboardEventsLagging;

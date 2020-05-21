@@ -6,26 +6,28 @@
 
 #import "PKMicaLayer.h"
 
-@class CAGradientLayer, CAShapeLayer, NSColor;
+@class CAGradientLayer, CAShapeLayer;
 
 @interface PKCheckGlyphLayer : PKMicaLayer
 {
+    struct CGColor *_primaryColor;
     CAShapeLayer *_shapeLayer;
     CAGradientLayer *_maskLayer;
     BOOL _covered;
     struct CATransform3D _uncoveredTransform;
     struct CATransform3D _coveredTransform;
     BOOL _revealed;
-    struct NSColor *_primaryColor;
+    id <PKCheckGlyphLayerDelegate> _checkGlyphDelegate;
 }
 
-@property(nonatomic) BOOL revealed; // @synthesize revealed=_revealed;
-@property(copy, nonatomic) NSColor *primaryColor; // @synthesize primaryColor=_primaryColor;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL revealed; // @synthesize revealed=_revealed;
+@property(nonatomic) __weak id <PKCheckGlyphLayerDelegate> checkGlyphDelegate; // @synthesize checkGlyphDelegate=_checkGlyphDelegate;
 - (double)_updateCovered:(BOOL)arg1;
 - (double)setCovered:(BOOL)arg1 animated:(BOOL)arg2;
 - (double)setRevealed:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)setPrimaryColor:(struct NSColor *)arg1 animated:(BOOL)arg2;
+- (void)setPrimaryColor:(struct CGColor *)arg1 animated:(BOOL)arg2;
+- (struct CGColor *)primaryColor;
 - (void)_createMask;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 package:(id)arg2;

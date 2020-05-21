@@ -8,17 +8,33 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray, NSString;
+@class NSMutableArray, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDSimpleRestaurantMenuTextGroup : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_menuItems;
     NSString *_title;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_menuItems:1;
+        unsigned int read_title:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_menuItems:1;
+        unsigned int wrote_title:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)menuItemType;
-@property(retain, nonatomic) NSMutableArray *menuItems; // @synthesize menuItems=_menuItems;
-@property(retain, nonatomic) NSString *title; // @synthesize title=_title;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -26,14 +42,21 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)menuItemAtIndex:(unsigned long long)arg1;
 - (unsigned long long)menuItemsCount;
+- (void)_addNoFlagsMenuItem:(id)arg1;
 - (void)addMenuItem:(id)arg1;
 - (void)clearMenuItems;
+@property(retain, nonatomic) NSMutableArray *menuItems;
+- (void)_readMenuItems;
+@property(retain, nonatomic) NSString *title;
 @property(readonly, nonatomic) BOOL hasTitle;
-- (void)dealloc;
+- (void)_readTitle;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

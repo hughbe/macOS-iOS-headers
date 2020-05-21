@@ -15,6 +15,7 @@
     _MRVirtualTouchDeviceDescriptorProtobuf *_deviceDescriptor;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) _MRVirtualTouchDeviceDescriptorProtobuf *deviceDescriptor; // @synthesize deviceDescriptor=_deviceDescriptor;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -26,7 +27,6 @@
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(readonly, nonatomic) BOOL hasDeviceDescriptor;
-- (void)dealloc;
 
 @end
 

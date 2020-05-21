@@ -13,9 +13,9 @@
     NSString *_ab_crashMessage;
 }
 
+- (void).cxx_destruct;
 - (void)_mouseExited:(id)arg1;
 - (void)_mouseEntered:(id)arg1;
-- (void)dealloc;
 - (id)initWithRect:(struct CGRect)arg1 options:(unsigned long long)arg2 owner:(id)arg3 userInfo:(id)arg4 name:(id)arg5;
 - (id)initWithRect:(struct CGRect)arg1 options:(unsigned long long)arg2 owner:(id)arg3 userInfo:(id)arg4;
 

@@ -55,7 +55,7 @@
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 @property(retain) NSMenu *searchMenuTemplate;
-@property id <NSSearchFieldDelegate> delegate;
+@property __weak id <NSSearchFieldDelegate> delegate;
 @property BOOL centersPlaceholder;
 @property BOOL sendsSearchStringImmediately;
 @property long long maximumRecents;

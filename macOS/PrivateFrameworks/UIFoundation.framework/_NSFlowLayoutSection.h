@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDictionary, NSMutableArray, NSMutableSet, _NSFlowLayoutInfo;
+@class NSArray, NSMutableArray, NSMutableSet, _NSFlowLayoutInfo;
 
 @interface _NSFlowLayoutSection : NSObject
 {
@@ -26,7 +26,7 @@
     struct CGRect _rectToKeepValid;
     struct _NSRange _validItemRange;
     NSMutableSet *_invalidatedIndexPaths;
-    NSDictionary *_rowAlignmentOptions;
+    CDStruct_2f5e8405 _rowAlignmentOptions;
     BOOL _fixedItemSize;
     struct CGSize _itemSize;
     double _otherMargin;
@@ -46,6 +46,7 @@
     BOOL _lastRecommendationWasShowSectionCollapseButton;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) double scrollOffset; // @synthesize scrollOffset=_scrollOffset;
 @property(readonly, nonatomic) struct _NSRange validItemRange; // @synthesize validItemRange=_validItemRange;
 @property(readonly, nonatomic) long long itemsByRowCount; // @synthesize itemsByRowCount=_itemsByRowCount;
@@ -61,9 +62,9 @@
 @property(readonly, nonatomic) double otherMargin; // @synthesize otherMargin=_otherMargin;
 @property(nonatomic) struct CGSize itemSize; // @synthesize itemSize=_itemSize;
 @property(nonatomic) BOOL fixedItemSize; // @synthesize fixedItemSize=_fixedItemSize;
-@property(retain, nonatomic) NSDictionary *rowAlignmentOptions; // @synthesize rowAlignmentOptions=_rowAlignmentOptions;
+@property(nonatomic) CDStruct_2f5e8405 rowAlignmentOptions; // @synthesize rowAlignmentOptions=_rowAlignmentOptions;
 @property(nonatomic) struct CGRect frame; // @synthesize frame=_frame;
-@property(nonatomic) _NSFlowLayoutInfo *layoutInfo; // @synthesize layoutInfo=_layoutInfo;
+@property(nonatomic) __weak _NSFlowLayoutInfo *layoutInfo; // @synthesize layoutInfo=_layoutInfo;
 @property(nonatomic) struct CGRect footerFrame; // @synthesize footerFrame=_footerFrame;
 @property(nonatomic) struct CGRect headerFrame; // @synthesize headerFrame=_headerFrame;
 @property(readonly, nonatomic) double footerDimension; // @synthesize footerDimension=_footerDimension;
@@ -73,27 +74,33 @@
 @property(nonatomic) double verticalInterstice; // @synthesize verticalInterstice=_verticalInterstice;
 @property(readonly, nonatomic) NSMutableArray *rows; // @synthesize rows=_rows;
 @property(readonly, nonatomic) NSMutableArray *items; // @synthesize items=_items;
+- (void)transformItemIfInCollapsedRowEndZone:(id)arg1;
 @property(nonatomic, getter=isCollapsed) BOOL collapsed;
+- (unsigned long long)rowIndexForItemAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long rowsCount;
 - (id)rowsInRect:(struct CGRect)arg1;
 - (void)addInvalidatedIndexPath:(id)arg1;
-- (void)setSize:(struct CGSize)arg1 forItemAtIndexPath:(id)arg2;
+- (void)setSize:(struct CGSize)arg1 forItemAtIndexPath:(id)arg2 invalidationContext:(id)arg3;
 - (id)copyFromLayoutInfo:(id)arg1;
 - (id)snapshot;
 - (id)addRowAtEnd:(BOOL)arg1;
 - (id)addItem;
 - (void)setEstimatedSize:(struct CGSize)arg1 forSection:(long long)arg2;
 - (void)updateEstimatedSizeForSection:(long long)arg1;
-- (void)computeLayoutInRect:(struct CGRect)arg1 forSection:(long long)arg2 invalidating:(BOOL)arg3;
+- (void)fixupLastRowItemAlignment;
+- (void)computeLayoutInRect:(struct CGRect)arg1 forSection:(long long)arg2 invalidating:(BOOL)arg3 invalidationContext:(id)arg4;
+@property(readonly, nonatomic) struct CGRect effectiveFooterFrameWithSectionMarginsApplied;
+@property(readonly, nonatomic) struct CGRect effectiveHeaderFrameWithSectionMarginsApplied;
 - (void)setFooterDimension:(double)arg1 forSection:(long long)arg2;
 - (void)setHeaderDimension:(double)arg1 forSection:(long long)arg2;
+- (void)logInvalidSizesForHorizontalDirection:(BOOL)arg1 warnAboutDelegateValues:(BOOL)arg2;
 - (void)logInvalidSizes;
 - (long long)estimatedIndexOfItemAtPoint:(struct CGPoint)arg1;
-- (void)computeLayout;
+- (void)_computeLayoutForSectionIndex:(long long)arg1 rightToLeft:(BOOL)arg2 minimumWidth:(double)arg3;
 - (void)sizeChangedForItem:(id)arg1 atIndexPath:(id)arg2 inRow:(id)arg3;
 - (void)invalidate;
 - (struct CGRect)frameForItemAtIndexPath:(id)arg1;
 @property(readonly, nonatomic) NSArray *invalidatedIndexPaths;
-- (void)dealloc;
 - (id)init;
 
 @end

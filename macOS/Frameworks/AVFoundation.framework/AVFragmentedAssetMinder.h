@@ -20,7 +20,6 @@
 @property(nonatomic) double mindingInterval;
 @property(readonly, nonatomic) NSArray *assets;
 - (BOOL)_throwsWhenAlreadyMindedAssetIsAdded;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithAsset:(id)arg1 mindingInterval:(double)arg2;
 - (id)init;

@@ -8,6 +8,7 @@
 
 @class NSArray, SLRequestMultiPartInputStream;
 
+__attribute__((visibility("hidden")))
 @interface SLRequestBodyInputStream : NSInputStream
 {
     NSArray *_inputStreams;
@@ -26,8 +27,8 @@
     id <NSStreamDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <NSStreamDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property __weak id <NSStreamDelegate> delegate; // @synthesize delegate=_delegate;
 - (BOOL)getBuffer:(char **)arg1 length:(unsigned long long *)arg2;
 - (BOOL)hasBytesAvailable;
 - (unsigned long long)bytesRead;

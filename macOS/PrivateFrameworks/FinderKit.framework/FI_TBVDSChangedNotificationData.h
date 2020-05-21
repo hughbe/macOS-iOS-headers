@@ -9,7 +9,7 @@
 __attribute__((visibility("hidden")))
 @interface FI_TBVDSChangedNotificationData : NSObject
 {
-    vector_7b15bc4d _dataSourceChangedList;
+    vector_274a36ec _dataSourceChangedList;
 }
 
 - (id).cxx_construct;
@@ -17,8 +17,8 @@ __attribute__((visibility("hidden")))
 - (void)clear;
 - (unsigned long long)size;
 - (_Bool)isEmpty;
-- (vector_7b15bc4d *)mutableDataSourceChangedList;
-- (const vector_7b15bc4d *)dataSourceChangedList;
+- (vector_274a36ec *)mutableDataSourceChangedList;
+- (const vector_274a36ec *)dataSourceChangedList;
 
 @end
 

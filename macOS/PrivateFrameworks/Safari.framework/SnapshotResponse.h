@@ -8,15 +8,14 @@
 
 @class NSImage;
 
-__attribute__((visibility("hidden")))
 @interface SnapshotResponse : WBSSiteMetadataResponse
 {
     NSImage *_snapshot;
 }
 
 + (id)responseWithURL:(id)arg1 snapshot:(id)arg2;
-@property(readonly, nonatomic) NSImage *snapshot; // @synthesize snapshot=_snapshot;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSImage *snapshot; // @synthesize snapshot=_snapshot;
 - (id)initWithURL:(id)arg1 snapshot:(id)arg2;
 - (id)initWithURL:(id)arg1;
 

@@ -6,17 +6,21 @@
 
 #import "NSObject.h"
 
+#import "AVContentKeyRecipient.h"
 #import "AVContentKeySessionDelegate.h"
 
 @class AVAsset, AVStreamDataParserInternal, NSData, NSError, NSString;
 
-@interface AVStreamDataParser : NSObject <AVContentKeySessionDelegate>
+@interface AVStreamDataParser : NSObject <AVContentKeySessionDelegate, AVContentKeyRecipient>
 {
     AVStreamDataParserInternal *_parser;
 }
 
++ (BOOL)canParseExtendedMIMEType:(id)arg1;
++ (id)audiovisualMIMETypes;
 + (id)outputMIMECodecParameterForInputMIMECodecParameter:(id)arg1;
 + (id)_createNSDataWithBlockBuffer:(struct OpaqueCMBlockBuffer *)arg1;
++ (struct OpaqueCMBlockBuffer *)_createBlockBufferUsingNSData:(id)arg1 withOffset:(unsigned long long)arg2 withLength:(unsigned long long)arg3;
 + (struct OpaqueCMBlockBuffer *)_createBlockBufferUsingNSData:(id)arg1;
 - (void)_createAssetIfNecessary;
 - (BOOL)shouldProvideMediaDataForTrackID:(int)arg1;
@@ -24,7 +28,7 @@
 @property(readonly, nonatomic) AVAsset *asset;
 - (void)providePendingMediaData;
 - (void)appendStreamData:(id)arg1 withFlags:(unsigned long long)arg2;
-- (void)_appendStreamData:(id)arg1 withFlags:(unsigned long long)arg2;
+- (void)_appendStreamData:(struct OpaqueCMBlockBuffer *)arg1 withFlags:(unsigned long long)arg2;
 - (void)_setError:(id)arg1;
 @property(readonly) NSError *error;
 - (void)appendStreamData:(id)arg1;
@@ -34,7 +38,6 @@
 @property(readonly, nonatomic) id <AVStreamDataParserOutputHandling> delegate;
 - (void)setDelegate:(id)arg1;
 - (void)dealloc;
-- (void)finalize;
 - (void)_willDeallocOrFinalize;
 - (id)init;
 - (int)_createFigManifoldWithBlockBuffer:(struct OpaqueCMBlockBuffer *)arg1 manifold:(struct OpaqueFigManifold **)arg2;
@@ -43,20 +46,24 @@
 - (int)_unregisterForFigManifoldCallbacksForTrackID:(int)arg1;
 - (int)_registerForFigManifoldCallbacksForTrackID:(int)arg1;
 - (int)_figManifold:(struct OpaqueFigManifold *)arg1 formatDescription:(struct opaqueCMFormatDescription *)arg2 orDecryptorDidChange:(void *)arg3 forTrackID:(int)arg4;
+- (id)_scavengeContentKeySession;
 - (int)_figManifold:(struct OpaqueFigManifold *)arg1 trackDidEnd:(int)arg2;
 - (int)_figManifold:(struct OpaqueFigManifold *)arg1 pushedSampleBuffer:(struct opaqueCMSampleBuffer *)arg2 trackID:(int)arg3 flags:(unsigned int)arg4;
 - (void)contentKeySessionContentProtectionSessionIdentifierDidChange:(id)arg1;
+- (void)contentKeySession:(id)arg1 didProvideContentKeyRenewalRequest:(id)arg2;
 - (void)contentKeySession:(id)arg1 didProvideContentKeyRequest:(id)arg2;
 - (id)streamingContentKeyRequestDataForApp:(id)arg1 contentIdentifier:(id)arg2 trackID:(int)arg3 options:(id)arg4 error:(id *)arg5;
 - (void)renewExpiringContentKeyResponseDataForTrackID:(int)arg1;
 - (void)processContentKeyResponseError:(id)arg1 forTrackID:(int)arg2;
 - (void)processContentKeyResponseData:(id)arg1 forTrackID:(int)arg2;
 @property(readonly) NSData *contentProtectionSessionIdentifier;
-- (id)clientSession;
-- (id)session;
+- (BOOL)_attachedToExternalContentKeySession;
+- (id)contentKeySession;
 - (void)setSession:(id)arg1;
 - (void)expire;
 - (BOOL)hasProtector;
+- (int)_attachToContentKeySession:(id)arg1 failedSinceAlreadyAttachedToAnotherSession:(char *)arg2;
+@property(readonly, nonatomic) BOOL mayRequireContentKeysForMediaDataProcessing;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

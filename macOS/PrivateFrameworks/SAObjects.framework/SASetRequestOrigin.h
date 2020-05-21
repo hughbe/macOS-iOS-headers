@@ -16,6 +16,7 @@
 
 + (id)setRequestOriginWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setRequestOrigin;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *status;
 @property(nonatomic) double speed;
 @property(nonatomic) double direction;

@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     CDUnknownBlockType _completionBlock;
 }
 
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
 @property(copy) CDUnknownBlockType preparationBlock; // @synthesize preparationBlock=_preparationBlock;
 @property unsigned int effectID; // @synthesize effectID=_effectID;
@@ -25,7 +26,6 @@ __attribute__((visibility("hidden")))
 - (void)abort;
 - (void)invoke;
 - (id)prepare;
-- (void)dealloc;
 - (id)initWithWindow:(id)arg1;
 
 @end

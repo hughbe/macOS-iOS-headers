@@ -11,19 +11,17 @@
 }
 
 + (id)managedObjectContext;
-+ (id)existingNoteForExternalRecordURL:(id)arg1 error:(id *)arg2;
-+ (id)existingObjectFromContext:(id)arg1 withExternalRecordURL:(id)arg2 error:(id *)arg3;
 + (id)notesContainerLibraryURL;
++ (void)setNotesContainerLibraryURL:(id)arg1;
 + (BOOL)_backupExistingStore:(id)arg1 withCoordinator:(id)arg2 error:(id *)arg3;
 + (id)_storeURLForVersion:(unsigned long long)arg1 inDataDirectory:(id)arg2;
 + (id)_validStoreURLInDataDirectory:(id)arg1 movingOldStoreIfNeeded:(BOOL)arg2 withCoordinator:(id)arg3 error:(id *)arg4;
 + (id)persistentStoreCoordinatorAddPersistentStoreIfNecessary:(BOOL)arg1;
 + (id)persistentStoreCoordinator;
 + (void)addPersistentStoreIfNeeded;
++ (id)managedObjectModel;
 + (BOOL)isAppSandboxed;
 + (BOOL)isRunningInNotes;
-+ (void)setShouldWriteExternalRecords:(BOOL)arg1;
-+ (BOOL)shouldWriteExternalRecords;
 + (void)setStoreCoordinatorIsReadOnly:(BOOL)arg1;
 + (BOOL)storeCoordinatorIsReadOnly;
 

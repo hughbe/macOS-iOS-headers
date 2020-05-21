@@ -19,11 +19,12 @@
     long long _wordsMatched;
 }
 
+- (void).cxx_destruct;
 @property long long wordsMatched; // @synthesize wordsMatched=_wordsMatched;
 @property unsigned long long options; // @synthesize options=_options;
-- (void).cxx_destruct;
 - (id)query:(id)arg1;
 - (void)index:(id)arg1 withData:(id)arg2;
+- (int)getMode;
 - (void)setMode:(int)arg1;
 - (id)initWithPath:(id)arg1 options:(unsigned long long)arg2;
 

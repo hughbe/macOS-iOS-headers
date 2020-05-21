@@ -8,6 +8,7 @@
 
 @class MKRoutePolyline;
 
+__attribute__((visibility("hidden")))
 @interface MKRouteStepPolyline : MKPolyline
 {
     MKRoutePolyline *_fullRoute;

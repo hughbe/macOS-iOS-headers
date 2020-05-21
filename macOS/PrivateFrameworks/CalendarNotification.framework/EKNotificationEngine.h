@@ -17,13 +17,15 @@
     NSMutableDictionary *_timers;
 }
 
++ (id)logHandleFor35464009;
++ (BOOL)shouldLogFor35464009;
 + (void)openURLString:(id)arg1 withApp:(id)arg2;
+- (void).cxx_destruct;
 @property(retain) NSMutableDictionary *timers; // @synthesize timers=_timers;
 @property(retain) NSObject<OS_dispatch_queue> *timerQueue; // @synthesize timerQueue=_timerQueue;
 @property(retain) CalLimitingQueue *limitingQueue; // @synthesize limitingQueue=_limitingQueue;
 @property __weak id <EKNotificationInfoDelegate> notificationDelegate; // @synthesize notificationDelegate=_notificationDelegate;
 @property(retain) EKEventStore *eventStore; // @synthesize eventStore=_eventStore;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (void)_timerFiredWithLabel:(id)arg1 performsQuickAction:(BOOL)arg2;
 - (void)_scheduleTimerWithLabel:(id)arg1 interval:(double)arg2 quickAction:(BOOL)arg3;
@@ -34,11 +36,12 @@
 - (BOOL)_contributesToRemindersBadgeCount;
 - (void)_calendarBadgeCountWithReply:(CDUnknownBlockType)arg1;
 - (BOOL)_contributesToCalendarBadgeCount;
+- (void)_removeNotificationIdentifiers:(id)arg1;
 - (void)_handleExpirationForIdentifiers:(id)arg1;
 - (BOOL)_handlesExpirationForType:(id)arg1;
 - (void)_handleActivationForIdentifier:(id)arg1 userInfo:(id)arg2 clickActivation:(BOOL)arg3;
 - (BOOL)_handlesActivationForType:(id)arg1;
-- (void)_handleDismissalForIdentifier:(id)arg1 userInfo:(id)arg2;
+- (void)_handleDismissalForIdentifier:(id)arg1 userInfo:(id)arg2 dismissedAlert:(BOOL)arg3;
 - (BOOL)_handlesDismissalForType:(id)arg1;
 - (void)_handleSummaryShown;
 - (BOOL)_handlesSummaryShown;
@@ -49,7 +52,7 @@
 - (void)calendarBadgeCountWithReply:(CDUnknownBlockType)arg1;
 - (void)handleExpirationForType:(id)arg1 identifiers:(id)arg2 after:(double)arg3;
 - (void)handleActivationForType:(id)arg1 identifier:(id)arg2 userInfo:(id)arg3 clickActivation:(BOOL)arg4;
-- (void)handleDismissalForType:(id)arg1 identifier:(id)arg2 userInfo:(id)arg3;
+- (void)handleDismissalForType:(id)arg1 identifier:(id)arg2 userInfo:(id)arg3 dismissedAlert:(BOOL)arg4;
 - (void)handleSummaryShown;
 - (id)_interestingNotifications;
 - (void)quickAction;

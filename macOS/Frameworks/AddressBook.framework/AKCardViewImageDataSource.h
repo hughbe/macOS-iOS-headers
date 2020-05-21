@@ -6,32 +6,19 @@
 
 #import "NSObject.h"
 
-@class ABAddressBook, ABCNContactPhotoStore, ABCNContactStore, ABCardViewImage, NSArray, NSString;
+@class ABCardViewImage, CNContactStore;
 
-__attribute__((visibility("hidden")))
 @interface AKCardViewImageDataSource : NSObject
 {
-    id <AKCardViewDataSourceSupport> _cardView;
-    ABCNContactStore *_addressBook;
-    ABAddressBook *_legacyAddressBook;
-    ABCNContactPhotoStore *_thumbnailPhotoStore;
-    ABCNContactPhotoStore *_uncroppedPhotoStore;
-    ABCNContactPhotoStore *_remotePhotoStore;
-    NSArray *_alternateImageIDs;
-    NSString *_alternateImagePath;
     ABCardViewImage *_updatedImage;
+    CNContactStore *_contactStore;
 }
 
-@property(retain) ABCardViewImage *updatedImage; // @synthesize updatedImage=_updatedImage;
-@property(copy) NSString *alternateImagePath; // @synthesize alternateImagePath=_alternateImagePath;
-@property(copy) NSArray *alternateImageIDs; // @synthesize alternateImageIDs=_alternateImageIDs;
-- (id)makeSetImageCommandWithPeople:(id)arg1 image:(id)arg2 shouldSave:(BOOL)arg3;
-- (id)photoFutureForUpdatedImage;
-- (id)remotePhotoFutureWithPeople:(id)arg1;
-- (id)localLargePhotoFutureWithPeople:(id)arg1;
-- (id)localThumbnailPhotoFutureWithPeople:(id)arg1;
-- (void)dealloc;
-- (id)initWithAddressBook:(id)arg1 legacyAddressBook:(id)arg2 cardView:(id)arg3;
+- (void).cxx_destruct;
+@property(retain, nonatomic) CNContactStore *contactStore; // @synthesize contactStore=_contactStore;
+@property(retain, nonatomic) ABCardViewImage *updatedImage; // @synthesize updatedImage=_updatedImage;
+- (id)makeSetImageCommandWithPeople:(id)arg1 image:(id)arg2 shouldSave:(BOOL)arg3 ignoresGuardianRestrictions:(BOOL)arg4;
+- (id)initWithContactStore:(id)arg1;
 
 @end
 

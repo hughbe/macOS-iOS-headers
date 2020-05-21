@@ -7,6 +7,8 @@
 #import "NSObject.h"
 
 @interface NSObject (HPDCheckClass)
++ (id)hpdDecodeWithCoder:(id)arg1 ofClasses:(id)arg2 forKey:(id)arg3;
++ (id)hpdDecodeWithCoder:(id)arg1 forKey:(id)arg2;
 + (id)hpdCheckClass:(id)arg1;
 @end
 

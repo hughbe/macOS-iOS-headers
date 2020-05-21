@@ -8,30 +8,41 @@
 
 #import "_CDStringKeyDataValueStoring.h"
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_os_log>;
 
 @interface _CDSharedMemoryKeyValueStore : NSObject <_CDStringKeyDataValueStoring>
 {
     NSObject<OS_dispatch_queue> *_queue;
+    NSObject<OS_dispatch_queue> *_archivingQueue;
+    BOOL _needToPersist;
+    NSObject<OS_os_log> *_log;
     NSMutableDictionary *_dictionary;
     void *_mappedMem;
     unsigned long long _size;
 }
 
++ (id)readKeyedDataDictionaryFromMemory:(void *)arg1 size:(unsigned long long)arg2;
++ (void *)openOrCreateSharedMemoryWithName:(id)arg1 size:(unsigned long long)arg2;
++ (id)log;
 + (id)keyValueStoreWithName:(id)arg1 size:(unsigned long long)arg2;
 + (id)sharedInstance;
 + (id)defaultName;
 + (unsigned long long)defaultSize;
-@property(readonly, nonatomic) unsigned long long size; // @synthesize size=_size;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long size; // @synthesize size=_size;
+- (id)description;
 - (void)setValue:(id)arg1 forKey:(id)arg2;
 - (id)valueForKey:(id)arg1;
 - (id)allKeys;
 - (id)dataForKey:(id)arg1;
 - (BOOL)removeDataForKeys:(id)arg1;
 - (BOOL)removeDataForKey:(id)arg1;
+- (BOOL)setData:(id)arg1 forKey:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (BOOL)setData:(id)arg1 forKey:(id)arg2;
-- (BOOL)persistToShMem;
+- (BOOL)asyncPersistToShMemWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (BOOL)persistToShMemWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (id)errorForExceedingSizeLimits;
+- (void *)memoryPointer;
 - (id)initWithName:(id)arg1 size:(unsigned long long)arg2;
 
 @end

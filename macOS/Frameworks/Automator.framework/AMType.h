@@ -18,22 +18,26 @@
     NSString *_detectedDataType;
     NSString *_category;
     NSArray *_applicationBundleIDs;
+    NSArray *_headerInputTypes;
 }
 
-@property(readonly, retain) NSArray *applicationBundleIDs; // @synthesize applicationBundleIDs=_applicationBundleIDs;
-@property(readonly, retain) NSString *category; // @synthesize category=_category;
-@property(readonly, retain) NSString *detectedDataType; // @synthesize detectedDataType=_detectedDataType;
-@property(readonly, retain) NSString *textContent; // @synthesize textContent=_textContent;
-@property(readonly, retain) NSString *automatorTypeID; // @synthesize automatorTypeID=_automatorTypeID;
-@property(readonly, retain) NSString *fileType; // @synthesize fileType=_fileType;
-@property(readonly, retain) NSArray *utiTypes; // @synthesize utiTypes=_utiTypes;
-@property(readonly, retain) NSString *name; // @synthesize name=_name;
-@property(readonly) BOOL isCustomApplicationType;
++ (BOOL)headerInputTypes:(id)arg1 haveConnectionToActionInputTypes:(id)arg2 conservativeConversionOnly:(BOOL)arg3 returningLength:(unsigned long long *)arg4;
+- (void).cxx_destruct;
+@property(copy) NSArray *headerInputTypes; // @synthesize headerInputTypes=_headerInputTypes;
+@property(copy) NSArray *applicationBundleIDs; // @synthesize applicationBundleIDs=_applicationBundleIDs;
+@property(copy) NSString *category; // @synthesize category=_category;
+@property(copy) NSString *detectedDataType; // @synthesize detectedDataType=_detectedDataType;
+@property(copy) NSString *textContent; // @synthesize textContent=_textContent;
+@property(copy) NSString *automatorTypeID; // @synthesize automatorTypeID=_automatorTypeID;
+@property(copy) NSString *fileType; // @synthesize fileType=_fileType;
+@property(copy) NSArray *utiTypes; // @synthesize utiTypes=_utiTypes;
+@property(copy) NSString *name; // @synthesize name=_name;
+@property(readonly, nonatomic) BOOL isCustomApplicationType;
 - (void)addApplicationBundleID:(id)arg1;
 - (id)description;
+@property(readonly, nonatomic) NSString *headerInputType;
 - (id)initWithApplicationBundleID:(id)arg1 customUTI:(id)arg2;
-- (id)initWithName:(id)arg1 utiTypes:(id)arg2 fileType:(id)arg3 automatorTypeID:(id)arg4 textContent:(id)arg5 detectedDataType:(id)arg6 category:(id)arg7;
-- (void)dealloc;
+- (id)initWithName:(id)arg1 utiTypes:(id)arg2 fileType:(id)arg3 automatorTypeID:(id)arg4 textContent:(id)arg5 detectedDataType:(id)arg6 headerInputTypes:(id)arg7 category:(id)arg8;
 
 @end
 

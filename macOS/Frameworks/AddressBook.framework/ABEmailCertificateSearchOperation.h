@@ -8,16 +8,15 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABEmailCertificateSearchOperation : NSOperation
 {
     NSString *_emailAddress;
     CDUnknownBlockType _completionHandler;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property(retain) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
-- (void)dealloc;
 - (void)_doMain;
 - (void)main;
 

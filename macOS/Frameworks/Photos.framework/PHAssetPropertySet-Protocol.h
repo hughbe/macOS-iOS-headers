@@ -6,9 +6,11 @@
 
 #import "PHObjectPropertySet.h"
 
-@class PHAsset;
+@class NSString, PHAsset;
 
 @protocol PHAssetPropertySet <PHObjectPropertySet>
++ (NSString *)propertySetName;
 @property(readonly, nonatomic) __weak PHAsset *asset;
+- (id)initWithFetchDictionary:(id <PHFetchDictionaryAccessing>)arg1 asset:(PHAsset *)arg2 prefetched:(BOOL)arg3;
 @end
 

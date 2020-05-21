@@ -22,11 +22,10 @@
     long long _promiseType;
     CDUnknownBlockType _readerBlock;
     struct {
-        unsigned int usesFileCoordniation:1;
+        unsigned int usesFileCoordination:1;
         unsigned int registered:1;
         unsigned int reserved:30;
     } _flags;
-    id _private;
 }
 
 + (unsigned long long)readingOptionsForType:(id)arg1 pasteboard:(id)arg2;
@@ -36,6 +35,7 @@
 @property(readonly, copy) NSArray *alternateFileTypes; // @synthesize alternateFileTypes=_reservedA;
 @property(readonly, copy) NSArray *fileNames; // @synthesize fileNames=_fileNames;
 @property(readonly, copy) NSArray *fileTypes; // @synthesize fileTypes=_fileTypes;
+- (void)draggingCancelled:(id)arg1;
 - (void)draggingEnded:(id)arg1;
 - (void)receivePromisedFilesAtDestination:(id)arg1 options:(id)arg2 operationQueue:(id)arg3 reader:(CDUnknownBlockType)arg4;
 - (void)registerDestinationLocation:(id)arg1 options:(id)arg2 operationQueue:(id)arg3 reader:(CDUnknownBlockType)arg4;

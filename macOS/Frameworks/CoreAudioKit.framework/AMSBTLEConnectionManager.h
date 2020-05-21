@@ -23,9 +23,15 @@ __attribute__((visibility("hidden")))
     id <BTLEConnectionTable> controller;
     long long centralState;
     BOOL isAdvertising;
+    BOOL _checked32BitStatus;
+    BOOL _server32Bit;
 }
 
+@property BOOL server32Bit; // @synthesize server32Bit=_server32Bit;
+@property BOOL checked32BitStatus; // @synthesize checked32BitStatus=_checked32BitStatus;
 @property(readonly) NSMutableArray *peripheralList; // @synthesize peripheralList;
+- (id)get32BitPluginList;
+- (BOOL)is32BitPlugin;
 - (BOOL)peripheralIsConnectedCentral:(id)arg1;
 - (unsigned int)midiDeviceForUUID:(id)arg1;
 - (void)removeAMSPeripheralForCBPeripheral:(id)arg1;

@@ -21,6 +21,7 @@
     NSMutableSet *_calendarObjectIDs;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSOrderedSet *binnedDates; // @synthesize binnedDates=_binnedDates;
 @property(retain, nonatomic) NSSet *calendarObjectIDs; // @synthesize calendarObjectIDs=_calendarObjectIDs;
 @property(retain, nonatomic) CalDateRange *range; // @synthesize range=_range;
@@ -47,7 +48,6 @@
 - (BOOL)_masterAndMainObjectIDsDifferForOccurrence:(id)arg1;
 - (id)description;
 - (void)_emptyBins;
-- (void)dealloc;
 - (id)initWithTimeZoneString:(id)arg1 range:(id)arg2 calendarObjectIDs:(id)arg3;
 
 @end

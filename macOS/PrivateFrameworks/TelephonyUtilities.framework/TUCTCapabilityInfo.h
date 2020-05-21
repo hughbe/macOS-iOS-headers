@@ -16,18 +16,22 @@
 {
     BOOL _canEnable;
     BOOL _enabled;
+    BOOL _canEnableRoaming;
+    BOOL _roamingEnabled;
     int _provisioningStatus;
     NSURL *_provisioningURL;
     NSData *_provisioningPostData;
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+@property(nonatomic, getter=isRoamingEnabled) BOOL roamingEnabled; // @synthesize roamingEnabled=_roamingEnabled;
+@property(nonatomic) BOOL canEnableRoaming; // @synthesize canEnableRoaming=_canEnableRoaming;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 @property(nonatomic) BOOL canEnable; // @synthesize canEnable=_canEnable;
-@property(retain, nonatomic) NSData *provisioningPostData; // @synthesize provisioningPostData=_provisioningPostData;
-@property(retain, nonatomic) NSURL *provisioningURL; // @synthesize provisioningURL=_provisioningURL;
+@property(copy, nonatomic) NSData *provisioningPostData; // @synthesize provisioningPostData=_provisioningPostData;
+@property(copy, nonatomic) NSURL *provisioningURL; // @synthesize provisioningURL=_provisioningURL;
 @property(nonatomic) int provisioningStatus; // @synthesize provisioningStatus=_provisioningStatus;
-- (void).cxx_destruct;
 - (id)publiclyAccessibleCopyWithZone:(struct _NSZone *)arg1;
 - (id)publiclyAccessibleCopy;
 - (id)copyWithZone:(struct _NSZone *)arg1;

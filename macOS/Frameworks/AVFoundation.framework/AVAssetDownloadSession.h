@@ -13,12 +13,14 @@
     AVAssetDownloadSessionInternal *_internal;
 }
 
++ (void)registerDownloadLocation:(id)arg1 forURLAsset:(id)arg2;
 + (id)assetDownloadSessionWithAsset:(id)arg1 destinationURL:(id)arg2 options:(id)arg3;
 + (id)assetDownloadSessionWithDownloadToken:(unsigned long long)arg1;
 + (id)assetDownloadSessionWithURL:(id)arg1 destinationURL:(id)arg2 options:(id)arg3;
 @property(readonly, nonatomic) AVMediaSelection *resolvedMediaSelection;
 @property(readonly, nonatomic) NSArray *loadedTimeRanges;
 @property(readonly, nonatomic) unsigned long long downloadToken;
+@property(readonly, nonatomic) unsigned long long countOfBytesReceived;
 @property(readonly, nonatomic) unsigned long long availableFileSize;
 @property(readonly, nonatomic) unsigned long long fileSize;
 @property(readonly, nonatomic) long long priority;
@@ -26,10 +28,10 @@
 @property(readonly, nonatomic) NSURL *URL;
 @property(readonly, nonatomic) NSError *error;
 @property(readonly, nonatomic) long long status;
+- (void)startLoadingMetadata;
 - (void)stop;
 - (void)pause;
 - (void)start;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithAsset:(id)arg1 destinationURL:(id)arg2 options:(id)arg3;
 - (id)initWithDownloadToken:(unsigned long long)arg1;
@@ -46,6 +48,8 @@
 - (void)_removeFigAssetListeners;
 - (void)_addFigAssetListeners;
 - (id)_figAssetNotificationNames;
+- (id)_errorFromAssetNotificationPayload:(id)arg1;
+- (struct OpaqueFigAsset *)_createDuplicateFigAssetFromAVAsset:(id)arg1;
 - (void)_selectMediaOptionsFromMediaSelection:(id)arg1;
 - (id)_loadedTimeRangesFromFigLoadedTimeRanges:(id)arg1;
 - (id)_verifyDownloadConfigurationForAssetType;
@@ -55,7 +59,7 @@
 - (id)_errorForFigNotificationPayload:(struct __CFDictionary *)arg1 key:(struct __CFString *)arg2;
 - (void)_transitionToTerminalStatus:(long long)arg1 error:(id)arg2;
 - (struct OpaqueFigPlaybackItem *)_playbackItem;
-- (BOOL)_setFileFigAsset:(struct OpaqueFigAsset *)arg1;
+- (int)_setFileFigAsset:(struct OpaqueFigAsset *)arg1;
 - (struct OpaqueFigAsset *)_figAsset;
 - (id)_weakReference;
 

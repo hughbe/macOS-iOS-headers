@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_queue> *_queue;
 }
 
+- (void).cxx_destruct;
 - (void)_removeAllEntries;
 - (long long)_numberOfEntries;
 - (void)_enumerateAllForCacheEntriesWithHandler:(CDUnknownBlockType)arg1;
@@ -29,8 +30,10 @@ __attribute__((visibility("hidden")))
 - (long long)_threadUnsafeRowIdOfKey:(id)arg1;
 - (id)_rowIdsOfEntriesBeforeTimeStamp:(double)arg1;
 - (double)_nextTimeStampForRefreshTimer;
-- (void)_removeOldFormatCache;
+- (void)_removeOldFormatCacheFromPath:(id)arg1;
+- (void)tearDown;
 - (id)initWithPath:(id)arg1;
+- (id)init;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import <ContactsPersistence/ABCDOwnedObject.h>
 
-@class NSDictionary, NSManagedObject, NSString;
+@class ABCDRecord, NSDictionary, NSString;
 
 @interface ABCDAlertTone : ABCDOwnedObject
 {
@@ -16,7 +16,7 @@
 @property(retain, nonatomic) NSDictionary *toneDictionary;
 
 // Remaining properties
-@property(retain, nonatomic) NSManagedObject *owner; // @dynamic owner;
+@property(retain, nonatomic) ABCDRecord *owner; // @dynamic owner;
 @property(copy) NSString *toneData; // @dynamic toneData;
 @property(copy) NSString *type; // @dynamic type;
 

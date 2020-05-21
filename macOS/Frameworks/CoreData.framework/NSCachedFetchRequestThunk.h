@@ -13,17 +13,14 @@ __attribute__((visibility("hidden")))
 {
     NSSQLiteStatement *_limitedStatement;
     NSSQLiteStatement *_unlimitedStatement;
-    long long _refCount;
+    id _connection;
 }
 
-@property(readonly) long long inUseCounter; // @synthesize inUseCounter=_refCount;
 @property(retain, nonatomic) NSSQLiteStatement *unlimitedStatement; // @synthesize unlimitedStatement=_unlimitedStatement;
 @property(retain, nonatomic) NSSQLiteStatement *limitedStatement; // @synthesize limitedStatement=_limitedStatement;
 - (void)clearCaches;
 - (void)dealloc;
-- (void)decrementInUseCounter;
-- (void)incrementInUseCounter;
-- (id)init;
+- (id)initForConnection:(id)arg1;
 
 @end
 

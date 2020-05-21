@@ -15,6 +15,8 @@
 
 @property(copy) NSArray *signals; // @synthesize signals;
 - (void)dealloc;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)objectLogName;
 - (id)xmlKey;
 - (void)appendVariableDescriptorContentToString:(id)arg1 withIndent:(id)arg2;

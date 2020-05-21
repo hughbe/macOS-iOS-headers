@@ -22,6 +22,7 @@
     long long _PINLengthBitSize;
 }
 
++ (void)_writeNumber:(unsigned long long)arg1 into:(id)arg2 bitOffset:(long long)arg3 bitLength:(long long)arg4;
 + (BOOL)supportsSecureCoding;
 @property long long PINLengthBitSize; // @synthesize PINLengthBitSize=_PINLengthBitSize;
 @property long long PINLengthBitOffset; // @synthesize PINLengthBitOffset=_PINLengthBitOffset;
@@ -32,6 +33,7 @@
 @property long long minPINLength; // @synthesize minPINLength=_minPINLength;
 @property long long encoding; // @synthesize encoding=_encoding;
 @property long long charset; // @synthesize charset=_charset;
+- (BOOL)fillPIN:(id)arg1 intoAPDUTemplate:(id)arg2 PINByteOffset:(long long)arg3 error:(id *)arg4;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

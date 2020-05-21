@@ -23,9 +23,8 @@
     BOOL _didAwakeFromNib;
 }
 
-- (void)finalize;
+- (void).cxx_destruct;
 - (void)dealloc;
-- (void)_cleanupUAScrollZoomSheet;
 - (id)init;
 - (id)windowWillReturnFieldEditor:(id)arg1 toObject:(id)arg2;
 - (void)awakeFromNib;

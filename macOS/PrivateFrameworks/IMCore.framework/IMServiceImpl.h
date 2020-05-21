@@ -53,7 +53,17 @@
 + (id)supportedCountryCodes;
 + (BOOL)iMessageEnabled;
 + (BOOL)mmsEnabled;
++ (BOOL)_readMMSUserOverride;
 + (BOOL)smsEnabled;
++ (BOOL)iMessageEnabledForSenderLastAddressedHandle:(id)arg1 simID:(id)arg2 previousService:(id)arg3;
++ (BOOL)_iMessageEnabledForMultipleSubscriptionsForSenderLastAddressedHandle:(id)arg1 simID:(id)arg2 previousService:(id)arg3;
++ (BOOL)_shouldCheckIfLastAddressedHandleIsInSubscriptionsAnymoreButiMessageIsEnabledForAlias:(id)arg1 previousService:(id)arg2;
++ (BOOL)_isiMessageEnabledIfLastAddressedHandleIsNotActiveAnymore:(id)arg1;
++ (BOOL)_isSIMIdIDSRegisteredSIM:(id)arg1;
++ (id)_phoneNumberOnSubscriptionWithSIMID:(id)arg1;
++ (BOOL)iMessageEnabledForSenderLastAddressedHandle:(id)arg1 simID:(id)arg2;
++ (BOOL)hasAlias:(id)arg1 onAccountForService:(id)arg2;
++ (BOOL)mmsEnabledforPhoneNumber:(id)arg1 simID:(id)arg2;
 + (id)operationalServicesWithCapability:(unsigned long long)arg1;
 + (id)connectedServicesWithCapability:(unsigned long long)arg1;
 + (id)servicesWithCapability:(unsigned long long)arg1;
@@ -65,6 +75,7 @@
 + (id)allServices;
 + (void)setServiceClass:(Class)arg1;
 + (Class)serviceClass;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *shortName; // @synthesize shortName=_localizedShortName;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic) NSArray *emailDomains; // @synthesize emailDomains=_emailDomains;
@@ -89,7 +100,6 @@
 @property(readonly, nonatomic) BOOL supportsIDStatusLookup; // @synthesize supportsIDStatusLookup=_supportsIDStatusLookup;
 @property(retain, nonatomic) NSDictionary *defaultAccountSettings; // @synthesize defaultAccountSettings=_defaultSettings;
 @property(retain, nonatomic) NSDictionary *serviceDefaults; // @synthesize serviceDefaults=_serviceDefaults;
-- (void).cxx_destruct;
 @property(readonly, nonatomic) Class accountClass;
 - (void)activeAccountsChanged:(id)arg1;
 - (void)defaultsChanged:(id)arg1;
@@ -121,7 +131,7 @@
 @property(readonly, nonatomic) BOOL _supportsDatabaseStorage;
 - (BOOL)isEnabled;
 @property(readonly, nonatomic) long long maxAttachmentSize;
-@property(readonly, nonatomic) long long maxChatParticipants;
+- (long long)maxChatParticipantsForHandle:(id)arg1 simID:(id)arg2;
 @property(readonly, nonatomic) NSData *serviceImageData;
 - (id)subtypeInformationForAccount:(id)arg1;
 @property(retain, nonatomic) NSDictionary *serviceProperties;
@@ -145,6 +155,7 @@
 - (void)_syncWithRemoteBuddies;
 - (void)dealloc;
 - (id)initWithName:(id)arg1;
+@property(readonly, nonatomic, getter=isDiscontinued) BOOL discontinued;
 @property(readonly, getter=isLegacyService) BOOL legacyService; // @dynamic legacyService;
 
 @end

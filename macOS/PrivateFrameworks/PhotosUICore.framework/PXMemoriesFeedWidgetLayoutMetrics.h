@@ -8,10 +8,16 @@
 
 @interface PXMemoriesFeedWidgetLayoutMetrics : PXMemoriesFeedLayoutMetrics
 {
+    unsigned long long _numberOfColumns;
     unsigned long long _numberOfRows;
+    long long _layoutAxis;
+    struct CGSize _interitemSpacing;
 }
 
+@property(nonatomic) long long layoutAxis; // @synthesize layoutAxis=_layoutAxis;
+@property(nonatomic) struct CGSize interitemSpacing; // @synthesize interitemSpacing=_interitemSpacing;
 @property(nonatomic) unsigned long long numberOfRows; // @synthesize numberOfRows=_numberOfRows;
+@property(nonatomic) unsigned long long numberOfColumns; // @synthesize numberOfColumns=_numberOfColumns;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 

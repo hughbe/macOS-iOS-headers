@@ -17,6 +17,8 @@
 + (id)idsIDsForABPerson:(id)arg1;
 + (id)displayStringForABPerson:(id)arg1;
 + (id)formattedIDSIDForAppleID:(id)arg1;
++ (id)idsCopyIDForPhoneNumber:(id)arg1;
++ (id)idsCopyIDForEmailAddress:(id)arg1;
 
 @end
 

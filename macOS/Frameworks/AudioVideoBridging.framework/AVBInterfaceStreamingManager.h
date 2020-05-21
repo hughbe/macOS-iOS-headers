@@ -22,13 +22,16 @@
 + (id)iokitMatchingDictionaryForInterfaceName:(id)arg1;
 @property(readonly) AVBInterface *interface; // @synthesize interface=_interface;
 - (void)dealloc;
+- (BOOL)releaseBandwidthForOutputStream:(unsigned long long)arg1 error:(id *)arg2;
+- (BOOL)allocateBandwidth:(unsigned long long)arg1 forOutputStream:(unsigned long long)arg2 error:(id *)arg3;
+- (BOOL)getQueue:(unsigned int)arg1 fetchDelay:(unsigned long long *)arg2 error:(id *)arg3;
 - (BOOL)getQueue:(unsigned int)arg1 physicalLaunchTimeOffset:(unsigned long long *)arg2 error:(id *)arg3;
 - (BOOL)getQueue:(unsigned int)arg1 mbufLaunchTimeOffset:(unsigned long long *)arg2 error:(id *)arg3;
 - (BOOL)createIIDCIOSurfaceOutputStreamWithID:(unsigned long long)arg1 onVLANID:(unsigned short)arg2 withPriorityCodePoint:(unsigned char)arg3 andDestiantionMAC:(id)arg4 withMaximumSurfacesPerSecond:(unsigned int)arg5 maximumSurfaceDataLength:(unsigned long long)arg6 maximumSurfaceDataLengthPerPDU:(unsigned long long)arg7 streamBandwidth:(unsigned long long)arg8 error:(id *)arg9;
 - (BOOL)createIIDCIOSurfaceInputStreamWithID:(unsigned long long)arg1 onVLANID:(unsigned short)arg2 withPriorityCodePoint:(unsigned char)arg3 andDestiantionMAC:(id)arg4 withMaximumSurfacesPerSecond:(unsigned int)arg5 maximumSurfaceDataLength:(unsigned long long)arg6 maximumSurfaceDataLengthPerPDU:(unsigned long long)arg7 error:(id *)arg8;
 - (BOOL)destroyOutputStreamWithID:(unsigned long long)arg1 error:(id *)arg2;
-- (BOOL)createUserSpaceOutputStreamWithID:(unsigned long long)arg1 usingEtherType:(unsigned short)arg2 onVLANID:(unsigned short)arg3 withPriorityCodePoint:(unsigned char)arg4 andDestiantionMAC:(id)arg5 withNumberOfPackets:(unsigned int)arg6 ofHeaderSize:(unsigned int)arg7 andPayloadSize:(unsigned int)arg8 timerPeriod:(unsigned int)arg9 streamBandwidth:(unsigned long long)arg10 error:(id *)arg11;
-- (BOOL)createUserSpaceOutputStreamWithID:(unsigned long long)arg1 onVLANID:(unsigned short)arg2 withPriorityCodePoint:(unsigned char)arg3 andDestiantionMAC:(id)arg4 withNumberOfPackets:(unsigned int)arg5 ofHeaderSize:(unsigned int)arg6 andPayloadSize:(unsigned int)arg7 timerPeriod:(unsigned int)arg8 streamBandwidth:(unsigned long long)arg9 error:(id *)arg10;
+- (BOOL)createUserSpaceOutputStreamWithID:(unsigned long long)arg1 usingEtherType:(unsigned short)arg2 onVLANID:(unsigned short)arg3 withPriorityCodePoint:(unsigned char)arg4 andDestiantionMAC:(id)arg5 withNumberOfPackets:(unsigned int)arg6 ofHeaderSize:(unsigned int)arg7 andPayloadSize:(unsigned int)arg8 streamBandwidth:(unsigned long long)arg9 error:(id *)arg10;
+- (BOOL)createUserSpaceOutputStreamWithID:(unsigned long long)arg1 onVLANID:(unsigned short)arg2 withPriorityCodePoint:(unsigned char)arg3 andDestiantionMAC:(id)arg4 withNumberOfPackets:(unsigned int)arg5 ofHeaderSize:(unsigned int)arg6 andPayloadSize:(unsigned int)arg7 streamBandwidth:(unsigned long long)arg8 error:(id *)arg9;
 - (BOOL)destroyInputStreamWithID:(unsigned long long)arg1 error:(id *)arg2;
 - (BOOL)createUserSpaceInputStreamWithID:(unsigned long long)arg1 usingEtherType:(unsigned short)arg2 onVLANID:(unsigned short)arg3 withPriorityCodePoint:(unsigned char)arg4 andDestiantionMAC:(id)arg5 withNumberOfPackets:(unsigned int)arg6 ofHeaderSize:(unsigned int)arg7 andPayloadSize:(unsigned int)arg8 error:(id *)arg9;
 - (BOOL)createUserSpaceInputStreamWithID:(unsigned long long)arg1 onVLANID:(unsigned short)arg2 withPriorityCodePoint:(unsigned char)arg3 andDestiantionMAC:(id)arg4 withNumberOfPackets:(unsigned int)arg5 ofHeaderSize:(unsigned int)arg6 andPayloadSize:(unsigned int)arg7 error:(id *)arg8;

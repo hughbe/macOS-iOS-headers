@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import "_KSTextReplacementStoreProtocol.h"
 
-@protocol _KSTextReplacementSyncProtocol <NSObject>
-- (void)requestSyncShouldPull:(BOOL)arg1 withCompletionHandler:(void (^)(void))arg2;
+@protocol _KSTextReplacementSyncProtocol <_KSTextReplacementStoreProtocol>
+- (void)requestSync:(unsigned long long)arg1 withCompletionBlock:(void (^)(BOOL))arg2;
 @end
 

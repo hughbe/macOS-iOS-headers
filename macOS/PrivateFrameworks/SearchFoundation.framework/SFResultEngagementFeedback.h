@@ -11,6 +11,7 @@
 @interface SFResultEngagementFeedback : SFResultFeedback <NSCopying>
 {
     BOOL _actionEngaged;
+    BOOL _matchesUnengagedSuggestion;
     unsigned long long _triggerEvent;
     unsigned long long _destination;
     unsigned long long _actionTarget;
@@ -20,6 +21,7 @@
 @property(nonatomic) unsigned long long actionTarget; // @synthesize actionTarget=_actionTarget;
 @property(nonatomic) unsigned long long destination; // @synthesize destination=_destination;
 @property(nonatomic) unsigned long long triggerEvent; // @synthesize triggerEvent=_triggerEvent;
+@property(nonatomic) BOOL matchesUnengagedSuggestion; // @synthesize matchesUnengagedSuggestion=_matchesUnengagedSuggestion;
 @property(readonly, nonatomic) BOOL actionEngaged; // @synthesize actionEngaged=_actionEngaged;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

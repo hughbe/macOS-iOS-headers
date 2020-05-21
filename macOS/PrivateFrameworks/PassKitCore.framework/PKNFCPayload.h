@@ -13,16 +13,16 @@
 
 @interface PKNFCPayload : NSObject <NSSecureCoding, NSCopying>
 {
-    BOOL _requiresCertificate;
+    BOOL _requiresAuthentication;
     NSString *_message;
     NSData *_encryptionPublicKeyData;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy, nonatomic) NSData *encryptionPublicKeyData; // @synthesize encryptionPublicKeyData=_encryptionPublicKeyData;
-@property(nonatomic) BOOL requiresCertificate; // @synthesize requiresCertificate=_requiresCertificate;
-@property(copy, nonatomic) NSString *message; // @synthesize message=_message;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL requiresAuthentication; // @synthesize requiresAuthentication=_requiresAuthentication;
+@property(copy, nonatomic) NSData *encryptionPublicKeyData; // @synthesize encryptionPublicKeyData=_encryptionPublicKeyData;
+@property(copy, nonatomic) NSString *message; // @synthesize message=_message;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

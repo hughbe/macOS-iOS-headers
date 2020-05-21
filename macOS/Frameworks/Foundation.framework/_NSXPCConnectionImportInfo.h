@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
-@class NSLock;
-
 __attribute__((visibility("hidden")))
 @interface _NSXPCConnectionImportInfo : NSObject
 {
     unsigned long long _generationCount;
-    NSLock *_lock;
     struct __CFDictionary *_proxyNumberToCount;
+    void *_secTaskRef;
+    struct os_unfair_lock_s _lock;
+    BOOL _secTaskClearedOnce;
 }
 
+- (void)_clearEntitlementCache;
+- (id)_valueForEntitlement:(id)arg1 auditToken:(CDStruct_4c969caf)arg2;
 - (BOOL)removeProxy:(id)arg1;
 - (void)addProxy:(id)arg1;
 - (void)dealloc;

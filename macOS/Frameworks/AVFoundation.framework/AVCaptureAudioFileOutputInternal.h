@@ -8,6 +8,7 @@
 
 @class AVCaptureFileOutputRecordingOperationDescriptor, AVCaptureOperationDescriptorQueue, MediaIOGraphNodeDescription, NSArray, NSError, NSLock, NSMutableArray, NSString, NSTimer, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface AVCaptureAudioFileOutputInternal : NSObject
 {
     struct __CFDictionary *splitterUnits;
@@ -23,28 +24,22 @@
     struct os_unfair_lock_s runningRecordingOperationDescriptorLock;
     CDStruct_1b6d18a9 syncTime;
     void *syncTimeConnection;
-    struct os_unfair_lock_s syncTimeLock;
-    unsigned long long curAudioBuffer;
     CDStruct_1b6d18a9 timeWritten;
     long long sizeWritten;
-    struct os_unfair_lock_s statsLock;
-    struct os_unfair_lock_s metadataLock;
     BOOL wasForcedToPause;
     NSString *fileUTI;
     unsigned int fileType;
     NSError *stopError;
-    struct os_unfair_lock_s stopErrorLock;
     NSMutableArray *activeConnections;
     NSArray *noDataConnections;
-    struct os_unfair_lock_s connectionsLock;
     BOOL fileControlCallbackRanSinceLastCheck;
     BOOL fileControlCallbackTimedOut;
     struct os_unfair_lock_s fileControlCallbackTimeoutLock;
     NSTimer *fileControlCallbackTimeoutTimer;
     NSURL *outputFileURL;
     BOOL recordingPaused;
-    struct os_unfair_lock_s recordingStateLock;
     NSArray *metadata;
+    struct os_unfair_lock_s internalLock;
 }
 
 @end

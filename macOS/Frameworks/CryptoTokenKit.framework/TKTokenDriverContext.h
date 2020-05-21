@@ -4,25 +4,39 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSExtensionContext.h"
+#import <CryptoTokenKit/TKTokenBaseContext.h>
 
 #import "TKTokenDriverProtocol.h"
 
-@class NSString, TKTokenDriver;
+@class NSString, TKTokenConfigurationConnection, TKTokenDriver;
 
-@interface TKTokenDriverContext : NSExtensionContext <TKTokenDriverProtocol>
+__attribute__((visibility("hidden")))
+@interface TKTokenDriverContext : TKTokenBaseContext <TKTokenDriverProtocol>
 {
+    TKTokenConfigurationConnection *_configurationConnection;
+    id _initialKeepAlive;
     TKTokenDriver *_driver;
-    NSString *_tokenID;
 }
 
-+ (id)_extensionAuxiliaryHostProtocol;
-+ (id)_extensionAuxiliaryVendorProtocol;
-@property(retain) NSString *tokenID; // @synthesize tokenID=_tokenID;
-@property(retain) TKTokenDriver *driver; // @synthesize driver=_driver;
 - (void).cxx_destruct;
-- (void)dealloc;
-- (void)acquireTokenEndpointWithAttributes:(id)arg1 reply:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) TKTokenDriver *driver; // @synthesize driver=_driver;
+- (void)releaseTokenWithInstanceID:(id)arg1 reply:(CDUnknownBlockType)arg2;
+- (void)configureWithReply:(CDUnknownBlockType)arg1;
+- (void)acquireTokenWithSlot:(id)arg1 AID:(id)arg2 reply:(CDUnknownBlockType)arg3;
+- (void)acquireTokenWithInstanceID:(id)arg1 reply:(CDUnknownBlockType)arg2;
+- (BOOL)startRequestWithError:(id *)arg1;
+- (void)setup;
+@property(readonly, nonatomic) double idleTimeout;
+- (void)auditAuthOperation:(id)arg1 auditToken:(CDStruct_6ad76789)arg2 success:(BOOL)arg3;
+- (id)configurationForTokenID:(id)arg1;
+@property(readonly, nonatomic) TKTokenConfigurationConnection *configurationConnection;
+@property(readonly, nonatomic) id <TKTokenDriverHostProtocol> host;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

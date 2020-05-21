@@ -15,7 +15,7 @@
 }
 
 + (id)filterPropertiesNames:(id)arg1 withMode:(int)arg2;
-- (void)dealloc;
+- (void).cxx_destruct;
 - (void)applyTo:(id)arg1;
 - (id)initWithPropertiesNames:(id)arg1 withMode:(int)arg2;
 

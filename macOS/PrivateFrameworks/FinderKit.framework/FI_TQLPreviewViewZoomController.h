@@ -10,25 +10,24 @@
 #import "QLSeamlessCloserDelegate.h"
 #import "TQLPreviewWindowControllerProtocol.h"
 
-@class FI_TQLPreviewView, NSString;
+@class NSString, QLPreviewView;
 
 __attribute__((visibility("hidden")))
 @interface FI_TQLPreviewViewZoomController : NSObject <ISpawnOriginDelegateProtocol, TQLPreviewWindowControllerProtocol, QLSeamlessCloserDelegate>
 {
-    FI_TQLPreviewView *_previewView;
-    unsigned long long _validatorID;
+    QLPreviewView *_qlPreviewView;
 }
 
+- (void).cxx_destruct;
 - (_Bool)isBackupBrowser;
 - (_Bool)quickLookHandleEvent:(id)arg1;
 - (id)seamlessCloserSourcePreviewViewForPreviewItem:(id)arg1;
 - (id)seamlessCloserTransitionImageForPreviewItem:(id)arg1 contentRect:(struct CGRect *)arg2;
 - (struct CGRect)seamlessCloserSourceFrameOnScreenForPreviewItem:(id)arg1;
-- (id)quickLookSharedPreviewViewForPreviewNode:(const struct TFENode *)arg1;
+- (id)quickLookSharedPreviewView;
 - (id)window;
 - (id)zoomImageForNode:(const struct TFENode *)arg1 contentRect:(struct CGRect *)arg2;
 - (struct CGRect)globalZoomRectForNode:(const struct TFENode *)arg1;
-@property(readonly, nonatomic) long long validatorID;
 - (void)dealloc;
 - (id)initWithPreviewView:(id)arg1;
 

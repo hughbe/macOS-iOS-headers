@@ -9,6 +9,7 @@
 @class CNContactIconViewModel;
 
 @protocol CNContactIconUpdating <NSObject>
+- (void)setCircular:(BOOL)arg1;
 - (void)viewModelDidUpdate:(CNContactIconViewModel *)arg1;
 @end
 

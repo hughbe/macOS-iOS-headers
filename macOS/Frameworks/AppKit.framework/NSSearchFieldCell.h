@@ -8,7 +8,7 @@
 
 #import "CALayerDelegate.h"
 
-@class NSArray, NSButtonCell, NSMenu, NSMutableArray, NSString, NSTimer;
+@class NSArray, NSButtonCell, NSImage, NSMenu, NSMutableArray, NSString, NSTimer;
 
 @interface NSSearchFieldCell : NSTextFieldCell <CALayerDelegate>
 {
@@ -38,29 +38,30 @@
     NSMutableArray *_recentSearches;
     NSMenu *_searchMenu;
     NSTimer *_partialStringTimer;
-    unsigned int _reserved1;
-    unsigned int _reserved2;
-    unsigned int _reserved3;
-    unsigned int _reserved4;
+    NSImage *_activeSearchImage;
+    NSImage *_inactiveSearchImage;
+    NSImage *_activeCancelImage;
+    NSImage *_inactiveCancelImage;
 }
 
++ (BOOL)automaticTextCompletionEnabled;
 + (void)initialize;
 + (double)_keyboardDelayForPartialSearchString:(id)arg1;
+- (void)_controlViewDidChangeEffectiveAppearance:(id)arg1;
 - (void)_windowChangedKeyStateInView:(id)arg1;
-- (id)_opaqueBackgroundColorForTextLayerInControlView:(id)arg1;
 - (void)drawLayer:(id)arg1 inContext:(struct CGContext *)arg2;
-- (void)drawLayer:(id)arg1 inGraphicsContext:(id)arg2;
-- (BOOL)_updateStyledTextOptions:(id)arg1 withContentAppearanceInView:(id)arg2;
+- (long long)_interiorContentStateInView:(id)arg1;
 - (long long)interiorBackgroundStyle;
+- (id)actionForLayer:(id)arg1 forKey:(id)arg2;
 - (void)updateLayerWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)layoutLayerWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (BOOL)wantsUpdateLayerInView:(id)arg1;
-- (struct CGRect)_textLayerFrameForCellFrame:(struct CGRect)arg1;
+- (struct CGRect)_textLayerDrawingRectForCellFrame:(struct CGRect)arg1;
 - (void)_setCancelButtonVisible:(BOOL)arg1 animate:(BOOL)arg2;
 - (void)_transitionInRect:(struct CGRect)arg1 ofView:(id)arg2 becomeFirstResponder:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)_resetResignTransition;
 - (struct CGRect)_searchMenuButtonLayerFrameForBounds:(struct CGRect)arg1 focus:(BOOL)arg2;
-- (id)_searchMenuButtonLayerWithMenu;
+- (void)_invalidateButtonLayers;
 - (id)_searchMenuButtonLayer;
 - (id)_cancelButtonLayer;
 - (id)initWithCoder:(id)arg1;
@@ -80,7 +81,6 @@
 - (BOOL)_shouldSetHighlightToFlag:(BOOL)arg1;
 - (void)_getTextColor:(id *)arg1 backgroundColor:(id *)arg2;
 - (void)setTextColor:(id)arg1;
-- (BOOL)canSmoothFontsInFrame:(struct CGRect)arg1 forLayerBackedView:(id)arg2;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)setEnabled:(BOOL)arg1;
 - (void)setResumeEditingOnCancel:(BOOL)arg1;
@@ -90,6 +90,7 @@
 - (Class)searchMenuFactoryClass;
 @property(retain) NSMenu *searchMenuTemplate;
 - (void)setObjectValue:(id)arg1;
+- (struct CGRect)titleRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)drawingRectForBounds:(struct CGRect)arg1;
 - (struct CGSize)cellSizeForBounds:(struct CGRect)arg1;
 - (struct CGRect)cancelButtonRectForBounds:(struct CGRect)arg1;
@@ -97,6 +98,7 @@
 - (struct CGRect)searchTextRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)searchTextRectForBounds:(struct CGRect)arg1 focused:(BOOL)arg2;
 - (struct CGRect)searchButtonRectForBounds:(struct CGRect)arg1 focused:(BOOL)arg2;
+- (struct CGRect)_centeredSearchButtonAndTextRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)_cancelButtonRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)_searchTextRectForBounds:(struct CGRect)arg1 focused:(BOOL)arg2;
 - (struct CGRect)_searchButtonRectForBounds:(struct CGRect)arg1 focused:(BOOL)arg2;
@@ -107,6 +109,7 @@
 - (BOOL)_isEmpty;
 - (BOOL)_usesCenteredLook;
 - (id)_defaultPlaceholderString;
+- (void)setUserInterfaceLayoutDirection:(long long)arg1;
 - (void)setControlSize:(unsigned long long)arg1;
 - (void)resetCancelButtonCell;
 - (void)resetSearchButtonCell;

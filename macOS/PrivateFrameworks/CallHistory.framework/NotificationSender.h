@@ -8,15 +8,16 @@
 
 @class NSDictionary, NSString;
 
+__attribute__((visibility("hidden")))
 @interface NotificationSender : NSObject
 {
     NSString *_name;
     NSDictionary *_userInfo;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSDictionary *userInfo; // @synthesize userInfo=_userInfo;
 @property(readonly) NSString *name; // @synthesize name=_name;
-- (void).cxx_destruct;
 - (void)dealloc;
 - (id)initWithName:(id)arg1;
 

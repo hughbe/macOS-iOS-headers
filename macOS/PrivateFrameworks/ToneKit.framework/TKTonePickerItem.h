@@ -12,14 +12,23 @@
 
 @interface TKTonePickerItem : TKPickerSelectableItem <TKPickerContainerItem>
 {
-    TKTonePickerController *_parentTonePickerController;
-    long long _numberOfChildren;
+    BOOL _needsRoomForCheckmark;
+    BOOL _needsActivityIndicator;
+    BOOL _needsDownloadProgress;
+    float _downloadProgress;
     unsigned long long _itemKind;
+    TKTonePickerController *__parentTonePickerController;
+    long long _numberOfChildren;
 }
 
-@property(nonatomic, setter=_setItemKind:) unsigned long long itemKind; // @synthesize itemKind=_itemKind;
+- (void).cxx_destruct;
 @property(nonatomic, setter=_setNumberOfChildren:) long long numberOfChildren; // @synthesize numberOfChildren=_numberOfChildren;
-@property(nonatomic, setter=_setParentTonePickerController:) TKTonePickerController *_parentTonePickerController; // @synthesize _parentTonePickerController;
+@property(nonatomic, setter=_setParentTonePickerController:) __weak TKTonePickerController *_parentTonePickerController; // @synthesize _parentTonePickerController=__parentTonePickerController;
+@property(nonatomic, setter=_setDownloadProgress:) float downloadProgress; // @synthesize downloadProgress=_downloadProgress;
+@property(nonatomic, setter=_setNeedsDownloadProgress:) BOOL needsDownloadProgress; // @synthesize needsDownloadProgress=_needsDownloadProgress;
+@property(nonatomic, setter=_setNeedsActivityIndicator:) BOOL needsActivityIndicator; // @synthesize needsActivityIndicator=_needsActivityIndicator;
+@property(nonatomic, setter=_setNeedsRoomForCheckmark:) BOOL needsRoomForCheckmark; // @synthesize needsRoomForCheckmark=_needsRoomForCheckmark;
+@property(nonatomic, setter=_setItemKind:) unsigned long long itemKind; // @synthesize itemKind=_itemKind;
 - (void)_appendDescriptionOfAttributesToString:(id)arg1;
 - (id)childItemAtIndex:(long long)arg1;
 @property(readonly, nonatomic) TKTonePickerSectionItem *parentSectionItem;

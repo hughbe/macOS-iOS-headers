@@ -8,6 +8,7 @@
 
 @class MKImageView, NSArray, NSImage, NSInvocation, NSString, _MKUILabel;
 
+__attribute__((visibility("hidden")))
 @interface _MKRightImageButton : NSControl
 {
     BOOL _trackingClick;
@@ -19,11 +20,10 @@
     MKImageView *_imageView;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) MKImageView *imageView; // @synthesize imageView=_imageView;
 @property(readonly, nonatomic) _MKUILabel *titleLabel; // @synthesize titleLabel=_titleLabel;
-- (void).cxx_destruct;
-- (id)viewForLastBaselineLayout;
-- (id)viewForFirstBaselineLayout;
+- (struct CGSize)intrinsicContentSize;
 - (id)lastBaselineAnchor;
 - (id)firstBaselineAnchor;
 @property(retain, nonatomic) NSImage *image;

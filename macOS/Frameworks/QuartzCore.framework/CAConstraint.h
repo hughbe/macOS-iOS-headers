@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSString;
 
-@interface CAConstraint : NSObject <NSCoding>
+@interface CAConstraint : NSObject <NSSecureCoding>
 {
     NSString *_srcId;
     unsigned int _srcAttr:16;
@@ -20,6 +20,7 @@
 }
 
 + (void)CAMLParserEndElement:(id)arg1 content:(id)arg2;
++ (BOOL)supportsSecureCoding;
 + (id)constraintWithAttribute:(int)arg1 relativeTo:(id)arg2 attribute:(int)arg3;
 + (id)constraintWithAttribute:(int)arg1 relativeTo:(id)arg2 attribute:(int)arg3 offset:(double)arg4;
 + (id)constraintWithAttribute:(int)arg1 relativeTo:(id)arg2 attribute:(int)arg3 scale:(double)arg4 offset:(double)arg5;

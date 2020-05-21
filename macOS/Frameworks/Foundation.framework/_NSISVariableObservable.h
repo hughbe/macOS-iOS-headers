@@ -11,6 +11,8 @@
 __attribute__((visibility("hidden")))
 @interface _NSISVariableObservable : NSObservationSource
 {
+    _NSISVariableObservable *_nextDirtyObservable;
+    _NSISVariableObservable *_prevDirtyObservable;
     double _lastValue;
     NSISVariable *_variable;
     NSISEngine *_associatedEngine;
@@ -20,6 +22,7 @@ __attribute__((visibility("hidden")))
 
 + (id)observableForVariable:(id)arg1 inEngine:(id)arg2;
 - (void)emitValueIfNeeded;
+- (BOOL)valueHasChanged;
 - (void)receiveObservedValue:(id)arg1;
 - (void)dealloc;
 - (id)initWithVariable:(id)arg1 inEngine:(id)arg2;

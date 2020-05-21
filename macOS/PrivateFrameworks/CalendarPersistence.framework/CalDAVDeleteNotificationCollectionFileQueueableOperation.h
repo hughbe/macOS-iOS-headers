@@ -14,11 +14,11 @@
     NSString *_notificationCollectionPath;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSString *notificationCollectionPath; // @synthesize notificationCollectionPath=_notificationCollectionPath;
 @property(retain) NSString *filename; // @synthesize filename=_filename;
 - (void)handleRemovalCleanup;
 - (void)performOperation;
-- (void)dealloc;
 - (id)initWithChangeRequest:(id)arg1 notificationCollectionPath:(id)arg2 filename:(id)arg3 forSession:(id)arg4;
 
 @end

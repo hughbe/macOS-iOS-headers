@@ -25,6 +25,7 @@ __attribute__((visibility("hidden")))
 
 + (id)versionString;
 + (id)processIdentifier;
+- (void).cxx_destruct;
 - (BOOL)_checkAndRunSplash;
 - (BOOL)_shouldStartVoiceOver;
 - (BOOL)_isRunningAsRoot;
@@ -34,17 +35,16 @@ __attribute__((visibility("hidden")))
 - (BOOL)startedByLaunchd;
 - (id)_setTestTargetApplicationPIDs:(id)arg1;
 - (id)_setTargetApplications:(id)arg1;
-- (id)_setShortCircuitSpeechSynthesizer:(id)arg1;
 - (id)_setQuickStart:(id)arg1;
 - (id)_setAutomaticStartAfterLogin:(id)arg1;
 - (id)_setKeyboardHelp:(id)arg1;
 - (id)_setSkipSplash:(id)arg1;
 - (id)_setLogMask:(id)arg1;
-- (void)_handleCommand:(id)arg1;
+- (void)_handleCommand:(id)arg1 synchronizationHandler:(CDUnknownBlockType)arg2;
 - (void)_stopAndPlayMessage:(BOOL)arg1;
 - (void)stop;
 - (void)stopDueToSigTerm;
-- (void)_tearDownMachServicesWithReturnValue:(int)arg1 startupPort:(unsigned int)arg2 runningPort:(unsigned int)arg3;
+- (void)_tearDownMachServicesWithReturnValue:(int)arg1;
 - (int)run;
 - (BOOL)wasLastShutdownPlanned;
 - (unsigned long long)_securitySessionID;

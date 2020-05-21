@@ -88,8 +88,8 @@
 - (int)_ejectMedia;
 - (int)_closeTray;
 - (int)_openTray;
-- (id)initWithRegistryPath:(id)arg1 forGUID:(id)arg2;
-- (id)initWithRegistryPath:(id)arg1 forGUID:(id)arg2 usingProfile:(id)arg3;
+- (id)initWithRegistryPath:(struct __CFString *)arg1 forGUID:(id)arg2;
+- (id)initWithRegistryPath:(struct __CFString *)arg1 forGUID:(id)arg2 usingProfile:(id)arg3;
 - (id)cdText;
 - (BOOL)_boolForPrivateProperty:(id)arg1;
 - (id)_locationDescription;

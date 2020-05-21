@@ -13,11 +13,11 @@
 
 @interface NSTableColumn : NSObject <NSCoding, NSUserInterfaceItemIdentification>
 {
+    NSTableView *_tableView;
     id _identifier;
     double _width;
     double _minWidth;
     double _maxWidth;
-    NSTableView *_tableView;
     NSCell *_headerCell;
     NSCell *_dataCell;
     struct __colFlags {
@@ -28,12 +28,13 @@
         unsigned int userResizingAllowed:1;
         unsigned int autoResizingAllowed:1;
         unsigned int hidden:1;
-        unsigned int RESERVED:18;
+        unsigned int isOutlineTableColumn:1;
+        unsigned int RESERVED:17;
     } _cFlags;
     id _tcAuxiliaryStorage;
 }
 
-+ (void)initialize;
+- (void).cxx_destruct;
 @property(copy) NSString *headerToolTip;
 - (id)_bindingAdaptor;
 - (void)_setBindingAdaptor:(id)arg1;
@@ -51,10 +52,13 @@
 @property(retain) NSTableHeaderCell *headerCell;
 @property double maxWidth;
 @property double minWidth;
+- (double)_outlineIndetantionSafeMinWidth;
 @property double width;
 @property(copy) NSString *identifier;
 @property(copy) NSSortDescriptor *sortDescriptorPrototype;
-@property NSTableView *tableView;
+- (void)_setIsOutlineTableColumn:(BOOL)arg1;
+- (BOOL)_isOutlineTableColumn;
+@property __weak NSTableView *tableView;
 - (BOOL)_canUseReorderResizeImageCache;
 - (void)_setCanUseReorderResizeImageCache:(BOOL)arg1;
 - (id)_reorderResizeImageCache;
@@ -73,6 +77,8 @@
 - (BOOL)_resizePostingDisabled;
 - (void)_enableResizedPosting;
 - (void)_disableResizedPosting;
+- (void)_setCachedPosition:(CDStruct_6b6ad735)arg1;
+- (CDStruct_6b6ad735)_cachedPosition;
 - (void)setUserInterfaceItemIdentifier:(id)arg1;
 - (id)userInterfaceItemIdentifier;
 - (BOOL)accessibilityShouldUseUniqueId;

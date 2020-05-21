@@ -6,11 +6,13 @@
 
 #import "NSXMLElement.h"
 
+@class NSString;
+
 @interface NSXMLElement (PKAdditions)
 - (void)_setStringValueAsCDATA:(id)arg1;
 - (BOOL)_hasChildElements;
 - (BOOL)_hasPureTextContent;
-- (id)_trimmedStringValue;
+@property(readonly) NSString *_trimmedStringValue;
 - (void)_removeChildren:(id)arg1;
 - (void)_replaceAttributesAsDictionary:(id)arg1;
 - (id)_attributesDictionary;

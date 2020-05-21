@@ -49,6 +49,7 @@
 - (id)date;
 - (id)grammarDetails;
 - (id)orthography;
+- (struct _NSRange)rangeWithName:(id)arg1;
 - (struct _NSRange)rangeAtIndex:(unsigned long long)arg1;
 - (unsigned long long)numberOfRanges;
 - (BOOL)_adjustRangesWithOffset:(long long)arg1;

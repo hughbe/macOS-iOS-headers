@@ -15,14 +15,15 @@ __attribute__((visibility("hidden")))
 
 + (id)worldLeaksString:(int)arg1;
 + (void)addLeakToArray:(id)arg1 count:(int)arg2 name:(id)arg3;
++ (id)sharedWorldLeaksControllerIfAvailable;
++ (id)_sharedWorldLeaksControllerAllocateIfNeeded:(BOOL)arg1;
 + (id)sharedWorldLeaksController;
 - (void)addJavascriptGlobalObjectWorldLeakCheckException;
 - (void)setShouldSuppressWorldLeaksDialog:(BOOL)arg1;
 - (void)webViewsDidClose;
-- (void)didCloseWebViews:(id)arg1;
+- (void)checkWorldLeaksSoonIfNeeded;
 - (BOOL)_shouldCheckForWorldLeaks;
 - (void)dealloc;
-- (id)init;
 
 @end
 

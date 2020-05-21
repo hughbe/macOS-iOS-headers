@@ -19,7 +19,6 @@
 + (CDStruct_02837cd9)mapRectEncloserOfMapRect:(CDStruct_02837cd9)arg1 withSizeProportionalToSize:(struct CGSize)arg2;
 + (id)snapshotCreatorWithSize:(struct CGSize)arg1 scale:(double)arg2;
 + (BOOL)supportsSharingThumbnails;
-+ (BOOL)supportsHighResolutionSnapshots;
 - (void).cxx_destruct;
 - (void)cancel;
 - (void)renderRegion:(CDStruct_b7cb895d)arg1 options:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;

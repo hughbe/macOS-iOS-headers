@@ -11,7 +11,7 @@
 }
 
 - (void)_addProperties:(id)arg1;
-- (id)initWithDictionary:(id)arg1;
+- (id)initWithEntry:(struct os_activity_stream_entry_s *)arg1;
 
 @end
 

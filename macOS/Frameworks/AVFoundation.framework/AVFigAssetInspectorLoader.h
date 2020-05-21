@@ -6,47 +6,36 @@
 
 #import <AVFoundation/AVAssetInspectorLoader.h>
 
-@class AVAssetInspector, AVWeakReference, NSDictionary, NSMutableArray, NSObject<OS_dispatch_queue>, NSURL;
+@class AVAssetInspector, AVDispatchOnce, AVWeakReference, NSMutableArray, NSObject<OS_dispatch_queue>, NSURL;
 
 @interface AVFigAssetInspectorLoader : AVAssetInspectorLoader
 {
     struct OpaqueFigAsset *_figAsset;
     int _figAssetCreationStatus;
-    unsigned long long _figAssetCreationFlags;
-    NSDictionary *_figAssetCreationOptions;
-    long long _figAssetOnce;
     AVWeakReference *_weakReferenceToAsset;
     AVAssetInspector *_assetInspector;
-    long long _assetInspectorOnce;
+    AVDispatchOnce *_assetInspectorOnce;
     NSObject<OS_dispatch_queue> *_completionHandlerQueue;
     struct OpaqueFigSimpleMutex *_loadingMutex;
     NSMutableArray *_loadingBatches;
     BOOL _loadingCanceled;
     BOOL _registeredForFigAssetNotifications;
-    BOOL _shouldRespondToFigAssetPropertyLoading;
-    BOOL _isRespondingToFigAssetPropertyLoading;
-    BOOL _URLSessionOperationQueueAvailable;
-    BOOL _URLSessionDataDelegateAvailable;
-    BOOL _didPostDidCompleteURLSessionSetUpNotification;
-    BOOL _didPostDidFailToCompleteURLSessionSetUpNotification;
     long long _fragmentMinderAssociationCount;
     NSURL *_URL;
 }
 
++ (id)_figAssetTrackMediaSelectionPropertiesArray;
++ (id)_figAssetMediaSelectionPropertiesArray;
 + (void)_mapAssetKeys:(id)arg1 toFigAssetPropertySet:(id)arg2 figAssetTrackPropertySet:(id)arg3 callerName:(id)arg4;
 + (id)_figAssetTrackPropertiesForKeys;
 + (id)_figAssetPropertiesForKeys;
-- (id)_URLSessionDataDelegate;
-- (id)_URLSessionOperationQueue;
-- (void)_setURLSessionDataDelegateAvailable:(BOOL)arg1;
-- (void)_setURLSessionOperationQueueAvailable:(BOOL)arg1;
-- (void)_postURLSessionSetUpDidCompleteNotificationIfAppropriate;
-- (void)_postDidFailToCompleteURLSessionSetUpNotificationIfAppropriate;
 - (void)_setIsAssociatedWithFragmentMinder:(BOOL)arg1;
 - (BOOL)isAssociatedWithFragmentMinder;
 - (void)_setFragmentMindingInterval:(double)arg1;
 - (double)_fragmentMindingInterval;
 - (void)_invokeCompletionHandlerForLoadingBatches:(id)arg1;
+- (long long)fragmentCount;
+- (long long)firstFragmentSequenceNumber;
 - (BOOL)_isStreaming;
 - (BOOL)hasProtectedContent;
 - (unsigned long long)downloadToken;
@@ -65,6 +54,7 @@
 - (void)cancelLoading;
 - (void)loadValuesAsynchronouslyForKeys:(id)arg1 keysForCollectionKeys:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)loadValuesAsynchronouslyForKeys:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (long long)_statusOfValueForKey:(id)arg1 error:(id *)arg2 firstNonLoadedDependencyKey:(id *)arg3;
 - (long long)statusOfValueForKey:(id)arg1 error:(id *)arg2;
 - (long long)_loadStatusForProperty:(id)arg1 figAsset:(struct OpaqueFigAsset *)arg2 error:(id *)arg3;
 - (id)_loadingBatches;
@@ -75,7 +65,6 @@
 - (id)assetInspector;
 - (id)asset;
 - (struct OpaqueFigFormatReader *)_formatReader;
-- (void)finalize;
 - (void)dealloc;
 - (void)_removeFigAssetNotifications;
 - (void)_addFigAssetNotifications;

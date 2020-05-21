@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *mContentTypeOverrides;
 }
 
+- (void).cxx_destruct;
 - (id)properties;
 - (id)mainDocumentPart;
 - (id)partByRelationshipType:(id)arg1;
@@ -24,10 +25,9 @@ __attribute__((visibility("hidden")))
 - (id)relationshipForIdentifier:(id)arg1;
 - (void)resetPartForLocation:(id)arg1;
 - (id)partForLocation:(id)arg1;
-- (void)dealloc;
 - (id)init;
 - (id)contentTypeForPartLocation:(id)arg1;
-- (id)initWithRelationshipsXml:(struct _xmlDoc *)arg1 propertiesXml:(struct _xmlDoc *)arg2 contentTypesXml:(struct _xmlDoc *)arg3;
+- (id)initWithRelationshipsXml:(struct _xmlDoc *)arg1 corePropertiesXml:(struct _xmlDoc *)arg2 appPropertiesXml:(struct _xmlDoc *)arg3 contentTypesXml:(struct _xmlDoc *)arg4;
 - (void)readContentTypeOverrideFromElement:(struct _xmlNode *)arg1;
 - (void)readDefaultContentTypeFromElement:(struct _xmlNode *)arg1;
 - (void)readContentTypesXml:(struct _xmlDoc *)arg1;

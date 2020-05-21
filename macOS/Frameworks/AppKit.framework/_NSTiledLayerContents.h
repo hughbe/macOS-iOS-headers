@@ -24,6 +24,7 @@ __attribute__((visibility("hidden")))
     struct CGSize _tileSize;
 }
 
+- (void).cxx_destruct;
 @property(readonly) struct CGRect presentationRect; // @synthesize presentationRect=_presentationRect;
 @property(readonly) struct CGSize tileSize; // @synthesize tileSize=_tileSize;
 @property(readonly) struct CGRect coverageRect; // @synthesize coverageRect=_coverageRect;
@@ -32,13 +33,11 @@ __attribute__((visibility("hidden")))
 - (void)CA_prepareRenderValue;
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
 - (void)drawLayer:(id)arg1 inContext:(struct CGContext *)arg2;
-- (BOOL)NS_canDrawLayer:(id)arg1;
 - (void)updateContentsScaleSize:(struct CGSize)arg1;
 - (void)updateContentsScale:(double)arg1;
 @property _NSTiledLayer *tiledLayer;
 - (void)update:(BOOL)arg1 shouldCallPrepareContent:(BOOL)arg2;
 - (void)invalidateRect:(struct CGRect)arg1;
-- (BOOL)_prefetchTilesWithScrollVelocity:(struct CGPoint)arg1 hasMorePrefetch:(char *)arg2;
 - (BOOL)prefetchContentsInRect:(struct CGRect)arg1 scrollVelocity:(struct CGPoint)arg2;
 - (struct CGRect)renderedRectInRect:(struct CGRect)arg1 scrollVelocity:(struct CGPoint)arg2;
 - (struct CGRect)_findRenderedRectStartingAtRect:(struct CGRect)arg1 scrollVelocity:(struct CGPoint)arg2;

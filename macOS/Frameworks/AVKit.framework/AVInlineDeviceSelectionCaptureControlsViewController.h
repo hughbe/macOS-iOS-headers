@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 
 - (void).cxx_destruct;
 - (id)initialFirstResponder;
+- (CDStruct_83cd8af5)controlsContentViewMargin;
 - (struct CGSize)intrinsicControlsContentViewSize;
 - (long long)layoutStyle;
 - (id)backgroundBackdropViewMaskImage;

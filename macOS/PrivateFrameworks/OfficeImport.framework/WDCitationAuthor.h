@@ -15,10 +15,10 @@ __attribute__((visibility("hidden")))
     NSString *mLast;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *last; // @synthesize last=mLast;
 @property(retain, nonatomic) NSString *first; // @synthesize first=mFirst;
 - (id)initWithFirst:(id)arg1 last:(id)arg2;
-- (void)dealloc;
 
 @end
 

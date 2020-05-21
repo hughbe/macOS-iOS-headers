@@ -11,12 +11,11 @@
 + (id)ignorableCharacterSet;
 - (id)stringWithMostSignificatDomainPart;
 - (BOOL)_isIPv4DomainAddress;
-- (id)stringByProperlyFixingPercentEscapesUsingEncoding:(unsigned long long)arg1;
+- (id)stringByProperlyFixingPercentEscapes;
 - (long long)numericCompare:(id)arg1;
 - (id)fuzzyStringWithWordLength:(int)arg1;
 - (id)stringByConvertingSpacesInHTMLSpaces;
 - (id)stringByReplacingString:(id)arg1 withString:(id)arg2;
-- (id)stringByEscapingPrintfArguments;
 - (id)stringByRemovingWord:(id)arg1;
 - (struct _NSRange)rangeOfWord:(id)arg1;
 - (BOOL)containsWord:(id)arg1;

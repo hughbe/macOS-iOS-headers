@@ -21,11 +21,14 @@ __attribute__((visibility("hidden")))
 
 + (id)runAction:(id)arg1 afterActionWithKey:(id)arg2;
 + (id)runAction:(id)arg1 onFirstChildWithName:(id)arg2;
++ (BOOL)supportsSecureCoding;
 - (void).cxx_destruct;
 - (id)reversedAction;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)updateWithTarget:(id)arg1 forTime:(double)arg2;
 - (void)willStartWithTarget:(id)arg1 atTime:(double)arg2;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)init;
 
 @end

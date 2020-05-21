@@ -6,47 +6,52 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
 
 @class MUIRemoteImageCollector, NSArray, NSDictionary, NSError, NSMutableDictionary, NSString, NSURL;
 
-@interface MUIWebDocument : NSObject <NSCoding, NSCopying>
+@interface MUIWebDocument : NSObject <NSCopying, NSSecureCoding>
 {
     NSString *_html;
     NSMutableDictionary *_jsDocumentContext;
-    BOOL _blockRemoteContent;
-    BOOL _hasBlockedRemoteContent;
     BOOL _isEncrypted;
+    BOOL _hasEncryptedDescendantPart;
     BOOL _isSigned;
+    BOOL _hasBlockedMessageContent;
     NSArray *_attachments;
-    Class _webAttachmentClass;
     long long _imageScale;
-    NSURL *_baseURL;
-    NSDictionary *_dataDetectorsContext;
-    NSError *_parseError;
-    unsigned long long _originalEncoding;
-    MUIRemoteImageCollector *_remoteImageCollector;
+    Class _webAttachmentClass;
     NSArray *_signers;
     NSArray *_signerNames;
+    CDUnknownBlockType _URLClickObserver;
+    NSURL *_baseURL;
+    NSDictionary *_dataDetectorsContext;
+    NSError *_smimeError;
+    long long _messageContentTypeToBlock;
+    MUIRemoteImageCollector *_remoteImageCollector;
+    unsigned long long _originalEncoding;
 }
 
-@property(copy, nonatomic) NSArray *signerNames; // @synthesize signerNames=_signerNames;
-@property(copy, nonatomic) NSArray *signers; // @synthesize signers=_signers;
-@property(nonatomic) BOOL isSigned; // @synthesize isSigned=_isSigned;
-@property(nonatomic) BOOL isEncrypted; // @synthesize isEncrypted=_isEncrypted;
-@property(retain, nonatomic) MUIRemoteImageCollector *remoteImageCollector; // @synthesize remoteImageCollector=_remoteImageCollector;
-@property(copy, nonatomic) NSString *html; // @synthesize html=_html;
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long originalEncoding; // @synthesize originalEncoding=_originalEncoding;
-@property(nonatomic) BOOL hasBlockedRemoteContent; // @synthesize hasBlockedRemoteContent=_hasBlockedRemoteContent;
-@property(nonatomic) BOOL blockRemoteContent; // @synthesize blockRemoteContent=_blockRemoteContent;
-@property(retain, nonatomic) NSError *parseError; // @synthesize parseError=_parseError;
+@property(retain, nonatomic) MUIRemoteImageCollector *remoteImageCollector; // @synthesize remoteImageCollector=_remoteImageCollector;
+@property(nonatomic) long long messageContentTypeToBlock; // @synthesize messageContentTypeToBlock=_messageContentTypeToBlock;
+@property(nonatomic) BOOL hasBlockedMessageContent; // @synthesize hasBlockedMessageContent=_hasBlockedMessageContent;
+@property(retain, nonatomic) NSError *smimeError; // @synthesize smimeError=_smimeError;
 @property(copy, nonatomic) NSDictionary *dataDetectorsContext; // @synthesize dataDetectorsContext=_dataDetectorsContext;
 @property(retain, nonatomic) NSURL *baseURL; // @synthesize baseURL=_baseURL;
-@property(nonatomic) long long imageScale; // @synthesize imageScale=_imageScale;
+@property(copy, nonatomic) CDUnknownBlockType URLClickObserver; // @synthesize URLClickObserver=_URLClickObserver;
+@property(nonatomic) BOOL isSigned; // @synthesize isSigned=_isSigned;
+@property(nonatomic) BOOL hasEncryptedDescendantPart; // @synthesize hasEncryptedDescendantPart=_hasEncryptedDescendantPart;
+@property(nonatomic) BOOL isEncrypted; // @synthesize isEncrypted=_isEncrypted;
+@property(copy, nonatomic) NSArray *signerNames; // @synthesize signerNames=_signerNames;
+@property(copy, nonatomic) NSArray *signers; // @synthesize signers=_signers;
 @property(nonatomic) Class webAttachmentClass; // @synthesize webAttachmentClass=_webAttachmentClass;
+@property(nonatomic) long long imageScale; // @synthesize imageScale=_imageScale;
 @property(copy, nonatomic) NSArray *attachments; // @synthesize attachments=_attachments;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *html; // @synthesize html=_html;
 - (id)attachmentForContentID:(id)arg1;
 - (id)description;
 - (id)_defaultDocumentHTML;

@@ -14,6 +14,7 @@
 
 + (id)groupSearchWithDictionary:(id)arg1 context:(id)arg2;
 + (id)groupSearch;
+- (BOOL)mutatingCommand;
 - (BOOL)requiresResponse;
 @property(copy, nonatomic) NSString *smsGroupName;
 - (id)encodedClassName;

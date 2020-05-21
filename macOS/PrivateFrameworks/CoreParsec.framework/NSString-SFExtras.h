@@ -7,10 +7,23 @@
 #import "NSString.h"
 
 @interface NSString (SFExtras)
-- (unsigned long long)sf_asColumnAlignment;
-- (unsigned long long)sf_asImageAlignment;
-- (unsigned long long)sf_asButtonAlignment;
-- (unsigned long long)sf_asTextAlignment;
-- (unsigned long long)sf_asResultPlacement;
++ (void)_parsec_reverseEnumerateComponents:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
++ (id)parsec_stringByBase64EncodingData:(id)arg1;
+- (int)sf_asColumnAlignment;
+- (int)sf_asImageAlignment;
+- (int)sf_asButtonAlignment;
+- (int)sf_asTextAlignment;
+- (int)sf_asResultPlacement;
+- (int)sf_cardSectionType;
+- (id)_parsec_topLevelDomainUsingCFFromComponents:(id)arg1;
+- (id)_parsec_highLevelDomainFromHost;
+- (id)parsec_readableURLStringAfterRemovingSubdomains;
+- (BOOL)parsec_caseInsensitiveContainsString:(id)arg1;
+- (id)parsec_base64DecodedData;
+- (BOOL)parsec_hasLocalizedCaseInsensitivePrefix:(id)arg1;
+- (BOOL)parsec_hasCaseInsensitiveSuffix:(id)arg1;
+- (BOOL)parsec_hasCaseInsensitivePrefix:(id)arg1;
+- (BOOL)parsec_isCaseInsensitiveEqualToString:(id)arg1;
+- (BOOL)parsec_hasPrefix:(id)arg1;
 @end
 

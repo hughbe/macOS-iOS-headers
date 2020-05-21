@@ -7,7 +7,11 @@
 #import "NSDate.h"
 
 @interface NSDate (PhotosUICore)
++ (void)px_unionStartDate:(id *)arg1 endDate:(id *)arg2 withDateInterval:(id)arg3;
++ (void)px_unionStartDate:(id *)arg1 endDate:(id *)arg2 withDate:(id)arg3;
+- (BOOL)px_isBetweenDate:(id)arg1 andDate:(id)arg2;
+- (BOOL)px_isWithinTimeInterval:(double)arg1 sinceDate:(id)arg2;
+- (long long)px_yearsSinceDate:(id)arg1;
 - (BOOL)px_isSameDayAsDate:(id)arg1;
-- (BOOL)px_sharesComponents:(unsigned long long)arg1 withDate:(id)arg2;
 @end
 

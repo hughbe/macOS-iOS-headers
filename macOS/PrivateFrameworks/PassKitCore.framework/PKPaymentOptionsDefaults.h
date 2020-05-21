@@ -7,11 +7,15 @@
 #import "NSObject.h"
 
 #import "PKPaymentOptionsProtocol.h"
+#import "PKPaymentOptionsSynchronizationDelegate.h"
 
-@class CNContact, NSDictionary, NSString;
+@class CNContact, NSDictionary, NSString, PKPaymentOptionsSynchronization;
 
-@interface PKPaymentOptionsDefaults : NSObject <PKPaymentOptionsProtocol>
+@interface PKPaymentOptionsDefaults : NSObject <PKPaymentOptionsSynchronizationDelegate, PKPaymentOptionsProtocol>
 {
+    int _defaultsChangedNotifyToken;
+    unsigned long long _postedNotificationCount;
+    PKPaymentOptionsSynchronization *_optionsSynchronization;
     NSDictionary *_defaultBillingAddresses;
     CNContact *_defaultShippingAddress;
     CNContact *_defaultContactName;
@@ -21,7 +25,9 @@
 
 + (id)defaults;
 - (void).cxx_destruct;
+- (void)migrateToSyncable;
 - (void)deleteDefaultForContactKey:(id)arg1;
+- (void)deleteAllLocalDefaults;
 - (void)deleteAllDefaults;
 - (void)deleteDefaultContactName;
 @property(retain, nonatomic) CNContact *defaultContactName; // @synthesize defaultContactName=_defaultContactName;
@@ -29,10 +35,19 @@
 @property(retain, nonatomic) CNContact *defaultContactPhone; // @synthesize defaultContactPhone=_defaultContactPhone;
 - (void)deleteDefaultContactEmail;
 @property(retain, nonatomic) CNContact *defaultContactEmail; // @synthesize defaultContactEmail=_defaultContactEmail;
+- (id)_lastUpdatedDatesForBillingAddresses;
+- (void)updateLastUpdatedDate:(id)arg1 forPrimaryAccountIdentifier:(id)arg2;
+- (id)lastUpdatedDateForPrimaryAccountIdentifier:(id)arg1;
 - (void)_hardDeleteDefaultBillingAddress;
+- (void)deleteDefaultBillingAddressForPrimaryAccountIdentifier:(id)arg1;
 - (void)deleteDefaultBillingAddress:(id)arg1;
+- (void)setDefaultBillingAddress:(id)arg1 forPrimaryAccountIdentifier:(id)arg2;
+- (void)setDefaultBillingAddress:(id)arg1 forRemotePaymentInstrument:(id)arg2;
 - (void)setDefaultBillingAddress:(id)arg1 forPaymentPass:(id)arg2;
+- (id)defaultBillingAddressForPrimaryAccountIdentifier:(id)arg1;
+- (id)defaultBillingAddressForRemotePaymentInstrument:(id)arg1;
 - (id)defaultBillingAddressForPaymentPass:(id)arg1;
+- (void)_setRawDefaultBillingAddresses:(id)arg1;
 - (id)_rawDefaultBillingAddresses;
 @property(readonly, nonatomic) NSDictionary *defaultBillingAddresses; // @synthesize defaultBillingAddresses=_defaultBillingAddresses;
 - (void)deleteDefaultShippingAddress;
@@ -40,10 +55,15 @@
 - (id)_contactForKeychainKey:(id)arg1;
 - (void)_setContact:(id)arg1 forKeychainKey:(id)arg2;
 - (void)_setContact:(id)arg1 property:(id)arg2 forKeychainKey:(id)arg3;
+- (void)_deleteKeychainDataForKey:(id)arg1 localOnly:(BOOL)arg2;
 - (void)_deleteKeychainDataForKey:(id)arg1;
 - (void)_setKeychainData:(id)arg1 forKey:(id)arg2;
 - (id)_keychainDataForKey:(id)arg1;
+- (void)_unregisterForChangeNotifications;
+- (void)optionsSynchronizationDidChangeTo:(BOOL)arg1;
+- (void)_registerForChangeNotifications;
 - (void)dealloc;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

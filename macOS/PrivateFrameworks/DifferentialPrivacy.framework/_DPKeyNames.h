@@ -6,23 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSString;
-
 @interface _DPKeyNames : NSObject
 {
-    NSString *_keyName;
-    NSString *_propertyName;
 }
 
++ (id)keyNamesGroupedByPropertyName;
 + (id)allKeyNames;
 + (id)propertiesFromNamesFile:(id)arg1;
 + (id)keyPropertiesForKey:(id)arg1;
-+ (id)keyNamessFromDictionary:(id)arg1;
-@property(readonly, copy, nonatomic) NSString *propertyName; // @synthesize propertyName=_propertyName;
-@property(readonly, copy, nonatomic) NSString *keyName; // @synthesize keyName=_keyName;
-- (void).cxx_destruct;
-- (id)initWithDictionary:(id)arg1;
-- (id)init;
 
 @end
 

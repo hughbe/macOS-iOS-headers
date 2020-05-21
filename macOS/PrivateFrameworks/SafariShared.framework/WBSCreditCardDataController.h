@@ -6,15 +6,22 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMapTable;
+@class NSArray, NSMapTable, NSObject<OS_dispatch_queue>, PKVirtualCardManager;
 
 @interface WBSCreditCardDataController : NSObject
 {
     NSMapTable *_creditCardDataKeychainReferences;
+    NSObject<OS_dispatch_queue> *_internalQueue;
+    PKVirtualCardManager *_virtualCardManager;
 }
 
 + (BOOL)hasCreditCardData;
 - (void).cxx_destruct;
+- (void)isVirtualCard:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (id)_testVirtualCard;
+- (void)setHasUsedNonVirtualCard;
+- (BOOL)hasUsedNonVirtualCard;
+- (void)savePendingChangesBeforeTermination;
 - (void)invalidateCreditCardData;
 - (void)clearCreditCardData;
 - (void)creditCardDataDidChange;
@@ -25,6 +32,7 @@
 - (BOOL)isCreditCardDataSaved:(id)arg1;
 - (void)saveCreditCardDataIfAllowed:(id)arg1;
 - (void)saveCreditCardData:(id)arg1;
+- (void)markCreditCardDataAsMostRecentlyUsed:(id)arg1;
 - (void)replaceCreditCardData:(id)arg1 withCard:(id)arg2;
 - (void)removeCreditCardData:(id)arg1;
 - (id)savableCreditCardDataInForm:(id)arg1;
@@ -33,7 +41,19 @@
 - (BOOL)shouldAddCardWithNumber:(id)arg1;
 - (id)existingCardWithNumber:(id)arg1;
 - (BOOL)shouldNeverSaveCardWithNumber:(id)arg1;
+- (void)getCreditCardDataToFill:(id)arg1 externalizedContext:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)getVirtualCardCredentialsFromKeychainWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)getVirtualCardsWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)getCreditCardDataWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)_virtualCardDataFromPKVirtualCards:(id)arg1;
+- (BOOL)_shouldOfferVirtualCards;
+- (unsigned long long)virtualCardFieldsToRequest;
+- (id)urlForVirtualCard:(id)arg1;
+- (BOOL)authenticationRequiredForVirtualCard:(id)arg1;
 @property(readonly, nonatomic) NSArray *creditCardData;
+- (id)_deduplicatedVirtualCardDataArray:(id)arg1 andCreditCardDataArray:(id)arg2;
+- (void)_sortCreditCardDataArray:(id)arg1;
+- (id)_creditCardData;
 - (id)init;
 
 @end

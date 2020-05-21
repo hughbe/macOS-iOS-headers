@@ -16,6 +16,7 @@
 + (id)defaultSortingAttributeNames;
 + (id)suggesterForMails;
 + (id)suggesterForFiles;
+- (void).cxx_destruct;
 - (void)setRunWarmingQuery:(BOOL)arg1;
 - (void)scheduleWarmingQuery;
 - (void)_reallyScheduleWarmingQuery;
@@ -38,6 +39,8 @@
 - (void)setInput:(id)arg1;
 - (void)setImagesForTags:(id)arg1;
 @property(copy) NSString *baseQuery;
+- (void)_incrementQueryID;
+- (unsigned long long)_queryID;
 - (void)_forceQueryResults:(struct __MDQuery *)arg1;
 - (void)_queryDidFinish:(id)arg1;
 - (id)_findBestDidYouMeanSuggestionFromSuggestions:(id)arg1 rawInput:(id)arg2;

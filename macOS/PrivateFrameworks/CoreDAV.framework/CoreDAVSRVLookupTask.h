@@ -15,6 +15,7 @@
     struct __CFHost *_host;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) struct __CFHost *host; // @synthesize host=_host;
 @property(retain, nonatomic) NSArray *fetchedRecords; // @synthesize fetchedRecords=_fetchedRecords;
 @property(retain, nonatomic) NSString *serviceString; // @synthesize serviceString=_serviceString;

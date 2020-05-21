@@ -27,10 +27,19 @@
             unsigned int usesAutoDeleteWord:1;
             unsigned int usesCandidateSelection:1;
             unsigned int commitsAcceptedCandidate:1;
+            unsigned int newInputAcceptsUserSelectedCandidate:1;
             unsigned int nextInputWouldStartSentence:1;
             unsigned int inputStringIsExemptFromChecker:1;
             unsigned int suppressPlaceholderCandidate:1;
             unsigned int usesAutocorrectionLists:1;
+            unsigned int autoquoteType:2;
+            unsigned int usesContinuousPath:1;
+            unsigned int usesContinuousPathProgressiveCandidates:1;
+            unsigned int usesPunctuationKeysForRowNavigation:1;
+            unsigned int insertsSpaceAfterPredictiveInput:1;
+            unsigned int shouldFixupIncompleteRomaji:1;
+            unsigned int usesLiveConversion:1;
+            unsigned int delayedCandidateList:1;
         } fields;
     } _mask;
     BOOL _shouldAddModifierSymbolsToWordCharacters;
@@ -53,6 +62,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *searchStringForMarkedText; // @synthesize searchStringForMarkedText=_searchStringForMarkedText;
 @property(copy, nonatomic) TICharacterSetDescription *terminatorsDeletingAutospace; // @synthesize terminatorsDeletingAutospace=_terminatorsDeletingAutospace;
 @property(copy, nonatomic) TICharacterSetDescription *terminatorsPreventingAutocorrection; // @synthesize terminatorsPreventingAutocorrection=_terminatorsPreventingAutocorrection;
@@ -79,19 +89,29 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)dealloc;
+@property(nonatomic) BOOL shouldFixupIncompleteRomaji;
+@property(nonatomic) BOOL insertsSpaceAfterPredictiveInput;
+@property(nonatomic) BOOL usesContinuousPathProgressiveCandidates;
+- (void)setDelayedCandidateList:(BOOL)arg1;
+- (BOOL)delayedCandidateList;
+- (void)setUsesLiveConversion:(BOOL)arg1;
+- (BOOL)usesLiveConversion;
+@property(nonatomic) BOOL usesContinuousPath;
+@property(nonatomic) unsigned long long autoquoteType;
 @property(nonatomic) BOOL suppressPlaceholderCandidate;
 @property(nonatomic) BOOL usesAutocorrectionLists;
 @property(nonatomic) BOOL usesCandidateSelection;
 @property(nonatomic) BOOL usesAutoDeleteWord;
 @property(nonatomic) BOOL suppressCompletionsForFieldEditor;
 @property(nonatomic) BOOL supportsSetPhraseBoundary;
+@property(nonatomic) BOOL usesPunctuationKeysForRowNavigation;
 @property(nonatomic) BOOL supportsNumberKeySelection;
 @property(nonatomic) BOOL suppliesCompletions;
 @property(nonatomic) BOOL shouldExtendPriorWord;
 @property(nonatomic) BOOL nextInputWouldStartSentence;
 @property(nonatomic) BOOL inputStringIsExemptFromChecker;
 @property(nonatomic) BOOL ignoresDeadKeys;
+@property(nonatomic) BOOL newInputAcceptsUserSelectedCandidate;
 @property(nonatomic) BOOL commitsAcceptedCandidate;
 @property(nonatomic) BOOL canHandleKeyHitTest;
 

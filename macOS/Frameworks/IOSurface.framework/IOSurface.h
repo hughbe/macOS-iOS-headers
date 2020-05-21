@@ -14,10 +14,18 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (unsigned long long)registryID;
+- (unsigned long long)timestampAtIndex:(unsigned long long)arg1;
+- (void)setTimestamp:(unsigned long long)arg1 atIndex:(unsigned long long)arg2;
+- (BOOL)supportsProtectionOptions:(unsigned long long)arg1;
+- (unsigned long long)protectionOptions;
+- (int)setPurgeable:(unsigned int)arg1 oldState:(unsigned int *)arg2;
 @property(readonly) BOOL allowsPixelSizeCasting;
 - (void)decrementUseCount;
 - (void)incrementUseCount;
-@property(readonly) BOOL isInUse;
+- (BOOL)isSysMemOnly;
+- (BOOL)isDisplayable;
+@property(readonly, getter=isInUse) BOOL inUse;
 @property(readonly) int localUseCount;
 - (void)removeAllAttachments;
 - (id)allAttachments;

@@ -6,11 +6,14 @@
 
 #import "NSObject.h"
 
+#import "ACProtobufCoding.h"
+#import "NSCoding.h"
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class ACAccount, NSDate, NSMutableDictionary, NSMutableSet, NSSet, NSString;
 
-@interface ACAccountCredential : NSObject <NSSecureCoding>
+@interface ACAccountCredential : NSObject <ACProtobufCoding, NSCoding, NSCopying, NSSecureCoding>
 {
     NSMutableDictionary *_credentialItems;
     NSString *_credentialType;
@@ -21,20 +24,21 @@
     BOOL _empty;
 }
 
-+ (id)credentialPolicyForAccountType:(id)arg1 key:(id)arg2 clientID:(id)arg3;
++ (id)additionalServiceSegmentForAccountTypeIdentifier:(id)arg1;
++ (id)credentialPolicyForAccountTypeIdentifier:(id)arg1 key:(id)arg2 clientID:(id)arg3;
 + (id)nonPersistentKeysForAccountTypeIdentifier:(id)arg1 credentialType:(id)arg2;
 + (id)supportedKeysForAccountTypeIdentifier:(id)arg1 credentialType:(id)arg2;
 + (id)allSupportedKeys;
 + (id)credentialWithPassword:(id)arg1;
 + (id)credentialWithOAuthToken:(id)arg1 tokenSecret:(id)arg2;
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(nonatomic, getter=isEmpty) BOOL empty; // @synthesize empty=_empty;
 @property(nonatomic, getter=isDirty) BOOL dirty; // @synthesize dirty=_dirty;
-@property(readonly, nonatomic) NSSet *dirtyProperties; // @synthesize dirtyProperties=_dirtyProperties;
 @property BOOL requiresTouchID; // @synthesize requiresTouchID=_requiresTouchID;
-- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *credentialType;
 @property(copy, nonatomic) NSDate *tokenExpiryDate;
+@property(copy, nonatomic) NSString *mdmServerToken;
 @property(copy, nonatomic) NSString *hsaToken;
 @property(copy, nonatomic) NSString *mapsToken;
 @property(copy, nonatomic) NSString *findMyiPhoneToken;
@@ -51,15 +55,26 @@
 - (id)credentialItems;
 - (void)_clearDirtyProperties;
 - (void)_markPropertyDirty:(id)arg1;
+@property(readonly, nonatomic) NSSet *dirtyProperties;
 - (void)_setOwningAccount:(id)arg1;
+- (id)_encodeProtobufData;
+- (id)_encodeProtobuf;
+- (id)_initWithProtobufData:(id)arg1;
+- (id)_initWithProtobuf:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithPassword:(id)arg1;
 - (id)initWithOAuthToken:(id)arg1 tokenSecret:(id)arg2;
 - (id)initWithOAuth2Token:(id)arg1 refreshToken:(id)arg2 expiryDate:(id)arg3;
-- (unsigned long long)hash;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CDPDevice, NSDictionary, NSString;
+@class CDPDevice, NSDictionary, NSString, OTClique;
 
 @interface CDPDRemoteSecretValidationResult : NSObject
 {
@@ -16,15 +16,17 @@
     CDPDevice *_device;
     NSString *_validSecret;
     NSDictionary *_recoveredInfo;
+    OTClique *_recoveredClique;
 }
 
+- (void).cxx_destruct;
+@property(retain, nonatomic) OTClique *recoveredClique; // @synthesize recoveredClique=_recoveredClique;
 @property(copy, nonatomic) NSDictionary *recoveredInfo; // @synthesize recoveredInfo=_recoveredInfo;
 @property(copy, nonatomic) NSString *validSecret; // @synthesize validSecret=_validSecret;
 @property(copy, nonatomic) CDPDevice *device; // @synthesize device=_device;
 @property(nonatomic) BOOL userDidReset; // @synthesize userDidReset=_userDidReset;
 @property(nonatomic) BOOL userDidCancel; // @synthesize userDidCancel=_userDidCancel;
 @property(nonatomic) unsigned long long secretType; // @synthesize secretType=_secretType;
-- (void).cxx_destruct;
 
 @end
 

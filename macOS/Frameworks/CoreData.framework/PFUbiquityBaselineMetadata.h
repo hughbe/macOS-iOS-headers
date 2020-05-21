@@ -7,11 +7,12 @@
 #import "NSObject.h"
 
 #import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class NSDictionary, NSMutableDictionary, NSString, PFUbiquityKnowledgeVector, PFUbiquityLocation;
 
 __attribute__((visibility("hidden")))
-@interface PFUbiquityBaselineMetadata : NSObject <NSCoding>
+@interface PFUbiquityBaselineMetadata : NSObject <NSCoding, NSSecureCoding>
 {
     NSString *_storeName;
     NSString *_authorPeerID;
@@ -22,6 +23,7 @@ __attribute__((visibility("hidden")))
     NSMutableDictionary *_peerRanges;
 }
 
++ (BOOL)supportsSecureCoding;
 @property(readonly) NSDictionary *peerRanges; // @synthesize peerRanges=_peerRanges;
 @property(readonly) PFUbiquityKnowledgeVector *knowledgeVector; // @synthesize knowledgeVector=_kv;
 @property(readonly, nonatomic) PFUbiquityKnowledgeVector *previousKnowledgeVector; // @synthesize previousKnowledgeVector=_pKV;

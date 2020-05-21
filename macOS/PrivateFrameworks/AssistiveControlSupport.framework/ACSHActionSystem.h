@@ -8,9 +8,13 @@
 
 @interface ACSHActionSystem : ACSHAction
 {
-    int _systemActionType;
+    unsigned long long __systemActionType;
 }
 
++ (id)actionToggleHeadMouseAMB;
++ (id)actionToggleAlternateMouseButtons;
++ (id)actionToggleHeadMouse;
++ (id)actionToggleMouseDFR;
 + (id)actionFastForward;
 + (id)actionPlayPause;
 + (id)actionRewind;
@@ -23,15 +27,16 @@
 + (id)actionVolumeUp;
 + (id)actionVolumeDown;
 + (id)actionVolumeMute;
-+ (id)actionWithType:(int)arg1;
-@property(nonatomic) int systemActionType; // @synthesize systemActionType=_systemActionType;
++ (id)actionWithType:(unsigned long long)arg1;
+@property(nonatomic) unsigned long long _systemActionType; // @synthesize _systemActionType=__systemActionType;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (void)perform;
+- (void)performWithEventSourceData:(id)arg1;
 - (id)paramDescription;
 - (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
-- (id)_initWithActionType:(int)arg1;
+@property(nonatomic) unsigned long long systemActionType;
+- (void)_configureWithPlistDictionary:(id)arg1;
+- (id)_initWithActionType:(unsigned long long)arg1;
 
 @end
 

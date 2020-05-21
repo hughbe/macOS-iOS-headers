@@ -13,7 +13,7 @@
 }
 
 - (BOOL)canBePackedWithDocument:(id)arg1;
-- (void)updatePackingPropertiesWithDocument:(id)arg1;
+- (BOOL)updatePackingPropertiesWithDocument:(id)arg1;
 - (id)createCSIRepresentationWithCompression:(BOOL)arg1 colorSpaceID:(unsigned long long)arg2 document:(id)arg3;
 - (struct CGImage *)_createImageRefWithURL:(id)arg1 andDocument:(id)arg2 format:(unsigned int *)arg3;
 - (int)_pixelFormatOfCGImage:(struct CGImage *)arg1;

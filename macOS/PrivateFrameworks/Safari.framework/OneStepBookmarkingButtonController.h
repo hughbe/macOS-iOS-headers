@@ -17,8 +17,8 @@ __attribute__((visibility("hidden")))
     OneStepBookmarkingButton *_oneStepBookmarkingButton;
 }
 
-@property(nonatomic) __weak OneStepBookmarkingButton *oneStepBookmarkingButton; // @synthesize oneStepBookmarkingButton=_oneStepBookmarkingButton;
 - (void).cxx_destruct;
+@property(nonatomic) __weak OneStepBookmarkingButton *oneStepBookmarkingButton; // @synthesize oneStepBookmarkingButton=_oneStepBookmarkingButton;
 - (void)menuDidClose:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
 - (void)handleButtonDrag:(id)arg1 mouseDownEvent:(id)arg2;
@@ -41,6 +41,7 @@ __attribute__((visibility("hidden")))
 - (void)_setUpOneStepBookmarkingMenu:(id)arg1;
 - (id)_oneStepBookmarkingTopSiteMenuItemIcon;
 - (id)_oneStepBookmarkingBookmarkMenuItemIcon;
+- (id)_oneStepBookmarkingFavoritesMenuItemIcon;
 - (id)_oneStepBookmarkingReadingListMenuItemIcon;
 - (BOOL)_canAddBookmark;
 - (id)_dynamicOneStepBookmarkingMenu;

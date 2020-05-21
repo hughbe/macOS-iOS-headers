@@ -6,6 +6,7 @@
 
 #import "NSPredicateEditorRowTemplate.h"
 
+__attribute__((visibility("hidden")))
 @interface _GKNSBoolPredicateTemplate : NSPredicateEditorRowTemplate
 {
 }

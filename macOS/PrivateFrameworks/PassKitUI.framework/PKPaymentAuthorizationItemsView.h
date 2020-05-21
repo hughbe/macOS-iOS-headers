@@ -6,29 +6,29 @@
 
 #import "NSView.h"
 
-@class NSMutableArray, NSScrollView, NSStackView, PKFlippedClipView, PKPaymentAuthorizationLayout;
+@class NSArray, NSScrollView, NSStackView, PKFlippedClipView, PKPaymentAuthorizationLayout;
 
 @interface PKPaymentAuthorizationItemsView : NSView
 {
     PKPaymentAuthorizationLayout *_paymentAuthorizationLayout;
     id <PKPaymentAuthorizationItemsViewDataSource> _dataSource;
     id <PKPaymentAuthorizationItemsViewDelegate> _delegate;
+    NSArray *_itemViews;
     NSScrollView *_paymentItemsScrollView;
     PKFlippedClipView *_paymentItemsClipView;
     NSStackView *_stackView;
-    NSMutableArray *_itemViews;
-    NSMutableArray *_itemViewTrackingAreas;
+    NSArray *_itemViewTrackingAreas;
 }
 
-@property(retain, nonatomic) NSMutableArray *itemViewTrackingAreas; // @synthesize itemViewTrackingAreas=_itemViewTrackingAreas;
-@property(retain, nonatomic) NSMutableArray *itemViews; // @synthesize itemViews=_itemViews;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSArray *itemViewTrackingAreas; // @synthesize itemViewTrackingAreas=_itemViewTrackingAreas;
 @property(retain, nonatomic) NSStackView *stackView; // @synthesize stackView=_stackView;
 @property(retain, nonatomic) PKFlippedClipView *paymentItemsClipView; // @synthesize paymentItemsClipView=_paymentItemsClipView;
 @property(retain, nonatomic) NSScrollView *paymentItemsScrollView; // @synthesize paymentItemsScrollView=_paymentItemsScrollView;
+@property(retain, nonatomic) NSArray *itemViews; // @synthesize itemViews=_itemViews;
 @property(nonatomic) __weak id <PKPaymentAuthorizationItemsViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) __weak id <PKPaymentAuthorizationItemsViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
 @property(retain, nonatomic) PKPaymentAuthorizationLayout *paymentAuthorizationLayout; // @synthesize paymentAuthorizationLayout=_paymentAuthorizationLayout;
-- (void).cxx_destruct;
 - (void)_prepareConstraints;
 - (void)_createSubviews;
 - (void)_addTrackingAreas;

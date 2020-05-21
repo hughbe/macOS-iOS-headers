@@ -10,7 +10,11 @@
 {
 }
 
-- (void)drawRect:(struct CGRect)arg1;
+- (void)viewWillDraw;
+- (id)initWithCoder:(id)arg1;
+- (id)init;
+- (id)initWithFrame:(struct CGRect)arg1;
+- (void)commonInit;
 
 @end
 

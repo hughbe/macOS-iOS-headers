@@ -6,18 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSLock;
+@class NSDictionary;
 
-__attribute__((visibility("hidden")))
 @interface GEOLocalizationRegionsInfo : NSObject
 {
     NSDictionary *_regions;
-    NSLock *_regionsLock;
+    struct os_unfair_lock_s _regionsLock;
 }
 
+- (void).cxx_destruct;
 - (BOOL)needsLocalizationForKey:(const struct _GEOTileKey *)arg1 language:(id)arg2;
 - (void)reset;
-- (void)dealloc;
 - (id)init;
 
 @end

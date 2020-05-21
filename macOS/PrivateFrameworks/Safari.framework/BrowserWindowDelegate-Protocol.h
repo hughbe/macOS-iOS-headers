@@ -6,10 +6,11 @@
 
 #import "ExtendedWindowDelegate.h"
 
-@class BrowserWindow, NSURL;
+@class BrowserWKView, BrowserWindow, NSURL;
 
 @protocol BrowserWindowDelegate <ExtendedWindowDelegate>
 - (void)browserWindow:(BrowserWindow *)arg1 shouldGoToURL:(NSURL *)arg2;
+- (BOOL)browserWindow:(BrowserWindow *)arg1 shouldMakeWebViewFirstResponder:(BrowserWKView *)arg2;
 - (NSURL *)browserWindowTitleBarURL:(BrowserWindow *)arg1;
 @end
 

@@ -10,32 +10,42 @@
 
 @interface CNPhotoLikenessEditorCroppingView : IKImageView2
 {
-    double _cornerRadius;
     BOOL _shouldUpdateCropRect;
     id <CNPhotoLikenessEditorCroppingDataSource> _croppingDataSource;
+    double _zoomPosition;
+    double _cornerRadius;
     CIImage *_currentImage;
     double _fittingZoom;
     long long _zoomIndex;
 }
 
-@property long long zoomIndex; // @synthesize zoomIndex=_zoomIndex;
-@property double fittingZoom; // @synthesize fittingZoom=_fittingZoom;
-@property(retain) CIImage *currentImage; // @synthesize currentImage=_currentImage;
-@property BOOL shouldUpdateCropRect; // @synthesize shouldUpdateCropRect=_shouldUpdateCropRect;
-@property __weak id <CNPhotoLikenessEditorCroppingDataSource> croppingDataSource; // @synthesize croppingDataSource=_croppingDataSource;
++ (struct CGRect)correctedCropRectForCropRect:(struct CGRect)arg1 ofImage:(struct CGImage *)arg2 placedWithingContainerOfSize:(struct CGSize)arg3;
++ (struct CGRect)fittingRectForImage:(struct CGImage *)arg1 containerSize:(struct CGSize)arg2;
++ (double)fittingZoomForImage:(struct CGImage *)arg1 containerSize:(struct CGSize)arg2;
++ (double)minZoomForImage:(struct CGImage *)arg1 containerSize:(struct CGSize)arg2;
++ (struct CGImage *)cgImageRefFromNSImage:(id)arg1;
++ (struct CGPoint)adjustProposedCenterPoint:(struct CGPoint)arg1 toKeepEdgesOfImageWithSize:(struct CGSize)arg2 fromMovingOutsideOfBoundsOfRect:(struct CGRect)arg3;
 - (void).cxx_destruct;
-- (void)mouseDragged:(id)arg1;
+@property(nonatomic) long long zoomIndex; // @synthesize zoomIndex=_zoomIndex;
+@property(nonatomic) double fittingZoom; // @synthesize fittingZoom=_fittingZoom;
+@property(retain, nonatomic) CIImage *currentImage; // @synthesize currentImage=_currentImage;
+@property(nonatomic) double cornerRadius; // @synthesize cornerRadius=_cornerRadius;
+@property(nonatomic) double zoomPosition; // @synthesize zoomPosition=_zoomPosition;
+@property(nonatomic) BOOL shouldUpdateCropRect; // @synthesize shouldUpdateCropRect=_shouldUpdateCropRect;
+@property(nonatomic) __weak id <CNPhotoLikenessEditorCroppingDataSource> croppingDataSource; // @synthesize croppingDataSource=_croppingDataSource;
 - (struct CGPoint)imageCenterPoint;
-- (void)reloadData;
+- (void)mouseDragged:(id)arg1;
 - (void)updateZoomPosition;
-- (BOOL)isCGFloatValueZero:(double)arg1;
+- (void)updateZoomFactorWithMinZoom:(double)arg1;
+- (void)updateToImage:(struct CGImage *)arg1 withCropRect:(struct CGRect)arg2;
+- (void)updateFittingZoomGivenImage:(struct CGImage *)arg1;
+- (void)resetZoomFactor;
+- (void)reloadData;
 - (void)setZoomFromCropRect:(struct CGRect)arg1;
-- (void)getZoom:(double *)arg1 center:(struct CGPoint *)arg2 fromRect:(struct CGRect)arg3;
 - (double)zoomFactorForCropRect:(struct CGRect)arg1;
-- (void)setZoomPosition:(double)arg1;
+- (void)getZoom:(double *)arg1 center:(struct CGPoint *)arg2 fromRect:(struct CGRect)arg3;
 - (struct CGImage *)cgImageRefFromNSImage:(id)arg1;
 - (void)clipviewBoundsChanged:(id)arg1;
-- (void)setCornerRadius:(double)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class GEOTileKeyList, NSMutableSet;
+@class GEOTileKeyList, NSMutableArray, NSMutableSet;
 
 __attribute__((visibility("hidden")))
 @interface _GEOTransitPreloadBatch : NSObject
@@ -21,18 +21,17 @@ __attribute__((visibility("hidden")))
     double startTime;
     double endTime;
     struct vector<GEOLocationCoordinate2D, std::__1::allocator<GEOLocationCoordinate2D>> coords;
+    NSMutableArray *_latLngToLoad;
     unsigned int priority;
     id <GEOMapServiceTicket> placeDataRequestTicketForBatch;
     double endTimeForScheduleFreshness;
 }
 
-@property(retain, nonatomic) NSMutableSet *placeDatasToLoad; // @synthesize placeDatasToLoad=_placeDatasToLoad;
-@property(retain, nonatomic) GEOTileKeyList *tilesToLoad; // @synthesize tilesToLoad=_tilesToLoad;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(retain, nonatomic) NSMutableSet *placeDatasToLoad; // @synthesize placeDatasToLoad=_placeDatasToLoad;
+@property(retain, nonatomic) GEOTileKeyList *tilesToLoad; // @synthesize tilesToLoad=_tilesToLoad;
 - (double)networkDataRateKB;
-- (double)dataRateKB;
-- (void)dealloc;
 - (id)init;
 
 @end

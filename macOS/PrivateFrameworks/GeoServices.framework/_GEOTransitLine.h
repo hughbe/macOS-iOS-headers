@@ -7,30 +7,38 @@
 #import "NSObject.h"
 
 #import "GEOTransitLine.h"
+#import "NSSecureCoding.h"
 
-@class GEOPBTransitLine, GEOStyleAttributes, NSArray, NSString;
+@class GEOMapItemIdentifier, GEOPBTransitLine, GEOStyleAttributes, NSArray, NSString;
 
 __attribute__((visibility("hidden")))
-@interface _GEOTransitLine : NSObject <GEOTransitLine>
+@interface _GEOTransitLine : NSObject <GEOTransitLine, NSSecureCoding>
 {
     GEOPBTransitLine *_line;
     id <GEOTransitSystem> _system;
+    CDStruct_2c43369c _locationHint;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 @property(readonly, nonatomic) NSArray *operatingHours;
 @property(readonly, nonatomic) GEOStyleAttributes *styleAttributes;
 @property(readonly, nonatomic) BOOL showVehicleNumber;
 @property(readonly, nonatomic) NSString *lineColorString;
 @property(readonly, nonatomic) BOOL hasLineColorString;
+@property(readonly, nonatomic) id <GEOTransitArtworkDataSource> alternateArtwork;
 @property(readonly, nonatomic) id <GEOTransitArtworkDataSource> modeArtwork;
 @property(readonly, nonatomic) id <GEOTransitArtworkDataSource> artwork;
+@property(readonly, nonatomic) BOOL isBus;
 @property(readonly, nonatomic) BOOL departuresAreVehicleSpecific;
 @property(readonly, nonatomic) unsigned long long departureTimeDisplayStyle;
 @property(readonly, nonatomic) id <GEOTransitSystem> system;
 @property(readonly, nonatomic) NSString *name;
+@property(readonly, nonatomic) GEOMapItemIdentifier *identifier;
 @property(readonly, nonatomic) unsigned long long muid;
-- (void)dealloc;
-- (id)initWithLine:(id)arg1 system:(id)arg2;
+- (id)initWithLine:(id)arg1 system:(id)arg2 locationHint:(CDStruct_c3b9c2ee)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

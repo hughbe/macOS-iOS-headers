@@ -13,11 +13,11 @@
 
 + (id)sharedManager;
 + (void)setUseLocalProxy:(BOOL)arg1;
+- (void).cxx_destruct;
 - (void)updateCachedSpotlightCategorySuggestions:(CDUnknownBlockType)arg1;
 - (void)fetchSpotlightCategorySuggestions:(CDUnknownBlockType)arg1;
 - (id)_categorySuggestionsForSuggestionsResult:(id)arg1 dayOfWeek:(long long)arg2 hourOfDay:(long long)arg3;
 - (id)_spotlightCategorySuggestionsForResponse:(id)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

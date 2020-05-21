@@ -8,7 +8,7 @@
 
 #import "NSFileProvider.h"
 
-@class BRCAccountSession, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSURL;
+@class BRCAccountSession, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSURL, brc_task_tracker;
 
 __attribute__((visibility("hidden")))
 @interface BRCFileProvider : NSObject <NSFileProvider>
@@ -18,11 +18,12 @@ __attribute__((visibility("hidden")))
     NSOperationQueue *_queue;
     NSMutableDictionary *_presentersIDsByKey;
     NSObject<OS_dispatch_queue> *_privQueue;
+    brc_task_tracker *_tracker;
 }
 
 + (id)prettyNameForFilePresenterID:(id)arg1;
-@property(retain, nonatomic) BRCAccountSession *session; // @synthesize session=_session;
 - (void).cxx_destruct;
+@property(retain, nonatomic) BRCAccountSession *session; // @synthesize session=_session;
 - (void)_providedItemAtURL:(id)arg1 withPresenterWithID:(id)arg2 didMoveToURL:(id)arg3;
 - (void)_providedItemAtURL:(id)arg1 didLosePresenterWithID:(id)arg2;
 - (void)_providedItemAtURL:(id)arg1 didGainPresenterWithID:(id)arg2;

@@ -8,7 +8,7 @@
 
 #import "MKOverlay.h"
 
-@class GEOTileCache, NSString;
+@class GEOTileCache, NSObject<OS_dispatch_source>, NSString, geo_isolater;
 
 @interface MKTileOverlay : NSObject <MKOverlay>
 {
@@ -20,19 +20,27 @@
     BOOL _canReplaceMapContent;
     unsigned int _providerID;
     GEOTileCache *_tileCache;
+    GEOTileCache *_minimumLifetimeTileCache;
+    geo_isolater *_minimumLifetimeTileCacheEvictionTimerIsolation;
+    NSObject<OS_dispatch_source> *_minimumLifetimeTileCacheEvictionTimer;
+    NSObject<OS_dispatch_source> *_memoryNotificationEventSource;
+    BOOL _needsAdditionalMinimumLifetimeCleanup;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL canReplaceMapContent; // @synthesize canReplaceMapContent=_canReplaceMapContent;
 @property long long maximumZ; // @synthesize maximumZ=_maximumZ;
 @property long long minimumZ; // @synthesize minimumZ=_minimumZ;
 @property(getter=isGeometryFlipped) BOOL geometryFlipped; // @synthesize geometryFlipped=_geometryFlipped;
 @property(readonly) NSString *URLTemplate; // @synthesize URLTemplate=_URLTemplate;
 @property struct CGSize tileSize; // @synthesize tileSize=_tileSize;
-- (void).cxx_destruct;
 - (void)_flushCaches;
 - (id)_tilesInMapRect:(CDStruct_02837cd9)arg1 zoomScale:(double)arg2 contentScale:(double)arg3;
 - (int)_zoomLevelForScale:(double)arg1;
-- (void)_loadTile:(id)arg1 result:(CDUnknownBlockType)arg2;
+- (void)_minLifetimeCacheCleanupFired;
+- (void)_scheduleMinLifetimeCacheCleanupIfNecessary;
+- (void)_receivedMemoryNotification;
+- (void)_loadTile:(const struct _GEOTileKey *)arg1 result:(CDUnknownBlockType)arg2;
 - (struct _GEOTileKey)_keyForPath:(CDStruct_cbb88d5e)arg1;
 - (void)loadTileAtPath:(CDStruct_cbb88d5e)arg1 result:(CDUnknownBlockType)arg2;
 - (id)URLForTilePath:(CDStruct_cbb88d5e)arg1;

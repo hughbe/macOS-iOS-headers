@@ -13,12 +13,14 @@
     _CDContact *contact;
 }
 
-@property(retain) _CDContact *contact; // @synthesize contact;
 - (void).cxx_destruct;
+@property(retain) _CDContact *contact; // @synthesize contact;
 
 // Remaining properties
 @property(nonatomic) double creationDate; // @dynamic creationDate;
+@property(retain, nonatomic) NSString *customIdentifier; // @dynamic customIdentifier;
 @property(retain, nonatomic) NSString *displayName; // @dynamic displayName;
+@property(nonatomic) int displayType; // @dynamic displayType;
 @property(nonatomic) double firstIncomingRecipientDate; // @dynamic firstIncomingRecipientDate;
 @property(nonatomic) double firstIncomingSenderDate; // @dynamic firstIncomingSenderDate;
 @property(nonatomic) double firstOutgoingRecipientDate; // @dynamic firstOutgoingRecipientDate;

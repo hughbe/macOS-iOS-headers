@@ -8,17 +8,17 @@
 
 #import "NSUserActivityDelegate.h"
 
-@class NSMapTable, NSObject<OS_dispatch_queue>, NSString;
+@class NSMapTable, NSString;
 
 __attribute__((visibility("hidden")))
 @interface NSUIActivityManager : NSObject <NSUserActivityDelegate>
 {
     NSMapTable *_infoByUserActivity;
-    NSObject<OS_dispatch_queue> *_queue;
+    struct os_unfair_lock_s _lock;
 }
 
 + (id)sharedManager;
-- (void)continueUserActivityForTesting:(id)arg1;
+- (void)continueUserActivity:(id)arg1;
 - (void)continueUserActivityWithUUID:(id)arg1 type:(id)arg2;
 - (BOOL)_willFetchUserActivityWithType:(id)arg1 progress:(id)arg2;
 - (void)_didFailToFetchUserActivityWithType:(id)arg1 error:(id)arg2;
@@ -29,9 +29,9 @@ __attribute__((visibility("hidden")))
 - (void)userActivityWillSave:(id)arg1;
 - (id)infoForProvider:(id)arg1;
 - (void)addProvider:(id)arg1 toUserActivity:(id)arg2 withSetter:(CDUnknownBlockType)arg3;
-- (void)queue_addProvider:(id)arg1 toUserActivity:(id)arg2;
+- (void)lock_addProvider:(id)arg1 toUserActivity:(id)arg2;
 - (void)removeProviderFromUserActivity:(id)arg1;
-- (id)queue_removeProviderFromUserActivity:(id)arg1;
+- (id)lock_removeProviderFromUserActivity:(id)arg1;
 - (void)dealloc;
 - (id)init;
 

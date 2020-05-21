@@ -10,6 +10,7 @@
 
 @interface GEOComposedTransitTripRouteStep : GEOComposedTransitRouteStep
 {
+    NSArray *_arrivalTimesAtOrigin;
     NSArray *_departureTimes;
     NSArray *_arrivalTimes;
     double _departureTimeIntervalMin;
@@ -23,6 +24,8 @@
     BOOL _canPreloadTiles;
 }
 
++ (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL isBus; // @synthesize isBus=_isBus;
 @property(readonly, nonatomic) BOOL isRail; // @synthesize isRail=_isRail;
 @property(readonly, nonatomic) NSArray *routeLineArtwork; // @synthesize routeLineArtwork=_routeLineArtwork;
@@ -33,16 +36,20 @@
 @property(readonly, nonatomic) double departureTimeIntervalMin; // @synthesize departureTimeIntervalMin=_departureTimeIntervalMin;
 @property(readonly, nonatomic) NSArray *arrivalTimes; // @synthesize arrivalTimes=_arrivalTimes;
 @property(readonly, nonatomic) NSArray *departureTimes; // @synthesize departureTimes=_departureTimes;
+@property(readonly, nonatomic) NSArray *arrivalTimesAtOrigin; // @synthesize arrivalTimesAtOrigin=_arrivalTimesAtOrigin;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)description;
 @property(readonly, nonatomic) BOOL canPreloadTilesForThisStep;
 - (unsigned int)duration;
 - (BOOL)hasDuration;
 @property(readonly, nonatomic) NSDate *arrivalTime;
 @property(readonly, nonatomic) NSDate *departureTime;
+@property(readonly, nonatomic) NSDate *arrivalTimeAtOrigin;
 @property(readonly, nonatomic) NSTimeZone *arrivalTimeZone;
 @property(readonly, nonatomic) NSTimeZone *departureTimeZone;
 @property(readonly, nonatomic) GEOComposedTransitTripRouteLeg *tripLeg;
-- (void)dealloc;
+- (id)initWithComposedRoute:(id)arg1 routeLegType:(long long)arg2 stepIndex:(unsigned long long)arg3 pointRange:(struct _NSRange)arg4 line:(id)arg5 maneuverType:(int)arg6 significance:(int)arg7;
 - (id)initWithComposedRoute:(id)arg1 decoderData:(id)arg2 step:(id)arg3 stepIndex:(unsigned long long)arg4 duration:(unsigned int)arg5 pointRange:(struct _NSRange)arg6;
 
 @end

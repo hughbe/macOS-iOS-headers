@@ -9,7 +9,7 @@
 #import "GEOETAUpdaterDelegate.h"
 #import "GEORouteHypothesizerUpdaterDelegate.h"
 
-@class GEOComposedRoute, GEOComposedWaypoint, GEODirectionsRequestFeedback, GEOETARoute, GEOETAUpdater, GEOLocation, GEOLocationShifter, GEORoute, GEORouteAttributes, GEORouteHypothesisOld, GEORouteHypothesizerUpdater, NSData, NSDate, NSString;
+@class GEOComposedRoute, GEOComposedWaypoint, GEODirectionsRequestFeedback, GEOETARoute, GEOETAUpdater, GEOLocation, GEOLocationShifter, GEORouteAttributes, GEORouteHypothesisOld, GEORouteHypothesizerUpdater, NSData, NSDate, NSString;
 
 @interface GEORouteHypothesizerOld : NSObject <GEORouteHypothesizerUpdaterDelegate, GEOETAUpdaterDelegate>
 {
@@ -32,10 +32,10 @@
     GEOETARoute *_baselineETARoute;
     GEORouteAttributes *_routeAttributes;
     GEORouteHypothesizerUpdater *_updater;
-    GEORoute *_existingRoute;
     NSData *_usualRouteData;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) unsigned long long etaUpdateFrequency; // @synthesize etaUpdateFrequency=_etaUpdateFrequency;
 @property(readonly, nonatomic) NSDate *suggestedNextUpdateDate; // @synthesize suggestedNextUpdateDate=_suggestedNextUpdateDate;
 @property(readonly, nonatomic) NSDate *arrivalDate; // @synthesize arrivalDate=_arrivalDate;
@@ -43,7 +43,7 @@
 @property(readonly, nonatomic) GEOComposedWaypoint *destination; // @synthesize destination=_destination;
 @property(readonly, nonatomic) GEOComposedWaypoint *source; // @synthesize source=_source;
 @property(retain, nonatomic) GEODirectionsRequestFeedback *feedback; // @synthesize feedback=_feedback;
-@property(nonatomic) id <GEORouteHypothesizerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <GEORouteHypothesizerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)etaUpdaterReceivedInvalidRoute:(id)arg1 newRoute:(id)arg2 incidentsOnRoute:(id)arg3 incidentsOffRoute:(id)arg4;
 - (void)etaUpdaterUpdatedETA:(id)arg1;
 - (void)etaUpdater:(id)arg1 receivedError:(id)arg2;
@@ -64,7 +64,6 @@
 @property(readonly, nonatomic) BOOL supportsLiveTraffic;
 - (void)dealloc;
 - (void)_commonInit;
-- (id)initWithExistingRoute:(id)arg1 source:(id)arg2 destination:(id)arg3 etaUpdater:(id)arg4;
 - (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 usualRouteData:(id)arg4;
 - (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 usualRouteData:(id)arg4;
 

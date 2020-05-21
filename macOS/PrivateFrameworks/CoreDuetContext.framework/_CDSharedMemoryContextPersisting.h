@@ -8,24 +8,24 @@
 
 #import "_CDContextPersisting.h"
 
-@class NSCountedSet, NSObject<OS_dispatch_queue>, _CDSharedMemoryKeyValueStore;
+@class NSCountedSet, NSObject<OS_dispatch_queue>, NSString, _CDSharedMemoryKeyValueStore;
 
 @interface _CDSharedMemoryContextPersisting : NSObject <_CDContextPersisting>
 {
     _CDSharedMemoryKeyValueStore *_store;
     NSObject<OS_dispatch_queue> *_queue;
     NSCountedSet *_keyPathRegistrationCount;
-    unsigned long long _localDeviceID;
+    NSString *_localDeviceID;
 }
 
 + (id)sharedMemoryKeyFromRegistration:(id)arg1;
 + (id)sharedMemoryKeyFromKeyPath:(id)arg1;
 + (id)persistenceWithSharedMemoryKeyValueStore:(id)arg1;
-@property(nonatomic) unsigned long long localDeviceID; // @synthesize localDeviceID=_localDeviceID;
+- (void).cxx_destruct;
+@property(retain, nonatomic) NSString *localDeviceID; // @synthesize localDeviceID=_localDeviceID;
 @property(retain, nonatomic) NSCountedSet *keyPathRegistrationCount; // @synthesize keyPathRegistrationCount=_keyPathRegistrationCount;
 @property(retain, nonatomic) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 @property(retain, nonatomic) _CDSharedMemoryKeyValueStore *store; // @synthesize store=_store;
-- (void).cxx_destruct;
 - (void)deleteDataCreatedBefore:(id)arg1;
 - (void)deleteAllData;
 - (id)loadRegistrations;

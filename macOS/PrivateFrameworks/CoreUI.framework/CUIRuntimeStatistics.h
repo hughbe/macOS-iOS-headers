@@ -10,16 +10,18 @@
 
 @interface CUIRuntimeStatistics : NSObject
 {
-    long long _wasted_size;
-    long long _total_size;
-    long long _shortCircuitImageLookup;
-    long long _total_lookup;
+    // Error parsing type: Aq, name: _wasted_size
+    // Error parsing type: Aq, name: _total_size
+    // Error parsing type: Aq, name: _shortCircuitImageLookup
+    // Error parsing type: Aq, name: _total_lookup
+    // Error parsing type: Aq, name: _missed_lookup
     NSObject<OS_dispatch_queue> *_queue;
     int _notify_token;
 }
 
 + (void)generateLog;
 + (id)sharedRuntimeStatistics;
+- (void)incrementMissedLookup;
 - (void)incrementStatisticLookup;
 - (void)incrementStatisticDidShortCircuitImageLookup;
 - (void)addStatisticAllocatedImageSize:(unsigned long long)arg1 roundedSize:(unsigned long long)arg2;

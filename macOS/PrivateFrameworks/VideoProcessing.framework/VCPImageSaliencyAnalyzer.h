@@ -8,18 +8,28 @@
 
 @interface VCPImageSaliencyAnalyzer : VCPImageAnalyzer
 {
-    struct CGRect _region;
-    float _score;
+    int _chunk;
+    struct CGRect _region[5];
+    float _score[5];
+    int _maxNumRegions;
+    BOOL _prune;
 }
 
-- (int)analyzePixelBuffer:(struct __CVBuffer *)arg1 withTransform:(struct CGAffineTransform)arg2 flags:(unsigned long long *)arg3 results:(id *)arg4 cancel:(CDUnknownBlockType)arg5;
++ (id)analyzerWith:(int)arg1 prune:(BOOL)arg2;
+- (int)analyzePixelBuffer:(struct __CVBuffer *)arg1 flags:(unsigned long long *)arg2 results:(id *)arg3 cancel:(CDUnknownBlockType)arg4;
+- (id)pruneRegions:(id)arg1;
 - (int)aggregateTileResults:(id)arg1 tileRect:(struct CGRect)arg2 imageSize:(struct CGSize)arg3 landscape:(BOOL)arg4 results:(id)arg5;
-- (int)processTile:(struct __CVBuffer *)arg1 withTransform:(struct CGAffineTransform)arg2 results:(id)arg3 cancel:(CDUnknownBlockType)arg4;
-- (int)saliencyDetection:(struct __CVBuffer *)arg1 withTransform:(struct CGAffineTransform)arg2 salientRegions:(id)arg3 cancel:(CDUnknownBlockType)arg4;
-- (int)generateSalientRegion:(struct CNNData *)arg1;
-- (int)initializeInput:(struct CNNData *)arg1 withBuffer:(struct __CVBuffer *)arg2 width:(int)arg3 height:(int)arg4;
-- (int)initializeModel:(id)arg1;
-- (id)init;
+- (int)processTile:(struct __CVBuffer *)arg1 results:(id)arg2 cancel:(CDUnknownBlockType)arg3;
+- (int)saliencyDetection:(struct __CVBuffer *)arg1 salientRegions:(id)arg2 cancel:(CDUnknownBlockType)arg3;
+- (int)getSalientRegions:(CDUnknownBlockType)arg1;
+- (int)generateSalientRegion:(float *)arg1 outHeight:(int)arg2 outWidth:(int)arg3;
+- (float)outputScaling;
+- (float)computeScore:(float *)arg1 width:(int)arg2 height:(int)arg3 posX:(int)arg4 posY:(int)arg5;
+- (int)scaleImage:(struct __CVBuffer *)arg1 toData:(float *)arg2 withWidth:(int)arg3 andHeight:(int)arg4;
+- (int)copyImage:(struct __CVBuffer *)arg1 toData:(float *)arg2 withChunk:(int)arg3;
+- (float *)getInputBuffer:(int)arg1 srcWidth:(int)arg2 cnnInputHeight:(int *)arg3 cnnInputWidth:(int *)arg4;
+- (int)prepareModelForSourceWidth:(int)arg1 andSourceHeight:(int)arg2;
+- (id)initWithMaxNumRegions:(int)arg1 prune:(BOOL)arg2;
 
 @end
 

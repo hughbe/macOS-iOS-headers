@@ -21,6 +21,7 @@
 + (const CDStruct_b1ca1ddd *)lookupProperty:(int)arg1;
 + (int)tokenizeNSStringKeyword:(id)arg1 withType:(int *)arg2;
 + (int)tokenizeKeyword:(const char *)arg1 withType:(int *)arg2;
+- (void).cxx_destruct;
 - (void)setUsePalmD4Hooks:(BOOL)arg1;
 - (int)tokenID;
 - (void)setTokenID:(int)arg1;
@@ -35,7 +36,6 @@
 - (void)setKeywordFromCString:(char *)arg1;
 - (id)loadFromCString:(char *)arg1 withParseState:(id)arg2;
 - (void)reset;
-- (void)dealloc;
 - (id)init;
 
 @end

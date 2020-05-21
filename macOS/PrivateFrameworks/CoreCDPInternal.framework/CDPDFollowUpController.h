@@ -6,32 +6,29 @@
 
 #import "NSObject.h"
 
-@class FLFollowUpController, NSString;
+#import "CDPDAuthListener.h"
 
-@interface CDPDFollowUpController : NSObject
+@class CDPDFollowUpFactory, FLFollowUpController, NSString;
+
+@interface CDPDFollowUpController : NSObject <CDPDAuthListener>
 {
-    NSString *_networkObserverToken;
     FLFollowUpController *_followUpController;
+    CDPDFollowUpFactory *_followUpFactory;
 }
 
-+ (id)contextToIdentifierMap;
 + (id)sharedInstance;
 - (void).cxx_destruct;
-- (id)_followUpForRepairWithContext:(id)arg1;
-- (void)deleteFollowUpItemForOfflineLocalSecretChange;
-- (void)_postOfflineLocalSecretChangeNotification;
-- (id)_launchActionArgsForPrefPaneWithCommandKey:(id)arg1;
-- (id)_offlineSecretChangeFollowUpAction;
-- (id)_followUpForOfflineSecretChangeWithContext:(id)arg1;
-- (void)clearFollowUpWithContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)clearFollowUpWithContext:(id)arg1;
-- (id)_followUpItemWithContext:(id)arg1;
-- (void)postFollowUpItemForContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)postFollowUpItemForContext:(id)arg1;
-- (id)_localizedStringForKey:(id)arg1;
-- (void)_networkReachabilityDidChangeWithIsReachable:(BOOL)arg1;
-- (void)start;
+- (id)_followUpControllerForContext:(id)arg1;
+- (void)securityLevelChanged:(BOOL)arg1;
+- (BOOL)clearFollowUpWithContext:(id)arg1 error:(id *)arg2;
+- (BOOL)postFollowUpItemForContext:(id)arg1 error:(id *)arg2;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

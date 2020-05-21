@@ -18,13 +18,14 @@
 }
 
 + (id)providerWithSearchProvider:(id)arg1 fetchRequest:(id)arg2 scheduler:(id)arg3;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) id <CNScheduler> scheduler; // @synthesize scheduler=_scheduler;
 @property(readonly, nonatomic) CNAutocompleteFetchRequest *fetchRequest; // @synthesize fetchRequest=_fetchRequest;
 @property(readonly, nonatomic) id <CNAutocompleteSearchProvider> searchProvider; // @synthesize searchProvider=_searchProvider;
-- (void).cxx_destruct;
 - (id)observableWithWrappedSearchProviderGetter:(CDUnknownBlockType)arg1 name:(id)arg2;
 - (id)calendarServersSearchObservable;
 - (id)directoryServersSearchObservable;
+- (id)localExtensionSearchObservables;
 - (id)predictionsSearchObservableWithUnfilteredResultPromise:(id)arg1;
 - (id)suggestionsSearchObservable;
 - (id)recentsSearchObservable;

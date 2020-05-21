@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     OADColorContext *mColorContext;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) OADColorContext *colorContext; // @synthesize colorContext=mColorContext;
 @property(readonly, nonatomic) OADFontScheme *fontScheme; // @synthesize fontScheme=mFontScheme;
 @property(readonly, nonatomic) OADStyleMatrix *styleMatrix; // @synthesize styleMatrix=mStyleMatrix;
@@ -23,7 +24,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) id <OADColorPalette> colorPalette;
 @property(readonly, nonatomic) OADColorMap *colorMap;
 @property(readonly, nonatomic) OADColorScheme *colorScheme;
-- (void)dealloc;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)applyThemeOverrides:(id)arg1 colorMapOverride:(id)arg2;
 - (id)initWithTheme:(id)arg1 colorMap:(id)arg2 colorPalette:(id)arg3;

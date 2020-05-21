@@ -13,21 +13,17 @@
     VMUCallTreeNode *_parent;
     NSString *_name;
     unsigned long long _address;
-    unsigned int _count;
     unsigned long long _numBytes;
+    unsigned int _count;
     unsigned int _numChildren;
-    union {
-        void *theChild;
-        void **theChildren;
-    } _un;
+    void *_children;
 }
 
-+ (id)rootForTraceData:(id)arg1;
 + (id)makeFakeRootForNode:(id)arg1;
 + (id)nodeWithName:(id)arg1 address:(unsigned long long)arg2 count:(unsigned int)arg3 numBytes:(unsigned long long)arg4;
 + (id)rootForSamples:(id)arg1 symbolicator:(struct _CSTypeRef)arg2;
 + (id)rootForSamples:(id)arg1 symbolicator:(struct _CSTypeRef)arg2 sampler:(id)arg3 options:(unsigned long long)arg4;
-- (void)addTraceEvent:(id)arg1 forTraceData:(id)arg2;
+- (void).cxx_destruct;
 - (id)pruneMallocSize:(unsigned long long)arg1;
 - (id)pruneCount:(unsigned int)arg1;
 - (id)chargeSystemLibrariesToCallersAndKeepBoundaries:(BOOL)arg1;
@@ -36,17 +32,24 @@
 - (id)filterOutSymbols:(id)arg1;
 - (id)filterOutSymbols:(id)arg1 required:(id)arg2;
 - (id)invertedNode;
+- (void)printCallTree;
+- (void)printCallTreeToFile:(struct __sFILE *)arg1;
+- (void)printCallTreeToFile:(struct __sFILE *)arg1 options:(unsigned long long)arg2;
 - (id)stringFromCallTreeIndentIfNoBranches:(BOOL)arg1;
 - (id)stringFromCallTreeIndentIfNoBranches:(BOOL)arg1 showPseudoNodes:(BOOL)arg2;
+- (id)stringFromCallTreeWithOptions:(unsigned long long)arg1;
 - (BOOL)callTreeHasBranches;
 - (id)fullOutputWithThreshold:(unsigned int)arg1;
 - (id)fullOutputWithThreshold:(unsigned int)arg1 showPseudoNodes:(BOOL)arg2;
 - (void)countFunctionOccurrencesInTree:(id)arg1;
+- (void)_printCallTreeToFile:(struct __sFILE *)arg1 cumulativeOutput:(id)arg2 indentString:(id)arg3 branchPointCount:(unsigned int)arg4 topFunctions:(id)arg5 options:(unsigned long long)arg6;
 - (id)largestTopOfStackPath;
+- (id)sortedChildren;
 - (id)sortedChildrenWithPseudoNode;
 - (id)sortedChildrenWithPseudoNode:(id)arg1 withCompare:(SEL)arg2;
 - (id)pseudoNodeTopOfStackChild;
 - (long long)comparePuttingMainThreadFirst:(id)arg1;
+- (long long)comparePuttingRetainCycleNodesAtTop:(id)arg1;
 - (long long)compare:(id)arg1;
 - (long long)compareSizeAndCount:(id)arg1;
 - (id)findOrAddChildWithName:(id)arg1 address:(unsigned long long)arg2;
@@ -65,12 +68,13 @@
 - (unsigned int)count;
 - (unsigned long long)address;
 - (id)parent;
+- (id)description;
 - (void)dealloc;
+- (unsigned int)sumOfChildCounts;
 - (void)addChild:(id)arg1;
 - (void)setChildren:(id)arg1;
 - (id)allChildren;
 - (id)childAtIndex:(unsigned int)arg1;
-- (void)setNumChildren:(unsigned int)arg1;
 - (unsigned int)numChildren;
 - (id)initWithName:(id)arg1 address:(unsigned long long)arg2 count:(unsigned int)arg3 numBytes:(unsigned long long)arg4;
 

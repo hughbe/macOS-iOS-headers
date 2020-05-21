@@ -18,13 +18,19 @@
 }
 
 + (BOOL)supportsSecureCoding;
++ (BOOL)requestAccountSyncWithOptions:(unsigned long long)arg1;
++ (BOOL)requestAccountSyncWithDefaultOptions;
 + (id)makeIdentifier;
 + (id)makeIdentifierString;
 + (id)identifierProvider;
 + (id)localAccount;
++ (id)os_log;
++ (id)predicateForAccountsWithIdentifiers:(id)arg1;
++ (id)predicateForAccountForContainerWithIdentifier:(id)arg1;
++ (id)predicateForAccountWithExternalIdentifier:(id)arg1;
+- (void).cxx_destruct;
 @property(readonly, copy) NSString *externalIdentifierString; // @synthesize externalIdentifierString=_externalIdentifierString;
 @property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
-- (void)dealloc;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;

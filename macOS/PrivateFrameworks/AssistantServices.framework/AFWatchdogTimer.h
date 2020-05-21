@@ -6,24 +6,32 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
 
-@interface AFWatchdogTimer : NSObject
+@interface AFWatchdogTimer : NSObject <NSCopying>
 {
-    NSObject<OS_dispatch_queue> *_queue;
     double _interval;
-    CDUnknownBlockType _handler;
     NSObject<OS_dispatch_source> *_timerSource;
+    NSObject<OS_dispatch_queue> *_queue;
+    CDUnknownBlockType _timeoutHandler;
+    BOOL _isStopped;
+    double _remainingInterval;
+    double _startTime;
 }
 
 - (void).cxx_destruct;
 - (void)reset;
 - (BOOL)cancelIfNotAlreadyCanceled;
 - (void)cancel;
+- (BOOL)isStopped;
+- (void)stop;
 - (void)start;
-- (void)_scheduleTimer;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithTimeoutInterval:(double)arg1 onQueue:(id)arg2 timeoutHandler:(CDUnknownBlockType)arg3;
 - (id)initWithTimeoutInterval:(double)arg1 timeoutHandler:(CDUnknownBlockType)arg2;
+- (void)dealloc;
 
 @end
 

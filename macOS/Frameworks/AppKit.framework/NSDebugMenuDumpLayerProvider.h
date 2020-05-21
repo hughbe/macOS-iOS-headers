@@ -17,10 +17,11 @@ __attribute__((visibility("hidden")))
     NSMenu *_windowsMenu;
 }
 
+- (void)_dumpLayerForFunctionRow:(id)arg1;
 - (void)_dumpLayerForView:(id)arg1;
 - (void)_dumpLayerForWindow:(id)arg1;
-- (BOOL)menu:(id)arg1 updateItem:(id)arg2 atIndex:(long long)arg3 shouldCancel:(BOOL)arg4;
-- (long long)numberOfItemsInMenu:(id)arg1;
+- (BOOL)menuHasKeyEquivalent:(id)arg1 forEvent:(id)arg2 target:(id *)arg3 action:(SEL *)arg4;
+- (void)menuNeedsUpdate:(id)arg1;
 @property(readonly, copy) NSMenuItem *menuItem;
 - (id)windowsMenuCreateIfNecessary;
 - (void)dealloc;

@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSServiceViewControllerActionResponder.h"
+
 @class NSRemoteView, NSString;
 
 __attribute__((visibility("hidden")))
-@interface NSFakeServiceResponder : NSObject
+@interface NSFakeServiceResponder : NSObject <NSServiceViewControllerActionResponder>
 {
     SEL _action;
     unsigned int _rtsInProgress;
@@ -17,14 +19,21 @@ __attribute__((visibility("hidden")))
     CDStruct_e99345e9 _validateMenuItem;
     CDStruct_e99345e9 _validateUserInterfaceItem;
     NSString *_targetIdentifier;
+    struct os_unfair_lock_s _retainReleaseLock;
 }
 
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (id)performSelector:(SEL)arg1 withObject:(id)arg2;
+- (BOOL)respondsToAction:(SEL)arg1 fromTask:(CDStruct_6ad76789)arg2;
 - (BOOL)respondsToSelector:(SEL)arg1;
 - (id)initWithView:(id)arg1 action:(SEL)arg2 validateMenuItem:(CDStruct_e99345e9)arg3 validateUserInterfaceItem:(CDStruct_e99345e9)arg4 targetIdentifier:(id)arg5;
 - (void)dealloc;
+- (oneway void)release;
+- (void)__vbSuperRelease;
+- (id)retain;
+- (void)__vbWithLockPerform:(CDUnknownBlockType)arg1;
+- (struct os_unfair_lock_s *)retainReleaseLock;
 
 @end
 

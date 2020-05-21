@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSURLSessionDelegate.h"
 #import "NSURLSessionDownloadDelegate.h"
 
-@class NSDictionary, NSError, NSString;
+@class NSDictionary, NSError, NSMutableData, NSString;
 
-@interface SMIncompatibleAppUpdater : NSObject <NSURLSessionDownloadDelegate>
+@interface SMIncompatibleAppUpdater : NSObject <NSURLSessionDelegate, NSURLSessionDownloadDelegate>
 {
     NSDictionary *_catalog;
     NSError *_error;
@@ -18,23 +19,30 @@
     BOOL _updateComplete;
     BOOL _updateSuccessful;
     BOOL _startedUpdate;
+    BOOL _appleEVVerified;
+    BOOL _requireEVValidation;
+    NSMutableData *_catalogData;
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property(retain) NSMutableData *catalogData; // @synthesize catalogData=_catalogData;
+@property BOOL requireEVValidation; // @synthesize requireEVValidation=_requireEVValidation;
+@property BOOL appleEVVerified; // @synthesize appleEVVerified=_appleEVVerified;
 @property BOOL startedUpdate; // @synthesize startedUpdate=_startedUpdate;
 @property(retain) NSString *downloadLocation; // @synthesize downloadLocation=_downloadLocation;
 @property(retain) NSError *error; // @synthesize error=_error;
 @property(retain) NSDictionary *catalog; // @synthesize catalog=_catalog;
 @property(readonly) BOOL updateSuccessful; // @synthesize updateSuccessful=_updateSuccessful;
 @property(readonly) BOOL updateComplete; // @synthesize updateComplete=_updateComplete;
-- (void).cxx_destruct;
 - (void)installClientDidFinish:(id)arg1;
 - (void)installClient:(id)arg1 didFailWithError:(id)arg2;
 - (void)installClientDidBegin:(id)arg1;
+- (void)URLSession:(id)arg1 didReceiveChallenge:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
+- (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3;
 - (void)URLSession:(id)arg1 downloadTask:(id)arg2 didFinishDownloadingToURL:(id)arg3;
 - (id)_softwareUpdateCatalogURL;
-- (id)overriddenCatalogURL;
 - (id)_productDictForCompatibilityUpdate:(id)arg1 fromCatalog:(id)arg2;
 - (void)_installUpdatePackage;
 - (void)_finishedLoadingCatalog:(id)arg1;

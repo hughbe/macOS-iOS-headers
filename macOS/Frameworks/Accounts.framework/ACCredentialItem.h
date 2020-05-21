@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "ACProtobufCoding.h"
 #import "NSSecureCoding.h"
 
 @class ACAccountStore, NSDate, NSMutableSet, NSSet, NSString, NSURL;
 
-@interface ACCredentialItem : NSObject <NSSecureCoding>
+@interface ACCredentialItem : NSObject <NSSecureCoding, ACProtobufCoding>
 {
     NSString *_accountIdentifier;
     NSDate *_expirationDate;
@@ -22,9 +23,9 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property(readonly) NSSet *dirtyProperties; // @synthesize dirtyProperties=_dirtyProperties;
 @property __weak ACAccountStore *accountStore; // @synthesize accountStore=_accountStore;
-- (void).cxx_destruct;
 - (void)clearDirtyProperties;
 - (void)_markPropertyDirty:(id)arg1;
 - (void)markAllPropertiesDirty;
@@ -35,16 +36,26 @@
 - (void)setServiceName:(id)arg1;
 @property(readonly) NSString *serviceName;
 @property(retain) NSDate *expirationDate;
+@property(readonly, getter=isExpired) BOOL expired;
 - (void)setAccountIdentifier:(id)arg1;
 @property(readonly) NSString *accountIdentifier;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)fullDescription;
-- (id)description;
+@property(readonly, copy) NSString *description;
+- (id)_encodeProtobufData;
+- (id)_encodeProtobuf;
+- (id)_initWithProtobufData:(id)arg1;
+- (id)_initWithProtobuf:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithAccountIdentifier:(id)arg1 serviceName:(id)arg2;
 - (id)initWithManagedCredentialItem:(id)arg1;
 - (id)initWithManagedCredentialItem:(id)arg1 accountStore:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

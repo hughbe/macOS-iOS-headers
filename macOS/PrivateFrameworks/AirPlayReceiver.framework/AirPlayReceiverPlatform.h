@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
+@class DEExtension, NSString;
+
 __attribute__((visibility("hidden")))
 @interface AirPlayReceiverPlatform : NSObject
 {
-    struct AirPlayReceiverUIPrivate *_ui;
-    struct AirPlayReceiverServerPrivate *_server;
+    // Error parsing type: ^{AirPlayReceiverServerPrivate={__CFRuntimeBase=QAQ}^v@ii^{OpaqueAPAdvertiser}CC^{HTTPServerPrivate}@^{HTTPServerPrivate}[16C]fCiCC@IQ^{OpaqueAPReceiverSystemInfo}CC^{__CFDictionary}^{__CFDictionary}^{__CFDictionary}IiI^{APReceiverSessionManagerOpaque}^{OpaqueFigValeria}^?^{__CFString}^{__CFString}CCCCCCC}, name: _server
     int _uiErrorNotifyToken;
-    int _uiNotifyTokens[24];
     unsigned char _playbackPrevented;
     int _playbackAllowNotifyToken;
     int _playbackPreventNotifyToken;
@@ -22,7 +22,19 @@ __attribute__((visibility("hidden")))
     int _systemSampleRate;
     unsigned char _voiceForSiri;
     unsigned char _voiceForTelephony;
+    unsigned char _isMuted;
+    float _volumeSliderValueBeforeMute;
+    DEExtension *_wifiDiagnosticExtension;
+    NSString *_wifiDECaptureUUID;
+    unsigned long long _stalledSessionCount;
+    unsigned char _isAmbientAudioPlaying;
+    unsigned char _isMediaAudioPlaying;
+    unsigned char _isVideoPlaying;
 }
+
+@property(nonatomic) unsigned char isVideoPlaying; // @synthesize isVideoPlaying=_isVideoPlaying;
+@property(nonatomic) unsigned char isMediaAudioPlaying; // @synthesize isMediaAudioPlaying=_isMediaAudioPlaying;
+@property(nonatomic) unsigned char isAmbientAudioPlaying; // @synthesize isAmbientAudioPlaying=_isAmbientAudioPlaying;
 
 @end
 

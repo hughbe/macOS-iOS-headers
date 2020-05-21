@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class CNAutocompleteResultTable, CNAutocompleteStore, NSArray, NSLayoutConstraint, NSScrollView, NSString, NSView;
+@class CNAutocompleteResultTableView, CNAutocompleteStore, NSArray, NSLayoutConstraint, NSScrollView, NSString, NSView;
 
 @interface CNAutocompleteResultWindowBase : NSWindow <NSTableViewDelegate, NSTableViewDataSource>
 {
@@ -18,7 +18,7 @@
     NSArray *_results;
     CNAutocompleteStore *_store;
     NSView *_headerView;
-    CNAutocompleteResultTable *_table;
+    CNAutocompleteResultTableView *_table;
     NSScrollView *_scrollView;
     NSLayoutConstraint *_maxScrollHeight;
     NSLayoutConstraint *_scrollHeight;
@@ -28,19 +28,19 @@
     long long _maxResults;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) long long maxResults; // @synthesize maxResults=_maxResults;
 @property(nonatomic) long long maxDisplayedRows; // @synthesize maxDisplayedRows=_maxDisplayedRows;
-@property(retain) NSLayoutConstraint *maxWindowWidth; // @synthesize maxWindowWidth=_maxWindowWidth;
-@property(retain) NSLayoutConstraint *windowWidth; // @synthesize windowWidth=_windowWidth;
-@property(retain) NSLayoutConstraint *scrollHeight; // @synthesize scrollHeight=_scrollHeight;
-@property(retain) NSLayoutConstraint *maxScrollHeight; // @synthesize maxScrollHeight=_maxScrollHeight;
-@property(retain) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
-@property(retain) CNAutocompleteResultTable *table; // @synthesize table=_table;
-@property(retain) NSView *headerView; // @synthesize headerView=_headerView;
-@property BOOL allowsEmptySelection; // @synthesize allowsEmptySelection=_allowsEmptySelection;
-@property(retain) CNAutocompleteStore *store; // @synthesize store=_store;
+@property(retain, nonatomic) NSLayoutConstraint *maxWindowWidth; // @synthesize maxWindowWidth=_maxWindowWidth;
+@property(retain, nonatomic) NSLayoutConstraint *windowWidth; // @synthesize windowWidth=_windowWidth;
+@property(retain, nonatomic) NSLayoutConstraint *scrollHeight; // @synthesize scrollHeight=_scrollHeight;
+@property(retain, nonatomic) NSLayoutConstraint *maxScrollHeight; // @synthesize maxScrollHeight=_maxScrollHeight;
+@property(retain, nonatomic) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
+@property(retain, nonatomic) CNAutocompleteResultTableView *table; // @synthesize table=_table;
+@property(retain, nonatomic) NSView *headerView; // @synthesize headerView=_headerView;
+@property(nonatomic) BOOL allowsEmptySelection; // @synthesize allowsEmptySelection=_allowsEmptySelection;
+@property(retain, nonatomic) CNAutocompleteStore *store; // @synthesize store=_store;
 @property(retain, nonatomic) NSArray *results; // @synthesize results=_results;
-- (void).cxx_destruct;
 - (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
 - (long long)numberOfRowsInTableView:(id)arg1;
@@ -53,6 +53,7 @@
 - (id)tableView;
 - (void)moveDown;
 - (void)moveUp;
+- (unsigned long long)visibleRowCount;
 - (void)updateSizes;
 - (long long)selectedRow;
 - (id)displayStringForSelectedResult;
@@ -62,8 +63,9 @@
 - (void)setWidth:(double)arg1;
 - (void)setMaxWidth:(double)arg1;
 - (void)setMaxHeight:(double)arg1;
-@property __weak id <CNAutocompleteResultWindowDelegate> autocompleteDelegate;
+@property(nonatomic) __weak id <CNAutocompleteResultWindowDelegate> autocompleteDelegate;
 - (void)setup;
+- (float)_backdropBleedAmount;
 - (double)defaultWindowWidth;
 - (id)init;
 

@@ -12,10 +12,14 @@
 @interface W5PowerStatus : NSObject <NSCopying, NSSecureCoding>
 {
     int _batteryWarningLevel;
+    unsigned int _powerStateCaps;
     long long _powerSourceType;
+    double _internalBatteryLevel;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(nonatomic) unsigned int powerStateCaps; // @synthesize powerStateCaps=_powerStateCaps;
+@property(nonatomic) double internalBatteryLevel; // @synthesize internalBatteryLevel=_internalBatteryLevel;
 @property(nonatomic) int batteryWarningLevel; // @synthesize batteryWarningLevel=_batteryWarningLevel;
 @property(nonatomic) long long powerSourceType; // @synthesize powerSourceType=_powerSourceType;
 - (id)initWithCoder:(id)arg1;

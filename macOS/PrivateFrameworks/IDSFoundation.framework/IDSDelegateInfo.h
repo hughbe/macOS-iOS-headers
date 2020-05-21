@@ -13,9 +13,9 @@
     NSObject<OS_dispatch_queue> *_queue;
 }
 
+- (void).cxx_destruct;
 - (void)setQueue:(id)arg1;
 - (id)queue;
-- (void)dealloc;
 
 @end
 

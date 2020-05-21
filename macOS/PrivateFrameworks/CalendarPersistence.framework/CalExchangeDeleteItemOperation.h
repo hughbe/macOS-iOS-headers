@@ -21,6 +21,7 @@
     BOOL _shouldSendCancellation;
 }
 
++ (BOOL)supportsSecureCoding;
 - (id)messageTracerUUID;
 - (id)messageTracerName;
 - (id)initWithCoder:(id)arg1;

@@ -6,7 +6,7 @@
 
 #import "NSCollectionViewDataSource.h"
 
-@class NSCollectionView, NSCollectionViewItem, NSIndexPath;
+@class NSCollectionView, NSCollectionViewItem, NSIndexPath, NSView;
 
 @protocol NSCollectionViewDataSourcePrivate <NSCollectionViewDataSource>
 
@@ -14,5 +14,6 @@
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)arg1 itemForRepresentedObject:(id)arg2 atIndexPath:(NSIndexPath *)arg3;
 - (id)collectionView:(NSCollectionView *)arg1 child:(long long)arg2 ofRepresentedObject:(id)arg3;
 - (long long)collectionView:(NSCollectionView *)arg1 numberOfChildrenOfRepresentedObject:(id)arg2;
+- (NSView *)rubberbandViewForCollectionView:(NSCollectionView *)arg1;
 @end
 

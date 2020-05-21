@@ -8,16 +8,18 @@
 
 #import "ABCardViewMultiValueConverter.h"
 
-@class ABCNContact, NSString;
+@class CNContact, NSString;
 
-__attribute__((visibility("hidden")))
 @interface ABCardViewAKSingleValueConverter : NSObject <ABCardViewMultiValueConverter>
 {
-    ABCNContact *_person;
+    CNContact *_contact;
     id <ABCardViewProperty> _property;
 }
 
-- (id)people;
+- (void).cxx_destruct;
+@property(retain, nonatomic) id <ABCardViewProperty> property; // @synthesize property=_property;
+@property(retain, nonatomic) CNContact *contact; // @synthesize contact=_contact;
+- (id)contacts;
 - (id)identifiersOfPeopleWithValue:(id)arg1;
 - (void)setPropertiesOnMultiValue:(id)arg1;
 - (BOOL)doesMultiValue:(id)arg1 containValueSuperiorTo:(id)arg2;
@@ -25,8 +27,7 @@ __attribute__((visibility("hidden")))
 - (void)addValueFrom:(id)arg1 toMultiValue:(id)arg2;
 - (id)multiValueFromValue:(id)arg1;
 - (id)valueFromMultiValue:(id)arg1;
-- (void)dealloc;
-- (id)initWithPerson:(id)arg1 property:(id)arg2;
+- (id)initWithContact:(id)arg1 property:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

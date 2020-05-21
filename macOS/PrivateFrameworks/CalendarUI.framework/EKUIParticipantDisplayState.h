@@ -10,6 +10,7 @@
 {
 }
 
++ (id)errorStatusIconWithColor:(id)arg1;
 + (id)malformedStatusSelectedIcon;
 + (id)malformedStatusIcon;
 + (id)unknownStatusSelectedIcon;
@@ -27,8 +28,9 @@
 + (int)displayImageStateForParticipant:(id)arg1 event:(id)arg2 freeBusyType:(int)arg3;
 + (id)displayImageForParticipant:(id)arg1 event:(id)arg2 freeBusyType:(int)arg3 selected:(BOOL)arg4;
 + (id)displayImageForSharee:(id)arg1 selected:(BOOL)arg2;
-+ (void)setupStatusIconAccessibility;
-+ (void)initializeStatusIcons;
++ (void)setImageIconForType:(unsigned long long)arg1 selected:(BOOL)arg2;
++ (id)imageForIconType:(unsigned long long)arg1 selected:(BOOL)arg2;
++ (void)initializeCache;
 + (void)initialize;
 
 @end

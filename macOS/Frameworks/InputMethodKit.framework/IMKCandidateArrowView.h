@@ -6,22 +6,26 @@
 
 #import <InputMethodKit/IMKUIView.h>
 
-@class IMKCandidateController, NSImage;
+@class NSImage;
 
 @interface IMKCandidateArrowView : IMKUIView
 {
-    IMKCandidateController *_candidateController;
-    NSImage *_arrowImage;
+    NSImage *_arrowImageUp;
+    NSImage *_arrowImageDown;
+    SEL _action;
     BOOL _pointsUpwards;
+    id _target;
     BOOL _visible;
 }
 
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
 @property(nonatomic) BOOL visible; // @synthesize visible=_visible;
+@property(nonatomic) id target; // @synthesize target=_target;
 @property(nonatomic) BOOL pointsUpwards; // @synthesize pointsUpwards=_pointsUpwards;
-@property(retain, nonatomic) NSImage *arrowImage; // @synthesize arrowImage=_arrowImage;
+@property(nonatomic) SEL action; // @synthesize action=_action;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)mouseUp:(id)arg1;
+@property(readonly, retain, nonatomic) NSImage *arrowImageDown; // @synthesize arrowImageDown=_arrowImageDown;
+@property(readonly, retain, nonatomic) NSImage *arrowImageUp; // @synthesize arrowImageUp=_arrowImageUp;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 properties:(id)arg2;
 

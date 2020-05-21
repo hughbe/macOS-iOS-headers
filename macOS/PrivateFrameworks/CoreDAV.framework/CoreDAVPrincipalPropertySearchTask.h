@@ -15,6 +15,7 @@
     NSDictionary *_extraAttributes;
 }
 
+- (void).cxx_destruct;
 @property(nonatomic) BOOL applyToPrincipalCollectionSet; // @synthesize applyToPrincipalCollectionSet=_applyToPrincipalCollectionSet;
 @property(retain, nonatomic) NSDictionary *extraAttributes; // @synthesize extraAttributes=_extraAttributes;
 @property(retain, nonatomic) NSSet *searchItems; // @synthesize searchItems=_searchItems;
@@ -22,7 +23,6 @@
 - (id)requestBody;
 - (id)httpMethod;
 - (id)initWithPropertySearches:(id)arg1 propertiesToFind:(id)arg2 atURL:(id)arg3 applyToPrincipalCollectionSet:(BOOL)arg4 extraAttributes:(id)arg5;
-- (void)dealloc;
 - (id)initWithPropertiesToFind:(id)arg1 atURL:(id)arg2;
 
 @end

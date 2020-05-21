@@ -18,11 +18,11 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (void).cxx_destruct;
 @property BOOL isPersistent; // @synthesize isPersistent=_isPersistent;
 @property BOOL isEnabled; // @synthesize isEnabled=_isEnabled;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

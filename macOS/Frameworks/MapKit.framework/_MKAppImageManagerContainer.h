@@ -8,6 +8,7 @@
 
 @class NSMutableData, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _MKAppImageManagerContainer : NSObject
 {
     CDUnknownBlockType _completionHandler;
@@ -15,10 +16,10 @@
     NSString *_urlString;
 }
 
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *urlString; // @synthesize urlString=_urlString;
 @property(retain, nonatomic) NSMutableData *data; // @synthesize data=_data;
 @property(copy, nonatomic) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
-- (void).cxx_destruct;
 
 @end
 

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <AddressBook/ABBookUndoableCommand.h>
+#import "ABBookUndoableCommand.h"
 
 @class ABBookGroupCopyCommand, ABBookGroupDeleteCommand;
 
@@ -12,13 +12,17 @@
 {
     ABBookGroupCopyCommand *_copyCommand;
     ABBookGroupDeleteCommand *_deleteCommand;
+    BOOL ignoresGuardianRestrictions;
 }
 
+- (void).cxx_destruct;
+- (void)setIgnoresGuardianRestrictions:(BOOL)arg1;
+- (BOOL)ignoresGuardianRestrictions;
 - (void)executeRedo;
 - (void)executeUndo;
 - (void)execute;
 - (id)actionName;
-- (void)dealloc;
+- (BOOL)groupBelongsToGuardianRestrictedContainer;
 - (id)initWithCopyCommand:(id)arg1 deleteCommand:(id)arg2;
 
 @end

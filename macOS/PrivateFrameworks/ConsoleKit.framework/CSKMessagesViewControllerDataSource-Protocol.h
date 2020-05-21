@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class CKMessage, CSKMessagesViewController, NSArray, NSIndexSet;
+@class CSKMessage, CSKMessagesViewController, NSArray, NSIndexSet;
 
 @protocol CSKMessagesViewControllerDataSource <NSObject>
 - (unsigned long long)numberOfRowsInMessagesViewController:(CSKMessagesViewController *)arg1;
 - (NSArray *)messagesViewController:(CSKMessagesViewController *)arg1 messagesAtRows:(NSIndexSet *)arg2;
-- (CKMessage *)messagesViewController:(CSKMessagesViewController *)arg1 messageAtRow:(unsigned long long)arg2;
+- (CSKMessage *)messagesViewController:(CSKMessagesViewController *)arg1 messageAtRow:(unsigned long long)arg2;
 @end
 

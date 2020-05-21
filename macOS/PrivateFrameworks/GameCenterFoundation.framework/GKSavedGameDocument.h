@@ -8,7 +8,7 @@
 
 #import "NSFilePresenter.h"
 
-@class NSDate, NSFileVersion, NSOperationQueue, NSString, NSURL;
+@class NSDate, NSFileVersion, NSOperationQueue, NSSet, NSString, NSURL;
 
 @interface GKSavedGameDocument : NSObject <NSFilePresenter>
 {
@@ -52,6 +52,7 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSSet *observedPresentedItemUbiquityAttributes;
 @property(readonly, copy) NSURL *primaryPresentedItemURL;
 @property(readonly) Class superclass;
 

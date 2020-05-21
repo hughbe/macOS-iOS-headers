@@ -17,12 +17,14 @@
 @property(readonly, nonatomic) NSURL *URL;
 @property(readonly, nonatomic) NSString *comment;
 - (BOOL)isCurrentUser;
+- (NSDate *)proposedEndDateUnadjustedFromUTC;
 - (NSDate *)proposedStartDateUnadjustedFromUTC;
 - (NSString *)proposalStatusString;
 - (NSString *)inviterNameString;
 - (int)type;
 - (BOOL)scheduleForceSend;
-- (NSString *)email;
+- (NSString *)phoneNumber;
+- (NSString *)emailAddress;
 - (NSString *)role;
 - (NSDate *)statusModifiedDate;
 - (NSString *)status;

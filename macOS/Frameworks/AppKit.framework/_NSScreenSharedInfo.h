@@ -6,20 +6,36 @@
 
 #import "NSObject.h"
 
+@class NSArray, NSCGSDock;
+
 __attribute__((visibility("hidden")))
 @interface _NSScreenSharedInfo : NSObject
 {
-    BOOL _dockIsHidden;
-    struct CGRect _dockRect;
-    unsigned int _dockOrientation;
+    NSArray *_uniqueDisplays;
+    NSCGSDock *_dock;
     double _menuBarHeight;
+    unsigned int _systemUIMode;
+    unsigned int _systemUIOptions;
+    BOOL _isUpdating;
 }
 
+@property(readonly) unsigned int systemUIOptions; // @synthesize systemUIOptions=_systemUIOptions;
+@property(readonly) unsigned int systemUIMode; // @synthesize systemUIMode=_systemUIMode;
 @property(readonly) double menuBarHeight; // @synthesize menuBarHeight=_menuBarHeight;
-@property(readonly) unsigned int dockOrientation; // @synthesize dockOrientation=_dockOrientation;
+@property(readonly, copy) NSArray *uniqueDisplays; // @synthesize uniqueDisplays=_uniqueDisplays;
+- (void)dealloc;
+- (id)description;
+- (void)_finishUpdating;
+- (id)_copyForUpdating;
+- (void)_setSystemUIOptions:(unsigned int)arg1;
+- (void)_setSystemUIMode:(unsigned int)arg1;
 - (void)_setMenuBarHeight:(double)arg1;
-@property(readonly) struct CGRect dockRect; // @dynamic dockRect;
-- (void)_setDockRect:(struct CGRect)arg1 orientation:(unsigned int)arg2 isHidden:(BOOL)arg3;
+@property(readonly) unsigned int dockOrientation;
+@property(readonly) struct CGRect dockRect;
+@property(readonly) BOOL dockIsHidden;
+@property(retain, setter=_setDock:) NSCGSDock *_dock;
+- (void)_setUniqueDisplays:(id)arg1;
+- (id)_initForUpdating;
 - (id)init;
 
 @end

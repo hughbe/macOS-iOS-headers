@@ -6,6 +6,7 @@
 
 #import "NSPopUpButtonCell.h"
 
+__attribute__((visibility("hidden")))
 @interface SLXShareLocationPopUpButtonCell : NSPopUpButtonCell
 {
 }

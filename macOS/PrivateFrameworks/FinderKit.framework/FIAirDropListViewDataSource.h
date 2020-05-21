@@ -13,20 +13,21 @@
 __attribute__((visibility("hidden")))
 @interface FIAirDropListViewDataSource : FI_TTableViewDataSource <TCoalescingNodeObserverProtocol>
 {
-    struct unique_ptr<TCoalescingNodeObserverCocoaBridge, std::__1::default_delete<TCoalescingNodeObserverCocoaBridge>> _nodeObserver;
-    struct TNSRef<FIAirDropListViewItem *, void> _hoverItem;
-    struct TNSRef<CNContactStore *, void> _contactStore;
+    struct shared_ptr<TCoalescingNodeObserverCocoaBridge> _nodeObserver;
+    struct TNSRef<CNContactStore, void> _contactStore;
+    int _animatingRefresh;
+    struct TFENode _hoveringOver;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property struct TFENode hoveringOver; // @synthesize hoveringOver=_hoveringOver;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 openChildListUpdated:(const struct TFENode *)arg2;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 openSyncCompleted:(const struct TFENode *)arg2;
+- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const vector_614ab7ad *)arg2 inObservedNode:(const struct TFENode *)arg3;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesDeleted:(const struct TFENodeVector *)arg2 fromObservedNode:(const struct TFENode *)arg3;
-- (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesChanged:(const struct TFENodeUpdateList *)arg2 inObservedNode:(const struct TFENode *)arg3;
 - (void)coalescingNodeObserver:(struct TCoalescingNodeObserver *)arg1 nodesAdded:(const struct TFENodeVector *)arg2 toObservedNode:(const struct TFENode *)arg3;
-- (_Bool)canScroll;
-- (void)setHoverRow:(long long)arg1;
+- (id)listViewItemForPersonNode:(struct TFENode)arg1;
 - (void)refresh;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;

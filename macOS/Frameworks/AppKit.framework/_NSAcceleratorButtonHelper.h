@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSCell<_NSAcceleratorCell>, NSTimer;
+@class NSCell<_NSAcceleratorCell>, NSTimer, NSValue;
 
 __attribute__((visibility("hidden")))
 @interface _NSAcceleratorButtonHelper : NSObject
 {
-    NSCell<_NSAcceleratorCell> *_cellStorage;
+    NSValue *_cellStorage;
     NSTimer *_timer;
     double _lastTime;
     double _accumulatedActions;
@@ -20,7 +20,6 @@ __attribute__((visibility("hidden")))
     float _minRate;
     float _maxRate;
     float _currentRate;
-    BOOL _weakCellHelperFlag;
     BOOL _satisfiedInitialDelay;
 }
 

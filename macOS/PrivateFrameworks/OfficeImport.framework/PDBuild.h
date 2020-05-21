@@ -15,13 +15,14 @@ __attribute__((visibility("hidden")))
     OADDrawable *mDrawable;
 }
 
+- (void).cxx_destruct;
 - (id)description;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)setDrawable:(id)arg1;
 - (id)drawable;
 - (void)setIsAnimateBackground:(BOOL)arg1;
 - (BOOL)isAnimateBackground;
-- (void)dealloc;
 - (id)init;
 
 @end

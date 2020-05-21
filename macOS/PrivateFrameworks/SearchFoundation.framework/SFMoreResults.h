@@ -6,22 +6,34 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
+#import "SFMoreResults.h"
 
-@class NSString;
+@class NSData, NSDictionary, NSString;
 
-@interface SFMoreResults : NSObject <NSSecureCoding>
+@interface SFMoreResults : NSObject <SFMoreResults, NSSecureCoding, NSCopying>
 {
     NSString *_label;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(copy, nonatomic) NSString *label; // @synthesize label=_label;
 - (void).cxx_destruct;
+@property(copy, nonatomic) NSString *label; // @synthesize label=_label;
+- (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) NSData *jsonData;
+@property(readonly, nonatomic) NSDictionary *dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)loadSearchResultsWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)loadSearchResultsWithCompletionAndErrorHandler:(CDUnknownBlockType)arg1;
+- (id)initWithProtobuf:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

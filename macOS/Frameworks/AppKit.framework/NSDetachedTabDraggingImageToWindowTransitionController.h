@@ -26,6 +26,8 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (void)_updateAnimationWithProgress:(float)arg1;
 - (void)_startAnimation;
+- (void)_startNonFullScreenAnimation;
+- (void)_startFullScreenAnimation;
 - (void)_setUpWindow;
 - (void)_setUpWindowAnimationEndFrame;
 - (void)_setUpWindowAnimationStartFrameWithMiniWindowWidth:(double)arg1;

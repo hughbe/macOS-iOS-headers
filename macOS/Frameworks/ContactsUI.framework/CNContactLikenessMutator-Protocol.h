@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class CNFuture, PRLikeness;
+@class CNFuture, CNLikeness;
 
 @protocol CNContactLikenessMutator <NSObject>
-- (CNFuture *)setLikenessAsCurrent:(PRLikeness *)arg1;
-- (CNFuture *)deleteLikeness:(PRLikeness *)arg1;
-- (CNFuture *)saveLikeness:(PRLikeness *)arg1;
+- (CNFuture *)setLikenessAsCurrent:(CNLikeness *)arg1;
+- (CNFuture *)deleteLikeness:(CNLikeness *)arg1;
+- (CNFuture *)updateLikeness:(CNLikeness *)arg1;
+- (CNFuture *)addNewLikeness:(CNLikeness *)arg1;
 @end
 

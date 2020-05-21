@@ -5,7 +5,8 @@
 //
 
 @protocol WRMClientDelegate
-- (void)setWRMNotification:(CDStruct_d2860d30 *)arg1;
+- (void)setPreWarmState:(BOOL)arg1;
+- (void)setWRMNotification:(CDStruct_0693755d *)arg1;
 - (void)setWRMMetricConfig:(CDStruct_69d7cc99 *)arg1;
 @end
 

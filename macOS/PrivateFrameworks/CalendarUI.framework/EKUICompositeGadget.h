@@ -6,22 +6,22 @@
 
 #import <CalendarUI/EKUIGadget.h>
 
-@class EKViewController, NSString, NSView;
+@class EKUICompositeView, EKViewController, NSString;
 
 @interface EKUICompositeGadget : EKUIGadget
 {
     BOOL _isExpanded;
+    EKUICompositeView *_view;
     EKViewController *_viewController;
-    NSView *_view;
     NSString *_uuid;
     id <EKUILayoutItem> _parentItem;
 }
 
+- (void).cxx_destruct;
 @property __weak id <EKUILayoutItem> parentItem; // @synthesize parentItem=_parentItem;
 @property(retain) NSString *uuid; // @synthesize uuid=_uuid;
-@property(retain) NSView *view; // @synthesize view=_view;
 @property __weak EKViewController *viewController; // @synthesize viewController=_viewController;
-- (void).cxx_destruct;
+@property(retain) EKUICompositeView *view; // @synthesize view=_view;
 - (void)enumerateSubitemsUsingBlock:(CDUnknownBlockType)arg1;
 - (void)updateKeyViewLoop;
 - (BOOL)needsExpansion;

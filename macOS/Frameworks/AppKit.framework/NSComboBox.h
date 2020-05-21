@@ -39,8 +39,7 @@
 - (void)scrollItemAtIndexToTop:(long long)arg1;
 - (void)noteNumberOfItemsChanged;
 - (void)reloadData;
-- (void)setDelegate:(id)arg1;
-- (id)delegate;
+@property __weak id <NSComboBoxDelegate> delegate;
 @property BOOL usesDataSource;
 @property id <NSComboBoxDataSource> dataSource;
 @property BOOL completes;

@@ -20,14 +20,14 @@
 + (id)recurrenceEndWithEndDate:(id)arg1;
 @property(readonly) unsigned long long occurrenceCount; // @synthesize occurrenceCount=_occurrenceCount;
 @property(readonly) NSDate *endDate; // @synthesize endDate=_endDate;
+- (id)initWithOccurrenceCount:(unsigned long long)arg1;
+- (id)initWithEndDate:(id)arg1;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
 @property(readonly) BOOL usesEndDate;
-- (id)initWithOccurrenceCount:(unsigned long long)arg1;
-- (id)initWithEndDate:(id)arg1;
 
 @end
 

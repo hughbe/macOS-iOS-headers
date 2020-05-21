@@ -8,7 +8,7 @@
 
 #import "BRCTransfer.h"
 
-@class BRCItemID, BRCProgress, CKRecord, CKRecordID, NSNumber, NSString;
+@class BRCClientZone, BRCItemID, BRCProgress, CKRecord, CKRecordID, NSNumber, NSString;
 
 __attribute__((visibility("hidden")))
 @interface BRCDownload : NSObject <BRCTransfer>
@@ -23,8 +23,11 @@ __attribute__((visibility("hidden")))
     BOOL _progressPublished;
     CKRecordID *_recordID;
     unsigned long long _doneSize;
+    BRCClientZone *_clientZone;
 }
 
+- (void).cxx_destruct;
+@property(readonly, nonatomic) BRCClientZone *clientZone; // @synthesize clientZone=_clientZone;
 @property(readonly, nonatomic) NSString *stageID; // @synthesize stageID=_stageID;
 @property(readonly, nonatomic) NSString *etag; // @synthesize etag=_etag;
 @property(nonatomic) BOOL progressPublished; // @synthesize progressPublished=_progressPublished;
@@ -34,7 +37,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) CKRecord *record; // @synthesize record=_record;
 @property(readonly, nonatomic) CKRecordID *recordID; // @synthesize recordID=_recordID;
 @property(readonly, nonatomic) BRCItemID *itemID; // @synthesize itemID=_itemID;
-- (void).cxx_destruct;
+- (void)dealloc;
 - (id)initWithDocument:(id)arg1 stageID:(id)arg2;
 @property(retain, nonatomic) CKRecord *secondaryRecord;
 @property(readonly, nonatomic) CKRecordID *secondaryRecordID;

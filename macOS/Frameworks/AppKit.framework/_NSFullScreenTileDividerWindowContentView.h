@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
     BOOL _trackedInArea;
     BOOL _needsLiveResizeCleanup;
     unsigned long long _liveResizeOldPresentationOptions;
+    unsigned long long _liveResizeDragPresentationOptions;
     _NSFullScreenTileDividerWindow *_liveResizeDividerWindow;
     NSAlignmentFeedbackFilter *_liveResizeAlignmentFilter;
     struct CGPoint _liveResizeLastMouse;
@@ -27,11 +28,14 @@ __attribute__((visibility("hidden")))
     double _liveResizeLastOriginX;
 }
 
++ (unsigned long long)optionsForLiveResize;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
 - (void)updateTrackingAreas;
 - (void)cleanupLiveResize;
 - (void)performDragOnMouseDown:(id)arg1;
+- (struct CGPoint)eventLocationRelativeToTileDivider:(id)arg1;
+- (double)dividerOriginX;
 - (void)performDoubleClickResize:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (id)resizeCursor;

@@ -6,6 +6,7 @@
 
 #import <AppKit/NSColor.h>
 
+__attribute__((visibility("hidden")))
 @interface NSCalibratedWhiteColor : NSColor
 {
     double whiteComponent;
@@ -13,10 +14,8 @@
     struct CGColor *_cachedCGColor;
 }
 
-+ (id)_cachedLookupWithWhite:(double)arg1 alpha:(double)arg2;
 + (id)newWithCoder:(id)arg1 zone:(struct _NSZone *)arg2;
 - (void)encodeWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1 colorSpaceCode:(BOOL)arg2;
 - (Class)classForCoder;
 - (BOOL)isUniform;
 - (unsigned long long)hash;
@@ -24,6 +23,8 @@
 - (id)description;
 - (id)colorSpace;
 - (id)colorUsingColorSpace:(id)arg1;
+- (id)colorUsingType:(long long)arg1;
+- (long long)type;
 - (id)colorSpaceName;
 - (id)colorUsingColorSpaceName:(id)arg1 device:(id)arg2;
 - (void)setStroke;

@@ -8,24 +8,31 @@
 
 #import "NSCopying.h"
 
-@class NSString, _MRNowPlayingInfoProtobuf, _MRPlaybackQueueContextProtobuf, _MRPlaybackQueueProtobuf, _MRSupportedCommandsProtobuf;
+@class NSString, _MRNowPlayingInfoProtobuf, _MRNowPlayingPlayerPathProtobuf, _MRPlaybackQueueCapabilitiesProtobuf, _MRPlaybackQueueProtobuf, _MRPlaybackQueueRequestProtobuf, _MRSupportedCommandsProtobuf;
 
 @interface _MRSetStateMessageProtobuf : PBCodable <NSCopying>
 {
+    double _playbackStateTimestamp;
     NSString *_displayID;
     NSString *_displayName;
     _MRNowPlayingInfoProtobuf *_nowPlayingInfo;
     _MRPlaybackQueueProtobuf *_playbackQueue;
-    _MRPlaybackQueueContextProtobuf *_playbackQueueContext;
-    unsigned int _playbackState;
+    _MRPlaybackQueueCapabilitiesProtobuf *_playbackQueueCapabilities;
+    int _playbackState;
+    _MRNowPlayingPlayerPathProtobuf *_playerPath;
+    _MRPlaybackQueueRequestProtobuf *_request;
     _MRSupportedCommandsProtobuf *_supportedCommands;
     struct {
+        unsigned int playbackStateTimestamp:1;
         unsigned int playbackState:1;
     } _has;
 }
 
-@property(retain, nonatomic) _MRPlaybackQueueContextProtobuf *playbackQueueContext; // @synthesize playbackQueueContext=_playbackQueueContext;
-@property(nonatomic) unsigned int playbackState; // @synthesize playbackState=_playbackState;
+- (void).cxx_destruct;
+@property(nonatomic) double playbackStateTimestamp; // @synthesize playbackStateTimestamp=_playbackStateTimestamp;
+@property(retain, nonatomic) _MRPlaybackQueueRequestProtobuf *request; // @synthesize request=_request;
+@property(retain, nonatomic) _MRNowPlayingPlayerPathProtobuf *playerPath; // @synthesize playerPath=_playerPath;
+@property(retain, nonatomic) _MRPlaybackQueueCapabilitiesProtobuf *playbackQueueCapabilities; // @synthesize playbackQueueCapabilities=_playbackQueueCapabilities;
 @property(retain, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(retain, nonatomic) NSString *displayID; // @synthesize displayID=_displayID;
 @property(retain, nonatomic) _MRPlaybackQueueProtobuf *playbackQueue; // @synthesize playbackQueue=_playbackQueue;
@@ -40,14 +47,19 @@
 - (BOOL)readFrom:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
-@property(readonly, nonatomic) BOOL hasPlaybackQueueContext;
+@property(nonatomic) BOOL hasPlaybackStateTimestamp;
+@property(readonly, nonatomic) BOOL hasRequest;
+@property(readonly, nonatomic) BOOL hasPlayerPath;
+@property(readonly, nonatomic) BOOL hasPlaybackQueueCapabilities;
+- (int)StringAsPlaybackState:(id)arg1;
+- (id)playbackStateAsString:(int)arg1;
 @property(nonatomic) BOOL hasPlaybackState;
+@property(nonatomic) int playbackState; // @synthesize playbackState=_playbackState;
 @property(readonly, nonatomic) BOOL hasDisplayName;
 @property(readonly, nonatomic) BOOL hasDisplayID;
 @property(readonly, nonatomic) BOOL hasPlaybackQueue;
 @property(readonly, nonatomic) BOOL hasSupportedCommands;
 @property(readonly, nonatomic) BOOL hasNowPlayingInfo;
-- (void)dealloc;
 
 @end
 

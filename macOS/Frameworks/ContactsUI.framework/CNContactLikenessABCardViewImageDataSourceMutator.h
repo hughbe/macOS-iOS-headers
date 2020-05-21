@@ -13,15 +13,18 @@
 @interface CNContactLikenessABCardViewImageDataSourceMutator : NSObject <CNContactLikenessMutator>
 {
     id <ABCardViewImageDataSource> _dataSource;
+    id <CNScheduler> _scheduler;
 }
 
 + (id)imageFromLikeness:(id)arg1;
-@property(retain, nonatomic) id <ABCardViewImageDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (void).cxx_destruct;
+@property(retain, nonatomic) id <CNScheduler> scheduler; // @synthesize scheduler=_scheduler;
+@property(retain, nonatomic) id <ABCardViewImageDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (id)setLikenessAsCurrent:(id)arg1;
 - (id)deleteLikeness:(id)arg1;
-- (id)saveLikeness:(id)arg1;
-- (id)initWithImageDataSource:(id)arg1;
+- (id)updateLikeness:(id)arg1;
+- (id)addNewLikeness:(id)arg1;
+- (id)initWithImageDataSource:(id)arg1 scheduler:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

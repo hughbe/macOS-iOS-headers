@@ -6,19 +6,18 @@
 
 #import "NSObject.h"
 
-@class ABCNPostalAddress;
+@class CNPostalAddress;
 
-__attribute__((visibility("hidden")))
 @interface ABAddressFieldValuePopulator : NSObject
 {
-    ABCNPostalAddress *_postalAddress;
+    CNPostalAddress *_postalAddress;
 }
 
-@property(readonly) ABCNPostalAddress *postalAddress; // @synthesize postalAddress=_postalAddress;
+- (void).cxx_destruct;
+@property(readonly) CNPostalAddress *postalAddress; // @synthesize postalAddress=_postalAddress;
 - (void)populateAddressFields:(id)arg1;
 - (id)valueForComponentKeypath:(id)arg1;
 - (id)cardViewTagToValueKeypathMap;
-- (void)dealloc;
 - (id)initWithPostalAddress:(id)arg1;
 
 @end

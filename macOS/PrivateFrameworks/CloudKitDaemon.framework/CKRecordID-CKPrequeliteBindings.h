@@ -11,7 +11,7 @@
 @class NSString;
 
 @interface CKRecordID (CKPrequeliteBindings) <PQLValuable>
-+ (id)newFromSqliteValue:(struct Mem *)arg1;
++ (id)newFromSqliteStatement:(struct sqlite3_stmt *)arg1 atIndex:(int)arg2;
 - (void)sqliteBind:(struct sqlite3_stmt *)arg1 index:(int)arg2;
 
 // Remaining properties

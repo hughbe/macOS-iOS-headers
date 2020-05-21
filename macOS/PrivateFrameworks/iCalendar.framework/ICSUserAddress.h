@@ -33,6 +33,7 @@
 @property(nonatomic) ICSAlternateTimeProposal *alternateTimeProposal;
 @property(retain, nonatomic) NSString *x_apple_inviterName;
 @property(retain, nonatomic) NSString *likenessDataString;
+@property(retain, nonatomic) NSString *x_apple_telephone;
 @property(retain, nonatomic) NSString *email;
 @property(nonatomic) BOOL x_apple_self_invited;
 @property(retain, nonatomic) ICSDateValue *partstatModified;
@@ -46,12 +47,17 @@
 @property(nonatomic) int cutype;
 @property(retain, nonatomic) NSString *cn;
 - (id)displayName;
+- (id)phoneNumber;
 - (id)emailAddress;
+- (BOOL)isPhoneNumber;
+- (BOOL)hasPhoneNumber;
 - (BOOL)isHTTPSAddress;
 - (BOOL)isHTTPAddress;
 - (BOOL)isEmailAddress;
 - (BOOL)hasEmailAddress;
+- (id)initWithPhoneNumber:(id)arg1;
 - (id)initWithEmailAddress:(id)arg1;
+- (id)sanitizeAddressString:(id)arg1;
 - (id)initWithURL:(id)arg1;
 - (void)fixAddress;
 - (void)setURL:(id)arg1;

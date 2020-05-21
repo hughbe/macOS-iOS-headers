@@ -14,14 +14,15 @@
 }
 
 + (id)freeValuedPropertyWithName:(id)arg1;
++ (id)propertyWithName:(id)arg1 rangeMin:(unsigned long long)arg2 rangeMax:(unsigned long long)arg3;
 + (id)propertyWithName:(id)arg1 range:(struct _NSRange)arg2;
 + (id)propertyWithName:(id)arg1 range:(struct _NSRange)arg2 clampValues:(BOOL)arg3;
 + (id)propertyWithName:(id)arg1 enumMapping:(id)arg2 autoSanitizeValues:(BOOL)arg3;
 + (id)propertyWithName:(id)arg1 enumMapping:(id)arg2;
 + (id)propertyWithName:(id)arg1 possibleValues:(id)arg2 autoSanitizeValues:(BOOL)arg3;
 + (id)propertyWithName:(id)arg1 possibleValues:(id)arg2;
-@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 - (struct _NSRange)validRange;
 - (id)possibleValues;
 @property(readonly, nonatomic) NSString *longestValueString;

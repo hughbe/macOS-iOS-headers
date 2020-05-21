@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class MTKTextureIOBufferAllocator, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
 
 @interface MTKTextureLoader : NSObject
 {
@@ -15,15 +15,21 @@
     NSObject<OS_dispatch_queue> *_notifyQueue;
     NSObject<OS_dispatch_semaphore> *_loadSemaphore;
     id <MTLCommandQueue> _blitQueue;
-    MTKTextureIOBufferAllocator *_bufferAllocator;
+    id <TXRBufferAllocator> _bufferAllocator;
     id <MTLDevice> _device;
 }
 
 @property(readonly, nonatomic) id <MTLDevice> device; // @synthesize device=_device;
+- (id)newTextureWithName:(id)arg1 scaleFactor:(double)arg2 displayGamut:(long long)arg3 bundle:(id)arg4 options:(id)arg5 error:(id *)arg6;
 - (id)newTextureWithName:(id)arg1 scaleFactor:(double)arg2 bundle:(id)arg3 options:(id)arg4 error:(id *)arg5;
+- (void)newTextureWithName:(id)arg1 scaleFactor:(double)arg2 displayGamut:(long long)arg3 bundle:(id)arg4 options:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (void)newTextureWithName:(id)arg1 scaleFactor:(double)arg2 bundle:(id)arg3 options:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)newTexturesWithNames:(id)arg1 scaleFactor:(double)arg2 displayGamut:(long long)arg3 bundle:(id)arg4 options:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (void)newTexturesWithNames:(id)arg1 scaleFactor:(double)arg2 bundle:(id)arg3 options:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (void)newAsyncTextureWithNames:(id)arg1 scaleFactor:(double)arg2 bundle:(id)arg3 options:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (id)_newSyncTexturesFromTXRTextures:(id)arg1 labels:(id)arg2 options:(id)arg3 error:(id *)arg4;
+- (id)newTextureFromTXRTexture:(id)arg1 options:(id)arg2 error:(id *)arg3;
+- (id)newTexturesFromTXRTextures:(id)arg1 options:(id)arg2 error:(id *)arg3;
+- (void)_newAsyncTextureWithNames:(id)arg1 scaleFactor:(double)arg2 displayGamut:(long long)arg3 bundle:(id)arg4 options:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (id)newUploaderForOptions:(id)arg1;
 - (_Bool)validateGenerateMipmapsForPixelFormat:(unsigned long long)arg1 options:(id)arg2 error:(id *)arg3;
 - (void)_loadMDLTexture:(id)arg1 options:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;

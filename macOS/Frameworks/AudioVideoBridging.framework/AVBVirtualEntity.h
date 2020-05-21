@@ -30,6 +30,9 @@
     NSObject<OS_dispatch_queue> *_streamQueue;
     NSObject<OS_dispatch_queue> *_persistentQueue;
     NSObject<OS_dispatch_queue> *_timerQueue;
+    NSObject<OS_dispatch_queue> *_aecpQueue;
+    NSObject<OS_dispatch_queue> *_acmpQueue;
+    NSObject<OS_dispatch_queue> *_streamStopQueue;
     BOOL _published;
     BOOL _acquired;
     BOOL _persistentlyAcquired;
@@ -102,7 +105,9 @@
 - (unsigned char)setClockDomain:(id)arg1 toClockSourceIndex:(unsigned short)arg2;
 - (unsigned char)setAssociationID:(unsigned long long)arg1;
 - (unsigned char)setObjectOfType:(unsigned short)arg1 withIndex:(unsigned short)arg2 inConfiguration:(unsigned short)arg3 toName:(id)arg4 atIndex:(unsigned short)arg5;
+- (BOOL)_AECPDidReceiveResponse:(id)arg1 onInterface:(id)arg2;
 - (BOOL)AECPDidReceiveResponse:(id)arg1 onInterface:(id)arg2;
+- (BOOL)_AECPDidReceiveCommand:(id)arg1 onInterface:(id)arg2;
 - (BOOL)AECPDidReceiveCommand:(id)arg1 onInterface:(id)arg2;
 - (id)handleUnsupportedCommand:(id)arg1;
 - (id)handleGetStreamBackupCommand:(id)arg1;
@@ -142,7 +147,7 @@
 - (id)handleGetAVBInfoCommand:(id)arg1;
 - (id)handleDeregisterUnsolicitedNotfiicationCommand:(id)arg1;
 - (id)handleRegisterUnsolicitedNotificationCommand:(id)arg1;
-- (id)handleStopStreamingCommand:(id)arg1;
+- (id)handleStopStreamingCommand:(id)arg1 onInterface:(id)arg2;
 - (id)handleStartStreamingCommand:(id)arg1;
 - (id)handleGetMatrixCommand:(id)arg1;
 - (id)handleSetMatrixCommand:(id)arg1;
@@ -180,7 +185,9 @@
 - (void)sendInProgressResponse:(id)arg1 ifNotSent:(id)arg2 onInterface:(id)arg3;
 - (void)scheduleInProgressResponse:(id)arg1 ifNotSent:(id)arg2 onInterface:(id)arg3;
 - (void)sendUnsolicitedResponse:(id)arg1 isCommandResponse:(BOOL)arg2;
+- (BOOL)_ACMPDidReceiveResponse:(id)arg1 onInterface:(id)arg2;
 - (BOOL)ACMPDidReceiveResponse:(id)arg1 onInterface:(id)arg2;
+- (BOOL)_ACMPDidReceiveCommand:(id)arg1 onInterface:(id)arg2;
 - (BOOL)ACMPDidReceiveCommand:(id)arg1 onInterface:(id)arg2;
 - (BOOL)localAcquireEntityWithControllerEntityID:(unsigned long long)arg1 andMACAddress:(id)arg2;
 - (void)didUpdateProperites:(unsigned long long)arg1;

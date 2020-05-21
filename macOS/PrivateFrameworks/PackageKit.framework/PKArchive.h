@@ -6,10 +6,13 @@
 
 #import "NSObject.h"
 
+@class NSArray, NSData, NSDate, NSString;
+
 @interface PKArchive : NSObject
 {
 }
 
++ (id)archiveWithPath:(id)arg1 options:(id)arg2;
 + (id)archiveWithPath:(id)arg1;
 + (id)_allArchiveClasses;
 - (BOOL)closeArchive;
@@ -19,13 +22,16 @@
 - (BOOL)extractItemAtPath:(id)arg1 toPath:(id)arg2 error:(id *)arg3;
 - (id)dataForPath:(id)arg1;
 - (id)enumeratorAtPath:(id)arg1;
-- (id)archiveDigest;
-- (id)archivePath;
+- (id)computedArchiveDigestWithAlgorithm:(id)arg1;
+@property(readonly) NSString *archiveDigest;
+@property(readonly) NSData *archiveDigestData;
+@property(readonly) NSString *archivePath;
 - (id)description;
 - (BOOL)_extractFile:(id)arg1 toPath:(id)arg2 error:(id *)arg3;
+- (id)initForReadingFromPath:(id)arg1 options:(id)arg2;
 - (id)initForReadingFromPath:(id)arg1;
-- (id)archiveSignatureDate;
-- (id)archiveSignatures;
+@property(readonly) NSDate *archiveSignatureDate;
+@property(readonly) NSArray *archiveSignatures;
 
 @end
 

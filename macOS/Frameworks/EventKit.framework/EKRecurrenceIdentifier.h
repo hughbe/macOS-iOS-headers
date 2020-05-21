@@ -21,14 +21,15 @@
 + (id)_recurrenceIdentifierWithRecurrenceDate:(id)arg1 localUID:(id)arg2 stripTime:(BOOL)arg3 stripTimeZone:(BOOL)arg4;
 + (BOOL)_splitIdentifier:(id)arg1 intoLocalUID:(id *)arg2 recurrenceDate:(id *)arg3;
 + (const char *)_dateFormatStripTime:(BOOL)arg1 stripTimeZone:(BOOL)arg2;
++ (id)localUIDForIdentifierString:(id)arg1;
 + (id)_recurrenceIdentifierForOccurrence:(id)arg1;
 + (id)recurrenceIdentifierForItem:(id)arg1;
 + (id)recurrenceIdentifierWithString:(id)arg1;
 + (id)recurrenceIdentifierWithLocalUID:(id)arg1 recurrenceDate:(id)arg2;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSString *identifierString; // @synthesize identifierString=_identifierString;
 @property(retain) NSDate *recurrenceDateUnadjustedFromUTC; // @synthesize recurrenceDateUnadjustedFromUTC=_recurrenceDateUnadjustedFromUTC;
 @property(retain) NSString *localUID; // @synthesize localUID=_localUID;
-- (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;

@@ -6,21 +6,19 @@
 
 #import "NSObject.h"
 
-#import "NSURLConnectionDataDelegate.h"
-
-@class NSString, WBSCompletionQuery, WBSOpenSearchURLTemplate, WBSSearchSuggestionsFetcher;
+@class WBSCompletionQuery, WBSOpenSearchURLTemplate, WBSSearchSuggestionsFetcher;
 
 __attribute__((visibility("hidden")))
-@interface WebSearchSuggestionsFetcher : NSObject <NSURLConnectionDataDelegate>
+@interface WebSearchSuggestionsFetcher : NSObject
 {
     WBSSearchSuggestionsFetcher *_fetcher;
     id <WebSearchSuggestionsFetcherDelegate> _delegate;
     WBSCompletionQuery *_completionQuery;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) WBSCompletionQuery *completionQuery; // @synthesize completionQuery=_completionQuery;
 @property(nonatomic) __weak id <WebSearchSuggestionsFetcherDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)_stopLoading;
 - (void)_fetch;
 @property(readonly, nonatomic) WBSOpenSearchURLTemplate *suggestionsURLTemplate;
@@ -29,12 +27,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic, getter=isFetching) BOOL fetching;
 - (void)fetch;
 - (id)initWithSuggestionsURLTemplate:(id)arg1 delegate:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

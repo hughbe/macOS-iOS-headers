@@ -4,40 +4,45 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <GeoServices/GEOAbstractRequestResponseTicket.h>
 
 #import "GEOMapServiceCompletionTicket.h"
 
-@class GEOMapServiceTraits, GEOPDPlaceRequest, GEOPDPlaceResponse, NSDictionary, NSString;
+@class GEOAutocompleteSessionData, GEOMapServiceTraits, NSDictionary, NSString;
 
 __attribute__((visibility("hidden")))
-@interface _GEOPlaceSearchAutocompleteTicket : NSObject <GEOMapServiceCompletionTicket>
+@interface _GEOPlaceSearchAutocompleteTicket : GEOAbstractRequestResponseTicket <GEOMapServiceCompletionTicket>
 {
-    GEOPDPlaceRequest *_request;
-    GEOPDPlaceResponse *_response;
-    NSDictionary *_userInfo;
-    GEOMapServiceTraits *_traits;
-    BOOL _canceled;
     NSString *_searchQuery;
+    GEOAutocompleteSessionData *_sessionData;
 }
 
-@property(readonly, nonatomic, getter=isCanceled) BOOL canceled; // @synthesize canceled=_canceled;
-@property(readonly, nonatomic) GEOMapServiceTraits *traits; // @synthesize traits=_traits;
+- (void).cxx_destruct;
+@property(readonly, nonatomic, getter=_searchQuery) NSString *searchQuery; // @synthesize searchQuery=_searchQuery;
+- (BOOL)showAutocompleteClientSource;
+- (BOOL)autocompleteTopSectionIsQuerySuggestions;
+- (id)sortPriorityMapping;
+- (id)clientRankingModel;
+- (BOOL)shouldDisplayNoResults;
+- (BOOL)hasShouldDisplayNoResults;
+- (double)retainSearchTime;
 - (BOOL)isRapEnabled;
-- (void)applyToSuggestionEntry:(id)arg1 withAutocompleteSearchResultMuid:(unsigned long long)arg2;
+- (void)applyToSuggestionEntry:(id)arg1 withAutocompleteSearchResultIdentifier:(id)arg2;
 - (void)applyToSuggestionList:(id)arg1;
 - (BOOL)matchesFragment:(id)arg1;
-- (void)cancel;
+- (void)submitWithAutoCompletionHandler:(CDUnknownBlockType)arg1 auditToken:(id)arg2 networkActivity:(CDUnknownBlockType)arg3;
 - (void)submitWithAutoCompletionHandler:(CDUnknownBlockType)arg1 networkActivity:(CDUnknownBlockType)arg2;
-@property(readonly, nonatomic) NSDictionary *responseUserInfo;
-- (void)dealloc;
-- (id)initWithRequest:(id)arg1 traits:(id)arg2 searchQuery:(id)arg3;
+- (id)initWithRequest:(id)arg1 traits:(id)arg2 searchQuery:(id)arg3 sessionData:(id)arg4;
 
 // Remaining properties
+@property(readonly, nonatomic, getter=isCancelled) BOOL cancelled;
+@property(readonly, nonatomic) CDStruct_d1a7ebee dataRequestKind;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSDictionary *responseUserInfo;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic) GEOMapServiceTraits *traits;
 
 @end
 

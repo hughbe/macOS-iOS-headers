@@ -8,9 +8,9 @@
 
 @class NSString, _NSPeriodicInvoker;
 
+__attribute__((visibility("hidden")))
 @interface NSSpeechSynthesizerVars : NSObject
 {
-    id _delegate;
     struct SpeechChannelRecord *_speechChannel;
     _NSPeriodicInvoker *_speechFeedbackServicesInvoker;
     unsigned int _speechFeedbackServicesRef;
@@ -22,33 +22,26 @@
     BOOL _needsResyncWithDefaultVoice;
     BOOL _speechFinishedSuccessfully;
     BOOL _synthesizerIsRetained;
+    id <NSSpeechSynthesizerDelegate> _delegate;
 }
 
 + (id)voiceIdentifierForVoiceCreator:(unsigned int)arg1 voiceID:(unsigned int)arg2;
 + (BOOL)findVoiceByIdentifier:(id)arg1 returningCreator:(unsigned int *)arg2 returningID:(unsigned int *)arg3;
-- (id)speechFeedbackServicesInvoker;
-- (void)setSpeechFeedbackServicesInvoker:(id)arg1;
-- (BOOL)synthesizerIsRetained;
-- (void)setSynthesizerIsRetained:(BOOL)arg1;
-- (BOOL)speechFinishedSuccessfully;
-- (void)setSpeechFinishedSuccessfully:(BOOL)arg1;
-- (BOOL)needsResyncWithDefaultVoice;
-- (void)setNeedsResyncWithDefaultVoice:(BOOL)arg1;
-- (BOOL)speakingSpeechFeedbackServices;
-- (void)setSpeakingSpeechFeedbackServices:(BOOL)arg1;
-- (BOOL)usesFeedbackWindow;
-- (void)setUsesFeedbackWindow:(BOOL)arg1;
-- (BOOL)usingDefaultVoice;
-- (void)setUsingDefaultVoice:(BOOL)arg1;
-- (float)normalSpeakingRate;
-- (id)currentVoiceIdentifier;
-- (void)setCurrentVoiceIdentifier:(id)arg1;
-- (unsigned int)speechFeedbackServicesRef;
-- (struct SpeechChannelRecord *)speechChannel;
+- (void).cxx_destruct;
+@property __weak id <NSSpeechSynthesizerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain) _NSPeriodicInvoker *speechFeedbackServicesInvoker;
+@property BOOL synthesizerIsRetained;
+@property BOOL speechFinishedSuccessfully;
+@property BOOL needsResyncWithDefaultVoice;
+@property BOOL speakingSpeechFeedbackServices;
+@property BOOL usesFeedbackWindow;
+@property BOOL usingDefaultVoice;
+@property(readonly) float normalSpeakingRate;
+@property(copy) NSString *currentVoiceIdentifier;
+@property(readonly) unsigned int speechFeedbackServicesRef;
+@property(readonly) struct SpeechChannelRecord *speechChannel;
 - (short)setSpeechChannelWithVoiceCreator:(unsigned int)arg1 voiceID:(unsigned int)arg2;
 - (short)setSpeechChannelWithVoiceIdentifier:(id)arg1;
-- (id)delegate;
-- (void)setDelegate:(id)arg1;
 - (void)dealloc;
 
 @end

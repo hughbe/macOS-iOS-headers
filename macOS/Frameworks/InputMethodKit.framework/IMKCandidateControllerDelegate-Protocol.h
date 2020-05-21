@@ -14,7 +14,10 @@
 - (NSArray *)candidatesForSortingMethod:(NSString *)arg1;
 
 @optional
-- (void)touchesEndedOutsideView;
+- (BOOL)selectionShouldBeReflectedInTouchBar;
+- (NSString *)selectedCandidateKey:(IMKCandidateController *)arg1;
+- (void)shouldUpdateForPressAndHold:(IMKCandidateDefinitionUnit *)arg1;
+- (BOOL)touchesEndedOutsideView;
 - (void)touchesEnded;
 - (void)scrubbedCandidate:(IMKCandidateDefinitionUnit *)arg1;
 - (NSAttributedString *)currentInlineText;

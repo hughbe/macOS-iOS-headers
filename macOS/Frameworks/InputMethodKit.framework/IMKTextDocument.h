@@ -16,10 +16,11 @@
 }
 
 + (id)keyPathsForValuesAffectingText;
-+ (id)textDocumentWithTextDocument:(id)arg1;
++ (id)textDocumentWithTextDocument:(id)arg1 surroundingCharactersToCopy:(unsigned long long)arg2;
+- (void).cxx_destruct;
 @property(nonatomic) struct _NSRange selectedRange; // @synthesize selectedRange=_selectedRange;
 @property(readonly, nonatomic) NSMutableString *committedText; // @synthesize committedText=_committedText;
-- (void).cxx_destruct;
+- (BOOL)_hasComposingText;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)selectCodeUnits:(unsigned long long)arg1 after:(long long)arg2;
 - (void)selectCodeUnits:(unsigned long long)arg1 before:(long long)arg2;
@@ -33,6 +34,8 @@
 - (id)recomposeCharacters:(unsigned long long)arg1 before:(long long)arg2 untilCharacterFromSet:(id)arg3;
 - (void)commitComposingText;
 - (void)replaceCharactersAtCursor:(unsigned long long)arg1 withCharacters:(id)arg2;
+- (void)insertCharacters:(id)arg1 after:(long long)arg2;
+- (void)insertCharacters:(id)arg1 before:(long long)arg2;
 - (void)insertCharactersAtCursor:(id)arg1;
 - (unsigned long long)deleteCharacters:(unsigned long long)arg1 after:(long long)arg2;
 - (unsigned long long)deleteCharacters:(unsigned long long)arg1 before:(long long)arg2;
@@ -51,8 +54,8 @@
 @property(readonly, nonatomic) IMKTextDocument *composingTextInternal; // @synthesize composingTextInternal=_composingTextInternal;
 @property(readonly, nonatomic) unsigned long long length;
 - (void)dealloc;
-- (id)initWithTraits:(unsigned long long)arg1;
-- (id)initWithTextDocument:(id)arg1;
+- (id)initWithTraits:(id)arg1 candidateMenu:(id)arg2;
+- (id)initWithTextDocument:(id)arg1 surroundingCharactersToCopy:(unsigned long long)arg2;
 
 @end
 

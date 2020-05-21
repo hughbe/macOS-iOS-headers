@@ -8,7 +8,6 @@
 
 #import "NSCoding.h"
 
-__attribute__((visibility("hidden")))
 @interface NSHTTPURLResponseInternal : NSObject <NSCoding>
 {
     BOOL isMixedReplace;

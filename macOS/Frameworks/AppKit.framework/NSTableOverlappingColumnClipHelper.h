@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     BOOL _isClipping;
 }
 
+- (void).cxx_destruct;
 - (BOOL)clipForDrawingRow:(long long)arg1 column:(long long)arg2;
 - (void)clearClipping;
 - (void)dealloc;

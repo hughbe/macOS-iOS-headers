@@ -15,10 +15,6 @@
 
 - (void)_setProductKeysToAutomaticallyInstallLater:(id)arg1;
 - (id)_productKeysToAutomaticallyInstallLater;
-- (id)_productInfoValidatedDuringPreLogoutMode;
-- (void)_setProductInfoValidatedDuringPreLogoutMode:(id)arg1;
-- (void)_setProductKeysValidatedAndStagedDuringPreLogoutMode:(id)arg1;
-- (id)_productKeysValidatedAndStagedDuringPreLogoutMode;
 - (void)_setProductKeysToInstallAtLogout:(id)arg1;
 - (id)_productKeysToInstallAtLogout;
 - (void)_setPath:(id)arg1 forProductKey:(id)arg2;

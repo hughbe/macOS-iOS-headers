@@ -11,18 +11,20 @@
     id <WPHomeKitDelegate> _delegate;
 }
 
-@property(nonatomic) __weak id <WPHomeKitDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id <WPHomeKitDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)scanningFailedToStart:(id)arg1 ofType:(unsigned char)arg2;
 - (void)scanningStoppedOfType:(unsigned char)arg1;
 - (void)scanningStartedOfType:(unsigned char)arg1;
 - (void)deviceDiscovered:(id)arg1;
 - (void)checkAllowDuplicate;
 - (void)stateDidChange:(long long)arg1;
-- (void)stopScanning;
-- (void)startScanningWithData:(id)arg1;
+- (void)stopScanningForType:(long long)arg1;
+- (void)startScanningWithData:(id)arg1 forType:(long long)arg2;
 - (void)invalidate;
 - (id)clientAsString;
+- (long long)homeKitTypeFromClientType:(unsigned char)arg1;
+- (unsigned char)clientTypeFromHomeKitType:(long long)arg1;
 - (CDStruct_9e3626a3)dutyCycleToScanningRates:(long long)arg1;
 - (id)initWithDelegate:(id)arg1 queue:(id)arg2;
 

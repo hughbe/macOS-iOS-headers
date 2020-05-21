@@ -9,9 +9,11 @@
 @class UASharedPasteboardInfo;
 
 @protocol UASharedPasteboardManagerProtocol <NSObject>
+- (void)setReturnPasteboardDataEarlyWithCompletion:(void (^)(BOOL))arg1;
 - (void)fetchRemotePasteboardForProcess:(int)arg1 withCompletion:(void (^)(UASharedPasteboardInfo *, NSError *))arg2;
 - (void)fetchRemotePasteboardTypesForProcess:(int)arg1 withCompletion:(void (^)(UASharedPasteboardInfo *, NSError *))arg2;
 - (void)localPasteboardTypesDidChange:(UASharedPasteboardInfo *)arg1 forGeneration:(unsigned long long)arg2;
+- (void)clearLocalPasteboardInformation;
 - (void)fetchRemotePasteboardStatus:(void (^)(BOOL))arg1;
 @end
 

@@ -6,21 +6,25 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class NSArray, NSString;
 
 @interface TUCallGroup : NSObject
 {
     NSArray *_calls;
 }
 
-@property(retain) NSArray *calls; // @synthesize calls=_calls;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy, nonatomic) NSArray *calls; // @synthesize calls=_calls;
 - (void)forwardInvocation:(id)arg1;
 - (id)methodSignatureForSelector:(SEL)arg1;
-- (int)status;
-- (id)displayName;
+@property(readonly, nonatomic) int status;
+@property(readonly, copy, nonatomic) NSString *displayName;
+- (unsigned long long)hash;
+- (BOOL)isEqualToCallGroup:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (id)description;
+- (id)initWithCall:(id)arg1;
+- (id)initWithCalls:(id)arg1;
 
 @end
 

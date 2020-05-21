@@ -19,6 +19,7 @@
 @property(readonly) NSString *label; // @synthesize label=_label;
 @property(readonly) id <MTLDevice> device; // @synthesize device=_device;
 @property(readonly, copy) NSString *description;
+- (id)formattedDescription:(unsigned long long)arg1;
 - (void)dealloc;
 - (id)initWithDevice:(id)arg1 depthStencilDescriptor:(id)arg2;
 

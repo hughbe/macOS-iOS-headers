@@ -8,8 +8,9 @@
 
 #import "NSCoding.h"
 
-@class NSArray, NSAttributedString, NSColor, NSDictionary, NSParagraphStyle, NSRulerView, NSSelectionArray, NSSharingServicePicker, NSTextContainer, NSTextFinder, NSTextInputContext, NSTextView, NSTrackingArea, NSUndoManager, NSWindow;
+@class NSArray, NSAttributedString, NSCandidateListTouchBarItem, NSColor, NSDictionary, NSParagraphStyle, NSRulerView, NSSelectionArray, NSSharingServicePicker, NSTextCheckingController, NSTextContainer, NSTextFinder, NSTextInputContext, NSTextTouchBarItemController, NSTextView, NSTrackingArea, NSUndoManager, NSView, NSWindow;
 
+__attribute__((visibility("hidden")))
 @interface NSTextViewSharedData : NSObject <NSCoding>
 {
     struct __sdFlags {
@@ -50,8 +51,11 @@
     struct _NSRange _markedCharRange;
     NSDictionary *_markedAttributesDict;
     struct __CFRunLoopTimer *_blinkTimer;
+    NSView *_blinkingCaretView;
     NSTextContainer *_blinkContainer;
     struct CGRect _blinkRect;
+    int _blinkPhase;
+    double _blinkPhaseProgress;
     id _delegate;
     NSTextView *_notifyingTextView;
     NSColor *_backgroundColor;
@@ -97,14 +101,13 @@
         unsigned int _correctingText:1;
         unsigned int _forceCoalesceTyping:1;
         unsigned int _usesRolloverForSelection:1;
-        unsigned int _pad:1;
+        unsigned int _disableCharacterPickerFBI:1;
     } _sdFlags2;
     unsigned long long _pastedGraphicCount;
     NSDictionary *_linkAttributesDict;
     NSParagraphStyle *_defaultParagraphStyle;
     struct __CFRunLoopTimer *_toolTipTimer;
     struct CGPoint _toolTipPoint;
-    NSWindow *_toolTipWindow;
     NSTrackingArea *_toolTipTrackingArea;
     long long __reserved1;
     NSTextInputContext *_inputContext;
@@ -145,7 +148,12 @@
         unsigned int _startOfTextReplacedRecently:1;
         unsigned int _quoteSubstitutionSet:1;
         unsigned int _dashSubstitutionSet:1;
-        unsigned int _pad:8;
+        unsigned int _textCompletionEnabled:1;
+        unsigned int _pendingCandidateUpdate:1;
+        unsigned int _pendingMarkForTextCheckingAfterChange:1;
+        unsigned int _usesBlinkTimerForDrawing:1;
+        unsigned int _usesInvertedColor:1;
+        unsigned int _pad:3;
     } _sdFlags3;
     unsigned long long _otherEnabledTextCheckingTypes;
     long long _previousCheckingSequenceNumber;
@@ -169,10 +177,15 @@
     struct _NSRange _selectionRolloverRange;
     struct __CFRunLoopTimer *_selectionRolloverTimer;
     NSSharingServicePicker *_selectionRolloverPicker;
+    NSTextTouchBarItemController *_touchBarItemController;
+    NSCandidateListTouchBarItem *_candidateListTouchBarItem;
+    unsigned long long _candidateSequenceNumber;
+    NSTextCheckingController *_textCheckingController;
 }
 
 + (void)initialize;
 - (void)_flushInspectorBarItemIdentifiers;
+- (id)inputContextForFirstTextView:(id)arg1 allowInitialization:(BOOL)arg2;
 - (id)inputContextForFirstTextView:(id)arg1;
 - (BOOL)wantsNotificationForMarkedText;
 - (void)setWantsNotificationForMarkedText:(BOOL)arg1;
@@ -185,6 +198,7 @@
 - (void)stopCoalescing;
 - (BOOL)isCoalescing;
 - (void)setDelegate:(id)arg1 withNotifyingTextView:(id)arg2;
+@property(readonly) __weak id delegate;
 - (void)setDragAndDropCharRanges:(id)arg1;
 - (void)setSelectedRanges:(id)arg1;
 - (void)setDefaultParagraphStyle:(id)arg1;
@@ -195,6 +209,8 @@
 - (void)setLinkTextAttributes:(id)arg1;
 - (void)setSelectedTextAttributes:(id)arg1;
 - (void)setBackgroundColor:(id)arg1;
+- (id)insertionPointColorForBlink;
+- (BOOL)hasBlinkTimer;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

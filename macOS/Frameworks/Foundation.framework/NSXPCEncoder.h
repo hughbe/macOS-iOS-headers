@@ -13,20 +13,29 @@ __attribute__((visibility("hidden")))
 {
     NSObject<OS_xpc_object> *_oolObjects;
     NSXPCConnection *_connection;
-    struct __CFDictionary *_replacedObjects;
     struct __CFDictionary *_replacedByDelegateObjects;
     id <NSXPCEncoderDelegate> _delegate;
-    BOOL _askForReplacement;
-    void **_encoder;
+    struct {
+        unsigned long long collectionSizeOffset[1024];
+        long long collectionRecursionIndex;
+        unsigned long long dataLen;
+        unsigned long long dataSize;
+        char *data;
+        char isVM;
+        char isStack;
+    } _encoder;
     unsigned long long _genericIndex;
+    BOOL _topLevelDictionary;
+    BOOL _finished;
+    BOOL _askForReplacement;
 }
 
-+ (id)_dataWithXPCObject:(id)arg1;
 @property id <NSXPCEncoderDelegate> delegate; // @synthesize delegate=_delegate;
 @property NSXPCConnection *_connection; // @synthesize _connection;
 - (void)encodeConditionalObject:(id)arg1 forKey:(id)arg2;
 - (void)encodeXPCObject:(id)arg1 forKey:(id)arg2;
-- (void)_encodeCString:(const char *)arg1 forKey:(id)arg2;
+- (unsigned long long)_addOOLXPCObject:(id)arg1;
+- (void)_encodeCString:(const char *)arg1 length:(unsigned long long)arg2 forKey:(id)arg3;
 - (void)encodeBytes:(const char *)arg1 length:(unsigned long long)arg2 forKey:(id)arg3;
 - (void)encodeInteger:(long long)arg1 forKey:(id)arg2;
 - (void)encodeDouble:(double)arg1 forKey:(id)arg2;
@@ -36,20 +45,23 @@ __attribute__((visibility("hidden")))
 - (void)encodeInt:(int)arg1 forKey:(id)arg2;
 - (void)encodeBool:(BOOL)arg1 forKey:(id)arg2;
 - (void)_encodeArrayOfObjects:(id)arg1 forKey:(id)arg2;
+- (void)_encodeInvocationObjectArgumentsOnly:(id *)arg1 count:(unsigned long long)arg2 typeString:(const char *)arg3 selector:(SEL)arg4 isReply:(BOOL)arg5 into:(id)arg6;
+- (void)_encodeInvocation:(id)arg1 isReply:(BOOL)arg2 into:(id)arg3;
+- (id)_newRootXPCObject;
+- (void)_startTopLevelDictionary;
+- (void)_encodeUnkeyedObject:(id)arg1;
 - (void)encodeObject:(id)arg1 forKey:(id)arg2;
 - (void)_encodeObject:(id)arg1;
 - (void)_checkObject:(id)arg1;
 - (id)_replaceObject:(id)arg1;
-- (void)encodeInvocation:(id)arg1;
 - (void)encodeObject:(id)arg1;
 - (void)encodeDataObject:(id)arg1;
 - (void)encodeValueOfObjCType:(const char *)arg1 at:(const void *)arg2;
 - (BOOL)allowsKeyedCoding;
-- (id)_newRootXPCObject;
-- (void)_insertIntoXPCObject:(id)arg1;
 - (id)debugDescription;
 - (void)dealloc;
 - (id)init;
+- (id)initWithStackSpace:(char *)arg1 size:(unsigned long long)arg2;
 - (id)connection;
 
 @end

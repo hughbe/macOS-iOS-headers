@@ -6,8 +6,9 @@
 
 #import "NSObject.h"
 
-@class AVWeakReference, NSData, NSHashTable, NSObject<OS_dispatch_queue>, NSURL;
+@class AVWeakReference, NSData, NSHashTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSURL;
 
+__attribute__((visibility("hidden")))
 @interface AVStreamSessionInternal : NSObject
 {
     AVWeakReference *_welf;
@@ -15,6 +16,7 @@
     NSURL *_storageURL;
     NSObject<OS_dispatch_queue> *_threadSafetyQ;
     NSHashTable *_streamDataParsers;
+    NSMutableSet *_contentKeySessions;
     BOOL _isExpired;
     struct OpaqueFigCPEProtector *_figCPEProtector;
     NSData *_figCPEProtectorSessionIdentifier;

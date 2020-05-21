@@ -19,14 +19,14 @@
 
 + (id)_extensionAuxiliaryHostProtocol;
 + (id)_extensionAuxiliaryVendorProtocol;
+- (void).cxx_destruct;
 @property(retain) NSObject<OS_dispatch_source> *ipcIdleTimer; // @synthesize ipcIdleTimer=_ipcIdleTimer;
 @property(retain) NEIPC *ipc; // @synthesize ipc=_ipc;
-- (void).cxx_destruct;
 - (void)cancelWithError:(id)arg1;
 - (void)establishIPCWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)resetIPCIdleTimer;
 - (void)handleIPCDetached;
-- (void)setConfiguration:(id)arg1 extensionIdentifier:(id)arg2 deviceIdentifier:(id)arg3;
+- (void)setConfiguration:(id)arg1 extensionIdentifier:(id)arg2;
 - (void)handleAppMessage:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)setTunnelConfiguration:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)didSetReasserting:(BOOL)arg1;

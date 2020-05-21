@@ -16,6 +16,7 @@
     NSDictionary *_responseRegionInformation;
 }
 
+- (void).cxx_destruct;
 @property(copy) NSDictionary *responseRegionInformation; // @synthesize responseRegionInformation=_responseRegionInformation;
 @property(copy) NSString *language; // @synthesize language=_language;
 - (void)handleResponseDictionary:(id)arg1;
@@ -30,7 +31,6 @@
 - (BOOL)wantsHTTPHeaders;
 - (BOOL)wantsBagKey;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)init;
 
 @end

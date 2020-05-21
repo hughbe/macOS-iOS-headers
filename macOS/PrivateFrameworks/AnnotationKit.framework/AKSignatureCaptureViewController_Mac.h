@@ -6,29 +6,30 @@
 
 #import "NSViewController.h"
 
-@class AKController, AKSignatureCameraCaptureViewController_Mac, AKSignatureGestureCaptureViewController_Mac, NSSegmentedControl, NSTextField, NSView;
+@class AKController, AKSignatureCameraCaptureViewController_Mac, AKSignatureGestureCaptureViewController_Mac, AKSignatureSidecarCaptureViewController_Mac, NSSegmentedControl, NSView;
 
 @interface AKSignatureCaptureViewController_Mac : NSViewController
 {
     long long _captureMode;
     AKSignatureCameraCaptureViewController_Mac *_cameraCaptureController;
     AKSignatureGestureCaptureViewController_Mac *_trackpadCaptureController;
+    AKSignatureSidecarCaptureViewController_Mac *_sidecarCaptureController;
     id <AKSignatureCaptureViewControllerDelegate> _delegate;
     AKController *_controller;
     NSSegmentedControl *_segmentedControl;
     NSView *_captureViewHolder;
-    NSTextField *_dummyLabel;
 }
 
++ (BOOL)isSidecarAvailable;
 + (BOOL)isTrackpadAvailable;
 + (BOOL)isCameraAvailable;
 + (BOOL)isSignatureCaptureAvailable;
-@property(retain) NSTextField *dummyLabel; // @synthesize dummyLabel=_dummyLabel;
+- (void).cxx_destruct;
 @property(retain) NSView *captureViewHolder; // @synthesize captureViewHolder=_captureViewHolder;
 @property(retain) NSSegmentedControl *segmentedControl; // @synthesize segmentedControl=_segmentedControl;
 @property __weak AKController *controller; // @synthesize controller=_controller;
 @property __weak id <AKSignatureCaptureViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+- (void)_setupSidecarCapture;
 - (void)_setupTrackpadCapture;
 - (void)_setupCameraCapture;
 - (void)_switchToCaptureMode:(long long)arg1;

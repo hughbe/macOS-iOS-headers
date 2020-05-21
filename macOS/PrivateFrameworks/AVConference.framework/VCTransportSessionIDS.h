@@ -4,52 +4,42 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <AVConference/VCTransportSession.h>
 
 #import "VCConnectionManagerDelegate.h"
-#import "VCTransportSessionProtocol.h"
+#import "VCIDSSessionInfoSynchronizerDelegate.h"
 
-@class IDSDatagramChannel, NSData, NSObject<OS_dispatch_queue>, NSString, TimingCollection, VCConnectionManager, VCConnectionManagerIDS;
+@class NSString, VCDatagramChannelIDS, VCIDSSessionInfoSynchronizer;
 
 __attribute__((visibility("hidden")))
-@interface VCTransportSessionIDS : NSObject <VCTransportSessionProtocol, VCConnectionManagerDelegate>
+@interface VCTransportSessionIDS : VCTransportSession <VCConnectionManagerDelegate, VCIDSSessionInfoSynchronizerDelegate>
 {
     int _socket;
-    unsigned int _basebandNotificationRegistrationToken;
-    BOOL _didRegisterForBasebandNotifications;
-    NSObject<OS_dispatch_queue> *_notificationQueue;
-    NSObject<OS_dispatch_queue> *_stateQueue;
     NSString *_destination;
-    NSData *_connectionSetupPiggybackBlob;
-    IDSDatagramChannel *_datagramChannel;
-    struct opaqueRTCReporting *_reportingAgent;
-    TimingCollection *_perfTimings;
-    CDUnknownBlockType _eventHandler;
-    unsigned int _datagramChannelToken;
-    VCConnectionManagerIDS *_connectionManager;
-    BOOL _requiresWiFi;
-    BOOL _useCompressedConnectionData;
+    VCDatagramChannelIDS *_datagramChannel;
+    BOOL _requireEncryptionInfo;
+    VCIDSSessionInfoSynchronizer *_sessionInfoSynchronizer;
+    BOOL _isIDSDCEventUsageErrorReported;
+    BOOL _isWiFiAssistActive;
 }
 
-@property(retain, nonatomic) TimingCollection *perfTimings; // @synthesize perfTimings=_perfTimings;
-@property(nonatomic) BOOL requiresWiFi; // @synthesize requiresWiFi=_requiresWiFi;
-@property(nonatomic) BOOL useCompressedConnectionData; // @synthesize useCompressedConnectionData=_useCompressedConnectionData;
-@property(readonly, nonatomic) VCConnectionManager *connectionManager; // @synthesize connectionManager=_connectionManager;
+@property(readonly, nonatomic) VCIDSSessionInfoSynchronizer *sessionInfoSynchronizer; // @synthesize sessionInfoSynchronizer=_sessionInfoSynchronizer;
 @property(nonatomic) int socket; // @synthesize socket=_socket;
 @property(copy, nonatomic) NSString *destination; // @synthesize destination=_destination;
-@property(copy, nonatomic) CDUnknownBlockType eventHandler; // @synthesize eventHandler=_eventHandler;
+- (void)VCIDSSessionInfoSynchronizer:(void *)arg1 sendVCIDSSessionInfoRequest:(id)arg2;
+- (void)optOutAllStreamsForConnection:(id)arg1;
+- (void)resetParticipantGenerationCounter;
+- (void)updateParticipantGenerationCounter:(unsigned char)arg1;
+- (void)didEnableDuplication:(BOOL)arg1 activeConnection:(id)arg2;
 - (void)discardConnection:(id)arg1;
 - (void)connectionCallback:(id)arg1 isInitialConnection:(BOOL)arg2;
 - (void)primaryConnectionChanged:(id)arg1 oldPrimaryConnection:(id)arg2;
-- (void)reportNetworkConditionsDegraded;
-- (void)handleMediaReceivedOverPeerToPeerLink;
-- (void)handleMediaReceivedOverRelayLink;
-- (BOOL)getConnectionSetupData:(id *)arg1 withOptions:(id)arg2 error:(id *)arg3;
-@property(readonly, nonatomic) unsigned int connectionSetupRTTEstimate;
-@property(readonly, nonatomic) BOOL isRemoteOSPreLion;
-@property(readonly, nonatomic) BOOL isHandoverSupported;
-@property(readonly, nonatomic) int detailedErrorCode;
-- (void)callEventHandlerWithEvent:(unsigned int)arg1 info:(id)arg2;
+- (void)handleChannelInfoReport:(id)arg1;
+- (void)setQuickRelayServerProvider:(int)arg1;
+- (void)setConnectionSetupTime;
+- (void)handleUpdateRemoteSessionInfo:(id)arg1;
+- (void)handleIDSMembershipChangeInfoEvent:(id)arg1;
+- (void)handleIDSEncryptionInfoEvent:(id)arg1;
 - (void)handleCellularMTUChanged:(id)arg1;
 - (void)handleRATChanged:(id)arg1;
 - (void)handlePreConnectionDataReceived:(id)arg1;
@@ -57,13 +47,18 @@ __attribute__((visibility("hidden")))
 - (void)handleLinkDisconnectedWithInfo:(id)arg1;
 - (void)handleLinkConnectedWithInfo:(id)arg1;
 - (void)setDefaultLink:(id)arg1;
-- (void)setReportingAgent:(struct opaqueRTCReporting *)arg1;
-@property(retain, nonatomic) NSObject *connectionSetupPiggybackBlob;
+- (id)connectionSetupPiggybackBlob;
 - (void)setPiggybackBlobPreference;
+- (void)setConnectionSetupPiggybackBlob:(id)arg1;
+- (void)setWiFiAssist:(BOOL)arg1;
 - (void)stop;
 - (void)start;
+- (void)dispatchedProcessDatagramChannelEventInfo:(id)arg1;
+- (void)processDatagramChannelEventInfo:(id)arg1;
+- (BOOL)getConnectionSetupData:(id *)arg1 withOptions:(id)arg2 error:(id *)arg3;
 - (void)dealloc;
-- (id)initWithCallID:(unsigned int)arg1;
+- (id)initWithCallID:(unsigned int)arg1 requireEncryptionInfo:(BOOL)arg2 reportingAgent:(id)arg3 notificationQueue:(id)arg4 isMultiwaySession:(BOOL)arg5;
+- (id)initWithCallID:(unsigned int)arg1 reportingAgent:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

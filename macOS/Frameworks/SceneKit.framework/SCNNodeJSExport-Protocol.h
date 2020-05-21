@@ -9,10 +9,16 @@
 @class CAAnimation, MDLObject, NSArray, NSDictionary, NSString, SCNAction, SCNAudioPlayer, SCNCamera, SCNGeometry, SCNLight, SCNMorpher, SCNNode, SCNParticleSystem, SCNPhysicsBody, SCNPhysicsField, SCNSkinner;
 
 @protocol SCNNodeJSExport <JSExport>
++ (struct SCNVector3)localFront;
++ (struct SCNVector3)localRight;
++ (struct SCNVector3)localUp;
 + (id)nodeWithMDLObject:(MDLObject *)arg1;
 + (SCNNode *)nodeWithGeometry:(SCNGeometry *)arg1;
 + (id)node;
 @property(readonly) NSArray *particleSystems;
+@property(readonly, nonatomic) struct SCNVector3 worldFront;
+@property(readonly, nonatomic) struct SCNVector3 worldRight;
+@property(readonly, nonatomic) struct SCNVector3 worldUp;
 @property(nonatomic) unsigned long long categoryBitMask;
 @property(nonatomic) id <SCNNodeRendererDelegate> rendererDelegate;
 @property(nonatomic, getter=isPaused) BOOL paused;
@@ -29,9 +35,11 @@
 @property(nonatomic) double opacity;
 @property(nonatomic, getter=isHidden) BOOL hidden;
 @property(readonly, nonatomic) struct CATransform3D worldTransform;
+@property(nonatomic) struct SCNVector3 worldPosition;
 @property(nonatomic) struct CATransform3D pivot;
 @property(nonatomic) struct SCNVector3 scale;
 @property(nonatomic) struct SCNVector3 eulerAngles;
+@property(nonatomic) struct SCNVector4 worldOrientation;
 @property(nonatomic) struct SCNVector4 orientation;
 @property(nonatomic) struct SCNVector4 rotation;
 @property(nonatomic) struct SCNVector3 position;
@@ -69,9 +77,16 @@
 - (void)removeParticleSystem:(SCNParticleSystem *)arg1;
 - (void)removeAllParticleSystems;
 - (void)addParticleSystem:(SCNParticleSystem *)arg1;
+- (void)rotateBy:(struct SCNVector4)arg1 aroundTarget:(struct SCNVector3)arg2;
+- (void)localRotateBy:(struct SCNVector4)arg1;
+- (void)localTranslateBy:(struct SCNVector3)arg1;
+- (void)lookAt:(struct SCNVector3)arg1 up:(struct SCNVector3)arg2 localFront:(struct SCNVector3)arg3;
+- (void)lookAt:(struct SCNVector3)arg1;
 - (NSArray *)hitTestWithSegmentFromPoint:(struct SCNVector3)arg1 toPoint:(struct SCNVector3)arg2 options:(NSDictionary *)arg3;
 - (struct CATransform3D)convertTransform:(struct CATransform3D)arg1 fromNode:(SCNNode *)arg2;
 - (struct CATransform3D)convertTransform:(struct CATransform3D)arg1 toNode:(SCNNode *)arg2;
+- (struct SCNVector3)convertVector:(struct SCNVector3)arg1 fromNode:(SCNNode *)arg2;
+- (struct SCNVector3)convertVector:(struct SCNVector3)arg1 toNode:(SCNNode *)arg2;
 - (struct SCNVector3)convertPosition:(struct SCNVector3)arg1 fromNode:(SCNNode *)arg2;
 - (struct SCNVector3)convertPosition:(struct SCNVector3)arg1 toNode:(SCNNode *)arg2;
 - (void)enumerateHierarchyUsingBlock:(void (^)(SCNNode *, char *))arg1;
@@ -82,6 +97,7 @@
 - (void)removeFromParentNode;
 - (void)insertChildNode:(SCNNode *)arg1 atIndex:(unsigned long long)arg2;
 - (void)addChildNode:(SCNNode *)arg1;
+- (void)setWorldTransform:(struct CATransform3D)arg1;
 - (id)flattenedClone;
 - (id)clone;
 - (void)removeAudioPlayer:(SCNAudioPlayer *)arg1;

@@ -6,25 +6,22 @@
 
 #import "NSResponder.h"
 
+#import "NSApplicationDelegate.h"
 #import "NSFileManagerDelegate.h"
 #import "NSWindowDelegate.h"
 
 @class NSMutableArray, NSString, ScreenSaverModule;
 
-@interface ScreenSaverEngine : NSResponder <NSWindowDelegate, NSFileManagerDelegate>
+@interface ScreenSaverEngine : NSResponder <NSWindowDelegate, NSFileManagerDelegate, NSApplicationDelegate>
 {
     ScreenSaverModule *_module;
     NSMutableArray *_windows;
     NSMutableArray *_savers;
     NSString *_commandLineModuleName;
-    BOOL _debug;
-    BOOL _debugLogging;
-    BOOL _background;
     BOOL _mainOnly;
     BOOL _isRunning;
     BOOL _runFromPref;
     BOOL _blackSaver;
-    BOOL _lockCountdown;
     BOOL _faded;
     BOOL _atLoginWindow;
     BOOL _windowMode;
@@ -34,12 +31,9 @@
     struct CGRect _mouseAllowedRect;
     struct CGPoint _startingMousePoint;
     BOOL _keyEventTerminated;
-    double _screenLockDelay;
     unsigned int _fadeToken;
     struct CGPoint _endingMousePoint;
     BOOL _performGammaFade;
-    BOOL _keyboardInteractive;
-    BOOL _mouseInteractive;
     struct {
         struct CGRect _field1;
         int _field2;
@@ -48,6 +42,7 @@
     id _delegate;
     unsigned long long _ssSpaceID;
     NSMutableArray *_ssSpaceArray;
+    NSString *_uuidString;
 }
 
 + (id)shared;
@@ -63,36 +58,35 @@
 - (void)flagsChanged:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)hidEventReceived;
-- (BOOL)isRunning;
+@property(readonly, getter=isRunning) BOOL running;
 - (void)setDelegate:(id)arg1;
-- (void)setRunFromPref:(BOOL)arg1;
-- (BOOL)runFromPref;
-- (int)retCode;
-- (void)setBackground:(BOOL)arg1;
-- (BOOL)isBackground;
+@property BOOL runFromPref;
+@property(readonly) int retCode;
 - (void)readjustDisplays;
 - (void)unpauseScreenSaver;
 - (void)pauseScreenSaver;
 - (void)stopScreenSaver:(BOOL)arg1;
 - (void)reallyStopScreenSaver:(id)arg1;
 - (void)startScreenSaver:(BOOL)arg1;
+- (void)windowWillClose:(id)arg1;
 - (void)applicationDidResignActive:(id)arg1;
 - (void)applicationWillTerminate:(id)arg1;
-- (BOOL)_keyboardInteractivityEnabled;
-- (BOOL)_mouseInteractivityEnabled;
+- (id)_windowForSaver:(id)arg1 frame:(struct CGRect)arg2 backingStoreType:(unsigned long long)arg3;
+- (void)_stopSaver:(BOOL)arg1;
+- (int)_stateForMousePosition:(struct CGPoint)arg1 mask:(unsigned int)arg2;
+- (void)_setupCornerShapes;
+- (id)_saverFromModule:(id)arg1 withFrame:(struct CGRect)arg2;
 - (void)_performFadeWithMode:(int)arg1 time:(float)arg2;
+- (BOOL)_mouseInteractivityEnabled;
+- (id)_initAndGetModule;
+- (id)_incompatibleArchitectureModuleForModuleName:(id)arg1;
 - (id)_defaultModuleForLoginWindow;
 - (void)_addMyselfToPermittedFrontASNList;
 - (void)_timedHideCursor;
 - (void)_resetTrackingRects;
 - (void)_cancelKey:(id)arg1;
-- (void)windowWillClose:(id)arg1;
-- (id)_makeWindowForSaver:(id)arg1 frame:(struct CGRect)arg2 backingStoreType:(unsigned long long)arg3;
-- (void)_setupCornerShapes;
-- (int)_stateForMousePosition:(struct CGPoint)arg1 mask:(unsigned int)arg2;
 - (void)screenSaverEngineDaemonStarted:(id)arg1;
 - (void)applicationDidFinishLaunching:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 

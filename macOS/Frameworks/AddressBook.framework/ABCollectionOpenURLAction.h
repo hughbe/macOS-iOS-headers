@@ -8,13 +8,14 @@
 
 @class NSDataDetector;
 
-__attribute__((visibility("hidden")))
 @interface ABCollectionOpenURLAction : ABCollectionAbstractAction
 {
     NSDataDetector *_urlDetector;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSDataDetector *urlDetector; // @synthesize urlDetector=_urlDetector;
+- (void)makeURLDetectorIfNecessary;
 - (void)executeWithTarget:(id)arg1;
 
 @end

@@ -10,5 +10,8 @@
 {
 }
 
++ (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
+- (void)dealloc;
+
 @end
 

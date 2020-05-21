@@ -6,12 +6,16 @@
 
 #import <SAObjects/SAMPMediaItem.h>
 
+@class NSString;
+
 @interface SAMPPodcast : SAMPMediaItem
 {
 }
 
 + (id)podcastWithDictionary:(id)arg1 context:(id)arg2;
 + (id)podcast;
+@property(copy, nonatomic) NSString *seriesTitle;
+@property(copy, nonatomic) NSString *seriesId;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 

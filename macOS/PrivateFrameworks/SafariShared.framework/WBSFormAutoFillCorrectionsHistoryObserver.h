@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, WBSFormAutoFillCorrectionsDomainNormalizer;
+@class NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, WBSCrowdsourcedFeedbackDomainNormalizer;
 
 @interface WBSFormAutoFillCorrectionsHistoryObserver : NSObject
 {
@@ -14,7 +14,7 @@
     NSMutableArray *_pendingRemovedHistoryVisitsToProcess;
     NSObject<OS_dispatch_queue> *_processingQueue;
     NSObject<OS_dispatch_source> *_coalescingTimerSource;
-    WBSFormAutoFillCorrectionsDomainNormalizer *_domainNormalizer;
+    WBSCrowdsourcedFeedbackDomainNormalizer *_domainNormalizer;
     id <WBSFormAutoFillCorrectionsStore> _correctionsStore;
 }
 

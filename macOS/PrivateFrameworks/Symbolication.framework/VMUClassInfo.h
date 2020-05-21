@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableDictionary, NSString;
+@class NSMutableArray, NSString;
 
 @interface VMUClassInfo : NSObject
 {
@@ -18,8 +18,8 @@
     unsigned int _ro_flags;
     unsigned int _rw_flags;
     unsigned int _defaultScanType;
-    id *_localIvarList;
     unsigned int _remoteType;
+    id *_localIvarList;
     NSString *_remoteClassName;
     NSString *_displayName;
     NSString *_remoteBinaryPath;
@@ -27,22 +27,25 @@
     VMUClassInfo *_genericLayout;
     NSMutableArray *_variantEvaluators;
     NSMutableArray *_variantActions;
-    NSMutableDictionary *_variantCache;
     const char *_weakLayout;
     const char *_strongLayout;
     BOOL _hasSpecificLayout;
     BOOL _hasVariantLayout;
+    BOOL _usesSwiftRefcounting;
 }
 
-+ (unsigned long long)sizeofClassStructure:(BOOL)arg1;
++ (unsigned long long)sizeofClassStructure;
 + (id)descriptionForTypeEncoding:(const char *)arg1 ivarName:(const char *)arg2;
-+ (id)classInfoWithClassName:(id)arg1 binaryPath:(id)arg2 type:(int)arg3;
++ (id)classInfoWithClassName:(id)arg1 binaryPath:(id)arg2 type:(unsigned int)arg3;
 + (id)_genericBlockByrefInfo;
 + (void)initialize;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned int ivarCount; // @synthesize ivarCount=_ivarCount;
+@property(readonly, nonatomic) BOOL usesSwiftRefcounting; // @synthesize usesSwiftRefcounting=_usesSwiftRefcounting;
 @property(readonly, nonatomic) unsigned int pointerSize; // @synthesize pointerSize=_remotePointerSize;
-@property(readonly) VMUClassInfo *superclassInfo; // @synthesize superclassInfo=_superclassLayout;
-@property(readonly) NSString *className; // @synthesize className=_remoteClassName;
-@property(readonly) NSString *binaryPath; // @synthesize binaryPath=_remoteBinaryPath;
+@property(readonly, nonatomic) VMUClassInfo *superclassInfo; // @synthesize superclassInfo=_superclassLayout;
+@property(readonly, nonatomic) NSString *className; // @synthesize className=_remoteClassName;
+@property(readonly, nonatomic) NSString *binaryPath; // @synthesize binaryPath=_remoteBinaryPath;
 @property(readonly) unsigned long long remoteIsa; // @synthesize remoteIsa=_remoteIsa;
 @property(readonly) unsigned int instanceSize; // @synthesize instanceSize=_instanceSize;
 @property(readonly) BOOL hasCppConstructorOrDestructor;
@@ -53,45 +56,54 @@
 - (id)description;
 - (id)debugDescription;
 - (id)scanDescriptionWithSize:(unsigned int)arg1;
-@property(readonly) NSString *shortIvarDescription;
-@property(readonly) NSString *fullIvarDescription;
-@property(readonly) int infoType;
-@property(readonly) NSString *typeName;
+@property(readonly, nonatomic) NSString *shortIvarDescription;
+@property(readonly, nonatomic) NSString *fullIvarDescription;
+@property(readonly) unsigned int infoType;
+@property(readonly, nonatomic) NSString *typeName;
 - (id)type;
-@property(readonly) NSString *binaryName;
+@property(readonly, nonatomic) NSString *binaryName;
 - (void)_setIsa:(unsigned long long)arg1;
-- (void)_addVariant:(id)arg1 forField:(id)arg2 withEvaluator:(CDUnknownBlockType)arg3;
+- (void)_addVariantAction:(CDUnknownBlockType)arg1 withEvaluator:(CDUnknownBlockType)arg2;
 - (void)_setFields:(id)arg1;
+- (void)_replaceFieldRecursively:(id)arg1 withField:(id)arg2;
 - (void)_replaceField:(id)arg1 withFields:(id)arg2;
+- (void)_addFields:(id)arg1;
 - (id)firstFieldWithName:(id)arg1;
 - (id)fieldAtOrBeforeOffset:(unsigned int)arg1;
 - (void)enumerateScanningLocationsForSize:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
+- (void)enumeratePointerTypeFieldsWithBlock:(CDUnknownBlockType)arg1;
+- (void)enumerateAllPointerFieldsWithBlock:(CDUnknownBlockType)arg1;
 - (void)enumerateTypeFieldsWithBlock:(CDUnknownBlockType)arg1;
 - (void)enumerateAllFieldsWithBlock:(CDUnknownBlockType)arg1;
+- (void)enumerateClassHierarchyWithBlock:(CDUnknownBlockType)arg1;
 - (unsigned int)_totalIvarCount;
-@property(readonly) VMUClassInfo *genericInfo;
+@property(readonly, nonatomic) VMUClassInfo *genericInfo;
 - (void)enumerateExternalValuesFromObject:(unsigned long long)arg1 withSize:(unsigned int)arg2 block:(CDUnknownBlockType)arg3;
 - (void)enumerateStoredEntriesForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 externalValues:(id)arg3 block:(CDUnknownBlockType)arg4;
+- (id)instanceSpecificInfoForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 withScanner:(id)arg3 memoryReader:(CDUnknownBlockType)arg4;
 - (id)instanceSpecificInfoForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 memoryReader:(CDUnknownBlockType)arg3;
 - (void)_applyExtendedLayout:(const char *)arg1 withSize:(unsigned int)arg2;
 - (id)_copyWithInstanceSize:(unsigned int)arg1 superclassOffset:(unsigned int)arg2 asVariant:(BOOL)arg3 mutable:(BOOL)arg4;
 - (void)enumerateSublayoutsForSize:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)_logDescriptionWithSuperclasses:(BOOL)arg1 indentation:(int)arg2 toLogger:(CDUnknownBlockType)arg3;
-- (id)_ivarDescription:(unsigned int)arg1 withSpacing:(unsigned int)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithSerializer:(id)arg1 classMap:(id)arg2 version:(unsigned int)arg3;
 - (void)serializeWithClassMap:(id)arg1 simpleSerializer:(id)arg2 version:(unsigned int)arg3;
+- (void)identifyObjCClassStructureBlocksWithScanner:(id)arg1 addressIdentifierBlock:(CDUnknownBlockType)arg2;
+- (void)_identifyObjCClassStructureBlocksForIsa:(unsigned long long)arg1 isMetaclass:(BOOL)arg2 withScanner:(id)arg3 addressIdentifierBlock:(CDUnknownBlockType)arg4;
 - (id)mutableCopy;
 - (void)dealloc;
 - (void)_freeLocalIvarList;
-- (id)initWithRealizedClass:(unsigned long long)arg1 infoMap:(id)arg2 symbolicator:(struct _CSTypeRef)arg3 type:(int)arg4 swiftFieldMetadataContext:(struct libSwiftRemoteMirrorWrapper *)arg5 memoryReader:(CDUnknownBlockType)arg6;
-- (id)initWithClass:(unsigned long long)arg1 infoMap:(id)arg2 symbolicator:(struct _CSTypeRef)arg3 type:(int)arg4 swiftFieldMetadataContext:(struct libSwiftRemoteMirrorWrapper *)arg5 memoryReader:(CDUnknownBlockType)arg6;
-- (id)_initWithClass:(unsigned long long)arg1 realizedOnly:(BOOL)arg2 infoMap:(id)arg3 symbolicator:(struct _CSTypeRef)arg4 type:(int)arg5 swiftFieldMetadataContext:(struct libSwiftRemoteMirrorWrapper *)arg6 memoryReader:(CDUnknownBlockType)arg7;
+- (id)initWithRealizedClass:(unsigned long long)arg1 type:(unsigned int)arg2 infoMap:(id)arg3 objectIdentifier:(id)arg4 reader:(CDUnknownBlockType)arg5;
+- (id)initWithClass:(unsigned long long)arg1 type:(unsigned int)arg2 infoMap:(id)arg3 objectIdentifier:(id)arg4 reader:(CDUnknownBlockType)arg5;
+- (id)_initWithClass:(unsigned long long)arg1 type:(unsigned int)arg2 realizedOnly:(BOOL)arg3 infoMap:(id)arg4 objectIdentifier:(id)arg5 reader:(CDUnknownBlockType)arg6;
+- (unsigned int)_objcABIFromObjectIdentifier:(id)arg1;
+- (id)initSwiftClassWithName:(id)arg1 classInfoType:(unsigned int)arg2 size:(unsigned long long)arg3;
 - (id)initWithClosureContext:(unsigned long long)arg1 typeInfo:(struct swift_typeinfo)arg2 infoMap:(id)arg3 swiftFieldMetadataContext:(struct libSwiftRemoteMirrorWrapper *)arg4;
-- (id)initWithClassName:(id)arg1 binaryPath:(id)arg2 type:(int)arg3;
+- (id)initWithClassName:(id)arg1 binaryPath:(id)arg2 type:(unsigned int)arg3;
 @property(readonly, nonatomic) BOOL hasSpecificLayout;
 @property(readonly, nonatomic) BOOL hasVariantLayout;
 @property(readonly, nonatomic) unsigned int defaultScanType;
@@ -99,8 +111,8 @@
 - (void)_setSuperclassInfo:(id)arg1;
 - (void)_setBinaryPath:(id)arg1;
 - (void)_setDisplayName:(id)arg1;
-@property(readonly) NSString *displayName;
-- (void)_setClassNameWithAddress:(unsigned long long)arg1 reader:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) NSString *displayName;
+- (void)_setClassNameWithAddress:(unsigned long long)arg1 symbolicator:(struct _CSTypeRef)arg2;
 - (void)_demangleClassName;
 - (void)_parseIvarsAndLayouts;
 - (void)_processARRLayout:(const char *)arg1 scanType:(unsigned int)arg2;

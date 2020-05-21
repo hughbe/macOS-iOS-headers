@@ -8,20 +8,22 @@
 
 #import "CNCDContainerScopedContactPredicate.h"
 
-@class NSString;
+@class NSArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface CNCDContactsInContainerPredicate : CNPredicate <CNCDContainerScopedContactPredicate>
 {
-    NSString *_identifier;
+    NSArray *_identifier;
+    NSArray *_identifiers;
 }
 
-@property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+- (void).cxx_destruct;
+@property(readonly, copy, nonatomic) NSArray *identifiers; // @synthesize identifiers=_identifiers;
 - (id)cn_coreDataExchangePredicate;
 - (id)cn_coreDataPredicate;
-- (id)containerIdentifier;
+- (id)containerIdentifiers;
 @property(readonly, copy) NSString *description;
-- (void)dealloc;
+- (id)initWithIdentifiers:(id)arg1;
 - (id)initWithIdentifier:(id)arg1;
 
 // Remaining properties

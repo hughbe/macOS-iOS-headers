@@ -13,6 +13,7 @@
 + (id)imageNamed:(id)arg1 color:(id)arg2;
 + (id)imageNamed:(id)arg1 size:(struct CGSize)arg2;
 + (id)AV_imageNamed:(id)arg1;
+- (id)imageWithColor:(id)arg1;
 - (id)imageWithInsets:(struct NSEdgeInsets)arg1;
 @end
 

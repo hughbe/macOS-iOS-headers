@@ -6,7 +6,11 @@
 
 #import "NSObject.h"
 
-@interface _INSiriAuthorizationManager : NSObject
+#import "_INSiriAuthorizationManagerExport.h"
+
+@class NSString;
+
+@interface _INSiriAuthorizationManager : NSObject <_INSiriAuthorizationManagerExport>
 {
 }
 
@@ -15,6 +19,12 @@
 + (BOOL)_isSiriAuthorizationRestricted;
 + (long long)_siriAuthorizationStatusForAppID:(id)arg1;
 + (void)_requestSiriAuthorization:(CDUnknownBlockType)arg1 auditToken:(CDStruct_6ad76789)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

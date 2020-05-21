@@ -17,10 +17,13 @@
     BOOL _isResume;
     BOOL _runFileReadThread;
     NSThread *_fileReadThread;
+    id <PKDownloadDelegate><NSObject> _delegate;
 }
 
 + (BOOL)canDownloadWithResumeData:(id)arg1;
 + (BOOL)canDownloadURL:(id)arg1;
+- (void).cxx_destruct;
+- (id)delegate;
 - (void)_currentThreadCallback:(id)arg1;
 - (int)_fileCopyThread:(id)arg1;
 - (void)setDestination:(id)arg1 allowOverwrite:(BOOL)arg2;
@@ -28,9 +31,10 @@
 - (id)sourceURL;
 - (id)sourcePath;
 - (void)cancel;
+- (void)start;
 - (void)dealloc;
 - (id)initWithResumeData:(id)arg1 destination:(id)arg2 delegate:(id)arg3;
-- (id)initWithURL:(id)arg1 delegate:(id)arg2;
+- (id)initWithURL:(id)arg1 withChunklistURL:(id)arg2 withChunklistSize:(id)arg3 delegate:(id)arg4;
 
 @end
 

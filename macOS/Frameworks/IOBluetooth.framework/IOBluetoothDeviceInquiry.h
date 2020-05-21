@@ -42,11 +42,11 @@
 @property id delegate; // @synthesize delegate=_delegate;
 @property(copy) NSArray *searchUUIDs;
 - (oneway void)inquiryComplete:(unsigned char)arg1;
-- (oneway void)deviceNameUpdated:(in id)arg1 devicesRemaining:(int)arg2;
-- (oneway void)deviceInquiryNameRequestUpdateStarted:(in id)arg1 devicesRemaining:(int)arg2;
-- (oneway void)deviceInquiryUpdatingDeviceNamesStarted:(int)arg1;
+- (void)deviceNameUpdated:(in id)arg1 devicesRemaining:(int)arg2;
+- (void)deviceInquiryNameRequestUpdateStarted:(in id)arg1 devicesRemaining:(int)arg2;
+- (void)deviceInquiryUpdatingDeviceNamesStarted:(int)arg1;
 - (oneway void)deviceFound:(in id)arg1 classOfDevice:(unsigned int)arg2 rssi:(BOOL)arg3 eirDictionary:(id)arg4;
-- (oneway void)deviceInquiryStarted;
+- (void)deviceInquiryStarted;
 @property BOOL rssiThreshold;
 - (void)setCurrentActivity:(unsigned char)arg1;
 - (void)addInquiryResult:(id)arg1;

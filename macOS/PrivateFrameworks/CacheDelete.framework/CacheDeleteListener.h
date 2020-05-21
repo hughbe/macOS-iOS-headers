@@ -12,19 +12,23 @@
 
 @interface CacheDeleteListener : NSObject <NSXPCListenerDelegate>
 {
+    _Bool _isResumed;
     id _xObj;
     NSMutableSet *_requiredEntitlements;
     Protocol *_protocol;
     NSXPCListener *_listener;
+    NSString *_serviceName;
 }
 
-+ (id)daemonListenerWithExportedObject:(id)arg1;
+- (void).cxx_destruct;
+@property(nonatomic) _Bool isResumed; // @synthesize isResumed=_isResumed;
+@property(retain, nonatomic) NSString *serviceName; // @synthesize serviceName=_serviceName;
 @property(retain, nonatomic) NSXPCListener *listener; // @synthesize listener=_listener;
 @property(retain, nonatomic) Protocol *protocol; // @synthesize protocol=_protocol;
 @property(retain, nonatomic) NSMutableSet *requiredEntitlements; // @synthesize requiredEntitlements=_requiredEntitlements;
 @property(retain, nonatomic) id xObj; // @synthesize xObj=_xObj;
-- (void).cxx_destruct;
 - (void)resume;
+- (void)suspend;
 - (void)addRequiredEntitlement:(id)arg1;
 - (BOOL)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (id)initWithName:(id)arg1 listener:(id)arg2 protocol:(id)arg3 exportedObj:(id)arg4 isExtension:(BOOL)arg5;

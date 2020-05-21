@@ -16,7 +16,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)shouldHighlight;
 - (BOOL)applicationNeedsWindows;
 - (void)dispatchFocusOut;
-- (BOOL)focusInto:(id)arg1;
+- (BOOL)focusInto:(id)arg1 event:(id)arg2;
 
 @end
 

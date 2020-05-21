@@ -8,7 +8,7 @@
 
 #import "IDSDaemonListenerProtocol.h"
 
-@class NSSet, NSString, _IDSCompletionHandler;
+@class IDSXPCDaemonController, NSSet, NSString, _IDSCompletionHandler;
 
 @interface IDSPairedDeviceManager : NSObject <IDSDaemonListenerProtocol>
 {
@@ -16,15 +16,16 @@
     _IDSCompletionHandler *_localCompletion;
     _IDSCompletionHandler *_pairedCompletion;
     _IDSCompletionHandler *_deliveryStatsCompletion;
+    IDSXPCDaemonController *_xpcDaemonController;
     NSSet *_allowedTrafficClassifiers;
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
+@property(retain, nonatomic) IDSXPCDaemonController *xpcDaemonController; // @synthesize xpcDaemonController=_xpcDaemonController;
+- (void)constructRAResponseDictionary:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)deliveryStats:(id)arg1;
-- (void)pairedDeviceInfo:(id)arg1;
-- (void)localDeviceInfo:(id)arg1;
 - (void)device:(id)arg1 pairingDeleted:(BOOL)arg2;
-- (void)device:(id)arg1 pairingAdded:(BOOL)arg2;
 - (void)getDeliveryStatsWithCompletionBlock:(CDUnknownBlockType)arg1 queue:(id)arg2;
 - (void)getPairedDeviceInfoWithCompletionBlock:(CDUnknownBlockType)arg1 queue:(id)arg2;
 - (void)getLocalDeviceInfoWithCompletionBlock:(CDUnknownBlockType)arg1 queue:(id)arg2;

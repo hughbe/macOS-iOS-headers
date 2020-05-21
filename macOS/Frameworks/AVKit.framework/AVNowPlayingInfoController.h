@@ -6,33 +6,34 @@
 
 #import "NSObject.h"
 
-#import "AVMediaKeyEventHandling.h"
-
-@class AVPlayerController, NSXPCConnection;
+@class AVPlayerController, NSString;
 
 __attribute__((visibility("hidden")))
-@interface AVNowPlayingInfoController : NSObject <AVMediaKeyEventHandling>
+@interface AVNowPlayingInfoController : NSObject
 {
     AVPlayerController *_playerController;
-    long long _handlingEventsCount;
-    BOOL _scanningForLongPress;
-    BOOL _wasPlayingBeforeScanning;
-    NSXPCConnection *_xpcConnection;
-    id <AVMediaKeyEventRegistration> _serviceProxy;
+    id _playerControllerCurrentTimeJumpedObserver;
+    BOOL _nowPlayingInfoNeedsUpdate;
+    BOOL _enabled;
+    BOOL _shouldOwnNowPlayingInfo;
+    void *_commandHandlerIdentifier;
+    NSString *_overrideParentApplicationDisplayIdentifier;
 }
 
-+ (id)sharedInstance;
 - (void).cxx_destruct;
-- (void)_unregister;
-- (void)_register;
-- (void)_restoreState;
-- (void)_setupXPCConnection;
-- (void)_endScanningIfNeeded;
-- (void)handleMediaKeyWithHidUsagePage:(unsigned long long)arg1 hidUsage:(unsigned long long)arg2 flags:(unsigned long long)arg3 value:(long long)arg4 screenLocked:(BOOL)arg5 completionHandler:(CDUnknownBlockType)arg6;
+@property(copy, nonatomic) NSString *overrideParentApplicationDisplayIdentifier; // @synthesize overrideParentApplicationDisplayIdentifier=_overrideParentApplicationDisplayIdentifier;
+- (unsigned int)_handleRemoteCommand:(unsigned int)arg1 options:(id)arg2;
+- (void)_updateRegisteredRemoteCommandEnabledStatesWithPlayerController:(id)arg1;
+- (void)_updateNowPlayingInfoTestingOwnership:(BOOL)arg1;
+- (void)_updateNowPlayingInfoIfNeeded;
+- (void)_setNowPlayingInfoNeedsUpdate;
+- (BOOL)_ownsNowPlayingInfo;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)becomeNowPlayingApp;
+@property(nonatomic, getter=isEnabled) BOOL enabled;
 @property(retain) AVPlayerController *playerController;
-- (void)stopEventHandling;
-- (void)startEventHandling;
-@property(readonly, getter=isHandlingEvents) BOOL handlingEvents;
+- (void)dealloc;
+- (id)init;
 
 @end
 

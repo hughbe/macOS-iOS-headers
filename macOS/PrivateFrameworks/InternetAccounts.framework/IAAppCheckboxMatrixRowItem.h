@@ -21,6 +21,7 @@
 }
 
 + (id)itemWithTitle:(id)arg1 image:(id)arg2;
+- (void).cxx_destruct;
 @property(retain) IAApplication *app; // @synthesize app=_app;
 @property(retain) id <IAAppCheckboxMatrixRowItemDelegateProtocol> delegate; // @synthesize delegate=_delegate;
 @property(copy) NSString *title; // @synthesize title=_title;
@@ -29,7 +30,6 @@
 @property(retain) NSImageView *imageView; // @synthesize imageView=_imageView;
 @property(retain, nonatomic) NSView *view; // @synthesize view=_view;
 @property(retain) NSButton *checkbox; // @synthesize checkbox=_checkbox;
-- (void).cxx_destruct;
 - (void)checkbox:(id)arg1;
 - (void)setEnabled:(BOOL)arg1;
 - (void)setState:(long long)arg1;

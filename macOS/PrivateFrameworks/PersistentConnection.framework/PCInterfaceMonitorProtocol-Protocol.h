@@ -9,6 +9,7 @@
 @class NSString;
 
 @protocol PCInterfaceMonitorProtocol <NSObject>
+@property(readonly, nonatomic) BOOL isNetworkingPowerExpensiveToUse;
 @property(readonly, nonatomic) BOOL isRadioHot;
 @property(readonly, nonatomic) BOOL isBadLinkQuality;
 @property(readonly, nonatomic) BOOL isPoorLinkQuality;
@@ -20,8 +21,9 @@
 @property(readonly, nonatomic) long long interfaceIdentifier;
 
 @optional
+@property(readonly, nonatomic) NSString *networkCode;
 @property(readonly, nonatomic) struct __CFString *wwanInterfaceName;
 @property(readonly, nonatomic) BOOL isLTEWithCDRX;
-@property(readonly, nonatomic) struct __CFString *currentRAT;
+@property(readonly, nonatomic) int currentRAT;
 @end
 

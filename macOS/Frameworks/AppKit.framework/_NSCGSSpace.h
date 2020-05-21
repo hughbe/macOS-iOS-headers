@@ -12,8 +12,11 @@ __attribute__((visibility("hidden")))
     unsigned long long _spaceID;
     unsigned char _flags;
     struct CGRect _finishedResizeRect;
+    unsigned int _companionWindowID;
+    double _companionWindowOffset;
 }
 
+- (void)setMenuBarCompanionWindow:(unsigned int)arg1 offset:(double)arg2;
 - (void)finishedResizeForRect:(struct CGRect)arg1 ackImmediately:(BOOL)arg2;
 - (unsigned long long)spaceID;
 - (id)initWithSpaceID:(unsigned long long)arg1;

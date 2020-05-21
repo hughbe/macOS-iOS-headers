@@ -16,7 +16,7 @@
 
 @property(nonatomic) struct _NSRange range; // @synthesize range=_range;
 @property(copy, nonatomic) NSString *label; // @synthesize label=_label;
-- (void).cxx_destruct;
+- (void)dealloc;
 
 @end
 

@@ -8,17 +8,33 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray, NSString;
+@class NSMutableArray, NSString, PBDataReader, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOSuggestionEntryList : PBCodable <NSCopying>
 {
+    PBDataReader *_reader;
+    PBUnknownFields *_unknownFields;
     NSString *_localizedSectionHeader;
     NSMutableArray *_suggestionEntries;
+    unsigned int _readerMarkPos;
+    unsigned int _readerMarkLength;
+    struct os_unfair_lock_s _readerLock;
+    struct {
+        unsigned int read_unknownFields:1;
+        unsigned int read_localizedSectionHeader:1;
+        unsigned int read_suggestionEntries:1;
+        unsigned int wrote_unknownFields:1;
+        unsigned int wrote_localizedSectionHeader:1;
+        unsigned int wrote_suggestionEntries:1;
+    } _flags;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)suggestionEntriesType;
-@property(retain, nonatomic) NSString *localizedSectionHeader; // @synthesize localizedSectionHeader=_localizedSectionHeader;
-@property(retain, nonatomic) NSMutableArray *suggestionEntries; // @synthesize suggestionEntries=_suggestionEntries;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -26,14 +42,21 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+@property(retain, nonatomic) NSString *localizedSectionHeader;
 @property(readonly, nonatomic) BOOL hasLocalizedSectionHeader;
+- (void)_readLocalizedSectionHeader;
 - (id)suggestionEntriesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)suggestionEntriesCount;
+- (void)_addNoFlagsSuggestionEntries:(id)arg1;
 - (void)addSuggestionEntries:(id)arg1;
 - (void)clearSuggestionEntries;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *suggestionEntries;
+- (void)_readSuggestionEntries;
+- (id)initWithData:(id)arg1;
+- (id)init;
 
 @end
 

@@ -13,12 +13,11 @@
     NSUserActivity *_userActivity;
 }
 
-@property(readonly, nonatomic) NSUserActivity *userActivity; // @synthesize userActivity=_userActivity;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSUserActivity *userActivity; // @synthesize userActivity=_userActivity;
 - (id)_personFromIntent:(id)arg1;
 - (unsigned long long)_hashForIntent:(id)arg1;
 - (BOOL)_isIntent:(id)arg1 equalToOther:(id)arg2;
-- (void)_curateDiscoveredThirdPartyAction;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;

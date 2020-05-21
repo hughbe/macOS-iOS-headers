@@ -58,12 +58,13 @@
 + (BOOL)isAVBCapableInterfaceNamed:(id)arg1;
 + (BOOL)isAVBEnabledOnInterfaceNamed:(id)arg1;
 + (unsigned long long)myEntityID;
-+ (unsigned long long)myGUID;
 + (id)macAddressForInterfaceNamed:(id)arg1;
 + (id)allInterfaces;
 + (id)supportedInterfaces;
++ (id)iokitMatchingDictionaryForAnyInterface;
 + (id)iokitMatchingDictionaryForNetworkController;
 + (id)iokitMatchingDictionaryForInterfaceName:(id)arg1;
+@property(readonly, nonatomic) unsigned long long linkSpeed;
 @property(readonly) unsigned int maximumFrameTime;
 @property(readonly, nonatomic) NSObject<OS_dispatch_queue> *_notificationQueue; // @dynamic _notificationQueue;
 @property(readonly, nonatomic) struct IONotificationPort *_notificationPort; // @dynamic _notificationPort;
@@ -120,6 +121,7 @@
 @property(readonly, copy) NSString *interfaceName; // @dynamic interfaceName;
 - (id)description;
 - (id)initWithInterfaceName:(id)arg1;
+- (id)init;
 
 @end
 

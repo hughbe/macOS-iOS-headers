@@ -29,7 +29,7 @@
 - (void)invoke;
 - (void)setShouldPromptUserOnTermination;
 @property(retain, nonatomic) MCActivityMonitor *monitor;
-@property id <MCActivityTarget> target;
+@property __weak id <MCActivityTarget> target;
 
 @end
 

@@ -14,13 +14,15 @@ __attribute__((visibility("hidden")))
     unsigned int _localCallID;
     unsigned int _remoteCallID;
     struct _tls_record_s *tlsRecord;
-    id <VCSecureDataChannelDelegate> _delegate;
+    id _delegate;
     VCTransport *_transport;
+    unsigned long long _maxUDPPayloadSize;
 }
 
-@property(readonly) long long maxUnencryptedDataSize;
-@property(readonly) long long maxEncryptedDataSize;
-@property id <VCSecureDataChannelDelegate> delegate;
+@property(nonatomic) unsigned long long maxUDPPayloadSize; // @synthesize maxUDPPayloadSize=_maxUDPPayloadSize;
+@property(readonly, nonatomic) long long maxUnencryptedDataSize;
+@property(readonly, nonatomic) long long maxEncryptedDataSize;
+@property(nonatomic) id <VCSecureDataChannelDelegate> delegate;
 - (int)convertData:(id)arg1 toEncryptedData:(id *)arg2 encrypted:(BOOL)arg3;
 - (int)convertEncryptedData:(id)arg1 toData:(id *)arg2 encrypted:(BOOL)arg3;
 - (int)sendData:(id)arg1 messageType:(unsigned int)arg2 encrypted:(BOOL)arg3;

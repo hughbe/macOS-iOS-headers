@@ -42,10 +42,9 @@
 - (BOOL)setPasswordScheme:(const char *)arg1 forUser:(id)arg2 password:(id)arg3;
 - (long long)setPassword:(id)arg1 oldPassword:(id)arg2 forUser:(id)arg3;
 - (void)deauthenticate;
-- (BOOL)authenticateNodeWithAuthorization:(id)arg1;
+- (int)authenticateNodeWithAuthorization:(id)arg1;
 - (int)authenticateName:(id)arg1 withPassword:(id)arg2;
 - (int)verifyUserName:(id)arg1 password:(id)arg2;
-- (id)replacementObjectForPortCoder:(id)arg1;
 - (id)nodeName;
 - (void)finalize;
 - (void)dealloc;

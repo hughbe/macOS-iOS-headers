@@ -8,18 +8,18 @@
 
 @class NSArray;
 
-__attribute__((visibility("hidden")))
 @interface GEOPlaceDailyHours : NSObject
 {
     struct _NSRange _dayOfWeekRange;
     NSArray *_openIntervals;
 }
 
++ (id)getPlaceDailyHoursForWeekday:(long long)arg1 placeDailyHours:(id)arg2;
 + (id)dailyHours:(id)arg1 forDays:(struct _NSRange)arg2;
-@property(readonly) NSArray *openIntervals; // @synthesize openIntervals=_openIntervals;
-@property(readonly) struct _NSRange dayOfWeekRange; // @synthesize dayOfWeekRange=_dayOfWeekRange;
+- (void).cxx_destruct;
+@property(readonly, nonatomic) NSArray *openIntervals; // @synthesize openIntervals=_openIntervals;
+@property(readonly, nonatomic) struct _NSRange dayOfWeekRange; // @synthesize dayOfWeekRange=_dayOfWeekRange;
 - (id)description;
-- (void)dealloc;
 
 @end
 

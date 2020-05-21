@@ -6,7 +6,10 @@
 
 #import "NSObject.h"
 
+@class SOAttachmentsTabViewController;
+
 @protocol SOAttachmentsTabViewControllerDelegate <NSObject>
-- (void)attachmentsTabViewControllerAttachmentsViewDidChange:(BOOL)arg1;
+- (BOOL)hasUncachedImageAttachmentsForTabViewController:(SOAttachmentsTabViewController *)arg1;
+- (void)attachmentsTabViewController:(SOAttachmentsTabViewController *)arg1 viewDidChangeAfterUpdatingAttachments:(BOOL)arg2;
 @end
 

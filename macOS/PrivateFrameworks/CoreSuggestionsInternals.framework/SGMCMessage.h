@@ -10,7 +10,7 @@
 
 @interface SGMCMessage : NSObject
 {
-    id _mcMessage;
+    id <MCMessage> _mcMessage;
     SGMCMessageHeaders *_headers;
     NSString *_subject;
     NSArray *_to;
@@ -19,18 +19,19 @@
     NSData *_headerData;
 }
 
-+ (void)_loadMailCoreFramework;
++ (void)sg_loadMailCoreFramework;
 + (id)messageWithRFC822Data:(id)arg1;
++ (id)messageWithRFC822Data:(id)arg1 sanitizeData:(BOOL)arg2;
+- (void).cxx_destruct;
 @property(readonly) NSData *headerData; // @synthesize headerData=_headerData;
 @property(readonly) NSString *sender; // @synthesize sender=_sender;
 @property(readonly) NSDate *dateSent; // @synthesize dateSent=_dateSent;
 @property(readonly) NSArray *to; // @synthesize to=_to;
 @property(readonly) NSString *subject; // @synthesize subject=_subject;
 @property(readonly) SGMCMessageHeaders *headers; // @synthesize headers=_headers;
-- (void).cxx_destruct;
 - (id)bestAlternativePart;
 - (void)messageBodyIfAvailable;
-- (id)_initWithData:(id)arg1;
+- (id)_initWithData:(id)arg1 sanitizeData:(BOOL)arg2;
 
 @end
 

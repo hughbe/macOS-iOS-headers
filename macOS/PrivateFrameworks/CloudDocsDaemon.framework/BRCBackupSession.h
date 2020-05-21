@@ -6,11 +6,9 @@
 
 #import "NSObject.h"
 
-#import "BRCPQLDBCorruptionHandler.h"
-
 @class BRCPQLConnection, NSArray, NSString, NSURL;
 
-@interface BRCBackupSession : NSObject <BRCPQLDBCorruptionHandler>
+@interface BRCBackupSession : NSObject
 {
     BRCPQLConnection *_db;
     NSURL *_homeDirectoryURL;
@@ -25,17 +23,11 @@
 - (id)_mobileDocumentsURL;
 - (BOOL)urlIsInSyncedLocation:(id)arg1;
 - (BOOL)_urlIsInSyncedLocation:(id)arg1;
-- (void)dbBecameCorrupted:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)dbBecameCorrupted;
 - (void)close;
 - (BOOL)_openDBWithHomeDirectoryURL:(id)arg1 error:(id *)arg2;
 - (BOOL)_setupHomeDirectoryForUsername:(id)arg1 error:(id *)arg2;
 - (BOOL)openWithUsername:(id)arg1 error:(id *)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

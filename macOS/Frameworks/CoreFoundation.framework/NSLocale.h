@@ -59,8 +59,8 @@
 - (id)decimalSeparator;
 - (id)localizedStringForCollationIdentifier:(id)arg1;
 - (id)collationIdentifier;
-- (id)localizedStringForCalendar:(id)arg1;
-- (id)calendar;
+- (id)localizedStringForCalendarIdentifier:(id)arg1;
+- (id)calendarIdentifier;
 - (id)localizedStringForVariantCode:(id)arg1;
 - (id)variantCode;
 - (id)localizedStringForScriptCode:(id)arg1;

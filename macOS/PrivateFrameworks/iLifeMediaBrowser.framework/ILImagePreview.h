@@ -17,6 +17,7 @@
     id _delegate;
 }
 
+- (void).cxx_destruct;
 @property __weak id delegate; // @synthesize delegate=_delegate;
 @property(readonly) struct CGSize imageSize; // @synthesize imageSize=_imageSize;
 @property BOOL autoresizes; // @synthesize autoresizes=_autoresizes;

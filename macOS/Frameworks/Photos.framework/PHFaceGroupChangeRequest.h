@@ -4,39 +4,61 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <Photos/PHChangeRequest.h>
 
-@class NSString, PHFaceGroup, PHObjectPlaceholder, PHPhotoLibrary, RDFaceGroup, RDPerson;
+#import "PHInsertChangeRequest.h"
+#import "PHUpdateChangeRequest.h"
 
-@interface PHFaceGroupChangeRequest : NSObject
+@class NSManagedObjectID, NSString, PHFaceGroup, PHObjectPlaceholder, PHRelationshipChangeRequestHelper;
+
+@interface PHFaceGroupChangeRequest : PHChangeRequest <PHInsertChangeRequest, PHUpdateChangeRequest>
 {
-    PHFaceGroup *_group;
-    long long _faceGroupType;
-    RDFaceGroup *_mutableModel;
-    PHPhotoLibrary *_photoLibrary;
-    RDPerson *_mutableAssociatedPerson;
+    PHFaceGroup *_originalFaceGroup;
+    PHRelationshipChangeRequestHelper *_facesHelper;
+    PHRelationshipChangeRequestHelper *_keyFaceHelper;
 }
 
-+ (id)changeRequestForFaceGroup:(id)arg1;
++ (BOOL)canGenerateUUIDWithoutEntitlements;
 + (void)deleteFaceGroups:(id)arg1;
-+ (id)creationRequestForFaceGroupWithType:(long long)arg1;
++ (id)changeRequestForFaceGroup:(id)arg1;
 + (id)creationRequestForFaceGroup;
-+ (id)mutableModelForFaceGroup:(id)arg1;
-@property(retain, nonatomic) RDPerson *mutableAssociatedPerson; // @synthesize mutableAssociatedPerson=_mutableAssociatedPerson;
-@property(readonly, nonatomic) PHPhotoLibrary *photoLibrary; // @synthesize photoLibrary=_photoLibrary;
-@property(retain, nonatomic) RDFaceGroup *mutableModel; // @synthesize mutableModel=_mutableModel;
-@property(nonatomic) long long faceGroupType; // @synthesize faceGroupType=_faceGroupType;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) PHRelationshipChangeRequestHelper *keyFaceHelper; // @synthesize keyFaceHelper=_keyFaceHelper;
+@property(readonly, nonatomic) PHRelationshipChangeRequestHelper *facesHelper; // @synthesize facesHelper=_facesHelper;
+@property(nonatomic) long long personBuilderState;
 - (void)setKeyFace:(id)arg1;
+- (void)_setOriginalFaceGroup:(id)arg1;
 - (void)removeFaces:(id)arg1;
 - (void)addFaces:(id)arg1;
+- (id)_mutableKeyFaceObjectIDsAndUUIDs;
+- (id)_mutableObjectIDsAndUUIDs;
+- (void)_prepareFacesHelperIfNeeded;
+- (void)_prepareKeyFaceHelperIfNeeded;
+- (id)_existentFaceObjectIDs;
+- (id)createManagedObjectForInsertIntoPhotoLibrary:(id)arg1 error:(id *)arg2;
+- (void)_prefetchFacesAndPersonRelationship:(id)arg1 inContext:(id)arg2;
+- (BOOL)applyMutationsToManagedObject:(id)arg1 photoLibrary:(id)arg2 error:(id *)arg3;
+@property(readonly, nonatomic) NSString *managedEntityName;
+@property(nonatomic) long long unnamedFaceCount;
 @property(readonly, nonatomic) PHObjectPlaceholder *placeholderForCreatedFaceGroup;
-@property(readonly, nonatomic) RDPerson *associatedPerson;
-@property(readonly, nonatomic) RDFaceGroup *model;
-@property(nonatomic) long long personModel;
-@property(readonly, nonatomic) NSString *localIdentifier;
-- (id)initWithFaceGroup:(id)arg1;
-- (id)initWithPhotoLibrary:(id)arg1;
+- (BOOL)prepareForPhotoLibraryCheck:(id)arg1 error:(id *)arg2;
+- (BOOL)prepareForServicePreflightCheck:(id *)arg1;
+- (void)encodeToXPCDict:(id)arg1;
+- (id)initWithXPCDict:(id)arg1 request:(id)arg2 clientAuthorization:(id)arg3;
+- (id)initWithUUID:(id)arg1 objectID:(id)arg2;
+- (id)initForNewObject;
+
+// Remaining properties
+@property(readonly, nonatomic, getter=isClientEntitled) BOOL clientEntitled;
+@property(readonly, nonatomic) NSString *clientName;
+@property(readonly, nonatomic) CDUnknownBlockType concurrentWorkBlock;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) BOOL isNewRequest;
+@property(readonly, getter=isMutated) BOOL mutated;
+@property(readonly, nonatomic) NSManagedObjectID *objectID;
+@property(readonly) Class superclass;
 
 @end
 

@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
     unsigned int _opaque:1;
 }
 
++ (void)initialize;
 - (BOOL)isLocallyRendered;
 - (void)setLayer:(id)arg1;
 - (id)layer;

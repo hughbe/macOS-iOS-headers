@@ -16,6 +16,7 @@
 
 + (id)watchDataWithDictionary:(id)arg1 context:(id)arg2;
 + (id)watchData;
+@property(nonatomic) BOOL victoryDevice;
 @property(copy, nonatomic) NSString *interfaceOrientation;
 @property(nonatomic) BOOL configuredForLeftWrist;
 - (id)encodedClassName;

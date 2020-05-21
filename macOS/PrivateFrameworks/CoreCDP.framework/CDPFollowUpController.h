@@ -15,6 +15,7 @@
 
 - (void).cxx_destruct;
 - (void)invalidate;
+- (void)dealloc;
 - (BOOL)clearFollowUpWithContext:(id)arg1 error:(id *)arg2;
 - (BOOL)postFollowUpWithContext:(id)arg1 error:(id *)arg2;
 - (id)init;

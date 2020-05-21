@@ -24,6 +24,7 @@
     NSString *_requestDataContentType;
 }
 
+- (void).cxx_destruct;
 @property(readonly, nonatomic) NSSet *bulkChangeResponses; // @synthesize bulkChangeResponses=_bulkChangeResponses;
 @property(readonly, nonatomic) NSString *nextCTag; // @synthesize nextCTag=_nextCTag;
 @property(readonly, nonatomic) NSDictionary *hrefsToModDeleteActions; // @synthesize hrefsToModDeleteActions=_hrefsToModDeleteActions;
@@ -34,7 +35,6 @@
 - (id)requestBody;
 - (id)httpMethod;
 - (id)additionalHeaderValues;
-- (void)dealloc;
 - (id)initWithURL:(id)arg1 checkCTag:(id)arg2 simple:(BOOL)arg3 returnChangedData:(BOOL)arg4 uuidsToAddActions:(id)arg5 hrefsToModDeleteActions:(id)arg6;
 
 @end

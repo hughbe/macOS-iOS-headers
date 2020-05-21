@@ -7,55 +7,81 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBStartAudioCallIntent.h"
 
-@class NSMutableArray, PBUnknownFields, _INPBIntentMetadata;
+@class NSArray, NSString, _INPBIntentMetadata;
 
-@interface _INPBStartAudioCallIntent : PBCodable <NSCopying>
+@interface _INPBStartAudioCallIntent : PBCodable <_INPBStartAudioCallIntent, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
-    int _audioRoute;
-    NSMutableArray *_contacts;
-    int _destinationType;
-    _INPBIntentMetadata *_intentMetadata;
-    int _preferredCallProvider;
-    int _ttyType;
     struct {
         unsigned int audioRoute:1;
         unsigned int destinationType:1;
         unsigned int preferredCallProvider:1;
+        unsigned int recordTypeForRedialing:1;
         unsigned int ttyType:1;
     } _has;
+    BOOL __encodeLegacyGloryData;
+    int _audioRoute;
+    int _destinationType;
+    int _preferredCallProvider;
+    int _recordTypeForRedialing;
+    int _ttyType;
+    NSArray *_contacts;
+    _INPBIntentMetadata *_intentMetadata;
+    NSArray *_targetContacts;
 }
 
++ (BOOL)supportsSecureCoding;
++ (Class)targetContactsType;
 + (Class)contactType;
-+ (id)options;
-@property(retain, nonatomic) NSMutableArray *contacts; // @synthesize contacts=_contacts;
-@property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(nonatomic) int ttyType; // @synthesize ttyType=_ttyType;
+@property(copy, nonatomic) NSArray *targetContacts; // @synthesize targetContacts=_targetContacts;
+@property(nonatomic) int recordTypeForRedialing; // @synthesize recordTypeForRedialing=_recordTypeForRedialing;
+@property(nonatomic) int preferredCallProvider; // @synthesize preferredCallProvider=_preferredCallProvider;
+@property(retain, nonatomic) _INPBIntentMetadata *intentMetadata; // @synthesize intentMetadata=_intentMetadata;
+@property(nonatomic) int destinationType; // @synthesize destinationType=_destinationType;
+@property(copy, nonatomic) NSArray *contacts; // @synthesize contacts=_contacts;
+@property(nonatomic) int audioRoute; // @synthesize audioRoute=_audioRoute;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
-- (id)contactAtIndex:(unsigned long long)arg1;
-- (unsigned long long)contactsCount;
-- (void)addContact:(id)arg1;
-- (void)clearContacts;
-@property(nonatomic) BOOL hasPreferredCallProvider;
-@property(nonatomic) int preferredCallProvider; // @synthesize preferredCallProvider=_preferredCallProvider;
-@property(nonatomic) BOOL hasDestinationType;
-@property(nonatomic) int destinationType; // @synthesize destinationType=_destinationType;
-@property(nonatomic) BOOL hasAudioRoute;
-@property(nonatomic) int audioRoute; // @synthesize audioRoute=_audioRoute;
-@property(readonly, nonatomic) BOOL hasIntentMetadata;
-- (int)StringAsTtyType:(id)arg1;
+- (int)StringAsTTYType:(id)arg1;
 - (id)ttyTypeAsString:(int)arg1;
 @property(nonatomic) BOOL hasTtyType;
-@property(nonatomic) int ttyType;
+- (id)targetContactsAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long targetContactsCount;
+- (void)addTargetContacts:(id)arg1;
+- (void)clearTargetContacts;
+- (int)StringAsRecordTypeForRedialing:(id)arg1;
+- (id)recordTypeForRedialingAsString:(int)arg1;
+@property(nonatomic) BOOL hasRecordTypeForRedialing;
+- (int)StringAsPreferredCallProvider:(id)arg1;
+- (id)preferredCallProviderAsString:(int)arg1;
+@property(nonatomic) BOOL hasPreferredCallProvider;
+@property(readonly, nonatomic) BOOL hasIntentMetadata;
+- (int)StringAsDestinationType:(id)arg1;
+- (id)destinationTypeAsString:(int)arg1;
+@property(nonatomic) BOOL hasDestinationType;
+- (id)contactAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long contactsCount;
+- (void)addContact:(id)arg1;
+- (void)clearContacts;
+- (int)StringAsAudioRoute:(id)arg1;
+- (id)audioRouteAsString:(int)arg1;
+@property(nonatomic) BOOL hasAudioRoute;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

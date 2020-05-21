@@ -15,8 +15,10 @@
     NSURL *_fileURL;
     NSData *_payloadData;
     NSDictionary *_messageItemInfo;
+    NSString *_accessibilityString;
 }
 
+@property(retain, nonatomic) NSString *accessibilityString; // @synthesize accessibilityString=_accessibilityString;
 @property(retain, nonatomic) NSDictionary *messageItemInfo; // @synthesize messageItemInfo=_messageItemInfo;
 @property(retain, nonatomic) NSNumber *timestamp; // @synthesize timestamp=_timestamp;
 @property(retain, nonatomic) NSData *payloadData; // @synthesize payloadData=_payloadData;

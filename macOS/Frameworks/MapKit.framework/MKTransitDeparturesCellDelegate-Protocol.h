@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class MKTransitDeparturesCell;
+@class MKTransitDeparturesCell, NSImage;
 
 @protocol MKTransitDeparturesCellDelegate <NSObject>
+- (NSImage *)imageForTransitLine:(id <GEOTransitLine>)arg1;
 - (void)incidentButtonSelectedInDeparturesCell:(MKTransitDeparturesCell *)arg1;
 @end
 

@@ -30,7 +30,9 @@
         unsigned int shouldFadeCaughtScroller:1;
         unsigned int reserved:20;
     } flags;
-    CDStruct_9fab449c flags2;
+    struct {
+        unsigned int reserved:32;
+    } flags2;
     NSTrackingArea *contentViewTrackingArea;
     struct CGPoint lastMouseInContentPoint;
     id reserved2;
@@ -49,7 +51,7 @@
 - (void)mouseExited:(id)arg1;
 - (void)mouseMoved:(id)arg1;
 - (void)mouseEntered:(id)arg1;
-@property(readonly) BOOL inScrollGesture; // @dynamic inScrollGesture;
+@property(readonly) BOOL inScrollGesture;
 - (void)cancelScrollGesture;
 - (void)endScrollGesture;
 - (void)_endScrollGestureWithCancel:(BOOL)arg1;

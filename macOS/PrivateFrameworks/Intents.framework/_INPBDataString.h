@@ -7,31 +7,49 @@
 #import "PBCodable.h"
 
 #import "NSCopying.h"
+#import "NSSecureCoding.h"
+#import "_INPBDataString.h"
 
-@class NSString, PBUnknownFields;
+@class NSArray, NSString;
 
-@interface _INPBDataString : PBCodable <NSCopying>
+@interface _INPBDataString : PBCodable <_INPBDataString, NSSecureCoding, NSCopying>
 {
-    PBUnknownFields *_unknownFields;
+    struct _has;
+    BOOL __encodeLegacyGloryData;
+    NSArray *_alternatives;
     NSString *_localizedValue;
+    NSString *_pronunciationHint;
     NSString *_vocabularyIdentifier;
 }
 
-+ (id)options;
-@property(retain, nonatomic) NSString *vocabularyIdentifier; // @synthesize vocabularyIdentifier=_vocabularyIdentifier;
-@property(retain, nonatomic) NSString *localizedValue; // @synthesize localizedValue=_localizedValue;
++ (BOOL)supportsSecureCoding;
++ (Class)alternativesType;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) PBUnknownFields *unknownFields;
-- (void)mergeFrom:(id)arg1;
-- (unsigned long long)hash;
+@property(nonatomic, setter=_setEncodeLegacyGloryData:) BOOL _encodeLegacyGloryData; // @synthesize _encodeLegacyGloryData=__encodeLegacyGloryData;
+@property(copy, nonatomic) NSString *vocabularyIdentifier; // @synthesize vocabularyIdentifier=_vocabularyIdentifier;
+@property(copy, nonatomic) NSString *pronunciationHint; // @synthesize pronunciationHint=_pronunciationHint;
+@property(copy, nonatomic) NSString *localizedValue; // @synthesize localizedValue=_localizedValue;
+@property(copy, nonatomic) NSArray *alternatives; // @synthesize alternatives=_alternatives;
+- (id)dictionaryRepresentation;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (id)dictionaryRepresentation;
-- (id)description;
 @property(readonly, nonatomic) BOOL hasVocabularyIdentifier;
+@property(readonly, nonatomic) BOOL hasPronunciationHint;
 @property(readonly, nonatomic) BOOL hasLocalizedValue;
+- (id)alternativesAtIndex:(unsigned long long)arg1;
+@property(readonly, nonatomic) unsigned long long alternativesCount;
+- (void)addAlternatives:(id)arg1;
+- (void)clearAlternatives;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

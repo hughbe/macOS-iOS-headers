@@ -25,8 +25,8 @@
 + (id)localPrincipalPathForUID:(id)arg1;
 + (id)newCacheControllerForPrincipalUID:(id)arg1 calendarUID:(id)arg2;
 + (id)newCacheControllerAtDirectory:(id)arg1;
+- (void).cxx_destruct;
 - (id)cacheFilename;
-- (void)dealloc;
 - (id)init;
 - (void)deleteFile;
 - (id)allFilenames;

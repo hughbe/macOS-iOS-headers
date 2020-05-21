@@ -10,6 +10,7 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface NCWidgetExtensionContext : NSExtensionContext <NCRemoteViewExtensionContextProtocol>
 {
     id _delegate;
@@ -19,8 +20,8 @@
 + (id)_extensionAuxiliaryHostProtocol;
 + (id)serviceInterface;
 + (id)hostInterface;
-@property(nonatomic) __weak id delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+@property(nonatomic) __weak id delegate; // @synthesize delegate=_delegate;
 - (void)forwardInvocation:(id)arg1;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (BOOL)conformsToProtocol:(id)arg1;

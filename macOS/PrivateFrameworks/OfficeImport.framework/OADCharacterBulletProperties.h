@@ -14,9 +14,10 @@ __attribute__((visibility("hidden")))
     NSString *mBullet;
 }
 
+- (void).cxx_destruct;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)bullet;
-- (void)dealloc;
 - (id)initWithBullet:(id)arg1;
 
 @end

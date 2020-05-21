@@ -16,7 +16,9 @@
 
 + (id)startSpeechWithDictionary:(id)arg1 context:(id)arg2;
 + (id)startSpeech;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSDictionary *voiceTriggerEventInfo;
+@property(copy, nonatomic) NSString *turnId;
 @property(copy, nonatomic) NSNumber *noiseReductionLevel;
 @property(copy, nonatomic) NSNumber *motionConfidence;
 @property(copy, nonatomic) NSString *motionActivity;
@@ -32,6 +34,7 @@
 @property(nonatomic) int codec;
 @property(nonatomic) BOOL clearContext;
 @property(copy, nonatomic) NSString *audioSource;
+@property(copy, nonatomic) NSString *audioDestination;
 @property(copy, nonatomic) NSString *origin;
 - (id)encodedClassName;
 - (id)groupIdentifier;

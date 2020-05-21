@@ -21,20 +21,19 @@
 }
 
 + (id)parsedMessageWithWebArchive:(id)arg1 archiveIsMailInternal:(BOOL)arg2;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isPlainText; // @synthesize isPlainText=_isPlainText;
 @property(copy, nonatomic) NSArray *stationeryBackgroundImageURLs; // @synthesize stationeryBackgroundImageURLs=_stationeryBackgroundImageURLs;
 @property(copy, nonatomic) NSDictionary *attachmentsByURL; // @synthesize attachmentsByURL=_attachmentsByURL;
 @property(retain, nonatomic) NSURL *baseURL; // @synthesize baseURL=_baseURL;
 @property(copy, nonatomic) NSString *mimeType; // @synthesize mimeType=_mimeType;
 @property(copy, nonatomic) NSString *html; // @synthesize html=_html;
-- (void).cxx_destruct;
 - (void)setBaseURLFromHtml;
 @property(readonly, copy, nonatomic) NSAttributedString *attributedString;
 - (void)_addWebArchiveDataToArray:(id)arg1;
 @property(readonly, copy) NSString *description;
 @property(readonly, copy) NSString *debugDescription;
 - (void)addAttachment:(id)arg1 forURL:(id)arg2;
-- (void)_mcParsedMessageCommonInit;
 - (id)init;
 - (id)initWithWebArchive:(id)arg1 archiveIsMailInternal:(BOOL)arg2;
 - (id)initWithWebArchive:(id)arg1;

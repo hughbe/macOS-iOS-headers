@@ -8,16 +8,15 @@
 
 @interface ACSHActionPlaceholder : ACSHAction
 {
-    int _placeholderActionType;
+    unsigned long long _placeholderActionType;
 }
 
-@property(readonly, nonatomic) int placeholderActionType; // @synthesize placeholderActionType=_placeholderActionType;
+@property(nonatomic) unsigned long long placeholderActionType; // @synthesize placeholderActionType=_placeholderActionType;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (void)perform;
-- (void)setPlaceholderActionType:(int)arg1;
+- (void)performWithEventSourceData:(id)arg1;
 - (id)paramDictionaryForSaving;
-- (void)_initWithPlistDictionary:(id)arg1;
+- (void)_configureWithPlistDictionary:(id)arg1;
 
 @end
 

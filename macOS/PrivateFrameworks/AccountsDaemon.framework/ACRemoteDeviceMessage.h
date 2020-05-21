@@ -6,8 +6,9 @@
 
 #import "NSObject.h"
 
-@class ACAccount, NSData, NSDictionary, NSError, NSMutableDictionary, NSObject<NSCoding>, NSString;
+@class ACAccount, NSData, NSDictionary, NSError, NSMutableDictionary, NSObject<NSSecureCoding>, NSString;
 
+__attribute__((visibility("hidden")))
 @interface ACRemoteDeviceMessage : NSObject
 {
     NSMutableDictionary *_payload;
@@ -17,13 +18,14 @@
     NSString *_identifier;
 }
 
++ (id)_whitelistedClasses;
 + (id)actionMessageWithCommand:(id)arg1 account:(id)arg2 options:(id)arg3;
 + (id)replyForMessage:(id)arg1 withSuccess:(BOOL)arg2 error:(id)arg3;
 + (id)replyForMessage:(id)arg1 withSuccess:(BOOL)arg2 result:(id)arg3 error:(id)arg4;
+- (void).cxx_destruct;
 @property(nonatomic) BOOL isReply; // @synthesize isReply=_isReply;
 @property(nonatomic) BOOL needsReply; // @synthesize needsReply=_needsReply;
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-- (void).cxx_destruct;
 - (id)description;
 @property(readonly, nonatomic) NSData *data;
 - (void)_invalidateCachedData;
@@ -34,7 +36,7 @@
 @property(readonly, nonatomic) NSDictionary *options;
 @property(readonly, nonatomic) ACAccount *account;
 @property(readonly, nonatomic) NSString *command;
-@property(readonly, nonatomic) NSObject<NSCoding> *result;
+@property(readonly, nonatomic) NSObject<NSSecureCoding> *result;
 @property(readonly, nonatomic) NSError *error;
 @property(readonly, nonatomic) BOOL success;
 @property(readonly, nonatomic) NSString *sentMessageIdentifier;

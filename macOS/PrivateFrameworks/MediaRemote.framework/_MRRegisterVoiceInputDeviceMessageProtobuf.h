@@ -15,6 +15,7 @@
     _MRVoiceInputDeviceDescriptorProtobuf *_descriptor;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) _MRVoiceInputDeviceDescriptorProtobuf *descriptor; // @synthesize descriptor=_descriptor;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
@@ -26,7 +27,6 @@
 - (id)dictionaryRepresentation;
 - (id)description;
 @property(readonly, nonatomic) BOOL hasDescriptor;
-- (void)dealloc;
 
 @end
 

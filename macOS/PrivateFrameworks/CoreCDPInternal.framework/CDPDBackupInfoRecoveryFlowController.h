@@ -10,23 +10,21 @@
 
 @interface CDPDBackupInfoRecoveryFlowController : CDPDRecoveryFlowController
 {
-    NSArray *_icscRecoveryDevices;
+    id <CDPDBackupRecoveryResultsParser> _resultParser;
+    id <CDPDBackupRecoveryErrorProvider> _errorProvider;
+    NSArray *_recoveryRecords;
 }
 
 - (void).cxx_destruct;
-- (id)_verificationFailedErrorWithUnderlyingError:(id)arg1;
-- (id)_hardLimitError;
-- (id)_hardLimitErrorForSingleRecord:(id)arg1;
-- (id)_outOfattemptsErrorForRecord:(id)arg1;
-- (id)_cooldownErrorWithUnderlyingError:(id)arg1;
-- (void)_showHardLimitError:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)_showCooldownErrorWithUnderlyingError:(id)arg1 completion:(CDUnknownBlockType)arg2;
+@property(retain, nonatomic) NSArray *recoveryRecords; // @synthesize recoveryRecords=_recoveryRecords;
+@property(retain, nonatomic) id <CDPDBackupRecoveryErrorProvider> errorProvider; // @synthesize errorProvider=_errorProvider;
+@property(retain, nonatomic) id <CDPDBackupRecoveryResultsParser> resultParser; // @synthesize resultParser=_resultParser;
+- (void)_updateRecordRecoveryStatusForRecordDictionary:(id)arg1;
 - (void)secretValidator:(id)arg1 didFailRecoveryWithErrors:(id)arg2 completion:(CDUnknownBlockType)arg3;
 - (BOOL)secretValidator:(id)arg1 shouldContinueValidationAfterError:(id)arg2;
-- (id)_idmsDictionaryWithValidationResults:(id)arg1 error:(id *)arg2;
 - (id)_recoveryListFromDevices:(id)arg1;
 - (void)retrieveInflatedDevices:(CDUnknownBlockType)arg1;
-- (void)beginIDMSRecoveryWithCompletion:(CDUnknownBlockType)arg1;
+- (void)beginRecoveryWithCompletion:(CDUnknownBlockType)arg1;
 
 @end
 

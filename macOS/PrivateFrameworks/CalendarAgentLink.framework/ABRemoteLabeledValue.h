@@ -20,12 +20,12 @@
 + (BOOL)supportsSecureCoding;
 + (id)labeledValueWithLabel:(id)arg1 inArray:(id)arg2;
 + (id)labeledValueWithIdentifier:(id)arg1 label:(id)arg2 value:(id)arg3;
+- (void).cxx_destruct;
 @property(copy) id <NSCopying><NSSecureCoding> value; // @synthesize value=_value;
 @property(copy) NSString *label; // @synthesize label=_label;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void)encodeWithCoder:(id)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 
 @end

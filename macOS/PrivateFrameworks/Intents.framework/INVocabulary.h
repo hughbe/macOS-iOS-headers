@@ -6,24 +6,15 @@
 
 #import "NSObject.h"
 
-@class INVocabularyUpdater, _INVocabularyValidator;
-
 @interface INVocabulary : NSObject
 {
-    INVocabularyUpdater *_vocabularyUpdater;
-    _INVocabularyValidator *_validator;
 }
 
 + (id)sharedVocabulary;
-+ (id)allINVocabularyStringTypes;
-- (void).cxx_destruct;
+- (void)_THROW_EXCEPTION_FOR_PROCESS_MISSING_ENTITLEMENT_com_apple_developer_siri;
 - (void)removeAllVocabularyStrings;
+- (void)setVocabulary:(id)arg1 ofType:(long long)arg2;
 - (void)setVocabularyStrings:(id)arg1 ofType:(long long)arg2;
-- (void)_THROW_EXCEPTION_FOR_ATTEMPT_TO_PROVIDE_VOCABULARY_OF_TYPE_THAT_APP_DOES_NOT_HANDLE_:(id)arg1;
-- (void)_THROW_EXCEPTION_FOR_WATCH_OS_UNAVAILABLE_;
-- (void)_THROW_EXCEPTION_FOR_INVALID_VOCABULARY_TYPE_;
-- (void)_THROW_EXCEPTION_FOR_PROCESS_MISSING_ENTITLMENT_com_apple_developer_siri;
-- (id)_validator;
 - (id)init;
 
 @end

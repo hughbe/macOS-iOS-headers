@@ -15,10 +15,11 @@
 + (id)allInterfaces;
 + (id)supportedInterfaces;
 + (id)macAddressForInterfaceNamed:(id)arg1;
++ (id)iokitMatchingDictionaryForAnyInterface;
 + (id)iokitMatchingDictionaryForNetworkController;
 + (id)iokitMatchingDictionaryForInterfaceName:(id)arg1;
 - (void)dealloc;
-- (unsigned int)maximumFrameTime;
+- (unsigned long long)linkSpeed;
 - (id)initWithInterfaceName:(id)arg1;
 - (void)_controllerTerminated;
 

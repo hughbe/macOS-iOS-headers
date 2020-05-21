@@ -20,6 +20,8 @@
 @property(readonly) unsigned long long requestType;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (BOOL)_secureOperation;
+- (void)_setSecureOperation:(BOOL)arg1;
 
 @end
 

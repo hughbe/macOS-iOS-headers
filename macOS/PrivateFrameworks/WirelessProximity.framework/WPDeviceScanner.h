@@ -10,15 +10,17 @@
 
 @interface WPDeviceScanner : WPClient
 {
+    BOOL _anyScanResultsRequested;
     id <WPDeviceScannerDelegate> _delegate;
     NSMutableArray *_liveDevices;
     NSMutableDictionary *_activeScans;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) BOOL anyScanResultsRequested; // @synthesize anyScanResultsRequested=_anyScanResultsRequested;
 @property(retain, nonatomic) NSMutableDictionary *activeScans; // @synthesize activeScans=_activeScans;
 @property(retain, nonatomic) NSMutableArray *liveDevices; // @synthesize liveDevices=_liveDevices;
 @property(nonatomic) __weak id <WPDeviceScannerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)timerFinished:(id)arg1;
 - (void)scanningFailedToStart:(id)arg1 ofType:(unsigned char)arg2;
 - (void)scanningStoppedOfType:(unsigned char)arg1;
@@ -30,10 +32,12 @@
 - (void)parseCompanyData:(char *)arg1 forSize:(int)arg2 intoDictionary:(id)arg3;
 - (BOOL)parseType:(unsigned char)arg1 atOffset:(char *)arg2 withSize:(int)arg3 intoDictionary:(id)arg4;
 - (void)deviceDiscovered:(id)arg1;
+- (void)anyDiscoveredDevice:(id)arg1;
 - (void)stateDidChange:(long long)arg1;
 - (void)unregisterAllDeviceChanges;
 - (void)unregisterForDevices:(id)arg1;
 - (void)registerForDevicesMatching:(id)arg1 options:(id)arg2;
+- (void)registerForAnyScanResults:(_Bool)arg1;
 - (void)invalidate;
 - (id)clientAsString;
 - (id)description;

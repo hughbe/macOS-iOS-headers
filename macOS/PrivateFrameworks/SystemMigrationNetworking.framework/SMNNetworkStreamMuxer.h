@@ -30,6 +30,7 @@
     long long _downBufferSize;
 }
 
+- (void).cxx_destruct;
 @property BOOL interrupted; // @synthesize interrupted=_interrupted;
 @property long long downBufferSize; // @synthesize downBufferSize=_downBufferSize;
 @property long long upBufferSize; // @synthesize upBufferSize=_upBufferSize;
@@ -46,9 +47,6 @@
 @property(retain) id <SMNNetworkSecurityProvider> securityProvider; // @synthesize securityProvider=_securityProvider;
 @property __weak id <SMNStreamMuxerDelegate> delegate; // @synthesize delegate=_delegate;
 @property unsigned long long protocolVersion; // @synthesize protocolVersion=_protocolVersion;
-- (void).cxx_destruct;
-- (BOOL)_readCompletelyFromFd:(int)arg1 buffer:(void *)arg2 length:(unsigned long long)arg3;
-- (BOOL)_writeCompletelyToFd:(int)arg1 buffer:(void *)arg2 length:(unsigned long long)arg3;
 - (BOOL)_read:(int)arg1 buffer:(void *)arg2 bufferSize:(unsigned long long)arg3 useSecurityProvider:(BOOL)arg4 usingFailureHandler:(CDUnknownBlockType)arg5;
 - (BOOL)_readFromPipe:(int)arg1 buffer:(void *)arg2 bufferSize:(unsigned long long)arg3 usingFailureHandler:(CDUnknownBlockType)arg4;
 - (BOOL)_readFromMuxerFd:(void *)arg1 bufferSize:(unsigned long long)arg2 usingFailureHandler:(CDUnknownBlockType)arg3;
@@ -60,10 +58,15 @@
 - (void)sendOutgoingData:(id)arg1 fileHandle:(id)arg2;
 - (BOOL)sendCommand:(BOOL)arg1 onStream:(unsigned int)arg2 withSize:(unsigned int)arg3;
 - (void)readIncomingData;
+- (id)createNewStreamFromIncomingID:(unsigned int)arg1 withName:(id)arg2;
+- (id)createNewStreamFromIncomingID:(unsigned int)arg1;
+- (void)closeStream:(id)arg1 initiatedLocally:(BOOL)arg2;
+- (void)closeStream:(id)arg1;
 - (BOOL)nextChunkHeaderForStream:(unsigned int *)arg1 ofSize:(unsigned int *)arg2;
-- (id)_getStreamWithID:(id)arg1 isDownward:(char *)arg2;
+- (id)getStreamWithID:(id)arg1 isDownward:(char *)arg2;
 - (void)removeStream:(id)arg1;
 - (id)newStreamWithName:(id)arg1;
+- (id)newStreamPairedWithStream:(id)arg1;
 - (BOOL)startAsMaster:(BOOL)arg1;
 - (void)dealloc;
 - (id)init;

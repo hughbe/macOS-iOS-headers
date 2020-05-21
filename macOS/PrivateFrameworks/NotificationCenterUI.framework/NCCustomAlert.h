@@ -17,19 +17,33 @@
     _Bool _markedForRemoval;
     BOOL _ignoresDND;
     BOOL _allowsSwipeToDismiss;
+    BOOL ignoresDowntime;
+    BOOL _displaysOnLockscreen;
     unsigned long long _order;
     id <NCCustomAlertDelegate> _delegate;
     NSViewController *_contentViewController;
     NSString *_hostIdentifier;
+    NSString *_accessibilitySubRole;
+    NSString *_accessibilityRoleDescription;
+    NSString *_accessibilityIdentifier;
+    NSString *_accessibilityLabel;
 }
 
+- (void).cxx_destruct;
+@property(copy) NSString *accessibilityLabel; // @synthesize accessibilityLabel=_accessibilityLabel;
+@property(copy) NSString *accessibilityIdentifier; // @synthesize accessibilityIdentifier=_accessibilityIdentifier;
+@property(copy) NSString *accessibilityRoleDescription; // @synthesize accessibilityRoleDescription=_accessibilityRoleDescription;
+@property(copy) NSString *accessibilitySubRole; // @synthesize accessibilitySubRole=_accessibilitySubRole;
+@property BOOL displaysOnLockscreen; // @synthesize displaysOnLockscreen=_displaysOnLockscreen;
 @property(readonly) NSString *hostIdentifier; // @synthesize hostIdentifier=_hostIdentifier;
 @property(readonly) NSViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
 @property __weak id <NCCustomAlertDelegate> delegate; // @synthesize delegate=_delegate;
 @property BOOL allowsSwipeToDismiss; // @synthesize allowsSwipeToDismiss=_allowsSwipeToDismiss;
+@property BOOL ignoresDowntime; // @synthesize ignoresDowntime;
 @property BOOL ignoresDND; // @synthesize ignoresDND=_ignoresDND;
 @property unsigned long long order; // @synthesize order=_order;
-- (void).cxx_destruct;
+- (void)releaseKey;
+- (void)makeKeyWithReady:(CDUnknownBlockType)arg1;
 - (void)dismissWithAnimation:(unsigned long long)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)dismissWihAnimation:(_Bool)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)present;

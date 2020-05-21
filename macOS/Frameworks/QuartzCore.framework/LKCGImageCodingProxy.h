@@ -12,6 +12,7 @@ __attribute__((visibility("hidden")))
     struct CGImage *_image;
 }
 
++ (BOOL)supportsSecureCoding;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

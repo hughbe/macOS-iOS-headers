@@ -16,9 +16,14 @@
 - (void).cxx_destruct;
 - (id)displayProfileOfType:(long long)arg1;
 @property(readonly, nonatomic) PKRemoteAssetManager *remoteAssetManager;
+- (id)remoteAssetManagerForSEIDs:(id)arg1;
+- (BOOL)remoteAssetsDownloadedForScreenScale:(double)arg1 suffix:(id)arg2;
+- (BOOL)remoteAssetsDownloadedForSEIDs:(id)arg1;
 @property(readonly, nonatomic) BOOL remoteAssetsDownloaded;
-- (void)downloadRemoteAssetsWithCompletion:(CDUnknownBlockType)arg1;
-- (void)downloadRemoteAssetsWithScreenScale:(double)arg1 suffix:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)downloadRemoteAssetsWithCloudStoreCoordinatorDelegate:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)downloadRemoteAssetsWithScreenScale:(double)arg1 suffix:(id)arg2 cloudStoreCoordinatorDelegate:(id)arg3 completion:(CDUnknownBlockType)arg4;
+- (id)dataForBundleResources:(id)arg1;
+- (id)dataForBundleResource:(id)arg1;
 - (id)dataForBundleResourceNamed:(id)arg1 withExtension:(id)arg2;
 @property(readonly, nonatomic) NSBundle *bundle;
 @property(readonly, nonatomic) NSData *serializedFileWrapper;
@@ -37,6 +42,8 @@
 - (id)imageSetForType:(long long)arg1 displayProfile:(id)arg2 preheat:(BOOL)arg3;
 - (id)dictionary;
 - (id)content;
+- (void)downloadRemoteAssetsWithCompletion:(CDUnknownBlockType)arg1;
+- (void)downloadRemoteAssetsWithScreenScale:(double)arg1 suffix:(id)arg2 completion:(CDUnknownBlockType)arg3;
 
 @end
 

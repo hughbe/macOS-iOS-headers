@@ -6,20 +6,20 @@
 
 #import <InputMethodKit/IMKUIView.h>
 
-@class IMKCandidateController, IMKCandidateStepperAccessoryImageView;
+@class IMKCandidateStepperAccessoryImageView;
 
 @interface IMKCandidateStepperView : IMKUIView
 {
-    IMKCandidateController *_candidateController;
+    id <IMKCandidateStepperViewDelegate> _delegate;
     IMKCandidateStepperAccessoryImageView *_topArrowView;
     IMKCandidateStepperAccessoryImageView *_bottomArrowView;
     BOOL _initialized;
 }
 
-@property(nonatomic) BOOL initialized; // @synthesize initialized=_initialized;
 @property(retain, nonatomic) IMKCandidateStepperAccessoryImageView *topArrowView; // @synthesize topArrowView=_topArrowView;
+@property(nonatomic) BOOL initialized; // @synthesize initialized=_initialized;
+@property(nonatomic) id <IMKCandidateStepperViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) IMKCandidateStepperAccessoryImageView *bottomArrowView; // @synthesize bottomArrowView=_bottomArrowView;
-@property(retain, nonatomic) IMKCandidateController *candidateController; // @synthesize candidateController=_candidateController;
 - (void)mouseUp:(id)arg1;
 - (void)setBottomStepperState:(BOOL)arg1;
 - (void)setTopStepperState:(BOOL)arg1;

@@ -16,6 +16,7 @@
 
 + (id)buttonItemWithDictionary:(id)arg1 context:(id)arg2;
 + (id)buttonItem;
+@property(copy, nonatomic) NSString *position;
 @property(retain, nonatomic) SAUILocalImageResource *localImageResource;
 @property(retain, nonatomic) SAUIDecoratedText *decoratedLabel;
 @property(nonatomic) BOOL centered;

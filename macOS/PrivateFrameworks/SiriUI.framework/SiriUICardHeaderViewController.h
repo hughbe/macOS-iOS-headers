@@ -6,7 +6,7 @@
 
 #import "NSViewController.h"
 
-@class NSButton, NSImage, NSImageView, NSString;
+@class NSImage, NSImageView, NSString;
 
 __attribute__((visibility("hidden")))
 @interface SiriUICardHeaderViewController : NSViewController
@@ -14,17 +14,14 @@ __attribute__((visibility("hidden")))
     BOOL _allowsStashing;
     id <SiriUICardHeaderViewControllerDelegate> _delegate;
     NSString *_summaryTitle;
-    NSButton *_stashButton;
     NSImageView *_iconView;
 }
 
+- (void).cxx_destruct;
 @property __weak NSImageView *iconView; // @synthesize iconView=_iconView;
-@property __weak NSButton *stashButton; // @synthesize stashButton=_stashButton;
 @property(retain) NSString *summaryTitle; // @synthesize summaryTitle=_summaryTitle;
 @property BOOL allowsStashing; // @synthesize allowsStashing=_allowsStashing;
 @property(nonatomic) __weak id <SiriUICardHeaderViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
-- (void)viewDidLoad;
 @property(retain, nonatomic) NSImage *icon; // @dynamic icon;
 - (void)stashPressed:(id)arg1;
 - (id)nibBundle;

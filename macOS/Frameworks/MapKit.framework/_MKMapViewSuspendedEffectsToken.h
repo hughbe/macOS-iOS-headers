@@ -10,6 +10,7 @@
 
 @class MKMapView, NSString;
 
+__attribute__((visibility("hidden")))
 @interface _MKMapViewSuspendedEffectsToken : NSObject <_MKMapViewSuspendedEffectsToken>
 {
     BOOL _invalidated;

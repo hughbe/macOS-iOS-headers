@@ -6,14 +6,36 @@
 
 #import "CKRecordID.h"
 
-@interface CKRecordID (BRCItemAdditions)
+#import "PQLValuable.h"
+
+@class NSString;
+
+@interface CKRecordID (BRCItemAdditions) <PQLValuable>
++ (id)newFromSqliteValue:(struct sqlite3_value *)arg1;
++ (id)brc_fetchShareIDWithSharedItem:(id)arg1;
+- (BOOL)locateSideCarServerZone:(id *)arg1 withSession:(id)arg2;
 - (BOOL)brc_itemType;
 - (id)brc_itemIDOfTargetWithLibraryRowID:(id)arg1 session:(id)arg2;
+- (id)brc_itemIDWithSession:(id)arg1 error:(id *)arg2;
 - (id)brc_itemIDWithSession:(id)arg1;
+- (id)_itemIDWithLibraryRowID:(id)arg1 session:(id)arg2;
 - (BOOL)brc_isZoneRootRecordID;
 - (id)brc_appLibraryDocumentsZoneName;
 - (BOOL)brc_isAppLibraryDocumentsRecordID;
 - (id)brc_appLibraryRootZoneName;
 - (BOOL)brc_isAppLibraryRootRecordID;
+- (void)sqliteBind:(struct sqlite3_stmt *)arg1 index:(int)arg2;
+- (id)brc_shareItemID;
+- (id)brc_shareZoneName;
+- (id)initShareIDWithRecordID:(id)arg1 zoneID:(id)arg2 session:(id)arg3;
+- (id)initShareIDWithRecordID:(id)arg1 serverZone:(id)arg2;
+- (id)initShareIDWithShareableItem:(id)arg1;
+- (id)initShareIDWithItemID:(id)arg1 zoneID:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

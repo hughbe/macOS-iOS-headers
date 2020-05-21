@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class OSInstallOptions;
+@class NSNumber, OSInstallOptions;
 
 @interface OSIInstallQueueElement : NSObject
 {
@@ -14,12 +14,17 @@
     OSInstallOptions *_options;
     double _initialEstimate;
     double _totalProgressPercentage;
+    NSNumber *_timeTakenToComplete;
 }
 
+- (void).cxx_destruct;
+@property(retain) NSNumber *timeTakenToComplete; // @synthesize timeTakenToComplete=_timeTakenToComplete;
 @property double totalProgressPercentage; // @synthesize totalProgressPercentage=_totalProgressPercentage;
 @property double initialEstimate; // @synthesize initialEstimate=_initialEstimate;
 @property(retain) OSInstallOptions *options; // @synthesize options=_options;
 @property NSObject *delegate; // @synthesize delegate=_delegate;
+- (BOOL)okayToSkip;
+- (id)nextProgressPhaseAfterCompletion;
 - (id)packagesDirectory;
 - (id)initWithOptions:(id)arg1;
 - (void)postTimeRemaining:(double)arg1;

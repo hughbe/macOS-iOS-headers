@@ -6,41 +6,54 @@
 
 #import "NSTableCellView.h"
 
-@class CNAvatarCache, FI_TAirDropProgressView, FI_TTextField, FI_TUpdateLayerView, NSView;
+@class CNAvatarCache, FI_TAirDropProgressView, FI_TButton, FI_TTextField, FI_TUpdateLayerView, NSLayoutConstraint, NSString, NSView;
 
 __attribute__((visibility("hidden")))
 @interface FIAirDropListViewCellView : NSTableCellView
 {
     FI_TAirDropProgressView *_progressView;
     NSView *_avatarView;
+    FI_TButton *_cancelButton;
     FI_TUpdateLayerView *_pressedStateOverlayView;
-    FI_TTextField *_personNameTxtFld;
+    FI_TTextField *_statusTextField;
+    struct TKeyValueBinder _cancellableBinder;
     struct TKeyValueBinder _percentCompleteBinder;
+    struct TKeyValueBinder _indeterminateProgressBinder;
     struct TKeyValueBinder _contactBinder;
-    struct TNSRef<CNAvatarViewController *, void> _avatarViewController;
-    _Bool _isPressed;
-    _Bool _ignoreClicks;
-    struct TNSRef<NSTimer *, void> _ignoreClicksTimer;
-    function_988d70bf _clickHandler;
+    struct TKeyValueBinder _personNameBinder;
+    struct TNSRef<CNAvatarViewController, void> _avatarViewController;
+    _Bool _isCancellable;
+    NSLayoutConstraint *_cancelButtonWidthConstraint;
+    double _defaultCancelButtonWidth;
+    NSLayoutConstraint *_subtitleToCancelButtonGapConstraint;
+    double _defaultSubtitleToCancelButtonGap;
     _Bool _pressed;
+    NSString *_statusStr;
+    NSString *_personNameStr;
+    function_0b4d038e _ignoreClickHandler;
+    function_2cc04e6b _clickHandler;
 }
 
-@property(getter=isPressed) _Bool pressed; // @synthesize pressed=_pressed;
-@property(readonly, retain) FI_TTextField *personNameTxtFld; // @synthesize personNameTxtFld=_personNameTxtFld;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(getter=isPressed) _Bool pressed; // @synthesize pressed=_pressed;
+@property(retain) NSString *personNameStr; // @synthesize personNameStr=_personNameStr;
+@property(readonly, retain) NSString *statusStr; // @synthesize statusStr=_statusStr;
+@property(nonatomic) function_2cc04e6b clickHandler; // @synthesize clickHandler=_clickHandler;
+@property(nonatomic) function_0b4d038e ignoreClickHandler; // @synthesize ignoreClickHandler=_ignoreClickHandler;
+@property(readonly, retain) FI_TTextField *statusTextField; // @synthesize statusTextField=_statusTextField;
 - (BOOL)accessibilityPerformPress;
-- (void)startIgnoringClicks;
-- (void)stopIgnoringClicks;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
 - (id)_hitTestWithLocalPoint:(const struct CGPoint *)arg1;
+- (_Bool)handleClick;
+- (void)cancelButtonPressed:(id)arg1;
+@property(getter=isCancellable) _Bool cancellable; // @dynamic cancellable;
 @property(retain) CNAvatarCache *sharedAvatarCache; // @dynamic sharedAvatarCache;
 - (id)iconImageView;
 @property(readonly, retain) FI_TTextField *machineNameTxtFld; // @dynamic machineNameTxtFld;
-- (void)setClickHandler:(const function_988d70bf *)arg1;
 - (void)prepareForReuse;
 - (void)dealloc;
 - (void)awakeFromNib;

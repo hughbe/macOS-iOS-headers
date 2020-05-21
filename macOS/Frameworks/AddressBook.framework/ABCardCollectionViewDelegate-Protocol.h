@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class ABCollectionViewItem, NSColor, NSString, SGLabeledObject;
+@class ABCardCollectionView, ABCollectionViewItem, CNLabeledValue, NSColor, NSString;
 
 @protocol ABCardCollectionViewDelegate <NSObject>
 
 @optional
-- (void)item:(ABCollectionViewItem *)arg1 didRejectSuggestedValue:(SGLabeledObject *)arg2;
-- (void)item:(ABCollectionViewItem *)arg1 didConfirmSuggestedValue:(SGLabeledObject *)arg2;
+- (void)cardCollectionViewKeyViewLoopNeedsUpdate:(ABCardCollectionView *)arg1;
+- (void)item:(ABCollectionViewItem *)arg1 didRejectLabeledValue:(CNLabeledValue *)arg2;
+- (void)item:(ABCollectionViewItem *)arg1 didConfirmLabeledValue:(CNLabeledValue *)arg2;
 - (BOOL)isAugmentedCardItem:(ABCollectionViewItem *)arg1;
 - (NSString *)item:(ABCollectionViewItem *)arg1 titleForAction:(id <ABCollectionMultiPropertyAction>)arg2;
 - (BOOL)item:(ABCollectionViewItem *)arg1 shouldEnableAction:(id <ABCollectionMultiPropertyAction>)arg2;
@@ -27,7 +28,6 @@
 - (void)itemValueDidBecomeNonEmpty:(ABCollectionViewItem *)arg1;
 - (NSColor *)colorForProperty:(NSString *)arg1 identifier:(NSString *)arg2;
 - (void)editExistingKey:(NSString *)arg1 identifier:(NSString *)arg2 yOffset:(double)arg3;
-- (double)firstColumnWidth;
 - (id <ABCardViewDataSource>)dataSource;
 - (id <ABCardViewDelegate>)delegate;
 - (void)notifyDelegateActionWasPerformed;

@@ -6,21 +6,24 @@
 
 #import "NSObject.h"
 
-@class CDPDCircleStateObserver, NSObject<CDPDCircleDelegate>, NSObject<OS_dispatch_queue>;
+@class CDPDCircleStateObserver, NSArray, NSObject<CDPDCircleDelegate>, NSObject<OS_dispatch_queue>;
 
 @interface CDPDCircleController : NSObject
 {
     CDPDCircleStateObserver *_circleJoinObserver;
     NSObject<OS_dispatch_queue> *_requestSynchronizationQueue;
+    NSObject<OS_dispatch_queue> *_retryQueue;
+    unsigned long long _cliqueStatusRetryCount;
+    NSArray *_retryIntervals;
     id <CDPStateUIProviderInternal> _uiProvider;
     NSObject<CDPDCircleDelegate> *_delegate;
     id <CDPDCircleProxy> _circleProxy;
 }
 
+- (void).cxx_destruct;
 @property(retain, nonatomic) id <CDPDCircleProxy> circleProxy; // @synthesize circleProxy=_circleProxy;
 @property(nonatomic) __weak NSObject<CDPDCircleDelegate> *delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) id <CDPStateUIProviderInternal> uiProvider; // @synthesize uiProvider=_uiProvider;
-- (void).cxx_destruct;
 - (void)cancelApplicationToJoinCircle;
 - (void)_requestCircleJoinWithObserver:(id)arg1 requestBlock:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;
 - (void)_requestToJoinWithRequestBlock:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
@@ -30,16 +33,18 @@
 - (void)applyToJoinCircleWithJoinHandler:(CDUnknownBlockType)arg1;
 - (id)_peerDeviceNamesByPeerID;
 - (void)useCircleInfoToUpdateNameForDevices:(id)arg1;
-- (void)_resetCicleToResolvePendingAfterRecoveryWithCompletion:(CDUnknownBlockType)arg1;
-- (void)joinCircleAfterRecoveryWithCompletion:(CDUnknownBlockType)arg1;
+- (void)resetCircleIncludingCloudKitData:(BOOL)arg1 cloudKitResetReasonDescription:(id)arg2 withCompletion:(CDUnknownBlockType)arg3;
 - (unsigned long long)_peerCount;
-- (void)_joinCDPCircleIgnoringBackups:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)joinCDPCircleIgnoringBackups:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
-- (void)joinCDPCircleWithCompletion:(CDUnknownBlockType)arg1;
+- (void)promptForCredentials:(CDUnknownBlockType)arg1;
+- (long long)nextRetryInterval;
+- (BOOL)canRetryCliqueStatus;
+- (void)_joinCircleIgnoringBackups:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)joinCircleIgnoringBackups:(BOOL)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)joinCircleWithCompletion:(CDUnknownBlockType)arg1;
 - (void)prepareCircleStateForRecovery;
 - (BOOL)synchronizeCircleViews;
 - (id)peerID;
-- (int)circleStatus;
+- (unsigned long long)circleStatus;
 - (void)dealloc;
 - (id)initWithUiProvider:(id)arg1 delegate:(id)arg2 circleProxy:(id)arg3;
 

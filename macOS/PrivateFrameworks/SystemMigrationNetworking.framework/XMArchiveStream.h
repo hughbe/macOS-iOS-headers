@@ -12,7 +12,6 @@
 {
     int _inputFd;
     NSString *_destination;
-    BOOL _uniquifying;
     void *_buffer;
     unsigned long long _writtenLength;
     id <SMWindowsArchiveStreamDelegate> _delegate;
@@ -30,7 +29,7 @@
 - (BOOL)_writeDirectory:(id)arg1;
 - (BOOL)readWithDelegate:(id)arg1;
 - (void)dealloc;
-- (id)initWithFileDescriptor:(int)arg1 destination:(id)arg2 uniquifying:(BOOL)arg3;
+- (id)initWithFileDescriptor:(int)arg1 destination:(id)arg2;
 
 @end
 

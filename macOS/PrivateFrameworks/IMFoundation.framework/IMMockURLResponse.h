@@ -24,6 +24,7 @@
 @property(copy) NSString *requestBodyKeyPath; // @synthesize requestBodyKeyPath=_requestBodyKeyPath;
 @property(retain) NSData *data; // @synthesize data=_data;
 @property(retain) NSHTTPURLResponse *response; // @synthesize response=_response;
+- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 

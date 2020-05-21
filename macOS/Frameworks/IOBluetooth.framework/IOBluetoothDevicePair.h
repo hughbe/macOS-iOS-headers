@@ -40,6 +40,8 @@
 - (void)sdpQueryComplete:(id)arg1 status:(int)arg2;
 - (void)connectionComplete:(id)arg1 status:(int)arg2;
 - (int)openPairingConnection;
+- (int)removePINCodeHandler:(id)arg1;
+- (int)handlePinCodeRequestForDevice:(id)arg1 withAddress:(id)arg2;
 - (void)replyUserConfirmation:(BOOL)arg1;
 - (void)replyPINCode:(unsigned long long)arg1 PINCode:(struct BluetoothPINCode *)arg2;
 - (void)stop;

@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class NSString;
+@class NSString, NSURL;
 
 @interface UpdaterSessionParameters : NSObject <NSCopying>
 {
@@ -16,12 +16,15 @@
     BOOL _updateIsFLO;
     unsigned int _userID;
     unsigned int _groupID;
+    NSURL *_homeDirectory;
     NSString *_previousOSVersion;
     NSString *_previousOSBuild;
     NSString *_currentOSVersion;
     NSString *_currentOSBuild;
 }
 
++ (long long)compareSpecificOSVersion:(id)arg1 toSpecificOSVersion:(id)arg2;
+- (void).cxx_destruct;
 @property unsigned int groupID; // @synthesize groupID=_groupID;
 @property unsigned int userID; // @synthesize userID=_userID;
 @property(retain) NSString *currentOSBuild; // @synthesize currentOSBuild=_currentOSBuild;
@@ -30,10 +33,11 @@
 @property(retain) NSString *previousOSVersion; // @synthesize previousOSVersion=_previousOSVersion;
 @property BOOL updateIsFLO; // @synthesize updateIsFLO=_updateIsFLO;
 @property BOOL accountWasMigrated; // @synthesize accountWasMigrated=_accountWasMigrated;
-- (void).cxx_destruct;
+@property(retain) NSURL *homeDirectory; // @synthesize homeDirectory=_homeDirectory;
 - (long long)compareSpecificOSVersion:(id)arg1 toSpecificOSVersion:(id)arg2;
 - (long long)compareToSpecificOSVersion:(id)arg1;
 - (long long)compareOSVersion;
+@property(readonly) BOOL newUser;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end

@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class AMWorkflowController, NSPasteboard, NSURL;
+#import "AMWorkflowControllerDelegatePrivate.h"
 
-@interface AMWorkflowServiceRunner : NSObject
+@class AMWorkflowController, NSPasteboard, NSString, NSURL;
+
+@interface AMWorkflowServiceRunner : NSObject <AMWorkflowControllerDelegatePrivate>
 {
     NSURL *_workflowURL;
     NSPasteboard *_pasteboard;
@@ -16,6 +18,7 @@
     CDUnknownBlockType _completionBlock;
 }
 
+- (void).cxx_destruct;
 @property(copy) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
 @property(retain) AMWorkflowController *controller; // @synthesize controller=_controller;
 @property(retain) NSPasteboard *pasteboard; // @synthesize pasteboard=_pasteboard;
@@ -29,8 +32,13 @@
 - (BOOL)writeOutputToPasteBoard:(id)arg1 serviceMetaData:(id)arg2 error:(id *)arg3;
 - (BOOL)getInputFromPasteBoard:(id *)arg1 serviceMetaData:(id)arg2 error:(id *)arg3;
 - (id)processInput:(id)arg1 serviceMetaData:(id)arg2 error:(id *)arg3;
-- (void)dealloc;
 - (id)initWithWorkflowURL:(id)arg1 pasteboardName:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

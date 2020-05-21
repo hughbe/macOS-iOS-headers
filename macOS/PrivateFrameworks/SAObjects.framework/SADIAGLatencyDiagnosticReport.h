@@ -16,6 +16,7 @@
 
 + (id)latencyDiagnosticReportWithDictionary:(id)arg1 context:(id)arg2;
 + (id)latencyDiagnosticReport;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *diagnosticReports;
 - (id)encodedClassName;
 - (id)groupIdentifier;

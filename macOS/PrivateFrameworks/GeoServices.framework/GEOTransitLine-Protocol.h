@@ -6,18 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString;
+@class GEOMapItemIdentifier, NSArray, NSString;
 
 @protocol GEOTransitLine <NSObject>
 @property(readonly, nonatomic) NSArray *operatingHours;
 @property(readonly, nonatomic) BOOL showVehicleNumber;
 @property(readonly, nonatomic) NSString *lineColorString;
 @property(readonly, nonatomic) BOOL hasLineColorString;
+@property(readonly, nonatomic) id <GEOTransitArtworkDataSource> alternateArtwork;
 @property(readonly, nonatomic) id <GEOTransitArtworkDataSource> modeArtwork;
 @property(readonly, nonatomic) id <GEOTransitArtworkDataSource> artwork;
+@property(readonly, nonatomic) BOOL isBus;
 @property(readonly, nonatomic) BOOL departuresAreVehicleSpecific;
 @property(readonly, nonatomic) unsigned long long departureTimeDisplayStyle;
 @property(readonly, nonatomic) id <GEOTransitSystem> system;
+@property(readonly, nonatomic) GEOMapItemIdentifier *identifier;
 @property(readonly, nonatomic) NSString *name;
 @property(readonly, nonatomic) unsigned long long muid;
 @end

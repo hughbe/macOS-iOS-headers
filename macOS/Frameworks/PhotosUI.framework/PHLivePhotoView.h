@@ -6,71 +6,80 @@
 
 #import "NSView.h"
 
-#import "ISPlayerViewDelegate.h"
+#import "ISChangeObserver.h"
 #import "PHLivePhotoBadgeDelegate.h"
 
-@class ISManualPlaybackInput, ISPlayerItem, ISPlayerView, NSGestureRecognizer, NSLayoutConstraint, NSLayoutGuide, NSString, PHLivePhoto, PHLivePhotoBadge;
+@class ISLivePhotoNSView, ISLivePhotoPlayer, ISPlayerItem, NSLayoutConstraint, NSLayoutGuide, NSString, PHLivePhoto, PHLivePhotoBadge;
 
-@interface PHLivePhotoView : NSView <ISPlayerViewDelegate, PHLivePhotoBadgeDelegate>
+@interface PHLivePhotoView : NSView <ISChangeObserver, PHLivePhotoBadgeDelegate>
 {
     struct {
-        char respondsToWillBeginPlaybackWithStyle;
-        char respondsToDidEndPlaybackWithStyle;
-    } _delegateFlags;
+        char willBeginPlaybackWithStyle;
+        char didEndPlayback;
+        char didChangeVideoPlayer;
+    } _delegateRespondsTo;
+    struct {
+        char respondsToDidEndPlayingVitality;
+    } _delegatePrivateFlags;
+    long long _currentPlaybackStyle;
     BOOL _muted;
-    BOOL __didPlayToEnd;
+    BOOL __playingVitality;
     BOOL __playbackRequested;
-    BOOL _shouldAutomaticallyPrepareForPlayback;
+    BOOL _showsStatusBorder;
     float _audioVolume;
     id <PHLivePhotoViewDelegate> _delegate;
     PHLivePhoto *_livePhoto;
-    NSGestureRecognizer *_playbackGestureRecognizer;
-    ISPlayerView *__playerView;
-    ISManualPlaybackInput *__playbackInput;
-    long long __currentPlaybackStyle;
-    long long __configuredPlaybackStyle;
+    long long _contentMode;
     ISPlayerItem *__playerItem;
     NSLayoutGuide *__livePhotoContentFrameLayoutGuide;
     NSLayoutConstraint *__layoutGuideAspectRatioConstraint;
+    long long _targetReadiness;
     PHLivePhotoBadge *_livePhotoBadge;
+    ISLivePhotoNSView *_playerView;
+    ISLivePhotoPlayer *_player;
+    NSView *_photoView;
+    struct CGPoint _scaleAnchorOffset;
 }
 
+- (void).cxx_destruct;
+@property(nonatomic) struct CGPoint scaleAnchorOffset; // @synthesize scaleAnchorOffset=_scaleAnchorOffset;
+@property(retain, nonatomic) NSView *photoView; // @synthesize photoView=_photoView;
+@property(nonatomic) BOOL showsStatusBorder; // @synthesize showsStatusBorder=_showsStatusBorder;
+@property(readonly, nonatomic) ISLivePhotoPlayer *player; // @synthesize player=_player;
+@property(readonly, nonatomic) ISLivePhotoNSView *playerView; // @synthesize playerView=_playerView;
 @property(readonly, nonatomic) PHLivePhotoBadge *livePhotoBadge; // @synthesize livePhotoBadge=_livePhotoBadge;
-@property(nonatomic) BOOL shouldAutomaticallyPrepareForPlayback; // @synthesize shouldAutomaticallyPrepareForPlayback=_shouldAutomaticallyPrepareForPlayback;
+@property(nonatomic) long long targetReadiness; // @synthesize targetReadiness=_targetReadiness;
+@property(nonatomic, setter=_setPlaybackRequested:) BOOL _playbackRequested; // @synthesize _playbackRequested=__playbackRequested;
+@property(nonatomic, setter=_setPlayingVitality:) BOOL _playingVitality; // @synthesize _playingVitality=__playingVitality;
 @property(retain, nonatomic) NSLayoutConstraint *_layoutGuideAspectRatioConstraint; // @synthesize _layoutGuideAspectRatioConstraint=__layoutGuideAspectRatioConstraint;
 @property(retain, nonatomic) NSLayoutGuide *_livePhotoContentFrameLayoutGuide; // @synthesize _livePhotoContentFrameLayoutGuide=__livePhotoContentFrameLayoutGuide;
 @property(nonatomic, setter=_setPlayerItem:) ISPlayerItem *_playerItem; // @synthesize _playerItem=__playerItem;
-@property(nonatomic, setter=_configureForPlaybackStyle:) long long _configuredPlaybackStyle; // @synthesize _configuredPlaybackStyle=__configuredPlaybackStyle;
-@property(nonatomic, setter=_setPlaybackRequested:) BOOL _playbackRequested; // @synthesize _playbackRequested=__playbackRequested;
-@property(nonatomic, setter=_setDidPlayToEnd:) BOOL _didPlayToEnd; // @synthesize _didPlayToEnd=__didPlayToEnd;
-@property(nonatomic, setter=_setCurrentPlaybackStyle:) long long _currentPlaybackStyle; // @synthesize _currentPlaybackStyle=__currentPlaybackStyle;
-@property(readonly, nonatomic) ISManualPlaybackInput *_playbackInput; // @synthesize _playbackInput=__playbackInput;
-@property(readonly, nonatomic) ISPlayerView *_playerView; // @synthesize _playerView=__playerView;
-@property(readonly, nonatomic) NSGestureRecognizer *playbackGestureRecognizer; // @synthesize playbackGestureRecognizer=_playbackGestureRecognizer;
 @property(nonatomic, getter=isMuted) BOOL muted; // @synthesize muted=_muted;
 @property(nonatomic) float audioVolume; // @synthesize audioVolume=_audioVolume;
+@property(nonatomic) long long contentMode; // @synthesize contentMode=_contentMode;
 @property(retain, nonatomic) PHLivePhoto *livePhoto; // @synthesize livePhoto=_livePhoto;
 @property(nonatomic) __weak id <PHLivePhotoViewDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
 - (void)handleEvent:(id)arg1 onBadgeView:(id)arg2;
-- (void)playerViewDidPlaybackVideoAssetToEnd:(id)arg1;
-- (void)playerViewWillPlaybackVideoAssetToEnd:(id)arg1;
-- (void)playerViewPlaybackStateDidChange:(id)arg1;
-- (void)playerViewIsInteractingDidChange:(id)arg1;
-@property(readonly, nonatomic) NSView *livePhotoBadgeView;
+- (void)observable:(id)arg1 didChange:(unsigned long long)arg2 context:(void *)arg3;
+- (void)_handleVideoPlayerChange;
+- (void)_updatePlayerTargetReadiness;
+- (void)_handlePlaybackStyleChange;
+@property(readonly, nonatomic) long long currentPlaybackStyle;
 - (void)_updateCurrentPlaybackStyle;
-- (void)_updateAudioVolume;
-- (void)_updateMuted;
-- (void)_ensurePlaybackInput;
-- (void)_updatePlayerItemLoadingTarget;
+- (void)_updateStatusBorder;
+- (void)_updatePlayerAudioVolume;
+- (void)_updatePlayerAudioEnabled;
 - (void)stopPlayback;
+- (void)stopPlaybackAnimated:(BOOL)arg1;
 - (void)startPlaybackWithStyle:(long long)arg1;
-- (id)playerView;
+- (void)setPlayer:(id)arg1;
+@property(readonly, nonatomic) NSView *livePhotoBadgeView;
 - (void)_commonPHLivePhotoViewInitialization;
-- (id)initWithImage:(id)arg1 videoAsset:(id)arg2;
-- (id)initWithLivePhotoURL:(id)arg1;
+- (void)layout;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (id)initWithImage:(id)arg1 videoAsset:(id)arg2;
+- (id)initWithLivePhotoURL:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

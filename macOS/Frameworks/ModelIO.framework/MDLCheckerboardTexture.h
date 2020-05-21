@@ -9,10 +9,8 @@
 @interface MDLCheckerboardTexture : MDLTexture
 {
     int _divisions;
-    struct CGColor *_cgColor1;
-    struct CGColor *_cgColor2;
-    // Error parsing type: , name: _color1
-    // Error parsing type: , name: _color2
+    struct CGColor *_color1;
+    struct CGColor *_color2;
 }
 
 - (id)initWithDivisions:(float)arg1 name:(id)arg2 dimensions:(int)arg3 channelCount:(long long)arg4 channelEncoding:(struct CGColor *)arg5 color1:(struct CGColor *)arg6 color2: /* Error: Ran out of types for this method. */;

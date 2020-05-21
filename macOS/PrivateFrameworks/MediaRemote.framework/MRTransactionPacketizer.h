@@ -10,15 +10,14 @@
 
 @interface MRTransactionPacketizer : NSObject
 {
-    NSMutableDictionary *_incomingPackets;
     NSMutableArray *_outgoingPackets;
+    NSMutableDictionary *_incomingPackets;
 }
 
+- (void).cxx_destruct;
 - (void)unpacketize:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)packetize:(id)arg1 packageSize:(unsigned long long)arg2 completion:(CDUnknownBlockType)arg3;
-@property(readonly, nonatomic) BOOL hasMorePacketsToUnpacketize;
-@property(readonly, nonatomic) BOOL hasMorePacketsToPacketize;
-- (void)dealloc;
+- (BOOL)isEmpty;
 
 @end
 

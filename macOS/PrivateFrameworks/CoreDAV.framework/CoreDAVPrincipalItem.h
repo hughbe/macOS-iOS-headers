@@ -19,6 +19,7 @@
 }
 
 + (id)copyParseRules;
+- (void).cxx_destruct;
 @property(retain, nonatomic) CoreDAVItemWithNoChildren *selfItem; // @synthesize selfItem=_selfItem;
 @property(retain, nonatomic) CoreDAVItem *property; // @synthesize property=_property;
 @property(retain, nonatomic) CoreDAVItemWithNoChildren *unauthenticated; // @synthesize unauthenticated=_unauthenticated;
@@ -28,7 +29,6 @@
 - (id)hashString;
 - (void)write:(id)arg1;
 - (id)description;
-- (void)dealloc;
 - (id)initTypeIsSelf;
 - (id)initTypeIsUnauthenticated;
 - (id)initTypeIsAuthenticated;

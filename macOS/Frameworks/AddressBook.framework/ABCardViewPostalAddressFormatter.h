@@ -15,6 +15,7 @@
 + (id)formatDictionaryForAddress:(id)arg1 withDefaultCountryCode:(id)arg2;
 + (id)formatAddress:(id)arg1 withDefaultCountryCode:(id)arg2;
 + (id)formatAddress:(id)arg1;
++ (unsigned long long)numberOfLinesInFormattedAddress:(id)arg1;
 + (id)formatComponentToValueKeypathMap;
 
 @end

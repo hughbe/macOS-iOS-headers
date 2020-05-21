@@ -9,15 +9,15 @@
 #import "NSDraggingDestination.h"
 #import "NSTabBarSyncedButton.h"
 
-@class CALayer, NSColor, NSString, NSTrackingArea;
+@class CALayer, NSBox, NSColor, NSString, NSTitlebarSeparatorView, NSTrackingArea;
 
 __attribute__((visibility("hidden")))
 @interface NSTabBarNewTabButton : NSButton <NSDraggingDestination, NSTabBarSyncedButton>
 {
     NSTrackingArea *_trackingArea;
     NSColor *_backgroundColor;
-    CALayer *_topBorderLayer;
-    CALayer *_leadingBorderLayer;
+    NSTitlebarSeparatorView *_topBorderView;
+    NSBox *_leadingBorderView;
     CALayer *_backgroundLayer;
     BOOL _mouseIsOverButton;
     BOOL _forcesActiveWindowState;
@@ -28,13 +28,24 @@ __attribute__((visibility("hidden")))
 + (double)width;
 + (id)installNewTabButtonInView:(id)arg1;
 + (void)initialize;
+- (void).cxx_destruct;
 @property(nonatomic, getter=isSyncedWithOtherButton) BOOL syncedWithOtherButton; // @synthesize syncedWithOtherButton=_syncedWithOtherButton;
 @property(nonatomic) __weak id <NSTabBarSyncedButtonDelegate> buttonInTabSyncGroupDelegate; // @synthesize buttonInTabSyncGroupDelegate=_buttonInTabSyncGroupDelegate;
-- (void).cxx_destruct;
 - (void)setHighlightStateToPressed:(BOOL)arg1 hovered:(BOOL)arg2;
+- (void)updateDraggingItemsForDrag:(id)arg1;
+- (void)concludeDragOperation:(id)arg1;
+- (BOOL)performDragOperation:(id)arg1;
+- (BOOL)prepareForDragOperation:(id)arg1;
+- (void)draggingExited:(id)arg1;
+- (void)draggingEnded:(id)arg1;
+- (unsigned long long)draggingUpdated:(id)arg1;
+- (BOOL)wantsPeriodicDraggingUpdates;
+- (unsigned long long)draggingEntered:(id)arg1;
+- (id)draggingDestination;
+- (id)_dragTypes;
+- (id)associatedWindow;
 - (BOOL)_windowIsActive;
 - (void)_windowChangedKeyState;
-- (id)_topBorderDefaultColor;
 - (id)_leadingBorderDefaultColor;
 - (id)_backgroundDefaultColor;
 - (void)_updateButtonColors;
@@ -43,10 +54,9 @@ __attribute__((visibility("hidden")))
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
 - (void)mouseDown:(id)arg1;
-- (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)layout;
 - (void)_finishInitialization;
-- (void)_setLeadingBorderColor:(id)arg1 topBorderColor:(id)arg2 withAnimation:(id)arg3;
+- (void)_setLeadingBorderColor:(id)arg1 withAnimation:(id)arg2;
 - (void)_setBackgroundColor:(id)arg1 withAnimation:(id)arg2;
 - (void)_updateButtonHighlightWhenPressed:(BOOL)arg1 hovered:(BOOL)arg2 notifyNSTabBarSyncedButtonDelegate:(BOOL)arg3;
 - (void)_updateButtonHighlightWhenPressed:(BOOL)arg1 hovered:(BOOL)arg2;

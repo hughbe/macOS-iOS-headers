@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+#import "NSSecureCoding.h"
 
 @class DDNonTerminal, NSString;
 
 __attribute__((visibility("hidden")))
-@interface DDSymbol : NSObject <NSCoding>
+@interface DDSymbol : NSObject <NSSecureCoding>
 {
     int _type;
     union __DDSymbolUnion {
@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
     NSString *_displayName;
 }
 
++ (BOOL)supportsSecureCoding;
 - (int)symbolType;
 - (id)description;
 - (void)setDisplayName:(id)arg1;

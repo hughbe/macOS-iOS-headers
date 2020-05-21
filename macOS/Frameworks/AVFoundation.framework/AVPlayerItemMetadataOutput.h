@@ -6,7 +6,7 @@
 
 #import <AVFoundation/AVPlayerItemOutput.h>
 
-@class AVPlayerItemMetadataOutputInternal, NSObject<OS_dispatch_queue>;
+@class AVPlayerItemMetadataOutputInternal, NSDictionary, NSObject<OS_dispatch_queue>;
 
 @interface AVPlayerItemMetadataOutput : AVPlayerItemOutput
 {
@@ -20,12 +20,12 @@
 - (void)setDelegate:(id)arg1 queue:(id)arg2;
 - (void)_detachFromPlayerItem;
 - (BOOL)_attachToPlayerItem:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (void)_collectUncollectables;
 - (id)initWithIdentifiers:(id)arg1;
 - (id)init;
 - (void)_pushTimedMetadataGroups:(id)arg1 fromPlayerItemTrack:(id)arg2;
+@property(readonly, nonatomic, getter=_figMetadataOutputsDictionaryOptions) NSDictionary *figMetadataOutputsDictionaryOptions;
 - (void)_signalFlush;
 
 @end

@@ -8,24 +8,21 @@
 
 #import "WBSHistoryLoaderDelegate.h"
 
-@class HistorySpotlightDataSource, HistoryTextCache, NSMutableDictionary, NSString, NSTimer;
+@class NSMutableDictionary, NSString, NSTimer;
 
 __attribute__((visibility("hidden")))
 @interface History : WBSHistory <WBSHistoryLoaderDelegate>
 {
-    HistoryTextCache *_textCache;
-    HistorySpotlightDataSource *_spotlightDataSource;
     unsigned long long _historyModificationsSinceLastReport;
     NSTimer *_collectHistoryDataTimer;
     NSMutableDictionary *_lastImportedVisitDatesByBrowserBundleIdentifier;
-    struct unique_ptr<SafariShared::CoalescedAsynchronousWriter, std::__1::default_delete<SafariShared::CoalescedAsynchronousWriter>> _writer;
+    id <WBSHistoryConnectionProxy> _connectionProxy;
 }
 
 + (void)setIsStringForUserTypedDomainExpansionInHistoryFunction;
 + (void)setShouldCheckIntegrityOnOpen:(BOOL)arg1;
 + (void)warmUp;
 + (id)sharedHistory;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)enumerateItemsAsynchronouslyUsingBlock:(CDUnknownBlockType)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)enumerateItemsUsingBlock:(CDUnknownBlockType)arg1;
@@ -35,26 +32,28 @@ __attribute__((visibility("hidden")))
 - (void)historyStoreDidFailDatabaseIntegrityCheck:(id)arg1;
 - (BOOL)historyStoreShouldCheckDatabaseIntegrity:(id)arg1;
 - (void)_addVisitedLinksForItemsIfNeeded:(id)arg1;
+- (void)_dispatchHistoryLoaded;
+- (void)_startLoading;
 - (void)_dispatchHistoryCleared:(id)arg1;
 - (void)_dispatchHistoryItemsRemoved:(id)arg1;
-- (void)_dispatchHistoryItemsAdded:(id)arg1;
+- (void)_dispatchHistoryItemsAdded:(id)arg1 byUserInitiatedAction:(BOOL)arg2;
 - (id)_createHistoryStore;
 - (Class)_historyItemClass;
-- (void)populateVisitedLinksInContext:(struct Context)arg1;
+- (void)populateVisitedLinkStore:(id)arg1;
 - (void)historyLoaderDidFinishLoading:(id)arg1;
 - (void)updateHistoryAgeLimitFromPreferences;
 - (id)dateOfLatestImportedVisitForBundleIdentifier:(id)arg1;
-- (id)insertImportedVisitWithURLString:(id)arg1 forTestDrive:(BOOL)arg2 title:(id)arg3 onDate:(id)arg4 sourceBrowser:(id)arg5;
+- (id)insertImportedVisitWithURLString:(id)arg1 title:(id)arg2 onDate:(id)arg3 sourceBrowser:(id)arg4;
 - (id)itemVisitedAtURLString:(id)arg1 title:(id)arg2 timeOfVisit:(double)arg3 wasHTTPNonGet:(BOOL)arg4 wasFailure:(BOOL)arg5 increaseVisitCount:(BOOL)arg6 origin:(long long)arg7 attributes:(unsigned long long)arg8;
+- (void)clearHistoryVisitsAddedAfterDate:(id)arg1 beforeDate:(id)arg2;
 - (void)clearHistory;
 - (BOOL)shouldOmitURLString:(id)arg1;
 - (void)_removeAllVisitedLinks;
 - (void)_setVisitedLinkTrackingEnabled:(BOOL)arg1;
 - (void)_collectHistoryDataTimerFired;
-- (void)cachePageText:(id)arg1 page:(const struct Page *)arg2 url:(id)arg3;
 - (void)savePendingChangesBeforeTerminationWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (id)URLStringMatchesFromCachedPageTextForString:(id)arg1;
 - (id)init;
+- (id)initWithServiceConnectionProxy:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

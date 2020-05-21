@@ -6,16 +6,17 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSCopying.h"
 #import "NSFastEnumeration.h"
+#import "NSSecureCoding.h"
 
 @class NSPointerFunctions;
 
-@interface NSMapTable : NSObject <NSCopying, NSCoding, NSFastEnumeration>
+@interface NSMapTable : NSObject <NSCopying, NSSecureCoding, NSFastEnumeration>
 {
 }
 
++ (BOOL)supportsSecureCoding;
 + (id)weakToWeakObjectsMapTable;
 + (id)strongToWeakObjectsMapTable;
 + (id)weakToStrongObjectsMapTable;
@@ -59,6 +60,7 @@
 - (id)init;
 - (id)initWithKeyPointerFunctions:(id)arg1 valuePointerFunctions:(id)arg2 capacity:(unsigned long long)arg3;
 - (id)initWithKeyOptions:(unsigned long long)arg1 valueOptions:(unsigned long long)arg2 capacity:(unsigned long long)arg3;
+- (Class)classForCoder;
 - (id)initWithCoder:(id)arg1;
 
 @end

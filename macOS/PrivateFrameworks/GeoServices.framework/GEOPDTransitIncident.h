@@ -8,17 +8,22 @@
 
 #import "NSCopying.h"
 
-@class NSMutableArray;
+@class NSMutableArray, PBUnknownFields;
 
+__attribute__((visibility("hidden")))
 @interface GEOPDTransitIncident : PBCodable <NSCopying>
 {
+    PBUnknownFields *_unknownFields;
     NSMutableArray *_transitIncidents;
 }
 
++ (BOOL)isValid:(id)arg1;
 + (Class)transitIncidentType;
 + (id)transitIncidentsTTLExpirationDateForPlaceData:(id)arg1;
 + (id)transitIncidentsForPlaceData:(id)arg1 hasTransitIncidentComponent:(char *)arg2;
-@property(retain, nonatomic) NSMutableArray *transitIncidents; // @synthesize transitIncidents=_transitIncidents;
+- (void).cxx_destruct;
+- (void)clearUnknownFields:(BOOL)arg1;
+@property(readonly, nonatomic) PBUnknownFields *unknownFields;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -26,13 +31,14 @@
 - (void)copyTo:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)readAll:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)transitIncidentAtIndex:(unsigned long long)arg1;
 - (unsigned long long)transitIncidentsCount;
 - (void)addTransitIncident:(id)arg1;
 - (void)clearTransitIncidents;
-- (void)dealloc;
+@property(retain, nonatomic) NSMutableArray *transitIncidents;
 
 @end
 

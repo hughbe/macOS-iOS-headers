@@ -6,7 +6,35 @@
 
 #import "VKLabelMarker.h"
 
-@interface VKLabelMarker (MapKitExtras)
+#import "GEOTransitArtworkDataSource.h"
+
+@class MKMapItemIdentifier, NSColor, NSString, NSView;
+
+@interface VKLabelMarker (MapKitExtras) <GEOTransitArtworkDataSource>
+@property(nonatomic) BOOL suppressCallout;
 - (id)_annotationTitle;
+@property(readonly, nonatomic) MKMapItemIdentifier *flyoverTourIdentifier;
+@property(readonly, nonatomic) MKMapItemIdentifier *identifier;
+@property(readonly, nonatomic) id <GEOTransitTextDataSource> textDataSource;
+@property(readonly, nonatomic) NSString *accessibilityText;
+@property(readonly, nonatomic) BOOL hasRoutingIncidentBadge;
+@property(readonly, nonatomic) id <GEOTransitShieldDataSource> iconFallbackShieldDataSource;
+@property(readonly, nonatomic) id <GEOTransitIconDataSource> iconDataSource;
+@property(readonly, nonatomic) id <GEOTransitShieldDataSource> shieldDataSource;
+@property(readonly, nonatomic) int artworkUseType;
+@property(readonly, nonatomic) int artworkSourceType;
+@property(readonly, nonatomic) NSString *trimmedTitle;
+@property(retain, nonatomic) NSColor *leftCalloutAccessoryViewBackgroundColor;
+@property(retain, nonatomic) NSView *detailCalloutAccessoryView;
+@property(retain, nonatomic) NSView *rightCalloutAccessoryView;
+@property(retain, nonatomic) NSView *leftCalloutAccessoryView;
+@property(copy, nonatomic) NSString *subtitle;
+@property(readonly, nonatomic) NSString *title;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

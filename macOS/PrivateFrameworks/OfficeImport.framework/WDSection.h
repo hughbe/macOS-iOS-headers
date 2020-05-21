@@ -14,7 +14,6 @@ __attribute__((visibility("hidden")))
     unsigned int mOriginal:1;
     unsigned int mTracked:1;
     unsigned int mResolved:1;
-    WDDocument *mDocument;
     WDText *mText;
     WDText *mEvenPageHeader;
     WDText *mOddPageHeader;
@@ -24,8 +23,12 @@ __attribute__((visibility("hidden")))
     WDText *mFirstPageFooter;
     CDStruct_9cc0d39f mOriginalProperties;
     CDStruct_9cc0d39f mTrackedProperties;
+    WDDocument *mDocument;
 }
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
+@property(readonly) __weak WDDocument *document; // @synthesize document=mDocument;
 - (id)description;
 - (BOOL)isFormattingChangeDateOverridden;
 - (void)setFormattingChangeDate:(id)arg1;
@@ -154,10 +157,8 @@ __attribute__((visibility("hidden")))
 - (id)evenPageHeader;
 - (id)oddPageHeader;
 - (id)text;
-- (id)document;
 - (void)setResolveMode:(int)arg1;
 - (int)resolveMode;
-- (void)dealloc;
 - (id)initWithDocument:(id)arg1;
 
 @end

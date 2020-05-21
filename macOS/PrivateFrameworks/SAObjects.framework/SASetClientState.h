@@ -16,6 +16,7 @@
 
 + (id)setClientStateWithDictionary:(id)arg1 context:(id)arg2;
 + (id)setClientState;
+- (BOOL)requiresResponse;
 @property(copy, nonatomic) NSArray *statesToSet;
 - (id)encodedClassName;
 - (id)groupIdentifier;

@@ -13,7 +13,6 @@
 @interface AVB17221AEMEntityEnumerator : NSObject <AVB17221AECPClient>
 {
     NSObject<OS_dispatch_semaphore> *_completionSemaphore;
-    NSObject<OS_dispatch_semaphore> *inflightLimiter;
     NSObject<OS_dispatch_queue> *enumerationQueue;
     NSObject<OS_dispatch_queue> *blockingQueue;
     AVB17221Entity *entity;
@@ -27,18 +26,18 @@
 - (void)dealloc;
 - (BOOL)AECPDidReceiveResponse:(id)arg1 onInterface:(id)arg2;
 - (BOOL)AECPDidReceiveCommand:(id)arg1 onInterface:(id)arg2;
-- (void)_readDescriptorOfType:(unsigned short)arg1 withID:(unsigned short)arg2 inConfiguration:(unsigned short)arg3 forObject:(id)arg4;
-- (void)readDescriptorOfType:(unsigned short)arg1 withID:(unsigned short)arg2 inConfiguration:(unsigned short)arg3 forObject:(id)arg4;
+- (void)_readDescriptorOfType:(unsigned short)arg1 withID:(unsigned short)arg2 inConfiguration:(unsigned short)arg3 forObject:(id)arg4 inflightLimiter:(id)arg5 parent:(id)arg6;
+- (void)readDescriptorOfType:(unsigned short)arg1 withID:(unsigned short)arg2 inConfiguration:(unsigned short)arg3 forObject:(id)arg4 inflightLimiter:(id)arg5 parent:(id)arg6;
 - (void)processNodeDescriptor:(id)arg1 forObject:(id)arg2;
-- (void)processControlBlockDescriptor:(id)arg1 forObject:(id)arg2;
-- (void)processJackDescriptor:(id)arg1 forObject:(id)arg2;
-- (void)processPortDescriptor:(id)arg1 forObject:(id)arg2;
-- (void)processLocaleDescriptor:(id)arg1 forObject:(id)arg2;
-- (void)processMatrixDescriptor:(id)arg1 forObject:(id)arg2;
-- (void)processStreamPortDescriptor:(id)arg1 forObject:(id)arg2;
-- (void)processUnitDescriptor:(id)arg1 forObject:(id)arg2;
-- (void)processConfigurationDescriptor:(id)arg1 forObject:(id)arg2;
-- (void)processEntityDescriptor:(id)arg1 forObject:(id)arg2;
+- (void)processControlBlockDescriptor:(id)arg1 forObject:(id)arg2 inflightLimiter:(id)arg3;
+- (void)processJackDescriptor:(id)arg1 forObject:(id)arg2 inflightLimiter:(id)arg3;
+- (void)processPortDescriptor:(id)arg1 forObject:(id)arg2 inflightLimiter:(id)arg3;
+- (void)processLocaleDescriptor:(id)arg1 forObject:(id)arg2 inflightLimiter:(id)arg3;
+- (void)processMatrixDescriptor:(id)arg1 forObject:(id)arg2 inflightLimiter:(id)arg3;
+- (void)processStreamPortDescriptor:(id)arg1 forObject:(id)arg2 inflightLimiter:(id)arg3;
+- (void)processUnitDescriptor:(id)arg1 forObject:(id)arg2 inflightLimiter:(id)arg3;
+- (void)processConfigurationDescriptor:(id)arg1 forObject:(id)arg2 inflightLimiter:(id)arg3;
+- (void)processEntityDescriptor:(id)arg1 forObject:(id)arg2 inflightLimiter:(id)arg3;
 - (id)enumerate;
 - (id)initWithEntity:(id)arg1 onInterface:(id)arg2 withControllerEntityID:(unsigned long long)arg3;
 

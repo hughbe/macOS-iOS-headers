@@ -14,6 +14,9 @@
 + (id)keyPathsForValuesAffectingDataTypeReference;
 + (id)keyPathsForValuesAffectingStreamsPerFrame;
 + (id)keyPathsForValuesAffectingFramesPerFrame;
+- (id)streamFormatCompatibleWithTalkerFormat:(id)arg1;
+- (BOOL)isPotentiallyCompatibleAsListenerForFormat:(id)arg1;
+- (BOOL)isCompatibleAsListenerForFormat:(id)arg1;
 - (unsigned short)maximumIntervalFrames;
 - (unsigned int)maximumPayloadSize;
 - (unsigned int)maximumPDUSize;

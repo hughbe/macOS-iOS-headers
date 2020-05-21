@@ -10,15 +10,15 @@
 
 @interface MFIMAPCopyMessagesOperation : MFIMAPOperation
 {
+    NSString *_destinationMailbox;
     NSPointerArray *_sourceUidPointerArray;
     NSPointerArray *_destinationUidPointerArray;
-    NSString *_destinationMailbox;
 }
 
-@property(copy, nonatomic) NSString *destinationMailbox; // @synthesize destinationMailbox=_destinationMailbox;
+- (void).cxx_destruct;
 @property(retain, nonatomic) NSPointerArray *destinationUidPointerArray; // @synthesize destinationUidPointerArray=_destinationUidPointerArray;
 @property(retain, nonatomic) NSPointerArray *sourceUidPointerArray; // @synthesize sourceUidPointerArray=_sourceUidPointerArray;
-- (void).cxx_destruct;
+@property(copy, nonatomic) NSString *destinationMailbox; // @synthesize destinationMailbox=_destinationMailbox;
 - (id)description;
 - (unsigned int)sourceUidForTemporaryUid:(unsigned int)arg1;
 - (void)serializeIntoData:(id)arg1;

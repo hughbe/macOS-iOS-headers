@@ -12,12 +12,10 @@
 - (void)handleSearchForMessages:(INSearchForMessagesIntent *)arg1 completion:(void (^)(INSearchForMessagesIntentResponse *))arg2;
 
 @optional
+- (void)resolveSpeakableGroupNamesForSearchForMessages:(INSearchForMessagesIntent *)arg1 withCompletion:(void (^)(NSArray *))arg2;
 - (void)resolveGroupNamesForSearchForMessages:(INSearchForMessagesIntent *)arg1 withCompletion:(void (^)(NSArray *))arg2;
-- (void)resolveNotificationIdentifiersForSearchForMessages:(INSearchForMessagesIntent *)arg1 withCompletion:(void (^)(NSArray *))arg2;
-- (void)resolveIdentifiersForSearchForMessages:(INSearchForMessagesIntent *)arg1 withCompletion:(void (^)(NSArray *))arg2;
 - (void)resolveDateTimeRangeForSearchForMessages:(INSearchForMessagesIntent *)arg1 withCompletion:(void (^)(INDateComponentsRangeResolutionResult *))arg2;
 - (void)resolveAttributesForSearchForMessages:(INSearchForMessagesIntent *)arg1 withCompletion:(void (^)(INMessageAttributeOptionsResolutionResult *))arg2;
-- (void)resolveSearchTermsForSearchForMessages:(INSearchForMessagesIntent *)arg1 withCompletion:(void (^)(NSArray *))arg2;
 - (void)resolveSendersForSearchForMessages:(INSearchForMessagesIntent *)arg1 withCompletion:(void (^)(NSArray *))arg2;
 - (void)resolveRecipientsForSearchForMessages:(INSearchForMessagesIntent *)arg1 withCompletion:(void (^)(NSArray *))arg2;
 - (void)confirmSearchForMessages:(INSearchForMessagesIntent *)arg1 completion:(void (^)(INSearchForMessagesIntentResponse *))arg2;

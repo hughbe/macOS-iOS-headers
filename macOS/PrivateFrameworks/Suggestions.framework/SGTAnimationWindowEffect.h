@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
     BOOL _inverted;
 }
 
+- (void).cxx_destruct;
 @property(retain) NSArray *subEffects; // @synthesize subEffects=_subEffects;
 - (void)animationDidEnd:(id)arg1;
 - (id)subEffectWithID:(unsigned int)arg1;
@@ -35,7 +36,6 @@ __attribute__((visibility("hidden")))
 - (BOOL)stop;
 - (void)invoke;
 - (id)prepare;
-- (void)dealloc;
 - (id)initWithWindow:(id)arg1 animation:(id)arg2;
 @property(retain) SGTWindowAnimation *animation;
 

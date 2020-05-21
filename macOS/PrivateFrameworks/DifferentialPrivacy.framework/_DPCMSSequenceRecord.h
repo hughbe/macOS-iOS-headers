@@ -15,17 +15,16 @@
     NSString *_plainSequence;
 }
 
-+ (id)recordWithKey:(id)arg1 plainSequence:(id)arg2 sequence:(id)arg3 sequenceHashIndex:(unsigned short)arg4 creationDate:(double)arg5 submitted:(BOOL)arg6 objectId:(id)arg7;
 + (id)entityName;
+- (void).cxx_destruct;
 @property(copy, nonatomic) NSString *plainSequence; // @synthesize plainSequence=_plainSequence;
 @property(nonatomic) short sequenceHashIndex; // @synthesize sequenceHashIndex=_sequenceHashIndex;
 @property(retain, nonatomic) NSData *sequence; // @synthesize sequence=_sequence;
-- (void).cxx_destruct;
 - (id)jsonString;
-- (id)description;
-- (id)initWithKey:(id)arg1 plainSequence:(id)arg2 sequence:(id)arg3 sequenceHashIndex:(unsigned short)arg4 creationDate:(double)arg5 submitted:(BOOL)arg6 objectId:(id)arg7;
 - (BOOL)copyFromManagedObject:(id)arg1;
 - (BOOL)copyToManagedObject:(id)arg1;
+- (id)description;
+- (id)initWithKey:(id)arg1 plainSequence:(id)arg2 sequence:(id)arg3 sequenceHashIndex:(unsigned short)arg4 creationDate:(double)arg5 submitted:(BOOL)arg6 objectId:(id)arg7;
 
 @end
 

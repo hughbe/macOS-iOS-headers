@@ -27,10 +27,18 @@
 + (void)begin;
 + (void)assertInactive;
 + (unsigned int)generateSeed;
++ (void)setLowLatency:(BOOL)arg1;
++ (BOOL)lowLatency;
++ (void)setBeginTime:(double)arg1;
++ (double)beginTime;
++ (void)setRemoteInputMachTime:(unsigned long long)arg1;
++ (unsigned long long)remoteInputMachTime;
 + (void)setInputTime:(double)arg1;
 + (double)inputTime;
 + (void)setDisableRunLoopObserverCommits:(BOOL)arg1;
 + (BOOL)disableRunLoopObserverCommits;
++ (void)setEarliestAutomaticCommitTime:(double)arg1;
++ (double)earliestAutomaticCommitTime;
 + (void)setCommitTime:(double)arg1;
 + (double)commitTime;
 + (void)setAnimatesFromModelValues:(BOOL)arg1;
@@ -39,6 +47,7 @@
 + (void)synchronize;
 + (void)activateBackground:(BOOL)arg1;
 + (void)activate;
++ (int)currentPhase;
 + (void)addCommitHandler:(CDUnknownBlockType)arg1 forPhase:(int)arg2;
 + (void)setCommitHandler:(CDUnknownBlockType)arg1;
 + (CDUnknownBlockType)animator;

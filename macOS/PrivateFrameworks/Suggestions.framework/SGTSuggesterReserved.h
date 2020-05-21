@@ -13,9 +13,10 @@ __attribute__((visibility("hidden")))
 {
     SGTQueryGenius *genius;
     SGTCategory *category;
+    id <SGTSuggesterDelegate> delegate;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 
 @end
 

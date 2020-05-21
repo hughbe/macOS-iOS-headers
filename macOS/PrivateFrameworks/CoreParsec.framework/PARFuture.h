@@ -18,6 +18,7 @@
 - (id)waitForever;
 - (id)wait:(unsigned long long)arg1;
 - (id)initFromPromise:(id)arg1;
+- (id)initFulfilled:(id)arg1;
 
 @end
 

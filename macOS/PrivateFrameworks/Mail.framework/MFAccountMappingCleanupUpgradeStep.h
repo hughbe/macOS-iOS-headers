@@ -10,14 +10,23 @@
 {
 }
 
-+ (BOOL)needToPerformFromMinorVersion:(unsigned long long)arg1 initialLastWriteMinorVersion:(unsigned long long)arg2 fromBackBooting:(char *)arg3;
++ (BOOL)recalculateAllConversations;
++ (BOOL)needToPerformFromMinorVersion:(unsigned long long)arg1 initialLastWriteMinorVersion:(unsigned long long)arg2;
 + (unsigned long long)targetVersion;
+- (void)_recalculateMessageCountsForPOPMailbox:(id)arg1;
+- (BOOL)_addRecipientsForLibraryID:(long long)arg1 recipients:(id)arg2 recipientType:(BOOL)arg3 position:(int)arg4 cache:(id)arg5;
+- (BOOL)_addRecipientsForLibraryIDFromMessage:(id)arg1 libraryID:(long long)arg2 cache:(id)arg3;
+- (long long)_rowIDForAddressText:(id)arg1 cache:(id)arg2;
+- (long long)_rowIDForSubject:(id)arg1 cache:(id)arg2;
+- (id)_referencesAsEncodedMessageIDStringFromMessageHeaders:(id)arg1;
+- (id)_insertMessages:(id)arg1 withMailbox:(id)arg2 error:(id *)arg3;
+- (BOOL)_rebuildPOPMailbox:(id)arg1;
 - (void)_rebuildPOPAccounts:(id)arg1;
 - (void)_deleteMailboxesFromDatabase:(id)arg1;
 - (id)_popAccountsNeedingRebuild:(id)arg1;
 - (id)_fetchOrphanedMailboxIDs:(id *)arg1;
 - (void)runWithRowIDsNeedingConversationRecalculation:(id)arg1;
-- (id)initWithSQLHandle:(id)arg1 accounts:(id)arg2;
+- (id)initWithDatabaseConnection:(id)arg1 accounts:(id)arg2;
 
 @end
 

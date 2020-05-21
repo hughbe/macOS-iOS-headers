@@ -9,6 +9,6 @@
 @class NSString;
 
 @protocol WBSFormAutoFillFeedbackDomainPolicyProvider <NSObject>
-- (void)autoFillFeedbackProcessor:(id <WBSFormAutoFillFeedbackProcessor>)arg1 determineWhetherToSendFeedbackForDomain:(NSString *)arg2 resultHandler:(void (^)(BOOL))arg3;
+- (void)autoFillFeedbackProcessor:(id <WBSFormAutoFillFeedbackProcessor>)arg1 determineWhetherToSendFeedbackForDomain:(NSString *)arg2 resultHandler:(void (^)(long long))arg3;
 @end
 

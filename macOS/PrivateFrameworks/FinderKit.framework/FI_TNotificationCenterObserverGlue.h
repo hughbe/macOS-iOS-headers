@@ -9,15 +9,15 @@
 __attribute__((visibility("hidden")))
 @interface FI_TNotificationCenterObserverGlue : NSObject
 {
-    function_f9feaa7d _invokeSimple;
-    function_5450a8ab _invokeWithNote;
+    function_b1fce659 _invokeSimple;
+    function_afb0e2a8 _invokeWithNote;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)invoke:(id)arg1;
-- (id)initWithNote:(const function_5450a8ab *)arg1;
-- (id)initSimple:(const function_f9feaa7d *)arg1;
+- (id)initWithNote:(const function_afb0e2a8 *)arg1;
+- (id)initSimple:(const function_b1fce659 *)arg1;
 
 @end
 
