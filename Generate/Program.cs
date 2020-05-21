@@ -15,8 +15,12 @@ namespace Generate
                 void DumpMac(string folderName)
                 {
                     string FrameworksPath = $"/System/Library/{folderName}";
-                    foreach (string file in Directory.EnumerateDirectories(FrameworksPath).OrderBy(s => s))
+                    int i = 0;
+                    string[] files = Directory.EnumerateDirectories(FrameworksPath).OrderBy(s => s).ToArray();
+                    foreach (string file in files)
                     {
+                        i++;
+                        Console.WriteLine($"{i}/{files.Length}");
                         Dump($"../macOS/{folderName}", file);
                     }
                 }
@@ -44,8 +48,6 @@ namespace Generate
         private static void Dump(string destinationDirectory, string filePath)
         {
             string name = Path.GetFileName(filePath);
-            Console.WriteLine($"Dumping {name}");
-
             string args = $"\"{filePath}\" -H -o \"{destinationDirectory}/{name}\"";
             Console.WriteLine($"Running class-dump {args}");
             Process process = Process.Start("class-dump", args);
