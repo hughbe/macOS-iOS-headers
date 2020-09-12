@@ -4,11 +4,11 @@
 //  Copyright (C) 1997-2019 Steve Nygard.
 //
 
-#import <PassKitCore/PKSubcredentialProvisioningSessionOperation.h>
+#import <PassKitCore/PKSubcredentialProvisioningPairingSessionOperation.h>
 
 @class NSError, PKSubcredentialProvisioningDownloadPassOperation, PKSubcredentialProvisioningTrackCredentialOperation;
 
-@interface PKSubcredentialProvisioningDownloadAndTrackCredentialOperation : PKSubcredentialProvisioningSessionOperation
+@interface PKSubcredentialProvisioningDownloadAndTrackCredentialOperation : PKSubcredentialProvisioningPairingSessionOperation
 {
     PKSubcredentialProvisioningDownloadPassOperation *_downloadOperation;
     PKSubcredentialProvisioningTrackCredentialOperation *_trackOperation;

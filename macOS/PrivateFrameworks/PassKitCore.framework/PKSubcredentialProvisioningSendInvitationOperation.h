@@ -4,11 +4,11 @@
 //  Copyright (C) 1997-2019 Steve Nygard.
 //
 
-#import <PassKitCore/PKSubcredentialProvisioningSessionOperation.h>
+#import <PassKitCore/PKSubcredentialProvisioningSharingSessionOperation.h>
 
 @class PKAppletSubcredential, PKAppletSubcredentialSharingInvitation, PKAppletSubcredentialSharingInvitationReceipt, PKAppletSubcredentialSharingRequest, PKPaymentWebService;
 
-@interface PKSubcredentialProvisioningSendInvitationOperation : PKSubcredentialProvisioningSessionOperation
+@interface PKSubcredentialProvisioningSendInvitationOperation : PKSubcredentialProvisioningSharingSessionOperation
 {
     PKAppletSubcredentialSharingRequest *_sharingRequest;
     PKAppletSubcredentialSharingInvitation *_invitation;
@@ -22,8 +22,9 @@
 - (void).cxx_destruct;
 - (void)session:(id)arg1 didChangeState:(unsigned long long)arg2;
 - (id)userAuthDelegate;
-- (id)sharingSession;
+- (void)initializeAccountAttestationIfNecessaryWithCompletion:(CDUnknownBlockType)arg1;
 - (void)sendInvitationWithAuth:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)canAcceptInvitationWithCompletion:(CDUnknownBlockType)arg1;
 - (void)sendInvitation;
 - (void)performOperation;
 - (id)initWithConfiguration:(id)arg1 context:(id)arg2 delegate:(id)arg3;

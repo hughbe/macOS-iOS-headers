@@ -4,9 +4,9 @@
 //  Copyright (C) 1997-2019 Steve Nygard.
 //
 
-#import <PassKitCore/PKSubcredentialProvisioningSessionOperation.h>
+#import <PassKitCore/PKSubcredentialProvisioningPairingSessionOperation.h>
 
-@interface PKSubcredentialProvisioningPrewarmSessionOperation : PKSubcredentialProvisioningSessionOperation
+@interface PKSubcredentialProvisioningPrewarmSessionOperation : PKSubcredentialProvisioningPairingSessionOperation
 {
     BOOL _operationWasCancelled;
 }

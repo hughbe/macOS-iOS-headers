@@ -12,6 +12,8 @@
 {
     MISSING_TYPE *frontFacingCameraView;
     MISSING_TYPE *backFacingCameraView;
+    MISSING_TYPE *previousViewModelHash;
+    MISSING_TYPE *previousVideoSnapshot;
 }
 
 - (void).cxx_destruct;

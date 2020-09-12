@@ -12,7 +12,6 @@
 {
     MISSING_TYPE *participants;
     MISSING_TYPE *participantsBeforeFocus;
-    MISSING_TYPE *participantPriorities;
     MISSING_TYPE *focusedParticipant;
     MISSING_TYPE *sashedParticipant;
     MISSING_TYPE *selectedParticipant;

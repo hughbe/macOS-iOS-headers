@@ -4,15 +4,15 @@
 //  Copyright (C) 1997-2019 Steve Nygard.
 //
 
-#import <PassKitCore/PKSubcredentialProvisioningSessionOperation.h>
+#import <PassKitCore/PKSubcredentialProvisioningPairingSessionOperation.h>
 
 @class NSData, PKAppletSubcredential;
 
-@interface PKSubcredentialProvisioningTrackCredentialOperation : PKSubcredentialProvisioningSessionOperation
+@interface PKSubcredentialProvisioningTrackCredentialOperation : PKSubcredentialProvisioningPairingSessionOperation
 {
     _Bool _performingOperation;
     _Bool _hasTrackedCredential;
-    _Bool _firstTransactionSucceeded;
+    _Bool _firstTransactionCompleted;
     PKAppletSubcredential *_subcredential;
     NSData *_trackingAttestation;
     CDUnknownBlockType _completionHandler;
@@ -21,7 +21,6 @@
 - (void).cxx_destruct;
 - (void)appletSubcredentialPairingSessionDidFirstTransaction:(id)arg1 withError:(id)arg2;
 - (void)session:(id)arg1 didChangeState:(unsigned long long)arg2;
-- (id)pairingSession;
 - (void)trackCredentialWithAttestation;
 - (void)performOperationWithCompletion:(CDUnknownBlockType)arg1;
 - (void)performOperation;

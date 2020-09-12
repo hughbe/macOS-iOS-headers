@@ -27,6 +27,8 @@ struct ccmode_cbc;
 
 struct ccmode_ecb;
 
+struct ccmode_gcm;
+
 struct ccrng_state;
 
 struct ccrsa_full_ctx {
@@ -71,6 +73,8 @@ struct ckvr_srp_context {
     struct ccdigest_info *_field2;
     struct ccmode_cbc *_field3;
     struct ccmode_cbc *_field4;
-    struct ccsrp_ctx *_field5;
+    struct ccmode_gcm *_field5;
+    struct ccmode_gcm *_field6;
+    struct ccsrp_ctx *_field7;
 };
 

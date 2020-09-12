@@ -4,10 +4,13 @@
 //  Copyright (C) 1997-2019 Steve Nygard.
 //
 
+#import <ClassroomKit/NSObject-Protocol.h>
+
 @class NSString;
 
-@protocol CRKASMNameComponents
+@protocol CRKASMNameComponents <NSObject>
 @property(readonly, copy, nonatomic) NSString *monogram;
+@property(readonly, copy, nonatomic) NSString *phoneticFullName;
 @property(readonly, copy, nonatomic) NSString *fullName;
 @property(readonly, copy, nonatomic) NSString *phoneticFamilyName;
 @property(readonly, copy, nonatomic) NSString *familyName;

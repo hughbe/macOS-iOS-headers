@@ -30,7 +30,6 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic, getter=isSignedByApple) BOOL signedByApple;
 @property(readonly, nonatomic) NSExtension *appExtension;
 @property(readonly, nonatomic) struct Extension *legacyExtension;
-@property(readonly, nonatomic) BOOL isLegacyExtension;
 @property(readonly, nonatomic, getter=isEnabled) BOOL enabled;
 @property(readonly, copy, nonatomic) NSString *descriptionText;
 @property(readonly, copy, nonatomic) NSURL *containingAppURL;

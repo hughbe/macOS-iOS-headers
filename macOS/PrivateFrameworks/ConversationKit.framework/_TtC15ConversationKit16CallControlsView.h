@@ -18,12 +18,14 @@
     MISSING_TYPE *toggleVideoButton;
     MISSING_TYPE *toggleCallControls;
     MISSING_TYPE *expandButton;
+    MISSING_TYPE *localVideoRecordButton;
 }
 
 - (void).cxx_destruct;
 - (void)windowStateDidChange:(id)arg1;
 - (void)handleVideoMuteStateChanged:(id)arg1;
 - (void)handleAudioMuteStateChanged:(id)arg1;
+- (void)didTapRecord;
 - (void)didTapExpand;
 - (void)didTapToggleSideBar;
 - (void)didTapJoinConversation;

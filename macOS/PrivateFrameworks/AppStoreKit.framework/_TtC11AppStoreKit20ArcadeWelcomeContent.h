@@ -15,6 +15,10 @@
     MISSING_TYPE *items;
     MISSING_TYPE *continueAction;
     MISSING_TYPE *familyAction;
+    MISSING_TYPE *dismissingContinueAction;
+    MISSING_TYPE *nonDismissingContinueAction;
+    MISSING_TYPE *dismissingFamilyAction;
+    MISSING_TYPE *nonDismissingFamilyAction;
 }
 
 @end

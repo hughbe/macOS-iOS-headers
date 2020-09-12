@@ -1,12 +1,22 @@
-# macOS-headers
-Private and Public Framework headers for macOS Sierra
+# macOS-iOS-headers
+Private and Public Framework headers for macOS and iOS
 
 ## Generate Instructions
 
 ### macOS
-- Execute `dotnet run macos` in the `Generate` folder.
+- Execute the following commands from the root of the repository:
+
+```
+cd Generate
+dotnet run macos
+```
 
 ### iOS
 - Build and run https://github.com/nst/RuntimeBrowser/
 - Press `Load All` in `RuntimeBrowser`
-- Execute `dotnet run ios` in the `Generate` folder
+- Execute the following commands from the root of the repository:
+
+```
+cd Generate
+dotnet run ios
+```

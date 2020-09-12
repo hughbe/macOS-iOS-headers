@@ -35,6 +35,7 @@
     MISSING_TYPE *cameraZoomAvailabiltyDidChange;
     MISSING_TYPE *carPlayConnectedDidChange;
     MISSING_TYPE *didUpdateLocalParticipant;
+    MISSING_TYPE *didUpdateRecordingLocalVideo;
     MISSING_TYPE *didStartVideoForLocalParticipant;
     MISSING_TYPE *conversationStateDidChange;
     MISSING_TYPE *blockedParticipantsAdded;
@@ -46,6 +47,7 @@
     MISSING_TYPE *call;
     MISSING_TYPE *blockedCallerChecker;
     MISSING_TYPE *conversationUUID;
+    MISSING_TYPE *localVideoRecordingTransactionID;
 }
 
 - (void).cxx_destruct;

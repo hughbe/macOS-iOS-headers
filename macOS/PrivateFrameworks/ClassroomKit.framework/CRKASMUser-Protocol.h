@@ -4,12 +4,15 @@
 //  Copyright (C) 1997-2019 Steve Nygard.
 //
 
-@class NSObject, NSString;
+#import <ClassroomKit/NSObject-Protocol.h>
+
+@class NSString;
 @protocol CRKASMNameComponents, CRKASMOrganization;
 
-@protocol CRKASMUser
-@property(readonly, nonatomic) NSObject<CRKASMOrganization> *organization;
-@property(readonly, nonatomic) NSObject<CRKASMNameComponents> *nameComponents;
+@protocol CRKASMUser <NSObject>
+@property(readonly, nonatomic) id <CRKASMOrganization> organization;
+@property(readonly, nonatomic) id <CRKASMNameComponents> nameComponents;
+@property(readonly, copy, nonatomic) NSString *appleID;
 @property(readonly, copy, nonatomic) NSString *identifier;
 @end
 

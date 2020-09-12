@@ -4,14 +4,16 @@
 //  Copyright (C) 1997-2019 Steve Nygard.
 //
 
-#pragma mark Blocks
+#pragma mark Function Pointers and Blocks
+
+typedef void (*CDUnknownFunctionPointerType)(void); // return type and parameters are unknown
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
 #pragma mark Named Structures
 
 struct ArenaStringPtr {
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field1;
+    basic_string_a1f69cfb *_field1;
 };
 
 struct Asset {
@@ -24,6 +26,12 @@ struct Asset {
     struct ArenaStringPtr _field7;
     unsigned long long _field8;
     int _field9;
+};
+
+struct CC_SHA256state_st {
+    unsigned int count[2];
+    unsigned int hash[8];
+    unsigned int wbuf[16];
 };
 
 struct CachedSize {
@@ -42,15 +50,16 @@ struct Context {
     struct map<std::__1::basic_string<char>, siri::dialogengine::Parameter, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, siri::dialogengine::Parameter>>> _field5;
     struct vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char>>> _field6;
     struct map<std::__1::basic_string<char>, std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::basic_string<char>>>> _field7;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field8;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field9;
+    basic_string_a1f69cfb _field8;
+    basic_string_a1f69cfb _field9;
     double _field10;
     CDUnknownBlockType _field11;
     struct DialogStateUseCase _field12;
     struct DialogStateFamily _field13;
     _Bool _field14;
     _Bool _field15;
-    _Bool _field16;
+    struct shared_ptr<siri::dialogengine::ExecutionState> _field16;
+    _Bool _field17;
 };
 
 struct CountAndTimestamp {
@@ -66,15 +75,15 @@ struct DialogStateFamily {
 
 struct DialogStateUseCase {
     struct CountAndTimestamp _field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field2;
     struct set<std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::basic_string<char>>> _field3;
     struct map<std::__1::basic_string<char>, siri::dialogengine::GroundingInfo, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, siri::dialogengine::GroundingInfo>>> _field4;
 };
 
 struct Distribution {
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field3;
+    basic_string_a1f69cfb _field1;
+    basic_string_a1f69cfb _field2;
+    basic_string_a1f69cfb _field3;
 };
 
 struct Encrypted {
@@ -88,6 +97,8 @@ struct Encrypted {
     struct ArenaStringPtr _field8;
     _Bool _field9;
 };
+
+struct ExecutionState;
 
 struct File;
 
@@ -108,10 +119,11 @@ struct MetadataProperty {
 struct Node;
 
 struct ObjectProperty {
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field3;
-    _Bool _field4;
+    basic_string_a1f69cfb _field1;
+    basic_string_a1f69cfb _field2;
+    basic_string_a1f69cfb _field3;
+    basic_string_a1f69cfb _field4;
+    _Bool _field5;
 };
 
 struct ObjectSampleValues {
@@ -119,10 +131,10 @@ struct ObjectSampleValues {
 };
 
 struct ObjectSchema {
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field3;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field4;
+    basic_string_a1f69cfb _field1;
+    basic_string_a1f69cfb _field2;
+    basic_string_a1f69cfb _field3;
+    basic_string_a1f69cfb _field4;
     struct map<std::__1::basic_string<char>, siri::dialogengine::ObjectProperty, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, siri::dialogengine::ObjectProperty>>> _field5;
     struct map<std::__1::basic_string<char>, siri::dialogengine::ObjectInput, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, siri::dialogengine::ObjectInput>>> _field6;
 };
@@ -130,16 +142,16 @@ struct ObjectSchema {
 struct Parameter;
 
 struct RequestInfo {
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field3;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field4;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field5;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field6;
+    basic_string_a1f69cfb _field1;
+    basic_string_a1f69cfb _field2;
+    basic_string_a1f69cfb _field3;
+    basic_string_a1f69cfb _field4;
+    basic_string_a1f69cfb _field5;
+    basic_string_a1f69cfb _field6;
     struct vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char>>> _field7;
     struct Distribution _field8;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field9;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field10;
+    basic_string_a1f69cfb _field9;
+    basic_string_a1f69cfb _field10;
     int _field11;
     _Bool _field12;
     _Bool _field13;
@@ -148,8 +160,8 @@ struct RequestInfo {
 };
 
 struct SpeakableString {
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> _field2;
+    basic_string_a1f69cfb _field1;
+    basic_string_a1f69cfb _field2;
 };
 
 struct State {
@@ -314,6 +326,11 @@ struct shared_ptr<siri::dialogengine::Dialog> {
     struct __shared_weak_count *__cntrl_;
 };
 
+struct shared_ptr<siri::dialogengine::ExecutionState> {
+    struct ExecutionState *_field1;
+    struct __shared_weak_count *_field2;
+};
+
 struct shared_ptr<siri::dialogengine::File> {
     struct File *__ptr_;
     struct __shared_weak_count *__cntrl_;
@@ -345,10 +362,10 @@ struct shared_ptr<siri::dialogengine::Variable> {
 };
 
 struct vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char>>> {
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field1;
-    struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field2;
+    basic_string_a1f69cfb *_field1;
+    basic_string_a1f69cfb *_field2;
     struct __compressed_pair<std::__1::basic_string<char>*, std::__1::allocator<std::__1::basic_string<char>>> {
-        struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> *_field1;
+        basic_string_a1f69cfb *_field1;
     } _field3;
 };
 
@@ -376,6 +393,30 @@ typedef struct {
 } CDStruct_43cfb2c2;
 
 // Template types
+typedef struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> {
+    struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__rep, std::__1::allocator<char>> {
+        struct __rep {
+            union {
+                struct __long {
+                    unsigned long long _field1;
+                    unsigned long long _field2;
+                    char *_field3;
+                } _field1;
+                struct __short {
+                    union {
+                        unsigned char _field1;
+                        char _field2;
+                    } _field1;
+                    char _field2[23];
+                } _field2;
+                struct __raw {
+                    unsigned long long _field1[3];
+                } _field3;
+            } _field1;
+        } _field1;
+    } _field1;
+} basic_string_a1f69cfb;
+
 typedef struct shared_ptr<siri::dialogengine::Condition> {
     struct Condition *__ptr_;
     struct __shared_weak_count *__cntrl_;

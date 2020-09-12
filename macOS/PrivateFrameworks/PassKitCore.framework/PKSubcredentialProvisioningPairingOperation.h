@@ -4,13 +4,13 @@
 //  Copyright (C) 1997-2019 Steve Nygard.
 //
 
-#import <PassKitCore/PKSubcredentialProvisioningSessionOperation.h>
+#import <PassKitCore/PKSubcredentialProvisioningPairingSessionOperation.h>
 
 #import <PassKitCore/PKAppletSubcredentialPairingSessionDelegate-Protocol.h>
 
 @class NSString;
 
-@interface PKSubcredentialProvisioningPairingOperation : PKSubcredentialProvisioningSessionOperation <PKAppletSubcredentialPairingSessionDelegate>
+@interface PKSubcredentialProvisioningPairingOperation : PKSubcredentialProvisioningPairingSessionOperation <PKAppletSubcredentialPairingSessionDelegate>
 {
 }
 

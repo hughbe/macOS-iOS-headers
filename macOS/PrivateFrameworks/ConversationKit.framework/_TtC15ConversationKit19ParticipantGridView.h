@@ -14,8 +14,11 @@
     MISSING_TYPE *unfocusedParticipantOverlay;
     MISSING_TYPE *organicLayoutConfiguration;
     MISSING_TYPE *currentlyFocusedParticipantIdentifier;
+    MISSING_TYPE *mostProminentParticipantIdentifier;
     MISSING_TYPE *mostRecentAnimationIndex;
     MISSING_TYPE *delegate;
+    MISSING_TYPE *currentParticipantAnimationContextUUID;
+    MISSING_TYPE *cachedFrameSize;
 }
 
 - (void).cxx_destruct;

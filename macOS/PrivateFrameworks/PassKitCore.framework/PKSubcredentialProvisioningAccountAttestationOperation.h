@@ -4,11 +4,11 @@
 //  Copyright (C) 1997-2019 Steve Nygard.
 //
 
-#import <PassKitCore/PKSubcredentialProvisioningSessionOperation.h>
+#import <PassKitCore/PKSubcredentialProvisioningSharingSessionOperation.h>
 
 @class PKAppletSubcredential, PKAppletSubcredentialSharingInvitationMetadata, PKPaymentWebService;
 
-@interface PKSubcredentialProvisioningAccountAttestationOperation : PKSubcredentialProvisioningSessionOperation
+@interface PKSubcredentialProvisioningAccountAttestationOperation : PKSubcredentialProvisioningSharingSessionOperation
 {
     PKAppletSubcredential *_credential;
     PKPaymentWebService *_webService;

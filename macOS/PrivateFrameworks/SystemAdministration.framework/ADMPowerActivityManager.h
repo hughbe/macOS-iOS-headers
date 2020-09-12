@@ -30,6 +30,8 @@
 - (void)scheduleRepeatingPowerEvent:(id)arg1;
 - (void)cancelAllRepeatingPowerEvents;
 - (id)repeatingPowerEvents;
+- (void)setHDRLowPowerEnabled:(BOOL)arg1;
+- (void)setVACTEnabled:(BOOL)arg1;
 - (void)setRestartsOnHang:(BOOL)arg1 for:(id)arg2;
 - (void)setSleepUsesDim:(BOOL)arg1 for:(id)arg2;
 - (void)setLowerDisplayBrightness:(BOOL)arg1 for:(id)arg2;
@@ -40,6 +42,8 @@
 - (void)setWakesOnLAN:(BOOL)arg1 for:(id)arg2;
 - (void)setEnablePowerButtonSleep:(BOOL)arg1 for:(id)arg2;
 - (void)setDarkWake:(BOOL)arg1 for:(id)arg2;
+- (BOOL)isHDRLowPowerEnabled;
+- (BOOL)isVACTEnabled;
 - (BOOL)restartsOnHang:(id)arg1;
 - (BOOL)sleepUsesDimFor:(id)arg1;
 - (BOOL)lowerDisplayBrightnessFor:(id)arg1;
@@ -50,6 +54,8 @@
 - (BOOL)wakesOnLANFor:(id)arg1;
 - (BOOL)enablePowerButtonSleepFor:(id)arg1;
 - (BOOL)darkWakeFor:(id)arg1;
+- (BOOL)supportsHDRLowPower;
+- (BOOL)supportsVACT;
 - (BOOL)supportsRestartOnHangFor:(id)arg1;
 - (BOOL)supportsSleepUsesDimFor:(id)arg1;
 - (BOOL)supportsLowerDisplayBrightnessFor:(id)arg1;

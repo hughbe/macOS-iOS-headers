@@ -17,6 +17,8 @@
     MISSING_TYPE *offerDisplayProperties;
     MISSING_TYPE *dismissButtonTitle;
     MISSING_TYPE *openAppAction;
+    MISSING_TYPE *dismissingPostSubscribeAction;
+    MISSING_TYPE *nonDismissingPostSubscribeAction;
     MISSING_TYPE *askToBuyMessage;
     MISSING_TYPE *askToBuyId;
     MISSING_TYPE *pageMetrics;
