@@ -1,0 +1,3 @@
+[submodule "Generate/RuntimeBrowser"]
+	path = Generate/RuntimeBrowser
+	url = https://github.com/nst/RuntimeBrowser
